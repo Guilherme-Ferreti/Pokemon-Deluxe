@@ -38,6 +38,8 @@ final class AppServiceProvider extends ServiceProvider
         
         Model::automaticallyEagerLoadRelationships();
 
+        Model::shouldBeStrict();
+
         DB::prohibitDestructiveCommands(
             app()->isProduction(),
         );
