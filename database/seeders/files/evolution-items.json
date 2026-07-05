@@ -3,351 +3,273 @@
     "id": "sun-stone",
     "external_id": "sun-stone",
     "name": "Sun Stone",
-    "type": "evolutionary",
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/sun-stone.png",
-    "description": "An item used to evolve certain Pokémon.",
-    "attributes": null
+    "description": "An item used to evolve certain Pokémon."
   },
   {
     "id": "moon-stone",
     "external_id": "moon-stone",
     "name": "Moon Stone",
-    "type": "evolutionary",
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/moon-stone.png",
-    "description": "An item used to evolve certain Pokémon.",
-    "attributes": null
+    "description": "An item used to evolve certain Pokémon."
   },
   {
     "id": "fire-stone",
     "external_id": "fire-stone",
     "name": "Fire Stone",
-    "type": "evolutionary",
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/fire-stone.png",
-    "description": "An item used to evolve certain Pokémon.",
-    "attributes": null
+    "description": "An item used to evolve certain Pokémon."
   },
   {
     "id": "thunder-stone",
     "external_id": "thunder-stone",
     "name": "Thunder Stone",
-    "type": "evolutionary",
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/thunder-stone.png",
-    "description": "An item used to evolve certain Pokémon.",
-    "attributes": null
+    "description": "An item used to evolve certain Pokémon."
   },
   {
     "id": "water-stone",
     "external_id": "water-stone",
     "name": "Water Stone",
-    "type": "evolutionary",
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/water-stone.png",
-    "description": "An item used to evolve certain Pokémon.",
-    "attributes": null
+    "description": "An item used to evolve certain Pokémon."
   },
   {
     "id": "leaf-stone",
     "external_id": "leaf-stone",
     "name": "Leaf Stone",
-    "type": "evolutionary",
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/leaf-stone.png",
-    "description": "An item used to evolve certain Pokémon.",
-    "attributes": null
+    "description": "An item used to evolve certain Pokémon."
   },
   {
     "id": "shiny-stone",
     "external_id": "shiny-stone",
     "name": "Shiny Stone",
-    "type": "evolutionary",
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/shiny-stone.png",
-    "description": "An item used to evolve certain Pokémon.",
-    "attributes": null
+    "description": "An item used to evolve certain Pokémon."
   },
   {
     "id": "dusk-stone",
     "external_id": "dusk-stone",
     "name": "Dusk Stone",
-    "type": "evolutionary",
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/dusk-stone.png",
-    "description": "An item used to evolve certain Pokémon.",
-    "attributes": null
+    "description": "An item used to evolve certain Pokémon."
   },
   {
     "id": "dawn-stone",
     "external_id": "dawn-stone",
     "name": "Dawn Stone",
-    "type": "evolutionary",
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/dawn-stone.png",
-    "description": "An item used to evolve certain Pokémon.",
-    "attributes": null
+    "description": "An item used to evolve certain Pokémon."
   },
   {
     "id": "oval-stone",
     "external_id": "oval-stone",
     "name": "Oval Stone",
-    "type": "evolutionary",
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/oval-stone.png",
-    "description": "An item used to evolve certain Pokémon.",
-    "attributes": null
+    "description": "An item used to evolve certain Pokémon."
   },
   {
     "id": "ice-stone",
     "external_id": "ice-stone",
     "name": "Ice Stone",
-    "type": "evolutionary",
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/ice-stone.png",
-    "description": "An item used to evolve certain Pokémon.",
-    "attributes": null
+    "description": "An item used to evolve certain Pokémon."
   },
   {
     "id": "kings-rock",
     "external_id": "kings-rock",
     "name": "King’s Rock",
-    "type": "evolutionary",
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/kings-rock.png",
-    "description": "An item used to evolve certain Pokémon.",
-    "attributes": null
+    "description": "An item used to evolve certain Pokémon."
   },
   {
     "id": "deep-sea-tooth",
     "external_id": "deep-sea-tooth",
     "name": "Deep Sea Tooth",
-    "type": "evolutionary",
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/deep-sea-tooth.png",
-    "description": "An item used to evolve certain Pokémon.",
-    "attributes": null
+    "description": "An item used to evolve certain Pokémon."
   },
   {
     "id": "deep-sea-scale",
     "external_id": "deep-sea-scale",
     "name": "Deep Sea Scale",
-    "type": "evolutionary",
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/deep-sea-scale.png",
-    "description": "An item used to evolve certain Pokémon.",
-    "attributes": null
+    "description": "An item used to evolve certain Pokémon."
   },
   {
     "id": "metal-coat",
     "external_id": "metal-coat",
     "name": "Metal Coat",
-    "type": "evolutionary",
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/metal-coat.png",
-    "description": "An item used to evolve certain Pokémon.",
-    "attributes": null
+    "description": "An item used to evolve certain Pokémon."
   },
   {
     "id": "dragon-scale",
     "external_id": "dragon-scale",
     "name": "Dragon Scale",
-    "type": "evolutionary",
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/dragon-scale.png",
-    "description": "An item used to evolve certain Pokémon.",
-    "attributes": null
+    "description": "An item used to evolve certain Pokémon."
   },
   {
     "id": "up-grade",
     "external_id": "up-grade",
     "name": "Upgrade",
-    "type": "evolutionary",
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/up-grade.png",
-    "description": "An item used to evolve certain Pokémon.",
-    "attributes": null
+    "description": "An item used to evolve certain Pokémon."
   },
   {
     "id": "protector",
     "external_id": "protector",
     "name": "Protector",
-    "type": "evolutionary",
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/protector.png",
-    "description": "An item used to evolve certain Pokémon.",
-    "attributes": null
+    "description": "An item used to evolve certain Pokémon."
   },
   {
     "id": "electirizer",
     "external_id": "electirizer",
     "name": "Electirizer",
-    "type": "evolutionary",
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/electirizer.png",
-    "description": "An item used to evolve certain Pokémon.",
-    "attributes": null
+    "description": "An item used to evolve certain Pokémon."
   },
   {
     "id": "magmarizer",
     "external_id": "magmarizer",
     "name": "Magmarizer",
-    "type": "evolutionary",
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/magmarizer.png",
-    "description": "An item used to evolve certain Pokémon.",
-    "attributes": null
+    "description": "An item used to evolve certain Pokémon."
   },
   {
     "id": "dubious-disc",
     "external_id": "dubious-disc",
     "name": "Dubious Disc",
-    "type": "evolutionary",
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/dubious-disc.png",
-    "description": "An item used to evolve certain Pokémon.",
-    "attributes": null
+    "description": "An item used to evolve certain Pokémon."
   },
   {
     "id": "reaper-cloth",
     "external_id": "reaper-cloth",
     "name": "Reaper Cloth",
-    "type": "evolutionary",
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/reaper-cloth.png",
-    "description": "An item used to evolve certain Pokémon.",
-    "attributes": null
+    "description": "An item used to evolve certain Pokémon."
   },
   {
     "id": "razor-claw",
     "external_id": "razor-claw",
     "name": "Razor Claw",
-    "type": "evolutionary",
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/razor-claw.png",
-    "description": "An item used to evolve certain Pokémon.",
-    "attributes": null
+    "description": "An item used to evolve certain Pokémon."
   },
   {
     "id": "razor-fang",
     "external_id": "razor-fang",
     "name": "Razor Fang",
-    "type": "evolutionary",
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/razor-fang.png",
-    "description": "An item used to evolve certain Pokémon.",
-    "attributes": null
+    "description": "An item used to evolve certain Pokémon."
   },
   {
     "id": "prism-scale",
     "external_id": "prism-scale",
     "name": "Prism Scale",
-    "type": "evolutionary",
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/prism-scale.png",
-    "description": "An item used to evolve certain Pokémon.",
-    "attributes": null
+    "description": "An item used to evolve certain Pokémon."
   },
   {
     "id": "whipped-dream",
     "external_id": "whipped-dream",
     "name": "Whipped Dream",
-    "type": "evolutionary",
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/whipped-dream.png",
-    "description": "An item used to evolve certain Pokémon.",
-    "attributes": null
+    "description": "An item used to evolve certain Pokémon."
   },
   {
     "id": "sachet",
     "external_id": "sachet",
     "name": "Sachet",
-    "type": "evolutionary",
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/sachet.png",
-    "description": "An item used to evolve certain Pokémon.",
-    "attributes": null
+    "description": "An item used to evolve certain Pokémon."
   },
   {
     "id": "sweet-apple",
     "external_id": "sweet-apple",
     "name": "Sweet Apple",
-    "type": "evolutionary",
     "sprite": null,
-    "description": "An item used to evolve certain Pokémon.",
-    "attributes": null
+    "description": "An item used to evolve certain Pokémon."
   },
   {
     "id": "tart-apple",
     "external_id": "tart-apple",
     "name": "Tart Apple",
-    "type": "evolutionary",
     "sprite": null,
-    "description": "An item used to evolve certain Pokémon.",
-    "attributes": null
+    "description": "An item used to evolve certain Pokémon."
   },
   {
     "id": "cracked-pot",
     "external_id": "cracked-pot",
     "name": "Cracked Pot",
-    "type": "evolutionary",
     "sprite": null,
-    "description": "An item used to evolve certain Pokémon.",
-    "attributes": null
+    "description": "An item used to evolve certain Pokémon."
   },
   {
     "id": "scroll-of-darkness",
     "external_id": "scroll-of-darkness",
     "name": "Scroll of Darkness",
-    "type": "evolutionary",
     "sprite": null,
-    "description": "An item used to evolve certain Pokémon.",
-    "attributes": null
+    "description": "An item used to evolve certain Pokémon."
   },
   {
     "id": "scroll-of-waters",
     "external_id": "scroll-of-waters",
     "name": "Scroll of Waters",
-    "type": "evolutionary",
     "sprite": null,
-    "description": "An item used to evolve certain Pokémon.",
-    "attributes": null
+    "description": "An item used to evolve certain Pokémon."
   },
   {
     "id": "malicious-armor",
     "external_id": "malicious-armor",
     "name": "Malicious Armor",
-    "type": "evolutionary",
     "sprite": null,
-    "description": "An item used to evolve certain Pokémon.",
-    "attributes": null
+    "description": "An item used to evolve certain Pokémon."
   },
   {
     "id": "auspicious-armor",
     "external_id": "auspicious-armor",
     "name": "Auspicious Armor",
-    "type": "evolutionary",
     "sprite": null,
-    "description": "An item used to evolve certain Pokémon.",
-    "attributes": null
+    "description": "An item used to evolve certain Pokémon."
   },
   {
     "id": "syrupy-apple",
     "external_id": "syrupy-apple",
     "name": "Syrupy Apple",
-    "type": "evolutionary",
     "sprite": null,
-    "description": "An item used to evolve certain Pokémon.",
-    "attributes": null
+    "description": "An item used to evolve certain Pokémon."
   },
   {
     "id": "unremarkable-teacup",
     "external_id": "unremarkable-teacup",
     "name": "Unremarkable Teacup",
-    "type": "evolutionary",
     "sprite": null,
-    "description": "An item used to evolve certain Pokémon.",
-    "attributes": null
+    "description": "An item used to evolve certain Pokémon."
   },
   {
     "id": "black-augurite",
     "external_id": "black-augurite",
     "name": "Black Augurite",
-    "type": "evolutionary",
     "sprite": null,
-    "description": "An item used to evolve certain Pokémon.",
-    "attributes": null
+    "description": "An item used to evolve certain Pokémon."
   },
   {
     "id": "peat-block",
     "external_id": "peat-block",
     "name": "Peat Block",
-    "type": "evolutionary",
     "sprite": null,
-    "description": "An item used to evolve certain Pokémon.",
-    "attributes": null
+    "description": "An item used to evolve certain Pokémon."
   },
   {
     "id": "metal-alloy",
     "external_id": "metal-alloy",
     "name": "Metal Alloy",
-    "type": "evolutionary",
     "sprite": null,
-    "description": "An item used to evolve certain Pokémon.",
-    "attributes": null
+    "description": "An item used to evolve certain Pokémon."
   }
 ]

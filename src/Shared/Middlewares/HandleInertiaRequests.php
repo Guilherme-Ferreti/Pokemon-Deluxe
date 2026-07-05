@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Shared\Middlewares;
 
-use Override;
 use Illuminate\Http\Request;
 use Inertia\Middleware;
+use Override;
 
 final class HandleInertiaRequests extends Middleware
 {
