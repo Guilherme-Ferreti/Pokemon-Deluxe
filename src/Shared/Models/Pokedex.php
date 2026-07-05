@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\Attributes\Unguarded;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Support\Carbon;
 use Override;
 use Shared\Enums\ElementalType;
@@ -53,4 +54,20 @@ final class Pokedex extends Model
         'capture_rate'              => 'integer',
         'sprites'                   => PokemonSprites::class,
     ];
+
+    /**
+     * @return HasMany<PokedexEvolution, $this>
+     */
+    public function evolutions(): HasMany
+    {
+        return $this->hasMany(PokedexEvolution::class, 'from_pokedex_id');
+    }
+
+    /**
+     * @return HasMany<PokedexEvolution, $this>
+     */
+    public function previousEvolutions(): HasMany
+    {
+        return $this->hasMany(PokedexEvolution::class, 'to_pokedex_id');
+    }
 }
