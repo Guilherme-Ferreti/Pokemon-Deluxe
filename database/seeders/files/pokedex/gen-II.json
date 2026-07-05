@@ -1,0 +1,3620 @@
+{
+    "chikorita": {
+        "id": "chikorita",
+        "external_id": "chikorita",
+        "name": "Chikorita",
+        "primary_type": "grass",
+        "secondary_type": null,
+        "national_dex_entry_number": 152,
+        "genus": "Leaf Pokémon",
+        "flavor_text": "In battle, Chikorita waves its leaf around to keep the foe at bay. However, a sweet fragrance also wafts from the leaf, becalming the battling Pokémon and creating a cozy, friendly atmosphere all around.",
+        "sprites": {
+            "back_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/152.png",
+            "back_female": null,
+            "back_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/shiny/152.png",
+            "back_shiny_female": null,
+            "front_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/152.png",
+            "front_female": null,
+            "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/152.png",
+            "front_shiny_female": null
+        },
+        "is_baby": false,
+        "is_legendary": false,
+        "is_mythical": false,
+        "is_mega": false,
+        "is_gmax": false,
+        "generation": 2,
+        "capture_rate": 45,
+        "evolutions": [
+            {
+                "evolves_to": "bayleef",
+                "item": null,
+                "min_level": 16
+            }
+        ]
+    },
+    "bayleef": {
+        "id": "bayleef",
+        "external_id": "bayleef",
+        "name": "Bayleef",
+        "primary_type": "grass",
+        "secondary_type": null,
+        "national_dex_entry_number": 153,
+        "genus": "Leaf Pokémon",
+        "flavor_text": "Bayleef’s neck is ringed by curled-up leaves. Inside each tubular leaf is a small shoot of a tree. The fragrance of this shoot makes people peppy.",
+        "sprites": {
+            "back_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/153.png",
+            "back_female": null,
+            "back_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/shiny/153.png",
+            "back_shiny_female": null,
+            "front_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/153.png",
+            "front_female": null,
+            "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/153.png",
+            "front_shiny_female": null
+        },
+        "is_baby": false,
+        "is_legendary": false,
+        "is_mythical": false,
+        "is_mega": false,
+        "is_gmax": false,
+        "generation": 2,
+        "capture_rate": 45,
+        "evolutions": [
+            {
+                "evolves_to": "meganium",
+                "item": null,
+                "min_level": 32
+            }
+        ]
+    },
+    "meganium": {
+        "id": "meganium",
+        "external_id": "meganium",
+        "name": "Meganium",
+        "primary_type": "grass",
+        "secondary_type": null,
+        "national_dex_entry_number": 154,
+        "genus": "Herb Pokémon",
+        "flavor_text": "The fragrance of Meganium’s flower soothes and calms emotions. In battle, this Pokémon gives off more of its becalming scent to blunt the foe’s fighting spirit.",
+        "sprites": {
+            "back_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/154.png",
+            "back_female": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/female/154.png",
+            "back_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/shiny/154.png",
+            "back_shiny_female": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/shiny/female/154.png",
+            "front_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/154.png",
+            "front_female": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/female/154.png",
+            "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/154.png",
+            "front_shiny_female": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/female/154.png"
+        },
+        "is_baby": false,
+        "is_legendary": false,
+        "is_mythical": false,
+        "is_mega": false,
+        "is_gmax": false,
+        "generation": 2,
+        "capture_rate": 45,
+        "evolutions": [
+            {
+                "evolves_to": "meganium-mega",
+                "item": null,
+                "min_level": 100
+            }
+        ]
+    },
+    "meganium-mega": {
+        "id": "meganium-mega",
+        "external_id": "meganium-mega",
+        "name": "Mega Meganium",
+        "primary_type": "grass",
+        "secondary_type": "fairy",
+        "national_dex_entry_number": 154,
+        "genus": "Herb Pokémon",
+        "flavor_text": "The fragrance of Meganium’s flower soothes and calms emotions. In battle, this Pokémon gives off more of its becalming scent to blunt the foe’s fighting spirit.",
+        "sprites": {
+            "back_default": null,
+            "back_female": null,
+            "back_shiny": null,
+            "back_shiny_female": null,
+            "front_default": null,
+            "front_female": null,
+            "front_shiny": null,
+            "front_shiny_female": null
+        },
+        "is_baby": false,
+        "is_legendary": false,
+        "is_mythical": false,
+        "is_mega": true,
+        "is_gmax": false,
+        "generation": 2,
+        "capture_rate": null,
+        "evolutions": []
+    },
+    "cyndaquil": {
+        "id": "cyndaquil",
+        "external_id": "cyndaquil",
+        "name": "Cyndaquil",
+        "primary_type": "fire",
+        "secondary_type": null,
+        "national_dex_entry_number": 155,
+        "genus": "Fire Mouse Pokémon",
+        "flavor_text": "Hails from the Johto region. Though usually curled into a ball due to its timid disposition, it harbors tremendous firepower.",
+        "sprites": {
+            "back_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/155.png",
+            "back_female": null,
+            "back_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/shiny/155.png",
+            "back_shiny_female": null,
+            "front_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/155.png",
+            "front_female": null,
+            "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/155.png",
+            "front_shiny_female": null
+        },
+        "is_baby": false,
+        "is_legendary": false,
+        "is_mythical": false,
+        "is_mega": false,
+        "is_gmax": false,
+        "generation": 2,
+        "capture_rate": 45,
+        "evolutions": [
+            {
+                "evolves_to": "quilava",
+                "item": null,
+                "min_level": 14
+            }
+        ]
+    },
+    "quilava": {
+        "id": "quilava",
+        "external_id": "quilava",
+        "name": "Quilava",
+        "primary_type": "fire",
+        "secondary_type": null,
+        "national_dex_entry_number": 156,
+        "genus": "Volcano Pokémon",
+        "flavor_text": "This creature's fur is most mysterious—it is wholly impervious to the burning touch of flame. Should Quilava turn its back to you, take heed! Such a posture indicates a forthcoming attack.",
+        "sprites": {
+            "back_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/156.png",
+            "back_female": null,
+            "back_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/shiny/156.png",
+            "back_shiny_female": null,
+            "front_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/156.png",
+            "front_female": null,
+            "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/156.png",
+            "front_shiny_female": null
+        },
+        "is_baby": false,
+        "is_legendary": false,
+        "is_mythical": false,
+        "is_mega": false,
+        "is_gmax": false,
+        "generation": 2,
+        "capture_rate": 45,
+        "evolutions": [
+            {
+                "evolves_to": "typhlosion",
+                "item": null,
+                "min_level": 36
+            },
+            {
+                "evolves_to": "typhlosion-hisui",
+                "item": null,
+                "min_level": 36
+            }
+        ]
+    },
+    "typhlosion": {
+        "id": "typhlosion",
+        "external_id": "typhlosion",
+        "name": "Typhlosion",
+        "primary_type": "fire",
+        "secondary_type": null,
+        "national_dex_entry_number": 157,
+        "genus": "Volcano Pokémon",
+        "flavor_text": "Said to purify lost, forsaken souls with its flames and guide them to the afterlife. I believe its form has been influenced by the energy of the sacred mountain towering at Hisui's center.",
+        "sprites": {
+            "back_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/157.png",
+            "back_female": null,
+            "back_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/shiny/157.png",
+            "back_shiny_female": null,
+            "front_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/157.png",
+            "front_female": null,
+            "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/157.png",
+            "front_shiny_female": null
+        },
+        "is_baby": false,
+        "is_legendary": false,
+        "is_mythical": false,
+        "is_mega": false,
+        "is_gmax": false,
+        "generation": 2,
+        "capture_rate": 45,
+        "evolutions": []
+    },
+    "typhlosion-hisui": {
+        "id": "typhlosion-hisui",
+        "external_id": "typhlosion-hisui",
+        "name": "Hisuian Typhlosion",
+        "primary_type": "fire",
+        "secondary_type": "ghost",
+        "national_dex_entry_number": 157,
+        "genus": "Volcano Pokémon",
+        "flavor_text": "Said to purify lost, forsaken souls with its flames and guide them to the afterlife. I believe its form has been influenced by the energy of the sacred mountain towering at Hisui's center.",
+        "sprites": {
+            "back_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/10233.png",
+            "back_female": null,
+            "back_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/shiny/10233.png",
+            "back_shiny_female": null,
+            "front_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10233.png",
+            "front_female": null,
+            "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/10233.png",
+            "front_shiny_female": null
+        },
+        "is_baby": false,
+        "is_legendary": false,
+        "is_mythical": false,
+        "is_mega": false,
+        "is_gmax": false,
+        "generation": 2,
+        "capture_rate": 45,
+        "evolutions": []
+    },
+    "totodile": {
+        "id": "totodile",
+        "external_id": "totodile",
+        "name": "Totodile",
+        "primary_type": "water",
+        "secondary_type": null,
+        "national_dex_entry_number": 158,
+        "genus": "Big Jaw Pokémon",
+        "flavor_text": "Despite the smallness of its body, Totodile’s jaws are very powerful. While the Pokémon may think it is just playfully nipping, its bite has enough power to cause serious injury.",
+        "sprites": {
+            "back_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/158.png",
+            "back_female": null,
+            "back_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/shiny/158.png",
+            "back_shiny_female": null,
+            "front_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/158.png",
+            "front_female": null,
+            "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/158.png",
+            "front_shiny_female": null
+        },
+        "is_baby": false,
+        "is_legendary": false,
+        "is_mythical": false,
+        "is_mega": false,
+        "is_gmax": false,
+        "generation": 2,
+        "capture_rate": 45,
+        "evolutions": [
+            {
+                "evolves_to": "croconaw",
+                "item": null,
+                "min_level": 18
+            }
+        ]
+    },
+    "croconaw": {
+        "id": "croconaw",
+        "external_id": "croconaw",
+        "name": "Croconaw",
+        "primary_type": "water",
+        "secondary_type": null,
+        "national_dex_entry_number": 159,
+        "genus": "Big Jaw Pokémon",
+        "flavor_text": "Once Croconaw has clamped its jaws on its foe, it will absolutely not let go. Because the tips of its fangs are forked back like barbed fishhooks, they become impossible to remove when they have sunk in.",
+        "sprites": {
+            "back_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/159.png",
+            "back_female": null,
+            "back_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/shiny/159.png",
+            "back_shiny_female": null,
+            "front_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/159.png",
+            "front_female": null,
+            "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/159.png",
+            "front_shiny_female": null
+        },
+        "is_baby": false,
+        "is_legendary": false,
+        "is_mythical": false,
+        "is_mega": false,
+        "is_gmax": false,
+        "generation": 2,
+        "capture_rate": 45,
+        "evolutions": [
+            {
+                "evolves_to": "feraligatr",
+                "item": null,
+                "min_level": 30
+            }
+        ]
+    },
+    "feraligatr": {
+        "id": "feraligatr",
+        "external_id": "feraligatr",
+        "name": "Feraligatr",
+        "primary_type": "water",
+        "secondary_type": null,
+        "national_dex_entry_number": 160,
+        "genus": "Big Jaw Pokémon",
+        "flavor_text": "Feraligatr intimidates its foes by opening its huge mouth. In battle, it will kick the ground hard with its thick and powerful hind legs to charge at the foe at an incredible speed.",
+        "sprites": {
+            "back_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/160.png",
+            "back_female": null,
+            "back_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/shiny/160.png",
+            "back_shiny_female": null,
+            "front_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/160.png",
+            "front_female": null,
+            "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/160.png",
+            "front_shiny_female": null
+        },
+        "is_baby": false,
+        "is_legendary": false,
+        "is_mythical": false,
+        "is_mega": false,
+        "is_gmax": false,
+        "generation": 2,
+        "capture_rate": 45,
+        "evolutions": [
+            {
+                "evolves_to": "feraligatr-mega",
+                "item": null,
+                "min_level": 100
+            }
+        ]
+    },
+    "feraligatr-mega": {
+        "id": "feraligatr-mega",
+        "external_id": "feraligatr-mega",
+        "name": "Mega Feraligatr",
+        "primary_type": "water",
+        "secondary_type": "dragon",
+        "national_dex_entry_number": 160,
+        "genus": "Big Jaw Pokémon",
+        "flavor_text": "Feraligatr intimidates its foes by opening its huge mouth. In battle, it will kick the ground hard with its thick and powerful hind legs to charge at the foe at an incredible speed.",
+        "sprites": {
+            "back_default": null,
+            "back_female": null,
+            "back_shiny": null,
+            "back_shiny_female": null,
+            "front_default": null,
+            "front_female": null,
+            "front_shiny": null,
+            "front_shiny_female": null
+        },
+        "is_baby": false,
+        "is_legendary": false,
+        "is_mythical": false,
+        "is_mega": true,
+        "is_gmax": false,
+        "generation": 2,
+        "capture_rate": null,
+        "evolutions": []
+    },
+    "sentret": {
+        "id": "sentret",
+        "external_id": "sentret",
+        "name": "Sentret",
+        "primary_type": "normal",
+        "secondary_type": null,
+        "national_dex_entry_number": 161,
+        "genus": "Scout Pokémon",
+        "flavor_text": "When Sentret sleeps, it does so while another stands guard. The sentry wakes the others at the first sign of danger. When this Pokémon becomes separated from its pack, it becomes incapable of sleep due to fear.",
+        "sprites": {
+            "back_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/161.png",
+            "back_female": null,
+            "back_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/shiny/161.png",
+            "back_shiny_female": null,
+            "front_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/161.png",
+            "front_female": null,
+            "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/161.png",
+            "front_shiny_female": null
+        },
+        "is_baby": false,
+        "is_legendary": false,
+        "is_mythical": false,
+        "is_mega": false,
+        "is_gmax": false,
+        "generation": 2,
+        "capture_rate": 255,
+        "evolutions": [
+            {
+                "evolves_to": "furret",
+                "item": null,
+                "min_level": 15
+            }
+        ]
+    },
+    "furret": {
+        "id": "furret",
+        "external_id": "furret",
+        "name": "Furret",
+        "primary_type": "normal",
+        "secondary_type": null,
+        "national_dex_entry_number": 162,
+        "genus": "Long Body Pokémon",
+        "flavor_text": "Furret has a very slim build. When under attack, it can slickly squirm through narrow spaces and get away. In spite of its short limbs, this Pokémon is very nimble and fleet.",
+        "sprites": {
+            "back_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/162.png",
+            "back_female": null,
+            "back_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/shiny/162.png",
+            "back_shiny_female": null,
+            "front_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/162.png",
+            "front_female": null,
+            "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/162.png",
+            "front_shiny_female": null
+        },
+        "is_baby": false,
+        "is_legendary": false,
+        "is_mythical": false,
+        "is_mega": false,
+        "is_gmax": false,
+        "generation": 2,
+        "capture_rate": 90,
+        "evolutions": []
+    },
+    "hoothoot": {
+        "id": "hoothoot",
+        "external_id": "hoothoot",
+        "name": "Hoothoot",
+        "primary_type": "normal",
+        "secondary_type": "flying",
+        "national_dex_entry_number": 163,
+        "genus": "Owl Pokémon",
+        "flavor_text": "It begins to hoot at the same time every day. Some Trainers use them in place of clocks.",
+        "sprites": {
+            "back_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/163.png",
+            "back_female": null,
+            "back_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/shiny/163.png",
+            "back_shiny_female": null,
+            "front_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/163.png",
+            "front_female": null,
+            "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/163.png",
+            "front_shiny_female": null
+        },
+        "is_baby": false,
+        "is_legendary": false,
+        "is_mythical": false,
+        "is_mega": false,
+        "is_gmax": false,
+        "generation": 2,
+        "capture_rate": 255,
+        "evolutions": [
+            {
+                "evolves_to": "noctowl",
+                "item": null,
+                "min_level": 20
+            }
+        ]
+    },
+    "noctowl": {
+        "id": "noctowl",
+        "external_id": "noctowl",
+        "name": "Noctowl",
+        "primary_type": "normal",
+        "secondary_type": "flying",
+        "national_dex_entry_number": 164,
+        "genus": "Owl Pokémon",
+        "flavor_text": "When it needs to think, it rotates its head 180 degrees to sharpen its intellectual power.",
+        "sprites": {
+            "back_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/164.png",
+            "back_female": null,
+            "back_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/shiny/164.png",
+            "back_shiny_female": null,
+            "front_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/164.png",
+            "front_female": null,
+            "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/164.png",
+            "front_shiny_female": null
+        },
+        "is_baby": false,
+        "is_legendary": false,
+        "is_mythical": false,
+        "is_mega": false,
+        "is_gmax": false,
+        "generation": 2,
+        "capture_rate": 90,
+        "evolutions": []
+    },
+    "ledyba": {
+        "id": "ledyba",
+        "external_id": "ledyba",
+        "name": "Ledyba",
+        "primary_type": "bug",
+        "secondary_type": "flying",
+        "national_dex_entry_number": 165,
+        "genus": "Five Star Pokémon",
+        "flavor_text": "These very cowardly Pokémon join together and use Reflect to protect their nest.",
+        "sprites": {
+            "back_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/165.png",
+            "back_female": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/female/165.png",
+            "back_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/shiny/165.png",
+            "back_shiny_female": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/shiny/female/165.png",
+            "front_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/165.png",
+            "front_female": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/female/165.png",
+            "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/165.png",
+            "front_shiny_female": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/female/165.png"
+        },
+        "is_baby": false,
+        "is_legendary": false,
+        "is_mythical": false,
+        "is_mega": false,
+        "is_gmax": false,
+        "generation": 2,
+        "capture_rate": 255,
+        "evolutions": [
+            {
+                "evolves_to": "ledian",
+                "item": null,
+                "min_level": 18
+            }
+        ]
+    },
+    "ledian": {
+        "id": "ledian",
+        "external_id": "ledian",
+        "name": "Ledian",
+        "primary_type": "bug",
+        "secondary_type": "flying",
+        "national_dex_entry_number": 166,
+        "genus": "Five Star Pokémon",
+        "flavor_text": "It flies through the night sky, sprinkling sparkly dust. According to some, if that dust sticks to you, good things will happen to you.",
+        "sprites": {
+            "back_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/166.png",
+            "back_female": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/female/166.png",
+            "back_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/shiny/166.png",
+            "back_shiny_female": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/shiny/female/166.png",
+            "front_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/166.png",
+            "front_female": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/female/166.png",
+            "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/166.png",
+            "front_shiny_female": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/female/166.png"
+        },
+        "is_baby": false,
+        "is_legendary": false,
+        "is_mythical": false,
+        "is_mega": false,
+        "is_gmax": false,
+        "generation": 2,
+        "capture_rate": 90,
+        "evolutions": []
+    },
+    "spinarak": {
+        "id": "spinarak",
+        "external_id": "spinarak",
+        "name": "Spinarak",
+        "primary_type": "bug",
+        "secondary_type": "poison",
+        "national_dex_entry_number": 167,
+        "genus": "String Spit Pokémon",
+        "flavor_text": "Although the poison from its fangs isn’t that strong, it’s potent enough to weaken prey that gets caught in its web.",
+        "sprites": {
+            "back_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/167.png",
+            "back_female": null,
+            "back_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/shiny/167.png",
+            "back_shiny_female": null,
+            "front_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/167.png",
+            "front_female": null,
+            "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/167.png",
+            "front_shiny_female": null
+        },
+        "is_baby": false,
+        "is_legendary": false,
+        "is_mythical": false,
+        "is_mega": false,
+        "is_gmax": false,
+        "generation": 2,
+        "capture_rate": 255,
+        "evolutions": [
+            {
+                "evolves_to": "ariados",
+                "item": null,
+                "min_level": 22
+            }
+        ]
+    },
+    "ariados": {
+        "id": "ariados",
+        "external_id": "ariados",
+        "name": "Ariados",
+        "primary_type": "bug",
+        "secondary_type": "poison",
+        "national_dex_entry_number": 168,
+        "genus": "Long Leg Pokémon",
+        "flavor_text": "It spews threads from its mouth to catch its prey. When night falls, it leaves its web to go hunt aggressively.",
+        "sprites": {
+            "back_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/168.png",
+            "back_female": null,
+            "back_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/shiny/168.png",
+            "back_shiny_female": null,
+            "front_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/168.png",
+            "front_female": null,
+            "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/168.png",
+            "front_shiny_female": null
+        },
+        "is_baby": false,
+        "is_legendary": false,
+        "is_mythical": false,
+        "is_mega": false,
+        "is_gmax": false,
+        "generation": 2,
+        "capture_rate": 90,
+        "evolutions": []
+    },
+    "crobat": {
+        "id": "crobat",
+        "external_id": "crobat",
+        "name": "Crobat",
+        "primary_type": "poison",
+        "secondary_type": "flying",
+        "national_dex_entry_number": 169,
+        "genus": "Bat Pokémon",
+        "flavor_text": "Its hind limbs have become another set of wings. Crobat expertly maneuvers its four wings to dart in exquisite fashion through even the most confined caves without losing any speed.",
+        "sprites": {
+            "back_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/169.png",
+            "back_female": null,
+            "back_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/shiny/169.png",
+            "back_shiny_female": null,
+            "front_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/169.png",
+            "front_female": null,
+            "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/169.png",
+            "front_shiny_female": null
+        },
+        "is_baby": false,
+        "is_legendary": false,
+        "is_mythical": false,
+        "is_mega": false,
+        "is_gmax": false,
+        "generation": 2,
+        "capture_rate": 90,
+        "evolutions": []
+    },
+    "chinchou": {
+        "id": "chinchou",
+        "external_id": "chinchou",
+        "name": "Chinchou",
+        "primary_type": "water",
+        "secondary_type": "electric",
+        "national_dex_entry_number": 170,
+        "genus": "Angler Pokémon",
+        "flavor_text": "On the dark ocean floor, its only means of communication is its constantly flashing lights.",
+        "sprites": {
+            "back_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/170.png",
+            "back_female": null,
+            "back_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/shiny/170.png",
+            "back_shiny_female": null,
+            "front_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/170.png",
+            "front_female": null,
+            "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/170.png",
+            "front_shiny_female": null
+        },
+        "is_baby": false,
+        "is_legendary": false,
+        "is_mythical": false,
+        "is_mega": false,
+        "is_gmax": false,
+        "generation": 2,
+        "capture_rate": 190,
+        "evolutions": [
+            {
+                "evolves_to": "lanturn",
+                "item": null,
+                "min_level": 27
+            }
+        ]
+    },
+    "lanturn": {
+        "id": "lanturn",
+        "external_id": "lanturn",
+        "name": "Lanturn",
+        "primary_type": "water",
+        "secondary_type": "electric",
+        "national_dex_entry_number": 171,
+        "genus": "Light Pokémon",
+        "flavor_text": "This Pokémon flashes a bright light that blinds its prey. This creates an opening for it to deliver an electrical attack.",
+        "sprites": {
+            "back_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/171.png",
+            "back_female": null,
+            "back_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/shiny/171.png",
+            "back_shiny_female": null,
+            "front_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/171.png",
+            "front_female": null,
+            "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/171.png",
+            "front_shiny_female": null
+        },
+        "is_baby": false,
+        "is_legendary": false,
+        "is_mythical": false,
+        "is_mega": false,
+        "is_gmax": false,
+        "generation": 2,
+        "capture_rate": 75,
+        "evolutions": []
+    },
+    "pichu": {
+        "id": "pichu",
+        "external_id": "pichu",
+        "name": "Pichu",
+        "primary_type": "electric",
+        "secondary_type": null,
+        "national_dex_entry_number": 172,
+        "genus": "Tiny Mouse Pokémon",
+        "flavor_text": "Pichu stores electricity in the sacs on its cheeks but discharges it inadvertently when agitated or excited. Being yet immature, the Pokémon's handling of electricity is rather inept.",
+        "sprites": {
+            "back_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/172.png",
+            "back_female": null,
+            "back_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/shiny/172.png",
+            "back_shiny_female": null,
+            "front_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/172.png",
+            "front_female": null,
+            "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/172.png",
+            "front_shiny_female": null
+        },
+        "is_baby": true,
+        "is_legendary": false,
+        "is_mythical": false,
+        "is_mega": false,
+        "is_gmax": false,
+        "generation": 2,
+        "capture_rate": 190,
+        "evolutions": [
+            {
+                "evolves_to": "pikachu",
+                "item": null,
+                "min_level": 15
+            }
+        ]
+    },
+    "cleffa": {
+        "id": "cleffa",
+        "external_id": "cleffa",
+        "name": "Cleffa",
+        "primary_type": "fairy",
+        "secondary_type": null,
+        "national_dex_entry_number": 173,
+        "genus": "Star Shape Pokémon",
+        "flavor_text": "In silhouette, they resemble twinkling starlight. When shooting stars rain from the night sky, Cleffa gather in numbers and dance as though they are indeed incarnations of the stars.",
+        "sprites": {
+            "back_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/173.png",
+            "back_female": null,
+            "back_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/shiny/173.png",
+            "back_shiny_female": null,
+            "front_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/173.png",
+            "front_female": null,
+            "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/173.png",
+            "front_shiny_female": null
+        },
+        "is_baby": true,
+        "is_legendary": false,
+        "is_mythical": false,
+        "is_mega": false,
+        "is_gmax": false,
+        "generation": 2,
+        "capture_rate": 150,
+        "evolutions": [
+            {
+                "evolves_to": "clefairy",
+                "item": null,
+                "min_level": 15
+            }
+        ]
+    },
+    "igglybuff": {
+        "id": "igglybuff",
+        "external_id": "igglybuff",
+        "name": "Igglybuff",
+        "primary_type": "normal",
+        "secondary_type": "fairy",
+        "national_dex_entry_number": 174,
+        "genus": "Balloon Pokémon",
+        "flavor_text": "Taking advantage of the softness of its body, Igglybuff moves as if bouncing. Its body turns a deep pink when its temperature rises.",
+        "sprites": {
+            "back_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/174.png",
+            "back_female": null,
+            "back_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/shiny/174.png",
+            "back_shiny_female": null,
+            "front_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/174.png",
+            "front_female": null,
+            "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/174.png",
+            "front_shiny_female": null
+        },
+        "is_baby": true,
+        "is_legendary": false,
+        "is_mythical": false,
+        "is_mega": false,
+        "is_gmax": false,
+        "generation": 2,
+        "capture_rate": 170,
+        "evolutions": [
+            {
+                "evolves_to": "jigglypuff",
+                "item": null,
+                "min_level": 15
+            }
+        ]
+    },
+    "togepi": {
+        "id": "togepi",
+        "external_id": "togepi",
+        "name": "Togepi",
+        "primary_type": "fairy",
+        "secondary_type": null,
+        "national_dex_entry_number": 175,
+        "genus": "Spike Ball Pokémon",
+        "flavor_text": "This ovate creature is frequently mistaken for a moving egg when encountered out in the fields or in the mountains. Its guileless smile soothes the soul.",
+        "sprites": {
+            "back_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/175.png",
+            "back_female": null,
+            "back_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/shiny/175.png",
+            "back_shiny_female": null,
+            "front_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/175.png",
+            "front_female": null,
+            "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/175.png",
+            "front_shiny_female": null
+        },
+        "is_baby": true,
+        "is_legendary": false,
+        "is_mythical": false,
+        "is_mega": false,
+        "is_gmax": false,
+        "generation": 2,
+        "capture_rate": 190,
+        "evolutions": [
+            {
+                "evolves_to": "togetic",
+                "item": null,
+                "min_level": 15
+            }
+        ]
+    },
+    "togetic": {
+        "id": "togetic",
+        "external_id": "togetic",
+        "name": "Togetic",
+        "primary_type": "fairy",
+        "secondary_type": "flying",
+        "national_dex_entry_number": 176,
+        "genus": "Happiness Pokémon",
+        "flavor_text": "No records exist of Togetic being seen in the wilds. Rumors abound that it evolves under the loving care of a trusted human companion, upon whom the Pokémon then bestows great joy.",
+        "sprites": {
+            "back_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/176.png",
+            "back_female": null,
+            "back_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/shiny/176.png",
+            "back_shiny_female": null,
+            "front_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/176.png",
+            "front_female": null,
+            "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/176.png",
+            "front_shiny_female": null
+        },
+        "is_baby": false,
+        "is_legendary": false,
+        "is_mythical": false,
+        "is_mega": false,
+        "is_gmax": false,
+        "generation": 2,
+        "capture_rate": 75,
+        "evolutions": [
+            {
+                "evolves_to": "togekiss",
+                "item": "shiny-stone",
+                "min_level": null
+            }
+        ]
+    },
+    "natu": {
+        "id": "natu",
+        "external_id": "natu",
+        "name": "Natu",
+        "primary_type": "psychic",
+        "secondary_type": "flying",
+        "national_dex_entry_number": 177,
+        "genus": "Tiny Bird Pokémon",
+        "flavor_text": "Because its wings aren’t yet fully grown, it has to hop to get around. It is always staring at something.",
+        "sprites": {
+            "back_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/177.png",
+            "back_female": null,
+            "back_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/shiny/177.png",
+            "back_shiny_female": null,
+            "front_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/177.png",
+            "front_female": null,
+            "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/177.png",
+            "front_shiny_female": null
+        },
+        "is_baby": false,
+        "is_legendary": false,
+        "is_mythical": false,
+        "is_mega": false,
+        "is_gmax": false,
+        "generation": 2,
+        "capture_rate": 190,
+        "evolutions": [
+            {
+                "evolves_to": "xatu",
+                "item": null,
+                "min_level": 25
+            }
+        ]
+    },
+    "xatu": {
+        "id": "xatu",
+        "external_id": "xatu",
+        "name": "Xatu",
+        "primary_type": "psychic",
+        "secondary_type": "flying",
+        "national_dex_entry_number": 178,
+        "genus": "Mystic Pokémon",
+        "flavor_text": "This odd Pokémon can see both the past and the future. It eyes the sun’s movement all day.",
+        "sprites": {
+            "back_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/178.png",
+            "back_female": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/female/178.png",
+            "back_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/shiny/178.png",
+            "back_shiny_female": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/shiny/female/178.png",
+            "front_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/178.png",
+            "front_female": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/female/178.png",
+            "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/178.png",
+            "front_shiny_female": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/female/178.png"
+        },
+        "is_baby": false,
+        "is_legendary": false,
+        "is_mythical": false,
+        "is_mega": false,
+        "is_gmax": false,
+        "generation": 2,
+        "capture_rate": 75,
+        "evolutions": []
+    },
+    "mareep": {
+        "id": "mareep",
+        "external_id": "mareep",
+        "name": "Mareep",
+        "primary_type": "electric",
+        "secondary_type": null,
+        "national_dex_entry_number": 179,
+        "genus": "Wool Pokémon",
+        "flavor_text": "Rubbing its fleece generates electricity. You’ll want to pet it because it’s cute, but if you use your bare hand, you’ll get a painful shock.",
+        "sprites": {
+            "back_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/179.png",
+            "back_female": null,
+            "back_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/shiny/179.png",
+            "back_shiny_female": null,
+            "front_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/179.png",
+            "front_female": null,
+            "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/179.png",
+            "front_shiny_female": null
+        },
+        "is_baby": false,
+        "is_legendary": false,
+        "is_mythical": false,
+        "is_mega": false,
+        "is_gmax": false,
+        "generation": 2,
+        "capture_rate": 235,
+        "evolutions": [
+            {
+                "evolves_to": "flaaffy",
+                "item": null,
+                "min_level": 15
+            }
+        ]
+    },
+    "flaaffy": {
+        "id": "flaaffy",
+        "external_id": "flaaffy",
+        "name": "Flaaffy",
+        "primary_type": "electric",
+        "secondary_type": null,
+        "national_dex_entry_number": 180,
+        "genus": "Wool Pokémon",
+        "flavor_text": "It stores electricity in its fluffy fleece. If it stores up too much, it will start to go bald in those patches.",
+        "sprites": {
+            "back_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/180.png",
+            "back_female": null,
+            "back_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/shiny/180.png",
+            "back_shiny_female": null,
+            "front_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/180.png",
+            "front_female": null,
+            "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/180.png",
+            "front_shiny_female": null
+        },
+        "is_baby": false,
+        "is_legendary": false,
+        "is_mythical": false,
+        "is_mega": false,
+        "is_gmax": false,
+        "generation": 2,
+        "capture_rate": 120,
+        "evolutions": [
+            {
+                "evolves_to": "ampharos",
+                "item": null,
+                "min_level": 30
+            }
+        ]
+    },
+    "ampharos": {
+        "id": "ampharos",
+        "external_id": "ampharos",
+        "name": "Ampharos",
+        "primary_type": "electric",
+        "secondary_type": null,
+        "national_dex_entry_number": 181,
+        "genus": "Light Pokémon",
+        "flavor_text": "Its tail shines bright and strong. It has been prized since long ago as a beacon for sailors.",
+        "sprites": {
+            "back_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/181.png",
+            "back_female": null,
+            "back_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/shiny/181.png",
+            "back_shiny_female": null,
+            "front_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/181.png",
+            "front_female": null,
+            "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/181.png",
+            "front_shiny_female": null
+        },
+        "is_baby": false,
+        "is_legendary": false,
+        "is_mythical": false,
+        "is_mega": false,
+        "is_gmax": false,
+        "generation": 2,
+        "capture_rate": 45,
+        "evolutions": [
+            {
+                "evolves_to": "ampharos-mega",
+                "item": null,
+                "min_level": 100
+            }
+        ]
+    },
+    "ampharos-mega": {
+        "id": "ampharos-mega",
+        "external_id": "ampharos-mega",
+        "name": "Mega Ampharos",
+        "primary_type": "electric",
+        "secondary_type": "dragon",
+        "national_dex_entry_number": 181,
+        "genus": "Light Pokémon",
+        "flavor_text": "Its tail shines bright and strong. It has been prized since long ago as a beacon for sailors.",
+        "sprites": {
+            "back_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/10045.png",
+            "back_female": null,
+            "back_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/shiny/10045.png",
+            "back_shiny_female": null,
+            "front_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10045.png",
+            "front_female": null,
+            "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/10045.png",
+            "front_shiny_female": null
+        },
+        "is_baby": false,
+        "is_legendary": false,
+        "is_mythical": false,
+        "is_mega": true,
+        "is_gmax": false,
+        "generation": 2,
+        "capture_rate": null,
+        "evolutions": []
+    },
+    "bellossom": {
+        "id": "bellossom",
+        "external_id": "bellossom",
+        "name": "Bellossom",
+        "primary_type": "grass",
+        "secondary_type": null,
+        "national_dex_entry_number": 182,
+        "genus": "Flower Pokémon",
+        "flavor_text": "Bellossom gather at times and appear to dance. They say that the dance is a ritual to summon the sun.",
+        "sprites": {
+            "back_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/182.png",
+            "back_female": null,
+            "back_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/shiny/182.png",
+            "back_shiny_female": null,
+            "front_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/182.png",
+            "front_female": null,
+            "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/182.png",
+            "front_shiny_female": null
+        },
+        "is_baby": false,
+        "is_legendary": false,
+        "is_mythical": false,
+        "is_mega": false,
+        "is_gmax": false,
+        "generation": 2,
+        "capture_rate": 45,
+        "evolutions": []
+    },
+    "marill": {
+        "id": "marill",
+        "external_id": "marill",
+        "name": "Marill",
+        "primary_type": "water",
+        "secondary_type": "fairy",
+        "national_dex_entry_number": 183,
+        "genus": "Aqua Mouse Pokémon",
+        "flavor_text": "Even after Marill swims in a cold sea, its water- repellent fur dries almost as soon as Marill leaves the water. That’s why this Pokémon is never cold.",
+        "sprites": {
+            "back_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/183.png",
+            "back_female": null,
+            "back_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/shiny/183.png",
+            "back_shiny_female": null,
+            "front_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/183.png",
+            "front_female": null,
+            "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/183.png",
+            "front_shiny_female": null
+        },
+        "is_baby": false,
+        "is_legendary": false,
+        "is_mythical": false,
+        "is_mega": false,
+        "is_gmax": false,
+        "generation": 2,
+        "capture_rate": 190,
+        "evolutions": [
+            {
+                "evolves_to": "azumarill",
+                "item": null,
+                "min_level": 18
+            }
+        ]
+    },
+    "azumarill": {
+        "id": "azumarill",
+        "external_id": "azumarill",
+        "name": "Azumarill",
+        "primary_type": "water",
+        "secondary_type": "fairy",
+        "national_dex_entry_number": 184,
+        "genus": "Aqua Rabbit Pokémon",
+        "flavor_text": "These Pokémon create air-filled bubbles. When Azurill play in rivers, Azumarill will cover them with these bubbles.",
+        "sprites": {
+            "back_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/184.png",
+            "back_female": null,
+            "back_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/shiny/184.png",
+            "back_shiny_female": null,
+            "front_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/184.png",
+            "front_female": null,
+            "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/184.png",
+            "front_shiny_female": null
+        },
+        "is_baby": false,
+        "is_legendary": false,
+        "is_mythical": false,
+        "is_mega": false,
+        "is_gmax": false,
+        "generation": 2,
+        "capture_rate": 75,
+        "evolutions": []
+    },
+    "sudowoodo": {
+        "id": "sudowoodo",
+        "external_id": "sudowoodo",
+        "name": "Sudowoodo",
+        "primary_type": "rock",
+        "secondary_type": null,
+        "national_dex_entry_number": 185,
+        "genus": "Imitation Pokémon",
+        "flavor_text": "Though it pretends to be a tree, it fails to fool even children. To the touch, its body feels more like rock than tree bark. Sudowoodo's extreme aversion to water merits special note.",
+        "sprites": {
+            "back_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/185.png",
+            "back_female": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/female/185.png",
+            "back_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/shiny/185.png",
+            "back_shiny_female": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/shiny/female/185.png",
+            "front_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/185.png",
+            "front_female": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/female/185.png",
+            "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/185.png",
+            "front_shiny_female": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/female/185.png"
+        },
+        "is_baby": false,
+        "is_legendary": false,
+        "is_mythical": false,
+        "is_mega": false,
+        "is_gmax": false,
+        "generation": 2,
+        "capture_rate": 65,
+        "evolutions": []
+    },
+    "politoed": {
+        "id": "politoed",
+        "external_id": "politoed",
+        "name": "Politoed",
+        "primary_type": "water",
+        "secondary_type": null,
+        "national_dex_entry_number": 186,
+        "genus": "Frog Pokémon",
+        "flavor_text": "The cry of a male is louder than that of a female. Male Politoed with deep, menacing voices find more popularity with the opposite gender.",
+        "sprites": {
+            "back_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/186.png",
+            "back_female": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/female/186.png",
+            "back_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/shiny/186.png",
+            "back_shiny_female": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/shiny/female/186.png",
+            "front_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/186.png",
+            "front_female": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/female/186.png",
+            "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/186.png",
+            "front_shiny_female": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/female/186.png"
+        },
+        "is_baby": false,
+        "is_legendary": false,
+        "is_mythical": false,
+        "is_mega": false,
+        "is_gmax": false,
+        "generation": 2,
+        "capture_rate": 45,
+        "evolutions": []
+    },
+    "hoppip": {
+        "id": "hoppip",
+        "external_id": "hoppip",
+        "name": "Hoppip",
+        "primary_type": "grass",
+        "secondary_type": "flying",
+        "national_dex_entry_number": 187,
+        "genus": "Cottonweed Pokémon",
+        "flavor_text": "This Pokémon drifts and floats with the wind. If it senses the approach of strong winds, Hoppip links its leaves with other Hoppip to prepare against being blown away.",
+        "sprites": {
+            "back_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/187.png",
+            "back_female": null,
+            "back_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/shiny/187.png",
+            "back_shiny_female": null,
+            "front_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/187.png",
+            "front_female": null,
+            "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/187.png",
+            "front_shiny_female": null
+        },
+        "is_baby": false,
+        "is_legendary": false,
+        "is_mythical": false,
+        "is_mega": false,
+        "is_gmax": false,
+        "generation": 2,
+        "capture_rate": 255,
+        "evolutions": [
+            {
+                "evolves_to": "skiploom",
+                "item": null,
+                "min_level": 18
+            }
+        ]
+    },
+    "skiploom": {
+        "id": "skiploom",
+        "external_id": "skiploom",
+        "name": "Skiploom",
+        "primary_type": "grass",
+        "secondary_type": "flying",
+        "national_dex_entry_number": 188,
+        "genus": "Cottonweed Pokémon",
+        "flavor_text": "Skiploom’s flower blossoms when the temperature rises above 64 degrees Fahrenheit. How much the flower opens depends on the temperature. For that reason, this Pokémon is sometimes used as a thermometer.",
+        "sprites": {
+            "back_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/188.png",
+            "back_female": null,
+            "back_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/shiny/188.png",
+            "back_shiny_female": null,
+            "front_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/188.png",
+            "front_female": null,
+            "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/188.png",
+            "front_shiny_female": null
+        },
+        "is_baby": false,
+        "is_legendary": false,
+        "is_mythical": false,
+        "is_mega": false,
+        "is_gmax": false,
+        "generation": 2,
+        "capture_rate": 120,
+        "evolutions": [
+            {
+                "evolves_to": "jumpluff",
+                "item": null,
+                "min_level": 27
+            }
+        ]
+    },
+    "jumpluff": {
+        "id": "jumpluff",
+        "external_id": "jumpluff",
+        "name": "Jumpluff",
+        "primary_type": "grass",
+        "secondary_type": "flying",
+        "national_dex_entry_number": 189,
+        "genus": "Cottonweed Pokémon",
+        "flavor_text": "Jumpluff rides warm southern winds to cross the sea and fly to foreign lands. The Pokémon descends to the ground when it encounters cold air while it is floating.",
+        "sprites": {
+            "back_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/189.png",
+            "back_female": null,
+            "back_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/shiny/189.png",
+            "back_shiny_female": null,
+            "front_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/189.png",
+            "front_female": null,
+            "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/189.png",
+            "front_shiny_female": null
+        },
+        "is_baby": false,
+        "is_legendary": false,
+        "is_mythical": false,
+        "is_mega": false,
+        "is_gmax": false,
+        "generation": 2,
+        "capture_rate": 45,
+        "evolutions": []
+    },
+    "aipom": {
+        "id": "aipom",
+        "external_id": "aipom",
+        "name": "Aipom",
+        "primary_type": "normal",
+        "secondary_type": null,
+        "national_dex_entry_number": 190,
+        "genus": "Long Tail Pokémon",
+        "flavor_text": "This treetop dweller possesses a tail as dexterous as a hand. Ancient writings describe this Pokémon as a one-armed oddity.",
+        "sprites": {
+            "back_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/190.png",
+            "back_female": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/female/190.png",
+            "back_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/shiny/190.png",
+            "back_shiny_female": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/shiny/female/190.png",
+            "front_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/190.png",
+            "front_female": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/female/190.png",
+            "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/190.png",
+            "front_shiny_female": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/female/190.png"
+        },
+        "is_baby": false,
+        "is_legendary": false,
+        "is_mythical": false,
+        "is_mega": false,
+        "is_gmax": false,
+        "generation": 2,
+        "capture_rate": 45,
+        "evolutions": [
+            {
+                "evolves_to": "ambipom",
+                "item": null,
+                "min_level": 32
+            }
+        ]
+    },
+    "sunkern": {
+        "id": "sunkern",
+        "external_id": "sunkern",
+        "name": "Sunkern",
+        "primary_type": "grass",
+        "secondary_type": null,
+        "national_dex_entry_number": 191,
+        "genus": "Seed Pokémon",
+        "flavor_text": "Sunkern tries to move as little as it possibly can. It does so because it tries to conserve all the nutrients it has stored in its body for its evolution. It will not eat a thing, subsisting only on morning dew.",
+        "sprites": {
+            "back_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/191.png",
+            "back_female": null,
+            "back_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/shiny/191.png",
+            "back_shiny_female": null,
+            "front_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/191.png",
+            "front_female": null,
+            "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/191.png",
+            "front_shiny_female": null
+        },
+        "is_baby": false,
+        "is_legendary": false,
+        "is_mythical": false,
+        "is_mega": false,
+        "is_gmax": false,
+        "generation": 2,
+        "capture_rate": 235,
+        "evolutions": [
+            {
+                "evolves_to": "sunflora",
+                "item": "sun-stone",
+                "min_level": null
+            }
+        ]
+    },
+    "sunflora": {
+        "id": "sunflora",
+        "external_id": "sunflora",
+        "name": "Sunflora",
+        "primary_type": "grass",
+        "secondary_type": null,
+        "national_dex_entry_number": 192,
+        "genus": "Sun Pokémon",
+        "flavor_text": "Sunflora converts solar energy into nutrition. It moves around actively in the daytime when it is warm. It stops moving as soon as the sun goes down for the night.",
+        "sprites": {
+            "back_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/192.png",
+            "back_female": null,
+            "back_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/shiny/192.png",
+            "back_shiny_female": null,
+            "front_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/192.png",
+            "front_female": null,
+            "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/192.png",
+            "front_shiny_female": null
+        },
+        "is_baby": false,
+        "is_legendary": false,
+        "is_mythical": false,
+        "is_mega": false,
+        "is_gmax": false,
+        "generation": 2,
+        "capture_rate": 120,
+        "evolutions": []
+    },
+    "yanma": {
+        "id": "yanma",
+        "external_id": "yanma",
+        "name": "Yanma",
+        "primary_type": "bug",
+        "secondary_type": "flying",
+        "national_dex_entry_number": 193,
+        "genus": "Clear Wing Pokémon",
+        "flavor_text": "Its frail wings are so thin that one can see clear through them. However, during flight these wings exhibit the power to churn air with force enough to launch a house skyward.",
+        "sprites": {
+            "back_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/193.png",
+            "back_female": null,
+            "back_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/shiny/193.png",
+            "back_shiny_female": null,
+            "front_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/193.png",
+            "front_female": null,
+            "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/193.png",
+            "front_shiny_female": null
+        },
+        "is_baby": false,
+        "is_legendary": false,
+        "is_mythical": false,
+        "is_mega": false,
+        "is_gmax": false,
+        "generation": 2,
+        "capture_rate": 75,
+        "evolutions": [
+            {
+                "evolves_to": "yanmega",
+                "item": null,
+                "min_level": 33
+            }
+        ]
+    },
+    "wooper": {
+        "id": "wooper",
+        "external_id": "wooper",
+        "name": "Wooper",
+        "primary_type": "water",
+        "secondary_type": "ground",
+        "national_dex_entry_number": 194,
+        "genus": "Water Fish Pokémon",
+        "flavor_text": "When walking on land, it covers its body with a poisonous film that keeps its skin from dehydrating.",
+        "sprites": {
+            "back_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/194.png",
+            "back_female": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/female/194.png",
+            "back_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/shiny/194.png",
+            "back_shiny_female": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/shiny/female/194.png",
+            "front_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/194.png",
+            "front_female": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/female/194.png",
+            "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/194.png",
+            "front_shiny_female": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/female/194.png"
+        },
+        "is_baby": false,
+        "is_legendary": false,
+        "is_mythical": false,
+        "is_mega": false,
+        "is_gmax": false,
+        "generation": 2,
+        "capture_rate": 255,
+        "evolutions": [
+            {
+                "evolves_to": "quagsire",
+                "item": null,
+                "min_level": 20
+            }
+        ]
+    },
+    "wooper-paldea": {
+        "id": "wooper-paldea",
+        "external_id": "wooper-paldea",
+        "name": "Paldean Wooper",
+        "primary_type": "poison",
+        "secondary_type": "ground",
+        "national_dex_entry_number": 194,
+        "genus": "Water Fish Pokémon",
+        "flavor_text": "When walking on land, it covers its body with a poisonous film that keeps its skin from dehydrating.",
+        "sprites": {
+            "back_default": null,
+            "back_female": null,
+            "back_shiny": null,
+            "back_shiny_female": null,
+            "front_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10253.png",
+            "front_female": null,
+            "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/10253.png",
+            "front_shiny_female": null
+        },
+        "is_baby": false,
+        "is_legendary": false,
+        "is_mythical": false,
+        "is_mega": false,
+        "is_gmax": false,
+        "generation": 2,
+        "capture_rate": 255,
+        "evolutions": [
+            {
+                "evolves_to": "clodsire",
+                "item": null,
+                "min_level": 20
+            }
+        ]
+    },
+    "quagsire": {
+        "id": "quagsire",
+        "external_id": "quagsire",
+        "name": "Quagsire",
+        "primary_type": "water",
+        "secondary_type": "ground",
+        "national_dex_entry_number": 195,
+        "genus": "Water Fish Pokémon",
+        "flavor_text": "Its body is always slimy. It often bangs its head on the river bottom as it swims but seems not to care.",
+        "sprites": {
+            "back_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/195.png",
+            "back_female": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/female/195.png",
+            "back_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/shiny/195.png",
+            "back_shiny_female": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/shiny/female/195.png",
+            "front_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/195.png",
+            "front_female": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/female/195.png",
+            "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/195.png",
+            "front_shiny_female": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/female/195.png"
+        },
+        "is_baby": false,
+        "is_legendary": false,
+        "is_mythical": false,
+        "is_mega": false,
+        "is_gmax": false,
+        "generation": 2,
+        "capture_rate": 90,
+        "evolutions": []
+    },
+    "espeon": {
+        "id": "espeon",
+        "external_id": "espeon",
+        "name": "Espeon",
+        "primary_type": "psychic",
+        "secondary_type": null,
+        "national_dex_entry_number": 196,
+        "genus": "Sun Pokémon",
+        "flavor_text": "Wields an arcane power with which it can predict the weather and even people's thoughts. When bathed in sunshine, the scarlet orb on its brow glows and builds energy.",
+        "sprites": {
+            "back_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/196.png",
+            "back_female": null,
+            "back_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/shiny/196.png",
+            "back_shiny_female": null,
+            "front_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/196.png",
+            "front_female": null,
+            "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/196.png",
+            "front_shiny_female": null
+        },
+        "is_baby": false,
+        "is_legendary": false,
+        "is_mythical": false,
+        "is_mega": false,
+        "is_gmax": false,
+        "generation": 2,
+        "capture_rate": 45,
+        "evolutions": []
+    },
+    "umbreon": {
+        "id": "umbreon",
+        "external_id": "umbreon",
+        "name": "Umbreon",
+        "primary_type": "dark",
+        "secondary_type": null,
+        "national_dex_entry_number": 197,
+        "genus": "Moonlight Pokémon",
+        "flavor_text": "It is most active in the wee hours of the night, when moonlight bathes the land. Its large eyes can pierce the darkness and perceive prey with absolute clarity.",
+        "sprites": {
+            "back_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/197.png",
+            "back_female": null,
+            "back_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/shiny/197.png",
+            "back_shiny_female": null,
+            "front_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/197.png",
+            "front_female": null,
+            "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/197.png",
+            "front_shiny_female": null
+        },
+        "is_baby": false,
+        "is_legendary": false,
+        "is_mythical": false,
+        "is_mega": false,
+        "is_gmax": false,
+        "generation": 2,
+        "capture_rate": 45,
+        "evolutions": []
+    },
+    "murkrow": {
+        "id": "murkrow",
+        "external_id": "murkrow",
+        "name": "Murkrow",
+        "primary_type": "dark",
+        "secondary_type": "flying",
+        "national_dex_entry_number": 198,
+        "genus": "Darkness Pokémon",
+        "flavor_text": "Widely shunned as a bearer of ill fortune. Upon crossing paths with this creature, I've been told one must chant ”Workrum, Workrum—bad luck, don't come” as a protective incantation.",
+        "sprites": {
+            "back_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/198.png",
+            "back_female": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/female/198.png",
+            "back_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/shiny/198.png",
+            "back_shiny_female": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/shiny/female/198.png",
+            "front_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/198.png",
+            "front_female": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/female/198.png",
+            "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/198.png",
+            "front_shiny_female": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/female/198.png"
+        },
+        "is_baby": false,
+        "is_legendary": false,
+        "is_mythical": false,
+        "is_mega": false,
+        "is_gmax": false,
+        "generation": 2,
+        "capture_rate": 30,
+        "evolutions": [
+            {
+                "evolves_to": "honchkrow",
+                "item": "dusk-stone",
+                "min_level": null
+            }
+        ]
+    },
+    "slowking": {
+        "id": "slowking",
+        "external_id": "slowking",
+        "name": "Slowking",
+        "primary_type": "water",
+        "secondary_type": "psychic",
+        "national_dex_entry_number": 199,
+        "genus": "Royal Pokémon",
+        "flavor_text": "Slowking can solve any problem presented to it, but no one can understand a thing Slowking says.",
+        "sprites": {
+            "back_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/199.png",
+            "back_female": null,
+            "back_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/shiny/199.png",
+            "back_shiny_female": null,
+            "front_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/199.png",
+            "front_female": null,
+            "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/199.png",
+            "front_shiny_female": null
+        },
+        "is_baby": false,
+        "is_legendary": false,
+        "is_mythical": false,
+        "is_mega": false,
+        "is_gmax": false,
+        "generation": 2,
+        "capture_rate": 70,
+        "evolutions": []
+    },
+    "slowking-galar": {
+        "id": "slowking-galar",
+        "external_id": "slowking-galar",
+        "name": "Galarian Slowking",
+        "primary_type": "poison",
+        "secondary_type": "psychic",
+        "national_dex_entry_number": 199,
+        "genus": "Royal Pokémon",
+        "flavor_text": "Slowking can solve any problem presented to it, but no one can understand a thing Slowking says.",
+        "sprites": {
+            "back_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/10172.png",
+            "back_female": null,
+            "back_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/shiny/10172.png",
+            "back_shiny_female": null,
+            "front_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10172.png",
+            "front_female": null,
+            "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/10172.png",
+            "front_shiny_female": null
+        },
+        "is_baby": false,
+        "is_legendary": false,
+        "is_mythical": false,
+        "is_mega": false,
+        "is_gmax": false,
+        "generation": 2,
+        "capture_rate": 70,
+        "evolutions": []
+    },
+    "misdreavus": {
+        "id": "misdreavus",
+        "external_id": "misdreavus",
+        "name": "Misdreavus",
+        "primary_type": "ghost",
+        "secondary_type": null,
+        "national_dex_entry_number": 200,
+        "genus": "Screech Pokémon",
+        "flavor_text": "It conceals itself in darkness, sending chills up travelers' spines with its childlike weeping. As it observes the frightened travelers with glee, the red orbs upon its chest let off an eerie light.",
+        "sprites": {
+            "back_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/200.png",
+            "back_female": null,
+            "back_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/shiny/200.png",
+            "back_shiny_female": null,
+            "front_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/200.png",
+            "front_female": null,
+            "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/200.png",
+            "front_shiny_female": null
+        },
+        "is_baby": false,
+        "is_legendary": false,
+        "is_mythical": false,
+        "is_mega": false,
+        "is_gmax": false,
+        "generation": 2,
+        "capture_rate": 45,
+        "evolutions": [
+            {
+                "evolves_to": "mismagius",
+                "item": "dusk-stone",
+                "min_level": null
+            }
+        ]
+    },
+    "unown-a": {
+        "id": "unown-a",
+        "external_id": "unown",
+        "name": "Unown A",
+        "primary_type": "psychic",
+        "secondary_type": null,
+        "national_dex_entry_number": 201,
+        "genus": "Symbol Pokémon",
+        "flavor_text": "It is hard to believe these strangely shaped Pokémon are truly living creatures. I've pointed out that the species' many forms resemble writing from other lands; no one will take me seriously.",
+        "sprites": {
+            "back_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/201.png",
+            "back_female": null,
+            "back_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/shiny/201.png",
+            "back_shiny_female": null,
+            "front_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/201.png",
+            "front_female": null,
+            "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/201.png",
+            "front_shiny_female": null
+        },
+        "is_baby": false,
+        "is_legendary": false,
+        "is_mythical": false,
+        "is_mega": false,
+        "is_gmax": false,
+        "generation": 2,
+        "capture_rate": 225,
+        "evolutions": []
+    },
+    "wobbuffet": {
+        "id": "wobbuffet",
+        "external_id": "wobbuffet",
+        "name": "Wobbuffet",
+        "primary_type": "psychic",
+        "secondary_type": null,
+        "national_dex_entry_number": 202,
+        "genus": "Patient Pokémon",
+        "flavor_text": "To keep its pitch-black tail hidden, it lives quietly in the darkness. It is never first to attack.",
+        "sprites": {
+            "back_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/202.png",
+            "back_female": null,
+            "back_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/shiny/202.png",
+            "back_shiny_female": null,
+            "front_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/202.png",
+            "front_female": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/female/202.png",
+            "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/202.png",
+            "front_shiny_female": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/female/202.png"
+        },
+        "is_baby": false,
+        "is_legendary": false,
+        "is_mythical": false,
+        "is_mega": false,
+        "is_gmax": false,
+        "generation": 2,
+        "capture_rate": 45,
+        "evolutions": []
+    },
+    "girafarig": {
+        "id": "girafarig",
+        "external_id": "girafarig",
+        "name": "Girafarig",
+        "primary_type": "normal",
+        "secondary_type": "psychic",
+        "national_dex_entry_number": 203,
+        "genus": "Long Neck Pokémon",
+        "flavor_text": "Girafarig’s rear head contains a tiny brain that is too small for thinking. However, the rear head doesn’t need to sleep, so it can keep watch over its surroundings 24 hours a day.",
+        "sprites": {
+            "back_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/203.png",
+            "back_female": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/female/203.png",
+            "back_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/shiny/203.png",
+            "back_shiny_female": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/shiny/female/203.png",
+            "front_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/203.png",
+            "front_female": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/female/203.png",
+            "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/203.png",
+            "front_shiny_female": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/female/203.png"
+        },
+        "is_baby": false,
+        "is_legendary": false,
+        "is_mythical": false,
+        "is_mega": false,
+        "is_gmax": false,
+        "generation": 2,
+        "capture_rate": 60,
+        "evolutions": [
+            {
+                "evolves_to": "farigiraf",
+                "item": null,
+                "min_level": 32
+            }
+        ]
+    },
+    "pineco": {
+        "id": "pineco",
+        "external_id": "pineco",
+        "name": "Pineco",
+        "primary_type": "bug",
+        "secondary_type": null,
+        "national_dex_entry_number": 204,
+        "genus": "Bagworm Pokémon",
+        "flavor_text": "It sticks tree bark to itself with its saliva, making itself thicker and larger. Elderly Pineco are ridiculously huge.",
+        "sprites": {
+            "back_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/204.png",
+            "back_female": null,
+            "back_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/shiny/204.png",
+            "back_shiny_female": null,
+            "front_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/204.png",
+            "front_female": null,
+            "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/204.png",
+            "front_shiny_female": null
+        },
+        "is_baby": false,
+        "is_legendary": false,
+        "is_mythical": false,
+        "is_mega": false,
+        "is_gmax": false,
+        "generation": 2,
+        "capture_rate": 190,
+        "evolutions": [
+            {
+                "evolves_to": "forretress",
+                "item": null,
+                "min_level": 31
+            }
+        ]
+    },
+    "forretress": {
+        "id": "forretress",
+        "external_id": "forretress",
+        "name": "Forretress",
+        "primary_type": "bug",
+        "secondary_type": "steel",
+        "national_dex_entry_number": 205,
+        "genus": "Bagworm Pokémon",
+        "flavor_text": "In the moment that it gulps down its prey, the inside of its shell is exposed, but to this day, no one has ever seen that sight.",
+        "sprites": {
+            "back_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/205.png",
+            "back_female": null,
+            "back_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/shiny/205.png",
+            "back_shiny_female": null,
+            "front_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/205.png",
+            "front_female": null,
+            "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/205.png",
+            "front_shiny_female": null
+        },
+        "is_baby": false,
+        "is_legendary": false,
+        "is_mythical": false,
+        "is_mega": false,
+        "is_gmax": false,
+        "generation": 2,
+        "capture_rate": 75,
+        "evolutions": []
+    },
+    "dunsparce": {
+        "id": "dunsparce",
+        "external_id": "dunsparce",
+        "name": "Dunsparce",
+        "primary_type": "normal",
+        "secondary_type": null,
+        "national_dex_entry_number": 206,
+        "genus": "Land Snake Pokémon",
+        "flavor_text": "The nests Dunsparce live in are mazes of tunnels. They never get lost in their own nests—they can tell where they are by the scent of the dirt.",
+        "sprites": {
+            "back_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/206.png",
+            "back_female": null,
+            "back_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/shiny/206.png",
+            "back_shiny_female": null,
+            "front_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/206.png",
+            "front_female": null,
+            "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/206.png",
+            "front_shiny_female": null
+        },
+        "is_baby": false,
+        "is_legendary": false,
+        "is_mythical": false,
+        "is_mega": false,
+        "is_gmax": false,
+        "generation": 2,
+        "capture_rate": 190,
+        "evolutions": [
+            {
+                "evolves_to": "dudunsparce-two-segment",
+                "item": null,
+                "min_level": 32
+            },
+            {
+                "evolves_to": "dudunsparce-three-segment",
+                "item": null,
+                "min_level": 32
+            }
+        ]
+    },
+    "gligar": {
+        "id": "gligar",
+        "external_id": "gligar",
+        "name": "Gligar",
+        "primary_type": "ground",
+        "secondary_type": "flying",
+        "national_dex_entry_number": 207,
+        "genus": "Fly Scorpion Pokémon",
+        "flavor_text": "Its tail is tipped by a thick, horrible stinger. To bring down prey, it will first obscure their vision by covering their faces with its body, and then it will use the stinger to inject them with venom.",
+        "sprites": {
+            "back_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/207.png",
+            "back_female": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/female/207.png",
+            "back_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/shiny/207.png",
+            "back_shiny_female": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/shiny/female/207.png",
+            "front_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/207.png",
+            "front_female": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/female/207.png",
+            "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/207.png",
+            "front_shiny_female": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/female/207.png"
+        },
+        "is_baby": false,
+        "is_legendary": false,
+        "is_mythical": false,
+        "is_mega": false,
+        "is_gmax": false,
+        "generation": 2,
+        "capture_rate": 60,
+        "evolutions": [
+            {
+                "evolves_to": "gliscor",
+                "item": "razor-fang",
+                "min_level": null
+            }
+        ]
+    },
+    "steelix": {
+        "id": "steelix",
+        "external_id": "steelix",
+        "name": "Steelix",
+        "primary_type": "steel",
+        "secondary_type": "ground",
+        "national_dex_entry_number": 208,
+        "genus": "Iron Snake Pokémon",
+        "flavor_text": "This Pokémon evolved through use of a strange item. Its body is coated with steel powder and notably hard—not even diamond can leave so much as a scratch.",
+        "sprites": {
+            "back_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/208.png",
+            "back_female": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/female/208.png",
+            "back_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/shiny/208.png",
+            "back_shiny_female": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/shiny/female/208.png",
+            "front_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/208.png",
+            "front_female": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/female/208.png",
+            "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/208.png",
+            "front_shiny_female": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/female/208.png"
+        },
+        "is_baby": false,
+        "is_legendary": false,
+        "is_mythical": false,
+        "is_mega": false,
+        "is_gmax": false,
+        "generation": 2,
+        "capture_rate": 25,
+        "evolutions": [
+            {
+                "evolves_to": "steelix-mega",
+                "item": null,
+                "min_level": 100
+            }
+        ]
+    },
+    "steelix-mega": {
+        "id": "steelix-mega",
+        "external_id": "steelix-mega",
+        "name": "Mega Steelix",
+        "primary_type": "steel",
+        "secondary_type": "ground",
+        "national_dex_entry_number": 208,
+        "genus": "Iron Snake Pokémon",
+        "flavor_text": "This Pokémon evolved through use of a strange item. Its body is coated with steel powder and notably hard—not even diamond can leave so much as a scratch.",
+        "sprites": {
+            "back_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/10072.png",
+            "back_female": null,
+            "back_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/shiny/10072.png",
+            "back_shiny_female": null,
+            "front_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10072.png",
+            "front_female": null,
+            "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/10072.png",
+            "front_shiny_female": null
+        },
+        "is_baby": false,
+        "is_legendary": false,
+        "is_mythical": false,
+        "is_mega": true,
+        "is_gmax": false,
+        "generation": 2,
+        "capture_rate": null,
+        "evolutions": []
+    },
+    "snubbull": {
+        "id": "snubbull",
+        "external_id": "snubbull",
+        "name": "Snubbull",
+        "primary_type": "fairy",
+        "secondary_type": null,
+        "national_dex_entry_number": 209,
+        "genus": "Fairy Pokémon",
+        "flavor_text": "In contrast to its appearance, it’s quite timid. When playing with other puppy Pokémon, it sometimes gets bullied.",
+        "sprites": {
+            "back_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/209.png",
+            "back_female": null,
+            "back_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/shiny/209.png",
+            "back_shiny_female": null,
+            "front_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/209.png",
+            "front_female": null,
+            "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/209.png",
+            "front_shiny_female": null
+        },
+        "is_baby": false,
+        "is_legendary": false,
+        "is_mythical": false,
+        "is_mega": false,
+        "is_gmax": false,
+        "generation": 2,
+        "capture_rate": 190,
+        "evolutions": [
+            {
+                "evolves_to": "granbull",
+                "item": null,
+                "min_level": 23
+            }
+        ]
+    },
+    "granbull": {
+        "id": "granbull",
+        "external_id": "granbull",
+        "name": "Granbull",
+        "primary_type": "fairy",
+        "secondary_type": null,
+        "national_dex_entry_number": 210,
+        "genus": "Fairy Pokémon",
+        "flavor_text": "Although it’s popular with young people, Granbull is timid and sensitive, so it’s totally incompetent as a watchdog.",
+        "sprites": {
+            "back_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/210.png",
+            "back_female": null,
+            "back_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/shiny/210.png",
+            "back_shiny_female": null,
+            "front_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/210.png",
+            "front_female": null,
+            "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/210.png",
+            "front_shiny_female": null
+        },
+        "is_baby": false,
+        "is_legendary": false,
+        "is_mythical": false,
+        "is_mega": false,
+        "is_gmax": false,
+        "generation": 2,
+        "capture_rate": 75,
+        "evolutions": []
+    },
+    "qwilfish": {
+        "id": "qwilfish",
+        "external_id": "qwilfish",
+        "name": "Qwilfish",
+        "primary_type": "water",
+        "secondary_type": "poison",
+        "national_dex_entry_number": 211,
+        "genus": "Balloon Pokémon",
+        "flavor_text": "Fishers detest this troublesome Pokémon because it sprays poison from its spines, getting it everywhere. A different form of Qwilfish lives in other regions.",
+        "sprites": {
+            "back_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/211.png",
+            "back_female": null,
+            "back_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/shiny/211.png",
+            "back_shiny_female": null,
+            "front_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/211.png",
+            "front_female": null,
+            "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/211.png",
+            "front_shiny_female": null
+        },
+        "is_baby": false,
+        "is_legendary": false,
+        "is_mythical": false,
+        "is_mega": false,
+        "is_gmax": false,
+        "generation": 2,
+        "capture_rate": 45,
+        "evolutions": []
+    },
+    "qwilfish-hisui": {
+        "id": "qwilfish-hisui",
+        "external_id": "qwilfish-hisui",
+        "name": "Hisuian Qwilfish",
+        "primary_type": "dark",
+        "secondary_type": "poison",
+        "national_dex_entry_number": 211,
+        "genus": "Balloon Pokémon",
+        "flavor_text": "Fishers detest this troublesome Pokémon because it sprays poison from its spines, getting it everywhere. A different form of Qwilfish lives in other regions.",
+        "sprites": {
+            "back_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/10234.png",
+            "back_female": null,
+            "back_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/shiny/10234.png",
+            "back_shiny_female": null,
+            "front_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10234.png",
+            "front_female": null,
+            "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/10234.png",
+            "front_shiny_female": null
+        },
+        "is_baby": false,
+        "is_legendary": false,
+        "is_mythical": false,
+        "is_mega": false,
+        "is_gmax": false,
+        "generation": 2,
+        "capture_rate": 45,
+        "evolutions": [
+            {
+                "evolves_to": "overqwil",
+                "item": null,
+                "min_level": 28
+            }
+        ]
+    },
+    "scizor": {
+        "id": "scizor",
+        "external_id": "scizor",
+        "name": "Scizor",
+        "primary_type": "bug",
+        "secondary_type": "steel",
+        "national_dex_entry_number": 212,
+        "genus": "Pincer Pokémon",
+        "flavor_text": "Evolved by way of a curious item. The shell covering its body has been shown to be stronger than forged steel.",
+        "sprites": {
+            "back_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/212.png",
+            "back_female": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/female/212.png",
+            "back_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/shiny/212.png",
+            "back_shiny_female": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/shiny/female/212.png",
+            "front_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/212.png",
+            "front_female": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/female/212.png",
+            "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/212.png",
+            "front_shiny_female": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/female/212.png"
+        },
+        "is_baby": false,
+        "is_legendary": false,
+        "is_mythical": false,
+        "is_mega": false,
+        "is_gmax": false,
+        "generation": 2,
+        "capture_rate": 25,
+        "evolutions": [
+            {
+                "evolves_to": "scizor-mega",
+                "item": null,
+                "min_level": 100
+            }
+        ]
+    },
+    "scizor-mega": {
+        "id": "scizor-mega",
+        "external_id": "scizor-mega",
+        "name": "Mega Scizor",
+        "primary_type": "bug",
+        "secondary_type": "steel",
+        "national_dex_entry_number": 212,
+        "genus": "Pincer Pokémon",
+        "flavor_text": "Evolved by way of a curious item. The shell covering its body has been shown to be stronger than forged steel.",
+        "sprites": {
+            "back_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/10046.png",
+            "back_female": null,
+            "back_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/shiny/10046.png",
+            "back_shiny_female": null,
+            "front_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10046.png",
+            "front_female": null,
+            "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/10046.png",
+            "front_shiny_female": null
+        },
+        "is_baby": false,
+        "is_legendary": false,
+        "is_mythical": false,
+        "is_mega": true,
+        "is_gmax": false,
+        "generation": 2,
+        "capture_rate": null,
+        "evolutions": []
+    },
+    "shuckle": {
+        "id": "shuckle",
+        "external_id": "shuckle",
+        "name": "Shuckle",
+        "primary_type": "bug",
+        "secondary_type": "rock",
+        "national_dex_entry_number": 213,
+        "genus": "Mold Pokémon",
+        "flavor_text": "The berries stored in its vaselike shell eventually become a thick, pulpy juice.",
+        "sprites": {
+            "back_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/213.png",
+            "back_female": null,
+            "back_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/shiny/213.png",
+            "back_shiny_female": null,
+            "front_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/213.png",
+            "front_female": null,
+            "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/213.png",
+            "front_shiny_female": null
+        },
+        "is_baby": false,
+        "is_legendary": false,
+        "is_mythical": false,
+        "is_mega": false,
+        "is_gmax": false,
+        "generation": 2,
+        "capture_rate": 190,
+        "evolutions": []
+    },
+    "heracross": {
+        "id": "heracross",
+        "external_id": "heracross",
+        "name": "Heracross",
+        "primary_type": "bug",
+        "secondary_type": "fighting",
+        "national_dex_entry_number": 214,
+        "genus": "Single Horn Pokémon",
+        "flavor_text": "This Pokémon has an unparalleled horn. Heracross itself demonstrates tremendous power—it's capable of throwing several people trained in the traditional arts of war at once.",
+        "sprites": {
+            "back_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/214.png",
+            "back_female": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/female/214.png",
+            "back_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/shiny/214.png",
+            "back_shiny_female": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/shiny/female/214.png",
+            "front_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/214.png",
+            "front_female": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/female/214.png",
+            "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/214.png",
+            "front_shiny_female": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/female/214.png"
+        },
+        "is_baby": false,
+        "is_legendary": false,
+        "is_mythical": false,
+        "is_mega": false,
+        "is_gmax": false,
+        "generation": 2,
+        "capture_rate": 45,
+        "evolutions": [
+            {
+                "evolves_to": "heracross-mega",
+                "item": null,
+                "min_level": 100
+            }
+        ]
+    },
+    "heracross-mega": {
+        "id": "heracross-mega",
+        "external_id": "heracross-mega",
+        "name": "Mega Heracross",
+        "primary_type": "bug",
+        "secondary_type": "fighting",
+        "national_dex_entry_number": 214,
+        "genus": "Single Horn Pokémon",
+        "flavor_text": "This Pokémon has an unparalleled horn. Heracross itself demonstrates tremendous power—it's capable of throwing several people trained in the traditional arts of war at once.",
+        "sprites": {
+            "back_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/10047.png",
+            "back_female": null,
+            "back_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/shiny/10047.png",
+            "back_shiny_female": null,
+            "front_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10047.png",
+            "front_female": null,
+            "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/10047.png",
+            "front_shiny_female": null
+        },
+        "is_baby": false,
+        "is_legendary": false,
+        "is_mythical": false,
+        "is_mega": true,
+        "is_gmax": false,
+        "generation": 2,
+        "capture_rate": null,
+        "evolutions": []
+    },
+    "sneasel": {
+        "id": "sneasel",
+        "external_id": "sneasel",
+        "name": "Sneasel",
+        "primary_type": "dark",
+        "secondary_type": "ice",
+        "national_dex_entry_number": 215,
+        "genus": "Sharp Claw Pokémon",
+        "flavor_text": "Its sturdy, curved claws are ideal for traversing precipitous cliffs. From the tips of these claws drips a venom that infiltrates the nerves of any prey caught in Sneasel's grasp.",
+        "sprites": {
+            "back_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/215.png",
+            "back_female": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/female/215.png",
+            "back_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/shiny/215.png",
+            "back_shiny_female": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/shiny/female/215.png",
+            "front_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/215.png",
+            "front_female": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/female/215.png",
+            "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/215.png",
+            "front_shiny_female": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/female/215.png"
+        },
+        "is_baby": false,
+        "is_legendary": false,
+        "is_mythical": false,
+        "is_mega": false,
+        "is_gmax": false,
+        "generation": 2,
+        "capture_rate": 60,
+        "evolutions": [
+            {
+                "evolves_to": "weavile",
+                "item": "razor-claw",
+                "min_level": null
+            }
+        ]
+    },
+    "sneasel-hisui": {
+        "id": "sneasel-hisui",
+        "external_id": "sneasel-hisui",
+        "name": "Hisuian Sneasel",
+        "primary_type": "fighting",
+        "secondary_type": "poison",
+        "national_dex_entry_number": 215,
+        "genus": "Sharp Claw Pokémon",
+        "flavor_text": "Its sturdy, curved claws are ideal for traversing precipitous cliffs. From the tips of these claws drips a venom that infiltrates the nerves of any prey caught in Sneasel's grasp.",
+        "sprites": {
+            "back_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/10235.png",
+            "back_female": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/female/10235.png",
+            "back_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/shiny/10235.png",
+            "back_shiny_female": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/shiny/female/10235.png",
+            "front_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10235.png",
+            "front_female": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/female/10235.png",
+            "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/10235.png",
+            "front_shiny_female": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/female/10235.png"
+        },
+        "is_baby": false,
+        "is_legendary": false,
+        "is_mythical": false,
+        "is_mega": false,
+        "is_gmax": false,
+        "generation": 2,
+        "capture_rate": 60,
+        "evolutions": [
+            {
+                "evolves_to": "sneasler",
+                "item": "razor-claw",
+                "min_level": null
+            }
+        ]
+    },
+    "teddiursa": {
+        "id": "teddiursa",
+        "external_id": "teddiursa",
+        "name": "Teddiursa",
+        "primary_type": "normal",
+        "secondary_type": null,
+        "national_dex_entry_number": 216,
+        "genus": "Little Bear Pokémon",
+        "flavor_text": "It licks its paws because of the sweet honey that has soaked into them. It is cunning, stealing into the nests of Combee and taking for itself the honey that the Combee have amassed.",
+        "sprites": {
+            "back_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/216.png",
+            "back_female": null,
+            "back_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/shiny/216.png",
+            "back_shiny_female": null,
+            "front_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/216.png",
+            "front_female": null,
+            "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/216.png",
+            "front_shiny_female": null
+        },
+        "is_baby": false,
+        "is_legendary": false,
+        "is_mythical": false,
+        "is_mega": false,
+        "is_gmax": false,
+        "generation": 2,
+        "capture_rate": 120,
+        "evolutions": [
+            {
+                "evolves_to": "ursaring",
+                "item": null,
+                "min_level": 30
+            }
+        ]
+    },
+    "ursaring": {
+        "id": "ursaring",
+        "external_id": "ursaring",
+        "name": "Ursaring",
+        "primary_type": "normal",
+        "secondary_type": null,
+        "national_dex_entry_number": 217,
+        "genus": "Hibernator Pokémon",
+        "flavor_text": "When the cold season arrives in Hisui, this Pokémon will wander fields and mountains alike in search of its favorite berries. Ursaring's hunger during this time makes it a ferocious danger.",
+        "sprites": {
+            "back_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/217.png",
+            "back_female": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/female/217.png",
+            "back_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/shiny/217.png",
+            "back_shiny_female": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/shiny/female/217.png",
+            "front_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/217.png",
+            "front_female": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/female/217.png",
+            "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/217.png",
+            "front_shiny_female": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/female/217.png"
+        },
+        "is_baby": false,
+        "is_legendary": false,
+        "is_mythical": false,
+        "is_mega": false,
+        "is_gmax": false,
+        "generation": 2,
+        "capture_rate": 60,
+        "evolutions": [
+            {
+                "evolves_to": "ursaluna",
+                "item": "peat-block",
+                "min_level": null
+            }
+        ]
+    },
+    "slugma": {
+        "id": "slugma",
+        "external_id": "slugma",
+        "name": "Slugma",
+        "primary_type": "fire",
+        "secondary_type": null,
+        "national_dex_entry_number": 218,
+        "genus": "Lava Pokémon",
+        "flavor_text": "Slugma does not have any blood in its body. Instead, intensely hot magma circulates throughout this Pokémon’s body, carrying essential nutrients and oxygen to its organs.",
+        "sprites": {
+            "back_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/218.png",
+            "back_female": null,
+            "back_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/shiny/218.png",
+            "back_shiny_female": null,
+            "front_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/218.png",
+            "front_female": null,
+            "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/218.png",
+            "front_shiny_female": null
+        },
+        "is_baby": false,
+        "is_legendary": false,
+        "is_mythical": false,
+        "is_mega": false,
+        "is_gmax": false,
+        "generation": 2,
+        "capture_rate": 190,
+        "evolutions": [
+            {
+                "evolves_to": "magcargo",
+                "item": null,
+                "min_level": 38
+            }
+        ]
+    },
+    "magcargo": {
+        "id": "magcargo",
+        "external_id": "magcargo",
+        "name": "Magcargo",
+        "primary_type": "fire",
+        "secondary_type": "rock",
+        "national_dex_entry_number": 219,
+        "genus": "Lava Pokémon",
+        "flavor_text": "Magcargo’s body temperature is approximately 18,000 degrees Fahrenheit. Water is vaporized on contact. If this Pokémon is caught in the rain, the raindrops instantly turn into steam, cloaking the area in a thick fog.",
+        "sprites": {
+            "back_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/219.png",
+            "back_female": null,
+            "back_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/shiny/219.png",
+            "back_shiny_female": null,
+            "front_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/219.png",
+            "front_female": null,
+            "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/219.png",
+            "front_shiny_female": null
+        },
+        "is_baby": false,
+        "is_legendary": false,
+        "is_mythical": false,
+        "is_mega": false,
+        "is_gmax": false,
+        "generation": 2,
+        "capture_rate": 75,
+        "evolutions": []
+    },
+    "swinub": {
+        "id": "swinub",
+        "external_id": "swinub",
+        "name": "Swinub",
+        "primary_type": "ice",
+        "secondary_type": "ground",
+        "national_dex_entry_number": 220,
+        "genus": "Pig Pokémon",
+        "flavor_text": "Swinub excels at sniffing out mushrooms buried beneath grass or snow. Since ancient times, the people of Hisui have often relied upon this skill.",
+        "sprites": {
+            "back_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/220.png",
+            "back_female": null,
+            "back_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/shiny/220.png",
+            "back_shiny_female": null,
+            "front_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/220.png",
+            "front_female": null,
+            "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/220.png",
+            "front_shiny_female": null
+        },
+        "is_baby": false,
+        "is_legendary": false,
+        "is_mythical": false,
+        "is_mega": false,
+        "is_gmax": false,
+        "generation": 2,
+        "capture_rate": 225,
+        "evolutions": [
+            {
+                "evolves_to": "piloswine",
+                "item": null,
+                "min_level": 33
+            }
+        ]
+    },
+    "piloswine": {
+        "id": "piloswine",
+        "external_id": "piloswine",
+        "name": "Piloswine",
+        "primary_type": "ice",
+        "secondary_type": "ground",
+        "national_dex_entry_number": 221,
+        "genus": "Swine Pokémon",
+        "flavor_text": "The long fur of this Pokémon covers its eyes, ears, and even limbs, allowing Piloswine to resist harshly frigid conditions. The Pokémon's white tusks can be used to defeat its enemies.",
+        "sprites": {
+            "back_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/221.png",
+            "back_female": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/female/221.png",
+            "back_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/shiny/221.png",
+            "back_shiny_female": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/shiny/female/221.png",
+            "front_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/221.png",
+            "front_female": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/female/221.png",
+            "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/221.png",
+            "front_shiny_female": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/female/221.png"
+        },
+        "is_baby": false,
+        "is_legendary": false,
+        "is_mythical": false,
+        "is_mega": false,
+        "is_gmax": false,
+        "generation": 2,
+        "capture_rate": 75,
+        "evolutions": [
+            {
+                "evolves_to": "mamoswine",
+                "item": null,
+                "min_level": 45
+            }
+        ]
+    },
+    "corsola": {
+        "id": "corsola",
+        "external_id": "corsola",
+        "name": "Corsola",
+        "primary_type": "water",
+        "secondary_type": "rock",
+        "national_dex_entry_number": 222,
+        "genus": "Coral Pokémon",
+        "flavor_text": "These Pokémon live in warm seas. In prehistoric times, many lived in the oceans around the Galar region as well.",
+        "sprites": {
+            "back_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/222.png",
+            "back_female": null,
+            "back_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/shiny/222.png",
+            "back_shiny_female": null,
+            "front_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/222.png",
+            "front_female": null,
+            "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/222.png",
+            "front_shiny_female": null
+        },
+        "is_baby": false,
+        "is_legendary": false,
+        "is_mythical": false,
+        "is_mega": false,
+        "is_gmax": false,
+        "generation": 2,
+        "capture_rate": 60,
+        "evolutions": []
+    },
+    "corsola-galar": {
+        "id": "corsola-galar",
+        "external_id": "corsola-galar",
+        "name": "Galarian Corsola",
+        "primary_type": "ghost",
+        "secondary_type": null,
+        "national_dex_entry_number": 222,
+        "genus": "Coral Pokémon",
+        "flavor_text": "These Pokémon live in warm seas. In prehistoric times, many lived in the oceans around the Galar region as well.",
+        "sprites": {
+            "back_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/10173.png",
+            "back_female": null,
+            "back_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/shiny/10173.png",
+            "back_shiny_female": null,
+            "front_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10173.png",
+            "front_female": null,
+            "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/10173.png",
+            "front_shiny_female": null
+        },
+        "is_baby": false,
+        "is_legendary": false,
+        "is_mythical": false,
+        "is_mega": false,
+        "is_gmax": false,
+        "generation": 2,
+        "capture_rate": 60,
+        "evolutions": [
+            {
+                "evolves_to": "cursola",
+                "item": null,
+                "min_level": 38
+            }
+        ]
+    },
+    "remoraid": {
+        "id": "remoraid",
+        "external_id": "remoraid",
+        "name": "Remoraid",
+        "primary_type": "water",
+        "secondary_type": null,
+        "national_dex_entry_number": 223,
+        "genus": "Jet Pokémon",
+        "flavor_text": "Spits water from its mouth with incredible accuracy. It captures Burmy by shooting them down off the branches from which they dangle.",
+        "sprites": {
+            "back_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/223.png",
+            "back_female": null,
+            "back_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/shiny/223.png",
+            "back_shiny_female": null,
+            "front_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/223.png",
+            "front_female": null,
+            "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/223.png",
+            "front_shiny_female": null
+        },
+        "is_baby": false,
+        "is_legendary": false,
+        "is_mythical": false,
+        "is_mega": false,
+        "is_gmax": false,
+        "generation": 2,
+        "capture_rate": 190,
+        "evolutions": [
+            {
+                "evolves_to": "octillery",
+                "item": null,
+                "min_level": 25
+            }
+        ]
+    },
+    "octillery": {
+        "id": "octillery",
+        "external_id": "octillery",
+        "name": "Octillery",
+        "primary_type": "water",
+        "secondary_type": null,
+        "national_dex_entry_number": 224,
+        "genus": "Jet Pokémon",
+        "flavor_text": "While Octillery still shoots water from its mouth, the drastic anatomical difference between it and Remoraid meant that for a long time, no one believed the former evolved from the latter.",
+        "sprites": {
+            "back_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/224.png",
+            "back_female": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/female/224.png",
+            "back_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/shiny/224.png",
+            "back_shiny_female": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/shiny/female/224.png",
+            "front_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/224.png",
+            "front_female": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/female/224.png",
+            "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/224.png",
+            "front_shiny_female": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/female/224.png"
+        },
+        "is_baby": false,
+        "is_legendary": false,
+        "is_mythical": false,
+        "is_mega": false,
+        "is_gmax": false,
+        "generation": 2,
+        "capture_rate": 75,
+        "evolutions": []
+    },
+    "delibird": {
+        "id": "delibird",
+        "external_id": "delibird",
+        "name": "Delibird",
+        "primary_type": "ice",
+        "secondary_type": "flying",
+        "national_dex_entry_number": 225,
+        "genus": "Delivery Pokémon",
+        "flavor_text": "It has a generous habit of sharing its food with people and Pokémon, so it’s always scrounging around for more food.",
+        "sprites": {
+            "back_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/225.png",
+            "back_female": null,
+            "back_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/shiny/225.png",
+            "back_shiny_female": null,
+            "front_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/225.png",
+            "front_female": null,
+            "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/225.png",
+            "front_shiny_female": null
+        },
+        "is_baby": false,
+        "is_legendary": false,
+        "is_mythical": false,
+        "is_mega": false,
+        "is_gmax": false,
+        "generation": 2,
+        "capture_rate": 45,
+        "evolutions": []
+    },
+    "mantine": {
+        "id": "mantine",
+        "external_id": "mantine",
+        "name": "Mantine",
+        "primary_type": "water",
+        "secondary_type": "flying",
+        "national_dex_entry_number": 226,
+        "genus": "Kite Pokémon",
+        "flavor_text": "This calm and gentle Pokémon swims gracefully through the sea. After building speed, it can leap out of the water. It is often misidentified as a bird Pokémon due to this behavior.",
+        "sprites": {
+            "back_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/226.png",
+            "back_female": null,
+            "back_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/shiny/226.png",
+            "back_shiny_female": null,
+            "front_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/226.png",
+            "front_female": null,
+            "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/226.png",
+            "front_shiny_female": null
+        },
+        "is_baby": false,
+        "is_legendary": false,
+        "is_mythical": false,
+        "is_mega": false,
+        "is_gmax": false,
+        "generation": 2,
+        "capture_rate": 25,
+        "evolutions": []
+    },
+    "skarmory": {
+        "id": "skarmory",
+        "external_id": "skarmory",
+        "name": "Skarmory",
+        "primary_type": "steel",
+        "secondary_type": "flying",
+        "national_dex_entry_number": 227,
+        "genus": "Armor Bird Pokémon",
+        "flavor_text": "People fashion swords from Skarmory’s shed feathers, so this Pokémon is a popular element in heraldic designs.",
+        "sprites": {
+            "back_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/227.png",
+            "back_female": null,
+            "back_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/shiny/227.png",
+            "back_shiny_female": null,
+            "front_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/227.png",
+            "front_female": null,
+            "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/227.png",
+            "front_shiny_female": null
+        },
+        "is_baby": false,
+        "is_legendary": false,
+        "is_mythical": false,
+        "is_mega": false,
+        "is_gmax": false,
+        "generation": 2,
+        "capture_rate": 25,
+        "evolutions": [
+            {
+                "evolves_to": "skarmory-mega",
+                "item": null,
+                "min_level": 100
+            }
+        ]
+    },
+    "skarmory-mega": {
+        "id": "skarmory-mega",
+        "external_id": "skarmory-mega",
+        "name": "Mega Skarmory",
+        "primary_type": "steel",
+        "secondary_type": "flying",
+        "national_dex_entry_number": 227,
+        "genus": "Armor Bird Pokémon",
+        "flavor_text": "People fashion swords from Skarmory’s shed feathers, so this Pokémon is a popular element in heraldic designs.",
+        "sprites": {
+            "back_default": null,
+            "back_female": null,
+            "back_shiny": null,
+            "back_shiny_female": null,
+            "front_default": null,
+            "front_female": null,
+            "front_shiny": null,
+            "front_shiny_female": null
+        },
+        "is_baby": false,
+        "is_legendary": false,
+        "is_mythical": false,
+        "is_mega": true,
+        "is_gmax": false,
+        "generation": 2,
+        "capture_rate": null,
+        "evolutions": []
+    },
+    "houndour": {
+        "id": "houndour",
+        "external_id": "houndour",
+        "name": "Houndour",
+        "primary_type": "dark",
+        "secondary_type": "fire",
+        "national_dex_entry_number": 228,
+        "genus": "Dark Pokémon",
+        "flavor_text": "They make repeated eerie howls before dawn to call attention to their pack.",
+        "sprites": {
+            "back_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/228.png",
+            "back_female": null,
+            "back_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/shiny/228.png",
+            "back_shiny_female": null,
+            "front_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/228.png",
+            "front_female": null,
+            "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/228.png",
+            "front_shiny_female": null
+        },
+        "is_baby": false,
+        "is_legendary": false,
+        "is_mythical": false,
+        "is_mega": false,
+        "is_gmax": false,
+        "generation": 2,
+        "capture_rate": 120,
+        "evolutions": [
+            {
+                "evolves_to": "houndoom",
+                "item": null,
+                "min_level": 24
+            }
+        ]
+    },
+    "houndoom": {
+        "id": "houndoom",
+        "external_id": "houndoom",
+        "name": "Houndoom",
+        "primary_type": "dark",
+        "secondary_type": "fire",
+        "national_dex_entry_number": 229,
+        "genus": "Dark Pokémon",
+        "flavor_text": "Identifiable by its eerie howls, people a long time ago thought it was the grim reaper and feared it.",
+        "sprites": {
+            "back_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/229.png",
+            "back_female": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/female/229.png",
+            "back_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/shiny/229.png",
+            "back_shiny_female": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/shiny/female/229.png",
+            "front_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/229.png",
+            "front_female": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/female/229.png",
+            "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/229.png",
+            "front_shiny_female": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/female/229.png"
+        },
+        "is_baby": false,
+        "is_legendary": false,
+        "is_mythical": false,
+        "is_mega": false,
+        "is_gmax": false,
+        "generation": 2,
+        "capture_rate": 45,
+        "evolutions": [
+            {
+                "evolves_to": "houndoom-mega",
+                "item": null,
+                "min_level": 100
+            }
+        ]
+    },
+    "houndoom-mega": {
+        "id": "houndoom-mega",
+        "external_id": "houndoom-mega",
+        "name": "Mega Houndoom",
+        "primary_type": "dark",
+        "secondary_type": "fire",
+        "national_dex_entry_number": 229,
+        "genus": "Dark Pokémon",
+        "flavor_text": "Identifiable by its eerie howls, people a long time ago thought it was the grim reaper and feared it.",
+        "sprites": {
+            "back_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/10048.png",
+            "back_female": null,
+            "back_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/shiny/10048.png",
+            "back_shiny_female": null,
+            "front_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10048.png",
+            "front_female": null,
+            "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/10048.png",
+            "front_shiny_female": null
+        },
+        "is_baby": false,
+        "is_legendary": false,
+        "is_mythical": false,
+        "is_mega": true,
+        "is_gmax": false,
+        "generation": 2,
+        "capture_rate": null,
+        "evolutions": []
+    },
+    "kingdra": {
+        "id": "kingdra",
+        "external_id": "kingdra",
+        "name": "Kingdra",
+        "primary_type": "water",
+        "secondary_type": "dragon",
+        "national_dex_entry_number": 230,
+        "genus": "Dragon Pokémon",
+        "flavor_text": "Scales shed by this Pokémon have such a splendorous gleam to them that they’ve been given to royalty as gifts.",
+        "sprites": {
+            "back_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/230.png",
+            "back_female": null,
+            "back_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/shiny/230.png",
+            "back_shiny_female": null,
+            "front_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/230.png",
+            "front_female": null,
+            "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/230.png",
+            "front_shiny_female": null
+        },
+        "is_baby": false,
+        "is_legendary": false,
+        "is_mythical": false,
+        "is_mega": false,
+        "is_gmax": false,
+        "generation": 2,
+        "capture_rate": 45,
+        "evolutions": []
+    },
+    "phanpy": {
+        "id": "phanpy",
+        "external_id": "phanpy",
+        "name": "Phanpy",
+        "primary_type": "ground",
+        "secondary_type": null,
+        "national_dex_entry_number": 231,
+        "genus": "Long Nose Pokémon",
+        "flavor_text": "Phanpy uses its long nose to shower itself. When others gather around, they thoroughly douse each other with water. These Pokémon can be seen drying their soaking-wet bodies at the edge of water.",
+        "sprites": {
+            "back_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/231.png",
+            "back_female": null,
+            "back_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/shiny/231.png",
+            "back_shiny_female": null,
+            "front_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/231.png",
+            "front_female": null,
+            "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/231.png",
+            "front_shiny_female": null
+        },
+        "is_baby": false,
+        "is_legendary": false,
+        "is_mythical": false,
+        "is_mega": false,
+        "is_gmax": false,
+        "generation": 2,
+        "capture_rate": 120,
+        "evolutions": [
+            {
+                "evolves_to": "donphan",
+                "item": null,
+                "min_level": 25
+            }
+        ]
+    },
+    "donphan": {
+        "id": "donphan",
+        "external_id": "donphan",
+        "name": "Donphan",
+        "primary_type": "ground",
+        "secondary_type": null,
+        "national_dex_entry_number": 232,
+        "genus": "Armor Pokémon",
+        "flavor_text": "If Donphan were to tackle with its hard body, even a house could be destroyed. Using its massive strength, the Pokémon helps clear rock and mud slides that block mountain trails.",
+        "sprites": {
+            "back_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/232.png",
+            "back_female": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/female/232.png",
+            "back_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/shiny/232.png",
+            "back_shiny_female": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/shiny/female/232.png",
+            "front_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/232.png",
+            "front_female": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/female/232.png",
+            "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/232.png",
+            "front_shiny_female": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/female/232.png"
+        },
+        "is_baby": false,
+        "is_legendary": false,
+        "is_mythical": false,
+        "is_mega": false,
+        "is_gmax": false,
+        "generation": 2,
+        "capture_rate": 60,
+        "evolutions": []
+    },
+    "porygon2": {
+        "id": "porygon2",
+        "external_id": "porygon2",
+        "name": "Porygon2",
+        "primary_type": "normal",
+        "secondary_type": null,
+        "national_dex_entry_number": 233,
+        "genus": "Virtual Pokémon",
+        "flavor_text": "A bizarre item caused this Pokémon to evolve. While it now exhibits many new gestures and expressions, its biology remains inscrutable.",
+        "sprites": {
+            "back_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/233.png",
+            "back_female": null,
+            "back_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/shiny/233.png",
+            "back_shiny_female": null,
+            "front_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/233.png",
+            "front_female": null,
+            "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/233.png",
+            "front_shiny_female": null
+        },
+        "is_baby": false,
+        "is_legendary": false,
+        "is_mythical": false,
+        "is_mega": false,
+        "is_gmax": false,
+        "generation": 2,
+        "capture_rate": 45,
+        "evolutions": [
+            {
+                "evolves_to": "porygon-z",
+                "item": "dubious-disc",
+                "min_level": null
+            }
+        ]
+    },
+    "stantler": {
+        "id": "stantler",
+        "external_id": "stantler",
+        "name": "Stantler",
+        "primary_type": "normal",
+        "secondary_type": null,
+        "national_dex_entry_number": 234,
+        "genus": "Big Horn Pokémon",
+        "flavor_text": "Its strangely shaped antlers have the power to bewitch those who see them. Medicine made by grinding up the black orbs from fallen antlers is an effective treatment for insomnia.",
+        "sprites": {
+            "back_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/234.png",
+            "back_female": null,
+            "back_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/shiny/234.png",
+            "back_shiny_female": null,
+            "front_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/234.png",
+            "front_female": null,
+            "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/234.png",
+            "front_shiny_female": null
+        },
+        "is_baby": false,
+        "is_legendary": false,
+        "is_mythical": false,
+        "is_mega": false,
+        "is_gmax": false,
+        "generation": 2,
+        "capture_rate": 45,
+        "evolutions": [
+            {
+                "evolves_to": "wyrdeer",
+                "item": null,
+                "min_level": 30
+            }
+        ]
+    },
+    "smeargle": {
+        "id": "smeargle",
+        "external_id": "smeargle",
+        "name": "Smeargle",
+        "primary_type": "normal",
+        "secondary_type": null,
+        "national_dex_entry_number": 235,
+        "genus": "Painter Pokémon",
+        "flavor_text": "It draws symbols with the fluid that oozes from the tip of its tail. Depending on the symbol, Smeargle fanatics will pay big money for them.",
+        "sprites": {
+            "back_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/235.png",
+            "back_female": null,
+            "back_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/shiny/235.png",
+            "back_shiny_female": null,
+            "front_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/235.png",
+            "front_female": null,
+            "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/235.png",
+            "front_shiny_female": null
+        },
+        "is_baby": false,
+        "is_legendary": false,
+        "is_mythical": false,
+        "is_mega": false,
+        "is_gmax": false,
+        "generation": 2,
+        "capture_rate": 45,
+        "evolutions": []
+    },
+    "tyrogue": {
+        "id": "tyrogue",
+        "external_id": "tyrogue",
+        "name": "Tyrogue",
+        "primary_type": "fighting",
+        "secondary_type": null,
+        "national_dex_entry_number": 236,
+        "genus": "Scuffle Pokémon",
+        "flavor_text": "Even though it is small, it can’t be ignored because it will slug any handy target without warning.",
+        "sprites": {
+            "back_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/236.png",
+            "back_female": null,
+            "back_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/shiny/236.png",
+            "back_shiny_female": null,
+            "front_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/236.png",
+            "front_female": null,
+            "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/236.png",
+            "front_shiny_female": null
+        },
+        "is_baby": true,
+        "is_legendary": false,
+        "is_mythical": false,
+        "is_mega": false,
+        "is_gmax": false,
+        "generation": 2,
+        "capture_rate": 75,
+        "evolutions": [
+            {
+                "evolves_to": "hitmonlee",
+                "item": null,
+                "min_level": 20
+            },
+            {
+                "evolves_to": "hitmonchan",
+                "item": null,
+                "min_level": 20
+            },
+            {
+                "evolves_to": "hitmontop",
+                "item": null,
+                "min_level": 20
+            }
+        ]
+    },
+    "hitmontop": {
+        "id": "hitmontop",
+        "external_id": "hitmontop",
+        "name": "Hitmontop",
+        "primary_type": "fighting",
+        "secondary_type": null,
+        "national_dex_entry_number": 237,
+        "genus": "Handstand Pokémon",
+        "flavor_text": "After doing a handstand to throw off the opponent’s timing, it presents its fancy kick moves.",
+        "sprites": {
+            "back_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/237.png",
+            "back_female": null,
+            "back_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/shiny/237.png",
+            "back_shiny_female": null,
+            "front_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/237.png",
+            "front_female": null,
+            "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/237.png",
+            "front_shiny_female": null
+        },
+        "is_baby": false,
+        "is_legendary": false,
+        "is_mythical": false,
+        "is_mega": false,
+        "is_gmax": false,
+        "generation": 2,
+        "capture_rate": 45,
+        "evolutions": []
+    },
+    "smoochum": {
+        "id": "smoochum",
+        "external_id": "smoochum",
+        "name": "Smoochum",
+        "primary_type": "ice",
+        "secondary_type": "psychic",
+        "national_dex_entry_number": 238,
+        "genus": "Kiss Pokémon",
+        "flavor_text": "This is a very curious Pokémon. Smoochum decides what it likes and dislikes by touching things with its lips.",
+        "sprites": {
+            "back_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/238.png",
+            "back_female": null,
+            "back_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/shiny/238.png",
+            "back_shiny_female": null,
+            "front_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/238.png",
+            "front_female": null,
+            "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/238.png",
+            "front_shiny_female": null
+        },
+        "is_baby": true,
+        "is_legendary": false,
+        "is_mythical": false,
+        "is_mega": false,
+        "is_gmax": false,
+        "generation": 2,
+        "capture_rate": 45,
+        "evolutions": [
+            {
+                "evolves_to": "jynx",
+                "item": null,
+                "min_level": 30
+            }
+        ]
+    },
+    "elekid": {
+        "id": "elekid",
+        "external_id": "elekid",
+        "name": "Elekid",
+        "primary_type": "electric",
+        "secondary_type": null,
+        "national_dex_entry_number": 239,
+        "genus": "Electric Pokémon",
+        "flavor_text": "They generate electricity by spinning their arms. During a thunderstorm, if one hears the lively voices of children out in the wilderness, what one is actually hearing are the voices of Elekid.",
+        "sprites": {
+            "back_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/239.png",
+            "back_female": null,
+            "back_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/shiny/239.png",
+            "back_shiny_female": null,
+            "front_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/239.png",
+            "front_female": null,
+            "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/239.png",
+            "front_shiny_female": null
+        },
+        "is_baby": true,
+        "is_legendary": false,
+        "is_mythical": false,
+        "is_mega": false,
+        "is_gmax": false,
+        "generation": 2,
+        "capture_rate": 45,
+        "evolutions": [
+            {
+                "evolves_to": "electabuzz",
+                "item": null,
+                "min_level": 30
+            }
+        ]
+    },
+    "magby": {
+        "id": "magby",
+        "external_id": "magby",
+        "name": "Magby",
+        "primary_type": "fire",
+        "secondary_type": null,
+        "national_dex_entry_number": 240,
+        "genus": "Live Coal Pokémon",
+        "flavor_text": "This Pokémon lives in volcanic areas. With each breath, sparks spurt from its mouth and nose. When Magby is in good health, its flames gain a yellow tint.",
+        "sprites": {
+            "back_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/240.png",
+            "back_female": null,
+            "back_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/shiny/240.png",
+            "back_shiny_female": null,
+            "front_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/240.png",
+            "front_female": null,
+            "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/240.png",
+            "front_shiny_female": null
+        },
+        "is_baby": true,
+        "is_legendary": false,
+        "is_mythical": false,
+        "is_mega": false,
+        "is_gmax": false,
+        "generation": 2,
+        "capture_rate": 45,
+        "evolutions": [
+            {
+                "evolves_to": "magmar",
+                "item": null,
+                "min_level": 30
+            }
+        ]
+    },
+    "miltank": {
+        "id": "miltank",
+        "external_id": "miltank",
+        "name": "Miltank",
+        "primary_type": "normal",
+        "secondary_type": null,
+        "national_dex_entry_number": 241,
+        "genus": "Milk Cow Pokémon",
+        "flavor_text": "This Pokémon needs to be milked every day, or else it will fall ill. The flavor of Miltank milk changes with the seasons.",
+        "sprites": {
+            "back_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/241.png",
+            "back_female": null,
+            "back_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/shiny/241.png",
+            "back_shiny_female": null,
+            "front_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/241.png",
+            "front_female": null,
+            "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/241.png",
+            "front_shiny_female": null
+        },
+        "is_baby": false,
+        "is_legendary": false,
+        "is_mythical": false,
+        "is_mega": false,
+        "is_gmax": false,
+        "generation": 2,
+        "capture_rate": 45,
+        "evolutions": []
+    },
+    "blissey": {
+        "id": "blissey",
+        "external_id": "blissey",
+        "name": "Blissey",
+        "primary_type": "normal",
+        "secondary_type": null,
+        "national_dex_entry_number": 242,
+        "genus": "Happiness Pokémon",
+        "flavor_text": "A kindhearted Pokémon that will care for any sick person or Pokémon until their health improves. The eggs it lays are delicious and bring good fortune to those who eat them.",
+        "sprites": {
+            "back_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/242.png",
+            "back_female": null,
+            "back_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/shiny/242.png",
+            "back_shiny_female": null,
+            "front_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/242.png",
+            "front_female": null,
+            "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/242.png",
+            "front_shiny_female": null
+        },
+        "is_baby": false,
+        "is_legendary": false,
+        "is_mythical": false,
+        "is_mega": false,
+        "is_gmax": false,
+        "generation": 2,
+        "capture_rate": 30,
+        "evolutions": []
+    },
+    "raikou": {
+        "id": "raikou",
+        "external_id": "raikou",
+        "name": "Raikou",
+        "primary_type": "electric",
+        "secondary_type": null,
+        "national_dex_entry_number": 243,
+        "genus": "Thunder Pokémon",
+        "flavor_text": "Raikou embodies the speed of lightning. The roars of this Pokémon send shock waves shuddering through the air and shake the ground as if lightning bolts had come crashing down.",
+        "sprites": {
+            "back_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/243.png",
+            "back_female": null,
+            "back_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/shiny/243.png",
+            "back_shiny_female": null,
+            "front_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/243.png",
+            "front_female": null,
+            "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/243.png",
+            "front_shiny_female": null
+        },
+        "is_baby": false,
+        "is_legendary": true,
+        "is_mythical": false,
+        "is_mega": false,
+        "is_gmax": false,
+        "generation": 2,
+        "capture_rate": 3,
+        "evolutions": []
+    },
+    "entei": {
+        "id": "entei",
+        "external_id": "entei",
+        "name": "Entei",
+        "primary_type": "fire",
+        "secondary_type": null,
+        "national_dex_entry_number": 244,
+        "genus": "Volcano Pokémon",
+        "flavor_text": "Entei embodies the passion of magma. This Pokémon is thought to have been born in the eruption of a volcano. It sends up massive bursts of fire that utterly consume all that they touch.",
+        "sprites": {
+            "back_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/244.png",
+            "back_female": null,
+            "back_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/shiny/244.png",
+            "back_shiny_female": null,
+            "front_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/244.png",
+            "front_female": null,
+            "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/244.png",
+            "front_shiny_female": null
+        },
+        "is_baby": false,
+        "is_legendary": true,
+        "is_mythical": false,
+        "is_mega": false,
+        "is_gmax": false,
+        "generation": 2,
+        "capture_rate": 3,
+        "evolutions": []
+    },
+    "suicune": {
+        "id": "suicune",
+        "external_id": "suicune",
+        "name": "Suicune",
+        "primary_type": "water",
+        "secondary_type": null,
+        "national_dex_entry_number": 245,
+        "genus": "Aurora Pokémon",
+        "flavor_text": "Suicune embodies the compassion of a pure spring of water. It runs across the land with gracefulness. This Pokémon has the power to purify dirty water.",
+        "sprites": {
+            "back_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/245.png",
+            "back_female": null,
+            "back_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/shiny/245.png",
+            "back_shiny_female": null,
+            "front_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/245.png",
+            "front_female": null,
+            "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/245.png",
+            "front_shiny_female": null
+        },
+        "is_baby": false,
+        "is_legendary": true,
+        "is_mythical": false,
+        "is_mega": false,
+        "is_gmax": false,
+        "generation": 2,
+        "capture_rate": 3,
+        "evolutions": []
+    },
+    "larvitar": {
+        "id": "larvitar",
+        "external_id": "larvitar",
+        "name": "Larvitar",
+        "primary_type": "rock",
+        "secondary_type": "ground",
+        "national_dex_entry_number": 246,
+        "genus": "Rock Skin Pokémon",
+        "flavor_text": "It feeds on soil. After it has eaten a large mountain, it will fall asleep so it can grow.",
+        "sprites": {
+            "back_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/246.png",
+            "back_female": null,
+            "back_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/shiny/246.png",
+            "back_shiny_female": null,
+            "front_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/246.png",
+            "front_female": null,
+            "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/246.png",
+            "front_shiny_female": null
+        },
+        "is_baby": false,
+        "is_legendary": false,
+        "is_mythical": false,
+        "is_mega": false,
+        "is_gmax": false,
+        "generation": 2,
+        "capture_rate": 45,
+        "evolutions": [
+            {
+                "evolves_to": "pupitar",
+                "item": null,
+                "min_level": 30
+            }
+        ]
+    },
+    "pupitar": {
+        "id": "pupitar",
+        "external_id": "pupitar",
+        "name": "Pupitar",
+        "primary_type": "rock",
+        "secondary_type": "ground",
+        "national_dex_entry_number": 247,
+        "genus": "Hard Shell Pokémon",
+        "flavor_text": "It will not stay still, even while it’s a pupa. It already has arms and legs under its solid shell.",
+        "sprites": {
+            "back_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/247.png",
+            "back_female": null,
+            "back_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/shiny/247.png",
+            "back_shiny_female": null,
+            "front_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/247.png",
+            "front_female": null,
+            "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/247.png",
+            "front_shiny_female": null
+        },
+        "is_baby": false,
+        "is_legendary": false,
+        "is_mythical": false,
+        "is_mega": false,
+        "is_gmax": false,
+        "generation": 2,
+        "capture_rate": 45,
+        "evolutions": [
+            {
+                "evolves_to": "tyranitar",
+                "item": null,
+                "min_level": 55
+            }
+        ]
+    },
+    "tyranitar": {
+        "id": "tyranitar",
+        "external_id": "tyranitar",
+        "name": "Tyranitar",
+        "primary_type": "rock",
+        "secondary_type": "dark",
+        "national_dex_entry_number": 248,
+        "genus": "Armor Pokémon",
+        "flavor_text": "The quakes caused when it walks make even great mountains crumble and change the surrounding terrain.",
+        "sprites": {
+            "back_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/248.png",
+            "back_female": null,
+            "back_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/shiny/248.png",
+            "back_shiny_female": null,
+            "front_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/248.png",
+            "front_female": null,
+            "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/248.png",
+            "front_shiny_female": null
+        },
+        "is_baby": false,
+        "is_legendary": false,
+        "is_mythical": false,
+        "is_mega": false,
+        "is_gmax": false,
+        "generation": 2,
+        "capture_rate": 45,
+        "evolutions": [
+            {
+                "evolves_to": "tyranitar-mega",
+                "item": null,
+                "min_level": 100
+            }
+        ]
+    },
+    "tyranitar-mega": {
+        "id": "tyranitar-mega",
+        "external_id": "tyranitar-mega",
+        "name": "Mega Tyranitar",
+        "primary_type": "rock",
+        "secondary_type": "dark",
+        "national_dex_entry_number": 248,
+        "genus": "Armor Pokémon",
+        "flavor_text": "The quakes caused when it walks make even great mountains crumble and change the surrounding terrain.",
+        "sprites": {
+            "back_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/10049.png",
+            "back_female": null,
+            "back_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/shiny/10049.png",
+            "back_shiny_female": null,
+            "front_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10049.png",
+            "front_female": null,
+            "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/10049.png",
+            "front_shiny_female": null
+        },
+        "is_baby": false,
+        "is_legendary": false,
+        "is_mythical": false,
+        "is_mega": true,
+        "is_gmax": false,
+        "generation": 2,
+        "capture_rate": null,
+        "evolutions": []
+    },
+    "lugia": {
+        "id": "lugia",
+        "external_id": "lugia",
+        "name": "Lugia",
+        "primary_type": "psychic",
+        "secondary_type": "flying",
+        "national_dex_entry_number": 249,
+        "genus": "Diving Pokémon",
+        "flavor_text": "Lugia’s wings pack devastating power—a light fluttering of its wings can blow apart regular houses. As a result, this Pokémon chooses to live out of sight deep under the sea.",
+        "sprites": {
+            "back_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/249.png",
+            "back_female": null,
+            "back_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/shiny/249.png",
+            "back_shiny_female": null,
+            "front_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/249.png",
+            "front_female": null,
+            "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/249.png",
+            "front_shiny_female": null
+        },
+        "is_baby": false,
+        "is_legendary": true,
+        "is_mythical": false,
+        "is_mega": false,
+        "is_gmax": false,
+        "generation": 2,
+        "capture_rate": 3,
+        "evolutions": []
+    },
+    "ho-oh": {
+        "id": "ho-oh",
+        "external_id": "ho-oh",
+        "name": "Ho-oh",
+        "primary_type": "fire",
+        "secondary_type": "flying",
+        "national_dex_entry_number": 250,
+        "genus": "Rainbow Pokémon",
+        "flavor_text": "Ho-Oh’s feathers glow in seven colors depending on the angle at which they are struck by light. These feathers are said to bring happiness to the bearers. This Pokémon is said to live at the foot of a rainbow.",
+        "sprites": {
+            "back_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/250.png",
+            "back_female": null,
+            "back_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/shiny/250.png",
+            "back_shiny_female": null,
+            "front_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/250.png",
+            "front_female": null,
+            "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/250.png",
+            "front_shiny_female": null
+        },
+        "is_baby": false,
+        "is_legendary": true,
+        "is_mythical": false,
+        "is_mega": false,
+        "is_gmax": false,
+        "generation": 2,
+        "capture_rate": 3,
+        "evolutions": []
+    },
+    "celebi": {
+        "id": "celebi",
+        "external_id": "celebi",
+        "name": "Celebi",
+        "primary_type": "psychic",
+        "secondary_type": "grass",
+        "national_dex_entry_number": 251,
+        "genus": "Time Travel Pokémon",
+        "flavor_text": "This Pokémon traveled through time to come from the future. It bolsters grass and trees with its own strength, and it can heal wounds, too.",
+        "sprites": {
+            "back_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/251.png",
+            "back_female": null,
+            "back_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/shiny/251.png",
+            "back_shiny_female": null,
+            "front_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/251.png",
+            "front_female": null,
+            "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/251.png",
+            "front_shiny_female": null
+        },
+        "is_baby": false,
+        "is_legendary": false,
+        "is_mythical": true,
+        "is_mega": false,
+        "is_gmax": false,
+        "generation": 2,
+        "capture_rate": 45,
+        "evolutions": []
+    }
+}
