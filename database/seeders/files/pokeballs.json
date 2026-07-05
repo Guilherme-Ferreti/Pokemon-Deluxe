@@ -194,7 +194,7 @@
     "name": "Level Ball",
     "sprite": "https:\/\/raw.githubusercontent.com\/PokeAPI\/sprites\/master\/sprites\/items\/level-ball.png",
     "description": "A pokeball used to catch a wild Pokémon using a catch rate of 1x.",
-    "category": "apricorn",
+    "type": "apricorn",
     "capture_rate": 1
   },
   {
@@ -203,7 +203,7 @@
     "name": "Moon Ball",
     "sprite": "https:\/\/raw.githubusercontent.com\/PokeAPI\/sprites\/master\/sprites\/items\/moon-ball.png",
     "description": "A pokeball used to catch a wild Pokémon using a catch rate of 1x.",
-    "category": "apricorn",
+    "type": "apricorn",
     "capture_rate": 1
   },
   {
@@ -212,7 +212,7 @@
     "name": "Heavy Ball",
     "sprite": "https:\/\/raw.githubusercontent.com\/PokeAPI\/sprites\/master\/sprites\/items\/heavy-ball.png",
     "description": "A pokeball used to catch a wild Pokémon using a catch rate of 1x.",
-    "category": "apricorn",
+    "type": "apricorn",
     "capture_rate": 1
   },
   {
@@ -221,7 +221,7 @@
     "name": "Fast Ball",
     "sprite": "https:\/\/raw.githubusercontent.com\/PokeAPI\/sprites\/master\/sprites\/items\/fast-ball.png",
     "description": "A pokeball used to catch a wild Pokémon using a catch rate of 1x.",
-    "category": "apricorn",
+    "type": "apricorn",
     "capture_rate": 1
   },
   {
