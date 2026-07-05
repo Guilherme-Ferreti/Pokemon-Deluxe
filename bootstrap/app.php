@@ -12,7 +12,7 @@ use Shared\Middlewares\HandleInertiaRequests;
 
 return Application::configure(basePath: dirname(__DIR__))
     ->withRouting(
-        then: function () {
+        then: function (): void {
             Route::middleware('web')->name('web.')->group([
                 base_path('src/App/Public/Http/Web/routes.php'),
             ]);
@@ -29,6 +29,6 @@ return Application::configure(basePath: dirname(__DIR__))
     })
     ->withExceptions(function (Exceptions $exceptions): void {
         $exceptions->shouldRenderJsonWhen(
-            fn (Request $request) => $request->is('api/*') || $request->expectsJson(),
+            fn (Request $request): bool => $request->is('api/*') || $request->expectsJson(),
         );
     })->create();
