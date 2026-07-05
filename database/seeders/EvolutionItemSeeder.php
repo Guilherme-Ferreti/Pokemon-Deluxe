@@ -1,0 +1,35 @@
+<?php
+
+declare(strict_types=1);
+
+namespace Database\Seeders;
+
+use Illuminate\Database\Seeder;
+use Shared\Models\EvolutionItem;
+
+final class EvolutionItemSeeder extends Seeder
+{
+    public function run(): void
+    {
+        $path = __DIR__ . '/files/evolution-items.json';
+
+        $items = json_decode((string) file_get_contents($path), true);
+
+        $data = [];
+
+        foreach ($items as $item) {
+            $data[] = [
+                'id'          => new EvolutionItem()->newUniqueId(),
+                'name'        => $item['name'],
+                'sprite'      => $item['sprite'],
+                'description' => $item['description'],
+                'internal_id' => $item['id'],
+                'external_id' => $item['external_id'],
+                'created_at'  => now(),
+                'updated_at'  => now(),
+            ];
+        }
+
+        EvolutionItem::insert($data);
+    }
+}

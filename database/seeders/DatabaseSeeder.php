@@ -16,6 +16,7 @@ final class DatabaseSeeder extends Seeder
     {
         $this->call([
             PokeballSeeder::class,
+            EvolutionItemSeeder::class,
         ]);
 
         User::factory()->create([
