@@ -4,11 +4,12 @@
     :data-invalid="!!errorMessage"
   >
     <Checkbox
+      v-model="model"
       :id="id"
       :name="name"
+      :value="1"
       :required="required"
       :aria-invalid="!!errorMessage"
-      v-model="model"
       @keydown.enter.prevent="() => (model = !model)"
     />
     <FieldLabel for="remember">{{ label }}</FieldLabel>

@@ -5,6 +5,7 @@
       :id="name"
       :type="type"
       :name="name"
+      :default-value="value"
       :placeholder="placeholder"
       :required="required"
       :aria-invalid="!!errorMessage"
@@ -27,6 +28,7 @@ withDefaults(
     name: HTMLInputElement['name'];
     required?: boolean;
     placeholder?: HTMLInputElement['placeholder'];
+    value?: HTMLInputElement['value'];
     errorMessage?: string;
   }>(),
   {

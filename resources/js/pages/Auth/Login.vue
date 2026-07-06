@@ -18,6 +18,7 @@
         name="email"
         placeholder="test@example.com"
         required
+        value="test@example.com"
         :error-message="errors.email"
       />
       <AppInput
@@ -25,6 +26,7 @@
         type="password"
         name="password"
         required
+        value="password"
         :error-message="errors.password"
       />
       <div class="flex justify-between gap-2">
