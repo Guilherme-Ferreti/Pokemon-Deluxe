@@ -15,6 +15,7 @@ return Application::configure(basePath: dirname(__DIR__))
         then: function (): void {
             Route::middleware('web')->name('web.')->group([
                 base_path('src/App/Public/Http/Web/routes.php'),
+                base_path('src/App/Auth/Http/Web/routes.php'),
             ]);
         }
     )
