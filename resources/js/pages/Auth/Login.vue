@@ -41,14 +41,14 @@
       <Button type="submit">Login</Button>
       <FieldDescription class="text-center">
         Don't have an account?
-        <a href="#">Sign up</a>
+        <Link :href="route('web.auth.register.create')">Sign up</Link>
       </FieldDescription>
     </FieldGroup>
   </Form>
 </template>
 
 <script setup lang="ts">
-import { Form } from '@inertiajs/vue3';
+import { Form, Link } from '@inertiajs/vue3';
 import AppAuthFormHeader from '@/components/AppAuthFormHeader.vue';
 import AppCheckbox from '@/components/AppCheckbox.vue';
 import AppInput from '@/components/AppInput.vue';

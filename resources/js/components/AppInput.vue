@@ -8,6 +8,7 @@
       :placeholder="placeholder"
       :required="required"
       :aria-invalid="!!errorMessage"
+      @blur="$emit('blur')"
     />
     <FieldError v-if="errorMessage">{{ errorMessage }}</FieldError>
   </Field>
@@ -32,4 +33,8 @@ withDefaults(
     required: false,
   },
 );
+
+defineEmits<{
+  (event: 'blur'): void;
+}>();
 </script>
