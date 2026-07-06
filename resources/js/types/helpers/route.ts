@@ -1,5 +1,5 @@
 type RouteParameters = {
-  'web.': never;
+  'web.public.home': never;
   'web.auth.login.create': never;
   'web.auth.login.store': never;
   'storage.local.upload': {
@@ -35,7 +35,7 @@ export function route<T extends keyof RouteParameters>(
   return url;
 }
 const routes = {
-  'web.': '',
+  'web.public.home': '',
   'web.auth.login.create': 'login',
   'web.auth.login.store': 'login',
   'storage.local.upload': 'storage/{path}',

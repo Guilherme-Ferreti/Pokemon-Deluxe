@@ -54,10 +54,10 @@ import AppCheckbox from '@/components/AppCheckbox.vue';
 import AppInput from '@/components/AppInput.vue';
 import { Button } from '@/components/ui/button';
 import { FieldDescription, FieldGroup } from '@/components/ui/field';
-import Auth from '@/layouts/Auth.vue';
+import AuthLayout from '@/layouts/AuthLayout.vue';
 import { route } from '@/types/helpers/route';
 
 defineOptions({
-  layout: Auth,
+  layout: AuthLayout,
 });
 </script>

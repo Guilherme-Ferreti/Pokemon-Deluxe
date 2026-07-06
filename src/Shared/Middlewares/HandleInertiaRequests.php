@@ -5,8 +5,12 @@ declare(strict_types=1);
 namespace Shared\Middlewares;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Lottery;
 use Inertia\Middleware;
 use Override;
+use Shared\Models\Pokedex;
+use Shared\ValueObjects\PokemonSprites;
 
 final class HandleInertiaRequests extends Middleware
 {
@@ -44,8 +48,29 @@ final class HandleInertiaRequests extends Middleware
             ...parent::share($request),
             'name' => config('app.name'),
             'auth' => [
-                'user' => $request->user(),
+                'user'          => $request->user(),
+                'layoutSprites' => $this->getAuthLayoutSprites(),
             ],
         ];
+    }
+
+    /**
+     * @return array<mixed>
+     */
+    private function getAuthLayoutSprites(): array
+    {
+        return Cache::remember('auth-layout-sprites', now()->addDay(), fn () => Pokedex::query()
+            ->whereNotNull('sprites->front_default')
+            ->whereNotNull('sprites->front_shiny')
+            ->inRandomOrder()
+            ->limit(49)
+            ->pluck('sprites')
+            ->map(fn (PokemonSprites $sprites) => Lottery::odds(1, 100)
+                ->winner(fn (): ?string => $sprites->front_shiny)
+                ->loser(fn (): ?string => $sprites->front_default)
+                ->choose()
+            )
+            ->toArray()
+        );
     }
 }
