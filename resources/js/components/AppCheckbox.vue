@@ -18,10 +18,8 @@
 </template>
 
 <script setup lang="ts">
-import Checkbox from './ui/checkbox/Checkbox.vue';
-import Field from './ui/field/Field.vue';
-import FieldError from './ui/field/FieldError.vue';
-import FieldLabel from './ui/field/FieldLabel.vue';
+import { Checkbox } from './ui/checkbox';
+import { Field, FieldError, FieldLabel } from './ui/field';
 
 defineProps<{
   label: string;

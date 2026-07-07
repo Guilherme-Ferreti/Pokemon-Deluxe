@@ -16,10 +16,8 @@
 </template>
 
 <script setup lang="ts">
-import Field from './ui/field/Field.vue';
-import FieldError from './ui/field/FieldError.vue';
-import FieldLabel from './ui/field/FieldLabel.vue';
-import Input from './ui/input/Input.vue';
+import { Field, FieldError, FieldLabel } from './ui/field';
+import { Input } from './ui/input';
 
 withDefaults(
   defineProps<{
