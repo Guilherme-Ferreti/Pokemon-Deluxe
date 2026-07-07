@@ -31,6 +31,6 @@ final class LoginController extends Controller
             ])->onlyInput('email');
         }
 
-        return redirect()->intended('/');
+        return redirect()->intended(route('web.dashboard.home'));
     }
 }

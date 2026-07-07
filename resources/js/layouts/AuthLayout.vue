@@ -6,14 +6,14 @@
           :href="route('web.public.home')"
           class="flex items-center gap-2 font-medium"
         >
-          <AppLogo />
+          <AppLogo class="w-35" />
         </Link>
       </div>
-      <div class="flex flex-1 items-center justify-center">
+      <main class="flex flex-1 items-center justify-center">
         <div class="w-full max-w-xs">
           <slot />
         </div>
-      </div>
+      </main>
     </div>
     <div class="relative hidden overflow-hidden lg:block">
       <div

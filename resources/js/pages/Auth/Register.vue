@@ -1,4 +1,5 @@
 <template>
+  <Head title="Register" />
   <Form
     v-slot="{ errors, validate }"
     :action="route('web.auth.register.store')"
@@ -53,7 +54,7 @@
 </template>
 
 <script setup lang="ts">
-import { Form, Link } from '@inertiajs/vue3';
+import { Form, Head, Link } from '@inertiajs/vue3';
 import AppAuthFormHeader from '@/components/AppAuthFormHeader.vue';
 import AppInput from '@/components/AppInput.vue';
 import { Button } from '@/components/ui/button';

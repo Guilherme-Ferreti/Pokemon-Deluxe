@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace App\Auth\Actions;
 
-use Illuminate\Support\Facades\Auth;
 use Shared\Models\User;
 
 final class RegisterUser

@@ -4,6 +4,8 @@ type RouteParameters = {
   'web.auth.login.store': never;
   'web.auth.register.create': never;
   'web.auth.register.store': never;
+  'web.auth.logout': never;
+  'web.dashboard.home': never;
   'storage.local.upload': {
     path: string | number;
   };
@@ -42,5 +44,7 @@ const routes = {
   'web.auth.login.store': 'login',
   'web.auth.register.create': 'register',
   'web.auth.register.store': 'register',
+  'web.auth.logout': 'logout',
+  'web.dashboard.home': 'dashboard',
   'storage.local.upload': 'storage/{path}',
 };

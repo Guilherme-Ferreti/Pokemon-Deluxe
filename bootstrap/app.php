@@ -16,6 +16,7 @@ return Application::configure(basePath: dirname(__DIR__))
             Route::middleware('web')->name('web.')->group([
                 base_path('src/App/Public/Http/Web/routes.php'),
                 base_path('src/App/Auth/Http/Web/routes.php'),
+                base_path('src/App/Dashboard/Http/Web/routes.php'),
             ]);
         }
     )
@@ -27,6 +28,8 @@ return Application::configure(basePath: dirname(__DIR__))
             HandleInertiaRequests::class,
             AddLinkHeadersForPreloadedAssets::class,
         ]);
+
+        $middleware->redirectGuestsTo(fn (): string => route('web.auth.login.create'));
     })
     ->withExceptions(function (Exceptions $exceptions): void {
         $exceptions->shouldRenderJsonWhen(
