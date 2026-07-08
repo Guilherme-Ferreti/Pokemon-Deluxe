@@ -17,6 +17,7 @@ return Application::configure(basePath: dirname(__DIR__))
                 base_path('src/App/Public/Http/Web/routes.php'),
                 base_path('src/App/Auth/Http/Web/routes.php'),
                 base_path('src/App/Dashboard/Http/Web/routes.php'),
+                base_path('src/App/Pokemon/Http/Web/routes.php'),
             ]);
         }
     )

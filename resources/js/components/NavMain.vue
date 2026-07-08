@@ -52,8 +52,8 @@ const items = [
     icon: IconTrees,
   },
   {
-    title: 'Party',
-    url: '#',
+    title: 'Your Pokemon',
+    url: route('web.pokemon.index'),
     icon: IconPokeball,
   },
   {

@@ -6,6 +6,7 @@ type RouteParameters = {
   'web.auth.register.store': never;
   'web.auth.logout': never;
   'web.dashboard.home': never;
+  'web.pokemon.index': never;
   'storage.local.upload': {
     path: string | number;
   };
@@ -46,5 +47,6 @@ const routes = {
   'web.auth.register.store': 'register',
   'web.auth.logout': 'logout',
   'web.dashboard.home': 'dashboard',
+  'web.pokemon.index': 'your-pokemon',
   'storage.local.upload': 'storage/{path}',
 };

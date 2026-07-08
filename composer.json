@@ -35,7 +35,10 @@
             "Shared\\": "src/Shared/",
             "Database\\Factories\\": "database/factories/",
             "Database\\Seeders\\": "database/seeders/"
-        }
+        },
+        "files": [
+            "src/Shared/Helpers/functions.php"
+        ]
     },
     "autoload-dev": {
         "psr-4": {
