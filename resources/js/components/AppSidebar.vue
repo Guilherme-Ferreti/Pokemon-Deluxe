@@ -1,16 +1,7 @@
 <template>
   <Sidebar collapsible="icon">
     <SidebarHeader>
-      <div class="flex items-center gap-2 px-2 py-2">
-        <img
-          src="/assets/logo-icon.png"
-          alt="Pokemon Deluxe"
-          class="max-w-8"
-        />
-        <p class="text-sm leading-tight font-semibold text-sidebar-foreground">
-          Pokemon Deluxe
-        </p>
-      </div>
+      <SidebarHeaderLogo />
     </SidebarHeader>
     <Separator orientation="horizontal" />
     <SidebarContent>
@@ -26,6 +17,7 @@
 <script setup lang="ts">
 import NavMain from '@/components/NavMain.vue';
 import NavUser from '@/components/NavUser.vue';
+import SidebarHeaderLogo from '@/components/SidebarHeaderLogo.vue';
 
 import {
   Sidebar,
