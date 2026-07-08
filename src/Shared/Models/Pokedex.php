@@ -4,10 +4,12 @@ declare(strict_types=1);
 
 namespace Shared\Models;
 
+use Database\Factories\PokedexFactory;
 use Illuminate\Database\Eloquent\Attributes\Table;
 use Illuminate\Database\Eloquent\Attributes\Unguarded;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Support\Carbon;
@@ -43,7 +45,8 @@ use Shared\ValueObjects\PokemonSprites;
 #[Unguarded]
 final class Pokedex extends Model
 {
-    use HasUuids;
+    /** @use HasFactory<PokedexFactory> */
+    use HasFactory, HasUuids;
 
     #[Override]
     protected $casts = [

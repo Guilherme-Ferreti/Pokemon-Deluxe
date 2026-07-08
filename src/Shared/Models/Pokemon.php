@@ -4,11 +4,13 @@ declare(strict_types=1);
 
 namespace Shared\Models;
 
+use Database\Factories\PokemonFactory;
 use Illuminate\Database\Eloquent\Attributes\Scope;
 use Illuminate\Database\Eloquent\Attributes\Table;
 use Illuminate\Database\Eloquent\Attributes\Unguarded;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Support\Carbon;
@@ -35,7 +37,8 @@ use Override;
 #[Unguarded]
 final class Pokemon extends Model
 {
-    use HasUuids;
+    /** @use HasFactory<PokemonFactory> */
+    use HasFactory, HasUuids;
 
     #[Override]
     protected $casts = [
