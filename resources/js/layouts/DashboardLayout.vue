@@ -3,7 +3,7 @@
     <AppSidebar />
     <SidebarInset>
       <header
-        class="flex h-16 shrink-0 items-center gap-2 transition-[width,height] ease-linear group-has-data-[collapsible=icon]/sidebar-wrapper:h-12"
+        class="flex h-16 shrink-0 items-center gap-2 transition-[width,height] ease-linear"
       >
         <div class="flex items-center gap-2 px-4">
           <SidebarTrigger class="-ml-1" />
@@ -26,9 +26,9 @@
           </Breadcrumb>
         </div>
       </header>
-      <main class="px-8 pb-4">
+      <div class="mx-auto w-full max-w-6xl px-8 pb-4">
         <slot />
-      </main>
+      </div>
     </SidebarInset>
   </SidebarProvider>
 </template>

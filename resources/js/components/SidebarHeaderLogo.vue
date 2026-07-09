@@ -1,6 +1,6 @@
 <template>
   <div
-    class="flex items-center gap-2 px-2 py-2 group-data-[collapsible=icon]:justify-center"
+    class="flex h-16 items-center gap-2 px-2 py-2 group-data-[collapsible=icon]:justify-center"
   >
     <Tooltip>
       <TooltipTrigger as-child>

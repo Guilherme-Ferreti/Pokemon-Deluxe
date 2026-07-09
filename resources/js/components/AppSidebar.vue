@@ -10,7 +10,6 @@
     <SidebarFooter>
       <NavUser />
     </SidebarFooter>
-    <SidebarRail />
   </Sidebar>
 </template>
 
@@ -24,7 +23,6 @@ import {
   SidebarContent,
   SidebarFooter,
   SidebarHeader,
-  SidebarRail,
 } from '@/components/ui/sidebar';
 import { Separator } from './ui/separator';
 </script>
