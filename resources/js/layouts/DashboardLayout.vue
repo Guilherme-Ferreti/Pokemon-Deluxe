@@ -26,7 +26,7 @@
           </Breadcrumb>
         </div>
       </header>
-      <div class="mx-auto w-full max-w-6xl px-8 pb-4">
+      <div class="mx-auto w-full max-w-6xl space-y-6 px-8 pb-4">
         <slot />
       </div>
     </SidebarInset>
