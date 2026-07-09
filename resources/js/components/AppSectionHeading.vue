@@ -1,6 +1,9 @@
 <template>
   <div>
-    <h2 class="flex items-center gap-1 text-xl font-bold text-foreground">
+    <h2
+      class="flex items-center gap-1 text-xl font-bold text-foreground"
+      :id="id"
+    >
       <component
         v-if="icon"
         :is="icon"
@@ -24,6 +27,7 @@ import type { Icon } from '@tabler/icons-vue';
 defineProps<{
   title: string;
   description?: string;
+  id?: string;
   icon?: Icon;
 }>();
 </script>
