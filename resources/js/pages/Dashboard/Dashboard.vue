@@ -1,17 +1,21 @@
 <template>
   <Head title="Dashboard" />
-
-  <h1 class="text-3xl font-bold tracking-tight">Dashboard</h1>
-  <p class="text-muted-foreground">
-    Welcome back, {{ page.props.auth.user?.name }}!
-  </p>
+  <AppPageHeader
+    title="Dashboard"
+    :description="`Welcome back, ${page.props.auth.user.name}!`"
+  />
 </template>
 
 <script setup lang="ts">
 import { Head, usePage } from '@inertiajs/vue3';
+import AppPageHeader from '@/components/AppPageHeader.vue';
+import { useBreadcrumbs } from '@/composables/useBreadcrumbs';
 import DashboardLayout from '@/layouts/DashboardLayout.vue';
 
 const page = usePage();
+
+const { setBreadcrumbs } = useBreadcrumbs();
+setBreadcrumbs([{ title: 'Dashboard' }]);
 
 defineOptions({
   layout: DashboardLayout,
