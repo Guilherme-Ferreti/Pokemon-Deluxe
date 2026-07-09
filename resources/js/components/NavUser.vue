@@ -25,8 +25,8 @@
         </DropdownMenuTrigger>
         <DropdownMenuContent
           class="w-(--reka-dropdown-menu-trigger-width) min-w-56 rounded-lg"
-          :side="isMobile ? 'bottom' : 'right'"
           align="end"
+          :side="isMobile ? 'bottom' : 'right'"
           :side-offset="4"
         >
           <DropdownMenuLabel class="p-0 font-normal">
@@ -61,10 +61,10 @@
           <DropdownMenuSeparator />
           <DropdownMenuItem variant="destructive">
             <Link
-              :href="route('web.auth.logout')"
               method="post"
               as="button"
               class="flex w-full items-center gap-2"
+              :href="route('web.auth.logout')"
             >
               <IconLogout />
               Log out

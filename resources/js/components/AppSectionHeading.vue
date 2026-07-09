@@ -1,12 +1,12 @@
 <template>
   <div>
     <h2
-      class="flex items-center gap-1 text-xl font-bold text-foreground"
       :id="id"
+      class="flex items-center gap-1 text-xl font-bold text-foreground"
     >
       <component
-        v-if="icon"
         :is="icon"
+        v-if="icon"
       />
       <span>{{ title }}</span>
     </h2>

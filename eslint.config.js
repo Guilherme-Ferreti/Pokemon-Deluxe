@@ -38,6 +38,27 @@ export default defineConfigWithVueTs(
             },
         },
         rules: {
+            'vue/attributes-order': [
+                'error',
+                {
+                    order: [
+                        'DEFINITION',
+                        'LIST_RENDERING',
+                        'CONDITIONALS',
+                        'RENDER_MODIFIERS',
+                        'GLOBAL',
+                        'UNIQUE',
+                        'SLOT',
+                        'TWO_WAY_BINDING',
+                        'OTHER_DIRECTIVES',
+                        'ATTR_STATIC',
+                        'ATTR_DYNAMIC',
+                        'EVENTS',
+                        'CONTENT',
+                    ],
+                    alphabetical: false,
+                },
+            ],
             'vue/multi-word-component-names': 'off',
             '@typescript-eslint/no-explicit-any': 'off',
             '@typescript-eslint/consistent-type-imports': [

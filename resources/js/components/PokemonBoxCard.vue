@@ -4,9 +4,10 @@
   >
     <div class="flex gap-2">
       <img
+        class="h-20 w-20 shrink-0"
+        loading="lazy"
         :src="pokemon.frontSprite"
         :alt="pokemon.name"
-        class="h-20 w-20 shrink-0"
       />
       <div class="space-y-1">
         <p class="text-sm font-semibold text-foreground">

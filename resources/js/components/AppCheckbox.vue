@@ -4,8 +4,8 @@
     :data-invalid="!!errorMessage"
   >
     <Checkbox
-      v-model="model"
       :id="id"
+      v-model="model"
       :name="name"
       :value="1"
       :required="required"

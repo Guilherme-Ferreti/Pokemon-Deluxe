@@ -2,11 +2,11 @@
   <Head title="Register" />
   <Form
     v-slot="{ errors, validate }"
-    :action="route('web.auth.register.store')"
     method="post"
+    class="flex flex-col gap-6"
+    :action="route('web.auth.register.store')"
     disable-while-processing
     :reset-on-error="['password', 'password_confirmation']"
-    class="flex flex-col gap-6"
   >
     <FieldGroup>
       <AppAuthFormHeader

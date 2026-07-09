@@ -2,11 +2,11 @@
   <Head title="Login" />
   <Form
     v-slot="{ errors }"
-    :action="route('web.auth.login.store')"
     method="post"
+    class="flex flex-col gap-6"
+    :action="route('web.auth.login.store')"
     disable-while-processing
     :reset-on-error="['password']"
-    class="flex flex-col gap-6"
   >
     <FieldGroup>
       <AppAuthFormHeader
@@ -32,8 +32,8 @@
       />
       <div class="flex justify-between gap-2">
         <AppCheckbox
-          label="Remember me"
           id="remember"
+          label="Remember me"
           name="remember"
           class="w-fit"
         />

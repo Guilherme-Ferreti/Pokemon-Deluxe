@@ -10,6 +10,7 @@
         class="party-card__pokemon-slot"
       >
         <img
+          loading="lazy"
           :src="pokemon.frontSprite"
           :alt="pokemon.name"
         />

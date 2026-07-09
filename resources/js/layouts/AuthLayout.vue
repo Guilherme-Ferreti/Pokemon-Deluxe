@@ -3,8 +3,8 @@
     <div class="flex flex-col gap-4 p-6 md:p-10">
       <div class="flex justify-center gap-2 md:justify-start">
         <Link
-          :href="route('web.public.home')"
           class="flex items-center gap-2 font-medium"
+          :href="route('web.public.home')"
         >
           <AppLogo class="w-35" />
         </Link>
@@ -22,9 +22,9 @@
         <img
           v-for="image in page.props.auth.layoutSprites"
           :key="image"
-          :src="image"
           alt="Pokemon Deluxe"
           loading="lazy"
+          :src="image"
         />
       </div>
     </div>
