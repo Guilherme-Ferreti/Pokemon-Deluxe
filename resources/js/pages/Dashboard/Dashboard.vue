@@ -15,7 +15,7 @@ import DashboardLayout from '@/layouts/DashboardLayout.vue';
 const page = usePage();
 
 const { setBreadcrumbs } = useBreadcrumbs();
-setBreadcrumbs([{ title: 'Dashboard' }]);
+setBreadcrumbs([]);
 
 defineOptions({
   layout: DashboardLayout,
