@@ -14,8 +14,11 @@ final class PokemonController extends Controller
     {
         $pokemonInParty = currentUser()->pokemon()->inParty()->get(['id', 'name', 'sprites', 'level', 'is_shiny', 'pokedex_id']);
 
+        $pokemonInBox = currentUser()->pokemon()->inBox()->get();
+
         return inertia('Pokemon/Index')->with(new PokemonIndexPageProps(
-            pokemonInParty: $pokemonInParty
+            pokemonInParty: $pokemonInParty,
+            pokemonInBox: $pokemonInBox
         ));
     }
 }

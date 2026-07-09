@@ -1,0 +1,71 @@
+<template>
+  <Card
+    class="gap-2 border bg-card p-3 text-card-foreground shadow transition-shadow hover:shadow-md"
+  >
+    <div class="flex gap-2">
+      <img
+        :src="pokemon.frontSprite"
+        :alt="pokemon.name"
+        class="h-20 w-20 shrink-0"
+      />
+      <div class="space-y-1">
+        <p class="text-sm font-semibold text-foreground">
+          {{ pokemon.name }}
+        </p>
+        <ElementalTypeBadges
+          :primary-type="pokemon.pokedex.primaryType"
+          :secondary-type="pokemon.pokedex.secondaryType"
+        />
+      </div>
+    </div>
+    <div
+      class="flex justify-between rounded bg-blue-100/40 px-2 py-1 text-xs text-muted-foreground"
+    >
+      <span>
+        Lv.
+        <span class="font-medium text-foreground">{{ pokemon.level }}</span>
+      </span>
+      <span>{{ pokemon.experience }} XP</span>
+    </div>
+    <div class="space-y-0.5">
+      <p
+        class="text-[10px] font-medium tracking-wide text-muted-foreground uppercase"
+      >
+        Moves
+      </p>
+      <ul class="grid grid-cols-2 gap-0.5">
+        <li
+          v-for="move in pokemon.moves"
+          :key="move.name"
+          class="flex items-center gap-1"
+        >
+          <span class="h-1.5 w-1.5 shrink-0 rounded-full bg-blue-300"></span>
+          <span class="truncate text-xs text-foreground">{{ move.name }}</span>
+        </li>
+      </ul>
+    </div>
+  </Card>
+</template>
+
+<script setup lang="ts">
+import type { ElementalType } from '@/types/pokemon.js';
+import ElementalTypeBadges from './ElementalTypeBadges.vue';
+import { Card } from './ui/card';
+
+defineProps<{
+  pokemon: {
+    id: string;
+    name: string;
+    frontSprite?: string;
+    level: number;
+    experience: number;
+    pokedex: {
+      primaryType: ElementalType;
+      secondaryType: ElementalType | null;
+    };
+    moves: {
+      name: string;
+    }[];
+  };
+}>();
+</script>

@@ -13,7 +13,10 @@ final class PokemonIndexPageProps implements ProvidesInertiaProperties
 {
     public function __construct(
         /** @var Collection<int, Pokemon> */
-        public Collection $pokemonInParty
+        public Collection $pokemonInParty,
+
+        /** @var Collection<int, Pokemon> */
+        public Collection $pokemonInBox
     ) {}
 
     /**
@@ -27,6 +30,31 @@ final class PokemonIndexPageProps implements ProvidesInertiaProperties
                 'name'        => $pokemon->getName(),
                 'frontSprite' => $pokemon->getFrontSprite(),
                 'level'       => $pokemon->level,
+            ]),
+            'pokemonInBox' => $this->pokemonInBox->map(fn (Pokemon $pokemon): array => [
+                'id'          => $pokemon->id,
+                'name'        => $pokemon->getName(),
+                'frontSprite' => $pokemon->getFrontSprite(),
+                'level'       => $pokemon->level,
+                'experience'  => $pokemon->experience,
+                'pokedex'     => [
+                    'primaryType'   => $pokemon->pokedex->primary_type,
+                    'secondaryType' => $pokemon->pokedex->secondary_type,
+                ],
+                'moves' => [
+                    [
+                        'name' => 'Giga Impact',
+                    ],
+                    [
+                        'name' => 'Flamethrower',
+                    ],
+                    [
+                        'name' => 'Earthquake',
+                    ],
+                    [
+                        'name' => 'Ice Beam',
+                    ],
+                ],
             ]),
         ];
     }
