@@ -2,7 +2,7 @@
   <SidebarProvider>
     <AppSidebar />
     <SidebarInset>
-      <header
+      <div
         class="flex h-12 shrink-0 items-center gap-2 transition-[width,height] ease-linear"
       >
         <div class="flex items-center gap-2 px-4">
@@ -11,30 +11,10 @@
             orientation="vertical"
             class="mr-2 data-[orientation=vertical]:h-4"
           />
-          <Breadcrumb>
-            <BreadcrumbList>
-              <template
-                v-for="(crumb, index) in breadcrumbs"
-                :key="index"
-              >
-                <BreadcrumbItem>
-                  <BreadcrumbLink
-                    v-if="crumb.href"
-                    :href="crumb.href"
-                  >
-                    {{ crumb.title }}
-                  </BreadcrumbLink>
-                  <BreadcrumbPage v-else>
-                    {{ crumb.title }}
-                  </BreadcrumbPage>
-                </BreadcrumbItem>
-                <BreadcrumbSeparator v-if="index < breadcrumbs.length - 1" />
-              </template>
-            </BreadcrumbList>
-          </Breadcrumb>
+          <DashboardBreadcrumbs />
         </div>
-      </header>
-      <div class="mx-auto w-full max-w-6xl space-y-6 px-8 pb-4">
+      </div>
+      <div class="mx-auto w-full max-w-6xl space-y-18 px-8 pb-4">
         <slot />
       </div>
     </SidebarInset>
@@ -49,21 +29,11 @@ export const containerClass = 'w-full h-full';
 
 <script setup lang="ts">
 import AppSidebar from '@/components/AppSidebar.vue';
-import {
-  Breadcrumb,
-  BreadcrumbItem,
-  BreadcrumbLink,
-  BreadcrumbList,
-  BreadcrumbPage,
-  BreadcrumbSeparator,
-} from '@/components/ui/breadcrumb';
+import DashboardBreadcrumbs from '@/components/DashboardBreadcrumbs.vue';
 import { Separator } from '@/components/ui/separator';
 import {
   SidebarInset,
   SidebarProvider,
   SidebarTrigger,
 } from '@/components/ui/sidebar';
-import { useBreadcrumbs } from '@/composables/useBreadcrumbs';
-
-const { breadcrumbs } = useBreadcrumbs();
 </script>
