@@ -30,7 +30,7 @@
     </div>
     <div class="space-y-0.5">
       <p
-        class="text-[10px] font-medium tracking-wide text-muted-foreground uppercase"
+        class="text-xxs font-medium tracking-wide text-muted-foreground uppercase"
       >
         Moves
       </p>
