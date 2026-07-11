@@ -1,26 +1,33 @@
 <template>
-  <Pagination
-    v-model:page="currentPage"
-    :items-per-page="list.perPage"
-    :total="list.total"
+  <div
+    class="flex w-full flex-col items-center justify-center gap-2 @lg/section:flex-row @lg/section:justify-between"
   >
-    <PaginationContent v-slot="{ items }">
-      <PaginationPrevious />
-      <template
-        v-for="(item, index) in items"
-        :key="index"
-      >
-        <PaginationItem
-          v-if="item.type === 'page'"
-          :value="item.value"
-          :is-active="item.value === currentPage"
+    <p class="text-sm text-muted-foreground">
+      Showing {{ list.from }} to {{ list.to }} of {{ list.total }} results
+    </p>
+    <Pagination
+      v-model:page="currentPage"
+      :items-per-page="list.perPage"
+      :total="list.total"
+    >
+      <PaginationContent v-slot="{ items }">
+        <PaginationPrevious />
+        <template
+          v-for="(item, index) in items"
+          :key="index"
         >
-          {{ item.value }}
-        </PaginationItem>
-      </template>
-      <PaginationNext />
-    </PaginationContent>
-  </Pagination>
+          <PaginationItem
+            v-if="item.type === 'page'"
+            :value="item.value"
+            :is-active="item.value === currentPage"
+          >
+            {{ item.value }}
+          </PaginationItem>
+        </template>
+        <PaginationNext />
+      </PaginationContent>
+    </Pagination>
+  </div>
 </template>
 
 <script setup lang="ts">
