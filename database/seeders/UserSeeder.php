@@ -29,7 +29,7 @@ final class UserSeeder extends Seeder
             ->whereNotNull('sprites->front_default')
             ->whereNotIn('id', $pokemonInParty->pluck('id')->toArray())
             ->inRandomOrder()
-            ->take(22)
+            ->take(97)
             ->get();
 
         $pokeballs = Pokeball::query()
