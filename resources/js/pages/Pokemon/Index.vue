@@ -34,7 +34,7 @@ import AppSectionHeading from '@/components/AppSectionHeading.vue';
 import PartyCard from '@/components/PartyCard.vue';
 import PokemonBoxGrid from '@/components/PokemonBoxGrid.vue';
 import { useBreadcrumbs } from '@/composables/useBreadcrumbs';
-import type { ElementalType } from '@/types';
+import type { ElementalType, PaginatedList } from '@/types';
 import { route } from '@/types/helpers/route';
 
 defineProps<{
@@ -44,7 +44,7 @@ defineProps<{
     frontSprite?: string;
     level: number;
   }[];
-  pokemonInBox: {
+  pokemonInBox: PaginatedList<{
     id: string;
     name: string;
     frontSprite?: string;
@@ -57,7 +57,7 @@ defineProps<{
     moves: {
       name: string;
     }[];
-  }[];
+  }>;
 }>();
 
 const { setBreadcrumbs } = useBreadcrumbs();

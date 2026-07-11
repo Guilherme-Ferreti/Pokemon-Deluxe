@@ -4,19 +4,18 @@ declare(strict_types=1);
 
 namespace App\Pokemon\Http\Web\PageProps;
 
-use Illuminate\Database\Eloquent\Collection;
+use Closure;
 use Inertia\ProvidesInertiaProperties;
 use Inertia\RenderContext;
+use Shared\Helpers\AppHelper;
 use Shared\Models\Pokemon;
 
 final class PokemonIndexPageProps implements ProvidesInertiaProperties
 {
     public function __construct(
-        /** @var Collection<int, Pokemon> */
-        public Collection $pokemonInParty,
+        public Closure $pokemonInParty,
 
-        /** @var Collection<int, Pokemon> */
-        public Collection $pokemonInBox
+        public Closure $pokemonInBox
     ) {}
 
     /**
@@ -25,37 +24,56 @@ final class PokemonIndexPageProps implements ProvidesInertiaProperties
     public function toInertiaProperties(RenderContext $context): array
     {
         return [
-            'pokemonInParty' => $this->pokemonInParty->map(fn (Pokemon $pokemon): array => [
-                'id'          => $pokemon->id,
-                'name'        => $pokemon->getName(),
-                'frontSprite' => $pokemon->getFrontSprite(),
-                'level'       => $pokemon->level,
-            ]),
-            'pokemonInBox' => $this->pokemonInBox->map(fn (Pokemon $pokemon): array => [
-                'id'          => $pokemon->id,
-                'name'        => $pokemon->getName(),
-                'frontSprite' => $pokemon->getFrontSprite(),
-                'level'       => $pokemon->level,
-                'experience'  => $pokemon->experience,
-                'pokedex'     => [
-                    'primaryType'   => $pokemon->pokedex->primary_type,
-                    'secondaryType' => $pokemon->pokedex->secondary_type,
-                ],
-                'moves' => [
-                    [
-                        'name' => 'Giga Impact',
-                    ],
-                    [
-                        'name' => 'Flamethrower',
-                    ],
-                    [
-                        'name' => 'Earthquake',
-                    ],
-                    [
-                        'name' => 'Ice Beam',
-                    ],
-                ],
-            ]),
+            'pokemonInParty' => $this->mapPokemonInParty(),
+            'pokemonInBox'   => $this->mapPokemonInBox(),
         ];
+    }
+
+    /**
+     * @return array<string, mixed>
+     */
+    private function mapPokemonInParty(): array
+    {
+        return ($this->pokemonInParty)()
+            ->map(fn (Pokemon $pokemon): array => [
+                'id'          => $pokemon->id,
+                'name'        => $pokemon->getName(),
+                'frontSprite' => $pokemon->getFrontSprite(),
+                'level'       => $pokemon->level,
+            ])
+            ->toArray();
+    }
+
+    /**
+     * @return array<string, mixed>
+     */
+    private function mapPokemonInBox(): array
+    {
+        return AppHelper::paginatorToArray(($this->pokemonInBox)(), fn (Pokemon $pokemon): array => [
+            'id'          => $pokemon->id,
+            'name'        => $pokemon->getName(),
+            'frontSprite' => $pokemon->getFrontSprite(),
+            'level'       => $pokemon->level,
+            'experience'  => $pokemon->experience,
+            'pokedex'     => [
+                'primaryType'   => $pokemon->pokedex->primary_type,
+                'secondaryType' => $pokemon->pokedex->secondary_type,
+            ],
+            'moves' => [
+                [
+                    'name' => 'Giga Impact',
+                ],
+                [
+                    'name' => 'Flamethrower',
+                ],
+                [
+                    'name' => 'Earthquake',
+                ],
+                [
+                    'name' => 'Ice Beam',
+                ],
+            ],
+        ]);
+
     }
 }

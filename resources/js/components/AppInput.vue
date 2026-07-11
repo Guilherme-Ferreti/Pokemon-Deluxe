@@ -8,6 +8,7 @@
     <InputGroup>
       <InputGroupInput
         :id="name"
+        v-model="model"
         :type="type"
         :name="name"
         :default-value="value"
@@ -44,6 +45,8 @@ withDefaults(
     required: false,
   },
 );
+
+const model = defineModel<string>();
 
 defineEmits<{
   (event: 'blur'): void;
