@@ -6,9 +6,10 @@
       Showing {{ list.from }} to {{ list.to }} of {{ list.total }} results
     </p>
     <Pagination
-      v-model:page="currentPage"
+      :page="list.currentPage"
       :items-per-page="list.perPage"
       :total="list.total"
+      @update:page="(value) => navigateToPage(value)"
     >
       <PaginationContent v-slot="{ items }">
         <PaginationPrevious />
@@ -19,7 +20,7 @@
           <PaginationItem
             v-if="item.type === 'page'"
             :value="item.value"
-            :is-active="item.value === currentPage"
+            :is-active="item.value === list.currentPage"
           >
             {{ item.value }}
           </PaginationItem>
@@ -32,7 +33,6 @@
 
 <script setup lang="ts">
 import { router } from '@inertiajs/vue3';
-import { ref, watch } from 'vue';
 import {
   Pagination,
   PaginationContent,
@@ -47,11 +47,9 @@ const props = defineProps<{
   only?: Array<string>;
 }>();
 
-const currentPage = ref(props.list.currentPage);
-
-watch(currentPage, () => {
+function navigateToPage(page: number) {
   const url = props.list.links.find((link) => {
-    return link.page === currentPage.value;
+    return link.page === page;
   })?.url;
 
   if (!url) {
@@ -63,5 +61,5 @@ watch(currentPage, () => {
     {},
     { preserveScroll: true, preserveState: true, only: props.only },
   );
-});
+}
 </script>
