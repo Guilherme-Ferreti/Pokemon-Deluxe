@@ -1,9 +1,6 @@
 <template>
   <Head title="Your Pokemon" />
-  <AppSection
-    class="space-y-6"
-    aria-labelledby="your-pokemon__heading"
-  >
+  <AppSection aria-labelledby="your-pokemon__heading">
     <AppSectionHeading
       id="your-pokemon__heading"
       title="Your Pokemon"
@@ -12,10 +9,7 @@
     />
     <PartyCard :pokemon-in-party="pokemonInParty" />
   </AppSection>
-  <AppSection
-    class="space-y-6"
-    aria-labelledby="box__heading"
-  >
+  <AppSection aria-labelledby="box__heading">
     <AppSectionHeading
       id="box__heading"
       title="Box"

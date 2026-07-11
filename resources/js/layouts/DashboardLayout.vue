@@ -6,7 +6,7 @@
         <div class="flex h-12 items-center gap-2">
           <DashboardBreadcrumbs />
         </div>
-        <div class="space-y-18">
+        <div class="space-y-8">
           <slot />
         </div>
       </div>
