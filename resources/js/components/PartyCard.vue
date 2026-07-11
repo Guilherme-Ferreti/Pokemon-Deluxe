@@ -65,7 +65,7 @@ defineProps<{
 }
 
 .party-card__pokemon-name {
-  @apply truncate text-center text-sm font-medium;
+  @apply text-center text-sm font-medium;
 }
 
 .party-card__pokemon-level {
