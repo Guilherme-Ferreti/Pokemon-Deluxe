@@ -27,7 +27,7 @@ final class PokemonFactory extends Factory
             'experience'  => fake()->numberBetween(0, 100),
             'moves_ids'   => [],
             'in_party'    => fake()->boolean(),
-            'is_shiny'    => fake()->boolean(),
+            'is_shiny'    => fake()->boolean(10),
             'pokeball_id' => Pokeball::factory(),
             'captured_at' => fake()->dateTimeBetween('-1 year', 'now'),
         ];
