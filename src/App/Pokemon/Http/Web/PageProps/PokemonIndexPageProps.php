@@ -24,8 +24,8 @@ final class PokemonIndexPageProps implements ProvidesInertiaProperties
     public function toInertiaProperties(RenderContext $context): array
     {
         return [
-            'pokemonInParty' => $this->mapPokemonInParty(),
-            'pokemonInBox'   => $this->mapPokemonInBox(),
+            'pokemonInParty' => fn (): array => $this->mapPokemonInParty(),
+            'pokemonInBox'   => fn (): array => $this->mapPokemonInBox(),
         ];
     }
 

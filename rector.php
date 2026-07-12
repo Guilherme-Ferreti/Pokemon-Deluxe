@@ -2,6 +2,7 @@
 
 declare(strict_types=1);
 
+use Rector\CodingStyle\Rector\ArrowFunction\ArrowFunctionDelegatingCallToFirstClassCallableRector;
 use Rector\CodingStyle\Rector\Use_\SeparateMultiUseImportsRector;
 use Rector\Config\RectorConfig;
 use Rector\Naming\Rector\Class_\RenamePropertyToMatchTypeRector;
@@ -39,6 +40,7 @@ return RectorConfig::configure()
         SeparateMultiUseImportsRector::class,
         RenameParamToMatchTypeRector::class,
         RenamePropertyToMatchTypeRector::class,
+        ArrowFunctionDelegatingCallToFirstClassCallableRector::class,
         AddArrowFunctionReturnTypeRector::class => [
             __DIR__ . '/tests',
         ],
