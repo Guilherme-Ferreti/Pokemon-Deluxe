@@ -24,8 +24,8 @@ final class PokemonIndexPageProps implements ProvidesInertiaProperties
     public function toInertiaProperties(RenderContext $context): array
     {
         return [
-            'pokemonInParty' => fn (): array => $this->mapPokemonInParty(),
-            'pokemonInBox'   => fn (): array => $this->mapPokemonInBox(),
+            'pokemonInParty' => fn () => $this->mapPokemonInParty(),
+            'pokemonInBox'   => fn () => $this->mapPokemonInBox(),
         ];
     }
 
@@ -35,7 +35,7 @@ final class PokemonIndexPageProps implements ProvidesInertiaProperties
     private function mapPokemonInParty(): array
     {
         return ($this->pokemonInParty)()
-            ->map(fn (Pokemon $pokemon): array => [
+            ->map(fn (Pokemon $pokemon) => [
                 'id'          => $pokemon->id,
                 'name'        => $pokemon->getName(),
                 'frontSprite' => $pokemon->getFrontSprite(),
@@ -49,7 +49,7 @@ final class PokemonIndexPageProps implements ProvidesInertiaProperties
      */
     private function mapPokemonInBox(): array
     {
-        return AppHelper::paginatorToArray(($this->pokemonInBox)(), fn (Pokemon $pokemon): array => [
+        return AppHelper::paginatorToArray(($this->pokemonInBox)(), fn (Pokemon $pokemon) => [
             'id'          => $pokemon->id,
             'name'        => $pokemon->getName(),
             'frontSprite' => $pokemon->getFrontSprite(),

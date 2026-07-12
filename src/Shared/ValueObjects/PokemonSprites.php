@@ -45,7 +45,7 @@ final class PokemonSprites implements Castable
                     ]);
                 }
 
-                $sprites = array_map(fn ($item): ?string => is_string($item) ? $item : null, $value);
+                $sprites = array_map(fn ($item) => is_string($item) ? $item : null, $value);
 
                 return new PokemonSprites(...[
                     'back_default'       => $sprites['back_default'],

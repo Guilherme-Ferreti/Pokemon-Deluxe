@@ -41,9 +41,7 @@ return RectorConfig::configure()
         RenameParamToMatchTypeRector::class,
         RenamePropertyToMatchTypeRector::class,
         ArrowFunctionDelegatingCallToFirstClassCallableRector::class,
-        AddArrowFunctionReturnTypeRector::class => [
-            __DIR__ . '/tests',
-        ],
+        AddArrowFunctionReturnTypeRector::class,
         AddClosureVoidReturnTypeWhereNoReturnRector::class => [
             __DIR__ . '/tests',
         ],

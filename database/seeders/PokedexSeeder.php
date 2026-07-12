@@ -62,7 +62,7 @@ final class PokedexSeeder extends Seeder
 
         collect($data)
             ->flatten(1)
-            ->filter(fn (array $item): bool => $item !== [])
+            ->filter(fn (array $item) => $item !== [])
             ->chunk(100)
             ->each(fn (Collection $chunk) => PokedexEvolution::insert($chunk->toArray()));
     }
@@ -129,7 +129,7 @@ final class PokedexSeeder extends Seeder
      */
     private function getEvolutionInfo(array $pokemon): array
     {
-        return array_map(fn (array $evolution): array => [
+        return array_map(fn (array $evolution) => [
             'id'                => (new PokedexEvolution)->newUniqueId(),
             'from_pokedex_id'   => $this->getPokedexId($pokemon['id']),
             'to_pokedex_id'     => $this->getPokedexId($evolution['evolves_to']),
