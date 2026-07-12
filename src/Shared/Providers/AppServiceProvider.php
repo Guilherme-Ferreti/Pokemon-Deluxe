@@ -16,26 +16,25 @@ use Override;
 
 final class AppServiceProvider extends ServiceProvider
 {
-    /**
-     * Register any application services.
-     */
     #[Override]
     public function register(): void
     {
-        //
+        $this->registerLaravelTelescope();
     }
 
-    /**
-     * Bootstrap any application services.
-     */
     public function boot(): void
     {
         $this->configureDefaults();
     }
 
-    /**
-     * Configure default behaviors for production-ready applications.
-     */
+    private function registerLaravelTelescope(): void
+    {
+        if ($this->app->environment('local') && class_exists(\Laravel\Telescope\TelescopeServiceProvider::class)) {
+            $this->app->register(\Laravel\Telescope\TelescopeServiceProvider::class);
+            $this->app->register(TelescopeServiceProvider::class);
+        }
+    }
+
     private function configureDefaults(): void
     {
         Date::use(CarbonImmutable::class);
