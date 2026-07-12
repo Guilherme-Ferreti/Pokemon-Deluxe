@@ -71,7 +71,7 @@ watchDebounced(
   () => {
     router.get(
       route('web.pokemon.index'),
-      { search: search.value },
+      { search: search.value || undefined },
       { preserveState: true, preserveScroll: true, only: ['pokemonInBox'] },
     );
   },
