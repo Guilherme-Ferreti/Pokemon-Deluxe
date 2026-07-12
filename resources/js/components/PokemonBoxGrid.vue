@@ -76,7 +76,7 @@ watchDebounced(
     );
   },
   {
-    debounce: 250,
+    debounce: 450,
   },
 );
 </script>
