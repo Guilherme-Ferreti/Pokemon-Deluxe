@@ -48,8 +48,8 @@ final class HandleInertiaRequests extends Middleware
             ...parent::share($request),
             'name' => config('app.name'),
             'auth' => [
-                'user'          => $request->user()?->only('id', 'name', 'email'),
-                'layoutSprites' => $this->getAuthLayoutSprites(),
+                'user'          => fn () => $request->user()?->only('id', 'name', 'email'),
+                'layoutSprites' => fn () => $this->getAuthLayoutSprites(),
             ],
         ];
     }
