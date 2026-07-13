@@ -1,6 +1,6 @@
 <template>
   <div
-    class="flex w-full flex-col items-center justify-center gap-2 @lg/section:flex-row @lg/section:justify-between"
+    class="flex w-full flex-col items-center justify-center gap-2 @xl/section:flex-row @xl/section:justify-between"
   >
     <p class="text-sm text-muted-foreground">
       Showing {{ list.from }} to {{ list.to }} of {{ list.total }} results
@@ -9,6 +9,8 @@
       :page="list.currentPage"
       :items-per-page="list.perPage"
       :total="list.total"
+      :show-edges="true"
+      :sibling-count="1"
       @update:page="(value) => navigateToPage(value)"
     >
       <PaginationContent v-slot="{ items }">
@@ -24,6 +26,7 @@
           >
             {{ item.value }}
           </PaginationItem>
+          <PaginationEllipsis v-else />
         </template>
         <PaginationNext />
       </PaginationContent>
@@ -36,6 +39,7 @@ import { router } from '@inertiajs/vue3';
 import {
   Pagination,
   PaginationContent,
+  PaginationEllipsis,
   PaginationItem,
   PaginationNext,
   PaginationPrevious,
