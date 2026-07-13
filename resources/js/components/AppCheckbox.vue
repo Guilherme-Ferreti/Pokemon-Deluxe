@@ -1,6 +1,7 @@
 <template>
   <Field
     orientation="horizontal"
+    class="gap-2"
     :data-invalid="!!errorMessage"
   >
     <Checkbox
@@ -12,7 +13,7 @@
       :aria-invalid="!!errorMessage"
       @keydown.enter.prevent="() => (model = !model)"
     />
-    <FieldLabel for="remember">{{ label }}</FieldLabel>
+    <FieldLabel :for="name">{{ label }}</FieldLabel>
     <FieldError v-if="errorMessage">{{ errorMessage }}</FieldError>
   </Field>
 </template>

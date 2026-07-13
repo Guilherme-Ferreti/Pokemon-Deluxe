@@ -18,6 +18,9 @@
         </DialogDescription>
       </DialogHeader>
       <slot />
+      <DialogFooter class="mt-4">
+        <slot name="footer" />
+      </DialogFooter>
     </DialogContent>
   </Dialog>
 </template>
@@ -27,6 +30,7 @@ import {
   Dialog,
   DialogContent,
   DialogDescription,
+  DialogFooter,
   DialogHeader,
   DialogTitle,
   DialogTrigger,
