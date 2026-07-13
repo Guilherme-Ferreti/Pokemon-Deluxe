@@ -132,6 +132,9 @@
   body {
     @apply bg-sidebar-inset text-foreground;
   }
+  button:not(:disabled), [role="button"]:not(:disabled) {
+    cursor: pointer;
+  }
 }
 
 @layer base {
