@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Shared\Enums;
 
+use ValueError;
+
 enum Generation: int
 {
     case KANTO  = 1;
@@ -15,4 +17,22 @@ enum Generation: int
     case ALOLA  = 7;
     case GALAR  = 8;
     case PALDEA = 9;
+
+    public static function fromString(string $value): self
+    {
+        $value = strtolower($value);
+
+        return match ($value) {
+            'kanto'  => self::KANTO,
+            'johto'  => self::JOHTO,
+            'hoenn'  => self::HOENN,
+            'sinnoh' => self::SINNOH,
+            'unova'  => self::UNOVA,
+            'kalos'  => self::KALOS,
+            'alola'  => self::ALOLA,
+            'galar'  => self::GALAR,
+            'paldea' => self::PALDEA,
+            default  => throw new ValueError('Unknown generation: ' . $value),
+        };
+    }
 }

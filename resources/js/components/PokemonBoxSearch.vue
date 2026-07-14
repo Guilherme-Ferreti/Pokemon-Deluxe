@@ -25,50 +25,104 @@
             </Button>
           </AppTooltip>
         </template>
-        <div class="grid grid-cols-[auto_1fr] place-items-center gap-8">
-          <p class="text-sm font-semibold">By characteristic:</p>
-          <div class="grid grid-cols-3 gap-4">
+
+        <div class="dialog-filters__filters-group">
+          <p class="dialog-filters__filters-group-title">By characteristic:</p>
+          <div class="dialog-filters__filters-group-checkboxes">
             <AppCheckbox
               id="shiny"
-              v-model="searchForm.isShiny"
+              v-model="searchForm.shiny"
               label="Shiny"
               name="shiny"
-              class="w-fit"
             />
             <AppCheckbox
               id="baby"
-              v-model="searchForm.isBaby"
+              v-model="searchForm.baby"
               label="Baby"
               name="baby"
-              class="w-fit"
             />
             <AppCheckbox
               id="legendary"
-              v-model="searchForm.isLegendary"
+              v-model="searchForm.legendary"
               label="Legendary"
               name="legendary"
-              class="w-fit"
             />
             <AppCheckbox
               id="mythical"
-              v-model="searchForm.isMythical"
+              v-model="searchForm.mythical"
               label="Mythical"
               name="mythical"
-              class="w-fit"
             />
             <AppCheckbox
               id="mega"
-              v-model="searchForm.isMega"
+              v-model="searchForm.mega"
               label="Mega"
               name="mega"
-              class="w-fit"
             />
             <AppCheckbox
               id="gmax"
-              v-model="searchForm.isGmax"
+              v-model="searchForm.gmax"
               label="Gmax"
               name="gmax"
-              class="w-fit"
+            />
+          </div>
+        </div>
+        <div class="dialog-filters__filters-group">
+          <p class="dialog-filters__filters-group-title">By generation:</p>
+          <div class="dialog-filters__filters-group-checkboxes">
+            <AppCheckbox
+              id="kanto"
+              v-model="searchForm.kanto"
+              label="Kanto"
+              name="kanto"
+            />
+            <AppCheckbox
+              id="johto"
+              v-model="searchForm.johto"
+              label="Johto"
+              name="johto"
+            />
+            <AppCheckbox
+              id="hoenn"
+              v-model="searchForm.hoenn"
+              label="Hoenn"
+              name="hoenn"
+            />
+            <AppCheckbox
+              id="sinnoh"
+              v-model="searchForm.sinnoh"
+              label="Sinnoh"
+              name="sinnoh"
+            />
+            <AppCheckbox
+              id="unova"
+              v-model="searchForm.unova"
+              label="Unova"
+              name="unova"
+            />
+            <AppCheckbox
+              id="kalos"
+              v-model="searchForm.kalos"
+              label="Kalos"
+              name="kalos"
+            />
+            <AppCheckbox
+              id="alola"
+              v-model="searchForm.alola"
+              label="Alola"
+              name="alola"
+            />
+            <AppCheckbox
+              id="galar"
+              v-model="searchForm.galar"
+              label="Galar"
+              name="galar"
+            />
+            <AppCheckbox
+              id="paldea"
+              v-model="searchForm.paldea"
+              label="Paldea"
+              name="paldea"
             />
           </div>
         </div>
@@ -97,7 +151,7 @@
           </DialogClose>
           <DialogClose
             as-child
-            class="ml-auto"
+            class="sm:ml-auto"
           >
             <Button
               type="button"
@@ -129,12 +183,23 @@ import DialogClose from './ui/dialog/DialogClose.vue';
 
 const searchForm = useForm({
   search: '',
-  isShiny: false,
-  isBaby: false,
-  isLegendary: false,
-  isMythical: false,
-  isMega: false,
-  isGmax: false,
+
+  shiny: false,
+  baby: false,
+  legendary: false,
+  mythical: false,
+  mega: false,
+  gmax: false,
+
+  kanto: false,
+  johto: false,
+  hoenn: false,
+  sinnoh: false,
+  unova: false,
+  kalos: false,
+  alola: false,
+  galar: false,
+  paldea: false,
 });
 
 watchDebounced(
@@ -148,28 +213,49 @@ onMounted(() => {
 });
 
 function fillSearchAndDialogFiltersWithUrlParams() {
-  const urlSearchParams = new URLSearchParams(window.location.search);
+  const params = new URLSearchParams(window.location.search);
 
-  searchForm.search = urlSearchParams.get('search') || '';
+  searchForm.search = params.get('search') || '';
 
-  searchForm.isShiny = urlSearchParams.get('shiny') === 'true';
-  searchForm.isBaby = urlSearchParams.get('baby') === 'true';
-  searchForm.isLegendary = urlSearchParams.get('legendary') === 'true';
-  searchForm.isMythical = urlSearchParams.get('mythical') === 'true';
-  searchForm.isMega = urlSearchParams.get('mega') === 'true';
-  searchForm.isGmax = urlSearchParams.get('gmax') === 'true';
+  searchForm.shiny = params.get('shiny') === 'true';
+  searchForm.baby = params.get('baby') === 'true';
+  searchForm.legendary = params.get('legendary') === 'true';
+  searchForm.mythical = params.get('mythical') === 'true';
+  searchForm.mega = params.get('mega') === 'true';
+  searchForm.gmax = params.get('gmax') === 'true';
+
+  searchForm.kanto = params.get('kanto') === 'true';
+  searchForm.johto = params.get('johto') === 'true';
+  searchForm.hoenn = params.get('hoenn') === 'true';
+  searchForm.sinnoh = params.get('sinnoh') === 'true';
+  searchForm.unova = params.get('unova') === 'true';
+  searchForm.kalos = params.get('kalos') === 'true';
+  searchForm.alola = params.get('alola') === 'true';
+  searchForm.galar = params.get('galar') === 'true';
+  searchForm.paldea = params.get('paldea') === 'true';
 
   searchForm.defaults();
 }
 
 function clearSearchAndDialogFilters() {
   searchForm.search = '';
-  searchForm.isShiny = false;
-  searchForm.isBaby = false;
-  searchForm.isLegendary = false;
-  searchForm.isMythical = false;
-  searchForm.isMega = false;
-  searchForm.isGmax = false;
+
+  searchForm.shiny = false;
+  searchForm.baby = false;
+  searchForm.legendary = false;
+  searchForm.mythical = false;
+  searchForm.mega = false;
+  searchForm.gmax = false;
+
+  searchForm.kanto = false;
+  searchForm.johto = false;
+  searchForm.hoenn = false;
+  searchForm.sinnoh = false;
+  searchForm.unova = false;
+  searchForm.kalos = false;
+  searchForm.alola = false;
+  searchForm.galar = false;
+  searchForm.paldea = false;
 }
 
 function submitSearch() {
@@ -178,15 +264,11 @@ function submitSearch() {
   }
 
   searchForm
-    .transform((data) => ({
-      search: data.search || undefined,
-      shiny: data.isShiny || undefined,
-      baby: data.isBaby || undefined,
-      legendary: data.isLegendary || undefined,
-      mythical: data.isMythical || undefined,
-      mega: data.isMega || undefined,
-      gmax: data.isGmax || undefined,
-    }))
+    .transform((data) =>
+      Object.fromEntries(
+        Object.entries(data).filter(([, value]) => value || false),
+      ),
+    )
     .get(route('web.pokemon.index'), {
       preserveScroll: true,
       preserveState: true,
@@ -194,3 +276,23 @@ function submitSearch() {
     });
 }
 </script>
+
+<style scoped>
+@reference '../../css/app.css';
+
+.dialog-filters__filters-group {
+  @apply grid gap-4 sm:grid-cols-[auto_1fr] sm:gap-8;
+}
+
+.dialog-filters__filters-group-title {
+  @apply text-sm font-semibold;
+}
+
+.dialog-filters__filters-group-checkboxes {
+  @apply grid grid-cols-2 gap-4 sm:grid-cols-3;
+
+  > {
+    @apply w-fit;
+  }
+}
+</style>
