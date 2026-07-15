@@ -57,8 +57,18 @@ final class SearchPokemonInBoxQuery
         $this->query->when(
             $this->filters->elementalTypes->isNotEmpty(),
             fn (Builder $query) => $query->where(fn (Builder $query) => $query
-                ->whereRelation('pokedex', fn (Builder $query) => $query->whereIn('primary_type', $this->filters->elementalTypes))
-                ->orWhereRelation('pokedex', fn (Builder $query) => $query->whereIn('secondary_type', $this->filters->elementalTypes))
+                ->when(
+                    $this->filters->elementalTypes->count() === 1,
+                    fn (Builder $query) => $query
+                        ->whereRelation('pokedex', fn (Builder $query) => $query->whereIn('primary_type', $this->filters->elementalTypes))
+                        ->orWhereRelation('pokedex', fn (Builder $query) => $query->whereIn('secondary_type', $this->filters->elementalTypes))
+                )
+                ->when(
+                    $this->filters->elementalTypes->count() === 2,
+                    fn (Builder $query) => $query
+                        ->whereRelation('pokedex', fn (Builder $query) => $query->whereIn('primary_type', $this->filters->elementalTypes))
+                        ->whereRelation('pokedex', fn (Builder $query) => $query->whereIn('secondary_type', $this->filters->elementalTypes))
+                )
             )
         );
     }

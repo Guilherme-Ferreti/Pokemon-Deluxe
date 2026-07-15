@@ -39,7 +39,7 @@
             </div>
           </AppTooltip>
         </template>
-        <div class="space-y-8">
+        <div class="dialog-filters__wrapper">
           <div class="dialog-filters__filters-group">
             <p class="dialog-filters__filters-group-title">By type:</p>
             <div class="dialog-filters__filters-group-checkboxes">
@@ -50,6 +50,10 @@
                 name="elementalTypes[]"
                 :label="option.label"
                 :value="option.value"
+                :disabled="
+                  searchForm.elementalTypes.length >= 2 &&
+                  !searchForm.elementalTypes.includes(option.value)
+                "
               />
             </div>
           </div>
@@ -65,6 +69,7 @@
                 name="characteristics[]"
                 :label="option.label"
                 :value="option.value"
+                :disabled="isCharacteristicCheckboxDisabled(option.value)"
               />
             </div>
           </div>
@@ -203,6 +208,45 @@ const activeFiltersCount = computed(
     props.searchFilters.elementalTypes.length,
 );
 
+function includesAny(...values: PokemonCharacteristic[]) {
+  return searchForm.characteristics.some((value) => values.includes(value));
+}
+
+function isCharacteristicCheckboxDisabled(value: PokemonCharacteristic) {
+  if (value === PokemonCharacteristic.BABY) {
+    return includesAny(
+      PokemonCharacteristic.MEGA,
+      PokemonCharacteristic.GMAX,
+      PokemonCharacteristic.LEGENDARY,
+      PokemonCharacteristic.MYTHICAL,
+    );
+  }
+
+  if (value === PokemonCharacteristic.LEGENDARY) {
+    return includesAny(
+      PokemonCharacteristic.MYTHICAL,
+      PokemonCharacteristic.BABY,
+    );
+  }
+
+  if (value === PokemonCharacteristic.MYTHICAL) {
+    return includesAny(
+      PokemonCharacteristic.LEGENDARY,
+      PokemonCharacteristic.BABY,
+    );
+  }
+
+  if (value === PokemonCharacteristic.MEGA) {
+    return includesAny(PokemonCharacteristic.GMAX, PokemonCharacteristic.BABY);
+  }
+
+  if (value === PokemonCharacteristic.GMAX) {
+    return includesAny(PokemonCharacteristic.MEGA, PokemonCharacteristic.BABY);
+  }
+
+  return false;
+}
+
 function clearSearchAndDialogFilters() {
   searchForm.search = '';
   searchForm.characteristics = [];
@@ -232,8 +276,12 @@ function submitSearch() {
 <style scoped>
 @reference '../../css/app.css';
 
+.dialog-filters__wrapper {
+  @apply space-y-6;
+}
+
 .dialog-filters__filters-group {
-  @apply grid gap-4 sm:grid-cols-[1fr_3fr] sm:gap-8;
+  @apply grid gap-4 sm:grid-cols-[1fr_3fr] sm:gap-4;
 }
 
 .dialog-filters__filters-group-title {

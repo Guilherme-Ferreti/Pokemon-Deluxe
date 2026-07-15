@@ -11,6 +11,7 @@
       :value="value"
       :required="required"
       :aria-invalid="!!errorMessage"
+      :disabled="disabled"
       @keydown.enter.prevent="$event.element.click()"
     />
     <FieldLabel :for="inputId">{{ label }}</FieldLabel>
@@ -30,10 +31,12 @@ interface AppCheckboxProps {
   required?: boolean;
   errorMessage?: string;
   value?: string | number;
+  disabled?: boolean;
 }
 
 const props = withDefaults(defineProps<AppCheckboxProps>(), {
   value: 1,
+  disabled: false,
 });
 
 const inputId = computed(() => props.id ?? useId());

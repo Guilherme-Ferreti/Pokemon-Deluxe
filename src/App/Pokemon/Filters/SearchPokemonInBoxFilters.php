@@ -32,6 +32,7 @@ final class SearchPokemonInBoxFilters
             ->map(fn (string $value) => ElementalType::tryFrom($value))
             ->unique()
             ->filter()
+            ->take(2)
             ->values();
 
         $characteristics = $request
