@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Pokemon\Http\Web\PageProps;
 
+use App\Pokemon\Filters\SearchPokemonInBoxFilters;
 use Closure;
 use Inertia\ProvidesInertiaProperties;
 use Inertia\RenderContext;
@@ -15,7 +16,9 @@ final class PokemonIndexPageProps implements ProvidesInertiaProperties
     public function __construct(
         public Closure $pokemonInParty,
 
-        public Closure $pokemonInBox
+        public Closure $pokemonInBox,
+
+        public SearchPokemonInBoxFilters $searchFilters,
     ) {}
 
     /**
@@ -26,6 +29,7 @@ final class PokemonIndexPageProps implements ProvidesInertiaProperties
         return [
             'pokemonInParty' => fn () => $this->mapPokemonInParty(),
             'pokemonInBox'   => fn () => $this->mapPokemonInBox(),
+            'searchFilters'  => $this->searchFilters,
         ];
     }
 

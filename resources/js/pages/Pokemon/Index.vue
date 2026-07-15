@@ -16,7 +16,10 @@
       description="Manage your captured Pokemon."
       :icon="IconArchive"
     />
-    <PokemonBoxGrid :pokemon-list="pokemonInBox" />
+    <PokemonBoxGrid
+      :pokemon-in-box="pokemonInBox"
+      :search-filters="searchFilters"
+    />
   </AppSection>
 </template>
 
@@ -28,10 +31,15 @@ import AppSectionHeading from '@/components/AppSectionHeading.vue';
 import PartyCard from '@/components/PartyCard.vue';
 import PokemonBoxGrid from '@/components/PokemonBoxGrid.vue';
 import { useBreadcrumbs } from '@/composables/useBreadcrumbs';
-import type { ElementalType, PaginatedList } from '@/types';
+import type {
+  ElementalType,
+  Generation,
+  PaginatedList,
+  PokemonCharacteristic,
+} from '@/types';
 import { route } from '@/types/helpers/route';
 
-defineProps<{
+export interface PokemonIndexPageProps {
   pokemonInParty: {
     id: string;
     name: string;
@@ -52,7 +60,14 @@ defineProps<{
       name: string;
     }[];
   }>;
-}>();
+  searchFilters: {
+    search: string;
+    characteristics: PokemonCharacteristic[];
+    generations: Generation[];
+  };
+}
+
+defineProps<PokemonIndexPageProps>();
 
 const { setBreadcrumbs } = useBreadcrumbs();
 setBreadcrumbs([

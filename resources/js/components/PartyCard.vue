@@ -33,14 +33,10 @@
 <script setup lang="ts">
 import { IconPlus } from '@tabler/icons-vue';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import type { PokemonIndexPageProps } from '@/pages/Pokemon/Index.vue';
 
 defineProps<{
-  pokemonInParty: {
-    id: string;
-    name: string;
-    frontSprite?: string;
-    level: number;
-  }[];
+  pokemonInParty: PokemonIndexPageProps['pokemonInParty'];
 }>();
 </script>
 

@@ -36,3 +36,12 @@ export enum PokeballType {
   SPECIAL = 'special',
   APRICORN = 'apricorn',
 }
+
+export enum PokemonCharacteristic {
+  SHINY = 'shiny',
+  BABY = 'baby',
+  LEGENDARY = 'legendary',
+  MYTHICAL = 'mythical',
+  MEGA = 'mega',
+  GMAX = 'gmax',
+}

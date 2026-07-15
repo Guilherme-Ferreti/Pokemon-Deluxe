@@ -25,45 +25,16 @@
             </Button>
           </AppTooltip>
         </template>
-
         <div class="dialog-filters__filters-group">
           <p class="dialog-filters__filters-group-title">By characteristic:</p>
           <div class="dialog-filters__filters-group-checkboxes">
             <AppCheckbox
-              id="shiny"
-              v-model="searchForm.shiny"
-              label="Shiny"
-              name="shiny"
-            />
-            <AppCheckbox
-              id="baby"
-              v-model="searchForm.baby"
-              label="Baby"
-              name="baby"
-            />
-            <AppCheckbox
-              id="legendary"
-              v-model="searchForm.legendary"
-              label="Legendary"
-              name="legendary"
-            />
-            <AppCheckbox
-              id="mythical"
-              v-model="searchForm.mythical"
-              label="Mythical"
-              name="mythical"
-            />
-            <AppCheckbox
-              id="mega"
-              v-model="searchForm.mega"
-              label="Mega"
-              name="mega"
-            />
-            <AppCheckbox
-              id="gmax"
-              v-model="searchForm.gmax"
-              label="Gmax"
-              name="gmax"
+              v-for="characteristic in characteristicOptions"
+              :key="characteristic.label"
+              v-model="searchForm.characteristics"
+              name="characteristics[]"
+              :label="characteristic.label"
+              :value="characteristic.value"
             />
           </div>
         </div>
@@ -71,58 +42,12 @@
           <p class="dialog-filters__filters-group-title">By generation:</p>
           <div class="dialog-filters__filters-group-checkboxes">
             <AppCheckbox
-              id="kanto"
-              v-model="searchForm.kanto"
-              label="Kanto"
-              name="kanto"
-            />
-            <AppCheckbox
-              id="johto"
-              v-model="searchForm.johto"
-              label="Johto"
-              name="johto"
-            />
-            <AppCheckbox
-              id="hoenn"
-              v-model="searchForm.hoenn"
-              label="Hoenn"
-              name="hoenn"
-            />
-            <AppCheckbox
-              id="sinnoh"
-              v-model="searchForm.sinnoh"
-              label="Sinnoh"
-              name="sinnoh"
-            />
-            <AppCheckbox
-              id="unova"
-              v-model="searchForm.unova"
-              label="Unova"
-              name="unova"
-            />
-            <AppCheckbox
-              id="kalos"
-              v-model="searchForm.kalos"
-              label="Kalos"
-              name="kalos"
-            />
-            <AppCheckbox
-              id="alola"
-              v-model="searchForm.alola"
-              label="Alola"
-              name="alola"
-            />
-            <AppCheckbox
-              id="galar"
-              v-model="searchForm.galar"
-              label="Galar"
-              name="galar"
-            />
-            <AppCheckbox
-              id="paldea"
-              v-model="searchForm.paldea"
-              label="Paldea"
-              name="paldea"
+              v-for="generation in generationOptions"
+              :key="generation.label"
+              v-model="searchForm.generations"
+              name="generations[]"
+              :label="generation.label"
+              :value="generation.value"
             />
           </div>
         </div>
@@ -139,12 +64,7 @@
             <Button
               type="button"
               variant="outline"
-              @click="
-                () => {
-                  clearSearchAndDialogFilters();
-                  submitSearch();
-                }
-              "
+              @click="(clearSearchAndDialogFilters(), nextTick(submitSearch))"
             >
               Clear all
             </Button>
@@ -158,7 +78,7 @@
               variant="outline"
               @click="() => searchForm.reset()"
             >
-              Close
+              Cancel
             </Button>
           </DialogClose>
         </template>
@@ -171,9 +91,11 @@
 import { useForm } from '@inertiajs/vue3';
 import { IconFilter2, IconSearch } from '@tabler/icons-vue';
 import { watchDebounced } from '@vueuse/core';
-import { onMounted } from 'vue';
+import { nextTick } from 'vue';
 import { Card } from '@/components/ui/card';
+import type { PokemonIndexPageProps } from '@/pages/Pokemon/Index.vue';
 import { route } from '@/types/helpers/route.js';
+import { Generation, PokemonCharacteristic } from '@/types/pokemon.js';
 import AppCheckbox from './AppCheckbox.vue';
 import AppDialog from './AppDialog.vue';
 import AppInput from './AppInput.vue';
@@ -181,25 +103,35 @@ import AppTooltip from './AppTooltip.vue';
 import { Button } from './ui/button';
 import DialogClose from './ui/dialog/DialogClose.vue';
 
+const props = defineProps<{
+  searchFilters: PokemonIndexPageProps['searchFilters'];
+}>();
+
+const characteristicOptions = [
+  { label: 'Shiny', value: PokemonCharacteristic.SHINY },
+  { label: 'Baby', value: PokemonCharacteristic.BABY },
+  { label: 'Legendary', value: PokemonCharacteristic.LEGENDARY },
+  { label: 'Mythical', value: PokemonCharacteristic.MYTHICAL },
+  { label: 'Mega', value: PokemonCharacteristic.MEGA },
+  { label: 'Gmax', value: PokemonCharacteristic.GMAX },
+] as const;
+
+const generationOptions = [
+  { label: 'Kanto', value: Generation.KANTO },
+  { label: 'Johto', value: Generation.JOHTO },
+  { label: 'Hoenn', value: Generation.HOENN },
+  { label: 'Sinnoh', value: Generation.SINNOH },
+  { label: 'Unova', value: Generation.UNOVA },
+  { label: 'Kalos', value: Generation.KALOS },
+  { label: 'Alola', value: Generation.ALOLA },
+  { label: 'Galar', value: Generation.GALAR },
+  { label: 'Paldea', value: Generation.PALDEA },
+] as const;
+
 const searchForm = useForm({
-  search: '',
-
-  shiny: false,
-  baby: false,
-  legendary: false,
-  mythical: false,
-  mega: false,
-  gmax: false,
-
-  kanto: false,
-  johto: false,
-  hoenn: false,
-  sinnoh: false,
-  unova: false,
-  kalos: false,
-  alola: false,
-  galar: false,
-  paldea: false,
+  search: props.searchFilters.search,
+  characteristics: props.searchFilters.characteristics,
+  generations: props.searchFilters.generations,
 });
 
 watchDebounced(
@@ -208,54 +140,10 @@ watchDebounced(
   { debounce: 450 },
 );
 
-onMounted(() => {
-  fillSearchAndDialogFiltersWithUrlParams();
-});
-
-function fillSearchAndDialogFiltersWithUrlParams() {
-  const params = new URLSearchParams(window.location.search);
-
-  searchForm.search = params.get('search') || '';
-
-  searchForm.shiny = params.get('shiny') === 'true';
-  searchForm.baby = params.get('baby') === 'true';
-  searchForm.legendary = params.get('legendary') === 'true';
-  searchForm.mythical = params.get('mythical') === 'true';
-  searchForm.mega = params.get('mega') === 'true';
-  searchForm.gmax = params.get('gmax') === 'true';
-
-  searchForm.kanto = params.get('kanto') === 'true';
-  searchForm.johto = params.get('johto') === 'true';
-  searchForm.hoenn = params.get('hoenn') === 'true';
-  searchForm.sinnoh = params.get('sinnoh') === 'true';
-  searchForm.unova = params.get('unova') === 'true';
-  searchForm.kalos = params.get('kalos') === 'true';
-  searchForm.alola = params.get('alola') === 'true';
-  searchForm.galar = params.get('galar') === 'true';
-  searchForm.paldea = params.get('paldea') === 'true';
-
-  searchForm.defaults();
-}
-
 function clearSearchAndDialogFilters() {
   searchForm.search = '';
-
-  searchForm.shiny = false;
-  searchForm.baby = false;
-  searchForm.legendary = false;
-  searchForm.mythical = false;
-  searchForm.mega = false;
-  searchForm.gmax = false;
-
-  searchForm.kanto = false;
-  searchForm.johto = false;
-  searchForm.hoenn = false;
-  searchForm.sinnoh = false;
-  searchForm.unova = false;
-  searchForm.kalos = false;
-  searchForm.alola = false;
-  searchForm.galar = false;
-  searchForm.paldea = false;
+  searchForm.characteristics = [];
+  searchForm.generations = [];
 }
 
 function submitSearch() {
@@ -272,7 +160,7 @@ function submitSearch() {
     .get(route('web.pokemon.index'), {
       preserveScroll: true,
       preserveState: true,
-      only: ['pokemonInBox'],
+      only: ['pokemonInBox', 'searchFilters'],
     });
 }
 </script>
@@ -281,7 +169,7 @@ function submitSearch() {
 @reference '../../css/app.css';
 
 .dialog-filters__filters-group {
-  @apply grid gap-4 sm:grid-cols-[auto_1fr] sm:gap-8;
+  @apply grid gap-4 sm:grid-cols-[1fr_3fr] sm:gap-8;
 }
 
 .dialog-filters__filters-group-title {
@@ -290,9 +178,5 @@ function submitSearch() {
 
 .dialog-filters__filters-group-checkboxes {
   @apply grid grid-cols-2 gap-4 sm:grid-cols-3;
-
-  > {
-    @apply w-fit;
-  }
 }
 </style>
