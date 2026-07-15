@@ -15,14 +15,23 @@
       >
         <template #trigger>
           <AppTooltip text="Filters">
-            <Button
-              type="button"
-              variant="outline"
-              size="icon"
-              aria-label="Filters"
-            >
-              <IconFilter2 />
-            </Button>
+            <div class="relative">
+              <Button
+                type="button"
+                variant="outline"
+                size="icon"
+                aria-label="Filters"
+              >
+                <IconFilter2 />
+              </Button>
+              <Badge
+                v-if="activeFiltersCount > 0"
+                variant="destructive"
+                class="absolute right-0 bottom-0 size-4 translate-1/2 transform rounded-full font-mono font-semibold tabular-nums"
+              >
+                {{ activeFiltersCount }}
+              </Badge>
+            </div>
           </AppTooltip>
         </template>
         <div class="dialog-filters__filters-group">
@@ -91,7 +100,7 @@
 import { useForm } from '@inertiajs/vue3';
 import { IconFilter2, IconSearch } from '@tabler/icons-vue';
 import { watchDebounced } from '@vueuse/core';
-import { nextTick } from 'vue';
+import { computed, nextTick } from 'vue';
 import { Card } from '@/components/ui/card';
 import type { PokemonIndexPageProps } from '@/pages/Pokemon/Index.vue';
 import { route } from '@/types/helpers/route.js';
@@ -100,6 +109,7 @@ import AppCheckbox from './AppCheckbox.vue';
 import AppDialog from './AppDialog.vue';
 import AppInput from './AppInput.vue';
 import AppTooltip from './AppTooltip.vue';
+import Badge from './ui/badge/Badge.vue';
 import { Button } from './ui/button';
 import DialogClose from './ui/dialog/DialogClose.vue';
 
@@ -138,6 +148,12 @@ watchDebounced(
   () => searchForm.search,
   () => submitSearch(),
   { debounce: 450 },
+);
+
+const activeFiltersCount = computed(
+  () =>
+    props.searchFilters.generations.length +
+    props.searchFilters.characteristics.length,
 );
 
 function clearSearchAndDialogFilters() {
