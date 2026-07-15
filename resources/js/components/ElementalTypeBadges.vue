@@ -24,7 +24,7 @@ const labels = {
   [ElementalType.FIRE]: 'Fire',
   [ElementalType.WATER]: 'Water',
   [ElementalType.GRASS]: 'Grass',
-  [ElementalType.ELECTRIC]: 'Eletric',
+  [ElementalType.ELECTRIC]: 'Electric',
   [ElementalType.PSYCHIC]: 'Psychic',
   [ElementalType.ICE]: 'Ice',
   [ElementalType.FIGHTING]: 'Fighting',
