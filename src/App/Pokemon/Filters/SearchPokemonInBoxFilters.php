@@ -7,18 +7,17 @@ namespace App\Pokemon\Filters;
 use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
 use Shared\Enums\Generation;
+use Shared\Enums\PokemonCharacteristic;
 
 final class SearchPokemonInBoxFilters
 {
     public function __construct(
         public ?string $search,
 
-        /**
-         * @var Collection<int, 'baby'|'gmax'|'legendary'|'mega'|'mythical'|'shiny'>
-         */
+        /** @var Collection<int, PokemonCharacteristic> */
         public Collection $characteristics,
 
-        /** @var Collection<int, Generation> $generations */
+        /** @var Collection<int, Generation> */
         public Collection $generations,
     ) {}
 
@@ -26,12 +25,14 @@ final class SearchPokemonInBoxFilters
     {
         $characteristics = $request
             ->collect('characteristics')
-            ->filter(fn (string $characteristic) => in_array($characteristic, ['shiny', 'baby', 'legendary', 'mythical', 'mega', 'gmax'], true))
+            ->map(fn (string $value) => PokemonCharacteristic::tryFrom($value))
+            ->unique()
+            ->filter()
             ->values();
 
         $generations = $request
             ->collect('generations')
-            ->map(fn (string $generation) => Generation::tryFrom((int) $generation))
+            ->map(fn (string $value) => Generation::tryFrom((int) $value))
             ->unique()
             ->filter()
             ->values();

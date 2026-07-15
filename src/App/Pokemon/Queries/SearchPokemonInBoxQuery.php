@@ -6,6 +6,7 @@ namespace App\Pokemon\Queries;
 
 use App\Pokemon\Filters\SearchPokemonInBoxFilters;
 use Illuminate\Database\Eloquent\Builder;
+use Shared\Enums\PokemonCharacteristic;
 use Shared\Models\Pokemon;
 use Shared\Models\User;
 
@@ -55,12 +56,12 @@ final class SearchPokemonInBoxQuery
         $this->query->when(
             $this->filters->characteristics->isNotEmpty(),
             fn (Builder $query) => $query
-                ->when($this->filters->characteristics->contains('shiny'), fn (Builder $query) => $query->where('is_shiny', true))
-                ->when($this->filters->characteristics->contains('baby'), fn (Builder $query) => $query->whereRelation('pokedex', 'is_baby', true))
-                ->when($this->filters->characteristics->contains('legendary'), fn (Builder $query) => $query->whereRelation('pokedex', 'is_legendary', true))
-                ->when($this->filters->characteristics->contains('mythical'), fn (Builder $query) => $query->whereRelation('pokedex', 'is_mythical', true))
-                ->when($this->filters->characteristics->contains('mega'), fn (Builder $query) => $query->whereRelation('pokedex', 'is_mega', true))
-                ->when($this->filters->characteristics->contains('gmax'), fn (Builder $query) => $query->whereRelation('pokedex', 'is_gmax', true))
+                ->when($this->filters->characteristics->contains(PokemonCharacteristic::SHINY), fn (Builder $query) => $query->where('is_shiny', true))
+                ->when($this->filters->characteristics->contains(PokemonCharacteristic::BABY), fn (Builder $query) => $query->whereRelation('pokedex', 'is_baby', true))
+                ->when($this->filters->characteristics->contains(PokemonCharacteristic::LEGENDARY), fn (Builder $query) => $query->whereRelation('pokedex', 'is_legendary', true))
+                ->when($this->filters->characteristics->contains(PokemonCharacteristic::MYTHICAL), fn (Builder $query) => $query->whereRelation('pokedex', 'is_mythical', true))
+                ->when($this->filters->characteristics->contains(PokemonCharacteristic::MEGA), fn (Builder $query) => $query->whereRelation('pokedex', 'is_mega', true))
+                ->when($this->filters->characteristics->contains(PokemonCharacteristic::GMAX), fn (Builder $query) => $query->whereRelation('pokedex', 'is_gmax', true))
         );
     }
 
