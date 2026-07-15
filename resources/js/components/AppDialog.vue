@@ -47,5 +47,8 @@ withDefaults(
   },
 );
 
-defineEmits(['open', 'close']);
+defineEmits<{
+  open: [];
+  close: [];
+}>();
 </script>

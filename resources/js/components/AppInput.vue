@@ -52,6 +52,6 @@ const inputId = computed(() => props.id ?? useId());
 const model = defineModel<string>();
 
 defineEmits<{
-  (event: 'blur'): void;
+  blur: [];
 }>();
 </script>
