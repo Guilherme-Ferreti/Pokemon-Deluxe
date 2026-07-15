@@ -12,6 +12,11 @@
         title="Filters"
         description="Use these filters to narrow down your search."
         size="lg"
+        @close="
+          nextTick(() =>
+            searchForm.processing ? undefined : searchForm.reset(),
+          )
+        "
       >
         <template #trigger>
           <AppTooltip text="Filters">
@@ -85,7 +90,6 @@
             <Button
               type="button"
               variant="outline"
-              @click="() => searchForm.reset()"
             >
               Cancel
             </Button>

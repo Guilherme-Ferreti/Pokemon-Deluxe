@@ -1,5 +1,5 @@
 <template>
-  <Dialog>
+  <Dialog @update:open="(open) => (open ? $emit('open') : $emit('close'))">
     <DialogTrigger>
       <slot name="trigger" />
     </DialogTrigger>
@@ -46,4 +46,6 @@ withDefaults(
     size: 'md',
   },
 );
+
+defineEmits(['open', 'close']);
 </script>
