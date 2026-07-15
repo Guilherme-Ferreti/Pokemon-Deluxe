@@ -6,6 +6,7 @@ namespace App\Pokemon\Filters;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
+use Shared\Enums\ElementalType;
 use Shared\Enums\Generation;
 use Shared\Enums\PokemonCharacteristic;
 
@@ -13,6 +14,9 @@ final class SearchPokemonInBoxFilters
 {
     public function __construct(
         public ?string $search,
+
+        /** @var Collection<int, ElementalType> */
+        public Collection $elementalTypes,
 
         /** @var Collection<int, PokemonCharacteristic> */
         public Collection $characteristics,
@@ -23,6 +27,13 @@ final class SearchPokemonInBoxFilters
 
     public static function fromRequest(Request $request): self
     {
+        $elementalTypes = $request
+            ->collect('elementalTypes')
+            ->map(fn (string $value) => ElementalType::tryFrom($value))
+            ->unique()
+            ->filter()
+            ->values();
+
         $characteristics = $request
             ->collect('characteristics')
             ->map(fn (string $value) => PokemonCharacteristic::tryFrom($value))
@@ -39,6 +50,7 @@ final class SearchPokemonInBoxFilters
 
         return new self(
             search: $request->query('search'),
+            elementalTypes: $elementalTypes,
             characteristics: $characteristics,
             generations: $generations
         );

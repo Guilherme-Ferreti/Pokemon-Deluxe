@@ -62,6 +62,7 @@ export interface PokemonIndexPageProps {
   }>;
   searchFilters: {
     search: string;
+    elementalTypes: ElementalType[];
     characteristics: PokemonCharacteristic[];
     generations: Generation[];
   };

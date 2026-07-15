@@ -39,30 +39,47 @@
             </div>
           </AppTooltip>
         </template>
-        <div class="dialog-filters__filters-group">
-          <p class="dialog-filters__filters-group-title">By characteristic:</p>
-          <div class="dialog-filters__filters-group-checkboxes">
-            <AppCheckbox
-              v-for="characteristic in characteristicOptions"
-              :key="characteristic.label"
-              v-model="searchForm.characteristics"
-              name="characteristics[]"
-              :label="characteristic.label"
-              :value="characteristic.value"
-            />
+        <div class="space-y-8">
+          <div class="dialog-filters__filters-group">
+            <p class="dialog-filters__filters-group-title">By type:</p>
+            <div class="dialog-filters__filters-group-checkboxes">
+              <AppCheckbox
+                v-for="option in elementalTypeOptions"
+                :key="option.label"
+                v-model="searchForm.elementalTypes"
+                name="elementalTypes[]"
+                :label="option.label"
+                :value="option.value"
+              />
+            </div>
           </div>
-        </div>
-        <div class="dialog-filters__filters-group">
-          <p class="dialog-filters__filters-group-title">By generation:</p>
-          <div class="dialog-filters__filters-group-checkboxes">
-            <AppCheckbox
-              v-for="generation in generationOptions"
-              :key="generation.label"
-              v-model="searchForm.generations"
-              name="generations[]"
-              :label="generation.label"
-              :value="generation.value"
-            />
+          <div class="dialog-filters__filters-group">
+            <p class="dialog-filters__filters-group-title">
+              By characteristic:
+            </p>
+            <div class="dialog-filters__filters-group-checkboxes">
+              <AppCheckbox
+                v-for="option in characteristicOptions"
+                :key="option.label"
+                v-model="searchForm.characteristics"
+                name="characteristics[]"
+                :label="option.label"
+                :value="option.value"
+              />
+            </div>
+          </div>
+          <div class="dialog-filters__filters-group">
+            <p class="dialog-filters__filters-group-title">By generation:</p>
+            <div class="dialog-filters__filters-group-checkboxes">
+              <AppCheckbox
+                v-for="option in generationOptions"
+                :key="option.label"
+                v-model="searchForm.generations"
+                name="generations[]"
+                :label="option.label"
+                :value="option.value"
+              />
+            </div>
           </div>
         </div>
         <template #footer>
@@ -108,7 +125,11 @@ import { computed, nextTick } from 'vue';
 import { Card } from '@/components/ui/card';
 import type { PokemonIndexPageProps } from '@/pages/Pokemon/Index.vue';
 import { route } from '@/types/helpers/route.js';
-import { Generation, PokemonCharacteristic } from '@/types/pokemon.js';
+import {
+  ElementalType,
+  Generation,
+  PokemonCharacteristic,
+} from '@/types/pokemon.js';
 import AppCheckbox from './AppCheckbox.vue';
 import AppDialog from './AppDialog.vue';
 import AppInput from './AppInput.vue';
@@ -120,6 +141,26 @@ import DialogClose from './ui/dialog/DialogClose.vue';
 const props = defineProps<{
   searchFilters: PokemonIndexPageProps['searchFilters'];
 }>();
+
+const elementalTypeOptions = [
+  { label: 'Bug', value: ElementalType.BUG },
+  { label: 'Dark', value: ElementalType.DARK },
+  { label: 'Dragon', value: ElementalType.DRAGON },
+  { label: 'Electric', value: ElementalType.ELECTRIC },
+  { label: 'Fairy', value: ElementalType.FAIRY },
+  { label: 'Fighting', value: ElementalType.FIGHTING },
+  { label: 'Fire', value: ElementalType.FIRE },
+  { label: 'Ghost', value: ElementalType.GHOST },
+  { label: 'Grass', value: ElementalType.GRASS },
+  { label: 'Ground', value: ElementalType.GROUND },
+  { label: 'Ice', value: ElementalType.ICE },
+  { label: 'Normal', value: ElementalType.NORMAL },
+  { label: 'Poison', value: ElementalType.POISON },
+  { label: 'Psychic', value: ElementalType.PSYCHIC },
+  { label: 'Rock', value: ElementalType.ROCK },
+  { label: 'Steel', value: ElementalType.STEEL },
+  { label: 'Water', value: ElementalType.WATER },
+];
 
 const characteristicOptions = [
   { label: 'Shiny', value: PokemonCharacteristic.SHINY },
@@ -144,6 +185,7 @@ const generationOptions = [
 
 const searchForm = useForm({
   search: props.searchFilters.search,
+  elementalTypes: props.searchFilters.elementalTypes,
   characteristics: props.searchFilters.characteristics,
   generations: props.searchFilters.generations,
 });
@@ -157,13 +199,15 @@ watchDebounced(
 const activeFiltersCount = computed(
   () =>
     props.searchFilters.generations.length +
-    props.searchFilters.characteristics.length,
+    props.searchFilters.characteristics.length +
+    props.searchFilters.elementalTypes.length,
 );
 
 function clearSearchAndDialogFilters() {
   searchForm.search = '';
   searchForm.characteristics = [];
   searchForm.generations = [];
+  searchForm.elementalTypes = [];
 }
 
 function submitSearch() {

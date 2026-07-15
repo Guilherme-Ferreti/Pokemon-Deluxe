@@ -30,6 +30,7 @@ final class SearchPokemonInBoxQuery
         $this->createBaseQuery();
 
         $this->applySearchFilter();
+        $this->applyElementalTypeFilters();
         $this->applyCharacteristicFilters();
         $this->applyGenerationFilters();
 
@@ -48,6 +49,17 @@ final class SearchPokemonInBoxQuery
         $this->query->when(
             $this->filters->search !== null,
             fn (Builder $query) => $query->whereRelation('pokedex', fn (Builder $query) => $query->whereLike('name', '%' . $this->filters->search . '%'))
+        );
+    }
+
+    private function applyElementalTypeFilters(): void
+    {
+        $this->query->when(
+            $this->filters->elementalTypes->isNotEmpty(),
+            fn (Builder $query) => $query->where(fn (Builder $query) => $query
+                ->whereRelation('pokedex', fn (Builder $query) => $query->whereIn('primary_type', $this->filters->elementalTypes))
+                ->orWhereRelation('pokedex', fn (Builder $query) => $query->whereIn('secondary_type', $this->filters->elementalTypes))
+            )
         );
     }
 
