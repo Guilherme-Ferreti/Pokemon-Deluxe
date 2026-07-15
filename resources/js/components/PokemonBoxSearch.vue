@@ -32,7 +32,7 @@
               <Badge
                 v-if="activeFiltersCount > 0"
                 variant="destructive"
-                class="absolute right-0 bottom-0 size-4 translate-1/2 transform rounded-full font-mono font-semibold tabular-nums"
+                class="absolute top-0 right-0 size-4 translate-x-1/2 -translate-y-1/2 transform rounded-full font-mono font-semibold tabular-nums"
               >
                 {{ activeFiltersCount }}
               </Badge>
