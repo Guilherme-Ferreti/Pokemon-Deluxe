@@ -91,30 +91,28 @@
           <DialogClose as-child>
             <Button
               type="button"
-              @click="submitSearch"
-            >
-              Apply
-            </Button>
-          </DialogClose>
-          <DialogClose as-child>
-            <Button
-              type="button"
               variant="outline"
               @click="(clearSearchAndDialogFilters(), nextTick(submitSearch))"
             >
               Clear all
             </Button>
           </DialogClose>
-          <DialogClose
-            as-child
-            class="sm:ml-auto"
-          >
+          <DialogClose as-child>
             <Button
               type="button"
               variant="outline"
+              class="sm:ml-auto"
             >
               Cancel
             </Button>
+            <DialogClose as-child>
+              <Button
+                type="button"
+                @click="submitSearch"
+              >
+                Apply
+              </Button>
+            </DialogClose>
           </DialogClose>
         </template>
       </AppDialog>

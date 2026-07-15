@@ -4,6 +4,7 @@
       <slot name="trigger" />
     </DialogTrigger>
     <DialogContent
+      class="max-h-[calc(100vh-2rem)] overflow-auto"
       :class="{
         'sm:max-w-md': size === 'sm',
         'sm:max-w-lg': size === 'md',
