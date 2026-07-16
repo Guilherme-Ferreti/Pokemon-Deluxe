@@ -7,6 +7,7 @@ namespace App\Pokemon\Queries;
 use App\Pokemon\Filters\SearchPokemonInBoxFilters;
 use Illuminate\Database\Eloquent\Builder;
 use Shared\Enums\PokemonCharacteristic;
+use Shared\Enums\SearchPokemonInBoxSortBy;
 use Shared\Models\Pokemon;
 use Shared\Models\User;
 
@@ -33,6 +34,7 @@ final class SearchPokemonInBoxQuery
         $this->applyElementalTypeFilters();
         $this->applyCharacteristicFilters();
         $this->applyGenerationFilters();
+        $this->applySorting();
 
         return $this->query;
     }
@@ -93,5 +95,14 @@ final class SearchPokemonInBoxQuery
             $this->filters->generations->isNotEmpty(),
             fn (Builder $query) => $query->whereRelation('pokedex', fn (Builder $query) => $query->whereIn('generation', $this->filters->generations))
         );
+    }
+
+    private function applySorting(): void
+    {
+        match ($this->filters->sortBy) {
+            SearchPokemonInBoxSortBy::CAPTURE_DATE => $this->query->orderBy('captured_at', $this->filters->sortDirection->value),
+            SearchPokemonInBoxSortBy::EXPERIENCE   => $this->query->orderBy('experience', $this->filters->sortDirection->value),
+            SearchPokemonInBoxSortBy::LEVEL        => $this->query->orderBy('level', $this->filters->sortDirection->value),
+        };
     }
 }

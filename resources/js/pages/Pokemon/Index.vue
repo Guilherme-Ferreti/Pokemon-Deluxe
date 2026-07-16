@@ -65,6 +65,8 @@ export interface PokemonIndexPageProps {
     elementalTypes: ElementalType[];
     characteristics: PokemonCharacteristic[];
     generations: Generation[];
+    sortBy: 'level' | 'experience';
+    sortDirection: 'asc' | 'desc';
   };
 }
 

@@ -9,6 +9,8 @@ use Illuminate\Support\Collection;
 use Shared\Enums\ElementalType;
 use Shared\Enums\Generation;
 use Shared\Enums\PokemonCharacteristic;
+use Shared\Enums\SearchPokemonInBoxSortBy;
+use Shared\Enums\SortDirection;
 
 final class SearchPokemonInBoxFilters
 {
@@ -23,6 +25,10 @@ final class SearchPokemonInBoxFilters
 
         /** @var Collection<int, Generation> */
         public Collection $generations,
+
+        public SearchPokemonInBoxSortBy $sortBy,
+
+        public SortDirection $sortDirection,
     ) {}
 
     public static function fromRequest(Request $request): self
@@ -49,11 +55,17 @@ final class SearchPokemonInBoxFilters
             ->filter()
             ->values();
 
+        $searchPokemonInBoxSortBy = $request->enum('sortBy', SearchPokemonInBoxSortBy::class, SearchPokemonInBoxSortBy::CAPTURE_DATE);
+
+        $sortDirection = $request->enum('sortDirection', SortDirection::class, SortDirection::ASC);
+
         return new self(
             search: $request->query('search'),
             elementalTypes: $elementalTypes,
             characteristics: $characteristics,
-            generations: $generations
+            generations: $generations,
+            sortBy: $searchPokemonInBoxSortBy,
+            sortDirection: $sortDirection
         );
     }
 }

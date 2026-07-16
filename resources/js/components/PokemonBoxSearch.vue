@@ -1,6 +1,6 @@
 <template>
   <form @submit.prevent="submitSearch">
-    <Card class="grid grid-cols-[1fr_auto] gap-2 p-4">
+    <Card class="grid grid-cols-[1fr_auto_auto] gap-2 p-4">
       <AppInput
         v-model="searchForm.search"
         type="search"
@@ -116,14 +116,56 @@
           </DialogClose>
         </template>
       </AppDialog>
+      <AppPopover
+        title="Sort"
+        description="Use these options to sort your results."
+      >
+        <template #trigger>
+          <AppTooltip text="Sort">
+            <Button
+              type="button"
+              variant="outline"
+              size="icon"
+              aria-label="Sort"
+            >
+              <IconArrowsDownUp />
+            </Button>
+          </AppTooltip>
+        </template>
+        <AppSelect
+          v-model="searchForm.sortBy"
+          name="sortBy"
+          label="Sort by"
+          placeholder="Choose a value"
+          :options="sortByOptions"
+        />
+        <AppSelect
+          v-model="searchForm.sortDirection"
+          name="sortDirection"
+          label="Direction"
+          placeholder="Choose a value"
+          :options="sortDirectionOptions"
+        />
+        <template #footer>
+          <PopoverClose as-child>
+            <Button
+              type="button"
+              @click="submitSearch"
+            >
+              Apply
+            </Button>
+          </PopoverClose>
+        </template>
+      </AppPopover>
     </Card>
   </form>
 </template>
 
 <script setup lang="ts">
 import { useForm } from '@inertiajs/vue3';
-import { IconFilter2, IconSearch } from '@tabler/icons-vue';
+import { IconArrowsDownUp, IconFilter2, IconSearch } from '@tabler/icons-vue';
 import { watchDebounced } from '@vueuse/core';
+import { PopoverClose } from 'reka-ui';
 import { computed, nextTick } from 'vue';
 import { Card } from '@/components/ui/card';
 import type { PokemonIndexPageProps } from '@/pages/Pokemon/Index.vue';
@@ -136,6 +178,8 @@ import {
 import AppCheckbox from './AppCheckbox.vue';
 import AppDialog from './AppDialog.vue';
 import AppInput from './AppInput.vue';
+import AppPopover from './AppPopover.vue';
+import AppSelect from './AppSelect.vue';
 import AppTooltip from './AppTooltip.vue';
 import Badge from './ui/badge/Badge.vue';
 import { Button } from './ui/button';
@@ -186,11 +230,24 @@ const generationOptions = [
   { label: 'Paldea', value: Generation.PALDEA },
 ] as const;
 
+const sortByOptions = [
+  { label: 'Capture date', value: 'capture-date' },
+  { label: 'Level', value: 'level' },
+  { label: 'Experience', value: 'experience' },
+];
+
+const sortDirectionOptions = [
+  { label: 'Ascending', value: 'asc' },
+  { label: 'Descending', value: 'desc' },
+];
+
 const searchForm = useForm({
   search: props.searchFilters.search,
   elementalTypes: props.searchFilters.elementalTypes,
   characteristics: props.searchFilters.characteristics,
   generations: props.searchFilters.generations,
+  sortBy: props.searchFilters.sortBy,
+  sortDirection: props.searchFilters.sortDirection,
 });
 
 watchDebounced(
