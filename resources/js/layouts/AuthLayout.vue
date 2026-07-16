@@ -1,5 +1,5 @@
 <template>
-  <div class="grid min-h-screen lg:grid-cols-2">
+  <div class="grid min-h-screen bg-card lg:grid-cols-2">
     <div class="flex flex-col gap-4 p-6 md:p-10">
       <div class="flex justify-center gap-2 md:justify-start">
         <Link
@@ -17,7 +17,7 @@
     </div>
     <div class="relative hidden overflow-hidden lg:block">
       <div
-        class="absolute inset-0 -z-10 grid grid-cols-7 place-items-center bg-muted p-6"
+        class="absolute inset-0 grid grid-cols-7 place-items-center bg-muted p-6"
       >
         <img
           v-for="image in page.props.auth.layoutSprites"
