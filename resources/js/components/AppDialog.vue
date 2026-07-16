@@ -1,6 +1,6 @@
 <template>
   <Dialog @update:open="(open) => (open ? $emit('open') : $emit('close'))">
-    <DialogTrigger>
+    <DialogTrigger as="div">
       <slot name="trigger" />
     </DialogTrigger>
     <DialogContent

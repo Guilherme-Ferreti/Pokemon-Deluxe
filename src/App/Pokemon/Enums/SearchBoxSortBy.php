@@ -13,7 +13,7 @@ enum SearchBoxSortBy: string
     public function label(): string
     {
         return match ($this) {
-            self::CAPTURE_DATE => 'Capture Date',
+            self::CAPTURE_DATE => 'Capture date',
             self::EXPERIENCE   => 'Experience',
             self::LEVEL        => 'Level',
         };

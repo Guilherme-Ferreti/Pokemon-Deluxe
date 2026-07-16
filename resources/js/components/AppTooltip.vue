@@ -1,10 +1,7 @@
 <template>
   <TooltipProvider>
     <Tooltip>
-      <TooltipTrigger
-        as="div"
-        as-child
-      >
+      <TooltipTrigger as="div">
         <slot />
       </TooltipTrigger>
       <TooltipContent>

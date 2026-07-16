@@ -1,6 +1,6 @@
 <template>
   <Popover>
-    <PopoverTrigger>
+    <PopoverTrigger as="div">
       <slot name="trigger" />
     </PopoverTrigger>
     <PopoverContent>

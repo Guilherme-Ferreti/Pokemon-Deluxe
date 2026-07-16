@@ -12,7 +12,7 @@
       :required="required"
       :aria-invalid="!!errorMessage"
       :disabled="disabled"
-      @keydown.enter.prevent="$event.element.click()"
+      @keydown.enter.prevent="$event.target.click()"
     />
     <FieldLabel :for="inputId">{{ label }}</FieldLabel>
     <FieldError v-if="errorMessage">{{ errorMessage }}</FieldError>
