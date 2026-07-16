@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Pokemon\Http\Web\PageProps;
 
-use App\Pokemon\Filters\SearchPokemonInBoxFilters;
+use App\Pokemon\Filters\SearchBoxFilters;
 use Closure;
 use Inertia\ProvidesInertiaProperties;
 use Inertia\RenderContext;
@@ -16,9 +16,9 @@ final class PokemonIndexPageProps implements ProvidesInertiaProperties
     public function __construct(
         public Closure $pokemonInParty,
 
-        public Closure $pokemonInBox,
+        public Closure $pokemonBox,
 
-        public SearchPokemonInBoxFilters $searchFilters,
+        public SearchBoxFilters $searchFilters,
     ) {}
 
     /**
@@ -28,8 +28,9 @@ final class PokemonIndexPageProps implements ProvidesInertiaProperties
     {
         return [
             'pokemonInParty' => fn () => $this->mapPokemonInParty(),
-            'pokemonInBox'   => fn () => $this->mapPokemonInBox(),
-            'searchFilters'  => $this->searchFilters,
+            'pokemonBox'     => fn () => $this->mapPokemonBox(),
+            'searchFilters'  => fn () => $this->searchFilters,
+            'filterOptions'  => fn () => SearchBoxFilters::filterOptions(),
         ];
     }
 
@@ -51,9 +52,9 @@ final class PokemonIndexPageProps implements ProvidesInertiaProperties
     /**
      * @return array<string, mixed>
      */
-    private function mapPokemonInBox(): array
+    private function mapPokemonBox(): array
     {
-        return AppHelper::paginatorToArray(($this->pokemonInBox)(), fn (Pokemon $pokemon) => [
+        return AppHelper::paginatorToArray(($this->pokemonBox)(), fn (Pokemon $pokemon) => [
             'id'          => $pokemon->id,
             'name'        => $pokemon->getName(),
             'frontSprite' => $pokemon->getFrontSprite(),

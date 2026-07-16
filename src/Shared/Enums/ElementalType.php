@@ -24,4 +24,28 @@ enum ElementalType: string
     case ROCK     = 'rock';
     case STEEL    = 'steel';
     case WATER    = 'water';
+
+    public function label(): string
+    {
+        return match ($this) {
+            self::BUG      => 'Bug',
+            self::DARK     => 'Dark',
+            self::DRAGON   => 'Dragon',
+            self::ELECTRIC => 'Electric',
+            self::FAIRY    => 'Fairy',
+            self::FIGHTING => 'Fighting',
+            self::FIRE     => 'Fire',
+            self::FLYING   => 'Flying',
+            self::GHOST    => 'Ghost',
+            self::GRASS    => 'Grass',
+            self::GROUND   => 'Ground',
+            self::ICE      => 'Ice',
+            self::NORMAL   => 'Normal',
+            self::POISON   => 'Poison',
+            self::PSYCHIC  => 'Psychic',
+            self::ROCK     => 'Rock',
+            self::STEEL    => 'Steel',
+            self::WATER    => 'Water',
+        };
+    }
 }

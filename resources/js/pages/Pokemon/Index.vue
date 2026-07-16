@@ -7,7 +7,7 @@
       description="Manage your party."
       :icon="IconPokeball"
     />
-    <PartyCard :pokemon-in-party="pokemonInParty" />
+    <PokemonParty :pokemon-list="pokemonInParty" />
   </AppSection>
   <AppSection aria-labelledby="box__heading">
     <AppSectionHeading
@@ -16,9 +16,10 @@
       description="Manage your captured Pokemon."
       :icon="IconArchive"
     />
-    <PokemonBoxGrid
-      :pokemon-in-box="pokemonInBox"
+    <PokemonBox
+      :pokemon-list="pokemonBox"
       :search-filters="searchFilters"
+      :filter-options="filterOptions"
     />
   </AppSection>
 </template>
@@ -28,14 +29,17 @@ import { Head } from '@inertiajs/vue3';
 import { IconArchive, IconPokeball } from '@tabler/icons-vue';
 import AppSection from '@/components/AppSection.vue';
 import AppSectionHeading from '@/components/AppSectionHeading.vue';
-import PartyCard from '@/components/PartyCard.vue';
-import PokemonBoxGrid from '@/components/PokemonBoxGrid.vue';
+import PokemonBox from '@/components/PokemonBox.vue';
+import PokemonParty from '@/components/PokemonParty.vue';
 import { useBreadcrumbs } from '@/composables/useBreadcrumbs';
 import type {
   ElementalType,
+  FilterOption,
   Generation,
   PaginatedList,
-  PokemonCharacteristic,
+  PokemonTrait,
+  SearchBoxSortBy,
+  SortDirection,
 } from '@/types';
 import { route } from '@/types/helpers/route';
 
@@ -46,7 +50,7 @@ export interface PokemonIndexPageProps {
     frontSprite?: string;
     level: number;
   }[];
-  pokemonInBox: PaginatedList<{
+  pokemonBox: PaginatedList<{
     id: string;
     name: string;
     frontSprite?: string;
@@ -62,11 +66,18 @@ export interface PokemonIndexPageProps {
   }>;
   searchFilters: {
     search: string;
-    elementalTypes: ElementalType[];
-    characteristics: PokemonCharacteristic[];
+    types: ElementalType[];
+    traits: PokemonTrait[];
     generations: Generation[];
-    sortBy: 'level' | 'experience';
-    sortDirection: 'asc' | 'desc';
+    sort: SearchBoxSortBy;
+    dir: SortDirection;
+  };
+  filterOptions: {
+    types: FilterOption<ElementalType>[];
+    traits: FilterOption<PokemonTrait>[];
+    generations: FilterOption<Generation>[];
+    sort: FilterOption<SearchBoxSortBy>[];
+    dir: FilterOption<SortDirection>[];
   };
 }
 

@@ -35,4 +35,19 @@ enum Generation: int
             default  => throw new ValueError('Unknown generation: ' . $value),
         };
     }
+
+    public function label(): string
+    {
+        return match ($this) {
+            self::KANTO  => 'Kanto',
+            self::JOHTO  => 'Johto',
+            self::HOENN  => 'Hoenn',
+            self::SINNOH => 'Sinnoh',
+            self::UNOVA  => 'Unova',
+            self::KALOS  => 'Kalos',
+            self::ALOLA  => 'Alola',
+            self::GALAR  => 'Galar',
+            self::PALDEA => 'Paldea',
+        };
+    }
 }

@@ -45,7 +45,7 @@ const props = defineProps<{
   id?: HTMLInputElement['id'];
   label?: string;
   placeholder: string;
-  options: { label: string; value: string }[];
+  options: { label: string; value: string | number }[];
   defaultValue?: string | number;
   errorMessage?: string;
 }>();

@@ -44,15 +44,15 @@
             <p class="dialog-filters__filters-group-title">By type:</p>
             <div class="dialog-filters__filters-group-checkboxes">
               <AppCheckbox
-                v-for="option in elementalTypeOptions"
-                :key="option.label"
-                v-model="searchForm.elementalTypes"
-                name="elementalTypes[]"
+                v-for="option in filterOptions.types"
+                :key="option.value"
+                v-model="searchForm.types"
+                name="types[]"
                 :label="option.label"
                 :value="option.value"
                 :disabled="
-                  searchForm.elementalTypes.length >= 2 &&
-                  !searchForm.elementalTypes.includes(option.value)
+                  searchForm.types.length >= 2 &&
+                  !searchForm.types.includes(option.value)
                 "
               />
             </div>
@@ -63,13 +63,13 @@
             </p>
             <div class="dialog-filters__filters-group-checkboxes">
               <AppCheckbox
-                v-for="option in characteristicOptions"
-                :key="option.label"
-                v-model="searchForm.characteristics"
-                name="characteristics[]"
+                v-for="option in filterOptions.traits"
+                :key="option.value"
+                v-model="searchForm.traits"
+                name="traits[]"
                 :label="option.label"
                 :value="option.value"
-                :disabled="isCharacteristicCheckboxDisabled(option.value)"
+                :disabled="isTraitCheckboxDisabled(option.value)"
               />
             </div>
           </div>
@@ -77,8 +77,8 @@
             <p class="dialog-filters__filters-group-title">By generation:</p>
             <div class="dialog-filters__filters-group-checkboxes">
               <AppCheckbox
-                v-for="option in generationOptions"
-                :key="option.label"
+                v-for="option in filterOptions.generations"
+                :key="option.value"
                 v-model="searchForm.generations"
                 name="generations[]"
                 :label="option.label"
@@ -133,18 +133,18 @@
           </AppTooltip>
         </template>
         <AppSelect
-          v-model="searchForm.sortBy"
-          name="sortBy"
+          v-model="searchForm.sort"
+          name="sort"
           label="Sort by"
           placeholder="Choose a value"
-          :options="sortByOptions"
+          :options="filterOptions.sort"
         />
         <AppSelect
-          v-model="searchForm.sortDirection"
-          name="sortDirection"
+          v-model="searchForm.dir"
+          name="dir"
           label="Direction"
           placeholder="Choose a value"
-          :options="sortDirectionOptions"
+          :options="filterOptions.dir"
         />
         <template #footer>
           <PopoverClose as-child>
@@ -170,11 +170,7 @@ import { computed, nextTick } from 'vue';
 import { Card } from '@/components/ui/card';
 import type { PokemonIndexPageProps } from '@/pages/Pokemon/Index.vue';
 import { route } from '@/types/helpers/route.js';
-import {
-  ElementalType,
-  Generation,
-  PokemonCharacteristic,
-} from '@/types/pokemon.js';
+import { PokemonTrait } from '@/types/pokemon.js';
 import AppCheckbox from './AppCheckbox.vue';
 import AppDialog from './AppDialog.vue';
 import AppInput from './AppInput.vue';
@@ -182,72 +178,21 @@ import AppPopover from './AppPopover.vue';
 import AppSelect from './AppSelect.vue';
 import AppTooltip from './AppTooltip.vue';
 import Badge from './ui/badge/Badge.vue';
-import { Button } from './ui/button';
+import { Button } from './ui/button/index.js';
 import DialogClose from './ui/dialog/DialogClose.vue';
 
 const props = defineProps<{
   searchFilters: PokemonIndexPageProps['searchFilters'];
+  filterOptions: PokemonIndexPageProps['filterOptions'];
 }>();
-
-const elementalTypeOptions = [
-  { label: 'Bug', value: ElementalType.BUG },
-  { label: 'Dark', value: ElementalType.DARK },
-  { label: 'Dragon', value: ElementalType.DRAGON },
-  { label: 'Electric', value: ElementalType.ELECTRIC },
-  { label: 'Fairy', value: ElementalType.FAIRY },
-  { label: 'Fighting', value: ElementalType.FIGHTING },
-  { label: 'Fire', value: ElementalType.FIRE },
-  { label: 'Ghost', value: ElementalType.GHOST },
-  { label: 'Grass', value: ElementalType.GRASS },
-  { label: 'Ground', value: ElementalType.GROUND },
-  { label: 'Ice', value: ElementalType.ICE },
-  { label: 'Normal', value: ElementalType.NORMAL },
-  { label: 'Poison', value: ElementalType.POISON },
-  { label: 'Psychic', value: ElementalType.PSYCHIC },
-  { label: 'Rock', value: ElementalType.ROCK },
-  { label: 'Steel', value: ElementalType.STEEL },
-  { label: 'Water', value: ElementalType.WATER },
-];
-
-const characteristicOptions = [
-  { label: 'Shiny', value: PokemonCharacteristic.SHINY },
-  { label: 'Baby', value: PokemonCharacteristic.BABY },
-  { label: 'Legendary', value: PokemonCharacteristic.LEGENDARY },
-  { label: 'Mythical', value: PokemonCharacteristic.MYTHICAL },
-  { label: 'Mega', value: PokemonCharacteristic.MEGA },
-  { label: 'Gmax', value: PokemonCharacteristic.GMAX },
-] as const;
-
-const generationOptions = [
-  { label: 'Kanto', value: Generation.KANTO },
-  { label: 'Johto', value: Generation.JOHTO },
-  { label: 'Hoenn', value: Generation.HOENN },
-  { label: 'Sinnoh', value: Generation.SINNOH },
-  { label: 'Unova', value: Generation.UNOVA },
-  { label: 'Kalos', value: Generation.KALOS },
-  { label: 'Alola', value: Generation.ALOLA },
-  { label: 'Galar', value: Generation.GALAR },
-  { label: 'Paldea', value: Generation.PALDEA },
-] as const;
-
-const sortByOptions = [
-  { label: 'Capture date', value: 'capture-date' },
-  { label: 'Level', value: 'level' },
-  { label: 'Experience', value: 'experience' },
-];
-
-const sortDirectionOptions = [
-  { label: 'Ascending', value: 'asc' },
-  { label: 'Descending', value: 'desc' },
-];
 
 const searchForm = useForm({
   search: props.searchFilters.search,
-  elementalTypes: props.searchFilters.elementalTypes,
-  characteristics: props.searchFilters.characteristics,
+  types: props.searchFilters.types,
+  traits: props.searchFilters.traits,
   generations: props.searchFilters.generations,
-  sortBy: props.searchFilters.sortBy,
-  sortDirection: props.searchFilters.sortDirection,
+  sort: props.searchFilters.sort,
+  dir: props.searchFilters.dir,
 });
 
 watchDebounced(
@@ -259,44 +204,38 @@ watchDebounced(
 const activeFiltersCount = computed(
   () =>
     props.searchFilters.generations.length +
-    props.searchFilters.characteristics.length +
-    props.searchFilters.elementalTypes.length,
+    props.searchFilters.traits.length +
+    props.searchFilters.types.length,
 );
 
-function includesAny(...values: PokemonCharacteristic[]) {
-  return searchForm.characteristics.some((value) => values.includes(value));
+function includesAny(...values: string[]) {
+  return searchForm.traits.some((value) => values.includes(value));
 }
 
-function isCharacteristicCheckboxDisabled(value: PokemonCharacteristic) {
-  if (value === PokemonCharacteristic.BABY) {
+function isTraitCheckboxDisabled(value: PokemonTrait) {
+  if (value === PokemonTrait.BABY) {
     return includesAny(
-      PokemonCharacteristic.MEGA,
-      PokemonCharacteristic.GMAX,
-      PokemonCharacteristic.LEGENDARY,
-      PokemonCharacteristic.MYTHICAL,
+      PokemonTrait.MEGA,
+      PokemonTrait.GMAX,
+      PokemonTrait.LEGENDARY,
+      PokemonTrait.MYTHICAL,
     );
   }
 
-  if (value === PokemonCharacteristic.LEGENDARY) {
-    return includesAny(
-      PokemonCharacteristic.MYTHICAL,
-      PokemonCharacteristic.BABY,
-    );
+  if (value === PokemonTrait.LEGENDARY) {
+    return includesAny(PokemonTrait.MYTHICAL, PokemonTrait.BABY);
   }
 
-  if (value === PokemonCharacteristic.MYTHICAL) {
-    return includesAny(
-      PokemonCharacteristic.LEGENDARY,
-      PokemonCharacteristic.BABY,
-    );
+  if (value === PokemonTrait.MYTHICAL) {
+    return includesAny(PokemonTrait.LEGENDARY, PokemonTrait.BABY);
   }
 
-  if (value === PokemonCharacteristic.MEGA) {
-    return includesAny(PokemonCharacteristic.GMAX, PokemonCharacteristic.BABY);
+  if (value === PokemonTrait.MEGA) {
+    return includesAny(PokemonTrait.GMAX, PokemonTrait.BABY);
   }
 
-  if (value === PokemonCharacteristic.GMAX) {
-    return includesAny(PokemonCharacteristic.MEGA, PokemonCharacteristic.BABY);
+  if (value === PokemonTrait.GMAX) {
+    return includesAny(PokemonTrait.MEGA, PokemonTrait.BABY);
   }
 
   return false;
@@ -304,9 +243,9 @@ function isCharacteristicCheckboxDisabled(value: PokemonCharacteristic) {
 
 function clearSearchAndDialogFilters() {
   searchForm.search = '';
-  searchForm.characteristics = [];
+  searchForm.traits = [];
   searchForm.generations = [];
-  searchForm.elementalTypes = [];
+  searchForm.types = [];
 }
 
 function submitSearch() {
@@ -323,7 +262,7 @@ function submitSearch() {
     .get(route('web.pokemon.index'), {
       preserveScroll: true,
       preserveState: true,
-      only: ['pokemonInBox', 'searchFilters'],
+      only: ['pokemonBox', 'searchFilters'],
     });
 }
 </script>

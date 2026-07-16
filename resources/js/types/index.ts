@@ -21,3 +21,8 @@ export type PaginatedList<T> = {
   total: number;
   data: T[];
 };
+
+export enum SortDirection {
+  ASC = 'asc',
+  DESC = 'desc',
+}

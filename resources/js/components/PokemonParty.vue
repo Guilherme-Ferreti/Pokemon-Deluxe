@@ -5,7 +5,7 @@
     </CardHeader>
     <CardContent class="party-card__slots-wrapper">
       <div
-        v-for="pokemon in pokemonInParty"
+        v-for="pokemon in pokemonList"
         :key="pokemon.id"
         class="party-card__pokemon-slot"
       >
@@ -20,7 +20,7 @@
         <p class="party-card__pokemon-level">Lv. {{ pokemon.level }}</p>
       </div>
       <div
-        v-for="i in 6 - pokemonInParty.length"
+        v-for="i in 6 - pokemonList.length"
         :key="i"
         class="party-card__empty-slot"
       >
@@ -36,7 +36,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import type { PokemonIndexPageProps } from '@/pages/Pokemon/Index.vue';
 
 defineProps<{
-  pokemonInParty: PokemonIndexPageProps['pokemonInParty'];
+  pokemonList: PokemonIndexPageProps['pokemonInParty'];
 }>();
 </script>
 

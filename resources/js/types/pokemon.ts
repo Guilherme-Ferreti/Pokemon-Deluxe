@@ -1,3 +1,8 @@
+export interface FilterOption<T extends string | number = string | number> {
+  label: string;
+  value: T;
+}
+
 export enum ElementalType {
   BUG = 'bug',
   DARK = 'dark',
@@ -37,11 +42,17 @@ export enum PokeballType {
   APRICORN = 'apricorn',
 }
 
-export enum PokemonCharacteristic {
+export enum PokemonTrait {
   SHINY = 'shiny',
   BABY = 'baby',
   LEGENDARY = 'legendary',
   MYTHICAL = 'mythical',
   MEGA = 'mega',
   GMAX = 'gmax',
+}
+
+export enum SearchBoxSortBy {
+  CAPTURE_DATE = 'capture-date',
+  EXPERIENCE = 'experience',
+  LEVEL = 'level',
 }
