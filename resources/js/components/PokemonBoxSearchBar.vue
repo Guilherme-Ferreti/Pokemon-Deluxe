@@ -20,7 +20,10 @@
       >
         <template #trigger>
           <AppTooltip text="Filters">
-            <div class="relative">
+            <AppIndicator
+              :show="activeFiltersCount > 0"
+              :text="activeFiltersCount.toString()"
+            >
               <Button
                 type="button"
                 variant="outline"
@@ -29,14 +32,7 @@
               >
                 <IconFilter2 />
               </Button>
-              <Badge
-                v-if="activeFiltersCount > 0"
-                variant="destructive"
-                class="absolute top-0 right-0 size-4 translate-x-1/2 -translate-y-1/2 transform rounded-full font-mono font-semibold tabular-nums"
-              >
-                {{ activeFiltersCount }}
-              </Badge>
-            </div>
+            </AppIndicator>
           </AppTooltip>
         </template>
         <div class="dialog-filters__wrapper">
@@ -173,11 +169,11 @@ import { route } from '@/types/helpers/route.js';
 import { PokemonTrait } from '@/types/pokemon.js';
 import AppCheckbox from './AppCheckbox.vue';
 import AppDialog from './AppDialog.vue';
+import AppIndicator from './AppIndicator.vue';
 import AppInput from './AppInput.vue';
 import AppPopover from './AppPopover.vue';
 import AppSelect from './AppSelect.vue';
 import AppTooltip from './AppTooltip.vue';
-import Badge from './ui/badge/Badge.vue';
 import { Button } from './ui/button/index.js';
 import DialogClose from './ui/dialog/DialogClose.vue';
 
