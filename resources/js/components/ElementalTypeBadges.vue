@@ -1,18 +1,23 @@
 <template>
   <div class="flex flex-wrap gap-1">
-    <span
-      :class="`inline-flex items-center rounded-full border px-2 py-0.5 text-xs font-medium ${colors[primaryType]}`"
-      >{{ labels[primaryType] }}</span
+    <Badge
+      variant="secondary"
+      :class="colors[primaryType]"
     >
-    <span
+      {{ labels[primaryType] }}
+    </Badge>
+    <Badge
       v-if="secondaryType"
-      :class="`inline-flex items-center rounded-full border px-2 py-0.5 text-xs font-medium ${colors[secondaryType]}`"
-      >{{ labels[secondaryType] }}</span
+      variant="secondary"
+      :class="colors[secondaryType]"
     >
+      {{ labels[secondaryType] }}
+    </Badge>
   </div>
 </template>
 
 <script setup lang="ts">
+import { Badge } from '@/components/ui/badge';
 import { ElementalType } from '@/types';
 
 defineProps<{

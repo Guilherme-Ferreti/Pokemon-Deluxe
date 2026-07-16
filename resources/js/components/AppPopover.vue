@@ -4,10 +4,10 @@
       <slot name="trigger" />
     </PopoverTrigger>
     <PopoverContent>
-      <div class="space-y-6">
+      <div class="flex flex-col gap-6">
         <div
           v-if="title || description"
-          class="space-y-2"
+          class="flex flex-col gap-2"
         >
           <h2
             v-if="title"

@@ -101,14 +101,14 @@
             >
               Cancel
             </Button>
-            <DialogClose as-child>
-              <Button
-                type="button"
-                @click="submitSearch"
-              >
-                Apply
-              </Button>
-            </DialogClose>
+          </DialogClose>
+          <DialogClose as-child>
+            <Button
+              type="button"
+              @click="submitSearch"
+            >
+              Apply
+            </Button>
           </DialogClose>
         </template>
       </AppDialog>
@@ -164,6 +164,7 @@ import { watchDebounced } from '@vueuse/core';
 import { PopoverClose } from 'reka-ui';
 import { computed, nextTick } from 'vue';
 import { Card } from '@/components/ui/card';
+import { DialogClose } from '@/components/ui/dialog';
 import type { PokemonIndexPageProps } from '@/pages/Pokemon/Index.vue';
 import { route } from '@/types/helpers/route.js';
 import { PokemonTrait } from '@/types/pokemon.js';
@@ -175,7 +176,6 @@ import AppPopover from './AppPopover.vue';
 import AppSelect from './AppSelect.vue';
 import AppTooltip from './AppTooltip.vue';
 import { Button } from './ui/button/index.js';
-import DialogClose from './ui/dialog/DialogClose.vue';
 
 const props = defineProps<{
   searchFilters: PokemonIndexPageProps['searchFilters'];
@@ -267,7 +267,7 @@ function submitSearch() {
 @reference '../../css/app.css';
 
 .dialog-filters__wrapper {
-  @apply space-y-6;
+  @apply flex flex-col gap-6;
 }
 
 .dialog-filters__filters-group {

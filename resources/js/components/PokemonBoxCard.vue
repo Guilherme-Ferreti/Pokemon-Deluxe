@@ -4,12 +4,12 @@
   >
     <div class="flex gap-2">
       <img
-        class="h-20 w-20 shrink-0"
+        class="size-20 shrink-0"
         loading="lazy"
         :src="pokemon.frontSprite"
         :alt="pokemon.name"
       />
-      <div class="space-y-1">
+      <div class="flex flex-col gap-1">
         <p class="text-sm font-semibold text-foreground">
           {{ pokemon.name }}
         </p>
@@ -28,7 +28,7 @@
       </span>
       <span>{{ pokemon.experience }} XP</span>
     </div>
-    <div class="space-y-0.5">
+    <div class="flex flex-col gap-0.5">
       <p
         class="text-xxs font-medium tracking-wide text-muted-foreground uppercase"
       >

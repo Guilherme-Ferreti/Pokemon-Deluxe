@@ -16,13 +16,15 @@
         <SelectValue :placeholder="placeholder" />
       </SelectTrigger>
       <SelectContent>
-        <SelectItem
-          v-for="option in options"
-          :key="option.value"
-          :value="option.value"
-        >
-          {{ option.label }}
-        </SelectItem>
+        <SelectGroup>
+          <SelectItem
+            v-for="option in options"
+            :key="option.value"
+            :value="option.value"
+          >
+            {{ option.label }}
+          </SelectItem>
+        </SelectGroup>
       </SelectContent>
     </Select>
     <FieldError v-if="errorMessage">{{ errorMessage }}</FieldError>
@@ -35,6 +37,7 @@ import { Field, FieldLabel, FieldError } from '@/components/ui/field';
 import {
   Select,
   SelectContent,
+  SelectGroup,
   SelectItem,
   SelectTrigger,
   SelectValue,
