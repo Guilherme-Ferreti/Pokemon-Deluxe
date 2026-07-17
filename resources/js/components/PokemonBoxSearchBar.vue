@@ -12,18 +12,23 @@
         @close="nextTick(() => !searchForm.processing && searchForm.reset())"
       >
         <Tooltip>
-          <TooltipTrigger as-child>
-            <DialogTrigger as-child>
-              <Button
-                type="button"
-                variant="outline"
-                size="icon"
-                aria-label="Filters"
-              >
-                <IconFilter2 />
-              </Button>
-            </DialogTrigger>
-          </TooltipTrigger>
+          <AppIndicator
+            :show="activeFiltersCount > 0"
+            :text="activeFiltersCount.toString()"
+          >
+            <TooltipTrigger as-child>
+              <DialogTrigger as-child>
+                <Button
+                  type="button"
+                  variant="outline"
+                  size="icon"
+                  aria-label="Filters"
+                >
+                  <IconFilter2 />
+                </Button>
+              </DialogTrigger>
+            </TooltipTrigger>
+          </AppIndicator>
           <TooltipContent>Filters</TooltipContent>
           <DialogContent class="max-h-[90vh] overflow-y-auto">
             <DialogHeader>
@@ -181,7 +186,7 @@ import { useForm } from '@inertiajs/vue3';
 import { IconArrowsDownUp, IconFilter2, IconSearch } from '@tabler/icons-vue';
 import { watchDebounced } from '@vueuse/core';
 import { PopoverClose } from 'reka-ui';
-import { nextTick } from 'vue';
+import { computed, nextTick } from 'vue';
 import { Card } from '@/components/ui/card';
 import {
   Dialog,
@@ -198,6 +203,7 @@ import { route } from '@/types/helpers/route.js';
 import { SortDirection } from '@/types/index.js';
 import { PokemonTrait, SearchBoxSortBy } from '@/types/pokemon.js';
 import AppCheckbox from './AppCheckbox.vue';
+import AppIndicator from './AppIndicator.vue';
 import AppInput from './AppInput.vue';
 import AppSelect from './AppSelect.vue';
 import { Button } from './ui/button';
@@ -217,6 +223,13 @@ const searchForm = useForm({
   sort: props.searchFilters.sort,
   dir: props.searchFilters.dir,
 });
+
+const activeFiltersCount = computed(
+  () =>
+    props.searchFilters.generations.length +
+    props.searchFilters.traits.length +
+    props.searchFilters.types.length,
+);
 
 watchDebounced(
   () => searchForm.search,
