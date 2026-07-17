@@ -36,7 +36,7 @@ final class SearchBoxQuery
     private function buildBaseQuery(User $user): Builder
     {
         return Pokemon::query()
-            ->where('user_id', $user->id)
+            ->whereBelongsTo($user)
             ->inBox();
     }
 
@@ -105,9 +105,10 @@ final class SearchBoxQuery
     private function applySorting(Builder $query, SearchBoxSortBy $sort, SortDirection $dir): Builder
     {
         return match ($sort) {
-            SearchBoxSortBy::CAPTURE_DATE => $query->orderBy('captured_at', $dir->value),
-            SearchBoxSortBy::EXPERIENCE   => $query->orderBy('experience', $dir->value),
-            SearchBoxSortBy::LEVEL        => $query->orderBy('level', $dir->value),
+            SearchBoxSortBy::CAPTURE_DATE   => $query->orderBy('captured_at', $dir->value),
+            SearchBoxSortBy::EXPERIENCE     => $query->orderBy('experience', $dir->value),
+            SearchBoxSortBy::LEVEL          => $query->orderBy('level', $dir->value),
+            SearchBoxSortBy::POKEDEX_NUMBER => $query->join('pokedex', 'pokedex.id', '=', 'pokemon.pokedex_id')->select('pokemon.*')->orderBy('pokedex.national_dex_entry_number', $dir->value),
         };
     }
 }
