@@ -5,19 +5,26 @@
         v-for="item in items"
         :key="item.title"
       >
-        <Link :href="item.url">
-          <SidebarMenuButton
-            as="div"
-            :tooltip="item.title"
-            :data-active="getBasePath($page.url) === getBasePath(item.url)"
+        <SidebarMenuButton
+          :tooltip="item.title"
+          :data-active="getBasePath($page.url) === getBasePath(item.url)"
+          as-child
+        >
+          <Link
+            :href="item.url"
+            :aria-current="
+              getBasePath($page.url) === getBasePath(item.url)
+                ? 'page'
+                : undefined
+            "
           >
             <component
               :is="item.icon"
               v-if="item.icon"
             />
             <span>{{ item.title }}</span>
-          </SidebarMenuButton>
-        </Link>
+          </Link>
+        </SidebarMenuButton>
       </SidebarMenuItem>
     </SidebarMenu>
   </SidebarGroup>

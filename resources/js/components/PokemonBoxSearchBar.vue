@@ -8,22 +8,12 @@
         placeholder="Search by name..."
         :icon="IconSearch"
       />
-      <AppDialog
-        title="Filters"
-        description="Use these filters to narrow down your search."
-        size="lg"
-        @close="
-          nextTick(() =>
-            searchForm.processing ? undefined : searchForm.reset(),
-          )
-        "
+      <Dialog
+        @close="nextTick(() => !searchForm.processing && searchForm.reset())"
       >
-        <template #trigger>
-          <AppTooltip text="Filters">
-            <AppIndicator
-              :show="activeFiltersCount > 0"
-              :text="activeFiltersCount.toString()"
-            >
+        <Tooltip>
+          <TooltipTrigger as-child>
+            <DialogTrigger as-child>
               <Button
                 type="button"
                 variant="outline"
@@ -32,127 +22,158 @@
               >
                 <IconFilter2 />
               </Button>
-            </AppIndicator>
-          </AppTooltip>
-        </template>
-        <div class="dialog-filters__wrapper">
-          <div class="dialog-filters__filters-group">
-            <p class="dialog-filters__filters-group-title">By type:</p>
-            <div class="dialog-filters__filters-group-checkboxes">
-              <AppCheckbox
-                v-for="option in filterOptions.types"
-                :key="option.value"
-                v-model="searchForm.types"
-                name="types[]"
-                :label="option.label"
-                :value="option.value"
-                :disabled="
-                  searchForm.types.length >= 2 &&
-                  !searchForm.types.includes(option.value)
-                "
-              />
+            </DialogTrigger>
+          </TooltipTrigger>
+          <TooltipContent>Filters</TooltipContent>
+          <DialogContent class="max-h-[90vh] overflow-y-auto">
+            <DialogHeader>
+              <DialogTitle>Filters</DialogTitle>
+              <DialogDescription>
+                Use these filters to narrow down your search.
+              </DialogDescription>
+            </DialogHeader>
+            <div class="dialog-filters__wrapper">
+              <div class="dialog-filters__filters-group">
+                <p class="dialog-filters__filters-group-title">By type:</p>
+                <div class="dialog-filters__filters-group-checkboxes">
+                  <AppCheckbox
+                    v-for="option in filterOptions.types"
+                    :key="option.value"
+                    v-model="searchForm.types"
+                    name="types[]"
+                    :label="option.label"
+                    :value="option.value"
+                    :disabled="
+                      searchForm.types.length >= 2 &&
+                      !searchForm.types.includes(option.value)
+                    "
+                  />
+                </div>
+              </div>
+              <div class="dialog-filters__filters-group">
+                <p class="dialog-filters__filters-group-title">By trait:</p>
+                <div class="dialog-filters__filters-group-checkboxes">
+                  <AppCheckbox
+                    v-for="option in filterOptions.traits"
+                    :key="option.value"
+                    v-model="searchForm.traits"
+                    name="traits[]"
+                    :label="option.label"
+                    :value="option.value"
+                    :disabled="isTraitCheckboxDisabled(option.value)"
+                  />
+                </div>
+              </div>
+              <div class="dialog-filters__filters-group">
+                <p class="dialog-filters__filters-group-title">
+                  By generation:
+                </p>
+                <div class="dialog-filters__filters-group-checkboxes">
+                  <AppCheckbox
+                    v-for="option in filterOptions.generations"
+                    :key="option.value"
+                    v-model="searchForm.generations"
+                    name="generations[]"
+                    :label="option.label"
+                    :value="option.value"
+                  />
+                </div>
+              </div>
             </div>
-          </div>
-          <div class="dialog-filters__filters-group">
-            <p class="dialog-filters__filters-group-title">
-              By characteristic:
-            </p>
-            <div class="dialog-filters__filters-group-checkboxes">
-              <AppCheckbox
-                v-for="option in filterOptions.traits"
-                :key="option.value"
-                v-model="searchForm.traits"
-                name="traits[]"
-                :label="option.label"
-                :value="option.value"
-                :disabled="isTraitCheckboxDisabled(option.value)"
-              />
-            </div>
-          </div>
-          <div class="dialog-filters__filters-group">
-            <p class="dialog-filters__filters-group-title">By generation:</p>
-            <div class="dialog-filters__filters-group-checkboxes">
-              <AppCheckbox
-                v-for="option in filterOptions.generations"
-                :key="option.value"
-                v-model="searchForm.generations"
-                name="generations[]"
-                :label="option.label"
-                :value="option.value"
-              />
-            </div>
-          </div>
-        </div>
-        <template #footer>
-          <DialogClose as-child>
-            <Button
-              type="button"
-              variant="outline"
-              @click="(clearSearchAndDialogFilters(), nextTick(submitSearch))"
-            >
-              Clear all
-            </Button>
-          </DialogClose>
-          <DialogClose as-child>
-            <Button
-              type="button"
-              variant="outline"
-              class="sm:ml-auto"
-            >
-              Cancel
-            </Button>
-          </DialogClose>
-          <DialogClose as-child>
-            <Button
-              type="button"
-              @click="submitSearch"
-            >
-              Apply
-            </Button>
-          </DialogClose>
-        </template>
-      </AppDialog>
-      <AppPopover
-        title="Sort"
-        description="Use these options to sort your results."
+            <DialogFooter>
+              <DialogClose as-child>
+                <Button
+                  type="button"
+                  variant="outline"
+                  @click="
+                    (clearSearchAndDialogFilters(), nextTick(submitSearch))
+                  "
+                >
+                  Clear all
+                </Button>
+              </DialogClose>
+              <DialogClose as-child>
+                <Button
+                  type="button"
+                  variant="outline"
+                  class="sm:ml-auto"
+                >
+                  Cancel
+                </Button>
+              </DialogClose>
+              <DialogClose as-child>
+                <Button
+                  type="button"
+                  @click="submitSearch"
+                >
+                  Apply
+                </Button>
+              </DialogClose>
+            </DialogFooter>
+          </DialogContent>
+        </Tooltip>
+      </Dialog>
+      <Popover
+        @close="nextTick(() => !searchForm.processing && searchForm.reset())"
       >
-        <template #trigger>
-          <AppTooltip text="Sort">
-            <Button
-              type="button"
-              variant="outline"
-              size="icon"
-              aria-label="Sort"
-            >
-              <IconArrowsDownUp />
-            </Button>
-          </AppTooltip>
-        </template>
-        <AppSelect
-          v-model="searchForm.sort"
-          name="sort"
-          label="Sort by"
-          placeholder="Choose a value"
-          :options="filterOptions.sort"
-        />
-        <AppSelect
-          v-model="searchForm.dir"
-          name="dir"
-          label="Direction"
-          placeholder="Choose a value"
-          :options="filterOptions.dir"
-        />
-        <template #footer>
-          <PopoverClose as-child>
-            <Button
-              type="button"
-              @click="submitSearch"
-            >
-              Apply
-            </Button>
-          </PopoverClose>
-        </template>
-      </AppPopover>
+        <Tooltip>
+          <TooltipTrigger as-child>
+            <PopoverTrigger as-child>
+              <Button
+                type="button"
+                variant="outline"
+                size="icon"
+                aria-label="Sort"
+              >
+                <IconArrowsDownUp />
+              </Button>
+            </PopoverTrigger>
+          </TooltipTrigger>
+          <TooltipContent>Sort</TooltipContent>
+          <PopoverContent class="flex flex-col gap-4">
+            <div class="flex flex-col gap-2">
+              <h2 class="text-lg leading-none font-semibold">Sort</h2>
+              <p class="text-sm text-muted-foreground">
+                Use these options to sort your results.
+              </p>
+            </div>
+            <AppSelect
+              v-model="searchForm.sort"
+              name="sort"
+              label="Sort by"
+              placeholder="Choose a value"
+              :options="filterOptions.sort"
+            />
+            <AppSelect
+              v-model="searchForm.dir"
+              name="dir"
+              label="Direction"
+              placeholder="Choose a value"
+              :options="filterOptions.dir"
+            />
+            <div class="flex">
+              <PopoverClose as-child>
+                <Button
+                  type="button"
+                  variant="outline"
+                  @click="(clearSortFilters(), nextTick(submitSearch))"
+                >
+                  Reset
+                </Button>
+              </PopoverClose>
+              <PopoverClose as-child>
+                <Button
+                  type="button"
+                  class="ml-auto"
+                  @click="submitSearch"
+                >
+                  Apply
+                </Button>
+              </PopoverClose>
+            </div>
+          </PopoverContent>
+        </Tooltip>
+      </Popover>
     </Card>
   </form>
 </template>
@@ -162,20 +183,28 @@ import { useForm } from '@inertiajs/vue3';
 import { IconArrowsDownUp, IconFilter2, IconSearch } from '@tabler/icons-vue';
 import { watchDebounced } from '@vueuse/core';
 import { PopoverClose } from 'reka-ui';
-import { computed, nextTick } from 'vue';
+import { nextTick } from 'vue';
 import { Card } from '@/components/ui/card';
-import { DialogClose } from '@/components/ui/dialog';
+import {
+  Dialog,
+  DialogClose,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from '@/components/ui/dialog';
 import type { PokemonIndexPageProps } from '@/pages/Pokemon/Index.vue';
 import { route } from '@/types/helpers/route.js';
-import { PokemonTrait } from '@/types/pokemon.js';
+import { SortDirection } from '@/types/index.js';
+import { PokemonTrait, SearchBoxSortBy } from '@/types/pokemon.js';
 import AppCheckbox from './AppCheckbox.vue';
-import AppDialog from './AppDialog.vue';
-import AppIndicator from './AppIndicator.vue';
 import AppInput from './AppInput.vue';
-import AppPopover from './AppPopover.vue';
 import AppSelect from './AppSelect.vue';
-import AppTooltip from './AppTooltip.vue';
-import { Button } from './ui/button/index.js';
+import { Button } from './ui/button';
+import { Popover, PopoverContent, PopoverTrigger } from './ui/popover';
+import { Tooltip, TooltipContent, TooltipTrigger } from './ui/tooltip';
 
 const props = defineProps<{
   searchFilters: PokemonIndexPageProps['searchFilters'];
@@ -195,13 +224,6 @@ watchDebounced(
   () => searchForm.search,
   () => submitSearch(),
   { debounce: 450 },
-);
-
-const activeFiltersCount = computed(
-  () =>
-    props.searchFilters.generations.length +
-    props.searchFilters.traits.length +
-    props.searchFilters.types.length,
 );
 
 function includesAny(...values: string[]) {
@@ -242,6 +264,11 @@ function clearSearchAndDialogFilters() {
   searchForm.traits = [];
   searchForm.generations = [];
   searchForm.types = [];
+}
+
+function clearSortFilters() {
+  searchForm.sort = SearchBoxSortBy.CAPTURE_DATE;
+  searchForm.dir = SortDirection.DESC;
 }
 
 function submitSearch() {
