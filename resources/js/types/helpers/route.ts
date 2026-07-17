@@ -34,7 +34,7 @@ export function route<T extends keyof RouteParameters>(
   }
 
   if (absolute) {
-    url = window.location.origin + url;
+    url = (typeof window !== 'undefined' ? window.location.origin : '') + url;
   }
 
   return url;
