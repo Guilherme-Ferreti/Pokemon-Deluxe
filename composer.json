@@ -84,6 +84,7 @@
             "@php artisan test"
         ],
         "format": [
+            "@typescript",
             "npm run format",
             "npm run lint",
             "@lint",

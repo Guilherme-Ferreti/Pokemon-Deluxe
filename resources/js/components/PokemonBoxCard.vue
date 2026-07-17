@@ -49,7 +49,7 @@
 </template>
 
 <script setup lang="ts">
-import type { ElementalType } from '@/types/pokemon.js';
+import type { ElementalType } from '@/types';
 import ElementalTypeBadges from './ElementalTypeBadges.vue';
 import { Card } from './ui/card';
 

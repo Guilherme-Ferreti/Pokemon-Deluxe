@@ -199,9 +199,8 @@ import {
   DialogTrigger,
 } from '@/components/ui/dialog';
 import type { PokemonIndexPageProps } from '@/pages/Pokemon/Index.vue';
+import { PokemonTrait, SearchBoxSortBy, SortDirection } from '@/types';
 import { route } from '@/types/helpers/route.js';
-import { SortDirection } from '@/types/index.js';
-import { PokemonTrait, SearchBoxSortBy } from '@/types/pokemon.js';
 import AppCheckbox from './AppCheckbox.vue';
 import AppIndicator from './AppIndicator.vue';
 import AppInput from './AppInput.vue';

@@ -1,5 +1,5 @@
 export * from './auth';
-export * from './pokemon';
+export * from './php-types';
 
 export type PaginatedList<T> = {
   currentPage: number;
@@ -22,7 +22,7 @@ export type PaginatedList<T> = {
   data: T[];
 };
 
-export enum SortDirection {
-  ASC = 'asc',
-  DESC = 'desc',
+export interface FilterOption<T extends string | number = string | number> {
+  label: string;
+  value: T;
 }

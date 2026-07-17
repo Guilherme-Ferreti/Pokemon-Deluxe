@@ -1,8 +1,3 @@
-export interface FilterOption<T extends string | number = string | number> {
-  label: string;
-  value: T;
-}
-
 export enum ElementalType {
   BUG = 'bug',
   DARK = 'dark',
@@ -23,7 +18,6 @@ export enum ElementalType {
   STEEL = 'steel',
   WATER = 'water',
 }
-
 export enum Generation {
   KANTO = 1,
   JOHTO = 2,
@@ -35,13 +29,11 @@ export enum Generation {
   GALAR = 8,
   PALDEA = 9,
 }
-
 export enum PokeballType {
   STANDARD = 'standard',
   SPECIAL = 'special',
   APRICORN = 'apricorn',
 }
-
 export enum PokemonTrait {
   SHINY = 'shiny',
   BABY = 'baby',
@@ -50,9 +42,13 @@ export enum PokemonTrait {
   MEGA = 'mega',
   GMAX = 'gmax',
 }
-
 export enum SearchBoxSortBy {
   CAPTURE_DATE = 'capture-date',
   EXPERIENCE = 'experience',
   LEVEL = 'level',
+  POKEDEX_NUMBER = 'pokedex-number',
+}
+export enum SortDirection {
+  ASC = 'asc',
+  DESC = 'desc',
 }
