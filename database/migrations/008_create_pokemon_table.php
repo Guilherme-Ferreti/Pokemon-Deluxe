@@ -27,6 +27,8 @@ return new class extends Migration
             $table->foreignIdFor(Pokeball::class, 'pokeball_id')->constrained();
             $table->timestamp('captured_at');
             $table->timestamps();
+
+            $table->index(['user_id', 'in_party', 'pokedex_id']);
         });
     }
 

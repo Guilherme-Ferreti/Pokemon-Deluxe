@@ -37,6 +37,8 @@ return new class extends Migration
             $table->string('external_id');
 
             $table->timestamps();
+
+            $table->index('national_dex_entry_number');
         });
     }
 

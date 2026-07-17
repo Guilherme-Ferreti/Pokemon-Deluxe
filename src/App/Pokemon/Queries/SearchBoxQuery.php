@@ -37,7 +37,9 @@ final class SearchBoxQuery
     {
         return Pokemon::query()
             ->whereBelongsTo($user)
-            ->inBox();
+            ->inBox()
+            ->join('pokedex', 'pokedex.id', '=', 'pokemon.pokedex_id')
+            ->select('pokemon.*');
     }
 
     /**
@@ -46,7 +48,7 @@ final class SearchBoxQuery
      */
     private function applySearch(Builder $query, string $search): Builder
     {
-        return $query->whereRelation('pokedex', fn (Builder $query) => $query->whereLike('name', '%' . $search . '%'));
+        return $query->whereLike('pokedex.name', '%' . $search . '%');
     }
 
     /**
@@ -59,15 +61,11 @@ final class SearchBoxQuery
         return $query->where(fn (Builder $query) => $query
             ->when(
                 $types->count() === 1,
-                fn (Builder $query) => $query
-                    ->whereRelation('pokedex', fn (Builder $query) => $query->whereIn('primary_type', $types))
-                    ->orWhereRelation('pokedex', fn (Builder $query) => $query->whereIn('secondary_type', $types))
+                fn (Builder $query) => $query->whereIn('pokedex.primary_type', $types)->orWhereIn('pokedex.secondary_type', $types)
             )
             ->when(
                 $types->count() === 2,
-                fn (Builder $query) => $query
-                    ->whereRelation('pokedex', fn (Builder $query) => $query->whereIn('primary_type', $types))
-                    ->whereRelation('pokedex', fn (Builder $query) => $query->whereIn('secondary_type', $types))
+                fn (Builder $query) => $query->whereIn('pokedex.primary_type', $types)->whereIn('pokedex.secondary_type', $types)
             )
         );
     }
@@ -80,12 +78,12 @@ final class SearchBoxQuery
     private function applyTraits(Builder $query, Collection $traits): Builder
     {
         return $query
-            ->when($traits->contains(PokemonTrait::SHINY), fn (Builder $query) => $query->where('is_shiny', true))
-            ->when($traits->contains(PokemonTrait::BABY), fn (Builder $query) => $query->whereRelation('pokedex', 'is_baby', true))
-            ->when($traits->contains(PokemonTrait::LEGENDARY), fn (Builder $query) => $query->whereRelation('pokedex', 'is_legendary', true))
-            ->when($traits->contains(PokemonTrait::MYTHICAL), fn (Builder $query) => $query->whereRelation('pokedex', 'is_mythical', true))
-            ->when($traits->contains(PokemonTrait::MEGA), fn (Builder $query) => $query->whereRelation('pokedex', 'is_mega', true))
-            ->when($traits->contains(PokemonTrait::GMAX), fn (Builder $query) => $query->whereRelation('pokedex', 'is_gmax', true));
+            ->when($traits->contains(PokemonTrait::SHINY), fn (Builder $query) => $query->where('pokemon.is_shiny', true))
+            ->when($traits->contains(PokemonTrait::BABY), fn (Builder $query) => $query->where('pokedex.is_baby', true))
+            ->when($traits->contains(PokemonTrait::LEGENDARY), fn (Builder $query) => $query->where('pokedex.is_legendary', true))
+            ->when($traits->contains(PokemonTrait::MYTHICAL), fn (Builder $query) => $query->where('pokedex.is_mythical', true))
+            ->when($traits->contains(PokemonTrait::MEGA), fn (Builder $query) => $query->where('pokedex.is_mega', true))
+            ->when($traits->contains(PokemonTrait::GMAX), fn (Builder $query) => $query->where('pokedex.is_gmax', true));
     }
 
     /**
@@ -95,7 +93,7 @@ final class SearchBoxQuery
      */
     private function applyGenerations(Builder $query, Collection $generations): Builder
     {
-        return $query->whereRelation('pokedex', fn (Builder $query) => $query->whereIn('generation', $generations));
+        return $query->whereIn('pokedex.generation', $generations);
     }
 
     /**
@@ -105,10 +103,10 @@ final class SearchBoxQuery
     private function applySorting(Builder $query, SearchBoxSortBy $sort, SortDirection $dir): Builder
     {
         return match ($sort) {
-            SearchBoxSortBy::CAPTURE_DATE   => $query->orderBy('captured_at', $dir->value),
-            SearchBoxSortBy::EXPERIENCE     => $query->orderBy('experience', $dir->value),
-            SearchBoxSortBy::LEVEL          => $query->orderBy('level', $dir->value),
-            SearchBoxSortBy::POKEDEX_NUMBER => $query->join('pokedex', 'pokedex.id', '=', 'pokemon.pokedex_id')->select('pokemon.*')->orderBy('pokedex.national_dex_entry_number', $dir->value),
+            SearchBoxSortBy::CAPTURE_DATE   => $query->orderBy('pokemon.captured_at', $dir->value),
+            SearchBoxSortBy::EXPERIENCE     => $query->orderBy('pokemon.experience', $dir->value),
+            SearchBoxSortBy::LEVEL          => $query->orderBy('pokemon.level', $dir->value),
+            SearchBoxSortBy::POKEDEX_NUMBER => $query->orderBy('pokedex.national_dex_entry_number', $dir->value),
         };
     }
 }
