@@ -85,11 +85,9 @@
                 <Button
                   type="button"
                   variant="outline"
-                  @click="
-                    (clearSearchAndDialogFilters(), nextTick(submitSearch))
-                  "
+                  @click="(clearDialogFilters(), nextTick(submitSearch))"
                 >
-                  Clear all
+                  Reset
                 </Button>
               </DialogClose>
               <DialogClose as-child>
@@ -259,8 +257,7 @@ function isTraitCheckboxDisabled(value: PokemonTrait) {
   return false;
 }
 
-function clearSearchAndDialogFilters() {
-  searchForm.search = '';
+function clearDialogFilters() {
   searchForm.traits = [];
   searchForm.generations = [];
   searchForm.types = [];
