@@ -24,8 +24,9 @@ final class TypeScriptTransformerServiceProvider extends BaseTypeScriptTransform
             ->formatter(PrettierFormatter::class)
             ->provider(new LaravelRouteTransformedProvider(
                 filters: [
-                    new NamedRouteFilter('boost.*', 'telescope.*'),
-                ]
+                    new NamedRouteFilter('boost.*', 'telescope'),
+                ],
+                absoluteUrlsByDefault: false
             ));
     }
 }

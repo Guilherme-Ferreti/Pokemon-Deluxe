@@ -19,7 +19,7 @@ export function route<T extends keyof RouteParameters>(
   parameters?: [RouteParameters[T]] extends [never]
     ? Record<string, never>
     : RouteParameters[T],
-  absolute: boolean = true,
+  absolute: boolean = false,
 ): string {
   if (!Object.prototype.hasOwnProperty.call(routes, name)) {
     throw new Error(`Route "${name}" not found.`);
@@ -34,7 +34,7 @@ export function route<T extends keyof RouteParameters>(
   }
 
   if (absolute) {
-    url = (typeof window !== 'undefined' ? window.location.origin : '') + url;
+    url = window.location.origin + url;
   }
 
   return url;
