@@ -11,7 +11,9 @@
       <NavUser />
     </SidebarFooter>
   </Sidebar>
-  <div class="sticky top-0 flex h-12 items-center px-2">
+  <div
+    class="sticky top-0 flex h-12 items-center px-2 peer-data-[state=collapsed]:rotate-180"
+  >
     <SidebarTrigger />
   </div>
 </template>

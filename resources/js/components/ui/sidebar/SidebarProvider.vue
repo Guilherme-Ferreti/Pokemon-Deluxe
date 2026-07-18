@@ -2,6 +2,7 @@
 import type { HTMLAttributes, Ref } from 'vue';
 import {
   defaultDocument,
+  provideSSRWidth,
   useEventListener,
   useMediaQuery,
   useVModel,
@@ -35,6 +36,8 @@ const props = withDefaults(
 const emits = defineEmits<{
   'update:open': [open: boolean];
 }>();
+
+provideSSRWidth(1024);
 
 const isMobile = useMediaQuery('(max-width: 768px)');
 const openMobile = ref(false);

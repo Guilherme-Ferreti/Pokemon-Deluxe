@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import type { HTMLAttributes } from 'vue';
-import { IconChevronRight } from '@tabler/icons-vue';
+import { type HTMLAttributes } from 'vue';
+import { IconChevronLeft } from '@tabler/icons-vue';
 import { cn } from '@/lib/utils';
 import { Button } from '@/components/ui/button';
 import { useSidebar } from './utils';
@@ -9,7 +9,7 @@ const props = defineProps<{
   class?: HTMLAttributes['class'];
 }>();
 
-const { toggleSidebar, open, isMobile } = useSidebar();
+const { toggleSidebar } = useSidebar();
 </script>
 
 <template>
@@ -21,12 +21,7 @@ const { toggleSidebar, open, isMobile } = useSidebar();
     :class="cn('h-7 w-7', props.class)"
     @click="toggleSidebar"
   >
-    <IconChevronRight
-      :class="{
-        'size-3 transform': true,
-        'rotate-180': open && !isMobile,
-      }"
-    />
+    <IconChevronLeft class="size-3" />
     <span class="sr-only">Toggle Sidebar</span>
   </Button>
 </template>
