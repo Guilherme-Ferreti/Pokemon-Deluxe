@@ -1,11 +1,20 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}"  @class(['dark' => ($appearance ?? 'system') == 'dark'])>
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <link rel="icon" href="/favicon.ico" sizes="any">   
+        <link rel="icon" href="/favicon.ico" sizes="any">
         <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
+        <script>
+            const theme = localStorage.getItem('vueuse-color-scheme') || 'auto';
+            const preferDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+
+            if (theme === 'dark' || (theme === 'auto' && preferDark)) {
+                document.documentElement.classList.add('dark');
+            }
+        </script>
 
         @fonts
 

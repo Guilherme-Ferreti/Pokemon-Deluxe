@@ -57,6 +57,26 @@
                 Profile
               </Link>
             </DropdownMenuItem>
+            <DropdownMenuSub>
+              <DropdownMenuSubTrigger>
+                <IconPalette />
+                Theme
+              </DropdownMenuSubTrigger>
+              <DropdownMenuPortal>
+                <DropdownMenuSubContent>
+                  <DropdownMenuRadioGroup v-model="mode">
+                    <DropdownMenuRadioItem value="light">
+                      <IconSun />
+                      Light
+                    </DropdownMenuRadioItem>
+                    <DropdownMenuRadioItem value="dark">
+                      <IconMoon />
+                      Dark
+                    </DropdownMenuRadioItem>
+                  </DropdownMenuRadioGroup>
+                </DropdownMenuSubContent>
+              </DropdownMenuPortal>
+            </DropdownMenuSub>
           </DropdownMenuGroup>
           <DropdownMenuSeparator />
           <DropdownMenuItem variant="destructive">
@@ -78,8 +98,15 @@
 
 <script setup lang="ts">
 import { Link, usePage } from '@inertiajs/vue3';
-import { IconSelector, IconLogout, IconUser } from '@tabler/icons-vue';
-
+import {
+  IconSelector,
+  IconLogout,
+  IconUser,
+  IconPalette,
+  IconSun,
+  IconMoon,
+} from '@tabler/icons-vue';
+import { useColorMode } from '@vueuse/core';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import {
   DropdownMenu,
@@ -87,7 +114,10 @@ import {
   DropdownMenuGroup,
   DropdownMenuItem,
   DropdownMenuLabel,
+  DropdownMenuPortal,
   DropdownMenuSeparator,
+  DropdownMenuSub,
+  DropdownMenuSubTrigger,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
 import {
@@ -97,9 +127,13 @@ import {
   useSidebar,
 } from '@/components/ui/sidebar';
 import { route } from '@/types/helpers/route';
+import DropdownMenuRadioGroup from './ui/dropdown-menu/DropdownMenuRadioGroup.vue';
+import DropdownMenuRadioItem from './ui/dropdown-menu/DropdownMenuRadioItem.vue';
+import DropdownMenuSubContent from './ui/dropdown-menu/DropdownMenuSubContent.vue';
 
 const page = usePage();
 const { isMobile } = useSidebar();
+const mode = useColorMode();
 
 const user = {
   name: page.props.auth.user.name,

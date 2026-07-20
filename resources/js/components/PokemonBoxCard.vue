@@ -20,7 +20,7 @@
       </div>
     </div>
     <div
-      class="flex justify-between rounded bg-blue-100/40 px-2 py-1 text-xs text-muted-foreground"
+      class="flex justify-between rounded bg-blue-100/40 px-2 py-1 text-xs text-muted-foreground dark:bg-transparent"
     >
       <span>
         Lv.
