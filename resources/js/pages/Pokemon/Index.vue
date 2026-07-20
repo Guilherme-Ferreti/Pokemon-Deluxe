@@ -31,7 +31,6 @@ import AppSection from '@/components/AppSection.vue';
 import AppSectionHeading from '@/components/AppSectionHeading.vue';
 import PokemonBox from '@/components/PokemonBox.vue';
 import PokemonParty from '@/components/PokemonParty.vue';
-import { useBreadcrumbs } from '@/composables/useBreadcrumbs';
 import type {
   ElementalType,
   FilterOption,
@@ -41,7 +40,6 @@ import type {
   SearchBoxSortBy,
   SortDirection,
 } from '@/types';
-import { route } from '@/types/helpers/route';
 
 export interface PokemonIndexPageProps {
   pokemonInParty: {
@@ -82,10 +80,4 @@ export interface PokemonIndexPageProps {
 }
 
 defineProps<PokemonIndexPageProps>();
-
-const { setBreadcrumbs } = useBreadcrumbs();
-setBreadcrumbs([
-  { title: 'Pokemon', href: route('web.pokemon.index') },
-  { title: 'List' },
-]);
 </script>

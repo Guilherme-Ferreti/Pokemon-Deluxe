@@ -2,10 +2,7 @@
   <SidebarProvider>
     <AppSidebar />
     <SidebarInset>
-      <div class="mx-auto w-full max-w-6xl pr-10 pb-4">
-        <div class="flex h-12 items-center gap-2">
-          <DashboardBreadcrumbs />
-        </div>
+      <div class="mx-auto w-full max-w-6xl py-6 pr-10">
         <div class="space-y-8">
           <slot />
         </div>
@@ -16,6 +13,5 @@
 
 <script setup lang="ts">
 import AppSidebar from '@/components/AppSidebar.vue';
-import DashboardBreadcrumbs from '@/components/DashboardBreadcrumbs.vue';
 import { SidebarInset, SidebarProvider } from '@/components/ui/sidebar';
 </script>
