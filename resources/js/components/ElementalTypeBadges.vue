@@ -2,16 +2,16 @@
   <div class="flex flex-wrap gap-1">
     <Badge
       variant="secondary"
-      :class="colors[primaryType]"
+      :class="colors[types[0]]"
     >
-      {{ labels[primaryType] }}
+      {{ labels[types[0]] }}
     </Badge>
     <Badge
-      v-if="secondaryType"
+      v-if="types.length === 2"
       variant="secondary"
-      :class="colors[secondaryType]"
+      :class="colors[types[1]]"
     >
-      {{ labels[secondaryType] }}
+      {{ labels[types[1]] }}
     </Badge>
   </div>
 </template>
@@ -21,8 +21,7 @@ import { Badge } from '@/components/ui/badge';
 import { ElementalType } from '@/types';
 
 defineProps<{
-  primaryType: ElementalType;
-  secondaryType?: ElementalType | null;
+  types: [ElementalType] | [ElementalType, ElementalType];
 }>();
 
 const labels = {

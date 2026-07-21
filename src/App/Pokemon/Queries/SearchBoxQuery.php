@@ -61,11 +61,11 @@ final class SearchBoxQuery
         return $query->where(fn (Builder $query) => $query
             ->when(
                 $types->count() === 1,
-                fn (Builder $query) => $query->whereIn('pokedex.primary_type', $types)->orWhereIn('pokedex.secondary_type', $types)
+                fn (Builder $query) => $query->whereJsonContains('pokedex.types', $types[0]->value)
             )
             ->when(
                 $types->count() === 2,
-                fn (Builder $query) => $query->whereIn('pokedex.primary_type', $types)->whereIn('pokedex.secondary_type', $types)
+                fn (Builder $query) => $query->whereJsonContains('pokedex.types', $types[0]->value)->whereJsonContains('pokedex.types', $types[1]->value)
             )
         );
     }

@@ -13,7 +13,7 @@ use Shared\Models\PokedexEvolution;
 /**
  * @phpstan-type PokeApiEvolution array{evolves_to:string, item:?string, min_level:?int}
  * @phpstan-type PokeApiSprites array{back_default:?string, back_female:?string, back_shiny:?string, back_shiny_female:?string, front_default:?string, front_female:?string, front_shiny:?string, front_shiny_female:?string}
- * @phpstan-type PokeApiPokemon array{id:string, external_id:string, name:string, primary_type:string, secondary_type:string, national_dex_entry_number:int, genus:string, flavor_text:string, sprites:PokeApiSprites, is_baby:bool, is_legendary:bool, is_mythical:bool, is_mega:bool, is_gmax:bool, generation:int, capture_rate:?int, evolutions:list<PokeApiEvolution>}
+ * @phpstan-type PokeApiPokemon array{id:string, external_id:string, name:string, types:list<string>, national_dex_entry_number:int, genus:string, flavor_text:string, sprites:PokeApiSprites, is_baby:bool, is_legendary:bool, is_mythical:bool, is_mega:bool, is_gmax:bool, generation:int, capture_rate:?int, evolutions:list<PokeApiEvolution>}
  */
 final class PokedexSeeder extends Seeder
 {
@@ -94,8 +94,7 @@ final class PokedexSeeder extends Seeder
         return [
             'id'                        => $this->getPokedexId($pokemon['id']),
             'name'                      => $pokemon['name'],
-            'primary_type'              => $pokemon['primary_type'],
-            'secondary_type'            => $pokemon['secondary_type'],
+            'types'                     => json_encode($pokemon['types']),
             'national_dex_entry_number' => $pokemon['national_dex_entry_number'],
             'genus'                     => $pokemon['genus'],
             'text_entry'                => $pokemon['flavor_text'],

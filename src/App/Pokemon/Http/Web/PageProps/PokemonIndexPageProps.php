@@ -61,8 +61,7 @@ final class PokemonIndexPageProps implements ProvidesInertiaProperties
             'level'       => $pokemon->level,
             'experience'  => $pokemon->experience,
             'pokedex'     => [
-                'primaryType'   => $pokemon->pokedex->primary_type,
-                'secondaryType' => $pokemon->pokedex->secondary_type,
+                'types' => $pokemon->pokedex->types,
             ],
             'moves' => [
                 [

@@ -55,8 +55,7 @@ export interface PokemonIndexPageProps {
     level: number;
     experience: number;
     pokedex: {
-      primaryType: ElementalType;
-      secondaryType: ElementalType | null;
+      types: [ElementalType] | [ElementalType, ElementalType];
     };
     moves: {
       name: string;

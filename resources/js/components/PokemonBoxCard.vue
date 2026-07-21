@@ -13,10 +13,7 @@
         <p class="text-sm font-semibold text-foreground">
           {{ pokemon.name }}
         </p>
-        <ElementalTypeBadges
-          :primary-type="pokemon.pokedex.primaryType"
-          :secondary-type="pokemon.pokedex.secondaryType"
-        />
+        <ElementalTypeBadges :types="pokemon.pokedex.types" />
       </div>
     </div>
     <div
@@ -49,24 +46,11 @@
 </template>
 
 <script setup lang="ts">
-import type { ElementalType } from '@/types';
+import type { PokemonIndexPageProps } from '@/pages/Pokemon/Index.vue';
 import ElementalTypeBadges from './ElementalTypeBadges.vue';
 import { Card } from './ui/card';
 
 defineProps<{
-  pokemon: {
-    id: string;
-    name: string;
-    frontSprite?: string;
-    level: number;
-    experience: number;
-    pokedex: {
-      primaryType: ElementalType;
-      secondaryType: ElementalType | null;
-    };
-    moves: {
-      name: string;
-    }[];
-  };
+  pokemon: PokemonIndexPageProps['pokemonBox']['data'][number];
 }>();
 </script>

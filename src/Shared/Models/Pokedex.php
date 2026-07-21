@@ -7,6 +7,7 @@ namespace Shared\Models;
 use Database\Factories\PokedexFactory;
 use Illuminate\Database\Eloquent\Attributes\Table;
 use Illuminate\Database\Eloquent\Attributes\Unguarded;
+use Illuminate\Database\Eloquent\Casts\AsEnumCollection;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -21,8 +22,7 @@ use Shared\ValueObjects\PokemonSprites;
 /**
  * @property string $id
  * @property string $name
- * @property ElementalType $primary_type
- * @property ElementalType|null $secondary_type
+ * @property array{ElementalType} | array{ElementalType, ElementalType} $types
  * @property int $national_dex_entry_number
  * @property string $genus
  * @property string $text_entry
@@ -48,15 +48,20 @@ final class Pokedex extends Model
     /** @use HasFactory<PokedexFactory> */
     use HasFactory, HasUuids;
 
+    /**
+     * @return array<string, string>
+     */
     #[Override]
-    protected $casts = [
-        'primary_type'              => ElementalType::class,
-        'secondary_type'            => ElementalType::class,
-        'national_dex_entry_number' => 'integer',
-        'generation'                => Generation::class,
-        'capture_rate'              => 'integer',
-        'sprites'                   => PokemonSprites::class,
-    ];
+    protected function casts(): array
+    {
+        return [
+            'types'                     => AsEnumCollection::of(ElementalType::class),
+            'national_dex_entry_number' => 'integer',
+            'generation'                => Generation::class,
+            'capture_rate'              => 'integer',
+            'sprites'                   => PokemonSprites::class,
+        ];
+    }
 
     /**
      * @return HasMany<PokedexEvolution, $this>
@@ -72,5 +77,15 @@ final class Pokedex extends Model
     public function previousEvolutions(): HasMany
     {
         return $this->hasMany(PokedexEvolution::class, 'to_pokedex_id');
+    }
+
+    public function isSingleType(): bool
+    {
+        return count($this->types) === 1;
+    }
+
+    public function isDualType(): bool
+    {
+        return count($this->types) === 2;
     }
 }

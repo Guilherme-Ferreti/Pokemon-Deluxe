@@ -20,9 +20,11 @@ final class PokedexFactory extends Factory
     public function definition(): array
     {
         return [
-            'name'                      => fake()->unique()->word(),
-            'primary_type'              => fake()->randomElement(ElementalType::cases()),
-            'secondary_type'            => fake()->optional()->randomElement(ElementalType::cases()),
+            'name'  => fake()->unique()->word(),
+            'types' => array_filter([
+                fake()->randomElement(ElementalType::cases()),
+                fake()->optional()->randomElement(ElementalType::cases()),
+            ]),
             'national_dex_entry_number' => fake()->unique()->numberBetween(1, 1000),
             'genus'                     => fake()->word(),
             'text_entry'                => fake()->sentence(),

@@ -15,8 +15,7 @@ return new class extends Migration
 
             $table->string('name');
 
-            $table->string('primary_type');
-            $table->string('secondary_type')->nullable();
+            $table->json('types');
 
             $table->unsignedSmallInteger('national_dex_entry_number');
             $table->string('genus');
