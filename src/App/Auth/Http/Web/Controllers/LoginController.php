@@ -20,8 +20,8 @@ final class LoginController extends Controller
     public function store(StoreLoginRequest $request): RedirectResponse
     {
         $authenticated = new LoginUser()->handle(
-            email: $request->input('email'),
-            password: $request->input('password'),
+            email: $request->validated('email'),
+            password: $request->validated('password'),
             remember: $request->boolean('remember'),
         );
 

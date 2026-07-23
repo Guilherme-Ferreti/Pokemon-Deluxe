@@ -10,14 +10,10 @@ final class RegisterUser
 {
     public function handle(string $name, string $email, string $password): User
     {
-        $user = User::create([
+        return User::create([
             'name'     => $name,
             'email'    => $email,
             'password' => $password,
         ]);
-
-        new LoginUser()->handle($email, $password);
-
-        return $user;
     }
 }

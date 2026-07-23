@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Auth\Http\Web\Controllers;
 
+use App\Auth\Actions\LoginUser;
 use App\Auth\Actions\RegisterUser;
 use App\Auth\Http\Web\Requests\StoreRegisterRequest;
 use Illuminate\Http\RedirectResponse;
@@ -19,12 +20,14 @@ final class RegisterController extends Controller
 
     public function store(StoreRegisterRequest $request): RedirectResponse
     {
-        new RegisterUser()->handle(
-            name: $request->input('name'),
-            email: $request->input('email'),
-            password: $request->input('password'),
+        $user = new RegisterUser()->handle(
+            name: $request->validated('name'),
+            email: $request->validated('email'),
+            password: $request->validated('password'),
         );
 
-        return redirect()->intended('/');
+        new LoginUser()->handle($user->email, $request->validated('password'));
+
+        return redirect()->intended(route('web.dashboard.home'));
     }
 }
