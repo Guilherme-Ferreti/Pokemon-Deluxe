@@ -20,14 +20,14 @@ final class PokemonController extends Controller
             ->inParty()
             ->get(['id', 'name', 'sprites', 'level', 'is_shiny', 'pokedex_id']);
 
-        $SearchBoxFilters = SearchBoxFilters::fromRequest($request);
+        $searchBoxFilters = SearchBoxFilters::fromRequest($request);
 
-        $pokemonBox = fn () => new SearchBoxQuery()->handle(currentUser(), $SearchBoxFilters)->paginate(12)->withQueryString();
+        $pokemonBox = fn () => new SearchBoxQuery()->handle(currentUser(), $searchBoxFilters)->paginate(12)->withQueryString();
 
         return inertia('Pokemon/Index')->with(new PokemonIndexPageProps(
             pokemonInParty: $pokemonInParty,
             pokemonBox: $pokemonBox,
-            searchFilters: $SearchBoxFilters,
+            searchFilters: $searchBoxFilters,
         ));
     }
 }
