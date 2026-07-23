@@ -8,11 +8,14 @@
         <testsuite name="Architectural">
             <directory>tests/Architectural</directory>
         </testsuite>
-        <testsuite name="Unit">
-            <directory>tests/Unit</directory>
+        <testsuite name="Browser">
+            <directory>tests/App/*/Browser</directory>
         </testsuite>
         <testsuite name="Feature">
-            <directory>tests/Feature</directory>
+            <directory>tests/App/*/Feature</directory>
+        </testsuite>
+        <testsuite name="Unit">
+            <directory>tests/App/*/Unit</directory>
         </testsuite>
     </testsuites>
     <source>
