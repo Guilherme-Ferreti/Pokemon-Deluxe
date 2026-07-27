@@ -21,7 +21,11 @@
         <component :is="icon" />
       </InputGroupAddon>
     </InputGroup>
-    <FieldError v-if="errorMessage">{{ errorMessage }}</FieldError>
+    <FieldError
+      v-if="errorMessage"
+      data-test="error-message"
+      >{{ errorMessage }}</FieldError
+    >
   </Field>
 </template>
 

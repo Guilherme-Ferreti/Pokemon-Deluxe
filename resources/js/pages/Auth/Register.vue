@@ -44,7 +44,12 @@
         required
         :error-message="errors.password_confirmation"
       />
-      <Button type="submit">Create account</Button>
+      <Button
+        type="submit"
+        data-test="register-button"
+      >
+        Create account
+      </Button>
       <FieldDescription class="text-center">
         Already have an account?
         <Link :href="route('web.auth.login.create')">Log in</Link>
