@@ -41,7 +41,12 @@
           <a href="#">Forgot password?</a>
         </FieldDescription>
       </div>
-      <Button type="submit">Login</Button>
+      <Button
+        type="submit"
+        data-test="login-button"
+      >
+        Login
+      </Button>
       <FieldDescription class="text-center">
         Don't have an account?
         <Link :href="route('web.auth.register.create')">Sign up</Link>

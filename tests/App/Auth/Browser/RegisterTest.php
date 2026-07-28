@@ -25,7 +25,7 @@ it('registers an user', function () {
 
 it('displays validation errors', function () {
     $data = StoreRegisterRequestFactory::new()->withExistingEmail()->create();
-    
+
     $page = visit(route('web.auth.register.create'));
 
     $page->fill('name', $data['name'])
