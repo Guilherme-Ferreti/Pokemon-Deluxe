@@ -10,7 +10,7 @@ use Worksome\RequestFactories\RequestFactory;
 
 final class StoreRegisterRequestFactory extends RequestFactory
 {
-    public static $factory = StoreRegisterRequest::class;
+    public static string $factory = StoreRegisterRequest::class;
 
     public function definition(): array
     {

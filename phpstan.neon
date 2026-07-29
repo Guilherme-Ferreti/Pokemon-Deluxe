@@ -1,12 +1,20 @@
 includes:
     - vendor/larastan/larastan/extension.neon
     - vendor/nesbot/carbon/extension.neon
+    - vendor/pestphp/pest-plugin-phpstan/extension.neon
 
 parameters:
     paths:
-        - src/
         - bootstrap/app.php
         - config/
         - database/
+        - src/
+        - tests/
 
     level: 7
+
+    ignoreErrors:
+        -
+            message: '#Access to an undefined property [a-zA-Z0-9\\_]+::\$not#' 
+            path: tests/Architectural/ArchitecturalTest.php
+            count: 6

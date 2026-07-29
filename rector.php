@@ -2,6 +2,7 @@
 
 declare(strict_types=1);
 
+use Pest\Rector\Set\PestSetList;
 use Rector\CodingStyle\Rector\ArrowFunction\ArrowFunctionDelegatingCallToFirstClassCallableRector;
 use Rector\CodingStyle\Rector\Use_\SeparateMultiUseImportsRector;
 use Rector\Config\RectorConfig;
@@ -37,6 +38,9 @@ return RectorConfig::configure()
         earlyReturn: true,
         carbon: true,
     )
+    ->withSets([
+        PestSetList::CODING_STYLE,
+    ])
     ->withSkip([
         SeparateMultiUseImportsRector::class,
         RenameParamToMatchTypeRector::class,
