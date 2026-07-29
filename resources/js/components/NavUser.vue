@@ -6,6 +6,7 @@
           <SidebarMenuButton
             size="lg"
             class="data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground"
+            data-test="sidebar-user-menu-button"
           >
             <Avatar class="size-8 rounded-lg">
               <AvatarImage
@@ -84,6 +85,7 @@
               method="post"
               as="button"
               class="flex w-full items-center gap-2"
+              data-test="logout-button"
               :href="route('web.auth.logout')"
             >
               <IconLogout />
