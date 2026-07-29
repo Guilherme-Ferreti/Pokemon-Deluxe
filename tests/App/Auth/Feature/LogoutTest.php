@@ -7,7 +7,7 @@ use Shared\Models\User;
 use function Pest\Laravel\actingAs;
 use function Pest\Laravel\assertGuest;
 
-test('an user can logout', function () {
+it('logs out the authenticated user', function () {
     $user = User::factory()->create();
 
     actingAs($user)

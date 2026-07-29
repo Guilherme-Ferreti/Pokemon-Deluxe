@@ -7,7 +7,7 @@ use Shared\Models\User;
 use function Pest\Laravel\actingAs;
 use function Pest\Laravel\assertGuest;
 
-it('logs an user out', function () {
+it('logs out the authenticated user', function () {
     actingAs(User::factory()->create());
 
     $page = visit(route('web.dashboard.home'));

@@ -8,7 +8,7 @@ use Tests\App\Auth\RequestFactories\StoreRegisterRequestFactory;
 use function Pest\Laravel\assertDatabaseHas;
 use function Pest\Laravel\post;
 
-test('an user can register', function () {
+it('registers a new user', function () {
     $data = StoreRegisterRequestFactory::new()->create();
 
     post(route('web.auth.register.store'), $data)
@@ -20,7 +20,7 @@ test('an user can register', function () {
     ]);
 });
 
-test('an user cannot register with an existing email', function () {
+it('rejects registration with an existing email', function () {
     $data = StoreRegisterRequestFactory::new()->withExistingEmail()->create();
 
     post(route('web.auth.register.store'), $data)

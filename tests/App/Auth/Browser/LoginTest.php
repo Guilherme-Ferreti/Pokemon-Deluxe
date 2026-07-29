@@ -2,11 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Tests\App\Auth\Browser;
-
 use Tests\App\Auth\RequestFactories\StoreLoginRequestFactory;
 
-it('logs in an user', function () {
+it('logs in a user', function () {
     $data = StoreLoginRequestFactory::new()->create();
 
     $page = visit(route('web.auth.login.create'));
@@ -21,7 +19,7 @@ it('logs in an user', function () {
         ->assertPathIs(route('web.dashboard.home', absolute: false));
 });
 
-it('displays validation errors', function () {
+it('shows validation errors on invalid login', function () {
     $data = StoreLoginRequestFactory::new()->withInvalidCredentials()->create();
 
     $page = visit(route('web.auth.login.create'));

@@ -9,7 +9,7 @@ use function Pest\Laravel\assertAuthenticatedAs;
 use function Pest\Laravel\assertGuest;
 use function Pest\Laravel\post;
 
-test('an user can login', function () {
+it('logs in a user', function () {
     $data = StoreLoginRequestFactory::new()->create();
 
     post(route('web.auth.login.store'), $data)
@@ -18,7 +18,7 @@ test('an user can login', function () {
     assertAuthenticatedAs(User::firstWhere('email', $data['email']));
 });
 
-test('an user cannot login with invalid credentials', function () {
+it('rejects login with invalid credentials', function () {
     $data = StoreLoginRequestFactory::new()->withInvalidCredentials()->create();
 
     post(route('web.auth.login.store'), $data)

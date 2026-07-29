@@ -7,7 +7,7 @@ use Shared\Models\User;
 
 use function Pest\Laravel\actingAs;
 
-test('loads the dashboard', function () {
+it('loads the dashboard', function () {
     actingAs(User::factory()->create())
         ->get(route('web.dashboard.home'))
         ->assertSuccessful()

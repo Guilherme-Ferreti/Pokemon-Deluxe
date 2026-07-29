@@ -2,11 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Tests\App\Auth\Browser;
-
 use Tests\App\Auth\RequestFactories\StoreRegisterRequestFactory;
 
-it('registers an user', function () {
+it('registers a new user', function () {
     $data = StoreRegisterRequestFactory::new()->create();
 
     $page = visit(route('web.auth.register.create'));
@@ -23,7 +21,7 @@ it('registers an user', function () {
         ->assertPathIs(route('web.dashboard.home', absolute: false));
 });
 
-it('displays validation errors', function () {
+it('shows validation errors on registration', function () {
     $data = StoreRegisterRequestFactory::new()->withExistingEmail()->create();
 
     $page = visit(route('web.auth.register.create'));
