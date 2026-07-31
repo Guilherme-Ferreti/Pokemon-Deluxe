@@ -46,9 +46,9 @@
 </template>
 
 <script setup lang="ts">
-import type { PokemonIndexPageProps } from '@/pages/Pokemon/Index.vue';
 import ElementalTypeBadges from './ElementalTypeBadges.vue';
 import { Card } from './ui/card';
+import type { PokemonIndexPageProps } from '@/pages/Pokemon/Index.vue';
 
 defineProps<{
   pokemon: PokemonIndexPageProps['pokemonBox']['data'][number];

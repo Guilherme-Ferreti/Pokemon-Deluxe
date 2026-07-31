@@ -1,3 +1,4 @@
+import { usePage } from '@inertiajs/vue3';
 import { clsx } from 'clsx';
 import type { ClassValue } from 'clsx';
 import { twMerge } from 'tailwind-merge';
@@ -17,4 +18,8 @@ export function getBasePath(url: string): string {
   const { pathname } = new URL(url);
 
   return pathname;
+}
+
+export function isCurrentPage(url: string): boolean {
+  return getBasePath(usePage().url) === getBasePath(url);
 }

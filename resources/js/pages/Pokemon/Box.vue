@@ -1,23 +1,12 @@
 <template>
-  <Head title="Your Pokemon" />
-  <AppSection aria-labelledby="your-pokemon__heading">
-    <AppSectionHeading
-      id="your-pokemon__heading"
-      title="Your Pokemon"
-      description="Manage your party."
-      :icon="IconPokeball"
-    />
-    <PokemonParty :pokemon-list="pokemonInParty" />
-  </AppSection>
-  <AppSection aria-labelledby="box__heading">
-    <AppSectionHeading
-      id="box__heading"
-      title="Box"
-      description="Manage your captured Pokemon."
-      :icon="IconArchive"
-    />
+  <Head title="Your Box" />
+  <AppPageHeader
+    title="Your Box"
+    description="Manage your captured Pokemon."
+  />
+  <AppSection>
     <PokemonBox
-      :pokemon-list="pokemonBox"
+      :box="box"
       :search-filters="searchFilters"
       :filter-options="filterOptions"
     />
@@ -26,11 +15,9 @@
 
 <script setup lang="ts">
 import { Head } from '@inertiajs/vue3';
-import { IconArchive, IconPokeball } from '@tabler/icons-vue';
+import AppPageHeader from '@/components/AppPageHeader.vue';
 import AppSection from '@/components/AppSection.vue';
-import AppSectionHeading from '@/components/AppSectionHeading.vue';
 import PokemonBox from '@/components/PokemonBox.vue';
-import PokemonParty from '@/components/PokemonParty.vue';
 import type {
   ElementalType,
   FilterOption,
@@ -41,14 +28,8 @@ import type {
   SortDirection,
 } from '@/types';
 
-export interface PokemonIndexPageProps {
-  pokemonInParty: {
-    id: string;
-    name: string;
-    frontSprite?: string;
-    level: number;
-  }[];
-  pokemonBox: PaginatedList<{
+export interface PokemonBoxPageProps {
+  box: PaginatedList<{
     id: string;
     name: string;
     frontSprite?: string;
@@ -78,5 +59,5 @@ export interface PokemonIndexPageProps {
   };
 }
 
-defineProps<PokemonIndexPageProps>();
+defineProps<PokemonBoxPageProps>();
 </script>

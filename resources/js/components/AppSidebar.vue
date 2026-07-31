@@ -5,10 +5,10 @@
     </SidebarHeader>
     <Separator orientation="horizontal" />
     <SidebarContent>
-      <NavMain />
+      <SidebarNavMain />
     </SidebarContent>
     <SidebarFooter>
-      <NavUser />
+      <SidebarNavUser />
     </SidebarFooter>
   </Sidebar>
   <div
@@ -19,9 +19,9 @@
 </template>
 
 <script setup lang="ts">
-import NavMain from '@/components/NavMain.vue';
-import NavUser from '@/components/NavUser.vue';
 import SidebarHeaderLogo from '@/components/SidebarHeaderLogo.vue';
+import SidebarNavMain from '@/components/SidebarNavMain.vue';
+import SidebarNavUser from '@/components/SidebarNavUser.vue';
 import {
   Sidebar,
   SidebarContent,

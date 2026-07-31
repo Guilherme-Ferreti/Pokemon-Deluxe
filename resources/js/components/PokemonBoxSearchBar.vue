@@ -23,6 +23,7 @@
                   variant="outline"
                   size="icon"
                   aria-label="Filters"
+                  data-test="filters-button"
                 >
                   <IconFilter2 />
                 </Button>
@@ -198,7 +199,7 @@ import {
   DialogTitle,
   DialogTrigger,
 } from '@/components/ui/dialog';
-import type { PokemonIndexPageProps } from '@/pages/Pokemon/Index.vue';
+import type { PokemonBoxPageProps } from '@/pages/Pokemon/Box.vue';
 import { PokemonTrait, SearchBoxSortBy, SortDirection } from '@/types';
 import { route } from '@/types/helpers/route.js';
 import AppCheckbox from './AppCheckbox.vue';
@@ -210,8 +211,8 @@ import { Popover, PopoverContent, PopoverTrigger } from './ui/popover';
 import { Tooltip, TooltipContent, TooltipTrigger } from './ui/tooltip';
 
 const props = defineProps<{
-  searchFilters: PokemonIndexPageProps['searchFilters'];
-  filterOptions: PokemonIndexPageProps['filterOptions'];
+  searchFilters: PokemonBoxPageProps['searchFilters'];
+  filterOptions: PokemonBoxPageProps['filterOptions'];
 }>();
 
 const searchForm = useForm({
@@ -291,10 +292,10 @@ function submitSearch() {
         Object.entries(data).filter(([, value]) => value || false),
       ),
     )
-    .get(route('web.pokemon.index'), {
+    .get(route('web.pokemon.box'), {
       preserveScroll: true,
       preserveState: true,
-      only: ['pokemonBox', 'searchFilters'],
+      only: ['box', 'searchFilters'],
     });
 }
 </script>

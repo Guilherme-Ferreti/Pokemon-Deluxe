@@ -50,13 +50,12 @@
           <DropdownMenuSeparator />
           <DropdownMenuGroup>
             <DropdownMenuItem>
-              <Link
-                href="#"
+              <SidebarNavLink
+                title="Profile"
                 class="flex w-full items-center gap-2"
-              >
-                <IconUser />
-                Profile
-              </Link>
+                url="#"
+                :icon="IconUser"
+              />
             </DropdownMenuItem>
             <DropdownMenuSub>
               <DropdownMenuSubTrigger>
@@ -129,6 +128,7 @@ import {
   useSidebar,
 } from '@/components/ui/sidebar';
 import { route } from '@/types/helpers/route';
+import SidebarNavLink from './SidebarNavLink.vue';
 import DropdownMenuRadioGroup from './ui/dropdown-menu/DropdownMenuRadioGroup.vue';
 import DropdownMenuRadioItem from './ui/dropdown-menu/DropdownMenuRadioItem.vue';
 import DropdownMenuSubContent from './ui/dropdown-menu/DropdownMenuSubContent.vue';
