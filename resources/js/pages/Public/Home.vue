@@ -1,8 +1,44 @@
 <template>
-  <h1>home</h1>
+  <Head title="Pokemon Deluxe" />
+  <div
+    class="flex min-h-screen flex-col items-center justify-center bg-linear-to-b from-background to-muted px-4"
+  >
+    <div class="flex flex-col items-center gap-8 text-center">
+      <div class="flex flex-col gap-2">
+        <h1 class="text-3xl font-bold tracking-tight sm:text-5xl">
+          Pokemon Deluxe
+        </h1>
+      </div>
+      <div class="flex gap-4">
+        <Button as-child>
+          <Link
+            :href="route('web.auth.login.create')"
+            prefetch
+          >
+            Login
+          </Link>
+        </Button>
+        <Button
+          as-child
+          variant="outline"
+        >
+          <Link
+            :href="route('web.auth.register.create')"
+            prefetch
+          >
+            Register
+          </Link>
+        </Button>
+      </div>
+    </div>
+  </div>
 </template>
 
 <script setup lang="ts">
+import { Head, Link } from '@inertiajs/vue3';
+import { Button } from '@/components/ui/button';
+import { route } from '@/types/helpers/route';
+
 defineOptions({
   layout: () => null,
 });
