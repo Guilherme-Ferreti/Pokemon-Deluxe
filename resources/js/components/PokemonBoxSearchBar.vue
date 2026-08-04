@@ -23,7 +23,7 @@
                   variant="outline"
                   size="icon"
                   aria-label="Filters"
-                  data-test="filters-button"
+                  data-test="search-filters-button"
                 >
                   <IconFilter2 />
                 </Button>
