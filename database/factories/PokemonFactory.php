@@ -42,4 +42,14 @@ final class PokemonFactory extends Factory
     {
         return $this->state(['in_party' => false]);
     }
+
+    public function shiny(): static
+    {
+        return $this->state(['is_shiny' => true]);
+    }
+
+    public function notShiny(): static
+    {
+        return $this->state(['is_shiny' => false]);
+    }
 }
