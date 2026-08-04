@@ -20,7 +20,7 @@
     v-else
     title="No Pokémon in your box"
     description="Catch some Pokémon to see them here."
-    data-testid="pokemon-box-empty-state"
+    data-test="pokemon-box-empty-state"
     :icon="IconPokeball"
   />
 </template>

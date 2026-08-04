@@ -2,7 +2,7 @@
   <div class="flex flex-col gap-0.5">
     <h1
       class="text-2xl font-bold text-foreground"
-      data-testid="page-title"
+      data-test="page-title"
     >
       {{ title }}
     </h1>
