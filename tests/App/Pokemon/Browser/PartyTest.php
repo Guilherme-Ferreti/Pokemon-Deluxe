@@ -2,7 +2,6 @@
 
 declare(strict_types=1);
 
-use Shared\Models\Pokedex;
 use Shared\Models\Pokemon;
 use Shared\Models\User;
 
@@ -21,14 +20,15 @@ it('loads the party page without errors', function () {
 });
 
 it('shows party pokemon', function () {
-    $user    = User::factory()->create();
-    $pikachu = Pokedex::factory()->create(['name' => 'Pikachu']);
-
-    Pokemon::factory()->for($user)->for($pikachu)->inParty()->create(['level' => 10]);
+    $user         = User::factory()->create();
+    $partyPokemon = Pokemon::factory(6)->for($user)->inParty()->create();
 
     actingAs($user);
 
-    visit(route('web.pokemon.party'))
-        ->assertSee('Pikachu')
-        ->assertSee('Lv. 10');
+    $page = visit(route('web.pokemon.party'));
+
+    $partyPokemon->each(fn (Pokemon $pokemon) => $page
+        ->assertSee($pokemon->getName())
+        ->assertSee('Lv. ' . $pokemon->level)
+    );
 });
