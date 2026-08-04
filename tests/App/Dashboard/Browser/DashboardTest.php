@@ -6,12 +6,11 @@ use Shared\Models\User;
 
 use function Pest\Laravel\actingAs;
 
-it('loads the dashboard', function () {
+it('loads the dashboard page without errors', function () {
     actingAs(User::factory()->create());
 
-    $page = visit(route('web.dashboard.home'));
-
-    $page->assertNoSmoke()
+    visit(route('web.dashboard.home'))
+        ->assertNoSmoke()
         ->assertNoAccessibilityIssues()
-        ->assertSee('Dashboard');
+        ->assertSeeIn('@page-title', 'Dashboard');
 });

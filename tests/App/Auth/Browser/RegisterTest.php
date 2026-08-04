@@ -4,16 +4,18 @@ declare(strict_types=1);
 
 use Tests\App\Auth\RequestFactories\StoreRegisterRequestFactory;
 
+it('loads the register page without errors', function () {
+    visit(route('web.auth.register.create'))
+        ->assertNoSmoke()
+        ->assertNoAccessibilityIssues()
+        ->assertSeeIn('@auth-form-title', 'Create an account');
+});
+
 it('registers a new user', function () {
     $data = StoreRegisterRequestFactory::new()->create();
 
-    $page = visit(route('web.auth.register.create'));
-
-    $page->assertNoSmoke()
-        ->assertNoAccessibilityIssues()
-        ->assertSee('Create an account');
-
-    $page->fill('name', $data['name'])
+    visit(route('web.auth.register.create'))
+        ->fill('name', $data['name'])
         ->fill('email', $data['email'])
         ->fill('password', $data['password'])
         ->fill('password_confirmation', $data['password'])
@@ -24,9 +26,8 @@ it('registers a new user', function () {
 it('shows validation errors on registration', function () {
     $data = StoreRegisterRequestFactory::new()->withExistingEmail()->create();
 
-    $page = visit(route('web.auth.register.create'));
-
-    $page->fill('name', $data['name'])
+    visit(route('web.auth.register.create'))
+        ->fill('name', $data['name'])
         ->fill('email', $data['email'])
         ->fill('password', $data['password'])
         ->fill('password_confirmation', $data['password'])

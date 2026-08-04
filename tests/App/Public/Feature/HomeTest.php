@@ -6,7 +6,7 @@ use Inertia\Testing\AssertableInertia as Assert;
 
 use function Pest\Laravel\get;
 
-it('loads the public home page', function () {
+it('loads the public home page with expected structure', function () {
     get(route('web.public.home'))
         ->assertSuccessful()
         ->assertInertia(fn (Assert $page) => $page

@@ -2,10 +2,9 @@
 
 declare(strict_types=1);
 
-it('loads the public home page', function () {
-    $page = visit(route('web.public.home'));
-
-    $page->assertNoSmoke()
+it('loads the public home page without errors', function () {
+    visit(route('web.public.home'))
+        ->assertNoSmoke()
         ->assertNoAccessibilityIssues()
         ->assertSee('Pokemon Deluxe');
 });
