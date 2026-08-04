@@ -26,6 +26,7 @@ it('loads the party page with expected structure', function () {
             ->has('party', 3)
             ->where('party.0.id', $partyPokemon[0]->id)
             ->where('party.0.name', $partyPokemon[0]->getName())
+            ->where('party.0.frontSprite', $partyPokemon[0]->getFrontSprite())
             ->where('party.0.level', $partyPokemon[0]->level)
         );
 });
@@ -38,5 +39,19 @@ it('excludes box pokemon from the party', function () {
         ->get(route('web.pokemon.party'))
         ->assertInertia(fn (Assert $page) => $page
             ->has('party', 0)
+        );
+});
+
+it("shows only the authenticated user's party pokemon", function () {
+    $user    = User::factory()->create();
+    $pokemon = Pokemon::factory()->for($user)->inParty()->create();
+
+    Pokemon::factory(10)->inParty()->create();
+
+    actingAs($user)
+        ->get(route('web.pokemon.party'))
+        ->assertInertia(fn (Assert $page) => $page
+            ->has('party', 1)
+            ->where('party.0.id', $pokemon->id)
         );
 });
