@@ -8,12 +8,13 @@ use Database\Factories\PokedexFactory;
 use Illuminate\Database\Eloquent\Attributes\Table;
 use Illuminate\Database\Eloquent\Attributes\Unguarded;
 use Illuminate\Database\Eloquent\Casts\AsEnumCollection;
-use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Database\Eloquent\Collection as EloquentCollection;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Collection;
 use Override;
 use Shared\Enums\ElementalType;
 use Shared\Enums\Generation;
@@ -22,7 +23,7 @@ use Shared\ValueObjects\PokemonSprites;
 /**
  * @property string $id
  * @property string $name
- * @property array{ElementalType} | array{ElementalType, ElementalType} $types
+ * @property Collection<int, ElementalType> $types
  * @property int $national_dex_entry_number
  * @property string $genus
  * @property string $text_entry
@@ -38,8 +39,8 @@ use Shared\ValueObjects\PokemonSprites;
  * @property string $external_id
  * @property Carbon $created_at
  * @property Carbon $updated_at
- * @property-read Collection<int, PokedexEvolution> $evolutions
- * @property-read Collection<int, PokedexEvolution> $previousEvolutions
+ * @property-read EloquentCollection<int, PokedexEvolution> $evolutions
+ * @property-read EloquentCollection<int, PokedexEvolution> $previousEvolutions
  */
 #[Table('pokedex')]
 #[Unguarded]
