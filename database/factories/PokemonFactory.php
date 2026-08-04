@@ -32,4 +32,14 @@ final class PokemonFactory extends Factory
             'captured_at' => fake()->dateTimeBetween('-1 year', 'now'),
         ];
     }
+
+    public function inParty(): static
+    {
+        return $this->state(['in_party' => true]);
+    }
+
+    public function inBox(): static
+    {
+        return $this->state(['in_party' => false]);
+    }
 }

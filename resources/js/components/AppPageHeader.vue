@@ -1,6 +1,11 @@
 <template>
   <div class="flex flex-col gap-0.5">
-    <h1 class="text-2xl font-bold text-foreground">{{ title }}</h1>
+    <h1
+      class="text-2xl font-bold text-foreground"
+      data-testid="page-title"
+    >
+      {{ title }}
+    </h1>
     <p class="text-sm text-muted-foreground">
       {{ description }}
     </p>
