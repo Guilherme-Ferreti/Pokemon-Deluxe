@@ -16,7 +16,7 @@ final class BoxPageProps implements ProvidesInertiaProperties
     public function __construct(
         public Closure $box,
 
-        public SearchBoxFilters $searchFilters,
+        public SearchBoxFilters $activeFilters,
     ) {}
 
     /**
@@ -26,7 +26,7 @@ final class BoxPageProps implements ProvidesInertiaProperties
     {
         return [
             'box'           => fn () => $this->mapBox(),
-            'searchFilters' => fn () => $this->searchFilters,
+            'activeFilters' => fn () => $this->activeFilters,
             'filterOptions' => fn () => SearchBoxFilters::filterOptions(),
         ];
     }

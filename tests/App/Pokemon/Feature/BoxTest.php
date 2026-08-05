@@ -35,7 +35,7 @@ it('loads the box page with expected structure', function () {
         ->assertSuccessful()
         ->assertInertia(fn (Assert $page) => $page
             ->component('Pokemon/Box')
-            ->has('searchFilters')
+            ->has('activeFilters')
             ->has('filterOptions', fn (Assert $page) => $page->hasAll(['types', 'traits', 'generations', 'sort', 'dir']))
             ->has('box.data', $perPage)
             ->where('box.data.0.id', $newestPokemon->id)

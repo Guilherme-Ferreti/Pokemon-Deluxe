@@ -215,24 +215,24 @@ import { Popover, PopoverContent, PopoverTrigger } from './ui/popover';
 import { Tooltip, TooltipContent, TooltipTrigger } from './ui/tooltip';
 
 const props = defineProps<{
-  searchFilters: PokemonBoxPageProps['searchFilters'];
+  activeFilters: PokemonBoxPageProps['activeFilters'];
   filterOptions: PokemonBoxPageProps['filterOptions'];
 }>();
 
 const searchForm = useForm({
-  search: props.searchFilters.search,
-  types: props.searchFilters.types,
-  traits: props.searchFilters.traits,
-  generations: props.searchFilters.generations,
-  sort: props.searchFilters.sort,
-  dir: props.searchFilters.dir,
+  search: props.activeFilters.search,
+  types: props.activeFilters.types,
+  traits: props.activeFilters.traits,
+  generations: props.activeFilters.generations,
+  sort: props.activeFilters.sort,
+  dir: props.activeFilters.dir,
 });
 
 const activeFiltersCount = computed(
   () =>
-    props.searchFilters.generations.length +
-    props.searchFilters.traits.length +
-    props.searchFilters.types.length,
+    props.activeFilters.generations.length +
+    props.activeFilters.traits.length +
+    props.activeFilters.types.length,
 );
 
 watchDebounced(
@@ -299,7 +299,7 @@ function submitSearch() {
     .get(route('web.pokemon.box'), {
       preserveScroll: true,
       preserveState: true,
-      only: ['box', 'searchFilters'],
+      only: ['box', 'activeFilters'],
     });
 }
 </script>

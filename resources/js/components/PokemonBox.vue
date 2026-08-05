@@ -1,6 +1,6 @@
 <template>
   <PokemonBoxSearchBar
-    :search-filters="searchFilters"
+    :active-filters="activeFilters"
     :filter-options="filterOptions"
   />
   <template v-if="box.data.length > 0">
@@ -35,7 +35,7 @@ import PokemonBoxSearchBar from './PokemonBoxSearchBar.vue';
 
 defineProps<{
   box: PokemonBoxPageProps['box'];
-  searchFilters: PokemonBoxPageProps['searchFilters'];
+  activeFilters: PokemonBoxPageProps['activeFilters'];
   filterOptions: PokemonBoxPageProps['filterOptions'];
 }>();
 </script>

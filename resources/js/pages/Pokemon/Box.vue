@@ -7,7 +7,7 @@
   <AppSection>
     <PokemonBox
       :box="box"
-      :search-filters="searchFilters"
+      :active-filters="activeFilters"
       :filter-options="filterOptions"
     />
   </AppSection>
@@ -42,7 +42,7 @@ export interface PokemonBoxPageProps {
       name: string;
     }[];
   }>;
-  searchFilters: {
+  activeFilters: {
     search: string;
     types: ElementalType[];
     traits: PokemonTrait[];

@@ -21,7 +21,7 @@ final class BoxController extends Controller
 
         return inertia('Pokemon/Box')->with(new BoxPageProps(
             box: $box,
-            searchFilters: $searchBoxFilters,
+            activeFilters: $searchBoxFilters,
         ));
     }
 }
