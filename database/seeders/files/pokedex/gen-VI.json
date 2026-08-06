@@ -577,7 +577,7 @@
     "scatterbug": {
         "id": "scatterbug",
         "external_id": "scatterbug",
-        "name": "Scatterbug-icy-snow",
+        "name": "Scatterbug",
         "types": [
             "bug"
         ],
@@ -612,7 +612,7 @@
     "spewpa": {
         "id": "spewpa",
         "external_id": "spewpa",
-        "name": "Spewpa-icy-snow",
+        "name": "Spewpa",
         "types": [
             "bug"
         ],
