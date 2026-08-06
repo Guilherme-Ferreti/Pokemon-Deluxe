@@ -2,18 +2,51 @@
   <Card
     class="gap-2 border bg-card p-3 text-card-foreground shadow transition-shadow hover:shadow-md"
   >
-    <div class="flex gap-2">
+    <div class="grid grid-cols-[auto_1fr] gap-2">
       <img
         class="size-20 shrink-0"
         loading="lazy"
         :src="pokemon.frontSprite"
         :alt="pokemon.name"
       />
-      <div class="flex flex-col gap-1">
-        <p class="text-sm font-semibold text-foreground">
-          {{ pokemon.name }}
-        </p>
-        <ElementalTypeBadges :types="pokemon.pokedex.types" />
+      <div class="flex flex-col">
+        <div class="flex justify-between gap-1">
+          <p class="self-center text-sm font-semibold text-foreground">
+            {{ pokemon.name }}
+          </p>
+          <DropdownMenu>
+            <DropdownMenuTrigger as-child>
+              <Button
+                type="button"
+                variant="ghost"
+                size="icon-sm"
+                class="text-ring"
+              >
+                <IconDotsVertical />
+              </Button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent align="end">
+              <DropdownMenuItem as-child>
+                <AppNavLink
+                  title="View"
+                  url="#"
+                  :icon="IconEye"
+                />
+              </DropdownMenuItem>
+              <DropdownMenuItem as-child>
+                <AppNavLink
+                  title="Pokedex"
+                  url="#"
+                  :icon="IconBook"
+                />
+              </DropdownMenuItem>
+            </DropdownMenuContent>
+          </DropdownMenu>
+        </div>
+        <ElementalTypeBadges
+          class="mt-1.5"
+          :types="pokemon.pokedex.types"
+        />
       </div>
     </div>
     <div
@@ -46,9 +79,18 @@
 </template>
 
 <script setup lang="ts">
+import { IconBook, IconDotsVertical, IconEye } from '@tabler/icons-vue';
 import type { PokemonBoxPageProps } from '@/pages/Pokemon/Box.vue';
+import AppNavLink from './AppNavLink.vue';
 import ElementalTypeBadges from './ElementalTypeBadges.vue';
+import { Button } from './ui/button';
 import { Card } from './ui/card';
+import {
+  DropdownMenu,
+  DropdownMenuTrigger,
+  DropdownMenuContent,
+  DropdownMenuItem,
+} from './ui/dropdown-menu';
 
 defineProps<{
   pokemon: PokemonBoxPageProps['box']['data'][number];
