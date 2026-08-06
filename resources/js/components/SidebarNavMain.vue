@@ -11,7 +11,7 @@
             :tooltip="item.title"
             :data-active="isCurrentPage(item.url)"
           >
-            <SidebarNavLink
+            <AppNavLink
               :title="item.title"
               :url="item.url"
               :icon="item.icon"
@@ -49,7 +49,7 @@
                     as-child
                     :data-active="isCurrentPage(subItem.url)"
                   >
-                    <SidebarNavLink
+                    <AppNavLink
                       :title="subItem.title"
                       :url="subItem.url"
                       :icon="subItem.icon"
@@ -90,7 +90,7 @@ import {
 } from '@/components/ui/sidebar';
 import { isCurrentPage } from '@/lib/utils';
 import { route } from '@/types/helpers/route';
-import SidebarNavLink from './SidebarNavLink.vue';
+import AppNavLink from './AppNavLink.vue';
 
 const items = [
   {

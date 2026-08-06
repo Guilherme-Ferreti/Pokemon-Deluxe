@@ -49,10 +49,9 @@
           </DropdownMenuLabel>
           <DropdownMenuSeparator />
           <DropdownMenuGroup>
-            <DropdownMenuItem>
-              <SidebarNavLink
+            <DropdownMenuItem as-child>
+              <AppNavLink
                 title="Profile"
-                class="flex w-full items-center gap-2"
                 url="#"
                 :icon="IconUser"
               />
@@ -79,17 +78,19 @@
             </DropdownMenuSub>
           </DropdownMenuGroup>
           <DropdownMenuSeparator />
-          <DropdownMenuItem variant="destructive">
-            <Link
+          <DropdownMenuItem
+            variant="destructive"
+            as-child
+          >
+            <AppNavLink
+              title="Log out"
               method="post"
               as="button"
-              class="flex w-full items-center gap-2"
+              class="w-full"
               data-test="logout-button"
-              :href="route('web.auth.logout')"
-            >
-              <IconLogout />
-              Log out
-            </Link>
+              :icon="IconLogout"
+              :url="route('web.auth.logout')"
+            />
           </DropdownMenuItem>
         </DropdownMenuContent>
       </DropdownMenu>
@@ -98,7 +99,7 @@
 </template>
 
 <script setup lang="ts">
-import { Link, usePage } from '@inertiajs/vue3';
+import { usePage } from '@inertiajs/vue3';
 import {
   IconSelector,
   IconLogout,
@@ -128,7 +129,7 @@ import {
   useSidebar,
 } from '@/components/ui/sidebar';
 import { route } from '@/types/helpers/route';
-import SidebarNavLink from './SidebarNavLink.vue';
+import AppNavLink from './AppNavLink.vue';
 import DropdownMenuRadioGroup from './ui/dropdown-menu/DropdownMenuRadioGroup.vue';
 import DropdownMenuRadioItem from './ui/dropdown-menu/DropdownMenuRadioItem.vue';
 import DropdownMenuSubContent from './ui/dropdown-menu/DropdownMenuSubContent.vue';
