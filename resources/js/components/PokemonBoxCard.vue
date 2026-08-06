@@ -46,11 +46,11 @@
 </template>
 
 <script setup lang="ts">
+import type { PokemonBoxPageProps } from '@/pages/Pokemon/Box.vue';
 import ElementalTypeBadges from './ElementalTypeBadges.vue';
 import { Card } from './ui/card';
-import type { PokemonIndexPageProps } from '@/pages/Pokemon/Index.vue';
 
 defineProps<{
-  pokemon: PokemonIndexPageProps['pokemonBox']['data'][number];
+  pokemon: PokemonBoxPageProps['box']['data'][number];
 }>();
 </script>
