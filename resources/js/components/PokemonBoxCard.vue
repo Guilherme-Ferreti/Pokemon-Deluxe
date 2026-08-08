@@ -3,11 +3,9 @@
     class="gap-2 border bg-card p-3 text-card-foreground shadow transition-shadow hover:shadow-md"
   >
     <div class="grid grid-cols-[auto_1fr] gap-2">
-      <img
-        class="size-20 shrink-0"
-        loading="lazy"
-        :src="pokemon.frontSprite"
-        :alt="pokemon.name"
+      <AppPokemonSprite
+        :url="pokemon.frontSprite"
+        :name="pokemon.name"
       />
       <div class="flex flex-col">
         <div class="flex justify-between gap-1">
@@ -82,6 +80,7 @@
 import { IconBook, IconDotsVertical, IconEye } from '@tabler/icons-vue';
 import type { PokemonBoxPageProps } from '@/pages/Pokemon/Box.vue';
 import AppNavLink from './AppNavLink.vue';
+import AppPokemonSprite from './AppPokemonSprite.vue';
 import ElementalTypeBadges from './ElementalTypeBadges.vue';
 import { Button } from './ui/button';
 import { Card } from './ui/card';
