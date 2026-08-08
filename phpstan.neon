@@ -12,9 +12,3 @@ parameters:
         - tests/
 
     level: 7
-
-    ignoreErrors:
-        -
-            message: '#Access to an undefined property [a-zA-Z0-9\\_]+::\$not#' 
-            path: tests/Architectural/ArchitecturalTest.php
-            count: 6
