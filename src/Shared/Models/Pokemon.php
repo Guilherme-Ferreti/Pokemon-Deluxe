@@ -41,14 +41,17 @@ final class Pokemon extends Model
     use HasFactory, HasUuids;
 
     #[Override]
-    protected $casts = [
-        'level'       => 'integer',
-        'experience'  => 'integer',
-        'moves_ids'   => 'array',
-        'in_party'    => 'boolean',
-        'is_shiny'    => 'boolean',
-        'captured_at' => 'datetime',
-    ];
+    protected function casts(): array
+    {
+        return [
+            'level'       => 'integer',
+            'experience'  => 'integer',
+            'moves_ids'   => 'array',
+            'in_party'    => 'boolean',
+            'is_shiny'    => 'boolean',
+            'captured_at' => 'datetime',
+        ];
+    }
 
     /**
      * @return BelongsTo<User, $this>
