@@ -2,6 +2,7 @@
   <div class="flex flex-wrap gap-1">
     <Badge
       variant="secondary"
+      class="dark:border-none dark:bg-muted dark:text-foreground"
       :class="colors[types[0]]"
     >
       {{ labels[types[0]] }}
@@ -9,6 +10,7 @@
     <Badge
       v-if="types.length === 2"
       variant="secondary"
+      class="dark:border-none dark:bg-muted dark:text-foreground"
       :class="colors[types[1]]"
     >
       {{ labels[types[1]] }}
