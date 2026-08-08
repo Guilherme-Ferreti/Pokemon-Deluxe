@@ -69,18 +69,16 @@ it("only shows the authenticated user's pokemon", function () {
 });
 
 it('filters box pokemon by search query', function () {
-    $user       = User::factory()->create();
-    $pikachu    = Pokedex::factory()->create(['name' => 'Pikachu']);
-    $charmander = Pokedex::factory()->create(['name' => 'Charmander']);
+    $user = User::factory()->create();
 
-    Pokemon::factory()->for($user)->for($pikachu)->inBox()->create();
-    Pokemon::factory()->for($user)->for($charmander)->inBox()->create();
+    $pikachu    = Pokemon::factory()->for($user)->for(Pokedex::factory()->create(['name' => 'Pikachu']))->inBox()->create();
+    $charmander = Pokemon::factory()->for($user)->for(Pokedex::factory()->create(['name' => 'Charmander']))->inBox()->create();
 
     actingAs($user)
         ->get(route('web.pokemon.box', ['search' => 'Pikachu']))
         ->assertInertia(fn (Assert $page) => $page
             ->has('box.data', 1)
-            ->where('box.data.0.name', 'Pikachu')
+            ->where('box.data.0.id', $pikachu->id)
         );
 });
 
