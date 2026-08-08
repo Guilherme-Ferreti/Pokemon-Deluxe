@@ -20,13 +20,11 @@ final class UserSeeder extends Seeder
         ]);
 
         $pokemonInParty = Pokedex::query()
-            ->whereNotNull('sprites->front_default')
             ->inRandomOrder()
             ->take(3)
             ->get();
 
         $pokemonBox = Pokedex::query()
-            ->whereNotNull('sprites->front_default')
             ->whereNotIn('id', $pokemonInParty->pluck('id')->toArray())
             ->inRandomOrder()
             ->get();
@@ -36,8 +34,8 @@ final class UserSeeder extends Seeder
             ->take(3)
             ->get();
 
-        $pokemonInParty->each(fn (Pokedex $pokedex) => Pokemon::factory()->for($user)->for($pokedex)->recycle($pokeballs)->create(['in_party' => true]));
+        $pokemonInParty->each(fn (Pokedex $pokedex) => Pokemon::factory()->for($user)->for($pokedex)->inBox()->recycle($pokeballs)->create());
 
-        $pokemonBox->each(fn (Pokedex $pokedex) => Pokemon::factory()->for($user)->for($pokedex)->recycle($pokeballs)->create(['in_party' => false]));
+        $pokemonBox->each(fn (Pokedex $pokedex) => Pokemon::factory()->for($user)->for($pokedex)->inParty()->recycle($pokeballs)->create());
     }
 }
