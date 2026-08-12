@@ -1075,7 +1075,7 @@
     "mothim": {
         "id": "mothim",
         "external_id": "mothim",
-        "name": "Mothim-plant",
+        "name": "Mothim",
         "types": [
             "bug",
             "flying"

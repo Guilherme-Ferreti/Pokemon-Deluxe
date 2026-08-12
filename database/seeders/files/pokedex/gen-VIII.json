@@ -4199,5 +4199,668 @@
         "generation": 8,
         "capture_rate": 3,
         "evolutions": []
+    },
+    "meowth-galar": {
+        "id": "meowth-galar",
+        "external_id": "meowth-galar",
+        "name": "Galarian Meowth",
+        "types": [
+            "steel"
+        ],
+        "national_dex_entry_number": 52,
+        "genus": "Scratch Cat Pokémon",
+        "flavor_text": "It loves to collect shiny things. If it’s in a good mood, it might even let its Trainer have a look at its hoard of treasures.",
+        "sprites": {
+            "back_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/10161.png",
+            "back_female": null,
+            "back_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/shiny/10161.png",
+            "back_shiny_female": null,
+            "front_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10161.png",
+            "front_female": null,
+            "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/10161.png",
+            "front_shiny_female": null
+        },
+        "is_baby": false,
+        "is_legendary": false,
+        "is_mythical": false,
+        "is_mega": false,
+        "is_gmax": false,
+        "generation": 8,
+        "capture_rate": 255,
+        "evolutions": [
+            {
+                "evolves_to": "perrserker",
+                "item": null,
+                "min_level": 28
+            }
+        ]
+    },
+    "ponyta-galar": {
+        "id": "ponyta-galar",
+        "external_id": "ponyta-galar",
+        "name": "Galarian Ponyta",
+        "types": [
+            "psychic"
+        ],
+        "national_dex_entry_number": 77,
+        "genus": "Fire Horse Pokémon",
+        "flavor_text": "These Pokémon live in herds out in the grassland. Newborn foals lack their fiery manes, which will develop about an hour after birth.",
+        "sprites": {
+            "back_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/10162.png",
+            "back_female": null,
+            "back_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/shiny/10162.png",
+            "back_shiny_female": null,
+            "front_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10162.png",
+            "front_female": null,
+            "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/10162.png",
+            "front_shiny_female": null
+        },
+        "is_baby": false,
+        "is_legendary": false,
+        "is_mythical": false,
+        "is_mega": false,
+        "is_gmax": false,
+        "generation": 8,
+        "capture_rate": 190,
+        "evolutions": [
+            {
+                "evolves_to": "rapidash-galar",
+                "item": null,
+                "min_level": 40
+            }
+        ]
+    },
+    "rapidash-galar": {
+        "id": "rapidash-galar",
+        "external_id": "rapidash-galar",
+        "name": "Galarian Rapidash",
+        "types": [
+            "psychic",
+            "fairy"
+        ],
+        "national_dex_entry_number": 78,
+        "genus": "Fire Horse Pokémon",
+        "flavor_text": "Fiery mane aglow, Rapidash darts like an arrow across the land. This prodigiously swift creature can traverse the vast region of Hisui in a day and a half.",
+        "sprites": {
+            "back_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/10163.png",
+            "back_female": null,
+            "back_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/shiny/10163.png",
+            "back_shiny_female": null,
+            "front_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10163.png",
+            "front_female": null,
+            "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/10163.png",
+            "front_shiny_female": null
+        },
+        "is_baby": false,
+        "is_legendary": false,
+        "is_mythical": false,
+        "is_mega": false,
+        "is_gmax": false,
+        "generation": 8,
+        "capture_rate": 60,
+        "evolutions": []
+    },
+    "slowpoke-galar": {
+        "id": "slowpoke-galar",
+        "external_id": "slowpoke-galar",
+        "name": "Galarian Slowpoke",
+        "types": [
+            "psychic"
+        ],
+        "national_dex_entry_number": 79,
+        "genus": "Dopey Pokémon",
+        "flavor_text": "When this Pokémon’s tail is soaked in water, sweetness seeps from it. Slowpoke uses this trait to lure in and fish up other Pokémon.",
+        "sprites": {
+            "back_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/10164.png",
+            "back_female": null,
+            "back_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/shiny/10164.png",
+            "back_shiny_female": null,
+            "front_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10164.png",
+            "front_female": null,
+            "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/10164.png",
+            "front_shiny_female": null
+        },
+        "is_baby": false,
+        "is_legendary": false,
+        "is_mythical": false,
+        "is_mega": false,
+        "is_gmax": false,
+        "generation": 8,
+        "capture_rate": 190,
+        "evolutions": [
+            {
+                "evolves_to": "slowbro-galar",
+                "item": null,
+                "min_level": 37
+            },
+            {
+                "evolves_to": "slowking-galar",
+                "item": "kings-rock",
+                "min_level": null
+            }
+        ]
+    },
+    "slowbro-galar": {
+        "id": "slowbro-galar",
+        "external_id": "slowbro-galar",
+        "name": "Galarian Slowbro",
+        "types": [
+            "poison",
+            "psychic"
+        ],
+        "national_dex_entry_number": 80,
+        "genus": "Hermit Crab Pokémon",
+        "flavor_text": "Being bitten by a Shellder shocked this Pokémon into standing on two legs. If the Shellder lets go, it seems Slowbro will turn back into a Slowpoke.",
+        "sprites": {
+            "back_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/10165.png",
+            "back_female": null,
+            "back_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/shiny/10165.png",
+            "back_shiny_female": null,
+            "front_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10165.png",
+            "front_female": null,
+            "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/10165.png",
+            "front_shiny_female": null
+        },
+        "is_baby": false,
+        "is_legendary": false,
+        "is_mythical": false,
+        "is_mega": false,
+        "is_gmax": false,
+        "generation": 8,
+        "capture_rate": 75,
+        "evolutions": []
+    },
+    "farfetchd-galar": {
+        "id": "farfetchd-galar",
+        "external_id": "farfetchd-galar",
+        "name": "Galarian Farfetch’d",
+        "types": [
+            "fighting"
+        ],
+        "national_dex_entry_number": 83,
+        "genus": "Wild Duck Pokémon",
+        "flavor_text": "They use a plant stalk as a weapon, but not all of them use it in the same way. Several distinct styles of stalk fighting have been observed.",
+        "sprites": {
+            "back_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/10166.png",
+            "back_female": null,
+            "back_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/shiny/10166.png",
+            "back_shiny_female": null,
+            "front_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10166.png",
+            "front_female": null,
+            "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/10166.png",
+            "front_shiny_female": null
+        },
+        "is_baby": false,
+        "is_legendary": false,
+        "is_mythical": false,
+        "is_mega": false,
+        "is_gmax": false,
+        "generation": 8,
+        "capture_rate": 45,
+        "evolutions": [
+            {
+                "evolves_to": "sirfetchd",
+                "item": null,
+                "min_level": 30
+            }
+        ]
+    },
+    "weezing-galar": {
+        "id": "weezing-galar",
+        "external_id": "weezing-galar",
+        "name": "Galarian Weezing",
+        "types": [
+            "poison",
+            "fairy"
+        ],
+        "national_dex_entry_number": 110,
+        "genus": "Poison Gas Pokémon",
+        "flavor_text": "It can’t suck in air quite as well as a Galarian Weezing, but the toxins it creates are more potent than those of its counterpart.",
+        "sprites": {
+            "back_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/10167.png",
+            "back_female": null,
+            "back_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/shiny/10167.png",
+            "back_shiny_female": null,
+            "front_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10167.png",
+            "front_female": null,
+            "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/10167.png",
+            "front_shiny_female": null
+        },
+        "is_baby": false,
+        "is_legendary": false,
+        "is_mythical": false,
+        "is_mega": false,
+        "is_gmax": false,
+        "generation": 8,
+        "capture_rate": 60,
+        "evolutions": []
+    },
+    "mr-mime-galar": {
+        "id": "mr-mime-galar",
+        "external_id": "mr-mime-galar",
+        "name": "Galarian Mr. Mime",
+        "types": [
+            "ice",
+            "psychic"
+        ],
+        "national_dex_entry_number": 122,
+        "genus": "Barrier Pokémon",
+        "flavor_text": "The behavior of this clown-like Pokémon reminds one of pantomime. It creates invisible walls using a force emitted from its fingertips.",
+        "sprites": {
+            "back_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/10168.png",
+            "back_female": null,
+            "back_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/shiny/10168.png",
+            "back_shiny_female": null,
+            "front_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10168.png",
+            "front_female": null,
+            "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/10168.png",
+            "front_shiny_female": null
+        },
+        "is_baby": false,
+        "is_legendary": false,
+        "is_mythical": false,
+        "is_mega": false,
+        "is_gmax": false,
+        "generation": 8,
+        "capture_rate": 45,
+        "evolutions": [
+            {
+                "evolves_to": "mr-rime",
+                "item": null,
+                "min_level": 42
+            }
+        ]
+    },
+    "articuno-galar": {
+        "id": "articuno-galar",
+        "external_id": "articuno-galar",
+        "name": "Galarian Articuno",
+        "types": [
+            "psychic",
+            "flying"
+        ],
+        "national_dex_entry_number": 144,
+        "genus": "Freeze Pokémon",
+        "flavor_text": "This Pokémon can control ice at will. Articuno is said to live in snowy mountains riddled with permafrost.",
+        "sprites": {
+            "back_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/10169.png",
+            "back_female": null,
+            "back_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/shiny/10169.png",
+            "back_shiny_female": null,
+            "front_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10169.png",
+            "front_female": null,
+            "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/10169.png",
+            "front_shiny_female": null
+        },
+        "is_baby": false,
+        "is_legendary": true,
+        "is_mythical": false,
+        "is_mega": false,
+        "is_gmax": false,
+        "generation": 8,
+        "capture_rate": 3,
+        "evolutions": []
+    },
+    "zapdos-galar": {
+        "id": "zapdos-galar",
+        "external_id": "zapdos-galar",
+        "name": "Galarian Zapdos",
+        "types": [
+            "fighting",
+            "flying"
+        ],
+        "national_dex_entry_number": 145,
+        "genus": "Electric Pokémon",
+        "flavor_text": "Zapdos is a legendary bird Pokémon. It’s said that when Zapdos rubs its feathers together, lightning will fall immediately after.",
+        "sprites": {
+            "back_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/10170.png",
+            "back_female": null,
+            "back_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/shiny/10170.png",
+            "back_shiny_female": null,
+            "front_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10170.png",
+            "front_female": null,
+            "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/10170.png",
+            "front_shiny_female": null
+        },
+        "is_baby": false,
+        "is_legendary": true,
+        "is_mythical": false,
+        "is_mega": false,
+        "is_gmax": false,
+        "generation": 8,
+        "capture_rate": 3,
+        "evolutions": []
+    },
+    "moltres-galar": {
+        "id": "moltres-galar",
+        "external_id": "moltres-galar",
+        "name": "Galarian Moltres",
+        "types": [
+            "dark",
+            "flying"
+        ],
+        "national_dex_entry_number": 146,
+        "genus": "Flame Pokémon",
+        "flavor_text": "There are stories of this Pokémon using its radiant, flame-cloaked wings to light up paths for those lost in the mountains.",
+        "sprites": {
+            "back_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/10171.png",
+            "back_female": null,
+            "back_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/shiny/10171.png",
+            "back_shiny_female": null,
+            "front_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10171.png",
+            "front_female": null,
+            "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/10171.png",
+            "front_shiny_female": null
+        },
+        "is_baby": false,
+        "is_legendary": true,
+        "is_mythical": false,
+        "is_mega": false,
+        "is_gmax": false,
+        "generation": 8,
+        "capture_rate": 3,
+        "evolutions": []
+    },
+    "slowking-galar": {
+        "id": "slowking-galar",
+        "external_id": "slowking-galar",
+        "name": "Galarian Slowking",
+        "types": [
+            "poison",
+            "psychic"
+        ],
+        "national_dex_entry_number": 199,
+        "genus": "Royal Pokémon",
+        "flavor_text": "Slowking can solve any problem presented to it, but no one can understand a thing Slowking says.",
+        "sprites": {
+            "back_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/10172.png",
+            "back_female": null,
+            "back_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/shiny/10172.png",
+            "back_shiny_female": null,
+            "front_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10172.png",
+            "front_female": null,
+            "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/10172.png",
+            "front_shiny_female": null
+        },
+        "is_baby": false,
+        "is_legendary": false,
+        "is_mythical": false,
+        "is_mega": false,
+        "is_gmax": false,
+        "generation": 8,
+        "capture_rate": 70,
+        "evolutions": []
+    },
+    "corsola-galar": {
+        "id": "corsola-galar",
+        "external_id": "corsola-galar",
+        "name": "Galarian Corsola",
+        "types": [
+            "ghost"
+        ],
+        "national_dex_entry_number": 222,
+        "genus": "Coral Pokémon",
+        "flavor_text": "These Pokémon live in warm seas. In prehistoric times, many lived in the oceans around the Galar region as well.",
+        "sprites": {
+            "back_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/10173.png",
+            "back_female": null,
+            "back_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/shiny/10173.png",
+            "back_shiny_female": null,
+            "front_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10173.png",
+            "front_female": null,
+            "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/10173.png",
+            "front_shiny_female": null
+        },
+        "is_baby": false,
+        "is_legendary": false,
+        "is_mythical": false,
+        "is_mega": false,
+        "is_gmax": false,
+        "generation": 8,
+        "capture_rate": 60,
+        "evolutions": [
+            {
+                "evolves_to": "cursola",
+                "item": null,
+                "min_level": 38
+            }
+        ]
+    },
+    "zigzagoon-galar": {
+        "id": "zigzagoon-galar",
+        "external_id": "zigzagoon-galar",
+        "name": "Galarian Zigzagoon",
+        "types": [
+            "dark",
+            "normal"
+        ],
+        "national_dex_entry_number": 263,
+        "genus": "Tiny Raccoon Pokémon",
+        "flavor_text": "Zigzagoon that adapted to regions outside Galar acquired this appearance. If you’ve lost something, this Pokémon can likely find it.",
+        "sprites": {
+            "back_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/10174.png",
+            "back_female": null,
+            "back_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/shiny/10174.png",
+            "back_shiny_female": null,
+            "front_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10174.png",
+            "front_female": null,
+            "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/10174.png",
+            "front_shiny_female": null
+        },
+        "is_baby": false,
+        "is_legendary": false,
+        "is_mythical": false,
+        "is_mega": false,
+        "is_gmax": false,
+        "generation": 8,
+        "capture_rate": 255,
+        "evolutions": [
+            {
+                "evolves_to": "linoone-galar",
+                "item": null,
+                "min_level": 20
+            }
+        ]
+    },
+    "linoone-galar": {
+        "id": "linoone-galar",
+        "external_id": "linoone-galar",
+        "name": "Galarian Linoone",
+        "types": [
+            "dark",
+            "normal"
+        ],
+        "national_dex_entry_number": 264,
+        "genus": "Rushing Pokémon",
+        "flavor_text": "It uses its explosive speed and razor-sharp claws to bring down prey. Running along winding paths is not its strong suit.",
+        "sprites": {
+            "back_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/10175.png",
+            "back_female": null,
+            "back_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/shiny/10175.png",
+            "back_shiny_female": null,
+            "front_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10175.png",
+            "front_female": null,
+            "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/10175.png",
+            "front_shiny_female": null
+        },
+        "is_baby": false,
+        "is_legendary": false,
+        "is_mythical": false,
+        "is_mega": false,
+        "is_gmax": false,
+        "generation": 8,
+        "capture_rate": 90,
+        "evolutions": [
+            {
+                "evolves_to": "obstagoon",
+                "item": null,
+                "min_level": 35
+            }
+        ]
+    },
+    "darumaka-galar": {
+        "id": "darumaka-galar",
+        "external_id": "darumaka-galar",
+        "name": "Galarian Darumaka",
+        "types": [
+            "ice"
+        ],
+        "national_dex_entry_number": 554,
+        "genus": "Zen Charm Pokémon",
+        "flavor_text": "This popular symbol of good fortune will never fall over in its sleep, no matter how it’s pushed or pulled.",
+        "sprites": {
+            "back_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/10176.png",
+            "back_female": null,
+            "back_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/shiny/10176.png",
+            "back_shiny_female": null,
+            "front_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10176.png",
+            "front_female": null,
+            "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/10176.png",
+            "front_shiny_female": null
+        },
+        "is_baby": false,
+        "is_legendary": false,
+        "is_mythical": false,
+        "is_mega": false,
+        "is_gmax": false,
+        "generation": 8,
+        "capture_rate": 120,
+        "evolutions": [
+            {
+                "evolves_to": "darmanitan-galar-standard",
+                "item": "ice-stone",
+                "min_level": 35
+            },
+            {
+                "evolves_to": "darmanitan-galar-zen",
+                "item": "ice-stone",
+                "min_level": 35
+            }
+        ]
+    },
+    "darmanitan-galar-standard": {
+        "id": "darmanitan-galar-standard",
+        "external_id": "darmanitan-galar-standard",
+        "name": "Galarian Darmanitan",
+        "types": [
+            "ice"
+        ],
+        "national_dex_entry_number": 555,
+        "genus": "Blazing Pokémon",
+        "flavor_text": "This Pokémon’s power level rises along with the temperature of its fire, which can reach 2,500 degrees Fahrenheit.",
+        "sprites": {
+            "back_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/10177.png",
+            "back_female": null,
+            "back_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/shiny/10177.png",
+            "back_shiny_female": null,
+            "front_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10177.png",
+            "front_female": null,
+            "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/10177.png",
+            "front_shiny_female": null
+        },
+        "is_baby": false,
+        "is_legendary": false,
+        "is_mythical": false,
+        "is_mega": false,
+        "is_gmax": false,
+        "generation": 8,
+        "capture_rate": 60,
+        "evolutions": []
+    },
+    "darmanitan-galar-zen": {
+        "id": "darmanitan-galar-zen",
+        "external_id": "darmanitan-galar-zen",
+        "name": "Galarian Darmanitan (Zen Mode)",
+        "types": [
+            "ice",
+            "fire"
+        ],
+        "national_dex_entry_number": 555,
+        "genus": "Blazing Pokémon",
+        "flavor_text": "This Pokémon’s power level rises along with the temperature of its fire, which can reach 2,500 degrees Fahrenheit.",
+        "sprites": {
+            "back_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/10178.png",
+            "back_female": null,
+            "back_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/shiny/10178.png",
+            "back_shiny_female": null,
+            "front_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10178.png",
+            "front_female": null,
+            "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/10178.png",
+            "front_shiny_female": null
+        },
+        "is_baby": false,
+        "is_legendary": false,
+        "is_mythical": false,
+        "is_mega": false,
+        "is_gmax": false,
+        "generation": 8,
+        "capture_rate": 60,
+        "evolutions": []
+    },
+    "yamask-galar": {
+        "id": "yamask-galar",
+        "external_id": "yamask-galar",
+        "name": "Galarian Yamask",
+        "types": [
+            "ground",
+            "ghost"
+        ],
+        "national_dex_entry_number": 562,
+        "genus": "Spirit Pokémon",
+        "flavor_text": "The spirit of a person from a bygone age became this Pokémon. It rambles through ruins, searching for someone who knows its face.",
+        "sprites": {
+            "back_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/10179.png",
+            "back_female": null,
+            "back_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/shiny/10179.png",
+            "back_shiny_female": null,
+            "front_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10179.png",
+            "front_female": null,
+            "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/10179.png",
+            "front_shiny_female": null
+        },
+        "is_baby": false,
+        "is_legendary": false,
+        "is_mythical": false,
+        "is_mega": false,
+        "is_gmax": false,
+        "generation": 8,
+        "capture_rate": 190,
+        "evolutions": [
+            {
+                "evolves_to": "runerigus",
+                "item": "dusk-stone",
+                "min_level": null
+            }
+        ]
+    },
+    "stunfisk-galar": {
+        "id": "stunfisk-galar",
+        "external_id": "stunfisk-galar",
+        "name": "Galarian Stunfisk",
+        "types": [
+            "ground",
+            "steel"
+        ],
+        "national_dex_entry_number": 618,
+        "genus": "Trap Pokémon",
+        "flavor_text": "For some reason, this Pokémon smiles slightly when it emits a strong electric current from the yellow markings on its body.",
+        "sprites": {
+            "back_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/10180.png",
+            "back_female": null,
+            "back_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/shiny/10180.png",
+            "back_shiny_female": null,
+            "front_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10180.png",
+            "front_female": null,
+            "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/10180.png",
+            "front_shiny_female": null
+        },
+        "is_baby": false,
+        "is_legendary": false,
+        "is_mythical": false,
+        "is_mega": false,
+        "is_gmax": false,
+        "generation": 8,
+        "capture_rate": 75,
+        "evolutions": []
     }
 }

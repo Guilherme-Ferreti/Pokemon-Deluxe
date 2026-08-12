@@ -4476,5 +4476,130 @@
         "generation": 9,
         "capture_rate": 3,
         "evolutions": []
+    },
+    "tauros-paldea-combat-breed": {
+        "id": "tauros-paldea-combat-breed",
+        "external_id": "tauros-paldea-combat-breed",
+        "name": "Paldean Tauros (Combat Breed)",
+        "types": [
+            "fighting"
+        ],
+        "national_dex_entry_number": 128,
+        "genus": "Wild Bull Pokémon",
+        "flavor_text": "The Tauros of the Galar region are volatile in nature, and they won’t allow people to ride on their backs.",
+        "sprites": {
+            "back_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/10250.png",
+            "back_female": null,
+            "back_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/shiny/10250.png",
+            "back_shiny_female": null,
+            "front_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10250.png",
+            "front_female": null,
+            "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/10250.png",
+            "front_shiny_female": null
+        },
+        "is_baby": false,
+        "is_legendary": false,
+        "is_mythical": false,
+        "is_mega": false,
+        "is_gmax": false,
+        "generation": 9,
+        "capture_rate": 45,
+        "evolutions": []
+    },
+    "tauros-paldea-blaze-breed": {
+        "id": "tauros-paldea-blaze-breed",
+        "external_id": "tauros-paldea-blaze-breed",
+        "name": "Paldean Tauros (Blaze Breed)",
+        "types": [
+            "fighting",
+            "fire"
+        ],
+        "national_dex_entry_number": 128,
+        "genus": "Wild Bull Pokémon",
+        "flavor_text": "The Tauros of the Galar region are volatile in nature, and they won’t allow people to ride on their backs.",
+        "sprites": {
+            "back_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/10251.png",
+            "back_female": null,
+            "back_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/shiny/10251.png",
+            "back_shiny_female": null,
+            "front_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10251.png",
+            "front_female": null,
+            "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/10251.png",
+            "front_shiny_female": null
+        },
+        "is_baby": false,
+        "is_legendary": false,
+        "is_mythical": false,
+        "is_mega": false,
+        "is_gmax": false,
+        "generation": 9,
+        "capture_rate": 45,
+        "evolutions": []
+    },
+    "tauros-paldea-aqua-breed": {
+        "id": "tauros-paldea-aqua-breed",
+        "external_id": "tauros-paldea-aqua-breed",
+        "name": "Paldean Tauros (Aqua Breed)",
+        "types": [
+            "fighting",
+            "water"
+        ],
+        "national_dex_entry_number": 128,
+        "genus": "Wild Bull Pokémon",
+        "flavor_text": "The Tauros of the Galar region are volatile in nature, and they won’t allow people to ride on their backs.",
+        "sprites": {
+            "back_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/10252.png",
+            "back_female": null,
+            "back_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/shiny/10252.png",
+            "back_shiny_female": null,
+            "front_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10252.png",
+            "front_female": null,
+            "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/10252.png",
+            "front_shiny_female": null
+        },
+        "is_baby": false,
+        "is_legendary": false,
+        "is_mythical": false,
+        "is_mega": false,
+        "is_gmax": false,
+        "generation": 9,
+        "capture_rate": 45,
+        "evolutions": []
+    },
+    "wooper-paldea": {
+        "id": "wooper-paldea",
+        "external_id": "wooper-paldea",
+        "name": "Paldean Wooper",
+        "types": [
+            "poison",
+            "ground"
+        ],
+        "national_dex_entry_number": 194,
+        "genus": "Water Fish Pokémon",
+        "flavor_text": "When walking on land, it covers its body with a poisonous film that keeps its skin from dehydrating.",
+        "sprites": {
+            "back_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/10253.png",
+            "back_female": null,
+            "back_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/shiny/10253.png",
+            "back_shiny_female": null,
+            "front_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10253.png",
+            "front_female": null,
+            "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/10253.png",
+            "front_shiny_female": null
+        },
+        "is_baby": false,
+        "is_legendary": false,
+        "is_mythical": false,
+        "is_mega": false,
+        "is_gmax": false,
+        "generation": 9,
+        "capture_rate": 255,
+        "evolutions": [
+            {
+                "evolves_to": "clodsire",
+                "item": null,
+                "min_level": 20
+            }
+        ]
     }
 }

@@ -507,42 +507,6 @@
             }
         ]
     },
-    "zigzagoon-galar": {
-        "id": "zigzagoon-galar",
-        "external_id": "zigzagoon-galar",
-        "name": "Galarian Zigzagoon",
-        "types": [
-            "dark",
-            "normal"
-        ],
-        "national_dex_entry_number": 263,
-        "genus": "Tiny Raccoon Pokémon",
-        "flavor_text": "Zigzagoon that adapted to regions outside Galar acquired this appearance. If you’ve lost something, this Pokémon can likely find it.",
-        "sprites": {
-            "back_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/10174.png",
-            "back_female": null,
-            "back_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/shiny/10174.png",
-            "back_shiny_female": null,
-            "front_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10174.png",
-            "front_female": null,
-            "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/10174.png",
-            "front_shiny_female": null
-        },
-        "is_baby": false,
-        "is_legendary": false,
-        "is_mythical": false,
-        "is_mega": false,
-        "is_gmax": false,
-        "generation": 3,
-        "capture_rate": 255,
-        "evolutions": [
-            {
-                "evolves_to": "linoone-galar",
-                "item": null,
-                "min_level": 20
-            }
-        ]
-    },
     "linoone": {
         "id": "linoone",
         "external_id": "linoone",
@@ -571,42 +535,6 @@
         "generation": 3,
         "capture_rate": 90,
         "evolutions": []
-    },
-    "linoone-galar": {
-        "id": "linoone-galar",
-        "external_id": "linoone-galar",
-        "name": "Galarian Linoone",
-        "types": [
-            "dark",
-            "normal"
-        ],
-        "national_dex_entry_number": 264,
-        "genus": "Rushing Pokémon",
-        "flavor_text": "It uses its explosive speed and razor-sharp claws to bring down prey. Running along winding paths is not its strong suit.",
-        "sprites": {
-            "back_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/10175.png",
-            "back_female": null,
-            "back_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/shiny/10175.png",
-            "back_shiny_female": null,
-            "front_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10175.png",
-            "front_female": null,
-            "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/10175.png",
-            "front_shiny_female": null
-        },
-        "is_baby": false,
-        "is_legendary": false,
-        "is_mythical": false,
-        "is_mega": false,
-        "is_gmax": false,
-        "generation": 3,
-        "capture_rate": 90,
-        "evolutions": [
-            {
-                "evolves_to": "obstagoon",
-                "item": null,
-                "min_level": 35
-            }
-        ]
     },
     "wurmple": {
         "id": "wurmple",

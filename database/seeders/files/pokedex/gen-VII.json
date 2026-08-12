@@ -3814,5 +3814,590 @@
         "generation": 7,
         "capture_rate": null,
         "evolutions": []
+    },
+    "rattata-alola": {
+        "id": "rattata-alola",
+        "external_id": "rattata-alola",
+        "name": "Alolan Rattata",
+        "types": [
+            "dark",
+            "normal"
+        ],
+        "national_dex_entry_number": 19,
+        "genus": "Mouse Pokémon",
+        "flavor_text": "Will chew on anything with its fangs. If you see one, you can be certain that 40 more live in the area.",
+        "sprites": {
+            "back_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/10091.png",
+            "back_female": null,
+            "back_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/shiny/10091.png",
+            "back_shiny_female": null,
+            "front_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10091.png",
+            "front_female": null,
+            "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/10091.png",
+            "front_shiny_female": null
+        },
+        "is_baby": false,
+        "is_legendary": false,
+        "is_mythical": false,
+        "is_mega": false,
+        "is_gmax": false,
+        "generation": 7,
+        "capture_rate": 255,
+        "evolutions": [
+            {
+                "evolves_to": "raticate-alola",
+                "item": null,
+                "min_level": 20
+            }
+        ]
+    },
+    "raticate-alola": {
+        "id": "raticate-alola",
+        "external_id": "raticate-alola",
+        "name": "Alolan Raticate",
+        "types": [
+            "dark",
+            "normal"
+        ],
+        "national_dex_entry_number": 20,
+        "genus": "Mouse Pokémon",
+        "flavor_text": "Its hind feet are webbed. They act as flippers, so it can swim in rivers and hunt for prey.",
+        "sprites": {
+            "back_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/10092.png",
+            "back_female": null,
+            "back_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/shiny/10092.png",
+            "back_shiny_female": null,
+            "front_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10092.png",
+            "front_female": null,
+            "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/10092.png",
+            "front_shiny_female": null
+        },
+        "is_baby": false,
+        "is_legendary": false,
+        "is_mythical": false,
+        "is_mega": false,
+        "is_gmax": false,
+        "generation": 7,
+        "capture_rate": 127,
+        "evolutions": []
+    },
+    "raichu-alola": {
+        "id": "raichu-alola",
+        "external_id": "raichu-alola",
+        "name": "Alolan Raichu",
+        "types": [
+            "electric",
+            "psychic"
+        ],
+        "national_dex_entry_number": 26,
+        "genus": "Mouse Pokémon",
+        "flavor_text": "It can discharge bursts of electricity exceeding 100,000 volts— a single strike with that amount of power would incapacitate one of the Copperajah of my homeland.",
+        "sprites": {
+            "back_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/10100.png",
+            "back_female": null,
+            "back_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/shiny/10100.png",
+            "back_shiny_female": null,
+            "front_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10100.png",
+            "front_female": null,
+            "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/10100.png",
+            "front_shiny_female": null
+        },
+        "is_baby": false,
+        "is_legendary": false,
+        "is_mythical": false,
+        "is_mega": false,
+        "is_gmax": false,
+        "generation": 7,
+        "capture_rate": 75,
+        "evolutions": []
+    },
+    "sandshrew-alola": {
+        "id": "sandshrew-alola",
+        "external_id": "sandshrew-alola",
+        "name": "Alolan Sandshrew",
+        "types": [
+            "ice",
+            "steel"
+        ],
+        "national_dex_entry_number": 27,
+        "genus": "Mouse Pokémon",
+        "flavor_text": "It burrows into the ground to create its nest. If hard stones impede its tunneling, it uses its sharp claws to shatter them and then carries on digging.",
+        "sprites": {
+            "back_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/10101.png",
+            "back_female": null,
+            "back_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/shiny/10101.png",
+            "back_shiny_female": null,
+            "front_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10101.png",
+            "front_female": null,
+            "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/10101.png",
+            "front_shiny_female": null
+        },
+        "is_baby": false,
+        "is_legendary": false,
+        "is_mythical": false,
+        "is_mega": false,
+        "is_gmax": false,
+        "generation": 7,
+        "capture_rate": 255,
+        "evolutions": [
+            {
+                "evolves_to": "sandslash-alola",
+                "item": "ice-stone",
+                "min_level": null
+            }
+        ]
+    },
+    "sandslash-alola": {
+        "id": "sandslash-alola",
+        "external_id": "sandslash-alola",
+        "name": "Alolan Sandslash",
+        "types": [
+            "ice",
+            "steel"
+        ],
+        "national_dex_entry_number": 28,
+        "genus": "Mouse Pokémon",
+        "flavor_text": "It climbs trees by hooking on with its sharp claws. Sandslash shares the berries it gathers, dropping them down to Sandshrew waiting below the tree.",
+        "sprites": {
+            "back_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/10102.png",
+            "back_female": null,
+            "back_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/shiny/10102.png",
+            "back_shiny_female": null,
+            "front_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10102.png",
+            "front_female": null,
+            "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/10102.png",
+            "front_shiny_female": null
+        },
+        "is_baby": false,
+        "is_legendary": false,
+        "is_mythical": false,
+        "is_mega": false,
+        "is_gmax": false,
+        "generation": 7,
+        "capture_rate": 90,
+        "evolutions": []
+    },
+    "vulpix-alola": {
+        "id": "vulpix-alola",
+        "external_id": "vulpix-alola",
+        "name": "Alolan Vulpix",
+        "types": [
+            "ice"
+        ],
+        "national_dex_entry_number": 37,
+        "genus": "Fox Pokémon",
+        "flavor_text": "In its belly burns a fire, which Vulpix spits out in the form of fireballs. When young, this Pokémon has but one white tail. As the Pokémon matures, this single tail splits into six.",
+        "sprites": {
+            "back_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/10103.png",
+            "back_female": null,
+            "back_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/shiny/10103.png",
+            "back_shiny_female": null,
+            "front_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10103.png",
+            "front_female": null,
+            "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/10103.png",
+            "front_shiny_female": null
+        },
+        "is_baby": false,
+        "is_legendary": false,
+        "is_mythical": false,
+        "is_mega": false,
+        "is_gmax": false,
+        "generation": 7,
+        "capture_rate": 190,
+        "evolutions": [
+            {
+                "evolves_to": "ninetales-alola",
+                "item": "ice-stone",
+                "min_level": null
+            }
+        ]
+    },
+    "ninetales-alola": {
+        "id": "ninetales-alola",
+        "external_id": "ninetales-alola",
+        "name": "Alolan Ninetales",
+        "types": [
+            "ice",
+            "fairy"
+        ],
+        "national_dex_entry_number": 38,
+        "genus": "Fox Pokémon",
+        "flavor_text": "The coat of gleaming golden fur is quite magnificent. This species is said to store sacred power in its nine long tails and to live for a millennium.",
+        "sprites": {
+            "back_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/10104.png",
+            "back_female": null,
+            "back_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/shiny/10104.png",
+            "back_shiny_female": null,
+            "front_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10104.png",
+            "front_female": null,
+            "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/10104.png",
+            "front_shiny_female": null
+        },
+        "is_baby": false,
+        "is_legendary": false,
+        "is_mythical": false,
+        "is_mega": false,
+        "is_gmax": false,
+        "generation": 7,
+        "capture_rate": 75,
+        "evolutions": []
+    },
+    "diglett-alola": {
+        "id": "diglett-alola",
+        "external_id": "diglett-alola",
+        "name": "Alolan Diglett",
+        "types": [
+            "ground",
+            "steel"
+        ],
+        "national_dex_entry_number": 50,
+        "genus": "Mole Pokémon",
+        "flavor_text": "It burrows through the ground at a shallow depth. It leaves raised earth in its wake, making it easy to spot.",
+        "sprites": {
+            "back_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/10105.png",
+            "back_female": null,
+            "back_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/shiny/10105.png",
+            "back_shiny_female": null,
+            "front_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10105.png",
+            "front_female": null,
+            "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/10105.png",
+            "front_shiny_female": null
+        },
+        "is_baby": false,
+        "is_legendary": false,
+        "is_mythical": false,
+        "is_mega": false,
+        "is_gmax": false,
+        "generation": 7,
+        "capture_rate": 255,
+        "evolutions": [
+            {
+                "evolves_to": "dugtrio-alola",
+                "item": null,
+                "min_level": 26
+            }
+        ]
+    },
+    "dugtrio-alola": {
+        "id": "dugtrio-alola",
+        "external_id": "dugtrio-alola",
+        "name": "Alolan Dugtrio",
+        "types": [
+            "ground",
+            "steel"
+        ],
+        "national_dex_entry_number": 51,
+        "genus": "Mole Pokémon",
+        "flavor_text": "These Diglett triplets dig over 60 miles below sea level. No one knows what it’s like underground.",
+        "sprites": {
+            "back_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/10106.png",
+            "back_female": null,
+            "back_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/shiny/10106.png",
+            "back_shiny_female": null,
+            "front_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10106.png",
+            "front_female": null,
+            "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/10106.png",
+            "front_shiny_female": null
+        },
+        "is_baby": false,
+        "is_legendary": false,
+        "is_mythical": false,
+        "is_mega": false,
+        "is_gmax": false,
+        "generation": 7,
+        "capture_rate": 50,
+        "evolutions": []
+    },
+    "meowth-alola": {
+        "id": "meowth-alola",
+        "external_id": "meowth-alola",
+        "name": "Alolan Meowth",
+        "types": [
+            "dark"
+        ],
+        "national_dex_entry_number": 52,
+        "genus": "Scratch Cat Pokémon",
+        "flavor_text": "It loves to collect shiny things. If it’s in a good mood, it might even let its Trainer have a look at its hoard of treasures.",
+        "sprites": {
+            "back_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/10107.png",
+            "back_female": null,
+            "back_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/shiny/10107.png",
+            "back_shiny_female": null,
+            "front_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10107.png",
+            "front_female": null,
+            "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/10107.png",
+            "front_shiny_female": null
+        },
+        "is_baby": false,
+        "is_legendary": false,
+        "is_mythical": false,
+        "is_mega": false,
+        "is_gmax": false,
+        "generation": 7,
+        "capture_rate": 255,
+        "evolutions": [
+            {
+                "evolves_to": "persian-alola",
+                "item": null,
+                "min_level": 28
+            }
+        ]
+    },
+    "persian-alola": {
+        "id": "persian-alola",
+        "external_id": "persian-alola",
+        "name": "Alolan Persian",
+        "types": [
+            "dark"
+        ],
+        "national_dex_entry_number": 53,
+        "genus": "Classy Cat Pokémon",
+        "flavor_text": "Its elegant and refined behavior clashes with that of the barbaric Perrserker. The relationship between the two is one of mutual disdain.",
+        "sprites": {
+            "back_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/10108.png",
+            "back_female": null,
+            "back_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/shiny/10108.png",
+            "back_shiny_female": null,
+            "front_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10108.png",
+            "front_female": null,
+            "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/10108.png",
+            "front_shiny_female": null
+        },
+        "is_baby": false,
+        "is_legendary": false,
+        "is_mythical": false,
+        "is_mega": false,
+        "is_gmax": false,
+        "generation": 7,
+        "capture_rate": 90,
+        "evolutions": []
+    },
+    "geodude-alola": {
+        "id": "geodude-alola",
+        "external_id": "geodude-alola",
+        "name": "Alolan Geodude",
+        "types": [
+            "rock",
+            "electric"
+        ],
+        "national_dex_entry_number": 74,
+        "genus": "Rock Pokémon",
+        "flavor_text": "Makes its home in mountainous regions, using its arms to climb along harsh mountain roads. Can be troublesome—carelessly kicking one will cause it to fly into a rage and chase after you.",
+        "sprites": {
+            "back_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/10109.png",
+            "back_female": null,
+            "back_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/shiny/10109.png",
+            "back_shiny_female": null,
+            "front_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10109.png",
+            "front_female": null,
+            "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/10109.png",
+            "front_shiny_female": null
+        },
+        "is_baby": false,
+        "is_legendary": false,
+        "is_mythical": false,
+        "is_mega": false,
+        "is_gmax": false,
+        "generation": 7,
+        "capture_rate": 255,
+        "evolutions": [
+            {
+                "evolves_to": "graveler-alola",
+                "item": null,
+                "min_level": 25
+            }
+        ]
+    },
+    "graveler-alola": {
+        "id": "graveler-alola",
+        "external_id": "graveler-alola",
+        "name": "Alolan Graveler",
+        "types": [
+            "rock",
+            "electric"
+        ],
+        "national_dex_entry_number": 75,
+        "genus": "Rock Pokémon",
+        "flavor_text": "Dwells in holes dug into sheer walls of stone. It enjoys rolling down slopes as though it were a boulder during a rockfall, so keep an eye upward while traversing mountain roads.",
+        "sprites": {
+            "back_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/10110.png",
+            "back_female": null,
+            "back_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/shiny/10110.png",
+            "back_shiny_female": null,
+            "front_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10110.png",
+            "front_female": null,
+            "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/10110.png",
+            "front_shiny_female": null
+        },
+        "is_baby": false,
+        "is_legendary": false,
+        "is_mythical": false,
+        "is_mega": false,
+        "is_gmax": false,
+        "generation": 7,
+        "capture_rate": 120,
+        "evolutions": [
+            {
+                "evolves_to": "golem-alola",
+                "item": null,
+                "min_level": 37
+            }
+        ]
+    },
+    "golem-alola": {
+        "id": "golem-alola",
+        "external_id": "golem-alola",
+        "name": "Alolan Golem",
+        "types": [
+            "rock",
+            "electric"
+        ],
+        "national_dex_entry_number": 76,
+        "genus": "Megaton Pokémon",
+        "flavor_text": "The rocklike shell is shed each year. The cast-off shell then crumbles, reverting to a mass of soil, which can be spread across fields to promote crop growth.",
+        "sprites": {
+            "back_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/10111.png",
+            "back_female": null,
+            "back_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/shiny/10111.png",
+            "back_shiny_female": null,
+            "front_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10111.png",
+            "front_female": null,
+            "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/10111.png",
+            "front_shiny_female": null
+        },
+        "is_baby": false,
+        "is_legendary": false,
+        "is_mythical": false,
+        "is_mega": false,
+        "is_gmax": false,
+        "generation": 7,
+        "capture_rate": 45,
+        "evolutions": []
+    },
+    "grimer-alola": {
+        "id": "grimer-alola",
+        "external_id": "grimer-alola",
+        "name": "Alolan Grimer",
+        "types": [
+            "poison",
+            "dark"
+        ],
+        "national_dex_entry_number": 88,
+        "genus": "Sludge Pokémon",
+        "flavor_text": "Made of congealed sludge. It smells too putrid to touch. Even weeds won’t grow in its path.",
+        "sprites": {
+            "back_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/10112.png",
+            "back_female": null,
+            "back_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/shiny/10112.png",
+            "back_shiny_female": null,
+            "front_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10112.png",
+            "front_female": null,
+            "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/10112.png",
+            "front_shiny_female": null
+        },
+        "is_baby": false,
+        "is_legendary": false,
+        "is_mythical": false,
+        "is_mega": false,
+        "is_gmax": false,
+        "generation": 7,
+        "capture_rate": 190,
+        "evolutions": [
+            {
+                "evolves_to": "muk-alola",
+                "item": null,
+                "min_level": 38
+            }
+        ]
+    },
+    "muk-alola": {
+        "id": "muk-alola",
+        "external_id": "muk-alola",
+        "name": "Alolan Muk",
+        "types": [
+            "poison",
+            "dark"
+        ],
+        "national_dex_entry_number": 89,
+        "genus": "Sludge Pokémon",
+        "flavor_text": "Smells so awful, it can cause fainting. Through degeneration of its nose, it lost its sense of smell.",
+        "sprites": {
+            "back_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/10113.png",
+            "back_female": null,
+            "back_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/shiny/10113.png",
+            "back_shiny_female": null,
+            "front_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10113.png",
+            "front_female": null,
+            "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/10113.png",
+            "front_shiny_female": null
+        },
+        "is_baby": false,
+        "is_legendary": false,
+        "is_mythical": false,
+        "is_mega": false,
+        "is_gmax": false,
+        "generation": 7,
+        "capture_rate": 75,
+        "evolutions": []
+    },
+    "exeggutor-alola": {
+        "id": "exeggutor-alola",
+        "external_id": "exeggutor-alola",
+        "name": "Alolan Exeggutor",
+        "types": [
+            "grass",
+            "dragon"
+        ],
+        "national_dex_entry_number": 103,
+        "genus": "Coconut Pokémon",
+        "flavor_text": "When they work together, Exeggutor’s three heads can put out powerful psychic energy. Cloudy days make this Pokémon sluggish.",
+        "sprites": {
+            "back_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/10114.png",
+            "back_female": null,
+            "back_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/shiny/10114.png",
+            "back_shiny_female": null,
+            "front_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10114.png",
+            "front_female": null,
+            "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/10114.png",
+            "front_shiny_female": null
+        },
+        "is_baby": false,
+        "is_legendary": false,
+        "is_mythical": false,
+        "is_mega": false,
+        "is_gmax": false,
+        "generation": 7,
+        "capture_rate": 45,
+        "evolutions": []
+    },
+    "marowak-alola": {
+        "id": "marowak-alola",
+        "external_id": "marowak-alola",
+        "name": "Alolan Marowak",
+        "types": [
+            "fire",
+            "ghost"
+        ],
+        "national_dex_entry_number": 105,
+        "genus": "Bone Keeper Pokémon",
+        "flavor_text": "When this Pokémon evolved, the skull of its mother fused to it. Marowak’s temperament also turned vicious at the same time.",
+        "sprites": {
+            "back_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/10115.png",
+            "back_female": null,
+            "back_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/shiny/10115.png",
+            "back_shiny_female": null,
+            "front_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10115.png",
+            "front_female": null,
+            "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/10115.png",
+            "front_shiny_female": null
+        },
+        "is_baby": false,
+        "is_legendary": false,
+        "is_mythical": false,
+        "is_mega": false,
+        "is_gmax": false,
+        "generation": 7,
+        "capture_rate": 75,
+        "evolutions": []
     }
 }

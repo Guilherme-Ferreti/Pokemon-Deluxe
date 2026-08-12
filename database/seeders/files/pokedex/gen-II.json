@@ -1565,42 +1565,6 @@
             }
         ]
     },
-    "wooper-paldea": {
-        "id": "wooper-paldea",
-        "external_id": "wooper-paldea",
-        "name": "Paldean Wooper",
-        "types": [
-            "poison",
-            "ground"
-        ],
-        "national_dex_entry_number": 194,
-        "genus": "Water Fish Pokémon",
-        "flavor_text": "When walking on land, it covers its body with a poisonous film that keeps its skin from dehydrating.",
-        "sprites": {
-            "back_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/10253.png",
-            "back_female": null,
-            "back_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/shiny/10253.png",
-            "back_shiny_female": null,
-            "front_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10253.png",
-            "front_female": null,
-            "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/10253.png",
-            "front_shiny_female": null
-        },
-        "is_baby": false,
-        "is_legendary": false,
-        "is_mythical": false,
-        "is_mega": false,
-        "is_gmax": false,
-        "generation": 2,
-        "capture_rate": 255,
-        "evolutions": [
-            {
-                "evolves_to": "clodsire",
-                "item": null,
-                "min_level": 20
-            }
-        ]
-    },
     "quagsire": {
         "id": "quagsire",
         "external_id": "quagsire",
@@ -1744,36 +1708,6 @@
             "front_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/199.png",
             "front_female": null,
             "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/199.png",
-            "front_shiny_female": null
-        },
-        "is_baby": false,
-        "is_legendary": false,
-        "is_mythical": false,
-        "is_mega": false,
-        "is_gmax": false,
-        "generation": 2,
-        "capture_rate": 70,
-        "evolutions": []
-    },
-    "slowking-galar": {
-        "id": "slowking-galar",
-        "external_id": "slowking-galar",
-        "name": "Galarian Slowking",
-        "types": [
-            "poison",
-            "psychic"
-        ],
-        "national_dex_entry_number": 199,
-        "genus": "Royal Pokémon",
-        "flavor_text": "Slowking can solve any problem presented to it, but no one can understand a thing Slowking says.",
-        "sprites": {
-            "back_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/10172.png",
-            "back_female": null,
-            "back_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/shiny/10172.png",
-            "back_shiny_female": null,
-            "front_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10172.png",
-            "front_female": null,
-            "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/10172.png",
             "front_shiny_female": null
         },
         "is_baby": false,
@@ -2721,41 +2655,6 @@
         "generation": 2,
         "capture_rate": 60,
         "evolutions": []
-    },
-    "corsola-galar": {
-        "id": "corsola-galar",
-        "external_id": "corsola-galar",
-        "name": "Galarian Corsola",
-        "types": [
-            "ghost"
-        ],
-        "national_dex_entry_number": 222,
-        "genus": "Coral Pokémon",
-        "flavor_text": "These Pokémon live in warm seas. In prehistoric times, many lived in the oceans around the Galar region as well.",
-        "sprites": {
-            "back_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/10173.png",
-            "back_female": null,
-            "back_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/shiny/10173.png",
-            "back_shiny_female": null,
-            "front_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10173.png",
-            "front_female": null,
-            "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/10173.png",
-            "front_shiny_female": null
-        },
-        "is_baby": false,
-        "is_legendary": false,
-        "is_mythical": false,
-        "is_mega": false,
-        "is_gmax": false,
-        "generation": 2,
-        "capture_rate": 60,
-        "evolutions": [
-            {
-                "evolves_to": "cursola",
-                "item": null,
-                "min_level": 38
-            }
-        ]
     },
     "remoraid": {
         "id": "remoraid",
