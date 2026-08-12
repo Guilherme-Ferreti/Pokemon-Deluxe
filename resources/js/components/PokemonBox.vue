@@ -4,13 +4,13 @@
     :filter-options="filterOptions"
   />
   <template v-if="box.data.length > 0">
-    <div class="grid grid-cols-[repeat(auto-fill,minmax(16.25rem,1fr))] gap-4">
+    <ul class="grid grid-cols-[repeat(auto-fill,minmax(16.25rem,1fr))] gap-4">
       <PokemonBoxCard
         v-for="pokemon in box.data"
         :key="pokemon.id"
         :pokemon="pokemon"
       />
-    </div>
+    </ul>
     <AppPagination
       :list="box"
       :only="['box']"
