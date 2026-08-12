@@ -156,7 +156,7 @@ describe('search filters', function () {
 
         visit(route('web.pokemon.box'))
             ->click('@open-search-filters-button')
-            ->click('[aria-label="Gmax"]')
+            ->click('[aria-label="G-Max"]')
             ->assertDisabled('[aria-label="Baby"]');
     });
 
@@ -201,7 +201,7 @@ describe('search filters', function () {
 
         visit(route('web.pokemon.box'))
             ->click('@open-search-filters-button')
-            ->click('[aria-label="Gmax"]')
+            ->click('[aria-label="G-Max"]')
             ->assertDisabled('[aria-label="Mega"]');
     });
 
@@ -220,7 +220,7 @@ describe('search filters', function () {
         visit(route('web.pokemon.box'))
             ->click('@open-search-filters-button')
             ->click('[aria-label="Mega"]')
-            ->assertDisabled('[aria-label="Gmax"]');
+            ->assertDisabled('[aria-label="G-Max"]');
     });
 
     it('disables gmax trait when baby is selected', function () {
@@ -229,7 +229,7 @@ describe('search filters', function () {
         visit(route('web.pokemon.box'))
             ->click('@open-search-filters-button')
             ->click('[aria-label="Baby"]')
-            ->assertDisabled('[aria-label="Gmax"]');
+            ->assertDisabled('[aria-label="G-Max"]');
     });
 
     it('does not disable shiny trait when legendary is selected', function () {
