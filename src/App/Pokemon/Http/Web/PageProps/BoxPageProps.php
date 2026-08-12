@@ -11,7 +11,7 @@ use Inertia\RenderContext;
 use Shared\Helpers\AppHelper;
 use Shared\Models\Pokemon;
 
-final class BoxPageProps implements ProvidesInertiaProperties
+final readonly class BoxPageProps implements ProvidesInertiaProperties
 {
     public function __construct(
         public Closure $box,
