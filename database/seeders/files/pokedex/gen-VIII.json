@@ -107,7 +107,7 @@
     "rillaboom-gmax": {
         "id": "rillaboom-gmax",
         "external_id": "rillaboom-gmax",
-        "name": "Gigantamax Rillaboom",
+        "name": "G-Max Rillaboom",
         "types": [
             "grass"
         ],
@@ -241,7 +241,7 @@
     "cinderace-gmax": {
         "id": "cinderace-gmax",
         "external_id": "cinderace-gmax",
-        "name": "Gigantamax Cinderace",
+        "name": "G-Max Cinderace",
         "types": [
             "fire"
         ],
@@ -375,7 +375,7 @@
     "inteleon-gmax": {
         "id": "inteleon-gmax",
         "external_id": "inteleon-gmax",
-        "name": "Gigantamax Inteleon",
+        "name": "G-Max Inteleon",
         "types": [
             "water"
         ],
@@ -574,7 +574,7 @@
     "corviknight-gmax": {
         "id": "corviknight-gmax",
         "external_id": "corviknight-gmax",
-        "name": "Gigantamax Corviknight",
+        "name": "G-Max Corviknight",
         "types": [
             "flying",
             "steel"
@@ -711,7 +711,7 @@
     "orbeetle-gmax": {
         "id": "orbeetle-gmax",
         "external_id": "orbeetle-gmax",
-        "name": "Gigantamax Orbeetle",
+        "name": "G-Max Orbeetle",
         "types": [
             "bug",
             "psychic"
@@ -1004,7 +1004,7 @@
     "drednaw-gmax": {
         "id": "drednaw-gmax",
         "external_id": "drednaw-gmax",
-        "name": "Gigantamax Drednaw",
+        "name": "G-Max Drednaw",
         "types": [
             "water",
             "rock"
@@ -1205,7 +1205,7 @@
     "coalossal-gmax": {
         "id": "coalossal-gmax",
         "external_id": "coalossal-gmax",
-        "name": "Gigantamax Coalossal",
+        "name": "G-Max Coalossal",
         "types": [
             "rock",
             "fire"
@@ -1317,7 +1317,7 @@
     "flapple-gmax": {
         "id": "flapple-gmax",
         "external_id": "flapple-gmax",
-        "name": "Gigantamax Flapple",
+        "name": "G-Max Flapple",
         "types": [
             "grass",
             "dragon"
@@ -1383,7 +1383,7 @@
     "appletun-gmax": {
         "id": "appletun-gmax",
         "external_id": "appletun-gmax",
-        "name": "Gigantamax Appletun",
+        "name": "G-Max Appletun",
         "types": [
             "grass",
             "dragon"
@@ -1483,7 +1483,7 @@
     "sandaconda-gmax": {
         "id": "sandaconda-gmax",
         "external_id": "sandaconda-gmax",
-        "name": "Gigantamax Sandaconda",
+        "name": "G-Max Sandaconda",
         "types": [
             "ground"
         ],
@@ -1779,7 +1779,7 @@
     "toxtricity-amped-gmax": {
         "id": "toxtricity-amped-gmax",
         "external_id": "toxtricity-amped-gmax",
-        "name": "Gigantamax Toxtricity (Amped)",
+        "name": "G-Max Toxtricity (Amped)",
         "types": [
             "electric",
             "poison"
@@ -1809,7 +1809,7 @@
     "toxtricity-low-key-gmax": {
         "id": "toxtricity-low-key-gmax",
         "external_id": "toxtricity-low-key-gmax",
-        "name": "Gigantamax Toxtricity (Low Key)",
+        "name": "G-Max Toxtricity (Low Key)",
         "types": [
             "electric",
             "poison"
@@ -1911,7 +1911,7 @@
     "centiskorch-gmax": {
         "id": "centiskorch-gmax",
         "external_id": "centiskorch-gmax",
-        "name": "Gigantamax Centiskorch",
+        "name": "G-Max Centiskorch",
         "types": [
             "fire",
             "bug"
@@ -2175,7 +2175,7 @@
     "hatterene-gmax": {
         "id": "hatterene-gmax",
         "external_id": "hatterene-gmax",
-        "name": "Gigantamax Hatterene",
+        "name": "G-Max Hatterene",
         "types": [
             "psychic",
             "fairy"
@@ -2313,7 +2313,7 @@
     "grimmsnarl-gmax": {
         "id": "grimmsnarl-gmax",
         "external_id": "grimmsnarl-gmax",
-        "name": "Gigantamax Grimmsnarl",
+        "name": "G-Max Grimmsnarl",
         "types": [
             "dark",
             "fairy"
@@ -2590,7 +2590,7 @@
     "alcremie-gmax": {
         "id": "alcremie-gmax",
         "external_id": "alcremie-gmax",
-        "name": "Gigantamax Alcremie",
+        "name": "G-Max Alcremie",
         "types": [
             "fairy"
         ],
@@ -3025,7 +3025,7 @@
     "copperajah-gmax": {
         "id": "copperajah-gmax",
         "external_id": "copperajah-gmax",
-        "name": "Gigantamax Copperajah",
+        "name": "G-Max Copperajah",
         "types": [
             "steel"
         ],
@@ -3215,7 +3215,7 @@
     "duraludon-gmax": {
         "id": "duraludon-gmax",
         "external_id": "duraludon-gmax",
-        "name": "Gigantamax Duraludon",
+        "name": "G-Max Duraludon",
         "types": [
             "steel",
             "dragon"
@@ -3637,7 +3637,7 @@
     "urshifu-single-strike-gmax": {
         "id": "urshifu-single-strike-gmax",
         "external_id": "urshifu-single-strike-gmax",
-        "name": "Gigantamax Urshifu (Single Strike)",
+        "name": "G-Max Urshifu (Single Strike)",
         "types": [
             "fighting",
             "dark"
@@ -3667,7 +3667,7 @@
     "urshifu-rapid-strike-gmax": {
         "id": "urshifu-rapid-strike-gmax",
         "external_id": "urshifu-rapid-strike-gmax",
-        "name": "Gigantamax Urshifu (Rapid Strike)",
+        "name": "G-Max Urshifu (Rapid Strike)",
         "types": [
             "fighting",
             "water"

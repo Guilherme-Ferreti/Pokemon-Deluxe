@@ -145,7 +145,7 @@
     "venusaur-gmax": {
         "id": "venusaur-gmax",
         "external_id": "venusaur-gmax",
-        "name": "Gigantamax Venusaur",
+        "name": "G-Max Venusaur",
         "types": [
             "grass",
             "poison"
@@ -351,7 +351,7 @@
     "charizard-gmax": {
         "id": "charizard-gmax",
         "external_id": "charizard-gmax",
-        "name": "Gigantamax Charizard",
+        "name": "G-Max Charizard",
         "types": [
             "fire",
             "flying"
@@ -520,7 +520,7 @@
     "blastoise-gmax": {
         "id": "blastoise-gmax",
         "external_id": "blastoise-gmax",
-        "name": "Gigantamax Blastoise",
+        "name": "G-Max Blastoise",
         "types": [
             "water"
         ],
@@ -655,7 +655,7 @@
     "butterfree-gmax": {
         "id": "butterfree-gmax",
         "external_id": "butterfree-gmax",
-        "name": "Gigantamax Butterfree",
+        "name": "G-Max Butterfree",
         "types": [
             "bug",
             "flying"
@@ -1200,7 +1200,7 @@
     "pikachu-gmax": {
         "id": "pikachu-gmax",
         "external_id": "pikachu-gmax",
-        "name": "Gigantamax Pikachu",
+        "name": "G-Max Pikachu",
         "types": [
             "electric"
         ],
@@ -2236,7 +2236,7 @@
     "meowth-gmax": {
         "id": "meowth-gmax",
         "external_id": "meowth-gmax",
-        "name": "Gigantamax Meowth",
+        "name": "G-Max Meowth",
         "types": [
             "normal"
         ],
@@ -2902,7 +2902,7 @@
     "machamp-gmax": {
         "id": "machamp-gmax",
         "external_id": "machamp-gmax",
-        "name": "Gigantamax Machamp",
+        "name": "G-Max Machamp",
         "types": [
             "fighting"
         ],
@@ -3913,7 +3913,7 @@
     "gengar-gmax": {
         "id": "gengar-gmax",
         "external_id": "gengar-gmax",
-        "name": "Gigantamax Gengar",
+        "name": "G-Max Gengar",
         "types": [
             "ghost",
             "poison"
@@ -4113,7 +4113,7 @@
     "kingler-gmax": {
         "id": "kingler-gmax",
         "external_id": "kingler-gmax",
-        "name": "Gigantamax Kingler",
+        "name": "G-Max Kingler",
         "types": [
             "water"
         ],
@@ -5417,7 +5417,7 @@
     "lapras-gmax": {
         "id": "lapras-gmax",
         "external_id": "lapras-gmax",
-        "name": "Gigantamax Lapras",
+        "name": "G-Max Lapras",
         "types": [
             "water",
             "ice"
@@ -5551,7 +5551,7 @@
     "eevee-gmax": {
         "id": "eevee-gmax",
         "external_id": "eevee-gmax",
-        "name": "Gigantamax Eevee",
+        "name": "G-Max Eevee",
         "types": [
             "normal"
         ],
@@ -5935,7 +5935,7 @@
     "snorlax-gmax": {
         "id": "snorlax-gmax",
         "external_id": "snorlax-gmax",
-        "name": "Gigantamax Snorlax",
+        "name": "G-Max Snorlax",
         "types": [
             "normal"
         ],

@@ -21,7 +21,7 @@ enum PokemonTrait: string
             self::LEGENDARY => 'Legendary',
             self::MYTHICAL  => 'Mythical',
             self::MEGA      => 'Mega',
-            self::GMAX      => 'Gmax',
+            self::GMAX      => 'G-Max',
         };
     }
 }
