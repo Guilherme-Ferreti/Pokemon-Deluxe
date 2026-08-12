@@ -7,7 +7,7 @@
             "grass",
             "flying"
         ],
-        "national_dex_entry_number": 722,
+        "pokedex_number": 722,
         "genus": "Grass Quill Pokémon",
         "flavor_text": "Flies noiselessly on delicate wings. It has mastered the art of deftly launching dagger-sharp feathers from those same wings.",
         "sprites": {
@@ -43,7 +43,7 @@
             "grass",
             "flying"
         ],
-        "national_dex_entry_number": 723,
+        "pokedex_number": 723,
         "genus": "Blade Quill Pokémon",
         "flavor_text": "Regularly basks in sunlight to gather power—presumably due to the frigid climate. Nonetheless, the edges of the blade quills set into its wings are keen as ever.",
         "sprites": {
@@ -84,7 +84,7 @@
             "grass",
             "ghost"
         ],
-        "national_dex_entry_number": 724,
+        "pokedex_number": 724,
         "genus": "Arrow Quill Pokémon",
         "flavor_text": "The air stored inside the rachises of Decidueye's feathers insulates the Pokémon against Hisui's extreme cold. This is firm proof that evolution can be influenced by environment.",
         "sprites": {
@@ -114,7 +114,7 @@
             "grass",
             "fighting"
         ],
-        "national_dex_entry_number": 724,
+        "pokedex_number": 724,
         "genus": "Arrow Quill Pokémon",
         "flavor_text": "The air stored inside the rachises of Decidueye's feathers insulates the Pokémon against Hisui's extreme cold. This is firm proof that evolution can be influenced by environment.",
         "sprites": {
@@ -143,7 +143,7 @@
         "types": [
             "fire"
         ],
-        "national_dex_entry_number": 725,
+        "pokedex_number": 725,
         "genus": "Fire Cat Pokémon",
         "flavor_text": "Trying to pet Litten before it trusts you will result in a nasty scratch from its sharp claws. Be careful.",
         "sprites": {
@@ -178,7 +178,7 @@
         "types": [
             "fire"
         ],
-        "national_dex_entry_number": 726,
+        "pokedex_number": 726,
         "genus": "Fire Cat Pokémon",
         "flavor_text": "When facing a powerful enemy, Torracat’s fighting spirit gets pumped up, and its fire bell blazes hotter.",
         "sprites": {
@@ -214,7 +214,7 @@
             "fire",
             "dark"
         ],
-        "national_dex_entry_number": 727,
+        "pokedex_number": 727,
         "genus": "Heel Pokémon",
         "flavor_text": "Incineroar’s rough and aggressive behavior is its most notable trait, but the way it helps out small Pokémon shows that it has a kind side as well.",
         "sprites": {
@@ -243,7 +243,7 @@
         "types": [
             "water"
         ],
-        "national_dex_entry_number": 728,
+        "pokedex_number": 728,
         "genus": "Sea Lion Pokémon",
         "flavor_text": "If Popplio want to create big, powerful balloons, they must be persistent. It takes daily practice for these Pokémon to develop their skills.",
         "sprites": {
@@ -278,7 +278,7 @@
         "types": [
             "water"
         ],
-        "national_dex_entry_number": 729,
+        "pokedex_number": 729,
         "genus": "Pop Star Pokémon",
         "flavor_text": "On nights when the sea is calm, Brionne dance with one another to the singing of the Primarina that’s leading them.",
         "sprites": {
@@ -314,7 +314,7 @@
             "water",
             "fairy"
         ],
-        "national_dex_entry_number": 730,
+        "pokedex_number": 730,
         "genus": "Soloist Pokémon",
         "flavor_text": "For Primarina, every battle’s a stage. Its singing and the dancing of its balloons will mesmerize the audience.",
         "sprites": {
@@ -344,7 +344,7 @@
             "normal",
             "flying"
         ],
-        "national_dex_entry_number": 731,
+        "pokedex_number": 731,
         "genus": "Woodpecker Pokémon",
         "flavor_text": "It may look spindly, but its neck muscles are heavy-duty. It can peck at a tree 16 times per second!",
         "sprites": {
@@ -380,7 +380,7 @@
             "normal",
             "flying"
         ],
-        "national_dex_entry_number": 732,
+        "pokedex_number": 732,
         "genus": "Bugle Beak Pokémon",
         "flavor_text": "From its mouth, it fires the seeds of berries it has eaten. The scattered seeds give rise to new plants.",
         "sprites": {
@@ -416,7 +416,7 @@
             "normal",
             "flying"
         ],
-        "national_dex_entry_number": 733,
+        "pokedex_number": 733,
         "genus": "Cannon Pokémon",
         "flavor_text": "Known for forming harmonious couples, this Pokémon is brought to wedding ceremonies as a good luck charm.",
         "sprites": {
@@ -445,7 +445,7 @@
         "types": [
             "normal"
         ],
-        "national_dex_entry_number": 734,
+        "pokedex_number": 734,
         "genus": "Loitering Pokémon",
         "flavor_text": "Although it will eat anything, it prefers fresh living things, so it marches down streets in search of prey.",
         "sprites": {
@@ -480,7 +480,7 @@
         "types": [
             "normal"
         ],
-        "national_dex_entry_number": 735,
+        "pokedex_number": 735,
         "genus": "Stakeout Pokémon",
         "flavor_text": "Patient by nature, this Pokémon loses control of itself and pounces when it spots its favorite meal—Rattata!",
         "sprites": {
@@ -509,7 +509,7 @@
         "types": [
             "bug"
         ],
-        "national_dex_entry_number": 736,
+        "pokedex_number": 736,
         "genus": "Larva Pokémon",
         "flavor_text": "It uses its big jaws to dig nests into the forest floor, and it loves to feed on sweet tree sap.",
         "sprites": {
@@ -545,7 +545,7 @@
             "bug",
             "electric"
         ],
-        "national_dex_entry_number": 737,
+        "pokedex_number": 737,
         "genus": "Battery Pokémon",
         "flavor_text": "Its digestive processes convert the leaves it eats into electricity. An electric sac in its belly stores the electricity for later use.",
         "sprites": {
@@ -581,7 +581,7 @@
             "bug",
             "electric"
         ],
-        "national_dex_entry_number": 738,
+        "pokedex_number": 738,
         "genus": "Stag Beetle Pokémon",
         "flavor_text": "If it carries a Charjabug to use as a spare battery, a flying Vikavolt can rapidly fire high-powered beams of electricity.",
         "sprites": {
@@ -610,7 +610,7 @@
         "types": [
             "fighting"
         ],
-        "national_dex_entry_number": 739,
+        "pokedex_number": 739,
         "genus": "Boxing Pokémon",
         "flavor_text": "Crabrawler has been known to mistake Exeggutor for a coconut tree and climb it. The enraged Exeggutor shakes it off and stomps it.",
         "sprites": {
@@ -646,7 +646,7 @@
             "fighting",
             "ice"
         ],
-        "national_dex_entry_number": 740,
+        "pokedex_number": 740,
         "genus": "Woolly Crab Pokémon",
         "flavor_text": "Before it stops to think, it just starts pummeling. There are records of its turning back avalanches with a flurry of punches.",
         "sprites": {
@@ -682,7 +682,7 @@
             "fighting",
             "ice"
         ],
-        "national_dex_entry_number": 740,
+        "pokedex_number": 740,
         "genus": "Woolly Crab Pokémon",
         "flavor_text": "Before it stops to think, it just starts pummeling. There are records of its turning back avalanches with a flurry of punches.",
         "sprites": {
@@ -712,7 +712,7 @@
             "fire",
             "flying"
         ],
-        "national_dex_entry_number": 741,
+        "pokedex_number": 741,
         "genus": "Dancing Pokémon",
         "flavor_text": "This Oricorio has drunk red nectar. If its Trainer gives the wrong order, this passionate Pokémon becomes fiercely angry.",
         "sprites": {
@@ -742,7 +742,7 @@
             "electric",
             "flying"
         ],
-        "national_dex_entry_number": 741,
+        "pokedex_number": 741,
         "genus": "Dancing Pokémon",
         "flavor_text": "This Oricorio has drunk red nectar. If its Trainer gives the wrong order, this passionate Pokémon becomes fiercely angry.",
         "sprites": {
@@ -772,7 +772,7 @@
             "psychic",
             "flying"
         ],
-        "national_dex_entry_number": 741,
+        "pokedex_number": 741,
         "genus": "Dancing Pokémon",
         "flavor_text": "This Oricorio has drunk red nectar. If its Trainer gives the wrong order, this passionate Pokémon becomes fiercely angry.",
         "sprites": {
@@ -802,7 +802,7 @@
             "ghost",
             "flying"
         ],
-        "national_dex_entry_number": 741,
+        "pokedex_number": 741,
         "genus": "Dancing Pokémon",
         "flavor_text": "This Oricorio has drunk red nectar. If its Trainer gives the wrong order, this passionate Pokémon becomes fiercely angry.",
         "sprites": {
@@ -832,7 +832,7 @@
             "bug",
             "fairy"
         ],
-        "national_dex_entry_number": 742,
+        "pokedex_number": 742,
         "genus": "Bee Fly Pokémon",
         "flavor_text": "An opponent’s aura can tell Cutiefly what that opponent’s next move will be. Then Cutiefly can glide around the attack and strike back.",
         "sprites": {
@@ -868,7 +868,7 @@
             "bug",
             "fairy"
         ],
-        "national_dex_entry_number": 743,
+        "pokedex_number": 743,
         "genus": "Bee Fly Pokémon",
         "flavor_text": "Ribombee absolutely hate getting wet or rained on. In the cloudy Galar region, they are very seldom seen.",
         "sprites": {
@@ -897,7 +897,7 @@
         "types": [
             "rock"
         ],
-        "national_dex_entry_number": 744,
+        "pokedex_number": 744,
         "genus": "Puppy Pokémon",
         "flavor_text": "This Pokémon intimidates opponents by striking the ground with the rocks on its neck. The moment an opponent flinches, Rockruff attacks.",
         "sprites": {
@@ -942,7 +942,7 @@
         "types": [
             "rock"
         ],
-        "national_dex_entry_number": 745,
+        "pokedex_number": 745,
         "genus": "Wolf Pokémon",
         "flavor_text": "With swift movements, this Pokémon gradually backs its prey into a corner. Lycanroc’s fangs are always aimed toward opponents’ weak spots.",
         "sprites": {
@@ -971,7 +971,7 @@
         "types": [
             "rock"
         ],
-        "national_dex_entry_number": 745,
+        "pokedex_number": 745,
         "genus": "Wolf Pokémon",
         "flavor_text": "With swift movements, this Pokémon gradually backs its prey into a corner. Lycanroc’s fangs are always aimed toward opponents’ weak spots.",
         "sprites": {
@@ -1000,7 +1000,7 @@
         "types": [
             "rock"
         ],
-        "national_dex_entry_number": 745,
+        "pokedex_number": 745,
         "genus": "Wolf Pokémon",
         "flavor_text": "With swift movements, this Pokémon gradually backs its prey into a corner. Lycanroc’s fangs are always aimed toward opponents’ weak spots.",
         "sprites": {
@@ -1029,7 +1029,7 @@
         "types": [
             "water"
         ],
-        "national_dex_entry_number": 746,
+        "pokedex_number": 746,
         "genus": "Small Fry Pokémon",
         "flavor_text": "When it senses danger, its eyes tear up. The sparkle of its tears signals other Wishiwashi to gather.",
         "sprites": {
@@ -1058,7 +1058,7 @@
         "types": [
             "water"
         ],
-        "national_dex_entry_number": 746,
+        "pokedex_number": 746,
         "genus": "Small Fry Pokémon",
         "flavor_text": "When it senses danger, its eyes tear up. The sparkle of its tears signals other Wishiwashi to gather.",
         "sprites": {
@@ -1088,7 +1088,7 @@
             "poison",
             "water"
         ],
-        "national_dex_entry_number": 747,
+        "pokedex_number": 747,
         "genus": "Brutal Star Pokémon",
         "flavor_text": "Unlike their Alolan counterparts, the Mareanie of the Galar region have not yet figured out that the branches of Corsola are delicious.",
         "sprites": {
@@ -1124,7 +1124,7 @@
             "poison",
             "water"
         ],
-        "national_dex_entry_number": 748,
+        "pokedex_number": 748,
         "genus": "Brutal Star Pokémon",
         "flavor_text": "Within the poison sac in its body is a poison so toxic that Pokémon as large as Wailord will still be suffering three days after it first takes effect.",
         "sprites": {
@@ -1153,7 +1153,7 @@
         "types": [
             "ground"
         ],
-        "national_dex_entry_number": 749,
+        "pokedex_number": 749,
         "genus": "Donkey Pokémon",
         "flavor_text": "It eats dirt to create mud and smears this mud all over its feet, giving them the grip needed to walk on rough terrain without slipping.",
         "sprites": {
@@ -1188,7 +1188,7 @@
         "types": [
             "ground"
         ],
-        "national_dex_entry_number": 750,
+        "pokedex_number": 750,
         "genus": "Draft Horse Pokémon",
         "flavor_text": "Mudsdale has so much stamina that it could carry over 10 tons across the Galar region without rest or sleep.",
         "sprites": {
@@ -1218,7 +1218,7 @@
             "water",
             "bug"
         ],
-        "national_dex_entry_number": 751,
+        "pokedex_number": 751,
         "genus": "Water Bubble Pokémon",
         "flavor_text": "Dewpider normally lives underwater. When it comes onto land in search of food, it takes water with it in the form of a bubble on its head.",
         "sprites": {
@@ -1254,7 +1254,7 @@
             "water",
             "bug"
         ],
-        "national_dex_entry_number": 752,
+        "pokedex_number": 752,
         "genus": "Water Bubble Pokémon",
         "flavor_text": "It acts as a caretaker for Dewpider, putting them inside its bubble and letting them eat any leftover food.",
         "sprites": {
@@ -1283,7 +1283,7 @@
         "types": [
             "grass"
         ],
-        "national_dex_entry_number": 753,
+        "pokedex_number": 753,
         "genus": "Sickle Grass Pokémon",
         "flavor_text": "During the day, Fomantis basks in sunlight and sleeps peacefully. It wakes and moves around at night.",
         "sprites": {
@@ -1318,7 +1318,7 @@
         "types": [
             "grass"
         ],
-        "national_dex_entry_number": 754,
+        "pokedex_number": 754,
         "genus": "Bloom Sickle Pokémon",
         "flavor_text": "The petals on this Pokémon’s arms are thin and super sharp, and they can fire laser beams if Lurantis gathers light first.",
         "sprites": {
@@ -1348,7 +1348,7 @@
             "grass",
             "fairy"
         ],
-        "national_dex_entry_number": 755,
+        "pokedex_number": 755,
         "genus": "Illuminating Pokémon",
         "flavor_text": "Morelull live in forests that stay dark even during the day. They scatter flickering spores that put enemies to sleep.",
         "sprites": {
@@ -1384,7 +1384,7 @@
             "grass",
             "fairy"
         ],
-        "national_dex_entry_number": 756,
+        "pokedex_number": 756,
         "genus": "Illuminating Pokémon",
         "flavor_text": "If you see a light deep in a forest at night, don’t go near. Shiinotic will make you fall fast asleep.",
         "sprites": {
@@ -1414,7 +1414,7 @@
             "poison",
             "fire"
         ],
-        "national_dex_entry_number": 757,
+        "pokedex_number": 757,
         "genus": "Toxic Lizard Pokémon",
         "flavor_text": "This sneaky Pokémon will slink behind its prey and immobilize it with poisonous gas before the prey even realizes Salandit is there.",
         "sprites": {
@@ -1450,7 +1450,7 @@
             "poison",
             "fire"
         ],
-        "national_dex_entry_number": 758,
+        "pokedex_number": 758,
         "genus": "Toxic Lizard Pokémon",
         "flavor_text": "The winner of competitions between Salazzle is decided by which one has the most male Salandit with it.",
         "sprites": {
@@ -1480,7 +1480,7 @@
             "normal",
             "fighting"
         ],
-        "national_dex_entry_number": 759,
+        "pokedex_number": 759,
         "genus": "Flailing Pokémon",
         "flavor_text": "The way it protects itself by flailing its arms may be an adorable sight, but stay well away. This is flailing that can snap thick tree trunks.",
         "sprites": {
@@ -1516,7 +1516,7 @@
             "normal",
             "fighting"
         ],
-        "national_dex_entry_number": 760,
+        "pokedex_number": 760,
         "genus": "Strong Arm Pokémon",
         "flavor_text": "The moves it uses to take down its prey would make a martial artist jealous. It tucks subdued prey under its arms to carry them to its nest.",
         "sprites": {
@@ -1545,7 +1545,7 @@
         "types": [
             "grass"
         ],
-        "national_dex_entry_number": 761,
+        "pokedex_number": 761,
         "genus": "Fruit Pokémon",
         "flavor_text": "When under attack, it secretes a sweet and delicious sweat. The scent only calls more enemies to it.",
         "sprites": {
@@ -1580,7 +1580,7 @@
         "types": [
             "grass"
         ],
-        "national_dex_entry_number": 762,
+        "pokedex_number": 762,
         "genus": "Fruit Pokémon",
         "flavor_text": "Any Corvisquire that pecks at this Pokémon will be greeted with a smack from its sepals followed by a sharp kick.",
         "sprites": {
@@ -1615,7 +1615,7 @@
         "types": [
             "grass"
         ],
-        "national_dex_entry_number": 763,
+        "pokedex_number": 763,
         "genus": "Fruit Pokémon",
         "flavor_text": "A kick from the hardened tips of this Pokémon’s legs leaves a wound in the opponent’s body and soul that will never heal.",
         "sprites": {
@@ -1644,7 +1644,7 @@
         "types": [
             "fairy"
         ],
-        "national_dex_entry_number": 764,
+        "pokedex_number": 764,
         "genus": "Posy Picker Pokémon",
         "flavor_text": "These Pokémon smell very nice. All Comfey wear different flowers, so each of these Pokémon has its own individual scent.",
         "sprites": {
@@ -1674,7 +1674,7 @@
             "normal",
             "psychic"
         ],
-        "national_dex_entry_number": 765,
+        "pokedex_number": 765,
         "genus": "Sage Pokémon",
         "flavor_text": "It knows the forest inside and out. If it comes across a wounded Pokémon, Oranguru will gather medicinal herbs to treat it.",
         "sprites": {
@@ -1703,7 +1703,7 @@
         "types": [
             "fighting"
         ],
-        "national_dex_entry_number": 766,
+        "pokedex_number": 766,
         "genus": "Teamwork Pokémon",
         "flavor_text": "Passimian live in groups of about 20, with each member performing an assigned role. Through cooperation, the group survives.",
         "sprites": {
@@ -1733,7 +1733,7 @@
             "bug",
             "water"
         ],
-        "national_dex_entry_number": 767,
+        "pokedex_number": 767,
         "genus": "Turn Tail Pokémon",
         "flavor_text": "Wimpod gather in swarms, constantly on the lookout for danger. They scatter the moment they detect an enemy’s presence.",
         "sprites": {
@@ -1769,7 +1769,7 @@
             "bug",
             "water"
         ],
-        "national_dex_entry_number": 768,
+        "pokedex_number": 768,
         "genus": "Hard Scale Pokémon",
         "flavor_text": "They live in sunken ships or in holes in the seabed. When Golisopod and Grapploct battle, the loser becomes the winner’s meal.",
         "sprites": {
@@ -1805,7 +1805,7 @@
             "bug",
             "steel"
         ],
-        "national_dex_entry_number": 768,
+        "pokedex_number": 768,
         "genus": "Hard Scale Pokémon",
         "flavor_text": "They live in sunken ships or in holes in the seabed. When Golisopod and Grapploct battle, the loser becomes the winner’s meal.",
         "sprites": {
@@ -1835,7 +1835,7 @@
             "ghost",
             "ground"
         ],
-        "national_dex_entry_number": 769,
+        "pokedex_number": 769,
         "genus": "Sand Heap Pokémon",
         "flavor_text": "Sandygast mainly inhabits beaches. It takes control of anyone who puts their hand into its mouth, forcing them to make its body bigger.",
         "sprites": {
@@ -1871,7 +1871,7 @@
             "ghost",
             "ground"
         ],
-        "national_dex_entry_number": 770,
+        "pokedex_number": 770,
         "genus": "Sand Castle Pokémon",
         "flavor_text": "This Pokémon lives on beaches, but it hates water. Palossand can’t maintain its castle-like shape if it gets drenched by a heavy rain.",
         "sprites": {
@@ -1900,7 +1900,7 @@
         "types": [
             "water"
         ],
-        "national_dex_entry_number": 771,
+        "pokedex_number": 771,
         "genus": "Sea Cucumber Pokémon",
         "flavor_text": "It lives in warm, shallow waters. If it encounters a foe, it will spit out its internal organs as a means to punch them.",
         "sprites": {
@@ -1929,7 +1929,7 @@
         "types": [
             "normal"
         ],
-        "national_dex_entry_number": 772,
+        "pokedex_number": 772,
         "genus": "Synthetic Pokémon",
         "flavor_text": "It was modeled after a mighty Pokémon of myth. The mask placed upon it limits its power in order to keep it under control.",
         "sprites": {
@@ -1964,7 +1964,7 @@
         "types": [
             "normal"
         ],
-        "national_dex_entry_number": 773,
+        "pokedex_number": 773,
         "genus": "Synthetic Pokémon",
         "flavor_text": "The final factor needed to release this Pokémon’s true power was a strong bond with a Trainer it trusts.",
         "sprites": {
@@ -1994,7 +1994,7 @@
             "rock",
             "flying"
         ],
-        "national_dex_entry_number": 774,
+        "pokedex_number": 774,
         "genus": "Meteor Pokémon",
         "flavor_text": "Although its outer shell is uncommonly durable, the shock of falling to the ground smashes the shell to smithereens.",
         "sprites": {
@@ -2024,7 +2024,7 @@
             "rock",
             "flying"
         ],
-        "national_dex_entry_number": 774,
+        "pokedex_number": 774,
         "genus": "Meteor Pokémon",
         "flavor_text": "Although its outer shell is uncommonly durable, the shock of falling to the ground smashes the shell to smithereens.",
         "sprites": {
@@ -2054,7 +2054,7 @@
             "rock",
             "flying"
         ],
-        "national_dex_entry_number": 774,
+        "pokedex_number": 774,
         "genus": "Meteor Pokémon",
         "flavor_text": "Although its outer shell is uncommonly durable, the shock of falling to the ground smashes the shell to smithereens.",
         "sprites": {
@@ -2084,7 +2084,7 @@
             "rock",
             "flying"
         ],
-        "national_dex_entry_number": 774,
+        "pokedex_number": 774,
         "genus": "Meteor Pokémon",
         "flavor_text": "Although its outer shell is uncommonly durable, the shock of falling to the ground smashes the shell to smithereens.",
         "sprites": {
@@ -2114,7 +2114,7 @@
             "rock",
             "flying"
         ],
-        "national_dex_entry_number": 774,
+        "pokedex_number": 774,
         "genus": "Meteor Pokémon",
         "flavor_text": "Although its outer shell is uncommonly durable, the shock of falling to the ground smashes the shell to smithereens.",
         "sprites": {
@@ -2144,7 +2144,7 @@
             "rock",
             "flying"
         ],
-        "national_dex_entry_number": 774,
+        "pokedex_number": 774,
         "genus": "Meteor Pokémon",
         "flavor_text": "Although its outer shell is uncommonly durable, the shock of falling to the ground smashes the shell to smithereens.",
         "sprites": {
@@ -2174,7 +2174,7 @@
             "rock",
             "flying"
         ],
-        "national_dex_entry_number": 774,
+        "pokedex_number": 774,
         "genus": "Meteor Pokémon",
         "flavor_text": "Although its outer shell is uncommonly durable, the shock of falling to the ground smashes the shell to smithereens.",
         "sprites": {
@@ -2204,7 +2204,7 @@
             "rock",
             "flying"
         ],
-        "national_dex_entry_number": 774,
+        "pokedex_number": 774,
         "genus": "Meteor Pokémon",
         "flavor_text": "Although its outer shell is uncommonly durable, the shock of falling to the ground smashes the shell to smithereens.",
         "sprites": {
@@ -2234,7 +2234,7 @@
             "rock",
             "flying"
         ],
-        "national_dex_entry_number": 774,
+        "pokedex_number": 774,
         "genus": "Meteor Pokémon",
         "flavor_text": "Although its outer shell is uncommonly durable, the shock of falling to the ground smashes the shell to smithereens.",
         "sprites": {
@@ -2264,7 +2264,7 @@
             "rock",
             "flying"
         ],
-        "national_dex_entry_number": 774,
+        "pokedex_number": 774,
         "genus": "Meteor Pokémon",
         "flavor_text": "Although its outer shell is uncommonly durable, the shock of falling to the ground smashes the shell to smithereens.",
         "sprites": {
@@ -2294,7 +2294,7 @@
             "rock",
             "flying"
         ],
-        "national_dex_entry_number": 774,
+        "pokedex_number": 774,
         "genus": "Meteor Pokémon",
         "flavor_text": "Although its outer shell is uncommonly durable, the shock of falling to the ground smashes the shell to smithereens.",
         "sprites": {
@@ -2324,7 +2324,7 @@
             "rock",
             "flying"
         ],
-        "national_dex_entry_number": 774,
+        "pokedex_number": 774,
         "genus": "Meteor Pokémon",
         "flavor_text": "Although its outer shell is uncommonly durable, the shock of falling to the ground smashes the shell to smithereens.",
         "sprites": {
@@ -2354,7 +2354,7 @@
             "rock",
             "flying"
         ],
-        "national_dex_entry_number": 774,
+        "pokedex_number": 774,
         "genus": "Meteor Pokémon",
         "flavor_text": "Although its outer shell is uncommonly durable, the shock of falling to the ground smashes the shell to smithereens.",
         "sprites": {
@@ -2384,7 +2384,7 @@
             "rock",
             "flying"
         ],
-        "national_dex_entry_number": 774,
+        "pokedex_number": 774,
         "genus": "Meteor Pokémon",
         "flavor_text": "Although its outer shell is uncommonly durable, the shock of falling to the ground smashes the shell to smithereens.",
         "sprites": {
@@ -2413,7 +2413,7 @@
         "types": [
             "normal"
         ],
-        "national_dex_entry_number": 775,
+        "pokedex_number": 775,
         "genus": "Drowsing Pokémon",
         "flavor_text": "It remains asleep from birth to death as a result of the sedative properties of the leaves that form its diet.",
         "sprites": {
@@ -2443,7 +2443,7 @@
             "fire",
             "dragon"
         ],
-        "national_dex_entry_number": 776,
+        "pokedex_number": 776,
         "genus": "Blast Turtle Pokémon",
         "flavor_text": "Eating sulfur in its volcanic habitat is what causes explosive compounds to develop in its shell. Its droppings are also dangerously explosive.",
         "sprites": {
@@ -2473,7 +2473,7 @@
             "electric",
             "steel"
         ],
-        "national_dex_entry_number": 777,
+        "pokedex_number": 777,
         "genus": "Roly-Poly Pokémon",
         "flavor_text": "When it’s in trouble, it curls up into a ball, makes its fur spikes stand on end, and then discharges electricity indiscriminately.",
         "sprites": {
@@ -2503,7 +2503,7 @@
             "ghost",
             "fairy"
         ],
-        "national_dex_entry_number": 778,
+        "pokedex_number": 778,
         "genus": "Disguise Pokémon",
         "flavor_text": "There was a scientist who peeked under Mimikyu’s old rag in the name of research. The scientist died of a mysterious disease.",
         "sprites": {
@@ -2533,7 +2533,7 @@
             "ghost",
             "fairy"
         ],
-        "national_dex_entry_number": 778,
+        "pokedex_number": 778,
         "genus": "Disguise Pokémon",
         "flavor_text": "There was a scientist who peeked under Mimikyu’s old rag in the name of research. The scientist died of a mysterious disease.",
         "sprites": {
@@ -2563,7 +2563,7 @@
             "water",
             "psychic"
         ],
-        "national_dex_entry_number": 779,
+        "pokedex_number": 779,
         "genus": "Gnash Teeth Pokémon",
         "flavor_text": "Its skin is thick enough to fend off Mareanie’s spikes. With its robust teeth, Bruxish crunches up the spikes and eats them.",
         "sprites": {
@@ -2593,7 +2593,7 @@
             "normal",
             "dragon"
         ],
-        "national_dex_entry_number": 780,
+        "pokedex_number": 780,
         "genus": "Placid Pokémon",
         "flavor_text": "Drampa is a kind and friendly Pokémon—up until it’s angered. When that happens, it stirs up a gale and flattens everything around.",
         "sprites": {
@@ -2629,7 +2629,7 @@
             "normal",
             "dragon"
         ],
-        "national_dex_entry_number": 780,
+        "pokedex_number": 780,
         "genus": "Placid Pokémon",
         "flavor_text": "Drampa is a kind and friendly Pokémon—up until it’s angered. When that happens, it stirs up a gale and flattens everything around.",
         "sprites": {
@@ -2659,7 +2659,7 @@
             "ghost",
             "grass"
         ],
-        "national_dex_entry_number": 781,
+        "pokedex_number": 781,
         "genus": "Sea Creeper Pokémon",
         "flavor_text": "After lowering its anchor, it waits for its prey. It catches large Wailord and drains their life-force.",
         "sprites": {
@@ -2688,7 +2688,7 @@
         "types": [
             "dragon"
         ],
-        "national_dex_entry_number": 782,
+        "pokedex_number": 782,
         "genus": "Scaly Pokémon",
         "flavor_text": "Jangmo-o strikes its scales to communicate with others of its kind. Its scales are actually fur that’s become as hard as metal.",
         "sprites": {
@@ -2724,7 +2724,7 @@
             "dragon",
             "fighting"
         ],
-        "national_dex_entry_number": 783,
+        "pokedex_number": 783,
         "genus": "Scaly Pokémon",
         "flavor_text": "Before attacking its enemies, it clashes its scales together and roars. Its sharp claws shred the opposition.",
         "sprites": {
@@ -2760,7 +2760,7 @@
             "dragon",
             "fighting"
         ],
-        "national_dex_entry_number": 784,
+        "pokedex_number": 784,
         "genus": "Scaly Pokémon",
         "flavor_text": "Certain ruins have paintings of ancient warriors wearing armor made of Kommo-o scales.",
         "sprites": {
@@ -2790,7 +2790,7 @@
             "electric",
             "fairy"
         ],
-        "national_dex_entry_number": 785,
+        "pokedex_number": 785,
         "genus": "Land Spirit Pokémon",
         "flavor_text": "The lightning-wielding guardian deity of Melemele, Tapu Koko is brimming with curiosity and appears before people from time to time.",
         "sprites": {
@@ -2820,7 +2820,7 @@
             "psychic",
             "fairy"
         ],
-        "national_dex_entry_number": 786,
+        "pokedex_number": 786,
         "genus": "Land Spirit Pokémon",
         "flavor_text": "Although called a guardian deity, Tapu Lele is devoid of guilt about its cruel disposition and can be described as nature incarnate.",
         "sprites": {
@@ -2850,7 +2850,7 @@
             "grass",
             "fairy"
         ],
-        "national_dex_entry_number": 787,
+        "pokedex_number": 787,
         "genus": "Land Spirit Pokémon",
         "flavor_text": "It makes ringing sounds with its tail to let others know where it is, avoiding unneeded conflicts. This guardian deity of Ula’ula controls plants.",
         "sprites": {
@@ -2880,7 +2880,7 @@
             "water",
             "fairy"
         ],
-        "national_dex_entry_number": 788,
+        "pokedex_number": 788,
         "genus": "Land Spirit Pokémon",
         "flavor_text": "Although it’s called a guardian deity, terrible calamities sometimes befall those who recklessly approach Tapu Fini.",
         "sprites": {
@@ -2909,7 +2909,7 @@
         "types": [
             "psychic"
         ],
-        "national_dex_entry_number": 789,
+        "pokedex_number": 789,
         "genus": "Nebula Pokémon",
         "flavor_text": "Cosmog is very curious but not very cautious, often placing itself in danger. If things start to look dicey, it teleports away.",
         "sprites": {
@@ -2944,7 +2944,7 @@
         "types": [
             "psychic"
         ],
-        "national_dex_entry_number": 790,
+        "pokedex_number": 790,
         "genus": "Protostar Pokémon",
         "flavor_text": "It sucks in dust from the air at an astounding rate, frantically building up energy within its core as preparation for evolution.",
         "sprites": {
@@ -2985,7 +2985,7 @@
             "psychic",
             "steel"
         ],
-        "national_dex_entry_number": 791,
+        "pokedex_number": 791,
         "genus": "Sunne Pokémon",
         "flavor_text": "Solgaleo was once known as the Beast That Devours the Sun. Energy in the form of light radiates boundlessly from it.",
         "sprites": {
@@ -3015,7 +3015,7 @@
             "psychic",
             "ghost"
         ],
-        "national_dex_entry_number": 792,
+        "pokedex_number": 792,
         "genus": "Moone Pokémon",
         "flavor_text": "It steals the light from its surroundings and then becomes the full moon, showering its own light across the night sky.",
         "sprites": {
@@ -3045,7 +3045,7 @@
             "rock",
             "poison"
         ],
-        "national_dex_entry_number": 793,
+        "pokedex_number": 793,
         "genus": "Parasite Pokémon",
         "flavor_text": "It appeared in this world from an Ultra Wormhole. Nihilego appears to be a parasite that lives by feeding on people and Pokémon.",
         "sprites": {
@@ -3075,7 +3075,7 @@
             "bug",
             "fighting"
         ],
-        "national_dex_entry_number": 794,
+        "pokedex_number": 794,
         "genus": "Swollen Pokémon",
         "flavor_text": "Buzzwole goes around showing off its abnormally swollen muscles. It is one kind of Ultra Beast.",
         "sprites": {
@@ -3105,7 +3105,7 @@
             "bug",
             "fighting"
         ],
-        "national_dex_entry_number": 795,
+        "pokedex_number": 795,
         "genus": "Lissome Pokémon",
         "flavor_text": "Although it’s alien to this world and a danger here, it’s apparently a common organism in the world where it normally lives.",
         "sprites": {
@@ -3134,7 +3134,7 @@
         "types": [
             "electric"
         ],
-        "national_dex_entry_number": 796,
+        "pokedex_number": 796,
         "genus": "Glowing Pokémon",
         "flavor_text": "They’ve been dubbed Ultra Beasts. Some of them stand unmoving, like trees, with their arms and legs stuck into the ground.",
         "sprites": {
@@ -3164,7 +3164,7 @@
             "steel",
             "flying"
         ],
-        "national_dex_entry_number": 797,
+        "pokedex_number": 797,
         "genus": "Launch Pokémon",
         "flavor_text": "Although it’s alien to this world and a danger here, it’s apparently a common organism in the world where it normally lives.",
         "sprites": {
@@ -3194,7 +3194,7 @@
             "grass",
             "steel"
         ],
-        "national_dex_entry_number": 798,
+        "pokedex_number": 798,
         "genus": "Drawn Sword Pokémon",
         "flavor_text": "Although it’s alien to this world and a danger here, it’s apparently a common organism in the world where it normally lives.",
         "sprites": {
@@ -3224,7 +3224,7 @@
             "dark",
             "dragon"
         ],
-        "national_dex_entry_number": 799,
+        "pokedex_number": 799,
         "genus": "Junkivore Pokémon",
         "flavor_text": "An unknown life-form called a UB. It may be constantly hungry—it is certainly always devouring something.",
         "sprites": {
@@ -3253,7 +3253,7 @@
         "types": [
             "psychic"
         ],
-        "national_dex_entry_number": 800,
+        "pokedex_number": 800,
         "genus": "Prism Pokémon",
         "flavor_text": "It needs light to survive, and it goes on a rampage seeking it out. Its laser beams will cut anything to pieces.",
         "sprites": {
@@ -3283,7 +3283,7 @@
             "psychic",
             "steel"
         ],
-        "national_dex_entry_number": 800,
+        "pokedex_number": 800,
         "genus": "Prism Pokémon",
         "flavor_text": "It needs light to survive, and it goes on a rampage seeking it out. Its laser beams will cut anything to pieces.",
         "sprites": {
@@ -3313,7 +3313,7 @@
             "psychic",
             "ghost"
         ],
-        "national_dex_entry_number": 800,
+        "pokedex_number": 800,
         "genus": "Prism Pokémon",
         "flavor_text": "It needs light to survive, and it goes on a rampage seeking it out. Its laser beams will cut anything to pieces.",
         "sprites": {
@@ -3343,7 +3343,7 @@
             "psychic",
             "dragon"
         ],
-        "national_dex_entry_number": 800,
+        "pokedex_number": 800,
         "genus": "Prism Pokémon",
         "flavor_text": "It needs light to survive, and it goes on a rampage seeking it out. Its laser beams will cut anything to pieces.",
         "sprites": {
@@ -3373,7 +3373,7 @@
             "steel",
             "fairy"
         ],
-        "national_dex_entry_number": 801,
+        "pokedex_number": 801,
         "genus": "Artificial Pokémon",
         "flavor_text": "Built roughly 500 years ago by a scientist, the part called the Soul-Heart is the actual life-form.",
         "sprites": {
@@ -3409,7 +3409,7 @@
             "steel",
             "fairy"
         ],
-        "national_dex_entry_number": 801,
+        "pokedex_number": 801,
         "genus": "Artificial Pokémon",
         "flavor_text": "Built roughly 500 years ago by a scientist, the part called the Soul-Heart is the actual life-form.",
         "sprites": {
@@ -3445,7 +3445,7 @@
             "steel",
             "fairy"
         ],
-        "national_dex_entry_number": 801,
+        "pokedex_number": 801,
         "genus": "Artificial Pokémon",
         "flavor_text": "Built roughly 500 years ago by a scientist, the part called the Soul-Heart is the actual life-form.",
         "sprites": {
@@ -3475,7 +3475,7 @@
             "steel",
             "fairy"
         ],
-        "national_dex_entry_number": 801,
+        "pokedex_number": 801,
         "genus": "Artificial Pokémon",
         "flavor_text": "Built roughly 500 years ago by a scientist, the part called the Soul-Heart is the actual life-form.",
         "sprites": {
@@ -3505,7 +3505,7 @@
             "fighting",
             "ghost"
         ],
-        "national_dex_entry_number": 802,
+        "pokedex_number": 802,
         "genus": "Gloomdweller Pokémon",
         "flavor_text": "This Pokémon can conceal itself in any shadow, so it went undiscovered for a long time.",
         "sprites": {
@@ -3534,7 +3534,7 @@
         "types": [
             "poison"
         ],
-        "national_dex_entry_number": 803,
+        "pokedex_number": 803,
         "genus": "Poison Pin Pokémon",
         "flavor_text": "An Ultra Beast that lives in a different world, it cackles wildly as it sprays its opponents with poison from the needles on its head.",
         "sprites": {
@@ -3570,7 +3570,7 @@
             "poison",
             "dragon"
         ],
-        "national_dex_entry_number": 804,
+        "pokedex_number": 804,
         "genus": "Poison Pin Pokémon",
         "flavor_text": "One kind of Ultra Beast, it fires a glowing, venomous liquid from its needles. This liquid is also immensely adhesive.",
         "sprites": {
@@ -3600,7 +3600,7 @@
             "rock",
             "steel"
         ],
-        "national_dex_entry_number": 805,
+        "pokedex_number": 805,
         "genus": "Rampart Pokémon",
         "flavor_text": "When stone walls started moving and attacking, the brute’s true identity was this mysterious life-form, which brings to mind an Ultra Beast.",
         "sprites": {
@@ -3630,7 +3630,7 @@
             "fire",
             "ghost"
         ],
-        "national_dex_entry_number": 806,
+        "pokedex_number": 806,
         "genus": "Fireworks Pokémon",
         "flavor_text": "A UB that appeared from an Ultra Wormhole, it causes explosions, then takes advantage of opponents’ surprise to rob them of their vitality.",
         "sprites": {
@@ -3659,7 +3659,7 @@
         "types": [
             "electric"
         ],
-        "national_dex_entry_number": 807,
+        "pokedex_number": 807,
         "genus": "Thunderclap Pokémon",
         "flavor_text": "Electricity sparks from the pads on its limbs. Wherever Zeraora runs, lightning flashes and thunder echoes.",
         "sprites": {
@@ -3694,7 +3694,7 @@
         "types": [
             "electric"
         ],
-        "national_dex_entry_number": 807,
+        "pokedex_number": 807,
         "genus": "Thunderclap Pokémon",
         "flavor_text": "Electricity sparks from the pads on its limbs. Wherever Zeraora runs, lightning flashes and thunder echoes.",
         "sprites": {
@@ -3723,7 +3723,7 @@
         "types": [
             "steel"
         ],
-        "national_dex_entry_number": 808,
+        "pokedex_number": 808,
         "genus": "Hex Nut Pokémon",
         "flavor_text": "They live as a group, but when the time comes, one strong Meltan will absorb all the others and evolve.",
         "sprites": {
@@ -3758,7 +3758,7 @@
         "types": [
             "steel"
         ],
-        "national_dex_entry_number": 809,
+        "pokedex_number": 809,
         "genus": "Hex Nut Pokémon",
         "flavor_text": "Centrifugal force is behind the punches of Melmetal’s heavy hex-nut arms. Melmetal is said to deliver the strongest punches of all Pokémon.",
         "sprites": {
@@ -3793,7 +3793,7 @@
         "types": [
             "steel"
         ],
-        "national_dex_entry_number": 809,
+        "pokedex_number": 809,
         "genus": "Hex Nut Pokémon",
         "flavor_text": "Centrifugal force is behind the punches of Melmetal’s heavy hex-nut arms. Melmetal is said to deliver the strongest punches of all Pokémon.",
         "sprites": {
@@ -3823,7 +3823,7 @@
             "dark",
             "normal"
         ],
-        "national_dex_entry_number": 19,
+        "pokedex_number": 19,
         "genus": "Mouse Pokémon",
         "flavor_text": "Will chew on anything with its fangs. If you see one, you can be certain that 40 more live in the area.",
         "sprites": {
@@ -3859,7 +3859,7 @@
             "dark",
             "normal"
         ],
-        "national_dex_entry_number": 20,
+        "pokedex_number": 20,
         "genus": "Mouse Pokémon",
         "flavor_text": "Its hind feet are webbed. They act as flippers, so it can swim in rivers and hunt for prey.",
         "sprites": {
@@ -3889,7 +3889,7 @@
             "electric",
             "psychic"
         ],
-        "national_dex_entry_number": 26,
+        "pokedex_number": 26,
         "genus": "Mouse Pokémon",
         "flavor_text": "It can discharge bursts of electricity exceeding 100,000 volts— a single strike with that amount of power would incapacitate one of the Copperajah of my homeland.",
         "sprites": {
@@ -3919,7 +3919,7 @@
             "ice",
             "steel"
         ],
-        "national_dex_entry_number": 27,
+        "pokedex_number": 27,
         "genus": "Mouse Pokémon",
         "flavor_text": "It burrows into the ground to create its nest. If hard stones impede its tunneling, it uses its sharp claws to shatter them and then carries on digging.",
         "sprites": {
@@ -3955,7 +3955,7 @@
             "ice",
             "steel"
         ],
-        "national_dex_entry_number": 28,
+        "pokedex_number": 28,
         "genus": "Mouse Pokémon",
         "flavor_text": "It climbs trees by hooking on with its sharp claws. Sandslash shares the berries it gathers, dropping them down to Sandshrew waiting below the tree.",
         "sprites": {
@@ -3984,7 +3984,7 @@
         "types": [
             "ice"
         ],
-        "national_dex_entry_number": 37,
+        "pokedex_number": 37,
         "genus": "Fox Pokémon",
         "flavor_text": "In its belly burns a fire, which Vulpix spits out in the form of fireballs. When young, this Pokémon has but one white tail. As the Pokémon matures, this single tail splits into six.",
         "sprites": {
@@ -4020,7 +4020,7 @@
             "ice",
             "fairy"
         ],
-        "national_dex_entry_number": 38,
+        "pokedex_number": 38,
         "genus": "Fox Pokémon",
         "flavor_text": "The coat of gleaming golden fur is quite magnificent. This species is said to store sacred power in its nine long tails and to live for a millennium.",
         "sprites": {
@@ -4050,7 +4050,7 @@
             "ground",
             "steel"
         ],
-        "national_dex_entry_number": 50,
+        "pokedex_number": 50,
         "genus": "Mole Pokémon",
         "flavor_text": "It burrows through the ground at a shallow depth. It leaves raised earth in its wake, making it easy to spot.",
         "sprites": {
@@ -4086,7 +4086,7 @@
             "ground",
             "steel"
         ],
-        "national_dex_entry_number": 51,
+        "pokedex_number": 51,
         "genus": "Mole Pokémon",
         "flavor_text": "These Diglett triplets dig over 60 miles below sea level. No one knows what it’s like underground.",
         "sprites": {
@@ -4115,7 +4115,7 @@
         "types": [
             "dark"
         ],
-        "national_dex_entry_number": 52,
+        "pokedex_number": 52,
         "genus": "Scratch Cat Pokémon",
         "flavor_text": "It loves to collect shiny things. If it’s in a good mood, it might even let its Trainer have a look at its hoard of treasures.",
         "sprites": {
@@ -4150,7 +4150,7 @@
         "types": [
             "dark"
         ],
-        "national_dex_entry_number": 53,
+        "pokedex_number": 53,
         "genus": "Classy Cat Pokémon",
         "flavor_text": "Its elegant and refined behavior clashes with that of the barbaric Perrserker. The relationship between the two is one of mutual disdain.",
         "sprites": {
@@ -4180,7 +4180,7 @@
             "rock",
             "electric"
         ],
-        "national_dex_entry_number": 74,
+        "pokedex_number": 74,
         "genus": "Rock Pokémon",
         "flavor_text": "Makes its home in mountainous regions, using its arms to climb along harsh mountain roads. Can be troublesome—carelessly kicking one will cause it to fly into a rage and chase after you.",
         "sprites": {
@@ -4216,7 +4216,7 @@
             "rock",
             "electric"
         ],
-        "national_dex_entry_number": 75,
+        "pokedex_number": 75,
         "genus": "Rock Pokémon",
         "flavor_text": "Dwells in holes dug into sheer walls of stone. It enjoys rolling down slopes as though it were a boulder during a rockfall, so keep an eye upward while traversing mountain roads.",
         "sprites": {
@@ -4252,7 +4252,7 @@
             "rock",
             "electric"
         ],
-        "national_dex_entry_number": 76,
+        "pokedex_number": 76,
         "genus": "Megaton Pokémon",
         "flavor_text": "The rocklike shell is shed each year. The cast-off shell then crumbles, reverting to a mass of soil, which can be spread across fields to promote crop growth.",
         "sprites": {
@@ -4282,7 +4282,7 @@
             "poison",
             "dark"
         ],
-        "national_dex_entry_number": 88,
+        "pokedex_number": 88,
         "genus": "Sludge Pokémon",
         "flavor_text": "Made of congealed sludge. It smells too putrid to touch. Even weeds won’t grow in its path.",
         "sprites": {
@@ -4318,7 +4318,7 @@
             "poison",
             "dark"
         ],
-        "national_dex_entry_number": 89,
+        "pokedex_number": 89,
         "genus": "Sludge Pokémon",
         "flavor_text": "Smells so awful, it can cause fainting. Through degeneration of its nose, it lost its sense of smell.",
         "sprites": {
@@ -4348,7 +4348,7 @@
             "grass",
             "dragon"
         ],
-        "national_dex_entry_number": 103,
+        "pokedex_number": 103,
         "genus": "Coconut Pokémon",
         "flavor_text": "When they work together, Exeggutor’s three heads can put out powerful psychic energy. Cloudy days make this Pokémon sluggish.",
         "sprites": {
@@ -4378,7 +4378,7 @@
             "fire",
             "ghost"
         ],
-        "national_dex_entry_number": 105,
+        "pokedex_number": 105,
         "genus": "Bone Keeper Pokémon",
         "flavor_text": "When this Pokémon evolved, the skull of its mother fused to it. Marowak’s temperament also turned vicious at the same time.",
         "sprites": {

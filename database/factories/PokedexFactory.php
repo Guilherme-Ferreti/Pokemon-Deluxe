@@ -25,10 +25,10 @@ final class PokedexFactory extends Factory
                 fake()->randomElement(ElementalType::cases()),
                 fake()->optional()->randomElement(ElementalType::cases()),
             ]),
-            'national_dex_entry_number' => fake()->unique()->numberBetween(1, 1000),
-            'genus'                     => fake()->word(),
-            'text_entry'                => fake()->sentence(),
-            'sprites'                   => new PokemonSprites(
+            'pokedex_number' => fake()->unique()->numberBetween(1, 1000),
+            'genus'          => fake()->word(),
+            'text_entry'     => fake()->sentence(),
+            'sprites'        => new PokemonSprites(
                 back_default: fake()->imageUrl(width: 96, height: 96, word: 'back default'),
                 back_female: fake()->imageUrl(width: 96, height: 96, word: 'back female'),
                 back_shiny: fake()->imageUrl(width: 96, height: 96, word: 'back shiny'),

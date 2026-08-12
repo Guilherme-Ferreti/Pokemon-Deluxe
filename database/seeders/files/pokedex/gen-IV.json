@@ -6,7 +6,7 @@
         "types": [
             "grass"
         ],
-        "national_dex_entry_number": 387,
+        "pokedex_number": 387,
         "genus": "Tiny Leaf Pokémon",
         "flavor_text": "This Pokémon becomes more energetic the more sunlight there is. The part resembling a shell is similar to silt and is slightly damp and warm to the touch.",
         "sprites": {
@@ -41,7 +41,7 @@
         "types": [
             "grass"
         ],
-        "national_dex_entry_number": 388,
+        "pokedex_number": 388,
         "genus": "Grove Pokémon",
         "flavor_text": "Appears where there is clean spring water. The fruit that grows on the shrubs on its shell is sweet, nutritious, and truly delicious.",
         "sprites": {
@@ -77,7 +77,7 @@
             "grass",
             "ground"
         ],
-        "national_dex_entry_number": 389,
+        "pokedex_number": 389,
         "genus": "Continent Pokémon",
         "flavor_text": "This remarkable, large-bodied Pokémon would serve beautifully as borrowed scenery for a garden, and its strength is peerless. Torterra roams the wilderness in search of clean water.",
         "sprites": {
@@ -106,7 +106,7 @@
         "types": [
             "fire"
         ],
-        "national_dex_entry_number": 390,
+        "pokedex_number": 390,
         "genus": "Chimp Pokémon",
         "flavor_text": "Full of vigor and always in high spirits. It was once known by the name ”Lantern-Tail” and feared as some kind of apparition.",
         "sprites": {
@@ -142,7 +142,7 @@
             "fire",
             "fighting"
         ],
-        "national_dex_entry_number": 391,
+        "pokedex_number": 391,
         "genus": "Playful Pokémon",
         "flavor_text": "The deeper the blue on its face, the more powerful it will grow to become. It leaps about every which way and lands powerful blows against its opponents with the flame on its tail.",
         "sprites": {
@@ -178,7 +178,7 @@
             "fire",
             "fighting"
         ],
-        "national_dex_entry_number": 392,
+        "pokedex_number": 392,
         "genus": "Flame Pokémon",
         "flavor_text": "A tall, hardy Pokémon with a dazzling appearance. It shrouds itself in flame and battles as if engaged in dance—truly a sight to behold.",
         "sprites": {
@@ -207,7 +207,7 @@
         "types": [
             "water"
         ],
-        "national_dex_entry_number": 393,
+        "pokedex_number": 393,
         "genus": "Penguin Pokémon",
         "flavor_text": "Prefers cold climes and appears along coasts. It's an adorable little thing—as cute as any child—but it's also prideful, unwilling to accept handouts from people.",
         "sprites": {
@@ -242,7 +242,7 @@
         "types": [
             "water"
         ],
-        "national_dex_entry_number": 394,
+        "pokedex_number": 394,
         "genus": "Penguin Pokémon",
         "flavor_text": "It swims gracefully through the frigid sea and sings with a voice like the roaring tide. It has powerful, sturdy wings and dignity to match.",
         "sprites": {
@@ -278,7 +278,7 @@
             "water",
             "steel"
         ],
-        "national_dex_entry_number": 395,
+        "pokedex_number": 395,
         "genus": "Emperor Pokémon",
         "flavor_text": "Since ancient times, it has been revered by the people of Hisui, who call it the Master of the Waves. Its wings are a match for even master-crafted blades.",
         "sprites": {
@@ -308,7 +308,7 @@
             "normal",
             "flying"
         ],
-        "national_dex_entry_number": 396,
+        "pokedex_number": 396,
         "genus": "Starling Pokémon",
         "flavor_text": "They live in the fields and mountains, gathering in large flocks. Their cries are quite obnoxious. Though small, their wings are strong—a strike from them leaves pain that persists for a week.",
         "sprites": {
@@ -344,7 +344,7 @@
             "normal",
             "flying"
         ],
-        "national_dex_entry_number": 397,
+        "pokedex_number": 397,
         "genus": "Starling Pokémon",
         "flavor_text": "They form remarkably large flocks and are constantly fighting amongst themselves. I suspect that those with magnificent plumes on their heads are the strong ones.",
         "sprites": {
@@ -380,7 +380,7 @@
             "normal",
             "flying"
         ],
-        "national_dex_entry_number": 398,
+        "pokedex_number": 398,
         "genus": "Predator Pokémon",
         "flavor_text": "It has left the flock, having gained strength enough to survive on its own. The astounding force with which Staraptor flies through the air allows it to carry away large, burly targets.",
         "sprites": {
@@ -416,7 +416,7 @@
             "fighting",
             "flying"
         ],
-        "national_dex_entry_number": 398,
+        "pokedex_number": 398,
         "genus": "Predator Pokémon",
         "flavor_text": "It has left the flock, having gained strength enough to survive on its own. The astounding force with which Staraptor flies through the air allows it to carry away large, burly targets.",
         "sprites": {
@@ -445,7 +445,7 @@
         "types": [
             "normal"
         ],
-        "national_dex_entry_number": 399,
+        "pokedex_number": 399,
         "genus": "Plump Mouse Pokémon",
         "flavor_text": "Bidoof has an unsophisticated face and is rarely flustered by anything. There have been incidents involving Bidoof sauntering into villages and gnawing on the houses without a single care.",
         "sprites": {
@@ -481,7 +481,7 @@
             "normal",
             "water"
         ],
-        "national_dex_entry_number": 400,
+        "pokedex_number": 400,
         "genus": "Beaver Pokémon",
         "flavor_text": "Bibarel fur repels water and is also a fantastic material for heat retention. These Pokémon create dams on rivers to live in.",
         "sprites": {
@@ -510,7 +510,7 @@
         "types": [
             "bug"
         ],
-        "national_dex_entry_number": 401,
+        "pokedex_number": 401,
         "genus": "Cricket Pokémon",
         "flavor_text": "When the trees take on new hues, more of these Pokémon appear. The tone they create by striking their antennae together resembles that of the marimba, an instrument of foreign lands.",
         "sprites": {
@@ -545,7 +545,7 @@
         "types": [
             "bug"
         ],
-        "national_dex_entry_number": 402,
+        "pokedex_number": 402,
         "genus": "Cricket Pokémon",
         "flavor_text": "It uses its cutlass-like arms to produce sound, the melody of which varies from individual to individual. It is a worthwhile endeavor to seek out one's favorite tunes.",
         "sprites": {
@@ -574,7 +574,7 @@
         "types": [
             "electric"
         ],
-        "national_dex_entry_number": 403,
+        "pokedex_number": 403,
         "genus": "Flash Pokémon",
         "flavor_text": "Shakes its body to generate electricity. Its stature belies its aggression—one must be patient to tame this Pokémon.",
         "sprites": {
@@ -609,7 +609,7 @@
         "types": [
             "electric"
         ],
-        "national_dex_entry_number": 404,
+        "pokedex_number": 404,
         "genus": "Spark Pokémon",
         "flavor_text": "Proudly uses its electrified claws as weapons. It seems to be a gracious Pokémon, evenly sharing the spoils of the hunt with others of its kind.",
         "sprites": {
@@ -644,7 +644,7 @@
         "types": [
             "electric"
         ],
-        "national_dex_entry_number": 405,
+        "pokedex_number": 405,
         "genus": "Gleam Eyes Pokémon",
         "flavor_text": "They form packs, each having one male as leader. Legends say that when Luxray's two eyes shimmer with gold, the Pokémon can see through anything.",
         "sprites": {
@@ -674,7 +674,7 @@
             "grass",
             "poison"
         ],
-        "national_dex_entry_number": 406,
+        "pokedex_number": 406,
         "genus": "Bud Pokémon",
         "flavor_text": "When the sun's light strengthens, the bud atop this Pokémon's head opens. This is a sign to the people that the harsh winter is over, and the season of budding has begun.",
         "sprites": {
@@ -710,7 +710,7 @@
             "grass",
             "poison"
         ],
-        "national_dex_entry_number": 407,
+        "pokedex_number": 407,
         "genus": "Bouquet Pokémon",
         "flavor_text": "Hidden within the bouquet on each hand are thorned whips loaded with virulent poison. Roserade moves gracefully as it corners its prey and mercilessly lashes them with its whips.",
         "sprites": {
@@ -739,7 +739,7 @@
         "types": [
             "rock"
         ],
-        "national_dex_entry_number": 408,
+        "pokedex_number": 408,
         "genus": "Head Butt Pokémon",
         "flavor_text": "An incredibly rare sight. They duel each other by ramming their heads together, and the resulting sound echoes throughout the area like the pealing of a bell.",
         "sprites": {
@@ -774,7 +774,7 @@
         "types": [
             "rock"
         ],
-        "national_dex_entry_number": 409,
+        "pokedex_number": 409,
         "genus": "Head Butt Pokémon",
         "flavor_text": "Very little is known about its biology. Can knock down massive trees by smashing its beautiful, pearl-like crown against them.",
         "sprites": {
@@ -804,7 +804,7 @@
             "rock",
             "steel"
         ],
-        "national_dex_entry_number": 410,
+        "pokedex_number": 410,
         "genus": "Shield Pokémon",
         "flavor_text": "Much remains unknown about this Pokémon, as few have ever seen it. However, we know that it is calm and dislikes conflict, and it enjoys polishing its face against trees and rocks.",
         "sprites": {
@@ -840,7 +840,7 @@
             "rock",
             "steel"
         ],
-        "national_dex_entry_number": 411,
+        "pokedex_number": 411,
         "genus": "Shield Pokémon",
         "flavor_text": "Its face is sturdy—as strong as diamond—and this hardness offers a very stable defense. Much about this species is still unknown, such as its natural habitat.",
         "sprites": {
@@ -869,7 +869,7 @@
         "types": [
             "bug"
         ],
-        "national_dex_entry_number": 412,
+        "pokedex_number": 412,
         "genus": "Bagworm Pokémon",
         "flavor_text": "If its cloak is even slightly damaged, Burmy will immediately repair it with whatever is close at hand. The Pokémon within the cloak is scrawny and vulnerable to the cold.",
         "sprites": {
@@ -909,7 +909,7 @@
         "types": [
             "bug"
         ],
-        "national_dex_entry_number": 412,
+        "pokedex_number": 412,
         "genus": "Bagworm Pokémon",
         "flavor_text": "If its cloak is even slightly damaged, Burmy will immediately repair it with whatever is close at hand. The Pokémon within the cloak is scrawny and vulnerable to the cold.",
         "sprites": {
@@ -949,7 +949,7 @@
         "types": [
             "bug"
         ],
-        "national_dex_entry_number": 412,
+        "pokedex_number": 412,
         "genus": "Bagworm Pokémon",
         "flavor_text": "If its cloak is even slightly damaged, Burmy will immediately repair it with whatever is close at hand. The Pokémon within the cloak is scrawny and vulnerable to the cold.",
         "sprites": {
@@ -990,7 +990,7 @@
             "bug",
             "grass"
         ],
-        "national_dex_entry_number": 413,
+        "pokedex_number": 413,
         "genus": "Bagworm Pokémon",
         "flavor_text": "When Burmy evolved, its cloak became a part of this Pokémon’s body. The cloak is never shed.",
         "sprites": {
@@ -1020,7 +1020,7 @@
             "bug",
             "ground"
         ],
-        "national_dex_entry_number": 413,
+        "pokedex_number": 413,
         "genus": "Bagworm Pokémon",
         "flavor_text": "When Burmy evolved, its cloak became a part of this Pokémon’s body. The cloak is never shed.",
         "sprites": {
@@ -1050,7 +1050,7 @@
             "bug",
             "steel"
         ],
-        "national_dex_entry_number": 413,
+        "pokedex_number": 413,
         "genus": "Bagworm Pokémon",
         "flavor_text": "When Burmy evolved, its cloak became a part of this Pokémon’s body. The cloak is never shed.",
         "sprites": {
@@ -1080,7 +1080,7 @@
             "bug",
             "flying"
         ],
-        "national_dex_entry_number": 414,
+        "pokedex_number": 414,
         "genus": "Moth Pokémon",
         "flavor_text": "Scatters steel-colored scales as it flaps its wings. Despite being observed feeding primarily on the nectar of flowers, Mothim is not often seen around flower gardens.",
         "sprites": {
@@ -1110,7 +1110,7 @@
             "bug",
             "flying"
         ],
-        "national_dex_entry_number": 415,
+        "pokedex_number": 415,
         "genus": "Tiny Bee Pokémon",
         "flavor_text": "They swear fealty to a queen Pokémon and work diligently to gather nectar. Each swarm produces a different flavor of honey.",
         "sprites": {
@@ -1146,7 +1146,7 @@
             "bug",
             "flying"
         ],
-        "national_dex_entry_number": 416,
+        "pokedex_number": 416,
         "genus": "Beehive Pokémon",
         "flavor_text": "Commands its subjects to build its hive. It will dispatch any interlopers who dare sneak into its nest and use them as nourishment for itself.",
         "sprites": {
@@ -1175,7 +1175,7 @@
         "types": [
             "electric"
         ],
-        "national_dex_entry_number": 417,
+        "pokedex_number": 417,
         "genus": "EleSquirrel Pokémon",
         "flavor_text": "A species related to the Pikachu line. Though Pachirisu is a calm Pokémon, it still presents a danger should one touch its electrified tail or cheeks.",
         "sprites": {
@@ -1204,7 +1204,7 @@
         "types": [
             "water"
         ],
-        "national_dex_entry_number": 418,
+        "pokedex_number": 418,
         "genus": "Sea Weasel Pokémon",
         "flavor_text": "It moves freely in the water by spinning its forked tail for propulsion. The resemblance to the screw of a steamboat is coincidental.",
         "sprites": {
@@ -1239,7 +1239,7 @@
         "types": [
             "water"
         ],
-        "national_dex_entry_number": 419,
+        "pokedex_number": 419,
         "genus": "Sea Weasel Pokémon",
         "flavor_text": "Has a long, rather splendid flotation sac, which prevents Floatzel from drowning even in stormy seas. One might glimpse this species around fishing hamlets from time to time.",
         "sprites": {
@@ -1268,7 +1268,7 @@
         "types": [
             "grass"
         ],
-        "national_dex_entry_number": 420,
+        "pokedex_number": 420,
         "genus": "Cherry Pokémon",
         "flavor_text": "Once the fruit growing alongside the main body is large and plump, Cherubi will use the nutrients within to evolve. The fruit then detaches, becoming nourishment for other creatures.",
         "sprites": {
@@ -1308,7 +1308,7 @@
         "types": [
             "grass"
         ],
-        "national_dex_entry_number": 421,
+        "pokedex_number": 421,
         "genus": "Blossom Pokémon",
         "flavor_text": "Motionless, save for the occasional quiver. A rich array of Pokémon can be found gathered around it, drawn by the scent exuded from Cherrim's folded petals.",
         "sprites": {
@@ -1337,7 +1337,7 @@
         "types": [
             "grass"
         ],
-        "national_dex_entry_number": 421,
+        "pokedex_number": 421,
         "genus": "Blossom Pokémon",
         "flavor_text": "Motionless, save for the occasional quiver. A rich array of Pokémon can be found gathered around it, drawn by the scent exuded from Cherrim's folded petals.",
         "sprites": {
@@ -1366,7 +1366,7 @@
         "types": [
             "water"
         ],
-        "national_dex_entry_number": 422,
+        "pokedex_number": 422,
         "genus": "Sea Slug Pokémon",
         "flavor_text": "Found in abundance on seashores bordering warm waters. Shellos are unexpectedly friendly and will crawl toward any person they see. Take care not to get coated in mucus!",
         "sprites": {
@@ -1401,7 +1401,7 @@
         "types": [
             "water"
         ],
-        "national_dex_entry_number": 422,
+        "pokedex_number": 422,
         "genus": "Sea Slug Pokémon",
         "flavor_text": "Found in abundance on seashores bordering warm waters. Shellos are unexpectedly friendly and will crawl toward any person they see. Take care not to get coated in mucus!",
         "sprites": {
@@ -1437,7 +1437,7 @@
             "water",
             "ground"
         ],
-        "national_dex_entry_number": 423,
+        "pokedex_number": 423,
         "genus": "Sea Slug Pokémon",
         "flavor_text": "Eats beach sand for nourishment. Should one Gastrodon encounter another of a different color, a fierce battle will inevitably ensue.",
         "sprites": {
@@ -1467,7 +1467,7 @@
             "water",
             "ground"
         ],
-        "national_dex_entry_number": 423,
+        "pokedex_number": 423,
         "genus": "Sea Slug Pokémon",
         "flavor_text": "Eats beach sand for nourishment. Should one Gastrodon encounter another of a different color, a fierce battle will inevitably ensue.",
         "sprites": {
@@ -1496,7 +1496,7 @@
         "types": [
             "normal"
         ],
-        "national_dex_entry_number": 424,
+        "pokedex_number": 424,
         "genus": "Long Tail Pokémon",
         "flavor_text": "To affirm their kinship, members of this species will form a ring by linking their newly doubled tails together. On rare occasions, humans have been accepted into such rings.",
         "sprites": {
@@ -1526,7 +1526,7 @@
             "ghost",
             "flying"
         ],
-        "national_dex_entry_number": 425,
+        "pokedex_number": 425,
         "genus": "Balloon Pokémon",
         "flavor_text": "Said to lure away young children and carry them off to the afterlife. Some whisper that Drifloon are formed of reincarnated human souls, but these rumors are as yet unconfirmed.",
         "sprites": {
@@ -1562,7 +1562,7 @@
             "ghost",
             "flying"
         ],
-        "national_dex_entry_number": 426,
+        "pokedex_number": 426,
         "genus": "Blimp Pokémon",
         "flavor_text": "It drifts along at dusk, perfectly silent. Its transient, melancholy aspect touches some people deeply—every so often, one will come upon a song or poem devoted to Drifblim.",
         "sprites": {
@@ -1591,7 +1591,7 @@
         "types": [
             "normal"
         ],
-        "national_dex_entry_number": 427,
+        "pokedex_number": 427,
         "genus": "Rabbit Pokémon",
         "flavor_text": "My hypothesis as to why Buneary rolls up its ears is that its hearing is far too keen. I surmise that the Pokémon protects its hearing by limiting the sound that may enter its ears.",
         "sprites": {
@@ -1626,7 +1626,7 @@
         "types": [
             "normal"
         ],
-        "national_dex_entry_number": 428,
+        "pokedex_number": 428,
         "genus": "Rabbit Pokémon",
         "flavor_text": "Its fur is warm and yet remarkably light. This Pokémon kicks as though it were a master of karate, driving back its opponents with ease.",
         "sprites": {
@@ -1662,7 +1662,7 @@
             "normal",
             "fighting"
         ],
-        "national_dex_entry_number": 428,
+        "pokedex_number": 428,
         "genus": "Rabbit Pokémon",
         "flavor_text": "Its fur is warm and yet remarkably light. This Pokémon kicks as though it were a master of karate, driving back its opponents with ease.",
         "sprites": {
@@ -1691,7 +1691,7 @@
         "types": [
             "ghost"
         ],
-        "national_dex_entry_number": 429,
+        "pokedex_number": 429,
         "genus": "Magical Pokémon",
         "flavor_text": "The incantations Mismagius chants can ward against misfortune, so a custom exists of inviting it into one's home. Incur the Pokémon's displeasure, however, and disaster will surely ensue.",
         "sprites": {
@@ -1721,7 +1721,7 @@
             "dark",
             "flying"
         ],
-        "national_dex_entry_number": 430,
+        "pokedex_number": 430,
         "genus": "Big Boss Pokémon",
         "flavor_text": "One cry from this Pokémon, and a murder of Murkrow come flying. At such times, one would think the curtain of night had fallen, plunging the world into jet-black darkness.",
         "sprites": {
@@ -1750,7 +1750,7 @@
         "types": [
             "normal"
         ],
-        "national_dex_entry_number": 431,
+        "pokedex_number": 431,
         "genus": "Catty Pokémon",
         "flavor_text": "Bewitches humans with its helical tail and piercing gaze. Its hidden claws are quite sharp as well, making this Pokémon an exceedingly tricky opponent if antagonized.",
         "sprites": {
@@ -1785,7 +1785,7 @@
         "types": [
             "normal"
         ],
-        "national_dex_entry_number": 432,
+        "pokedex_number": 432,
         "genus": "Tiger Cat Pokémon",
         "flavor_text": "Though impudent and difficult to tame, Purugly enjoys great popularity due to its fur, the beauty of which surpasses even velveteen.",
         "sprites": {
@@ -1814,7 +1814,7 @@
         "types": [
             "psychic"
         ],
-        "national_dex_entry_number": 433,
+        "pokedex_number": 433,
         "genus": "Bell Pokémon",
         "flavor_text": "This Pokémon gave me an excruciating headache when it seemingly cried out without making a sound. Perhaps there are some sounds that the human ear is simply incapable of hearing.",
         "sprites": {
@@ -1850,7 +1850,7 @@
             "poison",
             "dark"
         ],
-        "national_dex_entry_number": 434,
+        "pokedex_number": 434,
         "genus": "Skunk Pokémon",
         "flavor_text": "The poison that gushes from its aft end is accompanied by an utterly evil-smelling odor with such potency that one whiff can induce memory loss.",
         "sprites": {
@@ -1886,7 +1886,7 @@
             "poison",
             "dark"
         ],
-        "national_dex_entry_number": 435,
+        "pokedex_number": 435,
         "genus": "Skunk Pokémon",
         "flavor_text": "Sprays a poisonous fluid to take down prey. Sometimes, unable to stomach the stench of its own fluid, it leaves the bested prey uneaten.",
         "sprites": {
@@ -1916,7 +1916,7 @@
             "steel",
             "psychic"
         ],
-        "national_dex_entry_number": 436,
+        "pokedex_number": 436,
         "genus": "Bronze Pokémon",
         "flavor_text": "Floats using a mysterious energy. The pattern engraved upon its back is held as sacred and can sometimes be found in imagery from ancient cemeteries and other such timeworn places.",
         "sprites": {
@@ -1952,7 +1952,7 @@
             "steel",
             "psychic"
         ],
-        "national_dex_entry_number": 437,
+        "pokedex_number": 437,
         "genus": "Bronze Bell Pokémon",
         "flavor_text": "Some believe that its bell-like cry opens holes to another world. It has been revered as a deity since ancient times.",
         "sprites": {
@@ -1981,7 +1981,7 @@
         "types": [
             "rock"
         ],
-        "national_dex_entry_number": 438,
+        "pokedex_number": 438,
         "genus": "Bonsai Pokémon",
         "flavor_text": "Its tears elicit sympathy from those who see them, but do not be deceived! This expulsion of body water is merely a physiological mechanism for keeping itself in good health.",
         "sprites": {
@@ -2017,7 +2017,7 @@
             "psychic",
             "fairy"
         ],
-        "national_dex_entry_number": 439,
+        "pokedex_number": 439,
         "genus": "Mime Pokémon",
         "flavor_text": "Known to turn up in bustling marketplaces now and again. It mimics people much as a child would, then watches how they react, eyes sparkling.",
         "sprites": {
@@ -2052,7 +2052,7 @@
         "types": [
             "normal"
         ],
-        "national_dex_entry_number": 440,
+        "pokedex_number": 440,
         "genus": "Playhouse Pokémon",
         "flavor_text": "In imitation of Chansey, it keeps a round stone tucked into its belly pouch and cherishes it dearly. It gets along well with children and will sometimes play house with them for fun.",
         "sprites": {
@@ -2088,7 +2088,7 @@
             "normal",
             "flying"
         ],
-        "national_dex_entry_number": 441,
+        "pokedex_number": 441,
         "genus": "Music Note Pokémon",
         "flavor_text": "A versatile performer skilled in the imitation of human speech. It is said that older, more experienced Chatot can even understand the meaning of the words they mimic.",
         "sprites": {
@@ -2118,7 +2118,7 @@
             "ghost",
             "dark"
         ],
-        "national_dex_entry_number": 442,
+        "pokedex_number": 442,
         "genus": "Forbidden Pokémon",
         "flavor_text": "It lays curses by thinking wicked thoughts. Writings tell that this Pokémon was born out of the assembly of five score and eight malevolent spirits.",
         "sprites": {
@@ -2148,7 +2148,7 @@
             "dragon",
             "ground"
         ],
-        "national_dex_entry_number": 443,
+        "pokedex_number": 443,
         "genus": "Land Shark Pokémon",
         "flavor_text": "It nests in caves untouched by sunlight. Its sharp teeth may fall out when worn away or after an impact, but they regrow within a few days.",
         "sprites": {
@@ -2184,7 +2184,7 @@
             "dragon",
             "ground"
         ],
-        "national_dex_entry_number": 444,
+        "pokedex_number": 444,
         "genus": "Cave Pokémon",
         "flavor_text": "Though Gabite are usually of a violent disposition, when I gave one a glass bead it had been eyeing covetously, it suddenly became quite docile.",
         "sprites": {
@@ -2220,7 +2220,7 @@
             "dragon",
             "ground"
         ],
-        "national_dex_entry_number": 445,
+        "pokedex_number": 445,
         "genus": "Mach Pokémon",
         "flavor_text": "Soars across the heavens at blinding speed—a magnificent sight! It has a feral disposition. Utmost caution is required if one meets a Garchomp out in the wilds.",
         "sprites": {
@@ -2261,7 +2261,7 @@
             "dragon",
             "ground"
         ],
-        "national_dex_entry_number": 445,
+        "pokedex_number": 445,
         "genus": "Mach Pokémon",
         "flavor_text": "Soars across the heavens at blinding speed—a magnificent sight! It has a feral disposition. Utmost caution is required if one meets a Garchomp out in the wilds.",
         "sprites": {
@@ -2290,7 +2290,7 @@
         "types": [
             "dragon"
         ],
-        "national_dex_entry_number": 445,
+        "pokedex_number": 445,
         "genus": "Mach Pokémon",
         "flavor_text": "Soars across the heavens at blinding speed—a magnificent sight! It has a feral disposition. Utmost caution is required if one meets a Garchomp out in the wilds.",
         "sprites": {
@@ -2319,7 +2319,7 @@
         "types": [
             "normal"
         ],
-        "national_dex_entry_number": 446,
+        "pokedex_number": 446,
         "genus": "Big Eater Pokémon",
         "flavor_text": "Its robust stomach allows it to nonchalantly devour even rotted matter. It pays frequent visits to villages, seeking out food scraps intended for compost.",
         "sprites": {
@@ -2354,7 +2354,7 @@
         "types": [
             "fighting"
         ],
-        "national_dex_entry_number": 447,
+        "pokedex_number": 447,
         "genus": "Emanation Pokémon",
         "flavor_text": "Though infantile in appearance, it has the mysterious ability to read the minds of humans. The pure of heart are met with Riolu's approval, while those of ill nature earn only its loathing.",
         "sprites": {
@@ -2390,7 +2390,7 @@
             "fighting",
             "steel"
         ],
-        "national_dex_entry_number": 448,
+        "pokedex_number": 448,
         "genus": "Aura Pokémon",
         "flavor_text": "A most gallant-looking creature. It emits energy waves and controls them with precision, using them to sense even faraway beings. I have given the name ”aura” to this power.",
         "sprites": {
@@ -2431,7 +2431,7 @@
             "fighting",
             "steel"
         ],
-        "national_dex_entry_number": 448,
+        "pokedex_number": 448,
         "genus": "Aura Pokémon",
         "flavor_text": "A most gallant-looking creature. It emits energy waves and controls them with precision, using them to sense even faraway beings. I have given the name ”aura” to this power.",
         "sprites": {
@@ -2461,7 +2461,7 @@
             "fighting",
             "steel"
         ],
-        "national_dex_entry_number": 448,
+        "pokedex_number": 448,
         "genus": "Aura Pokémon",
         "flavor_text": "A most gallant-looking creature. It emits energy waves and controls them with precision, using them to sense even faraway beings. I have given the name ”aura” to this power.",
         "sprites": {
@@ -2490,7 +2490,7 @@
         "types": [
             "ground"
         ],
-        "national_dex_entry_number": 449,
+        "pokedex_number": 449,
         "genus": "Hippo Pokémon",
         "flavor_text": "Though large and languid, Hippopotas is difficult to detect due to its tendency to burrow into and lurk beneath the soil. When agitated or excited, it expels sand from its nostrils.",
         "sprites": {
@@ -2525,7 +2525,7 @@
         "types": [
             "ground"
         ],
-        "national_dex_entry_number": 450,
+        "pokedex_number": 450,
         "genus": "Heavyweight Pokémon",
         "flavor_text": "Short-tempered and easily moved to violence. It whips up whirlwinds of sand to crush its foes' spirits, then goes in for the attack.",
         "sprites": {
@@ -2555,7 +2555,7 @@
             "poison",
             "bug"
         ],
-        "national_dex_entry_number": 451,
+        "pokedex_number": 451,
         "genus": "Scorpion Pokémon",
         "flavor_text": "Its claws are not only razor-sharp but poisonous, making Skorupi a highly dangerous Pokémon. It seems to be weakened by cold temperatures, however.",
         "sprites": {
@@ -2591,7 +2591,7 @@
             "poison",
             "dark"
         ],
-        "national_dex_entry_number": 452,
+        "pokedex_number": 452,
         "genus": "Ogre Scorpion Pokémon",
         "flavor_text": "Has a brutish, ferocious temperament. With immense strength and a sturdy shell off which swords will bounce, it rampages about and wreaks havoc.",
         "sprites": {
@@ -2621,7 +2621,7 @@
             "poison",
             "fighting"
         ],
-        "national_dex_entry_number": 453,
+        "pokedex_number": 453,
         "genus": "Toxic Mouth Pokémon",
         "flavor_text": "A poison wielder with a dastardly personality. Despite such qualities, this species is afforded a measure of popularity due to its peculiar cry and comical features.",
         "sprites": {
@@ -2657,7 +2657,7 @@
             "poison",
             "fighting"
         ],
-        "national_dex_entry_number": 454,
+        "pokedex_number": 454,
         "genus": "Toxic Mouth Pokémon",
         "flavor_text": "Its crimson claws contain a virulent toxin. This toxin can be made into a tonic by diluting it, mixing it with several types of wild grass, and boiling it down over two days.",
         "sprites": {
@@ -2686,7 +2686,7 @@
         "types": [
             "grass"
         ],
-        "national_dex_entry_number": 455,
+        "pokedex_number": 455,
         "genus": "Bug Catcher Pokémon",
         "flavor_text": "Though this is a plant Pokémon, it has a gluttonous and unruly temperament. Carnivine attacks its prey with its cavernous maw wide open.",
         "sprites": {
@@ -2715,7 +2715,7 @@
         "types": [
             "water"
         ],
-        "national_dex_entry_number": 456,
+        "pokedex_number": 456,
         "genus": "Wing Fish Pokémon",
         "flavor_text": "What a gorgeous sight this Pokémon is as it swims with its long, pink-painted caudal fins fluttering behind it. Finneon's beautiful appearance has led to its nickname: ”finery fish.”",
         "sprites": {
@@ -2750,7 +2750,7 @@
         "types": [
             "water"
         ],
-        "national_dex_entry_number": 457,
+        "pokedex_number": 457,
         "genus": "Neon Pokémon",
         "flavor_text": "Uses its gleaming fins to hunt its prey. The view of Lumineon schooling near the surface of the sea at night is breathtaking— it's as though there were shining stars right there.",
         "sprites": {
@@ -2780,7 +2780,7 @@
             "water",
             "flying"
         ],
-        "national_dex_entry_number": 458,
+        "pokedex_number": 458,
         "genus": "Kite Pokémon",
         "flavor_text": "Though ball-like in shape, this Pokémon is a proficient swimmer. I have discovered that if a Mantyke spends much time with schools of Remoraid, it will eventually achieve evolution.",
         "sprites": {
@@ -2816,7 +2816,7 @@
             "grass",
             "ice"
         ],
-        "national_dex_entry_number": 459,
+        "pokedex_number": 459,
         "genus": "Frost Tree Pokémon",
         "flavor_text": "One is likely to encounter this Pokémon while out in the snow. There are stories of Snover appearing in human settlements but doing no harm—rather, they bond with the children.",
         "sprites": {
@@ -2852,7 +2852,7 @@
             "grass",
             "ice"
         ],
-        "national_dex_entry_number": 460,
+        "pokedex_number": 460,
         "genus": "Frost Tree Pokémon",
         "flavor_text": "A powerful Pokémon that can split huge boulders with ease. Dislikes associating with others and chooses to live quietly deep within the mountains, playing with the snow.",
         "sprites": {
@@ -2888,7 +2888,7 @@
             "grass",
             "ice"
         ],
-        "national_dex_entry_number": 460,
+        "pokedex_number": 460,
         "genus": "Frost Tree Pokémon",
         "flavor_text": "A powerful Pokémon that can split huge boulders with ease. Dislikes associating with others and chooses to live quietly deep within the mountains, playing with the snow.",
         "sprites": {
@@ -2918,7 +2918,7 @@
             "dark",
             "ice"
         ],
-        "national_dex_entry_number": 461,
+        "pokedex_number": 461,
         "genus": "Sharp Claw Pokémon",
         "flavor_text": "This species corners prey as a pack, under the guidance of a leader. Weavile displays increased cunning, leading me to speculate that its evolution caused further brain development.",
         "sprites": {
@@ -2948,7 +2948,7 @@
             "electric",
             "steel"
         ],
-        "national_dex_entry_number": 462,
+        "pokedex_number": 462,
         "genus": "Magnet Area Pokémon",
         "flavor_text": "I theorize that a special magnetic field influenced this Pokémon, changing its molecular structure and causing it to evolve. It emits strange radio waves toward space from its antenna.",
         "sprites": {
@@ -2977,7 +2977,7 @@
         "types": [
             "normal"
         ],
-        "national_dex_entry_number": 463,
+        "pokedex_number": 463,
         "genus": "Licking Pokémon",
         "flavor_text": "Its tongue can extend and contract freely, and it is capable of reaching lengths over 10 times Lickilicky's height. Beware of the saliva, as it contains corrosive elements.",
         "sprites": {
@@ -3007,7 +3007,7 @@
             "ground",
             "rock"
         ],
-        "national_dex_entry_number": 464,
+        "pokedex_number": 464,
         "genus": "Drill Pokémon",
         "flavor_text": "This Pokémon evolved through use of a curious item. Its rocklike hide is composed of a mysterious substance and can withstand a blow from a masterwork sword with nary a scratch.",
         "sprites": {
@@ -3036,7 +3036,7 @@
         "types": [
             "grass"
         ],
-        "national_dex_entry_number": 465,
+        "pokedex_number": 465,
         "genus": "Vine Pokémon",
         "flavor_text": "Draped with long vines, it resembles a shrub in appearance. It swings bundles of vines as though they were arms, wrapping them around prey to ensnare them.",
         "sprites": {
@@ -3065,7 +3065,7 @@
         "types": [
             "electric"
         ],
-        "national_dex_entry_number": 466,
+        "pokedex_number": 466,
         "genus": "Thunderbolt Pokémon",
         "flavor_text": "Its evolution was induced by an unusual item, and its electrical output rises along with its heart rate. From its tails, it can unleash an electric current measuring 20,000 volts.",
         "sprites": {
@@ -3094,7 +3094,7 @@
         "types": [
             "fire"
         ],
-        "national_dex_entry_number": 467,
+        "pokedex_number": 467,
         "genus": "Blast Pokémon",
         "flavor_text": "Use of a strange item caused this Pokémon to evolve. Fireballs launched from the ends of its tubelike arms are hot enough to melt an iron pot in an instant.",
         "sprites": {
@@ -3124,7 +3124,7 @@
             "fairy",
             "flying"
         ],
-        "national_dex_entry_number": 468,
+        "pokedex_number": 468,
         "genus": "Jubilee Pokémon",
         "flavor_text": "Scant few have ever sighted this Pokémon. After studying what literature remains, I am certain Togekiss will reveal itself when peace reigns in the land.",
         "sprites": {
@@ -3154,7 +3154,7 @@
             "bug",
             "flying"
         ],
-        "national_dex_entry_number": 469,
+        "pokedex_number": 469,
         "genus": "Ogre Darner Pokémon",
         "flavor_text": "Extremely violent. When hunting, it wastes none of its energy, aiming only for prey's most vulnerable spots. Any who manage to tame this Pokémon must be of incredible bravery.",
         "sprites": {
@@ -3183,7 +3183,7 @@
         "types": [
             "grass"
         ],
-        "national_dex_entry_number": 470,
+        "pokedex_number": 470,
         "genus": "Verdant Pokémon",
         "flavor_text": "Cells similar to those of plants have been found in its fur. Its hard tail can fell a large tree with one stroke, and the tail's sharpness exceeds even that of a sword crafted by a master.",
         "sprites": {
@@ -3212,7 +3212,7 @@
         "types": [
             "ice"
         ],
-        "national_dex_entry_number": 471,
+        "pokedex_number": 471,
         "genus": "Fresh Snow Pokémon",
         "flavor_text": "Glaceon is able to lower its body temperature very quickly. It freezes the atmosphere, creating diamond dust that glitters like gems while it flutters and dances around.",
         "sprites": {
@@ -3242,7 +3242,7 @@
             "ground",
             "flying"
         ],
-        "national_dex_entry_number": 472,
+        "pokedex_number": 472,
         "genus": "Fang Scorpion Pokémon",
         "flavor_text": "It glides soundlessly on pitch-black wings and sinks sharp fangs into the throat of its prey. It takes on a look of satisfaction once it has entirely drained its prey of blood.",
         "sprites": {
@@ -3272,7 +3272,7 @@
             "ice",
             "ground"
         ],
-        "national_dex_entry_number": 473,
+        "pokedex_number": 473,
         "genus": "Twin Tusk Pokémon",
         "flavor_text": "This species reached its zenith during the period known as the ice age. I suspect that Hisui's frigid climate is in harmony with Mamoswine's constitution, thus awakening hidden potential.",
         "sprites": {
@@ -3301,7 +3301,7 @@
         "types": [
             "normal"
         ],
-        "national_dex_entry_number": 474,
+        "pokedex_number": 474,
         "genus": "Virtual Pokémon",
         "flavor_text": "A curious item induced this evolution. The Pokémon's offensive capabilities have greatly increased, but the strangeness of its behavior has magnified in equal measure. This worries me.",
         "sprites": {
@@ -3331,7 +3331,7 @@
             "psychic",
             "fighting"
         ],
-        "national_dex_entry_number": 475,
+        "pokedex_number": 475,
         "genus": "Blade Pokémon",
         "flavor_text": "The blades extending from its elbows are sharper than the finest swords. Its swordsmanship, albeit self-taught, is astonishingly impressive.",
         "sprites": {
@@ -3367,7 +3367,7 @@
             "psychic",
             "fighting"
         ],
-        "national_dex_entry_number": 475,
+        "pokedex_number": 475,
         "genus": "Blade Pokémon",
         "flavor_text": "The blades extending from its elbows are sharper than the finest swords. Its swordsmanship, albeit self-taught, is astonishingly impressive.",
         "sprites": {
@@ -3397,7 +3397,7 @@
             "rock",
             "steel"
         ],
-        "national_dex_entry_number": 476,
+        "pokedex_number": 476,
         "genus": "Compass Pokémon",
         "flavor_text": "It is able to emit powerful magnetism, allowing it control over the iron sand that forms its luscious mustache. Using this iron sand, Probopass forms hard stones with which it smites its prey.",
         "sprites": {
@@ -3426,7 +3426,7 @@
         "types": [
             "ghost"
         ],
-        "national_dex_entry_number": 477,
+        "pokedex_number": 477,
         "genus": "Gripper Pokémon",
         "flavor_text": "Comes to those whose lives have come to an end and escorts their souls to the afterlife. Known to mistakenly take the souls of those who yet have life left in them, albeit rarely.",
         "sprites": {
@@ -3456,7 +3456,7 @@
             "ice",
             "ghost"
         ],
-        "national_dex_entry_number": 478,
+        "pokedex_number": 478,
         "genus": "Snow Land Pokémon",
         "flavor_text": "A Pokémon inhabited by the soul of a woman who died bearing a grudge in the snowy mountains. Legends of Froslass placing deathly curses on misbehaving men send shivers down my spine.",
         "sprites": {
@@ -3492,7 +3492,7 @@
             "ice",
             "ghost"
         ],
-        "national_dex_entry_number": 478,
+        "pokedex_number": 478,
         "genus": "Snow Land Pokémon",
         "flavor_text": "A Pokémon inhabited by the soul of a woman who died bearing a grudge in the snowy mountains. Legends of Froslass placing deathly curses on misbehaving men send shivers down my spine.",
         "sprites": {
@@ -3522,7 +3522,7 @@
             "electric",
             "ghost"
         ],
-        "national_dex_entry_number": 479,
+        "pokedex_number": 479,
         "genus": "Plasma Pokémon",
         "flavor_text": "This bizarre Pokémon appears to be a will-o'-the-wisp powered by electricity. Be wary, as Rotom is both smart and mischievous.",
         "sprites": {
@@ -3552,7 +3552,7 @@
             "electric",
             "fire"
         ],
-        "national_dex_entry_number": 479,
+        "pokedex_number": 479,
         "genus": "Plasma Pokémon",
         "flavor_text": "This bizarre Pokémon appears to be a will-o'-the-wisp powered by electricity. Be wary, as Rotom is both smart and mischievous.",
         "sprites": {
@@ -3582,7 +3582,7 @@
             "electric",
             "water"
         ],
-        "national_dex_entry_number": 479,
+        "pokedex_number": 479,
         "genus": "Plasma Pokémon",
         "flavor_text": "This bizarre Pokémon appears to be a will-o'-the-wisp powered by electricity. Be wary, as Rotom is both smart and mischievous.",
         "sprites": {
@@ -3612,7 +3612,7 @@
             "electric",
             "ice"
         ],
-        "national_dex_entry_number": 479,
+        "pokedex_number": 479,
         "genus": "Plasma Pokémon",
         "flavor_text": "This bizarre Pokémon appears to be a will-o'-the-wisp powered by electricity. Be wary, as Rotom is both smart and mischievous.",
         "sprites": {
@@ -3642,7 +3642,7 @@
             "electric",
             "flying"
         ],
-        "national_dex_entry_number": 479,
+        "pokedex_number": 479,
         "genus": "Plasma Pokémon",
         "flavor_text": "This bizarre Pokémon appears to be a will-o'-the-wisp powered by electricity. Be wary, as Rotom is both smart and mischievous.",
         "sprites": {
@@ -3672,7 +3672,7 @@
             "electric",
             "grass"
         ],
-        "national_dex_entry_number": 479,
+        "pokedex_number": 479,
         "genus": "Plasma Pokémon",
         "flavor_text": "This bizarre Pokémon appears to be a will-o'-the-wisp powered by electricity. Be wary, as Rotom is both smart and mischievous.",
         "sprites": {
@@ -3701,7 +3701,7 @@
         "types": [
             "psychic"
         ],
-        "national_dex_entry_number": 480,
+        "pokedex_number": 480,
         "genus": "Knowledge Pokémon",
         "flavor_text": "A Pokémon feared but also respected for stealing away the memories of evildoers. I have found records that suggest Uxie holds dominion over knowledge.",
         "sprites": {
@@ -3730,7 +3730,7 @@
         "types": [
             "psychic"
         ],
-        "national_dex_entry_number": 481,
+        "pokedex_number": 481,
         "genus": "Emotion Pokémon",
         "flavor_text": "Known as the Being of Emotion. In legend, this Pokémon was feared, as any who showed disrespect would have their emotions thrown into disarray.",
         "sprites": {
@@ -3759,7 +3759,7 @@
         "types": [
             "psychic"
         ],
-        "national_dex_entry_number": 482,
+        "pokedex_number": 482,
         "genus": "Willpower Pokémon",
         "flavor_text": "The dreaded Being of Willpower. Legends tell of this Pokémon manipulating the will of its adversaries and turning them into puppets of its own.",
         "sprites": {
@@ -3789,7 +3789,7 @@
             "steel",
             "dragon"
         ],
-        "national_dex_entry_number": 483,
+        "pokedex_number": 483,
         "genus": "Temporal Pokémon",
         "flavor_text": "This Pokémon is revered as a deity in Hisuian legend. The birth of Dialga was what caused the vast river of time to begin flowing in our world.",
         "sprites": {
@@ -3819,7 +3819,7 @@
             "steel",
             "dragon"
         ],
-        "national_dex_entry_number": 483,
+        "pokedex_number": 483,
         "genus": "Temporal Pokémon",
         "flavor_text": "This Pokémon is revered as a deity in Hisuian legend. The birth of Dialga was what caused the vast river of time to begin flowing in our world.",
         "sprites": {
@@ -3849,7 +3849,7 @@
             "water",
             "dragon"
         ],
-        "national_dex_entry_number": 484,
+        "pokedex_number": 484,
         "genus": "Spatial Pokémon",
         "flavor_text": "This Pokémon is feared as a deity in Hisuian legend. The birth of Palkia was what caused the walls of our world to disappear, creating a sky that spans for infinity.",
         "sprites": {
@@ -3879,7 +3879,7 @@
             "water",
             "dragon"
         ],
-        "national_dex_entry_number": 484,
+        "pokedex_number": 484,
         "genus": "Spatial Pokémon",
         "flavor_text": "This Pokémon is feared as a deity in Hisuian legend. The birth of Palkia was what caused the walls of our world to disappear, creating a sky that spans for infinity.",
         "sprites": {
@@ -3909,7 +3909,7 @@
             "fire",
             "steel"
         ],
-        "national_dex_entry_number": 485,
+        "pokedex_number": 485,
         "genus": "Lava Dome Pokémon",
         "flavor_text": "Stories tell of this Pokémon being birthed from the boiling magma within Mount Coronet. Its molten-steel body holds many mysteries.",
         "sprites": {
@@ -3945,7 +3945,7 @@
             "fire",
             "steel"
         ],
-        "national_dex_entry_number": 485,
+        "pokedex_number": 485,
         "genus": "Lava Dome Pokémon",
         "flavor_text": "Stories tell of this Pokémon being birthed from the boiling magma within Mount Coronet. Its molten-steel body holds many mysteries.",
         "sprites": {
@@ -3974,7 +3974,7 @@
         "types": [
             "normal"
         ],
-        "national_dex_entry_number": 486,
+        "pokedex_number": 486,
         "genus": "Colossal Pokémon",
         "flavor_text": "According to legend, Regigigas pulled landmasses together and bound them with rope to create the continent of Hisui. Though I have my doubts, the story could well contain a shred of truth.",
         "sprites": {
@@ -4004,7 +4004,7 @@
             "ghost",
             "dragon"
         ],
-        "national_dex_entry_number": 487,
+        "pokedex_number": 487,
         "genus": "Renegade Pokémon",
         "flavor_text": "There is one Hisuian verse that tells of a powerful light creating a deep shadow. I imagine that this deep shadow is Giratina.",
         "sprites": {
@@ -4034,7 +4034,7 @@
             "ghost",
             "dragon"
         ],
-        "national_dex_entry_number": 487,
+        "pokedex_number": 487,
         "genus": "Renegade Pokémon",
         "flavor_text": "There is one Hisuian verse that tells of a powerful light creating a deep shadow. I imagine that this deep shadow is Giratina.",
         "sprites": {
@@ -4063,7 +4063,7 @@
         "types": [
             "psychic"
         ],
-        "national_dex_entry_number": 488,
+        "pokedex_number": 488,
         "genus": "Lunar Pokémon",
         "flavor_text": "Cresselia is reminiscent of the crescent moon. It leaves a brilliant line of light in its wake as it flies across the night sky. I daresay it resembles the heavenly maiden who created the Milky Way.",
         "sprites": {
@@ -4092,7 +4092,7 @@
         "types": [
             "water"
         ],
-        "national_dex_entry_number": 489,
+        "pokedex_number": 489,
         "genus": "Sea Drifter Pokémon",
         "flavor_text": "Can be seen floating offshore during seasons when the seas are warm. Its azure body blends in with the ocean waters—logic suggests this is a defense mechanism against natural predators.",
         "sprites": {
@@ -4121,7 +4121,7 @@
         "types": [
             "water"
         ],
-        "national_dex_entry_number": 490,
+        "pokedex_number": 490,
         "genus": "Seafaring Pokémon",
         "flavor_text": "Rumored to migrate across the oceans and visit Hisui's coastal waters only rarely. Although Manaphy resembles Phione, it is also quite different. The relation between the two is unclear.",
         "sprites": {
@@ -4150,7 +4150,7 @@
         "types": [
             "dark"
         ],
-        "national_dex_entry_number": 491,
+        "pokedex_number": 491,
         "genus": "Pitch-Black Pokémon",
         "flavor_text": "On a moonless night, a strange incident occurred in which every one of a village's inhabitants suffered nightmares. The villagers attested that Darkrai appeared before them in these nightmares.",
         "sprites": {
@@ -4185,7 +4185,7 @@
         "types": [
             "dark"
         ],
-        "national_dex_entry_number": 491,
+        "pokedex_number": 491,
         "genus": "Pitch-Black Pokémon",
         "flavor_text": "On a moonless night, a strange incident occurred in which every one of a village's inhabitants suffered nightmares. The villagers attested that Darkrai appeared before them in these nightmares.",
         "sprites": {
@@ -4214,7 +4214,7 @@
         "types": [
             "grass"
         ],
-        "national_dex_entry_number": 492,
+        "pokedex_number": 492,
         "genus": "Gratitude Pokémon",
         "flavor_text": "When the turning of seasons brings the cruel winter to its end and the joyous people give thanks to the heavens, Shaymin appears and covers the withered land with flowers.",
         "sprites": {
@@ -4244,7 +4244,7 @@
             "grass",
             "flying"
         ],
-        "national_dex_entry_number": 492,
+        "pokedex_number": 492,
         "genus": "Gratitude Pokémon",
         "flavor_text": "When the turning of seasons brings the cruel winter to its end and the joyous people give thanks to the heavens, Shaymin appears and covers the withered land with flowers.",
         "sprites": {
@@ -4273,7 +4273,7 @@
         "types": [
             "normal"
         ],
-        "national_dex_entry_number": 493,
+        "pokedex_number": 493,
         "genus": "Alpha Pokémon",
         "flavor_text": "It is the heavenly fount from which pours the light that shines across Hisui. Its luminance guides and protects all Pokémon. Hisuian mythology states that Arceus is the creator of all things.",
         "sprites": {
@@ -4303,7 +4303,7 @@
             "psychic",
             "fire"
         ],
-        "national_dex_entry_number": 494,
+        "pokedex_number": 494,
         "genus": "Victory Pokémon",
         "flavor_text": "When it shares the infinite energy it creates, that being’s entire body will be overflowing with power.",
         "sprites": {

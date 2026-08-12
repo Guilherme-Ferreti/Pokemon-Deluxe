@@ -13,7 +13,7 @@ use Shared\Models\PokedexEvolution;
 /**
  * @phpstan-type PokeApiEvolution array{evolves_to:string, item:?string, min_level:?int}
  * @phpstan-type PokeApiSprites array{back_default:?string, back_female:?string, back_shiny:?string, back_shiny_female:?string, front_default:?string, front_female:?string, front_shiny:?string, front_shiny_female:?string}
- * @phpstan-type PokeApiPokemon array{id:string, external_id:string, name:string, types:list<string>, national_dex_entry_number:int, genus:string, flavor_text:string, sprites:PokeApiSprites, is_baby:bool, is_legendary:bool, is_mythical:bool, is_mega:bool, is_gmax:bool, generation:int, capture_rate:?int, evolutions:list<PokeApiEvolution>}
+ * @phpstan-type PokeApiPokemon array{id:string, external_id:string, name:string, types:list<string>, pokedex_number:int, genus:string, flavor_text:string, sprites:PokeApiSprites, is_baby:bool, is_legendary:bool, is_mythical:bool, is_mega:bool, is_gmax:bool, generation:int, capture_rate:?int, evolutions:list<PokeApiEvolution>}
  */
 final class PokedexSeeder extends Seeder
 {
@@ -92,13 +92,13 @@ final class PokedexSeeder extends Seeder
     private function getPokemonInfo(array $pokemon): array
     {
         return [
-            'id'                        => $this->getPokedexId($pokemon['id']),
-            'name'                      => $pokemon['name'],
-            'types'                     => json_encode($pokemon['types']),
-            'national_dex_entry_number' => $pokemon['national_dex_entry_number'],
-            'genus'                     => $pokemon['genus'],
-            'text_entry'                => $pokemon['flavor_text'],
-            'sprites'                   => json_encode([
+            'id'             => $this->getPokedexId($pokemon['id']),
+            'name'           => $pokemon['name'],
+            'types'          => json_encode($pokemon['types']),
+            'pokedex_number' => $pokemon['pokedex_number'],
+            'genus'          => $pokemon['genus'],
+            'text_entry'     => $pokemon['flavor_text'],
+            'sprites'        => json_encode([
                 'back_default'       => $pokemon['sprites']['back_default'],
                 'back_female'        => $pokemon['sprites']['back_female'],
                 'back_shiny'         => $pokemon['sprites']['back_shiny'],

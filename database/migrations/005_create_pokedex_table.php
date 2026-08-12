@@ -17,7 +17,7 @@ return new class extends Migration
 
             $table->json('types');
 
-            $table->unsignedSmallInteger('national_dex_entry_number');
+            $table->unsignedSmallInteger('pokedex_number');
             $table->string('genus');
             $table->string('text_entry');
 
@@ -37,7 +37,7 @@ return new class extends Migration
 
             $table->timestamps();
 
-            $table->index('national_dex_entry_number');
+            $table->index('pokedex_number');
         });
     }
 

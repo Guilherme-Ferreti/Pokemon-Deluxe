@@ -24,7 +24,7 @@ use Shared\ValueObjects\PokemonSprites;
  * @property string $id
  * @property string $name
  * @property Collection<int, ElementalType> $types
- * @property int $national_dex_entry_number
+ * @property int $pokedex_number
  * @property string $genus
  * @property string $text_entry
  * @property PokemonSprites $sprites
@@ -56,11 +56,11 @@ final class Pokedex extends Model
     protected function casts(): array
     {
         return [
-            'types'                     => AsEnumCollection::of(ElementalType::class),
-            'national_dex_entry_number' => 'integer',
-            'generation'                => Generation::class,
-            'capture_rate'              => 'integer',
-            'sprites'                   => PokemonSprites::class,
+            'types'          => AsEnumCollection::of(ElementalType::class),
+            'pokedex_number' => 'integer',
+            'generation'     => Generation::class,
+            'capture_rate'   => 'integer',
+            'sprites'        => PokemonSprites::class,
         ];
     }
 

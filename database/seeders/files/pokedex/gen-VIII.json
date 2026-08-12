@@ -6,7 +6,7 @@
         "types": [
             "grass"
         ],
-        "national_dex_entry_number": 810,
+        "pokedex_number": 810,
         "genus": "Chimp Pokémon",
         "flavor_text": "It attacks with rapid beats of its stick. As it strikes with amazing speed, it gets more and more pumped.",
         "sprites": {
@@ -41,7 +41,7 @@
         "types": [
             "grass"
         ],
-        "national_dex_entry_number": 811,
+        "pokedex_number": 811,
         "genus": "Beat Pokémon",
         "flavor_text": "When it’s drumming out rapid beats in battle, it gets so caught up in the rhythm that it won’t even notice that it’s already knocked out its opponent.",
         "sprites": {
@@ -76,7 +76,7 @@
         "types": [
             "grass"
         ],
-        "national_dex_entry_number": 812,
+        "pokedex_number": 812,
         "genus": "Drummer Pokémon",
         "flavor_text": "The one with the best drumming techniques becomes the boss of the troop. It has a gentle disposition and values harmony among its group.",
         "sprites": {
@@ -111,7 +111,7 @@
         "types": [
             "grass"
         ],
-        "national_dex_entry_number": 812,
+        "pokedex_number": 812,
         "genus": "Drummer Pokémon",
         "flavor_text": "The one with the best drumming techniques becomes the boss of the troop. It has a gentle disposition and values harmony among its group.",
         "sprites": {
@@ -140,7 +140,7 @@
         "types": [
             "fire"
         ],
-        "national_dex_entry_number": 813,
+        "pokedex_number": 813,
         "genus": "Rabbit Pokémon",
         "flavor_text": "It has special pads on the backs of its feet, and one on its nose. Once it’s raring to fight, these pads radiate tremendous heat.",
         "sprites": {
@@ -175,7 +175,7 @@
         "types": [
             "fire"
         ],
-        "national_dex_entry_number": 814,
+        "pokedex_number": 814,
         "genus": "Rabbit Pokémon",
         "flavor_text": "It kicks berries right off the branches of trees and then juggles them with its feet, practicing its footwork.",
         "sprites": {
@@ -210,7 +210,7 @@
         "types": [
             "fire"
         ],
-        "national_dex_entry_number": 815,
+        "pokedex_number": 815,
         "genus": "Striker Pokémon",
         "flavor_text": "It’s skilled at both offense and defense, and it gets pumped up when cheered on. But if it starts showboating, it could put itself in a tough spot.",
         "sprites": {
@@ -245,7 +245,7 @@
         "types": [
             "fire"
         ],
-        "national_dex_entry_number": 815,
+        "pokedex_number": 815,
         "genus": "Striker Pokémon",
         "flavor_text": "It’s skilled at both offense and defense, and it gets pumped up when cheered on. But if it starts showboating, it could put itself in a tough spot.",
         "sprites": {
@@ -274,7 +274,7 @@
         "types": [
             "water"
         ],
-        "national_dex_entry_number": 816,
+        "pokedex_number": 816,
         "genus": "Water Lizard Pokémon",
         "flavor_text": "When it gets wet, its skin changes color, and this Pokémon becomes invisible as if it were camouflaged.",
         "sprites": {
@@ -309,7 +309,7 @@
         "types": [
             "water"
         ],
-        "national_dex_entry_number": 817,
+        "pokedex_number": 817,
         "genus": "Water Lizard Pokémon",
         "flavor_text": "Highly intelligent but also very lazy, it keeps enemies out of its territory by laying traps everywhere.",
         "sprites": {
@@ -344,7 +344,7 @@
         "types": [
             "water"
         ],
-        "national_dex_entry_number": 818,
+        "pokedex_number": 818,
         "genus": "Secret Agent Pokémon",
         "flavor_text": "Its nictitating membranes let it pick out foes’ weak points so it can precisely blast them with water that shoots from its fingertips at Mach 3.",
         "sprites": {
@@ -379,7 +379,7 @@
         "types": [
             "water"
         ],
-        "national_dex_entry_number": 818,
+        "pokedex_number": 818,
         "genus": "Secret Agent Pokémon",
         "flavor_text": "Its nictitating membranes let it pick out foes’ weak points so it can precisely blast them with water that shoots from its fingertips at Mach 3.",
         "sprites": {
@@ -408,7 +408,7 @@
         "types": [
             "normal"
         ],
-        "national_dex_entry_number": 819,
+        "pokedex_number": 819,
         "genus": "Cheeky Pokémon",
         "flavor_text": "It eats berries nonstop—a habit that has made it more resilient than it looks. It’ll show up on farms, searching for yet more berries.",
         "sprites": {
@@ -443,7 +443,7 @@
         "types": [
             "normal"
         ],
-        "national_dex_entry_number": 820,
+        "pokedex_number": 820,
         "genus": "Greedy Pokémon",
         "flavor_text": "Common throughout the Galar region, this Pokémon has strong teeth and can chew through the toughest of berry shells.",
         "sprites": {
@@ -472,7 +472,7 @@
         "types": [
             "flying"
         ],
-        "national_dex_entry_number": 821,
+        "pokedex_number": 821,
         "genus": "Tiny Bird Pokémon",
         "flavor_text": "Jumping nimbly about, this small-bodied Pokémon takes advantage of even the slightest opportunity to disorient larger opponents.",
         "sprites": {
@@ -507,7 +507,7 @@
         "types": [
             "flying"
         ],
-        "national_dex_entry_number": 822,
+        "pokedex_number": 822,
         "genus": "Raven Pokémon",
         "flavor_text": "The lessons of many harsh battles have taught it how to accurately judge an opponent’s strength.",
         "sprites": {
@@ -543,7 +543,7 @@
             "flying",
             "steel"
         ],
-        "national_dex_entry_number": 823,
+        "pokedex_number": 823,
         "genus": "Raven Pokémon",
         "flavor_text": "With their great intellect and flying skills, these Pokémon very successfully act as the Galar region’s airborne taxi service.",
         "sprites": {
@@ -579,7 +579,7 @@
             "flying",
             "steel"
         ],
-        "national_dex_entry_number": 823,
+        "pokedex_number": 823,
         "genus": "Raven Pokémon",
         "flavor_text": "With their great intellect and flying skills, these Pokémon very successfully act as the Galar region’s airborne taxi service.",
         "sprites": {
@@ -608,7 +608,7 @@
         "types": [
             "bug"
         ],
-        "national_dex_entry_number": 824,
+        "pokedex_number": 824,
         "genus": "Larva Pokémon",
         "flavor_text": "Often found in gardens, this Pokémon has hairs on its body that it uses to assess its surroundings.",
         "sprites": {
@@ -644,7 +644,7 @@
             "bug",
             "psychic"
         ],
-        "national_dex_entry_number": 825,
+        "pokedex_number": 825,
         "genus": "Radome Pokémon",
         "flavor_text": "As it grows inside its shell, it uses its psychic abilities to monitor the outside world and prepare for evolution.",
         "sprites": {
@@ -680,7 +680,7 @@
             "bug",
             "psychic"
         ],
-        "national_dex_entry_number": 826,
+        "pokedex_number": 826,
         "genus": "Seven Spot Pokémon",
         "flavor_text": "It emits psychic energy to observe and study what’s around it—and what’s around it can include things over six miles away.",
         "sprites": {
@@ -716,7 +716,7 @@
             "bug",
             "psychic"
         ],
-        "national_dex_entry_number": 826,
+        "pokedex_number": 826,
         "genus": "Seven Spot Pokémon",
         "flavor_text": "It emits psychic energy to observe and study what’s around it—and what’s around it can include things over six miles away.",
         "sprites": {
@@ -745,7 +745,7 @@
         "types": [
             "dark"
         ],
-        "national_dex_entry_number": 827,
+        "pokedex_number": 827,
         "genus": "Fox Pokémon",
         "flavor_text": "Cunning and cautious, this Pokémon survives by stealing food from others. It erases its tracks with swipes of its tail as it makes off with its plunder.",
         "sprites": {
@@ -780,7 +780,7 @@
         "types": [
             "dark"
         ],
-        "national_dex_entry_number": 828,
+        "pokedex_number": 828,
         "genus": "Fox Pokémon",
         "flavor_text": "With a lithe body and sharp claws, it goes around stealing food and eggs. Boltund is its natural enemy.",
         "sprites": {
@@ -809,7 +809,7 @@
         "types": [
             "grass"
         ],
-        "national_dex_entry_number": 829,
+        "pokedex_number": 829,
         "genus": "Flowering Pokémon",
         "flavor_text": "It whirls around in the wind while singing a joyous song. This delightful display has charmed many into raising this Pokémon.",
         "sprites": {
@@ -844,7 +844,7 @@
         "types": [
             "grass"
         ],
-        "national_dex_entry_number": 830,
+        "pokedex_number": 830,
         "genus": "Cotton Bloom Pokémon",
         "flavor_text": "The cotton on the head of this Pokémon can be spun into a glossy, gorgeous yarn—a Galar regional specialty.",
         "sprites": {
@@ -873,7 +873,7 @@
         "types": [
             "normal"
         ],
-        "national_dex_entry_number": 831,
+        "pokedex_number": 831,
         "genus": "Sheep Pokémon",
         "flavor_text": "If its fleece grows too long, Wooloo won’t be able to move. Cloth made with the wool of this Pokémon is surprisingly strong.",
         "sprites": {
@@ -908,7 +908,7 @@
         "types": [
             "normal"
         ],
-        "national_dex_entry_number": 832,
+        "pokedex_number": 832,
         "genus": "Sheep Pokémon",
         "flavor_text": "Its majestic horns are meant only to impress the opposite gender. They never see use in battle.",
         "sprites": {
@@ -937,7 +937,7 @@
         "types": [
             "water"
         ],
-        "national_dex_entry_number": 833,
+        "pokedex_number": 833,
         "genus": "Snapping Pokémon",
         "flavor_text": "It starts off battles by attacking with its rock-hard horn, but as soon as the opponent flinches, this Pokémon bites down and never lets go.",
         "sprites": {
@@ -973,7 +973,7 @@
             "water",
             "rock"
         ],
-        "national_dex_entry_number": 834,
+        "pokedex_number": 834,
         "genus": "Bite Pokémon",
         "flavor_text": "This Pokémon rapidly extends its retractable neck to sink its sharp fangs into distant enemies and take them down.",
         "sprites": {
@@ -1009,7 +1009,7 @@
             "water",
             "rock"
         ],
-        "national_dex_entry_number": 834,
+        "pokedex_number": 834,
         "genus": "Bite Pokémon",
         "flavor_text": "This Pokémon rapidly extends its retractable neck to sink its sharp fangs into distant enemies and take them down.",
         "sprites": {
@@ -1038,7 +1038,7 @@
         "types": [
             "electric"
         ],
-        "national_dex_entry_number": 835,
+        "pokedex_number": 835,
         "genus": "Puppy Pokémon",
         "flavor_text": "This gluttonous Pokémon only assists people with their work because it wants treats. As it runs, it crackles with electricity.",
         "sprites": {
@@ -1073,7 +1073,7 @@
         "types": [
             "electric"
         ],
-        "national_dex_entry_number": 836,
+        "pokedex_number": 836,
         "genus": "Dog Pokémon",
         "flavor_text": "It sends electricity through its legs to boost their strength. Running at top speed, it easily breaks 50 mph.",
         "sprites": {
@@ -1102,7 +1102,7 @@
         "types": [
             "rock"
         ],
-        "national_dex_entry_number": 837,
+        "pokedex_number": 837,
         "genus": "Coal Pokémon",
         "flavor_text": "It can race around like a unicycle, even on rough, rocky terrain. Burning coal sustains it.",
         "sprites": {
@@ -1138,7 +1138,7 @@
             "rock",
             "fire"
         ],
-        "national_dex_entry_number": 838,
+        "pokedex_number": 838,
         "genus": "Coal Pokémon",
         "flavor_text": "By rapidly rolling its legs, it can travel at over 18 mph. The temperature of the flames it breathes exceeds 1,800 degrees Fahrenheit.",
         "sprites": {
@@ -1174,7 +1174,7 @@
             "rock",
             "fire"
         ],
-        "national_dex_entry_number": 839,
+        "pokedex_number": 839,
         "genus": "Coal Pokémon",
         "flavor_text": "While it’s engaged in battle, its mountain of coal will burn bright red, sending off sparks that scorch the surrounding area.",
         "sprites": {
@@ -1210,7 +1210,7 @@
             "rock",
             "fire"
         ],
-        "national_dex_entry_number": 839,
+        "pokedex_number": 839,
         "genus": "Coal Pokémon",
         "flavor_text": "While it’s engaged in battle, its mountain of coal will burn bright red, sending off sparks that scorch the surrounding area.",
         "sprites": {
@@ -1240,7 +1240,7 @@
             "grass",
             "dragon"
         ],
-        "national_dex_entry_number": 840,
+        "pokedex_number": 840,
         "genus": "Apple Core Pokémon",
         "flavor_text": "As soon as it’s born, it burrows into an apple. Not only does the apple serve as its food source, but the flavor of the fruit determines its evolution.",
         "sprites": {
@@ -1286,7 +1286,7 @@
             "grass",
             "dragon"
         ],
-        "national_dex_entry_number": 841,
+        "pokedex_number": 841,
         "genus": "Apple Wing Pokémon",
         "flavor_text": "It flies on wings of apple skin and spits a powerful acid. It can also change its shape into that of an apple.",
         "sprites": {
@@ -1322,7 +1322,7 @@
             "grass",
             "dragon"
         ],
-        "national_dex_entry_number": 841,
+        "pokedex_number": 841,
         "genus": "Apple Wing Pokémon",
         "flavor_text": "It flies on wings of apple skin and spits a powerful acid. It can also change its shape into that of an apple.",
         "sprites": {
@@ -1352,7 +1352,7 @@
             "grass",
             "dragon"
         ],
-        "national_dex_entry_number": 842,
+        "pokedex_number": 842,
         "genus": "Apple Nectar Pokémon",
         "flavor_text": "Its body is covered in sweet nectar, and the skin on its back is especially yummy. Children used to have it as a snack.",
         "sprites": {
@@ -1388,7 +1388,7 @@
             "grass",
             "dragon"
         ],
-        "national_dex_entry_number": 842,
+        "pokedex_number": 842,
         "genus": "Apple Nectar Pokémon",
         "flavor_text": "Its body is covered in sweet nectar, and the skin on its back is especially yummy. Children used to have it as a snack.",
         "sprites": {
@@ -1417,7 +1417,7 @@
         "types": [
             "ground"
         ],
-        "national_dex_entry_number": 843,
+        "pokedex_number": 843,
         "genus": "Sand Snake Pokémon",
         "flavor_text": "It spews sand from its nostrils. While the enemy is blinded, it burrows into the ground to hide.",
         "sprites": {
@@ -1452,7 +1452,7 @@
         "types": [
             "ground"
         ],
-        "national_dex_entry_number": 844,
+        "pokedex_number": 844,
         "genus": "Sand Snake Pokémon",
         "flavor_text": "Its unique style of coiling allows it to blast sand out of its sand sac more efficiently.",
         "sprites": {
@@ -1487,7 +1487,7 @@
         "types": [
             "ground"
         ],
-        "national_dex_entry_number": 844,
+        "pokedex_number": 844,
         "genus": "Sand Snake Pokémon",
         "flavor_text": "Its unique style of coiling allows it to blast sand out of its sand sac more efficiently.",
         "sprites": {
@@ -1517,7 +1517,7 @@
             "flying",
             "water"
         ],
-        "national_dex_entry_number": 845,
+        "pokedex_number": 845,
         "genus": "Gulp Pokémon",
         "flavor_text": "This hungry Pokémon swallows Arrokuda whole. Occasionally, it makes a mistake and tries to swallow a Pokémon other than its preferred prey.",
         "sprites": {
@@ -1547,7 +1547,7 @@
             "flying",
             "water"
         ],
-        "national_dex_entry_number": 845,
+        "pokedex_number": 845,
         "genus": "Gulp Pokémon",
         "flavor_text": "This hungry Pokémon swallows Arrokuda whole. Occasionally, it makes a mistake and tries to swallow a Pokémon other than its preferred prey.",
         "sprites": {
@@ -1577,7 +1577,7 @@
             "flying",
             "water"
         ],
-        "national_dex_entry_number": 845,
+        "pokedex_number": 845,
         "genus": "Gulp Pokémon",
         "flavor_text": "This hungry Pokémon swallows Arrokuda whole. Occasionally, it makes a mistake and tries to swallow a Pokémon other than its preferred prey.",
         "sprites": {
@@ -1606,7 +1606,7 @@
         "types": [
             "water"
         ],
-        "national_dex_entry_number": 846,
+        "pokedex_number": 846,
         "genus": "Rush Pokémon",
         "flavor_text": "After it’s eaten its fill, its movements become extremely sluggish. That’s when Cramorant swallows it up.",
         "sprites": {
@@ -1641,7 +1641,7 @@
         "types": [
             "water"
         ],
-        "national_dex_entry_number": 847,
+        "pokedex_number": 847,
         "genus": "Skewer Pokémon",
         "flavor_text": "It spins its tail fins to propel itself, surging forward at speeds of over 100 knots before ramming prey and spearing into them.",
         "sprites": {
@@ -1671,7 +1671,7 @@
             "electric",
             "poison"
         ],
-        "national_dex_entry_number": 848,
+        "pokedex_number": 848,
         "genus": "Baby Pokémon",
         "flavor_text": "It manipulates the chemical makeup of its poison to produce electricity. The voltage is weak, but it can cause a tingling paralysis.",
         "sprites": {
@@ -1712,7 +1712,7 @@
             "electric",
             "poison"
         ],
-        "national_dex_entry_number": 849,
+        "pokedex_number": 849,
         "genus": "Punk Pokémon",
         "flavor_text": "This short-tempered and aggressive Pokémon chugs stagnant water to absorb any toxins it might contain.",
         "sprites": {
@@ -1748,7 +1748,7 @@
             "electric",
             "poison"
         ],
-        "national_dex_entry_number": 849,
+        "pokedex_number": 849,
         "genus": "Punk Pokémon",
         "flavor_text": "This short-tempered and aggressive Pokémon chugs stagnant water to absorb any toxins it might contain.",
         "sprites": {
@@ -1784,7 +1784,7 @@
             "electric",
             "poison"
         ],
-        "national_dex_entry_number": 849,
+        "pokedex_number": 849,
         "genus": "Punk Pokémon",
         "flavor_text": "This short-tempered and aggressive Pokémon chugs stagnant water to absorb any toxins it might contain.",
         "sprites": {
@@ -1814,7 +1814,7 @@
             "electric",
             "poison"
         ],
-        "national_dex_entry_number": 849,
+        "pokedex_number": 849,
         "genus": "Punk Pokémon",
         "flavor_text": "This short-tempered and aggressive Pokémon chugs stagnant water to absorb any toxins it might contain.",
         "sprites": {
@@ -1844,7 +1844,7 @@
             "fire",
             "bug"
         ],
-        "national_dex_entry_number": 850,
+        "pokedex_number": 850,
         "genus": "Radiator Pokémon",
         "flavor_text": "It wraps prey up with its heated body, cooking them in its coils. Once they’re well-done, it will voraciously nibble them down to the last morsel.",
         "sprites": {
@@ -1880,7 +1880,7 @@
             "fire",
             "bug"
         ],
-        "national_dex_entry_number": 851,
+        "pokedex_number": 851,
         "genus": "Radiator Pokémon",
         "flavor_text": "While its burning body is already dangerous on its own, this excessively hostile Pokémon also has large and very sharp fangs.",
         "sprites": {
@@ -1916,7 +1916,7 @@
             "fire",
             "bug"
         ],
-        "national_dex_entry_number": 851,
+        "pokedex_number": 851,
         "genus": "Radiator Pokémon",
         "flavor_text": "While its burning body is already dangerous on its own, this excessively hostile Pokémon also has large and very sharp fangs.",
         "sprites": {
@@ -1945,7 +1945,7 @@
         "types": [
             "fighting"
         ],
-        "national_dex_entry_number": 852,
+        "pokedex_number": 852,
         "genus": "Tantrum Pokémon",
         "flavor_text": "Its tentacles tear off easily, but it isn’t alarmed when that happens—it knows they’ll grow back. It’s about as smart as a three-year-old.",
         "sprites": {
@@ -1980,7 +1980,7 @@
         "types": [
             "fighting"
         ],
-        "national_dex_entry_number": 853,
+        "pokedex_number": 853,
         "genus": "Jujitsu Pokémon",
         "flavor_text": "Searching for an opponent to test its skills against, it emerges onto land. Once the battle is over, it returns to the sea.",
         "sprites": {
@@ -2009,7 +2009,7 @@
         "types": [
             "ghost"
         ],
-        "national_dex_entry_number": 854,
+        "pokedex_number": 854,
         "genus": "Black Tea Pokémon",
         "flavor_text": "The teacup in which this Pokémon makes its home is a famous piece of antique tableware. Many forgeries are in circulation.",
         "sprites": {
@@ -2044,7 +2044,7 @@
         "types": [
             "ghost"
         ],
-        "national_dex_entry_number": 855,
+        "pokedex_number": 855,
         "genus": "Black Tea Pokémon",
         "flavor_text": "Leaving leftover black tea unattended is asking for this Pokémon to come along and pour itself into it, turning the tea into a new Polteageist.",
         "sprites": {
@@ -2073,7 +2073,7 @@
         "types": [
             "psychic"
         ],
-        "national_dex_entry_number": 856,
+        "pokedex_number": 856,
         "genus": "Calm Pokémon",
         "flavor_text": "If this Pokémon senses a strong emotion, it will run away as fast as it can. It prefers areas without people.",
         "sprites": {
@@ -2108,7 +2108,7 @@
         "types": [
             "psychic"
         ],
-        "national_dex_entry_number": 857,
+        "pokedex_number": 857,
         "genus": "Serene Pokémon",
         "flavor_text": "Using the braids on its head, it pummels foes to get them to quiet down. One blow from those braids would knock out a professional boxer.",
         "sprites": {
@@ -2144,7 +2144,7 @@
             "psychic",
             "fairy"
         ],
-        "national_dex_entry_number": 858,
+        "pokedex_number": 858,
         "genus": "Silent Pokémon",
         "flavor_text": "If you’re too loud around it, you risk being torn apart by the claws on its tentacle. This Pokémon is also known as the Forest Witch.",
         "sprites": {
@@ -2180,7 +2180,7 @@
             "psychic",
             "fairy"
         ],
-        "national_dex_entry_number": 858,
+        "pokedex_number": 858,
         "genus": "Silent Pokémon",
         "flavor_text": "If you’re too loud around it, you risk being torn apart by the claws on its tentacle. This Pokémon is also known as the Forest Witch.",
         "sprites": {
@@ -2210,7 +2210,7 @@
             "dark",
             "fairy"
         ],
-        "national_dex_entry_number": 859,
+        "pokedex_number": 859,
         "genus": "Wily Pokémon",
         "flavor_text": "It sneaks into people’s homes, stealing things and feasting on the negative energy of the frustrated occupants.",
         "sprites": {
@@ -2246,7 +2246,7 @@
             "dark",
             "fairy"
         ],
-        "national_dex_entry_number": 860,
+        "pokedex_number": 860,
         "genus": "Devious Pokémon",
         "flavor_text": "With sly cunning, it tries to lure people into the woods. Some believe it to have the power to make crops grow.",
         "sprites": {
@@ -2282,7 +2282,7 @@
             "dark",
             "fairy"
         ],
-        "national_dex_entry_number": 861,
+        "pokedex_number": 861,
         "genus": "Bulk Up Pokémon",
         "flavor_text": "Its hairs work like muscle fibers. When its hairs unfurl, they latch on to opponents, ensnaring them as tentacles would.",
         "sprites": {
@@ -2318,7 +2318,7 @@
             "dark",
             "fairy"
         ],
-        "national_dex_entry_number": 861,
+        "pokedex_number": 861,
         "genus": "Bulk Up Pokémon",
         "flavor_text": "Its hairs work like muscle fibers. When its hairs unfurl, they latch on to opponents, ensnaring them as tentacles would.",
         "sprites": {
@@ -2348,7 +2348,7 @@
             "dark",
             "normal"
         ],
-        "national_dex_entry_number": 862,
+        "pokedex_number": 862,
         "genus": "Blocking Pokémon",
         "flavor_text": "It evolved after experiencing numerous fights. While crossing its arms, it lets out a shout that would make any opponent flinch.",
         "sprites": {
@@ -2377,7 +2377,7 @@
         "types": [
             "steel"
         ],
-        "national_dex_entry_number": 863,
+        "pokedex_number": 863,
         "genus": "Viking Pokémon",
         "flavor_text": "After many battles, it evolved dangerous claws that come together to form daggers when extended.",
         "sprites": {
@@ -2406,7 +2406,7 @@
         "types": [
             "ghost"
         ],
-        "national_dex_entry_number": 864,
+        "pokedex_number": 864,
         "genus": "Coral Pokémon",
         "flavor_text": "Be cautious of the ectoplasmic body surrounding its soul. You’ll become stiff as stone if you touch it.",
         "sprites": {
@@ -2435,7 +2435,7 @@
         "types": [
             "fighting"
         ],
-        "national_dex_entry_number": 865,
+        "pokedex_number": 865,
         "genus": "Wild Duck Pokémon",
         "flavor_text": "After deflecting attacks with its hard leaf shield, it strikes back with its sharp leek stalk. The leek stalk is both weapon and food.",
         "sprites": {
@@ -2465,7 +2465,7 @@
             "ice",
             "psychic"
         ],
-        "national_dex_entry_number": 866,
+        "pokedex_number": 866,
         "genus": "Comedian Pokémon",
         "flavor_text": "Its amusing movements make it very popular. It releases its psychic power from the pattern on its belly.",
         "sprites": {
@@ -2495,7 +2495,7 @@
             "ground",
             "ghost"
         ],
-        "national_dex_entry_number": 867,
+        "pokedex_number": 867,
         "genus": "Grudge Pokémon",
         "flavor_text": "Never touch its shadowlike body, or you’ll be shown the horrific memories behind the picture carved into it.",
         "sprites": {
@@ -2524,7 +2524,7 @@
         "types": [
             "fairy"
         ],
-        "national_dex_entry_number": 868,
+        "pokedex_number": 868,
         "genus": "Cream Pokémon",
         "flavor_text": "They say that any patisserie visited by Milcery is guaranteed success and good fortune.",
         "sprites": {
@@ -2559,7 +2559,7 @@
         "types": [
             "fairy"
         ],
-        "national_dex_entry_number": 869,
+        "pokedex_number": 869,
         "genus": "Cream Pokémon",
         "flavor_text": "When Alcremie is content, the cream it secretes from its hands becomes sweeter and richer.",
         "sprites": {
@@ -2594,7 +2594,7 @@
         "types": [
             "fairy"
         ],
-        "national_dex_entry_number": 869,
+        "pokedex_number": 869,
         "genus": "Cream Pokémon",
         "flavor_text": "When Alcremie is content, the cream it secretes from its hands becomes sweeter and richer.",
         "sprites": {
@@ -2623,7 +2623,7 @@
         "types": [
             "fighting"
         ],
-        "national_dex_entry_number": 870,
+        "pokedex_number": 870,
         "genus": "Formation Pokémon",
         "flavor_text": "The six of them work together as one Pokémon. Teamwork is also their battle strategy, and they constantly change their formation as they fight.",
         "sprites": {
@@ -2658,7 +2658,7 @@
         "types": [
             "fighting"
         ],
-        "national_dex_entry_number": 870,
+        "pokedex_number": 870,
         "genus": "Formation Pokémon",
         "flavor_text": "The six of them work together as one Pokémon. Teamwork is also their battle strategy, and they constantly change their formation as they fight.",
         "sprites": {
@@ -2687,7 +2687,7 @@
         "types": [
             "electric"
         ],
-        "national_dex_entry_number": 871,
+        "pokedex_number": 871,
         "genus": "Sea Urchin Pokémon",
         "flavor_text": "It stores electricity in each spine. Even if one gets broken off, it still continues to emit electricity for at least three hours.",
         "sprites": {
@@ -2717,7 +2717,7 @@
             "ice",
             "bug"
         ],
-        "national_dex_entry_number": 872,
+        "pokedex_number": 872,
         "genus": "Worm Pokémon",
         "flavor_text": "It eats snow that piles up on the ground. The more snow it eats, the bigger and more impressive the spikes on its back grow.",
         "sprites": {
@@ -2753,7 +2753,7 @@
             "ice",
             "bug"
         ],
-        "national_dex_entry_number": 873,
+        "pokedex_number": 873,
         "genus": "Frost Moth Pokémon",
         "flavor_text": "It shows no mercy to any who desecrate fields and mountains. It will fly around on its icy wings, causing a blizzard to chase offenders away.",
         "sprites": {
@@ -2782,7 +2782,7 @@
         "types": [
             "rock"
         ],
-        "national_dex_entry_number": 874,
+        "pokedex_number": 874,
         "genus": "Big Rock Pokémon",
         "flavor_text": "Once a year, on a specific date and at a specific time, they gather out of nowhere and form up in a circle.",
         "sprites": {
@@ -2811,7 +2811,7 @@
         "types": [
             "ice"
         ],
-        "national_dex_entry_number": 875,
+        "pokedex_number": 875,
         "genus": "Penguin Pokémon",
         "flavor_text": "This Pokémon keeps its heat-sensitive head cool with ice. It fishes for its food, dangling its single hair into the sea to lure in prey.",
         "sprites": {
@@ -2840,7 +2840,7 @@
         "types": [
             "ice"
         ],
-        "national_dex_entry_number": 875,
+        "pokedex_number": 875,
         "genus": "Penguin Pokémon",
         "flavor_text": "This Pokémon keeps its heat-sensitive head cool with ice. It fishes for its food, dangling its single hair into the sea to lure in prey.",
         "sprites": {
@@ -2870,7 +2870,7 @@
             "psychic",
             "normal"
         ],
-        "national_dex_entry_number": 876,
+        "pokedex_number": 876,
         "genus": "Emotion Pokémon",
         "flavor_text": "Through its horns, it can pick up on the emotions of creatures around it. Positive emotions are the source of its strength.",
         "sprites": {
@@ -2900,7 +2900,7 @@
             "electric",
             "dark"
         ],
-        "national_dex_entry_number": 877,
+        "pokedex_number": 877,
         "genus": "Two-Sided Pokémon",
         "flavor_text": "It carries electrically roasted seeds with it as if they’re precious treasures. No matter how much it eats, it always gets hungry again in short order.",
         "sprites": {
@@ -2930,7 +2930,7 @@
             "electric",
             "dark"
         ],
-        "national_dex_entry_number": 877,
+        "pokedex_number": 877,
         "genus": "Two-Sided Pokémon",
         "flavor_text": "It carries electrically roasted seeds with it as if they’re precious treasures. No matter how much it eats, it always gets hungry again in short order.",
         "sprites": {
@@ -2959,7 +2959,7 @@
         "types": [
             "steel"
         ],
-        "national_dex_entry_number": 878,
+        "pokedex_number": 878,
         "genus": "Copperderm Pokémon",
         "flavor_text": "If a job requires serious strength, this Pokémon will excel at it. Its copper body tarnishes in the rain, turning a vibrant green color.",
         "sprites": {
@@ -2994,7 +2994,7 @@
         "types": [
             "steel"
         ],
-        "national_dex_entry_number": 879,
+        "pokedex_number": 879,
         "genus": "Copperderm Pokémon",
         "flavor_text": "These Pokémon live in herds. Their trunks have incredible grip strength, strong enough to crush giant rocks into powder.",
         "sprites": {
@@ -3029,7 +3029,7 @@
         "types": [
             "steel"
         ],
-        "national_dex_entry_number": 879,
+        "pokedex_number": 879,
         "genus": "Copperderm Pokémon",
         "flavor_text": "These Pokémon live in herds. Their trunks have incredible grip strength, strong enough to crush giant rocks into powder.",
         "sprites": {
@@ -3059,7 +3059,7 @@
             "electric",
             "dragon"
         ],
-        "national_dex_entry_number": 880,
+        "pokedex_number": 880,
         "genus": "Fossil Pokémon",
         "flavor_text": "The powerful muscles in its tail generate its electricity. Compared to its lower body, its upper half is entirely too small.",
         "sprites": {
@@ -3089,7 +3089,7 @@
             "electric",
             "ice"
         ],
-        "national_dex_entry_number": 881,
+        "pokedex_number": 881,
         "genus": "Fossil Pokémon",
         "flavor_text": "This Pokémon lived on prehistoric seashores and was able to preserve food with the ice on its body. It went extinct because it moved so slowly.",
         "sprites": {
@@ -3119,7 +3119,7 @@
             "water",
             "dragon"
         ],
-        "national_dex_entry_number": 882,
+        "pokedex_number": 882,
         "genus": "Fossil Pokémon",
         "flavor_text": "Its mighty legs are capable of running at speeds exceeding 40 mph, but this Pokémon can’t breathe unless it’s underwater.",
         "sprites": {
@@ -3149,7 +3149,7 @@
             "water",
             "ice"
         ],
-        "national_dex_entry_number": 883,
+        "pokedex_number": 883,
         "genus": "Fossil Pokémon",
         "flavor_text": "The skin on its face is impervious to attack, but breathing difficulties made this Pokémon go extinct anyway.",
         "sprites": {
@@ -3179,7 +3179,7 @@
             "steel",
             "dragon"
         ],
-        "national_dex_entry_number": 884,
+        "pokedex_number": 884,
         "genus": "Alloy Pokémon",
         "flavor_text": "The special metal that composes its body is very light, so this Pokémon has considerable agility. It lives in caves because it dislikes the rain.",
         "sprites": {
@@ -3220,7 +3220,7 @@
             "steel",
             "dragon"
         ],
-        "national_dex_entry_number": 884,
+        "pokedex_number": 884,
         "genus": "Alloy Pokémon",
         "flavor_text": "The special metal that composes its body is very light, so this Pokémon has considerable agility. It lives in caves because it dislikes the rain.",
         "sprites": {
@@ -3250,7 +3250,7 @@
             "dragon",
             "ghost"
         ],
-        "national_dex_entry_number": 885,
+        "pokedex_number": 885,
         "genus": "Lingering Pokémon",
         "flavor_text": "If this weak Pokémon is by itself, a mere child could defeat it. But if Dreepy has friends to help it train, it can evolve and become much stronger.",
         "sprites": {
@@ -3286,7 +3286,7 @@
             "dragon",
             "ghost"
         ],
-        "national_dex_entry_number": 886,
+        "pokedex_number": 886,
         "genus": "Caretaker Pokémon",
         "flavor_text": "Without a Dreepy to place on its head and care for, it gets so uneasy it’ll try to substitute any Pokémon it finds for the missing Dreepy.",
         "sprites": {
@@ -3322,7 +3322,7 @@
             "dragon",
             "ghost"
         ],
-        "national_dex_entry_number": 887,
+        "pokedex_number": 887,
         "genus": "Stealth Pokémon",
         "flavor_text": "Apparently the Dreepy inside Dragapult’s horns eagerly look forward to being launched out at Mach speeds.",
         "sprites": {
@@ -3351,7 +3351,7 @@
         "types": [
             "fairy"
         ],
-        "national_dex_entry_number": 888,
+        "pokedex_number": 888,
         "genus": "Warrior Pokémon",
         "flavor_text": "This Pokémon has slumbered for many years. Some say it’s Zamazenta’s elder sister—others say the two Pokémon are rivals.",
         "sprites": {
@@ -3381,7 +3381,7 @@
             "fairy",
             "steel"
         ],
-        "national_dex_entry_number": 888,
+        "pokedex_number": 888,
         "genus": "Warrior Pokémon",
         "flavor_text": "This Pokémon has slumbered for many years. Some say it’s Zamazenta’s elder sister—others say the two Pokémon are rivals.",
         "sprites": {
@@ -3410,7 +3410,7 @@
         "types": [
             "fighting"
         ],
-        "national_dex_entry_number": 889,
+        "pokedex_number": 889,
         "genus": "Warrior Pokémon",
         "flavor_text": "This Pokémon slept for aeons while in the form of a statue. It was asleep for so long, people forgot that it ever existed.",
         "sprites": {
@@ -3440,7 +3440,7 @@
             "fighting",
             "steel"
         ],
-        "national_dex_entry_number": 889,
+        "pokedex_number": 889,
         "genus": "Warrior Pokémon",
         "flavor_text": "This Pokémon slept for aeons while in the form of a statue. It was asleep for so long, people forgot that it ever existed.",
         "sprites": {
@@ -3470,7 +3470,7 @@
             "poison",
             "dragon"
         ],
-        "national_dex_entry_number": 890,
+        "pokedex_number": 890,
         "genus": "Gigantic Pokémon",
         "flavor_text": "It was inside a meteorite that fell 20,000 years ago. There seems to be a connection between this Pokémon and the Dynamax phenomenon.",
         "sprites": {
@@ -3500,7 +3500,7 @@
             "poison",
             "dragon"
         ],
-        "national_dex_entry_number": 890,
+        "pokedex_number": 890,
         "genus": "Gigantic Pokémon",
         "flavor_text": "It was inside a meteorite that fell 20,000 years ago. There seems to be a connection between this Pokémon and the Dynamax phenomenon.",
         "sprites": {
@@ -3529,7 +3529,7 @@
         "types": [
             "fighting"
         ],
-        "national_dex_entry_number": 891,
+        "pokedex_number": 891,
         "genus": "Wushu Pokémon",
         "flavor_text": "If Kubfu pulls the long white hair on its head, its fighting spirit heightens and power wells up from the depths of its belly.",
         "sprites": {
@@ -3570,7 +3570,7 @@
             "fighting",
             "dark"
         ],
-        "national_dex_entry_number": 892,
+        "pokedex_number": 892,
         "genus": "Wushu Pokémon",
         "flavor_text": "Inhabiting the mountains of a distant region, this Pokémon races across sheer cliffs, training its legs and refining its moves.",
         "sprites": {
@@ -3606,7 +3606,7 @@
             "fighting",
             "water"
         ],
-        "national_dex_entry_number": 892,
+        "pokedex_number": 892,
         "genus": "Wushu Pokémon",
         "flavor_text": "Inhabiting the mountains of a distant region, this Pokémon races across sheer cliffs, training its legs and refining its moves.",
         "sprites": {
@@ -3642,7 +3642,7 @@
             "fighting",
             "dark"
         ],
-        "national_dex_entry_number": 892,
+        "pokedex_number": 892,
         "genus": "Wushu Pokémon",
         "flavor_text": "Inhabiting the mountains of a distant region, this Pokémon races across sheer cliffs, training its legs and refining its moves.",
         "sprites": {
@@ -3672,7 +3672,7 @@
             "fighting",
             "water"
         ],
-        "national_dex_entry_number": 892,
+        "pokedex_number": 892,
         "genus": "Wushu Pokémon",
         "flavor_text": "Inhabiting the mountains of a distant region, this Pokémon races across sheer cliffs, training its legs and refining its moves.",
         "sprites": {
@@ -3702,7 +3702,7 @@
             "dark",
             "grass"
         ],
-        "national_dex_entry_number": 893,
+        "pokedex_number": 893,
         "genus": "Rogue Monkey Pokémon",
         "flavor_text": "Once the vines on Zarude’s body tear off, they become nutrients in the soil. This helps the plants of the forest grow.",
         "sprites": {
@@ -3731,7 +3731,7 @@
         "types": [
             "electric"
         ],
-        "national_dex_entry_number": 894,
+        "pokedex_number": 894,
         "genus": "Electron Pokémon",
         "flavor_text": "Its entire body is made up of a single organ that generates electrical energy. Regieleki is capable of creating all Galar’s electricity.",
         "sprites": {
@@ -3760,7 +3760,7 @@
         "types": [
             "dragon"
         ],
-        "national_dex_entry_number": 895,
+        "pokedex_number": 895,
         "genus": "Dragon Orb Pokémon",
         "flavor_text": "Its body is composed of crystallized dragon energy. Regidrago is said to have the powers of every dragon Pokémon.",
         "sprites": {
@@ -3789,7 +3789,7 @@
         "types": [
             "ice"
         ],
-        "national_dex_entry_number": 896,
+        "pokedex_number": 896,
         "genus": "Wild Horse Pokémon",
         "flavor_text": "Glastrier has tremendous physical strength, and the mask of ice covering its face is 100 times harder than diamond.",
         "sprites": {
@@ -3818,7 +3818,7 @@
         "types": [
             "ghost"
         ],
-        "national_dex_entry_number": 897,
+        "pokedex_number": 897,
         "genus": "Swift Horse Pokémon",
         "flavor_text": "As it dashes through the night, Spectrier absorbs the life-force of sleeping creatures. It craves silence and solitude.",
         "sprites": {
@@ -3848,7 +3848,7 @@
             "psychic",
             "grass"
         ],
-        "national_dex_entry_number": 898,
+        "pokedex_number": 898,
         "genus": "King Pokémon",
         "flavor_text": "Calyrex is known in legend as a king that ruled over Galar in ancient times. It has the power to cause hearts to mend and plants to spring forth.",
         "sprites": {
@@ -3878,7 +3878,7 @@
             "psychic",
             "ice"
         ],
-        "national_dex_entry_number": 898,
+        "pokedex_number": 898,
         "genus": "King Pokémon",
         "flavor_text": "Calyrex is known in legend as a king that ruled over Galar in ancient times. It has the power to cause hearts to mend and plants to spring forth.",
         "sprites": {
@@ -3908,7 +3908,7 @@
             "psychic",
             "ghost"
         ],
-        "national_dex_entry_number": 898,
+        "pokedex_number": 898,
         "genus": "King Pokémon",
         "flavor_text": "Calyrex is known in legend as a king that ruled over Galar in ancient times. It has the power to cause hearts to mend and plants to spring forth.",
         "sprites": {
@@ -3938,7 +3938,7 @@
             "normal",
             "psychic"
         ],
-        "national_dex_entry_number": 899,
+        "pokedex_number": 899,
         "genus": "Big Horn Pokémon",
         "flavor_text": "The black orbs shine with an uncanny light when the Pokémon is erecting invisible barriers. The fur shed from its beard retains heat well and is a highly useful material for winter clothing.",
         "sprites": {
@@ -3968,7 +3968,7 @@
             "bug",
             "rock"
         ],
-        "national_dex_entry_number": 900,
+        "pokedex_number": 900,
         "genus": "Axe Pokémon",
         "flavor_text": "A violent creature that fells towering trees with its crude axes and shields itself with hard stone. If one should chance upon this Pokémon in the wilds, one's only recourse is to flee.",
         "sprites": {
@@ -3998,7 +3998,7 @@
             "ground",
             "normal"
         ],
-        "national_dex_entry_number": 901,
+        "pokedex_number": 901,
         "genus": "Peat Pokémon",
         "flavor_text": "I believe it was Hisui's swampy terrain that gave Ursaluna its burly physique and newfound capacity to manipulate peat at will.",
         "sprites": {
@@ -4028,7 +4028,7 @@
             "ground",
             "normal"
         ],
-        "national_dex_entry_number": 901,
+        "pokedex_number": 901,
         "genus": "Peat Pokémon",
         "flavor_text": "I believe it was Hisui's swampy terrain that gave Ursaluna its burly physique and newfound capacity to manipulate peat at will.",
         "sprites": {
@@ -4058,7 +4058,7 @@
             "water",
             "ghost"
         ],
-        "national_dex_entry_number": 902,
+        "pokedex_number": 902,
         "genus": "Big Fish Pokémon",
         "flavor_text": "Clads itself in the souls of comrades that perished before fulfilling their goals of journeying upstream. No other species throughout all Hisui's rivers is Basculegion's equal.",
         "sprites": {
@@ -4088,7 +4088,7 @@
             "fighting",
             "poison"
         ],
-        "national_dex_entry_number": 903,
+        "pokedex_number": 903,
         "genus": "Free Climb Pokémon",
         "flavor_text": "Because of Sneasler's virulent poison and daunting physical prowess, no other species could hope to best it on the frozen highlands. Preferring solitude, this species does not form packs.",
         "sprites": {
@@ -4118,7 +4118,7 @@
             "dark",
             "poison"
         ],
-        "national_dex_entry_number": 904,
+        "pokedex_number": 904,
         "genus": "Pin Cluster Pokémon",
         "flavor_text": "Its lancelike spikes and savage temperament have earned it the nickname ”sea fiend.” It slurps up poison to nourish itself.",
         "sprites": {
@@ -4148,7 +4148,7 @@
             "fairy",
             "flying"
         ],
-        "national_dex_entry_number": 905,
+        "pokedex_number": 905,
         "genus": "Love-Hate Pokémon",
         "flavor_text": "When it flies to this land from across the sea, the bitter winter comes to an end. According to legend, this Pokémon's love gives rise to the budding of fresh life across Hisui.",
         "sprites": {
@@ -4178,7 +4178,7 @@
             "fairy",
             "flying"
         ],
-        "national_dex_entry_number": 905,
+        "pokedex_number": 905,
         "genus": "Love-Hate Pokémon",
         "flavor_text": "When it flies to this land from across the sea, the bitter winter comes to an end. According to legend, this Pokémon's love gives rise to the budding of fresh life across Hisui.",
         "sprites": {
@@ -4207,7 +4207,7 @@
         "types": [
             "steel"
         ],
-        "national_dex_entry_number": 52,
+        "pokedex_number": 52,
         "genus": "Scratch Cat Pokémon",
         "flavor_text": "It loves to collect shiny things. If it’s in a good mood, it might even let its Trainer have a look at its hoard of treasures.",
         "sprites": {
@@ -4242,7 +4242,7 @@
         "types": [
             "psychic"
         ],
-        "national_dex_entry_number": 77,
+        "pokedex_number": 77,
         "genus": "Fire Horse Pokémon",
         "flavor_text": "These Pokémon live in herds out in the grassland. Newborn foals lack their fiery manes, which will develop about an hour after birth.",
         "sprites": {
@@ -4278,7 +4278,7 @@
             "psychic",
             "fairy"
         ],
-        "national_dex_entry_number": 78,
+        "pokedex_number": 78,
         "genus": "Fire Horse Pokémon",
         "flavor_text": "Fiery mane aglow, Rapidash darts like an arrow across the land. This prodigiously swift creature can traverse the vast region of Hisui in a day and a half.",
         "sprites": {
@@ -4307,7 +4307,7 @@
         "types": [
             "psychic"
         ],
-        "national_dex_entry_number": 79,
+        "pokedex_number": 79,
         "genus": "Dopey Pokémon",
         "flavor_text": "When this Pokémon’s tail is soaked in water, sweetness seeps from it. Slowpoke uses this trait to lure in and fish up other Pokémon.",
         "sprites": {
@@ -4348,7 +4348,7 @@
             "poison",
             "psychic"
         ],
-        "national_dex_entry_number": 80,
+        "pokedex_number": 80,
         "genus": "Hermit Crab Pokémon",
         "flavor_text": "Being bitten by a Shellder shocked this Pokémon into standing on two legs. If the Shellder lets go, it seems Slowbro will turn back into a Slowpoke.",
         "sprites": {
@@ -4377,7 +4377,7 @@
         "types": [
             "fighting"
         ],
-        "national_dex_entry_number": 83,
+        "pokedex_number": 83,
         "genus": "Wild Duck Pokémon",
         "flavor_text": "They use a plant stalk as a weapon, but not all of them use it in the same way. Several distinct styles of stalk fighting have been observed.",
         "sprites": {
@@ -4413,7 +4413,7 @@
             "poison",
             "fairy"
         ],
-        "national_dex_entry_number": 110,
+        "pokedex_number": 110,
         "genus": "Poison Gas Pokémon",
         "flavor_text": "It can’t suck in air quite as well as a Galarian Weezing, but the toxins it creates are more potent than those of its counterpart.",
         "sprites": {
@@ -4443,7 +4443,7 @@
             "ice",
             "psychic"
         ],
-        "national_dex_entry_number": 122,
+        "pokedex_number": 122,
         "genus": "Barrier Pokémon",
         "flavor_text": "The behavior of this clown-like Pokémon reminds one of pantomime. It creates invisible walls using a force emitted from its fingertips.",
         "sprites": {
@@ -4479,7 +4479,7 @@
             "psychic",
             "flying"
         ],
-        "national_dex_entry_number": 144,
+        "pokedex_number": 144,
         "genus": "Freeze Pokémon",
         "flavor_text": "This Pokémon can control ice at will. Articuno is said to live in snowy mountains riddled with permafrost.",
         "sprites": {
@@ -4509,7 +4509,7 @@
             "fighting",
             "flying"
         ],
-        "national_dex_entry_number": 145,
+        "pokedex_number": 145,
         "genus": "Electric Pokémon",
         "flavor_text": "Zapdos is a legendary bird Pokémon. It’s said that when Zapdos rubs its feathers together, lightning will fall immediately after.",
         "sprites": {
@@ -4539,7 +4539,7 @@
             "dark",
             "flying"
         ],
-        "national_dex_entry_number": 146,
+        "pokedex_number": 146,
         "genus": "Flame Pokémon",
         "flavor_text": "There are stories of this Pokémon using its radiant, flame-cloaked wings to light up paths for those lost in the mountains.",
         "sprites": {
@@ -4569,7 +4569,7 @@
             "poison",
             "psychic"
         ],
-        "national_dex_entry_number": 199,
+        "pokedex_number": 199,
         "genus": "Royal Pokémon",
         "flavor_text": "Slowking can solve any problem presented to it, but no one can understand a thing Slowking says.",
         "sprites": {
@@ -4598,7 +4598,7 @@
         "types": [
             "ghost"
         ],
-        "national_dex_entry_number": 222,
+        "pokedex_number": 222,
         "genus": "Coral Pokémon",
         "flavor_text": "These Pokémon live in warm seas. In prehistoric times, many lived in the oceans around the Galar region as well.",
         "sprites": {
@@ -4634,7 +4634,7 @@
             "dark",
             "normal"
         ],
-        "national_dex_entry_number": 263,
+        "pokedex_number": 263,
         "genus": "Tiny Raccoon Pokémon",
         "flavor_text": "Zigzagoon that adapted to regions outside Galar acquired this appearance. If you’ve lost something, this Pokémon can likely find it.",
         "sprites": {
@@ -4670,7 +4670,7 @@
             "dark",
             "normal"
         ],
-        "national_dex_entry_number": 264,
+        "pokedex_number": 264,
         "genus": "Rushing Pokémon",
         "flavor_text": "It uses its explosive speed and razor-sharp claws to bring down prey. Running along winding paths is not its strong suit.",
         "sprites": {
@@ -4705,7 +4705,7 @@
         "types": [
             "ice"
         ],
-        "national_dex_entry_number": 554,
+        "pokedex_number": 554,
         "genus": "Zen Charm Pokémon",
         "flavor_text": "This popular symbol of good fortune will never fall over in its sleep, no matter how it’s pushed or pulled.",
         "sprites": {
@@ -4745,7 +4745,7 @@
         "types": [
             "ice"
         ],
-        "national_dex_entry_number": 555,
+        "pokedex_number": 555,
         "genus": "Blazing Pokémon",
         "flavor_text": "This Pokémon’s power level rises along with the temperature of its fire, which can reach 2,500 degrees Fahrenheit.",
         "sprites": {
@@ -4775,7 +4775,7 @@
             "ice",
             "fire"
         ],
-        "national_dex_entry_number": 555,
+        "pokedex_number": 555,
         "genus": "Blazing Pokémon",
         "flavor_text": "This Pokémon’s power level rises along with the temperature of its fire, which can reach 2,500 degrees Fahrenheit.",
         "sprites": {
@@ -4805,7 +4805,7 @@
             "ground",
             "ghost"
         ],
-        "national_dex_entry_number": 562,
+        "pokedex_number": 562,
         "genus": "Spirit Pokémon",
         "flavor_text": "The spirit of a person from a bygone age became this Pokémon. It rambles through ruins, searching for someone who knows its face.",
         "sprites": {
@@ -4841,7 +4841,7 @@
             "ground",
             "steel"
         ],
-        "national_dex_entry_number": 618,
+        "pokedex_number": 618,
         "genus": "Trap Pokémon",
         "flavor_text": "For some reason, this Pokémon smiles slightly when it emits a strong electric current from the yellow markings on its body.",
         "sprites": {

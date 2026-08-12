@@ -106,7 +106,7 @@ final class SearchBoxQuery
             SearchBoxSortBy::CAPTURE_DATE   => $query->orderBy('pokemon.captured_at', $dir->value),
             SearchBoxSortBy::EXPERIENCE     => $query->orderBy('pokemon.experience', $dir->value),
             SearchBoxSortBy::LEVEL          => $query->orderBy('pokemon.level', $dir->value),
-            SearchBoxSortBy::POKEDEX_NUMBER => $query->orderBy('pokedex.national_dex_entry_number', $dir->value),
+            SearchBoxSortBy::POKEDEX_NUMBER => $query->orderBy('pokedex.pokedex_number', $dir->value),
         };
     }
 }

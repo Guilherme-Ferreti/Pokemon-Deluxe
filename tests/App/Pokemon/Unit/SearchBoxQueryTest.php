@@ -236,9 +236,9 @@ it('sorts box pokemon by the given column and direction', function (SearchBoxSor
     'pokedex number' => [
         SearchBoxSortBy::POKEDEX_NUMBER,
         function (User $user): array {
-            $lowPokedex  = Pokedex::factory()->create(['national_dex_entry_number' => 1]);
-            $midPokedex  = Pokedex::factory()->create(['national_dex_entry_number' => 100]);
-            $highPokedex = Pokedex::factory()->create(['national_dex_entry_number' => 700]);
+            $lowPokedex  = Pokedex::factory()->create(['pokedex_number' => 1]);
+            $midPokedex  = Pokedex::factory()->create(['pokedex_number' => 100]);
+            $highPokedex = Pokedex::factory()->create(['pokedex_number' => 700]);
 
             $low  = Pokemon::factory()->for($user)->for($lowPokedex)->inBox()->create();
             $mid  = Pokemon::factory()->for($user)->for($midPokedex)->inBox()->create();
