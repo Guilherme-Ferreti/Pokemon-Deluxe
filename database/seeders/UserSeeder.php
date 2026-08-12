@@ -19,23 +19,43 @@ final class UserSeeder extends Seeder
             'email' => 'test@example.com',
         ]);
 
-        $pokemonInParty = Pokedex::query()
+        $this->addPokemonToParty($user);
+        $this->addPokemonToBox($user);
+    }
+
+    private function addPokemonToParty(User $user): void
+    {
+        $pokeballs = Pokeball::all();
+
+        Pokedex::query()
             ->inRandomOrder()
-            ->take(3)
-            ->get();
+            ->take(5)
+            ->get()
+            ->each(fn (Pokedex $pokedex) => Pokemon::factory()->for($user)->for($pokedex)->recycle($pokeballs)->inParty()->create());
+    }
 
-        $pokemonBox = Pokedex::query()
-            ->whereNotIn('id', $pokemonInParty->pluck('id')->toArray())
+    private function addPokemonToBox(User $user): void
+    {
+        $pokeballs = Pokeball::all();
+
+        $rows = Pokedex::query()
             ->inRandomOrder()
-            ->get();
+            ->get()
+            ->map(function (Pokedex $pokedex) use ($user, $pokeballs): array {
+                $notShiny = Pokemon::factory()->for($user)->for($pokedex)->recycle($pokeballs)->notShiny()->inBox()->make()->toArray();
+                $shiny    = Pokemon::factory()->for($user)->for($pokedex)->recycle($pokeballs)->shiny()->inBox()->make()->toArray();
 
-        $pokeballs = Pokeball::query()
-            ->inRandomOrder()
-            ->take(3)
-            ->get();
+                $notShiny['id'] = new Pokemon()->newUniqueId();
+                $shiny['id']    = new Pokemon()->newUniqueId();
 
-        $pokemonInParty->each(fn (Pokedex $pokedex) => Pokemon::factory()->for($user)->for($pokedex)->inBox()->recycle($pokeballs)->create());
+                $notShiny['moves_ids'] = json_encode($notShiny['moves_ids']);
+                $shiny['moves_ids']    = json_encode($shiny['moves_ids']);
 
-        $pokemonBox->each(fn (Pokedex $pokedex) => Pokemon::factory()->for($user)->for($pokedex)->inParty()->recycle($pokeballs)->create());
+                return [$notShiny, $shiny];
+            })
+            ->flatten(1)
+            ->toArray();
+
+        Pokemon::insert($rows);
     }
 }
