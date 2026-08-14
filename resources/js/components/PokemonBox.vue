@@ -14,6 +14,7 @@
     <AppPagination
       :list="box"
       :only="['box']"
+      preserve-scroll
     />
   </template>
   <AppEmptyState

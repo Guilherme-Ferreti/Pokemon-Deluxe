@@ -49,6 +49,7 @@ import type { PaginatedList } from '@/types';
 const props = defineProps<{
   list: PaginatedList<unknown>;
   only?: Array<string>;
+  preserveScroll?: boolean;
 }>();
 
 function navigateToPage(page: number) {
@@ -63,7 +64,11 @@ function navigateToPage(page: number) {
   router.get(
     url,
     {},
-    { preserveScroll: true, preserveState: true, only: props.only },
+    {
+      preserveScroll: props.preserveScroll,
+      preserveState: true,
+      only: props.only,
+    },
   );
 }
 </script>
