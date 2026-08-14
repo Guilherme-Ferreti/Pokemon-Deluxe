@@ -5,14 +5,9 @@
     description="Below is a list of all Pokemon in the game."
   />
   <p>
-    The
-    <img
-      src="/assets/icons/pokedex-in-box.png"
-      alt="In Box"
-      class="inline-block size-6"
-      loading="lazy"
-    />
-    icon indicates pokemon you have in your box.
+    The <AppIconInBox /> icon indicates pokemon you have in your box.
+    <br />
+    The <AppIconNotInBox /> icon indicates pokemon you do not have in your box.
   </p>
   <AppSection>
     <Card class="py-3">
@@ -56,18 +51,10 @@
                 {{ pokemon.generation }}
               </TableCell>
               <TableCell>
-                <img
-                  src="/assets/icons/pokedex-in-box.png"
-                  alt="In Box"
-                  class="inline-block size-6"
-                />
+                <AppIconInBox />
               </TableCell>
               <TableCell>
-                <img
-                  src="/assets/icons/pokedex-in-box.png"
-                  alt="In Box"
-                  class="inline-block size-6"
-                />
+                <AppIconNotInBox />
               </TableCell>
               <TableCell>Actions</TableCell>
             </TableRow>
@@ -81,6 +68,8 @@
 
 <script lang="ts" setup>
 import { Head } from '@inertiajs/vue3';
+import AppIconInBox from '@/components/AppIconInBox.vue';
+import AppIconNotInBox from '@/components/AppIconNotInBox.vue';
 import AppPageHeader from '@/components/AppPageHeader.vue';
 import AppPagination from '@/components/AppPagination.vue';
 import AppSection from '@/components/AppSection.vue';
