@@ -4,50 +4,45 @@ declare(strict_types=1);
 
 namespace Shared\Enums;
 
-use ValueError;
-
 enum Generation: int
 {
-    case KANTO  = 1;
-    case JOHTO  = 2;
-    case HOENN  = 3;
-    case SINNOH = 4;
-    case UNOVA  = 5;
-    case KALOS  = 6;
-    case ALOLA  = 7;
-    case GALAR  = 8;
-    case PALDEA = 9;
-
-    public static function fromString(string $value): self
-    {
-        $value = strtolower($value);
-
-        return match ($value) {
-            'kanto'  => self::KANTO,
-            'johto'  => self::JOHTO,
-            'hoenn'  => self::HOENN,
-            'sinnoh' => self::SINNOH,
-            'unova'  => self::UNOVA,
-            'kalos'  => self::KALOS,
-            'alola'  => self::ALOLA,
-            'galar'  => self::GALAR,
-            'paldea' => self::PALDEA,
-            default  => throw new ValueError('Unknown generation: ' . $value),
-        };
-    }
+    case I    = 1;
+    case II   = 2;
+    case III  = 3;
+    case IV   = 4;
+    case V    = 5;
+    case VI   = 6;
+    case VII  = 7;
+    case VIII = 8;
+    case IX   = 9;
 
     public function label(): string
     {
         return match ($this) {
-            self::KANTO  => 'Kanto',
-            self::JOHTO  => 'Johto',
-            self::HOENN  => 'Hoenn',
-            self::SINNOH => 'Sinnoh',
-            self::UNOVA  => 'Unova',
-            self::KALOS  => 'Kalos',
-            self::ALOLA  => 'Alola',
-            self::GALAR  => 'Galar',
-            self::PALDEA => 'Paldea',
+            self::I    => 'Gen I',
+            self::II   => 'Gen II',
+            self::III  => 'Gen III',
+            self::IV   => 'Gen IV',
+            self::V    => 'Gen V',
+            self::VI   => 'Gen VI',
+            self::VII  => 'Gen VII',
+            self::VIII => 'Gen VIII',
+            self::IX   => 'Gen IX',
+        };
+    }
+
+    public function region(): string
+    {
+        return match ($this) {
+            self::I    => 'Kanto',
+            self::II   => 'Johto',
+            self::III  => 'Hoenn',
+            self::IV   => 'Sinnoh',
+            self::V    => 'Unova',
+            self::VI   => 'Kalos',
+            self::VII  => 'Alola',
+            self::VIII => 'Galar',
+            self::IX   => 'Paldea',
         };
     }
 }

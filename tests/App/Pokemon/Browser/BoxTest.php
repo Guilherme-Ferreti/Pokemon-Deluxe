@@ -66,7 +66,7 @@ describe('search filters', function () {
             'search'      => 'Pikachu',
             'types'       => [ElementalType::FIRE, ElementalType::WATER],
             'traits'      => [PokemonTrait::LEGENDARY],
-            'generations' => [Generation::KANTO],
+            'generations' => [Generation::I],
         ]))
             ->assertValue('search', 'Pikachu')
             ->assertSeeIn('@active-filters-indicator', '4')
@@ -75,7 +75,7 @@ describe('search filters', function () {
             ->assertAttribute('[aria-label="Water"]', 'data-state', 'checked')
             ->assertAttribute('[aria-label="Grass"]', 'data-state', 'unchecked')
             ->assertAttribute('[aria-label="Legendary"]', 'data-state', 'checked')
-            ->assertAttribute('[aria-label="Kanto"]', 'data-state', 'checked');
+            ->assertAttribute('[aria-label="Gen I"]', 'data-state', 'checked');
     });
 
     it('clears active filters when the Reset button is clicked', function () {
@@ -84,7 +84,7 @@ describe('search filters', function () {
         visit(route('web.pokemon.box', [
             'types'       => [ElementalType::FIRE, ElementalType::WATER],
             'traits'      => [PokemonTrait::LEGENDARY],
-            'generations' => [Generation::KANTO],
+            'generations' => [Generation::I],
         ]))
             ->click('@open-search-filters-button')
             ->click('@reset-search-filters-button')

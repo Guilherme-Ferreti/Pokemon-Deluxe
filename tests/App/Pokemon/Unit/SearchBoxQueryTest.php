@@ -168,26 +168,26 @@ it('requires all selected traits to match', function () {
 it('filters box pokemon by a single generation', function () {
     $user = User::factory()->create();
 
-    $kanto = Pokemon::factory()->for($user)->for(Pokedex::factory()->create(['generation' => Generation::KANTO]))->inBox()->create();
-    $johto = Pokemon::factory()->for($user)->for(Pokedex::factory()->create(['generation' => Generation::JOHTO]))->inBox()->create();
+    $genI  = Pokemon::factory()->for($user)->for(Pokedex::factory()->create(['generation' => Generation::I]))->inBox()->create();
+    $genII = Pokemon::factory()->for($user)->for(Pokedex::factory()->create(['generation' => Generation::II]))->inBox()->create();
 
-    $result = new SearchBoxQuery()->handle($user, makeSearchBoxFilters(generations: [Generation::KANTO]))->get();
+    $result = new SearchBoxQuery()->handle($user, makeSearchBoxFilters(generations: [Generation::I]))->get();
 
     expect($result)->toHaveCount(1)
-        ->and($result->first()->id)->toBe($kanto->id);
+        ->and($result->first()->id)->toBe($genI->id);
 });
 
 it('filters box pokemon by multiple generations', function () {
     $user = User::factory()->create();
 
-    $kanto = Pokemon::factory()->for($user)->for(Pokedex::factory()->create(['generation' => Generation::KANTO]))->inBox()->create();
-    $johto = Pokemon::factory()->for($user)->for(Pokedex::factory()->create(['generation' => Generation::JOHTO]))->inBox()->create();
-    $hoenn = Pokemon::factory()->for($user)->for(Pokedex::factory()->create(['generation' => Generation::HOENN]))->inBox()->create();
+    $genI   = Pokemon::factory()->for($user)->for(Pokedex::factory()->create(['generation' => Generation::I]))->inBox()->create();
+    $genII  = Pokemon::factory()->for($user)->for(Pokedex::factory()->create(['generation' => Generation::II]))->inBox()->create();
+    $genIII = Pokemon::factory()->for($user)->for(Pokedex::factory()->create(['generation' => Generation::III]))->inBox()->create();
 
-    $result = new SearchBoxQuery()->handle($user, makeSearchBoxFilters(generations: [Generation::KANTO, Generation::JOHTO]))->get();
+    $result = new SearchBoxQuery()->handle($user, makeSearchBoxFilters(generations: [Generation::I, Generation::II]))->get();
 
     expect($result)->toHaveCount(2)
-        ->and($result->pluck('id'))->toContain($kanto->id, $johto->id)->not->toContain($hoenn->id);
+        ->and($result->pluck('id'))->toContain($genI->id, $genII->id)->not->toContain($genIII->id);
 });
 
 it('sorts box pokemon by the given column and direction', function (SearchBoxSortBy $sort, Closure $createFixtures) {
