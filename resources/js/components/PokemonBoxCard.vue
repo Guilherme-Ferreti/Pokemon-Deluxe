@@ -1,7 +1,7 @@
 <template>
   <li>
     <Card
-      class="gap-2 border bg-card p-3 text-card-foreground shadow transition-shadow hover:shadow-md"
+      class="gap-2 p-3 text-card-foreground shadow transition-shadow hover:shadow-md"
     >
       <div class="grid grid-cols-[auto_1fr] gap-2">
         <AppPokemonSprite

@@ -68,6 +68,7 @@
 <script setup lang="ts">
 import {
   IconArchive,
+  IconBook,
   IconChevronRight,
   IconHome,
   IconPokeball,
@@ -124,6 +125,11 @@ const items = [
     title: 'Battle',
     url: '#',
     icon: IconSwords,
+  },
+  {
+    title: 'Pokedex',
+    url: route('web.dex.pokedex.index'),
+    icon: IconBook,
   },
 ];
 
