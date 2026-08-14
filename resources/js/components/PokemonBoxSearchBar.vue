@@ -203,7 +203,7 @@ import {
   DialogTitle,
   DialogTrigger,
 } from '@/components/ui/dialog';
-import type { PokemonBoxPageProps } from '@/pages/Pokemon/Box.vue';
+import type { PokemonBoxIndexPageProps } from '@/pages/Pokemon/Box/Index.vue';
 import { PokemonTrait, SearchBoxSortBy, SortDirection } from '@/types';
 import { route } from '@/types/helpers/route.js';
 import AppCheckbox from './AppCheckbox.vue';
@@ -215,8 +215,8 @@ import { Popover, PopoverContent, PopoverTrigger } from './ui/popover';
 import { Tooltip, TooltipContent, TooltipTrigger } from './ui/tooltip';
 
 const props = defineProps<{
-  activeFilters: PokemonBoxPageProps['activeFilters'];
-  filterOptions: PokemonBoxPageProps['filterOptions'];
+  activeFilters: PokemonBoxIndexPageProps['activeFilters'];
+  filterOptions: PokemonBoxIndexPageProps['filterOptions'];
 }>();
 
 const searchForm = useForm({
@@ -296,10 +296,10 @@ function submitSearch() {
         Object.entries(data).filter(([, value]) => value || false),
       ),
     )
-    .get(route('web.pokemon.box'), {
+    .get(route('web.pokemon.box.index'), {
       preserveScroll: true,
       preserveState: true,
-      only: ['box', 'activeFilters'],
+      only: ['pokemonList', 'activeFilters'],
     });
 }
 </script>

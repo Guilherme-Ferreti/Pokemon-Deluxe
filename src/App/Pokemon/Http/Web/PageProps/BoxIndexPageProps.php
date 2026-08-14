@@ -11,10 +11,10 @@ use Inertia\RenderContext;
 use Shared\Helpers\AppHelper;
 use Shared\Models\Pokemon;
 
-final readonly class BoxPageProps implements ProvidesInertiaProperties
+final readonly class BoxIndexPageProps implements ProvidesInertiaProperties
 {
     public function __construct(
-        public Closure $box,
+        public Closure $pokemonList,
 
         public SearchBoxFilters $activeFilters,
     ) {}
@@ -25,7 +25,7 @@ final readonly class BoxPageProps implements ProvidesInertiaProperties
     public function toInertiaProperties(RenderContext $context): array
     {
         return [
-            'box'           => fn () => $this->mapBox(),
+            'pokemonList'   => fn () => $this->mapPokemonList(),
             'activeFilters' => fn () => $this->activeFilters,
             'filterOptions' => fn () => SearchBoxFilters::filterOptions(),
         ];
@@ -34,9 +34,9 @@ final readonly class BoxPageProps implements ProvidesInertiaProperties
     /**
      * @return array<string, mixed>
      */
-    private function mapBox(): array
+    private function mapPokemonList(): array
     {
-        return AppHelper::paginatorToArray(($this->box)(), fn (Pokemon $pokemon) => [
+        return AppHelper::paginatorToArray(($this->pokemonList)(), fn (Pokemon $pokemon) => [
             'id'          => $pokemon->id,
             'name'        => $pokemon->getName(),
             'frontSprite' => $pokemon->getFrontSprite(),

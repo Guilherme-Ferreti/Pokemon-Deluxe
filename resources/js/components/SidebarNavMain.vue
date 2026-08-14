@@ -116,7 +116,7 @@ const items = [
       },
       {
         title: 'Box',
-        url: route('web.pokemon.box'),
+        url: route('web.pokemon.box.index'),
         icon: IconArchive,
       },
     ],

@@ -11,7 +11,7 @@ use function Pest\Laravel\actingAs;
 use function Pest\Laravel\get;
 
 it('redirects guests to login', function () {
-    get(route('web.pokemon.box'))
+    get(route('web.pokemon.box.index'))
         ->assertRedirectToRoute('web.auth.login.create');
 });
 
@@ -31,26 +31,26 @@ it('loads the box page with expected structure', function () {
 
     actingAs($user);
 
-    get(route('web.pokemon.box'))
+    get(route('web.pokemon.box.index'))
         ->assertSuccessful()
         ->assertInertia(fn (Assert $page) => $page
-            ->component('Pokemon/Box')
+            ->component('Pokemon/Box/Index')
             ->has('activeFilters')
             ->has('filterOptions', fn (Assert $page) => $page->hasAll(['types', 'traits', 'generations', 'sort', 'dir']))
-            ->has('box.data', $perPage)
-            ->where('box.data.0.id', $newestPokemon->id)
-            ->where('box.data.0.name', $newestPokemon->getName())
-            ->where('box.data.0.frontSprite', $newestPokemon->getFrontSprite())
-            ->where('box.data.0.level', $newestPokemon->level)
-            ->where('box.data.0.experience', $newestPokemon->experience)
-            ->where('box.data.0.pokedex.types', $newestPokemon->pokedex->types->pluck('value'))
-            ->where('box.data.0.moves.0.name', 'Giga Impact')
-            ->where('box.data.0.moves.1.name', 'Flamethrower')
-            ->where('box.data.0.moves.2.name', 'Earthquake')
-            ->where('box.data.0.moves.3.name', 'Ice Beam')
-            ->where('box.total', $total)
-            ->where('box.perPage', $perPage)
-            ->where('box.lastPage', 2)
+            ->has('pokemonList.data', $perPage)
+            ->where('pokemonList.data.0.id', $newestPokemon->id)
+            ->where('pokemonList.data.0.name', $newestPokemon->getName())
+            ->where('pokemonList.data.0.frontSprite', $newestPokemon->getFrontSprite())
+            ->where('pokemonList.data.0.level', $newestPokemon->level)
+            ->where('pokemonList.data.0.experience', $newestPokemon->experience)
+            ->where('pokemonList.data.0.pokedex.types', $newestPokemon->pokedex->types->pluck('value'))
+            ->where('pokemonList.data.0.moves.0.name', 'Giga Impact')
+            ->where('pokemonList.data.0.moves.1.name', 'Flamethrower')
+            ->where('pokemonList.data.0.moves.2.name', 'Earthquake')
+            ->where('pokemonList.data.0.moves.3.name', 'Ice Beam')
+            ->where('pokemonList.total', $total)
+            ->where('pokemonList.perPage', $perPage)
+            ->where('pokemonList.lastPage', 2)
         );
 });
 
@@ -61,10 +61,10 @@ it("only shows the authenticated user's pokemon", function () {
     Pokemon::factory(5)->inBox()->create();
 
     actingAs($user)
-        ->get(route('web.pokemon.box'))
+        ->get(route('web.pokemon.box.index'))
         ->assertInertia(fn (Assert $page) => $page
-            ->has('box.data', 1)
-            ->where('box.data.0.id', $pokemon->id)
+            ->has('pokemonList.data', 1)
+            ->where('pokemonList.data.0.id', $pokemon->id)
         );
 });
 
@@ -75,10 +75,10 @@ it('filters box pokemon by search query', function () {
     $charmander = Pokemon::factory()->for($user)->for(Pokedex::factory()->create(['name' => 'Charmander']))->inBox()->create();
 
     actingAs($user)
-        ->get(route('web.pokemon.box', ['search' => 'Pikachu']))
+        ->get(route('web.pokemon.box.index', ['search' => 'Pikachu']))
         ->assertInertia(fn (Assert $page) => $page
-            ->has('box.data', 1)
-            ->where('box.data.0.id', $pikachu->id)
+            ->has('pokemonList.data', 1)
+            ->where('pokemonList.data.0.id', $pikachu->id)
         );
 });
 
@@ -87,8 +87,8 @@ it('excludes party pokemon from the box', function () {
     Pokemon::factory()->for($user)->inParty()->create();
 
     actingAs($user)
-        ->get(route('web.pokemon.box'))
+        ->get(route('web.pokemon.box.index'))
         ->assertInertia(fn (Assert $page) => $page
-            ->has('box.data', 0)
+            ->has('pokemonList.data', 0)
         );
 });

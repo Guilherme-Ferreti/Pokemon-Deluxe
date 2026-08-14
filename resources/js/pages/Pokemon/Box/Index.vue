@@ -6,7 +6,7 @@
   />
   <AppSection>
     <PokemonBox
-      :box="box"
+      :pokemon-list="pokemonList"
       :active-filters="activeFilters"
       :filter-options="filterOptions"
     />
@@ -28,8 +28,8 @@ import type {
   SortDirection,
 } from '@/types';
 
-export interface PokemonBoxPageProps {
-  box: PaginatedList<{
+export interface PokemonBoxIndexPageProps {
+  pokemonList: PaginatedList<{
     id: string;
     name: string;
     frontSprite?: string;
@@ -59,5 +59,5 @@ export interface PokemonBoxPageProps {
   };
 }
 
-defineProps<PokemonBoxPageProps>();
+defineProps<PokemonBoxIndexPageProps>();
 </script>

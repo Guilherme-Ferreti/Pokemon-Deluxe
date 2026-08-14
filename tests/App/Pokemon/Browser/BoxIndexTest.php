@@ -17,7 +17,7 @@ it('loads the box page without errors', function () {
 
     actingAs($user);
 
-    visit(route('web.pokemon.box'))
+    visit(route('web.pokemon.box.index'))
         ->assertNoSmoke()
         ->assertSeeIn('@page-title', 'Your Box');
 });
@@ -25,7 +25,7 @@ it('loads the box page without errors', function () {
 it('shows the box empty state when there are no pokemon in the box', function () {
     actingAs(User::factory()->create());
 
-    visit(route('web.pokemon.box'))
+    visit(route('web.pokemon.box.index'))
         ->assertVisible('@pokemon-box-empty-state');
 });
 
@@ -35,7 +35,7 @@ it('shows box pokemon when they exist and hides empty state', function () {
 
     actingAs($user);
 
-    visit(route('web.pokemon.box'))
+    visit(route('web.pokemon.box.index'))
         ->assertDontSee('@pokemon-box-empty-state');
 });
 
@@ -50,7 +50,7 @@ describe('search filters', function () {
 
         actingAs($user);
 
-        visit(route('web.pokemon.box'))
+        visit(route('web.pokemon.box.index'))
             ->assertSee('Pikachu')
             ->assertSee('Charmander')
             ->type('search', 'Pikachu')
@@ -62,7 +62,7 @@ describe('search filters', function () {
     it('shows active filters', function () {
         actingAs(User::factory()->create());
 
-        visit(route('web.pokemon.box', [
+        visit(route('web.pokemon.box.index', [
             'search'      => 'Pikachu',
             'types'       => [ElementalType::FIRE, ElementalType::WATER],
             'traits'      => [PokemonTrait::LEGENDARY],
@@ -81,7 +81,7 @@ describe('search filters', function () {
     it('clears active filters when the Reset button is clicked', function () {
         actingAs(User::factory()->create());
 
-        visit(route('web.pokemon.box', [
+        visit(route('web.pokemon.box.index', [
             'types'       => [ElementalType::FIRE, ElementalType::WATER],
             'traits'      => [PokemonTrait::LEGENDARY],
             'generations' => [Generation::I],
@@ -97,7 +97,7 @@ describe('search filters', function () {
     it('applies filters only after Apply is clicked and discards them when the dialog is closed', function () {
         actingAs(User::factory()->create());
 
-        visit(route('web.pokemon.box'))
+        visit(route('web.pokemon.box.index'))
             ->click('@open-search-filters-button')
             ->click('[aria-label="Fire"]')
             ->click('[aria-label="Water"]')
@@ -117,7 +117,7 @@ describe('search filters', function () {
     it('disables type checkboxes after selecting two types', function () {
         actingAs(User::factory()->create());
 
-        visit(route('web.pokemon.box'))
+        visit(route('web.pokemon.box.index'))
             ->click('@open-search-filters-button')
             ->click('[aria-label="Fire"]')
             ->click('[aria-label="Water"]')
@@ -127,7 +127,7 @@ describe('search filters', function () {
     it('disables baby trait when legendary is selected', function () {
         actingAs(User::factory()->create());
 
-        visit(route('web.pokemon.box'))
+        visit(route('web.pokemon.box.index'))
             ->click('@open-search-filters-button')
             ->click('[aria-label="Legendary"]')
             ->assertDisabled('[aria-label="Baby"]');
@@ -136,7 +136,7 @@ describe('search filters', function () {
     it('disables baby trait when mythical is selected', function () {
         actingAs(User::factory()->create());
 
-        visit(route('web.pokemon.box'))
+        visit(route('web.pokemon.box.index'))
             ->click('@open-search-filters-button')
             ->click('[aria-label="Mythical"]')
             ->assertDisabled('[aria-label="Baby"]');
@@ -145,7 +145,7 @@ describe('search filters', function () {
     it('disables baby trait when mega is selected', function () {
         actingAs(User::factory()->create());
 
-        visit(route('web.pokemon.box'))
+        visit(route('web.pokemon.box.index'))
             ->click('@open-search-filters-button')
             ->click('[aria-label="Mega"]')
             ->assertDisabled('[aria-label="Baby"]');
@@ -154,7 +154,7 @@ describe('search filters', function () {
     it('disables baby trait when gmax is selected', function () {
         actingAs(User::factory()->create());
 
-        visit(route('web.pokemon.box'))
+        visit(route('web.pokemon.box.index'))
             ->click('@open-search-filters-button')
             ->click('[aria-label="G-Max"]')
             ->assertDisabled('[aria-label="Baby"]');
@@ -163,7 +163,7 @@ describe('search filters', function () {
     it('disables legendary trait when mythical is selected', function () {
         actingAs(User::factory()->create());
 
-        visit(route('web.pokemon.box'))
+        visit(route('web.pokemon.box.index'))
             ->click('@open-search-filters-button')
             ->click('[aria-label="Mythical"]')
             ->assertDisabled('[aria-label="Legendary"]');
@@ -172,7 +172,7 @@ describe('search filters', function () {
     it('disables legendary trait when baby is selected', function () {
         actingAs(User::factory()->create());
 
-        visit(route('web.pokemon.box'))
+        visit(route('web.pokemon.box.index'))
             ->click('@open-search-filters-button')
             ->click('[aria-label="Baby"]')
             ->assertDisabled('[aria-label="Legendary"]');
@@ -181,7 +181,7 @@ describe('search filters', function () {
     it('disables mythical trait when legendary is selected', function () {
         actingAs(User::factory()->create());
 
-        visit(route('web.pokemon.box'))
+        visit(route('web.pokemon.box.index'))
             ->click('@open-search-filters-button')
             ->click('[aria-label="Legendary"]')
             ->assertDisabled('[aria-label="Mythical"]');
@@ -190,7 +190,7 @@ describe('search filters', function () {
     it('disables mythical trait when baby is selected', function () {
         actingAs(User::factory()->create());
 
-        visit(route('web.pokemon.box'))
+        visit(route('web.pokemon.box.index'))
             ->click('@open-search-filters-button')
             ->click('[aria-label="Baby"]')
             ->assertDisabled('[aria-label="Mythical"]');
@@ -199,7 +199,7 @@ describe('search filters', function () {
     it('disables mega trait when gmax is selected', function () {
         actingAs(User::factory()->create());
 
-        visit(route('web.pokemon.box'))
+        visit(route('web.pokemon.box.index'))
             ->click('@open-search-filters-button')
             ->click('[aria-label="G-Max"]')
             ->assertDisabled('[aria-label="Mega"]');
@@ -208,7 +208,7 @@ describe('search filters', function () {
     it('disables mega trait when baby is selected', function () {
         actingAs(User::factory()->create());
 
-        visit(route('web.pokemon.box'))
+        visit(route('web.pokemon.box.index'))
             ->click('@open-search-filters-button')
             ->click('[aria-label="Baby"]')
             ->assertDisabled('[aria-label="Mega"]');
@@ -217,7 +217,7 @@ describe('search filters', function () {
     it('disables gmax trait when mega is selected', function () {
         actingAs(User::factory()->create());
 
-        visit(route('web.pokemon.box'))
+        visit(route('web.pokemon.box.index'))
             ->click('@open-search-filters-button')
             ->click('[aria-label="Mega"]')
             ->assertDisabled('[aria-label="G-Max"]');
@@ -226,7 +226,7 @@ describe('search filters', function () {
     it('disables gmax trait when baby is selected', function () {
         actingAs(User::factory()->create());
 
-        visit(route('web.pokemon.box'))
+        visit(route('web.pokemon.box.index'))
             ->click('@open-search-filters-button')
             ->click('[aria-label="Baby"]')
             ->assertDisabled('[aria-label="G-Max"]');
@@ -235,7 +235,7 @@ describe('search filters', function () {
     it('does not disable shiny trait when legendary is selected', function () {
         actingAs(User::factory()->create());
 
-        visit(route('web.pokemon.box'))
+        visit(route('web.pokemon.box.index'))
             ->click('@open-search-filters-button')
             ->click('[aria-label="Legendary"]')
             ->assertEnabled('[aria-label="Shiny"]');
@@ -244,7 +244,7 @@ describe('search filters', function () {
     it('re-enables a disabled trait when the conflicting selection is removed', function () {
         actingAs(User::factory()->create());
 
-        visit(route('web.pokemon.box'))
+        visit(route('web.pokemon.box.index'))
             ->click('@open-search-filters-button')
             ->click('[aria-label="Legendary"]')
             ->assertDisabled('[aria-label="Baby"]')

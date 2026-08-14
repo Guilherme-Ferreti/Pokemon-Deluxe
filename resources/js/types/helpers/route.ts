@@ -8,7 +8,7 @@ type RouteParameters = {
   'web.dashboard.home': never;
   'web.dex.pokedex.index': never;
   'web.pokemon.party': never;
-  'web.pokemon.box': never;
+  'web.pokemon.box.index': never;
   'storage.local.upload': {
     path: string | number;
   };
@@ -51,6 +51,6 @@ const routes = {
   'web.dashboard.home': 'dashboard',
   'web.dex.pokedex.index': 'pokedex',
   'web.pokemon.party': 'your-pokemon/party',
-  'web.pokemon.box': 'your-pokemon/box',
+  'web.pokemon.box.index': 'your-pokemon/box',
   'storage.local.upload': 'storage/{path}',
 };

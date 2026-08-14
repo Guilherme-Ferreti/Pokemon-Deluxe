@@ -82,7 +82,7 @@
 
 <script setup lang="ts">
 import { IconBook, IconDotsVertical, IconEye } from '@tabler/icons-vue';
-import type { PokemonBoxPageProps } from '@/pages/Pokemon/Box.vue';
+import type { PokemonBoxIndexPageProps } from '@/pages/Pokemon/Box/Index.vue';
 import AppNavLink from './AppNavLink.vue';
 import AppPokemonSprite from './AppPokemonSprite.vue';
 import ElementalTypeBadges from './ElementalTypeBadges.vue';
@@ -96,6 +96,6 @@ import {
 } from './ui/dropdown-menu';
 
 defineProps<{
-  pokemon: PokemonBoxPageProps['box']['data'][number];
+  pokemon: PokemonBoxIndexPageProps['pokemonList']['data'][number];
 }>();
 </script>
