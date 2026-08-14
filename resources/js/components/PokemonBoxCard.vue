@@ -44,7 +44,7 @@
           </div>
           <ElementalTypeBadges
             class="mt-1.5"
-            :types="pokemon.pokedex.types"
+            :types="pokemon.species.types"
           />
         </div>
       </div>

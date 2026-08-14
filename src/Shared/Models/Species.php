@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Shared\Models;
 
-use Database\Factories\PokedexFactory;
+use Database\Factories\SpeciesFactory;
 use Illuminate\Database\Eloquent\Attributes\Table;
 use Illuminate\Database\Eloquent\Attributes\Unguarded;
 use Illuminate\Database\Eloquent\Casts\AsEnumCollection;
@@ -39,14 +39,14 @@ use Shared\ValueObjects\PokemonSprites;
  * @property string $external_id
  * @property Carbon $created_at
  * @property Carbon $updated_at
- * @property-read EloquentCollection<int, PokedexEvolution> $evolutions
- * @property-read EloquentCollection<int, PokedexEvolution> $previousEvolutions
+ * @property-read EloquentCollection<int, SpeciesEvolution> $evolutions
+ * @property-read EloquentCollection<int, SpeciesEvolution> $previousEvolutions
  */
-#[Table('pokedex')]
+#[Table('species')]
 #[Unguarded]
-final class Pokedex extends Model
+final class Species extends Model
 {
-    /** @use HasFactory<PokedexFactory> */
+    /** @use HasFactory<SpeciesFactory> */
     use HasFactory, HasUuids;
 
     /**
@@ -65,19 +65,19 @@ final class Pokedex extends Model
     }
 
     /**
-     * @return HasMany<PokedexEvolution, $this>
+     * @return HasMany<SpeciesEvolution, $this>
      */
     public function evolutions(): HasMany
     {
-        return $this->hasMany(PokedexEvolution::class, 'from_pokedex_id');
+        return $this->hasMany(SpeciesEvolution::class, 'from_species_id');
     }
 
     /**
-     * @return HasMany<PokedexEvolution, $this>
+     * @return HasMany<SpeciesEvolution, $this>
      */
     public function previousEvolutions(): HasMany
     {
-        return $this->hasMany(PokedexEvolution::class, 'to_pokedex_id');
+        return $this->hasMany(SpeciesEvolution::class, 'to_species_id');
     }
 
     public function isSingleType(): bool

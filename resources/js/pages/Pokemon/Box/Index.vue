@@ -35,7 +35,7 @@ export interface PokemonBoxIndexPageProps {
     frontSprite?: string;
     level: number;
     experience: number;
-    pokedex: {
+    species: {
       types: [ElementalType] | [ElementalType, ElementalType];
     };
     moves: {

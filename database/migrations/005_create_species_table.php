@@ -10,7 +10,7 @@ return new class extends Migration
 {
     public function up(): void
     {
-        Schema::create('pokedex', function (Blueprint $table): void {
+        Schema::create('species', function (Blueprint $table): void {
             $table->uuid('id')->primary();
 
             $table->string('name');
@@ -43,6 +43,6 @@ return new class extends Migration
 
     public function down(): void
     {
-        Schema::dropIfExists('pokedex');
+        Schema::dropIfExists('species');
     }
 };

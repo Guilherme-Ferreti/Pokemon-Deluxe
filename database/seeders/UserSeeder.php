@@ -6,8 +6,8 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use Shared\Models\Pokeball;
-use Shared\Models\Pokedex;
 use Shared\Models\Pokemon;
+use Shared\Models\Species;
 use Shared\Models\User;
 
 final class UserSeeder extends Seeder
@@ -27,23 +27,23 @@ final class UserSeeder extends Seeder
     {
         $pokeballs = Pokeball::all();
 
-        Pokedex::query()
+        Species::query()
             ->inRandomOrder()
             ->take(5)
             ->get()
-            ->each(fn (Pokedex $pokedex) => Pokemon::factory()->for($user)->for($pokedex)->recycle($pokeballs)->inParty()->create());
+            ->each(fn (Species $species) => Pokemon::factory()->for($user)->for($species)->recycle($pokeballs)->inParty()->create());
     }
 
     private function addPokemonToBox(User $user): void
     {
         $pokeballs = Pokeball::all();
 
-        $rows = Pokedex::query()
+        $rows = Species::query()
             ->inRandomOrder()
             ->get()
-            ->map(function (Pokedex $pokedex) use ($user, $pokeballs): array {
-                $notShiny = Pokemon::factory()->for($user)->for($pokedex)->recycle($pokeballs)->notShiny()->inBox()->make()->toArray();
-                $shiny    = Pokemon::factory()->for($user)->for($pokedex)->recycle($pokeballs)->shiny()->inBox()->make()->toArray();
+            ->map(function (Species $species) use ($user, $pokeballs): array {
+                $notShiny = Pokemon::factory()->for($user)->for($species)->recycle($pokeballs)->notShiny()->inBox()->make()->toArray();
+                $shiny    = Pokemon::factory()->for($user)->for($species)->recycle($pokeballs)->shiny()->inBox()->make()->toArray();
 
                 $notShiny['id'] = new Pokemon()->newUniqueId();
                 $shiny['id']    = new Pokemon()->newUniqueId();

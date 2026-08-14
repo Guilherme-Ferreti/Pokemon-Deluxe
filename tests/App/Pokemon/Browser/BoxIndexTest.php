@@ -5,8 +5,8 @@ declare(strict_types=1);
 use Shared\Enums\ElementalType;
 use Shared\Enums\Generation;
 use Shared\Enums\PokemonTrait;
-use Shared\Models\Pokedex;
 use Shared\Models\Pokemon;
+use Shared\Models\Species;
 use Shared\Models\User;
 
 use function Pest\Laravel\actingAs;
@@ -42,8 +42,8 @@ it('shows box pokemon when they exist and hides empty state', function () {
 describe('search filters', function () {
     it('searches the box when typing in the search bar', function () {
         $user       = User::factory()->create();
-        $pikachu    = Pokedex::factory()->create(['name' => 'Pikachu']);
-        $charmander = Pokedex::factory()->create(['name' => 'Charmander']);
+        $pikachu    = Species::factory()->create(['name' => 'Pikachu']);
+        $charmander = Species::factory()->create(['name' => 'Charmander']);
 
         Pokemon::factory()->for($user)->for($pikachu)->inBox()->create();
         Pokemon::factory()->for($user)->for($charmander)->inBox()->create();

@@ -7,13 +7,13 @@ namespace App\Dex\Http\Web\Controllers;
 use App\Dex\Http\Web\PageProps\PokedexIndexPageProps;
 use Inertia\Response;
 use Shared\Base\Controller;
-use Shared\Models\Pokedex;
+use Shared\Models\Species;
 
 final class PokedexController extends Controller
 {
     public function index(): Response
     {
-        $pokedex = fn () => Pokedex::query()
+        $speciesList = fn () => Species::query()
             ->orderBy('generation')
             ->orderBy('pokedex_number')
             ->orderByRaw('
@@ -27,7 +27,7 @@ final class PokedexController extends Controller
             ->paginate(50);
 
         return inertia('Dex/Pokedex/Index')->with(new PokedexIndexPageProps(
-            pokedex: $pokedex
+            speciesList: $speciesList
         ));
     }
 }

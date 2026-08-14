@@ -6,7 +6,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 use Shared\Models\Pokeball;
-use Shared\Models\Pokedex;
+use Shared\Models\Species;
 use Shared\Models\User;
 
 return new class extends Migration
@@ -17,7 +17,7 @@ return new class extends Migration
             $table->uuid('id')->primary();
 
             $table->foreignIdFor(User::class)->constrained()->cascadeOnDelete();
-            $table->foreignIdFor(Pokedex::class)->constrained();
+            $table->foreignIdFor(Species::class)->constrained();
 
             $table->unsignedTinyInteger('level')->default(1);
             $table->unsignedInteger('experience')->default(0);
@@ -28,7 +28,7 @@ return new class extends Migration
             $table->timestamp('captured_at');
             $table->timestamps();
 
-            $table->index(['user_id', 'in_party', 'pokedex_id']);
+            $table->index(['user_id', 'in_party', 'species_id']);
         });
     }
 

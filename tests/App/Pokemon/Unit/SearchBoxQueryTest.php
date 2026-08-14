@@ -9,8 +9,8 @@ use Shared\Enums\ElementalType;
 use Shared\Enums\Generation;
 use Shared\Enums\PokemonTrait;
 use Shared\Enums\SortDirection;
-use Shared\Models\Pokedex;
 use Shared\Models\Pokemon;
+use Shared\Models\Species;
 use Shared\Models\User;
 
 /**
@@ -72,8 +72,8 @@ it("excludes other users's pokemon", function () {
 it('filters box pokemon by matching name', function () {
     $user = User::factory()->create();
 
-    $pikachu    = Pokemon::factory()->for($user)->for(Pokedex::factory()->create(['name' => 'Pikachu']))->inBox()->create();
-    $charmander = Pokemon::factory()->for($user)->for(Pokedex::factory()->create(['name' => 'Charmander']))->inBox()->create();
+    $pikachu    = Pokemon::factory()->for($user)->for(Species::factory()->create(['name' => 'Pikachu']))->inBox()->create();
+    $charmander = Pokemon::factory()->for($user)->for(Species::factory()->create(['name' => 'Charmander']))->inBox()->create();
 
     $result = new SearchBoxQuery()->handle($user, makeSearchBoxFilters(search: 'Pikachu'))->get();
 
@@ -84,9 +84,9 @@ it('filters box pokemon by matching name', function () {
 it('filters box pokemon by partial name match', function () {
     $user = User::factory()->create();
 
-    $pikachu    = Pokemon::factory()->for($user)->for(Pokedex::factory()->create(['name' => 'Pikachu']))->inBox()->create();
-    $raichu     = Pokemon::factory()->for($user)->for(Pokedex::factory()->create(['name' => 'Raichu']))->inBox()->create();
-    $charmander = Pokemon::factory()->for($user)->for(Pokedex::factory()->create(['name' => 'Charmander']))->inBox()->create();
+    $pikachu    = Pokemon::factory()->for($user)->for(Species::factory()->create(['name' => 'Pikachu']))->inBox()->create();
+    $raichu     = Pokemon::factory()->for($user)->for(Species::factory()->create(['name' => 'Raichu']))->inBox()->create();
+    $charmander = Pokemon::factory()->for($user)->for(Species::factory()->create(['name' => 'Charmander']))->inBox()->create();
 
     $result = new SearchBoxQuery()->handle($user, makeSearchBoxFilters(search: 'chu'))->get();
 
@@ -105,9 +105,9 @@ it('returns no results when the search matches nothing', function () {
 it('filters box pokemon by a single type', function () {
     $user = User::factory()->create();
 
-    $fireOnly  = Pokemon::factory()->for($user)->for(Pokedex::factory()->create(['types' => [ElementalType::FIRE]]))->inBox()->create();
-    $waterOnly = Pokemon::factory()->for($user)->for(Pokedex::factory()->create(['types' => [ElementalType::WATER]]))->inBox()->create();
-    $fireWater = Pokemon::factory()->for($user)->for(Pokedex::factory()->create(['types' => [ElementalType::FIRE, ElementalType::WATER]]))->inBox()->create();
+    $fireOnly  = Pokemon::factory()->for($user)->for(Species::factory()->create(['types' => [ElementalType::FIRE]]))->inBox()->create();
+    $waterOnly = Pokemon::factory()->for($user)->for(Species::factory()->create(['types' => [ElementalType::WATER]]))->inBox()->create();
+    $fireWater = Pokemon::factory()->for($user)->for(Species::factory()->create(['types' => [ElementalType::FIRE, ElementalType::WATER]]))->inBox()->create();
 
     $result = new SearchBoxQuery()->handle($user, makeSearchBoxFilters(types: [ElementalType::FIRE]))->get();
 
@@ -118,8 +118,8 @@ it('filters box pokemon by a single type', function () {
 it('requires both types when two types are selected', function () {
     $user = User::factory()->create();
 
-    $fireOnly  = Pokemon::factory()->for($user)->for(Pokedex::factory()->create(['types' => [ElementalType::FIRE]]))->inBox()->create();
-    $fireWater = Pokemon::factory()->for($user)->for(Pokedex::factory()->create(['types' => [ElementalType::FIRE, ElementalType::WATER]]))->inBox()->create();
+    $fireOnly  = Pokemon::factory()->for($user)->for(Species::factory()->create(['types' => [ElementalType::FIRE]]))->inBox()->create();
+    $fireWater = Pokemon::factory()->for($user)->for(Species::factory()->create(['types' => [ElementalType::FIRE, ElementalType::WATER]]))->inBox()->create();
 
     $result = new SearchBoxQuery()->handle($user, makeSearchBoxFilters(types: [ElementalType::FIRE, ElementalType::WATER]))->get();
 
@@ -135,9 +135,9 @@ it('filters box pokemon by traits', function (PokemonTrait $trait, ?string $colu
 
         Pokemon::factory()->for($user)->inBox()->notShiny()->create();
     } else {
-        $pokemon = Pokemon::factory()->for($user)->for(Pokedex::factory()->create([$column => true]))->inBox()->create();
+        $pokemon = Pokemon::factory()->for($user)->for(Species::factory()->create([$column => true]))->inBox()->create();
 
-        Pokemon::factory(5)->for($user)->for(Pokedex::factory()->create([$column => false]))->inBox()->create();
+        Pokemon::factory(5)->for($user)->for(Species::factory()->create([$column => false]))->inBox()->create();
     }
 
     $result = new SearchBoxQuery()->handle($user, makeSearchBoxFilters(traits: [$trait]))->get();
@@ -156,8 +156,8 @@ it('filters box pokemon by traits', function (PokemonTrait $trait, ?string $colu
 it('requires all selected traits to match', function () {
     $user = User::factory()->create();
 
-    $legendaryBaby = Pokemon::factory()->for($user)->for(Pokedex::factory()->create(['is_legendary' => true, 'is_baby' => true]))->inBox()->create();
-    $legendaryOnly = Pokemon::factory()->for($user)->for(Pokedex::factory()->create(['is_legendary' => true, 'is_baby' => false]))->inBox()->create();
+    $legendaryBaby = Pokemon::factory()->for($user)->for(Species::factory()->create(['is_legendary' => true, 'is_baby' => true]))->inBox()->create();
+    $legendaryOnly = Pokemon::factory()->for($user)->for(Species::factory()->create(['is_legendary' => true, 'is_baby' => false]))->inBox()->create();
 
     $result = new SearchBoxQuery()->handle($user, makeSearchBoxFilters(traits: [PokemonTrait::LEGENDARY, PokemonTrait::BABY]))->get();
 
@@ -168,8 +168,8 @@ it('requires all selected traits to match', function () {
 it('filters box pokemon by a single generation', function () {
     $user = User::factory()->create();
 
-    $genI  = Pokemon::factory()->for($user)->for(Pokedex::factory()->create(['generation' => Generation::I]))->inBox()->create();
-    $genII = Pokemon::factory()->for($user)->for(Pokedex::factory()->create(['generation' => Generation::II]))->inBox()->create();
+    $genI  = Pokemon::factory()->for($user)->for(Species::factory()->create(['generation' => Generation::I]))->inBox()->create();
+    $genII = Pokemon::factory()->for($user)->for(Species::factory()->create(['generation' => Generation::II]))->inBox()->create();
 
     $result = new SearchBoxQuery()->handle($user, makeSearchBoxFilters(generations: [Generation::I]))->get();
 
@@ -180,9 +180,9 @@ it('filters box pokemon by a single generation', function () {
 it('filters box pokemon by multiple generations', function () {
     $user = User::factory()->create();
 
-    $genI   = Pokemon::factory()->for($user)->for(Pokedex::factory()->create(['generation' => Generation::I]))->inBox()->create();
-    $genII  = Pokemon::factory()->for($user)->for(Pokedex::factory()->create(['generation' => Generation::II]))->inBox()->create();
-    $genIII = Pokemon::factory()->for($user)->for(Pokedex::factory()->create(['generation' => Generation::III]))->inBox()->create();
+    $genI   = Pokemon::factory()->for($user)->for(Species::factory()->create(['generation' => Generation::I]))->inBox()->create();
+    $genII  = Pokemon::factory()->for($user)->for(Species::factory()->create(['generation' => Generation::II]))->inBox()->create();
+    $genIII = Pokemon::factory()->for($user)->for(Species::factory()->create(['generation' => Generation::III]))->inBox()->create();
 
     $result = new SearchBoxQuery()->handle($user, makeSearchBoxFilters(generations: [Generation::I, Generation::II]))->get();
 
@@ -236,13 +236,13 @@ it('sorts box pokemon by the given column and direction', function (SearchBoxSor
     'pokedex number' => [
         SearchBoxSortBy::POKEDEX_NUMBER,
         function (User $user): array {
-            $lowPokedex  = Pokedex::factory()->create(['pokedex_number' => 1]);
-            $midPokedex  = Pokedex::factory()->create(['pokedex_number' => 100]);
-            $highPokedex = Pokedex::factory()->create(['pokedex_number' => 700]);
+            $lowSpecies  = Species::factory()->create(['pokedex_number' => 1]);
+            $midSpecies  = Species::factory()->create(['pokedex_number' => 100]);
+            $highSpecies = Species::factory()->create(['pokedex_number' => 700]);
 
-            $low  = Pokemon::factory()->for($user)->for($lowPokedex)->inBox()->create();
-            $mid  = Pokemon::factory()->for($user)->for($midPokedex)->inBox()->create();
-            $high = Pokemon::factory()->for($user)->for($highPokedex)->inBox()->create();
+            $low  = Pokemon::factory()->for($user)->for($lowSpecies)->inBox()->create();
+            $mid  = Pokemon::factory()->for($user)->for($midSpecies)->inBox()->create();
+            $high = Pokemon::factory()->for($user)->for($highSpecies)->inBox()->create();
 
             return [$low->id, $mid->id, $high->id];
         },

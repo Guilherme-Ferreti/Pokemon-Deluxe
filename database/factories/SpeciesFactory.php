@@ -7,15 +7,15 @@ namespace Database\Factories;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Shared\Enums\ElementalType;
 use Shared\Enums\Generation;
-use Shared\Models\Pokedex;
+use Shared\Models\Species;
 use Shared\ValueObjects\PokemonSprites;
 
 /**
- * @extends Factory<Pokedex>
+ * @extends Factory<Species>
  */
-final class PokedexFactory extends Factory
+final class SpeciesFactory extends Factory
 {
-    protected $model = Pokedex::class;
+    protected $model = Species::class;
 
     public function definition(): array
     {

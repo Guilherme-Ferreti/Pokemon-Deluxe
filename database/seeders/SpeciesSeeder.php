@@ -7,18 +7,18 @@ namespace Database\Seeders;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Collection;
 use Shared\Models\EvolutionItem;
-use Shared\Models\Pokedex;
-use Shared\Models\PokedexEvolution;
+use Shared\Models\Species;
+use Shared\Models\SpeciesEvolution;
 
 /**
  * @phpstan-type PokeApiEvolution array{evolves_to:string, item:?string, min_level:?int}
  * @phpstan-type PokeApiSprites array{back_default:?string, back_female:?string, back_shiny:?string, back_shiny_female:?string, front_default:?string, front_female:?string, front_shiny:?string, front_shiny_female:?string}
  * @phpstan-type PokeApiPokemon array{id:string, external_id:string, name:string, types:list<string>, pokedex_number:int, genus:string, flavor_text:string, sprites:PokeApiSprites, is_baby:bool, is_legendary:bool, is_mythical:bool, is_mega:bool, is_gmax:bool, generation:int, capture_rate:?int, evolutions:list<PokeApiEvolution>}
  */
-final class PokedexSeeder extends Seeder
+final class SpeciesSeeder extends Seeder
 {
     /** @var array<string, string> */
-    private array $pokedexIds = [];
+    private array $speciesIds = [];
 
     /** @var array<string, string> */
     private array $evolutionItemIds = [];
@@ -27,11 +27,11 @@ final class PokedexSeeder extends Seeder
     {
         $this->evolutionItemIds = $this->getEvolutionItemIds();
 
-        $this->insertPokedexFromFiles();
-        $this->insertPokedexEvolutionFromFiles();
+        $this->insertSpeciesFromFiles();
+        $this->insertSpeciesEvolutionFromFiles();
     }
 
-    private function insertPokedexFromFiles(): void
+    private function insertSpeciesFromFiles(): void
     {
         $data = [];
 
@@ -45,10 +45,10 @@ final class PokedexSeeder extends Seeder
 
         collect($data)
             ->chunk(100)
-            ->each(fn (Collection $chunk) => Pokedex::insert($chunk->toArray()));
+            ->each(fn (Collection $chunk) => Species::insert($chunk->toArray()));
     }
 
-    private function insertPokedexEvolutionFromFiles(): void
+    private function insertSpeciesEvolutionFromFiles(): void
     {
         $data = [];
 
@@ -64,7 +64,7 @@ final class PokedexSeeder extends Seeder
             ->flatten(1)
             ->filter(fn (array $item) => $item !== [])
             ->chunk(100)
-            ->each(fn (Collection $chunk) => PokedexEvolution::insert($chunk->toArray()));
+            ->each(fn (Collection $chunk) => SpeciesEvolution::insert($chunk->toArray()));
     }
 
     /**
@@ -73,15 +73,15 @@ final class PokedexSeeder extends Seeder
     private function getFilesList(): array
     {
         return [
-            __DIR__ . '/files/pokedex/gen-I.json',
-            __DIR__ . '/files/pokedex/gen-II.json',
-            __DIR__ . '/files/pokedex/gen-III.json',
-            __DIR__ . '/files/pokedex/gen-IV.json',
-            __DIR__ . '/files/pokedex/gen-V.json',
-            __DIR__ . '/files/pokedex/gen-VI.json',
-            __DIR__ . '/files/pokedex/gen-VII.json',
-            __DIR__ . '/files/pokedex/gen-VIII.json',
-            __DIR__ . '/files/pokedex/gen-IX.json',
+            __DIR__ . '/files/species/gen-I.json',
+            __DIR__ . '/files/species/gen-II.json',
+            __DIR__ . '/files/species/gen-III.json',
+            __DIR__ . '/files/species/gen-IV.json',
+            __DIR__ . '/files/species/gen-V.json',
+            __DIR__ . '/files/species/gen-VI.json',
+            __DIR__ . '/files/species/gen-VII.json',
+            __DIR__ . '/files/species/gen-VIII.json',
+            __DIR__ . '/files/species/gen-IX.json',
         ];
     }
 
@@ -92,7 +92,7 @@ final class PokedexSeeder extends Seeder
     private function getPokemonInfo(array $pokemon): array
     {
         return [
-            'id'             => $this->getPokedexId($pokemon['id']),
+            'id'             => $this->getSpeciesId($pokemon['id']),
             'name'           => $pokemon['name'],
             'types'          => json_encode($pokemon['types']),
             'pokedex_number' => $pokemon['pokedex_number'],
@@ -129,9 +129,9 @@ final class PokedexSeeder extends Seeder
     private function getEvolutionInfo(array $pokemon): array
     {
         return array_map(fn (array $evolution) => [
-            'id'                => (new PokedexEvolution)->newUniqueId(),
-            'from_pokedex_id'   => $this->getPokedexId($pokemon['id']),
-            'to_pokedex_id'     => $this->getPokedexId($evolution['evolves_to']),
+            'id'                => (new SpeciesEvolution)->newUniqueId(),
+            'from_species_id'   => $this->getSpeciesId($pokemon['id']),
+            'to_species_id'     => $this->getSpeciesId($evolution['evolves_to']),
             'evolution_item_id' => is_null($evolution['item']) ? null : $this->evolutionItemIds[$evolution['item']],
             'min_level'         => $evolution['min_level'],
             'created_at'        => now(),
@@ -139,13 +139,13 @@ final class PokedexSeeder extends Seeder
         ], $pokemon['evolutions']);
     }
 
-    private function getPokedexId(string $externalId): string
+    private function getSpeciesId(string $externalId): string
     {
-        if (! isset($this->pokedexIds[$externalId])) {
-            $this->pokedexIds[$externalId] = (new Pokedex)->newUniqueId();
+        if (! isset($this->speciesIds[$externalId])) {
+            $this->speciesIds[$externalId] = (new Species)->newUniqueId();
         }
 
-        return $this->pokedexIds[$externalId];
+        return $this->speciesIds[$externalId];
     }
 
     /**

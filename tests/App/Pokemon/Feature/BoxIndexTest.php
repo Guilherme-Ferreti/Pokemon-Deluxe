@@ -3,8 +3,8 @@
 declare(strict_types=1);
 
 use Inertia\Testing\AssertableInertia as Assert;
-use Shared\Models\Pokedex;
 use Shared\Models\Pokemon;
+use Shared\Models\Species;
 use Shared\Models\User;
 
 use function Pest\Laravel\actingAs;
@@ -43,7 +43,7 @@ it('loads the box page with expected structure', function () {
             ->where('pokemonList.data.0.frontSprite', $newestPokemon->getFrontSprite())
             ->where('pokemonList.data.0.level', $newestPokemon->level)
             ->where('pokemonList.data.0.experience', $newestPokemon->experience)
-            ->where('pokemonList.data.0.pokedex.types', $newestPokemon->pokedex->types->pluck('value'))
+            ->where('pokemonList.data.0.species.types', $newestPokemon->species->types->pluck('value'))
             ->where('pokemonList.data.0.moves.0.name', 'Giga Impact')
             ->where('pokemonList.data.0.moves.1.name', 'Flamethrower')
             ->where('pokemonList.data.0.moves.2.name', 'Earthquake')
@@ -71,8 +71,8 @@ it("only shows the authenticated user's pokemon", function () {
 it('filters box pokemon by search query', function () {
     $user = User::factory()->create();
 
-    $pikachu    = Pokemon::factory()->for($user)->for(Pokedex::factory()->create(['name' => 'Pikachu']))->inBox()->create();
-    $charmander = Pokemon::factory()->for($user)->for(Pokedex::factory()->create(['name' => 'Charmander']))->inBox()->create();
+    $pikachu    = Pokemon::factory()->for($user)->for(Species::factory()->create(['name' => 'Pikachu']))->inBox()->create();
+    $charmander = Pokemon::factory()->for($user)->for(Species::factory()->create(['name' => 'Charmander']))->inBox()->create();
 
     actingAs($user)
         ->get(route('web.pokemon.box.index', ['search' => 'Pikachu']))

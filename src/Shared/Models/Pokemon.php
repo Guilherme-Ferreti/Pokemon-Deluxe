@@ -19,7 +19,7 @@ use Override;
 /**
  * @property string $id
  * @property string $user_id
- * @property string $pokedex_id
+ * @property string $species_id
  * @property int $level
  * @property int $experience
  * @property string[] $moves_ids
@@ -30,7 +30,7 @@ use Override;
  * @property Carbon $created_at
  * @property Carbon $updated_at
  * @property-read User $user
- * @property-read Pokedex $pokedex
+ * @property-read Species $species
  * @property-read Pokeball $pokeball
  */
 #[Table('pokemon')]
@@ -62,11 +62,11 @@ final class Pokemon extends Model
     }
 
     /**
-     * @return BelongsTo<Pokedex, $this>
+     * @return BelongsTo<Species, $this>
      */
-    public function pokedex(): BelongsTo
+    public function species(): BelongsTo
     {
-        return $this->belongsTo(Pokedex::class);
+        return $this->belongsTo(Species::class);
     }
 
     /**
@@ -98,18 +98,18 @@ final class Pokemon extends Model
     public function getName(): string
     {
         if ($this->is_shiny) {
-            return 'Shiny ' . $this->pokedex->name;
+            return 'Shiny ' . $this->species->name;
         }
 
-        return $this->pokedex->name;
+        return $this->species->name;
     }
 
     public function getFrontSprite(): string
     {
         if ($this->is_shiny) {
-            return $this->pokedex->sprites->front_shiny ?? '';
+            return $this->species->sprites->front_shiny ?? '';
         }
 
-        return $this->pokedex->sprites->front_default ?? '';
+        return $this->species->sprites->front_default ?? '';
     }
 }

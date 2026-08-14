@@ -8,11 +8,11 @@ use Closure;
 use Inertia\ProvidesInertiaProperties;
 use Inertia\RenderContext;
 use Shared\Helpers\AppHelper;
-use Shared\Models\Pokedex;
+use Shared\Models\Species;
 
 final readonly class PokedexIndexPageProps implements ProvidesInertiaProperties
 {
-    public function __construct(public Closure $pokedex) {}
+    public function __construct(public Closure $speciesList) {}
 
     /**
      * @return array<string, mixed>
@@ -20,23 +20,23 @@ final readonly class PokedexIndexPageProps implements ProvidesInertiaProperties
     public function toInertiaProperties(RenderContext $context): array
     {
         return [
-            'pokedex' => fn () => $this->mapPokedex(),
+            'speciesList' => fn () => $this->mapSpeciesList(),
         ];
     }
 
     /**
      * @return array<string, mixed>
      */
-    private function mapPokedex(): array
+    private function mapSpeciesList(): array
     {
-        return AppHelper::paginatorToArray(($this->pokedex)(), fn (Pokedex $pokedex) => [
-            'id'            => $pokedex->id,
-            'portrait'      => 'https://raw.githubusercontent.com/PMDCollab/SpriteCollab/refs/heads/master/portrait/' . str_pad((string) $pokedex->pokedex_number, 4, '0', STR_PAD_LEFT) . '/Normal.png',
-            'name'          => $pokedex->name,
-            'pokedexNumber' => $pokedex->pokedex_number,
-            'frontSprite'   => $pokedex->sprites->front_default,
-            'types'         => $pokedex->types,
-            'generation'    => $pokedex->generation->label(),
+        return AppHelper::paginatorToArray(($this->speciesList)(), fn (Species $species) => [
+            'id'            => $species->id,
+            'portrait'      => 'https://raw.githubusercontent.com/PMDCollab/SpriteCollab/refs/heads/master/portrait/' . str_pad((string) $species->pokedex_number, 4, '0', STR_PAD_LEFT) . '/Normal.png',
+            'name'          => $species->name,
+            'pokedexNumber' => $species->pokedex_number,
+            'frontSprite'   => $species->sprites->front_default,
+            'types'         => $species->types,
+            'generation'    => $species->generation->label(),
         ]);
     }
 }

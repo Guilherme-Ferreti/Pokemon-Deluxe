@@ -42,8 +42,8 @@ final readonly class BoxIndexPageProps implements ProvidesInertiaProperties
             'frontSprite' => $pokemon->getFrontSprite(),
             'level'       => $pokemon->level,
             'experience'  => $pokemon->experience,
-            'pokedex'     => [
-                'types' => $pokemon->pokedex->types,
+            'species'     => [
+                'types' => $pokemon->species->types,
             ],
             'moves' => [
                 [

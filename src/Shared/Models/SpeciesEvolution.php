@@ -11,34 +11,34 @@ use Illuminate\Support\Carbon;
 
 /**
  * @property string $id
- * @property string $from_pokedex_id
- * @property string $to_pokedex_id
+ * @property string $from_species_id
+ * @property string $to_species_id
  * @property string|null $item_id
  * @property int|null $min_level
  * @property Carbon $created_at
  * @property Carbon $updated_at
- * @property-read Pokedex $from
- * @property-read Pokedex $to
+ * @property-read Species $from
+ * @property-read Species $to
  * @property-read EvolutionItem|null $evolutionItem
  */
-final class PokedexEvolution extends Model
+final class SpeciesEvolution extends Model
 {
     use HasUuids;
 
     /**
-     * @return BelongsTo<Pokedex, $this>
+     * @return BelongsTo<Species, $this>
      */
     public function from(): BelongsTo
     {
-        return $this->belongsTo(Pokedex::class, 'from_pokedex_id');
+        return $this->belongsTo(Species::class, 'from_species_id');
     }
 
     /**
-     * @return BelongsTo<Pokedex, $this>
+     * @return BelongsTo<Species, $this>
      */
     public function to(): BelongsTo
     {
-        return $this->belongsTo(Pokedex::class, 'to_pokedex_id');
+        return $this->belongsTo(Species::class, 'to_species_id');
     }
 
     /**

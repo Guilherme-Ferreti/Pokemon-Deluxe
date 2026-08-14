@@ -6,8 +6,8 @@ namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Shared\Models\Pokeball;
-use Shared\Models\Pokedex;
 use Shared\Models\Pokemon;
+use Shared\Models\Species;
 use Shared\Models\User;
 
 /**
@@ -22,7 +22,7 @@ final class PokemonFactory extends Factory
     {
         return [
             'user_id'     => User::factory(),
-            'pokedex_id'  => Pokedex::factory(),
+            'species_id'  => Species::factory(),
             'level'       => fake()->numberBetween(1, 100),
             'experience'  => fake()->numberBetween(0, 100),
             'moves_ids'   => [],

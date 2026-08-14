@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Lottery;
 use Inertia\Middleware;
 use Override;
-use Shared\Models\Pokedex;
+use Shared\Models\Species;
 use Shared\ValueObjects\PokemonSprites;
 
 final class HandleInertiaRequests extends Middleware
@@ -59,7 +59,7 @@ final class HandleInertiaRequests extends Middleware
      */
     private function getAuthLayoutSprites(): array
     {
-        return Cache::remember('auth-layout-sprites', now()->addDay(), fn () => Pokedex::query()
+        return Cache::remember('auth-layout-sprites', now()->addDay(), fn () => Species::query()
             ->whereNotNull('sprites->front_default')
             ->whereNotNull('sprites->front_shiny')
             ->inRandomOrder()

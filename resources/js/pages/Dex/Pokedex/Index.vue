@@ -27,28 +27,28 @@
           </TableHeader>
           <TableBody>
             <TableRow
-              v-for="pokemon in pokedex.data"
-              :key="pokemon.id"
+              v-for="species in speciesList.data"
+              :key="species.id"
             >
               <TableCell class="text-muted-foreground">
-                {{ pokemon.pokedexNumber }}
+                {{ species.pokedexNumber }}
               </TableCell>
               <TableCell>
                 <img
                   class="size-8"
                   loading="lazy"
-                  :src="pokemon.portrait"
-                  :alt="`${pokemon.name}'s portrait`"
+                  :src="species.portrait"
+                  :alt="`${species.name}'s portrait`"
                 />
               </TableCell>
               <TableCell class="font-medium whitespace-normal">
-                {{ pokemon.name }}
+                {{ species.name }}
               </TableCell>
               <TableCell>
-                <ElementalTypeBadges :types="pokemon.types" />
+                <ElementalTypeBadges :types="species.types" />
               </TableCell>
               <TableCell class="text-muted-foreground">
-                {{ pokemon.generation }}
+                {{ species.generation }}
               </TableCell>
               <TableCell>
                 <AppIconInBox />
@@ -62,7 +62,7 @@
         </Table>
       </CardContent>
     </Card>
-    <AppPagination :list="pokedex" />
+    <AppPagination :list="speciesList" />
   </AppSection>
 </template>
 
@@ -90,7 +90,7 @@ defineOptions({
 });
 
 defineProps<{
-  pokedex: PaginatedList<{
+  speciesList: PaginatedList<{
     id: string;
     portrait: string;
     name: string;

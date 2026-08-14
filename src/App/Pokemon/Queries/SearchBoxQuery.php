@@ -38,7 +38,7 @@ final class SearchBoxQuery
         return Pokemon::query()
             ->whereBelongsTo($user)
             ->inBox()
-            ->join('pokedex', 'pokedex.id', '=', 'pokemon.pokedex_id')
+            ->join('species', 'species.id', '=', 'pokemon.species_id')
             ->select('pokemon.*');
     }
 
@@ -48,7 +48,7 @@ final class SearchBoxQuery
      */
     private function applySearch(Builder $query, string $search): Builder
     {
-        return $query->whereLike('pokedex.name', '%' . $search . '%');
+        return $query->whereLike('species.name', '%' . $search . '%');
     }
 
     /**
@@ -61,11 +61,11 @@ final class SearchBoxQuery
         return $query->where(fn (Builder $query) => $query
             ->when(
                 $types->count() === 1,
-                fn (Builder $query) => $query->whereJsonContains('pokedex.types', $types[0]->value)
+                fn (Builder $query) => $query->whereJsonContains('species.types', $types[0]->value)
             )
             ->when(
                 $types->count() === 2,
-                fn (Builder $query) => $query->whereJsonContains('pokedex.types', $types[0]->value)->whereJsonContains('pokedex.types', $types[1]->value)
+                fn (Builder $query) => $query->whereJsonContains('species.types', $types[0]->value)->whereJsonContains('species.types', $types[1]->value)
             )
         );
     }
@@ -79,11 +79,11 @@ final class SearchBoxQuery
     {
         return $query
             ->when($traits->contains(PokemonTrait::SHINY), fn (Builder $query) => $query->where('pokemon.is_shiny', true))
-            ->when($traits->contains(PokemonTrait::BABY), fn (Builder $query) => $query->where('pokedex.is_baby', true))
-            ->when($traits->contains(PokemonTrait::LEGENDARY), fn (Builder $query) => $query->where('pokedex.is_legendary', true))
-            ->when($traits->contains(PokemonTrait::MYTHICAL), fn (Builder $query) => $query->where('pokedex.is_mythical', true))
-            ->when($traits->contains(PokemonTrait::MEGA), fn (Builder $query) => $query->where('pokedex.is_mega', true))
-            ->when($traits->contains(PokemonTrait::GMAX), fn (Builder $query) => $query->where('pokedex.is_gmax', true));
+            ->when($traits->contains(PokemonTrait::BABY), fn (Builder $query) => $query->where('species.is_baby', true))
+            ->when($traits->contains(PokemonTrait::LEGENDARY), fn (Builder $query) => $query->where('species.is_legendary', true))
+            ->when($traits->contains(PokemonTrait::MYTHICAL), fn (Builder $query) => $query->where('species.is_mythical', true))
+            ->when($traits->contains(PokemonTrait::MEGA), fn (Builder $query) => $query->where('species.is_mega', true))
+            ->when($traits->contains(PokemonTrait::GMAX), fn (Builder $query) => $query->where('species.is_gmax', true));
     }
 
     /**
@@ -93,7 +93,7 @@ final class SearchBoxQuery
      */
     private function applyGenerations(Builder $query, Collection $generations): Builder
     {
-        return $query->whereIn('pokedex.generation', $generations);
+        return $query->whereIn('species.generation', $generations);
     }
 
     /**
@@ -106,7 +106,7 @@ final class SearchBoxQuery
             SearchBoxSortBy::CAPTURE_DATE   => $query->orderBy('pokemon.captured_at', $dir->value),
             SearchBoxSortBy::EXPERIENCE     => $query->orderBy('pokemon.experience', $dir->value),
             SearchBoxSortBy::LEVEL          => $query->orderBy('pokemon.level', $dir->value),
-            SearchBoxSortBy::POKEDEX_NUMBER => $query->orderBy('pokedex.pokedex_number', $dir->value),
+            SearchBoxSortBy::POKEDEX_NUMBER => $query->orderBy('species.pokedex_number', $dir->value),
         };
     }
 }
