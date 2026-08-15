@@ -51,10 +51,12 @@
                 {{ species.generation }}
               </TableCell>
               <TableCell>
-                <AppIconInBox />
+                <AppIconInBox v-if="species.regularInBox" />
+                <AppIconNotInBox v-else />
               </TableCell>
               <TableCell>
-                <AppIconNotInBox />
+                <AppIconInBox v-if="species.shinyInBox" />
+                <AppIconNotInBox v-else />
               </TableCell>
               <TableCell>Actions</TableCell>
             </TableRow>
@@ -98,6 +100,8 @@ defineProps<{
     pokedexNumber: number;
     types: [ElementalType] | [ElementalType, ElementalType];
     generation: string;
+    regularInBox: boolean;
+    shinyInBox: boolean;
   }>;
 }>();
 </script>
