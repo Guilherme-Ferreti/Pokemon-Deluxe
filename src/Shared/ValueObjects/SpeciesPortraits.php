@@ -9,7 +9,7 @@ use Illuminate\Contracts\Database\Eloquent\CastsAttributes;
 use Illuminate\Database\Eloquent\Model;
 use InvalidArgumentException;
 
-final class PokemonPortraits implements Castable
+final class SpeciesPortraits implements Castable
 {
     public function __construct(
         public ?string $normal,
@@ -18,16 +18,16 @@ final class PokemonPortraits implements Castable
 
     /**
      * @param  array<string, mixed>  $arguments
-     * @return CastsAttributes<PokemonPortraits, string>
+     * @return CastsAttributes<SpeciesPortraits, string>
      */
     public static function castUsing(array $arguments): CastsAttributes
     {
         return new class implements CastsAttributes
         {
-            public function get(Model $model, string $key, $value, array $attributes): PokemonPortraits
+            public function get(Model $model, string $key, $value, array $attributes): SpeciesPortraits
             {
                 if (! is_string($value) || ! is_array($value = json_decode($value, true))) {
-                    return new PokemonPortraits(...[
+                    return new SpeciesPortraits(...[
                         'normal' => null,
                         'shiny'  => null,
                     ]);
@@ -35,7 +35,7 @@ final class PokemonPortraits implements Castable
 
                 $sprites = array_map(fn ($item) => is_string($item) ? $item : null, $value);
 
-                return new PokemonPortraits(...[
+                return new SpeciesPortraits(...[
                     'normal' => $sprites['normal'],
                     'shiny'  => $sprites['shiny'],
                 ]);
@@ -43,8 +43,8 @@ final class PokemonPortraits implements Castable
 
             public function set(Model $model, string $key, $value, array $attributes): string
             {
-                if (! $value instanceof PokemonPortraits) {
-                    throw new InvalidArgumentException('The value must be an instance of PokemonPortraits.');
+                if (! $value instanceof SpeciesPortraits) {
+                    throw new InvalidArgumentException('The value must be an instance of SpeciesPortraits.');
                 }
 
                 return (string) json_encode([

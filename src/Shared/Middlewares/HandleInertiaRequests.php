@@ -10,7 +10,7 @@ use Illuminate\Support\Lottery;
 use Inertia\Middleware;
 use Override;
 use Shared\Models\Species;
-use Shared\ValueObjects\PokemonSprites;
+use Shared\ValueObjects\SpeciesSprites;
 
 final class HandleInertiaRequests extends Middleware
 {
@@ -65,7 +65,7 @@ final class HandleInertiaRequests extends Middleware
             ->inRandomOrder()
             ->limit(49)
             ->pluck('sprites')
-            ->map(fn (PokemonSprites $sprites) => Lottery::odds(1, 100)
+            ->map(fn (SpeciesSprites $sprites) => Lottery::odds(1, 100)
                 ->winner(fn () => $sprites->front_shiny)
                 ->loser(fn () => $sprites->front_default)
                 ->choose()

@@ -18,8 +18,8 @@ use Illuminate\Support\Collection;
 use Override;
 use Shared\Enums\ElementalType;
 use Shared\Enums\Generation;
-use Shared\ValueObjects\PokemonPortraits;
-use Shared\ValueObjects\PokemonSprites;
+use Shared\ValueObjects\SpeciesPortraits;
+use Shared\ValueObjects\SpeciesSprites;
 
 /**
  * @property string $id
@@ -28,8 +28,8 @@ use Shared\ValueObjects\PokemonSprites;
  * @property int $pokedex_number
  * @property string $genus
  * @property string $text_entry
- * @property PokemonSprites $sprites
- * @property PokemonPortraits $portraits
+ * @property SpeciesSprites $sprites
+ * @property SpeciesPortraits $portraits
  * @property bool $is_baby
  * @property bool $is_legendary
  * @property bool $is_mythical
@@ -62,8 +62,8 @@ final class Species extends Model
             'pokedex_number' => 'integer',
             'generation'     => Generation::class,
             'capture_rate'   => 'integer',
-            'sprites'        => PokemonSprites::class,
-            'portraits'      => PokemonPortraits::class,
+            'sprites'        => SpeciesSprites::class,
+            'portraits'      => SpeciesPortraits::class,
         ];
     }
 

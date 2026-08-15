@@ -9,7 +9,7 @@ use Illuminate\Contracts\Database\Eloquent\CastsAttributes;
 use Illuminate\Database\Eloquent\Model;
 use InvalidArgumentException;
 
-final class PokemonSprites implements Castable
+final class SpeciesSprites implements Castable
 {
     public function __construct(
         public ?string $back_default,
@@ -24,16 +24,16 @@ final class PokemonSprites implements Castable
 
     /**
      * @param  array<string, mixed>  $arguments
-     * @return CastsAttributes<PokemonSprites, string>
+     * @return CastsAttributes<SpeciesSprites, string>
      */
     public static function castUsing(array $arguments): CastsAttributes
     {
         return new class implements CastsAttributes
         {
-            public function get(Model $model, string $key, $value, array $attributes): PokemonSprites
+            public function get(Model $model, string $key, $value, array $attributes): SpeciesSprites
             {
                 if (! is_string($value) || ! is_array($value = json_decode($value, true))) {
-                    return new PokemonSprites(...[
+                    return new SpeciesSprites(...[
                         'back_default'       => null,
                         'back_female'        => null,
                         'back_shiny'         => null,
@@ -47,7 +47,7 @@ final class PokemonSprites implements Castable
 
                 $sprites = array_map(fn ($item) => is_string($item) ? $item : null, $value);
 
-                return new PokemonSprites(...[
+                return new SpeciesSprites(...[
                     'back_default'       => $sprites['back_default'],
                     'back_female'        => $sprites['back_female'],
                     'back_shiny'         => $sprites['back_shiny'],
@@ -61,8 +61,8 @@ final class PokemonSprites implements Castable
 
             public function set(Model $model, string $key, $value, array $attributes): string
             {
-                if (! $value instanceof PokemonSprites) {
-                    throw new InvalidArgumentException('The value must be an instance of PokemonSprites.');
+                if (! $value instanceof SpeciesSprites) {
+                    throw new InvalidArgumentException('The value must be an instance of SpeciesSprites.');
                 }
 
                 return (string) json_encode([
