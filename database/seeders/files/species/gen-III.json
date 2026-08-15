@@ -19,6 +19,10 @@
             "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/252.png",
             "front_shiny_female": null
         },
+        "portraits": {
+            "normal": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0252/Normal.png",
+            "shiny": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0252/0000/0001/Normal.png"
+        },
         "is_baby": false,
         "is_legendary": false,
         "is_mythical": false,
@@ -54,6 +58,10 @@
             "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/253.png",
             "front_shiny_female": null
         },
+        "portraits": {
+            "normal": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0253/Normal.png",
+            "shiny": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0253/0000/0001/Normal.png"
+        },
         "is_baby": false,
         "is_legendary": false,
         "is_mythical": false,
@@ -88,6 +96,10 @@
             "front_female": null,
             "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/254.png",
             "front_shiny_female": null
+        },
+        "portraits": {
+            "normal": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0254/Normal.png",
+            "shiny": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0254/0000/0001/Normal.png"
         },
         "is_baby": false,
         "is_legendary": false,
@@ -125,6 +137,10 @@
             "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/10065.png",
             "front_shiny_female": null
         },
+        "portraits": {
+            "normal": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0254/0001/Normal.png",
+            "shiny": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0254/0001/0001/Normal.png"
+        },
         "is_baby": false,
         "is_legendary": false,
         "is_mythical": false,
@@ -153,6 +169,10 @@
             "front_female": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/female/255.png",
             "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/255.png",
             "front_shiny_female": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/female/255.png"
+        },
+        "portraits": {
+            "normal": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0255/Normal.png",
+            "shiny": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0255/0000/0001/Normal.png"
         },
         "is_baby": false,
         "is_legendary": false,
@@ -190,6 +210,10 @@
             "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/256.png",
             "front_shiny_female": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/female/256.png"
         },
+        "portraits": {
+            "normal": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0256/Normal.png",
+            "shiny": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0256/0000/0001/Normal.png"
+        },
         "is_baby": false,
         "is_legendary": false,
         "is_mythical": false,
@@ -225,6 +249,10 @@
             "front_female": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/female/257.png",
             "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/257.png",
             "front_shiny_female": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/female/257.png"
+        },
+        "portraits": {
+            "normal": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0257/Normal.png",
+            "shiny": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0257/0000/0001/Normal.png"
         },
         "is_baby": false,
         "is_legendary": false,
@@ -262,6 +290,10 @@
             "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/10050.png",
             "front_shiny_female": null
         },
+        "portraits": {
+            "normal": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0257/0001/Normal.png",
+            "shiny": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0257/0001/0001/Normal.png"
+        },
         "is_baby": false,
         "is_legendary": false,
         "is_mythical": false,
@@ -290,6 +322,10 @@
             "front_female": null,
             "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/258.png",
             "front_shiny_female": null
+        },
+        "portraits": {
+            "normal": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0258/Normal.png",
+            "shiny": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0258/0000/0001/Normal.png"
         },
         "is_baby": false,
         "is_legendary": false,
@@ -327,6 +363,10 @@
             "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/259.png",
             "front_shiny_female": null
         },
+        "portraits": {
+            "normal": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0259/Normal.png",
+            "shiny": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0259/0000/0001/Normal.png"
+        },
         "is_baby": false,
         "is_legendary": false,
         "is_mythical": false,
@@ -362,6 +402,10 @@
             "front_female": null,
             "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/260.png",
             "front_shiny_female": null
+        },
+        "portraits": {
+            "normal": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0260/Normal.png",
+            "shiny": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0260/0000/0001/Normal.png"
         },
         "is_baby": false,
         "is_legendary": false,
@@ -399,6 +443,10 @@
             "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/10064.png",
             "front_shiny_female": null
         },
+        "portraits": {
+            "normal": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0260/0001/Normal.png",
+            "shiny": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0260/0001/0001/Normal.png"
+        },
         "is_baby": false,
         "is_legendary": false,
         "is_mythical": false,
@@ -427,6 +475,10 @@
             "front_female": null,
             "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/261.png",
             "front_shiny_female": null
+        },
+        "portraits": {
+            "normal": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0261/Normal.png",
+            "shiny": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0261/0000/0001/Normal.png"
         },
         "is_baby": false,
         "is_legendary": false,
@@ -463,6 +515,10 @@
             "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/262.png",
             "front_shiny_female": null
         },
+        "portraits": {
+            "normal": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0262/Normal.png",
+            "shiny": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0262/0000/0001/Normal.png"
+        },
         "is_baby": false,
         "is_legendary": false,
         "is_mythical": false,
@@ -491,6 +547,10 @@
             "front_female": null,
             "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/263.png",
             "front_shiny_female": null
+        },
+        "portraits": {
+            "normal": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0263/Normal.png",
+            "shiny": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0263/0000/0001/Normal.png"
         },
         "is_baby": false,
         "is_legendary": false,
@@ -527,6 +587,10 @@
             "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/264.png",
             "front_shiny_female": null
         },
+        "portraits": {
+            "normal": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0264/Normal.png",
+            "shiny": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0264/0000/0001/Normal.png"
+        },
         "is_baby": false,
         "is_legendary": false,
         "is_mythical": false,
@@ -555,6 +619,10 @@
             "front_female": null,
             "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/265.png",
             "front_shiny_female": null
+        },
+        "portraits": {
+            "normal": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0265/Normal.png",
+            "shiny": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0265/0000/0001/Normal.png"
         },
         "is_baby": false,
         "is_legendary": false,
@@ -596,6 +664,10 @@
             "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/266.png",
             "front_shiny_female": null
         },
+        "portraits": {
+            "normal": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0266/Normal.png",
+            "shiny": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0266/0000/0001/Normal.png"
+        },
         "is_baby": false,
         "is_legendary": false,
         "is_mythical": false,
@@ -632,6 +704,10 @@
             "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/267.png",
             "front_shiny_female": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/female/267.png"
         },
+        "portraits": {
+            "normal": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0267/Normal.png",
+            "shiny": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0267/0000/0001/Normal.png"
+        },
         "is_baby": false,
         "is_legendary": false,
         "is_mythical": false,
@@ -660,6 +736,10 @@
             "front_female": null,
             "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/268.png",
             "front_shiny_female": null
+        },
+        "portraits": {
+            "normal": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0268/Normal.png",
+            "shiny": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0268/0000/0001/Normal.png"
         },
         "is_baby": false,
         "is_legendary": false,
@@ -697,6 +777,10 @@
             "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/269.png",
             "front_shiny_female": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/female/269.png"
         },
+        "portraits": {
+            "normal": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0269/Normal.png",
+            "shiny": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0269/0000/0001/Normal.png"
+        },
         "is_baby": false,
         "is_legendary": false,
         "is_mythical": false,
@@ -726,6 +810,10 @@
             "front_female": null,
             "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/270.png",
             "front_shiny_female": null
+        },
+        "portraits": {
+            "normal": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0270/Normal.png",
+            "shiny": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0270/0000/0001/Normal.png"
         },
         "is_baby": false,
         "is_legendary": false,
@@ -763,6 +851,10 @@
             "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/271.png",
             "front_shiny_female": null
         },
+        "portraits": {
+            "normal": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0271/Normal.png",
+            "shiny": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0271/0000/0001/Normal.png"
+        },
         "is_baby": false,
         "is_legendary": false,
         "is_mythical": false,
@@ -799,6 +891,10 @@
             "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/272.png",
             "front_shiny_female": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/female/272.png"
         },
+        "portraits": {
+            "normal": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0272/Normal.png",
+            "shiny": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0272/0000/0001/Normal.png"
+        },
         "is_baby": false,
         "is_legendary": false,
         "is_mythical": false,
@@ -827,6 +923,10 @@
             "front_female": null,
             "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/273.png",
             "front_shiny_female": null
+        },
+        "portraits": {
+            "normal": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0273/Normal.png",
+            "shiny": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0273/0000/0001/Normal.png"
         },
         "is_baby": false,
         "is_legendary": false,
@@ -864,6 +964,10 @@
             "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/274.png",
             "front_shiny_female": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/female/274.png"
         },
+        "portraits": {
+            "normal": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0274/Normal.png",
+            "shiny": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0274/0000/0001/Normal.png"
+        },
         "is_baby": false,
         "is_legendary": false,
         "is_mythical": false,
@@ -900,6 +1004,10 @@
             "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/275.png",
             "front_shiny_female": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/female/275.png"
         },
+        "portraits": {
+            "normal": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0275/Normal.png",
+            "shiny": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0275/0000/0001/Normal.png"
+        },
         "is_baby": false,
         "is_legendary": false,
         "is_mythical": false,
@@ -929,6 +1037,10 @@
             "front_female": null,
             "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/276.png",
             "front_shiny_female": null
+        },
+        "portraits": {
+            "normal": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0276/Normal.png",
+            "shiny": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0276/0000/0001/Normal.png"
         },
         "is_baby": false,
         "is_legendary": false,
@@ -966,6 +1078,10 @@
             "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/277.png",
             "front_shiny_female": null
         },
+        "portraits": {
+            "normal": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0277/Normal.png",
+            "shiny": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0277/0000/0001/Normal.png"
+        },
         "is_baby": false,
         "is_legendary": false,
         "is_mythical": false,
@@ -995,6 +1111,10 @@
             "front_female": null,
             "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/278.png",
             "front_shiny_female": null
+        },
+        "portraits": {
+            "normal": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0278/Normal.png",
+            "shiny": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0278/0000/0001/Normal.png"
         },
         "is_baby": false,
         "is_legendary": false,
@@ -1032,6 +1152,10 @@
             "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/279.png",
             "front_shiny_female": null
         },
+        "portraits": {
+            "normal": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0279/Normal.png",
+            "shiny": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0279/0000/0001/Normal.png"
+        },
         "is_baby": false,
         "is_legendary": false,
         "is_mythical": false,
@@ -1061,6 +1185,10 @@
             "front_female": null,
             "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/280.png",
             "front_shiny_female": null
+        },
+        "portraits": {
+            "normal": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0280/Normal.png",
+            "shiny": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0280/0000/0001/Normal.png"
         },
         "is_baby": false,
         "is_legendary": false,
@@ -1097,6 +1225,10 @@
             "front_female": null,
             "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/281.png",
             "front_shiny_female": null
+        },
+        "portraits": {
+            "normal": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0281/Normal.png",
+            "shiny": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0281/0000/0001/Normal.png"
         },
         "is_baby": false,
         "is_legendary": false,
@@ -1139,6 +1271,10 @@
             "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/282.png",
             "front_shiny_female": null
         },
+        "portraits": {
+            "normal": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0282/Normal.png",
+            "shiny": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0282/0000/0001/Normal.png"
+        },
         "is_baby": false,
         "is_legendary": false,
         "is_mythical": false,
@@ -1175,6 +1311,10 @@
             "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/10051.png",
             "front_shiny_female": null
         },
+        "portraits": {
+            "normal": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0282/0001/Normal.png",
+            "shiny": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0282/0001/0001/Normal.png"
+        },
         "is_baby": false,
         "is_legendary": false,
         "is_mythical": false,
@@ -1204,6 +1344,10 @@
             "front_female": null,
             "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/283.png",
             "front_shiny_female": null
+        },
+        "portraits": {
+            "normal": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0283/Normal.png",
+            "shiny": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0283/0000/0001/Normal.png"
         },
         "is_baby": false,
         "is_legendary": false,
@@ -1241,6 +1385,10 @@
             "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/284.png",
             "front_shiny_female": null
         },
+        "portraits": {
+            "normal": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0284/Normal.png",
+            "shiny": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0284/0000/0001/Normal.png"
+        },
         "is_baby": false,
         "is_legendary": false,
         "is_mythical": false,
@@ -1269,6 +1417,10 @@
             "front_female": null,
             "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/285.png",
             "front_shiny_female": null
+        },
+        "portraits": {
+            "normal": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0285/Normal.png",
+            "shiny": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0285/0000/0001/Normal.png"
         },
         "is_baby": false,
         "is_legendary": false,
@@ -1306,6 +1458,10 @@
             "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/286.png",
             "front_shiny_female": null
         },
+        "portraits": {
+            "normal": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0286/Normal.png",
+            "shiny": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0286/0000/0001/Normal.png"
+        },
         "is_baby": false,
         "is_legendary": false,
         "is_mythical": false,
@@ -1334,6 +1490,10 @@
             "front_female": null,
             "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/287.png",
             "front_shiny_female": null
+        },
+        "portraits": {
+            "normal": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0287/Normal.png",
+            "shiny": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0287/0000/0001/Normal.png"
         },
         "is_baby": false,
         "is_legendary": false,
@@ -1370,6 +1530,10 @@
             "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/288.png",
             "front_shiny_female": null
         },
+        "portraits": {
+            "normal": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0288/Normal.png",
+            "shiny": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0288/0000/0001/Normal.png"
+        },
         "is_baby": false,
         "is_legendary": false,
         "is_mythical": false,
@@ -1405,6 +1569,10 @@
             "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/289.png",
             "front_shiny_female": null
         },
+        "portraits": {
+            "normal": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0289/Normal.png",
+            "shiny": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0289/0000/0001/Normal.png"
+        },
         "is_baby": false,
         "is_legendary": false,
         "is_mythical": false,
@@ -1434,6 +1602,10 @@
             "front_female": null,
             "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/290.png",
             "front_shiny_female": null
+        },
+        "portraits": {
+            "normal": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0290/Normal.png",
+            "shiny": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0290/0000/0001/Normal.png"
         },
         "is_baby": false,
         "is_legendary": false,
@@ -1476,6 +1648,10 @@
             "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/291.png",
             "front_shiny_female": null
         },
+        "portraits": {
+            "normal": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0291/Normal.png",
+            "shiny": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0291/0000/0001/Normal.png"
+        },
         "is_baby": false,
         "is_legendary": false,
         "is_mythical": false,
@@ -1506,6 +1682,10 @@
             "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/292.png",
             "front_shiny_female": null
         },
+        "portraits": {
+            "normal": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0292/Normal.png",
+            "shiny": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0292/0000/0001/Normal.png"
+        },
         "is_baby": false,
         "is_legendary": false,
         "is_mythical": false,
@@ -1534,6 +1714,10 @@
             "front_female": null,
             "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/293.png",
             "front_shiny_female": null
+        },
+        "portraits": {
+            "normal": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0293/Normal.png",
+            "shiny": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0293/0000/0001/Normal.png"
         },
         "is_baby": false,
         "is_legendary": false,
@@ -1570,6 +1754,10 @@
             "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/294.png",
             "front_shiny_female": null
         },
+        "portraits": {
+            "normal": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0294/Normal.png",
+            "shiny": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0294/0000/0001/Normal.png"
+        },
         "is_baby": false,
         "is_legendary": false,
         "is_mythical": false,
@@ -1605,6 +1793,10 @@
             "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/295.png",
             "front_shiny_female": null
         },
+        "portraits": {
+            "normal": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0295/Normal.png",
+            "shiny": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0295/0000/0001/Normal.png"
+        },
         "is_baby": false,
         "is_legendary": false,
         "is_mythical": false,
@@ -1633,6 +1825,10 @@
             "front_female": null,
             "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/296.png",
             "front_shiny_female": null
+        },
+        "portraits": {
+            "normal": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0296/Normal.png",
+            "shiny": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0296/0000/0001/Normal.png"
         },
         "is_baby": false,
         "is_legendary": false,
@@ -1669,6 +1865,10 @@
             "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/297.png",
             "front_shiny_female": null
         },
+        "portraits": {
+            "normal": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0297/Normal.png",
+            "shiny": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0297/0000/0001/Normal.png"
+        },
         "is_baby": false,
         "is_legendary": false,
         "is_mythical": false,
@@ -1698,6 +1898,10 @@
             "front_female": null,
             "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/298.png",
             "front_shiny_female": null
+        },
+        "portraits": {
+            "normal": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0298/Normal.png",
+            "shiny": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0298/0000/0001/Normal.png"
         },
         "is_baby": true,
         "is_legendary": false,
@@ -1734,6 +1938,10 @@
             "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/299.png",
             "front_shiny_female": null
         },
+        "portraits": {
+            "normal": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0299/Normal.png",
+            "shiny": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0299/0000/0001/Normal.png"
+        },
         "is_baby": false,
         "is_legendary": false,
         "is_mythical": false,
@@ -1768,6 +1976,10 @@
             "front_female": null,
             "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/300.png",
             "front_shiny_female": null
+        },
+        "portraits": {
+            "normal": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0300/Normal.png",
+            "shiny": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0300/0000/0001/Normal.png"
         },
         "is_baby": false,
         "is_legendary": false,
@@ -1804,6 +2016,10 @@
             "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/301.png",
             "front_shiny_female": null
         },
+        "portraits": {
+            "normal": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0301/Normal.png",
+            "shiny": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0301/0000/0001/Normal.png"
+        },
         "is_baby": false,
         "is_legendary": false,
         "is_mythical": false,
@@ -1833,6 +2049,10 @@
             "front_female": null,
             "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/302.png",
             "front_shiny_female": null
+        },
+        "portraits": {
+            "normal": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0302/Normal.png",
+            "shiny": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0302/0000/0001/Normal.png"
         },
         "is_baby": false,
         "is_legendary": false,
@@ -1870,6 +2090,10 @@
             "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/10066.png",
             "front_shiny_female": null
         },
+        "portraits": {
+            "normal": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0302/0001/Normal.png",
+            "shiny": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0302/0001/0001/Normal.png"
+        },
         "is_baby": false,
         "is_legendary": false,
         "is_mythical": false,
@@ -1899,6 +2123,10 @@
             "front_female": null,
             "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/303.png",
             "front_shiny_female": null
+        },
+        "portraits": {
+            "normal": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0303/Normal.png",
+            "shiny": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0303/0000/0001/Normal.png"
         },
         "is_baby": false,
         "is_legendary": false,
@@ -1936,6 +2164,10 @@
             "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/10052.png",
             "front_shiny_female": null
         },
+        "portraits": {
+            "normal": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0303/0001/Normal.png",
+            "shiny": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0303/0001/0001/Normal.png"
+        },
         "is_baby": false,
         "is_legendary": false,
         "is_mythical": false,
@@ -1965,6 +2197,10 @@
             "front_female": null,
             "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/304.png",
             "front_shiny_female": null
+        },
+        "portraits": {
+            "normal": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0304/Normal.png",
+            "shiny": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0304/0000/0001/Normal.png"
         },
         "is_baby": false,
         "is_legendary": false,
@@ -2002,6 +2238,10 @@
             "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/305.png",
             "front_shiny_female": null
         },
+        "portraits": {
+            "normal": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0305/Normal.png",
+            "shiny": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0305/0000/0001/Normal.png"
+        },
         "is_baby": false,
         "is_legendary": false,
         "is_mythical": false,
@@ -2038,6 +2278,10 @@
             "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/306.png",
             "front_shiny_female": null
         },
+        "portraits": {
+            "normal": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0306/Normal.png",
+            "shiny": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0306/0000/0001/Normal.png"
+        },
         "is_baby": false,
         "is_legendary": false,
         "is_mythical": false,
@@ -2073,6 +2317,10 @@
             "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/10053.png",
             "front_shiny_female": null
         },
+        "portraits": {
+            "normal": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0306/0001/Normal.png",
+            "shiny": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0306/0001/0001/Normal.png"
+        },
         "is_baby": false,
         "is_legendary": false,
         "is_mythical": false,
@@ -2102,6 +2350,10 @@
             "front_female": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/female/307.png",
             "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/307.png",
             "front_shiny_female": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/female/307.png"
+        },
+        "portraits": {
+            "normal": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0307/Normal.png",
+            "shiny": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0307/0000/0001/Normal.png"
         },
         "is_baby": false,
         "is_legendary": false,
@@ -2139,6 +2391,10 @@
             "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/308.png",
             "front_shiny_female": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/female/308.png"
         },
+        "portraits": {
+            "normal": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0308/Normal.png",
+            "shiny": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0308/0000/0001/Normal.png"
+        },
         "is_baby": false,
         "is_legendary": false,
         "is_mythical": false,
@@ -2175,6 +2431,10 @@
             "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/10054.png",
             "front_shiny_female": null
         },
+        "portraits": {
+            "normal": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0308/0001/Normal.png",
+            "shiny": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0308/0001/0001/Normal.png"
+        },
         "is_baby": false,
         "is_legendary": false,
         "is_mythical": false,
@@ -2203,6 +2463,10 @@
             "front_female": null,
             "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/309.png",
             "front_shiny_female": null
+        },
+        "portraits": {
+            "normal": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0309/Normal.png",
+            "shiny": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0309/0000/0001/Normal.png"
         },
         "is_baby": false,
         "is_legendary": false,
@@ -2239,6 +2503,10 @@
             "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/310.png",
             "front_shiny_female": null
         },
+        "portraits": {
+            "normal": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0310/Normal.png",
+            "shiny": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0310/0000/0001/Normal.png"
+        },
         "is_baby": false,
         "is_legendary": false,
         "is_mythical": false,
@@ -2274,6 +2542,10 @@
             "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/10055.png",
             "front_shiny_female": null
         },
+        "portraits": {
+            "normal": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0310/0001/Normal.png",
+            "shiny": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0310/0001/0001/Normal.png"
+        },
         "is_baby": false,
         "is_legendary": false,
         "is_mythical": false,
@@ -2302,6 +2574,10 @@
             "front_female": null,
             "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/311.png",
             "front_shiny_female": null
+        },
+        "portraits": {
+            "normal": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0311/Normal.png",
+            "shiny": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0311/0000/0001/Normal.png"
         },
         "is_baby": false,
         "is_legendary": false,
@@ -2332,6 +2608,10 @@
             "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/312.png",
             "front_shiny_female": null
         },
+        "portraits": {
+            "normal": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0312/Normal.png",
+            "shiny": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0312/0000/0001/Normal.png"
+        },
         "is_baby": false,
         "is_legendary": false,
         "is_mythical": false,
@@ -2360,6 +2640,10 @@
             "front_female": null,
             "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/313.png",
             "front_shiny_female": null
+        },
+        "portraits": {
+            "normal": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0313/Normal.png",
+            "shiny": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0313/0000/0001/Normal.png"
         },
         "is_baby": false,
         "is_legendary": false,
@@ -2390,6 +2674,10 @@
             "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/314.png",
             "front_shiny_female": null
         },
+        "portraits": {
+            "normal": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0314/Normal.png",
+            "shiny": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0314/0000/0001/Normal.png"
+        },
         "is_baby": false,
         "is_legendary": false,
         "is_mythical": false,
@@ -2419,6 +2707,10 @@
             "front_female": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/female/315.png",
             "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/315.png",
             "front_shiny_female": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/female/315.png"
+        },
+        "portraits": {
+            "normal": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0315/Normal.png",
+            "shiny": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0315/0000/0001/Normal.png"
         },
         "is_baby": false,
         "is_legendary": false,
@@ -2455,6 +2747,10 @@
             "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/316.png",
             "front_shiny_female": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/female/316.png"
         },
+        "portraits": {
+            "normal": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0316/Normal.png",
+            "shiny": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0316/0000/0001/Normal.png"
+        },
         "is_baby": false,
         "is_legendary": false,
         "is_mythical": false,
@@ -2490,6 +2786,10 @@
             "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/317.png",
             "front_shiny_female": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/female/317.png"
         },
+        "portraits": {
+            "normal": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0317/Normal.png",
+            "shiny": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0317/0000/0001/Normal.png"
+        },
         "is_baby": false,
         "is_legendary": false,
         "is_mythical": false,
@@ -2519,6 +2819,10 @@
             "front_female": null,
             "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/318.png",
             "front_shiny_female": null
+        },
+        "portraits": {
+            "normal": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0318/Normal.png",
+            "shiny": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0318/0000/0001/Normal.png"
         },
         "is_baby": false,
         "is_legendary": false,
@@ -2556,6 +2860,10 @@
             "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/319.png",
             "front_shiny_female": null
         },
+        "portraits": {
+            "normal": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0319/Normal.png",
+            "shiny": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0319/0000/0001/Normal.png"
+        },
         "is_baby": false,
         "is_legendary": false,
         "is_mythical": false,
@@ -2592,6 +2900,10 @@
             "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/10070.png",
             "front_shiny_female": null
         },
+        "portraits": {
+            "normal": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0319/0001/Normal.png",
+            "shiny": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0319/0001/0001/Normal.png"
+        },
         "is_baby": false,
         "is_legendary": false,
         "is_mythical": false,
@@ -2620,6 +2932,10 @@
             "front_female": null,
             "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/320.png",
             "front_shiny_female": null
+        },
+        "portraits": {
+            "normal": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0320/Normal.png",
+            "shiny": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0320/0000/0001/Normal.png"
         },
         "is_baby": false,
         "is_legendary": false,
@@ -2656,6 +2972,10 @@
             "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/321.png",
             "front_shiny_female": null
         },
+        "portraits": {
+            "normal": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0321/Normal.png",
+            "shiny": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0321/0000/0001/Normal.png"
+        },
         "is_baby": false,
         "is_legendary": false,
         "is_mythical": false,
@@ -2685,6 +3005,10 @@
             "front_female": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/female/322.png",
             "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/322.png",
             "front_shiny_female": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/female/322.png"
+        },
+        "portraits": {
+            "normal": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0322/Normal.png",
+            "shiny": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0322/0000/0001/Normal.png"
         },
         "is_baby": false,
         "is_legendary": false,
@@ -2722,6 +3046,10 @@
             "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/323.png",
             "front_shiny_female": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/female/323.png"
         },
+        "portraits": {
+            "normal": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0323/Normal.png",
+            "shiny": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0323/0000/0001/Normal.png"
+        },
         "is_baby": false,
         "is_legendary": false,
         "is_mythical": false,
@@ -2758,6 +3086,10 @@
             "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/10087.png",
             "front_shiny_female": null
         },
+        "portraits": {
+            "normal": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0323/0001/Normal.png",
+            "shiny": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0323/0001/0001/Normal.png"
+        },
         "is_baby": false,
         "is_legendary": false,
         "is_mythical": false,
@@ -2787,6 +3119,10 @@
             "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/324.png",
             "front_shiny_female": null
         },
+        "portraits": {
+            "normal": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0324/Normal.png",
+            "shiny": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0324/0000/0001/Normal.png"
+        },
         "is_baby": false,
         "is_legendary": false,
         "is_mythical": false,
@@ -2815,6 +3151,10 @@
             "front_female": null,
             "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/325.png",
             "front_shiny_female": null
+        },
+        "portraits": {
+            "normal": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0325/Normal.png",
+            "shiny": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0325/0000/0001/Normal.png"
         },
         "is_baby": false,
         "is_legendary": false,
@@ -2851,6 +3191,10 @@
             "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/326.png",
             "front_shiny_female": null
         },
+        "portraits": {
+            "normal": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0326/Normal.png",
+            "shiny": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0326/0000/0001/Normal.png"
+        },
         "is_baby": false,
         "is_legendary": false,
         "is_mythical": false,
@@ -2880,6 +3224,10 @@
             "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/327.png",
             "front_shiny_female": null
         },
+        "portraits": {
+            "normal": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0327/Normal.png",
+            "shiny": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0327/0000/0001/Normal.png"
+        },
         "is_baby": false,
         "is_legendary": false,
         "is_mythical": false,
@@ -2908,6 +3256,10 @@
             "front_female": null,
             "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/328.png",
             "front_shiny_female": null
+        },
+        "portraits": {
+            "normal": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0328/Normal.png",
+            "shiny": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0328/0000/0001/Normal.png"
         },
         "is_baby": false,
         "is_legendary": false,
@@ -2945,6 +3297,10 @@
             "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/329.png",
             "front_shiny_female": null
         },
+        "portraits": {
+            "normal": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0329/Normal.png",
+            "shiny": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0329/0000/0001/Normal.png"
+        },
         "is_baby": false,
         "is_legendary": false,
         "is_mythical": false,
@@ -2981,6 +3337,10 @@
             "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/330.png",
             "front_shiny_female": null
         },
+        "portraits": {
+            "normal": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0330/Normal.png",
+            "shiny": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0330/0000/0001/Normal.png"
+        },
         "is_baby": false,
         "is_legendary": false,
         "is_mythical": false,
@@ -3009,6 +3369,10 @@
             "front_female": null,
             "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/331.png",
             "front_shiny_female": null
+        },
+        "portraits": {
+            "normal": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0331/Normal.png",
+            "shiny": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0331/0000/0001/Normal.png"
         },
         "is_baby": false,
         "is_legendary": false,
@@ -3046,6 +3410,10 @@
             "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/332.png",
             "front_shiny_female": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/female/332.png"
         },
+        "portraits": {
+            "normal": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0332/Normal.png",
+            "shiny": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0332/0000/0001/Normal.png"
+        },
         "is_baby": false,
         "is_legendary": false,
         "is_mythical": false,
@@ -3075,6 +3443,10 @@
             "front_female": null,
             "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/333.png",
             "front_shiny_female": null
+        },
+        "portraits": {
+            "normal": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0333/Normal.png",
+            "shiny": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0333/0000/0001/Normal.png"
         },
         "is_baby": false,
         "is_legendary": false,
@@ -3112,6 +3484,10 @@
             "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/334.png",
             "front_shiny_female": null
         },
+        "portraits": {
+            "normal": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0334/Normal.png",
+            "shiny": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0334/0000/0001/Normal.png"
+        },
         "is_baby": false,
         "is_legendary": false,
         "is_mythical": false,
@@ -3148,6 +3524,10 @@
             "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/10067.png",
             "front_shiny_female": null
         },
+        "portraits": {
+            "normal": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0334/0001/Normal.png",
+            "shiny": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0334/0001/0001/Normal.png"
+        },
         "is_baby": false,
         "is_legendary": false,
         "is_mythical": false,
@@ -3177,6 +3557,10 @@
             "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/335.png",
             "front_shiny_female": null
         },
+        "portraits": {
+            "normal": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0335/Normal.png",
+            "shiny": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0335/0000/0001/Normal.png"
+        },
         "is_baby": false,
         "is_legendary": false,
         "is_mythical": false,
@@ -3205,6 +3589,10 @@
             "front_female": null,
             "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/336.png",
             "front_shiny_female": null
+        },
+        "portraits": {
+            "normal": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0336/Normal.png",
+            "shiny": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0336/0000/0001/Normal.png"
         },
         "is_baby": false,
         "is_legendary": false,
@@ -3236,6 +3624,10 @@
             "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/337.png",
             "front_shiny_female": null
         },
+        "portraits": {
+            "normal": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0337/Normal.png",
+            "shiny": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0337/0000/0001/Normal.png"
+        },
         "is_baby": false,
         "is_legendary": false,
         "is_mythical": false,
@@ -3266,6 +3658,10 @@
             "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/338.png",
             "front_shiny_female": null
         },
+        "portraits": {
+            "normal": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0338/Normal.png",
+            "shiny": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0338/0000/0001/Normal.png"
+        },
         "is_baby": false,
         "is_legendary": false,
         "is_mythical": false,
@@ -3295,6 +3691,10 @@
             "front_female": null,
             "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/339.png",
             "front_shiny_female": null
+        },
+        "portraits": {
+            "normal": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0339/Normal.png",
+            "shiny": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0339/0000/0001/Normal.png"
         },
         "is_baby": false,
         "is_legendary": false,
@@ -3332,6 +3732,10 @@
             "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/340.png",
             "front_shiny_female": null
         },
+        "portraits": {
+            "normal": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0340/Normal.png",
+            "shiny": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0340/0000/0001/Normal.png"
+        },
         "is_baby": false,
         "is_legendary": false,
         "is_mythical": false,
@@ -3360,6 +3764,10 @@
             "front_female": null,
             "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/341.png",
             "front_shiny_female": null
+        },
+        "portraits": {
+            "normal": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0341/Normal.png",
+            "shiny": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0341/0000/0001/Normal.png"
         },
         "is_baby": false,
         "is_legendary": false,
@@ -3397,6 +3805,10 @@
             "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/342.png",
             "front_shiny_female": null
         },
+        "portraits": {
+            "normal": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0342/Normal.png",
+            "shiny": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0342/0000/0001/Normal.png"
+        },
         "is_baby": false,
         "is_legendary": false,
         "is_mythical": false,
@@ -3426,6 +3838,10 @@
             "front_female": null,
             "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/343.png",
             "front_shiny_female": null
+        },
+        "portraits": {
+            "normal": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0343/Normal.png",
+            "shiny": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0343/0000/0001/Normal.png"
         },
         "is_baby": false,
         "is_legendary": false,
@@ -3463,6 +3879,10 @@
             "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/344.png",
             "front_shiny_female": null
         },
+        "portraits": {
+            "normal": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0344/Normal.png",
+            "shiny": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0344/0000/0001/Normal.png"
+        },
         "is_baby": false,
         "is_legendary": false,
         "is_mythical": false,
@@ -3492,6 +3912,10 @@
             "front_female": null,
             "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/345.png",
             "front_shiny_female": null
+        },
+        "portraits": {
+            "normal": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0345/Normal.png",
+            "shiny": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0345/0000/0001/Normal.png"
         },
         "is_baby": false,
         "is_legendary": false,
@@ -3529,6 +3953,10 @@
             "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/346.png",
             "front_shiny_female": null
         },
+        "portraits": {
+            "normal": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0346/Normal.png",
+            "shiny": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0346/0000/0001/Normal.png"
+        },
         "is_baby": false,
         "is_legendary": false,
         "is_mythical": false,
@@ -3558,6 +3986,10 @@
             "front_female": null,
             "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/347.png",
             "front_shiny_female": null
+        },
+        "portraits": {
+            "normal": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0347/Normal.png",
+            "shiny": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0347/0000/0001/Normal.png"
         },
         "is_baby": false,
         "is_legendary": false,
@@ -3595,6 +4027,10 @@
             "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/348.png",
             "front_shiny_female": null
         },
+        "portraits": {
+            "normal": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0348/Normal.png",
+            "shiny": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0348/0000/0001/Normal.png"
+        },
         "is_baby": false,
         "is_legendary": false,
         "is_mythical": false,
@@ -3623,6 +4059,10 @@
             "front_female": null,
             "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/349.png",
             "front_shiny_female": null
+        },
+        "portraits": {
+            "normal": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0349/Normal.png",
+            "shiny": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0349/0000/0001/Normal.png"
         },
         "is_baby": false,
         "is_legendary": false,
@@ -3659,6 +4099,10 @@
             "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/350.png",
             "front_shiny_female": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/female/350.png"
         },
+        "portraits": {
+            "normal": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0350/Normal.png",
+            "shiny": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0350/0000/0001/Normal.png"
+        },
         "is_baby": false,
         "is_legendary": false,
         "is_mythical": false,
@@ -3687,6 +4131,10 @@
             "front_female": null,
             "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/351.png",
             "front_shiny_female": null
+        },
+        "portraits": {
+            "normal": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0351/Normal.png",
+            "shiny": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0351/0000/0001/Normal.png"
         },
         "is_baby": false,
         "is_legendary": false,
@@ -3717,6 +4165,10 @@
             "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/10013.png",
             "front_shiny_female": null
         },
+        "portraits": {
+            "normal": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0351/0001/Normal.png",
+            "shiny": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0351/0001/0001/Normal.png"
+        },
         "is_baby": false,
         "is_legendary": false,
         "is_mythical": false,
@@ -3745,6 +4197,10 @@
             "front_female": null,
             "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/10014.png",
             "front_shiny_female": null
+        },
+        "portraits": {
+            "normal": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0351/0002/Normal.png",
+            "shiny": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0351/0002/0001/Normal.png"
         },
         "is_baby": false,
         "is_legendary": false,
@@ -3775,6 +4231,10 @@
             "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/10015.png",
             "front_shiny_female": null
         },
+        "portraits": {
+            "normal": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0351/0003/Normal.png",
+            "shiny": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0351/0003/0001/Normal.png"
+        },
         "is_baby": false,
         "is_legendary": false,
         "is_mythical": false,
@@ -3804,6 +4264,10 @@
             "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/352.png",
             "front_shiny_female": null
         },
+        "portraits": {
+            "normal": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0352/Normal.png",
+            "shiny": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0352/0000/0001/Normal.png"
+        },
         "is_baby": false,
         "is_legendary": false,
         "is_mythical": false,
@@ -3832,6 +4296,10 @@
             "front_female": null,
             "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/353.png",
             "front_shiny_female": null
+        },
+        "portraits": {
+            "normal": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0353/Normal.png",
+            "shiny": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0353/0000/0001/Normal.png"
         },
         "is_baby": false,
         "is_legendary": false,
@@ -3868,6 +4336,10 @@
             "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/354.png",
             "front_shiny_female": null
         },
+        "portraits": {
+            "normal": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0354/Normal.png",
+            "shiny": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0354/0000/0001/Normal.png"
+        },
         "is_baby": false,
         "is_legendary": false,
         "is_mythical": false,
@@ -3903,6 +4375,10 @@
             "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/10056.png",
             "front_shiny_female": null
         },
+        "portraits": {
+            "normal": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0354/0001/Normal.png",
+            "shiny": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0354/0001/0001/Normal.png"
+        },
         "is_baby": false,
         "is_legendary": false,
         "is_mythical": false,
@@ -3931,6 +4407,10 @@
             "front_female": null,
             "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/355.png",
             "front_shiny_female": null
+        },
+        "portraits": {
+            "normal": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0355/Normal.png",
+            "shiny": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0355/0000/0001/Normal.png"
         },
         "is_baby": false,
         "is_legendary": false,
@@ -3966,6 +4446,10 @@
             "front_female": null,
             "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/356.png",
             "front_shiny_female": null
+        },
+        "portraits": {
+            "normal": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0356/Normal.png",
+            "shiny": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0356/0000/0001/Normal.png"
         },
         "is_baby": false,
         "is_legendary": false,
@@ -4003,6 +4487,10 @@
             "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/357.png",
             "front_shiny_female": null
         },
+        "portraits": {
+            "normal": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0357/Normal.png",
+            "shiny": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0357/0000/0001/Normal.png"
+        },
         "is_baby": false,
         "is_legendary": false,
         "is_mythical": false,
@@ -4031,6 +4519,10 @@
             "front_female": null,
             "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/358.png",
             "front_shiny_female": null
+        },
+        "portraits": {
+            "normal": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0358/Normal.png",
+            "shiny": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0358/0000/0001/Normal.png"
         },
         "is_baby": false,
         "is_legendary": false,
@@ -4068,6 +4560,10 @@
             "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/10306.png",
             "front_shiny_female": null
         },
+        "portraits": {
+            "normal": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0358/0001/Normal.png",
+            "shiny": null
+        },
         "is_baby": false,
         "is_legendary": false,
         "is_mythical": false,
@@ -4096,6 +4592,10 @@
             "front_female": null,
             "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/359.png",
             "front_shiny_female": null
+        },
+        "portraits": {
+            "normal": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0359/Normal.png",
+            "shiny": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0359/0000/0001/Normal.png"
         },
         "is_baby": false,
         "is_legendary": false,
@@ -4137,6 +4637,10 @@
             "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/10057.png",
             "front_shiny_female": null
         },
+        "portraits": {
+            "normal": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0359/0001/Normal.png",
+            "shiny": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0359/0001/0001/Normal.png"
+        },
         "is_baby": false,
         "is_legendary": false,
         "is_mythical": false,
@@ -4167,6 +4671,10 @@
             "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/10307.png",
             "front_shiny_female": null
         },
+        "portraits": {
+            "normal": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0359/0002/Normal.png",
+            "shiny": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0359/0002/0001/Normal.png"
+        },
         "is_baby": false,
         "is_legendary": false,
         "is_mythical": false,
@@ -4195,6 +4703,10 @@
             "front_female": null,
             "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/360.png",
             "front_shiny_female": null
+        },
+        "portraits": {
+            "normal": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0360/Normal.png",
+            "shiny": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0360/0000/0001/Normal.png"
         },
         "is_baby": true,
         "is_legendary": false,
@@ -4230,6 +4742,10 @@
             "front_female": null,
             "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/361.png",
             "front_shiny_female": null
+        },
+        "portraits": {
+            "normal": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0361/Normal.png",
+            "shiny": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0361/0000/0001/Normal.png"
         },
         "is_baby": false,
         "is_legendary": false,
@@ -4271,6 +4787,10 @@
             "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/362.png",
             "front_shiny_female": null
         },
+        "portraits": {
+            "normal": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0362/Normal.png",
+            "shiny": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0362/0000/0001/Normal.png"
+        },
         "is_baby": false,
         "is_legendary": false,
         "is_mythical": false,
@@ -4306,6 +4826,10 @@
             "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/10074.png",
             "front_shiny_female": null
         },
+        "portraits": {
+            "normal": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0362/0001/Normal.png",
+            "shiny": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0362/0001/0001/Normal.png"
+        },
         "is_baby": false,
         "is_legendary": false,
         "is_mythical": false,
@@ -4335,6 +4859,10 @@
             "front_female": null,
             "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/363.png",
             "front_shiny_female": null
+        },
+        "portraits": {
+            "normal": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0363/Normal.png",
+            "shiny": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0363/0000/0001/Normal.png"
         },
         "is_baby": false,
         "is_legendary": false,
@@ -4372,6 +4900,10 @@
             "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/364.png",
             "front_shiny_female": null
         },
+        "portraits": {
+            "normal": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0364/Normal.png",
+            "shiny": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0364/0000/0001/Normal.png"
+        },
         "is_baby": false,
         "is_legendary": false,
         "is_mythical": false,
@@ -4408,6 +4940,10 @@
             "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/365.png",
             "front_shiny_female": null
         },
+        "portraits": {
+            "normal": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0365/Normal.png",
+            "shiny": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0365/0000/0001/Normal.png"
+        },
         "is_baby": false,
         "is_legendary": false,
         "is_mythical": false,
@@ -4436,6 +4972,10 @@
             "front_female": null,
             "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/366.png",
             "front_shiny_female": null
+        },
+        "portraits": {
+            "normal": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0366/Normal.png",
+            "shiny": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0366/0000/0001/Normal.png"
         },
         "is_baby": false,
         "is_legendary": false,
@@ -4477,6 +5017,10 @@
             "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/367.png",
             "front_shiny_female": null
         },
+        "portraits": {
+            "normal": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0367/Normal.png",
+            "shiny": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0367/0000/0001/Normal.png"
+        },
         "is_baby": false,
         "is_legendary": false,
         "is_mythical": false,
@@ -4505,6 +5049,10 @@
             "front_female": null,
             "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/368.png",
             "front_shiny_female": null
+        },
+        "portraits": {
+            "normal": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0368/Normal.png",
+            "shiny": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0368/0000/0001/Normal.png"
         },
         "is_baby": false,
         "is_legendary": false,
@@ -4536,6 +5084,10 @@
             "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/369.png",
             "front_shiny_female": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/female/369.png"
         },
+        "portraits": {
+            "normal": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0369/Normal.png",
+            "shiny": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0369/0000/0001/Normal.png"
+        },
         "is_baby": false,
         "is_legendary": false,
         "is_mythical": false,
@@ -4565,6 +5117,10 @@
             "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/370.png",
             "front_shiny_female": null
         },
+        "portraits": {
+            "normal": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0370/Normal.png",
+            "shiny": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0370/0000/0001/Normal.png"
+        },
         "is_baby": false,
         "is_legendary": false,
         "is_mythical": false,
@@ -4593,6 +5149,10 @@
             "front_female": null,
             "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/371.png",
             "front_shiny_female": null
+        },
+        "portraits": {
+            "normal": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0371/Normal.png",
+            "shiny": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0371/0000/0001/Normal.png"
         },
         "is_baby": false,
         "is_legendary": false,
@@ -4628,6 +5188,10 @@
             "front_female": null,
             "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/372.png",
             "front_shiny_female": null
+        },
+        "portraits": {
+            "normal": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0372/Normal.png",
+            "shiny": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0372/0000/0001/Normal.png"
         },
         "is_baby": false,
         "is_legendary": false,
@@ -4665,6 +5229,10 @@
             "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/373.png",
             "front_shiny_female": null
         },
+        "portraits": {
+            "normal": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0373/Normal.png",
+            "shiny": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0373/0000/0001/Normal.png"
+        },
         "is_baby": false,
         "is_legendary": false,
         "is_mythical": false,
@@ -4701,6 +5269,10 @@
             "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/10089.png",
             "front_shiny_female": null
         },
+        "portraits": {
+            "normal": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0373/0001/Normal.png",
+            "shiny": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0373/0001/0001/Normal.png"
+        },
         "is_baby": false,
         "is_legendary": false,
         "is_mythical": false,
@@ -4730,6 +5302,10 @@
             "front_female": null,
             "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/374.png",
             "front_shiny_female": null
+        },
+        "portraits": {
+            "normal": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0374/Normal.png",
+            "shiny": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0374/0000/0001/Normal.png"
         },
         "is_baby": false,
         "is_legendary": false,
@@ -4767,6 +5343,10 @@
             "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/375.png",
             "front_shiny_female": null
         },
+        "portraits": {
+            "normal": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0375/Normal.png",
+            "shiny": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0375/0000/0001/Normal.png"
+        },
         "is_baby": false,
         "is_legendary": false,
         "is_mythical": false,
@@ -4802,6 +5382,10 @@
             "front_female": null,
             "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/376.png",
             "front_shiny_female": null
+        },
+        "portraits": {
+            "normal": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0376/Normal.png",
+            "shiny": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0376/0000/0001/Normal.png"
         },
         "is_baby": false,
         "is_legendary": false,
@@ -4839,6 +5423,10 @@
             "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/10076.png",
             "front_shiny_female": null
         },
+        "portraits": {
+            "normal": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0376/0001/Normal.png",
+            "shiny": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0376/0001/0001/Normal.png"
+        },
         "is_baby": false,
         "is_legendary": false,
         "is_mythical": false,
@@ -4867,6 +5455,10 @@
             "front_female": null,
             "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/377.png",
             "front_shiny_female": null
+        },
+        "portraits": {
+            "normal": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0377/Normal.png",
+            "shiny": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0377/0000/0001/Normal.png"
         },
         "is_baby": false,
         "is_legendary": true,
@@ -4897,6 +5489,10 @@
             "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/378.png",
             "front_shiny_female": null
         },
+        "portraits": {
+            "normal": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0378/Normal.png",
+            "shiny": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0378/0000/0001/Normal.png"
+        },
         "is_baby": false,
         "is_legendary": true,
         "is_mythical": false,
@@ -4925,6 +5521,10 @@
             "front_female": null,
             "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/379.png",
             "front_shiny_female": null
+        },
+        "portraits": {
+            "normal": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0379/Normal.png",
+            "shiny": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0379/0000/0001/Normal.png"
         },
         "is_baby": false,
         "is_legendary": true,
@@ -4955,6 +5555,10 @@
             "front_female": null,
             "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/380.png",
             "front_shiny_female": null
+        },
+        "portraits": {
+            "normal": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0380/Normal.png",
+            "shiny": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0380/0000/0001/Normal.png"
         },
         "is_baby": false,
         "is_legendary": true,
@@ -4992,6 +5596,10 @@
             "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/10062.png",
             "front_shiny_female": null
         },
+        "portraits": {
+            "normal": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0380/0001/Normal.png",
+            "shiny": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0380/0001/0001/Normal.png"
+        },
         "is_baby": false,
         "is_legendary": true,
         "is_mythical": false,
@@ -5021,6 +5629,10 @@
             "front_female": null,
             "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/381.png",
             "front_shiny_female": null
+        },
+        "portraits": {
+            "normal": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0381/Normal.png",
+            "shiny": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0381/0000/0001/Normal.png"
         },
         "is_baby": false,
         "is_legendary": true,
@@ -5058,6 +5670,10 @@
             "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/10063.png",
             "front_shiny_female": null
         },
+        "portraits": {
+            "normal": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0381/0001/Normal.png",
+            "shiny": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0381/0001/0001/Normal.png"
+        },
         "is_baby": false,
         "is_legendary": true,
         "is_mythical": false,
@@ -5086,6 +5702,10 @@
             "front_female": null,
             "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/382.png",
             "front_shiny_female": null
+        },
+        "portraits": {
+            "normal": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0382/Normal.png",
+            "shiny": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0382/0000/0001/Normal.png"
         },
         "is_baby": false,
         "is_legendary": true,
@@ -5116,6 +5736,10 @@
             "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/10077.png",
             "front_shiny_female": null
         },
+        "portraits": {
+            "normal": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0382/0001/Normal.png",
+            "shiny": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0382/0001/0001/Normal.png"
+        },
         "is_baby": false,
         "is_legendary": true,
         "is_mythical": false,
@@ -5144,6 +5768,10 @@
             "front_female": null,
             "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/383.png",
             "front_shiny_female": null
+        },
+        "portraits": {
+            "normal": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0383/Normal.png",
+            "shiny": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0383/0000/0001/Normal.png"
         },
         "is_baby": false,
         "is_legendary": true,
@@ -5175,6 +5803,10 @@
             "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/10078.png",
             "front_shiny_female": null
         },
+        "portraits": {
+            "normal": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0383/0001/Normal.png",
+            "shiny": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0383/0001/0001/Normal.png"
+        },
         "is_baby": false,
         "is_legendary": true,
         "is_mythical": false,
@@ -5204,6 +5836,10 @@
             "front_female": null,
             "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/384.png",
             "front_shiny_female": null
+        },
+        "portraits": {
+            "normal": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0384/Normal.png",
+            "shiny": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0384/0000/0001/Normal.png"
         },
         "is_baby": false,
         "is_legendary": true,
@@ -5241,6 +5877,10 @@
             "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/10079.png",
             "front_shiny_female": null
         },
+        "portraits": {
+            "normal": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0384/0001/Normal.png",
+            "shiny": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0384/0001/0001/Normal.png"
+        },
         "is_baby": false,
         "is_legendary": true,
         "is_mythical": false,
@@ -5271,6 +5911,10 @@
             "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/385.png",
             "front_shiny_female": null
         },
+        "portraits": {
+            "normal": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0385/Normal.png",
+            "shiny": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0385/0000/0001/Normal.png"
+        },
         "is_baby": false,
         "is_legendary": false,
         "is_mythical": true,
@@ -5299,6 +5943,10 @@
             "front_female": null,
             "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/386.png",
             "front_shiny_female": null
+        },
+        "portraits": {
+            "normal": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0386/Normal.png",
+            "shiny": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0386/0000/0001/Normal.png"
         },
         "is_baby": false,
         "is_legendary": false,
@@ -5329,6 +5977,10 @@
             "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/10001.png",
             "front_shiny_female": null
         },
+        "portraits": {
+            "normal": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0386/0001/Normal.png",
+            "shiny": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0386/0001/0001/Normal.png"
+        },
         "is_baby": false,
         "is_legendary": false,
         "is_mythical": true,
@@ -5358,6 +6010,10 @@
             "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/10002.png",
             "front_shiny_female": null
         },
+        "portraits": {
+            "normal": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0386/0002/Normal.png",
+            "shiny": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0386/0002/0001/Normal.png"
+        },
         "is_baby": false,
         "is_legendary": false,
         "is_mythical": true,
@@ -5386,6 +6042,10 @@
             "front_female": null,
             "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/10003.png",
             "front_shiny_female": null
+        },
+        "portraits": {
+            "normal": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0386/0003/Normal.png",
+            "shiny": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0386/0003/0001/Normal.png"
         },
         "is_baby": false,
         "is_legendary": false,

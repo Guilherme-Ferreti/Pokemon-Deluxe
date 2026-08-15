@@ -11,9 +11,10 @@ use Shared\Models\Species;
 use Shared\Models\SpeciesEvolution;
 
 /**
- * @phpstan-type PokeApiEvolution array{evolves_to:string, item:?string, min_level:?int}
- * @phpstan-type PokeApiSprites array{back_default:?string, back_female:?string, back_shiny:?string, back_shiny_female:?string, front_default:?string, front_female:?string, front_shiny:?string, front_shiny_female:?string}
- * @phpstan-type PokeApiPokemon array{id:string, external_id:string, name:string, types:list<string>, pokedex_number:int, genus:string, flavor_text:string, sprites:PokeApiSprites, is_baby:bool, is_legendary:bool, is_mythical:bool, is_mega:bool, is_gmax:bool, generation:int, capture_rate:?int, evolutions:list<PokeApiEvolution>}
+ * @phpstan-type SeederEvolution array{evolves_to:string, item:?string, min_level:?int}
+ * @phpstan-type SeederSprites array{back_default:?string, back_female:?string, back_shiny:?string, back_shiny_female:?string, front_default:?string, front_female:?string, front_shiny:?string, front_shiny_female:?string}
+ * @phpstan-type SeederPortraits array{normal:?string, shiny:?string}
+ * @phpstan-type SeederPokemon array{id:string, external_id:string, name:string, types:list<string>, pokedex_number:int, genus:string, flavor_text:string, sprites:SeederSprites, portraits:SeederPortraits, is_baby:bool, is_legendary:bool, is_mythical:bool, is_mega:bool, is_gmax:bool, generation:int, capture_rate:?int, evolutions:list<SeederEvolution>}
  */
 final class SpeciesSeeder extends Seeder
 {
@@ -86,7 +87,7 @@ final class SpeciesSeeder extends Seeder
     }
 
     /**
-     * @param  PokeApiPokemon  $pokemon
+     * @param  SeederPokemon  $pokemon
      * @return array<string, mixed>
      */
     private function getPokemonInfo(array $pokemon): array
@@ -108,6 +109,10 @@ final class SpeciesSeeder extends Seeder
                 'front_shiny'        => $pokemon['sprites']['front_shiny'],
                 'front_shiny_female' => $pokemon['sprites']['front_shiny_female'],
             ]),
+            'portraits' => json_encode([
+                'normal' => $pokemon['portraits']['normal'],
+                'shiny'  => $pokemon['portraits']['shiny'],
+            ]),
             'is_baby'      => $pokemon['is_baby'],
             'is_legendary' => $pokemon['is_legendary'],
             'is_mythical'  => $pokemon['is_mythical'],
@@ -123,7 +128,7 @@ final class SpeciesSeeder extends Seeder
     }
 
     /**
-     * @param  PokeApiPokemon  $pokemon
+     * @param  SeederPokemon  $pokemon
      * @return list<array<string, mixed>>
      */
     private function getEvolutionInfo(array $pokemon): array

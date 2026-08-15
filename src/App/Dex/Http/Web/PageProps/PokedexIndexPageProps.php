@@ -34,7 +34,7 @@ final class PokedexIndexPageProps implements ProvidesInertiaProperties
 
         return AppHelper::paginatorToArray($speciesList, fn (Species $species) => [
             'id'            => $species->id,
-            'portrait'      => 'https://raw.githubusercontent.com/PMDCollab/SpriteCollab/refs/heads/master/portrait/' . str_pad((string) $species->pokedex_number, 4, '0', STR_PAD_LEFT) . '/Normal.png',
+            'portrait'      => $species->portraits->normal,
             'name'          => $species->name,
             'pokedexNumber' => $species->pokedex_number,
             'frontSprite'   => $species->sprites->front_default,

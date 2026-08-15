@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Factories\Factory;
 use Shared\Enums\ElementalType;
 use Shared\Enums\Generation;
 use Shared\Models\Species;
+use Shared\ValueObjects\PokemonPortraits;
 use Shared\ValueObjects\PokemonSprites;
 
 /**
@@ -37,6 +38,10 @@ final class SpeciesFactory extends Factory
                 front_female: fake()->imageUrl(width: 96, height: 96, word: 'front female'),
                 front_shiny: fake()->imageUrl(width: 96, height: 96, word: 'front shiny'),
                 front_shiny_female: fake()->imageUrl(width: 96, height: 96, word: 'front shiny female'),
+            ),
+            'portraits' => new PokemonPortraits(
+                normal: fake()->imageUrl(width: 96, height: 96, word: 'normal'),
+                shiny: fake()->imageUrl(width: 96, height: 96, word: 'shiny'),
             ),
             'is_baby'      => fake()->boolean(5),
             'is_legendary' => fake()->boolean(5),

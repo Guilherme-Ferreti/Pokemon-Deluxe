@@ -22,6 +22,7 @@ return new class extends Migration
             $table->string('text_entry');
 
             $table->json('sprites');
+            $table->json('portraits');
 
             $table->boolean('is_baby')->default(false);
             $table->boolean('is_legendary')->default(false);
