@@ -30,8 +30,8 @@ final class AppHelper
             'to'           => $paginator->lastItem(),
             'total'        => $paginator->total(),
             'data'         => $mapItems
-                ? collect($paginator->items())->map($mapItems)->toArray()
-                : collect($paginator->items())->toArray(),
+                ? $paginator->getCollection()->map($mapItems)->toArray()
+                : $paginator->getCollection()->toArray(),
         ];
     }
 }

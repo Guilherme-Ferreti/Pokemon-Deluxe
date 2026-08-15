@@ -12,13 +12,6 @@ final class PartyController extends Controller
 {
     public function __invoke(): Response
     {
-        $party = fn () => currentUser()
-            ->pokemon()
-            ->inParty()
-            ->get(['id', 'name', 'sprites', 'level', 'is_shiny', 'species_id']);
-
-        return inertia('Pokemon/Party')->with(new PartyPageProps(
-            party: $party,
-        ));
+        return inertia('Pokemon/Party')->with(new PartyPageProps);
     }
 }

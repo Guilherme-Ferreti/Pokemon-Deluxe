@@ -57,7 +57,6 @@ arch('PageProps')
     ->toBeFinal()
     ->toExtendNothing()
     ->toImplement(ProvidesInertiaProperties::class)
-    ->toHaveConstructor()
     ->toHaveMethod('toInertiaProperties')
     ->not->toHavePublicMethodsBesides(['__construct', 'toInertiaProperties'])
     ->not->toHaveProtectedMethods();
