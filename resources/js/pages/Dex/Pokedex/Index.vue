@@ -34,11 +34,9 @@
                 {{ species.pokedexNumber }}
               </TableCell>
               <TableCell>
-                <img
-                  class="size-8"
-                  loading="lazy"
-                  :src="species.portrait"
-                  :alt="`${species.name}'s portrait`"
+                <AppSpeciesPortrait
+                  :name="species.name"
+                  :url="species.portrait"
                 />
               </TableCell>
               <TableCell class="font-medium whitespace-normal">
@@ -86,6 +84,7 @@ import {
   TableRow,
 } from '@/components/ui/table';
 import type { ElementalType, PaginatedList } from '@/types';
+import AppSpeciesPortrait from '@/components/AppSpeciesPortrait.vue';
 
 defineOptions({
   layout: () => ({ pageSize: 'small' }),
