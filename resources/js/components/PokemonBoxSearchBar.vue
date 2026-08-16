@@ -1,6 +1,6 @@
 <template>
   <form @submit.prevent="submitSearch">
-    <Card class="grid grid-cols-[1fr_auto_auto] gap-2 p-4">
+    <Card class="flex-row gap-2 p-4">
       <AppInput
         v-model="searchForm.search"
         type="search"

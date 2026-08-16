@@ -1,8 +1,6 @@
 <template>
   <li>
-    <Card
-      class="gap-2 p-3 text-card-foreground shadow transition-shadow hover:shadow-md"
-    >
+    <Card class="gap-2 p-4 transition-shadow hover:shadow-md">
       <div class="grid grid-cols-[auto_1fr] gap-2">
         <AppSpeciesSprite
           :url="pokemon.frontSprite"

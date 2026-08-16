@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Dex\Http\Web\PageProps;
 
 use App\Dex\Actions\ListSpeciesBoxPresence;
+use App\Dex\Filters\SearchPokedexFilters;
 use App\Dex\Queries\SearchPokedexQuery;
 use Inertia\ProvidesInertiaProperties;
 use Inertia\RenderContext;
@@ -18,17 +19,20 @@ final class PokedexIndexPageProps implements ProvidesInertiaProperties
      */
     public function toInertiaProperties(RenderContext $context): array
     {
+        $searchPokedexFilters = SearchPokedexFilters::fromRequest($context->request);
+
         return [
-            'speciesList' => fn () => $this->getSpeciesListProp(),
+            'speciesList'   => fn () => $this->getSpeciesListProp($searchPokedexFilters),
+            'activeFilters' => fn () => $searchPokedexFilters,
         ];
     }
 
     /**
      * @return array<string, mixed>
      */
-    private function getSpeciesListProp(): array
+    private function getSpeciesListProp(SearchPokedexFilters $searchPokedexFilters): array
     {
-        $speciesList = new SearchPokedexQuery()->handle()->paginate(50)->withQueryString();
+        $speciesList = new SearchPokedexQuery()->handle($searchPokedexFilters)->paginate(50)->withQueryString();
 
         $boxPresence = new ListSpeciesBoxPresence()->handle(currentUser(), $speciesList->pluck('id'));
 

@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Dex\Queries;
 
+use App\Dex\Filters\SearchPokedexFilters;
 use Illuminate\Database\Eloquent\Builder;
 use Shared\Models\Species;
 
@@ -12,9 +13,29 @@ final class SearchPokedexQuery
     /**
      * @return Builder<Species>
      */
-    public function handle(): Builder
+    public function handle(SearchPokedexFilters $filters): Builder
     {
         return Species::query()
+            ->when($filters->search !== null, fn (Builder $query) => $this->applySearch($query, $filters->search))
+            ->when(true, fn (Builder $query) => $this->applySorting($query));
+    }
+
+    /**
+     * @param  Builder<Species>  $query
+     * @return Builder<Species>
+     */
+    private function applySearch(Builder $query, string $search): Builder
+    {
+        return $query->whereLike('name', '%' . $search . '%');
+    }
+
+    /**
+     * @param  Builder<Species>  $query
+     * @return Builder<Species>
+     */
+    private function applySorting(Builder $query): Builder
+    {
+        return $query
             ->orderBy('generation')
             ->orderBy('pokedex_number')
             ->orderByRaw('
