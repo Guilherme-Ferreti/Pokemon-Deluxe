@@ -69,6 +69,7 @@ import AppIconInBox from '@/components/AppIconInBox.vue';
 import AppIconNotInBox from '@/components/AppIconNotInBox.vue';
 import AppInput from '@/components/AppInput.vue';
 import AppPagination from '@/components/AppPagination.vue';
+import AppSpeciesPortrait from '@/components/AppSpeciesPortrait.vue';
 import ElementalTypeBadges from '@/components/ElementalTypeBadges.vue';
 import { Card } from '@/components/ui/card';
 import {
@@ -81,7 +82,6 @@ import {
 } from '@/components/ui/table';
 import type { DexPokedexIndexPageProps } from '@/pages/Dex/Pokedex/Index.vue';
 import { route } from '@/types/helpers/route';
-import AppSpeciesPortrait from '@/components/AppSpeciesPortrait.vue';
 
 const props = defineProps<{
   speciesList: DexPokedexIndexPageProps['speciesList'];
