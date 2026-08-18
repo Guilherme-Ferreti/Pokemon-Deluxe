@@ -49,10 +49,11 @@
       <div
         class="flex justify-between rounded bg-blue-100/40 px-2 py-1 text-xs text-muted-foreground dark:bg-transparent"
       >
-        <span>
-          Lv.
+        <div>
+          <span aria-hidden="true">Lv.</span>
+          <span class="sr-only">Level</span>
           <span class="font-medium text-foreground">{{ pokemon.level }}</span>
-        </span>
+        </div>
         <span>{{ pokemon.experience }} XP</span>
       </div>
       <div class="flex flex-col gap-0.5">

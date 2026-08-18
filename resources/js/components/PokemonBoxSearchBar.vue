@@ -1,189 +1,185 @@
 <template>
-  <form @submit.prevent="submitSearch">
-    <Card class="flex-row gap-2 p-4">
-      <AppInput
-        v-model="searchForm.search"
-        type="search"
-        name="search"
-        placeholder="Search by name..."
-        :icon="IconSearch"
-      />
-      <Dialog
-        @close="nextTick(() => !searchForm.processing && searchForm.reset())"
-      >
-        <Tooltip>
-          <AppIndicator
-            data-test="active-filters-indicator"
-            :show="activeFiltersCount > 0"
-            :text="activeFiltersCount.toString()"
-          >
-            <TooltipTrigger as-child>
-              <DialogTrigger as-child>
-                <Button
-                  type="button"
-                  variant="outline"
-                  size="icon"
-                  aria-label="Filters"
-                  data-test="open-search-filters-button"
-                >
-                  <IconFilter2 />
-                </Button>
-              </DialogTrigger>
-            </TooltipTrigger>
-          </AppIndicator>
-          <TooltipContent>Filters</TooltipContent>
-          <DialogContent class="max-h-[90vh] overflow-y-auto">
-            <DialogHeader>
-              <DialogTitle>Filters</DialogTitle>
-              <DialogDescription>
-                Use these filters to narrow down your search.
-              </DialogDescription>
-            </DialogHeader>
-            <div class="dialog-filters__wrapper">
-              <div class="dialog-filters__filters-group">
-                <p class="dialog-filters__filters-group-title">By type:</p>
-                <div class="dialog-filters__filters-group-checkboxes">
-                  <AppCheckbox
-                    v-for="option in filterOptions.types"
-                    :key="option.value"
-                    v-model="searchForm.types"
-                    name="types[]"
-                    :label="option.label"
-                    :value="option.value"
-                    :disabled="
-                      searchForm.types.length >= 2 &&
-                      !searchForm.types.includes(option.value)
-                    "
-                  />
-                </div>
-              </div>
-              <div class="dialog-filters__filters-group">
-                <p class="dialog-filters__filters-group-title">By trait:</p>
-                <div class="dialog-filters__filters-group-checkboxes">
-                  <AppCheckbox
-                    v-for="option in filterOptions.traits"
-                    :key="option.value"
-                    v-model="searchForm.traits"
-                    name="traits[]"
-                    :label="option.label"
-                    :value="option.value"
-                    :disabled="isTraitCheckboxDisabled(option.value)"
-                  />
-                </div>
-              </div>
-              <div class="dialog-filters__filters-group">
-                <p class="dialog-filters__filters-group-title">
-                  By generation:
-                </p>
-                <div class="dialog-filters__filters-group-checkboxes">
-                  <AppCheckbox
-                    v-for="option in filterOptions.generations"
-                    :key="option.value"
-                    v-model="searchForm.generations"
-                    name="generations[]"
-                    :label="option.label"
-                    :value="option.value"
-                  />
-                </div>
-              </div>
-            </div>
-            <DialogFooter>
-              <DialogClose as-child>
-                <Button
-                  type="button"
-                  variant="outline"
-                  data-test="reset-search-filters-button"
-                  @click="(clearDialogFilters(), nextTick(submitSearch))"
-                >
-                  Reset
-                </Button>
-              </DialogClose>
-              <DialogClose as-child>
-                <Button
-                  type="button"
-                  variant="outline"
-                  class="sm:ml-auto"
-                  data-test="close-search-filters-button"
-                >
-                  Cancel
-                </Button>
-              </DialogClose>
-              <DialogClose as-child>
-                <Button
-                  type="button"
-                  data-test="apply-search-filters-button"
-                  @click="submitSearch"
-                >
-                  Apply
-                </Button>
-              </DialogClose>
-            </DialogFooter>
-          </DialogContent>
-        </Tooltip>
-      </Dialog>
-      <Popover
-        @close="nextTick(() => !searchForm.processing && searchForm.reset())"
-      >
-        <Tooltip>
+  <Card class="flex-row gap-2 p-4">
+    <AppInput
+      v-model="searchForm.search"
+      type="search"
+      name="search"
+      placeholder="Search by name..."
+      :icon="IconSearch"
+    />
+    <Dialog
+      @close="nextTick(() => !searchForm.processing && searchForm.reset())"
+    >
+      <Tooltip>
+        <AppIndicator
+          data-test="active-filters-indicator"
+          :show="activeFiltersCount > 0"
+          :text="activeFiltersCount.toString()"
+        >
           <TooltipTrigger as-child>
-            <PopoverTrigger as-child>
+            <DialogTrigger as-child>
               <Button
                 type="button"
                 variant="outline"
                 size="icon"
-                aria-label="Sort"
+                aria-label="Filters"
+                data-test="open-search-filters-button"
               >
-                <IconArrowsDownUp />
+                <IconFilter2 />
               </Button>
-            </PopoverTrigger>
+            </DialogTrigger>
           </TooltipTrigger>
-          <TooltipContent>Sort</TooltipContent>
-          <PopoverContent class="flex flex-col gap-4">
-            <div class="flex flex-col gap-2">
-              <h2 class="text-lg leading-none font-semibold">Sort</h2>
-              <p class="text-sm text-muted-foreground">
-                Use these options to sort your results.
-              </p>
+        </AppIndicator>
+        <TooltipContent>Filters</TooltipContent>
+        <DialogContent class="max-h-[90vh] overflow-y-auto">
+          <DialogHeader>
+            <DialogTitle>Filters</DialogTitle>
+            <DialogDescription>
+              Use these filters to narrow down your search.
+            </DialogDescription>
+          </DialogHeader>
+          <div class="dialog-filters__wrapper">
+            <div class="dialog-filters__filters-group">
+              <p class="dialog-filters__filters-group-title">By type:</p>
+              <div class="dialog-filters__filters-group-checkboxes">
+                <AppCheckbox
+                  v-for="option in filterOptions.types"
+                  :key="option.value"
+                  v-model="searchForm.types"
+                  name="types[]"
+                  :label="option.label"
+                  :value="option.value"
+                  :disabled="
+                    searchForm.types.length >= 2 &&
+                    !searchForm.types.includes(option.value)
+                  "
+                />
+              </div>
             </div>
-            <AppSelect
-              v-model="searchForm.sort"
-              name="sort"
-              label="Sort by"
-              placeholder="Choose a value"
-              :options="filterOptions.sort"
-            />
-            <AppSelect
-              v-model="searchForm.dir"
-              name="dir"
-              label="Direction"
-              placeholder="Choose a value"
-              :options="filterOptions.dir"
-            />
-            <div class="flex">
-              <PopoverClose as-child>
-                <Button
-                  type="button"
-                  variant="outline"
-                  @click="(clearSortFilters(), nextTick(submitSearch))"
-                >
-                  Reset
-                </Button>
-              </PopoverClose>
-              <PopoverClose as-child>
-                <Button
-                  type="button"
-                  class="ml-auto"
-                  @click="submitSearch"
-                >
-                  Apply
-                </Button>
-              </PopoverClose>
+            <div class="dialog-filters__filters-group">
+              <p class="dialog-filters__filters-group-title">By trait:</p>
+              <div class="dialog-filters__filters-group-checkboxes">
+                <AppCheckbox
+                  v-for="option in filterOptions.traits"
+                  :key="option.value"
+                  v-model="searchForm.traits"
+                  name="traits[]"
+                  :label="option.label"
+                  :value="option.value"
+                  :disabled="isTraitCheckboxDisabled(option.value)"
+                />
+              </div>
             </div>
-          </PopoverContent>
-        </Tooltip>
-      </Popover>
-    </Card>
-  </form>
+            <div class="dialog-filters__filters-group">
+              <p class="dialog-filters__filters-group-title">By generation:</p>
+              <div class="dialog-filters__filters-group-checkboxes">
+                <AppCheckbox
+                  v-for="option in filterOptions.generations"
+                  :key="option.value"
+                  v-model="searchForm.generations"
+                  name="generations[]"
+                  :label="option.label"
+                  :value="option.value"
+                />
+              </div>
+            </div>
+          </div>
+          <DialogFooter>
+            <DialogClose as-child>
+              <Button
+                type="button"
+                variant="outline"
+                data-test="reset-search-filters-button"
+                @click="(clearDialogFilters(), nextTick(submitSearch))"
+              >
+                Reset
+              </Button>
+            </DialogClose>
+            <DialogClose as-child>
+              <Button
+                type="button"
+                variant="outline"
+                class="sm:ml-auto"
+                data-test="close-search-filters-button"
+              >
+                Cancel
+              </Button>
+            </DialogClose>
+            <DialogClose as-child>
+              <Button
+                type="button"
+                data-test="apply-search-filters-button"
+                @click="submitSearch"
+              >
+                Apply
+              </Button>
+            </DialogClose>
+          </DialogFooter>
+        </DialogContent>
+      </Tooltip>
+    </Dialog>
+    <Popover
+      @close="nextTick(() => !searchForm.processing && searchForm.reset())"
+    >
+      <Tooltip>
+        <TooltipTrigger as-child>
+          <PopoverTrigger as-child>
+            <Button
+              type="button"
+              variant="outline"
+              size="icon"
+              aria-label="Sort"
+            >
+              <IconArrowsDownUp />
+            </Button>
+          </PopoverTrigger>
+        </TooltipTrigger>
+        <TooltipContent>Sort</TooltipContent>
+        <PopoverContent class="flex flex-col gap-4">
+          <div class="flex flex-col gap-2">
+            <h2 class="text-lg leading-none font-semibold">Sort</h2>
+            <p class="text-sm text-muted-foreground">
+              Use these options to sort your results.
+            </p>
+          </div>
+          <AppSelect
+            v-model="searchForm.sort"
+            name="sort"
+            label="Sort by"
+            placeholder="Choose a value"
+            :options="filterOptions.sort"
+          />
+          <AppSelect
+            v-model="searchForm.dir"
+            name="dir"
+            label="Direction"
+            placeholder="Choose a value"
+            :options="filterOptions.dir"
+          />
+          <div class="flex">
+            <PopoverClose as-child>
+              <Button
+                type="button"
+                variant="outline"
+                @click="(clearSortFilters(), nextTick(submitSearch))"
+              >
+                Reset
+              </Button>
+            </PopoverClose>
+            <PopoverClose as-child>
+              <Button
+                type="button"
+                class="ml-auto"
+                @click="submitSearch"
+              >
+                Apply
+              </Button>
+            </PopoverClose>
+          </div>
+        </PopoverContent>
+      </Tooltip>
+    </Popover>
+  </Card>
 </template>
 
 <script setup lang="ts">
@@ -286,10 +282,6 @@ function clearSortFilters() {
 }
 
 function submitSearch() {
-  if (!searchForm.isDirty) {
-    return;
-  }
-
   searchForm
     .transform((data) =>
       Object.fromEntries(

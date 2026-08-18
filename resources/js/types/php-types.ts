@@ -48,6 +48,10 @@ export enum SearchBoxSortBy {
   LEVEL = 'level',
   POKEDEX_NUMBER = 'pokedex-number',
 }
+export enum SearchPokedexSortBy {
+  POKEDEX_NUMBER = 'pokedex-number',
+  NAME = 'name',
+}
 export enum SortDirection {
   ASC = 'asc',
   DESC = 'desc',

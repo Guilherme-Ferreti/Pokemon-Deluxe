@@ -24,7 +24,12 @@ import AppIconNotInBox from '@/components/AppIconNotInBox.vue';
 import AppPageHeader from '@/components/AppPageHeader.vue';
 import AppSection from '@/components/AppSection.vue';
 import Pokedex from '@/components/Pokedex.vue';
-import type { ElementalType, PaginatedList } from '@/types';
+import type {
+  ElementalType,
+  PaginatedList,
+  SearchPokedexSortBy,
+  SortDirection,
+} from '@/types';
 
 export interface DexPokedexIndexPageProps {
   speciesList: PaginatedList<{
@@ -40,6 +45,8 @@ export interface DexPokedexIndexPageProps {
   }>;
   activeFilters: {
     search: string;
+    sort: SearchPokedexSortBy;
+    dir: SortDirection;
   };
 }
 

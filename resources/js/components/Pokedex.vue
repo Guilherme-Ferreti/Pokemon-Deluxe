@@ -1,20 +1,36 @@
 <template>
-  <Card class="p-4">
+  <Card class="gap-4 p-4">
     <AppInput
       v-model="searchForm.search"
       type="search"
       name="search"
       placeholder="Search by name..."
+      class="ml-auto max-w-1/3"
       :icon="IconSearch"
     />
-  </Card>
-  <Card class="p-4">
     <Table>
       <TableHeader>
         <TableRow>
           <TableHead class="w-12 whitespace-normal">Dex No.</TableHead>
           <TableHead>Portrait</TableHead>
-          <TableHead>Name</TableHead>
+          <TableHead class="w-50">
+            <button
+              class="flex items-center gap-2 [&_svg]:size-4"
+              type="button"
+              @click="sortByName"
+            >
+              <span>Name</span>
+              <IconArrowsSort
+                v-if="searchForm.sort !== SearchPokedexSortBy.NAME"
+              />
+              <IconSortAscendingLetters
+                v-else-if="searchForm.dir === SortDirection.ASC"
+              />
+              <IconSortDescendingLetters
+                v-else-if="searchForm.dir === SortDirection.DESC"
+              />
+            </button>
+          </TableHead>
           <TableHead>Type(s)</TableHead>
           <TableHead>Generation</TableHead>
           <TableHead>Regular</TableHead>
@@ -63,7 +79,12 @@
 
 <script lang="ts" setup>
 import { useForm } from '@inertiajs/vue3';
-import { IconSearch } from '@tabler/icons-vue';
+import {
+  IconArrowsSort,
+  IconSearch,
+  IconSortAscendingLetters,
+  IconSortDescendingLetters,
+} from '@tabler/icons-vue';
 import { watchDebounced } from '@vueuse/core';
 import AppIconInBox from '@/components/AppIconInBox.vue';
 import AppIconNotInBox from '@/components/AppIconNotInBox.vue';
@@ -81,6 +102,7 @@ import {
   TableRow,
 } from '@/components/ui/table';
 import type { DexPokedexIndexPageProps } from '@/pages/Dex/Pokedex/Index.vue';
+import { SearchPokedexSortBy, SortDirection } from '@/types';
 import { route } from '@/types/helpers/route';
 
 const props = defineProps<{
@@ -90,6 +112,8 @@ const props = defineProps<{
 
 const searchForm = useForm({
   search: props.activeFilters.search,
+  sort: props.activeFilters.sort,
+  dir: props.activeFilters.dir,
 });
 
 watchDebounced(
@@ -98,11 +122,21 @@ watchDebounced(
   { debounce: 450 },
 );
 
-function submitSearch() {
-  if (!searchForm.isDirty) {
-    return;
+function sortByName() {
+  if (searchForm.sort !== SearchPokedexSortBy.NAME) {
+    searchForm.sort = SearchPokedexSortBy.NAME;
+    searchForm.dir = SortDirection.ASC;
+  } else if (searchForm.dir === SortDirection.ASC) {
+    searchForm.dir = SortDirection.DESC;
+  } else if (searchForm.dir === SortDirection.DESC) {
+    searchForm.sort = SearchPokedexSortBy.POKEDEX_NUMBER;
+    searchForm.dir = SortDirection.ASC;
   }
 
+  submitSearch();
+}
+
+function submitSearch() {
   searchForm
     .transform((data) =>
       Object.fromEntries(
