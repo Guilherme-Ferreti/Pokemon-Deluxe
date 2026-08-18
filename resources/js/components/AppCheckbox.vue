@@ -21,8 +21,8 @@
 
 <script setup lang="ts">
 import { computed, useId } from 'vue';
-import { Checkbox } from './ui/checkbox';
-import { Field, FieldError, FieldLabel } from './ui/field';
+import { Checkbox } from '@/components/ui/checkbox';
+import { Field, FieldError, FieldLabel } from '@/components/ui/field';
 
 interface AppCheckboxProps {
   label: string;

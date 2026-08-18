@@ -109,6 +109,7 @@ import {
   IconMoon,
 } from '@tabler/icons-vue';
 import { useColorMode } from '@vueuse/core';
+import AppNavLink from '@/components/AppNavLink.vue';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import {
   DropdownMenu,
@@ -122,6 +123,9 @@ import {
   DropdownMenuSubTrigger,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
+import DropdownMenuRadioGroup from '@/components/ui/dropdown-menu/DropdownMenuRadioGroup.vue';
+import DropdownMenuRadioItem from '@/components/ui/dropdown-menu/DropdownMenuRadioItem.vue';
+import DropdownMenuSubContent from '@/components/ui/dropdown-menu/DropdownMenuSubContent.vue';
 import {
   SidebarMenu,
   SidebarMenuButton,
@@ -129,10 +133,6 @@ import {
   useSidebar,
 } from '@/components/ui/sidebar';
 import { route } from '@/types/helpers/route';
-import AppNavLink from './AppNavLink.vue';
-import DropdownMenuRadioGroup from './ui/dropdown-menu/DropdownMenuRadioGroup.vue';
-import DropdownMenuRadioItem from './ui/dropdown-menu/DropdownMenuRadioItem.vue';
-import DropdownMenuSubContent from './ui/dropdown-menu/DropdownMenuSubContent.vue';
 
 const page = usePage();
 const { isMobile } = useSidebar();

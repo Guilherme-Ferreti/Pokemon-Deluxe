@@ -81,18 +81,18 @@
 
 <script setup lang="ts">
 import { IconBook, IconDotsVertical, IconEye } from '@tabler/icons-vue';
-import type { PokemonBoxIndexPageProps } from '@/pages/Pokemon/Box/Index.vue';
-import AppNavLink from './AppNavLink.vue';
-import AppSpeciesSprite from './AppSpeciesSprite.vue';
-import ElementalTypeBadges from './ElementalTypeBadges.vue';
-import { Button } from './ui/button';
-import { Card } from './ui/card';
+import AppNavLink from '@/components/AppNavLink.vue';
+import AppSpeciesSprite from '@/components/AppSpeciesSprite.vue';
+import ElementalTypeBadges from '@/components/ElementalTypeBadges.vue';
+import { Button } from '@/components/ui/button';
+import { Card } from '@/components/ui/card';
 import {
   DropdownMenu,
   DropdownMenuTrigger,
   DropdownMenuContent,
   DropdownMenuItem,
-} from './ui/dropdown-menu';
+} from '@/components/ui/dropdown-menu';
+import type { PokemonBoxIndexPageProps } from '@/pages/Pokemon/Box/Index.vue';
 
 defineProps<{
   pokemon: PokemonBoxIndexPageProps['pokemonList']['data'][number];

@@ -28,11 +28,11 @@
 
 <script setup lang="ts">
 import { IconPokeball } from '@tabler/icons-vue';
+import AppEmptyState from '@/components/AppEmptyState.vue';
+import AppPagination from '@/components/AppPagination.vue';
+import PokemonBoxCard from '@/components/PokemonBoxCard.vue';
+import PokemonBoxSearchBar from '@/components/PokemonBoxSearchBar.vue';
 import type { PokemonBoxIndexPageProps } from '@/pages/Pokemon/Box/Index.vue';
-import AppEmptyState from './AppEmptyState.vue';
-import AppPagination from './AppPagination.vue';
-import PokemonBoxCard from './PokemonBoxCard.vue';
-import PokemonBoxSearchBar from './PokemonBoxSearchBar.vue';
 
 defineProps<{
   pokemonList: PokemonBoxIndexPageProps['pokemonList'];

@@ -1,5 +1,5 @@
 import { createInertiaApp } from '@inertiajs/vue3';
-import DashboardLayout from './layouts/DashboardLayout.vue';
+import DashboardLayout from '@/layouts/DashboardLayout.vue';
 
 const appName = import.meta.env.VITE_APP_NAME || 'Laravel';
 

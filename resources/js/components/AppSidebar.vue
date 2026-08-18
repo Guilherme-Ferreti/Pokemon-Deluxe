@@ -22,6 +22,7 @@
 import SidebarHeaderLogo from '@/components/SidebarHeaderLogo.vue';
 import SidebarNavMain from '@/components/SidebarNavMain.vue';
 import SidebarNavUser from '@/components/SidebarNavUser.vue';
+import { Separator } from '@/components/ui/separator';
 import {
   Sidebar,
   SidebarContent,
@@ -29,5 +30,4 @@ import {
   SidebarHeader,
   SidebarTrigger,
 } from '@/components/ui/sidebar';
-import { Separator } from './ui/separator';
 </script>

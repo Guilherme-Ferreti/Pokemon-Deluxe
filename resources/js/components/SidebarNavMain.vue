@@ -75,6 +75,7 @@ import {
   IconSwords,
   IconTrees,
 } from '@tabler/icons-vue';
+import AppNavLink from '@/components/AppNavLink.vue';
 import {
   Collapsible,
   CollapsibleContent,
@@ -91,7 +92,6 @@ import {
 } from '@/components/ui/sidebar';
 import { isCurrentPage } from '@/lib/utils';
 import { route } from '@/types/helpers/route';
-import AppNavLink from './AppNavLink.vue';
 
 const items = [
   {

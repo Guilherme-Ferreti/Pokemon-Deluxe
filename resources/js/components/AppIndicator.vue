@@ -15,7 +15,7 @@
   </div>
 </template>
 <script setup lang="ts">
-import { Badge } from './ui/badge';
+import { Badge } from '@/components/ui/badge';
 
 defineProps<{
   show: boolean;

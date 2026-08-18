@@ -32,8 +32,12 @@
 <script setup lang="ts">
 import type { Icon } from '@tabler/icons-vue';
 import { computed, useId } from 'vue';
-import { Field, FieldError, FieldLabel } from './ui/field';
-import { InputGroup, InputGroupAddon, InputGroupInput } from './ui/input-group';
+import { Field, FieldError, FieldLabel } from '@/components/ui/field';
+import {
+  InputGroup,
+  InputGroupAddon,
+  InputGroupInput,
+} from '@/components/ui/input-group';
 
 interface AppInputProps {
   label?: string;
