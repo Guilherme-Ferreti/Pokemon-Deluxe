@@ -13,6 +13,7 @@
     <Pokedex
       :species-list="speciesList"
       :active-filters="activeFilters"
+      :filter-options="filterOptions"
     />
   </AppSection>
 </template>
@@ -26,9 +27,12 @@ import AppSection from '@/components/AppSection.vue';
 import Pokedex from '@/components/Pokedex.vue';
 import type {
   ElementalType,
+  FilterOption,
+  Generation,
   PaginatedList,
   SearchPokedexSortBy,
   SortDirection,
+  SpeciesTrait,
 } from '@/types';
 
 export interface DexPokedexIndexPageProps {
@@ -45,8 +49,16 @@ export interface DexPokedexIndexPageProps {
   }>;
   activeFilters: {
     search: string;
+    types: ElementalType[];
+    traits: SpeciesTrait[];
+    generations: Generation[];
     sort: SearchPokedexSortBy;
     dir: SortDirection;
+  };
+  filterOptions: {
+    types: FilterOption<ElementalType>[];
+    traits: FilterOption<SpeciesTrait>[];
+    generations: FilterOption<Generation>[];
   };
 }
 

@@ -1,6 +1,9 @@
 <template>
   <Card class="gap-4 p-4">
-    <form @submit.prevent="submitSearch">
+    <form
+      class="flex gap-2"
+      @submit.prevent="submitSearch"
+    >
       <AppInput
         v-model="searchForm.search"
         type="search"
@@ -9,6 +12,17 @@
         class="ml-auto max-w-1/3"
         :icon="IconSearch"
         @keypress.enter.prevent="() => searchForm.isDirty && submitSearch()"
+      />
+      <PokedexSearchBarFiltersDialog
+        v-model:types="searchForm.types"
+        v-model:traits="searchForm.traits"
+        v-model:generations="searchForm.generations"
+        :type-options="filterOptions.types"
+        :trait-options="filterOptions.traits"
+        :generation-options="filterOptions.generations"
+        :active-filters-count="activeFilters.generations.length"
+        @apply="submitSearch"
+        @close="nextTick(() => !searchForm.processing && searchForm.reset())"
       />
     </form>
     <Table v-if="speciesList.data.length > 0">
@@ -98,7 +112,7 @@ import {
   IconXMark,
 } from '@tabler/icons-vue';
 import { watchDebounced } from '@vueuse/core';
-import { computed } from 'vue';
+import { computed, nextTick } from 'vue';
 import AppIconInBox from '@/components/AppIconInBox.vue';
 import AppIconNotInBox from '@/components/AppIconNotInBox.vue';
 import AppInput from '@/components/AppInput.vue';
@@ -114,19 +128,24 @@ import {
   TableHeader,
   TableRow,
 } from '@/components/ui/table';
-import { removeFalsyValues } from '@/lib/utils.js';
+import { removeFalsyValues, toQueryString } from '@/lib/utils.js';
 import type { DexPokedexIndexPageProps } from '@/pages/Dex/Pokedex/Index.vue';
 import { SearchPokedexSortBy, SortDirection } from '@/types';
 import { route } from '@/types/helpers/route';
 import AppEmptyState from './AppEmptyState.vue';
+import PokedexSearchBarFiltersDialog from './PokedexSearchBarFiltersDialog.vue';
 
 const props = defineProps<{
   speciesList: DexPokedexIndexPageProps['speciesList'];
   activeFilters: DexPokedexIndexPageProps['activeFilters'];
+  filterOptions: DexPokedexIndexPageProps['filterOptions'];
 }>();
 
 const searchForm = useForm({
   search: props.activeFilters.search,
+  types: props.activeFilters.types,
+  traits: props.activeFilters.traits,
+  generations: props.activeFilters.generations,
   sort: props.activeFilters.sort,
   dir: props.activeFilters.dir,
 });
@@ -150,7 +169,7 @@ const sortByNameUrl = computed(function () {
     data.dir = SortDirection.ASC;
   }
 
-  return `${route('web.dex.pokedex.index')}?${new URLSearchParams(removeFalsyValues(data)).toString()}`;
+  return `${route('web.dex.pokedex.index')}?${toQueryString(removeFalsyValues(data)).toString()}`;
 });
 
 function submitSearch() {

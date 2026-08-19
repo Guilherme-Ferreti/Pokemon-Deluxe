@@ -31,3 +31,28 @@ export function removeFalsyValues<T extends Record<string, unknown>>(
     Object.entries(obj).filter(([, value]) => value || false),
   ) as Partial<T>;
 }
+
+export function toQueryString(
+  obj: Record<
+    string,
+    string | number | boolean | Array<string | number | boolean>
+  >,
+): string {
+  const params = new URLSearchParams();
+
+  for (const [key, value] of Object.entries(obj)) {
+    if (Array.isArray(value)) {
+      value.forEach((item, index) => {
+        params.append(`${key}[${index}]`, String(item));
+      });
+    } else {
+      params.append(key, String(value));
+    }
+  }
+
+  return params.toString();
+}
+
+export function anyItemExists<T>(array: T[], items: T[]): boolean {
+  return items.some((item) => array.includes(item));
+}

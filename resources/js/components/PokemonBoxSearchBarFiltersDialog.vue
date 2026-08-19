@@ -48,6 +48,7 @@
 <script setup lang="ts">
 import { nextTick } from 'vue';
 import AppCheckbox from '@/components/AppCheckbox.vue';
+import { anyItemExists } from '@/lib/utils.js';
 import type { PokemonBoxIndexPageProps } from '@/pages/Pokemon/Box/Index.vue';
 import { PokemonTrait } from '@/types/php-types.js';
 import AppCheckboxGroup from './AppCheckboxGroup.vue';
@@ -82,35 +83,42 @@ defineEmits<{
   apply: [value: void];
   close: [value: void];
 }>();
-
-function includesAny(...values: string[]) {
-  return selectedTraits.value.some((value) => values.includes(value));
-}
-
 function isTraitCheckboxDisabled(value: PokemonTrait) {
   if (value === PokemonTrait.BABY) {
-    return includesAny(
+    return anyItemExists(selectedTraits.value, [
       PokemonTrait.MEGA,
       PokemonTrait.GMAX,
       PokemonTrait.LEGENDARY,
       PokemonTrait.MYTHICAL,
-    );
+    ]);
   }
 
   if (value === PokemonTrait.LEGENDARY) {
-    return includesAny(PokemonTrait.MYTHICAL, PokemonTrait.BABY);
+    return anyItemExists(selectedTraits.value, [
+      PokemonTrait.MYTHICAL,
+      PokemonTrait.BABY,
+    ]);
   }
 
   if (value === PokemonTrait.MYTHICAL) {
-    return includesAny(PokemonTrait.LEGENDARY, PokemonTrait.BABY);
+    return anyItemExists(selectedTraits.value, [
+      PokemonTrait.LEGENDARY,
+      PokemonTrait.BABY,
+    ]);
   }
 
   if (value === PokemonTrait.MEGA) {
-    return includesAny(PokemonTrait.GMAX, PokemonTrait.BABY);
+    return anyItemExists(selectedTraits.value, [
+      PokemonTrait.GMAX,
+      PokemonTrait.BABY,
+    ]);
   }
 
   if (value === PokemonTrait.GMAX) {
-    return includesAny(PokemonTrait.MEGA, PokemonTrait.BABY);
+    return anyItemExists(selectedTraits.value, [
+      PokemonTrait.MEGA,
+      PokemonTrait.BABY,
+    ]);
   }
 
   return false;
