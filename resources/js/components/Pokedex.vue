@@ -1,23 +1,27 @@
 <template>
   <Card class="gap-4 p-4">
-    <AppInput
-      v-model="searchForm.search"
-      type="search"
-      name="search"
-      placeholder="Search by name..."
-      class="ml-auto max-w-1/3"
-      :icon="IconSearch"
-    />
-    <Table>
+    <form @submit.prevent="submitSearch">
+      <AppInput
+        v-model="searchForm.search"
+        type="search"
+        name="search"
+        placeholder="Search by name..."
+        class="ml-auto max-w-1/3"
+        :icon="IconSearch"
+        @keypress.enter.prevent="() => searchForm.isDirty && submitSearch()"
+      />
+    </form>
+    <Table v-if="speciesList.data.length > 0">
       <TableHeader>
         <TableRow>
           <TableHead class="w-12 whitespace-normal">Dex No.</TableHead>
           <TableHead>Portrait</TableHead>
           <TableHead class="w-50">
-            <button
+            <Link
               class="flex items-center gap-2 [&_svg]:size-4"
-              type="button"
-              @click="sortByName"
+              aria-label="Sort by name"
+              aria-current="page"
+              :href="sortByNameUrl"
             >
               <span>Name</span>
               <IconArrowsSort
@@ -29,7 +33,7 @@
               <IconSortDescendingLetters
                 v-else-if="searchForm.dir === SortDirection.DESC"
               />
-            </button>
+            </Link>
           </TableHead>
           <TableHead>Type(s)</TableHead>
           <TableHead>Generation</TableHead>
@@ -73,19 +77,28 @@
         </TableRow>
       </TableBody>
     </Table>
+    <AppEmptyState
+      v-else
+      title="No Pokémon found"
+      description="Change your search or filters to find some."
+      data-test="pokedex-empty-state"
+      :icon="IconXMark"
+    />
   </Card>
   <AppPagination :list="speciesList" />
 </template>
 
 <script lang="ts" setup>
-import { useForm } from '@inertiajs/vue3';
+import { Link, useForm } from '@inertiajs/vue3';
 import {
   IconArrowsSort,
   IconSearch,
   IconSortAscendingLetters,
   IconSortDescendingLetters,
+  IconXMark,
 } from '@tabler/icons-vue';
 import { watchDebounced } from '@vueuse/core';
+import { computed } from 'vue';
 import AppIconInBox from '@/components/AppIconInBox.vue';
 import AppIconNotInBox from '@/components/AppIconNotInBox.vue';
 import AppInput from '@/components/AppInput.vue';
@@ -101,9 +114,11 @@ import {
   TableHeader,
   TableRow,
 } from '@/components/ui/table';
+import { removeFalsyValues } from '@/lib/utils.js';
 import type { DexPokedexIndexPageProps } from '@/pages/Dex/Pokedex/Index.vue';
 import { SearchPokedexSortBy, SortDirection } from '@/types';
 import { route } from '@/types/helpers/route';
+import AppEmptyState from './AppEmptyState.vue';
 
 const props = defineProps<{
   speciesList: DexPokedexIndexPageProps['speciesList'];
@@ -122,31 +137,27 @@ watchDebounced(
   { debounce: 450 },
 );
 
-function sortByName() {
-  if (searchForm.sort !== SearchPokedexSortBy.NAME) {
-    searchForm.sort = SearchPokedexSortBy.NAME;
-    searchForm.dir = SortDirection.ASC;
-  } else if (searchForm.dir === SortDirection.ASC) {
-    searchForm.dir = SortDirection.DESC;
-  } else if (searchForm.dir === SortDirection.DESC) {
-    searchForm.sort = SearchPokedexSortBy.POKEDEX_NUMBER;
-    searchForm.dir = SortDirection.ASC;
+const sortByNameUrl = computed(function () {
+  const data = searchForm.data();
+
+  if (data.sort !== SearchPokedexSortBy.NAME) {
+    data.sort = SearchPokedexSortBy.NAME;
+    data.dir = SortDirection.ASC;
+  } else if (data.dir === SortDirection.ASC) {
+    data.dir = SortDirection.DESC;
+  } else if (data.dir === SortDirection.DESC) {
+    data.sort = SearchPokedexSortBy.POKEDEX_NUMBER;
+    data.dir = SortDirection.ASC;
   }
 
-  submitSearch();
-}
+  return `${route('web.dex.pokedex.index')}?${new URLSearchParams(removeFalsyValues(data)).toString()}`;
+});
 
 function submitSearch() {
-  searchForm
-    .transform((data) =>
-      Object.fromEntries(
-        Object.entries(data).filter(([, value]) => value || false),
-      ),
-    )
-    .get(route('web.dex.pokedex.index'), {
-      preserveScroll: true,
-      preserveState: true,
-      only: ['speciesList', 'activeFilters'],
-    });
+  searchForm.transform(removeFalsyValues).get(route('web.dex.pokedex.index'), {
+    preserveScroll: true,
+    preserveState: true,
+    only: ['speciesList', 'activeFilters'],
+  });
 }
 </script>

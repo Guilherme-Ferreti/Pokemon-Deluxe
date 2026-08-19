@@ -23,3 +23,11 @@ export function getBasePath(url: string): string {
 export function isCurrentPage(url: string): boolean {
   return getBasePath(usePage().url) === getBasePath(url);
 }
+
+export function removeFalsyValues<T extends Record<string, unknown>>(
+  obj: T,
+): Partial<T> {
+  return Object.fromEntries(
+    Object.entries(obj).filter(([, value]) => value || false),
+  ) as Partial<T>;
+}

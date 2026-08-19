@@ -1,36 +1,39 @@
 <template>
-  <Card class="flex-row gap-2 p-4">
-    <AppInput
-      v-model="searchForm.search"
-      type="search"
-      name="search"
-      placeholder="Search by name..."
-      :icon="IconSearch"
-    />
-    <PokemonBoxSearchBarFiltersDialog
-      v-model:types="searchForm.types"
-      v-model:traits="searchForm.traits"
-      v-model:generations="searchForm.generations"
-      :type-options="filterOptions.types"
-      :trait-options="filterOptions.traits"
-      :generation-options="filterOptions.generations"
-      :active-filters-count="
-        activeFilters.types.length +
-        activeFilters.traits.length +
-        activeFilters.generations.length
-      "
-      @submit="submitSearch"
-      @close="nextTick(() => !searchForm.processing && searchForm.reset())"
-    />
-    <PokemonBoxSearchBarSortPopover
-      v-model:sort="searchForm.sort"
-      v-model:dir="searchForm.dir"
-      :sort-options="filterOptions.sort"
-      :dir-options="filterOptions.dir"
-      @submit="submitSearch"
-      @close="nextTick(() => !searchForm.processing && searchForm.reset())"
-    />
-  </Card>
+  <form @submit.prevent="submitSearch">
+    <Card class="flex-row gap-2 p-4">
+      <AppInput
+        v-model="searchForm.search"
+        type="search"
+        name="search"
+        placeholder="Search by name..."
+        :icon="IconSearch"
+        @keypress.enter.prevent="() => searchForm.isDirty && submitSearch()"
+      />
+      <PokemonBoxSearchBarFiltersDialog
+        v-model:types="searchForm.types"
+        v-model:traits="searchForm.traits"
+        v-model:generations="searchForm.generations"
+        :type-options="filterOptions.types"
+        :trait-options="filterOptions.traits"
+        :generation-options="filterOptions.generations"
+        :active-filters-count="
+          activeFilters.types.length +
+          activeFilters.traits.length +
+          activeFilters.generations.length
+        "
+        @submit="submitSearch"
+        @close="nextTick(() => !searchForm.processing && searchForm.reset())"
+      />
+      <PokemonBoxSearchBarSortPopover
+        v-model:sort="searchForm.sort"
+        v-model:dir="searchForm.dir"
+        :sort-options="filterOptions.sort"
+        :dir-options="filterOptions.dir"
+        @submit="submitSearch"
+        @close="nextTick(() => !searchForm.processing && searchForm.reset())"
+      />
+    </Card>
+  </form>
 </template>
 
 <script setup lang="ts">
@@ -42,6 +45,7 @@ import AppInput from '@/components/AppInput.vue';
 import PokemonBoxSearchBarFiltersDialog from '@/components/PokemonBoxSearchBarFiltersDialog.vue';
 import PokemonBoxSearchBarSortPopover from '@/components/PokemonBoxSearchBarSortPopover.vue';
 import { Card } from '@/components/ui/card';
+import { removeFalsyValues } from '@/lib/utils';
 import type { PokemonBoxIndexPageProps } from '@/pages/Pokemon/Box/Index.vue';
 import { route } from '@/types/helpers/route.js';
 
@@ -66,16 +70,10 @@ watchDebounced(
 );
 
 function submitSearch() {
-  searchForm
-    .transform((data) =>
-      Object.fromEntries(
-        Object.entries(data).filter(([, value]) => value || false),
-      ),
-    )
-    .get(route('web.pokemon.box.index'), {
-      preserveScroll: true,
-      preserveState: true,
-      only: ['pokemonList', 'activeFilters'],
-    });
+  searchForm.transform(removeFalsyValues).get(route('web.pokemon.box.index'), {
+    preserveScroll: true,
+    preserveState: true,
+    only: ['pokemonList', 'activeFilters'],
+  });
 }
 </script>

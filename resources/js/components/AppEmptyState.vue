@@ -10,7 +10,7 @@
       <EmptyTitle>{{ title }}</EmptyTitle>
       <EmptyDescription>{{ description }}</EmptyDescription>
     </EmptyHeader>
-    <EmptyContent>
+    <EmptyContent v-if="$slots.default">
       <slot />
     </EmptyContent>
   </Empty>
