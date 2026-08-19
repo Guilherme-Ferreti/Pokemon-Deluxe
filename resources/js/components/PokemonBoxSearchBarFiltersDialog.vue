@@ -48,11 +48,11 @@
 <script setup lang="ts">
 import { nextTick } from 'vue';
 import AppCheckbox from '@/components/AppCheckbox.vue';
+import AppCheckboxGroup from '@/components/AppCheckboxGroup.vue';
+import AppSearchFiltersDialog from '@/components/AppSearchFiltersDialog.vue';
 import { anyItemExists } from '@/lib/utils.js';
 import type { PokemonBoxIndexPageProps } from '@/pages/Pokemon/Box/Index.vue';
 import { PokemonTrait } from '@/types/php-types.js';
-import AppCheckboxGroup from './AppCheckboxGroup.vue';
-import AppSearchFiltersDialog from './AppSearchFiltersDialog.vue';
 
 defineProps<{
   typeOptions: PokemonBoxIndexPageProps['filterOptions']['types'];

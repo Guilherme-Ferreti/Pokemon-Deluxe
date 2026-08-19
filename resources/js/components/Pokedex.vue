@@ -113,12 +113,14 @@ import {
 } from '@tabler/icons-vue';
 import { watchDebounced } from '@vueuse/core';
 import { computed, nextTick } from 'vue';
+import AppEmptyState from '@/components/AppEmptyState.vue';
 import AppIconInBox from '@/components/AppIconInBox.vue';
 import AppIconNotInBox from '@/components/AppIconNotInBox.vue';
 import AppInput from '@/components/AppInput.vue';
 import AppPagination from '@/components/AppPagination.vue';
 import AppSpeciesPortrait from '@/components/AppSpeciesPortrait.vue';
 import ElementalTypeBadges from '@/components/ElementalTypeBadges.vue';
+import PokedexSearchBarFiltersDialog from '@/components/PokedexSearchBarFiltersDialog.vue';
 import { Card } from '@/components/ui/card';
 import {
   Table,
@@ -132,8 +134,6 @@ import { removeFalsyValues, toQueryString } from '@/lib/utils.js';
 import type { DexPokedexIndexPageProps } from '@/pages/Dex/Pokedex/Index.vue';
 import { SearchPokedexSortBy, SortDirection } from '@/types';
 import { route } from '@/types/helpers/route';
-import AppEmptyState from './AppEmptyState.vue';
-import PokedexSearchBarFiltersDialog from './PokedexSearchBarFiltersDialog.vue';
 
 const props = defineProps<{
   speciesList: DexPokedexIndexPageProps['speciesList'];

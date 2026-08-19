@@ -47,12 +47,12 @@
 
 <script setup lang="ts">
 import { nextTick } from 'vue';
+import AppCheckbox from '@/components/AppCheckbox.vue';
+import AppCheckboxGroup from '@/components/AppCheckboxGroup.vue';
+import AppSearchFiltersDialog from '@/components/AppSearchFiltersDialog.vue';
 import { anyItemExists } from '@/lib/utils.js';
 import type { DexPokedexIndexPageProps } from '@/pages/Dex/Pokedex/Index.vue';
 import { SpeciesTrait } from '@/types/php-types.js';
-import AppCheckbox from './AppCheckbox.vue';
-import AppCheckboxGroup from './AppCheckboxGroup.vue';
-import AppSearchFiltersDialog from './AppSearchFiltersDialog.vue';
 
 defineProps<{
   typeOptions: DexPokedexIndexPageProps['filterOptions']['types'];
