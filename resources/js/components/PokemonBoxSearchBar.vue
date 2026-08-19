@@ -21,7 +21,7 @@
           activeFilters.traits.length +
           activeFilters.generations.length
         "
-        @submit="submitSearch"
+        @apply="submitSearch"
         @close="nextTick(() => !searchForm.processing && searchForm.reset())"
       />
       <PokemonBoxSearchBarSortPopover

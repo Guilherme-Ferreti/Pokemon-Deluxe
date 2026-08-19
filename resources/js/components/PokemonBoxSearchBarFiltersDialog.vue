@@ -1,138 +1,57 @@
 <template>
-  <Dialog @close="$emit('close')">
-    <Tooltip>
-      <AppIndicator
-        data-test="active-filters-indicator"
-        :show="activeFiltersCount > 0"
-        :text="activeFiltersCount.toString()"
-      >
-        <TooltipTrigger as-child>
-          <DialogTrigger as-child>
-            <Button
-              type="button"
-              variant="outline"
-              size="icon"
-              aria-label="Filters"
-              data-test="open-search-filters-button"
-            >
-              <IconFilter2 />
-            </Button>
-          </DialogTrigger>
-        </TooltipTrigger>
-      </AppIndicator>
-      <TooltipContent>Filters</TooltipContent>
-      <DialogContent class="max-h-[90vh] overflow-y-auto">
-        <DialogHeader>
-          <DialogTitle>Filters</DialogTitle>
-          <DialogDescription>
-            Use these filters to narrow down your search.
-          </DialogDescription>
-        </DialogHeader>
-        <div class="dialog-filters__wrapper">
-          <div class="dialog-filters__filters-group">
-            <p class="dialog-filters__filters-group-title">By type:</p>
-            <div class="dialog-filters__filters-group-checkboxes">
-              <AppCheckbox
-                v-for="option in typeOptions"
-                :key="option.value"
-                v-model="selectedTypes"
-                name="types[]"
-                :label="option.label"
-                :value="option.value"
-                :disabled="
-                  selectedTypes.length >= 2 &&
-                  !selectedTypes.includes(option.value)
-                "
-              />
-            </div>
-          </div>
-          <div class="dialog-filters__filters-group">
-            <p class="dialog-filters__filters-group-title">By trait:</p>
-            <div class="dialog-filters__filters-group-checkboxes">
-              <AppCheckbox
-                v-for="option in traitOptions"
-                :key="option.value"
-                v-model="selectedTraits"
-                name="traits[]"
-                :label="option.label"
-                :value="option.value"
-                :disabled="isTraitCheckboxDisabled(option.value)"
-              />
-            </div>
-          </div>
-          <div class="dialog-filters__filters-group">
-            <p class="dialog-filters__filters-group-title">By generation:</p>
-            <div class="dialog-filters__filters-group-checkboxes">
-              <AppCheckbox
-                v-for="option in generationOptions"
-                :key="option.value"
-                v-model="selectedGenerations"
-                name="generations[]"
-                :label="option.label"
-                :value="option.value"
-              />
-            </div>
-          </div>
-        </div>
-        <DialogFooter>
-          <DialogClose as-child>
-            <Button
-              type="button"
-              variant="outline"
-              data-test="reset-search-filters-button"
-              @click="(clearFilters(), nextTick(() => $emit('submit')))"
-            >
-              Reset
-            </Button>
-          </DialogClose>
-          <DialogClose as-child>
-            <Button
-              type="button"
-              variant="outline"
-              class="sm:ml-auto"
-              data-test="close-search-filters-button"
-            >
-              Cancel
-            </Button>
-          </DialogClose>
-          <DialogClose as-child>
-            <Button
-              type="button"
-              data-test="apply-search-filters-button"
-              @click="$emit('submit')"
-            >
-              Apply
-            </Button>
-          </DialogClose>
-        </DialogFooter>
-      </DialogContent>
-    </Tooltip>
-  </Dialog>
+  <AppSearchFiltersDialog
+    tooltip-text="Filters"
+    dialog-title="Filters"
+    dialog-description="Use these filters to narrow down your search."
+    :active-filters-count="activeFiltersCount"
+    @reset="(resetFilters(), nextTick(() => $emit('apply')))"
+    @close="$emit('close')"
+    @apply="$emit('apply')"
+  >
+    <AppCheckboxGroup title="By type:">
+      <AppCheckbox
+        v-for="option in typeOptions"
+        :key="option.value"
+        v-model="selectedTypes"
+        name="types[]"
+        :label="option.label"
+        :value="option.value"
+        :disabled="
+          selectedTypes.length >= 2 && !selectedTypes.includes(option.value)
+        "
+      />
+    </AppCheckboxGroup>
+    <AppCheckboxGroup title="By trait:">
+      <AppCheckbox
+        v-for="option in traitOptions"
+        :key="option.value"
+        v-model="selectedTraits"
+        name="traits[]"
+        :label="option.label"
+        :value="option.value"
+        :disabled="isTraitCheckboxDisabled(option.value)"
+      />
+    </AppCheckboxGroup>
+    <AppCheckboxGroup title="By generation:">
+      <AppCheckbox
+        v-for="option in generationOptions"
+        :key="option.value"
+        v-model="selectedGenerations"
+        name="generations[]"
+        :label="option.label"
+        :value="option.value"
+      />
+    </AppCheckboxGroup>
+  </AppSearchFiltersDialog>
 </template>
 
 <script setup lang="ts">
-import { IconFilter2 } from '@tabler/icons-vue';
 import { nextTick } from 'vue';
 import AppCheckbox from '@/components/AppCheckbox.vue';
-import AppIndicator from '@/components/AppIndicator.vue';
-import { Button } from '@/components/ui/button';
-import {
-  Dialog,
-  DialogTrigger,
-  DialogContent,
-  DialogHeader,
-  DialogFooter,
-  DialogTitle,
-  DialogDescription,
-  DialogClose,
-} from '@/components/ui/dialog';
-import {
-  Tooltip,
-  TooltipTrigger,
-  TooltipContent,
-} from '@/components/ui/tooltip';
 import type { PokemonBoxIndexPageProps } from '@/pages/Pokemon/Box/Index.vue';
 import { PokemonTrait } from '@/types/php-types.js';
+import AppCheckboxGroup from './AppCheckboxGroup.vue';
+import AppSearchFiltersDialog from './AppSearchFiltersDialog.vue';
 
 defineProps<{
   typeOptions: PokemonBoxIndexPageProps['filterOptions']['types'];
@@ -160,7 +79,7 @@ const selectedGenerations = defineModel<
 });
 
 defineEmits<{
-  submit: [value: void];
+  apply: [value: void];
   close: [value: void];
 }>();
 
@@ -197,29 +116,9 @@ function isTraitCheckboxDisabled(value: PokemonTrait) {
   return false;
 }
 
-function clearFilters() {
+function resetFilters() {
   selectedTraits.value = [];
   selectedTypes.value = [];
   selectedGenerations.value = [];
 }
 </script>
-
-<style scoped>
-@reference '../../css/app.css';
-
-.dialog-filters__wrapper {
-  @apply flex flex-col gap-6;
-}
-
-.dialog-filters__filters-group {
-  @apply grid gap-4 sm:grid-cols-[1fr_3fr] sm:gap-4;
-}
-
-.dialog-filters__filters-group-title {
-  @apply text-sm font-semibold;
-}
-
-.dialog-filters__filters-group-checkboxes {
-  @apply grid grid-cols-2 gap-4 sm:grid-cols-3;
-}
-</style>
