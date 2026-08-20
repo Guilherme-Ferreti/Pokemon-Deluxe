@@ -20,7 +20,11 @@
         :type-options="filterOptions.types"
         :trait-options="filterOptions.traits"
         :generation-options="filterOptions.generations"
-        :active-filters-count="activeFilters.generations.length"
+        :active-filters-count="
+          activeFilters.traits.length +
+          activeFilters.types.length +
+          activeFilters.generations.length
+        "
         @apply="submitSearch"
         @close="nextTick(() => !searchForm.processing && searchForm.reset())"
       />

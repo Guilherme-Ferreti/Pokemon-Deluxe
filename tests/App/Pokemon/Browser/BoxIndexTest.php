@@ -22,21 +22,24 @@ it('loads the box page without errors', function () {
         ->assertSeeIn('@page-title', 'Your Box');
 });
 
+it('shows box pokemon', function () {
+    $user    = User::factory()->create();
+    $pokemon = Pokemon::factory()->for($user)->count(3)->inBox()->create();
+
+    actingAs($user);
+
+    visit(route('web.pokemon.box.index'))
+        ->assertSee($pokemon[0]->species->name)
+        ->assertSee($pokemon[1]->species->name)
+        ->assertSee($pokemon[2]->species->name)
+        ->assertDontSee('@pokemon-box-empty-state');
+});
+
 it('shows the box empty state when there are no pokemon in the box', function () {
     actingAs(User::factory()->create());
 
     visit(route('web.pokemon.box.index'))
         ->assertVisible('@pokemon-box-empty-state');
-});
-
-it('shows box pokemon when they exist and hides empty state', function () {
-    $user = User::factory()->create();
-    Pokemon::factory()->for($user)->count(3)->inBox()->create();
-
-    actingAs($user);
-
-    visit(route('web.pokemon.box.index'))
-        ->assertDontSee('@pokemon-box-empty-state');
 });
 
 describe('search filters', function () {
@@ -91,7 +94,7 @@ describe('search filters', function () {
             ->assertQueryStringMissing('types')
             ->assertQueryStringMissing('traits')
             ->assertQueryStringMissing('generations')
-            ->assertDontSeeIn('@active-filters-indicator', '4');
+            ->assertDontSee('@active-filters-indicator');
     });
 
     it('applies filters only after Apply is clicked and discards them when the dialog is closed', function () {
@@ -103,7 +106,7 @@ describe('search filters', function () {
             ->click('[aria-label="Water"]')
             ->click('@close-search-filters-button')
             ->assertQueryStringMissing('types')
-            ->assertDontSeeIn('@active-filters-indicator', '2')
+            ->assertDontSee('@active-filters-indicator')
             ->click('@open-search-filters-button')
             ->assertAttribute('[aria-label="Fire"]', 'data-state', 'unchecked')
             ->assertAttribute('[aria-label="Water"]', 'data-state', 'unchecked')
