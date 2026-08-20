@@ -20,7 +20,7 @@ use Shared\Enums\PokeballType;
  * @property string|null $sprite
  * @property PokeballType $type
  * @property float $capture_rate
- * @property string $internal_id
+ * @property string $slug
  * @property string $external_id
  * @property Carbon $created_at
  * @property Carbon $updated_at

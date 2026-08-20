@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('sprite')->nullable();
             $table->string('type');
             $table->decimal('capture_rate', 5, 2)->unsigned();
-            $table->string('internal_id')->unique();
+            $table->string('slug')->unique();
             $table->string('external_id')->unique();
             $table->timestamps();
         });

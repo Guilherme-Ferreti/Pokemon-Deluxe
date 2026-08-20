@@ -23,7 +23,7 @@ final class PokeballFactory extends Factory
             'sprite'       => fake()->optional()->imageUrl(),
             'type'         => fake()->randomElement(PokeballType::cases()),
             'capture_rate' => fake()->randomFloat(2, 0, 100),
-            'internal_id'  => fake()->unique()->uuid(),
+            'slug'         => fake()->unique()->uuid(),
             'external_id'  => fake()->unique()->uuid(),
         ];
     }

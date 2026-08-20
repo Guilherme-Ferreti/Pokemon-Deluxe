@@ -15,7 +15,7 @@ return new class extends Migration
             $table->string('name');
             $table->text('description');
             $table->string('sprite')->nullable();
-            $table->string('internal_id')->unique();
+            $table->string('slug')->unique();
             $table->string('external_id')->unique();
             $table->timestamps();
         });

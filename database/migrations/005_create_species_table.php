@@ -33,7 +33,7 @@ return new class extends Migration
             $table->unsignedTinyInteger('generation');
             $table->unsignedTinyInteger('capture_rate')->nullable();
 
-            $table->string('internal_id')->unique();
+            $table->string('slug')->unique();
             $table->string('external_id');
 
             $table->timestamps();

@@ -37,7 +37,7 @@ use Shared\ValueObjects\SpeciesSprites;
  * @property bool $is_gmax
  * @property Generation $generation
  * @property int $capture_rate
- * @property string $internal_id
+ * @property string $slug
  * @property string $external_id
  * @property Carbon $created_at
  * @property Carbon $updated_at

@@ -50,7 +50,7 @@ final class SpeciesFactory extends Factory
             'is_gmax'      => fake()->boolean(5),
             'generation'   => fake()->randomElement(Generation::cases()),
             'capture_rate' => fake()->numberBetween(3, 255),
-            'internal_id'  => fake()->unique()->uuid(),
+            'slug'         => fake()->unique()->uuid(),
             'external_id'  => fake()->unique()->uuid(),
         ];
     }

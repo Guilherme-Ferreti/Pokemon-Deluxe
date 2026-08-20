@@ -6,6 +6,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Str;
 use Shared\Models\EvolutionItem;
 use Shared\Models\Species;
 use Shared\Models\SpeciesEvolution;
@@ -120,7 +121,7 @@ final class SpeciesSeeder extends Seeder
             'is_gmax'      => $pokemon['is_gmax'],
             'generation'   => $pokemon['generation'],
             'capture_rate' => $pokemon['capture_rate'],
-            'internal_id'  => $pokemon['id'],
+            'slug'         => $this->generateSpeciesSlug($pokemon['name']),
             'external_id'  => $pokemon['external_id'],
             'created_at'   => now(),
             'updated_at'   => now(),
@@ -159,5 +160,10 @@ final class SpeciesSeeder extends Seeder
     private function getEvolutionItemIds(): array
     {
         return EvolutionItem::pluck('id', 'external_id')->toArray();
+    }
+
+    private function generateSpeciesSlug(string $name): string
+    {
+        return Str::of($name)->slug()->replace('g-max-', 'gmax-')->toString();
     }
 }

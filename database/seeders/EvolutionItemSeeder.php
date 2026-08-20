@@ -23,7 +23,7 @@ final class EvolutionItemSeeder extends Seeder
                 'name'        => $item['name'],
                 'sprite'      => $item['sprite'],
                 'description' => $item['description'],
-                'internal_id' => $item['id'],
+                'slug'        => $item['id'],
                 'external_id' => $item['external_id'],
                 'created_at'  => now(),
                 'updated_at'  => now(),
