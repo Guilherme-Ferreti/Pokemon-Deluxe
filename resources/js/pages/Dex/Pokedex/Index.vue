@@ -1,7 +1,7 @@
 <template>
-  <Head title="Pokedex" />
+  <Head title="Pokédex" />
   <AppPageHeader
-    title="Pokedex"
+    title="Pokédex"
     description="Below is a list of all Pokemon in the game."
   />
   <p>
@@ -33,6 +33,7 @@ import type {
   SearchPokedexSortBy,
   SortDirection,
   SpeciesTrait,
+  SpeciesTypes,
 } from '@/types';
 import { route } from '@/types/helpers/route';
 
@@ -43,7 +44,7 @@ export interface DexPokedexIndexPageProps {
     name: string;
     frontSprite: string;
     pokedexNumber: number;
-    types: [ElementalType] | [ElementalType, ElementalType];
+    types: SpeciesTypes;
     generation: string;
     slug: string;
     regularInBox: boolean;
@@ -70,7 +71,7 @@ setLayoutProps({
   pageSize: 'small',
   breadcrumbs: [
     {
-      name: 'Pokedex',
+      name: 'Pokédex',
       href: route('web.dex.pokedex.index'),
     },
     {

@@ -1,3 +1,5 @@
+import type { ElementalType } from './php-types';
+
 export * from './auth';
 export * from './php-types';
 
@@ -26,3 +28,16 @@ export interface FilterOption<T extends string | number = string | number> {
   label: string;
   value: T;
 }
+
+export type SpeciesTypes = [ElementalType] | [ElementalType, ElementalType];
+
+export type SpeciesSprites = {
+  backDefault?: string;
+  backFemale?: string;
+  backShiny?: string;
+  backShinyFemale?: string;
+  frontDefault?: string;
+  frontFemale?: string;
+  frontShiny?: string;
+  frontShinyFemale?: string;
+};

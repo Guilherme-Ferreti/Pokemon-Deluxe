@@ -19,7 +19,7 @@ it('loads the pokedex page without errors', function () {
     visit(route('web.dex.pokedex.index'))
         ->assertNoSmoke()
         ->assertNoAccessibilityIssues()
-        ->assertSeeIn('@page-title', 'Pokedex');
+        ->assertSeeIn('@page-title', 'Pokédex');
 });
 
 it('shows species', function () {

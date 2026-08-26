@@ -33,7 +33,7 @@
                 </DropdownMenuItem>
                 <DropdownMenuItem as-child>
                   <AppNavLink
-                    title="Pokedex"
+                    title="Pokédex"
                     data-test="view-species-link"
                     :url="
                       route('web.dex.pokedex.show', {

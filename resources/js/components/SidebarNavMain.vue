@@ -127,7 +127,7 @@ const items = [
     icon: IconSwords,
   },
   {
-    title: 'Pokedex',
+    title: 'Pokédex',
     url: route('web.dex.pokedex.index'),
     icon: IconBook,
   },

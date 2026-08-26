@@ -26,6 +26,7 @@ import type {
   PokemonTrait,
   SearchBoxSortBy,
   SortDirection,
+  SpeciesTypes,
 } from '@/types';
 import { route } from '@/types/helpers/route';
 
@@ -37,7 +38,7 @@ export interface PokemonBoxIndexPageProps {
     level: number;
     experience: number;
     species: {
-      types: [ElementalType] | [ElementalType, ElementalType];
+      types: SpeciesTypes;
       slug: string;
     };
     moves: {
