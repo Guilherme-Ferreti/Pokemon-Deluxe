@@ -14,7 +14,7 @@
 </template>
 
 <script setup lang="ts">
-import { Head } from '@inertiajs/vue3';
+import { Head, setLayoutProps } from '@inertiajs/vue3';
 import AppPageHeader from '@/components/AppPageHeader.vue';
 import AppSection from '@/components/AppSection.vue';
 import PokemonBox from '@/components/PokemonBox.vue';
@@ -27,6 +27,7 @@ import type {
   SearchBoxSortBy,
   SortDirection,
 } from '@/types';
+import { route } from '@/types/helpers/route';
 
 export interface PokemonBoxIndexPageProps {
   pokemonList: PaginatedList<{
@@ -61,4 +62,16 @@ export interface PokemonBoxIndexPageProps {
 }
 
 defineProps<PokemonBoxIndexPageProps>();
+
+setLayoutProps({
+  breadcrumbs: [
+    {
+      name: 'Box',
+      href: route('web.pokemon.box.index'),
+    },
+    {
+      name: 'List',
+    },
+  ],
+});
 </script>

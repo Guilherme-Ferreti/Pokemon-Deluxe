@@ -3,24 +3,33 @@
     <AppSidebar />
     <SidebarInset>
       <div
-        class="mx-auto w-full space-y-8 py-6 pr-10"
+        class="mx-auto w-full py-6 pr-10"
         :class="{
-          'max-w-4xl': pageSize === 'small',
-          'max-w-6xl': pageSize === 'default',
+          '4xl:pr-0 max-w-4xl': pageSize === 'small',
+          '6xl:pr-0 max-w-6xl': pageSize === 'default',
         }"
       >
-        <slot />
+        <AppBreadcrumbs
+          v-if="breadcrumbs"
+          class="mb-4"
+          :breadcrumbs="breadcrumbs"
+        />
+        <div class="space-y-8">
+          <slot />
+        </div>
       </div>
     </SidebarInset>
   </SidebarProvider>
 </template>
 
 <script setup lang="ts">
+import AppBreadcrumbs from '@/components/AppBreadcrumbs.vue';
 import AppSidebar from '@/components/AppSidebar.vue';
 import { SidebarInset, SidebarProvider } from '@/components/ui/sidebar';
 
 interface DashboardLayoutProps {
   pageSize?: 'small' | 'default';
+  breadcrumbs?: { name: string; href?: string }[];
 }
 
 withDefaults(defineProps<DashboardLayoutProps>(), {

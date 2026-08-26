@@ -9,7 +9,7 @@
         type="search"
         name="search"
         placeholder="Search by name..."
-        class="ml-auto max-w-1/3"
+        class="ml-auto @xl:max-w-1/3"
         :icon="IconSearch"
         @keypress.enter.prevent="() => searchForm.isDirty && submitSearch()"
       />
@@ -98,7 +98,8 @@
               :href="route('web.dex.pokedex.show', { species: species.slug })"
             >
               <IconEye class="size-4" />
-              <span>View</span>
+              <span aria-hidden="true">View</span>
+              <span class="sr-only">View {{ species.name }}</span>
             </Link>
           </TableCell>
         </TableRow>

@@ -32,6 +32,7 @@ final readonly class PokedexShowPageProps implements ProvidesInertiaProperties
         return [
             'id'   => $this->species->id,
             'name' => $this->species->name,
+            'slug' => $this->species->slug,
         ];
     }
 }

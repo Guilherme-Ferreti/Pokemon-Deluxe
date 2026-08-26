@@ -19,7 +19,7 @@
 </template>
 
 <script lang="ts" setup>
-import { Head } from '@inertiajs/vue3';
+import { Head, setLayoutProps } from '@inertiajs/vue3';
 import AppIconInBox from '@/components/AppIconInBox.vue';
 import AppIconNotInBox from '@/components/AppIconNotInBox.vue';
 import AppPageHeader from '@/components/AppPageHeader.vue';
@@ -34,6 +34,7 @@ import type {
   SortDirection,
   SpeciesTrait,
 } from '@/types';
+import { route } from '@/types/helpers/route';
 
 export interface DexPokedexIndexPageProps {
   speciesList: PaginatedList<{
@@ -63,9 +64,18 @@ export interface DexPokedexIndexPageProps {
   };
 }
 
-defineOptions({
-  layout: () => ({ pageSize: 'small' }),
-});
-
 defineProps<DexPokedexIndexPageProps>();
+
+setLayoutProps({
+  pageSize: 'small',
+  breadcrumbs: [
+    {
+      name: 'Pokedex',
+      href: route('web.dex.pokedex.index'),
+    },
+    {
+      name: 'List',
+    },
+  ],
+});
 </script>
