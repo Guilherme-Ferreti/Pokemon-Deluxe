@@ -45,6 +45,7 @@ final class PokedexIndexPageProps implements ProvidesInertiaProperties
             'frontSprite'   => $species->sprites->front_default,
             'types'         => $species->types,
             'generation'    => $species->generation->label(),
+            'slug'          => $species->slug,
             'regularInBox'  => $boxPresence->firstwhere('speciesId', $species->id)['regularInBox'],
             'shinyInBox'    => $boxPresence->firstwhere('speciesId', $species->id)['shinyInBox'],
         ]);

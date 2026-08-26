@@ -57,7 +57,7 @@
           <TableHead>Generation</TableHead>
           <TableHead>Regular</TableHead>
           <TableHead>Shiny</TableHead>
-          <TableHead>Actions</TableHead>
+          <TableHead></TableHead>
         </TableRow>
       </TableHeader>
       <TableBody>
@@ -91,7 +91,16 @@
             <AppIconInBox v-if="species.shinyInBox" />
             <AppIconNotInBox v-else />
           </TableCell>
-          <TableCell>Actions</TableCell>
+          <TableCell>
+            <Link
+              class="flex items-center gap-1 hover:underline"
+              data-test="view-species-link"
+              :href="route('web.dex.pokedex.show', { species: species.slug })"
+            >
+              <IconEye class="size-4" />
+              <span>View</span>
+            </Link>
+          </TableCell>
         </TableRow>
       </TableBody>
     </Table>
@@ -110,6 +119,7 @@
 import { Link, useForm } from '@inertiajs/vue3';
 import {
   IconArrowsSort,
+  IconEye,
   IconSearch,
   IconSortAscendingLetters,
   IconSortDescendingLetters,

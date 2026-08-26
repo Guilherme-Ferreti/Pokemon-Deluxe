@@ -18,6 +18,7 @@
                   variant="ghost"
                   size="icon-sm"
                   class="text-ring"
+                  data-test="pokemon-card-dropdown-menu-trigger"
                 >
                   <IconDotsVertical />
                 </Button>
@@ -33,7 +34,12 @@
                 <DropdownMenuItem as-child>
                   <AppNavLink
                     title="Pokedex"
-                    url="#"
+                    data-test="view-species-link"
+                    :url="
+                      route('web.dex.pokedex.show', {
+                        species: pokemon.species.slug,
+                      })
+                    "
                     :icon="IconBook"
                   />
                 </DropdownMenuItem>
@@ -93,6 +99,7 @@ import {
   DropdownMenuItem,
 } from '@/components/ui/dropdown-menu';
 import type { PokemonBoxIndexPageProps } from '@/pages/Pokemon/Box/Index.vue';
+import { route } from '@/types/helpers/route';
 
 defineProps<{
   pokemon: PokemonBoxIndexPageProps['pokemonList']['data'][number];

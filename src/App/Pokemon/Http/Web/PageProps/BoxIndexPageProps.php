@@ -42,6 +42,7 @@ final readonly class BoxIndexPageProps implements ProvidesInertiaProperties
             'experience'  => $pokemon->experience,
             'species'     => [
                 'types' => $pokemon->species->types,
+                'slug'  => $pokemon->species->slug,
             ],
             'moves' => [
                 [

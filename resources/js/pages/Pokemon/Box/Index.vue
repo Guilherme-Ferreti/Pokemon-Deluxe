@@ -37,6 +37,7 @@ export interface PokemonBoxIndexPageProps {
     experience: number;
     species: {
       types: [ElementalType] | [ElementalType, ElementalType];
+      slug: string;
     };
     moves: {
       name: string;

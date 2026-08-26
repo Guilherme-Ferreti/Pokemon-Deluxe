@@ -44,6 +44,7 @@ export interface DexPokedexIndexPageProps {
     pokedexNumber: number;
     types: [ElementalType] | [ElementalType, ElementalType];
     generation: string;
+    slug: string;
     regularInBox: boolean;
     shinyInBox: boolean;
   }>;

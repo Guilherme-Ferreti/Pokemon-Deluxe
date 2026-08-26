@@ -255,3 +255,17 @@ describe('search filters', function () {
             ->assertEnabled('[aria-label="Baby"]');
     });
 });
+
+it('navigates to the pokedex show page from the pokemon dropdown', function () {
+    $user    = User::factory()->create();
+    $pokemon = Pokemon::factory()->for($user)->inBox()->create();
+
+    actingAs($user);
+
+    visit(route('web.pokemon.box.index'))
+        ->assertSee($pokemon->getName())
+        ->click('@pokemon-card-dropdown-menu-trigger')
+        ->click('@view-species-link')
+        ->assertPathIs(route('web.dex.pokedex.show', $pokemon->species, absolute: false))
+        ->assertNoSmoke();
+});

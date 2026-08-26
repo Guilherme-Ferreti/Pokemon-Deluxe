@@ -267,3 +267,16 @@ describe('search filters', function () {
     });
 
 });
+
+it('navigates to the species show page when View is clicked', function () {
+    $user    = User::factory()->create();
+    $species = Species::factory()->create(['name' => 'Pikachu']);
+
+    actingAs($user);
+
+    visit(route('web.dex.pokedex.index'))
+        ->assertSee('Pikachu')
+        ->click('@view-species-link')
+        ->assertPathIs(route('web.dex.pokedex.show', $species, absolute: false))
+        ->assertNoSmoke();
+});

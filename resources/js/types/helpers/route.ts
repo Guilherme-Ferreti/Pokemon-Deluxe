@@ -7,6 +7,9 @@ type RouteParameters = {
   'web.auth.logout': never;
   'web.dashboard.home': never;
   'web.dex.pokedex.index': never;
+  'web.dex.pokedex.show': {
+    species: string | number;
+  };
   'web.pokemon.party': never;
   'web.pokemon.box.index': never;
   'storage.local.upload': {
@@ -50,6 +53,7 @@ const routes = {
   'web.auth.logout': 'logout',
   'web.dashboard.home': 'dashboard',
   'web.dex.pokedex.index': 'pokedex',
+  'web.dex.pokedex.show': 'pokedex/{species}',
   'web.pokemon.party': 'your-pokemon/party',
   'web.pokemon.box.index': 'your-pokemon/box',
   'storage.local.upload': 'storage/{path}',
