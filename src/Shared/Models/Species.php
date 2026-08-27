@@ -5,8 +5,10 @@ declare(strict_types=1);
 namespace Shared\Models;
 
 use Database\Factories\SpeciesFactory;
+use Illuminate\Database\Eloquent\Attributes\Scope;
 use Illuminate\Database\Eloquent\Attributes\Table;
 use Illuminate\Database\Eloquent\Attributes\Unguarded;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Casts\AsEnumCollection;
 use Illuminate\Database\Eloquent\Collection as EloquentCollection;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
@@ -81,6 +83,23 @@ final class Species extends Model
     public function previousEvolutions(): HasMany
     {
         return $this->hasMany(SpeciesEvolution::class, 'to_species_id');
+    }
+
+    /**
+     * @param  Builder<Species>  $query
+     */
+    #[Scope]
+    protected function orderByPokedexNumber(Builder $query): void
+    {
+        $query->orderBy('pokedex_number')
+            ->orderByRaw('
+                CASE
+                    WHEN is_mega = 0 AND is_gmax = 0 THEN 1
+                    WHEN is_mega = 1 AND is_gmax = 0 THEN 2
+                    WHEN is_mega = 0 AND is_gmax = 1 THEN 3
+                END
+            ')
+            ->orderBy('id');
     }
 
     public function isSingleType(): bool

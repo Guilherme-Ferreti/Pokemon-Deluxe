@@ -89,16 +89,8 @@ final class SearchPokedexQuery
     private function applySorting(Builder $query, SearchPokedexSortBy $sort, SortDirection $dir): Builder
     {
         return match ($sort) {
-            SearchPokedexSortBy::POKEDEX_NUMBER => $query->orderBy('pokedex_number')
-                ->orderByRaw('
-                    CASE
-                        WHEN is_mega = 0 AND is_gmax = 0 THEN 1
-                        WHEN is_mega = 1 AND is_gmax = 0 THEN 2
-                        WHEN is_mega = 0 AND is_gmax = 1 THEN 3
-                    END
-                ')
-                ->orderBy('id'),
-            SearchPokedexSortBy::NAME => $query->orderBy('name', $dir->value),
+            SearchPokedexSortBy::POKEDEX_NUMBER => $query->orderByPokedexNumber(),
+            SearchPokedexSortBy::NAME           => $query->orderBy('name', $dir->value),
         };
     }
 }

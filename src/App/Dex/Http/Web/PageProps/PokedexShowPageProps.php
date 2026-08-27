@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace App\Dex\Http\Web\PageProps;
 
+use App\Dex\Queries\NextSpeciesQuery;
+use App\Dex\Queries\PreviousSpeciesQuery;
 use Inertia\ProvidesInertiaProperties;
 use Inertia\RenderContext;
 use Shared\Models\Species;
@@ -20,7 +22,9 @@ final readonly class PokedexShowPageProps implements ProvidesInertiaProperties
     public function toInertiaProperties(RenderContext $context): array
     {
         return [
-            'species' => fn () => $this->getSpeciesProp(),
+            'species'         => fn () => $this->getSpeciesProp(),
+            'previousSpecies' => fn () => $this->getPreviousSpeciesProp(),
+            'nextSpecies'     => fn () => $this->getNextSpeciesProp(),
         ];
     }
 
@@ -30,9 +34,62 @@ final readonly class PokedexShowPageProps implements ProvidesInertiaProperties
     private function getSpeciesProp(): array
     {
         return [
-            'id'   => $this->species->id,
-            'name' => $this->species->name,
-            'slug' => $this->species->slug,
+            'id'            => $this->species->id,
+            'name'          => $this->species->name,
+            'types'         => $this->species->types,
+            'pokedexNumber' => $this->species->pokedex_number,
+            'genus'         => $this->species->genus,
+            'textEntry'     => $this->species->text_entry,
+            'sprites'       => [
+                'backDefault'      => $this->species->sprites->back_default,
+                'backFemale'       => $this->species->sprites->back_female,
+                'backShiny'        => $this->species->sprites->back_shiny,
+                'backShinyFemale'  => $this->species->sprites->back_shiny_female,
+                'frontDefault'     => $this->species->sprites->front_default,
+                'frontFemale'      => $this->species->sprites->front_female,
+                'frontShiny'       => $this->species->sprites->front_shiny,
+                'frontShinyFemale' => $this->species->sprites->front_shiny_female,
+            ],
+            'portrait' => $this->species->portraits->normal,
+            'slug'     => $this->species->slug,
+        ];
+    }
+
+    /**
+     * @return ?array<string, mixed>
+     */
+    private function getPreviousSpeciesProp(): ?array
+    {
+        $species = new PreviousSpeciesQuery()->handle($this->species);
+
+        if (! $species) {
+            return null;
+        }
+
+        return [
+            'name'          => $species->name,
+            'pokedexNumber' => $species->pokedex_number,
+            'portrait'      => $species->portraits->normal,
+            'slug'          => $species->slug,
+        ];
+    }
+
+    /**
+     * @return ?array<string, mixed>
+     */
+    private function getNextSpeciesProp(): ?array
+    {
+        $species = new NextSpeciesQuery()->handle($this->species);
+
+        if (! $species) {
+            return null;
+        }
+
+        return [
+            'name'          => $species->name,
+            'pokedexNumber' => $species->pokedex_number,
+            'portrait'      => $species->portraits->normal,
+            'slug'          => $species->slug,
         ];
     }
 }
