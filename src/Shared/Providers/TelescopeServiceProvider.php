@@ -25,7 +25,10 @@ final class TelescopeServiceProvider extends TelescopeApplicationServiceProvider
 
         $isLocal = $this->app->environment('local');
 
-        Telescope::filter(fn (IncomingEntry $entry) => $isLocal ||
+        $isInertiaDevtoolsRequest = fn (IncomingEntry $entry): bool => $entry->isRequest() &&
+            str_contains($entry->content['uri'], '/_inertia/devtools');
+
+        Telescope::filter(fn (IncomingEntry $entry) => $isLocal && ! $isInertiaDevtoolsRequest($entry) ||
                    $entry->isReportableException() ||
                    $entry->isFailedRequest() ||
                    $entry->isFailedJob() ||
