@@ -1,57 +1,85 @@
 <template>
-  <div class="navigation__wrapper">
-    <Link
-      v-if="previousSpecies"
-      :href="route('web.dex.pokedex.show', { species: previousSpecies.slug })"
-    >
-      <Card class="navigation__card">
-        <AppSpeciesPortrait
-          :name="previousSpecies.name"
-          :url="previousSpecies.portrait"
-        />
-        <div class="navigation__text-wrapper">
-          <span class="navigation__pokedex-number">
-            #{{ formatPokedexNumber(previousSpecies.pokedexNumber) }}
-          </span>
-          <span class="navigation__species-name">
-            {{ previousSpecies.name }}
-          </span>
-        </div>
-      </Card>
-    </Link>
+  <nav
+    class="navigation__wrapper"
+    aria-label="Pagination"
+  >
+    <Tooltip v-if="previousSpecies">
+      <TooltipTrigger as-child>
+        <Button
+          variant="outline"
+          as-child
+          class="navigation__button"
+        >
+          <Link
+            :aria-label="`Previous species page: ${previousSpecies.name}`"
+            :href="
+              route('web.dex.pokedex.show', { species: previousSpecies.slug })
+            "
+          >
+            <IconChevronLeft />
+            <div class="navigation__text-wrapper text-right">
+              <span class="navigation__pokedex-number">
+                #{{ formatPokedexNumber(previousSpecies.pokedexNumber) }}
+              </span>
+              <span class="navigation__species-name">
+                {{ previousSpecies.name }}
+              </span>
+            </div>
+            <AppSpeciesPortrait
+              :name="previousSpecies.name"
+              :url="previousSpecies.portrait"
+            />
+          </Link>
+        </Button>
+      </TooltipTrigger>
+      <TooltipContent>{{ previousSpecies.name }}</TooltipContent>
+    </Tooltip>
     <Separator
       v-if="previousSpecies && nextSpecies"
       orientation="vertical"
+      class="navigation__separator"
     />
-    <Link
-      v-if="nextSpecies"
-      :href="route('web.dex.pokedex.show', { species: nextSpecies.slug })"
-    >
-      <Card class="navigation__card flex-row-reverse">
-        <div class="navigation__text-wrapper">
-          <span class="navigation__pokedex-number text-right">
-            #{{ formatPokedexNumber(nextSpecies.pokedexNumber) }}
-          </span>
-          <span class="navigation__species-name">
-            {{ nextSpecies.name }}
-          </span>
-        </div>
-        <AppSpeciesPortrait
-          :name="nextSpecies.name"
-          :url="nextSpecies.portrait"
-        />
-      </Card>
-    </Link>
-  </div>
+    <Tooltip v-if="nextSpecies">
+      <TooltipTrigger as-child>
+        <Button
+          variant="outline"
+          as-child
+          class="navigation__button"
+        >
+          <Link
+            :aria-label="`Next species page: ${nextSpecies.name}`"
+            :href="route('web.dex.pokedex.show', { species: nextSpecies.slug })"
+          >
+            <AppSpeciesPortrait
+              :name="nextSpecies.name"
+              :url="nextSpecies.portrait"
+            />
+            <div class="navigation__text-wrapper">
+              <span class="navigation__pokedex-number">
+                #{{ formatPokedexNumber(nextSpecies.pokedexNumber) }}
+              </span>
+              <span class="navigation__species-name">
+                {{ nextSpecies.name }}
+              </span>
+            </div>
+            <IconChevronRight />
+          </Link>
+        </Button>
+      </TooltipTrigger>
+      <TooltipContent>{{ nextSpecies.name }}</TooltipContent>
+    </Tooltip>
+  </nav>
 </template>
 
 <script setup lang="ts">
 import { Link } from '@inertiajs/vue3';
+import { IconChevronLeft, IconChevronRight } from '@tabler/icons-vue';
 import AppSpeciesPortrait from '@/components/AppSpeciesPortrait.vue';
-import { Card } from '@/components/ui/card';
 import { Separator } from '@/components/ui/separator';
 import type { DexPokedexShowPageProps } from '@/pages/Dex/Pokedex/Show.vue';
 import { route } from '@/types/helpers/route';
+import { Button } from './ui/button';
+import { Tooltip, TooltipTrigger, TooltipContent } from './ui/tooltip';
 
 defineProps<{
   previousSpecies?: DexPokedexShowPageProps['previousSpecies'];
@@ -67,22 +95,22 @@ function formatPokedexNumber(pokedexNumber: number): string {
 @reference '../../css/app.css';
 
 .navigation__wrapper {
-  @apply flex h-13 items-center space-x-4;
+  @apply flex h-13.5 items-center gap-4;
 }
 
-.navigation__card {
-  @apply flex-row items-center gap-2 p-3;
+.navigation__button {
+  @apply h-auto;
 }
 
 .navigation__text-wrapper {
-  @apply flex flex-col gap-1;
+  @apply hidden flex-col gap-1 sm:flex;
 }
 
 .navigation__pokedex-number {
-  @apply mb-1 text-[9px] leading-none font-black tracking-widest text-slate-400 uppercase;
+  @apply text-[9px] leading-none font-black tracking-widest text-slate-400;
 }
 
 .navigation__species-name {
-  @apply text-xs leading-none font-bold text-slate-700 capitalize dark:text-slate-200;
+  @apply w-[10ch] truncate text-xs leading-none font-bold;
 }
 </style>

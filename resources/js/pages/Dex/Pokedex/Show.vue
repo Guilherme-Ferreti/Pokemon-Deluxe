@@ -1,6 +1,6 @@
 <template>
   <Head :title="species.name" />
-  <section class="flex flex-wrap items-center justify-between">
+  <AppSection class="flex-row flex-wrap justify-between">
     <AppPageHeader
       :title="species.name"
       :description="`The ${species.genus}`"
@@ -9,7 +9,7 @@
       :previous-species="previousSpecies"
       :next-species="nextSpecies"
     />
-  </section>
+  </AppSection>
   <AppSection>
     <AppSpeciesSprite
       :url="species.sprites.frontDefault"

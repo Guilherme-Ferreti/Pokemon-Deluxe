@@ -1,6 +1,6 @@
 <template>
   <img
-    class="size-8"
+    class="size-8 rounded-sm"
     loading="lazy"
     :src="url"
     :alt="`${name}'s portrait`"

@@ -1,5 +1,12 @@
 <template>
-  <section class="@container/section flex flex-col gap-4">
+  <section :class="cn('@container/section flex flex-col gap-4', props.class)">
     <slot />
   </section>
 </template>
+
+<script setup lang="ts">
+import type { HTMLAttributes } from 'vue';
+import { cn } from '@/lib/utils';
+
+const props = defineProps<{ class?: HTMLAttributes['class'] }>();
+</script>
