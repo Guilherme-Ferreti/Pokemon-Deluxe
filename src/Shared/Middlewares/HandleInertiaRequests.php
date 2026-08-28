@@ -7,6 +7,7 @@ namespace Shared\Middlewares;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Lottery;
+use Inertia\Inertia;
 use Inertia\Middleware;
 use Override;
 use Shared\Models\Species;
@@ -48,9 +49,20 @@ final class HandleInertiaRequests extends Middleware
             ...parent::share($request),
             'name' => config('app.name'),
             'auth' => [
-                'user'          => fn () => $request->user()?->only('id', 'name', 'email'),
-                'layoutSprites' => fn () => $this->getAuthLayoutSprites(),
+                'user' => $request->user() ? Inertia::once(fn () => $request->user()->only('id', 'name', 'email')) : null,
             ],
+        ];
+    }
+
+    /**
+     * @return array<string, mixed>
+     */
+    #[Override]
+    public function shareOnce(Request $request): array
+    {
+        return [
+            ...parent::shareOnce($request),
+            'layout.auth.sprites' => fn () => $this->getAuthLayoutSprites(),
         ];
     }
 

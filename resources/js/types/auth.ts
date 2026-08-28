@@ -7,5 +7,4 @@ export type User = {
 
 export type Auth = {
   user: User;
-  layoutSprites: string[];
 };
