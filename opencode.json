@@ -1,24 +1,24 @@
 {
-  "$schema": "https://opencode.ai/config.json",
-  "mcp": {
-    "laravel-boost": {
-      "type": "local",
-      "enabled": true,
-      "command": [
-        "wsl.exe",
-        "/usr/bin/php8.5",
-        "/home/guilherme/apps/Pokemon-Deluxe/artisan",
-        "boost:mcp"
-      ]
-    },
-    "shadcnVue": {
-      "type": "local",
-      "enabled": true,
-      "command": [
-        "npx",
-        "shadcn-vue@latest",
-        "mcp"
-      ]
+    "$schema": "https://opencode.ai/config.json",
+    "mcp": {
+        "laravel-boost": {
+            "type": "local",
+            "enabled": true,
+            "command": [
+                "wsl.exe",
+                "/usr/bin/php8.5",
+                "/home/guilherme/apps/Pokemon-Deluxe/artisan",
+                "boost:mcp"
+            ]
+        },
+        "shadcnVue": {
+            "type": "local",
+            "enabled": true,
+            "command": [
+                "npx",
+                "shadcn-vue@latest",
+                "mcp"
+            ]
+        }
     }
-  }
 }
