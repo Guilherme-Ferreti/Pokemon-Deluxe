@@ -62,7 +62,7 @@ final readonly class PokedexShowPageProps implements ProvidesInertiaProperties
     {
         $species = new PreviousSpeciesQuery()->handle($this->species);
 
-        if (! $species) {
+        if (! $species instanceof Species) {
             return null;
         }
 
@@ -81,7 +81,7 @@ final readonly class PokedexShowPageProps implements ProvidesInertiaProperties
     {
         $species = new NextSpeciesQuery()->handle($this->species);
 
-        if (! $species) {
+        if (! $species instanceof Species) {
             return null;
         }
 

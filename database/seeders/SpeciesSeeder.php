@@ -147,11 +147,7 @@ final class SpeciesSeeder extends Seeder
 
     private function getSpeciesId(string $externalId): string
     {
-        if (! isset($this->speciesIds[$externalId])) {
-            $this->speciesIds[$externalId] = (new Species)->newUniqueId();
-        }
-
-        return $this->speciesIds[$externalId];
+        return $this->speciesIds[$externalId] ??= (new Species)->newUniqueId();
     }
 
     /**
