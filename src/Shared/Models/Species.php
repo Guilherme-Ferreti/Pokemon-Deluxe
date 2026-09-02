@@ -86,6 +86,14 @@ final class Species extends Model
     }
 
     /**
+     * @return HasMany<Pokemon, $this>
+     */
+    public function pokemon(): HasMany
+    {
+        return $this->hasMany(Pokemon::class);
+    }
+
+    /**
      * @param  Builder<Species>  $query
      */
     #[Scope]

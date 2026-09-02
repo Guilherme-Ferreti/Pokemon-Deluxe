@@ -7,15 +7,22 @@
       :next-species="nextSpecies"
     />
   </AppSection>
-  <AppSection class="grid lg:grid-cols-[2fr_1fr]">
-    <PokedexSpeciesHero :species="species" />
-    <PokedexSpeciesMetadata :species="species" />
+  <AppSection>
+    <div class="grid gap-6 @lg/section:grid-cols-2 @3xl/section:grid-cols-3">
+      <PokedexSpeciesHero
+        class="@lg/section:col-span-2"
+        :species="species"
+      />
+      <PokedexSpeciesMetadata :species="species" />
+      <PokedexSpeciesCaptureStatistics :statistics="captureStatistics" />
+    </div>
   </AppSection>
 </template>
 
 <script setup lang="ts">
 import { Head, setLayoutProps } from '@inertiajs/vue3';
 import AppSection from '@/components/AppSection.vue';
+import PokedexSpeciesCaptureStatistics from '@/components/PokedexSpeciesCaptureStatistics.vue';
 import PokedexSpeciesHero from '@/components/PokedexSpeciesHero.vue';
 import PokedexSpeciesMetadata from '@/components/PokedexSpeciesMetadata.vue';
 import PokedexSpeciesNavigation from '@/components/PokedexSpeciesNavigation.vue';
@@ -58,6 +65,16 @@ export interface DexPokedexShowPageProps {
     pokedexNumber: number;
     portrait: string;
     slug: string;
+  };
+  captureStatistics: {
+    currentUser: {
+      regular: number;
+      shiny: number;
+    };
+    allPlayers: {
+      regular: number;
+      shiny: number;
+    };
   };
 }
 

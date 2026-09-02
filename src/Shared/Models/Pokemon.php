@@ -95,6 +95,24 @@ final class Pokemon extends Model
         $query->where('in_party', false);
     }
 
+    /**
+     * @param  Builder<$this>  $query
+     */
+    #[Scope]
+    protected function regular(Builder $query): void
+    {
+        $query->where('is_shiny', false);
+    }
+
+    /**
+     * @param  Builder<$this>  $query
+     */
+    #[Scope]
+    protected function shiny(Builder $query): void
+    {
+        $query->where('is_shiny', true);
+    }
+
     public function getName(): string
     {
         if ($this->is_shiny) {

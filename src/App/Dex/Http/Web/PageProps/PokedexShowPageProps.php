@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace App\Dex\Http\Web\PageProps;
 
+use App\Dex\Actions\CalculateSpeciesCaptureStatistics;
+use App\Dex\Actions\CalculateUserSpeciesCaptureStatistics;
 use App\Dex\Queries\NextSpeciesQuery;
 use App\Dex\Queries\PreviousSpeciesQuery;
 use Inertia\ProvidesInertiaProperties;
@@ -22,9 +24,10 @@ final readonly class PokedexShowPageProps implements ProvidesInertiaProperties
     public function toInertiaProperties(RenderContext $context): array
     {
         return [
-            'species'         => fn () => $this->getSpeciesProp(),
-            'previousSpecies' => fn () => $this->getPreviousSpeciesProp(),
-            'nextSpecies'     => fn () => $this->getNextSpeciesProp(),
+            'species'           => fn () => $this->getSpeciesProp(),
+            'previousSpecies'   => fn () => $this->getPreviousSpeciesProp(),
+            'nextSpecies'       => fn () => $this->getNextSpeciesProp(),
+            'captureStatistics' => fn () => $this->getCaptureStatistics(),
         ];
     }
 
@@ -100,6 +103,17 @@ final readonly class PokedexShowPageProps implements ProvidesInertiaProperties
             'pokedexNumber' => $species->pokedex_number,
             'portrait'      => $species->portraits->regular,
             'slug'          => $species->slug,
+        ];
+    }
+
+    /**
+     * @return array<string, mixed>
+     */
+    private function getCaptureStatistics(): array
+    {
+        return [
+            'currentUser' => new CalculateUserSpeciesCaptureStatistics()->handle(currentUser(), $this->species),
+            'allPlayers'  => new CalculateSpeciesCaptureStatistics()->handle($this->species),
         ];
     }
 }
