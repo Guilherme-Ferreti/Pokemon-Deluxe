@@ -133,7 +133,7 @@ it('filters box pokemon by traits', function (PokemonTrait $trait, ?string $colu
     if ($trait === PokemonTrait::SHINY) {
         $pokemon = Pokemon::factory()->for($user)->inBox()->shiny()->create();
 
-        Pokemon::factory()->for($user)->inBox()->notShiny()->create();
+        Pokemon::factory()->for($user)->inBox()->regular()->create();
     } else {
         $pokemon = Pokemon::factory()->for($user)->for(Species::factory()->create([$column => true]))->inBox()->create();
 

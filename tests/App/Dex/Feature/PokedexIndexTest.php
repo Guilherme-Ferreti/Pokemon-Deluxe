@@ -108,7 +108,7 @@ it('indicates box presence for authenticated user', function () {
     $speciesA = Species::factory()->create(['pokedex_number' => 1]);
     $speciesB = Species::factory()->create(['pokedex_number' => 2]);
 
-    Pokemon::factory()->for($user)->for($speciesA)->notShiny()->inBox()->create();
+    Pokemon::factory()->for($user)->for($speciesA)->regular()->inBox()->create();
     Pokemon::factory()->for($user)->for($speciesB)->shiny()->inBox()->create();
 
     actingAs($user);

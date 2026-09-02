@@ -48,7 +48,7 @@ final class PokemonFactory extends Factory
         return $this->state(['is_shiny' => true]);
     }
 
-    public function notShiny(): static
+    public function regular(): static
     {
         return $this->state(['is_shiny' => false]);
     }

@@ -42,16 +42,16 @@ final class UserSeeder extends Seeder
             ->inRandomOrder()
             ->get()
             ->map(function (Species $species) use ($user, $pokeballs): array {
-                $notShiny = Pokemon::factory()->for($user)->for($species)->recycle($pokeballs)->notShiny()->inBox()->make()->toArray();
-                $shiny    = Pokemon::factory()->for($user)->for($species)->recycle($pokeballs)->shiny()->inBox()->make()->toArray();
+                $regular = Pokemon::factory()->for($user)->for($species)->recycle($pokeballs)->regular()->inBox()->make()->toArray();
+                $shiny   = Pokemon::factory()->for($user)->for($species)->recycle($pokeballs)->shiny()->inBox()->make()->toArray();
 
-                $notShiny['id'] = new Pokemon()->newUniqueId();
-                $shiny['id']    = new Pokemon()->newUniqueId();
+                $regular['id'] = new Pokemon()->newUniqueId();
+                $shiny['id']   = new Pokemon()->newUniqueId();
 
-                $notShiny['moves_ids'] = json_encode($notShiny['moves_ids']);
-                $shiny['moves_ids']    = json_encode($shiny['moves_ids']);
+                $regular['moves_ids'] = json_encode($regular['moves_ids']);
+                $shiny['moves_ids']   = json_encode($shiny['moves_ids']);
 
-                return [$notShiny, $shiny];
+                return [$regular, $shiny];
             })
             ->flatten(1)
             ->toArray();
