@@ -50,7 +50,7 @@ final readonly class PokedexShowPageProps implements ProvidesInertiaProperties
                 'frontShiny'       => $this->species->sprites->front_shiny,
                 'frontShinyFemale' => $this->species->sprites->front_shiny_female,
             ],
-            'portrait' => $this->species->portraits->normal,
+            'portrait' => $this->species->portraits->regular,
             'slug'     => $this->species->slug,
         ];
     }
@@ -69,7 +69,7 @@ final readonly class PokedexShowPageProps implements ProvidesInertiaProperties
         return [
             'name'          => $species->name,
             'pokedexNumber' => $species->pokedex_number,
-            'portrait'      => $species->portraits->normal,
+            'portrait'      => $species->portraits->regular,
             'slug'          => $species->slug,
         ];
     }
@@ -88,7 +88,7 @@ final readonly class PokedexShowPageProps implements ProvidesInertiaProperties
         return [
             'name'          => $species->name,
             'pokedexNumber' => $species->pokedex_number,
-            'portrait'      => $species->portraits->normal,
+            'portrait'      => $species->portraits->regular,
             'slug'          => $species->slug,
         ];
     }

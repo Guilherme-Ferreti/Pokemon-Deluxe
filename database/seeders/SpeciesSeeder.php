@@ -14,7 +14,7 @@ use Shared\Models\SpeciesEvolution;
 /**
  * @phpstan-type SeederEvolution array{evolves_to:string, item:?string, min_level:?int}
  * @phpstan-type SeederSprites array{back_default:?string, back_female:?string, back_shiny:?string, back_shiny_female:?string, front_default:?string, front_female:?string, front_shiny:?string, front_shiny_female:?string}
- * @phpstan-type SeederPortraits array{normal:?string, shiny:?string}
+ * @phpstan-type SeederPortraits array{regular:?string, shiny:?string}
  * @phpstan-type SeederPokemon array{id:string, external_id:string, name:string, types:list<string>, pokedex_number:int, genus:string, flavor_text:string, sprites:SeederSprites, portraits:SeederPortraits, is_baby:bool, is_legendary:bool, is_mythical:bool, is_mega:bool, is_gmax:bool, generation:int, capture_rate:?int, evolutions:list<SeederEvolution>}
  */
 final class SpeciesSeeder extends Seeder
@@ -111,8 +111,8 @@ final class SpeciesSeeder extends Seeder
                 'front_shiny_female' => $pokemon['sprites']['front_shiny_female'],
             ]),
             'portraits' => json_encode([
-                'normal' => $pokemon['portraits']['normal'],
-                'shiny'  => $pokemon['portraits']['shiny'],
+                'regular' => $pokemon['portraits']['regular'],
+                'shiny'   => $pokemon['portraits']['shiny'],
             ]),
             'is_baby'      => $pokemon['is_baby'],
             'is_legendary' => $pokemon['is_legendary'],

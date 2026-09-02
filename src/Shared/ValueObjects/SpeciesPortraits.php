@@ -12,7 +12,7 @@ use InvalidArgumentException;
 final class SpeciesPortraits implements Castable
 {
     public function __construct(
-        public ?string $normal,
+        public ?string $regular,
         public ?string $shiny,
     ) {}
 
@@ -28,16 +28,16 @@ final class SpeciesPortraits implements Castable
             {
                 if (! is_string($value) || ! is_array($value = json_decode($value, true))) {
                     return new SpeciesPortraits(...[
-                        'normal' => null,
-                        'shiny'  => null,
+                        'regular' => null,
+                        'shiny'   => null,
                     ]);
                 }
 
                 $sprites = array_map(fn ($item) => is_string($item) ? $item : null, $value);
 
                 return new SpeciesPortraits(...[
-                    'normal' => $sprites['normal'],
-                    'shiny'  => $sprites['shiny'],
+                    'regular' => $sprites['regular'],
+                    'shiny'   => $sprites['shiny'],
                 ]);
             }
 
@@ -48,8 +48,8 @@ final class SpeciesPortraits implements Castable
                 }
 
                 return (string) json_encode([
-                    'normal' => $value->normal,
-                    'shiny'  => $value->shiny,
+                    'regular' => $value->regular,
+                    'shiny'   => $value->shiny,
                 ]);
             }
         };

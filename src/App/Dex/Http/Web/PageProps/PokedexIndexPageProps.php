@@ -39,7 +39,7 @@ final class PokedexIndexPageProps implements ProvidesInertiaProperties
 
         return AppHelper::paginatorToArray($speciesList, fn (Species $species) => [
             'id'            => $species->id,
-            'portrait'      => $species->portraits->normal,
+            'portrait'      => $species->portraits->regular,
             'name'          => $species->name,
             'pokedexNumber' => $species->pokedex_number,
             'frontSprite'   => $species->sprites->front_default,

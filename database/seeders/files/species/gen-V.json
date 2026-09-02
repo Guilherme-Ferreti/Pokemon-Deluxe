@@ -20,7 +20,7 @@
             "front_shiny_female": null
         },
         "portraits": {
-            "normal": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0495/Normal.png",
+            "regular": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0495/Normal.png",
             "shiny": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0495/0000/0001/Normal.png"
         },
         "is_baby": false,
@@ -59,7 +59,7 @@
             "front_shiny_female": null
         },
         "portraits": {
-            "normal": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0496/Normal.png",
+            "regular": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0496/Normal.png",
             "shiny": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0496/0000/0001/Normal.png"
         },
         "is_baby": false,
@@ -98,7 +98,7 @@
             "front_shiny_female": null
         },
         "portraits": {
-            "normal": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0497/Normal.png",
+            "regular": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0497/Normal.png",
             "shiny": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0497/0000/0001/Normal.png"
         },
         "is_baby": false,
@@ -131,7 +131,7 @@
             "front_shiny_female": null
         },
         "portraits": {
-            "normal": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0498/Normal.png",
+            "regular": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0498/Normal.png",
             "shiny": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0498/0000/0001/Normal.png"
         },
         "is_baby": false,
@@ -171,7 +171,7 @@
             "front_shiny_female": null
         },
         "portraits": {
-            "normal": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0499/Normal.png",
+            "regular": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0499/Normal.png",
             "shiny": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0499/0000/0001/Normal.png"
         },
         "is_baby": false,
@@ -211,7 +211,7 @@
             "front_shiny_female": null
         },
         "portraits": {
-            "normal": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0500/Normal.png",
+            "regular": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0500/Normal.png",
             "shiny": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0500/0000/0001/Normal.png"
         },
         "is_baby": false,
@@ -251,7 +251,7 @@
             "front_shiny_female": null
         },
         "portraits": {
-            "normal": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0500/0001/Normal.png",
+            "regular": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0500/0001/Normal.png",
             "shiny": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0500/0001/0001/Normal.png"
         },
         "is_baby": false,
@@ -284,7 +284,7 @@
             "front_shiny_female": null
         },
         "portraits": {
-            "normal": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0501/Normal.png",
+            "regular": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0501/Normal.png",
             "shiny": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0501/0000/0001/Normal.png"
         },
         "is_baby": false,
@@ -323,7 +323,7 @@
             "front_shiny_female": null
         },
         "portraits": {
-            "normal": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0502/Normal.png",
+            "regular": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0502/Normal.png",
             "shiny": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0502/0000/0001/Normal.png"
         },
         "is_baby": false,
@@ -367,7 +367,7 @@
             "front_shiny_female": null
         },
         "portraits": {
-            "normal": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0503/Normal.png",
+            "regular": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0503/Normal.png",
             "shiny": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0503/0000/0001/Normal.png"
         },
         "is_baby": false,
@@ -401,7 +401,7 @@
             "front_shiny_female": null
         },
         "portraits": {
-            "normal": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0503/0001/Normal.png",
+            "regular": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0503/0001/Normal.png",
             "shiny": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0503/0001/0001/Normal.png"
         },
         "is_baby": false,
@@ -434,7 +434,7 @@
             "front_shiny_female": null
         },
         "portraits": {
-            "normal": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0504/Normal.png",
+            "regular": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0504/Normal.png",
             "shiny": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0504/0000/0001/Normal.png"
         },
         "is_baby": false,
@@ -473,7 +473,7 @@
             "front_shiny_female": null
         },
         "portraits": {
-            "normal": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0505/Normal.png",
+            "regular": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0505/Normal.png",
             "shiny": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0505/0000/0001/Normal.png"
         },
         "is_baby": false,
@@ -506,7 +506,7 @@
             "front_shiny_female": null
         },
         "portraits": {
-            "normal": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0506/Normal.png",
+            "regular": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0506/Normal.png",
             "shiny": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0506/0000/0001/Normal.png"
         },
         "is_baby": false,
@@ -545,7 +545,7 @@
             "front_shiny_female": null
         },
         "portraits": {
-            "normal": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0507/Normal.png",
+            "regular": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0507/Normal.png",
             "shiny": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0507/0000/0001/Normal.png"
         },
         "is_baby": false,
@@ -584,7 +584,7 @@
             "front_shiny_female": null
         },
         "portraits": {
-            "normal": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0508/Normal.png",
+            "regular": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0508/Normal.png",
             "shiny": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0508/0000/0001/Normal.png"
         },
         "is_baby": false,
@@ -617,7 +617,7 @@
             "front_shiny_female": null
         },
         "portraits": {
-            "normal": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0509/Normal.png",
+            "regular": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0509/Normal.png",
             "shiny": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0509/0000/0001/Normal.png"
         },
         "is_baby": false,
@@ -656,7 +656,7 @@
             "front_shiny_female": null
         },
         "portraits": {
-            "normal": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0510/Normal.png",
+            "regular": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0510/Normal.png",
             "shiny": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0510/0000/0001/Normal.png"
         },
         "is_baby": false,
@@ -689,7 +689,7 @@
             "front_shiny_female": null
         },
         "portraits": {
-            "normal": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0511/Normal.png",
+            "regular": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0511/Normal.png",
             "shiny": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0511/0000/0001/Normal.png"
         },
         "is_baby": false,
@@ -728,7 +728,7 @@
             "front_shiny_female": null
         },
         "portraits": {
-            "normal": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0512/Normal.png",
+            "regular": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0512/Normal.png",
             "shiny": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0512/0000/0001/Normal.png"
         },
         "is_baby": false,
@@ -761,7 +761,7 @@
             "front_shiny_female": null
         },
         "portraits": {
-            "normal": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0513/Normal.png",
+            "regular": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0513/Normal.png",
             "shiny": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0513/0000/0001/Normal.png"
         },
         "is_baby": false,
@@ -800,7 +800,7 @@
             "front_shiny_female": null
         },
         "portraits": {
-            "normal": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0514/Normal.png",
+            "regular": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0514/Normal.png",
             "shiny": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0514/0000/0001/Normal.png"
         },
         "is_baby": false,
@@ -833,7 +833,7 @@
             "front_shiny_female": null
         },
         "portraits": {
-            "normal": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0515/Normal.png",
+            "regular": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0515/Normal.png",
             "shiny": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0515/0000/0001/Normal.png"
         },
         "is_baby": false,
@@ -872,7 +872,7 @@
             "front_shiny_female": null
         },
         "portraits": {
-            "normal": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0516/Normal.png",
+            "regular": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0516/Normal.png",
             "shiny": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0516/0000/0001/Normal.png"
         },
         "is_baby": false,
@@ -905,7 +905,7 @@
             "front_shiny_female": null
         },
         "portraits": {
-            "normal": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0517/Normal.png",
+            "regular": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0517/Normal.png",
             "shiny": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0517/0000/0001/Normal.png"
         },
         "is_baby": false,
@@ -944,7 +944,7 @@
             "front_shiny_female": null
         },
         "portraits": {
-            "normal": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0518/Normal.png",
+            "regular": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0518/Normal.png",
             "shiny": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0518/0000/0001/Normal.png"
         },
         "is_baby": false,
@@ -978,7 +978,7 @@
             "front_shiny_female": null
         },
         "portraits": {
-            "normal": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0519/Normal.png",
+            "regular": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0519/Normal.png",
             "shiny": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0519/0000/0001/Normal.png"
         },
         "is_baby": false,
@@ -1018,7 +1018,7 @@
             "front_shiny_female": null
         },
         "portraits": {
-            "normal": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0520/Normal.png",
+            "regular": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0520/Normal.png",
             "shiny": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0520/0000/0001/Normal.png"
         },
         "is_baby": false,
@@ -1058,7 +1058,7 @@
             "front_shiny_female": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/female/521.png"
         },
         "portraits": {
-            "normal": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0521/Normal.png",
+            "regular": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0521/Normal.png",
             "shiny": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0521/0000/0001/Normal.png"
         },
         "is_baby": false,
@@ -1091,7 +1091,7 @@
             "front_shiny_female": null
         },
         "portraits": {
-            "normal": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0522/Normal.png",
+            "regular": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0522/Normal.png",
             "shiny": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0522/0000/0001/Normal.png"
         },
         "is_baby": false,
@@ -1130,7 +1130,7 @@
             "front_shiny_female": null
         },
         "portraits": {
-            "normal": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0523/Normal.png",
+            "regular": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0523/Normal.png",
             "shiny": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0523/0000/0001/Normal.png"
         },
         "is_baby": false,
@@ -1163,7 +1163,7 @@
             "front_shiny_female": null
         },
         "portraits": {
-            "normal": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0524/Normal.png",
+            "regular": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0524/Normal.png",
             "shiny": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0524/0000/0001/Normal.png"
         },
         "is_baby": false,
@@ -1202,7 +1202,7 @@
             "front_shiny_female": null
         },
         "portraits": {
-            "normal": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0525/Normal.png",
+            "regular": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0525/Normal.png",
             "shiny": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0525/0000/0001/Normal.png"
         },
         "is_baby": false,
@@ -1241,7 +1241,7 @@
             "front_shiny_female": null
         },
         "portraits": {
-            "normal": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0526/Normal.png",
+            "regular": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0526/Normal.png",
             "shiny": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0526/0000/0001/Normal.png"
         },
         "is_baby": false,
@@ -1275,7 +1275,7 @@
             "front_shiny_female": null
         },
         "portraits": {
-            "normal": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0527/Normal.png",
+            "regular": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0527/Normal.png",
             "shiny": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0527/0000/0001/Normal.png"
         },
         "is_baby": false,
@@ -1315,7 +1315,7 @@
             "front_shiny_female": null
         },
         "portraits": {
-            "normal": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0528/Normal.png",
+            "regular": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0528/Normal.png",
             "shiny": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0528/0000/0001/Normal.png"
         },
         "is_baby": false,
@@ -1348,7 +1348,7 @@
             "front_shiny_female": null
         },
         "portraits": {
-            "normal": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0529/Normal.png",
+            "regular": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0529/Normal.png",
             "shiny": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0529/0000/0001/Normal.png"
         },
         "is_baby": false,
@@ -1388,7 +1388,7 @@
             "front_shiny_female": null
         },
         "portraits": {
-            "normal": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0530/Normal.png",
+            "regular": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0530/Normal.png",
             "shiny": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0530/0000/0001/Normal.png"
         },
         "is_baby": false,
@@ -1428,7 +1428,7 @@
             "front_shiny_female": null
         },
         "portraits": {
-            "normal": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0530/0001/Normal.png",
+            "regular": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0530/0001/Normal.png",
             "shiny": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0530/0001/0001/Normal.png"
         },
         "is_baby": false,
@@ -1461,7 +1461,7 @@
             "front_shiny_female": null
         },
         "portraits": {
-            "normal": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0531/Normal.png",
+            "regular": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0531/Normal.png",
             "shiny": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0531/0000/0001/Normal.png"
         },
         "is_baby": false,
@@ -1501,7 +1501,7 @@
             "front_shiny_female": null
         },
         "portraits": {
-            "normal": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0531/0001/Normal.png",
+            "regular": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0531/0001/Normal.png",
             "shiny": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0531/0001/0001/Normal.png"
         },
         "is_baby": false,
@@ -1534,7 +1534,7 @@
             "front_shiny_female": null
         },
         "portraits": {
-            "normal": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0532/Normal.png",
+            "regular": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0532/Normal.png",
             "shiny": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0532/0000/0001/Normal.png"
         },
         "is_baby": false,
@@ -1573,7 +1573,7 @@
             "front_shiny_female": null
         },
         "portraits": {
-            "normal": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0533/Normal.png",
+            "regular": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0533/Normal.png",
             "shiny": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0533/0000/0001/Normal.png"
         },
         "is_baby": false,
@@ -1612,7 +1612,7 @@
             "front_shiny_female": null
         },
         "portraits": {
-            "normal": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0534/Normal.png",
+            "regular": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0534/Normal.png",
             "shiny": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0534/0000/0001/Normal.png"
         },
         "is_baby": false,
@@ -1645,7 +1645,7 @@
             "front_shiny_female": null
         },
         "portraits": {
-            "normal": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0535/Normal.png",
+            "regular": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0535/Normal.png",
             "shiny": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0535/0000/0001/Normal.png"
         },
         "is_baby": false,
@@ -1685,7 +1685,7 @@
             "front_shiny_female": null
         },
         "portraits": {
-            "normal": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0536/Normal.png",
+            "regular": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0536/Normal.png",
             "shiny": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0536/0000/0001/Normal.png"
         },
         "is_baby": false,
@@ -1725,7 +1725,7 @@
             "front_shiny_female": null
         },
         "portraits": {
-            "normal": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0537/Normal.png",
+            "regular": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0537/Normal.png",
             "shiny": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0537/0000/0001/Normal.png"
         },
         "is_baby": false,
@@ -1758,7 +1758,7 @@
             "front_shiny_female": null
         },
         "portraits": {
-            "normal": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0538/Normal.png",
+            "regular": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0538/Normal.png",
             "shiny": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0538/0000/0001/Normal.png"
         },
         "is_baby": false,
@@ -1791,7 +1791,7 @@
             "front_shiny_female": null
         },
         "portraits": {
-            "normal": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0539/Normal.png",
+            "regular": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0539/Normal.png",
             "shiny": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0539/0000/0001/Normal.png"
         },
         "is_baby": false,
@@ -1825,7 +1825,7 @@
             "front_shiny_female": null
         },
         "portraits": {
-            "normal": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0540/Normal.png",
+            "regular": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0540/Normal.png",
             "shiny": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0540/0000/0001/Normal.png"
         },
         "is_baby": false,
@@ -1865,7 +1865,7 @@
             "front_shiny_female": null
         },
         "portraits": {
-            "normal": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0541/Normal.png",
+            "regular": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0541/Normal.png",
             "shiny": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0541/0000/0001/Normal.png"
         },
         "is_baby": false,
@@ -1905,7 +1905,7 @@
             "front_shiny_female": null
         },
         "portraits": {
-            "normal": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0542/Normal.png",
+            "regular": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0542/Normal.png",
             "shiny": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0542/0000/0001/Normal.png"
         },
         "is_baby": false,
@@ -1939,7 +1939,7 @@
             "front_shiny_female": null
         },
         "portraits": {
-            "normal": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0543/Normal.png",
+            "regular": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0543/Normal.png",
             "shiny": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0543/0000/0001/Normal.png"
         },
         "is_baby": false,
@@ -1979,7 +1979,7 @@
             "front_shiny_female": null
         },
         "portraits": {
-            "normal": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0544/Normal.png",
+            "regular": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0544/Normal.png",
             "shiny": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0544/0000/0001/Normal.png"
         },
         "is_baby": false,
@@ -2019,7 +2019,7 @@
             "front_shiny_female": null
         },
         "portraits": {
-            "normal": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0545/Normal.png",
+            "regular": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0545/Normal.png",
             "shiny": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0545/0000/0001/Normal.png"
         },
         "is_baby": false,
@@ -2059,7 +2059,7 @@
             "front_shiny_female": null
         },
         "portraits": {
-            "normal": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0545/0001/Normal.png",
+            "regular": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0545/0001/Normal.png",
             "shiny": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0545/0001/0001/Normal.png"
         },
         "is_baby": false,
@@ -2093,7 +2093,7 @@
             "front_shiny_female": null
         },
         "portraits": {
-            "normal": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0546/Normal.png",
+            "regular": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0546/Normal.png",
             "shiny": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0546/0000/0001/Normal.png"
         },
         "is_baby": false,
@@ -2133,7 +2133,7 @@
             "front_shiny_female": null
         },
         "portraits": {
-            "normal": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0547/Normal.png",
+            "regular": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0547/Normal.png",
             "shiny": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0547/0000/0001/Normal.png"
         },
         "is_baby": false,
@@ -2166,7 +2166,7 @@
             "front_shiny_female": null
         },
         "portraits": {
-            "normal": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0548/Normal.png",
+            "regular": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0548/Normal.png",
             "shiny": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0548/0000/0001/Normal.png"
         },
         "is_baby": false,
@@ -2210,7 +2210,7 @@
             "front_shiny_female": null
         },
         "portraits": {
-            "normal": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0549/Normal.png",
+            "regular": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0549/Normal.png",
             "shiny": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0549/0000/0001/Normal.png"
         },
         "is_baby": false,
@@ -2244,7 +2244,7 @@
             "front_shiny_female": null
         },
         "portraits": {
-            "normal": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0549/0001/Normal.png",
+            "regular": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0549/0001/Normal.png",
             "shiny": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0549/0001/0001/Normal.png"
         },
         "is_baby": false,
@@ -2277,7 +2277,7 @@
             "front_shiny_female": null
         },
         "portraits": {
-            "normal": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0550/Normal.png",
+            "regular": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0550/Normal.png",
             "shiny": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0550/0000/0001/Normal.png"
         },
         "is_baby": false,
@@ -2310,7 +2310,7 @@
             "front_shiny_female": null
         },
         "portraits": {
-            "normal": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0550/0001/Normal.png",
+            "regular": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0550/0001/Normal.png",
             "shiny": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0550/0001/0001/Normal.png"
         },
         "is_baby": false,
@@ -2343,7 +2343,7 @@
             "front_shiny_female": null
         },
         "portraits": {
-            "normal": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0550/0002/Normal.png",
+            "regular": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0550/0002/Normal.png",
             "shiny": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0550/0002/0001/Normal.png"
         },
         "is_baby": false,
@@ -2377,7 +2377,7 @@
             "front_shiny_female": null
         },
         "portraits": {
-            "normal": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0551/Normal.png",
+            "regular": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0551/Normal.png",
             "shiny": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0551/0000/0001/Normal.png"
         },
         "is_baby": false,
@@ -2417,7 +2417,7 @@
             "front_shiny_female": null
         },
         "portraits": {
-            "normal": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0552/Normal.png",
+            "regular": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0552/Normal.png",
             "shiny": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0552/0000/0001/Normal.png"
         },
         "is_baby": false,
@@ -2457,7 +2457,7 @@
             "front_shiny_female": null
         },
         "portraits": {
-            "normal": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0553/Normal.png",
+            "regular": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0553/Normal.png",
             "shiny": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0553/0000/0001/Normal.png"
         },
         "is_baby": false,
@@ -2490,7 +2490,7 @@
             "front_shiny_female": null
         },
         "portraits": {
-            "normal": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0554/Normal.png",
+            "regular": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0554/Normal.png",
             "shiny": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0554/0000/0001/Normal.png"
         },
         "is_baby": false,
@@ -2534,7 +2534,7 @@
             "front_shiny_female": null
         },
         "portraits": {
-            "normal": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0555/Normal.png",
+            "regular": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0555/Normal.png",
             "shiny": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0555/0000/0001/Normal.png"
         },
         "is_baby": false,
@@ -2568,7 +2568,7 @@
             "front_shiny_female": null
         },
         "portraits": {
-            "normal": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0555/0001/Normal.png",
+            "regular": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0555/0001/Normal.png",
             "shiny": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0555/0001/0001/Normal.png"
         },
         "is_baby": false,
@@ -2601,7 +2601,7 @@
             "front_shiny_female": null
         },
         "portraits": {
-            "normal": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0556/Normal.png",
+            "regular": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0556/Normal.png",
             "shiny": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0556/0000/0001/Normal.png"
         },
         "is_baby": false,
@@ -2635,7 +2635,7 @@
             "front_shiny_female": null
         },
         "portraits": {
-            "normal": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0557/Normal.png",
+            "regular": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0557/Normal.png",
             "shiny": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0557/0000/0001/Normal.png"
         },
         "is_baby": false,
@@ -2675,7 +2675,7 @@
             "front_shiny_female": null
         },
         "portraits": {
-            "normal": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0558/Normal.png",
+            "regular": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0558/Normal.png",
             "shiny": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0558/0000/0001/Normal.png"
         },
         "is_baby": false,
@@ -2709,7 +2709,7 @@
             "front_shiny_female": null
         },
         "portraits": {
-            "normal": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0559/Normal.png",
+            "regular": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0559/Normal.png",
             "shiny": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0559/0000/0001/Normal.png"
         },
         "is_baby": false,
@@ -2749,7 +2749,7 @@
             "front_shiny_female": null
         },
         "portraits": {
-            "normal": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0560/Normal.png",
+            "regular": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0560/Normal.png",
             "shiny": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0560/0000/0001/Normal.png"
         },
         "is_baby": false,
@@ -2789,7 +2789,7 @@
             "front_shiny_female": null
         },
         "portraits": {
-            "normal": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0560/0001/Normal.png",
+            "regular": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0560/0001/Normal.png",
             "shiny": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0560/0001/0001/Normal.png"
         },
         "is_baby": false,
@@ -2823,7 +2823,7 @@
             "front_shiny_female": null
         },
         "portraits": {
-            "normal": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0561/Normal.png",
+            "regular": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0561/Normal.png",
             "shiny": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0561/0000/0001/Normal.png"
         },
         "is_baby": false,
@@ -2856,7 +2856,7 @@
             "front_shiny_female": null
         },
         "portraits": {
-            "normal": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0562/Normal.png",
+            "regular": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0562/Normal.png",
             "shiny": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0562/0000/0001/Normal.png"
         },
         "is_baby": false,
@@ -2895,7 +2895,7 @@
             "front_shiny_female": null
         },
         "portraits": {
-            "normal": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0563/Normal.png",
+            "regular": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0563/Normal.png",
             "shiny": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0563/0000/0001/Normal.png"
         },
         "is_baby": false,
@@ -2929,7 +2929,7 @@
             "front_shiny_female": null
         },
         "portraits": {
-            "normal": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0564/Normal.png",
+            "regular": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0564/Normal.png",
             "shiny": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0564/0000/0001/Normal.png"
         },
         "is_baby": false,
@@ -2969,7 +2969,7 @@
             "front_shiny_female": null
         },
         "portraits": {
-            "normal": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0565/Normal.png",
+            "regular": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0565/Normal.png",
             "shiny": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0565/0000/0001/Normal.png"
         },
         "is_baby": false,
@@ -3003,7 +3003,7 @@
             "front_shiny_female": null
         },
         "portraits": {
-            "normal": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0566/Normal.png",
+            "regular": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0566/Normal.png",
             "shiny": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0566/0000/0001/Normal.png"
         },
         "is_baby": false,
@@ -3043,7 +3043,7 @@
             "front_shiny_female": null
         },
         "portraits": {
-            "normal": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0567/Normal.png",
+            "regular": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0567/Normal.png",
             "shiny": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0567/0000/0001/Normal.png"
         },
         "is_baby": false,
@@ -3076,7 +3076,7 @@
             "front_shiny_female": null
         },
         "portraits": {
-            "normal": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0568/Normal.png",
+            "regular": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0568/Normal.png",
             "shiny": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0568/0000/0001/Normal.png"
         },
         "is_baby": false,
@@ -3115,7 +3115,7 @@
             "front_shiny_female": null
         },
         "portraits": {
-            "normal": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0569/Normal.png",
+            "regular": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0569/Normal.png",
             "shiny": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0569/0000/0001/Normal.png"
         },
         "is_baby": false,
@@ -3154,7 +3154,7 @@
             "front_shiny_female": null
         },
         "portraits": {
-            "normal": null,
+            "regular": null,
             "shiny": null
         },
         "is_baby": false,
@@ -3187,7 +3187,7 @@
             "front_shiny_female": null
         },
         "portraits": {
-            "normal": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0570/Normal.png",
+            "regular": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0570/Normal.png",
             "shiny": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0570/0000/0001/Normal.png"
         },
         "is_baby": false,
@@ -3227,7 +3227,7 @@
             "front_shiny_female": null
         },
         "portraits": {
-            "normal": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0570/0001/Normal.png",
+            "regular": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0570/0001/Normal.png",
             "shiny": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0570/0001/0001/Normal.png"
         },
         "is_baby": false,
@@ -3266,7 +3266,7 @@
             "front_shiny_female": null
         },
         "portraits": {
-            "normal": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0571/Normal.png",
+            "regular": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0571/Normal.png",
             "shiny": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0571/0000/0001/Normal.png"
         },
         "is_baby": false,
@@ -3300,7 +3300,7 @@
             "front_shiny_female": null
         },
         "portraits": {
-            "normal": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0571/0001/Normal.png",
+            "regular": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0571/0001/Normal.png",
             "shiny": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0571/0001/0001/Normal.png"
         },
         "is_baby": false,
@@ -3333,7 +3333,7 @@
             "front_shiny_female": null
         },
         "portraits": {
-            "normal": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0572/Normal.png",
+            "regular": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0572/Normal.png",
             "shiny": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0572/0000/0001/Normal.png"
         },
         "is_baby": false,
@@ -3372,7 +3372,7 @@
             "front_shiny_female": null
         },
         "portraits": {
-            "normal": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0573/Normal.png",
+            "regular": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0573/Normal.png",
             "shiny": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0573/0000/0001/Normal.png"
         },
         "is_baby": false,
@@ -3405,7 +3405,7 @@
             "front_shiny_female": null
         },
         "portraits": {
-            "normal": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0574/Normal.png",
+            "regular": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0574/Normal.png",
             "shiny": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0574/0000/0001/Normal.png"
         },
         "is_baby": false,
@@ -3444,7 +3444,7 @@
             "front_shiny_female": null
         },
         "portraits": {
-            "normal": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0575/Normal.png",
+            "regular": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0575/Normal.png",
             "shiny": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0575/0000/0001/Normal.png"
         },
         "is_baby": false,
@@ -3483,7 +3483,7 @@
             "front_shiny_female": null
         },
         "portraits": {
-            "normal": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0576/Normal.png",
+            "regular": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0576/Normal.png",
             "shiny": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0576/0000/0001/Normal.png"
         },
         "is_baby": false,
@@ -3516,7 +3516,7 @@
             "front_shiny_female": null
         },
         "portraits": {
-            "normal": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0577/Normal.png",
+            "regular": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0577/Normal.png",
             "shiny": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0577/0000/0001/Normal.png"
         },
         "is_baby": false,
@@ -3555,7 +3555,7 @@
             "front_shiny_female": null
         },
         "portraits": {
-            "normal": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0578/Normal.png",
+            "regular": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0578/Normal.png",
             "shiny": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0578/0000/0001/Normal.png"
         },
         "is_baby": false,
@@ -3594,7 +3594,7 @@
             "front_shiny_female": null
         },
         "portraits": {
-            "normal": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0579/Normal.png",
+            "regular": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0579/Normal.png",
             "shiny": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0579/0000/0001/Normal.png"
         },
         "is_baby": false,
@@ -3628,7 +3628,7 @@
             "front_shiny_female": null
         },
         "portraits": {
-            "normal": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0580/Normal.png",
+            "regular": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0580/Normal.png",
             "shiny": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0580/0000/0001/Normal.png"
         },
         "is_baby": false,
@@ -3668,7 +3668,7 @@
             "front_shiny_female": null
         },
         "portraits": {
-            "normal": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0581/Normal.png",
+            "regular": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0581/Normal.png",
             "shiny": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0581/0000/0001/Normal.png"
         },
         "is_baby": false,
@@ -3701,7 +3701,7 @@
             "front_shiny_female": null
         },
         "portraits": {
-            "normal": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0582/Normal.png",
+            "regular": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0582/Normal.png",
             "shiny": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0582/0000/0001/Normal.png"
         },
         "is_baby": false,
@@ -3740,7 +3740,7 @@
             "front_shiny_female": null
         },
         "portraits": {
-            "normal": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0583/Normal.png",
+            "regular": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0583/Normal.png",
             "shiny": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0583/0000/0001/Normal.png"
         },
         "is_baby": false,
@@ -3779,7 +3779,7 @@
             "front_shiny_female": null
         },
         "portraits": {
-            "normal": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0584/Normal.png",
+            "regular": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0584/Normal.png",
             "shiny": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0584/0000/0001/Normal.png"
         },
         "is_baby": false,
@@ -3813,7 +3813,7 @@
             "front_shiny_female": null
         },
         "portraits": {
-            "normal": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0585/Normal.png",
+            "regular": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0585/Normal.png",
             "shiny": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0585/0000/0001/Normal.png"
         },
         "is_baby": false,
@@ -3853,7 +3853,7 @@
             "front_shiny_female": null
         },
         "portraits": {
-            "normal": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0586/Normal.png",
+            "regular": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0586/Normal.png",
             "shiny": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0586/0000/0001/Normal.png"
         },
         "is_baby": false,
@@ -3887,7 +3887,7 @@
             "front_shiny_female": null
         },
         "portraits": {
-            "normal": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0587/Normal.png",
+            "regular": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0587/Normal.png",
             "shiny": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0587/0000/0001/Normal.png"
         },
         "is_baby": false,
@@ -3920,7 +3920,7 @@
             "front_shiny_female": null
         },
         "portraits": {
-            "normal": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0588/Normal.png",
+            "regular": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0588/Normal.png",
             "shiny": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0588/0000/0001/Normal.png"
         },
         "is_baby": false,
@@ -3960,7 +3960,7 @@
             "front_shiny_female": null
         },
         "portraits": {
-            "normal": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0589/Normal.png",
+            "regular": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0589/Normal.png",
             "shiny": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0589/0000/0001/Normal.png"
         },
         "is_baby": false,
@@ -3994,7 +3994,7 @@
             "front_shiny_female": null
         },
         "portraits": {
-            "normal": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0590/Normal.png",
+            "regular": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0590/Normal.png",
             "shiny": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0590/0000/0001/Normal.png"
         },
         "is_baby": false,
@@ -4034,7 +4034,7 @@
             "front_shiny_female": null
         },
         "portraits": {
-            "normal": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0591/Normal.png",
+            "regular": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0591/Normal.png",
             "shiny": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0591/0000/0001/Normal.png"
         },
         "is_baby": false,
@@ -4068,7 +4068,7 @@
             "front_shiny_female": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/female/592.png"
         },
         "portraits": {
-            "normal": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0592/Normal.png",
+            "regular": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0592/Normal.png",
             "shiny": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0592/0000/0001/Normal.png"
         },
         "is_baby": false,
@@ -4108,7 +4108,7 @@
             "front_shiny_female": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/female/593.png"
         },
         "portraits": {
-            "normal": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0593/Normal.png",
+            "regular": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0593/Normal.png",
             "shiny": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0593/0000/0001/Normal.png"
         },
         "is_baby": false,
@@ -4141,7 +4141,7 @@
             "front_shiny_female": null
         },
         "portraits": {
-            "normal": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0594/Normal.png",
+            "regular": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0594/Normal.png",
             "shiny": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0594/0000/0001/Normal.png"
         },
         "is_baby": false,
@@ -4175,7 +4175,7 @@
             "front_shiny_female": null
         },
         "portraits": {
-            "normal": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0595/Normal.png",
+            "regular": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0595/Normal.png",
             "shiny": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0595/0000/0001/Normal.png"
         },
         "is_baby": false,
@@ -4215,7 +4215,7 @@
             "front_shiny_female": null
         },
         "portraits": {
-            "normal": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0596/Normal.png",
+            "regular": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0596/Normal.png",
             "shiny": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0596/0000/0001/Normal.png"
         },
         "is_baby": false,
@@ -4249,7 +4249,7 @@
             "front_shiny_female": null
         },
         "portraits": {
-            "normal": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0597/Normal.png",
+            "regular": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0597/Normal.png",
             "shiny": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0597/0000/0001/Normal.png"
         },
         "is_baby": false,
@@ -4289,7 +4289,7 @@
             "front_shiny_female": null
         },
         "portraits": {
-            "normal": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0598/Normal.png",
+            "regular": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0598/Normal.png",
             "shiny": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0598/0000/0001/Normal.png"
         },
         "is_baby": false,
@@ -4322,7 +4322,7 @@
             "front_shiny_female": null
         },
         "portraits": {
-            "normal": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0599/Normal.png",
+            "regular": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0599/Normal.png",
             "shiny": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0599/0000/0001/Normal.png"
         },
         "is_baby": false,
@@ -4361,7 +4361,7 @@
             "front_shiny_female": null
         },
         "portraits": {
-            "normal": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0600/Normal.png",
+            "regular": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0600/Normal.png",
             "shiny": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0600/0000/0001/Normal.png"
         },
         "is_baby": false,
@@ -4400,7 +4400,7 @@
             "front_shiny_female": null
         },
         "portraits": {
-            "normal": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0601/Normal.png",
+            "regular": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0601/Normal.png",
             "shiny": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0601/0000/0001/Normal.png"
         },
         "is_baby": false,
@@ -4433,7 +4433,7 @@
             "front_shiny_female": null
         },
         "portraits": {
-            "normal": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0602/Normal.png",
+            "regular": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0602/Normal.png",
             "shiny": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0602/0000/0001/Normal.png"
         },
         "is_baby": false,
@@ -4472,7 +4472,7 @@
             "front_shiny_female": null
         },
         "portraits": {
-            "normal": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0603/Normal.png",
+            "regular": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0603/Normal.png",
             "shiny": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0603/0000/0001/Normal.png"
         },
         "is_baby": false,
@@ -4511,7 +4511,7 @@
             "front_shiny_female": null
         },
         "portraits": {
-            "normal": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0604/Normal.png",
+            "regular": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0604/Normal.png",
             "shiny": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0604/0000/0001/Normal.png"
         },
         "is_baby": false,
@@ -4550,7 +4550,7 @@
             "front_shiny_female": null
         },
         "portraits": {
-            "normal": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0604/0001/Normal.png",
+            "regular": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0604/0001/Normal.png",
             "shiny": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0604/0001/0001/Normal.png"
         },
         "is_baby": false,
@@ -4583,7 +4583,7 @@
             "front_shiny_female": null
         },
         "portraits": {
-            "normal": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0605/Normal.png",
+            "regular": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0605/Normal.png",
             "shiny": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0605/0000/0001/Normal.png"
         },
         "is_baby": false,
@@ -4622,7 +4622,7 @@
             "front_shiny_female": null
         },
         "portraits": {
-            "normal": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0606/Normal.png",
+            "regular": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0606/Normal.png",
             "shiny": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0606/0000/0001/Normal.png"
         },
         "is_baby": false,
@@ -4656,7 +4656,7 @@
             "front_shiny_female": null
         },
         "portraits": {
-            "normal": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0607/Normal.png",
+            "regular": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0607/Normal.png",
             "shiny": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0607/0000/0001/Normal.png"
         },
         "is_baby": false,
@@ -4696,7 +4696,7 @@
             "front_shiny_female": null
         },
         "portraits": {
-            "normal": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0608/Normal.png",
+            "regular": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0608/Normal.png",
             "shiny": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0608/0000/0001/Normal.png"
         },
         "is_baby": false,
@@ -4736,7 +4736,7 @@
             "front_shiny_female": null
         },
         "portraits": {
-            "normal": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0609/Normal.png",
+            "regular": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0609/Normal.png",
             "shiny": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0609/0000/0001/Normal.png"
         },
         "is_baby": false,
@@ -4776,7 +4776,7 @@
             "front_shiny_female": null
         },
         "portraits": {
-            "normal": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0609/0001/Normal.png",
+            "regular": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0609/0001/Normal.png",
             "shiny": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0609/0001/0001/Normal.png"
         },
         "is_baby": false,
@@ -4809,7 +4809,7 @@
             "front_shiny_female": null
         },
         "portraits": {
-            "normal": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0610/Normal.png",
+            "regular": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0610/Normal.png",
             "shiny": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0610/0000/0001/Normal.png"
         },
         "is_baby": false,
@@ -4848,7 +4848,7 @@
             "front_shiny_female": null
         },
         "portraits": {
-            "normal": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0611/Normal.png",
+            "regular": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0611/Normal.png",
             "shiny": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0611/0000/0001/Normal.png"
         },
         "is_baby": false,
@@ -4887,7 +4887,7 @@
             "front_shiny_female": null
         },
         "portraits": {
-            "normal": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0612/Normal.png",
+            "regular": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0612/Normal.png",
             "shiny": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0612/0000/0001/Normal.png"
         },
         "is_baby": false,
@@ -4920,7 +4920,7 @@
             "front_shiny_female": null
         },
         "portraits": {
-            "normal": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0613/Normal.png",
+            "regular": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0613/Normal.png",
             "shiny": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0613/0000/0001/Normal.png"
         },
         "is_baby": false,
@@ -4959,7 +4959,7 @@
             "front_shiny_female": null
         },
         "portraits": {
-            "normal": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0614/Normal.png",
+            "regular": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0614/Normal.png",
             "shiny": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0614/0000/0001/Normal.png"
         },
         "is_baby": false,
@@ -4992,7 +4992,7 @@
             "front_shiny_female": null
         },
         "portraits": {
-            "normal": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0615/Normal.png",
+            "regular": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0615/Normal.png",
             "shiny": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0615/0000/0001/Normal.png"
         },
         "is_baby": false,
@@ -5025,7 +5025,7 @@
             "front_shiny_female": null
         },
         "portraits": {
-            "normal": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0616/Normal.png",
+            "regular": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0616/Normal.png",
             "shiny": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0616/0000/0001/Normal.png"
         },
         "is_baby": false,
@@ -5064,7 +5064,7 @@
             "front_shiny_female": null
         },
         "portraits": {
-            "normal": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0617/Normal.png",
+            "regular": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0617/Normal.png",
             "shiny": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0617/0000/0001/Normal.png"
         },
         "is_baby": false,
@@ -5098,7 +5098,7 @@
             "front_shiny_female": null
         },
         "portraits": {
-            "normal": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0618/Normal.png",
+            "regular": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0618/Normal.png",
             "shiny": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0618/0000/0001/Normal.png"
         },
         "is_baby": false,
@@ -5131,7 +5131,7 @@
             "front_shiny_female": null
         },
         "portraits": {
-            "normal": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0619/Normal.png",
+            "regular": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0619/Normal.png",
             "shiny": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0619/0000/0001/Normal.png"
         },
         "is_baby": false,
@@ -5170,7 +5170,7 @@
             "front_shiny_female": null
         },
         "portraits": {
-            "normal": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0620/Normal.png",
+            "regular": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0620/Normal.png",
             "shiny": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0620/0000/0001/Normal.png"
         },
         "is_baby": false,
@@ -5203,7 +5203,7 @@
             "front_shiny_female": null
         },
         "portraits": {
-            "normal": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0621/Normal.png",
+            "regular": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0621/Normal.png",
             "shiny": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0621/0000/0001/Normal.png"
         },
         "is_baby": false,
@@ -5237,7 +5237,7 @@
             "front_shiny_female": null
         },
         "portraits": {
-            "normal": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0622/Normal.png",
+            "regular": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0622/Normal.png",
             "shiny": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0622/0000/0001/Normal.png"
         },
         "is_baby": false,
@@ -5277,7 +5277,7 @@
             "front_shiny_female": null
         },
         "portraits": {
-            "normal": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0623/Normal.png",
+            "regular": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0623/Normal.png",
             "shiny": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0623/0000/0001/Normal.png"
         },
         "is_baby": false,
@@ -5317,7 +5317,7 @@
             "front_shiny_female": null
         },
         "portraits": {
-            "normal": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0623/0001/Normal.png",
+            "regular": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0623/0001/Normal.png",
             "shiny": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0623/0001/0001/Normal.png"
         },
         "is_baby": false,
@@ -5351,7 +5351,7 @@
             "front_shiny_female": null
         },
         "portraits": {
-            "normal": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0624/Normal.png",
+            "regular": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0624/Normal.png",
             "shiny": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0624/0000/0001/Normal.png"
         },
         "is_baby": false,
@@ -5391,7 +5391,7 @@
             "front_shiny_female": null
         },
         "portraits": {
-            "normal": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0625/Normal.png",
+            "regular": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0625/Normal.png",
             "shiny": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0625/0000/0001/Normal.png"
         },
         "is_baby": false,
@@ -5430,7 +5430,7 @@
             "front_shiny_female": null
         },
         "portraits": {
-            "normal": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0626/Normal.png",
+            "regular": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0626/Normal.png",
             "shiny": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0626/0000/0001/Normal.png"
         },
         "is_baby": false,
@@ -5464,7 +5464,7 @@
             "front_shiny_female": null
         },
         "portraits": {
-            "normal": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0627/Normal.png",
+            "regular": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0627/Normal.png",
             "shiny": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0627/0000/0001/Normal.png"
         },
         "is_baby": false,
@@ -5504,7 +5504,7 @@
             "front_shiny_female": null
         },
         "portraits": {
-            "normal": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0628/Normal.png",
+            "regular": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0628/Normal.png",
             "shiny": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0628/0000/0001/Normal.png"
         },
         "is_baby": false,
@@ -5538,7 +5538,7 @@
             "front_shiny_female": null
         },
         "portraits": {
-            "normal": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0628/0001/Normal.png",
+            "regular": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0628/0001/Normal.png",
             "shiny": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0628/0001/0001/Normal.png"
         },
         "is_baby": false,
@@ -5572,7 +5572,7 @@
             "front_shiny_female": null
         },
         "portraits": {
-            "normal": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0629/Normal.png",
+            "regular": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0629/Normal.png",
             "shiny": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0629/0000/0001/Normal.png"
         },
         "is_baby": false,
@@ -5612,7 +5612,7 @@
             "front_shiny_female": null
         },
         "portraits": {
-            "normal": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0630/Normal.png",
+            "regular": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0630/Normal.png",
             "shiny": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0630/0000/0001/Normal.png"
         },
         "is_baby": false,
@@ -5645,7 +5645,7 @@
             "front_shiny_female": null
         },
         "portraits": {
-            "normal": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0631/Normal.png",
+            "regular": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0631/Normal.png",
             "shiny": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0631/0000/0001/Normal.png"
         },
         "is_baby": false,
@@ -5679,7 +5679,7 @@
             "front_shiny_female": null
         },
         "portraits": {
-            "normal": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0632/Normal.png",
+            "regular": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0632/Normal.png",
             "shiny": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0632/0000/0001/Normal.png"
         },
         "is_baby": false,
@@ -5713,7 +5713,7 @@
             "front_shiny_female": null
         },
         "portraits": {
-            "normal": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0633/Normal.png",
+            "regular": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0633/Normal.png",
             "shiny": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0633/0000/0001/Normal.png"
         },
         "is_baby": false,
@@ -5753,7 +5753,7 @@
             "front_shiny_female": null
         },
         "portraits": {
-            "normal": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0634/Normal.png",
+            "regular": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0634/Normal.png",
             "shiny": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0634/0000/0001/Normal.png"
         },
         "is_baby": false,
@@ -5793,7 +5793,7 @@
             "front_shiny_female": null
         },
         "portraits": {
-            "normal": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0635/Normal.png",
+            "regular": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0635/Normal.png",
             "shiny": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0635/0000/0001/Normal.png"
         },
         "is_baby": false,
@@ -5827,7 +5827,7 @@
             "front_shiny_female": null
         },
         "portraits": {
-            "normal": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0636/Normal.png",
+            "regular": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0636/Normal.png",
             "shiny": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0636/0000/0001/Normal.png"
         },
         "is_baby": false,
@@ -5867,7 +5867,7 @@
             "front_shiny_female": null
         },
         "portraits": {
-            "normal": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0637/Normal.png",
+            "regular": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0637/Normal.png",
             "shiny": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0637/0000/0001/Normal.png"
         },
         "is_baby": false,
@@ -5901,7 +5901,7 @@
             "front_shiny_female": null
         },
         "portraits": {
-            "normal": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0638/Normal.png",
+            "regular": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0638/Normal.png",
             "shiny": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0638/0000/0001/Normal.png"
         },
         "is_baby": false,
@@ -5935,7 +5935,7 @@
             "front_shiny_female": null
         },
         "portraits": {
-            "normal": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0639/Normal.png",
+            "regular": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0639/Normal.png",
             "shiny": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0639/0000/0001/Normal.png"
         },
         "is_baby": false,
@@ -5969,7 +5969,7 @@
             "front_shiny_female": null
         },
         "portraits": {
-            "normal": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0640/Normal.png",
+            "regular": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0640/Normal.png",
             "shiny": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0640/0000/0001/Normal.png"
         },
         "is_baby": false,
@@ -6002,7 +6002,7 @@
             "front_shiny_female": null
         },
         "portraits": {
-            "normal": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0641/Normal.png",
+            "regular": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0641/Normal.png",
             "shiny": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0641/0000/0001/Normal.png"
         },
         "is_baby": false,
@@ -6035,7 +6035,7 @@
             "front_shiny_female": null
         },
         "portraits": {
-            "normal": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0641/0001/Normal.png",
+            "regular": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0641/0001/Normal.png",
             "shiny": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0641/0001/0001/Normal.png"
         },
         "is_baby": false,
@@ -6069,7 +6069,7 @@
             "front_shiny_female": null
         },
         "portraits": {
-            "normal": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0642/Normal.png",
+            "regular": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0642/Normal.png",
             "shiny": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0642/0000/0001/Normal.png"
         },
         "is_baby": false,
@@ -6103,7 +6103,7 @@
             "front_shiny_female": null
         },
         "portraits": {
-            "normal": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0642/0001/Normal.png",
+            "regular": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0642/0001/Normal.png",
             "shiny": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0642/0001/0001/Normal.png"
         },
         "is_baby": false,
@@ -6137,7 +6137,7 @@
             "front_shiny_female": null
         },
         "portraits": {
-            "normal": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0643/Normal.png",
+            "regular": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0643/Normal.png",
             "shiny": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0643/0000/0001/Normal.png"
         },
         "is_baby": false,
@@ -6171,7 +6171,7 @@
             "front_shiny_female": null
         },
         "portraits": {
-            "normal": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0644/Normal.png",
+            "regular": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0644/Normal.png",
             "shiny": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0644/0000/0001/Normal.png"
         },
         "is_baby": false,
@@ -6205,7 +6205,7 @@
             "front_shiny_female": null
         },
         "portraits": {
-            "normal": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0645/Normal.png",
+            "regular": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0645/Normal.png",
             "shiny": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0645/0000/0001/Normal.png"
         },
         "is_baby": false,
@@ -6239,7 +6239,7 @@
             "front_shiny_female": null
         },
         "portraits": {
-            "normal": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0645/0001/Normal.png",
+            "regular": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0645/0001/Normal.png",
             "shiny": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0645/0001/0001/Normal.png"
         },
         "is_baby": false,
@@ -6273,7 +6273,7 @@
             "front_shiny_female": null
         },
         "portraits": {
-            "normal": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0646/Normal.png",
+            "regular": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0646/Normal.png",
             "shiny": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0646/0000/0001/Normal.png"
         },
         "is_baby": false,
@@ -6307,7 +6307,7 @@
             "front_shiny_female": null
         },
         "portraits": {
-            "normal": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0646/0001/Normal.png",
+            "regular": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0646/0001/Normal.png",
             "shiny": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0646/0001/0001/Normal.png"
         },
         "is_baby": false,
@@ -6341,7 +6341,7 @@
             "front_shiny_female": null
         },
         "portraits": {
-            "normal": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0646/0002/Normal.png",
+            "regular": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0646/0002/Normal.png",
             "shiny": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0646/0002/0001/Normal.png"
         },
         "is_baby": false,
@@ -6375,7 +6375,7 @@
             "front_shiny_female": null
         },
         "portraits": {
-            "normal": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0647/Normal.png",
+            "regular": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0647/Normal.png",
             "shiny": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0647/0000/0001/Normal.png"
         },
         "is_baby": false,
@@ -6409,7 +6409,7 @@
             "front_shiny_female": null
         },
         "portraits": {
-            "normal": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0647/0001/Normal.png",
+            "regular": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0647/0001/Normal.png",
             "shiny": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0647/0001/0001/Normal.png"
         },
         "is_baby": false,
@@ -6443,7 +6443,7 @@
             "front_shiny_female": null
         },
         "portraits": {
-            "normal": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0648/Normal.png",
+            "regular": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0648/Normal.png",
             "shiny": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0648/0000/0001/Normal.png"
         },
         "is_baby": false,
@@ -6477,7 +6477,7 @@
             "front_shiny_female": null
         },
         "portraits": {
-            "normal": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0648/0001/Normal.png",
+            "regular": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0648/0001/Normal.png",
             "shiny": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0648/0001/0001/Normal.png"
         },
         "is_baby": false,
@@ -6511,7 +6511,7 @@
             "front_shiny_female": null
         },
         "portraits": {
-            "normal": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0649/Normal.png",
+            "regular": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0649/Normal.png",
             "shiny": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0649/0000/0001/Normal.png"
         },
         "is_baby": false,

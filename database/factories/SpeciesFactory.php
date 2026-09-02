@@ -40,7 +40,7 @@ final class SpeciesFactory extends Factory
                 front_shiny_female: fake()->imageUrl(width: 96, height: 96, word: 'front shiny female'),
             ),
             'portraits' => new SpeciesPortraits(
-                normal: fake()->imageUrl(width: 96, height: 96, word: 'normal'),
+                regular: fake()->imageUrl(width: 96, height: 96, word: 'regular'),
                 shiny: fake()->imageUrl(width: 96, height: 96, word: 'shiny'),
             ),
             'is_baby'      => fake()->boolean(5),
