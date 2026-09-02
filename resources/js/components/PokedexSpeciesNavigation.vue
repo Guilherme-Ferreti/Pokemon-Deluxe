@@ -76,6 +76,7 @@ import { Link } from '@inertiajs/vue3';
 import { IconChevronLeft, IconChevronRight } from '@tabler/icons-vue';
 import AppSpeciesPortrait from '@/components/AppSpeciesPortrait.vue';
 import { Separator } from '@/components/ui/separator';
+import { formatPokedexNumber } from '@/lib/utils';
 import type { DexPokedexShowPageProps } from '@/pages/Dex/Pokedex/Show.vue';
 import { route } from '@/types/helpers/route';
 import { Button } from './ui/button';
@@ -85,10 +86,6 @@ defineProps<{
   previousSpecies?: DexPokedexShowPageProps['previousSpecies'];
   nextSpecies?: DexPokedexShowPageProps['nextSpecies'];
 }>();
-
-function formatPokedexNumber(pokedexNumber: number): string {
-  return pokedexNumber.toString().padStart(4, '0');
-}
 </script>
 
 <style scoped>
@@ -99,7 +96,7 @@ function formatPokedexNumber(pokedexNumber: number): string {
 }
 
 .navigation__button {
-  @apply h-auto;
+  @apply h-auto p-2;
 }
 
 .navigation__text-wrapper {

@@ -56,3 +56,7 @@ export function toQueryString(
 export function anyItemExists<T>(array: T[], items: T[]): boolean {
   return items.some((item) => array.includes(item));
 }
+
+export function formatPokedexNumber(pokedexNumber: number): string {
+  return pokedexNumber.toString().padStart(4, '0');
+}

@@ -1,29 +1,23 @@
 <template>
   <Head :title="species.name" />
-  <AppSection class="flex-row flex-wrap justify-between">
-    <AppPageHeader
-      :title="species.name"
-      :description="`The ${species.genus}`"
-    />
+  <AppSection>
     <PokedexSpeciesNavigation
+      class="m-auto"
       :previous-species="previousSpecies"
       :next-species="nextSpecies"
     />
   </AppSection>
-  <AppSection>
-    <AppSpeciesSprite
-      :url="species.sprites.frontDefault"
-      :name="species.name"
-    />
-    <p>{{ species.textEntry }}</p>
+  <AppSection class="grid lg:grid-cols-[2fr_1fr]">
+    <PokedexSpeciesHero :species="species" />
+    <PokedexSpeciesMetadata :species="species" />
   </AppSection>
 </template>
 
 <script setup lang="ts">
 import { Head, setLayoutProps } from '@inertiajs/vue3';
-import AppPageHeader from '@/components/AppPageHeader.vue';
 import AppSection from '@/components/AppSection.vue';
-import AppSpeciesSprite from '@/components/AppSpeciesSprite.vue';
+import PokedexSpeciesHero from '@/components/PokedexSpeciesHero.vue';
+import PokedexSpeciesMetadata from '@/components/PokedexSpeciesMetadata.vue';
 import PokedexSpeciesNavigation from '@/components/PokedexSpeciesNavigation.vue';
 import type { SpeciesSprites, SpeciesTypes } from '@/types';
 import { route } from '@/types/helpers/route';
@@ -37,8 +31,21 @@ export interface DexPokedexShowPageProps {
     genus: string;
     textEntry: string;
     sprites: SpeciesSprites;
-    portrait: string;
+    portraits: {
+      regular?: string;
+      shiny?: string;
+    };
+    traits: {
+      isBaby: boolean;
+      isLegendary: boolean;
+      isMythical: boolean;
+      isMega: boolean;
+      isGmax: boolean;
+    };
+    generation: string;
     slug: string;
+    isCapturable: boolean;
+    captureRatePercentage: number;
   };
   previousSpecies?: {
     name: string;

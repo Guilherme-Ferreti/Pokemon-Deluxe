@@ -111,4 +111,14 @@ final class Species extends Model
     {
         return count($this->types) === 2;
     }
+
+    public function isCapturable(): bool
+    {
+        return !is_null($this->capture_rate);
+    }
+
+    public function getCaptureRatePercentage(): float
+    {
+        return round(($this->capture_rate / 255) * 100, 2);
+    }
 }

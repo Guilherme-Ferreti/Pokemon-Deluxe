@@ -50,8 +50,18 @@ final readonly class PokedexShowPageProps implements ProvidesInertiaProperties
                 'frontShiny'       => $this->species->sprites->front_shiny,
                 'frontShinyFemale' => $this->species->sprites->front_shiny_female,
             ],
-            'portrait' => $this->species->portraits->regular,
-            'slug'     => $this->species->slug,
+            'portraits' => $this->species->portraits,
+            'traits'    => [
+                'isBaby'      => $this->species->is_baby,
+                'isLegendary' => $this->species->is_legendary,
+                'isMythical'  => $this->species->is_mythical,
+                'isMega'      => $this->species->is_mega,
+                'isGmax'      => $this->species->is_gmax,
+            ],
+            'generation'            => $this->species->generation->label(),
+            'slug'                  => $this->species->slug,
+            'isCapturable'          => $this->species->isCapturable(),
+            'captureRatePercentage' => $this->species->getCaptureRatePercentage(),
         ];
     }
 
