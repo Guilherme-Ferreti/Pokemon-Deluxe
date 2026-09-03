@@ -7,12 +7,15 @@ namespace App\Dex\Http\Web\PageProps;
 use App\Battle\Services\DamageCalculator;
 use App\Dex\Actions\CalculateSpeciesCaptureStatistics;
 use App\Dex\Actions\CalculateUserSpeciesCaptureStatistics;
+use App\Dex\CacheKeys\DexCacheKeys;
 use App\Dex\Queries\NextSpeciesQuery;
 use App\Dex\Queries\PreviousSpeciesQuery;
+use Illuminate\Support\Facades\Cache;
 use Inertia\ProvidesInertiaProperties;
 use Inertia\RenderContext;
 use Shared\Enums\ElementalType;
 use Shared\Models\Species;
+use Shared\Models\SpeciesEvolution;
 
 final readonly class PokedexShowPageProps implements ProvidesInertiaProperties
 {
@@ -31,6 +34,7 @@ final readonly class PokedexShowPageProps implements ProvidesInertiaProperties
             'nextSpecies'       => fn () => $this->getNextSpeciesProp(),
             'captureStatistics' => fn () => $this->getCaptureStatisticsProp(),
             'damageTaken'       => fn () => $this->getDamageTakenProp(),
+            'evolutionChain'    => fn () => $this->getEvolutionChainProp(),
         ];
     }
 
@@ -133,5 +137,58 @@ final readonly class PokedexShowPageProps implements ProvidesInertiaProperties
         }
 
         return $damageTaken;
+    }
+
+    /**
+     * @return array<string, mixed>
+     */
+    private function getEvolutionChainProp(): array
+    {
+        /**
+         * @return array<string, mixed>
+         */
+        $callback = function (): array {
+            $previous = $this->species
+                ->previousEvolutions()
+                ->get()
+                ->map(fn (SpeciesEvolution $evolution) => [
+                    'species' => [
+                        'name'     => $evolution->from->name,
+                        'slug'     => $evolution->from->slug,
+                        'portrait' => $evolution->from->portraits->regular,
+                    ],
+                    'evolutionItem' => $evolution->evolutionItem ? [
+                        'name' => $evolution->evolutionItem->name,
+                    ] : null,
+                    'minLevel' => $evolution->min_level,
+                ])
+                ->toArray();
+
+            $into = $this->species
+                ->evolutions()
+                ->get()
+                ->map(fn (SpeciesEvolution $evolution) => [
+                    'species' => [
+                        'name'     => $evolution->to->name,
+                        'slug'     => $evolution->to->slug,
+                        'portrait' => $evolution->to->portraits->regular,
+                    ],
+                    'evolutionItem' => $evolution->evolutionItem ? [
+                        'name' => $evolution->evolutionItem->name,
+                    ] : null,
+                    'minLevel' => $evolution->min_level,
+                ])
+                ->toArray();
+
+            return [
+                'previous' => $previous,
+                'into'     => $into,
+            ];
+        };
+
+        return Cache::rememberForever(
+            key: DexCacheKeys::speciesEvolutionChain($this->species->id),
+            callback: $callback
+        );
     }
 }

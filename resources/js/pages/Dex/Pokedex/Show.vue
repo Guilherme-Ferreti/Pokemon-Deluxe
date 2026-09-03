@@ -7,25 +7,37 @@
       :next-species="nextSpecies"
     />
   </AppSection>
-  <AppSection>
-    <div class="grid gap-6 @lg/section:grid-cols-2 @3xl/section:grid-cols-3">
-      <PokedexSpeciesHero
-        class="@lg/section:col-span-2"
-        :species="species"
-      />
-      <PokedexSpeciesMetadata :species="species" />
-      <PokedexSpeciesDamageTaken
-        class="@lg/section:col-span-2 @3xl/section:col-span-1"
-        :species-name="species.name"
-        :damage-taken="damageTaken"
-      />
-      <PokedexSpeciesCaptureStatistics
-        class="self-start"
-        :species-name="species.name"
-        :statistics="captureStatistics"
-      />
+  <div class="@container">
+    <div class="grid gap-6 @2xl:grid-cols-2 @4xl:grid-cols-3">
+      <section class="@2xl:col-span-2">
+        <PokedexSpeciesHero
+          class="h-full"
+          :species="species"
+        />
+      </section>
+      <section>
+        <PokedexSpeciesMetadata
+          class="h-full"
+          :species="species"
+        />
+      </section>
+      <section class="@4xl:order-1">
+        <PokedexSpeciesEvolutionChain :evolution-chain="evolutionChain" />
+      </section>
+      <section>
+        <PokedexSpeciesDamageTaken
+          :species-name="species.name"
+          :damage-taken="damageTaken"
+        />
+      </section>
+      <section>
+        <PokedexSpeciesCaptureStatistics
+          :species-name="species.name"
+          :statistics="captureStatistics"
+        />
+      </section>
     </div>
-  </AppSection>
+  </div>
 </template>
 
 <script setup lang="ts">
@@ -33,6 +45,7 @@ import { Head, setLayoutProps } from '@inertiajs/vue3';
 import AppSection from '@/components/AppSection.vue';
 import PokedexSpeciesCaptureStatistics from '@/components/PokedexSpeciesCaptureStatistics.vue';
 import PokedexSpeciesDamageTaken from '@/components/PokedexSpeciesDamageTaken.vue';
+import PokedexSpeciesEvolutionChain from '@/components/PokedexSpeciesEvolutionChain.vue';
 import PokedexSpeciesHero from '@/components/PokedexSpeciesHero.vue';
 import PokedexSpeciesMetadata from '@/components/PokedexSpeciesMetadata.vue';
 import PokedexSpeciesNavigation from '@/components/PokedexSpeciesNavigation.vue';
@@ -87,6 +100,30 @@ export interface DexPokedexShowPageProps {
     };
   };
   damageTaken: Record<ElementalType, number>;
+  evolutionChain: {
+    previous: {
+      species: {
+        name: string;
+        slug: string;
+        portrait: string;
+      };
+      evolutionItem?: {
+        name: string;
+      };
+      minLevel?: number;
+    }[];
+    into: {
+      species: {
+        name: string;
+        slug: string;
+        portrait: string;
+      };
+      evolutionItem?: {
+        name: string;
+      };
+      minLevel?: number;
+    }[];
+  };
 }
 
 const props = defineProps<DexPokedexShowPageProps>();

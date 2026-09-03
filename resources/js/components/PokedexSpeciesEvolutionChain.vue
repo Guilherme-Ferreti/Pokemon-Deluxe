@@ -1,0 +1,84 @@
+<template>
+  <AppInfoCard title="Evolutions">
+    <template
+      v-for="(section, index) in sections"
+      :key="section.title"
+    >
+      <AppInfoCardSectionTitle :title="section.title" />
+      <ul
+        v-if="section.evolutions.length > 0"
+        class="list-inside text-sm"
+      >
+        <li
+          v-for="evolution in section.evolutions"
+          :key="evolution.species.name"
+          class="mb-2"
+        >
+          <AppSpeciesPortrait
+            class="mr-2 inline-block"
+            :url="evolution.species.portrait"
+            :name="evolution.species.name"
+          />
+          <AppNavLink
+            class="font-medium underline"
+            :url="
+              route('web.dex.pokedex.show', { species: evolution.species.slug })
+            "
+            :title="evolution.species.name"
+          />
+          {{ getEvolutionCriteria(evolution) }}
+        </li>
+      </ul>
+      <p
+        v-else
+        class="text-sm"
+      >
+        {{ section.emptyMessage }}
+      </p>
+      <Separator v-if="index < sections.length - 1" />
+    </template>
+  </AppInfoCard>
+</template>
+
+<script setup lang="ts">
+import AppInfoCard from '@/components/AppInfoCard.vue';
+import AppInfoCardSectionTitle from '@/components/AppInfoCardSectionTitle.vue';
+import AppNavLink from '@/components/AppNavLink.vue';
+import AppSpeciesPortrait from '@/components/AppSpeciesPortrait.vue';
+import Separator from '@/components/ui/separator/Separator.vue';
+import type { DexPokedexShowPageProps } from '@/pages/Dex/Pokedex/Show.vue';
+import { route } from '@/types/helpers/route.js';
+
+const props = defineProps<{
+  evolutionChain: DexPokedexShowPageProps['evolutionChain'];
+}>();
+
+const sections = [
+  {
+    title: 'Evolves from',
+    evolutions: props.evolutionChain.previous,
+    emptyMessage: 'This pokemon does not have previous evolutions.',
+  },
+  {
+    title: 'Evolves into',
+    evolutions: props.evolutionChain.into,
+    emptyMessage: 'This pokemon does not evolve.',
+  },
+];
+
+function getEvolutionCriteria(
+  evolution: DexPokedexShowPageProps['evolutionChain']['previous'][number],
+): string {
+  let criteria = '';
+
+  if (evolution.minLevel) {
+    criteria += `at level ${evolution.minLevel}`;
+  }
+
+  if (evolution.evolutionItem) {
+    criteria += ` using ${evolution.evolutionItem.name}`;
+  }
+
+  return criteria;
+}
+</script>

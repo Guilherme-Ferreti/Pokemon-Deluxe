@@ -15,4 +15,9 @@ final class DexCacheKeys
     {
         return "dex:user:{$userId}:species:{$speciesId}:capture-statistics";
     }
+
+    public static function speciesEvolutionChain(string $speciesId): string
+    {
+        return "dex:species:{$speciesId}:evolution-chain";
+    }
 }
