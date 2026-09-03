@@ -18,10 +18,8 @@ declare module '@inertiajs/core' {
     sharedPageProps: {
       name: string;
       auth: Auth;
-      layout: {
-        auth: {
-          sprites: string[];
-        };
+      authLayout: {
+        sprites: string[];
       };
       sidebarOpen: boolean;
       [key: string]: unknown;

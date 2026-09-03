@@ -20,7 +20,7 @@
         class="absolute inset-0 grid grid-cols-7 place-items-center bg-muted p-6"
       >
         <img
-          v-for="image in page.props.layout.auth.sprites"
+          v-for="image in page.props.authLayout.sprites"
           :key="image"
           alt="Pokemon Deluxe"
           loading="lazy"

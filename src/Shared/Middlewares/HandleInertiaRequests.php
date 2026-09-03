@@ -5,13 +5,9 @@ declare(strict_types=1);
 namespace Shared\Middlewares;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Cache;
-use Illuminate\Support\Lottery;
 use Inertia\Inertia;
 use Inertia\Middleware;
 use Override;
-use Shared\Models\Species;
-use Shared\ValueObjects\SpeciesSprites;
 
 final class HandleInertiaRequests extends Middleware
 {
@@ -52,37 +48,5 @@ final class HandleInertiaRequests extends Middleware
                 'user' => $request->user() ? Inertia::once(fn () => $request->user()->only('id', 'name', 'email')) : null,
             ],
         ];
-    }
-
-    /**
-     * @return array<string, mixed>
-     */
-    #[Override]
-    public function shareOnce(Request $request): array
-    {
-        return [
-            ...parent::shareOnce($request),
-            'layout.auth.sprites' => fn () => $this->getAuthLayoutSprites(),
-        ];
-    }
-
-    /**
-     * @return array<mixed>
-     */
-    private function getAuthLayoutSprites(): array
-    {
-        return Cache::remember('auth-layout-sprites', now()->addDay(), fn () => Species::query()
-            ->whereNotNull('sprites->front_default')
-            ->whereNotNull('sprites->front_shiny')
-            ->inRandomOrder()
-            ->limit(49)
-            ->pluck('sprites')
-            ->map(fn (SpeciesSprites $sprites) => Lottery::odds(1, 100)
-                ->winner(fn () => $sprites->front_shiny)
-                ->loser(fn () => $sprites->front_default)
-                ->choose()
-            )
-            ->toArray()
-        );
     }
 }
