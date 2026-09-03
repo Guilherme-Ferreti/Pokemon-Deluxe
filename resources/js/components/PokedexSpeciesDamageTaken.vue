@@ -8,7 +8,7 @@
       :key="row.multiplier"
     >
       <div class="flex justify-between gap-6">
-        <span class="text-sm font-bold">{{ row.multiplier }}</span>
+        <AppInfoCardSectionTitle :title="row.multiplier" />
         <div
           v-if="row.types.length > 0"
           class="flex w-full flex-wrap justify-end gap-2"
@@ -36,6 +36,7 @@ import { computed } from 'vue';
 import type { DexPokedexShowPageProps } from '@/pages/Dex/Pokedex/Show.vue';
 import type { ElementalType } from '@/types/php-types.js';
 import AppInfoCard from './AppInfoCard.vue';
+import AppInfoCardSectionTitle from './AppInfoCardSectionTitle.vue';
 import ElementalTypeBadges from './ElementalTypeBadges.vue';
 import Separator from './ui/separator/Separator.vue';
 
