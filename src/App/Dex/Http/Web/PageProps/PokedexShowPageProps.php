@@ -4,12 +4,14 @@ declare(strict_types=1);
 
 namespace App\Dex\Http\Web\PageProps;
 
+use App\Battle\Services\DamageCalculator;
 use App\Dex\Actions\CalculateSpeciesCaptureStatistics;
 use App\Dex\Actions\CalculateUserSpeciesCaptureStatistics;
 use App\Dex\Queries\NextSpeciesQuery;
 use App\Dex\Queries\PreviousSpeciesQuery;
 use Inertia\ProvidesInertiaProperties;
 use Inertia\RenderContext;
+use Shared\Enums\ElementalType;
 use Shared\Models\Species;
 
 final readonly class PokedexShowPageProps implements ProvidesInertiaProperties
@@ -28,6 +30,7 @@ final readonly class PokedexShowPageProps implements ProvidesInertiaProperties
             'previousSpecies'   => fn () => $this->getPreviousSpeciesProp(),
             'nextSpecies'       => fn () => $this->getNextSpeciesProp(),
             'captureStatistics' => fn () => $this->getCaptureStatisticsProp(),
+            'damageTaken'       => fn () => $this->getDamageTakenProp(),
         ];
     }
 
@@ -109,11 +112,26 @@ final readonly class PokedexShowPageProps implements ProvidesInertiaProperties
     /**
      * @return array<string, mixed>
      */
-    private function getCaptureStatistics(): array
+    private function getCaptureStatisticsProp(): array
     {
         return [
+            'global'      => new CalculateSpeciesCaptureStatistics()->handle($this->species),
             'currentUser' => new CalculateUserSpeciesCaptureStatistics()->handle(currentUser(), $this->species),
-            'allPlayers'  => new CalculateSpeciesCaptureStatistics()->handle($this->species),
         ];
+    }
+
+    /**
+     * @return array<string, float>
+     */
+    private function getDamageTakenProp(): array
+    {
+        $damageCalculator = new DamageCalculator;
+        $damageTaken      = [];
+
+        foreach (ElementalType::cases() as $attackType) {
+            $damageTaken[$attackType->value] = $damageCalculator->calculateDamageMultiplier($attackType, ...$this->species->types);
+        }
+
+        return $damageTaken;
     }
 }

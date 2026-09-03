@@ -14,7 +14,13 @@
         :species="species"
       />
       <PokedexSpeciesMetadata :species="species" />
+      <PokedexSpeciesDamageTaken
+        class="@lg/section:col-span-2 @3xl/section:col-span-1"
+        :species-name="species.name"
+        :damage-taken="damageTaken"
+      />
       <PokedexSpeciesCaptureStatistics
+        class="self-start"
         :species-name="species.name"
         :statistics="captureStatistics"
       />
@@ -26,10 +32,11 @@
 import { Head, setLayoutProps } from '@inertiajs/vue3';
 import AppSection from '@/components/AppSection.vue';
 import PokedexSpeciesCaptureStatistics from '@/components/PokedexSpeciesCaptureStatistics.vue';
+import PokedexSpeciesDamageTaken from '@/components/PokedexSpeciesDamageTaken.vue';
 import PokedexSpeciesHero from '@/components/PokedexSpeciesHero.vue';
 import PokedexSpeciesMetadata from '@/components/PokedexSpeciesMetadata.vue';
 import PokedexSpeciesNavigation from '@/components/PokedexSpeciesNavigation.vue';
-import type { SpeciesSprites, SpeciesTypes } from '@/types';
+import type { ElementalType, SpeciesSprites, SpeciesTypes } from '@/types';
 import { route } from '@/types/helpers/route';
 
 export interface DexPokedexShowPageProps {
@@ -79,6 +86,7 @@ export interface DexPokedexShowPageProps {
       shiny: number;
     };
   };
+  damageTaken: Record<ElementalType, number>;
 }
 
 const props = defineProps<DexPokedexShowPageProps>();
