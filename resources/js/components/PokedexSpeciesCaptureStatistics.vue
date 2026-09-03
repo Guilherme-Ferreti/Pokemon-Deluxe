@@ -1,7 +1,10 @@
 <template>
-  <AppInfoCard title="Capture Statistics">
+  <AppInfoCard
+    title="Capture Statistics"
+    :description="`Total number of ${speciesName} in accounts across the game`"
+  >
     <span class="flex items-center gap-2 text-sm font-bold">
-      <span>All players</span>
+      <span>Global</span>
       <Tooltip>
         <TooltipTrigger as-child>
           <IconInfoCircle size="14" />
@@ -11,14 +14,14 @@
     </span>
     <AppInfoCardRow
       title="Regular"
-      :text="statistics.allPlayers.regular.toString()"
+      :text="statistics.global.regular.toString()"
     />
     <AppInfoCardRow
       title="Shiny"
-      :text="statistics.allPlayers.shiny.toString()"
+      :text="statistics.global.shiny.toString()"
     />
     <Separator />
-    <span class="text-sm font-bold">Present in your account</span>
+    <span class="text-sm font-bold"> Your account</span>
     <AppInfoCardRow
       title="Regular"
       :text="statistics.currentUser.regular.toString()"
@@ -43,6 +46,7 @@ import {
 import type { DexPokedexShowPageProps } from '@/pages/Dex/Pokedex/Show.vue';
 
 defineProps<{
+  speciesName: string;
   statistics: DexPokedexShowPageProps['captureStatistics'];
 }>();
 </script>

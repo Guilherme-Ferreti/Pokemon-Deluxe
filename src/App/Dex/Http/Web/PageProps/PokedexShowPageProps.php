@@ -27,7 +27,7 @@ final readonly class PokedexShowPageProps implements ProvidesInertiaProperties
             'species'           => fn () => $this->getSpeciesProp(),
             'previousSpecies'   => fn () => $this->getPreviousSpeciesProp(),
             'nextSpecies'       => fn () => $this->getNextSpeciesProp(),
-            'captureStatistics' => fn () => $this->getCaptureStatistics(),
+            'captureStatistics' => fn () => $this->getCaptureStatisticsProp(),
         ];
     }
 

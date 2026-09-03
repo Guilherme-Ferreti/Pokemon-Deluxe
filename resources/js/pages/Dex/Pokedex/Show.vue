@@ -14,7 +14,10 @@
         :species="species"
       />
       <PokedexSpeciesMetadata :species="species" />
-      <PokedexSpeciesCaptureStatistics :statistics="captureStatistics" />
+      <PokedexSpeciesCaptureStatistics
+        :species-name="species.name"
+        :statistics="captureStatistics"
+      />
     </div>
   </AppSection>
 </template>
@@ -71,7 +74,7 @@ export interface DexPokedexShowPageProps {
       regular: number;
       shiny: number;
     };
-    allPlayers: {
+    global: {
       regular: number;
       shiny: number;
     };

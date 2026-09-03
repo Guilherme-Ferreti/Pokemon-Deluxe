@@ -1,9 +1,9 @@
 <template>
-  <div class="app-info-card-row">
-    <span class="app-info-card-row__title">{{ title }}</span>
+  <div class="flex flex-wrap items-center justify-between gap-3">
+    <span class="text-sm font-medium text-muted-foreground">{{ title }}</span>
     <span
       v-if="text"
-      class="app-info-card-row__text"
+      class="text-sm text-foreground"
     >
       {{ text }}
     </span>
@@ -19,19 +19,3 @@ defineProps<{
   text?: string;
 }>();
 </script>
-
-<style lang="css" scoped>
-@reference '../../css/app.css';
-
-.app-info-card-row {
-  @apply flex flex-wrap items-center justify-between gap-3;
-}
-
-.app-info-card-row__title {
-  @apply text-sm font-medium text-muted-foreground;
-}
-
-.app-info-card-row__text {
-  @apply text-sm text-foreground;
-}
-</style>
