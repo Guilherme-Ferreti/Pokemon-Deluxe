@@ -170,9 +170,9 @@ final readonly class PokedexShowPageProps implements ProvidesInertiaProperties
                 ->get()
                 ->map(fn (SpeciesEvolution $evolution) => [
                     'species' => [
-                        'name'     => $evolution->to->name,
-                        'slug'     => $evolution->to->slug,
-                        'portrait' => $evolution->to->portraits->regular,
+                        'name'     => $evolution->into->name,
+                        'slug'     => $evolution->into->slug,
+                        'portrait' => $evolution->into->portraits->regular,
                     ],
                     'evolutionItem' => $evolution->evolutionItem ? [
                         'name'   => $evolution->evolutionItem->name,

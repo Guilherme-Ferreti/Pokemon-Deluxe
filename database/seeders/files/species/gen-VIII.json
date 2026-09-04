@@ -32,7 +32,7 @@
         "capture_rate": 45,
         "evolutions": [
             {
-                "evolves_to": "thwackey",
+                "evolves_into": "thwackey",
                 "item": null,
                 "min_level": 16
             }
@@ -71,7 +71,7 @@
         "capture_rate": 45,
         "evolutions": [
             {
-                "evolves_to": "rillaboom",
+                "evolves_into": "rillaboom",
                 "item": null,
                 "min_level": 35
             }
@@ -110,7 +110,7 @@
         "capture_rate": 45,
         "evolutions": [
             {
-                "evolves_to": "rillaboom-gmax",
+                "evolves_into": "rillaboom-gmax",
                 "item": null,
                 "min_level": 100
             }
@@ -182,7 +182,7 @@
         "capture_rate": 45,
         "evolutions": [
             {
-                "evolves_to": "raboot",
+                "evolves_into": "raboot",
                 "item": null,
                 "min_level": 16
             }
@@ -221,7 +221,7 @@
         "capture_rate": 45,
         "evolutions": [
             {
-                "evolves_to": "cinderace",
+                "evolves_into": "cinderace",
                 "item": null,
                 "min_level": 35
             }
@@ -260,7 +260,7 @@
         "capture_rate": 45,
         "evolutions": [
             {
-                "evolves_to": "cinderace-gmax",
+                "evolves_into": "cinderace-gmax",
                 "item": null,
                 "min_level": 100
             }
@@ -332,7 +332,7 @@
         "capture_rate": 45,
         "evolutions": [
             {
-                "evolves_to": "drizzile",
+                "evolves_into": "drizzile",
                 "item": null,
                 "min_level": 16
             }
@@ -371,7 +371,7 @@
         "capture_rate": 45,
         "evolutions": [
             {
-                "evolves_to": "inteleon",
+                "evolves_into": "inteleon",
                 "item": null,
                 "min_level": 35
             }
@@ -410,7 +410,7 @@
         "capture_rate": 45,
         "evolutions": [
             {
-                "evolves_to": "inteleon-gmax",
+                "evolves_into": "inteleon-gmax",
                 "item": null,
                 "min_level": 100
             }
@@ -482,7 +482,7 @@
         "capture_rate": 255,
         "evolutions": [
             {
-                "evolves_to": "greedent",
+                "evolves_into": "greedent",
                 "item": null,
                 "min_level": 24
             }
@@ -554,7 +554,7 @@
         "capture_rate": 255,
         "evolutions": [
             {
-                "evolves_to": "corvisquire",
+                "evolves_into": "corvisquire",
                 "item": null,
                 "min_level": 18
             }
@@ -593,7 +593,7 @@
         "capture_rate": 120,
         "evolutions": [
             {
-                "evolves_to": "corviknight",
+                "evolves_into": "corviknight",
                 "item": null,
                 "min_level": 38
             }
@@ -633,7 +633,7 @@
         "capture_rate": 45,
         "evolutions": [
             {
-                "evolves_to": "corviknight-gmax",
+                "evolves_into": "corviknight-gmax",
                 "item": null,
                 "min_level": 100
             }
@@ -706,7 +706,7 @@
         "capture_rate": 255,
         "evolutions": [
             {
-                "evolves_to": "dottler",
+                "evolves_into": "dottler",
                 "item": null,
                 "min_level": 10
             }
@@ -746,7 +746,7 @@
         "capture_rate": 120,
         "evolutions": [
             {
-                "evolves_to": "orbeetle",
+                "evolves_into": "orbeetle",
                 "item": null,
                 "min_level": 30
             }
@@ -786,7 +786,7 @@
         "capture_rate": 45,
         "evolutions": [
             {
-                "evolves_to": "orbeetle-gmax",
+                "evolves_into": "orbeetle-gmax",
                 "item": null,
                 "min_level": 100
             }
@@ -859,7 +859,7 @@
         "capture_rate": 255,
         "evolutions": [
             {
-                "evolves_to": "thievul",
+                "evolves_into": "thievul",
                 "item": null,
                 "min_level": 18
             }
@@ -931,7 +931,7 @@
         "capture_rate": 190,
         "evolutions": [
             {
-                "evolves_to": "eldegoss",
+                "evolves_into": "eldegoss",
                 "item": null,
                 "min_level": 20
             }
@@ -1003,7 +1003,7 @@
         "capture_rate": 255,
         "evolutions": [
             {
-                "evolves_to": "dubwool",
+                "evolves_into": "dubwool",
                 "item": null,
                 "min_level": 24
             }
@@ -1075,7 +1075,7 @@
         "capture_rate": 255,
         "evolutions": [
             {
-                "evolves_to": "drednaw",
+                "evolves_into": "drednaw",
                 "item": null,
                 "min_level": 22
             }
@@ -1115,7 +1115,7 @@
         "capture_rate": 75,
         "evolutions": [
             {
-                "evolves_to": "drednaw-gmax",
+                "evolves_into": "drednaw-gmax",
                 "item": null,
                 "min_level": 100
             }
@@ -1188,7 +1188,7 @@
         "capture_rate": 255,
         "evolutions": [
             {
-                "evolves_to": "boltund",
+                "evolves_into": "boltund",
                 "item": null,
                 "min_level": 25
             }
@@ -1260,7 +1260,7 @@
         "capture_rate": 255,
         "evolutions": [
             {
-                "evolves_to": "carkol",
+                "evolves_into": "carkol",
                 "item": null,
                 "min_level": 18
             }
@@ -1300,7 +1300,7 @@
         "capture_rate": 120,
         "evolutions": [
             {
-                "evolves_to": "coalossal",
+                "evolves_into": "coalossal",
                 "item": null,
                 "min_level": 34
             }
@@ -1340,7 +1340,7 @@
         "capture_rate": 45,
         "evolutions": [
             {
-                "evolves_to": "coalossal-gmax",
+                "evolves_into": "coalossal-gmax",
                 "item": null,
                 "min_level": 100
             }
@@ -1414,17 +1414,17 @@
         "capture_rate": 255,
         "evolutions": [
             {
-                "evolves_to": "flapple",
+                "evolves_into": "flapple",
                 "item": "tart-apple",
                 "min_level": null
             },
             {
-                "evolves_to": "appletun",
+                "evolves_into": "appletun",
                 "item": "sweet-apple",
                 "min_level": null
             },
             {
-                "evolves_to": "dipplin",
+                "evolves_into": "dipplin",
                 "item": "syrupy-apple",
                 "min_level": null
             }
@@ -1464,7 +1464,7 @@
         "capture_rate": 45,
         "evolutions": [
             {
-                "evolves_to": "flapple-gmax",
+                "evolves_into": "flapple-gmax",
                 "item": null,
                 "min_level": 100
             }
@@ -1538,7 +1538,7 @@
         "capture_rate": 45,
         "evolutions": [
             {
-                "evolves_to": "appletun-gmax",
+                "evolves_into": "appletun-gmax",
                 "item": null,
                 "min_level": 100
             }
@@ -1611,7 +1611,7 @@
         "capture_rate": 255,
         "evolutions": [
             {
-                "evolves_to": "sandaconda",
+                "evolves_into": "sandaconda",
                 "item": null,
                 "min_level": 36
             }
@@ -1650,7 +1650,7 @@
         "capture_rate": 120,
         "evolutions": [
             {
-                "evolves_to": "sandaconda-gmax",
+                "evolves_into": "sandaconda-gmax",
                 "item": null,
                 "min_level": 100
             }
@@ -1824,7 +1824,7 @@
         "capture_rate": 255,
         "evolutions": [
             {
-                "evolves_to": "barraskewda",
+                "evolves_into": "barraskewda",
                 "item": null,
                 "min_level": 26
             }
@@ -1897,12 +1897,12 @@
         "capture_rate": 75,
         "evolutions": [
             {
-                "evolves_to": "toxtricity-amped",
+                "evolves_into": "toxtricity-amped",
                 "item": null,
                 "min_level": 30
             },
             {
-                "evolves_to": "toxtricity-low-key",
+                "evolves_into": "toxtricity-low-key",
                 "item": null,
                 "min_level": 30
             }
@@ -1942,7 +1942,7 @@
         "capture_rate": 45,
         "evolutions": [
             {
-                "evolves_to": "toxtricity-amped-gmax",
+                "evolves_into": "toxtricity-amped-gmax",
                 "item": null,
                 "min_level": 100
             }
@@ -1982,7 +1982,7 @@
         "capture_rate": 45,
         "evolutions": [
             {
-                "evolves_to": "toxtricity-low-key-gmax",
+                "evolves_into": "toxtricity-low-key-gmax",
                 "item": null,
                 "min_level": 100
             }
@@ -2090,7 +2090,7 @@
         "capture_rate": 190,
         "evolutions": [
             {
-                "evolves_to": "centiskorch",
+                "evolves_into": "centiskorch",
                 "item": null,
                 "min_level": 28
             }
@@ -2130,7 +2130,7 @@
         "capture_rate": 75,
         "evolutions": [
             {
-                "evolves_to": "centiskorch-gmax",
+                "evolves_into": "centiskorch-gmax",
                 "item": null,
                 "min_level": 100
             }
@@ -2203,7 +2203,7 @@
         "capture_rate": 180,
         "evolutions": [
             {
-                "evolves_to": "grapploct",
+                "evolves_into": "grapploct",
                 "item": null,
                 "min_level": 35
             }
@@ -2275,7 +2275,7 @@
         "capture_rate": 120,
         "evolutions": [
             {
-                "evolves_to": "polteageist",
+                "evolves_into": "polteageist",
                 "item": "cracked-pot",
                 "min_level": null
             }
@@ -2347,7 +2347,7 @@
         "capture_rate": 235,
         "evolutions": [
             {
-                "evolves_to": "hattrem",
+                "evolves_into": "hattrem",
                 "item": null,
                 "min_level": 32
             }
@@ -2386,7 +2386,7 @@
         "capture_rate": 120,
         "evolutions": [
             {
-                "evolves_to": "hatterene",
+                "evolves_into": "hatterene",
                 "item": null,
                 "min_level": 42
             }
@@ -2426,7 +2426,7 @@
         "capture_rate": 45,
         "evolutions": [
             {
-                "evolves_to": "hatterene-gmax",
+                "evolves_into": "hatterene-gmax",
                 "item": null,
                 "min_level": 100
             }
@@ -2500,7 +2500,7 @@
         "capture_rate": 255,
         "evolutions": [
             {
-                "evolves_to": "morgrem",
+                "evolves_into": "morgrem",
                 "item": null,
                 "min_level": 32
             }
@@ -2540,7 +2540,7 @@
         "capture_rate": 120,
         "evolutions": [
             {
-                "evolves_to": "grimmsnarl",
+                "evolves_into": "grimmsnarl",
                 "item": null,
                 "min_level": 42
             }
@@ -2580,7 +2580,7 @@
         "capture_rate": 45,
         "evolutions": [
             {
-                "evolves_to": "grimmsnarl-gmax",
+                "evolves_into": "grimmsnarl-gmax",
                 "item": null,
                 "min_level": 100
             }
@@ -2854,7 +2854,7 @@
         "capture_rate": 200,
         "evolutions": [
             {
-                "evolves_to": "alcremie",
+                "evolves_into": "alcremie",
                 "item": null,
                 "min_level": 28
             }
@@ -2893,7 +2893,7 @@
         "capture_rate": 100,
         "evolutions": [
             {
-                "evolves_to": "alcremie-gmax",
+                "evolves_into": "alcremie-gmax",
                 "item": null,
                 "min_level": 100
             }
@@ -2965,7 +2965,7 @@
         "capture_rate": 45,
         "evolutions": [
             {
-                "evolves_to": "falinks-mega",
+                "evolves_into": "falinks-mega",
                 "item": null,
                 "min_level": 100
             }
@@ -3071,7 +3071,7 @@
         "capture_rate": 190,
         "evolutions": [
             {
-                "evolves_to": "frosmoth",
+                "evolves_into": "frosmoth",
                 "item": null,
                 "min_level": 59
             }
@@ -3345,7 +3345,7 @@
         "capture_rate": 190,
         "evolutions": [
             {
-                "evolves_to": "copperajah",
+                "evolves_into": "copperajah",
                 "item": null,
                 "min_level": 34
             }
@@ -3384,7 +3384,7 @@
         "capture_rate": 90,
         "evolutions": [
             {
-                "evolves_to": "copperajah-gmax",
+                "evolves_into": "copperajah-gmax",
                 "item": null,
                 "min_level": 100
             }
@@ -3593,12 +3593,12 @@
         "capture_rate": 45,
         "evolutions": [
             {
-                "evolves_to": "archaludon",
+                "evolves_into": "archaludon",
                 "item": "metal-alloy",
                 "min_level": null
             },
             {
-                "evolves_to": "duraludon-gmax",
+                "evolves_into": "duraludon-gmax",
                 "item": null,
                 "min_level": 100
             }
@@ -3672,7 +3672,7 @@
         "capture_rate": 45,
         "evolutions": [
             {
-                "evolves_to": "drakloak",
+                "evolves_into": "drakloak",
                 "item": null,
                 "min_level": 50
             }
@@ -3712,7 +3712,7 @@
         "capture_rate": 45,
         "evolutions": [
             {
-                "evolves_to": "dragapult",
+                "evolves_into": "dragapult",
                 "item": null,
                 "min_level": 60
             }
@@ -3987,12 +3987,12 @@
         "capture_rate": 3,
         "evolutions": [
             {
-                "evolves_to": "urshifu-single-strike",
+                "evolves_into": "urshifu-single-strike",
                 "item": "scroll-of-darkness",
                 "min_level": null
             },
             {
-                "evolves_to": "urshifu-rapid-strike",
+                "evolves_into": "urshifu-rapid-strike",
                 "item": "scroll-of-waters",
                 "min_level": null
             }
@@ -4032,7 +4032,7 @@
         "capture_rate": 3,
         "evolutions": [
             {
-                "evolves_to": "urshifu-single-strike-gmax",
+                "evolves_into": "urshifu-single-strike-gmax",
                 "item": null,
                 "min_level": 100
             }
@@ -4072,7 +4072,7 @@
         "capture_rate": 3,
         "evolutions": [
             {
-                "evolves_to": "urshifu-rapid-strike-gmax",
+                "evolves_into": "urshifu-rapid-strike-gmax",
                 "item": null,
                 "min_level": 100
             }
@@ -4753,7 +4753,7 @@
         "capture_rate": 255,
         "evolutions": [
             {
-                "evolves_to": "perrserker",
+                "evolves_into": "perrserker",
                 "item": null,
                 "min_level": 28
             }
@@ -4792,7 +4792,7 @@
         "capture_rate": 190,
         "evolutions": [
             {
-                "evolves_to": "rapidash-galar",
+                "evolves_into": "rapidash-galar",
                 "item": null,
                 "min_level": 40
             }
@@ -4865,12 +4865,12 @@
         "capture_rate": 190,
         "evolutions": [
             {
-                "evolves_to": "slowbro-galar",
+                "evolves_into": "slowbro-galar",
                 "item": null,
                 "min_level": 37
             },
             {
-                "evolves_to": "slowking-galar",
+                "evolves_into": "slowking-galar",
                 "item": "kings-rock",
                 "min_level": null
             }
@@ -4943,7 +4943,7 @@
         "capture_rate": 45,
         "evolutions": [
             {
-                "evolves_to": "sirfetchd",
+                "evolves_into": "sirfetchd",
                 "item": null,
                 "min_level": 30
             }
@@ -5017,7 +5017,7 @@
         "capture_rate": 45,
         "evolutions": [
             {
-                "evolves_to": "mr-rime",
+                "evolves_into": "mr-rime",
                 "item": null,
                 "min_level": 42
             }
@@ -5192,7 +5192,7 @@
         "capture_rate": 60,
         "evolutions": [
             {
-                "evolves_to": "cursola",
+                "evolves_into": "cursola",
                 "item": null,
                 "min_level": 38
             }
@@ -5232,7 +5232,7 @@
         "capture_rate": 255,
         "evolutions": [
             {
-                "evolves_to": "linoone-galar",
+                "evolves_into": "linoone-galar",
                 "item": null,
                 "min_level": 20
             }
@@ -5272,7 +5272,7 @@
         "capture_rate": 90,
         "evolutions": [
             {
-                "evolves_to": "obstagoon",
+                "evolves_into": "obstagoon",
                 "item": null,
                 "min_level": 35
             }
@@ -5311,12 +5311,12 @@
         "capture_rate": 120,
         "evolutions": [
             {
-                "evolves_to": "darmanitan-galar-standard",
+                "evolves_into": "darmanitan-galar-standard",
                 "item": "ice-stone",
                 "min_level": 35
             },
             {
-                "evolves_to": "darmanitan-galar-zen",
+                "evolves_into": "darmanitan-galar-zen",
                 "item": "ice-stone",
                 "min_level": 35
             }
@@ -5423,7 +5423,7 @@
         "capture_rate": 190,
         "evolutions": [
             {
-                "evolves_to": "runerigus",
+                "evolves_into": "runerigus",
                 "item": "dusk-stone",
                 "min_level": null
             }

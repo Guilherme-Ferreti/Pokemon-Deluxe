@@ -16,7 +16,7 @@ return new class extends Migration
             $table->uuid('id')->primary();
 
             $table->foreignIdFor(Species::class, 'from_species_id')->constrained()->cascadeOnDelete();
-            $table->foreignIdFor(Species::class, 'to_species_id')->constrained()->cascadeOnDelete();
+            $table->foreignIdFor(Species::class, 'into_species_id')->constrained()->cascadeOnDelete();
 
             $table->foreignIdFor(EvolutionItem::class)->nullable()->constrained();
             $table->unsignedTinyInteger('min_level')->default(1)->nullable();

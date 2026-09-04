@@ -82,7 +82,7 @@ final class Species extends Model
      */
     public function previousEvolutions(): HasMany
     {
-        return $this->hasMany(SpeciesEvolution::class, 'to_species_id');
+        return $this->hasMany(SpeciesEvolution::class, 'into_species_id');
     }
 
     /**

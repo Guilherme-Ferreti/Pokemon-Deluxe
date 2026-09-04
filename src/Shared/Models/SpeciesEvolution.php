@@ -12,13 +12,13 @@ use Illuminate\Support\Carbon;
 /**
  * @property string $id
  * @property string $from_species_id
- * @property string $to_species_id
+ * @property string $into_species_id
  * @property string|null $item_id
  * @property int|null $min_level
  * @property Carbon $created_at
  * @property Carbon $updated_at
  * @property-read Species $from
- * @property-read Species $to
+ * @property-read Species $into
  * @property-read EvolutionItem|null $evolutionItem
  */
 final class SpeciesEvolution extends Model
@@ -36,9 +36,9 @@ final class SpeciesEvolution extends Model
     /**
      * @return BelongsTo<Species, $this>
      */
-    public function to(): BelongsTo
+    public function into(): BelongsTo
     {
-        return $this->belongsTo(Species::class, 'to_species_id');
+        return $this->belongsTo(Species::class, 'into_species_id');
     }
 
     /**
