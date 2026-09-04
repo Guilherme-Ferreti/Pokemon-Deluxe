@@ -26,7 +26,18 @@
             "
             :title="evolution.species.name"
           />
-          {{ getEvolutionCriteria(evolution) }}
+          <template v-if="evolution.minLevel">
+            at level {{ evolution.minLevel }}
+          </template>
+          <template v-if="evolution.evolutionItem">
+            using
+            <AppItemSprite
+              v-if="evolution.evolutionItem?.sprite"
+              :name="evolution.evolutionItem.name"
+              :url="evolution.evolutionItem?.sprite"
+            />
+            {{ evolution.evolutionItem.name }}
+          </template>
         </li>
       </ul>
       <p
@@ -48,6 +59,7 @@ import AppSpeciesPortrait from '@/components/AppSpeciesPortrait.vue';
 import Separator from '@/components/ui/separator/Separator.vue';
 import type { DexPokedexShowPageProps } from '@/pages/Dex/Pokedex/Show.vue';
 import { route } from '@/types/helpers/route.js';
+import AppItemSprite from './AppItemSprite.vue';
 
 const props = defineProps<{
   evolutionChain: DexPokedexShowPageProps['evolutionChain'];
@@ -65,20 +77,4 @@ const sections = [
     emptyMessage: 'This pokemon does not evolve.',
   },
 ];
-
-function getEvolutionCriteria(
-  evolution: DexPokedexShowPageProps['evolutionChain']['previous'][number],
-): string {
-  let criteria = '';
-
-  if (evolution.minLevel) {
-    criteria += `at level ${evolution.minLevel}`;
-  }
-
-  if (evolution.evolutionItem) {
-    criteria += ` using ${evolution.evolutionItem.name}`;
-  }
-
-  return criteria;
-}
 </script>

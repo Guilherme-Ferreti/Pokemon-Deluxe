@@ -109,6 +109,7 @@ export interface DexPokedexShowPageProps {
       };
       evolutionItem?: {
         name: string;
+        sprite?: string;
       };
       minLevel?: number;
     }[];
@@ -120,6 +121,7 @@ export interface DexPokedexShowPageProps {
       };
       evolutionItem?: {
         name: string;
+        sprite?: string;
       };
       minLevel?: number;
     }[];

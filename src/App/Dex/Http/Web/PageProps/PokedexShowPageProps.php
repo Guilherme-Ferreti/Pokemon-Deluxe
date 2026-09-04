@@ -158,7 +158,8 @@ final readonly class PokedexShowPageProps implements ProvidesInertiaProperties
                         'portrait' => $evolution->from->portraits->regular,
                     ],
                     'evolutionItem' => $evolution->evolutionItem ? [
-                        'name' => $evolution->evolutionItem->name,
+                        'name'   => $evolution->evolutionItem->name,
+                        'sprite' => $evolution->evolutionItem->sprite,
                     ] : null,
                     'minLevel' => $evolution->min_level,
                 ])
@@ -174,7 +175,8 @@ final readonly class PokedexShowPageProps implements ProvidesInertiaProperties
                         'portrait' => $evolution->to->portraits->regular,
                     ],
                     'evolutionItem' => $evolution->evolutionItem ? [
-                        'name' => $evolution->evolutionItem->name,
+                        'name'   => $evolution->evolutionItem->name,
+                        'sprite' => $evolution->evolutionItem->sprite,
                     ] : null,
                     'minLevel' => $evolution->min_level,
                 ])
