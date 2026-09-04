@@ -111,7 +111,7 @@
         "evolutions": [
             {
                 "evolves_into": "sceptile-mega",
-                "item": null,
+                "item": "sceptilite",
                 "min_level": 100
             }
         ]
@@ -264,7 +264,7 @@
         "evolutions": [
             {
                 "evolves_into": "blaziken-mega",
-                "item": null,
+                "item": "blazikenite",
                 "min_level": 100
             }
         ]
@@ -417,7 +417,7 @@
         "evolutions": [
             {
                 "evolves_into": "swampert-mega",
-                "item": null,
+                "item": "swampertite",
                 "min_level": 100
             }
         ]
@@ -1285,7 +1285,7 @@
         "evolutions": [
             {
                 "evolves_into": "gardevoir-mega",
-                "item": null,
+                "item": "gardevoirite",
                 "min_level": 100
             }
         ]
@@ -2064,7 +2064,7 @@
         "evolutions": [
             {
                 "evolves_into": "sableye-mega",
-                "item": null,
+                "item": "sablenite",
                 "min_level": 100
             }
         ]
@@ -2138,7 +2138,7 @@
         "evolutions": [
             {
                 "evolves_into": "mawile-mega",
-                "item": null,
+                "item": "mawilite",
                 "min_level": 100
             }
         ]
@@ -2292,7 +2292,7 @@
         "evolutions": [
             {
                 "evolves_into": "aggron-mega",
-                "item": null,
+                "item": "aggronite",
                 "min_level": 100
             }
         ]
@@ -2405,7 +2405,7 @@
         "evolutions": [
             {
                 "evolves_into": "medicham-mega",
-                "item": null,
+                "item": "medichamite",
                 "min_level": 100
             }
         ]
@@ -2517,7 +2517,7 @@
         "evolutions": [
             {
                 "evolves_into": "manectric-mega",
-                "item": null,
+                "item": "manectite",
                 "min_level": 100
             }
         ]
@@ -2874,7 +2874,7 @@
         "evolutions": [
             {
                 "evolves_into": "sharpedo-mega",
-                "item": null,
+                "item": "sharpedonite",
                 "min_level": 100
             }
         ]
@@ -3060,7 +3060,7 @@
         "evolutions": [
             {
                 "evolves_into": "camerupt-mega",
-                "item": null,
+                "item": "cameruptite",
                 "min_level": 100
             }
         ]
@@ -3498,7 +3498,7 @@
         "evolutions": [
             {
                 "evolves_into": "altaria-mega",
-                "item": null,
+                "item": "altarianite",
                 "min_level": 100
             }
         ]
@@ -4350,7 +4350,7 @@
         "evolutions": [
             {
                 "evolves_into": "banette-mega",
-                "item": null,
+                "item": "banettite",
                 "min_level": 100
             }
         ]
@@ -4534,7 +4534,7 @@
         "evolutions": [
             {
                 "evolves_into": "chimecho-mega",
-                "item": null,
+                "item": "chimechite",
                 "min_level": 100
             }
         ]
@@ -4607,12 +4607,12 @@
         "evolutions": [
             {
                 "evolves_into": "absol-mega",
-                "item": null,
+                "item": "absolite",
                 "min_level": 100
             },
             {
                 "evolves_into": "absol-mega-z",
-                "item": null,
+                "item": "absolite-z",
                 "min_level": 100
             }
         ]
@@ -4801,7 +4801,7 @@
         "evolutions": [
             {
                 "evolves_into": "glalie-mega",
-                "item": null,
+                "item": "glalitite",
                 "min_level": 100
             }
         ]
@@ -5243,7 +5243,7 @@
         "evolutions": [
             {
                 "evolves_into": "salamence-mega",
-                "item": null,
+                "item": "salamencite",
                 "min_level": 100
             }
         ]
@@ -5397,7 +5397,7 @@
         "evolutions": [
             {
                 "evolves_into": "metagross-mega",
-                "item": null,
+                "item": "metagrossite",
                 "min_level": 100
             }
         ]
@@ -5570,7 +5570,7 @@
         "evolutions": [
             {
                 "evolves_into": "latias-mega",
-                "item": null,
+                "item": "latiasite",
                 "min_level": 100
             }
         ]
@@ -5644,7 +5644,7 @@
         "evolutions": [
             {
                 "evolves_into": "latios-mega",
-                "item": null,
+                "item": "latiosite",
                 "min_level": 100
             }
         ]

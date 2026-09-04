@@ -112,7 +112,7 @@
         "evolutions": [
             {
                 "evolves_into": "chesnaught-mega",
-                "item": null,
+                "item": "chesnaughtite",
                 "min_level": 100
             }
         ]
@@ -264,7 +264,7 @@
         "evolutions": [
             {
                 "evolves_into": "delphox-mega",
-                "item": null,
+                "item": "delphoxite",
                 "min_level": 100
             }
         ]
@@ -416,7 +416,7 @@
         "evolutions": [
             {
                 "evolves_into": "greninja-mega",
-                "item": null,
+                "item": "greninjite",
                 "min_level": 100
             }
         ]
@@ -829,7 +829,7 @@
         "evolutions": [
             {
                 "evolves_into": "pyroar-mega",
-                "item": null,
+                "item": "pyroarite",
                 "min_level": 100
             }
         ]
@@ -946,7 +946,7 @@
             },
             {
                 "evolves_into": "floette-mega",
-                "item": null,
+                "item": "floettite",
                 "min_level": 100
             },
             {
@@ -1306,7 +1306,7 @@
         "evolutions": [
             {
                 "evolves_into": "meowstic-mega",
-                "item": null,
+                "item": "meowsticite",
                 "min_level": 100
             }
         ]
@@ -1716,7 +1716,7 @@
         "evolutions": [
             {
                 "evolves_into": "malamar-mega",
-                "item": null,
+                "item": "malamarite",
                 "min_level": 100
             }
         ]
@@ -1830,7 +1830,7 @@
         "evolutions": [
             {
                 "evolves_into": "barbaracle-mega",
-                "item": null,
+                "item": "barbaracite",
                 "min_level": 100
             }
         ]
@@ -1944,7 +1944,7 @@
         "evolutions": [
             {
                 "evolves_into": "dragalge-mega",
-                "item": null,
+                "item": "dragalgite",
                 "min_level": 100
             }
         ]
@@ -2345,7 +2345,7 @@
         "evolutions": [
             {
                 "evolves_into": "hawlucha-mega",
-                "item": null,
+                "item": "hawluchanite",
                 "min_level": 100
             }
         ]
@@ -3191,7 +3191,7 @@
         "evolutions": [
             {
                 "evolves_into": "zygarde-mega",
-                "item": null,
+                "item": "zygardite",
                 "min_level": 100
             }
         ]
@@ -3265,7 +3265,7 @@
         "evolutions": [
             {
                 "evolves_into": "diancie-mega",
-                "item": null,
+                "item": "diancite",
                 "min_level": 100
             }
         ]

@@ -111,7 +111,7 @@
         "evolutions": [
             {
                 "evolves_into": "meganium-mega",
-                "item": null,
+                "item": "meganiumite",
                 "min_level": 100
             }
         ]
@@ -412,7 +412,7 @@
         "evolutions": [
             {
                 "evolves_into": "feraligatr-mega",
-                "item": null,
+                "item": "feraligite",
                 "min_level": 100
             }
         ]
@@ -1236,7 +1236,7 @@
         "evolutions": [
             {
                 "evolves_into": "ampharos-mega",
-                "item": null,
+                "item": "ampharosite",
                 "min_level": 100
             }
         ]
@@ -2264,7 +2264,7 @@
         "evolutions": [
             {
                 "evolves_into": "steelix-mega",
-                "item": null,
+                "item": "steelixite",
                 "min_level": 100
             }
         ]
@@ -2484,7 +2484,7 @@
         "evolutions": [
             {
                 "evolves_into": "scizor-mega",
-                "item": null,
+                "item": "scizorite",
                 "min_level": 100
             }
         ]
@@ -2592,7 +2592,7 @@
         "evolutions": [
             {
                 "evolves_into": "heracross-mega",
-                "item": null,
+                "item": "heracronite",
                 "min_level": 100
             }
         ]
@@ -3151,7 +3151,7 @@
         "evolutions": [
             {
                 "evolves_into": "skarmory-mega",
-                "item": null,
+                "item": "skarmorite",
                 "min_level": 100
             }
         ]
@@ -3265,7 +3265,7 @@
         "evolutions": [
             {
                 "evolves_into": "houndoom-mega",
-                "item": null,
+                "item": "houndoominite",
                 "min_level": 100
             }
         ]
@@ -4001,7 +4001,7 @@
         "evolutions": [
             {
                 "evolves_into": "tyranitar-mega",
-                "item": null,
+                "item": "tyranitarite",
                 "min_level": 100
             }
         ]

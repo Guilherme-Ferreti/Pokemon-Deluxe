@@ -1867,7 +1867,7 @@
         "evolutions": [
             {
                 "evolves_into": "scovillain-mega",
-                "item": null,
+                "item": "scovillainite",
                 "min_level": 100
             }
         ]
@@ -2597,7 +2597,7 @@
         "evolutions": [
             {
                 "evolves_into": "glimmora-mega",
-                "item": null,
+                "item": "glimmoranite",
                 "min_level": 100
             }
         ]
@@ -2916,17 +2916,17 @@
         "evolutions": [
             {
                 "evolves_into": "tatsugiri-curly-mega",
-                "item": null,
+                "item": "tatsugirinite",
                 "min_level": 100
             },
             {
                 "evolves_into": "tatsugiri-droopy-mega",
-                "item": null,
+                "item": "tatsugirinite",
                 "min_level": 100
             },
             {
                 "evolves_into": "tatsugiri-stretchy-mega",
-                "item": null,
+                "item": "tatsugirinite",
                 "min_level": 100
             }
         ]
@@ -2966,17 +2966,17 @@
         "evolutions": [
             {
                 "evolves_into": "tatsugiri-curly-mega",
-                "item": null,
+                "item": "tatsugirinite",
                 "min_level": 100
             },
             {
                 "evolves_into": "tatsugiri-droopy-mega",
-                "item": null,
+                "item": "tatsugirinite",
                 "min_level": 100
             },
             {
                 "evolves_into": "tatsugiri-stretchy-mega",
-                "item": null,
+                "item": "tatsugirinite",
                 "min_level": 100
             }
         ]
@@ -3016,17 +3016,17 @@
         "evolutions": [
             {
                 "evolves_into": "tatsugiri-curly-mega",
-                "item": null,
+                "item": "tatsugirinite",
                 "min_level": 100
             },
             {
                 "evolves_into": "tatsugiri-droopy-mega",
-                "item": null,
+                "item": "tatsugirinite",
                 "min_level": 100
             },
             {
                 "evolves_into": "tatsugiri-stretchy-mega",
-                "item": null,
+                "item": "tatsugirinite",
                 "min_level": 100
             }
         ]
@@ -3858,7 +3858,7 @@
         "evolutions": [
             {
                 "evolves_into": "baxcalibur-mega",
-                "item": null,
+                "item": "baxcalibrite",
                 "min_level": 100
             }
         ]

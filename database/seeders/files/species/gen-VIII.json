@@ -2966,7 +2966,7 @@
         "evolutions": [
             {
                 "evolves_into": "falinks-mega",
-                "item": null,
+                "item": "falinksite",
                 "min_level": 100
             }
         ]

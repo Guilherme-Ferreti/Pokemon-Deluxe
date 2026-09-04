@@ -114,7 +114,7 @@
         "evolutions": [
             {
                 "evolves_into": "venusaur-mega",
-                "item": null,
+                "item": "venusaurite",
                 "min_level": 100
             },
             {
@@ -305,12 +305,12 @@
         "evolutions": [
             {
                 "evolves_into": "charizard-mega-x",
-                "item": null,
+                "item": "charizardite-x",
                 "min_level": 100
             },
             {
                 "evolves_into": "charizard-mega-y",
-                "item": null,
+                "item": "charizardite-y",
                 "min_level": 100
             },
             {
@@ -534,7 +534,7 @@
         "evolutions": [
             {
                 "evolves_into": "blastoise-mega",
-                "item": null,
+                "item": "blastoisinite",
                 "min_level": 100
             },
             {
@@ -877,7 +877,7 @@
         "evolutions": [
             {
                 "evolves_into": "beedrill-mega",
-                "item": null,
+                "item": "beedrillite",
                 "min_level": 100
             }
         ]
@@ -1031,7 +1031,7 @@
         "evolutions": [
             {
                 "evolves_into": "pidgeot-mega",
-                "item": null,
+                "item": "pidgeotite",
                 "min_level": 100
             }
         ]
@@ -1404,12 +1404,12 @@
         "evolutions": [
             {
                 "evolves_into": "raichu-mega-x",
-                "item": null,
+                "item": "raichunite-x",
                 "min_level": 100
             },
             {
                 "evolves_into": "raichu-mega-y",
-                "item": null,
+                "item": "raichunite-y",
                 "min_level": 100
             }
         ]
@@ -1849,7 +1849,7 @@
         "evolutions": [
             {
                 "evolves_into": "clefable-mega",
-                "item": null,
+                "item": "clefablite",
                 "min_level": 100
             }
         ]
@@ -3088,7 +3088,7 @@
         "evolutions": [
             {
                 "evolves_into": "alakazam-mega",
-                "item": null,
+                "item": "alakazite",
                 "min_level": 100
             }
         ]
@@ -3391,7 +3391,7 @@
         "evolutions": [
             {
                 "evolves_into": "victreebel-mega",
-                "item": null,
+                "item": "victreebelite",
                 "min_level": 100
             }
         ]
@@ -3770,7 +3770,7 @@
         "evolutions": [
             {
                 "evolves_into": "slowbro-mega",
-                "item": null,
+                "item": "slowbronite",
                 "min_level": 100
             }
         ]
@@ -4330,7 +4330,7 @@
         "evolutions": [
             {
                 "evolves_into": "gengar-mega",
-                "item": null,
+                "item": "gengarite",
                 "min_level": 100
             },
             {
@@ -5307,7 +5307,7 @@
         "evolutions": [
             {
                 "evolves_into": "kangaskhan-mega",
-                "item": null,
+                "item": "kangaskhanite",
                 "min_level": 100
             }
         ]
@@ -5569,7 +5569,7 @@
         "evolutions": [
             {
                 "evolves_into": "starmie-mega",
-                "item": null,
+                "item": "starminite",
                 "min_level": 100
             }
         ]
@@ -5833,7 +5833,7 @@
         "evolutions": [
             {
                 "evolves_into": "pinsir-mega",
-                "item": null,
+                "item": "pinsirite",
                 "min_level": 100
             }
         ]
@@ -5979,7 +5979,7 @@
         "evolutions": [
             {
                 "evolves_into": "gyarados-mega",
-                "item": null,
+                "item": "gyaradosite",
                 "min_level": 100
             }
         ]
@@ -6558,7 +6558,7 @@
         "evolutions": [
             {
                 "evolves_into": "aerodactyl-mega",
-                "item": null,
+                "item": "aerodactylite",
                 "min_level": 100
             }
         ]
@@ -6884,7 +6884,7 @@
         "evolutions": [
             {
                 "evolves_into": "dragonite-mega",
-                "item": null,
+                "item": "dragoninite",
                 "min_level": 100
             }
         ]
@@ -6957,12 +6957,12 @@
         "evolutions": [
             {
                 "evolves_into": "mewtwo-mega-x",
-                "item": null,
+                "item": "mewtwonite-x",
                 "min_level": 100
             },
             {
                 "evolves_into": "mewtwo-mega-y",
-                "item": null,
+                "item": "mewtwonite-y",
                 "min_level": 100
             }
         ]

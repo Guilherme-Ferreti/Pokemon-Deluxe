@@ -271,5 +271,649 @@
     "name": "Metal Alloy",
     "sprite": null,
     "description": "An item used to evolve certain Pokémon."
+  },
+  {
+    "id": "gengarite",
+    "external_id": "gengarite",
+    "name": "Gengarite",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/gengarite.png",
+    "description": "An item used to Mega Evolve certain Pokémon."
+  },
+  {
+    "id": "gardevoirite",
+    "external_id": "gardevoirite",
+    "name": "Gardevoirite",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/gardevoirite.png",
+    "description": "An item used to Mega Evolve certain Pokémon."
+  },
+  {
+    "id": "ampharosite",
+    "external_id": "ampharosite",
+    "name": "Ampharosite",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/ampharosite.png",
+    "description": "An item used to Mega Evolve certain Pokémon."
+  },
+  {
+    "id": "venusaurite",
+    "external_id": "venusaurite",
+    "name": "Venusaurite",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/venusaurite.png",
+    "description": "An item used to Mega Evolve certain Pokémon."
+  },
+  {
+    "id": "charizardite-x",
+    "external_id": "charizardite-x",
+    "name": "Charizardite X",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/charizardite-x.png",
+    "description": "An item used to Mega Evolve certain Pokémon."
+  },
+  {
+    "id": "blastoisinite",
+    "external_id": "blastoisinite",
+    "name": "Blastoisinite",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/blastoisinite.png",
+    "description": "An item used to Mega Evolve certain Pokémon."
+  },
+  {
+    "id": "mewtwonite-x",
+    "external_id": "mewtwonite-x",
+    "name": "Mewtwonite X",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/mewtwonite-x.png",
+    "description": "An item used to Mega Evolve certain Pokémon."
+  },
+  {
+    "id": "mewtwonite-y",
+    "external_id": "mewtwonite-y",
+    "name": "Mewtwonite Y",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/mewtwonite-y.png",
+    "description": "An item used to Mega Evolve certain Pokémon."
+  },
+  {
+    "id": "blazikenite",
+    "external_id": "blazikenite",
+    "name": "Blazikenite",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/blazikenite.png",
+    "description": "An item used to Mega Evolve certain Pokémon."
+  },
+  {
+    "id": "medichamite",
+    "external_id": "medichamite",
+    "name": "Medichamite",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/medichamite.png",
+    "description": "An item used to Mega Evolve certain Pokémon."
+  },
+  {
+    "id": "houndoominite",
+    "external_id": "houndoominite",
+    "name": "Houndoominite",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/houndoominite.png",
+    "description": "An item used to Mega Evolve certain Pokémon."
+  },
+  {
+    "id": "aggronite",
+    "external_id": "aggronite",
+    "name": "Aggronite",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/aggronite.png",
+    "description": "An item used to Mega Evolve certain Pokémon."
+  },
+  {
+    "id": "banettite",
+    "external_id": "banettite",
+    "name": "Banettite",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/banettite.png",
+    "description": "An item used to Mega Evolve certain Pokémon."
+  },
+  {
+    "id": "tyranitarite",
+    "external_id": "tyranitarite",
+    "name": "Tyranitarite",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tyranitarite.png",
+    "description": "An item used to Mega Evolve certain Pokémon."
+  },
+  {
+    "id": "scizorite",
+    "external_id": "scizorite",
+    "name": "Scizorite",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/scizorite.png",
+    "description": "An item used to Mega Evolve certain Pokémon."
+  },
+  {
+    "id": "pinsirite",
+    "external_id": "pinsirite",
+    "name": "Pinsirite",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/pinsirite.png",
+    "description": "An item used to Mega Evolve certain Pokémon."
+  },
+  {
+    "id": "aerodactylite",
+    "external_id": "aerodactylite",
+    "name": "Aerodactylite",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/aerodactylite.png",
+    "description": "An item used to Mega Evolve certain Pokémon."
+  },
+  {
+    "id": "lucarionite",
+    "external_id": "lucarionite",
+    "name": "Lucarionite",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/lucarionite.png",
+    "description": "An item used to Mega Evolve certain Pokémon."
+  },
+  {
+    "id": "abomasite",
+    "external_id": "abomasite",
+    "name": "Abomasite",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/abomasite.png",
+    "description": "An item used to Mega Evolve certain Pokémon."
+  },
+  {
+    "id": "kangaskhanite",
+    "external_id": "kangaskhanite",
+    "name": "Kangaskhanite",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/kangaskhanite.png",
+    "description": "An item used to Mega Evolve certain Pokémon."
+  },
+  {
+    "id": "gyaradosite",
+    "external_id": "gyaradosite",
+    "name": "Gyaradosite",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/gyaradosite.png",
+    "description": "An item used to Mega Evolve certain Pokémon."
+  },
+  {
+    "id": "absolite",
+    "external_id": "absolite",
+    "name": "Absolite",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/absolite.png",
+    "description": "An item used to Mega Evolve certain Pokémon."
+  },
+  {
+    "id": "charizardite-y",
+    "external_id": "charizardite-y",
+    "name": "Charizardite Y",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/charizardite-y.png",
+    "description": "An item used to Mega Evolve certain Pokémon."
+  },
+  {
+    "id": "alakazite",
+    "external_id": "alakazite",
+    "name": "Alakazite",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/alakazite.png",
+    "description": "An item used to Mega Evolve certain Pokémon."
+  },
+  {
+    "id": "heracronite",
+    "external_id": "heracronite",
+    "name": "Heracronite",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/heracronite.png",
+    "description": "An item used to Mega Evolve certain Pokémon."
+  },
+  {
+    "id": "mawilite",
+    "external_id": "mawilite",
+    "name": "Mawilite",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/mawilite.png",
+    "description": "An item used to Mega Evolve certain Pokémon."
+  },
+  {
+    "id": "manectite",
+    "external_id": "manectite",
+    "name": "Manectite",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/manectite.png",
+    "description": "An item used to Mega Evolve certain Pokémon."
+  },
+  {
+    "id": "garchompite",
+    "external_id": "garchompite",
+    "name": "Garchompite",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/garchompite.png",
+    "description": "An item used to Mega Evolve certain Pokémon."
+  },
+  {
+    "id": "latiasite",
+    "external_id": "latiasite",
+    "name": "Latiasite",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/latiasite.png",
+    "description": "An item used to Mega Evolve certain Pokémon."
+  },
+  {
+    "id": "latiosite",
+    "external_id": "latiosite",
+    "name": "Latiosite",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/latiosite.png",
+    "description": "An item used to Mega Evolve certain Pokémon."
+  },
+  {
+    "id": "swampertite",
+    "external_id": "swampertite",
+    "name": "Swampertite",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/swampertite.png",
+    "description": "An item used to Mega Evolve certain Pokémon."
+  },
+  {
+    "id": "sceptilite",
+    "external_id": "sceptilite",
+    "name": "Sceptilite",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/sceptilite.png",
+    "description": "An item used to Mega Evolve certain Pokémon."
+  },
+  {
+    "id": "sablenite",
+    "external_id": "sablenite",
+    "name": "Sablenite",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/sablenite.png",
+    "description": "An item used to Mega Evolve certain Pokémon."
+  },
+  {
+    "id": "altarianite",
+    "external_id": "altarianite",
+    "name": "Altarianite",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/altarianite.png",
+    "description": "An item used to Mega Evolve certain Pokémon."
+  },
+  {
+    "id": "galladite",
+    "external_id": "galladite",
+    "name": "Galladite",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/galladite.png",
+    "description": "An item used to Mega Evolve certain Pokémon."
+  },
+  {
+    "id": "audinite",
+    "external_id": "audinite",
+    "name": "Audinite",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/audinite.png",
+    "description": "An item used to Mega Evolve certain Pokémon."
+  },
+  {
+    "id": "metagrossite",
+    "external_id": "metagrossite",
+    "name": "Metagrossite",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/metagrossite.png",
+    "description": "An item used to Mega Evolve certain Pokémon."
+  },
+  {
+    "id": "sharpedonite",
+    "external_id": "sharpedonite",
+    "name": "Sharpedonite",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/sharpedonite.png",
+    "description": "An item used to Mega Evolve certain Pokémon."
+  },
+  {
+    "id": "slowbronite",
+    "external_id": "slowbronite",
+    "name": "Slowbronite",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/slowbronite.png",
+    "description": "An item used to Mega Evolve certain Pokémon."
+  },
+  {
+    "id": "steelixite",
+    "external_id": "steelixite",
+    "name": "Steelixite",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/steelixite.png",
+    "description": "An item used to Mega Evolve certain Pokémon."
+  },
+  {
+    "id": "pidgeotite",
+    "external_id": "pidgeotite",
+    "name": "Pidgeotite",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/pidgeotite.png",
+    "description": "An item used to Mega Evolve certain Pokémon."
+  },
+  {
+    "id": "glalitite",
+    "external_id": "glalitite",
+    "name": "Glalitite",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/glalitite.png",
+    "description": "An item used to Mega Evolve certain Pokémon."
+  },
+  {
+    "id": "diancite",
+    "external_id": "diancite",
+    "name": "Diancite",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/diancite.png",
+    "description": "An item used to Mega Evolve certain Pokémon."
+  },
+  {
+    "id": "cameruptite",
+    "external_id": "cameruptite",
+    "name": "Cameruptite",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/cameruptite.png",
+    "description": "An item used to Mega Evolve certain Pokémon."
+  },
+  {
+    "id": "lopunnite",
+    "external_id": "lopunnite",
+    "name": "Lopunnite",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/lopunnite.png",
+    "description": "An item used to Mega Evolve certain Pokémon."
+  },
+  {
+    "id": "salamencite",
+    "external_id": "salamencite",
+    "name": "Salamencite",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/salamencite.png",
+    "description": "An item used to Mega Evolve certain Pokémon."
+  },
+  {
+    "id": "beedrillite",
+    "external_id": "beedrillite",
+    "name": "Beedrillite",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/beedrillite.png",
+    "description": "An item used to Mega Evolve certain Pokémon."
+  },
+  {
+    "id": "clefablite",
+    "external_id": "clefablite",
+    "name": "Clefablite",
+    "sprite": null,
+    "description": "An item used to Mega Evolve certain Pokémon."
+  },
+  {
+    "id": "victreebelite",
+    "external_id": "victreebelite",
+    "name": "Victreebelite",
+    "sprite": null,
+    "description": "An item used to Mega Evolve certain Pokémon."
+  },
+  {
+    "id": "starminite",
+    "external_id": "starminite",
+    "name": "Starminite",
+    "sprite": null,
+    "description": "An item used to Mega Evolve certain Pokémon."
+  },
+  {
+    "id": "dragoninite",
+    "external_id": "dragoninite",
+    "name": "Dragoninite",
+    "sprite": null,
+    "description": "An item used to Mega Evolve certain Pokémon."
+  },
+  {
+    "id": "meganiumite",
+    "external_id": "meganiumite",
+    "name": "Meganiumite",
+    "sprite": null,
+    "description": "An item used to Mega Evolve certain Pokémon."
+  },
+  {
+    "id": "feraligite",
+    "external_id": "feraligite",
+    "name": "Feraligite",
+    "sprite": null,
+    "description": "An item used to Mega Evolve certain Pokémon."
+  },
+  {
+    "id": "skarmorite",
+    "external_id": "skarmorite",
+    "name": "Skarmorite",
+    "sprite": null,
+    "description": "An item used to Mega Evolve certain Pokémon."
+  },
+  {
+    "id": "froslassite",
+    "external_id": "froslassite",
+    "name": "Froslassite",
+    "sprite": null,
+    "description": "An item used to Mega Evolve certain Pokémon."
+  },
+  {
+    "id": "heatranite",
+    "external_id": "heatranite",
+    "name": "Heatranite",
+    "sprite": null,
+    "description": "An item used to Mega Evolve certain Pokémon."
+  },
+  {
+    "id": "darkranite",
+    "external_id": "darkranite",
+    "name": "Darkranite",
+    "sprite": null,
+    "description": "An item used to Mega Evolve certain Pokémon."
+  },
+  {
+    "id": "emboarite",
+    "external_id": "emboarite",
+    "name": "Emboarite",
+    "sprite": null,
+    "description": "An item used to Mega Evolve certain Pokémon."
+  },
+  {
+    "id": "excadrite",
+    "external_id": "excadrite",
+    "name": "Excadrite",
+    "sprite": null,
+    "description": "An item used to Mega Evolve certain Pokémon."
+  },
+  {
+    "id": "scolipite",
+    "external_id": "scolipite",
+    "name": "Scolipite",
+    "sprite": null,
+    "description": "An item used to Mega Evolve certain Pokémon."
+  },
+  {
+    "id": "scraftinite",
+    "external_id": "scraftinite",
+    "name": "Scraftinite",
+    "sprite": null,
+    "description": "An item used to Mega Evolve certain Pokémon."
+  },
+  {
+    "id": "eelektrossite",
+    "external_id": "eelektrossite",
+    "name": "Eelektrossite",
+    "sprite": null,
+    "description": "An item used to Mega Evolve certain Pokémon."
+  },
+  {
+    "id": "chandelurite",
+    "external_id": "chandelurite",
+    "name": "Chandelurite",
+    "sprite": null,
+    "description": "An item used to Mega Evolve certain Pokémon."
+  },
+  {
+    "id": "chesnaughtite",
+    "external_id": "chesnaughtite",
+    "name": "Chesnaughtite",
+    "sprite": null,
+    "description": "An item used to Mega Evolve certain Pokémon."
+  },
+  {
+    "id": "delphoxite",
+    "external_id": "delphoxite",
+    "name": "Delphoxite",
+    "sprite": null,
+    "description": "An item used to Mega Evolve certain Pokémon."
+  },
+  {
+    "id": "greninjite",
+    "external_id": "greninjite",
+    "name": "Greninjite",
+    "sprite": null,
+    "description": "An item used to Mega Evolve certain Pokémon."
+  },
+  {
+    "id": "pyroarite",
+    "external_id": "pyroarite",
+    "name": "Pyroarite",
+    "sprite": null,
+    "description": "An item used to Mega Evolve certain Pokémon."
+  },
+  {
+    "id": "floettite",
+    "external_id": "floettite",
+    "name": "Floettite",
+    "sprite": null,
+    "description": "An item used to Mega Evolve certain Pokémon."
+  },
+  {
+    "id": "malamarite",
+    "external_id": "malamarite",
+    "name": "Malamarite",
+    "sprite": null,
+    "description": "An item used to Mega Evolve certain Pokémon."
+  },
+  {
+    "id": "barbaracite",
+    "external_id": "barbaracite",
+    "name": "Barbaracite",
+    "sprite": null,
+    "description": "An item used to Mega Evolve certain Pokémon."
+  },
+  {
+    "id": "dragalgite",
+    "external_id": "dragalgite",
+    "name": "Dragalgite",
+    "sprite": null,
+    "description": "An item used to Mega Evolve certain Pokémon."
+  },
+  {
+    "id": "hawluchanite",
+    "external_id": "hawluchanite",
+    "name": "Hawluchanite",
+    "sprite": null,
+    "description": "An item used to Mega Evolve certain Pokémon."
+  },
+  {
+    "id": "zygardite",
+    "external_id": "zygardite",
+    "name": "Zygardite",
+    "sprite": null,
+    "description": "An item used to Mega Evolve certain Pokémon."
+  },
+  {
+    "id": "drampanite",
+    "external_id": "drampanite",
+    "name": "Drampanite",
+    "sprite": null,
+    "description": "An item used to Mega Evolve certain Pokémon."
+  },
+  {
+    "id": "zeraorite",
+    "external_id": "zeraorite",
+    "name": "Zeraorite",
+    "sprite": null,
+    "description": "An item used to Mega Evolve certain Pokémon."
+  },
+  {
+    "id": "falinksite",
+    "external_id": "falinksite",
+    "name": "Falinksite",
+    "sprite": null,
+    "description": "An item used to Mega Evolve certain Pokémon."
+  },
+  {
+    "id": "raichunite-x",
+    "external_id": "raichunite-x",
+    "name": "Raichunite X",
+    "sprite": null,
+    "description": "An item used to Mega Evolve certain Pokémon."
+  },
+  {
+    "id": "raichunite-y",
+    "external_id": "raichunite-y",
+    "name": "Raichunite Y",
+    "sprite": null,
+    "description": "An item used to Mega Evolve certain Pokémon."
+  },
+  {
+    "id": "chimechite",
+    "external_id": "chimechite",
+    "name": "Chimechite",
+    "sprite": null,
+    "description": "An item used to Mega Evolve certain Pokémon."
+  },
+  {
+    "id": "absolite-z",
+    "external_id": "absolite-z",
+    "name": "Absolite Z",
+    "sprite": null,
+    "description": "An item used to Mega Evolve certain Pokémon."
+  },
+  {
+    "id": "staraptite",
+    "external_id": "staraptite",
+    "name": "Staraptite",
+    "sprite": null,
+    "description": "An item used to Mega Evolve certain Pokémon."
+  },
+  {
+    "id": "garchompite-z",
+    "external_id": "garchompite-z",
+    "name": "Garchompite Z",
+    "sprite": null,
+    "description": "An item used to Mega Evolve certain Pokémon."
+  },
+  {
+    "id": "lucarionite-z",
+    "external_id": "lucarionite-z",
+    "name": "Lucarionite Z",
+    "sprite": null,
+    "description": "An item used to Mega Evolve certain Pokémon."
+  },
+  {
+    "id": "golurkite",
+    "external_id": "golurkite",
+    "name": "Golurkite",
+    "sprite": null,
+    "description": "An item used to Mega Evolve certain Pokémon."
+  },
+  {
+    "id": "meowsticite",
+    "external_id": "meowsticite",
+    "name": "Meowsticite",
+    "sprite": null,
+    "description": "An item used to Mega Evolve certain Pokémon."
+  },
+  {
+    "id": "crabominite",
+    "external_id": "crabominite",
+    "name": "Crabominite",
+    "sprite": null,
+    "description": "An item used to Mega Evolve certain Pokémon."
+  },
+  {
+    "id": "golisopite",
+    "external_id": "golisopite",
+    "name": "Golisopite",
+    "sprite": null,
+    "description": "An item used to Mega Evolve certain Pokémon."
+  },
+  {
+    "id": "magearnite",
+    "external_id": "magearnite",
+    "name": "Magearnite",
+    "sprite": null,
+    "description": "An item used to Mega Evolve certain Pokémon."
+  },
+  {
+    "id": "scovillainite",
+    "external_id": "scovillainite",
+    "name": "Scovillainite",
+    "sprite": null,
+    "description": "An item used to Mega Evolve certain Pokémon."
+  },
+  {
+    "id": "baxcalibrite",
+    "external_id": "baxcalibrite",
+    "name": "Baxcalibrite",
+    "sprite": null,
+    "description": "An item used to Mega Evolve certain Pokémon."
+  },
+  {
+    "id": "tatsugirinite",
+    "external_id": "tatsugirinite",
+    "name": "Tatsugirinite",
+    "sprite": null,
+    "description": "An item used to Mega Evolve certain Pokémon."
+  },
+  {
+    "id": "glimmoranite",
+    "external_id": "glimmoranite",
+    "name": "Glimmoranite",
+    "sprite": null,
+    "description": "An item used to Mega Evolve certain Pokémon."
   }
 ]

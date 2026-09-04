@@ -224,7 +224,7 @@
         "evolutions": [
             {
                 "evolves_into": "emboar-mega",
-                "item": null,
+                "item": "emboarite",
                 "min_level": 100
             }
         ]
@@ -1401,7 +1401,7 @@
         "evolutions": [
             {
                 "evolves_into": "excadrill-mega",
-                "item": null,
+                "item": "excadrite",
                 "min_level": 100
             }
         ]
@@ -1474,7 +1474,7 @@
         "evolutions": [
             {
                 "evolves_into": "audino-mega",
-                "item": null,
+                "item": "audinite",
                 "min_level": 100
             }
         ]
@@ -2032,7 +2032,7 @@
         "evolutions": [
             {
                 "evolves_into": "scolipede-mega",
-                "item": null,
+                "item": "scolipite",
                 "min_level": 100
             }
         ]
@@ -2762,7 +2762,7 @@
         "evolutions": [
             {
                 "evolves_into": "scrafty-mega",
-                "item": null,
+                "item": "scraftinite",
                 "min_level": 100
             }
         ]
@@ -4524,7 +4524,7 @@
         "evolutions": [
             {
                 "evolves_into": "eelektross-mega",
-                "item": null,
+                "item": "eelektrossite",
                 "min_level": 100
             }
         ]
@@ -4749,7 +4749,7 @@
         "evolutions": [
             {
                 "evolves_into": "chandelure-mega",
-                "item": null,
+                "item": "chandelurite",
                 "min_level": 100
             }
         ]
@@ -5290,7 +5290,7 @@
         "evolutions": [
             {
                 "evolves_into": "golurk-mega",
-                "item": null,
+                "item": "golurkite",
                 "min_level": 100
             }
         ]

@@ -451,7 +451,7 @@
         "evolutions": [
             {
                 "evolves_into": "staraptor-mega",
-                "item": null,
+                "item": "staraptite",
                 "min_level": 100
             }
         ]
@@ -1849,7 +1849,7 @@
         "evolutions": [
             {
                 "evolves_into": "lopunny-mega",
-                "item": null,
+                "item": "lopunnite",
                 "min_level": 100
             }
         ]
@@ -2515,12 +2515,12 @@
         "evolutions": [
             {
                 "evolves_into": "garchomp-mega",
-                "item": null,
+                "item": "garchompite",
                 "min_level": 100
             },
             {
                 "evolves_into": "garchomp-mega-z",
-                "item": null,
+                "item": "garchompite-z",
                 "min_level": 100
             }
         ]
@@ -2705,12 +2705,12 @@
         "evolutions": [
             {
                 "evolves_into": "lucario-mega",
-                "item": null,
+                "item": "lucarionite",
                 "min_level": 100
             },
             {
                 "evolves_into": "lucario-mega-z",
-                "item": null,
+                "item": "lucarionite-z",
                 "min_level": 100
             }
         ]
@@ -3223,7 +3223,7 @@
         "evolutions": [
             {
                 "evolves_into": "abomasnow-mega",
-                "item": null,
+                "item": "abomasite",
                 "min_level": 100
             }
         ]
@@ -3766,7 +3766,7 @@
         "evolutions": [
             {
                 "evolves_into": "gallade-mega",
-                "item": null,
+                "item": "galladite",
                 "min_level": 100
             }
         ]
@@ -3907,7 +3907,7 @@
         "evolutions": [
             {
                 "evolves_into": "froslass-mega",
-                "item": null,
+                "item": "froslassite",
                 "min_level": 100
             }
         ]
@@ -4420,7 +4420,7 @@
         "evolutions": [
             {
                 "evolves_into": "heatran-mega",
-                "item": null,
+                "item": "heatranite",
                 "min_level": 100
             }
         ]
@@ -4693,7 +4693,7 @@
         "evolutions": [
             {
                 "evolves_into": "darkrai-mega",
-                "item": null,
+                "item": "darkranite",
                 "min_level": 100
             }
         ]

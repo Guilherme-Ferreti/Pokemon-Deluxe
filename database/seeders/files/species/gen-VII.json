@@ -749,7 +749,7 @@
         "evolutions": [
             {
                 "evolves_into": "crabominable-mega",
-                "item": null,
+                "item": "crabominite",
                 "min_level": 100
             }
         ]
@@ -2012,7 +2012,7 @@
         "evolutions": [
             {
                 "evolves_into": "golisopod-mega",
-                "item": null,
+                "item": "golisopite",
                 "min_level": 100
             }
         ]
@@ -2944,7 +2944,7 @@
         "evolutions": [
             {
                 "evolves_into": "drampa-mega",
-                "item": null,
+                "item": "drampanite",
                 "min_level": 100
             }
         ]
@@ -3824,7 +3824,7 @@
         "evolutions": [
             {
                 "evolves_into": "magearna-mega",
-                "item": null,
+                "item": "magearnite",
                 "min_level": 100
             }
         ]
@@ -3864,7 +3864,7 @@
         "evolutions": [
             {
                 "evolves_into": "magearna-original-mega",
-                "item": null,
+                "item": "magearnite",
                 "min_level": 100
             }
         ]
@@ -4146,7 +4146,7 @@
         "evolutions": [
             {
                 "evolves_into": "zeraora-mega",
-                "item": null,
+                "item": "zeraorite",
                 "min_level": 100
             }
         ]
