@@ -1999,6 +1999,897 @@
         "capture_rate": 225,
         "evolutions": []
     },
+    "unown-b": {
+        "id": "unown-b",
+        "external_id": "unown",
+        "name": "Unown B",
+        "types": [
+            "psychic"
+        ],
+        "pokedex_number": 201,
+        "genus": "Symbol Pokémon",
+        "flavor_text": "It is hard to believe these strangely shaped Pokémon are truly living creatures. I've pointed out that the species' many forms resemble writing from other lands; no one will take me seriously.",
+        "sprites": {
+            "back_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/201-b.png",
+            "back_female": null,
+            "back_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/shiny/201-b.png",
+            "back_shiny_female": null,
+            "front_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/201-b.png",
+            "front_female": null,
+            "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/201-b.png",
+            "front_shiny_female": null
+        },
+        "portraits": {
+            "regular": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0201/0001/Normal.png",
+            "shiny": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0201/0001/0001/Normal.png"
+        },
+        "is_baby": false,
+        "is_legendary": false,
+        "is_mythical": false,
+        "is_mega": false,
+        "is_gmax": false,
+        "generation": 2,
+        "capture_rate": 225,
+        "evolutions": []
+    },
+    "unown-c": {
+        "id": "unown-c",
+        "external_id": "unown",
+        "name": "Unown C",
+        "types": [
+            "psychic"
+        ],
+        "pokedex_number": 201,
+        "genus": "Symbol Pokémon",
+        "flavor_text": "It is hard to believe these strangely shaped Pokémon are truly living creatures. I've pointed out that the species' many forms resemble writing from other lands; no one will take me seriously.",
+        "sprites": {
+            "back_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/201-c.png",
+            "back_female": null,
+            "back_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/shiny/201-c.png",
+            "back_shiny_female": null,
+            "front_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/201-c.png",
+            "front_female": null,
+            "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/201-c.png",
+            "front_shiny_female": null
+        },
+        "portraits": {
+            "regular": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0201/0002/Normal.png",
+            "shiny": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0201/0002/0001/Normal.png"
+        },
+        "is_baby": false,
+        "is_legendary": false,
+        "is_mythical": false,
+        "is_mega": false,
+        "is_gmax": false,
+        "generation": 2,
+        "capture_rate": 225,
+        "evolutions": []
+    },
+    "unown-d": {
+        "id": "unown-d",
+        "external_id": "unown",
+        "name": "Unown D",
+        "types": [
+            "psychic"
+        ],
+        "pokedex_number": 201,
+        "genus": "Symbol Pokémon",
+        "flavor_text": "It is hard to believe these strangely shaped Pokémon are truly living creatures. I've pointed out that the species' many forms resemble writing from other lands; no one will take me seriously.",
+        "sprites": {
+            "back_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/201-d.png",
+            "back_female": null,
+            "back_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/shiny/201-d.png",
+            "back_shiny_female": null,
+            "front_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/201-d.png",
+            "front_female": null,
+            "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/201-d.png",
+            "front_shiny_female": null
+        },
+        "portraits": {
+            "regular": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0201/0003/Normal.png",
+            "shiny": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0201/0003/0001/Normal.png"
+        },
+        "is_baby": false,
+        "is_legendary": false,
+        "is_mythical": false,
+        "is_mega": false,
+        "is_gmax": false,
+        "generation": 2,
+        "capture_rate": 225,
+        "evolutions": []
+    },
+    "unown-e": {
+        "id": "unown-e",
+        "external_id": "unown",
+        "name": "Unown E",
+        "types": [
+            "psychic"
+        ],
+        "pokedex_number": 201,
+        "genus": "Symbol Pokémon",
+        "flavor_text": "It is hard to believe these strangely shaped Pokémon are truly living creatures. I've pointed out that the species' many forms resemble writing from other lands; no one will take me seriously.",
+        "sprites": {
+            "back_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/201-e.png",
+            "back_female": null,
+            "back_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/shiny/201-e.png",
+            "back_shiny_female": null,
+            "front_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/201-e.png",
+            "front_female": null,
+            "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/201-e.png",
+            "front_shiny_female": null
+        },
+        "portraits": {
+            "regular": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0201/0004/Normal.png",
+            "shiny": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0201/0004/0001/Normal.png"
+        },
+        "is_baby": false,
+        "is_legendary": false,
+        "is_mythical": false,
+        "is_mega": false,
+        "is_gmax": false,
+        "generation": 2,
+        "capture_rate": 225,
+        "evolutions": []
+    },
+    "unown-f": {
+        "id": "unown-f",
+        "external_id": "unown",
+        "name": "Unown F",
+        "types": [
+            "psychic"
+        ],
+        "pokedex_number": 201,
+        "genus": "Symbol Pokémon",
+        "flavor_text": "It is hard to believe these strangely shaped Pokémon are truly living creatures. I've pointed out that the species' many forms resemble writing from other lands; no one will take me seriously.",
+        "sprites": {
+            "back_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/201-f.png",
+            "back_female": null,
+            "back_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/shiny/201-f.png",
+            "back_shiny_female": null,
+            "front_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/201-f.png",
+            "front_female": null,
+            "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/201-f.png",
+            "front_shiny_female": null
+        },
+        "portraits": {
+            "regular": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0201/0005/Normal.png",
+            "shiny": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0201/0005/0001/Normal.png"
+        },
+        "is_baby": false,
+        "is_legendary": false,
+        "is_mythical": false,
+        "is_mega": false,
+        "is_gmax": false,
+        "generation": 2,
+        "capture_rate": 225,
+        "evolutions": []
+    },
+    "unown-g": {
+        "id": "unown-g",
+        "external_id": "unown",
+        "name": "Unown G",
+        "types": [
+            "psychic"
+        ],
+        "pokedex_number": 201,
+        "genus": "Symbol Pokémon",
+        "flavor_text": "It is hard to believe these strangely shaped Pokémon are truly living creatures. I've pointed out that the species' many forms resemble writing from other lands; no one will take me seriously.",
+        "sprites": {
+            "back_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/201-g.png",
+            "back_female": null,
+            "back_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/shiny/201-g.png",
+            "back_shiny_female": null,
+            "front_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/201-g.png",
+            "front_female": null,
+            "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/201-g.png",
+            "front_shiny_female": null
+        },
+        "portraits": {
+            "regular": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0201/0006/Normal.png",
+            "shiny": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0201/0006/0001/Normal.png"
+        },
+        "is_baby": false,
+        "is_legendary": false,
+        "is_mythical": false,
+        "is_mega": false,
+        "is_gmax": false,
+        "generation": 2,
+        "capture_rate": 225,
+        "evolutions": []
+    },
+    "unown-h": {
+        "id": "unown-h",
+        "external_id": "unown",
+        "name": "Unown H",
+        "types": [
+            "psychic"
+        ],
+        "pokedex_number": 201,
+        "genus": "Symbol Pokémon",
+        "flavor_text": "It is hard to believe these strangely shaped Pokémon are truly living creatures. I've pointed out that the species' many forms resemble writing from other lands; no one will take me seriously.",
+        "sprites": {
+            "back_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/201-h.png",
+            "back_female": null,
+            "back_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/shiny/201-h.png",
+            "back_shiny_female": null,
+            "front_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/201-h.png",
+            "front_female": null,
+            "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/201-h.png",
+            "front_shiny_female": null
+        },
+        "portraits": {
+            "regular": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0201/0007/Normal.png",
+            "shiny": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0201/0007/0001/Normal.png"
+        },
+        "is_baby": false,
+        "is_legendary": false,
+        "is_mythical": false,
+        "is_mega": false,
+        "is_gmax": false,
+        "generation": 2,
+        "capture_rate": 225,
+        "evolutions": []
+    },
+    "unown-i": {
+        "id": "unown-i",
+        "external_id": "unown",
+        "name": "Unown I",
+        "types": [
+            "psychic"
+        ],
+        "pokedex_number": 201,
+        "genus": "Symbol Pokémon",
+        "flavor_text": "It is hard to believe these strangely shaped Pokémon are truly living creatures. I've pointed out that the species' many forms resemble writing from other lands; no one will take me seriously.",
+        "sprites": {
+            "back_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/201-i.png",
+            "back_female": null,
+            "back_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/shiny/201-i.png",
+            "back_shiny_female": null,
+            "front_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/201-i.png",
+            "front_female": null,
+            "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/201-i.png",
+            "front_shiny_female": null
+        },
+        "portraits": {
+            "regular": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0201/0008/Normal.png",
+            "shiny": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0201/0008/0001/Normal.png"
+        },
+        "is_baby": false,
+        "is_legendary": false,
+        "is_mythical": false,
+        "is_mega": false,
+        "is_gmax": false,
+        "generation": 2,
+        "capture_rate": 225,
+        "evolutions": []
+    },
+    "unown-j": {
+        "id": "unown-j",
+        "external_id": "unown",
+        "name": "Unown J",
+        "types": [
+            "psychic"
+        ],
+        "pokedex_number": 201,
+        "genus": "Symbol Pokémon",
+        "flavor_text": "It is hard to believe these strangely shaped Pokémon are truly living creatures. I've pointed out that the species' many forms resemble writing from other lands; no one will take me seriously.",
+        "sprites": {
+            "back_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/201-j.png",
+            "back_female": null,
+            "back_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/shiny/201-j.png",
+            "back_shiny_female": null,
+            "front_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/201-j.png",
+            "front_female": null,
+            "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/201-j.png",
+            "front_shiny_female": null
+        },
+        "portraits": {
+            "regular": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0201/0009/Normal.png",
+            "shiny": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0201/0009/0001/Normal.png"
+        },
+        "is_baby": false,
+        "is_legendary": false,
+        "is_mythical": false,
+        "is_mega": false,
+        "is_gmax": false,
+        "generation": 2,
+        "capture_rate": 225,
+        "evolutions": []
+    },
+    "unown-k": {
+        "id": "unown-k",
+        "external_id": "unown",
+        "name": "Unown K",
+        "types": [
+            "psychic"
+        ],
+        "pokedex_number": 201,
+        "genus": "Symbol Pokémon",
+        "flavor_text": "It is hard to believe these strangely shaped Pokémon are truly living creatures. I've pointed out that the species' many forms resemble writing from other lands; no one will take me seriously.",
+        "sprites": {
+            "back_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/201-k.png",
+            "back_female": null,
+            "back_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/shiny/201-k.png",
+            "back_shiny_female": null,
+            "front_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/201-k.png",
+            "front_female": null,
+            "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/201-k.png",
+            "front_shiny_female": null
+        },
+        "portraits": {
+            "regular": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0201/0010/Normal.png",
+            "shiny": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0201/0010/0001/Normal.png"
+        },
+        "is_baby": false,
+        "is_legendary": false,
+        "is_mythical": false,
+        "is_mega": false,
+        "is_gmax": false,
+        "generation": 2,
+        "capture_rate": 225,
+        "evolutions": []
+    },
+    "unown-l": {
+        "id": "unown-l",
+        "external_id": "unown",
+        "name": "Unown L",
+        "types": [
+            "psychic"
+        ],
+        "pokedex_number": 201,
+        "genus": "Symbol Pokémon",
+        "flavor_text": "It is hard to believe these strangely shaped Pokémon are truly living creatures. I've pointed out that the species' many forms resemble writing from other lands; no one will take me seriously.",
+        "sprites": {
+            "back_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/201-l.png",
+            "back_female": null,
+            "back_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/shiny/201-l.png",
+            "back_shiny_female": null,
+            "front_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/201-l.png",
+            "front_female": null,
+            "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/201-l.png",
+            "front_shiny_female": null
+        },
+        "portraits": {
+            "regular": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0201/0011/Normal.png",
+            "shiny": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0201/0011/0001/Normal.png"
+        },
+        "is_baby": false,
+        "is_legendary": false,
+        "is_mythical": false,
+        "is_mega": false,
+        "is_gmax": false,
+        "generation": 2,
+        "capture_rate": 225,
+        "evolutions": []
+    },
+    "unown-m": {
+        "id": "unown-m",
+        "external_id": "unown",
+        "name": "Unown M",
+        "types": [
+            "psychic"
+        ],
+        "pokedex_number": 201,
+        "genus": "Symbol Pokémon",
+        "flavor_text": "It is hard to believe these strangely shaped Pokémon are truly living creatures. I've pointed out that the species' many forms resemble writing from other lands; no one will take me seriously.",
+        "sprites": {
+            "back_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/201-m.png",
+            "back_female": null,
+            "back_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/shiny/201-m.png",
+            "back_shiny_female": null,
+            "front_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/201-m.png",
+            "front_female": null,
+            "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/201-m.png",
+            "front_shiny_female": null
+        },
+        "portraits": {
+            "regular": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0201/0012/Normal.png",
+            "shiny": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0201/0012/0001/Normal.png"
+        },
+        "is_baby": false,
+        "is_legendary": false,
+        "is_mythical": false,
+        "is_mega": false,
+        "is_gmax": false,
+        "generation": 2,
+        "capture_rate": 225,
+        "evolutions": []
+    },
+    "unown-n": {
+        "id": "unown-n",
+        "external_id": "unown",
+        "name": "Unown N",
+        "types": [
+            "psychic"
+        ],
+        "pokedex_number": 201,
+        "genus": "Symbol Pokémon",
+        "flavor_text": "It is hard to believe these strangely shaped Pokémon are truly living creatures. I've pointed out that the species' many forms resemble writing from other lands; no one will take me seriously.",
+        "sprites": {
+            "back_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/201-n.png",
+            "back_female": null,
+            "back_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/shiny/201-n.png",
+            "back_shiny_female": null,
+            "front_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/201-n.png",
+            "front_female": null,
+            "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/201-n.png",
+            "front_shiny_female": null
+        },
+        "portraits": {
+            "regular": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0201/0013/Normal.png",
+            "shiny": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0201/0013/0001/Normal.png"
+        },
+        "is_baby": false,
+        "is_legendary": false,
+        "is_mythical": false,
+        "is_mega": false,
+        "is_gmax": false,
+        "generation": 2,
+        "capture_rate": 225,
+        "evolutions": []
+    },
+    "unown-o": {
+        "id": "unown-o",
+        "external_id": "unown",
+        "name": "Unown O",
+        "types": [
+            "psychic"
+        ],
+        "pokedex_number": 201,
+        "genus": "Symbol Pokémon",
+        "flavor_text": "It is hard to believe these strangely shaped Pokémon are truly living creatures. I've pointed out that the species' many forms resemble writing from other lands; no one will take me seriously.",
+        "sprites": {
+            "back_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/201-o.png",
+            "back_female": null,
+            "back_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/shiny/201-o.png",
+            "back_shiny_female": null,
+            "front_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/201-o.png",
+            "front_female": null,
+            "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/201-o.png",
+            "front_shiny_female": null
+        },
+        "portraits": {
+            "regular": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0201/0014/Normal.png",
+            "shiny": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0201/0014/0001/Normal.png"
+        },
+        "is_baby": false,
+        "is_legendary": false,
+        "is_mythical": false,
+        "is_mega": false,
+        "is_gmax": false,
+        "generation": 2,
+        "capture_rate": 225,
+        "evolutions": []
+    },
+    "unown-p": {
+        "id": "unown-p",
+        "external_id": "unown",
+        "name": "Unown P",
+        "types": [
+            "psychic"
+        ],
+        "pokedex_number": 201,
+        "genus": "Symbol Pokémon",
+        "flavor_text": "It is hard to believe these strangely shaped Pokémon are truly living creatures. I've pointed out that the species' many forms resemble writing from other lands; no one will take me seriously.",
+        "sprites": {
+            "back_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/201-p.png",
+            "back_female": null,
+            "back_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/shiny/201-p.png",
+            "back_shiny_female": null,
+            "front_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/201-p.png",
+            "front_female": null,
+            "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/201-p.png",
+            "front_shiny_female": null
+        },
+        "portraits": {
+            "regular": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0201/0015/Normal.png",
+            "shiny": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0201/0015/0001/Normal.png"
+        },
+        "is_baby": false,
+        "is_legendary": false,
+        "is_mythical": false,
+        "is_mega": false,
+        "is_gmax": false,
+        "generation": 2,
+        "capture_rate": 225,
+        "evolutions": []
+    },
+    "unown-q": {
+        "id": "unown-q",
+        "external_id": "unown",
+        "name": "Unown Q",
+        "types": [
+            "psychic"
+        ],
+        "pokedex_number": 201,
+        "genus": "Symbol Pokémon",
+        "flavor_text": "It is hard to believe these strangely shaped Pokémon are truly living creatures. I've pointed out that the species' many forms resemble writing from other lands; no one will take me seriously.",
+        "sprites": {
+            "back_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/201-q.png",
+            "back_female": null,
+            "back_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/shiny/201-q.png",
+            "back_shiny_female": null,
+            "front_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/201-q.png",
+            "front_female": null,
+            "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/201-q.png",
+            "front_shiny_female": null
+        },
+        "portraits": {
+            "regular": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0201/0016/Normal.png",
+            "shiny": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0201/0016/0001/Normal.png"
+        },
+        "is_baby": false,
+        "is_legendary": false,
+        "is_mythical": false,
+        "is_mega": false,
+        "is_gmax": false,
+        "generation": 2,
+        "capture_rate": 225,
+        "evolutions": []
+    },
+    "unown-r": {
+        "id": "unown-r",
+        "external_id": "unown",
+        "name": "Unown R",
+        "types": [
+            "psychic"
+        ],
+        "pokedex_number": 201,
+        "genus": "Symbol Pokémon",
+        "flavor_text": "It is hard to believe these strangely shaped Pokémon are truly living creatures. I've pointed out that the species' many forms resemble writing from other lands; no one will take me seriously.",
+        "sprites": {
+            "back_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/201-r.png",
+            "back_female": null,
+            "back_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/shiny/201-r.png",
+            "back_shiny_female": null,
+            "front_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/201-r.png",
+            "front_female": null,
+            "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/201-r.png",
+            "front_shiny_female": null
+        },
+        "portraits": {
+            "regular": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0201/0017/Normal.png",
+            "shiny": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0201/0017/0001/Normal.png"
+        },
+        "is_baby": false,
+        "is_legendary": false,
+        "is_mythical": false,
+        "is_mega": false,
+        "is_gmax": false,
+        "generation": 2,
+        "capture_rate": 225,
+        "evolutions": []
+    },
+    "unown-s": {
+        "id": "unown-s",
+        "external_id": "unown",
+        "name": "Unown S",
+        "types": [
+            "psychic"
+        ],
+        "pokedex_number": 201,
+        "genus": "Symbol Pokémon",
+        "flavor_text": "It is hard to believe these strangely shaped Pokémon are truly living creatures. I've pointed out that the species' many forms resemble writing from other lands; no one will take me seriously.",
+        "sprites": {
+            "back_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/201-s.png",
+            "back_female": null,
+            "back_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/shiny/201-s.png",
+            "back_shiny_female": null,
+            "front_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/201-s.png",
+            "front_female": null,
+            "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/201-s.png",
+            "front_shiny_female": null
+        },
+        "portraits": {
+            "regular": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0201/0018/Normal.png",
+            "shiny": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0201/0018/0001/Normal.png"
+        },
+        "is_baby": false,
+        "is_legendary": false,
+        "is_mythical": false,
+        "is_mega": false,
+        "is_gmax": false,
+        "generation": 2,
+        "capture_rate": 225,
+        "evolutions": []
+    },
+    "unown-t": {
+        "id": "unown-t",
+        "external_id": "unown",
+        "name": "Unown T",
+        "types": [
+            "psychic"
+        ],
+        "pokedex_number": 201,
+        "genus": "Symbol Pokémon",
+        "flavor_text": "It is hard to believe these strangely shaped Pokémon are truly living creatures. I've pointed out that the species' many forms resemble writing from other lands; no one will take me seriously.",
+        "sprites": {
+            "back_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/201-t.png",
+            "back_female": null,
+            "back_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/shiny/201-t.png",
+            "back_shiny_female": null,
+            "front_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/201-t.png",
+            "front_female": null,
+            "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/201-t.png",
+            "front_shiny_female": null
+        },
+        "portraits": {
+            "regular": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0201/0019/Normal.png",
+            "shiny": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0201/0019/0001/Normal.png"
+        },
+        "is_baby": false,
+        "is_legendary": false,
+        "is_mythical": false,
+        "is_mega": false,
+        "is_gmax": false,
+        "generation": 2,
+        "capture_rate": 225,
+        "evolutions": []
+    },
+    "unown-u": {
+        "id": "unown-u",
+        "external_id": "unown",
+        "name": "Unown U",
+        "types": [
+            "psychic"
+        ],
+        "pokedex_number": 201,
+        "genus": "Symbol Pokémon",
+        "flavor_text": "It is hard to believe these strangely shaped Pokémon are truly living creatures. I've pointed out that the species' many forms resemble writing from other lands; no one will take me seriously.",
+        "sprites": {
+            "back_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/201-u.png",
+            "back_female": null,
+            "back_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/shiny/201-u.png",
+            "back_shiny_female": null,
+            "front_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/201-u.png",
+            "front_female": null,
+            "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/201-u.png",
+            "front_shiny_female": null
+        },
+        "portraits": {
+            "regular": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0201/0020/Normal.png",
+            "shiny": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0201/0020/0001/Normal.png"
+        },
+        "is_baby": false,
+        "is_legendary": false,
+        "is_mythical": false,
+        "is_mega": false,
+        "is_gmax": false,
+        "generation": 2,
+        "capture_rate": 225,
+        "evolutions": []
+    },
+    "unown-v": {
+        "id": "unown-v",
+        "external_id": "unown",
+        "name": "Unown V",
+        "types": [
+            "psychic"
+        ],
+        "pokedex_number": 201,
+        "genus": "Symbol Pokémon",
+        "flavor_text": "It is hard to believe these strangely shaped Pokémon are truly living creatures. I've pointed out that the species' many forms resemble writing from other lands; no one will take me seriously.",
+        "sprites": {
+            "back_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/201-v.png",
+            "back_female": null,
+            "back_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/shiny/201-v.png",
+            "back_shiny_female": null,
+            "front_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/201-v.png",
+            "front_female": null,
+            "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/201-v.png",
+            "front_shiny_female": null
+        },
+        "portraits": {
+            "regular": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0201/0021/Normal.png",
+            "shiny": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0201/0021/0001/Normal.png"
+        },
+        "is_baby": false,
+        "is_legendary": false,
+        "is_mythical": false,
+        "is_mega": false,
+        "is_gmax": false,
+        "generation": 2,
+        "capture_rate": 225,
+        "evolutions": []
+    },
+    "unown-w": {
+        "id": "unown-w",
+        "external_id": "unown",
+        "name": "Unown W",
+        "types": [
+            "psychic"
+        ],
+        "pokedex_number": 201,
+        "genus": "Symbol Pokémon",
+        "flavor_text": "It is hard to believe these strangely shaped Pokémon are truly living creatures. I've pointed out that the species' many forms resemble writing from other lands; no one will take me seriously.",
+        "sprites": {
+            "back_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/201-w.png",
+            "back_female": null,
+            "back_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/shiny/201-w.png",
+            "back_shiny_female": null,
+            "front_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/201-w.png",
+            "front_female": null,
+            "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/201-w.png",
+            "front_shiny_female": null
+        },
+        "portraits": {
+            "regular": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0201/0022/Normal.png",
+            "shiny": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0201/0022/0001/Normal.png"
+        },
+        "is_baby": false,
+        "is_legendary": false,
+        "is_mythical": false,
+        "is_mega": false,
+        "is_gmax": false,
+        "generation": 2,
+        "capture_rate": 225,
+        "evolutions": []
+    },
+    "unown-x": {
+        "id": "unown-x",
+        "external_id": "unown",
+        "name": "Unown X",
+        "types": [
+            "psychic"
+        ],
+        "pokedex_number": 201,
+        "genus": "Symbol Pokémon",
+        "flavor_text": "It is hard to believe these strangely shaped Pokémon are truly living creatures. I've pointed out that the species' many forms resemble writing from other lands; no one will take me seriously.",
+        "sprites": {
+            "back_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/201-x.png",
+            "back_female": null,
+            "back_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/shiny/201-x.png",
+            "back_shiny_female": null,
+            "front_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/201-x.png",
+            "front_female": null,
+            "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/201-x.png",
+            "front_shiny_female": null
+        },
+        "portraits": {
+            "regular": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0201/0023/Normal.png",
+            "shiny": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0201/0023/0001/Normal.png"
+        },
+        "is_baby": false,
+        "is_legendary": false,
+        "is_mythical": false,
+        "is_mega": false,
+        "is_gmax": false,
+        "generation": 2,
+        "capture_rate": 225,
+        "evolutions": []
+    },
+    "unown-y": {
+        "id": "unown-y",
+        "external_id": "unown",
+        "name": "Unown Y",
+        "types": [
+            "psychic"
+        ],
+        "pokedex_number": 201,
+        "genus": "Symbol Pokémon",
+        "flavor_text": "It is hard to believe these strangely shaped Pokémon are truly living creatures. I've pointed out that the species' many forms resemble writing from other lands; no one will take me seriously.",
+        "sprites": {
+            "back_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/201-y.png",
+            "back_female": null,
+            "back_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/shiny/201-y.png",
+            "back_shiny_female": null,
+            "front_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/201-y.png",
+            "front_female": null,
+            "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/201-y.png",
+            "front_shiny_female": null
+        },
+        "portraits": {
+            "regular": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0201/0024/Normal.png",
+            "shiny": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0201/0024/0001/Normal.png"
+        },
+        "is_baby": false,
+        "is_legendary": false,
+        "is_mythical": false,
+        "is_mega": false,
+        "is_gmax": false,
+        "generation": 2,
+        "capture_rate": 225,
+        "evolutions": []
+    },
+    "unown-z": {
+        "id": "unown-z",
+        "external_id": "unown",
+        "name": "Unown Z",
+        "types": [
+            "psychic"
+        ],
+        "pokedex_number": 201,
+        "genus": "Symbol Pokémon",
+        "flavor_text": "It is hard to believe these strangely shaped Pokémon are truly living creatures. I've pointed out that the species' many forms resemble writing from other lands; no one will take me seriously.",
+        "sprites": {
+            "back_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/201-z.png",
+            "back_female": null,
+            "back_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/shiny/201-z.png",
+            "back_shiny_female": null,
+            "front_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/201-z.png",
+            "front_female": null,
+            "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/201-z.png",
+            "front_shiny_female": null
+        },
+        "portraits": {
+            "regular": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0201/0025/Normal.png",
+            "shiny": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0201/0025/0001/Normal.png"
+        },
+        "is_baby": false,
+        "is_legendary": false,
+        "is_mythical": false,
+        "is_mega": false,
+        "is_gmax": false,
+        "generation": 2,
+        "capture_rate": 225,
+        "evolutions": []
+    },
+    "unown-exclamation": {
+        "id": "unown-exclamation",
+        "external_id": "unown",
+        "name": "Unown Exclamation",
+        "types": [
+            "psychic"
+        ],
+        "pokedex_number": 201,
+        "genus": "Symbol Pokémon",
+        "flavor_text": "It is hard to believe these strangely shaped Pokémon are truly living creatures. I've pointed out that the species' many forms resemble writing from other lands; no one will take me seriously.",
+        "sprites": {
+            "back_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/201-exclamation.png",
+            "back_female": null,
+            "back_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/shiny/201-exclamation.png",
+            "back_shiny_female": null,
+            "front_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/201-exclamation.png",
+            "front_female": null,
+            "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/201-exclamation.png",
+            "front_shiny_female": null
+        },
+        "portraits": {
+            "regular": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0201/0026/Normal.png",
+            "shiny": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0201/0026/0001/Normal.png"
+        },
+        "is_baby": false,
+        "is_legendary": false,
+        "is_mythical": false,
+        "is_mega": false,
+        "is_gmax": false,
+        "generation": 2,
+        "capture_rate": 225,
+        "evolutions": []
+    },
+    "unown-question": {
+        "id": "unown-question",
+        "external_id": "unown",
+        "name": "Unown Question",
+        "types": [
+            "psychic"
+        ],
+        "pokedex_number": 201,
+        "genus": "Symbol Pokémon",
+        "flavor_text": "It is hard to believe these strangely shaped Pokémon are truly living creatures. I've pointed out that the species' many forms resemble writing from other lands; no one will take me seriously.",
+        "sprites": {
+            "back_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/201-question.png",
+            "back_female": null,
+            "back_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/shiny/201-question.png",
+            "back_shiny_female": null,
+            "front_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/201-question.png",
+            "front_female": null,
+            "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/201-question.png",
+            "front_shiny_female": null
+        },
+        "portraits": {
+            "regular": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0201/0027/Normal.png",
+            "shiny": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0201/0027/0001/Normal.png"
+        },
+        "is_baby": false,
+        "is_legendary": false,
+        "is_mythical": false,
+        "is_mega": false,
+        "is_gmax": false,
+        "generation": 2,
+        "capture_rate": 225,
+        "evolutions": []
+    },
     "wobbuffet": {
         "id": "wobbuffet",
         "external_id": "wobbuffet",
