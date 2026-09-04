@@ -104,10 +104,10 @@ defineProps<{
 }
 
 .navigation__pokedex-number {
-  @apply text-[9px] leading-none font-black tracking-widest text-slate-400;
+  @apply text-[9px] font-black tracking-widest text-slate-400;
 }
 
 .navigation__species-name {
-  @apply w-[10ch] truncate text-xs leading-none font-bold;
+  @apply w-[10ch] truncate text-xs font-bold;
 }
 </style>

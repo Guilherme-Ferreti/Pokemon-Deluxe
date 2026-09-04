@@ -12,32 +12,38 @@
         <li
           v-for="evolution in section.evolutions"
           :key="evolution.species.name"
-          class="mb-2"
+          class="mb-2 grid grid-cols-[auto_1fr]"
         >
           <AppSpeciesPortrait
             class="mr-2 inline-block"
             :url="evolution.species.portrait"
             :name="evolution.species.name"
           />
-          <AppNavLink
-            class="font-medium underline"
-            :url="
-              route('web.dex.pokedex.show', { species: evolution.species.slug })
-            "
-            :title="evolution.species.name"
-          />
-          <template v-if="evolution.minLevel">
-            at level {{ evolution.minLevel }}
-          </template>
-          <template v-if="evolution.evolutionItem">
-            using
-            <AppItemSprite
-              v-if="evolution.evolutionItem?.sprite"
-              :name="evolution.evolutionItem.name"
-              :url="evolution.evolutionItem?.sprite"
+          <div class="self-center">
+            <AppNavLink
+              class="font-medium underline"
+              :url="
+                route('web.dex.pokedex.show', {
+                  species: evolution.species.slug,
+                })
+              "
+              :title="evolution.species.name"
             />
-            {{ evolution.evolutionItem.name }}
-          </template>
+            <template v-if="evolution.minLevel">
+              at level {{ evolution.minLevel }}
+            </template>
+            <template v-if="evolution.evolutionItem">
+              using
+              <span class="inline-block">
+                <AppItemSprite
+                  v-if="evolution.evolutionItem?.sprite"
+                  :name="evolution.evolutionItem.name"
+                  :url="evolution.evolutionItem?.sprite"
+                />
+                {{ evolution.evolutionItem.name }}
+              </span>
+            </template>
+          </div>
         </li>
       </ul>
       <p
