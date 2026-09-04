@@ -22,6 +22,7 @@
 </template>
 
 <script setup lang="ts">
+import AppNavLink from '@/components/AppNavLink.vue';
 import {
   Breadcrumb,
   BreadcrumbItem,
@@ -30,7 +31,6 @@ import {
   BreadcrumbPage,
   BreadcrumbSeparator,
 } from '@/components/ui/breadcrumb';
-import AppNavLink from './AppNavLink.vue';
 
 defineProps<{
   breadcrumbs: { name: string; href?: string }[];

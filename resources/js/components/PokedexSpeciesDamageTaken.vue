@@ -33,12 +33,12 @@
 
 <script setup lang="ts">
 import { computed } from 'vue';
+import AppInfoCard from '@/components/AppInfoCard.vue';
+import AppInfoCardSectionTitle from '@/components/AppInfoCardSectionTitle.vue';
+import ElementalTypeBadges from '@/components/ElementalTypeBadges.vue';
+import Separator from '@/components/ui/separator/Separator.vue';
 import type { DexPokedexShowPageProps } from '@/pages/Dex/Pokedex/Show.vue';
 import type { ElementalType } from '@/types/php-types.js';
-import AppInfoCard from './AppInfoCard.vue';
-import AppInfoCardSectionTitle from './AppInfoCardSectionTitle.vue';
-import ElementalTypeBadges from './ElementalTypeBadges.vue';
-import Separator from './ui/separator/Separator.vue';
 
 const props = defineProps<{
   speciesName: string;

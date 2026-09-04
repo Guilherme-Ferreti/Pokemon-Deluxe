@@ -75,12 +75,16 @@
 import { Link } from '@inertiajs/vue3';
 import { IconChevronLeft, IconChevronRight } from '@tabler/icons-vue';
 import AppSpeciesPortrait from '@/components/AppSpeciesPortrait.vue';
+import { Button } from '@/components/ui/button';
 import { Separator } from '@/components/ui/separator';
+import {
+  Tooltip,
+  TooltipTrigger,
+  TooltipContent,
+} from '@/components/ui/tooltip';
 import { formatPokedexNumber } from '@/lib/utils';
 import type { DexPokedexShowPageProps } from '@/pages/Dex/Pokedex/Show.vue';
 import { route } from '@/types/helpers/route';
-import { Button } from './ui/button';
-import { Tooltip, TooltipTrigger, TooltipContent } from './ui/tooltip';
 
 defineProps<{
   previousSpecies?: DexPokedexShowPageProps['previousSpecies'];
