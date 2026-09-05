@@ -14,7 +14,7 @@
           class="mb-4"
           :breadcrumbs="breadcrumbs"
         />
-        <div class="space-y-8">
+        <div class="@container/main-content space-y-8">
           <slot />
         </div>
       </div>

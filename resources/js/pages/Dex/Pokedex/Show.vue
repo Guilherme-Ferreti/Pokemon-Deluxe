@@ -7,36 +7,36 @@
       :next-species="nextSpecies"
     />
   </AppSection>
-  <div class="@container">
-    <div class="grid gap-6 @2xl:grid-cols-2 @4xl:grid-cols-3">
-      <section class="@2xl:col-span-2">
-        <PokedexSpeciesHero
-          class="h-full"
-          :species="species"
-        />
-      </section>
-      <section>
-        <PokedexSpeciesMetadata
-          class="h-full"
-          :species="species"
-        />
-      </section>
-      <section class="@4xl:order-1">
-        <PokedexSpeciesEvolutionChain :evolution-chain="evolutionChain" />
-      </section>
-      <section>
-        <PokedexSpeciesDamageTaken
-          :species-name="species.name"
-          :damage-taken="damageTaken"
-        />
-      </section>
-      <section>
-        <PokedexSpeciesCaptureStatistics
-          :species-name="species.name"
-          :statistics="captureStatistics"
-        />
-      </section>
-    </div>
+  <div
+    class="grid gap-6 @2xl/main-content:grid-cols-2 @4xl/main-content:grid-cols-3"
+  >
+    <section class="@2xl/main-content:col-span-2">
+      <PokedexSpeciesHero
+        class="h-full"
+        :species="species"
+      />
+    </section>
+    <section>
+      <PokedexSpeciesMetadata
+        class="h-full"
+        :species="species"
+      />
+    </section>
+    <section class="@4xl/main-content:order-1">
+      <PokedexSpeciesEvolutionChain :evolution-chain="evolutionChain" />
+    </section>
+    <section>
+      <PokedexSpeciesDamageTaken
+        :species-name="species.name"
+        :damage-taken="damageTaken"
+      />
+    </section>
+    <section>
+      <PokedexSpeciesCaptureStatistics
+        :species-name="species.name"
+        :statistics="captureStatistics"
+      />
+    </section>
   </div>
 </template>
 
