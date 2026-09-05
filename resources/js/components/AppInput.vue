@@ -3,8 +3,9 @@
     <FieldLabel
       v-if="label"
       :for="inputId"
-      >{{ label }}</FieldLabel
     >
+      {{ label }}
+    </FieldLabel>
     <InputGroup>
       <InputGroupInput
         :id="inputId"
@@ -24,8 +25,9 @@
     <FieldError
       v-if="errorMessage"
       data-test="error-message"
-      >{{ errorMessage }}</FieldError
     >
+      {{ errorMessage }}
+    </FieldError>
   </Field>
 </template>
 
