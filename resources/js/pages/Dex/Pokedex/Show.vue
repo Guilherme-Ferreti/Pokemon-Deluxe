@@ -1,9 +1,9 @@
 <template>
   <Head :title="species.name" />
   <AppSection
-    class="flex-row flex-wrap items-center justify-center @3xl/main-content:justify-between"
+    class="flex-wrap items-center justify-center @3xl/main-content:flex-row @3xl/main-content:justify-between"
   >
-    <PokedexSpeciesSearchWithAutocomplete class="w-full max-w-89" />
+    <PokedexSpeciesAutocomplete class="w-full max-w-89" />
     <PokedexSpeciesNavigation
       :previous-species="previousSpecies"
       :next-species="nextSpecies"
@@ -45,13 +45,13 @@
 <script setup lang="ts">
 import { Head, setLayoutProps } from '@inertiajs/vue3';
 import AppSection from '@/components/AppSection.vue';
+import PokedexSpeciesAutocomplete from '@/components/PokedexSpeciesAutocomplete.vue';
 import PokedexSpeciesCaptureStatistics from '@/components/PokedexSpeciesCaptureStatistics.vue';
 import PokedexSpeciesDamageTaken from '@/components/PokedexSpeciesDamageTaken.vue';
 import PokedexSpeciesEvolutionChain from '@/components/PokedexSpeciesEvolutionChain.vue';
 import PokedexSpeciesHero from '@/components/PokedexSpeciesHero.vue';
 import PokedexSpeciesMetadata from '@/components/PokedexSpeciesMetadata.vue';
 import PokedexSpeciesNavigation from '@/components/PokedexSpeciesNavigation.vue';
-import PokedexSpeciesSearchWithAutocomplete from '@/components/PokedexSpeciesSearchWithAutocomplete.vue';
 import type { ElementalType, SpeciesSprites, SpeciesTypes } from '@/types';
 import { route } from '@/types/helpers/route';
 

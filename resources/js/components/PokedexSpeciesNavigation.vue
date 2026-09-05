@@ -104,7 +104,7 @@ defineProps<{
 }
 
 .navigation__text-wrapper {
-  @apply hidden flex-col gap-1 sm:flex;
+  @apply hidden flex-col gap-1 @sm:flex;
 }
 
 .navigation__pokedex-number {

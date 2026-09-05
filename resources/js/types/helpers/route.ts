@@ -9,6 +9,7 @@ type RouteParameters = {
   'dex.web.pokedex.show': {
     species: string | number;
   };
+  'dex.api.species.autocomplete': never;
   'pokemon.web.party': never;
   'pokemon.web.box.index': never;
   'public.web.home': never;
@@ -53,6 +54,7 @@ const routes = {
   'dashboard.web.home': 'dashboard',
   'dex.web.pokedex.index': 'pokedex',
   'dex.web.pokedex.show': 'pokedex/{species}',
+  'dex.api.species.autocomplete': 'dex/api/species/autocomplete',
   'pokemon.web.party': 'your-pokemon/party',
   'pokemon.web.box.index': 'your-pokemon/box',
   'public.web.home': '',
