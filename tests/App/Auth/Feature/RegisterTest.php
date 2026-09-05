@@ -13,12 +13,12 @@ use function Pest\Laravel\post;
 
 it('redirects authenticated users to dashboard', function () {
     actingAs(User::factory()->create())
-        ->get(route('web.auth.login.create'))
-        ->assertRedirectToRoute('web.dashboard.home');
+        ->get(route('auth.web.login.create'))
+        ->assertRedirectToRoute('dashboard.web.home');
 });
 
 it('loads the register page with expected structure', function () {
-    get(route('web.auth.register.create'))
+    get(route('auth.web.register.create'))
         ->assertSuccessful()
         ->assertInertia(fn (Assert $page) => $page
             ->component('Auth/Register')
@@ -28,8 +28,8 @@ it('loads the register page with expected structure', function () {
 it('registers a new user', function () {
     $data = StoreRegisterRequestFactory::new()->create();
 
-    post(route('web.auth.register.store'), $data)
-        ->assertRedirectToRoute('web.dashboard.home');
+    post(route('auth.web.register.store'), $data)
+        ->assertRedirectToRoute('dashboard.web.home');
 
     assertDatabaseHas(User::class, [
         'name'  => $data['name'],
@@ -40,6 +40,6 @@ it('registers a new user', function () {
 it('rejects registration with an existing email', function () {
     $data = StoreRegisterRequestFactory::new()->withExistingEmail()->create();
 
-    post(route('web.auth.register.store'), $data)
+    post(route('auth.web.register.store'), $data)
         ->assertRedirectBackWithErrors('email');
 });

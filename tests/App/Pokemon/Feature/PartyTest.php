@@ -10,8 +10,8 @@ use function Pest\Laravel\actingAs;
 use function Pest\Laravel\get;
 
 it('redirects guests to login', function () {
-    get(route('web.pokemon.party'))
-        ->assertRedirectToRoute('web.auth.login.create');
+    get(route('pokemon.web.party'))
+        ->assertRedirectToRoute('auth.web.login.create');
 });
 
 it('loads the party page with expected structure', function () {
@@ -19,7 +19,7 @@ it('loads the party page with expected structure', function () {
     $partyPokemon = Pokemon::factory(3)->for($user)->inParty()->create();
 
     actingAs($user)
-        ->get(route('web.pokemon.party'))
+        ->get(route('pokemon.web.party'))
         ->assertSuccessful()
         ->assertInertia(fn (Assert $page) => $page
             ->component('Pokemon/Party')
@@ -36,7 +36,7 @@ it('excludes box pokemon from the party', function () {
     Pokemon::factory()->for($user)->inBox()->create();
 
     actingAs($user)
-        ->get(route('web.pokemon.party'))
+        ->get(route('pokemon.web.party'))
         ->assertInertia(fn (Assert $page) => $page
             ->has('party', 0)
         );
@@ -49,7 +49,7 @@ it("shows only the authenticated user's party pokemon", function () {
     Pokemon::factory(10)->inParty()->create();
 
     actingAs($user)
-        ->get(route('web.pokemon.party'))
+        ->get(route('pokemon.web.party'))
         ->assertInertia(fn (Assert $page) => $page
             ->has('party', 1)
             ->where('party.0.id', $pokemon->id)

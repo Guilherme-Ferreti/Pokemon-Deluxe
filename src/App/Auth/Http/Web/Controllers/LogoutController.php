@@ -15,6 +15,6 @@ final class LogoutController extends Controller
     {
         new LogoutCurrentUser()->handle($request);
 
-        return redirect()->route('web.public.home');
+        return redirect()->route('public.web.home');
     }
 }

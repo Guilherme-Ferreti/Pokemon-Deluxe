@@ -14,12 +14,12 @@ use function Pest\Laravel\post;
 
 it('redirects authenticated users to dashboard', function () {
     actingAs(User::factory()->create())
-        ->get(route('web.auth.login.create'))
-        ->assertRedirectToRoute('web.dashboard.home');
+        ->get(route('auth.web.login.create'))
+        ->assertRedirectToRoute('dashboard.web.home');
 });
 
 it('loads the login page with expected structure', function () {
-    get(route('web.auth.login.create'))
+    get(route('auth.web.login.create'))
         ->assertSuccessful()
         ->assertInertia(fn (Assert $page) => $page
             ->component('Auth/Login')
@@ -29,8 +29,8 @@ it('loads the login page with expected structure', function () {
 it('logs in a user', function () {
     $data = StoreLoginRequestFactory::new()->create();
 
-    post(route('web.auth.login.store'), $data)
-        ->assertRedirectToRoute('web.dashboard.home');
+    post(route('auth.web.login.store'), $data)
+        ->assertRedirectToRoute('dashboard.web.home');
 
     assertAuthenticatedAs(User::firstWhere('email', $data['email']));
 });
@@ -38,7 +38,7 @@ it('logs in a user', function () {
 it('rejects login with invalid credentials', function () {
     $data = StoreLoginRequestFactory::new()->withInvalidCredentials()->create();
 
-    post(route('web.auth.login.store'), $data)
+    post(route('auth.web.login.store'), $data)
         ->assertRedirectBackWithErrors('email');
 
     assertGuest();

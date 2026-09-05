@@ -95,7 +95,7 @@
             <Link
               class="flex items-center gap-1 hover:underline"
               data-test="view-species-link"
-              :href="route('web.dex.pokedex.show', { species: species.slug })"
+              :href="route('dex.web.pokedex.show', { species: species.slug })"
             >
               <IconEye class="size-4" />
               <span aria-hidden="true">View</span>
@@ -184,11 +184,11 @@ const sortByNameUrl = computed(function () {
     data.dir = SortDirection.ASC;
   }
 
-  return `${route('web.dex.pokedex.index')}?${toQueryString(removeFalsyValues(data)).toString()}`;
+  return `${route('dex.web.pokedex.index')}?${toQueryString(removeFalsyValues(data)).toString()}`;
 });
 
 function submitSearch() {
-  searchForm.transform(removeFalsyValues).get(route('web.dex.pokedex.index'), {
+  searchForm.transform(removeFalsyValues).get(route('dex.web.pokedex.index'), {
     preserveScroll: true,
     preserveState: true,
     only: ['speciesList', 'activeFilters'],

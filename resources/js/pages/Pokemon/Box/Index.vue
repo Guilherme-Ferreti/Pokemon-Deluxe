@@ -68,7 +68,7 @@ setLayoutProps({
   breadcrumbs: [
     {
       name: 'Box',
-      href: route('web.pokemon.box.index'),
+      href: route('pokemon.web.box.index'),
     },
     {
       name: 'List',

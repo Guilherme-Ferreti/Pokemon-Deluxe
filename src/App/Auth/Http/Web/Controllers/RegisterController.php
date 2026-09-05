@@ -28,6 +28,6 @@ final class RegisterController extends Controller
 
         new LoginUser()->handle($user->email, $request->validated('password'));
 
-        return redirect()->intended(route('web.dashboard.home'));
+        return redirect()->intended(route('dashboard.web.home'));
     }
 }

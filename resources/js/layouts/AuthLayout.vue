@@ -4,7 +4,7 @@
       <div class="flex justify-center gap-2 md:justify-start">
         <Link
           class="flex items-center gap-2 font-medium"
-          :href="route('web.public.home')"
+          :href="route('public.web.home')"
         >
           <AppLogo class="w-35" />
         </Link>

@@ -9,13 +9,13 @@ use function Pest\Laravel\actingAs;
 use function Pest\Laravel\get;
 
 it('redirects guests to login', function () {
-    get(route('web.pokemon.party'))
-        ->assertRedirectToRoute('web.auth.login.create');
+    get(route('pokemon.web.party'))
+        ->assertRedirectToRoute('auth.web.login.create');
 });
 
 it('loads the dashboard page with expected structure', function () {
     actingAs(User::factory()->create())
-        ->get(route('web.dashboard.home'))
+        ->get(route('dashboard.web.home'))
         ->assertSuccessful()
         ->assertInertia(fn (Assert $page) => $page
             ->component('Dashboard/Dashboard')

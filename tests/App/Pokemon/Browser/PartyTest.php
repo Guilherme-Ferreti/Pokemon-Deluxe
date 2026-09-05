@@ -13,7 +13,7 @@ it('loads the party page without errors', function () {
 
     actingAs($user);
 
-    visit(route('web.pokemon.party'))
+    visit(route('pokemon.web.party'))
         ->assertNoSmoke()
         ->assertNoAccessibilityIssues()
         ->assertSeeIn('@page-title', 'Your Party');
@@ -25,7 +25,7 @@ it('shows party pokemon', function () {
 
     actingAs($user);
 
-    $page = visit(route('web.pokemon.party'));
+    $page = visit(route('pokemon.web.party'));
 
     $partyPokemon->each(fn (Pokemon $pokemon) => $page
         ->assertSee($pokemon->getName())

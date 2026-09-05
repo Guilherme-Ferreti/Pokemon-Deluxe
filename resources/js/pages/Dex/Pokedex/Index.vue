@@ -72,7 +72,7 @@ setLayoutProps({
   breadcrumbs: [
     {
       name: 'Pokédex',
-      href: route('web.dex.pokedex.index'),
+      href: route('dex.web.pokedex.index'),
     },
     {
       name: 'List',

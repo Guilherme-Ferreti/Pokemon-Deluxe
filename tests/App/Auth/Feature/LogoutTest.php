@@ -11,8 +11,8 @@ it('logs out the authenticated user', function () {
     $user = User::factory()->create();
 
     actingAs($user)
-        ->post(route('web.auth.logout'))
-        ->assertRedirectToRoute('web.public.home');
+        ->post(route('auth.web.logout'))
+        ->assertRedirectToRoute('public.web.home');
 
     assertGuest();
 });

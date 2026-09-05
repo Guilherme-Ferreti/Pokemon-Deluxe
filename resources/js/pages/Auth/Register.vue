@@ -4,7 +4,7 @@
     v-slot="{ errors, validate }"
     method="post"
     class="flex flex-col gap-6"
-    :action="route('web.auth.register.store')"
+    :action="route('auth.web.register.store')"
     disable-while-processing
     :reset-on-error="['password', 'password_confirmation']"
   >
@@ -52,7 +52,7 @@
       </Button>
       <FieldDescription class="text-center">
         Already have an account?
-        <Link :href="route('web.auth.login.create')">Log in</Link>
+        <Link :href="route('auth.web.login.create')">Log in</Link>
       </FieldDescription>
     </FieldGroup>
   </Form>

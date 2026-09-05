@@ -1,17 +1,17 @@
 type RouteParameters = {
-  'web.public.home': never;
-  'web.auth.login.create': never;
-  'web.auth.login.store': never;
-  'web.auth.register.create': never;
-  'web.auth.register.store': never;
-  'web.auth.logout': never;
-  'web.dashboard.home': never;
-  'web.dex.pokedex.index': never;
-  'web.dex.pokedex.show': {
+  'auth.web.login.create': never;
+  'auth.web.login.store': never;
+  'auth.web.register.create': never;
+  'auth.web.register.store': never;
+  'auth.web.logout': never;
+  'dashboard.web.home': never;
+  'dex.web.pokedex.index': never;
+  'dex.web.pokedex.show': {
     species: string | number;
   };
-  'web.pokemon.party': never;
-  'web.pokemon.box.index': never;
+  'pokemon.web.party': never;
+  'pokemon.web.box.index': never;
+  'public.web.home': never;
   'storage.local.upload': {
     path: string | number;
   };
@@ -45,16 +45,16 @@ export function route<T extends keyof RouteParameters>(
   return url;
 }
 const routes = {
-  'web.public.home': '',
-  'web.auth.login.create': 'login',
-  'web.auth.login.store': 'login',
-  'web.auth.register.create': 'register',
-  'web.auth.register.store': 'register',
-  'web.auth.logout': 'logout',
-  'web.dashboard.home': 'dashboard',
-  'web.dex.pokedex.index': 'pokedex',
-  'web.dex.pokedex.show': 'pokedex/{species}',
-  'web.pokemon.party': 'your-pokemon/party',
-  'web.pokemon.box.index': 'your-pokemon/box',
+  'auth.web.login.create': 'login',
+  'auth.web.login.store': 'login',
+  'auth.web.register.create': 'register',
+  'auth.web.register.store': 'register',
+  'auth.web.logout': 'logout',
+  'dashboard.web.home': 'dashboard',
+  'dex.web.pokedex.index': 'pokedex',
+  'dex.web.pokedex.show': 'pokedex/{species}',
+  'pokemon.web.party': 'your-pokemon/party',
+  'pokemon.web.box.index': 'your-pokemon/box',
+  'public.web.home': '',
   'storage.local.upload': 'storage/{path}',
 };

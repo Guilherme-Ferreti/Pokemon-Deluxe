@@ -13,7 +13,7 @@
           <Link
             :aria-label="`Previous species page: ${previousSpecies.name}`"
             :href="
-              route('web.dex.pokedex.show', { species: previousSpecies.slug })
+              route('dex.web.pokedex.show', { species: previousSpecies.slug })
             "
           >
             <IconChevronLeft />
@@ -48,7 +48,7 @@
         >
           <Link
             :aria-label="`Next species page: ${nextSpecies.name}`"
-            :href="route('web.dex.pokedex.show', { species: nextSpecies.slug })"
+            :href="route('dex.web.pokedex.show', { species: nextSpecies.slug })"
           >
             <AppSpeciesPortrait
               :name="nextSpecies.name"

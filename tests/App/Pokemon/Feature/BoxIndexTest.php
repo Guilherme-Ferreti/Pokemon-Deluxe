@@ -11,8 +11,8 @@ use function Pest\Laravel\actingAs;
 use function Pest\Laravel\get;
 
 it('redirects guests to login', function () {
-    get(route('web.pokemon.box.index'))
-        ->assertRedirectToRoute('web.auth.login.create');
+    get(route('pokemon.web.box.index'))
+        ->assertRedirectToRoute('auth.web.login.create');
 });
 
 it('loads the box page with expected structure', function () {
@@ -31,7 +31,7 @@ it('loads the box page with expected structure', function () {
 
     actingAs($user);
 
-    get(route('web.pokemon.box.index'))
+    get(route('pokemon.web.box.index'))
         ->assertSuccessful()
         ->assertInertia(fn (Assert $page) => $page
             ->component('Pokemon/Box/Index')
@@ -61,7 +61,7 @@ it("only shows the authenticated user's pokemon", function () {
     Pokemon::factory(5)->inBox()->create();
 
     actingAs($user)
-        ->get(route('web.pokemon.box.index'))
+        ->get(route('pokemon.web.box.index'))
         ->assertInertia(fn (Assert $page) => $page
             ->has('pokemonList.data', 1)
             ->where('pokemonList.data.0.id', $pokemon->id)
@@ -75,7 +75,7 @@ it('filters box pokemon by search query', function () {
     $charmander = Pokemon::factory()->for($user)->for(Species::factory()->create(['name' => 'Charmander']))->inBox()->create();
 
     actingAs($user)
-        ->get(route('web.pokemon.box.index', ['search' => 'Pikachu']))
+        ->get(route('pokemon.web.box.index', ['search' => 'Pikachu']))
         ->assertInertia(fn (Assert $page) => $page
             ->has('pokemonList.data', 1)
             ->where('pokemonList.data.0.id', $pikachu->id)
@@ -87,7 +87,7 @@ it('excludes party pokemon from the box', function () {
     Pokemon::factory()->for($user)->inParty()->create();
 
     actingAs($user)
-        ->get(route('web.pokemon.box.index'))
+        ->get(route('pokemon.web.box.index'))
         ->assertInertia(fn (Assert $page) => $page
             ->has('pokemonList.data', 0)
         );

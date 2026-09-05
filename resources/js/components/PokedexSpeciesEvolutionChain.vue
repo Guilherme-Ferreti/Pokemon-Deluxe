@@ -23,7 +23,7 @@
             <AppNavLink
               class="font-medium underline"
               :url="
-                route('web.dex.pokedex.show', {
+                route('dex.web.pokedex.show', {
                   species: evolution.species.slug,
                 })
               "

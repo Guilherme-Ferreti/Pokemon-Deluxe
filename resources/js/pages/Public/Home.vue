@@ -12,7 +12,7 @@
       <div class="flex gap-4">
         <Button as-child>
           <Link
-            :href="route('web.auth.login.create')"
+            :href="route('auth.web.login.create')"
             prefetch
           >
             Login
@@ -23,7 +23,7 @@
           variant="outline"
         >
           <Link
-            :href="route('web.auth.register.create')"
+            :href="route('auth.web.register.create')"
             prefetch
           >
             Register

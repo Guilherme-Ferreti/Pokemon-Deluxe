@@ -36,7 +36,7 @@
                     title="Pokédex"
                     data-test="view-species-link"
                     :url="
-                      route('web.dex.pokedex.show', {
+                      route('dex.web.pokedex.show', {
                         species: pokemon.species.slug,
                       })
                     "

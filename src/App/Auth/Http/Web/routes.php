@@ -9,10 +9,10 @@ use App\Auth\Http\Web\Middlewares\ShareAuthLayoutProps;
 use Illuminate\Foundation\Http\Middleware\HandlePrecognitiveRequests;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/login', [LoginController::class, 'create'])->name('auth.login.create')->middleware('guest', ShareAuthLayoutProps::class);
-Route::post('/login', [LoginController::class, 'store'])->name('auth.login.store')->middleware('guest');
+Route::get('/login', [LoginController::class, 'create'])->name('login.create')->middleware('guest', ShareAuthLayoutProps::class);
+Route::post('/login', [LoginController::class, 'store'])->name('login.store')->middleware('guest');
 
-Route::get('/register', [RegisterController::class, 'create'])->name('auth.register.create')->middleware('guest', ShareAuthLayoutProps::class);
-Route::post('/register', [RegisterController::class, 'store'])->name('auth.register.store')->middleware(['guest', HandlePrecognitiveRequests::class]);
+Route::get('/register', [RegisterController::class, 'create'])->name('register.create')->middleware('guest', ShareAuthLayoutProps::class);
+Route::post('/register', [RegisterController::class, 'store'])->name('register.store')->middleware(['guest', HandlePrecognitiveRequests::class]);
 
-Route::post('/logout', LogoutController::class)->name('auth.logout')->middleware('auth');
+Route::post('/logout', LogoutController::class)->name('logout')->middleware('auth');

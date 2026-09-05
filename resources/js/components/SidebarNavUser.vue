@@ -89,7 +89,7 @@
               class="w-full"
               data-test="logout-button"
               :icon="IconLogout"
-              :url="route('web.auth.logout')"
+              :url="route('auth.web.logout')"
             />
           </DropdownMenuItem>
         </DropdownMenuContent>

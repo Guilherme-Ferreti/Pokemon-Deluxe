@@ -70,7 +70,7 @@ watchDebounced(
 );
 
 function submitSearch() {
-  searchForm.transform(removeFalsyValues).get(route('web.pokemon.box.index'), {
+  searchForm.transform(removeFalsyValues).get(route('pokemon.web.box.index'), {
     preserveScroll: true,
     preserveState: true,
     only: ['pokemonList', 'activeFilters'],

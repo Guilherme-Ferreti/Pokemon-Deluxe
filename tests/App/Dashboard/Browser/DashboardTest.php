@@ -9,7 +9,7 @@ use function Pest\Laravel\actingAs;
 it('loads the dashboard page without errors', function () {
     actingAs(User::factory()->create());
 
-    visit(route('web.dashboard.home'))
+    visit(route('dashboard.web.home'))
         ->assertNoSmoke()
         ->assertNoAccessibilityIssues()
         ->assertSeeIn('@page-title', 'Dashboard');

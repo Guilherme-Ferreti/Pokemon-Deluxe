@@ -16,7 +16,7 @@ it('loads the pokedex page without errors', function () {
 
     actingAs($user);
 
-    visit(route('web.dex.pokedex.index'))
+    visit(route('dex.web.pokedex.index'))
         ->assertNoSmoke()
         ->assertNoAccessibilityIssues()
         ->assertSeeIn('@page-title', 'Pokédex');
@@ -30,7 +30,7 @@ it('shows species', function () {
 
     actingAs($user);
 
-    visit(route('web.dex.pokedex.index'))
+    visit(route('dex.web.pokedex.index'))
         ->assertSee('Pikachu')
         ->assertSee('Charmander')
         ->assertDontSee('@pokedex-empty-state');
@@ -39,7 +39,7 @@ it('shows species', function () {
 it('shows the empty state when there are no species', function () {
     actingAs(User::factory()->create());
 
-    visit(route('web.dex.pokedex.index'))
+    visit(route('dex.web.pokedex.index'))
         ->assertVisible('@pokedex-empty-state');
 });
 
@@ -52,7 +52,7 @@ describe('search filters', function () {
 
         actingAs($user);
 
-        visit(route('web.dex.pokedex.index'))
+        visit(route('dex.web.pokedex.index'))
             ->assertSee('Pikachu')
             ->assertSee('Charmander')
             ->type('search', 'Pikachu')
@@ -64,7 +64,7 @@ describe('search filters', function () {
     it('shows active filters', function () {
         actingAs(User::factory()->create());
 
-        visit(route('web.dex.pokedex.index', [
+        visit(route('dex.web.pokedex.index', [
             'search'      => 'Pikachu',
             'types'       => [ElementalType::FIRE, ElementalType::WATER],
             'traits'      => [SpeciesTrait::LEGENDARY],
@@ -83,7 +83,7 @@ describe('search filters', function () {
     it('clears active filters when the Reset button is clicked', function () {
         actingAs(User::factory()->create());
 
-        visit(route('web.dex.pokedex.index', [
+        visit(route('dex.web.pokedex.index', [
             'types'       => [ElementalType::FIRE, ElementalType::WATER],
             'traits'      => [SpeciesTrait::LEGENDARY],
             'generations' => [Generation::I],
@@ -99,7 +99,7 @@ describe('search filters', function () {
     it('applies filters only after Apply is clicked and discards them when the dialog is closed', function () {
         actingAs(User::factory()->create());
 
-        visit(route('web.dex.pokedex.index'))
+        visit(route('dex.web.pokedex.index'))
             ->click('@open-search-filters-button')
             ->click('[aria-label="Fire"]')
             ->click('[aria-label="Water"]')
@@ -119,7 +119,7 @@ describe('search filters', function () {
     it('disables type checkboxes after selecting two types', function () {
         actingAs(User::factory()->create());
 
-        visit(route('web.dex.pokedex.index'))
+        visit(route('dex.web.pokedex.index'))
             ->click('@open-search-filters-button')
             ->click('[aria-label="Fire"]')
             ->click('[aria-label="Water"]')
@@ -129,7 +129,7 @@ describe('search filters', function () {
     it('disables baby trait when legendary is selected', function () {
         actingAs(User::factory()->create());
 
-        visit(route('web.dex.pokedex.index'))
+        visit(route('dex.web.pokedex.index'))
             ->click('@open-search-filters-button')
             ->click('[aria-label="Legendary"]')
             ->assertDisabled('[aria-label="Baby"]');
@@ -138,7 +138,7 @@ describe('search filters', function () {
     it('disables baby trait when mythical is selected', function () {
         actingAs(User::factory()->create());
 
-        visit(route('web.dex.pokedex.index'))
+        visit(route('dex.web.pokedex.index'))
             ->click('@open-search-filters-button')
             ->click('[aria-label="Mythical"]')
             ->assertDisabled('[aria-label="Baby"]');
@@ -147,7 +147,7 @@ describe('search filters', function () {
     it('disables baby trait when mega is selected', function () {
         actingAs(User::factory()->create());
 
-        visit(route('web.dex.pokedex.index'))
+        visit(route('dex.web.pokedex.index'))
             ->click('@open-search-filters-button')
             ->click('[aria-label="Mega"]')
             ->assertDisabled('[aria-label="Baby"]');
@@ -156,7 +156,7 @@ describe('search filters', function () {
     it('disables baby trait when gmax is selected', function () {
         actingAs(User::factory()->create());
 
-        visit(route('web.dex.pokedex.index'))
+        visit(route('dex.web.pokedex.index'))
             ->click('@open-search-filters-button')
             ->click('[aria-label="G-Max"]')
             ->assertDisabled('[aria-label="Baby"]');
@@ -165,7 +165,7 @@ describe('search filters', function () {
     it('disables legendary trait when mythical is selected', function () {
         actingAs(User::factory()->create());
 
-        visit(route('web.dex.pokedex.index'))
+        visit(route('dex.web.pokedex.index'))
             ->click('@open-search-filters-button')
             ->click('[aria-label="Mythical"]')
             ->assertDisabled('[aria-label="Legendary"]');
@@ -174,7 +174,7 @@ describe('search filters', function () {
     it('disables legendary trait when baby is selected', function () {
         actingAs(User::factory()->create());
 
-        visit(route('web.dex.pokedex.index'))
+        visit(route('dex.web.pokedex.index'))
             ->click('@open-search-filters-button')
             ->click('[aria-label="Baby"]')
             ->assertDisabled('[aria-label="Legendary"]');
@@ -183,7 +183,7 @@ describe('search filters', function () {
     it('disables mythical trait when legendary is selected', function () {
         actingAs(User::factory()->create());
 
-        visit(route('web.dex.pokedex.index'))
+        visit(route('dex.web.pokedex.index'))
             ->click('@open-search-filters-button')
             ->click('[aria-label="Legendary"]')
             ->assertDisabled('[aria-label="Mythical"]');
@@ -192,7 +192,7 @@ describe('search filters', function () {
     it('disables mythical trait when baby is selected', function () {
         actingAs(User::factory()->create());
 
-        visit(route('web.dex.pokedex.index'))
+        visit(route('dex.web.pokedex.index'))
             ->click('@open-search-filters-button')
             ->click('[aria-label="Baby"]')
             ->assertDisabled('[aria-label="Mythical"]');
@@ -201,7 +201,7 @@ describe('search filters', function () {
     it('disables mega trait when gmax is selected', function () {
         actingAs(User::factory()->create());
 
-        visit(route('web.dex.pokedex.index'))
+        visit(route('dex.web.pokedex.index'))
             ->click('@open-search-filters-button')
             ->click('[aria-label="G-Max"]')
             ->assertDisabled('[aria-label="Mega"]');
@@ -210,7 +210,7 @@ describe('search filters', function () {
     it('disables mega trait when baby is selected', function () {
         actingAs(User::factory()->create());
 
-        visit(route('web.dex.pokedex.index'))
+        visit(route('dex.web.pokedex.index'))
             ->click('@open-search-filters-button')
             ->click('[aria-label="Baby"]')
             ->assertDisabled('[aria-label="Mega"]');
@@ -219,7 +219,7 @@ describe('search filters', function () {
     it('disables gmax trait when mega is selected', function () {
         actingAs(User::factory()->create());
 
-        visit(route('web.dex.pokedex.index'))
+        visit(route('dex.web.pokedex.index'))
             ->click('@open-search-filters-button')
             ->click('[aria-label="Mega"]')
             ->assertDisabled('[aria-label="G-Max"]');
@@ -228,7 +228,7 @@ describe('search filters', function () {
     it('disables gmax trait when baby is selected', function () {
         actingAs(User::factory()->create());
 
-        visit(route('web.dex.pokedex.index'))
+        visit(route('dex.web.pokedex.index'))
             ->click('@open-search-filters-button')
             ->click('[aria-label="Baby"]')
             ->assertDisabled('[aria-label="G-Max"]');
@@ -237,7 +237,7 @@ describe('search filters', function () {
     it('re-enables a disabled trait when the conflicting selection is removed', function () {
         actingAs(User::factory()->create());
 
-        visit(route('web.dex.pokedex.index'))
+        visit(route('dex.web.pokedex.index'))
             ->click('@open-search-filters-button')
             ->click('[aria-label="Legendary"]')
             ->assertDisabled('[aria-label="Baby"]')
@@ -251,7 +251,7 @@ describe('search filters', function () {
 
         actingAs($user);
 
-        visit(route('web.dex.pokedex.index'))
+        visit(route('dex.web.pokedex.index'))
             ->assertAttribute('[aria-label="Sort by name"]', 'href', '/pokedex?sort=name&dir=asc')
             ->click('[aria-label="Sort by name"]')
             ->assertQueryStringHas('sort', 'name')
@@ -274,9 +274,9 @@ it('navigates to the species show page when View is clicked', function () {
 
     actingAs($user);
 
-    visit(route('web.dex.pokedex.index'))
+    visit(route('dex.web.pokedex.index'))
         ->assertSee('Pikachu')
         ->click('@view-species-link')
-        ->assertPathIs(route('web.dex.pokedex.show', $species, absolute: false))
+        ->assertPathIs(route('dex.web.pokedex.show', $species, absolute: false))
         ->assertNoSmoke();
 });

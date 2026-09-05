@@ -137,11 +137,11 @@ setLayoutProps({
   breadcrumbs: [
     {
       name: 'Pokédex',
-      href: route('web.dex.pokedex.index'),
+      href: route('dex.web.pokedex.index'),
     },
     {
       name: props.species.name,
-      href: route('web.dex.pokedex.show', { species: props.species.slug }),
+      href: route('dex.web.pokedex.show', { species: props.species.slug }),
     },
     {
       name: 'View',

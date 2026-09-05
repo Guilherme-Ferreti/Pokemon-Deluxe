@@ -96,7 +96,7 @@ import { route } from '@/types/helpers/route';
 const items = [
   {
     title: 'Dashboard',
-    url: route('web.dashboard.home'),
+    url: route('dashboard.web.home'),
     icon: IconHome,
   },
   {
@@ -111,12 +111,12 @@ const items = [
     subItems: [
       {
         title: 'Party',
-        url: route('web.pokemon.party'),
+        url: route('pokemon.web.party'),
         icon: IconPokeball,
       },
       {
         title: 'Box',
-        url: route('web.pokemon.box.index'),
+        url: route('pokemon.web.box.index'),
         icon: IconArchive,
       },
     ],
@@ -128,7 +128,7 @@ const items = [
   },
   {
     title: 'Pokédex',
-    url: route('web.dex.pokedex.index'),
+    url: route('dex.web.pokedex.index'),
     icon: IconBook,
   },
 ];

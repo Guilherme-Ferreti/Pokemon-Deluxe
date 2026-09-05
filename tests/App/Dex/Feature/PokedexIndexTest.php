@@ -13,8 +13,8 @@ use function Pest\Laravel\actingAs;
 use function Pest\Laravel\get;
 
 it('redirects guests to login', function () {
-    get(route('web.dex.pokedex.index'))
-        ->assertRedirectToRoute('web.auth.login.create');
+    get(route('dex.web.pokedex.index'))
+        ->assertRedirectToRoute('auth.web.login.create');
 });
 
 it('loads the pokedex page with expected structure', function () {
@@ -38,7 +38,7 @@ it('loads the pokedex page with expected structure', function () {
 
     actingAs($user);
 
-    get(route('web.dex.pokedex.index'))
+    get(route('dex.web.pokedex.index'))
         ->assertSuccessful()
         ->assertInertia(fn (Assert $page) => $page
             ->component('Dex/Pokedex/Index')
@@ -76,13 +76,13 @@ it('shows all species regardless of user', function () {
     Species::factory()->count(3)->create();
 
     actingAs($user1)
-        ->get(route('web.dex.pokedex.index'))
+        ->get(route('dex.web.pokedex.index'))
         ->assertInertia(fn (Assert $page) => $page
             ->has('speciesList.data', 3)
         );
 
     actingAs($user2)
-        ->get(route('web.dex.pokedex.index'))
+        ->get(route('dex.web.pokedex.index'))
         ->assertInertia(fn (Assert $page) => $page
             ->has('speciesList.data', 3)
         );
@@ -95,7 +95,7 @@ it('filters species by search query', function () {
     Species::factory()->create(['name' => 'Charmander']);
 
     actingAs($user)
-        ->get(route('web.dex.pokedex.index', ['search' => 'Pikachu']))
+        ->get(route('dex.web.pokedex.index', ['search' => 'Pikachu']))
         ->assertInertia(fn (Assert $page) => $page
             ->has('speciesList.data', 1)
             ->where('speciesList.data.0.name', 'Pikachu')
@@ -113,7 +113,7 @@ it('indicates box presence for authenticated user', function () {
 
     actingAs($user);
 
-    get(route('web.dex.pokedex.index'))
+    get(route('dex.web.pokedex.index'))
         ->assertInertia(fn (Assert $page) => $page
             ->has('speciesList.data', 2)
             ->where('speciesList.data.0.regularInBox', true)
@@ -130,7 +130,7 @@ it('shows no box presence when user has no pokemon of that species', function ()
 
     actingAs($user);
 
-    get(route('web.dex.pokedex.index'))
+    get(route('dex.web.pokedex.index'))
         ->assertInertia(fn (Assert $page) => $page
             ->has('speciesList.data', 1)
             ->where('speciesList.data.0.regularInBox', false)

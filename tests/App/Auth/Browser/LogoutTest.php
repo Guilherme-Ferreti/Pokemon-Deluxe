@@ -10,10 +10,10 @@ use function Pest\Laravel\assertGuest;
 it('logs out the authenticated user', function () {
     actingAs(User::factory()->create());
 
-    visit(route('web.dashboard.home'))
+    visit(route('dashboard.web.home'))
         ->press('@sidebar-user-menu-button')
         ->press('@logout-button')
-        ->assertPathIs(route('web.public.home', absolute: false));
+        ->assertPathIs(route('public.web.home', absolute: false));
 
     assertGuest();
 });
