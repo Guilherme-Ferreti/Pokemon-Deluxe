@@ -1,8 +1,10 @@
 <template>
   <Head :title="species.name" />
-  <AppSection>
+  <AppSection
+    class="flex-row flex-wrap items-center justify-center @3xl/main-content:justify-between"
+  >
+    <PokedexSpeciesSearchWithAutocomplete class="w-full max-w-89" />
     <PokedexSpeciesNavigation
-      class="m-auto"
       :previous-species="previousSpecies"
       :next-species="nextSpecies"
     />
@@ -49,6 +51,7 @@ import PokedexSpeciesEvolutionChain from '@/components/PokedexSpeciesEvolutionCh
 import PokedexSpeciesHero from '@/components/PokedexSpeciesHero.vue';
 import PokedexSpeciesMetadata from '@/components/PokedexSpeciesMetadata.vue';
 import PokedexSpeciesNavigation from '@/components/PokedexSpeciesNavigation.vue';
+import PokedexSpeciesSearchWithAutocomplete from '@/components/PokedexSpeciesSearchWithAutocomplete.vue';
 import type { ElementalType, SpeciesSprites, SpeciesTypes } from '@/types';
 import { route } from '@/types/helpers/route';
 
