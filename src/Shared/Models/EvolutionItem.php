@@ -4,8 +4,10 @@ declare(strict_types=1);
 
 namespace Shared\Models;
 
+use Database\Factories\EvolutionItemFactory;
 use Illuminate\Database\Eloquent\Attributes\Unguarded;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Carbon;
 
@@ -22,5 +24,6 @@ use Illuminate\Support\Carbon;
 #[Unguarded]
 final class EvolutionItem extends Model
 {
-    use HasUuids;
+    /** @use HasFactory<EvolutionItemFactory> */
+    use HasFactory, HasUuids;
 }
