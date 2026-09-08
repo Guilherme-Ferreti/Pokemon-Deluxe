@@ -127,8 +127,31 @@ final class Species extends Model
         return ! is_null($this->capture_rate);
     }
 
+    public function isGenderless(): bool
+    {
+        return $this->getMalePercentage() === 0.0 && $this->getFemalePercentage() === 0.0;
+    }
+
     public function getCaptureRatePercentage(): float
     {
         return round(($this->capture_rate / 255) * 100, 2);
+    }
+
+    public function getMalePercentage(): float
+    {
+        if ($this->gender_rate === -1) {
+            return 0.0;
+        }
+
+        return round(((8 - $this->gender_rate) / 8) * 100, 2);
+    }
+
+    public function getFemalePercentage(): float
+    {
+        if ($this->gender_rate === -1) {
+            return 0.0;
+        }
+
+        return round(($this->gender_rate / 8) * 100, 2);
     }
 }

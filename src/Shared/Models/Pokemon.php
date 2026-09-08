@@ -15,6 +15,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Support\Carbon;
 use Override;
+use Shared\Enums\PokemonGender;
 
 /**
  * @property string $id
@@ -25,6 +26,7 @@ use Override;
  * @property string[] $moves_ids
  * @property bool $in_party
  * @property bool $is_shiny
+ * @property PokemonGender $gender
  * @property string $pokeball_id
  * @property Carbon $captured_at
  * @property Carbon $created_at
@@ -49,6 +51,7 @@ final class Pokemon extends Model
             'moves_ids'   => 'array',
             'in_party'    => 'boolean',
             'is_shiny'    => 'boolean',
+            'gender'      => PokemonGender::class,
             'captured_at' => 'datetime',
         ];
     }
