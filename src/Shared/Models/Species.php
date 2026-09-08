@@ -39,6 +39,7 @@ use Shared\ValueObjects\SpeciesSprites;
  * @property bool $is_gmax
  * @property Generation $generation
  * @property int|null $capture_rate
+ * @property int $gender_rate
  * @property string $slug
  * @property string $external_id
  * @property Carbon $created_at
@@ -64,6 +65,7 @@ final class Species extends Model
             'pokedex_number' => 'integer',
             'generation'     => Generation::class,
             'capture_rate'   => 'integer',
+            'gender_rate'    => 'integer',
             'sprites'        => SpeciesSprites::class,
             'portraits'      => SpeciesPortraits::class,
         ];

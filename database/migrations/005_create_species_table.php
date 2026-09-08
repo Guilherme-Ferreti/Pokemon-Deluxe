@@ -32,6 +32,7 @@ return new class extends Migration
 
             $table->unsignedTinyInteger('generation');
             $table->unsignedTinyInteger('capture_rate')->nullable();
+            $table->tinyInteger('gender_rate');
 
             $table->string('slug')->unique();
             $table->string('external_id');

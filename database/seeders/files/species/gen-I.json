@@ -31,6 +31,7 @@
         "is_gmax": false,
         "generation": 1,
         "capture_rate": 45,
+        "gender_rate": 1,
         "evolutions": [
             {
                 "evolves_into": "ivysaur",
@@ -71,6 +72,7 @@
         "is_gmax": false,
         "generation": 1,
         "capture_rate": 45,
+        "gender_rate": 1,
         "evolutions": [
             {
                 "evolves_into": "venusaur",
@@ -111,6 +113,7 @@
         "is_gmax": false,
         "generation": 1,
         "capture_rate": 45,
+        "gender_rate": 1,
         "evolutions": [
             {
                 "evolves_into": "venusaur-mega",
@@ -156,6 +159,7 @@
         "is_gmax": false,
         "generation": 1,
         "capture_rate": null,
+        "gender_rate": 1,
         "evolutions": []
     },
     "venusaur-gmax": {
@@ -190,6 +194,7 @@
         "is_gmax": true,
         "generation": 1,
         "capture_rate": null,
+        "gender_rate": 1,
         "evolutions": []
     },
     "charmander": {
@@ -223,6 +228,7 @@
         "is_gmax": false,
         "generation": 1,
         "capture_rate": 45,
+        "gender_rate": 1,
         "evolutions": [
             {
                 "evolves_into": "charmeleon",
@@ -262,6 +268,7 @@
         "is_gmax": false,
         "generation": 1,
         "capture_rate": 45,
+        "gender_rate": 1,
         "evolutions": [
             {
                 "evolves_into": "charizard",
@@ -302,6 +309,7 @@
         "is_gmax": false,
         "generation": 1,
         "capture_rate": 45,
+        "gender_rate": 1,
         "evolutions": [
             {
                 "evolves_into": "charizard-mega-x",
@@ -352,6 +360,7 @@
         "is_gmax": false,
         "generation": 1,
         "capture_rate": null,
+        "gender_rate": 1,
         "evolutions": []
     },
     "charizard-mega-y": {
@@ -386,6 +395,7 @@
         "is_gmax": false,
         "generation": 1,
         "capture_rate": null,
+        "gender_rate": 1,
         "evolutions": []
     },
     "charizard-gmax": {
@@ -420,6 +430,7 @@
         "is_gmax": true,
         "generation": 1,
         "capture_rate": null,
+        "gender_rate": 1,
         "evolutions": []
     },
     "squirtle": {
@@ -453,6 +464,7 @@
         "is_gmax": false,
         "generation": 1,
         "capture_rate": 45,
+        "gender_rate": 1,
         "evolutions": [
             {
                 "evolves_into": "wartortle",
@@ -492,6 +504,7 @@
         "is_gmax": false,
         "generation": 1,
         "capture_rate": 45,
+        "gender_rate": 1,
         "evolutions": [
             {
                 "evolves_into": "blastoise",
@@ -531,6 +544,7 @@
         "is_gmax": false,
         "generation": 1,
         "capture_rate": 45,
+        "gender_rate": 1,
         "evolutions": [
             {
                 "evolves_into": "blastoise-mega",
@@ -575,6 +589,7 @@
         "is_gmax": false,
         "generation": 1,
         "capture_rate": null,
+        "gender_rate": 1,
         "evolutions": []
     },
     "blastoise-gmax": {
@@ -608,6 +623,7 @@
         "is_gmax": true,
         "generation": 1,
         "capture_rate": null,
+        "gender_rate": 1,
         "evolutions": []
     },
     "caterpie": {
@@ -641,6 +657,7 @@
         "is_gmax": false,
         "generation": 1,
         "capture_rate": 255,
+        "gender_rate": 4,
         "evolutions": [
             {
                 "evolves_into": "metapod",
@@ -680,6 +697,7 @@
         "is_gmax": false,
         "generation": 1,
         "capture_rate": 120,
+        "gender_rate": 4,
         "evolutions": [
             {
                 "evolves_into": "butterfree",
@@ -720,6 +738,7 @@
         "is_gmax": false,
         "generation": 1,
         "capture_rate": 45,
+        "gender_rate": 4,
         "evolutions": [
             {
                 "evolves_into": "butterfree-gmax",
@@ -760,6 +779,7 @@
         "is_gmax": true,
         "generation": 1,
         "capture_rate": null,
+        "gender_rate": 4,
         "evolutions": []
     },
     "weedle": {
@@ -794,6 +814,7 @@
         "is_gmax": false,
         "generation": 1,
         "capture_rate": 255,
+        "gender_rate": 4,
         "evolutions": [
             {
                 "evolves_into": "kakuna",
@@ -834,6 +855,7 @@
         "is_gmax": false,
         "generation": 1,
         "capture_rate": 120,
+        "gender_rate": 4,
         "evolutions": [
             {
                 "evolves_into": "beedrill",
@@ -874,6 +896,7 @@
         "is_gmax": false,
         "generation": 1,
         "capture_rate": 45,
+        "gender_rate": 4,
         "evolutions": [
             {
                 "evolves_into": "beedrill-mega",
@@ -914,6 +937,7 @@
         "is_gmax": false,
         "generation": 1,
         "capture_rate": null,
+        "gender_rate": 4,
         "evolutions": []
     },
     "pidgey": {
@@ -948,6 +972,7 @@
         "is_gmax": false,
         "generation": 1,
         "capture_rate": 255,
+        "gender_rate": 4,
         "evolutions": [
             {
                 "evolves_into": "pidgeotto",
@@ -988,6 +1013,7 @@
         "is_gmax": false,
         "generation": 1,
         "capture_rate": 120,
+        "gender_rate": 4,
         "evolutions": [
             {
                 "evolves_into": "pidgeot",
@@ -1028,6 +1054,7 @@
         "is_gmax": false,
         "generation": 1,
         "capture_rate": 45,
+        "gender_rate": 4,
         "evolutions": [
             {
                 "evolves_into": "pidgeot-mega",
@@ -1068,6 +1095,7 @@
         "is_gmax": false,
         "generation": 1,
         "capture_rate": null,
+        "gender_rate": 4,
         "evolutions": []
     },
     "rattata": {
@@ -1101,6 +1129,7 @@
         "is_gmax": false,
         "generation": 1,
         "capture_rate": 255,
+        "gender_rate": 4,
         "evolutions": [
             {
                 "evolves_into": "raticate",
@@ -1140,6 +1169,7 @@
         "is_gmax": false,
         "generation": 1,
         "capture_rate": 127,
+        "gender_rate": 4,
         "evolutions": []
     },
     "spearow": {
@@ -1174,6 +1204,7 @@
         "is_gmax": false,
         "generation": 1,
         "capture_rate": 255,
+        "gender_rate": 4,
         "evolutions": [
             {
                 "evolves_into": "fearow",
@@ -1214,6 +1245,7 @@
         "is_gmax": false,
         "generation": 1,
         "capture_rate": 90,
+        "gender_rate": 4,
         "evolutions": []
     },
     "ekans": {
@@ -1247,6 +1279,7 @@
         "is_gmax": false,
         "generation": 1,
         "capture_rate": 255,
+        "gender_rate": 4,
         "evolutions": [
             {
                 "evolves_into": "arbok",
@@ -1286,6 +1319,7 @@
         "is_gmax": false,
         "generation": 1,
         "capture_rate": 90,
+        "gender_rate": 4,
         "evolutions": []
     },
     "pikachu": {
@@ -1319,6 +1353,7 @@
         "is_gmax": false,
         "generation": 1,
         "capture_rate": 190,
+        "gender_rate": 4,
         "evolutions": [
             {
                 "evolves_into": "raichu",
@@ -1368,6 +1403,7 @@
         "is_gmax": true,
         "generation": 1,
         "capture_rate": null,
+        "gender_rate": 4,
         "evolutions": []
     },
     "raichu": {
@@ -1401,6 +1437,7 @@
         "is_gmax": false,
         "generation": 1,
         "capture_rate": 75,
+        "gender_rate": 4,
         "evolutions": [
             {
                 "evolves_into": "raichu-mega-x",
@@ -1445,6 +1482,7 @@
         "is_gmax": false,
         "generation": 1,
         "capture_rate": null,
+        "gender_rate": 4,
         "evolutions": []
     },
     "raichu-mega-y": {
@@ -1478,6 +1516,7 @@
         "is_gmax": false,
         "generation": 1,
         "capture_rate": null,
+        "gender_rate": 4,
         "evolutions": []
     },
     "sandshrew": {
@@ -1511,6 +1550,7 @@
         "is_gmax": false,
         "generation": 1,
         "capture_rate": 255,
+        "gender_rate": 4,
         "evolutions": [
             {
                 "evolves_into": "sandslash",
@@ -1550,6 +1590,7 @@
         "is_gmax": false,
         "generation": 1,
         "capture_rate": 90,
+        "gender_rate": 4,
         "evolutions": []
     },
     "nidoran-f": {
@@ -1583,6 +1624,7 @@
         "is_gmax": false,
         "generation": 1,
         "capture_rate": 235,
+        "gender_rate": 8,
         "evolutions": [
             {
                 "evolves_into": "nidorina",
@@ -1622,6 +1664,7 @@
         "is_gmax": false,
         "generation": 1,
         "capture_rate": 120,
+        "gender_rate": 8,
         "evolutions": [
             {
                 "evolves_into": "nidoqueen",
@@ -1662,6 +1705,7 @@
         "is_gmax": false,
         "generation": 1,
         "capture_rate": 45,
+        "gender_rate": 8,
         "evolutions": []
     },
     "nidoran-m": {
@@ -1695,6 +1739,7 @@
         "is_gmax": false,
         "generation": 1,
         "capture_rate": 235,
+        "gender_rate": 0,
         "evolutions": [
             {
                 "evolves_into": "nidorino",
@@ -1734,6 +1779,7 @@
         "is_gmax": false,
         "generation": 1,
         "capture_rate": 120,
+        "gender_rate": 0,
         "evolutions": [
             {
                 "evolves_into": "nidoking",
@@ -1774,6 +1820,7 @@
         "is_gmax": false,
         "generation": 1,
         "capture_rate": 45,
+        "gender_rate": 0,
         "evolutions": []
     },
     "clefairy": {
@@ -1807,6 +1854,7 @@
         "is_gmax": false,
         "generation": 1,
         "capture_rate": 150,
+        "gender_rate": 6,
         "evolutions": [
             {
                 "evolves_into": "clefable",
@@ -1846,6 +1894,7 @@
         "is_gmax": false,
         "generation": 1,
         "capture_rate": 25,
+        "gender_rate": 6,
         "evolutions": [
             {
                 "evolves_into": "clefable-mega",
@@ -1886,6 +1935,7 @@
         "is_gmax": false,
         "generation": 1,
         "capture_rate": null,
+        "gender_rate": 6,
         "evolutions": []
     },
     "vulpix": {
@@ -1919,6 +1969,7 @@
         "is_gmax": false,
         "generation": 1,
         "capture_rate": 190,
+        "gender_rate": 6,
         "evolutions": [
             {
                 "evolves_into": "ninetales",
@@ -1958,6 +2009,7 @@
         "is_gmax": false,
         "generation": 1,
         "capture_rate": 75,
+        "gender_rate": 6,
         "evolutions": []
     },
     "jigglypuff": {
@@ -1992,6 +2044,7 @@
         "is_gmax": false,
         "generation": 1,
         "capture_rate": 170,
+        "gender_rate": 6,
         "evolutions": [
             {
                 "evolves_into": "wigglytuff",
@@ -2032,6 +2085,7 @@
         "is_gmax": false,
         "generation": 1,
         "capture_rate": 50,
+        "gender_rate": 6,
         "evolutions": []
     },
     "zubat": {
@@ -2066,6 +2120,7 @@
         "is_gmax": false,
         "generation": 1,
         "capture_rate": 255,
+        "gender_rate": 4,
         "evolutions": [
             {
                 "evolves_into": "golbat",
@@ -2106,6 +2161,7 @@
         "is_gmax": false,
         "generation": 1,
         "capture_rate": 90,
+        "gender_rate": 4,
         "evolutions": [
             {
                 "evolves_into": "crobat",
@@ -2146,6 +2202,7 @@
         "is_gmax": false,
         "generation": 1,
         "capture_rate": 255,
+        "gender_rate": 4,
         "evolutions": [
             {
                 "evolves_into": "gloom",
@@ -2186,6 +2243,7 @@
         "is_gmax": false,
         "generation": 1,
         "capture_rate": 120,
+        "gender_rate": 4,
         "evolutions": [
             {
                 "evolves_into": "vileplume",
@@ -2231,6 +2289,7 @@
         "is_gmax": false,
         "generation": 1,
         "capture_rate": 45,
+        "gender_rate": 4,
         "evolutions": []
     },
     "paras": {
@@ -2265,6 +2324,7 @@
         "is_gmax": false,
         "generation": 1,
         "capture_rate": 190,
+        "gender_rate": 4,
         "evolutions": [
             {
                 "evolves_into": "parasect",
@@ -2305,6 +2365,7 @@
         "is_gmax": false,
         "generation": 1,
         "capture_rate": 75,
+        "gender_rate": 4,
         "evolutions": []
     },
     "venonat": {
@@ -2339,6 +2400,7 @@
         "is_gmax": false,
         "generation": 1,
         "capture_rate": 190,
+        "gender_rate": 4,
         "evolutions": [
             {
                 "evolves_into": "venomoth",
@@ -2379,6 +2441,7 @@
         "is_gmax": false,
         "generation": 1,
         "capture_rate": 75,
+        "gender_rate": 4,
         "evolutions": []
     },
     "diglett": {
@@ -2412,6 +2475,7 @@
         "is_gmax": false,
         "generation": 1,
         "capture_rate": 255,
+        "gender_rate": 4,
         "evolutions": [
             {
                 "evolves_into": "dugtrio",
@@ -2451,6 +2515,7 @@
         "is_gmax": false,
         "generation": 1,
         "capture_rate": 50,
+        "gender_rate": 4,
         "evolutions": []
     },
     "meowth": {
@@ -2484,6 +2549,7 @@
         "is_gmax": false,
         "generation": 1,
         "capture_rate": 255,
+        "gender_rate": 4,
         "evolutions": [
             {
                 "evolves_into": "persian",
@@ -2528,6 +2594,7 @@
         "is_gmax": true,
         "generation": 1,
         "capture_rate": null,
+        "gender_rate": 4,
         "evolutions": []
     },
     "persian": {
@@ -2561,6 +2628,7 @@
         "is_gmax": false,
         "generation": 1,
         "capture_rate": 90,
+        "gender_rate": 4,
         "evolutions": []
     },
     "psyduck": {
@@ -2594,6 +2662,7 @@
         "is_gmax": false,
         "generation": 1,
         "capture_rate": 190,
+        "gender_rate": 4,
         "evolutions": [
             {
                 "evolves_into": "golduck",
@@ -2633,6 +2702,7 @@
         "is_gmax": false,
         "generation": 1,
         "capture_rate": 75,
+        "gender_rate": 4,
         "evolutions": []
     },
     "mankey": {
@@ -2666,6 +2736,7 @@
         "is_gmax": false,
         "generation": 1,
         "capture_rate": 190,
+        "gender_rate": 4,
         "evolutions": [
             {
                 "evolves_into": "primeape",
@@ -2705,6 +2776,7 @@
         "is_gmax": false,
         "generation": 1,
         "capture_rate": 75,
+        "gender_rate": 4,
         "evolutions": [
             {
                 "evolves_into": "annihilape",
@@ -2744,6 +2816,7 @@
         "is_gmax": false,
         "generation": 1,
         "capture_rate": 190,
+        "gender_rate": 2,
         "evolutions": [
             {
                 "evolves_into": "arcanine",
@@ -2784,6 +2857,7 @@
         "is_gmax": false,
         "generation": 1,
         "capture_rate": 190,
+        "gender_rate": 2,
         "evolutions": [
             {
                 "evolves_into": "arcanine-hisui",
@@ -2823,6 +2897,7 @@
         "is_gmax": false,
         "generation": 1,
         "capture_rate": 75,
+        "gender_rate": 2,
         "evolutions": []
     },
     "arcanine-hisui": {
@@ -2857,6 +2932,7 @@
         "is_gmax": false,
         "generation": 1,
         "capture_rate": 75,
+        "gender_rate": 2,
         "evolutions": []
     },
     "poliwag": {
@@ -2890,6 +2966,7 @@
         "is_gmax": false,
         "generation": 1,
         "capture_rate": 255,
+        "gender_rate": 4,
         "evolutions": [
             {
                 "evolves_into": "poliwhirl",
@@ -2929,6 +3006,7 @@
         "is_gmax": false,
         "generation": 1,
         "capture_rate": 120,
+        "gender_rate": 4,
         "evolutions": [
             {
                 "evolves_into": "poliwrath",
@@ -2974,6 +3052,7 @@
         "is_gmax": false,
         "generation": 1,
         "capture_rate": 45,
+        "gender_rate": 4,
         "evolutions": []
     },
     "abra": {
@@ -3007,6 +3086,7 @@
         "is_gmax": false,
         "generation": 1,
         "capture_rate": 200,
+        "gender_rate": 2,
         "evolutions": [
             {
                 "evolves_into": "kadabra",
@@ -3046,6 +3126,7 @@
         "is_gmax": false,
         "generation": 1,
         "capture_rate": 100,
+        "gender_rate": 2,
         "evolutions": [
             {
                 "evolves_into": "alakazam",
@@ -3085,6 +3166,7 @@
         "is_gmax": false,
         "generation": 1,
         "capture_rate": 50,
+        "gender_rate": 2,
         "evolutions": [
             {
                 "evolves_into": "alakazam-mega",
@@ -3124,6 +3206,7 @@
         "is_gmax": false,
         "generation": 1,
         "capture_rate": null,
+        "gender_rate": 2,
         "evolutions": []
     },
     "machop": {
@@ -3157,6 +3240,7 @@
         "is_gmax": false,
         "generation": 1,
         "capture_rate": 180,
+        "gender_rate": 2,
         "evolutions": [
             {
                 "evolves_into": "machoke",
@@ -3196,6 +3280,7 @@
         "is_gmax": false,
         "generation": 1,
         "capture_rate": 90,
+        "gender_rate": 2,
         "evolutions": [
             {
                 "evolves_into": "machamp",
@@ -3235,6 +3320,7 @@
         "is_gmax": false,
         "generation": 1,
         "capture_rate": 45,
+        "gender_rate": 2,
         "evolutions": [
             {
                 "evolves_into": "machamp-gmax",
@@ -3274,6 +3360,7 @@
         "is_gmax": true,
         "generation": 1,
         "capture_rate": null,
+        "gender_rate": 2,
         "evolutions": []
     },
     "bellsprout": {
@@ -3308,6 +3395,7 @@
         "is_gmax": false,
         "generation": 1,
         "capture_rate": 255,
+        "gender_rate": 4,
         "evolutions": [
             {
                 "evolves_into": "weepinbell",
@@ -3348,6 +3436,7 @@
         "is_gmax": false,
         "generation": 1,
         "capture_rate": 120,
+        "gender_rate": 4,
         "evolutions": [
             {
                 "evolves_into": "victreebel",
@@ -3388,6 +3477,7 @@
         "is_gmax": false,
         "generation": 1,
         "capture_rate": 45,
+        "gender_rate": 4,
         "evolutions": [
             {
                 "evolves_into": "victreebel-mega",
@@ -3428,6 +3518,7 @@
         "is_gmax": false,
         "generation": 1,
         "capture_rate": null,
+        "gender_rate": 4,
         "evolutions": []
     },
     "tentacool": {
@@ -3462,6 +3553,7 @@
         "is_gmax": false,
         "generation": 1,
         "capture_rate": 190,
+        "gender_rate": 4,
         "evolutions": [
             {
                 "evolves_into": "tentacruel",
@@ -3502,6 +3594,7 @@
         "is_gmax": false,
         "generation": 1,
         "capture_rate": 60,
+        "gender_rate": 4,
         "evolutions": []
     },
     "geodude": {
@@ -3536,6 +3629,7 @@
         "is_gmax": false,
         "generation": 1,
         "capture_rate": 255,
+        "gender_rate": 4,
         "evolutions": [
             {
                 "evolves_into": "graveler",
@@ -3576,6 +3670,7 @@
         "is_gmax": false,
         "generation": 1,
         "capture_rate": 120,
+        "gender_rate": 4,
         "evolutions": [
             {
                 "evolves_into": "golem",
@@ -3616,6 +3711,7 @@
         "is_gmax": false,
         "generation": 1,
         "capture_rate": 45,
+        "gender_rate": 4,
         "evolutions": []
     },
     "ponyta": {
@@ -3649,6 +3745,7 @@
         "is_gmax": false,
         "generation": 1,
         "capture_rate": 190,
+        "gender_rate": 4,
         "evolutions": [
             {
                 "evolves_into": "rapidash",
@@ -3688,6 +3785,7 @@
         "is_gmax": false,
         "generation": 1,
         "capture_rate": 60,
+        "gender_rate": 4,
         "evolutions": []
     },
     "slowpoke": {
@@ -3722,6 +3820,7 @@
         "is_gmax": false,
         "generation": 1,
         "capture_rate": 190,
+        "gender_rate": 4,
         "evolutions": [
             {
                 "evolves_into": "slowbro",
@@ -3767,6 +3866,7 @@
         "is_gmax": false,
         "generation": 1,
         "capture_rate": 75,
+        "gender_rate": 4,
         "evolutions": [
             {
                 "evolves_into": "slowbro-mega",
@@ -3807,6 +3907,7 @@
         "is_gmax": false,
         "generation": 1,
         "capture_rate": null,
+        "gender_rate": 4,
         "evolutions": []
     },
     "magnemite": {
@@ -3841,6 +3942,7 @@
         "is_gmax": false,
         "generation": 1,
         "capture_rate": 190,
+        "gender_rate": -1,
         "evolutions": [
             {
                 "evolves_into": "magneton",
@@ -3881,6 +3983,7 @@
         "is_gmax": false,
         "generation": 1,
         "capture_rate": 60,
+        "gender_rate": -1,
         "evolutions": [
             {
                 "evolves_into": "magnezone",
@@ -3921,6 +4024,7 @@
         "is_gmax": false,
         "generation": 1,
         "capture_rate": 45,
+        "gender_rate": 4,
         "evolutions": []
     },
     "doduo": {
@@ -3955,6 +4059,7 @@
         "is_gmax": false,
         "generation": 1,
         "capture_rate": 190,
+        "gender_rate": 4,
         "evolutions": [
             {
                 "evolves_into": "dodrio",
@@ -3995,6 +4100,7 @@
         "is_gmax": false,
         "generation": 1,
         "capture_rate": 45,
+        "gender_rate": 4,
         "evolutions": []
     },
     "seel": {
@@ -4028,6 +4134,7 @@
         "is_gmax": false,
         "generation": 1,
         "capture_rate": 190,
+        "gender_rate": 4,
         "evolutions": [
             {
                 "evolves_into": "dewgong",
@@ -4068,6 +4175,7 @@
         "is_gmax": false,
         "generation": 1,
         "capture_rate": 75,
+        "gender_rate": 4,
         "evolutions": []
     },
     "grimer": {
@@ -4101,6 +4209,7 @@
         "is_gmax": false,
         "generation": 1,
         "capture_rate": 190,
+        "gender_rate": 4,
         "evolutions": [
             {
                 "evolves_into": "muk",
@@ -4140,6 +4249,7 @@
         "is_gmax": false,
         "generation": 1,
         "capture_rate": 75,
+        "gender_rate": 4,
         "evolutions": []
     },
     "shellder": {
@@ -4173,6 +4283,7 @@
         "is_gmax": false,
         "generation": 1,
         "capture_rate": 190,
+        "gender_rate": 4,
         "evolutions": [
             {
                 "evolves_into": "cloyster",
@@ -4213,6 +4324,7 @@
         "is_gmax": false,
         "generation": 1,
         "capture_rate": 60,
+        "gender_rate": 4,
         "evolutions": []
     },
     "gastly": {
@@ -4247,6 +4359,7 @@
         "is_gmax": false,
         "generation": 1,
         "capture_rate": 190,
+        "gender_rate": 4,
         "evolutions": [
             {
                 "evolves_into": "haunter",
@@ -4287,6 +4400,7 @@
         "is_gmax": false,
         "generation": 1,
         "capture_rate": 90,
+        "gender_rate": 4,
         "evolutions": [
             {
                 "evolves_into": "gengar",
@@ -4327,6 +4441,7 @@
         "is_gmax": false,
         "generation": 1,
         "capture_rate": 45,
+        "gender_rate": 4,
         "evolutions": [
             {
                 "evolves_into": "gengar-mega",
@@ -4372,6 +4487,7 @@
         "is_gmax": false,
         "generation": 1,
         "capture_rate": null,
+        "gender_rate": 4,
         "evolutions": []
     },
     "gengar-gmax": {
@@ -4406,6 +4522,7 @@
         "is_gmax": true,
         "generation": 1,
         "capture_rate": null,
+        "gender_rate": 4,
         "evolutions": []
     },
     "onix": {
@@ -4440,6 +4557,7 @@
         "is_gmax": false,
         "generation": 1,
         "capture_rate": 45,
+        "gender_rate": 4,
         "evolutions": [
             {
                 "evolves_into": "steelix",
@@ -4479,6 +4597,7 @@
         "is_gmax": false,
         "generation": 1,
         "capture_rate": 190,
+        "gender_rate": 4,
         "evolutions": [
             {
                 "evolves_into": "hypno",
@@ -4518,6 +4637,7 @@
         "is_gmax": false,
         "generation": 1,
         "capture_rate": 75,
+        "gender_rate": 4,
         "evolutions": []
     },
     "krabby": {
@@ -4551,6 +4671,7 @@
         "is_gmax": false,
         "generation": 1,
         "capture_rate": 225,
+        "gender_rate": 4,
         "evolutions": [
             {
                 "evolves_into": "kingler",
@@ -4590,6 +4711,7 @@
         "is_gmax": false,
         "generation": 1,
         "capture_rate": 60,
+        "gender_rate": 4,
         "evolutions": [
             {
                 "evolves_into": "kingler-gmax",
@@ -4629,6 +4751,7 @@
         "is_gmax": true,
         "generation": 1,
         "capture_rate": null,
+        "gender_rate": 4,
         "evolutions": []
     },
     "voltorb": {
@@ -4662,6 +4785,7 @@
         "is_gmax": false,
         "generation": 1,
         "capture_rate": 190,
+        "gender_rate": -1,
         "evolutions": [
             {
                 "evolves_into": "electrode",
@@ -4702,6 +4826,7 @@
         "is_gmax": false,
         "generation": 1,
         "capture_rate": 190,
+        "gender_rate": -1,
         "evolutions": [
             {
                 "evolves_into": "electrode-hisui",
@@ -4741,6 +4866,7 @@
         "is_gmax": false,
         "generation": 1,
         "capture_rate": 60,
+        "gender_rate": -1,
         "evolutions": []
     },
     "electrode-hisui": {
@@ -4775,6 +4901,7 @@
         "is_gmax": false,
         "generation": 1,
         "capture_rate": 60,
+        "gender_rate": -1,
         "evolutions": []
     },
     "exeggcute": {
@@ -4809,6 +4936,7 @@
         "is_gmax": false,
         "generation": 1,
         "capture_rate": 90,
+        "gender_rate": 4,
         "evolutions": [
             {
                 "evolves_into": "exeggutor",
@@ -4854,6 +4982,7 @@
         "is_gmax": false,
         "generation": 1,
         "capture_rate": 45,
+        "gender_rate": 4,
         "evolutions": []
     },
     "cubone": {
@@ -4887,6 +5016,7 @@
         "is_gmax": false,
         "generation": 1,
         "capture_rate": 190,
+        "gender_rate": 4,
         "evolutions": [
             {
                 "evolves_into": "marowak",
@@ -4931,6 +5061,7 @@
         "is_gmax": false,
         "generation": 1,
         "capture_rate": 75,
+        "gender_rate": 4,
         "evolutions": []
     },
     "hitmonlee": {
@@ -4964,6 +5095,7 @@
         "is_gmax": false,
         "generation": 1,
         "capture_rate": 45,
+        "gender_rate": 0,
         "evolutions": []
     },
     "hitmonchan": {
@@ -4997,6 +5129,7 @@
         "is_gmax": false,
         "generation": 1,
         "capture_rate": 45,
+        "gender_rate": 0,
         "evolutions": []
     },
     "lickitung": {
@@ -5030,6 +5163,7 @@
         "is_gmax": false,
         "generation": 1,
         "capture_rate": 45,
+        "gender_rate": 4,
         "evolutions": [
             {
                 "evolves_into": "lickilicky",
@@ -5069,6 +5203,7 @@
         "is_gmax": false,
         "generation": 1,
         "capture_rate": 190,
+        "gender_rate": 4,
         "evolutions": [
             {
                 "evolves_into": "weezing",
@@ -5113,6 +5248,7 @@
         "is_gmax": false,
         "generation": 1,
         "capture_rate": 60,
+        "gender_rate": 4,
         "evolutions": []
     },
     "rhyhorn": {
@@ -5147,6 +5283,7 @@
         "is_gmax": false,
         "generation": 1,
         "capture_rate": 120,
+        "gender_rate": 4,
         "evolutions": [
             {
                 "evolves_into": "rhydon",
@@ -5187,6 +5324,7 @@
         "is_gmax": false,
         "generation": 1,
         "capture_rate": 60,
+        "gender_rate": 4,
         "evolutions": [
             {
                 "evolves_into": "rhyperior",
@@ -5226,6 +5364,7 @@
         "is_gmax": false,
         "generation": 1,
         "capture_rate": 30,
+        "gender_rate": 8,
         "evolutions": [
             {
                 "evolves_into": "blissey",
@@ -5265,6 +5404,7 @@
         "is_gmax": false,
         "generation": 1,
         "capture_rate": 45,
+        "gender_rate": 4,
         "evolutions": [
             {
                 "evolves_into": "tangrowth",
@@ -5304,6 +5444,7 @@
         "is_gmax": false,
         "generation": 1,
         "capture_rate": 45,
+        "gender_rate": 8,
         "evolutions": [
             {
                 "evolves_into": "kangaskhan-mega",
@@ -5343,6 +5484,7 @@
         "is_gmax": false,
         "generation": 1,
         "capture_rate": null,
+        "gender_rate": 8,
         "evolutions": []
     },
     "horsea": {
@@ -5376,6 +5518,7 @@
         "is_gmax": false,
         "generation": 1,
         "capture_rate": 225,
+        "gender_rate": 4,
         "evolutions": [
             {
                 "evolves_into": "seadra",
@@ -5415,6 +5558,7 @@
         "is_gmax": false,
         "generation": 1,
         "capture_rate": 75,
+        "gender_rate": 4,
         "evolutions": [
             {
                 "evolves_into": "kingdra",
@@ -5454,6 +5598,7 @@
         "is_gmax": false,
         "generation": 1,
         "capture_rate": 225,
+        "gender_rate": 4,
         "evolutions": [
             {
                 "evolves_into": "seaking",
@@ -5493,6 +5638,7 @@
         "is_gmax": false,
         "generation": 1,
         "capture_rate": 60,
+        "gender_rate": 4,
         "evolutions": []
     },
     "staryu": {
@@ -5526,6 +5672,7 @@
         "is_gmax": false,
         "generation": 1,
         "capture_rate": 225,
+        "gender_rate": -1,
         "evolutions": [
             {
                 "evolves_into": "starmie",
@@ -5566,6 +5713,7 @@
         "is_gmax": false,
         "generation": 1,
         "capture_rate": 60,
+        "gender_rate": -1,
         "evolutions": [
             {
                 "evolves_into": "starmie-mega",
@@ -5606,6 +5754,7 @@
         "is_gmax": false,
         "generation": 1,
         "capture_rate": null,
+        "gender_rate": -1,
         "evolutions": []
     },
     "mr-mime": {
@@ -5640,6 +5789,7 @@
         "is_gmax": false,
         "generation": 1,
         "capture_rate": 45,
+        "gender_rate": 4,
         "evolutions": []
     },
     "scyther": {
@@ -5674,6 +5824,7 @@
         "is_gmax": false,
         "generation": 1,
         "capture_rate": 45,
+        "gender_rate": 4,
         "evolutions": [
             {
                 "evolves_into": "scizor",
@@ -5719,6 +5870,7 @@
         "is_gmax": false,
         "generation": 1,
         "capture_rate": 45,
+        "gender_rate": 8,
         "evolutions": []
     },
     "electabuzz": {
@@ -5752,6 +5904,7 @@
         "is_gmax": false,
         "generation": 1,
         "capture_rate": 45,
+        "gender_rate": 2,
         "evolutions": [
             {
                 "evolves_into": "electivire",
@@ -5791,6 +5944,7 @@
         "is_gmax": false,
         "generation": 1,
         "capture_rate": 45,
+        "gender_rate": 2,
         "evolutions": [
             {
                 "evolves_into": "magmortar",
@@ -5830,6 +5984,7 @@
         "is_gmax": false,
         "generation": 1,
         "capture_rate": 45,
+        "gender_rate": 4,
         "evolutions": [
             {
                 "evolves_into": "pinsir-mega",
@@ -5870,6 +6025,7 @@
         "is_gmax": false,
         "generation": 1,
         "capture_rate": null,
+        "gender_rate": 4,
         "evolutions": []
     },
     "tauros": {
@@ -5903,6 +6059,7 @@
         "is_gmax": false,
         "generation": 1,
         "capture_rate": 45,
+        "gender_rate": 0,
         "evolutions": []
     },
     "magikarp": {
@@ -5936,6 +6093,7 @@
         "is_gmax": false,
         "generation": 1,
         "capture_rate": 255,
+        "gender_rate": 4,
         "evolutions": [
             {
                 "evolves_into": "gyarados",
@@ -5976,6 +6134,7 @@
         "is_gmax": false,
         "generation": 1,
         "capture_rate": 45,
+        "gender_rate": 4,
         "evolutions": [
             {
                 "evolves_into": "gyarados-mega",
@@ -6016,6 +6175,7 @@
         "is_gmax": false,
         "generation": 1,
         "capture_rate": null,
+        "gender_rate": 4,
         "evolutions": []
     },
     "lapras": {
@@ -6050,6 +6210,7 @@
         "is_gmax": false,
         "generation": 1,
         "capture_rate": 45,
+        "gender_rate": 4,
         "evolutions": [
             {
                 "evolves_into": "lapras-gmax",
@@ -6090,6 +6251,7 @@
         "is_gmax": true,
         "generation": 1,
         "capture_rate": null,
+        "gender_rate": 4,
         "evolutions": []
     },
     "ditto": {
@@ -6123,6 +6285,7 @@
         "is_gmax": false,
         "generation": 1,
         "capture_rate": 35,
+        "gender_rate": -1,
         "evolutions": []
     },
     "eevee": {
@@ -6156,6 +6319,7 @@
         "is_gmax": false,
         "generation": 1,
         "capture_rate": 45,
+        "gender_rate": 1,
         "evolutions": [
             {
                 "evolves_into": "vaporeon",
@@ -6235,6 +6399,7 @@
         "is_gmax": true,
         "generation": 1,
         "capture_rate": null,
+        "gender_rate": 1,
         "evolutions": []
     },
     "vaporeon": {
@@ -6268,6 +6433,7 @@
         "is_gmax": false,
         "generation": 1,
         "capture_rate": 45,
+        "gender_rate": 1,
         "evolutions": []
     },
     "jolteon": {
@@ -6301,6 +6467,7 @@
         "is_gmax": false,
         "generation": 1,
         "capture_rate": 45,
+        "gender_rate": 1,
         "evolutions": []
     },
     "flareon": {
@@ -6334,6 +6501,7 @@
         "is_gmax": false,
         "generation": 1,
         "capture_rate": 45,
+        "gender_rate": 1,
         "evolutions": []
     },
     "porygon": {
@@ -6367,6 +6535,7 @@
         "is_gmax": false,
         "generation": 1,
         "capture_rate": 45,
+        "gender_rate": -1,
         "evolutions": [
             {
                 "evolves_into": "porygon2",
@@ -6407,6 +6576,7 @@
         "is_gmax": false,
         "generation": 1,
         "capture_rate": 45,
+        "gender_rate": 1,
         "evolutions": [
             {
                 "evolves_into": "omastar",
@@ -6447,6 +6617,7 @@
         "is_gmax": false,
         "generation": 1,
         "capture_rate": 45,
+        "gender_rate": 1,
         "evolutions": []
     },
     "kabuto": {
@@ -6481,6 +6652,7 @@
         "is_gmax": false,
         "generation": 1,
         "capture_rate": 45,
+        "gender_rate": 1,
         "evolutions": [
             {
                 "evolves_into": "kabutops",
@@ -6521,6 +6693,7 @@
         "is_gmax": false,
         "generation": 1,
         "capture_rate": 45,
+        "gender_rate": 1,
         "evolutions": []
     },
     "aerodactyl": {
@@ -6555,6 +6728,7 @@
         "is_gmax": false,
         "generation": 1,
         "capture_rate": 45,
+        "gender_rate": 1,
         "evolutions": [
             {
                 "evolves_into": "aerodactyl-mega",
@@ -6595,6 +6769,7 @@
         "is_gmax": false,
         "generation": 1,
         "capture_rate": null,
+        "gender_rate": 1,
         "evolutions": []
     },
     "snorlax": {
@@ -6628,6 +6803,7 @@
         "is_gmax": false,
         "generation": 1,
         "capture_rate": 25,
+        "gender_rate": 1,
         "evolutions": [
             {
                 "evolves_into": "snorlax-gmax",
@@ -6667,6 +6843,7 @@
         "is_gmax": true,
         "generation": 1,
         "capture_rate": null,
+        "gender_rate": 1,
         "evolutions": []
     },
     "articuno": {
@@ -6701,6 +6878,7 @@
         "is_gmax": false,
         "generation": 1,
         "capture_rate": 3,
+        "gender_rate": -1,
         "evolutions": []
     },
     "zapdos": {
@@ -6735,6 +6913,7 @@
         "is_gmax": false,
         "generation": 1,
         "capture_rate": 3,
+        "gender_rate": -1,
         "evolutions": []
     },
     "moltres": {
@@ -6769,6 +6948,7 @@
         "is_gmax": false,
         "generation": 1,
         "capture_rate": 3,
+        "gender_rate": -1,
         "evolutions": []
     },
     "dratini": {
@@ -6802,6 +6982,7 @@
         "is_gmax": false,
         "generation": 1,
         "capture_rate": 45,
+        "gender_rate": 4,
         "evolutions": [
             {
                 "evolves_into": "dragonair",
@@ -6841,6 +7022,7 @@
         "is_gmax": false,
         "generation": 1,
         "capture_rate": 45,
+        "gender_rate": 4,
         "evolutions": [
             {
                 "evolves_into": "dragonite",
@@ -6881,6 +7063,7 @@
         "is_gmax": false,
         "generation": 1,
         "capture_rate": 45,
+        "gender_rate": 4,
         "evolutions": [
             {
                 "evolves_into": "dragonite-mega",
@@ -6921,6 +7104,7 @@
         "is_gmax": false,
         "generation": 1,
         "capture_rate": null,
+        "gender_rate": 4,
         "evolutions": []
     },
     "mewtwo": {
@@ -6954,6 +7138,7 @@
         "is_gmax": false,
         "generation": 1,
         "capture_rate": 3,
+        "gender_rate": -1,
         "evolutions": [
             {
                 "evolves_into": "mewtwo-mega-x",
@@ -6999,6 +7184,7 @@
         "is_gmax": false,
         "generation": 1,
         "capture_rate": null,
+        "gender_rate": -1,
         "evolutions": []
     },
     "mewtwo-mega-y": {
@@ -7032,6 +7218,7 @@
         "is_gmax": false,
         "generation": 1,
         "capture_rate": null,
+        "gender_rate": -1,
         "evolutions": []
     },
     "mew": {
@@ -7065,6 +7252,7 @@
         "is_gmax": false,
         "generation": 1,
         "capture_rate": 45,
+        "gender_rate": -1,
         "evolutions": []
     }
 }
