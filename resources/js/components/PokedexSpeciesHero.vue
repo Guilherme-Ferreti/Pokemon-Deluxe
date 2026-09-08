@@ -1,5 +1,8 @@
 <template>
-  <Card class="@container/hero gap-0 p-0">
+  <Card
+    class="@container/hero gap-0 p-0"
+    data-test="pokedex-species-hero"
+  >
     <div class="flex h-full flex-col @md/hero:flex-row">
       <div
         class="flex items-center justify-center bg-muted/40 p-6 @md/hero:w-2/5"

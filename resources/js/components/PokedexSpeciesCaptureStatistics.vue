@@ -1,5 +1,6 @@
 <template>
   <AppInfoCard
+    data-test="pokedex-species-capture-statistics"
     title="Capture Statistics"
     :description="`Total number of ${speciesName} in accounts across the game`"
   >

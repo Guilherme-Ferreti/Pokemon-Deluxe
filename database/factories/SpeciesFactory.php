@@ -21,11 +21,8 @@ final class SpeciesFactory extends Factory
     public function definition(): array
     {
         return [
-            'name'  => fake()->unique()->word(),
-            'types' => array_filter([
-                fake()->randomElement(ElementalType::cases()),
-                fake()->optional()->randomElement(ElementalType::cases()),
-            ]),
+            'name'           => fake()->unique()->word(),
+            'types'          => fake()->randomElements(ElementalType::cases(), random_int(1, 2)),
             'pokedex_number' => fake()->unique()->numberBetween(1, 1000),
             'genus'          => fake()->word(),
             'text_entry'     => fake()->sentence(),
@@ -53,5 +50,12 @@ final class SpeciesFactory extends Factory
             'slug'         => fake()->unique()->uuid(),
             'external_id'  => fake()->unique()->uuid(),
         ];
+    }
+
+    public function dualType(): static
+    {
+        return $this->state([
+            'types' => fake()->randomElements(ElementalType::cases(), 2),
+        ]);
     }
 }

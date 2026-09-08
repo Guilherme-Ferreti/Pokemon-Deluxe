@@ -34,7 +34,10 @@
           </div>
         </li>
       </ul>
-      <ComboboxEmpty v-else-if="autocompleteOptions.length === 0">
+      <ComboboxEmpty
+        v-else-if="autocompleteOptions.length === 0"
+        data-test="pokedex-species-autocomplete-empty-state"
+      >
         No Pokémon found.
       </ComboboxEmpty>
       <ComboboxGroup v-else>

@@ -3,8 +3,6 @@
 declare(strict_types=1);
 
 use Inertia\Testing\AssertableInertia as Assert;
-use Shared\Enums\ElementalType;
-use Shared\Enums\Generation;
 use Shared\Models\Pokemon;
 use Shared\Models\Species;
 use Shared\Models\User;
@@ -20,21 +18,13 @@ it('redirects guests to login', function () {
 it('loads the pokedex page with expected structure', function () {
     $user = User::factory()->create();
 
-    $charmander = Species::factory()->create([
-        'name'           => 'Charmander',
-        'types'          => [ElementalType::FIRE],
-        'pokedex_number' => 4,
-        'generation'     => Generation::I,
+    $speciesA = Species::factory()->create();
+
+    $speciesB = Species::factory()->create([
+        'pokedex_number' => $speciesA->pokedex_number + 1,
     ]);
 
-    $pikachu = Species::factory()->create([
-        'name'           => 'Pikachu',
-        'types'          => [ElementalType::ELECTRIC],
-        'pokedex_number' => 25,
-        'generation'     => Generation::I,
-    ]);
-
-    Pokemon::factory()->for($user)->for($pikachu)->inBox()->create();
+    Pokemon::factory()->for($user)->for($speciesB)->regular()->inBox()->create();
 
     actingAs($user);
 
@@ -45,22 +35,22 @@ it('loads the pokedex page with expected structure', function () {
             ->has('activeFilters')
             ->has('filterOptions', fn (Assert $page) => $page->hasAll(['types', 'traits', 'generations']))
             ->has('speciesList.data', 2)
-            ->where('speciesList.data.0.id', $charmander->id)
-            ->where('speciesList.data.0.name', 'Charmander')
-            ->where('speciesList.data.0.pokedexNumber', 4)
-            ->where('speciesList.data.0.types', [ElementalType::FIRE->value])
-            ->where('speciesList.data.0.generation', 'Gen I')
-            ->where('speciesList.data.0.portrait', $charmander->portraits->regular)
-            ->where('speciesList.data.0.slug', $charmander->slug)
+            ->where('speciesList.data.0.id', $speciesA->id)
+            ->where('speciesList.data.0.name', $speciesA->name)
+            ->where('speciesList.data.0.pokedexNumber', $speciesA->pokedex_number)
+            ->where('speciesList.data.0.types', $speciesA->types->pluck('value'))
+            ->where('speciesList.data.0.generation', $speciesA->generation->label())
+            ->where('speciesList.data.0.portrait', $speciesA->portraits->regular)
+            ->where('speciesList.data.0.slug', $speciesA->slug)
             ->where('speciesList.data.0.regularInBox', false)
             ->where('speciesList.data.0.shinyInBox', false)
-            ->where('speciesList.data.1.id', $pikachu->id)
-            ->where('speciesList.data.1.name', 'Pikachu')
-            ->where('speciesList.data.1.pokedexNumber', 25)
-            ->where('speciesList.data.1.types', [ElementalType::ELECTRIC->value])
-            ->where('speciesList.data.1.generation', 'Gen I')
-            ->where('speciesList.data.1.portrait', $pikachu->portraits->regular)
-            ->where('speciesList.data.1.slug', $pikachu->slug)
+            ->where('speciesList.data.1.id', $speciesB->id)
+            ->where('speciesList.data.1.name', $speciesB->name)
+            ->where('speciesList.data.1.pokedexNumber', $speciesB->pokedex_number)
+            ->where('speciesList.data.1.types', $speciesB->types->pluck('value'))
+            ->where('speciesList.data.1.generation', $speciesB->generation->label())
+            ->where('speciesList.data.1.portrait', $speciesB->portraits->regular)
+            ->where('speciesList.data.1.slug', $speciesB->slug)
             ->where('speciesList.data.1.regularInBox', true)
             ->where('speciesList.data.1.shinyInBox', false)
             ->where('speciesList.total', 2)

@@ -19,7 +19,7 @@ return new class extends Migration
             $table->foreignIdFor(Species::class, 'into_species_id')->constrained()->cascadeOnDelete();
 
             $table->foreignIdFor(EvolutionItem::class)->nullable()->constrained();
-            $table->unsignedTinyInteger('min_level')->default(1)->nullable();
+            $table->unsignedTinyInteger('min_level')->nullable();
 
             $table->timestamps();
         });

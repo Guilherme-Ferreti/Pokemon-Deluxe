@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Shared\Models;
 
+use Illuminate\Database\Eloquent\Attributes\Unguarded;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -21,6 +22,7 @@ use Illuminate\Support\Carbon;
  * @property-read Species $into
  * @property-read EvolutionItem|null $evolutionItem
  */
+#[Unguarded]
 final class SpeciesEvolution extends Model
 {
     use HasUuids;

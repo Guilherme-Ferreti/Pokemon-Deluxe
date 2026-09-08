@@ -1,5 +1,8 @@
 <template>
-  <AppInfoCard title="Pokédex Data">
+  <AppInfoCard
+    title="Pokédex Data"
+    data-test="pokedex-species-metadata"
+  >
     <AppInfoCardRow title="Regular/Shiny">
       <div class="flex gap-2">
         <Tooltip>
