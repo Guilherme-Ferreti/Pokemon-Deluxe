@@ -9,7 +9,7 @@
           variant="outline"
           as-child
           class="navigation__button"
-          data-test="previous-species-button"
+          data-test="pokedex-species-navigation__previous-link"
         >
           <Link
             :aria-label="`Previous species page: ${previousSpecies.name}`"
@@ -46,7 +46,7 @@
           variant="outline"
           as-child
           class="navigation__button"
-          data-test="next-species-button"
+          data-test="pokedex-species-navigation__next-link"
         >
           <Link
             :aria-label="`Next species page: ${nextSpecies.name}`"

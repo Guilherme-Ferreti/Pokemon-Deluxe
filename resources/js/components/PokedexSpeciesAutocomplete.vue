@@ -36,7 +36,7 @@
       </ul>
       <ComboboxEmpty
         v-else-if="autocompleteOptions.length === 0"
-        data-test="pokedex-species-autocomplete-empty-state"
+        data-test="pokedex-species-autocomplete__empty-state"
       >
         No Pokémon found.
       </ComboboxEmpty>

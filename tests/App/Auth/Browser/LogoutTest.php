@@ -11,8 +11,8 @@ it('logs out the authenticated user', function () {
     actingAs(User::factory()->create());
 
     visit(route('dashboard.web.home'))
-        ->press('@sidebar-user-menu-button')
-        ->press('@logout-button')
+        ->press('@sidebar__user-menu-button')
+        ->press('@sidebar__logout-button')
         ->assertPathIs(route('public.web.home', absolute: false));
 
     assertGuest();

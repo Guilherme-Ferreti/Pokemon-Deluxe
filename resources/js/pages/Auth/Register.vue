@@ -46,7 +46,7 @@
       />
       <Button
         type="submit"
-        data-test="register-button"
+        data-test="auth-form__register-button"
       >
         Create account
       </Button>

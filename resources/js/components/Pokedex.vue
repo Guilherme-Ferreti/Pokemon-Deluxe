@@ -94,7 +94,7 @@
           <TableCell>
             <Link
               class="flex items-center gap-1 hover:underline"
-              data-test="view-species-link"
+              data-test="pokemon-box-card__view-species-link"
               :href="route('dex.web.pokedex.show', { species: species.slug })"
             >
               <IconEye class="size-4" />
@@ -109,7 +109,7 @@
       v-else
       title="No Pokémon found"
       description="Change your search or filters to find some."
-      data-test="pokedex-empty-state"
+      data-test="pokedex__empty-state"
       :icon="IconXMark"
     />
   </Card>

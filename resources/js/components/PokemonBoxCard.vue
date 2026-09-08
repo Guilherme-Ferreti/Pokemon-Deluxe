@@ -18,7 +18,7 @@
                   variant="ghost"
                   size="icon-sm"
                   class="text-ring"
-                  data-test="pokemon-card-dropdown-menu-trigger"
+                  data-test="pokemon-box-card__open-dropdown-menu-button"
                 >
                   <IconDotsVertical />
                 </Button>
@@ -34,7 +34,7 @@
                 <DropdownMenuItem as-child>
                   <AppNavLink
                     title="Pokédex"
-                    data-test="view-species-link"
+                    data-test="pokemon-box-card__view-species-link"
                     :url="
                       route('dex.web.pokedex.show', {
                         species: pokemon.species.slug,

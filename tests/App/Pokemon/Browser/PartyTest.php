@@ -16,7 +16,7 @@ it('loads the party page without errors', function () {
     visit(route('pokemon.web.party'))
         ->assertNoSmoke()
         ->assertNoAccessibilityIssues()
-        ->assertSeeIn('@page-title', 'Your Party');
+        ->assertSeeIn('@page-header__title', 'Your Party');
 });
 
 it('shows party pokemon', function () {

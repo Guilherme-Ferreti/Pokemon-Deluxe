@@ -8,7 +8,7 @@ it('loads the register page without errors', function () {
     visit(route('auth.web.register.create'))
         ->assertNoSmoke()
         ->assertNoAccessibilityIssues()
-        ->assertSeeIn('@auth-form-title', 'Create an account');
+        ->assertSeeIn('@auth-form__title', 'Create an account');
 });
 
 it('registers a new user', function () {
@@ -19,7 +19,7 @@ it('registers a new user', function () {
         ->fill('email', $data['email'])
         ->fill('password', $data['password'])
         ->fill('password_confirmation', $data['password'])
-        ->press('@register-button')
+        ->press('@auth-form__register-button')
         ->assertPathIs(route('dashboard.web.home', absolute: false));
 });
 
@@ -31,6 +31,6 @@ it('shows validation errors on registration', function () {
         ->fill('email', $data['email'])
         ->fill('password', $data['password'])
         ->fill('password_confirmation', $data['password'])
-        ->press('@register-button')
+        ->press('@auth-form__register-button')
         ->assertVisible('@error-message');
 });

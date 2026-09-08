@@ -30,7 +30,7 @@ it('navigates to previous species', function () {
     actingAs($user);
 
     visit(route('dex.web.pokedex.show', $species))
-        ->click('@previous-species-button')
+        ->click('@pokedex-species-navigation__previous-link')
         ->assertPathIs(route('dex.web.pokedex.show', $previousSpecies, absolute: false))
         ->assertSee($previousSpecies->name)
         ->assertNoSmoke();
@@ -45,7 +45,7 @@ it('navigates to next species', function () {
     actingAs($user);
 
     visit(route('dex.web.pokedex.show', $species))
-        ->click('@next-species-button')
+        ->click('@pokedex-species-navigation__next-link')
         ->assertPathIs(route('dex.web.pokedex.show', $nextSpecies, absolute: false))
         ->assertSee($nextSpecies->name)
         ->assertNoSmoke();
@@ -204,6 +204,6 @@ describe('autocomplete search', function () {
         visit(route('dex.web.pokedex.show', $species))
             ->type('search', 'non-existent')
             ->wait(1)
-            ->assertPresent('@pokedex-species-autocomplete-empty-state');
+            ->assertPresent('@pokedex-species-autocomplete__empty-state');
     });
 });

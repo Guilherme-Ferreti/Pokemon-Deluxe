@@ -2,7 +2,7 @@
   <div class="flex flex-col items-center gap-1 text-center">
     <h1
       class="text-2xl font-bold"
-      data-test="auth-form-title"
+      data-test="auth-form__title"
     >
       {{ title }}
     </h1>

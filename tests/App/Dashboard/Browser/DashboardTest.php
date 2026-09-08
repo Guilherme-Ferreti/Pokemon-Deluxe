@@ -12,5 +12,5 @@ it('loads the dashboard page without errors', function () {
     visit(route('dashboard.web.home'))
         ->assertNoSmoke()
         ->assertNoAccessibilityIssues()
-        ->assertSeeIn('@page-title', 'Dashboard');
+        ->assertSeeIn('@page-header__title', 'Dashboard');
 });

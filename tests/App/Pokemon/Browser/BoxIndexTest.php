@@ -19,7 +19,7 @@ it('loads the box page without errors', function () {
 
     visit(route('pokemon.web.box.index'))
         ->assertNoSmoke()
-        ->assertSeeIn('@page-title', 'Your Box');
+        ->assertSeeIn('@page-header__title', 'Your Box');
 });
 
 it('shows box pokemon', function () {
@@ -72,8 +72,8 @@ describe('search filters', function () {
             'generations' => [Generation::I],
         ]))
             ->assertValue('search', 'Pikachu')
-            ->assertSeeIn('@active-filters-indicator', '4')
-            ->click('@open-search-filters-button')
+            ->assertSeeIn('@search-filters-dialog__active-filters-indicator', '4')
+            ->click('@search-filters-dialog__open-filters-button')
             ->assertAttribute('[aria-label="Fire"]', 'data-state', 'checked')
             ->assertAttribute('[aria-label="Water"]', 'data-state', 'checked')
             ->assertAttribute('[aria-label="Grass"]', 'data-state', 'unchecked')
@@ -89,39 +89,39 @@ describe('search filters', function () {
             'traits'      => [PokemonTrait::LEGENDARY],
             'generations' => [Generation::I],
         ]))
-            ->click('@open-search-filters-button')
-            ->click('@reset-search-filters-button')
+            ->click('@search-filters-dialog__open-filters-button')
+            ->click('@search-filters-dialog__reset-filters-button')
             ->assertQueryStringMissing('types')
             ->assertQueryStringMissing('traits')
             ->assertQueryStringMissing('generations')
-            ->assertDontSee('@active-filters-indicator');
+            ->assertDontSee('@search-filters-dialog__active-filters-indicator');
     });
 
     it('applies filters only after Apply is clicked and discards them when the dialog is closed', function () {
         actingAs(User::factory()->create());
 
         visit(route('pokemon.web.box.index'))
-            ->click('@open-search-filters-button')
+            ->click('@search-filters-dialog__open-filters-button')
             ->click('[aria-label="Fire"]')
             ->click('[aria-label="Water"]')
-            ->click('@close-search-filters-button')
+            ->click('@search-filters-dialog__close-filters-button')
             ->assertQueryStringMissing('types')
-            ->assertDontSee('@active-filters-indicator')
-            ->click('@open-search-filters-button')
+            ->assertDontSee('@search-filters-dialog__active-filters-indicator')
+            ->click('@search-filters-dialog__open-filters-button')
             ->assertAttribute('[aria-label="Fire"]', 'data-state', 'unchecked')
             ->assertAttribute('[aria-label="Water"]', 'data-state', 'unchecked')
             ->click('[aria-label="Fire"]')
             ->click('[aria-label="Water"]')
-            ->click('@apply-search-filters-button')
+            ->click('@search-filters-dialog__apply-filters-button')
             ->assertQueryStringHas('types')
-            ->assertSeeIn('@active-filters-indicator', '2');
+            ->assertSeeIn('@search-filters-dialog__active-filters-indicator', '2');
     });
 
     it('disables type checkboxes after selecting two types', function () {
         actingAs(User::factory()->create());
 
         visit(route('pokemon.web.box.index'))
-            ->click('@open-search-filters-button')
+            ->click('@search-filters-dialog__open-filters-button')
             ->click('[aria-label="Fire"]')
             ->click('[aria-label="Water"]')
             ->assertDisabled('[aria-label="Grass"]');
@@ -131,7 +131,7 @@ describe('search filters', function () {
         actingAs(User::factory()->create());
 
         visit(route('pokemon.web.box.index'))
-            ->click('@open-search-filters-button')
+            ->click('@search-filters-dialog__open-filters-button')
             ->click('[aria-label="Legendary"]')
             ->assertDisabled('[aria-label="Baby"]');
     });
@@ -140,7 +140,7 @@ describe('search filters', function () {
         actingAs(User::factory()->create());
 
         visit(route('pokemon.web.box.index'))
-            ->click('@open-search-filters-button')
+            ->click('@search-filters-dialog__open-filters-button')
             ->click('[aria-label="Mythical"]')
             ->assertDisabled('[aria-label="Baby"]');
     });
@@ -149,7 +149,7 @@ describe('search filters', function () {
         actingAs(User::factory()->create());
 
         visit(route('pokemon.web.box.index'))
-            ->click('@open-search-filters-button')
+            ->click('@search-filters-dialog__open-filters-button')
             ->click('[aria-label="Mega"]')
             ->assertDisabled('[aria-label="Baby"]');
     });
@@ -158,7 +158,7 @@ describe('search filters', function () {
         actingAs(User::factory()->create());
 
         visit(route('pokemon.web.box.index'))
-            ->click('@open-search-filters-button')
+            ->click('@search-filters-dialog__open-filters-button')
             ->click('[aria-label="G-Max"]')
             ->assertDisabled('[aria-label="Baby"]');
     });
@@ -167,7 +167,7 @@ describe('search filters', function () {
         actingAs(User::factory()->create());
 
         visit(route('pokemon.web.box.index'))
-            ->click('@open-search-filters-button')
+            ->click('@search-filters-dialog__open-filters-button')
             ->click('[aria-label="Mythical"]')
             ->assertDisabled('[aria-label="Legendary"]');
     });
@@ -176,7 +176,7 @@ describe('search filters', function () {
         actingAs(User::factory()->create());
 
         visit(route('pokemon.web.box.index'))
-            ->click('@open-search-filters-button')
+            ->click('@search-filters-dialog__open-filters-button')
             ->click('[aria-label="Baby"]')
             ->assertDisabled('[aria-label="Legendary"]');
     });
@@ -185,7 +185,7 @@ describe('search filters', function () {
         actingAs(User::factory()->create());
 
         visit(route('pokemon.web.box.index'))
-            ->click('@open-search-filters-button')
+            ->click('@search-filters-dialog__open-filters-button')
             ->click('[aria-label="Legendary"]')
             ->assertDisabled('[aria-label="Mythical"]');
     });
@@ -194,7 +194,7 @@ describe('search filters', function () {
         actingAs(User::factory()->create());
 
         visit(route('pokemon.web.box.index'))
-            ->click('@open-search-filters-button')
+            ->click('@search-filters-dialog__open-filters-button')
             ->click('[aria-label="Baby"]')
             ->assertDisabled('[aria-label="Mythical"]');
     });
@@ -203,7 +203,7 @@ describe('search filters', function () {
         actingAs(User::factory()->create());
 
         visit(route('pokemon.web.box.index'))
-            ->click('@open-search-filters-button')
+            ->click('@search-filters-dialog__open-filters-button')
             ->click('[aria-label="G-Max"]')
             ->assertDisabled('[aria-label="Mega"]');
     });
@@ -212,7 +212,7 @@ describe('search filters', function () {
         actingAs(User::factory()->create());
 
         visit(route('pokemon.web.box.index'))
-            ->click('@open-search-filters-button')
+            ->click('@search-filters-dialog__open-filters-button')
             ->click('[aria-label="Baby"]')
             ->assertDisabled('[aria-label="Mega"]');
     });
@@ -221,7 +221,7 @@ describe('search filters', function () {
         actingAs(User::factory()->create());
 
         visit(route('pokemon.web.box.index'))
-            ->click('@open-search-filters-button')
+            ->click('@search-filters-dialog__open-filters-button')
             ->click('[aria-label="Mega"]')
             ->assertDisabled('[aria-label="G-Max"]');
     });
@@ -230,7 +230,7 @@ describe('search filters', function () {
         actingAs(User::factory()->create());
 
         visit(route('pokemon.web.box.index'))
-            ->click('@open-search-filters-button')
+            ->click('@search-filters-dialog__open-filters-button')
             ->click('[aria-label="Baby"]')
             ->assertDisabled('[aria-label="G-Max"]');
     });
@@ -239,7 +239,7 @@ describe('search filters', function () {
         actingAs(User::factory()->create());
 
         visit(route('pokemon.web.box.index'))
-            ->click('@open-search-filters-button')
+            ->click('@search-filters-dialog__open-filters-button')
             ->click('[aria-label="Legendary"]')
             ->assertEnabled('[aria-label="Shiny"]');
     });
@@ -248,7 +248,7 @@ describe('search filters', function () {
         actingAs(User::factory()->create());
 
         visit(route('pokemon.web.box.index'))
-            ->click('@open-search-filters-button')
+            ->click('@search-filters-dialog__open-filters-button')
             ->click('[aria-label="Legendary"]')
             ->assertDisabled('[aria-label="Baby"]')
             ->click('[aria-label="Legendary"]')
@@ -264,8 +264,8 @@ it('navigates to the pokedex show page from the pokemon dropdown', function () {
 
     visit(route('pokemon.web.box.index'))
         ->assertSee($pokemon->getName())
-        ->click('@pokemon-card-dropdown-menu-trigger')
-        ->click('@view-species-link')
+        ->click('@pokemon-box-card__open-dropdown-menu-button')
+        ->click('@pokemon-box-card__view-species-link')
         ->assertPathIs(route('dex.web.pokedex.show', $pokemon->species, absolute: false))
         ->assertNoSmoke();
 });

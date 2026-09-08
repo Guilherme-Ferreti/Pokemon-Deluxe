@@ -43,7 +43,7 @@
       </div>
       <Button
         type="submit"
-        data-test="login-button"
+        data-test="auth-form__login-button"
       >
         Login
       </Button>

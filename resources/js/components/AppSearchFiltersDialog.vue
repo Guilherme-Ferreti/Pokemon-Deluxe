@@ -2,7 +2,7 @@
   <Dialog @close="$emit('close')">
     <Tooltip>
       <AppIndicator
-        data-test="active-filters-indicator"
+        data-test="search-filters-dialog__active-filters-indicator"
         :show="activeFiltersCount > 0"
         :text="activeFiltersCount.toString()"
       >
@@ -13,7 +13,7 @@
               variant="outline"
               size="icon"
               aria-label="Filters"
-              data-test="open-search-filters-button"
+              data-test="search-filters-dialog__open-filters-button"
             >
               <IconFilter2 />
             </Button>
@@ -36,7 +36,7 @@
             <Button
               type="button"
               variant="outline"
-              data-test="reset-search-filters-button"
+              data-test="search-filters-dialog__reset-filters-button"
               @click="$emit('reset')"
             >
               Reset
@@ -47,7 +47,7 @@
               type="button"
               variant="outline"
               class="sm:ml-auto"
-              data-test="close-search-filters-button"
+              data-test="search-filters-dialog__close-filters-button"
             >
               Cancel
             </Button>
@@ -55,7 +55,7 @@
           <DialogClose as-child>
             <Button
               type="button"
-              data-test="apply-search-filters-button"
+              data-test="search-filters-dialog__apply-filters-button"
               @click="$emit('apply')"
             >
               Apply
