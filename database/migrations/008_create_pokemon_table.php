@@ -19,6 +19,7 @@ return new class extends Migration
             $table->uuid('id')->primary();
 
             $table->foreignIdFor(User::class)->constrained()->cascadeOnDelete();
+            $table->foreignIdFor(User::class, 'original_user_id')->nullable()->constrained()->nullOnDelete();
             $table->foreignIdFor(Species::class)->constrained();
 
             $table->unsignedTinyInteger('level')->default(1);

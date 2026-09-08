@@ -23,14 +23,15 @@ final class PokemonFactory extends Factory
     public function definition(): array
     {
         return [
-            'user_id'    => User::factory(),
-            'species_id' => Species::factory(),
-            'level'      => fake()->numberBetween(1, 100),
-            'experience' => fake()->numberBetween(0, 100),
-            'moves_ids'  => [],
-            'in_party'   => fake()->boolean(),
-            'is_shiny'   => fake()->boolean(10),
-            'gender'     => function (array $attributes) {
+            'user_id'          => User::factory(),
+            'original_user_id' => User::factory(),
+            'species_id'       => Species::factory(),
+            'level'            => fake()->numberBetween(1, 100),
+            'experience'       => fake()->numberBetween(0, 100),
+            'moves_ids'        => [],
+            'in_party'         => fake()->boolean(),
+            'is_shiny'         => fake()->boolean(10),
+            'gender'           => function (array $attributes) {
                 /** @var Species|null $species */
                 $species = Species::find($attributes['species_id']);
 

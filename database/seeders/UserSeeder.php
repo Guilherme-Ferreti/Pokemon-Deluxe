@@ -31,7 +31,7 @@ final class UserSeeder extends Seeder
             ->inRandomOrder()
             ->take(5)
             ->get()
-            ->each(fn (Species $species) => Pokemon::factory()->for($user)->for($species)->recycle($pokeballs)->inParty()->create());
+            ->each(fn (Species $species) => Pokemon::factory()->for($user)->for($user, 'originalUser')->for($species)->recycle($pokeballs)->inParty()->create());
     }
 
     private function addPokemonToBox(User $user): void
@@ -42,8 +42,8 @@ final class UserSeeder extends Seeder
             ->inRandomOrder()
             ->get()
             ->map(function (Species $species) use ($user, $pokeballs): array {
-                $regular = Pokemon::factory()->for($user)->for($species)->recycle($pokeballs)->regular()->inBox()->make()->toArray();
-                $shiny   = Pokemon::factory()->for($user)->for($species)->recycle($pokeballs)->shiny()->inBox()->make()->toArray();
+                $regular = Pokemon::factory()->for($user)->for($user, 'originalUser')->for($species)->recycle($pokeballs)->regular()->inBox()->make()->toArray();
+                $shiny   = Pokemon::factory()->for($user)->for($user, 'originalUser')->for($species)->recycle($pokeballs)->shiny()->inBox()->make()->toArray();
 
                 $regular['id'] = new Pokemon()->newUniqueId();
                 $shiny['id']   = new Pokemon()->newUniqueId();

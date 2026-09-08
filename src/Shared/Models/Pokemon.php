@@ -20,6 +20,7 @@ use Shared\Enums\PokemonGender;
 /**
  * @property string $id
  * @property string $user_id
+ * @property string $original_user_id
  * @property string $species_id
  * @property int $level
  * @property int $experience
@@ -60,6 +61,14 @@ final class Pokemon extends Model
      * @return BelongsTo<User, $this>
      */
     public function user(): BelongsTo
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    /**
+     * @return BelongsTo<User, $this>
+     */
+    public function originalUser(): BelongsTo
     {
         return $this->belongsTo(User::class);
     }
