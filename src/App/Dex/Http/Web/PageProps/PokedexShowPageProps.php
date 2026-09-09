@@ -165,6 +165,7 @@ final readonly class PokedexShowPageProps implements ProvidesInertiaProperties
                         'sprite' => $evolution->evolutionItem->sprite,
                     ] : null,
                     'minLevel' => $evolution->min_level,
+                    'gender'   => $evolution->gender?->value,
                 ])
                 ->toArray();
 
@@ -182,6 +183,7 @@ final readonly class PokedexShowPageProps implements ProvidesInertiaProperties
                         'sprite' => $evolution->evolutionItem->sprite,
                     ] : null,
                     'minLevel' => $evolution->min_level,
+                    'gender'   => $evolution->gender?->value,
                 ])
                 ->toArray();
 

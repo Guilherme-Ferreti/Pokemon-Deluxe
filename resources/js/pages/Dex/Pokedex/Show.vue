@@ -52,7 +52,12 @@ import PokedexSpeciesEvolutionChain from '@/components/PokedexSpeciesEvolutionCh
 import PokedexSpeciesHero from '@/components/PokedexSpeciesHero.vue';
 import PokedexSpeciesMetadata from '@/components/PokedexSpeciesMetadata.vue';
 import PokedexSpeciesNavigation from '@/components/PokedexSpeciesNavigation.vue';
-import type { ElementalType, SpeciesSprites, SpeciesTypes } from '@/types';
+import type {
+  ElementalType,
+  PokemonGender,
+  SpeciesSprites,
+  SpeciesTypes,
+} from '@/types';
 import { route } from '@/types/helpers/route';
 
 export interface DexPokedexShowPageProps {
@@ -118,6 +123,7 @@ export interface DexPokedexShowPageProps {
         sprite?: string;
       };
       minLevel?: number;
+      gender?: PokemonGender;
     }[];
     into: {
       species: {
@@ -130,6 +136,7 @@ export interface DexPokedexShowPageProps {
         sprite?: string;
       };
       minLevel?: number;
+      gender?: PokemonGender;
     }[];
   };
 }

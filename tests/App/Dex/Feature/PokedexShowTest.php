@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 use Inertia\Testing\AssertableInertia as Assert;
 use Shared\Enums\ElementalType;
+use Shared\Enums\PokemonGender;
 use Shared\Models\EvolutionItem;
 use Shared\Models\Species;
 use Shared\Models\SpeciesEvolution;
@@ -99,6 +100,7 @@ it('displays evolution chain', function () {
         'from_species_id' => $basic->id,
         'into_species_id' => $stageOne->id,
         'min_level'       => 16,
+        'gender'          => PokemonGender::FEMALE,
     ]);
 
     SpeciesEvolution::create([
@@ -116,12 +118,14 @@ it('displays evolution chain', function () {
             ->where('evolutionChain.previous.0.species.slug', $basic->slug)
             ->where('evolutionChain.previous.0.species.portrait', $basic->portraits->regular)
             ->where('evolutionChain.previous.0.minLevel', 16)
+            ->where('evolutionChain.previous.0.gender', PokemonGender::FEMALE->value)
             ->where('evolutionChain.previous.0.evolutionItem', null)
             ->has('evolutionChain.into', 1)
             ->where('evolutionChain.into.0.species.name', $stageTwo->name)
             ->where('evolutionChain.into.0.species.slug', $stageTwo->slug)
             ->where('evolutionChain.into.0.species.portrait', $stageTwo->portraits->regular)
             ->where('evolutionChain.into.0.minLevel', null)
+            ->where('evolutionChain.into.0.gender', null)
             ->where('evolutionChain.into.0.evolutionItem.name', $evolutionItem->name)
             ->where('evolutionChain.into.0.evolutionItem.sprite', $evolutionItem->sprite)
         );

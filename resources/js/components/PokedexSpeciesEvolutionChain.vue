@@ -19,7 +19,7 @@
             :url="evolution.species.portrait"
             :name="evolution.species.name"
           />
-          <div class="self-center">
+          <span class="self-center">
             <AppNavLink
               class="font-medium underline"
               :url="
@@ -43,7 +43,13 @@
                 {{ evolution.evolutionItem.name }}
               </span>
             </template>
-          </div>
+            <span
+              v-if="evolution.gender"
+              class="inline-block"
+            >
+              &nbsp;(<AppPokemonGenderIcon :gender="evolution.gender" /> only)
+            </span>
+          </span>
         </li>
       </ul>
       <p
@@ -66,6 +72,7 @@ import AppSpeciesPortrait from '@/components/AppSpeciesPortrait.vue';
 import Separator from '@/components/ui/separator/Separator.vue';
 import type { DexPokedexShowPageProps } from '@/pages/Dex/Pokedex/Show.vue';
 import { route } from '@/types/helpers/route.js';
+import AppPokemonGenderIcon from './AppPokemonGenderIcon.vue';
 
 const props = defineProps<{
   evolutionChain: DexPokedexShowPageProps['evolutionChain'];
