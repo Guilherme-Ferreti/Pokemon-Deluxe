@@ -2,6 +2,7 @@
 
 declare(strict_types=1);
 
+use Shared\Enums\PokemonGender;
 use Shared\Enums\SpeciesTrait;
 use Shared\Models\Species;
 use Shared\Models\User;
@@ -73,6 +74,7 @@ describe('metadata card', function () {
             'is_mythical'  => true,
             'is_mega'      => true,
             'is_gmax'      => true,
+            'gender_rate'  => 2,
         ]);
 
         actingAs($user);
@@ -85,7 +87,9 @@ describe('metadata card', function () {
             ->assertSeeIn('@pokedex-species-metadata', SpeciesTrait::LEGENDARY->label())
             ->assertSeeIn('@pokedex-species-metadata', SpeciesTrait::MYTHICAL->label())
             ->assertSeeIn('@pokedex-species-metadata', SpeciesTrait::MEGA->label())
-            ->assertSeeIn('@pokedex-species-metadata', SpeciesTrait::GMAX->label());
+            ->assertSeeIn('@pokedex-species-metadata', SpeciesTrait::GMAX->label())
+            ->assertSeeIn('@pokedex-species-metadata', $species->getMalePercentage())
+            ->assertSeeIn('@pokedex-species-metadata', $species->getFemalePercentage());
     });
 
     it('does not displays missing traits species traits', function () {
@@ -127,6 +131,16 @@ describe('metadata card', function () {
             ->assertDontSeeIn('@pokedex-species-metadata', SpeciesTrait::MYTHICAL->label())
             ->assertDontSeeIn('@pokedex-species-metadata', SpeciesTrait::MEGA->label())
             ->assertDontSeeIn('@pokedex-species-metadata', SpeciesTrait::GMAX->label());
+    });
+
+    it('displays an empty state message if species is genderless', function () {
+        $user    = User::factory()->create();
+        $species = Species::factory()->create(['gender_rate' => -1]);
+
+        actingAs($user);
+
+        visit(route('dex.web.pokedex.show', $species))
+            ->assertSeeIn('@pokedex-species-metadata', PokemonGender::GENDERLESS->label());
     });
 });
 

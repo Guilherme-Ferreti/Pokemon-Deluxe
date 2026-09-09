@@ -79,6 +79,9 @@ export interface DexPokedexShowPageProps {
     slug: string;
     isCapturable: boolean;
     captureRatePercentage: number;
+    isGenderless: boolean;
+    malePercentage: number;
+    femalePercentage: number;
   };
   previousSpecies?: {
     name: string;

@@ -81,6 +81,34 @@
       title="Traits"
       text="None"
     />
+    <AppInfoCardRow
+      v-if="species.isGenderless"
+      title="Gender Rate"
+      text="Genderless"
+    />
+    <AppInfoCardRow
+      v-else
+      title="Gender Rate"
+    >
+      <span class="flex items-center gap-1 text-sm text-foreground">
+        <span
+          v-if="canBeMale"
+          class="flex items-center gap-0.5"
+        >
+          {{ species.malePercentage }}%
+
+          <AppPokemonGenderIcon :gender="PokemonGender.MALE" />
+        </span>
+        <span v-if="canBeMale && canBeFemale">/</span>
+        <span
+          v-if="canBeFemale"
+          class="flex items-center gap-0.5"
+        >
+          {{ species.femalePercentage }}%
+          <AppPokemonGenderIcon :gender="PokemonGender.FEMALE" />
+        </span>
+      </span>
+    </AppInfoCardRow>
   </AppInfoCard>
 </template>
 
@@ -96,8 +124,13 @@ import {
   TooltipContent,
 } from '@/components/ui/tooltip';
 import type { DexPokedexShowPageProps } from '@/pages/Dex/Pokedex/Show.vue';
+import { PokemonGender } from '@/types';
+import AppPokemonGenderIcon from './AppPokemonGenderIcon.vue';
 
-defineProps<{
+const props = defineProps<{
   species: DexPokedexShowPageProps['species'];
 }>();
+
+const canBeMale = props.species.malePercentage !== 0;
+const canBeFemale = props.species.femalePercentage !== 0;
 </script>

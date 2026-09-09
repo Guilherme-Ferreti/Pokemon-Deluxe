@@ -72,6 +72,9 @@ final readonly class PokedexShowPageProps implements ProvidesInertiaProperties
             'slug'                  => $this->species->slug,
             'isCapturable'          => $this->species->isCapturable(),
             'captureRatePercentage' => $this->species->getCaptureRatePercentage(),
+            'isGenderless'          => $this->species->isGenderless(),
+            'malePercentage'        => $this->species->getMalePercentage(),
+            'femalePercentage'      => $this->species->getFemalePercentage(),
         ];
     }
 
