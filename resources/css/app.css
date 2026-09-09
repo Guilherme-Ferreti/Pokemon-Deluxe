@@ -132,8 +132,8 @@
   body {
     @apply bg-sidebar-inset text-foreground;
   }
-  button:not(:disabled),
-  [role='button']:not(:disabled) {
+  button:not(:disabled):not([data-slot="tooltip-trigger"]),
+  [role='button']:not(:disabled):not([data-slot="tooltip-trigger"]) {
     cursor: pointer;
   }
 }
