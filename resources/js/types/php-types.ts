@@ -34,6 +34,11 @@ export enum PokeballType {
   SPECIAL = 'special',
   APRICORN = 'apricorn',
 }
+export enum PokemonGender {
+  GENDERLESS = 0,
+  MALE = 1,
+  FEMALE = 2,
+}
 export enum PokemonTrait {
   SHINY = 'shiny',
   BABY = 'baby',

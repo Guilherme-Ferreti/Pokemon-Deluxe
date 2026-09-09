@@ -40,6 +40,7 @@ it('loads the box page with expected structure', function () {
             ->has('pokemonList.data', $perPage)
             ->where('pokemonList.data.0.id', $newestPokemon->id)
             ->where('pokemonList.data.0.name', $newestPokemon->getName())
+            ->where('pokemonList.data.0.gender', $newestPokemon->gender)
             ->where('pokemonList.data.0.frontSprite', $newestPokemon->getFrontSprite())
             ->where('pokemonList.data.0.level', $newestPokemon->level)
             ->where('pokemonList.data.0.experience', $newestPokemon->experience)

@@ -68,4 +68,19 @@ final class PokemonFactory extends Factory
     {
         return $this->state(['is_shiny' => false]);
     }
+
+    public function genderless(): static
+    {
+        return $this->state(['gender' => PokemonGender::GENDERLESS]);
+    }
+
+    public function male(): static
+    {
+        return $this->state(['gender' => PokemonGender::MALE]);
+    }
+
+    public function female(): static
+    {
+        return $this->state(['gender' => PokemonGender::FEMALE]);
+    }
 }

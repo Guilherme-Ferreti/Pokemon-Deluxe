@@ -76,7 +76,7 @@ import {
   TooltipTrigger,
 } from '@/components/ui/tooltip';
 import type { PokemonBoxIndexPageProps } from '@/pages/Pokemon/Box/Index.vue';
-import { SearchBoxSortBy, SortDirection } from '@/types/php-types.js';
+import { SearchBoxSortBy, SortDirection } from '@/types';
 
 defineProps<{
   sortOptions: PokemonBoxIndexPageProps['filterOptions']['sort'];

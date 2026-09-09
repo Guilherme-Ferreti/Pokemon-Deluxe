@@ -53,8 +53,13 @@
         </div>
       </div>
       <div
-        class="flex justify-between rounded bg-blue-100/40 px-2 py-1 text-xs text-muted-foreground dark:bg-transparent"
+        class="flex items-center justify-between rounded bg-blue-100/40 px-2 py-1 text-xs text-muted-foreground dark:bg-transparent"
       >
+        <div>
+          <span class="flex items-center gap-0.5">
+            Gender: <AppPokemonGenderIcon :gender="pokemon.gender" />
+          </span>
+        </div>
         <div>
           <span aria-hidden="true">Lv.</span>
           <span class="sr-only">Level</span>
@@ -100,6 +105,7 @@ import {
 } from '@/components/ui/dropdown-menu';
 import type { PokemonBoxIndexPageProps } from '@/pages/Pokemon/Box/Index.vue';
 import { route } from '@/types/helpers/route';
+import AppPokemonGenderIcon from './AppPokemonGenderIcon.vue';
 
 defineProps<{
   pokemon: PokemonBoxIndexPageProps['pokemonList']['data'][number];

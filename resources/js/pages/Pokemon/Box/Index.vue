@@ -23,6 +23,7 @@ import type {
   FilterOption,
   Generation,
   PaginatedList,
+  PokemonGender,
   PokemonTrait,
   SearchBoxSortBy,
   SortDirection,
@@ -34,6 +35,7 @@ export interface PokemonBoxIndexPageProps {
   pokemonList: PaginatedList<{
     id: string;
     name: string;
+    gender: PokemonGender;
     frontSprite?: string;
     level: number;
     experience: number;

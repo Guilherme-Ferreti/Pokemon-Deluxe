@@ -125,6 +125,21 @@ final class Pokemon extends Model
         $query->where('is_shiny', true);
     }
 
+    public function isGenderless(): bool
+    {
+        return $this->gender === PokemonGender::GENDERLESS;
+    }
+
+    public function isMale(): bool
+    {
+        return $this->gender === PokemonGender::MALE;
+    }
+
+    public function isFemale(): bool
+    {
+        return $this->gender === PokemonGender::FEMALE;
+    }
+
     public function getName(): string
     {
         if ($this->is_shiny) {
@@ -136,10 +151,18 @@ final class Pokemon extends Model
 
     public function getFrontSprite(): string
     {
-        if ($this->is_shiny) {
-            return $this->species->sprites->front_shiny ?? '';
+        $sprite = null;
+
+        if ($this->isFemale() && $this->is_shiny) {
+            $sprite = $this->species->sprites->front_shiny_female ?? $this->species->sprites->front_shiny;
+        } elseif ($this->isFemale()) {
+            $sprite = $this->species->sprites->front_female ?? $this->species->sprites->front_default;
+        } elseif ($this->is_shiny) {
+            $sprite = $this->species->sprites->front_shiny;
+        } else {
+            $sprite = $this->species->sprites->front_default;
         }
 
-        return $this->species->sprites->front_default ?? '';
+        return (string) $sprite;
     }
 }
