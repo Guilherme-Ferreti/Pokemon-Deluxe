@@ -22,7 +22,7 @@
         <img
           v-for="image in page.props.authLayout.sprites"
           :key="image"
-          alt="Pokemon Deluxe"
+          alt="Pokémon Deluxe"
           loading="lazy"
           :src="image"
         />

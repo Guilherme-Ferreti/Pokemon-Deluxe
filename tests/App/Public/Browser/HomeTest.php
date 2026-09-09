@@ -6,7 +6,7 @@ it('loads the public home page without errors', function () {
     visit(route('public.web.home'))
         ->assertNoSmoke()
         ->assertNoAccessibilityIssues()
-        ->assertSee('Pokemon Deluxe');
+        ->assertSee('Pokémon Deluxe');
 });
 
 it('navigates to the login page', function () {

@@ -1,7 +1,7 @@
 <template>
   <img
     src="/assets/logo.png"
-    alt="Pokemon Deluxe"
+    alt="Pokémon Deluxe"
     class="max-h-40"
   />
 </template>

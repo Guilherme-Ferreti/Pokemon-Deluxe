@@ -1,12 +1,12 @@
 <template>
-  <Head title="Pokemon Deluxe" />
+  <Head title="Pokémon Deluxe" />
   <div
     class="flex min-h-screen flex-col items-center justify-center bg-linear-to-b from-background to-muted px-4"
   >
     <div class="flex flex-col items-center gap-8 text-center">
       <div class="flex flex-col gap-2">
         <h1 class="text-3xl font-bold tracking-tight sm:text-5xl">
-          Pokemon Deluxe
+          Pokémon Deluxe
         </h1>
       </div>
       <div class="flex gap-4">

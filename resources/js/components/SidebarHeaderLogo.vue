@@ -6,7 +6,7 @@
       <TooltipTrigger as-child>
         <img
           src="/assets/logo-icon.png"
-          alt="Pokemon Deluxe"
+          alt="Pokémon Deluxe"
           class="max-w-8 group-data-[collapsible=icon]:size-6"
         />
       </TooltipTrigger>
@@ -15,13 +15,13 @@
         align="center"
         :hidden="state !== 'collapsed' || isMobile"
       >
-        Pokemon Deluxe
+        Pokémon Deluxe
       </TooltipContent>
     </Tooltip>
     <p
       class="text-sm leading-tight font-semibold text-sidebar-foreground group-data-[collapsible=icon]:hidden"
     >
-      Pokemon Deluxe
+      Pokémon Deluxe
     </p>
   </div>
 </template>

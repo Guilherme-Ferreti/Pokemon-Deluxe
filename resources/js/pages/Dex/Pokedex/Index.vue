@@ -2,12 +2,12 @@
   <Head title="Pokédex" />
   <AppPageHeader
     title="Pokédex"
-    description="Below is a list of all Pokemon in the game."
+    description="Below is a list of all Pokémon in the game."
   />
   <p>
-    The <AppIconInBox /> icon indicates pokemon you have in your box.
+    The <AppIconInBox /> icon indicates pokémon you have in your box.
     <br />
-    The <AppIconNotInBox /> icon indicates pokemon you do not have in your box.
+    The <AppIconNotInBox /> icon indicates pokémon you do not have in your box.
   </p>
   <AppSection>
     <Pokedex
