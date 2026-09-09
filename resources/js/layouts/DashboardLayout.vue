@@ -3,7 +3,7 @@
     <AppSidebar />
     <SidebarInset>
       <div
-        class="mx-auto w-full py-6 pr-10"
+        class="mx-auto w-full pt-4 pr-10 pb-6"
         :class="{
           '4xl:pr-0 max-w-4xl': pageSize === 'small',
           '6xl:pr-0 max-w-6xl': pageSize === 'default',
