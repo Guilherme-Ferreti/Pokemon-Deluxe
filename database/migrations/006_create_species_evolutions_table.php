@@ -4,7 +4,9 @@ declare(strict_types=1);
 
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Schema;
+use Shared\Enums\PokemonGender;
 use Shared\Models\EvolutionItem;
 use Shared\Models\Species;
 
@@ -20,6 +22,7 @@ return new class extends Migration
 
             $table->foreignIdFor(EvolutionItem::class)->nullable()->constrained();
             $table->unsignedTinyInteger('min_level')->nullable();
+            $table->enum('gender', Arr::pluck(PokemonGender::cases(), 'value'))->nullable();
 
             $table->timestamps();
         });

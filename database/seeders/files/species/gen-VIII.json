@@ -35,7 +35,8 @@
             {
                 "evolves_into": "thwackey",
                 "item": null,
-                "min_level": 16
+                "min_level": 16,
+                "gender": null
             }
         ]
     },
@@ -75,7 +76,8 @@
             {
                 "evolves_into": "rillaboom",
                 "item": null,
-                "min_level": 35
+                "min_level": 35,
+                "gender": null
             }
         ]
     },
@@ -115,7 +117,8 @@
             {
                 "evolves_into": "rillaboom-gmax",
                 "item": null,
-                "min_level": 100
+                "min_level": 100,
+                "gender": null
             }
         ]
     },
@@ -189,7 +192,8 @@
             {
                 "evolves_into": "raboot",
                 "item": null,
-                "min_level": 16
+                "min_level": 16,
+                "gender": null
             }
         ]
     },
@@ -229,7 +233,8 @@
             {
                 "evolves_into": "cinderace",
                 "item": null,
-                "min_level": 35
+                "min_level": 35,
+                "gender": null
             }
         ]
     },
@@ -269,7 +274,8 @@
             {
                 "evolves_into": "cinderace-gmax",
                 "item": null,
-                "min_level": 100
+                "min_level": 100,
+                "gender": null
             }
         ]
     },
@@ -343,7 +349,8 @@
             {
                 "evolves_into": "drizzile",
                 "item": null,
-                "min_level": 16
+                "min_level": 16,
+                "gender": null
             }
         ]
     },
@@ -383,7 +390,8 @@
             {
                 "evolves_into": "inteleon",
                 "item": null,
-                "min_level": 35
+                "min_level": 35,
+                "gender": null
             }
         ]
     },
@@ -423,7 +431,8 @@
             {
                 "evolves_into": "inteleon-gmax",
                 "item": null,
-                "min_level": 100
+                "min_level": 100,
+                "gender": null
             }
         ]
     },
@@ -497,7 +506,8 @@
             {
                 "evolves_into": "greedent",
                 "item": null,
-                "min_level": 24
+                "min_level": 24,
+                "gender": null
             }
         ]
     },
@@ -571,7 +581,8 @@
             {
                 "evolves_into": "corvisquire",
                 "item": null,
-                "min_level": 18
+                "min_level": 18,
+                "gender": null
             }
         ]
     },
@@ -611,7 +622,8 @@
             {
                 "evolves_into": "corviknight",
                 "item": null,
-                "min_level": 38
+                "min_level": 38,
+                "gender": null
             }
         ]
     },
@@ -652,7 +664,8 @@
             {
                 "evolves_into": "corviknight-gmax",
                 "item": null,
-                "min_level": 100
+                "min_level": 100,
+                "gender": null
             }
         ]
     },
@@ -727,7 +740,8 @@
             {
                 "evolves_into": "dottler",
                 "item": null,
-                "min_level": 10
+                "min_level": 10,
+                "gender": null
             }
         ]
     },
@@ -768,7 +782,8 @@
             {
                 "evolves_into": "orbeetle",
                 "item": null,
-                "min_level": 30
+                "min_level": 30,
+                "gender": null
             }
         ]
     },
@@ -809,7 +824,8 @@
             {
                 "evolves_into": "orbeetle-gmax",
                 "item": null,
-                "min_level": 100
+                "min_level": 100,
+                "gender": null
             }
         ]
     },
@@ -884,7 +900,8 @@
             {
                 "evolves_into": "thievul",
                 "item": null,
-                "min_level": 18
+                "min_level": 18,
+                "gender": null
             }
         ]
     },
@@ -958,7 +975,8 @@
             {
                 "evolves_into": "eldegoss",
                 "item": null,
-                "min_level": 20
+                "min_level": 20,
+                "gender": null
             }
         ]
     },
@@ -1032,7 +1050,8 @@
             {
                 "evolves_into": "dubwool",
                 "item": null,
-                "min_level": 24
+                "min_level": 24,
+                "gender": null
             }
         ]
     },
@@ -1106,7 +1125,8 @@
             {
                 "evolves_into": "drednaw",
                 "item": null,
-                "min_level": 22
+                "min_level": 22,
+                "gender": null
             }
         ]
     },
@@ -1147,7 +1167,8 @@
             {
                 "evolves_into": "drednaw-gmax",
                 "item": null,
-                "min_level": 100
+                "min_level": 100,
+                "gender": null
             }
         ]
     },
@@ -1222,7 +1243,8 @@
             {
                 "evolves_into": "boltund",
                 "item": null,
-                "min_level": 25
+                "min_level": 25,
+                "gender": null
             }
         ]
     },
@@ -1296,7 +1318,8 @@
             {
                 "evolves_into": "carkol",
                 "item": null,
-                "min_level": 18
+                "min_level": 18,
+                "gender": null
             }
         ]
     },
@@ -1337,7 +1360,8 @@
             {
                 "evolves_into": "coalossal",
                 "item": null,
-                "min_level": 34
+                "min_level": 34,
+                "gender": null
             }
         ]
     },
@@ -1378,7 +1402,8 @@
             {
                 "evolves_into": "coalossal-gmax",
                 "item": null,
-                "min_level": 100
+                "min_level": 100,
+                "gender": null
             }
         ]
     },
@@ -1454,17 +1479,20 @@
             {
                 "evolves_into": "flapple",
                 "item": "tart-apple",
-                "min_level": null
+                "min_level": null,
+                "gender": null
             },
             {
                 "evolves_into": "appletun",
                 "item": "sweet-apple",
-                "min_level": null
+                "min_level": null,
+                "gender": null
             },
             {
                 "evolves_into": "dipplin",
                 "item": "syrupy-apple",
-                "min_level": null
+                "min_level": null,
+                "gender": null
             }
         ]
     },
@@ -1505,7 +1533,8 @@
             {
                 "evolves_into": "flapple-gmax",
                 "item": null,
-                "min_level": 100
+                "min_level": 100,
+                "gender": null
             }
         ]
     },
@@ -1581,7 +1610,8 @@
             {
                 "evolves_into": "appletun-gmax",
                 "item": null,
-                "min_level": 100
+                "min_level": 100,
+                "gender": null
             }
         ]
     },
@@ -1656,7 +1686,8 @@
             {
                 "evolves_into": "sandaconda",
                 "item": null,
-                "min_level": 36
+                "min_level": 36,
+                "gender": null
             }
         ]
     },
@@ -1696,7 +1727,8 @@
             {
                 "evolves_into": "sandaconda-gmax",
                 "item": null,
-                "min_level": 100
+                "min_level": 100,
+                "gender": null
             }
         ]
     },
@@ -1875,7 +1907,8 @@
             {
                 "evolves_into": "barraskewda",
                 "item": null,
-                "min_level": 26
+                "min_level": 26,
+                "gender": null
             }
         ]
     },
@@ -1950,12 +1983,14 @@
             {
                 "evolves_into": "toxtricity-amped",
                 "item": null,
-                "min_level": 30
+                "min_level": 30,
+                "gender": null
             },
             {
                 "evolves_into": "toxtricity-low-key",
                 "item": null,
-                "min_level": 30
+                "min_level": 30,
+                "gender": null
             }
         ]
     },
@@ -1996,7 +2031,8 @@
             {
                 "evolves_into": "toxtricity-amped-gmax",
                 "item": null,
-                "min_level": 100
+                "min_level": 100,
+                "gender": null
             }
         ]
     },
@@ -2037,7 +2073,8 @@
             {
                 "evolves_into": "toxtricity-low-key-gmax",
                 "item": null,
-                "min_level": 100
+                "min_level": 100,
+                "gender": null
             }
         ]
     },
@@ -2148,7 +2185,8 @@
             {
                 "evolves_into": "centiskorch",
                 "item": null,
-                "min_level": 28
+                "min_level": 28,
+                "gender": null
             }
         ]
     },
@@ -2189,7 +2227,8 @@
             {
                 "evolves_into": "centiskorch-gmax",
                 "item": null,
-                "min_level": 100
+                "min_level": 100,
+                "gender": null
             }
         ]
     },
@@ -2264,7 +2303,8 @@
             {
                 "evolves_into": "grapploct",
                 "item": null,
-                "min_level": 35
+                "min_level": 35,
+                "gender": null
             }
         ]
     },
@@ -2338,7 +2378,8 @@
             {
                 "evolves_into": "polteageist",
                 "item": "cracked-pot",
-                "min_level": null
+                "min_level": null,
+                "gender": null
             }
         ]
     },
@@ -2412,7 +2453,8 @@
             {
                 "evolves_into": "hattrem",
                 "item": null,
-                "min_level": 32
+                "min_level": 32,
+                "gender": null
             }
         ]
     },
@@ -2452,7 +2494,8 @@
             {
                 "evolves_into": "hatterene",
                 "item": null,
-                "min_level": 42
+                "min_level": 42,
+                "gender": null
             }
         ]
     },
@@ -2493,7 +2536,8 @@
             {
                 "evolves_into": "hatterene-gmax",
                 "item": null,
-                "min_level": 100
+                "min_level": 100,
+                "gender": null
             }
         ]
     },
@@ -2569,7 +2613,8 @@
             {
                 "evolves_into": "morgrem",
                 "item": null,
-                "min_level": 32
+                "min_level": 32,
+                "gender": null
             }
         ]
     },
@@ -2610,7 +2655,8 @@
             {
                 "evolves_into": "grimmsnarl",
                 "item": null,
-                "min_level": 42
+                "min_level": 42,
+                "gender": null
             }
         ]
     },
@@ -2651,7 +2697,8 @@
             {
                 "evolves_into": "grimmsnarl-gmax",
                 "item": null,
-                "min_level": 100
+                "min_level": 100,
+                "gender": null
             }
         ]
     },
@@ -2933,7 +2980,8 @@
             {
                 "evolves_into": "alcremie",
                 "item": null,
-                "min_level": 28
+                "min_level": 28,
+                "gender": null
             }
         ]
     },
@@ -2973,7 +3021,8 @@
             {
                 "evolves_into": "alcremie-gmax",
                 "item": null,
-                "min_level": 100
+                "min_level": 100,
+                "gender": null
             }
         ]
     },
@@ -3047,7 +3096,8 @@
             {
                 "evolves_into": "falinks-mega",
                 "item": "falinksite",
-                "min_level": 100
+                "min_level": 100,
+                "gender": null
             }
         ]
     },
@@ -3156,7 +3206,8 @@
             {
                 "evolves_into": "frosmoth",
                 "item": null,
-                "min_level": 59
+                "min_level": 59,
+                "gender": null
             }
         ]
     },
@@ -3438,7 +3489,8 @@
             {
                 "evolves_into": "copperajah",
                 "item": null,
-                "min_level": 34
+                "min_level": 34,
+                "gender": null
             }
         ]
     },
@@ -3478,7 +3530,8 @@
             {
                 "evolves_into": "copperajah-gmax",
                 "item": null,
-                "min_level": 100
+                "min_level": 100,
+                "gender": null
             }
         ]
     },
@@ -3693,12 +3746,14 @@
             {
                 "evolves_into": "archaludon",
                 "item": "metal-alloy",
-                "min_level": null
+                "min_level": null,
+                "gender": null
             },
             {
                 "evolves_into": "duraludon-gmax",
                 "item": null,
-                "min_level": 100
+                "min_level": 100,
+                "gender": null
             }
         ]
     },
@@ -3774,7 +3829,8 @@
             {
                 "evolves_into": "drakloak",
                 "item": null,
-                "min_level": 50
+                "min_level": 50,
+                "gender": null
             }
         ]
     },
@@ -3815,7 +3871,8 @@
             {
                 "evolves_into": "dragapult",
                 "item": null,
-                "min_level": 60
+                "min_level": 60,
+                "gender": null
             }
         ]
     },
@@ -4098,12 +4155,14 @@
             {
                 "evolves_into": "urshifu-single-strike",
                 "item": "scroll-of-darkness",
-                "min_level": null
+                "min_level": null,
+                "gender": null
             },
             {
                 "evolves_into": "urshifu-rapid-strike",
                 "item": "scroll-of-waters",
-                "min_level": null
+                "min_level": null,
+                "gender": null
             }
         ]
     },
@@ -4144,7 +4203,8 @@
             {
                 "evolves_into": "urshifu-single-strike-gmax",
                 "item": null,
-                "min_level": 100
+                "min_level": 100,
+                "gender": null
             }
         ]
     },
@@ -4185,7 +4245,8 @@
             {
                 "evolves_into": "urshifu-rapid-strike-gmax",
                 "item": null,
-                "min_level": 100
+                "min_level": 100,
+                "gender": null
             }
         ]
     },
@@ -4886,7 +4947,8 @@
             {
                 "evolves_into": "perrserker",
                 "item": null,
-                "min_level": 28
+                "min_level": 28,
+                "gender": null
             }
         ]
     },
@@ -4926,7 +4988,8 @@
             {
                 "evolves_into": "rapidash-galar",
                 "item": null,
-                "min_level": 40
+                "min_level": 40,
+                "gender": null
             }
         ]
     },
@@ -5001,12 +5064,14 @@
             {
                 "evolves_into": "slowbro-galar",
                 "item": null,
-                "min_level": 37
+                "min_level": 37,
+                "gender": null
             },
             {
                 "evolves_into": "slowking-galar",
                 "item": "kings-rock",
-                "min_level": null
+                "min_level": null,
+                "gender": null
             }
         ]
     },
@@ -5081,7 +5146,8 @@
             {
                 "evolves_into": "sirfetchd",
                 "item": null,
-                "min_level": 30
+                "min_level": 30,
+                "gender": null
             }
         ]
     },
@@ -5157,7 +5223,8 @@
             {
                 "evolves_into": "mr-rime",
                 "item": null,
-                "min_level": 42
+                "min_level": 42,
+                "gender": null
             }
         ]
     },
@@ -5337,7 +5404,8 @@
             {
                 "evolves_into": "cursola",
                 "item": null,
-                "min_level": 38
+                "min_level": 38,
+                "gender": null
             }
         ]
     },
@@ -5378,7 +5446,8 @@
             {
                 "evolves_into": "linoone-galar",
                 "item": null,
-                "min_level": 20
+                "min_level": 20,
+                "gender": null
             }
         ]
     },
@@ -5419,7 +5488,8 @@
             {
                 "evolves_into": "obstagoon",
                 "item": null,
-                "min_level": 35
+                "min_level": 35,
+                "gender": null
             }
         ]
     },
@@ -5459,12 +5529,14 @@
             {
                 "evolves_into": "darmanitan-galar-standard",
                 "item": "ice-stone",
-                "min_level": 35
+                "min_level": 35,
+                "gender": null
             },
             {
                 "evolves_into": "darmanitan-galar-zen",
                 "item": "ice-stone",
-                "min_level": 35
+                "min_level": 35,
+                "gender": null
             }
         ]
     },
@@ -5574,7 +5646,8 @@
             {
                 "evolves_into": "runerigus",
                 "item": "dusk-stone",
-                "min_level": null
+                "min_level": null,
+                "gender": null
             }
         ]
     },

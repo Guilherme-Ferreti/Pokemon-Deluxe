@@ -36,7 +36,8 @@
             {
                 "evolves_into": "ivysaur",
                 "item": null,
-                "min_level": 16
+                "min_level": 16,
+                "gender": null
             }
         ]
     },
@@ -77,7 +78,8 @@
             {
                 "evolves_into": "venusaur",
                 "item": null,
-                "min_level": 32
+                "min_level": 32,
+                "gender": null
             }
         ]
     },
@@ -118,12 +120,14 @@
             {
                 "evolves_into": "venusaur-mega",
                 "item": "venusaurite",
-                "min_level": 100
+                "min_level": 100,
+                "gender": null
             },
             {
                 "evolves_into": "venusaur-gmax",
                 "item": null,
-                "min_level": 100
+                "min_level": 100,
+                "gender": null
             }
         ]
     },
@@ -233,7 +237,8 @@
             {
                 "evolves_into": "charmeleon",
                 "item": null,
-                "min_level": 16
+                "min_level": 16,
+                "gender": null
             }
         ]
     },
@@ -273,7 +278,8 @@
             {
                 "evolves_into": "charizard",
                 "item": null,
-                "min_level": 36
+                "min_level": 36,
+                "gender": null
             }
         ]
     },
@@ -314,17 +320,20 @@
             {
                 "evolves_into": "charizard-mega-x",
                 "item": "charizardite-x",
-                "min_level": 100
+                "min_level": 100,
+                "gender": null
             },
             {
                 "evolves_into": "charizard-mega-y",
                 "item": "charizardite-y",
-                "min_level": 100
+                "min_level": 100,
+                "gender": null
             },
             {
                 "evolves_into": "charizard-gmax",
                 "item": null,
-                "min_level": 100
+                "min_level": 100,
+                "gender": null
             }
         ]
     },
@@ -469,7 +478,8 @@
             {
                 "evolves_into": "wartortle",
                 "item": null,
-                "min_level": 16
+                "min_level": 16,
+                "gender": null
             }
         ]
     },
@@ -509,7 +519,8 @@
             {
                 "evolves_into": "blastoise",
                 "item": null,
-                "min_level": 36
+                "min_level": 36,
+                "gender": null
             }
         ]
     },
@@ -549,12 +560,14 @@
             {
                 "evolves_into": "blastoise-mega",
                 "item": "blastoisinite",
-                "min_level": 100
+                "min_level": 100,
+                "gender": null
             },
             {
                 "evolves_into": "blastoise-gmax",
                 "item": null,
-                "min_level": 100
+                "min_level": 100,
+                "gender": null
             }
         ]
     },
@@ -662,7 +675,8 @@
             {
                 "evolves_into": "metapod",
                 "item": null,
-                "min_level": 7
+                "min_level": 7,
+                "gender": null
             }
         ]
     },
@@ -702,7 +716,8 @@
             {
                 "evolves_into": "butterfree",
                 "item": null,
-                "min_level": 10
+                "min_level": 10,
+                "gender": null
             }
         ]
     },
@@ -743,7 +758,8 @@
             {
                 "evolves_into": "butterfree-gmax",
                 "item": null,
-                "min_level": 100
+                "min_level": 100,
+                "gender": null
             }
         ]
     },
@@ -819,7 +835,8 @@
             {
                 "evolves_into": "kakuna",
                 "item": null,
-                "min_level": 7
+                "min_level": 7,
+                "gender": null
             }
         ]
     },
@@ -860,7 +877,8 @@
             {
                 "evolves_into": "beedrill",
                 "item": null,
-                "min_level": 10
+                "min_level": 10,
+                "gender": null
             }
         ]
     },
@@ -901,7 +919,8 @@
             {
                 "evolves_into": "beedrill-mega",
                 "item": "beedrillite",
-                "min_level": 100
+                "min_level": 100,
+                "gender": null
             }
         ]
     },
@@ -977,7 +996,8 @@
             {
                 "evolves_into": "pidgeotto",
                 "item": null,
-                "min_level": 18
+                "min_level": 18,
+                "gender": null
             }
         ]
     },
@@ -1018,7 +1038,8 @@
             {
                 "evolves_into": "pidgeot",
                 "item": null,
-                "min_level": 36
+                "min_level": 36,
+                "gender": null
             }
         ]
     },
@@ -1059,7 +1080,8 @@
             {
                 "evolves_into": "pidgeot-mega",
                 "item": "pidgeotite",
-                "min_level": 100
+                "min_level": 100,
+                "gender": null
             }
         ]
     },
@@ -1134,7 +1156,8 @@
             {
                 "evolves_into": "raticate",
                 "item": null,
-                "min_level": 20
+                "min_level": 20,
+                "gender": null
             }
         ]
     },
@@ -1209,7 +1232,8 @@
             {
                 "evolves_into": "fearow",
                 "item": null,
-                "min_level": 20
+                "min_level": 20,
+                "gender": null
             }
         ]
     },
@@ -1284,7 +1308,8 @@
             {
                 "evolves_into": "arbok",
                 "item": null,
-                "min_level": 22
+                "min_level": 22,
+                "gender": null
             }
         ]
     },
@@ -1358,17 +1383,20 @@
             {
                 "evolves_into": "raichu",
                 "item": "thunder-stone",
-                "min_level": null
+                "min_level": null,
+                "gender": null
             },
             {
                 "evolves_into": "raichu-alola",
                 "item": "thunder-stone",
-                "min_level": null
+                "min_level": null,
+                "gender": null
             },
             {
                 "evolves_into": "pikachu-gmax",
                 "item": null,
-                "min_level": 100
+                "min_level": 100,
+                "gender": null
             }
         ]
     },
@@ -1442,12 +1470,14 @@
             {
                 "evolves_into": "raichu-mega-x",
                 "item": "raichunite-x",
-                "min_level": 100
+                "min_level": 100,
+                "gender": null
             },
             {
                 "evolves_into": "raichu-mega-y",
                 "item": "raichunite-y",
-                "min_level": 100
+                "min_level": 100,
+                "gender": null
             }
         ]
     },
@@ -1555,7 +1585,8 @@
             {
                 "evolves_into": "sandslash",
                 "item": null,
-                "min_level": 22
+                "min_level": 22,
+                "gender": null
             }
         ]
     },
@@ -1629,7 +1660,8 @@
             {
                 "evolves_into": "nidorina",
                 "item": null,
-                "min_level": 16
+                "min_level": 16,
+                "gender": null
             }
         ]
     },
@@ -1669,7 +1701,8 @@
             {
                 "evolves_into": "nidoqueen",
                 "item": "moon-stone",
-                "min_level": null
+                "min_level": null,
+                "gender": null
             }
         ]
     },
@@ -1744,7 +1777,8 @@
             {
                 "evolves_into": "nidorino",
                 "item": null,
-                "min_level": 16
+                "min_level": 16,
+                "gender": null
             }
         ]
     },
@@ -1784,7 +1818,8 @@
             {
                 "evolves_into": "nidoking",
                 "item": "moon-stone",
-                "min_level": null
+                "min_level": null,
+                "gender": null
             }
         ]
     },
@@ -1859,7 +1894,8 @@
             {
                 "evolves_into": "clefable",
                 "item": "moon-stone",
-                "min_level": null
+                "min_level": null,
+                "gender": null
             }
         ]
     },
@@ -1899,7 +1935,8 @@
             {
                 "evolves_into": "clefable-mega",
                 "item": "clefablite",
-                "min_level": 100
+                "min_level": 100,
+                "gender": null
             }
         ]
     },
@@ -1974,7 +2011,8 @@
             {
                 "evolves_into": "ninetales",
                 "item": "fire-stone",
-                "min_level": null
+                "min_level": null,
+                "gender": null
             }
         ]
     },
@@ -2049,7 +2087,8 @@
             {
                 "evolves_into": "wigglytuff",
                 "item": "moon-stone",
-                "min_level": null
+                "min_level": null,
+                "gender": null
             }
         ]
     },
@@ -2125,7 +2164,8 @@
             {
                 "evolves_into": "golbat",
                 "item": null,
-                "min_level": 22
+                "min_level": 22,
+                "gender": null
             }
         ]
     },
@@ -2166,7 +2206,8 @@
             {
                 "evolves_into": "crobat",
                 "item": null,
-                "min_level": 33
+                "min_level": 33,
+                "gender": null
             }
         ]
     },
@@ -2207,7 +2248,8 @@
             {
                 "evolves_into": "gloom",
                 "item": null,
-                "min_level": 21
+                "min_level": 21,
+                "gender": null
             }
         ]
     },
@@ -2248,12 +2290,14 @@
             {
                 "evolves_into": "vileplume",
                 "item": "leaf-stone",
-                "min_level": null
+                "min_level": null,
+                "gender": null
             },
             {
                 "evolves_into": "bellossom",
                 "item": "sun-stone",
-                "min_level": null
+                "min_level": null,
+                "gender": null
             }
         ]
     },
@@ -2329,7 +2373,8 @@
             {
                 "evolves_into": "parasect",
                 "item": null,
-                "min_level": 24
+                "min_level": 24,
+                "gender": null
             }
         ]
     },
@@ -2405,7 +2450,8 @@
             {
                 "evolves_into": "venomoth",
                 "item": null,
-                "min_level": 31
+                "min_level": 31,
+                "gender": null
             }
         ]
     },
@@ -2480,7 +2526,8 @@
             {
                 "evolves_into": "dugtrio",
                 "item": null,
-                "min_level": 26
+                "min_level": 26,
+                "gender": null
             }
         ]
     },
@@ -2554,12 +2601,14 @@
             {
                 "evolves_into": "persian",
                 "item": null,
-                "min_level": 28
+                "min_level": 28,
+                "gender": null
             },
             {
                 "evolves_into": "meowth-gmax",
                 "item": null,
-                "min_level": 100
+                "min_level": 100,
+                "gender": null
             }
         ]
     },
@@ -2667,7 +2716,8 @@
             {
                 "evolves_into": "golduck",
                 "item": null,
-                "min_level": 33
+                "min_level": 33,
+                "gender": null
             }
         ]
     },
@@ -2741,7 +2791,8 @@
             {
                 "evolves_into": "primeape",
                 "item": null,
-                "min_level": 28
+                "min_level": 28,
+                "gender": null
             }
         ]
     },
@@ -2781,7 +2832,8 @@
             {
                 "evolves_into": "annihilape",
                 "item": null,
-                "min_level": 35
+                "min_level": 35,
+                "gender": null
             }
         ]
     },
@@ -2821,7 +2873,8 @@
             {
                 "evolves_into": "arcanine",
                 "item": "fire-stone",
-                "min_level": null
+                "min_level": null,
+                "gender": null
             }
         ]
     },
@@ -2862,7 +2915,8 @@
             {
                 "evolves_into": "arcanine-hisui",
                 "item": "fire-stone",
-                "min_level": null
+                "min_level": null,
+                "gender": null
             }
         ]
     },
@@ -2971,7 +3025,8 @@
             {
                 "evolves_into": "poliwhirl",
                 "item": null,
-                "min_level": 25
+                "min_level": 25,
+                "gender": null
             }
         ]
     },
@@ -3011,12 +3066,14 @@
             {
                 "evolves_into": "poliwrath",
                 "item": "water-stone",
-                "min_level": null
+                "min_level": null,
+                "gender": null
             },
             {
                 "evolves_into": "politoed",
                 "item": "water-stone",
-                "min_level": null
+                "min_level": null,
+                "gender": null
             }
         ]
     },
@@ -3091,7 +3148,8 @@
             {
                 "evolves_into": "kadabra",
                 "item": null,
-                "min_level": 16
+                "min_level": 16,
+                "gender": null
             }
         ]
     },
@@ -3131,7 +3189,8 @@
             {
                 "evolves_into": "alakazam",
                 "item": null,
-                "min_level": 45
+                "min_level": 45,
+                "gender": null
             }
         ]
     },
@@ -3171,7 +3230,8 @@
             {
                 "evolves_into": "alakazam-mega",
                 "item": "alakazite",
-                "min_level": 100
+                "min_level": 100,
+                "gender": null
             }
         ]
     },
@@ -3245,7 +3305,8 @@
             {
                 "evolves_into": "machoke",
                 "item": null,
-                "min_level": 28
+                "min_level": 28,
+                "gender": null
             }
         ]
     },
@@ -3285,7 +3346,8 @@
             {
                 "evolves_into": "machamp",
                 "item": null,
-                "min_level": 38
+                "min_level": 38,
+                "gender": null
             }
         ]
     },
@@ -3325,7 +3387,8 @@
             {
                 "evolves_into": "machamp-gmax",
                 "item": null,
-                "min_level": 100
+                "min_level": 100,
+                "gender": null
             }
         ]
     },
@@ -3400,7 +3463,8 @@
             {
                 "evolves_into": "weepinbell",
                 "item": null,
-                "min_level": 21
+                "min_level": 21,
+                "gender": null
             }
         ]
     },
@@ -3441,7 +3505,8 @@
             {
                 "evolves_into": "victreebel",
                 "item": "leaf-stone",
-                "min_level": null
+                "min_level": null,
+                "gender": null
             }
         ]
     },
@@ -3482,7 +3547,8 @@
             {
                 "evolves_into": "victreebel-mega",
                 "item": "victreebelite",
-                "min_level": 100
+                "min_level": 100,
+                "gender": null
             }
         ]
     },
@@ -3558,7 +3624,8 @@
             {
                 "evolves_into": "tentacruel",
                 "item": null,
-                "min_level": 30
+                "min_level": 30,
+                "gender": null
             }
         ]
     },
@@ -3634,7 +3701,8 @@
             {
                 "evolves_into": "graveler",
                 "item": null,
-                "min_level": 25
+                "min_level": 25,
+                "gender": null
             }
         ]
     },
@@ -3675,7 +3743,8 @@
             {
                 "evolves_into": "golem",
                 "item": null,
-                "min_level": 37
+                "min_level": 37,
+                "gender": null
             }
         ]
     },
@@ -3750,7 +3819,8 @@
             {
                 "evolves_into": "rapidash",
                 "item": null,
-                "min_level": 40
+                "min_level": 40,
+                "gender": null
             }
         ]
     },
@@ -3825,12 +3895,14 @@
             {
                 "evolves_into": "slowbro",
                 "item": null,
-                "min_level": 37
+                "min_level": 37,
+                "gender": null
             },
             {
                 "evolves_into": "slowking",
                 "item": "kings-rock",
-                "min_level": null
+                "min_level": null,
+                "gender": null
             }
         ]
     },
@@ -3871,7 +3943,8 @@
             {
                 "evolves_into": "slowbro-mega",
                 "item": "slowbronite",
-                "min_level": 100
+                "min_level": 100,
+                "gender": null
             }
         ]
     },
@@ -3947,7 +4020,8 @@
             {
                 "evolves_into": "magneton",
                 "item": null,
-                "min_level": 30
+                "min_level": 30,
+                "gender": null
             }
         ]
     },
@@ -3988,7 +4062,8 @@
             {
                 "evolves_into": "magnezone",
                 "item": "thunder-stone",
-                "min_level": null
+                "min_level": null,
+                "gender": null
             }
         ]
     },
@@ -4064,7 +4139,8 @@
             {
                 "evolves_into": "dodrio",
                 "item": null,
-                "min_level": 31
+                "min_level": 31,
+                "gender": null
             }
         ]
     },
@@ -4139,7 +4215,8 @@
             {
                 "evolves_into": "dewgong",
                 "item": null,
-                "min_level": 34
+                "min_level": 34,
+                "gender": null
             }
         ]
     },
@@ -4214,7 +4291,8 @@
             {
                 "evolves_into": "muk",
                 "item": null,
-                "min_level": 38
+                "min_level": 38,
+                "gender": null
             }
         ]
     },
@@ -4288,7 +4366,8 @@
             {
                 "evolves_into": "cloyster",
                 "item": "water-stone",
-                "min_level": null
+                "min_level": null,
+                "gender": null
             }
         ]
     },
@@ -4364,7 +4443,8 @@
             {
                 "evolves_into": "haunter",
                 "item": null,
-                "min_level": 25
+                "min_level": 25,
+                "gender": null
             }
         ]
     },
@@ -4405,7 +4485,8 @@
             {
                 "evolves_into": "gengar",
                 "item": null,
-                "min_level": 36
+                "min_level": 36,
+                "gender": null
             }
         ]
     },
@@ -4446,12 +4527,14 @@
             {
                 "evolves_into": "gengar-mega",
                 "item": "gengarite",
-                "min_level": 100
+                "min_level": 100,
+                "gender": null
             },
             {
                 "evolves_into": "gengar-gmax",
                 "item": null,
-                "min_level": 100
+                "min_level": 100,
+                "gender": null
             }
         ]
     },
@@ -4562,7 +4645,8 @@
             {
                 "evolves_into": "steelix",
                 "item": null,
-                "min_level": 35
+                "min_level": 35,
+                "gender": null
             }
         ]
     },
@@ -4602,7 +4686,8 @@
             {
                 "evolves_into": "hypno",
                 "item": null,
-                "min_level": 26
+                "min_level": 26,
+                "gender": null
             }
         ]
     },
@@ -4676,7 +4761,8 @@
             {
                 "evolves_into": "kingler",
                 "item": null,
-                "min_level": 28
+                "min_level": 28,
+                "gender": null
             }
         ]
     },
@@ -4716,7 +4802,8 @@
             {
                 "evolves_into": "kingler-gmax",
                 "item": null,
-                "min_level": 100
+                "min_level": 100,
+                "gender": null
             }
         ]
     },
@@ -4790,7 +4877,8 @@
             {
                 "evolves_into": "electrode",
                 "item": null,
-                "min_level": 30
+                "min_level": 30,
+                "gender": null
             }
         ]
     },
@@ -4831,7 +4919,8 @@
             {
                 "evolves_into": "electrode-hisui",
                 "item": "leaf-stone",
-                "min_level": null
+                "min_level": null,
+                "gender": null
             }
         ]
     },
@@ -4941,12 +5030,14 @@
             {
                 "evolves_into": "exeggutor",
                 "item": "leaf-stone",
-                "min_level": null
+                "min_level": null,
+                "gender": null
             },
             {
                 "evolves_into": "exeggutor-alola",
                 "item": "leaf-stone",
-                "min_level": null
+                "min_level": null,
+                "gender": null
             }
         ]
     },
@@ -5021,12 +5112,14 @@
             {
                 "evolves_into": "marowak",
                 "item": null,
-                "min_level": 28
+                "min_level": 28,
+                "gender": null
             },
             {
                 "evolves_into": "marowak-alola",
                 "item": null,
-                "min_level": 28
+                "min_level": 28,
+                "gender": null
             }
         ]
     },
@@ -5168,7 +5261,8 @@
             {
                 "evolves_into": "lickilicky",
                 "item": null,
-                "min_level": 34
+                "min_level": 34,
+                "gender": null
             }
         ]
     },
@@ -5208,12 +5302,14 @@
             {
                 "evolves_into": "weezing",
                 "item": null,
-                "min_level": 35
+                "min_level": 35,
+                "gender": null
             },
             {
                 "evolves_into": "weezing-galar",
                 "item": null,
-                "min_level": 35
+                "min_level": 35,
+                "gender": null
             }
         ]
     },
@@ -5288,7 +5384,8 @@
             {
                 "evolves_into": "rhydon",
                 "item": null,
-                "min_level": 42
+                "min_level": 42,
+                "gender": null
             }
         ]
     },
@@ -5329,7 +5426,8 @@
             {
                 "evolves_into": "rhyperior",
                 "item": "protector",
-                "min_level": null
+                "min_level": null,
+                "gender": null
             }
         ]
     },
@@ -5369,7 +5467,8 @@
             {
                 "evolves_into": "blissey",
                 "item": null,
-                "min_level": 42
+                "min_level": 42,
+                "gender": null
             }
         ]
     },
@@ -5409,7 +5508,8 @@
             {
                 "evolves_into": "tangrowth",
                 "item": null,
-                "min_level": 34
+                "min_level": 34,
+                "gender": null
             }
         ]
     },
@@ -5449,7 +5549,8 @@
             {
                 "evolves_into": "kangaskhan-mega",
                 "item": "kangaskhanite",
-                "min_level": 100
+                "min_level": 100,
+                "gender": null
             }
         ]
     },
@@ -5523,7 +5624,8 @@
             {
                 "evolves_into": "seadra",
                 "item": null,
-                "min_level": 32
+                "min_level": 32,
+                "gender": null
             }
         ]
     },
@@ -5563,7 +5665,8 @@
             {
                 "evolves_into": "kingdra",
                 "item": "dragon-scale",
-                "min_level": null
+                "min_level": null,
+                "gender": null
             }
         ]
     },
@@ -5603,7 +5706,8 @@
             {
                 "evolves_into": "seaking",
                 "item": null,
-                "min_level": 33
+                "min_level": 33,
+                "gender": null
             }
         ]
     },
@@ -5677,7 +5781,8 @@
             {
                 "evolves_into": "starmie",
                 "item": "water-stone",
-                "min_level": null
+                "min_level": null,
+                "gender": null
             }
         ]
     },
@@ -5718,7 +5823,8 @@
             {
                 "evolves_into": "starmie-mega",
                 "item": "starminite",
-                "min_level": 100
+                "min_level": 100,
+                "gender": null
             }
         ]
     },
@@ -5829,12 +5935,14 @@
             {
                 "evolves_into": "scizor",
                 "item": "metal-coat",
-                "min_level": null
+                "min_level": null,
+                "gender": null
             },
             {
                 "evolves_into": "kleavor",
                 "item": "black-augurite",
-                "min_level": null
+                "min_level": null,
+                "gender": null
             }
         ]
     },
@@ -5909,7 +6017,8 @@
             {
                 "evolves_into": "electivire",
                 "item": "electirizer",
-                "min_level": null
+                "min_level": null,
+                "gender": null
             }
         ]
     },
@@ -5949,7 +6058,8 @@
             {
                 "evolves_into": "magmortar",
                 "item": "magmarizer",
-                "min_level": null
+                "min_level": null,
+                "gender": null
             }
         ]
     },
@@ -5989,7 +6099,8 @@
             {
                 "evolves_into": "pinsir-mega",
                 "item": "pinsirite",
-                "min_level": 100
+                "min_level": 100,
+                "gender": null
             }
         ]
     },
@@ -6098,7 +6209,8 @@
             {
                 "evolves_into": "gyarados",
                 "item": null,
-                "min_level": 20
+                "min_level": 20,
+                "gender": null
             }
         ]
     },
@@ -6139,7 +6251,8 @@
             {
                 "evolves_into": "gyarados-mega",
                 "item": "gyaradosite",
-                "min_level": 100
+                "min_level": 100,
+                "gender": null
             }
         ]
     },
@@ -6215,7 +6328,8 @@
             {
                 "evolves_into": "lapras-gmax",
                 "item": null,
-                "min_level": 100
+                "min_level": 100,
+                "gender": null
             }
         ]
     },
@@ -6324,47 +6438,56 @@
             {
                 "evolves_into": "vaporeon",
                 "item": "water-stone",
-                "min_level": null
+                "min_level": null,
+                "gender": null
             },
             {
                 "evolves_into": "jolteon",
                 "item": "thunder-stone",
-                "min_level": null
+                "min_level": null,
+                "gender": null
             },
             {
                 "evolves_into": "flareon",
                 "item": "fire-stone",
-                "min_level": null
+                "min_level": null,
+                "gender": null
             },
             {
                 "evolves_into": "espeon",
                 "item": null,
-                "min_level": 30
+                "min_level": 30,
+                "gender": null
             },
             {
                 "evolves_into": "umbreon",
                 "item": null,
-                "min_level": 30
+                "min_level": 30,
+                "gender": null
             },
             {
                 "evolves_into": "leafeon",
                 "item": "leaf-stone",
-                "min_level": null
+                "min_level": null,
+                "gender": null
             },
             {
                 "evolves_into": "glaceon",
                 "item": "ice-stone",
-                "min_level": null
+                "min_level": null,
+                "gender": null
             },
             {
                 "evolves_into": "sylveon",
                 "item": null,
-                "min_level": 30
+                "min_level": 30,
+                "gender": null
             },
             {
                 "evolves_into": "eevee-gmax",
                 "item": null,
-                "min_level": 100
+                "min_level": 100,
+                "gender": null
             }
         ]
     },
@@ -6540,7 +6663,8 @@
             {
                 "evolves_into": "porygon2",
                 "item": "up-grade",
-                "min_level": null
+                "min_level": null,
+                "gender": null
             }
         ]
     },
@@ -6581,7 +6705,8 @@
             {
                 "evolves_into": "omastar",
                 "item": null,
-                "min_level": 40
+                "min_level": 40,
+                "gender": null
             }
         ]
     },
@@ -6657,7 +6782,8 @@
             {
                 "evolves_into": "kabutops",
                 "item": null,
-                "min_level": 40
+                "min_level": 40,
+                "gender": null
             }
         ]
     },
@@ -6733,7 +6859,8 @@
             {
                 "evolves_into": "aerodactyl-mega",
                 "item": "aerodactylite",
-                "min_level": 100
+                "min_level": 100,
+                "gender": null
             }
         ]
     },
@@ -6808,7 +6935,8 @@
             {
                 "evolves_into": "snorlax-gmax",
                 "item": null,
-                "min_level": 100
+                "min_level": 100,
+                "gender": null
             }
         ]
     },
@@ -6987,7 +7115,8 @@
             {
                 "evolves_into": "dragonair",
                 "item": null,
-                "min_level": 30
+                "min_level": 30,
+                "gender": null
             }
         ]
     },
@@ -7027,7 +7156,8 @@
             {
                 "evolves_into": "dragonite",
                 "item": null,
-                "min_level": 55
+                "min_level": 55,
+                "gender": null
             }
         ]
     },
@@ -7068,7 +7198,8 @@
             {
                 "evolves_into": "dragonite-mega",
                 "item": "dragoninite",
-                "min_level": 100
+                "min_level": 100,
+                "gender": null
             }
         ]
     },
@@ -7143,12 +7274,14 @@
             {
                 "evolves_into": "mewtwo-mega-x",
                 "item": "mewtwonite-x",
-                "min_level": 100
+                "min_level": 100,
+                "gender": null
             },
             {
                 "evolves_into": "mewtwo-mega-y",
                 "item": "mewtwonite-y",
-                "min_level": 100
+                "min_level": 100,
+                "gender": null
             }
         ]
     },

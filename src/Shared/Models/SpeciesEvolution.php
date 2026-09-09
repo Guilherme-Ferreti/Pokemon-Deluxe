@@ -9,6 +9,8 @@ use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Support\Carbon;
+use Override;
+use Shared\Enums\PokemonGender;
 
 /**
  * @property string $id
@@ -16,6 +18,7 @@ use Illuminate\Support\Carbon;
  * @property string $into_species_id
  * @property string|null $item_id
  * @property int|null $min_level
+ * @property PokemonGender|null $gender
  * @property Carbon $created_at
  * @property Carbon $updated_at
  * @property-read Species $from
@@ -26,6 +29,17 @@ use Illuminate\Support\Carbon;
 final class SpeciesEvolution extends Model
 {
     use HasUuids;
+
+    /**
+     * @return array<string, string>
+     */
+    #[Override]
+    protected function casts(): array
+    {
+        return [
+            'gender' => PokemonGender::class,
+        ];
+    }
 
     /**
      * @return BelongsTo<Species, $this>
