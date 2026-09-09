@@ -129,29 +129,29 @@ final class Species extends Model
 
     public function isGenderless(): bool
     {
-        return $this->getMalePercentage() === 0.0 && $this->getFemalePercentage() === 0.0;
+        return $this->gender_rate === -1;
     }
 
-    public function getCaptureRatePercentage(): float
+    public function getCaptureRatePercentage(): int|float
     {
-        return round(($this->capture_rate / 255) * 100, 2);
+        return toIntIfWhole(round(($this->capture_rate / 255) * 100, 2));
     }
 
-    public function getMalePercentage(): float
+    public function getMalePercentage(): int|float
     {
-        if ($this->gender_rate === -1) {
-            return 0.0;
+        if ($this->isGenderless()) {
+            return 0;
         }
 
-        return round(((8 - $this->gender_rate) / 8) * 100, 2);
+        return toIntIfWhole(round(((8 - $this->gender_rate) / 8) * 100, 2));
     }
 
-    public function getFemalePercentage(): float
+    public function getFemalePercentage(): int|float
     {
-        if ($this->gender_rate === -1) {
-            return 0.0;
+        if ($this->isGenderless()) {
+            return 0;
         }
 
-        return round(($this->gender_rate / 8) * 100, 2);
+        return toIntIfWhole(round(($this->gender_rate / 8) * 100, 2));
     }
 }

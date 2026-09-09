@@ -1,8 +1,5 @@
 <template>
-  <AppInfoCard
-    title="Pokédex Data"
-    data-test="pokedex-species-metadata"
-  >
+  <AppInfoCard title="Pokédex Data">
     <AppInfoCardRow title="Regular/Shiny">
       <div class="flex gap-2">
         <Tooltip>
@@ -27,16 +24,21 @@
         </Tooltip>
       </div>
     </AppInfoCardRow>
-    <AppInfoCardRow title="Type(s)">
+    <AppInfoCardRow
+      title="Type(s)"
+      data-test="pokedex-species-metadata__types"
+    >
       <ElementalTypeBadges :types="species.types" />
     </AppInfoCardRow>
     <AppInfoCardRow
       title="Generation"
+      data-test="pokedex-species-metadata__generation"
       :text="species.generation"
     />
     <AppInfoCardRow
       v-if="Object.values(species.traits).some(Boolean)"
       title="Traits"
+      data-test="pokedex-species-metadata__traits"
     >
       <div class="flex flex-wrap gap-2">
         <Badge
@@ -80,15 +82,18 @@
       v-else
       title="Traits"
       text="None"
+      data-test="pokedex-species-metadata__traits"
     />
     <AppInfoCardRow
       v-if="species.isGenderless"
       title="Gender Rate"
       text="Genderless"
+      data-test="pokedex-species-metadata__gender-rate"
     />
     <AppInfoCardRow
       v-else
       title="Gender Rate"
+      data-test="pokedex-species-metadata__gender-rate"
     >
       <span class="flex items-center gap-1 text-sm text-foreground">
         <span

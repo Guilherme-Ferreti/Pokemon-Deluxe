@@ -11,3 +11,10 @@ if (! function_exists('currentUser')) {
         return Auth::user();
     }
 }
+
+if (! function_exists('toIntIfWhole')) {
+    function toIntIfWhole(float|int $value): float|int
+    {
+        return fmod($value, 1.0) === 0.0 ? (int) $value : $value;
+    }
+}
