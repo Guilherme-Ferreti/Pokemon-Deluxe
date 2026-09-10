@@ -15,7 +15,7 @@ use Shared\Models\SpeciesEvolution;
  * @phpstan-type SeederEvolution array{evolves_into:string, item:?string, min_level:?int, gender:?int}
  * @phpstan-type SeederSprites array{back_default:?string, back_female:?string, back_shiny:?string, back_shiny_female:?string, front_default:?string, front_female:?string, front_shiny:?string, front_shiny_female:?string}
  * @phpstan-type SeederPortraits array{regular:?string, shiny:?string}
- * @phpstan-type SeederPokemon array{id:string, external_id:string, name:string, types:list<string>, pokedex_number:int, genus:string, flavor_text:string, sprites:SeederSprites, portraits:SeederPortraits, is_baby:bool, is_legendary:bool, is_mythical:bool, is_mega:bool, is_gmax:bool, generation:int, capture_rate:?int, gender_rate:int, evolutions:list<SeederEvolution>}
+ * @phpstan-type SeederSpecies array{id:string, external_id:string, name:string, types:list<string>, pokedex_number:int, genus:string, flavor_text:string, sprites:SeederSprites, portraits:SeederPortraits, is_baby:bool, is_legendary:bool, is_mythical:bool, is_mega:bool, is_gmax:bool, generation:int, capture_rate:?int, gender_rate:int, evolutions:list<SeederEvolution>}
  */
 final class SpeciesSeeder extends Seeder
 {
@@ -38,10 +38,10 @@ final class SpeciesSeeder extends Seeder
         $data = [];
 
         foreach ($this->getFilesList() as $path) {
-            $pokemonList = json_decode((string) file_get_contents($path), true);
+            $speciesList = json_decode((string) file_get_contents($path), true);
 
-            foreach ($pokemonList as $pokemon) {
-                $data[] = $this->getPokemonInfo($pokemon);
+            foreach ($speciesList as $species) {
+                $data[] = $this->getSpeciesInfo($species);
             }
         }
 
@@ -55,10 +55,10 @@ final class SpeciesSeeder extends Seeder
         $data = [];
 
         foreach ($this->getFilesList() as $path) {
-            $pokemonList = json_decode((string) file_get_contents($path), true);
+            $speciesList = json_decode((string) file_get_contents($path), true);
 
-            foreach ($pokemonList as $pokemon) {
-                $data[] = $this->getEvolutionInfo($pokemon);
+            foreach ($speciesList as $species) {
+                $data[] = $this->getEvolutionInfo($species);
             }
         }
 
@@ -88,63 +88,63 @@ final class SpeciesSeeder extends Seeder
     }
 
     /**
-     * @param  SeederPokemon  $pokemon
+     * @param  SeederSpecies  $species
      * @return array<string, mixed>
      */
-    private function getPokemonInfo(array $pokemon): array
+    private function getSpeciesInfo(array $species): array
     {
         return [
-            'id'             => $this->getSpeciesId($pokemon['id']),
-            'name'           => $pokemon['name'],
-            'types'          => json_encode($pokemon['types']),
-            'pokedex_number' => $pokemon['pokedex_number'],
-            'genus'          => $pokemon['genus'],
-            'text_entry'     => $pokemon['flavor_text'],
+            'id'             => $this->getSpeciesId($species['id']),
+            'name'           => $species['name'],
+            'types'          => json_encode($species['types']),
+            'pokedex_number' => $species['pokedex_number'],
+            'genus'          => $species['genus'],
+            'text_entry'     => $species['flavor_text'],
             'sprites'        => json_encode([
-                'back_default'       => $pokemon['sprites']['back_default'],
-                'back_female'        => $pokemon['sprites']['back_female'],
-                'back_shiny'         => $pokemon['sprites']['back_shiny'],
-                'back_shiny_female'  => $pokemon['sprites']['back_shiny_female'],
-                'front_default'      => $pokemon['sprites']['front_default'],
-                'front_female'       => $pokemon['sprites']['front_female'],
-                'front_shiny'        => $pokemon['sprites']['front_shiny'],
-                'front_shiny_female' => $pokemon['sprites']['front_shiny_female'],
+                'back_default'       => $species['sprites']['back_default'],
+                'back_female'        => $species['sprites']['back_female'],
+                'back_shiny'         => $species['sprites']['back_shiny'],
+                'back_shiny_female'  => $species['sprites']['back_shiny_female'],
+                'front_default'      => $species['sprites']['front_default'],
+                'front_female'       => $species['sprites']['front_female'],
+                'front_shiny'        => $species['sprites']['front_shiny'],
+                'front_shiny_female' => $species['sprites']['front_shiny_female'],
             ]),
             'portraits' => json_encode([
-                'regular' => $pokemon['portraits']['regular'],
-                'shiny'   => $pokemon['portraits']['shiny'],
+                'regular' => $species['portraits']['regular'],
+                'shiny'   => $species['portraits']['shiny'],
             ]),
-            'is_baby'      => $pokemon['is_baby'],
-            'is_legendary' => $pokemon['is_legendary'],
-            'is_mythical'  => $pokemon['is_mythical'],
-            'is_mega'      => $pokemon['is_mega'],
-            'is_gmax'      => $pokemon['is_gmax'],
-            'generation'   => $pokemon['generation'],
-            'capture_rate' => $pokemon['capture_rate'],
-            'gender_rate'  => $pokemon['gender_rate'],
-            'slug'         => $this->generateSpeciesSlug($pokemon['name']),
-            'external_id'  => $pokemon['external_id'],
+            'is_baby'      => $species['is_baby'],
+            'is_legendary' => $species['is_legendary'],
+            'is_mythical'  => $species['is_mythical'],
+            'is_mega'      => $species['is_mega'],
+            'is_gmax'      => $species['is_gmax'],
+            'generation'   => $species['generation'],
+            'capture_rate' => $species['capture_rate'],
+            'gender_rate'  => $species['gender_rate'],
+            'slug'         => $this->generateSpeciesSlug($species['name']),
+            'external_id'  => $species['external_id'],
             'created_at'   => now(),
             'updated_at'   => now(),
         ];
     }
 
     /**
-     * @param  SeederPokemon  $pokemon
+     * @param  SeederSpecies  $species
      * @return list<array<string, mixed>>
      */
-    private function getEvolutionInfo(array $pokemon): array
+    private function getEvolutionInfo(array $species): array
     {
         return array_map(fn (array $evolution) => [
             'id'                => (new SpeciesEvolution)->newUniqueId(),
-            'from_species_id'   => $this->getSpeciesId($pokemon['id']),
+            'from_species_id'   => $this->getSpeciesId($species['id']),
             'into_species_id'   => $this->getSpeciesId($evolution['evolves_into']),
             'evolution_item_id' => is_null($evolution['item']) ? null : $this->evolutionItemIds[$evolution['item']],
             'min_level'         => $evolution['min_level'],
             'gender'            => $evolution['gender'],
             'created_at'        => now(),
             'updated_at'        => now(),
-        ], $pokemon['evolutions']);
+        ], $species['evolutions']);
     }
 
     private function getSpeciesId(string $externalId): string
