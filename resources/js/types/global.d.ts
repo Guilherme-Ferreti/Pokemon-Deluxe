@@ -1,4 +1,4 @@
-import type { Auth } from '@/types/auth';
+import type { Auth, ElementalType, PokemonGender } from '@/types';
 
 // Extend ImportMeta interface for Vite...
 declare module 'vite/client' {
@@ -18,6 +18,10 @@ declare module '@inertiajs/core' {
     sharedPageProps: {
       name: string;
       auth: Auth;
+      labels: {
+        elementalType: Record<ElementalType, string>;
+        pokemonGender: Record<PokemonGender, string>;
+      };
       authLayout: {
         sprites: string[];
       };

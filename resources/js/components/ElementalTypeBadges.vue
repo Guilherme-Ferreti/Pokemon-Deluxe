@@ -5,7 +5,7 @@
       class="dark:border-none dark:bg-muted dark:text-foreground"
       :class="colors[types[0]]"
     >
-      {{ labels[types[0]] }}
+      {{ $page.props.labels.elementalType[types[0]] }}
     </Badge>
     <Badge
       v-if="types.length === 2"
@@ -13,7 +13,7 @@
       class="dark:border-none dark:bg-muted dark:text-foreground"
       :class="colors[types[1]]"
     >
-      {{ labels[types[1]] }}
+      {{ $page.props.labels.elementalType[types[1]] }}
     </Badge>
   </div>
 </template>
@@ -25,27 +25,6 @@ import { ElementalType } from '@/types';
 defineProps<{
   types: [ElementalType] | [ElementalType, ElementalType];
 }>();
-
-const labels = {
-  [ElementalType.FIRE]: 'Fire',
-  [ElementalType.WATER]: 'Water',
-  [ElementalType.GRASS]: 'Grass',
-  [ElementalType.ELECTRIC]: 'Electric',
-  [ElementalType.PSYCHIC]: 'Psychic',
-  [ElementalType.ICE]: 'Ice',
-  [ElementalType.FIGHTING]: 'Fighting',
-  [ElementalType.POISON]: 'Poison',
-  [ElementalType.GROUND]: 'Ground',
-  [ElementalType.FLYING]: 'Flying',
-  [ElementalType.BUG]: 'Bug',
-  [ElementalType.ROCK]: 'Rock',
-  [ElementalType.GHOST]: 'Ghost',
-  [ElementalType.DRAGON]: 'Dragon',
-  [ElementalType.DARK]: 'Dark',
-  [ElementalType.STEEL]: 'Steel',
-  [ElementalType.NORMAL]: 'Normal',
-  [ElementalType.FAIRY]: 'Fairy',
-};
 
 const colors = {
   [ElementalType.FIRE]: 'bg-orange-100 text-orange-700 border-orange-200',

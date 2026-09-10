@@ -8,6 +8,8 @@ use Illuminate\Http\Request;
 use Inertia\Inertia;
 use Inertia\Middleware;
 use Override;
+use Shared\Enums\ElementalType;
+use Shared\Enums\PokemonGender;
 
 final class HandleInertiaRequests extends Middleware
 {
@@ -47,6 +49,18 @@ final class HandleInertiaRequests extends Middleware
             'auth' => [
                 'user' => $request->user() ? Inertia::once(fn () => $request->user()->only('id', 'name', 'email')) : null,
             ],
+            'labels' => Inertia::once(fn () => $this->labels()),
+        ];
+    }
+
+    /**
+     * @return array<string, array<string|int, string>>
+     */
+    private function labels(): array
+    {
+        return [
+            'elementalType' => enumLabels(ElementalType::class),
+            'pokemonGender' => enumLabels(PokemonGender::class),
         ];
     }
 }

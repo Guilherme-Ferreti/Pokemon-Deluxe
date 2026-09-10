@@ -14,7 +14,7 @@
     aria-hidden="true"
     class="inline-block size-4 align-text-bottom text-[#FF4D6D]"
   />
-  <span class="sr-only">{{ genderLabels[gender] }}</span>
+  <span class="sr-only">{{ $page.props.labels.pokemonGender[gender] }}</span>
 </template>
 
 <script lang="ts" setup>
@@ -28,10 +28,4 @@ import { PokemonGender } from '@/types';
 defineProps<{
   gender: PokemonGender;
 }>();
-
-const genderLabels = {
-  [PokemonGender.GENDERLESS]: 'Genderless',
-  [PokemonGender.MALE]: 'Male',
-  [PokemonGender.FEMALE]: 'Female',
-};
 </script>
