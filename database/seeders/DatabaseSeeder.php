@@ -17,6 +17,7 @@ final class DatabaseSeeder extends Seeder
             PokeballSeeder::class,
             EvolutionItemSeeder::class,
             SpeciesSeeder::class,
+            MoveSeeder::class,
             UserSeeder::class,
         ]);
     }

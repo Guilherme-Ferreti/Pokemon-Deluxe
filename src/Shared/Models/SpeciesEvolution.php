@@ -37,7 +37,8 @@ final class SpeciesEvolution extends Model
     protected function casts(): array
     {
         return [
-            'gender' => PokemonGender::class,
+            'min_level' => 'integer',
+            'gender'    => PokemonGender::class,
         ];
     }
 

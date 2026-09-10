@@ -1,3 +1,12 @@
+export enum Ailment {
+  BURN = 'burn',
+  CONFUSION = 'confusion',
+  FREEZE = 'freeze',
+  PARALYSIS = 'paralysis',
+  POISON = 'poison',
+  SLEEP = 'sleep',
+  UNKNOWN = 'unknown',
+}
 export enum ElementalType {
   BUG = 'bug',
   DARK = 'dark',
@@ -28,6 +37,17 @@ export enum Generation {
   VII = 7,
   VIII = 8,
   IX = 9,
+}
+export enum MoveCategory {
+  DAMAGE = 'damage',
+  AILMENT = 'ailment',
+  DAMAGE_AILMENT = 'damage-ailment',
+  OHKO = 'ohko',
+}
+export enum MoveDamageClass {
+  PHYSICAL = 'physical',
+  SPECIAL = 'special',
+  STATUS = 'status',
 }
 export enum PokeballType {
   STANDARD = 'standard',
