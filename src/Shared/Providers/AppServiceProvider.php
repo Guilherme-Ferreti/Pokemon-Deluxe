@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Shared\Providers;
 
+use BackedEnum;
 use Carbon\CarbonImmutable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Collection;
@@ -14,7 +15,6 @@ use Illuminate\Support\Facades\Vite;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Validation\Rules\Password;
 use Override;
-use Reflection;
 use ReflectionEnum;
 
 final class AppServiceProvider extends ServiceProvider
@@ -72,7 +72,7 @@ final class AppServiceProvider extends ServiceProvider
         Collection::macro('toUniqueEnums', function (string $enum) {
             /** @var class-string<BackedEnum> $enum */
             $backingType = new ReflectionEnum($enum)->getBackingType()?->getName();
-            
+
             return $this->unique()
                 ->map(fn (mixed $value) => $enum::tryFrom($backingType === 'int' ? (int) $value : (string) $value))
                 ->filter()

@@ -34,25 +34,16 @@
         <TableRow>
           <TableHead class="w-12 whitespace-normal">Dex No.</TableHead>
           <TableHead>Portrait</TableHead>
-          <TableHead class="w-50">
-            <Link
-              class="flex items-center gap-2 [&_svg]:size-4"
-              aria-label="Sort by name"
-              aria-current="page"
-              :href="sortByNameUrl"
-            >
-              <span>Name</span>
-              <IconArrowsSort
-                v-if="searchForm.sort !== SearchPokedexSortBy.NAME"
-              />
-              <IconSortAscendingLetters
-                v-else-if="searchForm.dir === SortDirection.ASC"
-              />
-              <IconSortDescendingLetters
-                v-else-if="searchForm.dir === SortDirection.DESC"
-              />
-            </Link>
-          </TableHead>
+          <AppTableHeadSortable
+            class="w-50"
+            column-name="Name"
+            :sort-by="SearchPokedexSortBy.NAME"
+            :default-sort-by="SearchPokedexSortBy.POKEDEX_NUMBER"
+            :search-form="searchForm"
+            :route-url="route('dex.web.pokedex.index')"
+            :sort-asc-icon="IconSortAscendingLetters"
+            :sort-desc-icon="IconSortDescendingLetters"
+          />
           <TableHead>Type(s)</TableHead>
           <TableHead>Generation</TableHead>
           <TableHead>Regular</TableHead>
@@ -119,7 +110,6 @@
 <script lang="ts" setup>
 import { Link, useForm } from '@inertiajs/vue3';
 import {
-  IconArrowsSort,
   IconEye,
   IconSearch,
   IconSortAscendingLetters,
@@ -127,7 +117,7 @@ import {
   IconXMark,
 } from '@tabler/icons-vue';
 import { watchDebounced } from '@vueuse/core';
-import { computed, nextTick } from 'vue';
+import { nextTick } from 'vue';
 import AppEmptyState from '@/components/AppEmptyState.vue';
 import AppIconInBox from '@/components/AppIconInBox.vue';
 import AppIconNotInBox from '@/components/AppIconNotInBox.vue';
@@ -145,10 +135,11 @@ import {
   TableHeader,
   TableRow,
 } from '@/components/ui/table';
-import { removeFalsyValues, toQueryString } from '@/lib/utils.js';
+import { removeFalsyValues } from '@/lib/utils.js';
 import type { DexPokedexIndexPageProps } from '@/pages/Dex/Pokedex/Index.vue';
-import { SearchPokedexSortBy, SortDirection } from '@/types';
+import { SearchPokedexSortBy } from '@/types';
 import { route } from '@/types/helpers/route';
+import AppTableHeadSortable from './AppTableHeadSortable.vue';
 
 const props = defineProps<{
   speciesList: DexPokedexIndexPageProps['speciesList'];
@@ -170,22 +161,6 @@ watchDebounced(
   () => submitSearch(),
   { debounce: 450 },
 );
-
-const sortByNameUrl = computed(function () {
-  const data = searchForm.data();
-
-  if (data.sort !== SearchPokedexSortBy.NAME) {
-    data.sort = SearchPokedexSortBy.NAME;
-    data.dir = SortDirection.ASC;
-  } else if (data.dir === SortDirection.ASC) {
-    data.dir = SortDirection.DESC;
-  } else if (data.dir === SortDirection.DESC) {
-    data.sort = SearchPokedexSortBy.POKEDEX_NUMBER;
-    data.dir = SortDirection.ASC;
-  }
-
-  return `${route('dex.web.pokedex.index')}?${toQueryString(removeFalsyValues(data)).toString()}`;
-});
 
 function submitSearch() {
   searchForm.transform(removeFalsyValues).get(route('dex.web.pokedex.index'), {
