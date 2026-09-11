@@ -4,6 +4,9 @@
     title="Attackdex"
     description="Below is a list of all moves in the game."
   />
+  <p>
+    Moves marked with <span class="font-extrabold">Z</span> icon are Z-Moves.
+  </p>
   <AppSection>
     <Attackdex
       :moves="moves"
@@ -46,6 +49,7 @@ export interface DexAttackdexIndexPageProps {
     search: string;
     types: ElementalType[];
     ailments: Ailment[];
+    isZmove: boolean;
     sort: SearchAttackdexSortBy;
     dir: SortDirection;
   };

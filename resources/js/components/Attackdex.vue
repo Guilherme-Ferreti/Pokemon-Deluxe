@@ -16,10 +16,13 @@
       <AttackdexSearchBarFiltersDialog
         v-model:types="searchForm.types"
         v-model:ailments="searchForm.ailments"
+        v-model:isZmove="searchForm.isZmove"
         :type-options="filterOptions.types"
         :ailment-options="filterOptions.ailments"
         :active-filters-count="
-          activeFilters.types.length + activeFilters.ailments.length
+          activeFilters.types.length +
+          activeFilters.ailments.length +
+          (activeFilters.isZmove ? 1 : 0)
         "
         @apply="submitSearch"
         @close="nextTick(() => !searchForm.processing && searchForm.reset())"
@@ -80,6 +83,12 @@
         >
           <TableCell>
             {{ move.name }}
+            <sup
+              v-if="move.isZmove"
+              class="font-extrabold"
+            >
+              Z
+            </sup>
           </TableCell>
           <TableCell>
             <ElementalTypeBadges :types="[move.type]" />
@@ -153,6 +162,7 @@ const searchForm = useForm({
   search: props.activeFilters.search,
   types: props.activeFilters.types,
   ailments: props.activeFilters.ailments,
+  isZmove: props.activeFilters.isZmove,
   sort: props.activeFilters.sort,
   dir: props.activeFilters.dir,
 });

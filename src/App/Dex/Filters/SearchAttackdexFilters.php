@@ -24,6 +24,8 @@ final class SearchAttackdexFilters implements Filter
         /** @var Collection<int, Ailment> */
         public Collection $ailments,
 
+        public bool $isZmove,
+
         public SearchAttackdexSortBy $sort,
 
         public SortDirection $dir,
@@ -35,6 +37,7 @@ final class SearchAttackdexFilters implements Filter
             'search'   => $request->query('search'),
             'types'    => $request->collect('types')->toUniqueEnums(ElementalType::class),
             'ailments' => $request->collect('ailments')->toUniqueEnums(Ailment::class),
+            'isZmove'  => $request->boolean('isZmove'),
             'sort'     => $request->enum('sort', SearchAttackdexSortBy::class, SearchAttackdexSortBy::NAME),
             'dir'      => $request->enum('dir', SortDirection::class, SortDirection::ASC),
         ]);

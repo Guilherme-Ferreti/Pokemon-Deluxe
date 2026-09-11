@@ -28,6 +28,14 @@
         :value="option.value"
       />
     </AppCheckboxGroup>
+    <AppCheckboxGroup title="Others:">
+      <AppCheckbox
+        v-model="checkedIsZmove"
+        name="isZmove"
+        label="Z-Move"
+        value="true"
+      />
+    </AppCheckboxGroup>
   </AppSearchFiltersDialog>
 </template>
 
@@ -56,6 +64,10 @@ const selectedAilments = defineModel<
   default: () => [],
 });
 
+const checkedIsZmove = defineModel<boolean>('isZmove', {
+  default: false,
+});
+
 defineEmits<{
   apply: [value: void];
   close: [value: void];
@@ -64,5 +76,6 @@ defineEmits<{
 function resetFilters() {
   selectedTypes.value = [];
   selectedAilments.value = [];
+  checkedIsZmove.value = false;
 }
 </script>

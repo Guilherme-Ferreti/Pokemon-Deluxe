@@ -66,15 +66,17 @@ describe('search filters', function () {
             'search'   => 'Tackle',
             'types'    => [ElementalType::FIRE, ElementalType::WATER],
             'ailments' => ['burn', 'freeze'],
+            'isZmove'  => true,
         ]))
             ->assertValue('search', 'Tackle')
-            ->assertSeeIn('@search-filters-dialog__active-filters-indicator', '4')
+            ->assertSeeIn('@search-filters-dialog__active-filters-indicator', '5')
             ->click('@search-filters-dialog__open-filters-button')
             ->assertAttribute('[aria-label="Fire"]', 'data-state', 'checked')
             ->assertAttribute('[aria-label="Water"]', 'data-state', 'checked')
             ->assertAttribute('[aria-label="Grass"]', 'data-state', 'unchecked')
             ->assertAttribute('[aria-label="Burn"]', 'data-state', 'checked')
             ->assertAttribute('[aria-label="Freeze"]', 'data-state', 'checked')
+            ->assertAttribute('[aria-label="Z-Move"]', 'data-state', 'checked')
             ->assertAttribute('[aria-label="Confusion"]', 'data-state', 'unchecked');
     });
 
@@ -84,11 +86,13 @@ describe('search filters', function () {
         visit(route('dex.web.attackdex.index', [
             'types'    => [ElementalType::FIRE, ElementalType::WATER],
             'ailments' => ['burn', 'freeze'],
+            'isZmove'  => true,
         ]))
             ->click('@search-filters-dialog__open-filters-button')
             ->click('@search-filters-dialog__reset-filters-button')
             ->assertQueryStringMissing('types')
             ->assertQueryStringMissing('ailments')
+            ->assertQueryStringMissing('isZmove')
             ->assertDontSee('@search-filters-dialog__active-filters-indicator');
     });
 

@@ -25,6 +25,7 @@ final class SearchAttackdexQuery
             ->when($filters->search !== null, fn (Builder $query) => $this->applySearch($query, $filters->search))
             ->when($filters->types->isNotEmpty(), fn (Builder $query) => $this->applyTypes($query, $filters->types))
             ->when($filters->ailments->isNotEmpty(), fn (Builder $query) => $this->applyAilments($query, $filters->ailments))
+            ->when($filters->isZmove, fn (Builder $query) => $this->applyIsZmove($query))
             ->when(true, fn (Builder $query) => $this->applySorting($query, $filters->sort, $filters->dir));
     }
 
@@ -55,6 +56,15 @@ final class SearchAttackdexQuery
     private function applyAilments(Builder $query, Collection $ailments): Builder
     {
         return $query->whereIn('ailment', $ailments->pluck('value'));
+    }
+
+    /**
+     * @param  Builder<Move>  $query
+     * @return Builder<Move>
+     */
+    private function applyIsZmove(Builder $query): Builder
+    {
+        return $query->where('is_zmove', true);
     }
 
     /**

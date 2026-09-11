@@ -19,6 +19,7 @@ function makeSearchAttackdexFilters(
     ?string $search = null,
     array $types = [],
     array $ailments = [],
+    bool $isZmove = false,
     SearchAttackdexSortBy $sort = SearchAttackdexSortBy::NAME,
     SortDirection $dir = SortDirection::ASC,
 ): SearchAttackdexFilters {
@@ -26,6 +27,7 @@ function makeSearchAttackdexFilters(
         search: $search,
         types: collect($types),
         ailments: collect($ailments),
+        isZmove: $isZmove,
         sort: $sort,
         dir: $dir,
     );
@@ -109,6 +111,16 @@ it('filters moves by multiple ailments', function () {
 
     expect($result)->toHaveCount(2)
         ->and($result->pluck('id'))->toContain($burn->id, $freeze->id)->not->toContain($paralyze->id);
+});
+
+it('filters moves by Z-Moves', function () {
+    $zmove    = Move::factory()->create(['is_zmove' => true]);
+    $notZmove = Move::factory()->create(['is_zmove' => false]);
+
+    $result = new SearchAttackdexQuery()->handle(makeSearchAttackdexFilters(isZmove: true))->get();
+
+    expect($result)->toHaveCount(1)
+        ->and($result->pluck('id'))->toContain($zmove->id)->not->toContain($notZmove->id);
 });
 
 it('sorts moves by name ascending', function () {
