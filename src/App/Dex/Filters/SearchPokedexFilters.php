@@ -35,36 +35,14 @@ final class SearchPokedexFilters implements Filter
 
     public static function fromRequest(Request $request): self
     {
-        $types = $request
-            ->collect('types')
-            ->map(fn (string $value) => ElementalType::tryFrom($value))
-            ->unique()
-            ->filter()
-            ->take(2)
-            ->values();
-
-        $traits = $request
-            ->collect('traits')
-            ->map(fn (string $value) => SpeciesTrait::tryFrom($value))
-            ->unique()
-            ->filter()
-            ->values();
-
-        $generations = $request
-            ->collect('generations')
-            ->map(fn (string $value) => Generation::tryFrom((int) $value))
-            ->unique()
-            ->filter()
-            ->values();
-
-        return new self(
-            search: $request->query('search'),
-            types: $types,
-            traits: $traits,
-            generations: $generations,
-            sort: $request->enum('sort', SearchPokedexSortBy::class, SearchPokedexSortBy::POKEDEX_NUMBER),
-            dir: $request->enum('dir', SortDirection::class, SortDirection::ASC),
-        );
+        return new self(...[
+            'search'      => $request->query('search'),
+            'types'       => $request->collect('types')->toUniqueEnums(ElementalType::class)->take(2),
+            'traits'      => $request->collect('traits')->toUniqueEnums(SpeciesTrait::class),
+            'generations' => $request->collect('generations')->toUniqueEnums(Generation::class),
+            'sort'        => $request->enum('sort', SearchPokedexSortBy::class, SearchPokedexSortBy::POKEDEX_NUMBER),
+            'dir'         => $request->enum('dir', SortDirection::class, SortDirection::ASC),
+        ]);
     }
 
     /**

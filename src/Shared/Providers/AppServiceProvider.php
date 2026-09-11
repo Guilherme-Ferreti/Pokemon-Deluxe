@@ -6,6 +6,7 @@ namespace Shared\Providers;
 
 use Carbon\CarbonImmutable;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Date;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\URL;
@@ -13,6 +14,8 @@ use Illuminate\Support\Facades\Vite;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Validation\Rules\Password;
 use Override;
+use Reflection;
+use ReflectionEnum;
 
 final class AppServiceProvider extends ServiceProvider
 {
@@ -25,6 +28,8 @@ final class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
         $this->configureDefaults();
+
+        $this->registerCollectionMacros();
     }
 
     private function registerLaravelTelescope(): void
@@ -60,5 +65,17 @@ final class AppServiceProvider extends ServiceProvider
         URL::forceHttps(app()->isProduction());
 
         Vite::useAggressivePrefetching();
+    }
+
+    private function registerCollectionMacros(): void
+    {
+        Collection::macro('toUniqueEnums', function (string $enum) {
+            $backingType = new ReflectionEnum($enum)->getBackingType()?->getName();
+            
+            return $this->unique()
+                ->map(fn (mixed $value) => $enum::tryFrom($backingType === 'int' ? (int) $value : (string) $value))
+                ->filter()
+                ->values();
+        });
     }
 }
