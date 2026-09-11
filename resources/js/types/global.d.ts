@@ -1,4 +1,4 @@
-import type { Auth, ElementalType, PokemonGender } from '@/types';
+import type { Ailment, Auth, ElementalType, PokemonGender } from '@/types';
 
 // Extend ImportMeta interface for Vite...
 declare module 'vite/client' {
@@ -21,6 +21,7 @@ declare module '@inertiajs/core' {
       labels: {
         elementalType: Record<ElementalType, string>;
         pokemonGender: Record<PokemonGender, string>;
+        ailment: Record<Ailment, string>;
       };
       authLayout: {
         sprites: string[];

@@ -67,6 +67,13 @@ export enum PokemonTrait {
   MEGA = 'mega',
   GMAX = 'gmax',
 }
+export enum SearchAttackdexSortBy {
+  NAME = 'name',
+  POWER = 'power',
+  ACCURACY = 'accuracy',
+  AILMENT_CHANCE = 'ailment-chance',
+  FLINCH_CHANCE = 'flinch-chance',
+}
 export enum SearchBoxSortBy {
   CAPTURE_DATE = 'capture-date',
   EXPERIENCE = 'experience',

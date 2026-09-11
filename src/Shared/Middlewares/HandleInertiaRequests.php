@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Inertia\Inertia;
 use Inertia\Middleware;
 use Override;
+use Shared\Enums\Ailment;
 use Shared\Enums\ElementalType;
 use Shared\Enums\PokemonGender;
 
@@ -61,6 +62,7 @@ final class HandleInertiaRequests extends Middleware
         return [
             'elementalType' => enumLabels(ElementalType::class),
             'pokemonGender' => enumLabels(PokemonGender::class),
+            'ailment'       => enumLabels(Ailment::class),
         ];
     }
 }

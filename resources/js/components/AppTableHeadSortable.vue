@@ -7,7 +7,10 @@
       :href="sortByUrl"
     >
       <span>{{ columnName }}</span>
-      <component :is="visibleIcon" />
+      <component
+        :is="visibleIcon"
+        class="shrink-0"
+      />
     </Link>
   </TableHead>
 </template>
@@ -22,11 +25,11 @@ import {
   IconSortDescending,
 } from '@tabler/icons-vue';
 import { computed } from 'vue';
+import TableHead from '@/components/ui/table/TableHead.vue';
 import { removeFalsyValues, toQueryString } from '@/lib/utils';
 import { SortDirection } from '@/types';
-import TableHead from './ui/table/TableHead.vue';
 
-interface AppTableColumnSortLinkProps {
+const props = defineProps<{
   columnName: string;
   sortBy: T;
   defaultSortBy: T;
@@ -37,12 +40,7 @@ interface AppTableColumnSortLinkProps {
   routeUrl: string;
   sortAscIcon?: Icon;
   sortDescIcon?: Icon;
-}
-
-const props = withDefaults(defineProps<AppTableColumnSortLinkProps>(), {
-  sortAscIcon: IconSortAscending,
-  sortDescIcon: IconSortDescending,
-});
+}>();
 
 const visibleIcon = computed(() => {
   if (props.searchForm.sort !== props.sortBy) {
@@ -50,8 +48,8 @@ const visibleIcon = computed(() => {
   }
 
   return props.searchForm.dir === SortDirection.ASC
-    ? props.sortAscIcon
-    : props.sortDescIcon;
+    ? props.sortAscIcon || IconSortAscending
+    : props.sortDescIcon || IconSortDescending;
 });
 
 const sortByUrl = computed(function () {

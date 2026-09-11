@@ -72,6 +72,7 @@ import {
   IconChevronRight,
   IconHome,
   IconPokeball,
+  IconSword,
   IconSwords,
   IconTrees,
 } from '@tabler/icons-vue';
@@ -130,6 +131,11 @@ const items = [
     title: 'Pokédex',
     url: route('dex.web.pokedex.index'),
     icon: IconBook,
+  },
+  {
+    title: 'Attackdex',
+    url: route('dex.web.attackdex.index'),
+    icon: IconSword,
   },
 ];
 
