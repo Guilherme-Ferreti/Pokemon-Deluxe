@@ -70,6 +70,7 @@ final class AppServiceProvider extends ServiceProvider
     private function registerCollectionMacros(): void
     {
         Collection::macro('toUniqueEnums', function (string $enum) {
+            /** @var class-string<BackedEnum> $enum */
             $backingType = new ReflectionEnum($enum)->getBackingType()?->getName();
             
             return $this->unique()
