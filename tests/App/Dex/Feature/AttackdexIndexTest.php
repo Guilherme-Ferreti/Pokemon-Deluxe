@@ -27,7 +27,7 @@ it('loads the attackdex page with expected structure', function () {
         ->assertInertia(fn (Assert $page) => $page
             ->component('Dex/Attackdex/Index')
             ->has('activeFilters')
-            ->has('filterOptions', fn (Assert $page) => $page->hasAll(['types', 'ailments']))
+            ->has('filterOptions', fn (Assert $page) => $page->hasAll(['types', 'ailments', 'traits']))
             ->has('moves.data', 2)
             ->where('moves.data.0.id', $moveA->id)
             ->where('moves.data.0.name', $moveA->name)

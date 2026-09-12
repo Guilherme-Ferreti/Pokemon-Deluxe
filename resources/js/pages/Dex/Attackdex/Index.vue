@@ -6,6 +6,7 @@
   />
   <p>
     Moves marked with <span class="font-extrabold">Z</span> icon are Z-Moves.
+    <br />
     Moves marked with <span class="font-extrabold">D</span> icon are Dynamax
     moves.
   </p>
@@ -29,6 +30,7 @@ import type {
   FilterOption,
   MoveCategory,
   PaginatedList,
+  MoveTrait,
   SearchAttackdexSortBy,
   SortDirection,
 } from '@/types';
@@ -52,14 +54,14 @@ export interface DexAttackdexIndexPageProps {
     search: string;
     types: ElementalType[];
     ailments: Ailment[];
-    isZmove: boolean;
-    isDynamax: boolean;
+    traits: MoveTrait[];
     sort: SearchAttackdexSortBy;
     dir: SortDirection;
   };
   filterOptions: {
     types: FilterOption<ElementalType>[];
     ailments: FilterOption<Ailment>[];
+    traits: FilterOption<MoveTrait>[];
   };
 }
 

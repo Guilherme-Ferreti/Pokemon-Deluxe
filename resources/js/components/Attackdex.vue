@@ -16,14 +16,14 @@
       <AttackdexSearchBarFiltersDialog
         v-model:types="searchForm.types"
         v-model:ailments="searchForm.ailments"
-        v-model:isZmove="searchForm.isZmove"
-        v-model:isDynamax="searchForm.isDynamax"
+        v-model:traits="searchForm.traits"
         :type-options="filterOptions.types"
         :ailment-options="filterOptions.ailments"
+        :trait-options="filterOptions.traits"
         :active-filters-count="
           activeFilters.types.length +
           activeFilters.ailments.length +
-          (activeFilters.isZmove ? 1 : 0)
+          activeFilters.traits.length
         "
         @apply="submitSearch"
         @close="nextTick(() => !searchForm.processing && searchForm.reset())"
@@ -163,8 +163,7 @@ const searchForm = useForm({
   search: props.activeFilters.search,
   types: props.activeFilters.types,
   ailments: props.activeFilters.ailments,
-  isZmove: props.activeFilters.isZmove,
-  isDynamax: props.activeFilters.isDynamax,
+  traits: props.activeFilters.traits,
   sort: props.activeFilters.sort,
   dir: props.activeFilters.dir,
 });

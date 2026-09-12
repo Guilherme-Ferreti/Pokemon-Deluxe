@@ -8,19 +8,20 @@ use App\Dex\Queries\SearchAttackdexQuery;
 use Shared\Enums\Ailment;
 use Shared\Enums\ElementalType;
 use Shared\Enums\MoveCategory;
+use Shared\Enums\MoveTrait;
 use Shared\Enums\SortDirection;
 use Shared\Models\Move;
 
 /**
  * @param  array<int, ElementalType>  $types
  * @param  array<int, Ailment>  $ailments
+ * @param  array<int, MoveTrait>  $traits
  */
 function makeSearchAttackdexFilters(
     ?string $search = null,
     array $types = [],
     array $ailments = [],
-    bool $isZmove = false,
-    bool $isDynamax = false,
+    array $traits = [],
     SearchAttackdexSortBy $sort = SearchAttackdexSortBy::NAME,
     SortDirection $dir = SortDirection::ASC,
 ): SearchAttackdexFilters {
@@ -28,8 +29,7 @@ function makeSearchAttackdexFilters(
         search: $search,
         types: collect($types),
         ailments: collect($ailments),
-        isZmove: $isZmove,
-        isDynamax: $isDynamax,
+        traits: collect($traits),
         sort: $sort,
         dir: $dir,
     );
@@ -115,24 +115,25 @@ it('filters moves by multiple ailments', function () {
         ->and($result->pluck('id'))->toContain($burn->id, $freeze->id)->not->toContain($paralyze->id);
 });
 
-it('filters moves by Z-Moves', function () {
-    $zmove    = Move::factory()->create(['is_zmove' => true]);
-    $notZmove = Move::factory()->create(['is_zmove' => false]);
+it('filters moves by a single trait', function () {
+    $zmove = Move::factory()->create(['is_zmove' => true]);
+    Move::factory()->create(['is_zmove' => false, 'is_dynamax' => true]);
 
-    $result = new SearchAttackdexQuery()->handle(makeSearchAttackdexFilters(isZmove: true))->get();
+    $result = new SearchAttackdexQuery()->handle(makeSearchAttackdexFilters(traits: [MoveTrait::Z_MOVE]))->get();
 
     expect($result)->toHaveCount(1)
-        ->and($result->pluck('id'))->toContain($zmove->id)->not->toContain($notZmove->id);
+        ->and($result->first()->id)->toBe($zmove->id);
 });
 
-it('filters moves by Dynamax moves', function () {
-    $dynamax    = Move::factory()->create(['is_dynamax' => true]);
-    $notDynamax = Move::factory()->create(['is_dynamax' => false]);
+it('filters moves by multiple traits', function () {
+    $zmove   = Move::factory()->create(['is_zmove' => true]);
+    $dynamax = Move::factory()->create(['is_dynamax' => true]);
+    $other   = Move::factory()->create(['is_zmove' => false, 'is_dynamax' => false]);
 
-    $result = new SearchAttackdexQuery()->handle(makeSearchAttackdexFilters(isDynamax: true))->get();
+    $result = new SearchAttackdexQuery()->handle(makeSearchAttackdexFilters(traits: [MoveTrait::Z_MOVE, MoveTrait::DYNAMAX]))->get();
 
-    expect($result)->toHaveCount(1)
-        ->and($result->pluck('id'))->toContain($dynamax->id)->not->toContain($notDynamax->id);
+    expect($result)->toHaveCount(2)
+        ->and($result->pluck('id'))->toContain($zmove->id, $dynamax->id)->not->toContain($other->id);
 });
 
 it('sorts moves by name ascending', function () {

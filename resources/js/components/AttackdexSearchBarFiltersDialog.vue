@@ -28,18 +28,14 @@
         :value="option.value"
       />
     </AppCheckboxGroup>
-    <AppCheckboxGroup title="Others:">
+    <AppCheckboxGroup title="Traits:">
       <AppCheckbox
-        v-model="checkedIsZmove"
-        name="isZmove"
-        label="Z-Move"
-        value="true"
-      />
-      <AppCheckbox
-        v-model="checkedIsDynamax"
-        name="isDynamax"
-        label="Dynamax"
-        value="true"
+        v-for="option in traitOptions"
+        :key="option.value"
+        v-model="selectedTraits"
+        name="traits[]"
+        :label="option.label"
+        :value="option.value"
       />
     </AppCheckboxGroup>
   </AppSearchFiltersDialog>
@@ -55,6 +51,7 @@ import type { DexAttackdexIndexPageProps } from '@/pages/Dex/Attackdex/Index.vue
 defineProps<{
   typeOptions: DexAttackdexIndexPageProps['filterOptions']['types'];
   ailmentOptions: DexAttackdexIndexPageProps['filterOptions']['ailments'];
+  traitOptions: DexAttackdexIndexPageProps['filterOptions']['traits'];
   activeFiltersCount: number;
 }>();
 
@@ -70,12 +67,10 @@ const selectedAilments = defineModel<
   default: () => [],
 });
 
-const checkedIsZmove = defineModel<boolean>('isZmove', {
-  default: false,
-});
-
-const checkedIsDynamax = defineModel<boolean>('isDynamax', {
-  default: false,
+const selectedTraits = defineModel<
+  DexAttackdexIndexPageProps['activeFilters']['traits']
+>('traits', {
+  default: () => [],
 });
 
 defineEmits<{
@@ -86,7 +81,6 @@ defineEmits<{
 function resetFilters() {
   selectedTypes.value = [];
   selectedAilments.value = [];
-  checkedIsZmove.value = false;
-  checkedIsDynamax.value = false;
+  selectedTraits.value = [];
 }
 </script>

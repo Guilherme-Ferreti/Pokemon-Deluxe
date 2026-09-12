@@ -49,6 +49,10 @@ export enum MoveDamageClass {
   SPECIAL = 'special',
   STATUS = 'status',
 }
+export enum MoveTrait {
+  Z_MOVE = 'z-move',
+  DYNAMAX = 'dynamax',
+}
 export enum PokeballType {
   STANDARD = 'standard',
   SPECIAL = 'special',

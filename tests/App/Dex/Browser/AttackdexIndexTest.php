@@ -2,7 +2,9 @@
 
 declare(strict_types=1);
 
+use Shared\Enums\Ailment;
 use Shared\Enums\ElementalType;
+use Shared\Enums\MoveTrait;
 use Shared\Models\Move;
 use Shared\Models\User;
 
@@ -65,8 +67,8 @@ describe('search filters', function () {
         visit(route('dex.web.attackdex.index', [
             'search'   => 'Tackle',
             'types'    => [ElementalType::FIRE, ElementalType::WATER],
-            'ailments' => ['burn', 'freeze'],
-            'isZmove'  => true,
+            'ailments' => [Ailment::BURN, Ailment::FREEZE],
+            'traits'   => [MoveTrait::Z_MOVE],
         ]))
             ->assertValue('search', 'Tackle')
             ->assertSeeIn('@search-filters-dialog__active-filters-indicator', '5')
@@ -85,14 +87,14 @@ describe('search filters', function () {
 
         visit(route('dex.web.attackdex.index', [
             'types'    => [ElementalType::FIRE, ElementalType::WATER],
-            'ailments' => ['burn', 'freeze'],
-            'isZmove'  => true,
+            'ailments' => [Ailment::BURN, Ailment::FREEZE],
+            'traits'   => [MoveTrait::Z_MOVE],
         ]))
             ->click('@search-filters-dialog__open-filters-button')
             ->click('@search-filters-dialog__reset-filters-button')
             ->assertQueryStringMissing('types')
             ->assertQueryStringMissing('ailments')
-            ->assertQueryStringMissing('isZmove')
+            ->assertQueryStringMissing('traits')
             ->assertDontSee('@search-filters-dialog__active-filters-indicator');
     });
 

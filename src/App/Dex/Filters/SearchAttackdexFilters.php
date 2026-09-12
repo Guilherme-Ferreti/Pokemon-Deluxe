@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
 use Shared\Enums\Ailment;
 use Shared\Enums\ElementalType;
+use Shared\Enums\MoveTrait;
 use Shared\Enums\SortDirection;
 use Shared\Interfaces\Filter;
 use Shared\ValueObjects\FilterOption;
@@ -24,9 +25,8 @@ final class SearchAttackdexFilters implements Filter
         /** @var Collection<int, Ailment> */
         public Collection $ailments,
 
-        public bool $isZmove,
-
-        public bool $isDynamax,
+        /** @var Collection<int, MoveTrait> */
+        public Collection $traits,
 
         public SearchAttackdexSortBy $sort,
 
@@ -36,13 +36,12 @@ final class SearchAttackdexFilters implements Filter
     public static function fromRequest(Request $request): self
     {
         return new self(...[
-            'search'    => $request->query('search'),
-            'types'     => $request->collect('types')->toUniqueEnums(ElementalType::class),
-            'ailments'  => $request->collect('ailments')->toUniqueEnums(Ailment::class),
-            'isZmove'   => $request->boolean('isZmove'),
-            'isDynamax' => $request->boolean('isDynamax'),
-            'sort'      => $request->enum('sort', SearchAttackdexSortBy::class, SearchAttackdexSortBy::NAME),
-            'dir'       => $request->enum('dir', SortDirection::class, SortDirection::ASC),
+            'search'   => $request->query('search'),
+            'types'    => $request->collect('types')->toUniqueEnums(ElementalType::class),
+            'ailments' => $request->collect('ailments')->toUniqueEnums(Ailment::class),
+            'traits'   => $request->collect('traits')->toUniqueEnums(MoveTrait::class),
+            'sort'     => $request->enum('sort', SearchAttackdexSortBy::class, SearchAttackdexSortBy::NAME),
+            'dir'      => $request->enum('dir', SortDirection::class, SortDirection::ASC),
         ]);
     }
 
@@ -54,6 +53,7 @@ final class SearchAttackdexFilters implements Filter
         return [
             'types'    => FilterOption::listFromEnum(ElementalType::class),
             'ailments' => FilterOption::listFromEnum(Ailment::class),
+            'traits'   => FilterOption::listFromEnum(MoveTrait::class),
         ];
     }
 }
