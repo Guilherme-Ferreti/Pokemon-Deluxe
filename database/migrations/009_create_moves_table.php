@@ -37,6 +37,7 @@ return new class extends Migration
             $table->unsignedTinyInteger('max_hits')->nullable();
 
             $table->boolean('is_zmove')->default(false);
+            $table->boolean('is_dynamax')->default(false);
 
             $table->unsignedTinyInteger('generation');
 

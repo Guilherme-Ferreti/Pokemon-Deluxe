@@ -26,6 +26,7 @@ final class SearchAttackdexQuery
             ->when($filters->types->isNotEmpty(), fn (Builder $query) => $this->applyTypes($query, $filters->types))
             ->when($filters->ailments->isNotEmpty(), fn (Builder $query) => $this->applyAilments($query, $filters->ailments))
             ->when($filters->isZmove, fn (Builder $query) => $this->applyIsZmove($query))
+            ->when($filters->isDynamax, fn (Builder $query) => $this->applyIsDynamax($query))
             ->when(true, fn (Builder $query) => $this->applySorting($query, $filters->sort, $filters->dir));
     }
 
@@ -65,6 +66,15 @@ final class SearchAttackdexQuery
     private function applyIsZmove(Builder $query): Builder
     {
         return $query->where('is_zmove', true);
+    }
+
+    /**
+     * @param  Builder<Move>  $query
+     * @return Builder<Move>
+     */
+    private function applyIsDynamax(Builder $query): Builder
+    {
+        return $query->where('is_dynamax', true);
     }
 
     /**

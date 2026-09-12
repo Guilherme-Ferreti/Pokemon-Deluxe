@@ -37,6 +37,7 @@ final class MoveFactory extends Factory
             'min_hits'       => fake()->optional()->numberBetween(1, 6),
             'max_hits'       => fake()->optional()->numberBetween(1, 6),
             'is_zmove'       => fake()->boolean(),
+            'is_dynamax'     => fn (array $attributes) => $attributes['is_zmove'] ? false : fake()->boolean(),
             'generation'     => fake()->randomElement(Generation::cases()),
             'slug'           => fake()->unique()->slug(),
             'external_id'    => fake()->unique()->slug(),

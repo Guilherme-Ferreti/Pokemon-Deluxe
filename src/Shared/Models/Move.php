@@ -33,6 +33,7 @@ use Shared\Enums\MoveDamageClass;
  * @property int|null $min_hits
  * @property int|null $max_hits
  * @property bool $is_zmove
+ * @property bool $is_dynamax
  * @property Generation $generation
  * @property string $slug
  * @property string $external_id
@@ -62,6 +63,7 @@ final class Move extends Model
             'min_hits'       => 'integer',
             'max_hits'       => 'integer',
             'is_zmove'       => 'boolean',
+            'is_dynamax'     => 'boolean',
             'generation'     => Generation::class,
         ];
     }

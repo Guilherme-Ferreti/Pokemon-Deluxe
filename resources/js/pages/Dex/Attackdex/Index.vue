@@ -6,6 +6,8 @@
   />
   <p>
     Moves marked with <span class="font-extrabold">Z</span> icon are Z-Moves.
+    Moves marked with <span class="font-extrabold">D</span> icon are Dynamax
+    moves.
   </p>
   <AppSection>
     <Attackdex
@@ -44,12 +46,14 @@ export interface DexAttackdexIndexPageProps {
     ailmentChance?: number;
     flinchChance?: number;
     isZmove: boolean;
+    isDynamax: boolean;
   }>;
   activeFilters: {
     search: string;
     types: ElementalType[];
     ailments: Ailment[];
     isZmove: boolean;
+    isDynamax: boolean;
     sort: SearchAttackdexSortBy;
     dir: SortDirection;
   };

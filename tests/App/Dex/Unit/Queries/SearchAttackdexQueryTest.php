@@ -20,6 +20,7 @@ function makeSearchAttackdexFilters(
     array $types = [],
     array $ailments = [],
     bool $isZmove = false,
+    bool $isDynamax = false,
     SearchAttackdexSortBy $sort = SearchAttackdexSortBy::NAME,
     SortDirection $dir = SortDirection::ASC,
 ): SearchAttackdexFilters {
@@ -28,6 +29,7 @@ function makeSearchAttackdexFilters(
         types: collect($types),
         ailments: collect($ailments),
         isZmove: $isZmove,
+        isDynamax: $isDynamax,
         sort: $sort,
         dir: $dir,
     );
@@ -121,6 +123,16 @@ it('filters moves by Z-Moves', function () {
 
     expect($result)->toHaveCount(1)
         ->and($result->pluck('id'))->toContain($zmove->id)->not->toContain($notZmove->id);
+});
+
+it('filters moves by Dynamax moves', function () {
+    $dynamax    = Move::factory()->create(['is_dynamax' => true]);
+    $notDynamax = Move::factory()->create(['is_dynamax' => false]);
+
+    $result = new SearchAttackdexQuery()->handle(makeSearchAttackdexFilters(isDynamax: true))->get();
+
+    expect($result)->toHaveCount(1)
+        ->and($result->pluck('id'))->toContain($dynamax->id)->not->toContain($notDynamax->id);
 });
 
 it('sorts moves by name ascending', function () {

@@ -17,6 +17,7 @@
         v-model:types="searchForm.types"
         v-model:ailments="searchForm.ailments"
         v-model:isZmove="searchForm.isZmove"
+        v-model:isDynamax="searchForm.isDynamax"
         :type-options="filterOptions.types"
         :ailment-options="filterOptions.ailments"
         :active-filters-count="
@@ -84,10 +85,10 @@
           <TableCell>
             {{ move.name }}
             <sup
-              v-if="move.isZmove"
+              v-if="move.isZmove || move.isDynamax"
               class="font-extrabold"
             >
-              Z
+              {{ move.isZmove ? 'Z' : 'D' }}
             </sup>
           </TableCell>
           <TableCell>
@@ -163,6 +164,7 @@ const searchForm = useForm({
   types: props.activeFilters.types,
   ailments: props.activeFilters.ailments,
   isZmove: props.activeFilters.isZmove,
+  isDynamax: props.activeFilters.isDynamax,
   sort: props.activeFilters.sort,
   dir: props.activeFilters.dir,
 });

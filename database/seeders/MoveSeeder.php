@@ -10,7 +10,7 @@ use Illuminate\Support\Str;
 use Shared\Models\Move;
 
 /**
- * @phpstan-type SeederMove array{id:string, name:string, type:string, category:string, damage_class:string, power:?int, accuracy:int, pp:int, ailment:?string, ailment_chance:?int, flinch_chance:?int, min_hits:?int, max_hits:?int, is_zmove:bool, generation:int, slug:string, external_id:string}
+ * @phpstan-type SeederMove array{id:string, name:string, type:string, category:string, damage_class:string, power:?int, accuracy:int, pp:int, ailment:?string, ailment_chance:?int, flinch_chance:?int, min_hits:?int, max_hits:?int, is_zmove:bool, is_dynamax:bool, generation:int, slug:string, external_id:string}
  */
 final class MoveSeeder extends Seeder
 {
@@ -52,6 +52,7 @@ final class MoveSeeder extends Seeder
             'min_hits'       => $move['min_hits'],
             'max_hits'       => $move['max_hits'],
             'is_zmove'       => $move['is_zmove'],
+            'is_dynamax'     => $move['is_dynamax'],
             'generation'     => $move['generation'],
             'slug'           => Str::of($move['name'])->slug()->toString(),
             'external_id'    => $move['external_id'],

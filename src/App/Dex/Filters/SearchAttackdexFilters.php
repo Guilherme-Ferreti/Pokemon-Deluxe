@@ -26,6 +26,8 @@ final class SearchAttackdexFilters implements Filter
 
         public bool $isZmove,
 
+        public bool $isDynamax,
+
         public SearchAttackdexSortBy $sort,
 
         public SortDirection $dir,
@@ -34,12 +36,13 @@ final class SearchAttackdexFilters implements Filter
     public static function fromRequest(Request $request): self
     {
         return new self(...[
-            'search'   => $request->query('search'),
-            'types'    => $request->collect('types')->toUniqueEnums(ElementalType::class),
-            'ailments' => $request->collect('ailments')->toUniqueEnums(Ailment::class),
-            'isZmove'  => $request->boolean('isZmove'),
-            'sort'     => $request->enum('sort', SearchAttackdexSortBy::class, SearchAttackdexSortBy::NAME),
-            'dir'      => $request->enum('dir', SortDirection::class, SortDirection::ASC),
+            'search'    => $request->query('search'),
+            'types'     => $request->collect('types')->toUniqueEnums(ElementalType::class),
+            'ailments'  => $request->collect('ailments')->toUniqueEnums(Ailment::class),
+            'isZmove'   => $request->boolean('isZmove'),
+            'isDynamax' => $request->boolean('isDynamax'),
+            'sort'      => $request->enum('sort', SearchAttackdexSortBy::class, SearchAttackdexSortBy::NAME),
+            'dir'       => $request->enum('dir', SortDirection::class, SortDirection::ASC),
         ]);
     }
 

@@ -35,6 +35,12 @@
         label="Z-Move"
         value="true"
       />
+      <AppCheckbox
+        v-model="checkedIsDynamax"
+        name="isDynamax"
+        label="Dynamax"
+        value="true"
+      />
     </AppCheckboxGroup>
   </AppSearchFiltersDialog>
 </template>
@@ -68,6 +74,10 @@ const checkedIsZmove = defineModel<boolean>('isZmove', {
   default: false,
 });
 
+const checkedIsDynamax = defineModel<boolean>('isDynamax', {
+  default: false,
+});
+
 defineEmits<{
   apply: [value: void];
   close: [value: void];
@@ -77,5 +87,6 @@ function resetFilters() {
   selectedTypes.value = [];
   selectedAilments.value = [];
   checkedIsZmove.value = false;
+  checkedIsDynamax.value = false;
 }
 </script>
