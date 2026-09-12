@@ -16,8 +16,8 @@ final class DatabaseSeeder extends Seeder
         $this->call([
             PokeballSeeder::class,
             EvolutionItemSeeder::class,
-            SpeciesSeeder::class,
             MoveSeeder::class,
+            SpeciesSeeder::class,
             UserSeeder::class,
         ]);
     }

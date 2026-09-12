@@ -61,18 +61,19 @@ final class Species extends Model
     protected function casts(): array
     {
         return [
-            'types'          => AsEnumCollection::of(ElementalType::class),
-            'pokedex_number' => 'integer',
-            'generation'     => Generation::class,
-            'is_baby'        => 'boolean',
-            'is_legendary'   => 'boolean',
-            'is_mythical'    => 'boolean',
-            'is_mega'        => 'boolean',
-            'is_gmax'        => 'boolean',
-            'capture_rate'   => 'integer',
-            'gender_rate'    => 'integer',
-            'sprites'        => SpeciesSprites::class,
-            'portraits'      => SpeciesPortraits::class,
+            'types'             => AsEnumCollection::of(ElementalType::class),
+            'pokedex_number'    => 'integer',
+            'generation'        => Generation::class,
+            'is_baby'           => 'boolean',
+            'is_legendary'      => 'boolean',
+            'is_mythical'       => 'boolean',
+            'is_mega'           => 'boolean',
+            'is_gmax'           => 'boolean',
+            'capture_rate'      => 'integer',
+            'gender_rate'       => 'integer',
+            'sprites'           => SpeciesSprites::class,
+            'portraits'         => SpeciesPortraits::class,
+            'starter_moves_ids' => 'array',
         ];
     }
 

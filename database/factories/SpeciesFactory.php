@@ -7,6 +7,7 @@ namespace Database\Factories;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Shared\Enums\ElementalType;
 use Shared\Enums\Generation;
+use Shared\Models\Move;
 use Shared\Models\Species;
 use Shared\ValueObjects\SpeciesPortraits;
 use Shared\ValueObjects\SpeciesSprites;
@@ -40,16 +41,17 @@ final class SpeciesFactory extends Factory
                 regular: fake()->imageUrl(width: 96, height: 96, word: 'regular'),
                 shiny: fake()->imageUrl(width: 96, height: 96, word: 'shiny'),
             ),
-            'is_baby'      => fake()->boolean(5),
-            'is_legendary' => fake()->boolean(5),
-            'is_mythical'  => fake()->boolean(2),
-            'is_mega'      => fake()->boolean(5),
-            'is_gmax'      => fake()->boolean(5),
-            'generation'   => fake()->randomElement(Generation::cases()),
-            'capture_rate' => fake()->numberBetween(3, 255),
-            'gender_rate'  => fake()->numberBetween(-1, 8),
-            'slug'         => fake()->unique()->uuid(),
-            'external_id'  => fake()->unique()->uuid(),
+            'is_baby'           => fake()->boolean(5),
+            'is_legendary'      => fake()->boolean(5),
+            'is_mythical'       => fake()->boolean(2),
+            'is_mega'           => fake()->boolean(5),
+            'is_gmax'           => fake()->boolean(5),
+            'generation'        => fake()->randomElement(Generation::cases()),
+            'capture_rate'      => fake()->numberBetween(3, 255),
+            'gender_rate'       => fake()->numberBetween(-1, 8),
+            'starter_moves_ids' => Move::factory(4)->create()->pluck('id')->toArray(),
+            'slug'              => fake()->unique()->uuid(),
+            'external_id'       => fake()->unique()->uuid(),
         ];
     }
 
