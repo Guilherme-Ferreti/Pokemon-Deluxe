@@ -133,7 +133,9 @@
     @apply bg-sidebar-inset text-foreground;
   }
   button:not(:disabled):not([data-slot='tooltip-trigger']),
-  [role='button']:not(:disabled):not([data-slot='tooltip-trigger']) {
+  [role='button']:not(:disabled):not([data-slot='tooltip-trigger']),
+  button:not(:disabled)[data-slot='tooltip-trigger'][aria-haspopup='dialog'],
+  [role='button']:not(:disabled)[data-slot='tooltip-trigger'][aria-haspopup='dialog'] {
     cursor: pointer;
   }
 }
