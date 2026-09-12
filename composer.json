@@ -86,7 +86,7 @@
             "@php artisan config:clear --ansi",
             "@format",
             "npm run build",
-            "@php artisan test --parallel"
+            "@php artisan test"
         ],
         "format": [
             "@typescript",
