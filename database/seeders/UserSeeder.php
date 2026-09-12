@@ -48,9 +48,6 @@ final class UserSeeder extends Seeder
                 $regular['id'] = new Pokemon()->newUniqueId();
                 $shiny['id']   = new Pokemon()->newUniqueId();
 
-                $regular['moves_ids'] = json_encode($regular['moves_ids']);
-                $shiny['moves_ids']   = json_encode($shiny['moves_ids']);
-
                 return [$regular, $shiny];
             })
             ->flatten(1)
