@@ -126,10 +126,10 @@
         "capture_rate": 45,
         "gender_rate": 1,
         "starter_moves": [
+            "drum-beating",
             "scratch",
             "double-hit",
-            "branch-poke",
-            "razor-leaf"
+            "branch-poke"
         ],
         "evolutions": [
             {
@@ -742,10 +742,10 @@
         "capture_rate": 45,
         "gender_rate": 4,
         "starter_moves": [
+            "steel-wing",
             "peck",
             "power-trip",
-            "fury-attack",
-            "pluck"
+            "fury-attack"
         ],
         "evolutions": [
             {
@@ -824,7 +824,9 @@
         "generation": 8,
         "capture_rate": 255,
         "gender_rate": 4,
-        "starter_moves": [],
+        "starter_moves": [
+            "struggle-bug"
+        ],
         "evolutions": [
             {
                 "evolves_into": "dottler",
@@ -868,7 +870,8 @@
         "capture_rate": 120,
         "gender_rate": 4,
         "starter_moves": [
-            "confusion"
+            "confusion",
+            "struggle-bug"
         ],
         "evolutions": [
             {
@@ -914,9 +917,9 @@
         "gender_rate": 4,
         "starter_moves": [
             "confusion",
+            "struggle-bug",
             "confuse-ray",
-            "psybeam",
-            "hypnosis"
+            "psybeam"
         ],
         "evolutions": [
             {
@@ -997,9 +1000,9 @@
         "gender_rate": 4,
         "starter_moves": [
             "quick-attack",
+            "snarl",
             "assurance",
-            "sucker-punch",
-            "night-slash"
+            "sucker-punch"
         ],
         "evolutions": [
             {
@@ -1045,8 +1048,8 @@
         "starter_moves": [
             "thief",
             "quick-attack",
-            "assurance",
-            "sucker-punch"
+            "snarl",
+            "assurance"
         ],
         "evolutions": []
     },
@@ -1085,8 +1088,8 @@
         "starter_moves": [
             "sing",
             "leafage",
-            "razor-leaf",
-            "round"
+            "rapid-spin",
+            "razor-leaf"
         ],
         "evolutions": [
             {
@@ -1131,9 +1134,9 @@
         "gender_rate": 4,
         "starter_moves": [
             "sing",
+            "rapid-spin",
             "leafage",
-            "razor-leaf",
-            "round"
+            "razor-leaf"
         ],
         "evolutions": []
     },
@@ -1305,10 +1308,10 @@
         "capture_rate": 75,
         "gender_rate": 4,
         "starter_moves": [
+            "rock-tomb",
             "tackle",
             "bite",
-            "water-gun",
-            "headbutt"
+            "water-gun"
         ],
         "evolutions": [
             {
@@ -1476,9 +1479,9 @@
         "gender_rate": 4,
         "starter_moves": [
             "tackle",
+            "rapid-spin",
             "smack-down",
-            "incinerate",
-            "heat-crash"
+            "ancient-power"
         ],
         "evolutions": [
             {
@@ -1523,10 +1526,10 @@
         "capture_rate": 120,
         "gender_rate": 4,
         "starter_moves": [
+            "flame-charge",
             "tackle",
-            "smack-down",
-            "incinerate",
-            "heat-crash"
+            "rapid-spin",
+            "smack-down"
         ],
         "evolutions": [
             {
@@ -1572,9 +1575,9 @@
         "gender_rate": 4,
         "starter_moves": [
             "tackle",
+            "rapid-spin",
             "smack-down",
-            "incinerate",
-            "heat-crash"
+            "flame-charge"
         ],
         "evolutions": [
             {
@@ -1715,7 +1718,7 @@
             "wing-attack",
             "twister",
             "astonish",
-            "acrobatics"
+            "acid-spray"
         ],
         "evolutions": [
             {
@@ -1881,8 +1884,8 @@
         "starter_moves": [
             "wrap",
             "brutal-swing",
-            "headbutt",
-            "glare"
+            "bulldoze",
+            "headbutt"
         ],
         "evolutions": [
             {
@@ -1929,7 +1932,7 @@
             "wrap",
             "skull-bash",
             "brutal-swing",
-            "headbutt"
+            "bulldoze"
         ],
         "evolutions": [
             {
@@ -2219,6 +2222,7 @@
         "capture_rate": 75,
         "gender_rate": 4,
         "starter_moves": [
+            "acid",
             "flail",
             "belch",
             "nuzzle"
@@ -2273,9 +2277,9 @@
         "gender_rate": 4,
         "starter_moves": [
             "spark",
+            "acid",
             "thunder-shock",
-            "flail",
-            "belch"
+            "flail"
         ],
         "evolutions": [
             {
@@ -2321,9 +2325,9 @@
         "gender_rate": 4,
         "starter_moves": [
             "spark",
+            "acid",
             "thunder-shock",
-            "flail",
-            "belch"
+            "flail"
         ],
         "evolutions": [
             {
@@ -2571,10 +2575,10 @@
         "capture_rate": 180,
         "gender_rate": 4,
         "starter_moves": [
+            "rock-smash",
             "feint",
             "bind",
-            "brick-break",
-            "submission"
+            "brick-break"
         ],
         "evolutions": [
             {
@@ -2619,9 +2623,9 @@
         "gender_rate": 4,
         "starter_moves": [
             "bind",
-            "feint",
-            "brick-break",
-            "submission"
+            "octazooka",
+            "rock-smash",
+            "feint"
         ],
         "evolutions": []
     },
@@ -2659,7 +2663,9 @@
         "gender_rate": -1,
         "starter_moves": [
             "astonish",
-            "sucker-punch"
+            "mega-drain",
+            "sucker-punch",
+            "giga-drain"
         ],
         "evolutions": [
             {
@@ -2703,8 +2709,10 @@
         "capture_rate": 60,
         "gender_rate": -1,
         "starter_moves": [
+            "mega-drain",
             "astonish",
-            "sucker-punch"
+            "sucker-punch",
+            "giga-drain"
         ],
         "evolutions": []
     },
@@ -3016,10 +3024,10 @@
         "capture_rate": 45,
         "gender_rate": 0,
         "starter_moves": [
+            "spirit-break",
             "bite",
             "fake-out",
-            "false-surrender",
-            "assurance"
+            "power-up-punch"
         ],
         "evolutions": [
             {
@@ -3182,8 +3190,8 @@
         "starter_moves": [
             "tackle",
             "astonish",
-            "hex",
-            "power-gem"
+            "ancient-power",
+            "hex"
         ],
         "evolutions": []
     },
@@ -3223,7 +3231,7 @@
             "peck",
             "fury-cutter",
             "first-impression",
-            "brutal-swing"
+            "rock-smash"
         ],
         "evolutions": []
     },
@@ -3262,9 +3270,9 @@
         "gender_rate": 4,
         "starter_moves": [
             "pound",
+            "rapid-spin",
             "ice-shard",
-            "dazzling-gleam",
-            "confusion"
+            "dazzling-gleam"
         ],
         "evolutions": []
     },
@@ -3344,6 +3352,7 @@
         "starter_moves": [
             "tackle",
             "sweet-kiss",
+            "draining-kiss",
             "dazzling-gleam"
         ],
         "evolutions": [
@@ -3390,6 +3399,7 @@
         "starter_moves": [
             "tackle",
             "sweet-kiss",
+            "draining-kiss",
             "dazzling-gleam"
         ],
         "evolutions": [
@@ -3470,9 +3480,9 @@
         "gender_rate": -1,
         "starter_moves": [
             "tackle",
+            "rock-smash",
             "headbutt",
-            "reversal",
-            "first-impression"
+            "reversal"
         ],
         "evolutions": [
             {
@@ -3592,7 +3602,8 @@
         "capture_rate": 190,
         "gender_rate": 4,
         "starter_moves": [
-            "powder-snow"
+            "powder-snow",
+            "struggle-bug"
         ],
         "evolutions": [
             {
@@ -3637,10 +3648,10 @@
         "capture_rate": 75,
         "gender_rate": 4,
         "starter_moves": [
+            "icy-wind",
             "powder-snow",
-            "stun-spore",
-            "infestation",
-            "blizzard"
+            "struggle-bug",
+            "stun-spore"
         ],
         "evolutions": []
     },
@@ -3678,9 +3689,9 @@
         "gender_rate": 4,
         "starter_moves": [
             "rock-throw",
+            "rock-tomb",
             "stomp",
-            "rock-slide",
-            "body-slam"
+            "rock-slide"
         ],
         "evolutions": []
     },
@@ -3720,7 +3731,7 @@
             "tackle",
             "powder-snow",
             "weather-ball",
-            "headbutt"
+            "icy-wind"
         ],
         "evolutions": []
     },
@@ -3760,7 +3771,7 @@
             "tackle",
             "powder-snow",
             "weather-ball",
-            "headbutt"
+            "icy-wind"
         ],
         "evolutions": []
     },
@@ -3797,7 +3808,12 @@
         "generation": 8,
         "capture_rate": 30,
         "gender_rate": 4,
-        "starter_moves": [],
+        "starter_moves": [
+            "stored-power",
+            "disarming-voice",
+            "psybeam",
+            "psychic"
+        ],
         "evolutions": []
     },
     "morpeko-full-belly": {
@@ -3917,8 +3933,8 @@
         "starter_moves": [
             "tackle",
             "rollout",
-            "stomp",
-            "dig"
+            "rock-smash",
+            "bulldoze"
         ],
         "evolutions": [
             {
@@ -3965,7 +3981,7 @@
             "heavy-slam",
             "tackle",
             "rollout",
-            "stomp"
+            "rock-smash"
         ],
         "evolutions": [
             {
@@ -4048,7 +4064,7 @@
             "tackle",
             "thunder-shock",
             "aerial-ace",
-            "pluck"
+            "ancient-power"
         ],
         "evolutions": []
     },
@@ -4089,7 +4105,7 @@
             "thunder-shock",
             "powder-snow",
             "echoed-voice",
-            "pluck"
+            "ancient-power"
         ],
         "evolutions": []
     },
@@ -4130,7 +4146,7 @@
             "tackle",
             "water-gun",
             "brutal-swing",
-            "bite"
+            "ancient-power"
         ],
         "evolutions": []
     },
@@ -4170,8 +4186,8 @@
         "starter_moves": [
             "water-gun",
             "powder-snow",
-            "bite",
-            "freeze-dry"
+            "icy-wind",
+            "ancient-power"
         ],
         "evolutions": []
     },
@@ -4209,10 +4225,10 @@
         "capture_rate": 45,
         "gender_rate": 4,
         "starter_moves": [
-            "dragon-tail",
-            "dragon-claw",
-            "metal-burst",
-            "hyper-beam"
+            "metal-claw",
+            "rock-smash",
+            "breaking-swipe",
+            "dragon-tail"
         ],
         "evolutions": [
             {
@@ -4437,8 +4453,8 @@
         "starter_moves": [
             "bite",
             "quick-attack",
-            "sacred-sword",
-            "slash"
+            "metal-claw",
+            "sacred-sword"
         ],
         "evolutions": []
     },
@@ -4478,8 +4494,8 @@
         "starter_moves": [
             "bite",
             "quick-attack",
-            "sacred-sword",
-            "slash"
+            "metal-claw",
+            "sacred-sword"
         ],
         "evolutions": []
     },
@@ -4518,8 +4534,8 @@
         "starter_moves": [
             "bite",
             "quick-attack",
-            "slash",
-            "metal-burst"
+            "metal-claw",
+            "slash"
         ],
         "evolutions": []
     },
@@ -4559,8 +4575,8 @@
         "starter_moves": [
             "bite",
             "quick-attack",
-            "slash",
-            "metal-burst"
+            "metal-claw",
+            "slash"
         ],
         "evolutions": []
     },
@@ -4679,10 +4695,10 @@
         "capture_rate": 3,
         "gender_rate": 1,
         "starter_moves": [
+            "rock-smash",
             "aerial-ace",
             "headbutt",
-            "brick-break",
-            "iron-head"
+            "brick-break"
         ],
         "evolutions": [
             {
@@ -4734,9 +4750,9 @@
         "gender_rate": 1,
         "starter_moves": [
             "wicked-blow",
+            "rock-smash",
             "sucker-punch",
-            "aerial-ace",
-            "headbutt"
+            "aerial-ace"
         ],
         "evolutions": [
             {
@@ -4782,9 +4798,9 @@
         "gender_rate": 1,
         "starter_moves": [
             "surging-strikes",
+            "rock-smash",
             "aqua-jet",
-            "aerial-ace",
-            "headbutt"
+            "aerial-ace"
         ],
         "evolutions": [
             {
@@ -4942,9 +4958,9 @@
         "gender_rate": -1,
         "starter_moves": [
             "thunder-shock",
-            "shock-wave",
-            "thunder-wave",
-            "extreme-speed"
+            "rapid-spin",
+            "electroweb",
+            "ancient-power"
         ],
         "evolutions": []
     },
@@ -4984,7 +5000,7 @@
             "vice-grip",
             "twister",
             "bite",
-            "dragon-breath"
+            "ancient-power"
         ],
         "evolutions": []
     },
@@ -5103,9 +5119,9 @@
         "gender_rate": -1,
         "starter_moves": [
             "pound",
+            "mega-drain",
             "confusion",
-            "psyshock",
-            "solar-beam"
+            "giga-drain"
         ],
         "evolutions": []
     },
@@ -5268,8 +5284,8 @@
         "starter_moves": [
             "quick-attack",
             "fury-cutter",
-            "false-swipe",
-            "aerial-ace"
+            "silver-wind",
+            "false-swipe"
         ],
         "evolutions": []
     },
@@ -5388,7 +5404,12 @@
         "generation": 8,
         "capture_rate": 135,
         "gender_rate": 4,
-        "starter_moves": [],
+        "starter_moves": [
+            "water-gun",
+            "phantom-force",
+            "tackle",
+            "flail"
+        ],
         "evolutions": []
     },
     "sneasler": {
@@ -5427,8 +5448,8 @@
         "starter_moves": [
             "scratch",
             "fling",
-            "quick-attack",
-            "swift"
+            "rock-smash",
+            "quick-attack"
         ],
         "evolutions": []
     },
@@ -5551,7 +5572,7 @@
             "astonish",
             "fairy-wind",
             "twister",
-            "dazzling-gleam"
+            "draining-kiss"
         ],
         "evolutions": []
     },
@@ -5591,7 +5612,7 @@
             "fake-out",
             "scratch",
             "pay-day",
-            "fury-swipes"
+            "metal-claw"
         ],
         "evolutions": [
             {
@@ -5724,9 +5745,9 @@
         "gender_rate": 4,
         "starter_moves": [
             "tackle",
+            "acid",
             "confusion",
-            "water-pulse",
-            "headbutt"
+            "water-pulse"
         ],
         "evolutions": [
             {
@@ -5779,8 +5800,8 @@
         "starter_moves": [
             "shell-side-arm",
             "tackle",
-            "confusion",
-            "water-pulse"
+            "acid",
+            "confusion"
         ],
         "evolutions": []
     },
@@ -5819,8 +5840,8 @@
         "starter_moves": [
             "peck",
             "fury-cutter",
-            "brutal-swing",
-            "knock-off"
+            "rock-smash",
+            "brutal-swing"
         ],
         "evolutions": [
             {
@@ -5907,9 +5928,9 @@
         "gender_rate": 4,
         "starter_moves": [
             "pound",
+            "rapid-spin",
             "ice-shard",
-            "dazzling-gleam",
-            "confusion"
+            "dazzling-gleam"
         ],
         "evolutions": [
             {
@@ -5957,7 +5978,7 @@
             "gust",
             "confusion",
             "hypnosis",
-            "psycho-cut"
+            "ancient-power"
         ],
         "evolutions": []
     },
@@ -5996,9 +6017,9 @@
         "gender_rate": -1,
         "starter_moves": [
             "peck",
+            "rock-smash",
             "pluck",
-            "brick-break",
-            "drill-peck"
+            "ancient-power"
         ],
         "evolutions": []
     },
@@ -6039,7 +6060,7 @@
             "gust",
             "payback",
             "wing-attack",
-            "sucker-punch"
+            "ancient-power"
         ],
         "evolutions": []
     },
@@ -6079,8 +6100,8 @@
         "starter_moves": [
             "eerie-spell",
             "tackle",
-            "power-gem",
-            "confusion"
+            "acid",
+            "power-gem"
         ],
         "evolutions": []
     },
@@ -6119,8 +6140,8 @@
         "starter_moves": [
             "tackle",
             "astonish",
-            "hex",
-            "power-gem"
+            "ancient-power",
+            "hex"
         ],
         "evolutions": [
             {
@@ -6167,8 +6188,8 @@
         "starter_moves": [
             "tackle",
             "lick",
-            "headbutt",
-            "pin-missile"
+            "snarl",
+            "headbutt"
         ],
         "evolutions": [
             {
@@ -6445,8 +6466,8 @@
         "starter_moves": [
             "tackle",
             "water-gun",
-            "revenge",
-            "sucker-punch"
+            "mud-slap",
+            "metal-claw"
         ],
         "evolutions": []
     }
