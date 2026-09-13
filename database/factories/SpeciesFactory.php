@@ -49,7 +49,7 @@ final class SpeciesFactory extends Factory
             'generation'        => fake()->randomElement(Generation::cases()),
             'capture_rate'      => fake()->numberBetween(3, 255),
             'gender_rate'       => fake()->numberBetween(-1, 8),
-            'starter_moves_ids' => Move::factory(4)->create()->pluck('id')->toArray(),
+            'starter_moves_ids' => fn () => Move::factory(4)->create()->pluck('id')->toArray(),
             'slug'              => fake()->unique()->uuid(),
             'external_id'       => fake()->unique()->uuid(),
         ];
