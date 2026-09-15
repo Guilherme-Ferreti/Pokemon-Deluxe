@@ -72,7 +72,7 @@ final class Move extends Model
     /**
      * @return BelongsToMany<Species, $this, SpeciesLearnableMove, 'learning'>
      */
-    public function learnedBy(): BelongsToMany
+    public function learnedBySpecies(): BelongsToMany
     {
         return $this->belongsToMany(Species::class, 'species_learnable_moves')
             ->as('learning')
