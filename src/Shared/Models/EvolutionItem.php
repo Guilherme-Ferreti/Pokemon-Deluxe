@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Shared\Models;
 
 use Database\Factories\EvolutionItemFactory;
-use Illuminate\Database\Eloquent\Attributes\Unguarded;
+use Illuminate\Database\Eloquent\Attributes\WithoutTimestamps;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -21,7 +21,7 @@ use Illuminate\Support\Carbon;
  * @property Carbon $created_at
  * @property Carbon $updated_at
  */
-#[Unguarded]
+#[WithoutTimestamps]
 final class EvolutionItem extends Model
 {
     /** @use HasFactory<EvolutionItemFactory> */

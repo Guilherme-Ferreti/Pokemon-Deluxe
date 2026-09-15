@@ -7,7 +7,7 @@ namespace Shared\Models;
 use Database\Factories\SpeciesFactory;
 use Illuminate\Database\Eloquent\Attributes\Scope;
 use Illuminate\Database\Eloquent\Attributes\Table;
-use Illuminate\Database\Eloquent\Attributes\Unguarded;
+use Illuminate\Database\Eloquent\Attributes\WithoutTimestamps;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Casts\AsEnumCollection;
 use Illuminate\Database\Eloquent\Collection as EloquentCollection;
@@ -50,7 +50,7 @@ use Shared\ValueObjects\SpeciesSprites;
  * @property-read EloquentCollection<int, Pokemon> $pokemon
  */
 #[Table('species')]
-#[Unguarded]
+#[WithoutTimestamps]
 final class Species extends Model
 {
     /** @use HasFactory<SpeciesFactory> */

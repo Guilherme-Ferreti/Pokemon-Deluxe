@@ -6,7 +6,7 @@ namespace Shared\Models;
 
 use Database\Factories\MoveFactory;
 use Illuminate\Database\Eloquent\Attributes\Table;
-use Illuminate\Database\Eloquent\Attributes\Unguarded;
+use Illuminate\Database\Eloquent\Attributes\WithoutTimestamps;
 use Illuminate\Database\Eloquent\Collection as EloquentCollection;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -44,7 +44,7 @@ use Shared\Enums\MoveDamageClass;
  * @property-read EloquentCollection<int, SpeciesLearnableMove> $learnableBySpecies
  */
 #[Table('moves')]
-#[Unguarded]
+#[WithoutTimestamps]
 final class Move extends Model
 {
     /** @use HasFactory<MoveFactory> */

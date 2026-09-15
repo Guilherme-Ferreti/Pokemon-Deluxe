@@ -124,8 +124,6 @@ final class SpeciesSeeder extends Seeder
             'gender_rate'  => $species['gender_rate'],
             'slug'         => $this->generateSpeciesSlug($species['name']),
             'external_id'  => $species['external_id'],
-            'created_at'   => now(),
-            'updated_at'   => now(),
         ];
     }
 
@@ -142,8 +140,6 @@ final class SpeciesSeeder extends Seeder
             'evolution_item_id' => is_null($evolution['item']) ? null : $this->evolutionItemIds[$evolution['item']],
             'min_level'         => $evolution['min_level'],
             'gender'            => $evolution['gender'],
-            'created_at'        => now(),
-            'updated_at'        => now(),
         ], $species['evolutions']);
     }
 

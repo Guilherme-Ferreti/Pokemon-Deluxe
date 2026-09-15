@@ -12,12 +12,13 @@ return new class extends Migration
     {
         Schema::create('evolution_items', function (Blueprint $table): void {
             $table->uuid('id')->primary();
+
             $table->string('name');
             $table->text('description');
             $table->string('sprite')->nullable();
+
             $table->string('slug')->unique();
             $table->string('external_id')->unique();
-            $table->timestamps();
         });
     }
 

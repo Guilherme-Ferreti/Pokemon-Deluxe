@@ -27,8 +27,6 @@ final class PokeballSeeder extends Seeder
                 'capture_rate' => $pokeball['capture_rate'],
                 'slug'         => $pokeball['id'],
                 'external_id'  => $pokeball['external_id'],
-                'created_at'   => now(),
-                'updated_at'   => now(),
             ];
         }
 

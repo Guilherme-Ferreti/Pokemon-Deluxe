@@ -25,8 +25,6 @@ final class EvolutionItemSeeder extends Seeder
                 'description' => $item['description'],
                 'slug'        => $item['id'],
                 'external_id' => $item['external_id'],
-                'created_at'  => now(),
-                'updated_at'  => now(),
             ];
         }
 

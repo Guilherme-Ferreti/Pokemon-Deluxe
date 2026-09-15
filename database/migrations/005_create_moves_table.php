@@ -44,7 +44,7 @@ return new class extends Migration
             $table->string('slug')->unique();
             $table->string('external_id')->unique();
 
-            $table->timestamps();
+            $table->index('name');
         });
     }
 

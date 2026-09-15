@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Shared\Models;
 
 use Database\Factories\PokeballFactory;
-use Illuminate\Database\Eloquent\Attributes\Unguarded;
+use Illuminate\Database\Eloquent\Attributes\WithoutTimestamps;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -25,7 +25,7 @@ use Shared\Enums\PokeballType;
  * @property Carbon $created_at
  * @property Carbon $updated_at
  */
-#[Unguarded]
+#[WithoutTimestamps]
 final class Pokeball extends Model
 {
     /** @use HasFactory<PokeballFactory> */

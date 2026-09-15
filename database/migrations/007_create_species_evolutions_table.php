@@ -24,7 +24,8 @@ return new class extends Migration
             $table->unsignedTinyInteger('min_level')->nullable();
             $table->enum('gender', Arr::pluck(PokemonGender::cases(), 'value'))->nullable();
 
-            $table->timestamps();
+            $table->unique(['from_species_id', 'into_species_id']);
+            $table->index('into_species_id');
         });
     }
 

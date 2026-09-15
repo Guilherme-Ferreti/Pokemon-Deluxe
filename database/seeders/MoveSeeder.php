@@ -56,8 +56,6 @@ final class MoveSeeder extends Seeder
             'generation'     => $move['generation'],
             'slug'           => Str::of($move['name'])->slug()->toString(),
             'external_id'    => $move['external_id'],
-            'created_at'     => now(),
-            'updated_at'     => now(),
         ];
     }
 }

@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Shared\Models;
 
-use Illuminate\Database\Eloquent\Attributes\Unguarded;
+use Illuminate\Database\Eloquent\Attributes\WithoutTimestamps;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -25,7 +25,7 @@ use Shared\Enums\PokemonGender;
  * @property-read Species $into
  * @property-read EvolutionItem|null $evolutionItem
  */
-#[Unguarded]
+#[WithoutTimestamps]
 final class SpeciesEvolution extends Model
 {
     use HasUuids;

@@ -20,6 +20,9 @@ return new class extends Migration
 
             $table->unsignedTinyInteger('level_learn')->nullable();
             $table->boolean('is_base_move')->default(false);
+
+            $table->unique(['species_id', 'move_id']);
+            $table->index('move_id');
         });
     }
 
