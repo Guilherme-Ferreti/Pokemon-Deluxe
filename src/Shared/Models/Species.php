@@ -14,7 +14,6 @@ use Illuminate\Database\Eloquent\Collection as EloquentCollection;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Collection;
@@ -47,6 +46,8 @@ use Shared\ValueObjects\SpeciesSprites;
  * @property Carbon $updated_at
  * @property-read EloquentCollection<int, SpeciesEvolution> $evolutions
  * @property-read EloquentCollection<int, SpeciesEvolution> $previousEvolutions
+ * @property-read EloquentCollection<int, SpeciesLearnableMove> $learnableMoves
+ * @property-read EloquentCollection<int, Pokemon> $pokemon
  */
 #[Table('species')]
 #[Unguarded]
@@ -94,14 +95,11 @@ final class Species extends Model
     }
 
     /**
-     * @return BelongsToMany<Move, $this, SpeciesLearnableMove, 'learning'>
+     * @return HasMany<SpeciesLearnableMove, $this>
      */
-    public function learnableMoves(): BelongsToMany
+    public function learnableMoves(): HasMany
     {
-        return $this->belongsToMany(Move::class, 'species_learnable_moves')
-            ->as('learning')
-            ->using(SpeciesLearnableMove::class)
-            ->withPivot('is_base', 'level');
+        return $this->hasMany(SpeciesLearnableMove::class);
     }
 
     /**

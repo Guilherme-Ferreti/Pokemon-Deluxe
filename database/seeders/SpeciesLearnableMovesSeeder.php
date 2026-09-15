@@ -36,10 +36,11 @@ final class SpeciesLearnableMovesSeeder extends Seeder
             foreach ($moves as $speciesId => $moves) {
                 foreach ($moves as $moveId => $move) {
                     $data[] = [
-                        'species_id' => $this->speciesIds[$speciesId],
-                        'move_id'    => $this->movesIds[$moveId],
-                        'level'      => $move['level'],
-                        'is_base'    => $move['is_base'],
+                        'id'           => new SpeciesLearnableMove()->newUniqueId(),
+                        'species_id'   => $this->speciesIds[$speciesId],
+                        'move_id'      => $this->movesIds[$moveId],
+                        'level_learn'  => $move['level_learn'],
+                        'is_base_move' => $move['is_base_move'],
                     ];
                 }
             }

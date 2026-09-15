@@ -13,11 +13,13 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('species_learnable_moves', function (Blueprint $table): void {
-            $table->foreignIdFor(Move::class)->constrained()->cascadeOnDelete();
-            $table->foreignIdFor(Species::class)->constrained()->cascadeOnDelete();
+            $table->uuid('id')->primary();
 
-            $table->unsignedTinyInteger('level')->nullable();
-            $table->boolean('is_base')->default(false);
+            $table->foreignIdFor(Species::class)->constrained()->cascadeOnDelete();
+            $table->foreignIdFor(Move::class)->constrained()->cascadeOnDelete();
+
+            $table->unsignedTinyInteger('level_learn')->nullable();
+            $table->boolean('is_base_move')->default(false);
         });
     }
 

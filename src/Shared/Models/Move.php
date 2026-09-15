@@ -7,10 +7,11 @@ namespace Shared\Models;
 use Database\Factories\MoveFactory;
 use Illuminate\Database\Eloquent\Attributes\Table;
 use Illuminate\Database\Eloquent\Attributes\Unguarded;
+use Illuminate\Database\Eloquent\Collection as EloquentCollection;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Support\Carbon;
 use Override;
 use Shared\Enums\Ailment;
@@ -40,6 +41,7 @@ use Shared\Enums\MoveDamageClass;
  * @property string $external_id
  * @property Carbon $created_at
  * @property Carbon $updated_at
+ * @property-read EloquentCollection<int, SpeciesLearnableMove> $learnableBySpecies
  */
 #[Table('moves')]
 #[Unguarded]
@@ -70,13 +72,10 @@ final class Move extends Model
     }
 
     /**
-     * @return BelongsToMany<Species, $this, SpeciesLearnableMove, 'learning'>
+     * @return HasMany<SpeciesLearnableMove, $this>
      */
-    public function learnedBySpecies(): BelongsToMany
+    public function learnableBySpecies(): HasMany
     {
-        return $this->belongsToMany(Species::class, 'species_learnable_moves')
-            ->as('learning')
-            ->using(SpeciesLearnableMove::class)
-            ->withPivot('is_base', 'level');
+        return $this->hasMany(SpeciesLearnableMove::class);
     }
 }
