@@ -96,17 +96,15 @@ it('displays evolution chain', function () {
     $stageTwo      = Species::factory()->create();
     $evolutionItem = EvolutionItem::factory()->create();
 
-    SpeciesEvolution::create([
-        'from_species_id' => $basic->id,
-        'into_species_id' => $stageOne->id,
-        'min_level'       => 16,
-        'gender'          => PokemonGender::FEMALE,
+    SpeciesEvolution::factory()->for($basic, 'from')->for($stageOne, 'into')->create([
+        'evolution_item_id' => null,
+        'min_level'         => 16,
+        'gender'            => PokemonGender::FEMALE,
     ]);
 
-    SpeciesEvolution::create([
-        'from_species_id'   => $stageOne->id,
-        'into_species_id'   => $stageTwo->id,
-        'evolution_item_id' => $evolutionItem->id,
+    SpeciesEvolution::factory()->for($stageOne, 'from')->for($stageTwo, 'into')->for($evolutionItem)->create([
+        'min_level' => null,
+        'gender'    => null,
     ]);
 
     actingAs($user);
