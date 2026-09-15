@@ -14,6 +14,7 @@ use Illuminate\Database\Eloquent\Collection as EloquentCollection;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Collection;
@@ -61,19 +62,18 @@ final class Species extends Model
     protected function casts(): array
     {
         return [
-            'types'             => AsEnumCollection::of(ElementalType::class),
-            'pokedex_number'    => 'integer',
-            'generation'        => Generation::class,
-            'is_baby'           => 'boolean',
-            'is_legendary'      => 'boolean',
-            'is_mythical'       => 'boolean',
-            'is_mega'           => 'boolean',
-            'is_gmax'           => 'boolean',
-            'capture_rate'      => 'integer',
-            'gender_rate'       => 'integer',
-            'sprites'           => SpeciesSprites::class,
-            'portraits'         => SpeciesPortraits::class,
-            'starter_moves_ids' => 'array',
+            'types'          => AsEnumCollection::of(ElementalType::class),
+            'pokedex_number' => 'integer',
+            'generation'     => Generation::class,
+            'is_baby'        => 'boolean',
+            'is_legendary'   => 'boolean',
+            'is_mythical'    => 'boolean',
+            'is_mega'        => 'boolean',
+            'is_gmax'        => 'boolean',
+            'capture_rate'   => 'integer',
+            'gender_rate'    => 'integer',
+            'sprites'        => SpeciesSprites::class,
+            'portraits'      => SpeciesPortraits::class,
         ];
     }
 
@@ -91,6 +91,17 @@ final class Species extends Model
     public function previousEvolutions(): HasMany
     {
         return $this->hasMany(SpeciesEvolution::class, 'into_species_id');
+    }
+
+    /**
+     * @return BelongsToMany<Move, $this, SpeciesLearnableMove, 'learning'>
+     */
+    public function learnableMoves(): BelongsToMany
+    {
+        return $this->belongsToMany(Move::class, 'species_learnable_moves')
+            ->as('learning')
+            ->using(SpeciesLearnableMove::class)
+            ->withPivot('is_base', 'level');
     }
 
     /**

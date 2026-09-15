@@ -25,7 +25,10 @@
       />
     </section>
     <section class="@4xl/main-content:order-1">
-      <PokedexSpeciesEvolutionChain :evolution-chain="evolutionChain" />
+      <PokedexSpeciesEvolutionChain
+        class="h-full @4xl/main-content:h-auto"
+        :evolution-chain="evolutionChain"
+      />
     </section>
     <section>
       <PokedexSpeciesDamageTaken

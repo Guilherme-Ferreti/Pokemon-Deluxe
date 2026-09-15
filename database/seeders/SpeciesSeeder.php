@@ -5,11 +5,9 @@ declare(strict_types=1);
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Arr;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
 use Shared\Models\EvolutionItem;
-use Shared\Models\Move;
 use Shared\Models\Species;
 use Shared\Models\SpeciesEvolution;
 
@@ -17,7 +15,7 @@ use Shared\Models\SpeciesEvolution;
  * @phpstan-type SeederEvolution array{evolves_into:string, item:?string, min_level:?int, gender:?int}
  * @phpstan-type SeederSprites array{back_default:?string, back_female:?string, back_shiny:?string, back_shiny_female:?string, front_default:?string, front_female:?string, front_shiny:?string, front_shiny_female:?string}
  * @phpstan-type SeederPortraits array{regular:?string, shiny:?string}
- * @phpstan-type SeederSpecies array{id:string, external_id:string, name:string, types:list<string>, pokedex_number:int, genus:string, flavor_text:string, sprites:SeederSprites, portraits:SeederPortraits, is_baby:bool, is_legendary:bool, is_mythical:bool, is_mega:bool, is_gmax:bool, generation:int, capture_rate:?int, gender_rate:int, starter_moves:array<string>, evolutions:list<SeederEvolution>}
+ * @phpstan-type SeederSpecies array{id:string, external_id:string, name:string, types:list<string>, pokedex_number:int, genus:string, flavor_text:string, sprites:SeederSprites, portraits:SeederPortraits, is_baby:bool, is_legendary:bool, is_mythical:bool, is_mega:bool, is_gmax:bool, generation:int, capture_rate:?int, gender_rate:int, evolutions:list<SeederEvolution>}
  */
 final class SpeciesSeeder extends Seeder
 {
@@ -25,14 +23,10 @@ final class SpeciesSeeder extends Seeder
     private array $speciesIds = [];
 
     /** @var array<string, string> */
-    private array $movesIds = [];
-
-    /** @var array<string, string> */
     private array $evolutionItemIds = [];
 
     public function run(): void
     {
-        $this->movesIds         = $this->getMovesIds();
         $this->evolutionItemIds = $this->getEvolutionItemIds();
 
         $this->insertSpeciesFromFiles();
@@ -120,19 +114,18 @@ final class SpeciesSeeder extends Seeder
                 'regular' => $species['portraits']['regular'],
                 'shiny'   => $species['portraits']['shiny'],
             ]),
-            'is_baby'           => $species['is_baby'],
-            'is_legendary'      => $species['is_legendary'],
-            'is_mythical'       => $species['is_mythical'],
-            'is_mega'           => $species['is_mega'],
-            'is_gmax'           => $species['is_gmax'],
-            'generation'        => $species['generation'],
-            'capture_rate'      => $species['capture_rate'],
-            'gender_rate'       => $species['gender_rate'],
-            'starter_moves_ids' => json_encode($this->getStarterMovesIds($species)),
-            'slug'              => $this->generateSpeciesSlug($species['name']),
-            'external_id'       => $species['external_id'],
-            'created_at'        => now(),
-            'updated_at'        => now(),
+            'is_baby'      => $species['is_baby'],
+            'is_legendary' => $species['is_legendary'],
+            'is_mythical'  => $species['is_mythical'],
+            'is_mega'      => $species['is_mega'],
+            'is_gmax'      => $species['is_gmax'],
+            'generation'   => $species['generation'],
+            'capture_rate' => $species['capture_rate'],
+            'gender_rate'  => $species['gender_rate'],
+            'slug'         => $this->generateSpeciesSlug($species['name']),
+            'external_id'  => $species['external_id'],
+            'created_at'   => now(),
+            'updated_at'   => now(),
         ];
     }
 
@@ -157,40 +150,6 @@ final class SpeciesSeeder extends Seeder
     private function getSpeciesId(string $externalId): string
     {
         return $this->speciesIds[$externalId] ??= (new Species)->newUniqueId();
-    }
-
-    /**
-     * @param  SeederSpecies  $species
-     * @return array<int, string>
-     */
-    private function getStarterMovesIds(array $species): array
-    {
-        if ($species['is_mega'] || $species['is_gmax']) {
-            return [];
-        }
-
-        $movesIds = array_map(
-            fn (string $moveExternalId) => $this->movesIds[$moveExternalId],
-            $species['starter_moves']
-        );
-
-        if ($movesIds === []) {
-            $movesIds[] = $this->movesIds['tackle'];
-        }
-
-        while (count($movesIds) < 4) {
-            $movesIds = [...$movesIds, ...$movesIds];
-        }
-
-        return Arr::take($movesIds, 4);
-    }
-
-    /**
-     * @return array<string, string>
-     */
-    private function getMovesIds(): array
-    {
-        return Move::pluck('id', 'external_id')->toArray();
     }
 
     /**

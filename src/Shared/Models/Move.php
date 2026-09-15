@@ -10,6 +10,7 @@ use Illuminate\Database\Eloquent\Attributes\Unguarded;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Support\Carbon;
 use Override;
 use Shared\Enums\Ailment;
@@ -66,5 +67,16 @@ final class Move extends Model
             'is_dynamax'     => 'boolean',
             'generation'     => Generation::class,
         ];
+    }
+
+    /**
+     * @return BelongsToMany<Species, $this, SpeciesLearnableMove, 'learning'>
+     */
+    public function learnedBy(): BelongsToMany
+    {
+        return $this->belongsToMany(Species::class, 'species_learnable_moves')
+            ->as('learning')
+            ->using(SpeciesLearnableMove::class)
+            ->withPivot('is_base', 'level');
     }
 }

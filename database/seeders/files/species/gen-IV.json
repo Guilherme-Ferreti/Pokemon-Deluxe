@@ -31,12 +31,6 @@
         "generation": 4,
         "capture_rate": 45,
         "gender_rate": 1,
-        "starter_moves": [
-            "tackle",
-            "leafage",
-            "absorb",
-            "razor-leaf"
-        ],
         "evolutions": [
             {
                 "evolves_into": "grotle",
@@ -78,12 +72,6 @@
         "generation": 4,
         "capture_rate": 45,
         "gender_rate": 1,
-        "starter_moves": [
-            "leafage",
-            "absorb",
-            "razor-leaf",
-            "bulldoze"
-        ],
         "evolutions": [
             {
                 "evolves_into": "torterra",
@@ -126,12 +114,6 @@
         "generation": 4,
         "capture_rate": 45,
         "gender_rate": 1,
-        "starter_moves": [
-            "bulldoze",
-            "bite",
-            "sleep-powder",
-            "mega-drain"
-        ],
         "evolutions": []
     },
     "chimchar": {
@@ -166,12 +148,6 @@
         "generation": 4,
         "capture_rate": 45,
         "gender_rate": 1,
-        "starter_moves": [
-            "scratch",
-            "tackle",
-            "ember",
-            "swift"
-        ],
         "evolutions": [
             {
                 "evolves_into": "monferno",
@@ -214,12 +190,6 @@
         "generation": 4,
         "capture_rate": 45,
         "gender_rate": 1,
-        "starter_moves": [
-            "ember",
-            "mach-punch",
-            "swift",
-            "power-up-punch"
-        ],
         "evolutions": [
             {
                 "evolves_into": "infernape",
@@ -262,12 +232,6 @@
         "generation": 4,
         "capture_rate": 45,
         "gender_rate": 1,
-        "starter_moves": [
-            "close-combat",
-            "feint",
-            "u-turn",
-            "punishment"
-        ],
         "evolutions": []
     },
     "piplup": {
@@ -302,12 +266,6 @@
         "generation": 4,
         "capture_rate": 45,
         "gender_rate": 1,
-        "starter_moves": [
-            "pound",
-            "tackle",
-            "water-gun",
-            "bubble"
-        ],
         "evolutions": [
             {
                 "evolves_into": "prinplup",
@@ -349,12 +307,6 @@
         "generation": 4,
         "capture_rate": 45,
         "gender_rate": 1,
-        "starter_moves": [
-            "bubble",
-            "metal-claw",
-            "aerial-ace",
-            "peck"
-        ],
         "evolutions": [
             {
                 "evolves_into": "empoleon",
@@ -397,12 +349,6 @@
         "generation": 4,
         "capture_rate": 45,
         "gender_rate": 1,
-        "starter_moves": [
-            "bubble-beam",
-            "fury-attack",
-            "brine",
-            "liquidation"
-        ],
         "evolutions": []
     },
     "starly": {
@@ -438,12 +384,6 @@
         "generation": 4,
         "capture_rate": 255,
         "gender_rate": 4,
-        "starter_moves": [
-            "gust",
-            "tackle",
-            "quick-attack",
-            "wing-attack"
-        ],
         "evolutions": [
             {
                 "evolves_into": "staravia",
@@ -486,12 +426,6 @@
         "generation": 4,
         "capture_rate": 120,
         "gender_rate": 4,
-        "starter_moves": [
-            "gust",
-            "tackle",
-            "quick-attack",
-            "wing-attack"
-        ],
         "evolutions": [
             {
                 "evolves_into": "staraptor",
@@ -534,12 +468,6 @@
         "generation": 4,
         "capture_rate": 45,
         "gender_rate": 4,
-        "starter_moves": [
-            "endeavor",
-            "aerial-ace",
-            "double-edge",
-            "take-down"
-        ],
         "evolutions": [
             {
                 "evolves_into": "staraptor-mega",
@@ -582,7 +510,6 @@
         "generation": 4,
         "capture_rate": null,
         "gender_rate": 4,
-        "starter_moves": [],
         "evolutions": []
     },
     "bidoof": {
@@ -617,12 +544,6 @@
         "generation": 4,
         "capture_rate": 255,
         "gender_rate": 4,
-        "starter_moves": [
-            "tackle",
-            "bite",
-            "rollout",
-            "headbutt"
-        ],
         "evolutions": [
             {
                 "evolves_into": "bibarel",
@@ -665,12 +586,6 @@
         "generation": 4,
         "capture_rate": 127,
         "gender_rate": 4,
-        "starter_moves": [
-            "tackle",
-            "water-gun",
-            "bite",
-            "rollout"
-        ],
         "evolutions": []
     },
     "kricketot": {
@@ -705,12 +620,6 @@
         "generation": 4,
         "capture_rate": 255,
         "gender_rate": 4,
-        "starter_moves": [
-            "pound",
-            "absorb",
-            "tackle",
-            "struggle-bug"
-        ],
         "evolutions": [
             {
                 "evolves_into": "kricketune",
@@ -752,12 +661,6 @@
         "generation": 4,
         "capture_rate": 45,
         "gender_rate": 4,
-        "starter_moves": [
-            "struggle-bug",
-            "tackle",
-            "fury-cutter",
-            "aerial-ace"
-        ],
         "evolutions": []
     },
     "shinx": {
@@ -792,12 +695,6 @@
         "generation": 4,
         "capture_rate": 235,
         "gender_rate": 4,
-        "starter_moves": [
-            "tackle",
-            "quick-attack",
-            "thunder-shock",
-            "spark"
-        ],
         "evolutions": [
             {
                 "evolves_into": "luxio",
@@ -839,12 +736,6 @@
         "generation": 4,
         "capture_rate": 120,
         "gender_rate": 4,
-        "starter_moves": [
-            "quick-attack",
-            "thunder-shock",
-            "spark",
-            "bite"
-        ],
         "evolutions": [
             {
                 "evolves_into": "luxray",
@@ -886,12 +777,6 @@
         "generation": 4,
         "capture_rate": 45,
         "gender_rate": 4,
-        "starter_moves": [
-            "quick-attack",
-            "thunder-shock",
-            "spark",
-            "bite"
-        ],
         "evolutions": []
     },
     "budew": {
@@ -927,12 +812,6 @@
         "generation": 4,
         "capture_rate": 255,
         "gender_rate": 4,
-        "starter_moves": [
-            "poison-sting",
-            "absorb",
-            "stun-spore",
-            "poison-powder"
-        ],
         "evolutions": [
             {
                 "evolves_into": "roselia",
@@ -975,12 +854,6 @@
         "generation": 4,
         "capture_rate": 75,
         "gender_rate": 4,
-        "starter_moves": [
-            "petal-dance",
-            "venoshock",
-            "poison-jab",
-            "energy-ball"
-        ],
         "evolutions": []
     },
     "cranidos": {
@@ -1015,12 +888,6 @@
         "generation": 4,
         "capture_rate": 45,
         "gender_rate": 1,
-        "starter_moves": [
-            "headbutt",
-            "tackle",
-            "bite",
-            "pursuit"
-        ],
         "evolutions": [
             {
                 "evolves_into": "rampardos",
@@ -1062,12 +929,6 @@
         "generation": 4,
         "capture_rate": 45,
         "gender_rate": 1,
-        "starter_moves": [
-            "assurance",
-            "slam",
-            "chip-away",
-            "crunch"
-        ],
         "evolutions": []
     },
     "shieldon": {
@@ -1103,12 +964,6 @@
         "generation": 4,
         "capture_rate": 45,
         "gender_rate": 1,
-        "starter_moves": [
-            "tackle",
-            "take-down",
-            "rock-slide",
-            "ancient-power"
-        ],
         "evolutions": [
             {
                 "evolves_into": "bastiodon",
@@ -1151,12 +1006,6 @@
         "generation": 4,
         "capture_rate": 45,
         "gender_rate": 1,
-        "starter_moves": [
-            "take-down",
-            "rock-slide",
-            "ancient-power",
-            "earth-power"
-        ],
         "evolutions": []
     },
     "burmy-plant": {
@@ -1191,12 +1040,6 @@
         "generation": 4,
         "capture_rate": 120,
         "gender_rate": 4,
-        "starter_moves": [
-            "struggle-bug",
-            "tackle",
-            "bug-bite",
-            "hidden-power"
-        ],
         "evolutions": [
             {
                 "evolves_into": "wormadam-plant",
@@ -1244,12 +1087,6 @@
         "generation": 4,
         "capture_rate": 120,
         "gender_rate": 4,
-        "starter_moves": [
-            "struggle-bug",
-            "tackle",
-            "bug-bite",
-            "hidden-power"
-        ],
         "evolutions": [
             {
                 "evolves_into": "wormadam-sandy",
@@ -1297,12 +1134,6 @@
         "generation": 4,
         "capture_rate": 120,
         "gender_rate": 4,
-        "starter_moves": [
-            "struggle-bug",
-            "tackle",
-            "bug-bite",
-            "hidden-power"
-        ],
         "evolutions": [
             {
                 "evolves_into": "wormadam-trash",
@@ -1351,12 +1182,6 @@
         "generation": 4,
         "capture_rate": 45,
         "gender_rate": 8,
-        "starter_moves": [
-            "gust",
-            "bug-bite",
-            "silver-wind",
-            "hidden-power"
-        ],
         "evolutions": []
     },
     "wormadam-sandy": {
@@ -1392,12 +1217,6 @@
         "generation": 4,
         "capture_rate": 45,
         "gender_rate": 8,
-        "starter_moves": [
-            "gust",
-            "bug-bite",
-            "silver-wind",
-            "hidden-power"
-        ],
         "evolutions": []
     },
     "wormadam-trash": {
@@ -1433,12 +1252,6 @@
         "generation": 4,
         "capture_rate": 45,
         "gender_rate": 8,
-        "starter_moves": [
-            "metal-burst",
-            "bug-bite",
-            "silver-wind",
-            "hidden-power"
-        ],
         "evolutions": []
     },
     "mothim": {
@@ -1474,12 +1287,6 @@
         "generation": 4,
         "capture_rate": 45,
         "gender_rate": 0,
-        "starter_moves": [
-            "tackle",
-            "bug-bite",
-            "struggle-bug",
-            "hidden-power"
-        ],
         "evolutions": []
     },
     "combee": {
@@ -1515,12 +1322,6 @@
         "generation": 4,
         "capture_rate": 120,
         "gender_rate": 1,
-        "starter_moves": [
-            "gust",
-            "struggle-bug",
-            "bug-bite",
-            "bug-buzz"
-        ],
         "evolutions": [
             {
                 "evolves_into": "vespiquen",
@@ -1563,12 +1364,6 @@
         "generation": 4,
         "capture_rate": 45,
         "gender_rate": 8,
-        "starter_moves": [
-            "pursuit",
-            "slash",
-            "fury-swipes",
-            "silver-wind"
-        ],
         "evolutions": []
     },
     "pachirisu": {
@@ -1603,12 +1398,6 @@
         "generation": 4,
         "capture_rate": 200,
         "gender_rate": 4,
-        "starter_moves": [
-            "thunder-shock",
-            "quick-attack",
-            "bite",
-            "spark"
-        ],
         "evolutions": []
     },
     "buizel": {
@@ -1643,12 +1432,6 @@
         "generation": 4,
         "capture_rate": 190,
         "gender_rate": 4,
-        "starter_moves": [
-            "tackle",
-            "sonic-boom",
-            "quick-attack",
-            "water-gun"
-        ],
         "evolutions": [
             {
                 "evolves_into": "floatzel",
@@ -1690,12 +1473,6 @@
         "generation": 4,
         "capture_rate": 75,
         "gender_rate": 4,
-        "starter_moves": [
-            "bite",
-            "water-pulse",
-            "swift",
-            "aqua-jet"
-        ],
         "evolutions": []
     },
     "cherubi": {
@@ -1730,12 +1507,6 @@
         "generation": 4,
         "capture_rate": 190,
         "gender_rate": 4,
-        "starter_moves": [
-            "absorb",
-            "tackle",
-            "leafage",
-            "stun-spore"
-        ],
         "evolutions": [
             {
                 "evolves_into": "cherrim",
@@ -1783,12 +1554,6 @@
         "generation": 4,
         "capture_rate": 75,
         "gender_rate": 4,
-        "starter_moves": [
-            "draining-kiss",
-            "magical-leaf",
-            "energy-ball",
-            "petal-dance"
-        ],
         "evolutions": []
     },
     "cherrim-sunshine": {
@@ -1823,12 +1588,6 @@
         "generation": 4,
         "capture_rate": 75,
         "gender_rate": 4,
-        "starter_moves": [
-            "draining-kiss",
-            "magical-leaf",
-            "energy-ball",
-            "petal-dance"
-        ],
         "evolutions": []
     },
     "shellos-west-sea": {
@@ -1863,12 +1622,6 @@
         "generation": 4,
         "capture_rate": 190,
         "gender_rate": 4,
-        "starter_moves": [
-            "water-gun",
-            "mud-slap",
-            "tackle",
-            "water-pulse"
-        ],
         "evolutions": [
             {
                 "evolves_into": "gastrodon-west-sea",
@@ -1910,12 +1663,6 @@
         "generation": 4,
         "capture_rate": 190,
         "gender_rate": 4,
-        "starter_moves": [
-            "water-gun",
-            "mud-slap",
-            "tackle",
-            "water-pulse"
-        ],
         "evolutions": [
             {
                 "evolves_into": "gastrodon-east-sea",
@@ -1958,12 +1705,6 @@
         "generation": 4,
         "capture_rate": 75,
         "gender_rate": 4,
-        "starter_moves": [
-            "water-gun",
-            "mud-slap",
-            "tackle",
-            "water-pulse"
-        ],
         "evolutions": []
     },
     "gastrodon-east-sea": {
@@ -1999,12 +1740,6 @@
         "generation": 4,
         "capture_rate": 75,
         "gender_rate": 4,
-        "starter_moves": [
-            "water-gun",
-            "mud-slap",
-            "tackle",
-            "water-pulse"
-        ],
         "evolutions": []
     },
     "ambipom": {
@@ -2039,12 +1774,6 @@
         "generation": 4,
         "capture_rate": 45,
         "gender_rate": 4,
-        "starter_moves": [
-            "fury-swipes",
-            "mud-bomb",
-            "swift",
-            "double-hit"
-        ],
         "evolutions": []
     },
     "drifloon": {
@@ -2080,12 +1809,6 @@
         "generation": 4,
         "capture_rate": 125,
         "gender_rate": 4,
-        "starter_moves": [
-            "confusion",
-            "constrict",
-            "astonish",
-            "hypnosis"
-        ],
         "evolutions": [
             {
                 "evolves_into": "drifblim",
@@ -2128,12 +1851,6 @@
         "generation": 4,
         "capture_rate": 60,
         "gender_rate": 4,
-        "starter_moves": [
-            "phantom-force",
-            "hex",
-            "mystical-fire",
-            "ominous-wind"
-        ],
         "evolutions": []
     },
     "buneary": {
@@ -2168,12 +1885,6 @@
         "generation": 4,
         "capture_rate": 190,
         "gender_rate": 4,
-        "starter_moves": [
-            "pound",
-            "swift",
-            "frustration",
-            "quick-attack"
-        ],
         "evolutions": [
             {
                 "evolves_into": "lopunny",
@@ -2215,12 +1926,6 @@
         "generation": 4,
         "capture_rate": 60,
         "gender_rate": 4,
-        "starter_moves": [
-            "swift",
-            "quick-attack",
-            "draining-kiss",
-            "double-kick"
-        ],
         "evolutions": [
             {
                 "evolves_into": "lopunny-mega",
@@ -2263,7 +1968,6 @@
         "generation": 4,
         "capture_rate": null,
         "gender_rate": 4,
-        "starter_moves": [],
         "evolutions": []
     },
     "mismagius": {
@@ -2298,12 +2002,6 @@
         "generation": 4,
         "capture_rate": 45,
         "gender_rate": 4,
-        "starter_moves": [
-            "hex",
-            "hypnosis",
-            "shadow-ball",
-            "extrasensory"
-        ],
         "evolutions": []
     },
     "honchkrow": {
@@ -2339,12 +2037,6 @@
         "generation": 4,
         "capture_rate": 30,
         "gender_rate": 4,
-        "starter_moves": [
-            "sucker-punch",
-            "snarl",
-            "aerial-ace",
-            "air-slash"
-        ],
         "evolutions": []
     },
     "glameow": {
@@ -2379,12 +2071,6 @@
         "generation": 4,
         "capture_rate": 190,
         "gender_rate": 6,
-        "starter_moves": [
-            "tackle",
-            "fake-out",
-            "scratch",
-            "hypnosis"
-        ],
         "evolutions": [
             {
                 "evolves_into": "purugly",
@@ -2426,12 +2112,6 @@
         "generation": 4,
         "capture_rate": 75,
         "gender_rate": 6,
-        "starter_moves": [
-            "fury-swipes",
-            "night-slash",
-            "retaliate",
-            "slash"
-        ],
         "evolutions": []
     },
     "chingling": {
@@ -2466,12 +2146,6 @@
         "generation": 4,
         "capture_rate": 120,
         "gender_rate": 4,
-        "starter_moves": [
-            "tackle",
-            "wrap",
-            "astonish",
-            "ominous-wind"
-        ],
         "evolutions": [
             {
                 "evolves_into": "chimecho",
@@ -2514,12 +2188,6 @@
         "generation": 4,
         "capture_rate": 225,
         "gender_rate": 4,
-        "starter_moves": [
-            "scratch",
-            "tackle",
-            "poison-gas",
-            "fury-swipes"
-        ],
         "evolutions": [
             {
                 "evolves_into": "skuntank",
@@ -2562,12 +2230,6 @@
         "generation": 4,
         "capture_rate": 60,
         "gender_rate": 4,
-        "starter_moves": [
-            "slash",
-            "toxic",
-            "sucker-punch",
-            "poison-jab"
-        ],
         "evolutions": []
     },
     "bronzor": {
@@ -2603,12 +2265,6 @@
         "generation": 4,
         "capture_rate": 255,
         "gender_rate": -1,
-        "starter_moves": [
-            "tackle",
-            "confusion",
-            "confuse-ray",
-            "hypnosis"
-        ],
         "evolutions": [
             {
                 "evolves_into": "bronzong",
@@ -2651,12 +2307,6 @@
         "generation": 4,
         "capture_rate": 90,
         "gender_rate": -1,
-        "starter_moves": [
-            "hex",
-            "gyro-ball",
-            "extrasensory",
-            "feint-attack"
-        ],
         "evolutions": []
     },
     "bonsly": {
@@ -2691,12 +2341,6 @@
         "generation": 4,
         "capture_rate": 255,
         "gender_rate": 4,
-        "starter_moves": [
-            "rollout",
-            "tackle",
-            "flail",
-            "rock-throw"
-        ],
         "evolutions": [
             {
                 "evolves_into": "sudowoodo",
@@ -2739,12 +2383,6 @@
         "generation": 4,
         "capture_rate": 145,
         "gender_rate": 4,
-        "starter_moves": [
-            "pound",
-            "confusion",
-            "hypnosis",
-            "double-slap"
-        ],
         "evolutions": [
             {
                 "evolves_into": "mr-mime",
@@ -2786,12 +2424,6 @@
         "generation": 4,
         "capture_rate": 130,
         "gender_rate": 8,
-        "starter_moves": [
-            "pound",
-            "tackle",
-            "fairy-wind",
-            "sweet-kiss"
-        ],
         "evolutions": [
             {
                 "evolves_into": "chansey",
@@ -2834,12 +2466,6 @@
         "generation": 4,
         "capture_rate": 30,
         "gender_rate": 4,
-        "starter_moves": [
-            "gust",
-            "peck",
-            "swift",
-            "air-cutter"
-        ],
         "evolutions": []
     },
     "spiritomb": {
@@ -2875,12 +2501,6 @@
         "generation": 4,
         "capture_rate": 100,
         "gender_rate": 4,
-        "starter_moves": [
-            "night-shade",
-            "confuse-ray",
-            "pursuit",
-            "shadow-sneak"
-        ],
         "evolutions": []
     },
     "gible": {
@@ -2916,12 +2536,6 @@
         "generation": 4,
         "capture_rate": 45,
         "gender_rate": 4,
-        "starter_moves": [
-            "tackle",
-            "twister",
-            "dragon-rage",
-            "dragon-breath"
-        ],
         "evolutions": [
             {
                 "evolves_into": "gabite",
@@ -2964,12 +2578,6 @@
         "generation": 4,
         "capture_rate": 45,
         "gender_rate": 4,
-        "starter_moves": [
-            "dragon-rage",
-            "dual-chop",
-            "sand-tomb",
-            "bulldoze"
-        ],
         "evolutions": [
             {
                 "evolves_into": "garchomp",
@@ -3012,12 +2620,6 @@
         "generation": 4,
         "capture_rate": 45,
         "gender_rate": 4,
-        "starter_moves": [
-            "dragon-claw",
-            "double-edge",
-            "dig",
-            "outrage"
-        ],
         "evolutions": [
             {
                 "evolves_into": "garchomp-mega",
@@ -3066,7 +2668,6 @@
         "generation": 4,
         "capture_rate": null,
         "gender_rate": 4,
-        "starter_moves": [],
         "evolutions": []
     },
     "garchomp-mega-z": {
@@ -3101,7 +2702,6 @@
         "generation": 4,
         "capture_rate": null,
         "gender_rate": 4,
-        "starter_moves": [],
         "evolutions": []
     },
     "munchlax": {
@@ -3136,12 +2736,6 @@
         "generation": 4,
         "capture_rate": 50,
         "gender_rate": 1,
-        "starter_moves": [
-            "tackle",
-            "lick",
-            "covet",
-            "bulldoze"
-        ],
         "evolutions": [
             {
                 "evolves_into": "snorlax",
@@ -3183,12 +2777,6 @@
         "generation": 4,
         "capture_rate": 75,
         "gender_rate": 1,
-        "starter_moves": [
-            "quick-attack",
-            "bullet-punch",
-            "counter",
-            "metal-claw"
-        ],
         "evolutions": [
             {
                 "evolves_into": "lucario",
@@ -3231,12 +2819,6 @@
         "generation": 4,
         "capture_rate": 45,
         "gender_rate": 1,
-        "starter_moves": [
-            "force-palm",
-            "power-up-punch",
-            "aura-sphere",
-            "mach-punch"
-        ],
         "evolutions": [
             {
                 "evolves_into": "lucario-mega",
@@ -3285,7 +2867,6 @@
         "generation": 4,
         "capture_rate": null,
         "gender_rate": 1,
-        "starter_moves": [],
         "evolutions": []
     },
     "lucario-mega-z": {
@@ -3321,7 +2902,6 @@
         "generation": 4,
         "capture_rate": null,
         "gender_rate": 1,
-        "starter_moves": [],
         "evolutions": []
     },
     "hippopotas": {
@@ -3356,12 +2936,6 @@
         "generation": 4,
         "capture_rate": 140,
         "gender_rate": 4,
-        "starter_moves": [
-            "tackle",
-            "bite",
-            "mud-bomb",
-            "dig"
-        ],
         "evolutions": [
             {
                 "evolves_into": "hippowdon",
@@ -3403,12 +2977,6 @@
         "generation": 4,
         "capture_rate": 60,
         "gender_rate": 4,
-        "starter_moves": [
-            "take-down",
-            "sand-tomb",
-            "crunch",
-            "high-horsepower"
-        ],
         "evolutions": []
     },
     "skorupi": {
@@ -3444,12 +3012,6 @@
         "generation": 4,
         "capture_rate": 120,
         "gender_rate": 4,
-        "starter_moves": [
-            "poison-sting",
-            "bite",
-            "knock-off",
-            "pin-missile"
-        ],
         "evolutions": [
             {
                 "evolves_into": "drapion",
@@ -3492,12 +3054,6 @@
         "generation": 4,
         "capture_rate": 45,
         "gender_rate": 4,
-        "starter_moves": [
-            "toxic",
-            "fell-stinger",
-            "night-slash",
-            "x-scissor"
-        ],
         "evolutions": []
     },
     "croagunk": {
@@ -3533,12 +3089,6 @@
         "generation": 4,
         "capture_rate": 140,
         "gender_rate": 4,
-        "starter_moves": [
-            "astonish",
-            "mud-slap",
-            "rock-smash",
-            "poison-sting"
-        ],
         "evolutions": [
             {
                 "evolves_into": "toxicroak",
@@ -3581,12 +3131,6 @@
         "generation": 4,
         "capture_rate": 75,
         "gender_rate": 4,
-        "starter_moves": [
-            "venoshock",
-            "sucker-punch",
-            "toxic",
-            "earth-power"
-        ],
         "evolutions": []
     },
     "carnivine": {
@@ -3621,12 +3165,6 @@
         "generation": 4,
         "capture_rate": 200,
         "gender_rate": 4,
-        "starter_moves": [
-            "bind",
-            "absorb",
-            "acid-spray",
-            "bite"
-        ],
         "evolutions": []
     },
     "finneon": {
@@ -3661,12 +3199,6 @@
         "generation": 4,
         "capture_rate": 190,
         "gender_rate": 4,
-        "starter_moves": [
-            "pound",
-            "bubble",
-            "water-gun",
-            "gust"
-        ],
         "evolutions": [
             {
                 "evolves_into": "lumineon",
@@ -3708,12 +3240,6 @@
         "generation": 4,
         "capture_rate": 75,
         "gender_rate": 4,
-        "starter_moves": [
-            "gust",
-            "water-pulse",
-            "air-slash",
-            "flail"
-        ],
         "evolutions": []
     },
     "mantyke": {
@@ -3749,12 +3275,6 @@
         "generation": 4,
         "capture_rate": 25,
         "gender_rate": 4,
-        "starter_moves": [
-            "tackle",
-            "water-gun",
-            "bubble",
-            "supersonic"
-        ],
         "evolutions": [
             {
                 "evolves_into": "mantine",
@@ -3797,12 +3317,6 @@
         "generation": 4,
         "capture_rate": 120,
         "gender_rate": 4,
-        "starter_moves": [
-            "powder-snow",
-            "leafage",
-            "razor-leaf",
-            "icy-wind"
-        ],
         "evolutions": [
             {
                 "evolves_into": "abomasnow",
@@ -3845,12 +3359,6 @@
         "generation": 4,
         "capture_rate": 60,
         "gender_rate": 4,
-        "starter_moves": [
-            "icicle-crash",
-            "ice-shard",
-            "energy-ball",
-            "wood-hammer"
-        ],
         "evolutions": [
             {
                 "evolves_into": "abomasnow-mega",
@@ -3893,7 +3401,6 @@
         "generation": 4,
         "capture_rate": null,
         "gender_rate": 4,
-        "starter_moves": [],
         "evolutions": []
     },
     "weavile": {
@@ -3929,12 +3436,6 @@
         "generation": 4,
         "capture_rate": 45,
         "gender_rate": 4,
-        "starter_moves": [
-            "fury-swipes",
-            "icy-wind",
-            "poison-jab",
-            "metal-claw"
-        ],
         "evolutions": []
     },
     "magnezone": {
@@ -3970,12 +3471,6 @@
         "generation": 4,
         "capture_rate": 30,
         "gender_rate": -1,
-        "starter_moves": [
-            "thunderbolt",
-            "mirror-shot",
-            "thunder",
-            "discharge"
-        ],
         "evolutions": []
     },
     "lickilicky": {
@@ -4010,12 +3505,6 @@
         "generation": 4,
         "capture_rate": 30,
         "gender_rate": 4,
-        "starter_moves": [
-            "stomp",
-            "double-edge",
-            "rollout",
-            "slam"
-        ],
         "evolutions": []
     },
     "rhyperior": {
@@ -4051,12 +3540,6 @@
         "generation": 4,
         "capture_rate": 30,
         "gender_rate": 4,
-        "starter_moves": [
-            "take-down",
-            "drill-run",
-            "double-edge",
-            "horn-drill"
-        ],
         "evolutions": []
     },
     "tangrowth": {
@@ -4091,12 +3574,6 @@
         "generation": 4,
         "capture_rate": 30,
         "gender_rate": 4,
-        "starter_moves": [
-            "energy-ball",
-            "knock-off",
-            "ancient-power",
-            "giga-drain"
-        ],
         "evolutions": []
     },
     "electivire": {
@@ -4131,12 +3608,6 @@
         "generation": 4,
         "capture_rate": 30,
         "gender_rate": 2,
-        "starter_moves": [
-            "electro-ball",
-            "thunder-punch",
-            "discharge",
-            "thunderbolt"
-        ],
         "evolutions": []
     },
     "magmortar": {
@@ -4171,12 +3642,6 @@
         "generation": 4,
         "capture_rate": 30,
         "gender_rate": 2,
-        "starter_moves": [
-            "fire-punch",
-            "lava-plume",
-            "low-kick",
-            "flamethrower"
-        ],
         "evolutions": []
     },
     "togekiss": {
@@ -4212,12 +3677,6 @@
         "generation": 4,
         "capture_rate": 30,
         "gender_rate": 1,
-        "starter_moves": [
-            "air-cutter",
-            "draining-kiss",
-            "extrasensory",
-            "moonblast"
-        ],
         "evolutions": []
     },
     "yanmega": {
@@ -4253,12 +3712,6 @@
         "generation": 4,
         "capture_rate": 30,
         "gender_rate": 4,
-        "starter_moves": [
-            "uproar",
-            "pursuit",
-            "ancient-power",
-            "air-slash"
-        ],
         "evolutions": []
     },
     "leafeon": {
@@ -4293,12 +3746,6 @@
         "generation": 4,
         "capture_rate": 45,
         "gender_rate": 1,
-        "starter_moves": [
-            "razor-leaf",
-            "double-edge",
-            "quick-attack",
-            "magical-leaf"
-        ],
         "evolutions": []
     },
     "glaceon": {
@@ -4333,12 +3780,6 @@
         "generation": 4,
         "capture_rate": 45,
         "gender_rate": 1,
-        "starter_moves": [
-            "bite",
-            "ice-beam",
-            "ice-shard",
-            "ice-fang"
-        ],
         "evolutions": []
     },
     "gliscor": {
@@ -4374,12 +3815,6 @@
         "generation": 4,
         "capture_rate": 30,
         "gender_rate": 4,
-        "starter_moves": [
-            "pin-missile",
-            "feint-attack",
-            "acrobatics",
-            "night-slash"
-        ],
         "evolutions": []
     },
     "mamoswine": {
@@ -4415,12 +3850,6 @@
         "generation": 4,
         "capture_rate": 50,
         "gender_rate": 4,
-        "starter_moves": [
-            "high-horsepower",
-            "icy-wind",
-            "take-down",
-            "earthquake"
-        ],
         "evolutions": []
     },
     "porygon-z": {
@@ -4455,12 +3884,6 @@
         "generation": 4,
         "capture_rate": 30,
         "gender_rate": -1,
-        "starter_moves": [
-            "spark",
-            "thunderbolt",
-            "signal-beam",
-            "discharge"
-        ],
         "evolutions": []
     },
     "gallade": {
@@ -4496,12 +3919,6 @@
         "generation": 4,
         "capture_rate": 45,
         "gender_rate": 0,
-        "starter_moves": [
-            "feint",
-            "stored-power",
-            "false-swipe",
-            "close-combat"
-        ],
         "evolutions": [
             {
                 "evolves_into": "gallade-mega",
@@ -4544,7 +3961,6 @@
         "generation": 4,
         "capture_rate": null,
         "gender_rate": 0,
-        "starter_moves": [],
         "evolutions": []
     },
     "probopass": {
@@ -4580,12 +3996,6 @@
         "generation": 4,
         "capture_rate": 60,
         "gender_rate": 4,
-        "starter_moves": [
-            "thunder-wave",
-            "spark",
-            "rock-blast",
-            "rock-slide"
-        ],
         "evolutions": []
     },
     "dusknoir": {
@@ -4620,12 +4030,6 @@
         "generation": 4,
         "capture_rate": 45,
         "gender_rate": 4,
-        "starter_moves": [
-            "will-o-wisp",
-            "hex",
-            "shadow-ball",
-            "psychic"
-        ],
         "evolutions": []
     },
     "froslass": {
@@ -4661,12 +4065,6 @@
         "generation": 4,
         "capture_rate": 75,
         "gender_rate": 8,
-        "starter_moves": [
-            "ice-shard",
-            "draining-kiss",
-            "confuse-ray",
-            "frost-breath"
-        ],
         "evolutions": [
             {
                 "evolves_into": "froslass-mega",
@@ -4709,7 +4107,6 @@
         "generation": 4,
         "capture_rate": null,
         "gender_rate": 8,
-        "starter_moves": [],
         "evolutions": []
     },
     "rotom": {
@@ -4745,12 +4142,6 @@
         "generation": 4,
         "capture_rate": 45,
         "gender_rate": -1,
-        "starter_moves": [
-            "astonish",
-            "thunder-shock",
-            "confuse-ray",
-            "charge-beam"
-        ],
         "evolutions": []
     },
     "rotom-heat": {
@@ -4786,12 +4177,6 @@
         "generation": 4,
         "capture_rate": 45,
         "gender_rate": -1,
-        "starter_moves": [
-            "astonish",
-            "thunder-shock",
-            "confuse-ray",
-            "thunder-wave"
-        ],
         "evolutions": []
     },
     "rotom-wash": {
@@ -4827,12 +4212,6 @@
         "generation": 4,
         "capture_rate": 45,
         "gender_rate": -1,
-        "starter_moves": [
-            "astonish",
-            "thunder-shock",
-            "confuse-ray",
-            "thunder-wave"
-        ],
         "evolutions": []
     },
     "rotom-frost": {
@@ -4868,12 +4247,6 @@
         "generation": 4,
         "capture_rate": 45,
         "gender_rate": -1,
-        "starter_moves": [
-            "astonish",
-            "thunder-shock",
-            "confuse-ray",
-            "thunder-wave"
-        ],
         "evolutions": []
     },
     "rotom-fan": {
@@ -4909,12 +4282,6 @@
         "generation": 4,
         "capture_rate": 45,
         "gender_rate": -1,
-        "starter_moves": [
-            "astonish",
-            "thunder-shock",
-            "confuse-ray",
-            "thunder-wave"
-        ],
         "evolutions": []
     },
     "rotom-mow": {
@@ -4950,12 +4317,6 @@
         "generation": 4,
         "capture_rate": 45,
         "gender_rate": -1,
-        "starter_moves": [
-            "astonish",
-            "thunder-shock",
-            "confuse-ray",
-            "thunder-wave"
-        ],
         "evolutions": []
     },
     "uxie": {
@@ -4990,12 +4351,6 @@
         "generation": 4,
         "capture_rate": 3,
         "gender_rate": -1,
-        "starter_moves": [
-            "confusion",
-            "double-hit",
-            "swift",
-            "psybeam"
-        ],
         "evolutions": []
     },
     "mesprit": {
@@ -5030,12 +4385,6 @@
         "generation": 4,
         "capture_rate": 3,
         "gender_rate": -1,
-        "starter_moves": [
-            "confusion",
-            "double-hit",
-            "swift",
-            "psybeam"
-        ],
         "evolutions": []
     },
     "azelf": {
@@ -5070,12 +4419,6 @@
         "generation": 4,
         "capture_rate": 3,
         "gender_rate": -1,
-        "starter_moves": [
-            "confusion",
-            "double-hit",
-            "swift",
-            "psybeam"
-        ],
         "evolutions": []
     },
     "dialga": {
@@ -5111,12 +4454,6 @@
         "generation": 4,
         "capture_rate": 3,
         "gender_rate": -1,
-        "starter_moves": [
-            "twister",
-            "dragon-breath",
-            "metal-claw",
-            "ancient-power"
-        ],
         "evolutions": []
     },
     "dialga-origin": {
@@ -5152,12 +4489,6 @@
         "generation": 4,
         "capture_rate": 3,
         "gender_rate": -1,
-        "starter_moves": [
-            "metal-claw",
-            "dragon-breath",
-            "ancient-power",
-            "slash"
-        ],
         "evolutions": []
     },
     "palkia": {
@@ -5193,12 +4524,6 @@
         "generation": 4,
         "capture_rate": 3,
         "gender_rate": -1,
-        "starter_moves": [
-            "twister",
-            "dragon-breath",
-            "water-pulse",
-            "ancient-power"
-        ],
         "evolutions": []
     },
     "palkia-origin": {
@@ -5234,12 +4559,6 @@
         "generation": 4,
         "capture_rate": 3,
         "gender_rate": -1,
-        "starter_moves": [
-            "water-pulse",
-            "dragon-breath",
-            "ancient-power",
-            "slash"
-        ],
         "evolutions": []
     },
     "heatran": {
@@ -5275,12 +4594,6 @@
         "generation": 4,
         "capture_rate": 3,
         "gender_rate": 4,
-        "starter_moves": [
-            "ember",
-            "ancient-power",
-            "metal-claw",
-            "fire-fang"
-        ],
         "evolutions": [
             {
                 "evolves_into": "heatran-mega",
@@ -5323,7 +4636,6 @@
         "generation": 4,
         "capture_rate": null,
         "gender_rate": 4,
-        "starter_moves": [],
         "evolutions": []
     },
     "regigigas": {
@@ -5358,12 +4670,6 @@
         "generation": 4,
         "capture_rate": 3,
         "gender_rate": -1,
-        "starter_moves": [
-            "pound",
-            "fire-punch",
-            "ice-punch",
-            "thunder-punch"
-        ],
         "evolutions": []
     },
     "giratina-altered": {
@@ -5399,12 +4705,6 @@
         "generation": 4,
         "capture_rate": 3,
         "gender_rate": -1,
-        "starter_moves": [
-            "dragon-breath",
-            "ominous-wind",
-            "ancient-power",
-            "shadow-sneak"
-        ],
         "evolutions": []
     },
     "giratina-origin": {
@@ -5440,12 +4740,6 @@
         "generation": 4,
         "capture_rate": 3,
         "gender_rate": -1,
-        "starter_moves": [
-            "dragon-breath",
-            "ominous-wind",
-            "ancient-power",
-            "shadow-sneak"
-        ],
         "evolutions": []
     },
     "cresselia": {
@@ -5480,12 +4774,6 @@
         "generation": 4,
         "capture_rate": 3,
         "gender_rate": 8,
-        "starter_moves": [
-            "tackle",
-            "confusion",
-            "psybeam",
-            "aurora-beam"
-        ],
         "evolutions": []
     },
     "phione": {
@@ -5520,12 +4808,6 @@
         "generation": 4,
         "capture_rate": 30,
         "gender_rate": -1,
-        "starter_moves": [
-            "water-gun",
-            "bubble",
-            "confusion",
-            "supersonic"
-        ],
         "evolutions": []
     },
     "manaphy": {
@@ -5560,12 +4842,6 @@
         "generation": 4,
         "capture_rate": 3,
         "gender_rate": -1,
-        "starter_moves": [
-            "water-gun",
-            "bubble",
-            "confusion",
-            "supersonic"
-        ],
         "evolutions": []
     },
     "darkrai": {
@@ -5600,12 +4876,6 @@
         "generation": 4,
         "capture_rate": 3,
         "gender_rate": -1,
-        "starter_moves": [
-            "shadow-sneak",
-            "ominous-wind",
-            "quick-attack",
-            "hex"
-        ],
         "evolutions": [
             {
                 "evolves_into": "darkrai-mega",
@@ -5647,7 +4917,6 @@
         "generation": 4,
         "capture_rate": null,
         "gender_rate": -1,
-        "starter_moves": [],
         "evolutions": []
     },
     "shaymin-land": {
@@ -5682,12 +4951,6 @@
         "generation": 4,
         "capture_rate": 45,
         "gender_rate": -1,
-        "starter_moves": [
-            "leafage",
-            "quick-attack",
-            "magical-leaf",
-            "sleep-powder"
-        ],
         "evolutions": []
     },
     "shaymin-sky": {
@@ -5723,12 +4986,6 @@
         "generation": 4,
         "capture_rate": 45,
         "gender_rate": -1,
-        "starter_moves": [
-            "magical-leaf",
-            "quick-attack",
-            "natural-gift",
-            "play-rough"
-        ],
         "evolutions": []
     },
     "arceus": {
@@ -5763,12 +5020,6 @@
         "generation": 4,
         "capture_rate": 3,
         "gender_rate": -1,
-        "starter_moves": [
-            "seismic-toss",
-            "quick-attack",
-            "natural-gift",
-            "punishment"
-        ],
         "evolutions": []
     },
     "victini": {
@@ -5804,12 +5055,6 @@
         "generation": 4,
         "capture_rate": 3,
         "gender_rate": -1,
-        "starter_moves": [
-            "confusion",
-            "quick-attack",
-            "v-create",
-            "incinerate"
-        ],
         "evolutions": []
     }
 }

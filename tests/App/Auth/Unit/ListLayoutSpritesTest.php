@@ -61,7 +61,7 @@ it('excludes species without a front default or shiny sprite', function () {
 });
 
 it('limits the returned sprites to 49', function () {
-    Species::factory()->count(60)->create(['starter_moves_ids' => []]);
+    Species::factory()->count(60)->create();
 
     $sprites = new ListLayoutSprites()->handle();
 
