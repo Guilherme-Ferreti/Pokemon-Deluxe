@@ -11,8 +11,10 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Override;
 
 /**
+ * @property int|null $level_learn
+ * @property bool $is_base_move
  * @property-read Species $species
- * @property-read Move $moves
+ * @property-read Move $move
  */
 #[WithoutTimestamps]
 final class SpeciesLearnableMove extends Model
@@ -45,5 +47,15 @@ final class SpeciesLearnableMove extends Model
     public function move(): BelongsTo
     {
         return $this->belongsTo(Move::class);
+    }
+
+    public function isLearnedByLevelUp(): bool
+    {
+        return ! is_null($this->level_learn);
+    }
+
+    public function isLearnedByTm(): bool
+    {
+        return is_null($this->level_learn);
     }
 }

@@ -16,6 +16,7 @@ use Inertia\RenderContext;
 use Shared\Enums\ElementalType;
 use Shared\Models\Species;
 use Shared\Models\SpeciesEvolution;
+use Shared\Models\SpeciesLearnableMove;
 
 final readonly class PokedexShowPageProps implements ProvidesInertiaProperties
 {
@@ -35,6 +36,7 @@ final readonly class PokedexShowPageProps implements ProvidesInertiaProperties
             'captureStatistics' => fn () => $this->getCaptureStatisticsProp(),
             'damageTaken'       => fn () => $this->getDamageTakenProp(),
             'evolutionChain'    => fn () => $this->getEvolutionChainProp(),
+            'learnableMoves'    => fn () => $this->getLearnableMovesProp(),
         ];
     }
 
@@ -207,6 +209,49 @@ final readonly class PokedexShowPageProps implements ProvidesInertiaProperties
 
         return Cache::rememberForever(
             key: DexCacheKeys::speciesEvolutionChain($this->species->id),
+            callback: $callback
+        );
+    }
+
+    /**
+     * @return array<string, mixed>
+     */
+    private function getLearnableMovesProp(): array
+    {
+        $callback = fn () => SpeciesLearnableMove::query()
+            ->join('moves', 'species_learnable_moves.move_id', '=', 'moves.id')
+            ->select('species_learnable_moves.*')
+            ->where('species_id', $this->species->id)
+            ->orderBy('species_learnable_moves.level_learn')
+            ->orderBy('moves.name')
+            ->get()
+            ->mapToGroups(function (SpeciesLearnableMove $learnableMove): array {
+                $propData = [
+                    'move' => [
+                        'name'      => $learnableMove->move->name,
+                        'type'      => $learnableMove->move->type,
+                        'category'  => $learnableMove->move->category,
+                        'power'     => $learnableMove->move->power,
+                        'accuracy'  => $learnableMove->move->accuracy,
+                        'isZmove'   => $learnableMove->move->is_zmove,
+                        'isDynamax' => $learnableMove->move->is_dynamax,
+                    ],
+                ];
+
+                if ($learnableMove->isLearnedByLevelUp()) {
+                    $propData['levelLearn'] = $learnableMove->level_learn;
+                } else {
+                    $propData['tmCode'] = '001';
+                }
+
+                $groupName = $learnableMove->isLearnedByLevelUp() ? 'levelUp' : 'tm';
+
+                return [$groupName => $propData];
+            })
+            ->toArray();
+
+        return Cache::rememberForever(
+            key: DexCacheKeys::speciesLearnableMoves($this->species->id),
             callback: $callback
         );
     }

@@ -148,6 +148,6 @@
   }
 
   .table-empty-cell-placeholder {
-    @apply [&_td]:empty:before:text-muted-foreground! [&_td]:empty:before:content-['-']!
+    @apply [&_td]:empty:before:text-muted-foreground! [&_td]:empty:before:content-['-']!;
   }
 }

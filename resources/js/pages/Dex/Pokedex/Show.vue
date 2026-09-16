@@ -9,37 +9,45 @@
       :next-species="nextSpecies"
     />
   </AppSection>
-  <div
-    class="grid gap-6 @2xl/main-content:grid-cols-2 @4xl/main-content:grid-cols-3"
-  >
-    <section class="@2xl/main-content:col-span-2">
-      <PokedexSpeciesHero
-        class="h-full"
-        :species="species"
-      />
-    </section>
+  <div class="space-y-6">
+    <div
+      class="grid gap-6 @2xl/main-content:grid-cols-2 @4xl/main-content:grid-cols-3"
+    >
+      <section class="@2xl/main-content:col-span-2">
+        <PokedexSpeciesHero
+          class="h-full"
+          :species="species"
+        />
+      </section>
+      <section>
+        <PokedexSpeciesMetadata
+          class="h-full"
+          :species="species"
+        />
+      </section>
+      <section class="@4xl/main-content:order-1">
+        <PokedexSpeciesEvolutionChain
+          class="h-full @4xl/main-content:h-auto"
+          :evolution-chain="evolutionChain"
+        />
+      </section>
+      <section>
+        <PokedexSpeciesDamageTaken
+          :species-name="species.name"
+          :damage-taken="damageTaken"
+        />
+      </section>
+      <section>
+        <PokedexSpeciesCaptureStatistics
+          :species-name="species.name"
+          :statistics="captureStatistics"
+        />
+      </section>
+    </div>
     <section>
-      <PokedexSpeciesMetadata
-        class="h-full"
-        :species="species"
-      />
-    </section>
-    <section class="@4xl/main-content:order-1">
-      <PokedexSpeciesEvolutionChain
-        class="h-full @4xl/main-content:h-auto"
-        :evolution-chain="evolutionChain"
-      />
-    </section>
-    <section>
-      <PokedexSpeciesDamageTaken
+      <PokedexSpeciesLearnableMoves
         :species-name="species.name"
-        :damage-taken="damageTaken"
-      />
-    </section>
-    <section>
-      <PokedexSpeciesCaptureStatistics
-        :species-name="species.name"
-        :statistics="captureStatistics"
+        :learnable-moves="learnableMoves"
       />
     </section>
   </div>
@@ -53,10 +61,12 @@ import PokedexSpeciesCaptureStatistics from '@/components/PokedexSpeciesCaptureS
 import PokedexSpeciesDamageTaken from '@/components/PokedexSpeciesDamageTaken.vue';
 import PokedexSpeciesEvolutionChain from '@/components/PokedexSpeciesEvolutionChain.vue';
 import PokedexSpeciesHero from '@/components/PokedexSpeciesHero.vue';
+import PokedexSpeciesLearnableMoves from '@/components/PokedexSpeciesLearnableMoves.vue';
 import PokedexSpeciesMetadata from '@/components/PokedexSpeciesMetadata.vue';
 import PokedexSpeciesNavigation from '@/components/PokedexSpeciesNavigation.vue';
 import type {
   ElementalType,
+  MoveCategory,
   PokemonGender,
   SpeciesSprites,
   SpeciesTypes,
@@ -140,6 +150,32 @@ export interface DexPokedexShowPageProps {
       };
       minLevel?: number;
       gender?: PokemonGender;
+    }[];
+  };
+  learnableMoves: {
+    levelUp: {
+      move: {
+        name: string;
+        type: ElementalType;
+        category: MoveCategory;
+        power?: number;
+        accuracy: number;
+        isZmove: boolean;
+        isDynamax: boolean;
+      };
+      levelLearn: number;
+    }[];
+    tm: {
+      move: {
+        name: string;
+        type: ElementalType;
+        category: MoveCategory;
+        power?: number;
+        accuracy: number;
+        isZmove: boolean;
+        isDynamax: boolean;
+      };
+      tmCode: string;
     }[];
   };
 }

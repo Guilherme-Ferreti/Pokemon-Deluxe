@@ -20,4 +20,9 @@ final class DexCacheKeys
     {
         return "dex:species:{$speciesId}:evolution-chain";
     }
+
+    public static function speciesLearnableMoves(string $speciesId): string
+    {
+        return "dex:species:{$speciesId}:learnable-moves";
+    }
 }
