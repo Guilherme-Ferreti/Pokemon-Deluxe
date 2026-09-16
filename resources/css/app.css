@@ -141,3 +141,13 @@
     cursor: pointer;
   }
 }
+
+@layer components {
+  .table-content-centered {
+    @apply [&_th,&_td]:text-center! [&_th>a,&_td>div]:justify-center!;
+  }
+
+  .table-empty-cell-placeholder {
+    @apply [&_td]:empty:before:text-muted-foreground! [&_td]:empty:before:content-['-']!
+  }
+}

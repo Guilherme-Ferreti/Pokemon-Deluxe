@@ -31,7 +31,7 @@
     </form>
     <Table
       v-if="moves.data.length > 0"
-      class="[&_td]:empty:before:text-muted-foreground [&_td]:empty:before:content-['-'] [&_th,&_tr]:text-center [&_th>a,&_td>div]:justify-center"
+      class="table-content-centered table-empty-cell-placeholder"
     >
       <TableHeader>
         <TableRow>
