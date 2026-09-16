@@ -121,9 +121,21 @@ final readonly class PokedexShowPageProps implements ProvidesInertiaProperties
      */
     private function getCaptureStatisticsProp(): array
     {
+        $global = Cache::remember(
+            key: DexCacheKeys::speciesCaptureStatistics($this->species->id),
+            ttl: now()->endOfDay(),
+            callback: fn () => new CalculateSpeciesCaptureStatistics()->handle($this->species)
+        );
+
+        $currentUser = Cache::remember(
+            key: DexCacheKeys::userSpeciesCaptureStatistics(currentUser()->id, $this->species->id),
+            ttl: now()->endOfDay(),
+            callback: fn () => new CalculateUserSpeciesCaptureStatistics()->handle(currentUser(), $this->species)
+        );
+
         return [
-            'global'      => new CalculateSpeciesCaptureStatistics()->handle($this->species),
-            'currentUser' => new CalculateUserSpeciesCaptureStatistics()->handle(currentUser(), $this->species),
+            'global'      => $global,
+            'currentUser' => $currentUser,
         ];
     }
 
