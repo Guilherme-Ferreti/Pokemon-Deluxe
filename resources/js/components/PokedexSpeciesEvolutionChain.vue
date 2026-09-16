@@ -54,7 +54,7 @@
       </ul>
       <p
         v-else
-        class="text-sm"
+        class="text-sm text-muted-foreground"
       >
         {{ section.emptyMessage }}
       </p>
@@ -82,12 +82,12 @@ const sections = [
   {
     title: 'Evolves from',
     evolutions: props.evolutionChain.previous,
-    emptyMessage: 'This pokemon does not have previous evolutions.',
+    emptyMessage: 'This pokemon does not have previous evolutions',
   },
   {
     title: 'Evolves into',
     evolutions: props.evolutionChain.into,
-    emptyMessage: 'This pokemon does not evolve.',
+    emptyMessage: 'This pokemon does not evolve',
   },
 ];
 </script>

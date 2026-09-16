@@ -22,7 +22,7 @@
         </div>
         <span
           v-else
-          class="text-sm text-foreground"
+          class="text-sm text-muted-foreground"
         >
           None
         </span>
