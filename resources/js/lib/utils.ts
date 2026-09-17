@@ -2,6 +2,8 @@ import { usePage } from '@inertiajs/vue3';
 import { clsx } from 'clsx';
 import type { ClassValue } from 'clsx';
 import { twMerge } from 'tailwind-merge';
+import type { Paths } from '@/types';
+import { SortDirection } from '@/types';
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
@@ -59,4 +61,39 @@ export function anyItemExists<T>(array: T[], items: T[]): boolean {
 
 export function formatPokedexNumber(pokedexNumber: number): string {
   return pokedexNumber.toString().padStart(4, '0');
+}
+
+export function sortBy<T extends Record<string, unknown>>(
+  array: T[],
+  key: Paths<T>,
+  direction: SortDirection = SortDirection.ASC,
+): T[] {
+  const getValue = (obj: T, path: string): unknown =>
+    path
+      .split('.')
+      .reduce(
+        (value, key) => (value as Record<string, unknown>)?.[key],
+        obj as unknown,
+      );
+
+  return [...array].sort((a, b) => {
+    const aValue = getValue(a, key);
+    const bValue = getValue(b, key);
+
+    if (aValue === bValue) {
+      return 0;
+    }
+
+    if (aValue == null) {
+      return 1;
+    }
+
+    if (bValue == null) {
+      return -1;
+    }
+
+    const result = aValue < bValue ? -1 : 1;
+
+    return direction === SortDirection.ASC ? result : -result;
+  });
 }

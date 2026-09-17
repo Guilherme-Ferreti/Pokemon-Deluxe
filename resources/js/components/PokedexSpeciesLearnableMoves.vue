@@ -15,41 +15,49 @@
         <Table class="table-content-centered table-empty-cell-placeholder">
           <TableHeader>
             <TableRow>
-              <TableHead>Level</TableHead>
-              <TableHead>Move</TableHead>
-              <TableHead>Type</TableHead>
-              <TableHead>Power</TableHead>
-              <TableHead>Accuracy</TableHead>
+              <TableHead @click="levelUpMoves.toggleSort('levelLearn')">
+                Level
+              </TableHead>
+              <TableHead @click="levelUpMoves.toggleSort('move.name')">
+                Move
+              </TableHead>
+              <TableHead @click="levelUpMoves.toggleSort('move.type')">
+                Type
+              </TableHead>
+              <TableHead @click="levelUpMoves.toggleSort('move.power')">
+                Power
+              </TableHead>
+              <TableHead @click="levelUpMoves.toggleSort('move.accuracy')">
+                Accuracy
+              </TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>
             <TableRow
-              v-for="learnableMove in learnableMoves.levelUp"
-              :key="learnableMove.move.name"
+              v-for="item in levelUpMoves.sortedItems.value"
+              :key="item.move.name"
             >
-              <TableCell>{{ learnableMove.levelLearn }}</TableCell>
+              <TableCell>{{ item.levelLearn }}</TableCell>
               <TableCell>
-                {{ learnableMove.move.name }}
+                {{ item.move.name }}
                 <sup
-                  v-if="
-                    learnableMove.move.isZmove || learnableMove.move.isDynamax
-                  "
+                  v-if="item.move.isZmove || item.move.isDynamax"
                   class="font-extrabold"
                 >
-                  {{ learnableMove.move.isZmove ? 'Z' : 'D' }}
+                  {{ item.move.isZmove ? 'Z' : 'D' }}
                 </sup>
               </TableCell>
               <TableCell>
-                <ElementalTypeBadges :types="[learnableMove.move.type]" />
+                <ElementalTypeBadges :types="[item.move.type]" />
               </TableCell>
               <TableCell>
                 {{
-                  learnableMove.move.category === MoveCategory.OHKO
+                  item.move.category === MoveCategory.OHKO
                     ? 'One-hit KO'
-                    : learnableMove.move.power
+                    : item.move.power
                 }}
               </TableCell>
-              <TableCell>{{ learnableMove.move.accuracy }}%</TableCell>
+              <TableCell>{{ item.move.accuracy }}%</TableCell>
             </TableRow>
           </TableBody>
         </Table>
@@ -62,31 +70,39 @@
         <Table class="table-content-centered table-empty-cell-placeholder">
           <TableHeader>
             <TableRow>
-              <TableHead>TM</TableHead>
-              <TableHead>Move</TableHead>
-              <TableHead>Type</TableHead>
-              <TableHead>Power</TableHead>
-              <TableHead>Accuracy</TableHead>
+              <TableHead @click="tmMoves.toggleSort('tmCode')">TM</TableHead>
+              <TableHead @click="tmMoves.toggleSort('move.name')"
+                >Move</TableHead
+              >
+              <TableHead @click="tmMoves.toggleSort('move.type')"
+                >Type</TableHead
+              >
+              <TableHead @click="tmMoves.toggleSort('move.power')"
+                >Power</TableHead
+              >
+              <TableHead @click="tmMoves.toggleSort('move.accuracy')">
+                Accuracy
+              </TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>
             <TableRow
-              v-for="learnableMove in learnableMoves.tm"
-              :key="learnableMove.move.name"
+              v-for="item in tmMoves.sortedItems.value"
+              :key="item.move.name"
             >
-              <TableCell>{{ learnableMove.tmCode }}</TableCell>
-              <TableCell>{{ learnableMove.move.name }}</TableCell>
+              <TableCell>{{ item.tmCode }}</TableCell>
+              <TableCell>{{ item.move.name }}</TableCell>
               <TableCell>
-                <ElementalTypeBadges :types="[learnableMove.move.type]" />
+                <ElementalTypeBadges :types="[item.move.type]" />
               </TableCell>
               <TableCell>
                 {{
-                  learnableMove.move.category === MoveCategory.OHKO
+                  item.move.category === MoveCategory.OHKO
                     ? 'One-hit KO'
-                    : learnableMove.move.power
+                    : item.move.power
                 }}
               </TableCell>
-              <TableCell>{{ learnableMove.move.accuracy }}%</TableCell>
+              <TableCell>{{ item.move.accuracy }}%</TableCell>
             </TableRow>
           </TableBody>
         </Table>
@@ -111,12 +127,21 @@ import {
   TableHeader,
   TableRow,
 } from '@/components/ui/table';
+import { useSortable } from '@/composables/useSortable.js';
 import type { DexPokedexShowPageProps } from '@/pages/Dex/Pokedex/Show.vue';
 import { MoveCategory } from '@/types';
 import ElementalTypeBadges from './ElementalTypeBadges.vue';
 
-defineProps<{
+const props = defineProps<{
   speciesName: string;
   learnableMoves: DexPokedexShowPageProps['learnableMoves'];
 }>();
+
+const levelUpMoves = useSortable<
+  DexPokedexShowPageProps['learnableMoves']['levelUp'][number]
+>(props.learnableMoves.levelUp, 'levelLearn');
+
+const tmMoves = useSortable<
+  DexPokedexShowPageProps['learnableMoves']['tm'][number]
+>(props.learnableMoves.tm, 'tmCode');
 </script>
