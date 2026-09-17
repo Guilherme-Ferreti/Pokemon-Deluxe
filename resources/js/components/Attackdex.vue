@@ -83,21 +83,20 @@
           :key="move.id"
         >
           <TableCell>
-            {{ move.name }}
-            <sup
-              v-if="move.isZmove || move.isDynamax"
-              class="font-extrabold"
-            >
-              {{ move.isZmove ? 'Z' : 'D' }}
-            </sup>
+            <MoveNameLabel
+              :name="move.name"
+              :is-z-move="move.isZMove"
+              :is-dynamax-move="move.isDynamaxMove"
+            />
           </TableCell>
           <TableCell>
             <ElementalTypeBadges :types="[move.type]" />
           </TableCell>
           <TableCell>
-            {{
-              move.category === MoveCategory.OHKO ? 'One-hit KO' : move.power
-            }}
+            <MovePowerLabel
+              :power="move.power"
+              :category="move.category"
+            />
           </TableCell>
           <TableCell>{{ move.accuracy }}%</TableCell>
           <TableCell>
@@ -139,6 +138,8 @@ import AppPagination from '@/components/AppPagination.vue';
 import AppTableHeadSortableLink from '@/components/AppTableHeadSortableLink.vue';
 import AttackdexSearchBarFiltersDialog from '@/components/AttackdexSearchBarFiltersDialog.vue';
 import ElementalTypeBadges from '@/components/ElementalTypeBadges.vue';
+import MoveNameLabel from '@/components/MoveNameLabel.vue';
+import MovePowerLabel from '@/components/MovePowerLabel.vue';
 import { Card } from '@/components/ui/card';
 import {
   TableCell,
@@ -150,7 +151,7 @@ import {
 } from '@/components/ui/table';
 import { removeFalsyValues } from '@/lib/utils';
 import type { DexAttackdexIndexPageProps } from '@/pages/Dex/Attackdex/Index.vue';
-import { MoveCategory, SearchAttackdexSortBy } from '@/types';
+import { SearchAttackdexSortBy } from '@/types';
 import { route } from '@/types/helpers/route';
 
 const props = defineProps<{

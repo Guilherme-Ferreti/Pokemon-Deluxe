@@ -120,6 +120,7 @@
 <script setup lang="ts">
 import AppInfoCard from '@/components/AppInfoCard.vue';
 import AppInfoCardRow from '@/components/AppInfoCardRow.vue';
+import AppPokemonGenderIcon from '@/components/AppPokemonGenderIcon.vue';
 import AppSpeciesPortrait from '@/components/AppSpeciesPortrait.vue';
 import ElementalTypeBadges from '@/components/ElementalTypeBadges.vue';
 import { Badge } from '@/components/ui/badge';
@@ -130,7 +131,6 @@ import {
 } from '@/components/ui/tooltip';
 import type { DexPokedexShowPageProps } from '@/pages/Dex/Pokedex/Show.vue';
 import { PokemonGender } from '@/types';
-import AppPokemonGenderIcon from './AppPokemonGenderIcon.vue';
 
 const props = defineProps<{
   species: DexPokedexShowPageProps['species'];

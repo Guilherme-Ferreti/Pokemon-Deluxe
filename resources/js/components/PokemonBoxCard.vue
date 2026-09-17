@@ -93,6 +93,7 @@
 <script setup lang="ts">
 import { IconBook, IconDotsVertical, IconEye } from '@tabler/icons-vue';
 import AppNavLink from '@/components/AppNavLink.vue';
+import AppPokemonGenderIcon from '@/components/AppPokemonGenderIcon.vue';
 import AppSpeciesSprite from '@/components/AppSpeciesSprite.vue';
 import ElementalTypeBadges from '@/components/ElementalTypeBadges.vue';
 import { Button } from '@/components/ui/button';
@@ -105,7 +106,6 @@ import {
 } from '@/components/ui/dropdown-menu';
 import type { PokemonBoxIndexPageProps } from '@/pages/Pokemon/Box/Index.vue';
 import { route } from '@/types/helpers/route';
-import AppPokemonGenderIcon from './AppPokemonGenderIcon.vue';
 
 defineProps<{
   pokemon: PokemonBoxIndexPageProps['pokemonList']['data'][number];

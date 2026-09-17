@@ -51,7 +51,7 @@ export enum MoveDamageClass {
 }
 export enum MoveTrait {
   Z_MOVE = 'z-move',
-  DYNAMAX = 'dynamax',
+  DYNAMAX_MOVE = 'dynamax-move',
 }
 export enum PokeballType {
   STANDARD = 'standard',

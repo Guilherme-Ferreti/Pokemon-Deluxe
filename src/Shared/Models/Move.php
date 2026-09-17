@@ -34,8 +34,8 @@ use Shared\Enums\MoveDamageClass;
  * @property int|null $flinch_chance
  * @property int|null $min_hits
  * @property int|null $max_hits
- * @property bool $is_zmove
- * @property bool $is_dynamax
+ * @property bool $is_z_move
+ * @property bool $is_dynamax_move
  * @property Generation $generation
  * @property string $slug
  * @property string $external_id
@@ -54,20 +54,20 @@ final class Move extends Model
     protected function casts(): array
     {
         return [
-            'type'           => ElementalType::class,
-            'category'       => MoveCategory::class,
-            'damage_class'   => MoveDamageClass::class,
-            'power'          => 'integer',
-            'accuracy'       => 'integer',
-            'pp'             => 'integer',
-            'ailment'        => Ailment::class,
-            'ailment_chance' => 'integer',
-            'flinch_chance'  => 'integer',
-            'min_hits'       => 'integer',
-            'max_hits'       => 'integer',
-            'is_zmove'       => 'boolean',
-            'is_dynamax'     => 'boolean',
-            'generation'     => Generation::class,
+            'type'            => ElementalType::class,
+            'category'        => MoveCategory::class,
+            'damage_class'    => MoveDamageClass::class,
+            'power'           => 'integer',
+            'accuracy'        => 'integer',
+            'pp'              => 'integer',
+            'ailment'         => Ailment::class,
+            'ailment_chance'  => 'integer',
+            'flinch_chance'   => 'integer',
+            'min_hits'        => 'integer',
+            'max_hits'        => 'integer',
+            'is_z_move'       => 'boolean',
+            'is_dynamax_move' => 'boolean',
+            'generation'      => Generation::class,
         ];
     }
 

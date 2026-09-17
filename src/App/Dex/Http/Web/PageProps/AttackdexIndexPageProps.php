@@ -44,8 +44,8 @@ final class AttackdexIndexPageProps implements ProvidesInertiaProperties
             'ailment'       => $move->ailment,
             'ailmentChance' => $move->ailment_chance,
             'flinchChance'  => $move->flinch_chance,
-            'isZmove'       => $move->is_zmove,
-            'isDynamax'     => $move->is_dynamax,
+            'isZMove'       => $move->is_z_move,
+            'isDynamaxMove' => $move->is_dynamax_move,
         ]);
     }
 }

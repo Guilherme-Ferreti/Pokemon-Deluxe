@@ -2,7 +2,7 @@
   <span>
     {{ name }}
     <sup
-      v-if="isZMove || isDynamax"
+      v-if="isZMove || isDynamaxMove"
       class="font-extrabold"
       aria-hidden="true"
     >
@@ -16,6 +16,6 @@
 defineProps<{
   name: string;
   isZMove: boolean;
-  isDynamax: boolean;
+  isDynamaxMove: boolean;
 }>();
 </script>

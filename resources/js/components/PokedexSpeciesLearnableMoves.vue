@@ -63,23 +63,20 @@
             >
               <TableCell>{{ item.levelLearn }}</TableCell>
               <TableCell>
-                {{ item.move.name }}
-                <sup
-                  v-if="item.move.isZmove || item.move.isDynamax"
-                  class="font-extrabold"
-                >
-                  {{ item.move.isZmove ? 'Z' : 'D' }}
-                </sup>
+                <MoveNameLabel
+                  :name="item.move.name"
+                  :is-z-move="item.move.isZMove"
+                  :is-dynamax-move="item.move.isDynamaxMove"
+                />
               </TableCell>
               <TableCell>
                 <ElementalTypeBadges :types="[item.move.type]" />
               </TableCell>
               <TableCell>
-                {{
-                  item.move.category === MoveCategory.OHKO
-                    ? 'One-hit KO'
-                    : item.move.power
-                }}
+                <MovePowerLabel
+                  :power="item.move.power"
+                  :category="item.move.category"
+                />
               </TableCell>
               <TableCell>{{ item.move.accuracy }}%</TableCell>
             </TableRow>
@@ -142,23 +139,20 @@
             >
               <TableCell>{{ item.tmCode }}</TableCell>
               <TableCell>
-                {{ item.move.name }}
-                <sup
-                  v-if="item.move.isZmove || item.move.isDynamax"
-                  class="font-extrabold"
-                >
-                  {{ item.move.isZmove ? 'Z' : 'D' }}
-                </sup>
+                <MoveNameLabel
+                  :name="item.move.name"
+                  :is-z-move="item.move.isZMove"
+                  :is-dynamax-move="item.move.isDynamaxMove"
+                />
               </TableCell>
               <TableCell>
                 <ElementalTypeBadges :types="[item.move.type]" />
               </TableCell>
               <TableCell>
-                {{
-                  item.move.category === MoveCategory.OHKO
-                    ? 'One-hit KO'
-                    : item.move.power
-                }}
+                <MovePowerLabel
+                  :power="item.move.power"
+                  :category="item.move.category"
+                />
               </TableCell>
               <TableCell>{{ item.move.accuracy }}%</TableCell>
             </TableRow>
@@ -176,6 +170,8 @@ import {
 } from '@tabler/icons-vue';
 import AppTableHeadSortableButton from '@/components/AppTableHeadSortableButton.vue';
 import ElementalTypeBadges from '@/components/ElementalTypeBadges.vue';
+import MoveNameLabel from '@/components/MoveNameLabel.vue';
+import MovePowerLabel from '@/components/MovePowerLabel.vue';
 import {
   Card,
   CardContent,
@@ -192,7 +188,6 @@ import {
 } from '@/components/ui/table';
 import { useSortable } from '@/composables/useSortable.js';
 import type { DexPokedexShowPageProps } from '@/pages/Dex/Pokedex/Show.vue';
-import { MoveCategory } from '@/types';
 
 const props = defineProps<{
   speciesName: string;

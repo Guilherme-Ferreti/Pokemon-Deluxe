@@ -6,14 +6,14 @@ namespace Shared\Enums;
 
 enum MoveTrait: string
 {
-    case Z_MOVE  = 'z-move';
-    case DYNAMAX = 'dynamax';
+    case Z_MOVE       = 'z-move';
+    case DYNAMAX_MOVE = 'dynamax-move';
 
     public function label(): string
     {
         return match ($this) {
-            self::Z_MOVE  => 'Z-Move',
-            self::DYNAMAX => 'Dynamax',
+            self::Z_MOVE       => 'Z-Move',
+            self::DYNAMAX_MOVE => 'Dynamax Move',
         };
     }
 }

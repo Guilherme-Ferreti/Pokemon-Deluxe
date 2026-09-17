@@ -67,8 +67,8 @@ final class SearchAttackdexQuery
     private function applyOthers(Builder $query, Collection $traits): Builder
     {
         return $query->where(fn (Builder $query) => $query
-            ->when($traits->contains(MoveTrait::Z_MOVE), fn (Builder $query) => $query->orWhere('is_zmove', true))
-            ->when($traits->contains(MoveTrait::DYNAMAX), fn (Builder $query) => $query->orWhere('is_dynamax', true))
+            ->when($traits->contains(MoveTrait::Z_MOVE), fn (Builder $query) => $query->orWhere('is_z_move', true))
+            ->when($traits->contains(MoveTrait::DYNAMAX_MOVE), fn (Builder $query) => $query->orWhere('is_dynamax_move', true))
         );
     }
 

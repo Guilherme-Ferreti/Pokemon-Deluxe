@@ -47,8 +47,8 @@ export interface DexAttackdexIndexPageProps {
     ailment?: Ailment;
     ailmentChance?: number;
     flinchChance?: number;
-    isZmove: boolean;
-    isDynamax: boolean;
+    isZMove: boolean;
+    isDynamaxMove: boolean;
   }>;
   activeFilters: {
     search: string;

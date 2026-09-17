@@ -160,8 +160,8 @@ export interface DexPokedexShowPageProps {
         category: MoveCategory;
         power?: number;
         accuracy: number;
-        isZmove: boolean;
-        isDynamax: boolean;
+        isZMove: boolean;
+        isDynamaxMove: boolean;
       };
       levelLearn: number;
     }[];
@@ -172,8 +172,8 @@ export interface DexPokedexShowPageProps {
         category: MoveCategory;
         power?: number;
         accuracy: number;
-        isZmove: boolean;
-        isDynamax: boolean;
+        isZMove: boolean;
+        isDynamaxMove: boolean;
       };
       tmCode: string;
     }[];

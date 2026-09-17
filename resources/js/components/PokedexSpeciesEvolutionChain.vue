@@ -68,11 +68,11 @@ import AppInfoCard from '@/components/AppInfoCard.vue';
 import AppInfoCardSectionTitle from '@/components/AppInfoCardSectionTitle.vue';
 import AppItemSprite from '@/components/AppItemSprite.vue';
 import AppNavLink from '@/components/AppNavLink.vue';
+import AppPokemonGenderIcon from '@/components/AppPokemonGenderIcon.vue';
 import AppSpeciesPortrait from '@/components/AppSpeciesPortrait.vue';
 import Separator from '@/components/ui/separator/Separator.vue';
 import type { DexPokedexShowPageProps } from '@/pages/Dex/Pokedex/Show.vue';
 import { route } from '@/types/helpers/route.js';
-import AppPokemonGenderIcon from './AppPokemonGenderIcon.vue';
 
 const props = defineProps<{
   evolutionChain: DexPokedexShowPageProps['evolutionChain'];
