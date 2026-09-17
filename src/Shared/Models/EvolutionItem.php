@@ -13,11 +13,10 @@ use Illuminate\Support\Carbon;
 
 /**
  * @property string $id
+ * @property string $slug
  * @property string $name
  * @property string $description
  * @property string|null $sprite
- * @property string $slug
- * @property string $external_id
  * @property Carbon $created_at
  * @property Carbon $updated_at
  */

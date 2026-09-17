@@ -15,13 +15,12 @@ use Shared\Enums\PokeballType;
 
 /**
  * @property string $id
+ * @property string $slug
  * @property string $name
  * @property string $description
  * @property string|null $sprite
  * @property PokeballType $type
  * @property float $capture_rate
- * @property string $slug
- * @property string $external_id
  * @property Carbon $created_at
  * @property Carbon $updated_at
  */

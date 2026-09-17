@@ -21,7 +21,7 @@ final class SpeciesLearnableMovesSeeder extends Seeder
     public function run(): void
     {
         $this->speciesIds = Species::pluck('id', 'slug')->toArray();
-        $this->movesIds   = Move::pluck('id', 'external_id')->toArray();
+        $this->movesIds   = Move::pluck('id', 'slug')->toArray();
 
         $this->insertMovesFromFiles();
     }

@@ -6,11 +6,10 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Collection;
-use Illuminate\Support\Str;
 use Shared\Models\Move;
 
 /**
- * @phpstan-type SeederMove array{id:string, name:string, type:string, category:string, damage_class:string, power:?int, accuracy:int, pp:int, ailment:?string, ailment_chance:?int, flinch_chance:?int, min_hits:?int, max_hits:?int, is_z_move:bool, is_dynamax_move:bool, generation:int, slug:string, external_id:string}
+ * @phpstan-type SeederMove array{id:string, name:string, type:string, category:string, damage_class:string, power:?int, accuracy:int, pp:int, ailment:?string, ailment_chance:?int, flinch_chance:?int, min_hits:?int, max_hits:?int, is_z_move:bool, is_dynamax_move:bool, generation:int, slug:string}
  */
 final class MoveSeeder extends Seeder
 {
@@ -39,6 +38,7 @@ final class MoveSeeder extends Seeder
     {
         return [
             'id'              => new Move()->newUniqueId(),
+            'slug'            => $move['id'],
             'name'            => $move['name'],
             'type'            => $move['type'],
             'category'        => $move['category'],
@@ -54,8 +54,6 @@ final class MoveSeeder extends Seeder
             'is_z_move'       => $move['is_z_move'],
             'is_dynamax_move' => $move['is_dynamax_move'],
             'generation'      => $move['generation'],
-            'slug'            => Str::of($move['name'])->slug()->toString(),
-            'external_id'     => $move['external_id'],
         ];
     }
 }

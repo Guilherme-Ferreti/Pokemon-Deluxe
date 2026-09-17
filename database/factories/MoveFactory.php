@@ -24,6 +24,7 @@ final class MoveFactory extends Factory
     public function definition(): array
     {
         return [
+            'slug'            => fake()->unique()->uuid(),
             'name'            => fake()->unique()->word(),
             'type'            => fake()->randomElement(ElementalType::cases()),
             'category'        => fake()->randomElement(MoveCategory::cases()),
@@ -39,8 +40,6 @@ final class MoveFactory extends Factory
             'is_z_move'       => fake()->boolean(),
             'is_dynamax_move' => fn (array $attributes) => $attributes['is_z_move'] ? false : fake()->boolean(),
             'generation'      => fake()->randomElement(Generation::cases()),
-            'slug'            => fake()->unique()->slug(),
-            'external_id'     => fake()->unique()->slug(),
         ];
     }
 }

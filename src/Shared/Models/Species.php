@@ -25,6 +25,7 @@ use Shared\ValueObjects\SpeciesSprites;
 
 /**
  * @property string $id
+ * @property string $slug
  * @property string $name
  * @property Collection<int, ElementalType> $types
  * @property int $pokedex_number
@@ -40,7 +41,6 @@ use Shared\ValueObjects\SpeciesSprites;
  * @property Generation $generation
  * @property int|null $capture_rate
  * @property int $gender_rate
- * @property string $slug
  * @property Carbon $created_at
  * @property Carbon $updated_at
  * @property-read EloquentCollection<int, SpeciesEvolution> $evolutions

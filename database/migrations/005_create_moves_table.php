@@ -18,6 +18,8 @@ return new class extends Migration
         Schema::create('moves', function (Blueprint $table): void {
             $table->uuid('id')->primary();
 
+            $table->string('slug')->unique();
+
             $table->string('name');
             $table->enum('type', Arr::pluck(ElementalType::cases(), 'value'));
 
@@ -40,9 +42,6 @@ return new class extends Migration
             $table->boolean('is_dynamax_move')->default(false);
 
             $table->unsignedTinyInteger('generation');
-
-            $table->string('slug')->unique();
-            $table->string('external_id')->unique();
 
             $table->index('name');
         });

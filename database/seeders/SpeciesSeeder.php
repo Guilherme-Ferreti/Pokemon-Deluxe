@@ -6,7 +6,6 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Collection;
-use Illuminate\Support\Str;
 use Shared\Models\EvolutionItem;
 use Shared\Models\Species;
 use Shared\Models\SpeciesEvolution;
@@ -95,6 +94,7 @@ final class SpeciesSeeder extends Seeder
     {
         return [
             'id'             => $this->getSpeciesId($species['id']),
+            'slug'           => $species['id'],
             'name'           => $species['name'],
             'types'          => json_encode($species['types']),
             'pokedex_number' => $species['pokedex_number'],
@@ -122,7 +122,6 @@ final class SpeciesSeeder extends Seeder
             'generation'   => $species['generation'],
             'capture_rate' => $species['capture_rate'],
             'gender_rate'  => $species['gender_rate'],
-            'slug'         => $species['id'],
         ];
     }
 
@@ -152,6 +151,6 @@ final class SpeciesSeeder extends Seeder
      */
     private function getEvolutionItemIds(): array
     {
-        return EvolutionItem::pluck('id', 'external_id')->toArray();
+        return EvolutionItem::pluck('id', 'slug')->toArray();
     }
 }

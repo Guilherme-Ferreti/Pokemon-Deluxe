@@ -17,11 +17,10 @@ final class EvolutionItemFactory extends Factory
     public function definition(): array
     {
         return [
+            'slug'        => fake()->unique()->uuid(),
             'name'        => fake()->unique()->word(),
             'description' => fake()->sentence(),
             'sprite'      => fake()->optional()->imageUrl(),
-            'slug'        => fake()->unique()->uuid(),
-            'external_id' => fake()->unique()->uuid(),
         ];
     }
 }

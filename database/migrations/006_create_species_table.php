@@ -13,8 +13,9 @@ return new class extends Migration
         Schema::create('species', function (Blueprint $table): void {
             $table->uuid('id')->primary();
 
-            $table->string('name');
+            $table->string('slug')->unique();
 
+            $table->string('name');
             $table->json('types');
 
             $table->unsignedSmallInteger('pokedex_number');
@@ -33,8 +34,6 @@ return new class extends Migration
             $table->unsignedTinyInteger('generation');
             $table->unsignedTinyInteger('capture_rate')->nullable();
             $table->tinyInteger('gender_rate');
-
-            $table->string('slug')->unique();
 
             $table->index('name');
             $table->index('pokedex_number');

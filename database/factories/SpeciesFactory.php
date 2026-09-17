@@ -21,6 +21,7 @@ final class SpeciesFactory extends Factory
     public function definition(): array
     {
         return [
+            'slug'           => fake()->unique()->uuid(),
             'name'           => fake()->unique()->word(),
             'types'          => fake()->randomElements(ElementalType::cases(), random_int(1, 2)),
             'pokedex_number' => fake()->unique()->numberBetween(1, 1000),
@@ -48,7 +49,6 @@ final class SpeciesFactory extends Factory
             'generation'   => fake()->randomElement(Generation::cases()),
             'capture_rate' => fake()->numberBetween(3, 255),
             'gender_rate'  => fake()->numberBetween(-1, 8),
-            'slug'         => fake()->unique()->uuid(),
         ];
     }
 

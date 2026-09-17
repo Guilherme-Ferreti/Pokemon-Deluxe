@@ -20,11 +20,10 @@ final class EvolutionItemSeeder extends Seeder
         foreach ($items as $item) {
             $data[] = [
                 'id'          => new EvolutionItem()->newUniqueId(),
+                'slug'        => $item['id'],
                 'name'        => $item['name'],
                 'sprite'      => $item['sprite'],
                 'description' => $item['description'],
-                'slug'        => $item['id'],
-                'external_id' => $item['external_id'],
             ];
         }
 

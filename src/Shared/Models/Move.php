@@ -22,6 +22,7 @@ use Shared\Enums\MoveDamageClass;
 
 /**
  * @property string $id
+ * @property string $slug
  * @property string $name
  * @property ElementalType $type
  * @property MoveCategory $category
@@ -37,8 +38,6 @@ use Shared\Enums\MoveDamageClass;
  * @property bool $is_z_move
  * @property bool $is_dynamax_move
  * @property Generation $generation
- * @property string $slug
- * @property string $external_id
  * @property Carbon $created_at
  * @property Carbon $updated_at
  * @property-read EloquentCollection<int, SpeciesLearnableMove> $learnableBySpecies
