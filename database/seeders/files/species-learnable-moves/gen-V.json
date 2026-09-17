@@ -32066,5 +32066,2263 @@
             "level_learn": null,
             "is_base_move": false
         }
+    },
+    "audino-mega": {
+        "pound": {
+            "level_learn": 1,
+            "is_base_move": true
+        },
+        "disarming-voice": {
+            "level_learn": 10,
+            "is_base_move": true
+        },
+        "double-slap": {
+            "level_learn": 13,
+            "is_base_move": true
+        },
+        "zen-headbutt": {
+            "level_learn": 20,
+            "is_base_move": true
+        },
+        "secret-power": {
+            "level_learn": 22,
+            "is_base_move": false
+        },
+        "hyper-voice": {
+            "level_learn": 29,
+            "is_base_move": false
+        },
+        "take-down": {
+            "level_learn": 31,
+            "is_base_move": false
+        },
+        "last-resort": {
+            "level_learn": 36,
+            "is_base_move": false
+        },
+        "double-edge": {
+            "level_learn": 49,
+            "is_base_move": false
+        },
+        "blizzard": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "body-slam": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "charge-beam": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "covet": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "dazzling-gleam": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "dig": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "drain-punch": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "draining-kiss": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "dream-eater": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "echoed-voice": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "facade": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "fire-blast": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "fire-punch": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "flamethrower": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "fling": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "focus-punch": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "frustration": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "giga-impact": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "grass-knot": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "hidden-power": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "hyper-beam": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "ice-beam": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "ice-punch": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "icy-wind": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "incinerate": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "iron-tail": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "knock-off": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "low-kick": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "mega-kick": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "mega-punch": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "power-up-punch": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "psychic": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "psyshock": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "retaliate": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "return": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "round": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "shadow-ball": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "signal-beam": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "snore": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "solar-beam": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "stomping-tantrum": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "surf": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "sweet-kiss": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "throat-chop": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "thunder": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "thunder-punch": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "thunder-wave": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "thunderbolt": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "toxic": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "uproar": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "wild-charge": {
+            "level_learn": null,
+            "is_base_move": false
+        }
+    },
+    "chandelure-mega": {
+        "flame-burst": {
+            "level_learn": 1,
+            "is_base_move": true
+        },
+        "hex": {
+            "level_learn": 1,
+            "is_base_move": true
+        },
+        "inferno": {
+            "level_learn": 1,
+            "is_base_move": true
+        },
+        "overheat": {
+            "level_learn": 1,
+            "is_base_move": true
+        },
+        "astonish": {
+            "level_learn": 1,
+            "is_base_move": false
+        },
+        "confuse-ray": {
+            "level_learn": 1,
+            "is_base_move": false
+        },
+        "ember": {
+            "level_learn": 1,
+            "is_base_move": false
+        },
+        "fire-spin": {
+            "level_learn": 1,
+            "is_base_move": false
+        },
+        "night-shade": {
+            "level_learn": 1,
+            "is_base_move": false
+        },
+        "shadow-ball": {
+            "level_learn": 1,
+            "is_base_move": false
+        },
+        "smog": {
+            "level_learn": 1,
+            "is_base_move": false
+        },
+        "will-o-wisp": {
+            "level_learn": 1,
+            "is_base_move": false
+        },
+        "burning-jealousy": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "clear-smog": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "dark-pulse": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "dream-eater": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "energy-ball": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "facade": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "fire-blast": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "flame-charge": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "flamethrower": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "flare-blitz": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "frustration": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "giga-impact": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "heat-wave": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "hidden-power": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "hyper-beam": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "incinerate": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "lash-out": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "mystical-fire": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "payback": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "poltergeist": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "psychic": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "return": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "round": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "secret-power": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "shock-wave": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "skitter-smack": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "snore": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "solar-beam": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "thief": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "toxic": {
+            "level_learn": null,
+            "is_base_move": false
+        }
+    },
+    "eelektross-mega": {
+        "crunch": {
+            "level_learn": 1,
+            "is_base_move": true
+        },
+        "crush-claw": {
+            "level_learn": 1,
+            "is_base_move": true
+        },
+        "discharge": {
+            "level_learn": 1,
+            "is_base_move": true
+        },
+        "wild-charge": {
+            "level_learn": 5,
+            "is_base_move": true
+        },
+        "acid": {
+            "level_learn": 1,
+            "is_base_move": false
+        },
+        "headbutt": {
+            "level_learn": 1,
+            "is_base_move": false
+        },
+        "thrash": {
+            "level_learn": 1,
+            "is_base_move": false
+        },
+        "zap-cannon": {
+            "level_learn": 1,
+            "is_base_move": false
+        },
+        "acid-spray": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "acrobatics": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "aqua-tail": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "bind": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "body-press": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "body-slam": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "bounce": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "brick-break": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "bulldoze": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "charge-beam": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "close-combat": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "confuse-ray": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "cut": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "dragon-claw": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "dragon-pulse": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "dragon-tail": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "drain-punch": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "electro-ball": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "electroweb": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "facade": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "fire-punch": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "flamethrower": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "flash-cannon": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "focus-punch": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "frustration": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "giga-drain": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "giga-impact": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "grass-knot": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "heavy-slam": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "hex": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "hidden-power": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "hyper-beam": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "iron-tail": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "knock-off": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "liquidation": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "lunge": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "muddy-water": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "outrage": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "poison-fang": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "power-up-punch": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "psychic-fangs": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "return": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "rising-voltage": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "rock-slide": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "rock-smash": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "rock-tomb": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "round": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "secret-power": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "shock-wave": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "signal-beam": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "snore": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "stomping-tantrum": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "strength": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "super-fang": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "superpower": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "swift": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "take-down": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "throat-chop": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "thunder": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "thunder-fang": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "thunder-punch": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "thunder-wave": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "thunderbolt": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "toxic": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "u-turn": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "volt-switch": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "waterfall": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "zen-headbutt": {
+            "level_learn": null,
+            "is_base_move": false
+        }
+    },
+    "emboar-mega": {
+        "smog": {
+            "level_learn": 20,
+            "is_base_move": true
+        },
+        "rollout": {
+            "level_learn": 23,
+            "is_base_move": true
+        },
+        "take-down": {
+            "level_learn": 28,
+            "is_base_move": true
+        },
+        "heat-crash": {
+            "level_learn": 31,
+            "is_base_move": true
+        },
+        "hammer-arm": {
+            "level_learn": 1,
+            "is_base_move": false
+        },
+        "tackle": {
+            "level_learn": 1,
+            "is_base_move": false
+        },
+        "ember": {
+            "level_learn": 3,
+            "is_base_move": false
+        },
+        "arm-thrust": {
+            "level_learn": 10,
+            "is_base_move": false
+        },
+        "flame-charge": {
+            "level_learn": 15,
+            "is_base_move": false
+        },
+        "assurance": {
+            "level_learn": 38,
+            "is_base_move": false
+        },
+        "flamethrower": {
+            "level_learn": 43,
+            "is_base_move": false
+        },
+        "head-smash": {
+            "level_learn": 50,
+            "is_base_move": false
+        },
+        "flare-blitz": {
+            "level_learn": 62,
+            "is_base_move": false
+        },
+        "blast-burn": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "body-press": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "body-slam": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "brick-break": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "bulldoze": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "burn-up": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "close-combat": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "covet": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "dig": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "double-edge": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "drain-punch": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "earthquake": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "echoed-voice": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "endeavor": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "facade": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "fire-blast": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "fire-pledge": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "fire-punch": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "fire-spin": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "fling": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "focus-blast": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "focus-punch": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "frustration": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "giga-impact": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "grass-knot": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "gyro-ball": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "heat-wave": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "heavy-slam": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "hidden-power": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "high-horsepower": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "hyper-beam": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "incinerate": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "iron-head": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "iron-tail": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "knock-off": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "low-kick": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "low-sweep": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "mud-slap": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "overheat": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "poison-jab": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "power-up-punch": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "return": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "reversal": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "rock-slide": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "rock-smash": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "rock-tomb": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "round": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "scald": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "scorching-sands": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "secret-power": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "smack-down": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "snore": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "solar-beam": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "solar-blade": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "stomping-tantrum": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "stone-edge": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "storm-throw": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "strength": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "sucker-punch": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "superpower": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "thrash": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "thunder-punch": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "toxic": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "wild-charge": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "will-o-wisp": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "zen-headbutt": {
+            "level_learn": null,
+            "is_base_move": false
+        }
+    },
+    "excadrill-mega": {
+        "dig": {
+            "level_learn": 22,
+            "is_base_move": true
+        },
+        "crush-claw": {
+            "level_learn": 24,
+            "is_base_move": true
+        },
+        "slash": {
+            "level_learn": 26,
+            "is_base_move": true
+        },
+        "rock-slide": {
+            "level_learn": 28,
+            "is_base_move": true
+        },
+        "scratch": {
+            "level_learn": 1,
+            "is_base_move": false
+        },
+        "rapid-spin": {
+            "level_learn": 2,
+            "is_base_move": false
+        },
+        "mud-slap": {
+            "level_learn": 4,
+            "is_base_move": false
+        },
+        "horn-drill": {
+            "level_learn": 11,
+            "is_base_move": false
+        },
+        "fury-swipes": {
+            "level_learn": 12,
+            "is_base_move": false
+        },
+        "metal-claw": {
+            "level_learn": 15,
+            "is_base_move": false
+        },
+        "earthquake": {
+            "level_learn": 40,
+            "is_base_move": false
+        },
+        "drill-run": {
+            "level_learn": 52,
+            "is_base_move": false
+        },
+        "fissure": {
+            "level_learn": 61,
+            "is_base_move": false
+        },
+        "aerial-ace": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "body-slam": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "brick-break": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "brutal-swing": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "bulldoze": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "cut": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "double-edge": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "earth-power": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "facade": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "fling": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "focus-blast": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "frustration": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "giga-impact": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "hidden-power": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "high-horsepower": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "hyper-beam": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "iron-head": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "megahorn": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "mud-shot": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "poison-jab": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "return": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "rock-blast": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "rock-smash": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "rock-tomb": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "round": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "sand-tomb": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "scorching-sands": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "secret-power": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "shadow-claw": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "sludge-bomb": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "smart-strike": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "snore": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "steel-beam": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "stomping-tantrum": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "strength": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "take-down": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "throat-chop": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "toxic": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "x-scissor": {
+            "level_learn": null,
+            "is_base_move": false
+        }
+    },
+    "garbodor-gmax": {
+        "sludge": {
+            "level_learn": 18,
+            "is_base_move": true
+        },
+        "body-slam": {
+            "level_learn": 24,
+            "is_base_move": true
+        },
+        "sludge-bomb": {
+            "level_learn": 28,
+            "is_base_move": true
+        },
+        "clear-smog": {
+            "level_learn": 30,
+            "is_base_move": true
+        },
+        "metal-claw": {
+            "level_learn": 1,
+            "is_base_move": false
+        },
+        "poison-gas": {
+            "level_learn": 1,
+            "is_base_move": false
+        },
+        "pound": {
+            "level_learn": 1,
+            "is_base_move": false
+        },
+        "take-down": {
+            "level_learn": 1,
+            "is_base_move": false
+        },
+        "acid-spray": {
+            "level_learn": 10,
+            "is_base_move": false
+        },
+        "double-slap": {
+            "level_learn": 14,
+            "is_base_move": false
+        },
+        "toxic": {
+            "level_learn": 37,
+            "is_base_move": false
+        },
+        "belch": {
+            "level_learn": 45,
+            "is_base_move": false
+        },
+        "gunk-shot": {
+            "level_learn": 52,
+            "is_base_move": false
+        },
+        "explosion": {
+            "level_learn": 57,
+            "is_base_move": false
+        },
+        "ancient-power": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "body-press": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "cross-poison": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "dark-pulse": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "drain-punch": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "facade": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "fling": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "focus-blast": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "frustration": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "giga-drain": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "giga-impact": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "hidden-power": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "hyper-beam": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "infestation": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "mud-shot": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "payback": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "poison-jab": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "psychic": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "return": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "rock-blast": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "round": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "secret-power": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "seed-bomb": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "self-destruct": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "sludge-wave": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "smack-down": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "snore": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "solar-beam": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "stomping-tantrum": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "thief": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "thunderbolt": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "venoshock": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "max-ooze": {
+            "level_learn": 100,
+            "is_base_move": false
+        }
+    },
+    "golurk-mega": {
+        "magnitude": {
+            "level_learn": 26,
+            "is_base_move": true
+        },
+        "night-shade": {
+            "level_learn": 32,
+            "is_base_move": true
+        },
+        "shadow-ball": {
+            "level_learn": 36,
+            "is_base_move": true
+        },
+        "dynamic-punch": {
+            "level_learn": 39,
+            "is_base_move": true
+        },
+        "astonish": {
+            "level_learn": 1,
+            "is_base_move": false
+        },
+        "high-horsepower": {
+            "level_learn": 1,
+            "is_base_move": false
+        },
+        "pound": {
+            "level_learn": 1,
+            "is_base_move": false
+        },
+        "mud-slap": {
+            "level_learn": 2,
+            "is_base_move": false
+        },
+        "rollout": {
+            "level_learn": 9,
+            "is_base_move": false
+        },
+        "shadow-punch": {
+            "level_learn": 12,
+            "is_base_move": false
+        },
+        "stomping-tantrum": {
+            "level_learn": 22,
+            "is_base_move": false
+        },
+        "mega-punch": {
+            "level_learn": 24,
+            "is_base_move": false
+        },
+        "heavy-slam": {
+            "level_learn": 25,
+            "is_base_move": false
+        },
+        "focus-punch": {
+            "level_learn": 46,
+            "is_base_move": false
+        },
+        "phantom-force": {
+            "level_learn": 49,
+            "is_base_move": false
+        },
+        "earthquake": {
+            "level_learn": 53,
+            "is_base_move": false
+        },
+        "hammer-arm": {
+            "level_learn": 58,
+            "is_base_move": false
+        },
+        "body-press": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "body-slam": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "brick-break": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "bulldoze": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "charge-beam": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "close-combat": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "confuse-ray": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "darkest-lariat": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "dig": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "double-edge": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "drain-punch": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "earth-power": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "facade": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "fire-punch": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "flash-cannon": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "fling": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "fly": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "focus-blast": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "frustration": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "giga-impact": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "grass-knot": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "gyro-ball": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "heat-crash": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "hex": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "hidden-power": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "hyper-beam": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "ice-beam": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "ice-punch": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "icy-wind": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "iron-head": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "knock-off": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "low-kick": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "low-sweep": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "mega-kick": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "poltergeist": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "power-up-punch": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "psychic": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "return": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "rock-slide": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "rock-smash": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "rock-tomb": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "round": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "scorching-sands": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "secret-power": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "self-destruct": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "shock-wave": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "signal-beam": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "smack-down": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "snore": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "solar-beam": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "stone-edge": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "strength": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "superpower": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "take-down": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "thief": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "thunder-punch": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "thunderbolt": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "toxic": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "zen-headbutt": {
+            "level_learn": null,
+            "is_base_move": false
+        }
+    },
+    "scolipede-mega": {
+        "poison-tail": {
+            "level_learn": 18,
+            "is_base_move": true
+        },
+        "bug-bite": {
+            "level_learn": 22,
+            "is_base_move": true
+        },
+        "venoshock": {
+            "level_learn": 27,
+            "is_base_move": true
+        },
+        "megahorn": {
+            "level_learn": 30,
+            "is_base_move": true
+        },
+        "rollout": {
+            "level_learn": 1,
+            "is_base_move": false
+        },
+        "poison-sting": {
+            "level_learn": 2,
+            "is_base_move": false
+        },
+        "pursuit": {
+            "level_learn": 12,
+            "is_base_move": false
+        },
+        "take-down": {
+            "level_learn": 34,
+            "is_base_move": false
+        },
+        "steamroller": {
+            "level_learn": 39,
+            "is_base_move": false
+        },
+        "toxic": {
+            "level_learn": 44,
+            "is_base_move": false
+        },
+        "rock-climb": {
+            "level_learn": 50,
+            "is_base_move": false
+        },
+        "double-edge": {
+            "level_learn": 56,
+            "is_base_move": false
+        },
+        "acid-spray": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "aqua-tail": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "assurance": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "bite": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "bulldoze": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "cross-poison": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "cut": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "dig": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "double-hit": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "earthquake": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "endeavor": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "facade": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "frustration": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "giga-impact": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "gunk-shot": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "gyro-ball": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "hex": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "hidden-power": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "hyper-beam": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "infestation": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "iron-tail": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "leech-life": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "payback": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "pin-missile": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "poison-jab": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "return": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "rock-slide": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "rock-smash": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "rock-tomb": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "round": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "secret-power": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "signal-beam": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "skitter-smack": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "sludge-bomb": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "smart-strike": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "snore": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "solar-beam": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "steel-roller": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "stomping-tantrum": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "strength": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "struggle-bug": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "superpower": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "throat-chop": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "x-scissor": {
+            "level_learn": null,
+            "is_base_move": false
+        }
+    },
+    "scrafty-mega": {
+        "chip-away": {
+            "level_learn": 27,
+            "is_base_move": true
+        },
+        "high-jump-kick": {
+            "level_learn": 35,
+            "is_base_move": true
+        },
+        "facade": {
+            "level_learn": 37,
+            "is_base_move": true
+        },
+        "crunch": {
+            "level_learn": 39,
+            "is_base_move": true
+        },
+        "low-kick": {
+            "level_learn": 4,
+            "is_base_move": false
+        },
+        "feint-attack": {
+            "level_learn": 5,
+            "is_base_move": false
+        },
+        "headbutt": {
+            "level_learn": 6,
+            "is_base_move": false
+        },
+        "payback": {
+            "level_learn": 16,
+            "is_base_move": false
+        },
+        "brick-break": {
+            "level_learn": 23,
+            "is_base_move": false
+        },
+        "rock-climb": {
+            "level_learn": 51,
+            "is_base_move": false
+        },
+        "focus-punch": {
+            "level_learn": 57,
+            "is_base_move": false
+        },
+        "head-smash": {
+            "level_learn": 63,
+            "is_base_move": false
+        },
+        "acid-spray": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "assurance": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "body-slam": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "close-combat": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "counter": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "dark-pulse": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "dig": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "double-edge": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "dragon-claw": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "dragon-pulse": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "dragon-tail": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "drain-punch": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "dual-chop": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "dynamic-punch": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "endeavor": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "fake-out": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "fire-punch": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "fling": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "focus-blast": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "foul-play": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "frustration": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "giga-impact": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "grass-knot": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "hidden-power": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "hyper-beam": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "ice-punch": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "incinerate": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "iron-head": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "iron-tail": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "knock-off": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "lash-out": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "low-sweep": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "mega-kick": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "mega-punch": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "outrage": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "poison-jab": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "power-up-punch": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "retaliate": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "return": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "revenge": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "reversal": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "rock-slide": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "rock-smash": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "rock-tomb": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "round": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "secret-power": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "sludge-bomb": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "smack-down": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "snarl": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "snore": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "stone-edge": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "strength": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "super-fang": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "take-down": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "thief": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "throat-chop": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "thunder-punch": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "toxic": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "uproar": {
+            "level_learn": null,
+            "is_base_move": false
+        },
+        "zen-headbutt": {
+            "level_learn": null,
+            "is_base_move": false
+        }
     }
 }
