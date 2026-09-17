@@ -22,7 +22,9 @@ final class PreviousSpeciesQuery
             ->where('id', $species->id)
             ->limit(1);
 
-        return Species::query()->firstWhere('id', $previousIdQuery);
+        return Species::query()
+            ->select('id', 'slug', 'name', 'pokedex_number', 'portraits')
+            ->firstWhere('id', $previousIdQuery);
     }
 
     private function orderByClause(): string

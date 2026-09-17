@@ -42,7 +42,6 @@ export interface DexPokedexIndexPageProps {
     id: string;
     portrait: string;
     name: string;
-    frontSprite: string;
     pokedexNumber: number;
     types: SpeciesTypes;
     generation: string;

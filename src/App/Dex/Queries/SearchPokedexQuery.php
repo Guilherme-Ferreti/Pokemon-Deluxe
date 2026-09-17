@@ -22,6 +22,7 @@ final class SearchPokedexQuery
     public function handle(SearchPokedexFilters $filters): Builder
     {
         return Species::query()
+            ->select('id', 'slug', 'name', 'types', 'pokedex_number', 'portraits', 'generation')
             ->when($filters->search !== null, fn (Builder $query) => $this->applySearch($query, $filters->search))
             ->when($filters->types->isNotEmpty(), fn (Builder $query) => $this->applyTypes($query, $filters->types))
             ->when($filters->traits->isNotEmpty(), fn (Builder $query) => $this->applyTraits($query, $filters->traits))

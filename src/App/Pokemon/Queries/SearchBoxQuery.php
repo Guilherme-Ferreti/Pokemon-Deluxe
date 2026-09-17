@@ -23,6 +23,7 @@ final class SearchBoxQuery
     public function handle(User $user, SearchBoxFilters $filters): Builder
     {
         return $this->buildBaseQuery($user)
+            ->when(true, fn (Builder $query) => $this->joinSpeciesTableIfNeeded($query, $filters))
             ->when($filters->search !== null, fn (Builder $query) => $this->applySearch($query, $filters->search))
             ->when($filters->types->isNotEmpty(), fn (Builder $query) => $this->applyTypes($query, $filters->types))
             ->when($filters->traits->isNotEmpty(), fn (Builder $query) => $this->applyTraits($query, $filters->traits))
@@ -38,8 +39,23 @@ final class SearchBoxQuery
         return Pokemon::query()
             ->whereBelongsTo($user)
             ->inBox()
-            ->join('species', 'species.id', '=', 'pokemon.species_id')
-            ->select('pokemon.*');
+            ->with('species:id,slug,name,types,sprites')
+            ->select('pokemon.id', 'pokemon.is_shiny', 'pokemon.gender', 'pokemon.level', 'pokemon.experience', 'pokemon.species_id');
+    }
+
+    /**
+     * @param  Builder<Pokemon>  $query
+     * @return Builder<Pokemon>
+     */
+    private function joinSpeciesTableIfNeeded(Builder $query, SearchBoxFilters $filters): Builder
+    {
+        $shouldJoin = $filters->search !== null
+            || $filters->types->isNotEmpty()
+            || $filters->traits->isNotEmpty()
+            || $filters->generations->isNotEmpty()
+            || $filters->sort === SearchBoxSortBy::POKEDEX_NUMBER;
+
+        return $query->when($shouldJoin, fn (Builder $query) => $query->join('species', 'species.id', '=', 'pokemon.species_id'));
     }
 
     /**
@@ -48,7 +64,8 @@ final class SearchBoxQuery
      */
     private function applySearch(Builder $query, string $search): Builder
     {
-        return $query->whereLike('species.name', '%' . $search . '%');
+        return $query
+            ->whereLike('species.name', '%' . $search . '%');
     }
 
     /**

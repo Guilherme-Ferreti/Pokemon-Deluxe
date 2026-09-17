@@ -167,6 +167,7 @@ final readonly class PokedexShowPageProps implements ProvidesInertiaProperties
         $callback = function (): array {
             $previous = $this->species
                 ->previousEvolutions()
+                ->with('from:id,slug,name,portraits', 'evolutionItem:id,name,sprite')
                 ->get()
                 ->map(fn (SpeciesEvolution $evolution) => [
                     'species' => [
@@ -185,6 +186,7 @@ final readonly class PokedexShowPageProps implements ProvidesInertiaProperties
 
             $into = $this->species
                 ->evolutions()
+                ->with('into:id,slug,name,portraits', 'evolutionItem:id,name,sprite')
                 ->get()
                 ->map(fn (SpeciesEvolution $evolution) => [
                     'species' => [
@@ -222,7 +224,7 @@ final readonly class PokedexShowPageProps implements ProvidesInertiaProperties
             $learnableMoves = SpeciesLearnableMove::query()
                 ->join('moves', 'species_learnable_moves.move_id', '=', 'moves.id')
                 ->select('species_learnable_moves.*')
-                ->where('species_id', $this->species->id)
+                ->whereBelongsTo($this->species)
                 ->orderBy('species_learnable_moves.level_learn')
                 ->orderBy('moves.name')
                 ->get();

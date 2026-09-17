@@ -248,3 +248,33 @@ it('sorts box pokemon by the given column and direction', function (SearchBoxSor
         },
     ],
 ]);
+
+it('joins the species table when a filter or the pokedex-number sort requires it', function (SearchBoxFilters $filters) {
+    $user  = User::factory()->create();
+    $query = new SearchBoxQuery()->handle($user, $filters);
+
+    $joins = $query->getQuery()->joins;
+
+    expect($joins)->toHaveCount(1)
+        ->and($joins[0]->wheres)->toHaveCount(1)
+        ->and($joins[0]->wheres[0])
+        ->toMatchArray([
+            'type'     => 'Column',
+            'first'    => 'species.id',
+            'operator' => '=',
+            'second'   => 'pokemon.species_id',
+        ]);
+})->with([
+    'search'         => [makeSearchBoxFilters(search: 'Pikachu')],
+    'types'          => [makeSearchBoxFilters(types: [ElementalType::FIRE])],
+    'traits'         => [makeSearchBoxFilters(traits: [PokemonTrait::LEGENDARY])],
+    'generations'    => [makeSearchBoxFilters(generations: [Generation::I])],
+    'pokedex number' => [makeSearchBoxFilters(sort: SearchBoxSortBy::POKEDEX_NUMBER)],
+]);
+
+it('does not join the species table when no filters are applied', function () {
+    $user  = User::factory()->create();
+    $query = new SearchBoxQuery()->handle($user, makeSearchBoxFilters());
+
+    expect($query->getQuery()->joins)->toBeNull();
+});
