@@ -35,7 +35,7 @@
     >
       <TableHeader>
         <TableRow>
-          <AppTableHeadSortable
+          <AppTableHeadSortableLink
             class="w-55"
             column-name="Move"
             :sort-by="SearchAttackdexSortBy.NAME"
@@ -46,14 +46,14 @@
             :sort-desc-icon="IconSortDescendingLetters"
           />
           <TableHead>Type</TableHead>
-          <AppTableHeadSortable
+          <AppTableHeadSortableLink
             column-name="Power"
             :sort-by="SearchAttackdexSortBy.POWER"
             :default-sort-by="SearchAttackdexSortBy.NAME"
             :search-form="searchForm"
             :route-url="route('dex.web.attackdex.index')"
           />
-          <AppTableHeadSortable
+          <AppTableHeadSortableLink
             column-name="Accuracy"
             :sort-by="SearchAttackdexSortBy.ACCURACY"
             :default-sort-by="SearchAttackdexSortBy.NAME"
@@ -61,14 +61,14 @@
             :route-url="route('dex.web.attackdex.index')"
           />
           <TableHead>Ailment</TableHead>
-          <AppTableHeadSortable
+          <AppTableHeadSortableLink
             column-name="Ailment chance"
             :sort-by="SearchAttackdexSortBy.AILMENT_CHANCE"
             :default-sort-by="SearchAttackdexSortBy.NAME"
             :search-form="searchForm"
             :route-url="route('dex.web.attackdex.index')"
           />
-          <AppTableHeadSortable
+          <AppTableHeadSortableLink
             column-name="Flinch chance"
             :sort-by="SearchAttackdexSortBy.FLINCH_CHANCE"
             :default-sort-by="SearchAttackdexSortBy.NAME"
@@ -136,7 +136,7 @@ import { nextTick } from 'vue';
 import AppEmptyState from '@/components/AppEmptyState.vue';
 import AppInput from '@/components/AppInput.vue';
 import AppPagination from '@/components/AppPagination.vue';
-import AppTableHeadSortable from '@/components/AppTableHeadSortable.vue';
+import AppTableHeadSortableLink from '@/components/AppTableHeadSortableLink.vue';
 import AttackdexSearchBarFiltersDialog from '@/components/AttackdexSearchBarFiltersDialog.vue';
 import ElementalTypeBadges from '@/components/ElementalTypeBadges.vue';
 import { Card } from '@/components/ui/card';

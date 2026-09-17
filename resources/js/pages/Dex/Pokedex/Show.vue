@@ -9,9 +9,9 @@
       :next-species="nextSpecies"
     />
   </AppSection>
-  <div class="space-y-6">
+  <div class="space-y-4">
     <div
-      class="grid gap-6 @2xl/main-content:grid-cols-2 @4xl/main-content:grid-cols-3"
+      class="grid gap-4 @2xl/main-content:grid-cols-2 @4xl/main-content:grid-cols-3"
     >
       <section class="@2xl/main-content:col-span-2">
         <PokedexSpeciesHero

@@ -1,16 +1,13 @@
 <template>
-  <TableHead>
+  <TableHead class="px-0">
     <Link
-      class="flex items-center gap-2 [&_svg]:size-4"
+      class="inline-flex size-full shrink-0 items-center gap-2 px-2 -outline-offset-1 [&_svg]:size-4"
       aria-current="page"
       :aria-label="`Sort by ${columnName.toLowerCase()}`"
       :href="sortByUrl"
     >
       <span>{{ columnName }}</span>
-      <component
-        :is="visibleIcon"
-        class="shrink-0"
-      />
+      <component :is="visibleIcon" />
     </Link>
   </TableHead>
 </template>

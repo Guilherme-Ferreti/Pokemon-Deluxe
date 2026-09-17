@@ -34,7 +34,7 @@
         <TableRow>
           <TableHead class="w-12 whitespace-normal">Dex No.</TableHead>
           <TableHead>Portrait</TableHead>
-          <AppTableHeadSortable
+          <AppTableHeadSortableLink
             class="w-50"
             column-name="Name"
             :sort-by="SearchPokedexSortBy.NAME"
@@ -124,6 +124,7 @@ import AppIconNotInBox from '@/components/AppIconNotInBox.vue';
 import AppInput from '@/components/AppInput.vue';
 import AppPagination from '@/components/AppPagination.vue';
 import AppSpeciesPortrait from '@/components/AppSpeciesPortrait.vue';
+import AppTableHeadSortableLink from '@/components/AppTableHeadSortableLink.vue';
 import ElementalTypeBadges from '@/components/ElementalTypeBadges.vue';
 import PokedexSearchBarFiltersDialog from '@/components/PokedexSearchBarFiltersDialog.vue';
 import { Card } from '@/components/ui/card';
@@ -139,7 +140,6 @@ import { removeFalsyValues } from '@/lib/utils.js';
 import type { DexPokedexIndexPageProps } from '@/pages/Dex/Pokedex/Index.vue';
 import { SearchPokedexSortBy } from '@/types';
 import { route } from '@/types/helpers/route';
-import AppTableHeadSortable from './AppTableHeadSortable.vue';
 
 const props = defineProps<{
   speciesList: DexPokedexIndexPageProps['speciesList'];

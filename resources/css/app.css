@@ -144,7 +144,7 @@
 
 @layer components {
   .table-content-centered {
-    @apply [&_th,&_td]:text-center! [&_th>a,&_td>div]:justify-center!;
+    @apply [&_th,&_td]:text-center! [&_th>a,&_th>button,&_td>div]:justify-center!;
   }
 
   .table-empty-cell-placeholder {
