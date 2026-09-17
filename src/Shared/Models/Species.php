@@ -41,7 +41,6 @@ use Shared\ValueObjects\SpeciesSprites;
  * @property int|null $capture_rate
  * @property int $gender_rate
  * @property string $slug
- * @property string $external_id
  * @property Carbon $created_at
  * @property Carbon $updated_at
  * @property-read EloquentCollection<int, SpeciesEvolution> $evolutions

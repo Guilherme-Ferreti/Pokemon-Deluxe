@@ -115,15 +115,15 @@
         "gender_rate": 1,
         "evolutions": [
             {
-                "evolves_into": "sceptile-mega",
+                "evolves_into": "mega-sceptile",
                 "item": "sceptilite",
                 "min_level": 100,
                 "gender": null
             }
         ]
     },
-    "sceptile-mega": {
-        "id": "sceptile-mega",
+    "mega-sceptile": {
+        "id": "mega-sceptile",
         "external_id": "sceptile-mega",
         "name": "Mega Sceptile",
         "types": [
@@ -275,15 +275,15 @@
         "gender_rate": 1,
         "evolutions": [
             {
-                "evolves_into": "blaziken-mega",
+                "evolves_into": "mega-blaziken",
                 "item": "blazikenite",
                 "min_level": 100,
                 "gender": null
             }
         ]
     },
-    "blaziken-mega": {
-        "id": "blaziken-mega",
+    "mega-blaziken": {
+        "id": "mega-blaziken",
         "external_id": "blaziken-mega",
         "name": "Mega Blaziken",
         "types": [
@@ -435,15 +435,15 @@
         "gender_rate": 1,
         "evolutions": [
             {
-                "evolves_into": "swampert-mega",
+                "evolves_into": "mega-swampert",
                 "item": "swampertite",
                 "min_level": 100,
                 "gender": null
             }
         ]
     },
-    "swampert-mega": {
-        "id": "swampert-mega",
+    "mega-swampert": {
+        "id": "mega-swampert",
         "external_id": "swampert-mega",
         "name": "Mega Swampert",
         "types": [
@@ -1342,15 +1342,15 @@
         "gender_rate": 4,
         "evolutions": [
             {
-                "evolves_into": "gardevoir-mega",
+                "evolves_into": "mega-gardevoir",
                 "item": "gardevoirite",
                 "min_level": 100,
                 "gender": null
             }
         ]
     },
-    "gardevoir-mega": {
-        "id": "gardevoir-mega",
+    "mega-gardevoir": {
+        "id": "mega-gardevoir",
         "external_id": "gardevoir-mega",
         "name": "Mega Gardevoir",
         "types": [
@@ -2155,15 +2155,15 @@
         "gender_rate": 4,
         "evolutions": [
             {
-                "evolves_into": "sableye-mega",
+                "evolves_into": "mega-sableye",
                 "item": "sablenite",
                 "min_level": 100,
                 "gender": null
             }
         ]
     },
-    "sableye-mega": {
-        "id": "sableye-mega",
+    "mega-sableye": {
+        "id": "mega-sableye",
         "external_id": "sableye-mega",
         "name": "Mega Sableye",
         "types": [
@@ -2232,15 +2232,15 @@
         "gender_rate": 4,
         "evolutions": [
             {
-                "evolves_into": "mawile-mega",
+                "evolves_into": "mega-mawile",
                 "item": "mawilite",
                 "min_level": 100,
                 "gender": null
             }
         ]
     },
-    "mawile-mega": {
-        "id": "mawile-mega",
+    "mega-mawile": {
+        "id": "mega-mawile",
         "external_id": "mawile-mega",
         "name": "Mega Mawile",
         "types": [
@@ -2393,15 +2393,15 @@
         "gender_rate": 4,
         "evolutions": [
             {
-                "evolves_into": "aggron-mega",
+                "evolves_into": "mega-aggron",
                 "item": "aggronite",
                 "min_level": 100,
                 "gender": null
             }
         ]
     },
-    "aggron-mega": {
-        "id": "aggron-mega",
+    "mega-aggron": {
+        "id": "mega-aggron",
         "external_id": "aggron-mega",
         "name": "Mega Aggron",
         "types": [
@@ -2511,15 +2511,15 @@
         "gender_rate": 4,
         "evolutions": [
             {
-                "evolves_into": "medicham-mega",
+                "evolves_into": "mega-medicham",
                 "item": "medichamite",
                 "min_level": 100,
                 "gender": null
             }
         ]
     },
-    "medicham-mega": {
-        "id": "medicham-mega",
+    "mega-medicham": {
+        "id": "mega-medicham",
         "external_id": "medicham-mega",
         "name": "Mega Medicham",
         "types": [
@@ -2628,15 +2628,15 @@
         "gender_rate": 4,
         "evolutions": [
             {
-                "evolves_into": "manectric-mega",
+                "evolves_into": "mega-manectric",
                 "item": "manectite",
                 "min_level": 100,
                 "gender": null
             }
         ]
     },
-    "manectric-mega": {
-        "id": "manectric-mega",
+    "mega-manectric": {
+        "id": "mega-manectric",
         "external_id": "manectric-mega",
         "name": "Mega Manectric",
         "types": [
@@ -2999,15 +2999,15 @@
         "gender_rate": 4,
         "evolutions": [
             {
-                "evolves_into": "sharpedo-mega",
+                "evolves_into": "mega-sharpedo",
                 "item": "sharpedonite",
                 "min_level": 100,
                 "gender": null
             }
         ]
     },
-    "sharpedo-mega": {
-        "id": "sharpedo-mega",
+    "mega-sharpedo": {
+        "id": "mega-sharpedo",
         "external_id": "sharpedo-mega",
         "name": "Mega Sharpedo",
         "types": [
@@ -3193,15 +3193,15 @@
         "gender_rate": 4,
         "evolutions": [
             {
-                "evolves_into": "camerupt-mega",
+                "evolves_into": "mega-camerupt",
                 "item": "cameruptite",
                 "min_level": 100,
                 "gender": null
             }
         ]
     },
-    "camerupt-mega": {
-        "id": "camerupt-mega",
+    "mega-camerupt": {
+        "id": "mega-camerupt",
         "external_id": "camerupt-mega",
         "name": "Mega Camerupt",
         "types": [
@@ -3649,15 +3649,15 @@
         "gender_rate": 4,
         "evolutions": [
             {
-                "evolves_into": "altaria-mega",
+                "evolves_into": "mega-altaria",
                 "item": "altarianite",
                 "min_level": 100,
                 "gender": null
             }
         ]
     },
-    "altaria-mega": {
-        "id": "altaria-mega",
+    "mega-altaria": {
+        "id": "mega-altaria",
         "external_id": "altaria-mega",
         "name": "Mega Altaria",
         "types": [
@@ -4533,15 +4533,15 @@
         "gender_rate": 4,
         "evolutions": [
             {
-                "evolves_into": "banette-mega",
+                "evolves_into": "mega-banette",
                 "item": "banettite",
                 "min_level": 100,
                 "gender": null
             }
         ]
     },
-    "banette-mega": {
-        "id": "banette-mega",
+    "mega-banette": {
+        "id": "mega-banette",
         "external_id": "banette-mega",
         "name": "Mega Banette",
         "types": [
@@ -4725,15 +4725,15 @@
         "gender_rate": 4,
         "evolutions": [
             {
-                "evolves_into": "chimecho-mega",
+                "evolves_into": "mega-chimecho",
                 "item": "chimechite",
                 "min_level": 100,
                 "gender": null
             }
         ]
     },
-    "chimecho-mega": {
-        "id": "chimecho-mega",
+    "mega-chimecho": {
+        "id": "mega-chimecho",
         "external_id": "chimecho-mega",
         "name": "Mega Chimecho",
         "types": [
@@ -4801,21 +4801,21 @@
         "gender_rate": 4,
         "evolutions": [
             {
-                "evolves_into": "absol-mega",
+                "evolves_into": "mega-absol",
                 "item": "absolite",
                 "min_level": 100,
                 "gender": null
             },
             {
-                "evolves_into": "absol-mega-z",
+                "evolves_into": "mega-absol-z",
                 "item": "absolite-z",
                 "min_level": 100,
                 "gender": null
             }
         ]
     },
-    "absol-mega": {
-        "id": "absol-mega",
+    "mega-absol": {
+        "id": "mega-absol",
         "external_id": "absol-mega",
         "name": "Mega Absol",
         "types": [
@@ -4848,8 +4848,8 @@
         "gender_rate": 4,
         "evolutions": []
     },
-    "absol-mega-z": {
-        "id": "absol-mega-z",
+    "mega-absol-z": {
+        "id": "mega-absol-z",
         "external_id": "absol-mega-z",
         "name": "Mega Absol Z",
         "types": [
@@ -5005,15 +5005,15 @@
         "gender_rate": 4,
         "evolutions": [
             {
-                "evolves_into": "glalie-mega",
+                "evolves_into": "mega-glalie",
                 "item": "glalitite",
                 "min_level": 100,
                 "gender": null
             }
         ]
     },
-    "glalie-mega": {
-        "id": "glalie-mega",
+    "mega-glalie": {
+        "id": "mega-glalie",
         "external_id": "glalie-mega",
         "name": "Mega Glalie",
         "types": [
@@ -5466,15 +5466,15 @@
         "gender_rate": 4,
         "evolutions": [
             {
-                "evolves_into": "salamence-mega",
+                "evolves_into": "mega-salamence",
                 "item": "salamencite",
                 "min_level": 100,
                 "gender": null
             }
         ]
     },
-    "salamence-mega": {
-        "id": "salamence-mega",
+    "mega-salamence": {
+        "id": "mega-salamence",
         "external_id": "salamence-mega",
         "name": "Mega Salamence",
         "types": [
@@ -5627,15 +5627,15 @@
         "gender_rate": -1,
         "evolutions": [
             {
-                "evolves_into": "metagross-mega",
+                "evolves_into": "mega-metagross",
                 "item": "metagrossite",
                 "min_level": 100,
                 "gender": null
             }
         ]
     },
-    "metagross-mega": {
-        "id": "metagross-mega",
+    "mega-metagross": {
+        "id": "mega-metagross",
         "external_id": "metagross-mega",
         "name": "Mega Metagross",
         "types": [
@@ -5806,15 +5806,15 @@
         "gender_rate": 8,
         "evolutions": [
             {
-                "evolves_into": "latias-mega",
+                "evolves_into": "mega-latias",
                 "item": "latiasite",
                 "min_level": 100,
                 "gender": null
             }
         ]
     },
-    "latias-mega": {
-        "id": "latias-mega",
+    "mega-latias": {
+        "id": "mega-latias",
         "external_id": "latias-mega",
         "name": "Mega Latias",
         "types": [
@@ -5883,15 +5883,15 @@
         "gender_rate": 0,
         "evolutions": [
             {
-                "evolves_into": "latios-mega",
+                "evolves_into": "mega-latios",
                 "item": "latiosite",
                 "min_level": 100,
                 "gender": null
             }
         ]
     },
-    "latios-mega": {
-        "id": "latios-mega",
+    "mega-latios": {
+        "id": "mega-latios",
         "external_id": "latios-mega",
         "name": "Mega Latios",
         "types": [
@@ -5959,8 +5959,8 @@
         "gender_rate": -1,
         "evolutions": []
     },
-    "kyogre-primal": {
-        "id": "kyogre-primal",
+    "primal-kyogre": {
+        "id": "primal-kyogre",
         "external_id": "kyogre-primal",
         "name": "Primal Kyogre",
         "types": [
@@ -6027,8 +6027,8 @@
         "gender_rate": -1,
         "evolutions": []
     },
-    "groudon-primal": {
-        "id": "groudon-primal",
+    "primal-groudon": {
+        "id": "primal-groudon",
         "external_id": "groudon-primal",
         "name": "Primal Groudon",
         "types": [
@@ -6097,15 +6097,15 @@
         "gender_rate": -1,
         "evolutions": [
             {
-                "evolves_into": "rayquaza-mega",
+                "evolves_into": "mega-rayquaza",
                 "item": null,
                 "min_level": 100,
                 "gender": null
             }
         ]
     },
-    "rayquaza-mega": {
-        "id": "rayquaza-mega",
+    "mega-rayquaza": {
+        "id": "mega-rayquaza",
         "external_id": "rayquaza-mega",
         "name": "Mega Rayquaza",
         "types": [

@@ -7719,7 +7719,7 @@
             "is_base_move": false
         }
     },
-    "palafin-zero": {
+    "palafin-zero-form": {
         "aqua-jet": {
             "level_learn": 13,
             "is_base_move": true
@@ -7901,7 +7901,7 @@
             "is_base_move": false
         }
     },
-    "palafin-hero": {
+    "palafin-hero-form": {
         "aqua-jet": {
             "level_learn": 13,
             "is_base_move": true
@@ -10585,7 +10585,7 @@
             "is_base_move": false
         }
     },
-    "dudunsparce-two-segment": {
+    "dudunsparce-two-segment-form": {
         "rollout": {
             "level_learn": 8,
             "is_base_move": true
@@ -10815,7 +10815,7 @@
             "is_base_move": false
         }
     },
-    "dudunsparce-three-segment": {
+    "dudunsparce-three-segment-form": {
         "rollout": {
             "level_learn": 8,
             "is_base_move": true
@@ -13501,7 +13501,7 @@
             "is_base_move": false
         }
     },
-    "gimmighoul-chest": {
+    "gimmighoul": {
         "astonish": {
             "level_learn": 1,
             "is_base_move": true
@@ -15417,7 +15417,7 @@
             "is_base_move": false
         }
     },
-    "poltchageist": {
+    "poltchageist-counterfeit": {
         "astonish": {
             "level_learn": 1,
             "is_base_move": true
@@ -16103,7 +16103,7 @@
             "is_base_move": false
         }
     },
-    "ogerpon": {
+    "ogerpon-teal-mask": {
         "quick-attack": {
             "level_learn": 1,
             "is_base_move": true
@@ -18271,7 +18271,7 @@
             "is_base_move": false
         }
     },
-    "tauros-paldea-combat-breed": {
+    "paldean-tauros-combat-breed": {
         "tackle": {
             "level_learn": 1,
             "is_base_move": true
@@ -18429,7 +18429,7 @@
             "is_base_move": false
         }
     },
-    "tauros-paldea-blaze-breed": {
+    "paldean-tauros-blaze-breed": {
         "tackle": {
             "level_learn": 1,
             "is_base_move": true
@@ -18607,7 +18607,7 @@
             "is_base_move": false
         }
     },
-    "tauros-paldea-aqua-breed": {
+    "paldean-tauros-aqua-breed": {
         "tackle": {
             "level_learn": 1,
             "is_base_move": true
@@ -18781,7 +18781,7 @@
             "is_base_move": false
         }
     },
-    "wooper-paldea": {
+    "paldean-wooper": {
         "mud-shot": {
             "level_learn": 1,
             "is_base_move": true
@@ -18927,7 +18927,7 @@
             "is_base_move": false
         }
     },
-    "baxcalibur-mega": {
+    "mega-baxcalibur": {
         "ice-fang": {
             "level_learn": 29,
             "is_base_move": true
@@ -19085,7 +19085,7 @@
             "is_base_move": false
         }
     },
-    "glimmora-mega": {
+    "mega-glimmora": {
         "ancient-power": {
             "level_learn": 11,
             "is_base_move": true
@@ -19207,7 +19207,7 @@
             "is_base_move": false
         }
     },
-    "scovillain-mega": {
+    "mega-scovillain": {
         "razor-leaf": {
             "level_learn": 13,
             "is_base_move": true
@@ -19353,7 +19353,7 @@
             "is_base_move": false
         }
     },
-    "tatsugiri-curly-mega": {
+    "mega-tatsugiri-curly": {
         "water-gun": {
             "level_learn": 1,
             "is_base_move": true
@@ -19435,7 +19435,7 @@
             "is_base_move": false
         }
     },
-    "tatsugiri-droopy-mega": {
+    "mega-tatsugiri-droopy": {
         "water-gun": {
             "level_learn": 1,
             "is_base_move": true
@@ -19517,7 +19517,7 @@
             "is_base_move": false
         }
     },
-    "tatsugiri-stretchy-mega": {
+    "mega-tatsugiri-stretchy": {
         "water-gun": {
             "level_learn": 1,
             "is_base_move": true

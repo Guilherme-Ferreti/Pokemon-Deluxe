@@ -470,15 +470,15 @@
         "gender_rate": 4,
         "evolutions": [
             {
-                "evolves_into": "staraptor-mega",
+                "evolves_into": "mega-staraptor",
                 "item": "staraptite",
                 "min_level": 100,
                 "gender": null
             }
         ]
     },
-    "staraptor-mega": {
-        "id": "staraptor-mega",
+    "mega-staraptor": {
+        "id": "mega-staraptor",
         "external_id": "staraptor-mega",
         "name": "Mega Staraptor",
         "types": [
@@ -1008,8 +1008,8 @@
         "gender_rate": 1,
         "evolutions": []
     },
-    "burmy-plant": {
-        "id": "burmy-plant",
+    "burmy-plant-cloak": {
+        "id": "burmy-plant-cloak",
         "external_id": "burmy",
         "name": "Burmy (Plant Cloak)",
         "types": [
@@ -1042,7 +1042,7 @@
         "gender_rate": 4,
         "evolutions": [
             {
-                "evolves_into": "wormadam-plant",
+                "evolves_into": "wormadam-plant-cloak",
                 "item": null,
                 "min_level": 20,
                 "gender": 2
@@ -1055,8 +1055,8 @@
             }
         ]
     },
-    "burmy-sand": {
-        "id": "burmy-sand",
+    "burmy-sand-cloak": {
+        "id": "burmy-sand-cloak",
         "external_id": "burmy",
         "name": "Burmy (Sand Cloak)",
         "types": [
@@ -1089,7 +1089,7 @@
         "gender_rate": 4,
         "evolutions": [
             {
-                "evolves_into": "wormadam-sandy",
+                "evolves_into": "wormadam-sandy-cloak",
                 "item": null,
                 "min_level": 20,
                 "gender": 2
@@ -1102,8 +1102,8 @@
             }
         ]
     },
-    "burmy-trash": {
-        "id": "burmy-trash",
+    "burmy-trash-cloak": {
+        "id": "burmy-trash-cloak",
         "external_id": "burmy",
         "name": "Burmy (Trash Cloak)",
         "types": [
@@ -1136,7 +1136,7 @@
         "gender_rate": 4,
         "evolutions": [
             {
-                "evolves_into": "wormadam-trash",
+                "evolves_into": "wormadam-trash-cloak",
                 "item": null,
                 "min_level": 20,
                 "gender": 2
@@ -1149,8 +1149,8 @@
             }
         ]
     },
-    "wormadam-plant": {
-        "id": "wormadam-plant",
+    "wormadam-plant-cloak": {
+        "id": "wormadam-plant-cloak",
         "external_id": "wormadam-plant",
         "name": "Wormadam (Plant Cloak)",
         "types": [
@@ -1184,8 +1184,8 @@
         "gender_rate": 8,
         "evolutions": []
     },
-    "wormadam-sandy": {
-        "id": "wormadam-sandy",
+    "wormadam-sandy-cloak": {
+        "id": "wormadam-sandy-cloak",
         "external_id": "wormadam-sandy",
         "name": "Wormadam (Sandy Cloak)",
         "types": [
@@ -1219,8 +1219,8 @@
         "gender_rate": 8,
         "evolutions": []
     },
-    "wormadam-trash": {
-        "id": "wormadam-trash",
+    "wormadam-trash-cloak": {
+        "id": "wormadam-trash-cloak",
         "external_id": "wormadam-trash",
         "name": "Wormadam (Trash Cloak)",
         "types": [
@@ -1928,15 +1928,15 @@
         "gender_rate": 4,
         "evolutions": [
             {
-                "evolves_into": "lopunny-mega",
+                "evolves_into": "mega-lopunny",
                 "item": "lopunnite",
                 "min_level": 100,
                 "gender": null
             }
         ]
     },
-    "lopunny-mega": {
-        "id": "lopunny-mega",
+    "mega-lopunny": {
+        "id": "mega-lopunny",
         "external_id": "lopunny-mega",
         "name": "Mega Lopunny",
         "types": [
@@ -2622,21 +2622,21 @@
         "gender_rate": 4,
         "evolutions": [
             {
-                "evolves_into": "garchomp-mega",
+                "evolves_into": "mega-garchomp",
                 "item": "garchompite",
                 "min_level": 100,
                 "gender": null
             },
             {
-                "evolves_into": "garchomp-mega-z",
+                "evolves_into": "mega-garchomp-z",
                 "item": "garchompite-z",
                 "min_level": 100,
                 "gender": null
             }
         ]
     },
-    "garchomp-mega": {
-        "id": "garchomp-mega",
+    "mega-garchomp": {
+        "id": "mega-garchomp",
         "external_id": "garchomp-mega",
         "name": "Mega Garchomp",
         "types": [
@@ -2670,8 +2670,8 @@
         "gender_rate": 4,
         "evolutions": []
     },
-    "garchomp-mega-z": {
-        "id": "garchomp-mega-z",
+    "mega-garchomp-z": {
+        "id": "mega-garchomp-z",
         "external_id": "garchomp-mega-z",
         "name": "Mega Garchomp Z",
         "types": [
@@ -2821,21 +2821,21 @@
         "gender_rate": 1,
         "evolutions": [
             {
-                "evolves_into": "lucario-mega",
+                "evolves_into": "mega-lucario",
                 "item": "lucarionite",
                 "min_level": 100,
                 "gender": null
             },
             {
-                "evolves_into": "lucario-mega-z",
+                "evolves_into": "mega-lucario-z",
                 "item": "lucarionite-z",
                 "min_level": 100,
                 "gender": null
             }
         ]
     },
-    "lucario-mega": {
-        "id": "lucario-mega",
+    "mega-lucario": {
+        "id": "mega-lucario",
         "external_id": "lucario-mega",
         "name": "Mega Lucario",
         "types": [
@@ -2869,8 +2869,8 @@
         "gender_rate": 1,
         "evolutions": []
     },
-    "lucario-mega-z": {
-        "id": "lucario-mega-z",
+    "mega-lucario-z": {
+        "id": "mega-lucario-z",
         "external_id": "lucario-mega-z",
         "name": "Mega Lucario Z",
         "types": [
@@ -3361,15 +3361,15 @@
         "gender_rate": 4,
         "evolutions": [
             {
-                "evolves_into": "abomasnow-mega",
+                "evolves_into": "mega-abomasnow",
                 "item": "abomasite",
                 "min_level": 100,
                 "gender": null
             }
         ]
     },
-    "abomasnow-mega": {
-        "id": "abomasnow-mega",
+    "mega-abomasnow": {
+        "id": "mega-abomasnow",
         "external_id": "abomasnow-mega",
         "name": "Mega Abomasnow",
         "types": [
@@ -3921,15 +3921,15 @@
         "gender_rate": 0,
         "evolutions": [
             {
-                "evolves_into": "gallade-mega",
+                "evolves_into": "mega-gallade",
                 "item": "galladite",
                 "min_level": 100,
                 "gender": null
             }
         ]
     },
-    "gallade-mega": {
-        "id": "gallade-mega",
+    "mega-gallade": {
+        "id": "mega-gallade",
         "external_id": "gallade-mega",
         "name": "Mega Gallade",
         "types": [
@@ -4067,15 +4067,15 @@
         "gender_rate": 8,
         "evolutions": [
             {
-                "evolves_into": "froslass-mega",
+                "evolves_into": "mega-froslass",
                 "item": "froslassite",
                 "min_level": 100,
                 "gender": null
             }
         ]
     },
-    "froslass-mega": {
-        "id": "froslass-mega",
+    "mega-froslass": {
+        "id": "mega-froslass",
         "external_id": "froslass-mega",
         "name": "Mega Froslass",
         "types": [
@@ -4456,8 +4456,8 @@
         "gender_rate": -1,
         "evolutions": []
     },
-    "dialga-origin": {
-        "id": "dialga-origin",
+    "origin-dialga": {
+        "id": "origin-dialga",
         "external_id": "dialga-origin",
         "name": "Origin Dialga",
         "types": [
@@ -4526,8 +4526,8 @@
         "gender_rate": -1,
         "evolutions": []
     },
-    "palkia-origin": {
-        "id": "palkia-origin",
+    "origin-palkia": {
+        "id": "origin-palkia",
         "external_id": "palkia-origin",
         "name": "Origin Palkia",
         "types": [
@@ -4596,15 +4596,15 @@
         "gender_rate": 4,
         "evolutions": [
             {
-                "evolves_into": "heatran-mega",
+                "evolves_into": "mega-heatran",
                 "item": "heatranite",
                 "min_level": 100,
                 "gender": null
             }
         ]
     },
-    "heatran-mega": {
-        "id": "heatran-mega",
+    "mega-heatran": {
+        "id": "mega-heatran",
         "external_id": "heatran-mega",
         "name": "Mega Heatran",
         "types": [
@@ -4672,8 +4672,8 @@
         "gender_rate": -1,
         "evolutions": []
     },
-    "giratina-altered": {
-        "id": "giratina-altered",
+    "giratina": {
+        "id": "giratina",
         "external_id": "giratina-altered",
         "name": "Giratina",
         "types": [
@@ -4707,8 +4707,8 @@
         "gender_rate": -1,
         "evolutions": []
     },
-    "giratina-origin": {
-        "id": "giratina-origin",
+    "origin-giratina": {
+        "id": "origin-giratina",
         "external_id": "giratina-origin",
         "name": "Origin Giratina",
         "types": [
@@ -4878,15 +4878,15 @@
         "gender_rate": -1,
         "evolutions": [
             {
-                "evolves_into": "darkrai-mega",
+                "evolves_into": "mega-darkrai",
                 "item": "darkranite",
                 "min_level": 100,
                 "gender": null
             }
         ]
     },
-    "darkrai-mega": {
-        "id": "darkrai-mega",
+    "mega-darkrai": {
+        "id": "mega-darkrai",
         "external_id": "darkrai-mega",
         "name": "Mega Darkrai",
         "types": [

@@ -3929,7 +3929,7 @@
             "is_base_move": false
         }
     },
-    "floette-eternal": {
+    "eternal-floette": {
         "moonblast": {
             "level_learn": 46,
             "is_base_move": true
@@ -10883,7 +10883,7 @@
             "is_base_move": false
         }
     },
-    "sliggoo-hisui": {
+    "hisuian-sliggoo": {
         "flail": {
             "level_learn": 20,
             "is_base_move": true
@@ -11299,7 +11299,7 @@
             "is_base_move": false
         }
     },
-    "goodra-hisui": {
+    "hisuian-goodra": {
         "dragon-pulse": {
             "level_learn": 30,
             "is_base_move": true
@@ -12799,7 +12799,7 @@
             "is_base_move": false
         }
     },
-    "avalugg-hisui": {
+    "hisuian-avalugg": {
         "ice-fang": {
             "level_learn": 24,
             "is_base_move": true
@@ -14613,7 +14613,7 @@
             "is_base_move": false
         }
     },
-    "hoopa": {
+    "hoopa-confined": {
         "confusion": {
             "level_learn": 1,
             "is_base_move": true
@@ -15303,7 +15303,7 @@
             "is_base_move": false
         }
     },
-    "barbaracle-mega": {
+    "mega-barbaracle": {
         "ancient-power": {
             "level_learn": 26,
             "is_base_move": true
@@ -15601,7 +15601,7 @@
             "is_base_move": false
         }
     },
-    "chesnaught-mega": {
+    "mega-chesnaught": {
         "pin-missile": {
             "level_learn": 19,
             "is_base_move": true
@@ -15927,7 +15927,7 @@
             "is_base_move": false
         }
     },
-    "delphox-mega": {
+    "mega-delphox": {
         "psybeam": {
             "level_learn": 18,
             "is_base_move": true
@@ -16173,7 +16173,7 @@
             "is_base_move": false
         }
     },
-    "diancie-mega": {
+    "mega-diancie": {
         "tackle": {
             "level_learn": 1,
             "is_base_move": true
@@ -16363,7 +16363,7 @@
             "is_base_move": false
         }
     },
-    "dragalge-mega": {
+    "mega-dragalge": {
         "aqua-tail": {
             "level_learn": 38,
             "is_base_move": true
@@ -16581,7 +16581,7 @@
             "is_base_move": false
         }
     },
-    "floette-mega": {
+    "mega-floette": {
         "tackle": {
             "level_learn": 1,
             "is_base_move": true
@@ -16711,7 +16711,7 @@
             "is_base_move": false
         }
     },
-    "greninja-mega": {
+    "mega-greninja": {
         "water-shuriken": {
             "level_learn": 24,
             "is_base_move": true
@@ -16985,7 +16985,7 @@
             "is_base_move": false
         }
     },
-    "hawlucha-mega": {
+    "mega-hawlucha": {
         "tackle": {
             "level_learn": 1,
             "is_base_move": true
@@ -17283,7 +17283,7 @@
             "is_base_move": false
         }
     },
-    "malamar-mega": {
+    "mega-malamar": {
         "foul-play": {
             "level_learn": 17,
             "is_base_move": true
@@ -17493,7 +17493,7 @@
             "is_base_move": false
         }
     },
-    "meowstic-mega": {
+    "mega-meowstic": {
         "scratch": {
             "level_learn": 1,
             "is_base_move": true
@@ -17663,7 +17663,7 @@
             "is_base_move": false
         }
     },
-    "pyroar-mega": {
+    "mega-pyroar": {
         "hyper-beam": {
             "level_learn": 1,
             "is_base_move": true
@@ -17873,7 +17873,7 @@
             "is_base_move": false
         }
     },
-    "zygarde-mega": {
+    "mega-zygarde": {
         "crunch": {
             "level_learn": 44,
             "is_base_move": true

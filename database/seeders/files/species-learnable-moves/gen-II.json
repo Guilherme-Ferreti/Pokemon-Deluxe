@@ -1343,7 +1343,7 @@
             "is_base_move": false
         }
     },
-    "typhlosion-hisui": {
+    "hisuian-typhlosion": {
         "flame-wheel": {
             "level_learn": 19,
             "is_base_move": true
@@ -14029,7 +14029,7 @@
             "is_base_move": false
         }
     },
-    "qwilfish-hisui": {
+    "hisuian-qwilfish": {
         "poison-sting": {
             "level_learn": 1,
             "is_base_move": true
@@ -15275,7 +15275,7 @@
             "is_base_move": false
         }
     },
-    "sneasel-hisui": {
+    "hisuian-sneasel": {
         "scratch": {
             "level_learn": 1,
             "is_base_move": true
@@ -23925,7 +23925,7 @@
             "is_base_move": false
         }
     },
-    "ampharos-mega": {
+    "mega-ampharos": {
         "thunder-punch": {
             "level_learn": 20,
             "is_base_move": true
@@ -24191,7 +24191,7 @@
             "is_base_move": false
         }
     },
-    "feraligatr-mega": {
+    "mega-feraligatr": {
         "water-gun": {
             "level_learn": 4,
             "is_base_move": true
@@ -24549,7 +24549,7 @@
             "is_base_move": false
         }
     },
-    "heracross-mega": {
+    "mega-heracross": {
         "arm-thrust": {
             "level_learn": 1,
             "is_base_move": true
@@ -24843,7 +24843,7 @@
             "is_base_move": false
         }
     },
-    "houndoom-mega": {
+    "mega-houndoom": {
         "thunder-fang": {
             "level_learn": 1,
             "is_base_move": true
@@ -25097,7 +25097,7 @@
             "is_base_move": false
         }
     },
-    "meganium-mega": {
+    "mega-meganium": {
         "petal-dance": {
             "level_learn": 16,
             "is_base_move": true
@@ -25339,7 +25339,7 @@
             "is_base_move": false
         }
     },
-    "scizor-mega": {
+    "mega-scizor": {
         "false-swipe": {
             "level_learn": 12,
             "is_base_move": true
@@ -25601,7 +25601,7 @@
             "is_base_move": false
         }
     },
-    "skarmory-mega": {
+    "mega-skarmory": {
         "peck": {
             "level_learn": 1,
             "is_base_move": true
@@ -25835,7 +25835,7 @@
             "is_base_move": false
         }
     },
-    "steelix-mega": {
+    "mega-steelix": {
         "rock-slide": {
             "level_learn": 28,
             "is_base_move": true
@@ -26117,7 +26117,7 @@
             "is_base_move": false
         }
     },
-    "tyranitar-mega": {
+    "mega-tyranitar": {
         "thrash": {
             "level_learn": 29,
             "is_base_move": true

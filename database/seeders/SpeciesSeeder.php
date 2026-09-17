@@ -15,7 +15,7 @@ use Shared\Models\SpeciesEvolution;
  * @phpstan-type SeederEvolution array{evolves_into:string, item:?string, min_level:?int, gender:?int}
  * @phpstan-type SeederSprites array{back_default:?string, back_female:?string, back_shiny:?string, back_shiny_female:?string, front_default:?string, front_female:?string, front_shiny:?string, front_shiny_female:?string}
  * @phpstan-type SeederPortraits array{regular:?string, shiny:?string}
- * @phpstan-type SeederSpecies array{id:string, external_id:string, name:string, types:list<string>, pokedex_number:int, genus:string, flavor_text:string, sprites:SeederSprites, portraits:SeederPortraits, is_baby:bool, is_legendary:bool, is_mythical:bool, is_mega:bool, is_gmax:bool, generation:int, capture_rate:?int, gender_rate:int, evolutions:list<SeederEvolution>}
+ * @phpstan-type SeederSpecies array{id:string, name:string, types:list<string>, pokedex_number:int, genus:string, flavor_text:string, sprites:SeederSprites, portraits:SeederPortraits, is_baby:bool, is_legendary:bool, is_mythical:bool, is_mega:bool, is_gmax:bool, generation:int, capture_rate:?int, gender_rate:int, evolutions:list<SeederEvolution>}
  */
 final class SpeciesSeeder extends Seeder
 {
@@ -122,8 +122,7 @@ final class SpeciesSeeder extends Seeder
             'generation'   => $species['generation'],
             'capture_rate' => $species['capture_rate'],
             'gender_rate'  => $species['gender_rate'],
-            'slug'         => $this->generateSpeciesSlug($species['name']),
-            'external_id'  => $species['external_id'],
+            'slug'         => $species['id'],
         ];
     }
 
@@ -143,9 +142,9 @@ final class SpeciesSeeder extends Seeder
         ], $species['evolutions']);
     }
 
-    private function getSpeciesId(string $externalId): string
+    private function getSpeciesId(string $id): string
     {
-        return $this->speciesIds[$externalId] ??= (new Species)->newUniqueId();
+        return $this->speciesIds[$id] ??= (new Species)->newUniqueId();
     }
 
     /**
@@ -154,10 +153,5 @@ final class SpeciesSeeder extends Seeder
     private function getEvolutionItemIds(): array
     {
         return EvolutionItem::pluck('id', 'external_id')->toArray();
-    }
-
-    private function generateSpeciesSlug(string $name): string
-    {
-        return Str::of($name)->slug()->replace('g-max-', 'gmax-')->toString();
     }
 }

@@ -233,15 +233,15 @@
         "gender_rate": 1,
         "evolutions": [
             {
-                "evolves_into": "emboar-mega",
+                "evolves_into": "mega-emboar",
                 "item": "emboarite",
                 "min_level": 100,
                 "gender": null
             }
         ]
     },
-    "emboar-mega": {
-        "id": "emboar-mega",
+    "mega-emboar": {
+        "id": "mega-emboar",
         "external_id": "emboar-mega",
         "name": "Mega Emboar",
         "types": [
@@ -356,7 +356,7 @@
                 "gender": null
             },
             {
-                "evolves_into": "samurott-hisui",
+                "evolves_into": "hisuian-samurott",
                 "item": null,
                 "min_level": 36,
                 "gender": null
@@ -397,8 +397,8 @@
         "gender_rate": 1,
         "evolutions": []
     },
-    "samurott-hisui": {
-        "id": "samurott-hisui",
+    "hisuian-samurott": {
+        "id": "hisuian-samurott",
         "external_id": "samurott-hisui",
         "name": "Hisuian Samurott",
         "types": [
@@ -1461,15 +1461,15 @@
         "gender_rate": 4,
         "evolutions": [
             {
-                "evolves_into": "excadrill-mega",
+                "evolves_into": "mega-excadrill",
                 "item": "excadrite",
                 "min_level": 100,
                 "gender": null
             }
         ]
     },
-    "excadrill-mega": {
-        "id": "excadrill-mega",
+    "mega-excadrill": {
+        "id": "mega-excadrill",
         "external_id": "excadrill-mega",
         "name": "Mega Excadrill",
         "types": [
@@ -1537,15 +1537,15 @@
         "gender_rate": 4,
         "evolutions": [
             {
-                "evolves_into": "audino-mega",
+                "evolves_into": "mega-audino",
                 "item": "audinite",
                 "min_level": 100,
                 "gender": null
             }
         ]
     },
-    "audino-mega": {
-        "id": "audino-mega",
+    "mega-audino": {
+        "id": "mega-audino",
         "external_id": "audino-mega",
         "name": "Mega Audino",
         "types": [
@@ -2119,15 +2119,15 @@
         "gender_rate": 4,
         "evolutions": [
             {
-                "evolves_into": "scolipede-mega",
+                "evolves_into": "mega-scolipede",
                 "item": "scolipite",
                 "min_level": 100,
                 "gender": null
             }
         ]
     },
-    "scolipede-mega": {
-        "id": "scolipede-mega",
+    "mega-scolipede": {
+        "id": "mega-scolipede",
         "external_id": "scolipede-mega",
         "name": "Mega Scolipede",
         "types": [
@@ -2278,7 +2278,7 @@
                 "gender": null
             },
             {
-                "evolves_into": "lilligant-hisui",
+                "evolves_into": "hisuian-lilligant",
                 "item": "sun-stone",
                 "min_level": null,
                 "gender": null
@@ -2319,8 +2319,8 @@
         "gender_rate": 8,
         "evolutions": []
     },
-    "lilligant-hisui": {
-        "id": "lilligant-hisui",
+    "hisuian-lilligant": {
+        "id": "hisuian-lilligant",
         "external_id": "lilligant-hisui",
         "name": "Hisuian Lilligant",
         "types": [
@@ -2609,21 +2609,21 @@
         "gender_rate": 4,
         "evolutions": [
             {
-                "evolves_into": "darmanitan-standard",
+                "evolves_into": "darmanitan",
                 "item": null,
                 "min_level": 35,
                 "gender": null
             },
             {
-                "evolves_into": "darmanitan-zen",
+                "evolves_into": "darmanitan-zen-mode",
                 "item": null,
                 "min_level": 35,
                 "gender": null
             }
         ]
     },
-    "darmanitan-standard": {
-        "id": "darmanitan-standard",
+    "darmanitan": {
+        "id": "darmanitan",
         "external_id": "darmanitan-standard",
         "name": "Darmanitan",
         "types": [
@@ -2656,8 +2656,8 @@
         "gender_rate": 4,
         "evolutions": []
     },
-    "darmanitan-zen": {
-        "id": "darmanitan-zen",
+    "darmanitan-zen-mode": {
+        "id": "darmanitan-zen-mode",
         "external_id": "darmanitan-zen",
         "name": "Darmanitan (Zen Mode)",
         "types": [
@@ -2879,15 +2879,15 @@
         "gender_rate": 4,
         "evolutions": [
             {
-                "evolves_into": "scrafty-mega",
+                "evolves_into": "mega-scrafty",
                 "item": "scraftinite",
                 "min_level": 100,
                 "gender": null
             }
         ]
     },
-    "scrafty-mega": {
-        "id": "scrafty-mega",
+    "mega-scrafty": {
+        "id": "mega-scrafty",
         "external_id": "scrafty-mega",
         "name": "Mega Scrafty",
         "types": [
@@ -3260,15 +3260,15 @@
         "gender_rate": 4,
         "evolutions": [
             {
-                "evolves_into": "garbodor-gmax",
+                "evolves_into": "gmax-garbodor",
                 "item": null,
                 "min_level": 100,
                 "gender": null
             }
         ]
     },
-    "garbodor-gmax": {
-        "id": "garbodor-gmax",
+    "gmax-garbodor": {
+        "id": "gmax-garbodor",
         "external_id": "garbodor-gmax",
         "name": "G-Max Garbodor",
         "types": [
@@ -3342,8 +3342,8 @@
             }
         ]
     },
-    "zorua-hisui": {
-        "id": "zorua-hisui",
+    "hisuian-zorua": {
+        "id": "hisuian-zorua",
         "external_id": "zorua-hisui",
         "name": "Hisuian Zorua",
         "types": [
@@ -3377,7 +3377,7 @@
         "gender_rate": 1,
         "evolutions": [
             {
-                "evolves_into": "zoroark-hisui",
+                "evolves_into": "hisuian-zoroark",
                 "item": null,
                 "min_level": 30,
                 "gender": null
@@ -3418,8 +3418,8 @@
         "gender_rate": 1,
         "evolutions": []
     },
-    "zoroark-hisui": {
-        "id": "zoroark-hisui",
+    "hisuian-zoroark": {
+        "id": "hisuian-zoroark",
         "external_id": "zoroark-hisui",
         "name": "Hisuian Zoroark",
         "types": [
@@ -3953,8 +3953,8 @@
         "gender_rate": 4,
         "evolutions": []
     },
-    "deerling": {
-        "id": "deerling",
+    "spring-deerling": {
+        "id": "spring-deerling",
         "external_id": "deerling",
         "name": "Spring Deerling",
         "types": [
@@ -4715,15 +4715,15 @@
         "gender_rate": 4,
         "evolutions": [
             {
-                "evolves_into": "eelektross-mega",
+                "evolves_into": "mega-eelektross",
                 "item": "eelektrossite",
                 "min_level": 100,
                 "gender": null
             }
         ]
     },
-    "eelektross-mega": {
-        "id": "eelektross-mega",
+    "mega-eelektross": {
+        "id": "mega-eelektross",
         "external_id": "eelektross-mega",
         "name": "Mega Eelektross",
         "types": [
@@ -4950,15 +4950,15 @@
         "gender_rate": 4,
         "evolutions": [
             {
-                "evolves_into": "chandelure-mega",
+                "evolves_into": "mega-chandelure",
                 "item": "chandelurite",
                 "min_level": 100,
                 "gender": null
             }
         ]
     },
-    "chandelure-mega": {
-        "id": "chandelure-mega",
+    "mega-chandelure": {
+        "id": "mega-chandelure",
         "external_id": "chandelure-mega",
         "name": "Mega Chandelure",
         "types": [
@@ -5513,15 +5513,15 @@
         "gender_rate": -1,
         "evolutions": [
             {
-                "evolves_into": "golurk-mega",
+                "evolves_into": "mega-golurk",
                 "item": "golurkite",
                 "min_level": 100,
                 "gender": null
             }
         ]
     },
-    "golurk-mega": {
-        "id": "golurk-mega",
+    "mega-golurk": {
+        "id": "mega-golurk",
         "external_id": "golurk-mega",
         "name": "Mega Golurk",
         "types": [
@@ -5750,8 +5750,8 @@
         "gender_rate": 0,
         "evolutions": []
     },
-    "braviary-hisui": {
-        "id": "braviary-hisui",
+    "hisuian-braviary": {
+        "id": "hisuian-braviary",
         "external_id": "braviary-hisui",
         "name": "Hisuian Braviary",
         "types": [
@@ -6232,8 +6232,8 @@
         "gender_rate": -1,
         "evolutions": []
     },
-    "tornadus-incarnate": {
-        "id": "tornadus-incarnate",
+    "incarnate-tornadus": {
+        "id": "incarnate-tornadus",
         "external_id": "tornadus-incarnate",
         "name": "Incarnate Tornadus",
         "types": [
@@ -6266,8 +6266,8 @@
         "gender_rate": 0,
         "evolutions": []
     },
-    "tornadus-therian": {
-        "id": "tornadus-therian",
+    "therian-tornadus": {
+        "id": "therian-tornadus",
         "external_id": "tornadus-therian",
         "name": "Therian Tornadus",
         "types": [
@@ -6300,8 +6300,8 @@
         "gender_rate": 0,
         "evolutions": []
     },
-    "thundurus-incarnate": {
-        "id": "thundurus-incarnate",
+    "incarnate-thundurus": {
+        "id": "incarnate-thundurus",
         "external_id": "thundurus-incarnate",
         "name": "Incarnate Thundurus",
         "types": [
@@ -6335,8 +6335,8 @@
         "gender_rate": 0,
         "evolutions": []
     },
-    "thundurus-therian": {
-        "id": "thundurus-therian",
+    "therian-thundurus": {
+        "id": "therian-thundurus",
         "external_id": "thundurus-therian",
         "name": "Therian Thundurus",
         "types": [
@@ -6545,8 +6545,8 @@
         "gender_rate": -1,
         "evolutions": []
     },
-    "kyurem-black": {
-        "id": "kyurem-black",
+    "black-kyurem": {
+        "id": "black-kyurem",
         "external_id": "kyurem-black",
         "name": "Black Kyurem",
         "types": [
@@ -6580,8 +6580,8 @@
         "gender_rate": -1,
         "evolutions": []
     },
-    "kyurem-white": {
-        "id": "kyurem-white",
+    "white-kyurem": {
+        "id": "white-kyurem",
         "external_id": "kyurem-white",
         "name": "White Kyurem",
         "types": [

@@ -82,7 +82,7 @@
                 "gender": null
             },
             {
-                "evolves_into": "decidueye-hisui",
+                "evolves_into": "hisuian-decidueye",
                 "item": null,
                 "min_level": 34,
                 "gender": null
@@ -124,8 +124,8 @@
         "gender_rate": 1,
         "evolutions": []
     },
-    "decidueye-hisui": {
-        "id": "decidueye-hisui",
+    "hisuian-decidueye": {
+        "id": "hisuian-decidueye",
         "external_id": "decidueye-hisui",
         "name": "Hisuian Decidueye",
         "types": [
@@ -781,15 +781,15 @@
         "gender_rate": 4,
         "evolutions": [
             {
-                "evolves_into": "crabominable-mega",
+                "evolves_into": "mega-crabominable",
                 "item": "crabominite",
                 "min_level": 100,
                 "gender": null
             }
         ]
     },
-    "crabominable-mega": {
-        "id": "crabominable-mega",
+    "mega-crabominable": {
+        "id": "mega-crabominable",
         "external_id": "crabominable-mega",
         "name": "Mega Crabominable",
         "types": [
@@ -893,8 +893,8 @@
         "gender_rate": 6,
         "evolutions": []
     },
-    "oricorio-pau": {
-        "id": "oricorio-pau",
+    "pau-oricorio": {
+        "id": "pau-oricorio",
         "external_id": "oricorio-pau",
         "name": "Pa’u Oricorio",
         "types": [
@@ -2094,15 +2094,15 @@
         "gender_rate": 4,
         "evolutions": [
             {
-                "evolves_into": "golisopod-mega",
+                "evolves_into": "mega-golisopod",
                 "item": "golisopite",
                 "min_level": 100,
                 "gender": null
             }
         ]
     },
-    "golisopod-mega": {
-        "id": "golisopod-mega",
+    "mega-golisopod": {
+        "id": "mega-golisopod",
         "external_id": "golisopod-mega",
         "name": "Mega Golisopod",
         "types": [
@@ -2567,8 +2567,8 @@
         "gender_rate": -1,
         "evolutions": []
     },
-    "minior-red": {
-        "id": "minior-red",
+    "minior-red-core": {
+        "id": "minior-red-core",
         "external_id": "minior-red",
         "name": "Minior (Red Core)",
         "types": [
@@ -2602,8 +2602,8 @@
         "gender_rate": -1,
         "evolutions": []
     },
-    "minior-orange": {
-        "id": "minior-orange",
+    "minior-orange-core": {
+        "id": "minior-orange-core",
         "external_id": "minior-orange",
         "name": "Minior (Orange Core)",
         "types": [
@@ -2637,8 +2637,8 @@
         "gender_rate": -1,
         "evolutions": []
     },
-    "minior-yellow": {
-        "id": "minior-yellow",
+    "minior-yellow-core": {
+        "id": "minior-yellow-core",
         "external_id": "minior-yellow",
         "name": "Minior (Yellow Core)",
         "types": [
@@ -2672,8 +2672,8 @@
         "gender_rate": -1,
         "evolutions": []
     },
-    "minior-green": {
-        "id": "minior-green",
+    "minior-green-core": {
+        "id": "minior-green-core",
         "external_id": "minior-green",
         "name": "Minior (Green Core)",
         "types": [
@@ -2707,8 +2707,8 @@
         "gender_rate": -1,
         "evolutions": []
     },
-    "minior-blue": {
-        "id": "minior-blue",
+    "minior-blue-core": {
+        "id": "minior-blue-core",
         "external_id": "minior-blue",
         "name": "Minior (Blue Core)",
         "types": [
@@ -2742,8 +2742,8 @@
         "gender_rate": -1,
         "evolutions": []
     },
-    "minior-indigo": {
-        "id": "minior-indigo",
+    "minior-indigo-core": {
+        "id": "minior-indigo-core",
         "external_id": "minior-indigo",
         "name": "Minior (Indigo Core)",
         "types": [
@@ -2777,8 +2777,8 @@
         "gender_rate": -1,
         "evolutions": []
     },
-    "minior-violet": {
-        "id": "minior-violet",
+    "minior-violet-core": {
+        "id": "minior-violet-core",
         "external_id": "minior-violet",
         "name": "Minior (Violet Core)",
         "types": [
@@ -3056,15 +3056,15 @@
         "gender_rate": 4,
         "evolutions": [
             {
-                "evolves_into": "drampa-mega",
+                "evolves_into": "mega-drampa",
                 "item": "drampanite",
                 "min_level": 100,
                 "gender": null
             }
         ]
     },
-    "drampa-mega": {
-        "id": "drampa-mega",
+    "mega-drampa": {
+        "id": "mega-drampa",
         "external_id": "drampa-mega",
         "name": "Mega Drampa",
         "types": [
@@ -3827,8 +3827,8 @@
         "gender_rate": -1,
         "evolutions": []
     },
-    "necrozma-dusk": {
-        "id": "necrozma-dusk",
+    "necrozma-dusk-mane": {
+        "id": "necrozma-dusk-mane",
         "external_id": "necrozma-dusk",
         "name": "Necrozma (Dusk Mane)",
         "types": [
@@ -3862,8 +3862,8 @@
         "gender_rate": -1,
         "evolutions": []
     },
-    "necrozma-dawn": {
-        "id": "necrozma-dawn",
+    "necrozma-dawn-wings": {
+        "id": "necrozma-dawn-wings",
         "external_id": "necrozma-dawn",
         "name": "Necrozma (Dawn Wings)",
         "types": [
@@ -3967,15 +3967,15 @@
         "gender_rate": -1,
         "evolutions": [
             {
-                "evolves_into": "magearna-mega",
+                "evolves_into": "mega-magearna",
                 "item": "magearnite",
                 "min_level": 100,
                 "gender": null
             }
         ]
     },
-    "magearna-original": {
-        "id": "magearna-original",
+    "magearna-original-color": {
+        "id": "magearna-original-color",
         "external_id": "magearna-original",
         "name": "Magearna (Original Color)",
         "types": [
@@ -4009,15 +4009,15 @@
         "gender_rate": -1,
         "evolutions": [
             {
-                "evolves_into": "magearna-original-mega",
+                "evolves_into": "mega-magearna-original-color",
                 "item": "magearnite",
                 "min_level": 100,
                 "gender": null
             }
         ]
     },
-    "magearna-mega": {
-        "id": "magearna-mega",
+    "mega-magearna": {
+        "id": "mega-magearna",
         "external_id": "magearna-mega",
         "name": "Mega Magearna",
         "types": [
@@ -4051,8 +4051,8 @@
         "gender_rate": -1,
         "evolutions": []
     },
-    "magearna-original-mega": {
-        "id": "magearna-original-mega",
+    "mega-magearna-original-color": {
+        "id": "mega-magearna-original-color",
         "external_id": "magearna-original-mega",
         "name": "Mega Magearna (Original Color)",
         "types": [
@@ -4301,15 +4301,15 @@
         "gender_rate": -1,
         "evolutions": [
             {
-                "evolves_into": "zeraora-mega",
+                "evolves_into": "mega-zeraora",
                 "item": "zeraorite",
                 "min_level": 100,
                 "gender": null
             }
         ]
     },
-    "zeraora-mega": {
-        "id": "zeraora-mega",
+    "mega-zeraora": {
+        "id": "mega-zeraora",
         "external_id": "zeraora-mega",
         "name": "Mega Zeraora",
         "types": [
@@ -4417,15 +4417,15 @@
         "gender_rate": -1,
         "evolutions": [
             {
-                "evolves_into": "melmetal-gmax",
+                "evolves_into": "gmax-melmetal",
                 "item": null,
                 "min_level": 100,
                 "gender": null
             }
         ]
     },
-    "melmetal-gmax": {
-        "id": "melmetal-gmax",
+    "gmax-melmetal": {
+        "id": "gmax-melmetal",
         "external_id": "melmetal-gmax",
         "name": "G-Max Melmetal",
         "types": [
@@ -4458,8 +4458,8 @@
         "gender_rate": -1,
         "evolutions": []
     },
-    "rattata-alola": {
-        "id": "rattata-alola",
+    "alolan-rattata": {
+        "id": "alolan-rattata",
         "external_id": "rattata-alola",
         "name": "Alolan Rattata",
         "types": [
@@ -4493,15 +4493,15 @@
         "gender_rate": 4,
         "evolutions": [
             {
-                "evolves_into": "raticate-alola",
+                "evolves_into": "alolan-raticate",
                 "item": null,
                 "min_level": 20,
                 "gender": null
             }
         ]
     },
-    "raticate-alola": {
-        "id": "raticate-alola",
+    "alolan-raticate": {
+        "id": "alolan-raticate",
         "external_id": "raticate-alola",
         "name": "Alolan Raticate",
         "types": [
@@ -4535,8 +4535,8 @@
         "gender_rate": 4,
         "evolutions": []
     },
-    "raichu-alola": {
-        "id": "raichu-alola",
+    "alolan-raichu": {
+        "id": "alolan-raichu",
         "external_id": "raichu-alola",
         "name": "Alolan Raichu",
         "types": [
@@ -4570,8 +4570,8 @@
         "gender_rate": 4,
         "evolutions": []
     },
-    "sandshrew-alola": {
-        "id": "sandshrew-alola",
+    "alolan-sandshrew": {
+        "id": "alolan-sandshrew",
         "external_id": "sandshrew-alola",
         "name": "Alolan Sandshrew",
         "types": [
@@ -4605,15 +4605,15 @@
         "gender_rate": 4,
         "evolutions": [
             {
-                "evolves_into": "sandslash-alola",
+                "evolves_into": "alolan-sandslash",
                 "item": "ice-stone",
                 "min_level": null,
                 "gender": null
             }
         ]
     },
-    "sandslash-alola": {
-        "id": "sandslash-alola",
+    "alolan-sandslash": {
+        "id": "alolan-sandslash",
         "external_id": "sandslash-alola",
         "name": "Alolan Sandslash",
         "types": [
@@ -4647,8 +4647,8 @@
         "gender_rate": 4,
         "evolutions": []
     },
-    "vulpix-alola": {
-        "id": "vulpix-alola",
+    "alolan-vulpix": {
+        "id": "alolan-vulpix",
         "external_id": "vulpix-alola",
         "name": "Alolan Vulpix",
         "types": [
@@ -4681,15 +4681,15 @@
         "gender_rate": 6,
         "evolutions": [
             {
-                "evolves_into": "ninetales-alola",
+                "evolves_into": "alolan-ninetales",
                 "item": "ice-stone",
                 "min_level": null,
                 "gender": null
             }
         ]
     },
-    "ninetales-alola": {
-        "id": "ninetales-alola",
+    "alolan-ninetales": {
+        "id": "alolan-ninetales",
         "external_id": "ninetales-alola",
         "name": "Alolan Ninetales",
         "types": [
@@ -4723,8 +4723,8 @@
         "gender_rate": 6,
         "evolutions": []
     },
-    "diglett-alola": {
-        "id": "diglett-alola",
+    "alolan-diglett": {
+        "id": "alolan-diglett",
         "external_id": "diglett-alola",
         "name": "Alolan Diglett",
         "types": [
@@ -4758,15 +4758,15 @@
         "gender_rate": 4,
         "evolutions": [
             {
-                "evolves_into": "dugtrio-alola",
+                "evolves_into": "alolan-dugtrio",
                 "item": null,
                 "min_level": 26,
                 "gender": null
             }
         ]
     },
-    "dugtrio-alola": {
-        "id": "dugtrio-alola",
+    "alolan-dugtrio": {
+        "id": "alolan-dugtrio",
         "external_id": "dugtrio-alola",
         "name": "Alolan Dugtrio",
         "types": [
@@ -4800,8 +4800,8 @@
         "gender_rate": 4,
         "evolutions": []
     },
-    "meowth-alola": {
-        "id": "meowth-alola",
+    "alolan-meowth": {
+        "id": "alolan-meowth",
         "external_id": "meowth-alola",
         "name": "Alolan Meowth",
         "types": [
@@ -4834,15 +4834,15 @@
         "gender_rate": 4,
         "evolutions": [
             {
-                "evolves_into": "persian-alola",
+                "evolves_into": "alolan-persian",
                 "item": null,
                 "min_level": 28,
                 "gender": null
             }
         ]
     },
-    "persian-alola": {
-        "id": "persian-alola",
+    "alolan-persian": {
+        "id": "alolan-persian",
         "external_id": "persian-alola",
         "name": "Alolan Persian",
         "types": [
@@ -4875,8 +4875,8 @@
         "gender_rate": 4,
         "evolutions": []
     },
-    "geodude-alola": {
-        "id": "geodude-alola",
+    "alolan-geodude": {
+        "id": "alolan-geodude",
         "external_id": "geodude-alola",
         "name": "Alolan Geodude",
         "types": [
@@ -4910,15 +4910,15 @@
         "gender_rate": 4,
         "evolutions": [
             {
-                "evolves_into": "graveler-alola",
+                "evolves_into": "alolan-graveler",
                 "item": null,
                 "min_level": 25,
                 "gender": null
             }
         ]
     },
-    "graveler-alola": {
-        "id": "graveler-alola",
+    "alolan-graveler": {
+        "id": "alolan-graveler",
         "external_id": "graveler-alola",
         "name": "Alolan Graveler",
         "types": [
@@ -4952,15 +4952,15 @@
         "gender_rate": 4,
         "evolutions": [
             {
-                "evolves_into": "golem-alola",
+                "evolves_into": "alolan-golem",
                 "item": null,
                 "min_level": 37,
                 "gender": null
             }
         ]
     },
-    "golem-alola": {
-        "id": "golem-alola",
+    "alolan-golem": {
+        "id": "alolan-golem",
         "external_id": "golem-alola",
         "name": "Alolan Golem",
         "types": [
@@ -4994,8 +4994,8 @@
         "gender_rate": 4,
         "evolutions": []
     },
-    "grimer-alola": {
-        "id": "grimer-alola",
+    "alolan-grimer": {
+        "id": "alolan-grimer",
         "external_id": "grimer-alola",
         "name": "Alolan Grimer",
         "types": [
@@ -5029,15 +5029,15 @@
         "gender_rate": 4,
         "evolutions": [
             {
-                "evolves_into": "muk-alola",
+                "evolves_into": "alolan-muk",
                 "item": null,
                 "min_level": 38,
                 "gender": null
             }
         ]
     },
-    "muk-alola": {
-        "id": "muk-alola",
+    "alolan-muk": {
+        "id": "alolan-muk",
         "external_id": "muk-alola",
         "name": "Alolan Muk",
         "types": [
@@ -5071,8 +5071,8 @@
         "gender_rate": 4,
         "evolutions": []
     },
-    "exeggutor-alola": {
-        "id": "exeggutor-alola",
+    "alolan-exeggutor": {
+        "id": "alolan-exeggutor",
         "external_id": "exeggutor-alola",
         "name": "Alolan Exeggutor",
         "types": [
@@ -5106,8 +5106,8 @@
         "gender_rate": 4,
         "evolutions": []
     },
-    "marowak-alola": {
-        "id": "marowak-alola",
+    "alolan-marowak": {
+        "id": "alolan-marowak",
         "external_id": "marowak-alola",
         "name": "Alolan Marowak",
         "types": [

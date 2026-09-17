@@ -5473,7 +5473,7 @@
             "is_base_move": false
         }
     },
-    "burmy-plant": {
+    "burmy-plant-cloak": {
         "struggle-bug": {
             "level_learn": 1,
             "is_base_move": true
@@ -5503,7 +5503,7 @@
             "is_base_move": false
         }
     },
-    "wormadam-plant": {
+    "wormadam-plant-cloak": {
         "gust": {
             "level_learn": 6,
             "is_base_move": true
@@ -5677,7 +5677,7 @@
             "is_base_move": false
         }
     },
-    "wormadam-sandy": {
+    "wormadam-sandy-cloak": {
         "gust": {
             "level_learn": 6,
             "is_base_move": true
@@ -5855,7 +5855,7 @@
             "is_base_move": false
         }
     },
-    "wormadam-trash": {
+    "wormadam-trash-cloak": {
         "metal-burst": {
             "level_learn": 7,
             "is_base_move": true
@@ -23251,7 +23251,7 @@
             "is_base_move": false
         }
     },
-    "dialga-origin": {
+    "origin-dialga": {
         "metal-claw": {
             "level_learn": 1,
             "is_base_move": true
@@ -23735,7 +23735,7 @@
             "is_base_move": false
         }
     },
-    "palkia-origin": {
+    "origin-palkia": {
         "water-pulse": {
             "level_learn": 1,
             "is_base_move": true
@@ -24457,7 +24457,7 @@
             "is_base_move": false
         }
     },
-    "giratina-altered": {
+    "giratina": {
         "dragon-breath": {
             "level_learn": 2,
             "is_base_move": true
@@ -24747,7 +24747,7 @@
             "is_base_move": false
         }
     },
-    "giratina-origin": {
+    "origin-giratina": {
         "dragon-breath": {
             "level_learn": 2,
             "is_base_move": true
@@ -26981,7 +26981,7 @@
             "is_base_move": false
         }
     },
-    "abomasnow-mega": {
+    "mega-abomasnow": {
         "icicle-crash": {
             "level_learn": 18,
             "is_base_move": true
@@ -27243,7 +27243,7 @@
             "is_base_move": false
         }
     },
-    "darkrai-mega": {
+    "mega-darkrai": {
         "ominous-wind": {
             "level_learn": 1,
             "is_base_move": true
@@ -27513,7 +27513,7 @@
             "is_base_move": false
         }
     },
-    "froslass-mega": {
+    "mega-froslass": {
         "ice-shard": {
             "level_learn": 19,
             "is_base_move": true
@@ -27735,7 +27735,7 @@
             "is_base_move": false
         }
     },
-    "gallade-mega": {
+    "mega-gallade": {
         "feint": {
             "level_learn": 34,
             "is_base_move": true
@@ -28113,7 +28113,7 @@
             "is_base_move": false
         }
     },
-    "garchomp-mega": {
+    "mega-garchomp": {
         "dragon-claw": {
             "level_learn": 34,
             "is_base_move": true
@@ -28403,7 +28403,7 @@
             "is_base_move": false
         }
     },
-    "garchomp-mega-z": {
+    "mega-garchomp-z": {
         "dragon-claw": {
             "level_learn": 34,
             "is_base_move": true
@@ -28689,7 +28689,7 @@
             "is_base_move": false
         }
     },
-    "heatran-mega": {
+    "mega-heatran": {
         "ember": {
             "level_learn": 1,
             "is_base_move": true
@@ -28947,7 +28947,7 @@
             "is_base_move": false
         }
     },
-    "lopunny-mega": {
+    "mega-lopunny": {
         "swift": {
             "level_learn": 10,
             "is_base_move": true
@@ -29265,7 +29265,7 @@
             "is_base_move": false
         }
     },
-    "lucario-mega": {
+    "mega-lucario": {
         "force-palm": {
             "level_learn": 10,
             "is_base_move": true
@@ -29579,7 +29579,7 @@
             "is_base_move": false
         }
     },
-    "lucario-mega-z": {
+    "mega-lucario-z": {
         "force-palm": {
             "level_learn": 10,
             "is_base_move": true
@@ -29893,7 +29893,7 @@
             "is_base_move": false
         }
     },
-    "staraptor-mega": {
+    "mega-staraptor": {
         "endeavor": {
             "level_learn": 18,
             "is_base_move": true
@@ -30083,7 +30083,7 @@
             "is_base_move": false
         }
     },
-    "burmy-sand": {
+    "burmy-sand-cloak": {
         "struggle-bug": {
             "level_learn": 1,
             "is_base_move": true
@@ -30113,7 +30113,7 @@
             "is_base_move": false
         }
     },
-    "burmy-trash": {
+    "burmy-trash-cloak": {
         "struggle-bug": {
             "level_learn": 1,
             "is_base_move": true

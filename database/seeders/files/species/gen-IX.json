@@ -1944,15 +1944,15 @@
         "gender_rate": 4,
         "evolutions": [
             {
-                "evolves_into": "scovillain-mega",
+                "evolves_into": "mega-scovillain",
                 "item": "scovillainite",
                 "min_level": 100,
                 "gender": null
             }
         ]
     },
-    "scovillain-mega": {
-        "id": "scovillain-mega",
+    "mega-scovillain": {
+        "id": "mega-scovillain",
         "external_id": "scovillain-mega",
         "name": "Mega Scovillain",
         "types": [
@@ -2400,21 +2400,21 @@
         "gender_rate": 4,
         "evolutions": [
             {
-                "evolves_into": "palafin-zero",
+                "evolves_into": "palafin-zero-form",
                 "item": null,
                 "min_level": 38,
                 "gender": null
             },
             {
-                "evolves_into": "palafin-hero",
+                "evolves_into": "palafin-hero-form",
                 "item": null,
                 "min_level": 38,
                 "gender": null
             }
         ]
     },
-    "palafin-zero": {
-        "id": "palafin-zero",
+    "palafin-zero-form": {
+        "id": "palafin-zero-form",
         "external_id": "palafin-zero",
         "name": "Palafin (Zero Form)",
         "types": [
@@ -2447,8 +2447,8 @@
         "gender_rate": 4,
         "evolutions": []
     },
-    "palafin-hero": {
-        "id": "palafin-hero",
+    "palafin-hero-form": {
+        "id": "palafin-hero-form",
         "external_id": "palafin-hero",
         "name": "Palafin (Hero Form)",
         "types": [
@@ -2704,15 +2704,15 @@
         "gender_rate": 4,
         "evolutions": [
             {
-                "evolves_into": "glimmora-mega",
+                "evolves_into": "mega-glimmora",
                 "item": "glimmoranite",
                 "min_level": 100,
                 "gender": null
             }
         ]
     },
-    "glimmora-mega": {
-        "id": "glimmora-mega",
+    "mega-glimmora": {
+        "id": "mega-glimmora",
         "external_id": "glimmora-mega",
         "name": "Mega Glimmora",
         "types": [
@@ -3035,19 +3035,19 @@
         "gender_rate": 4,
         "evolutions": [
             {
-                "evolves_into": "tatsugiri-curly-mega",
+                "evolves_into": "mega-tatsugiri-curly",
                 "item": "tatsugirinite",
                 "min_level": 100,
                 "gender": null
             },
             {
-                "evolves_into": "tatsugiri-droopy-mega",
+                "evolves_into": "mega-tatsugiri-droopy",
                 "item": "tatsugirinite",
                 "min_level": 100,
                 "gender": null
             },
             {
-                "evolves_into": "tatsugiri-stretchy-mega",
+                "evolves_into": "mega-tatsugiri-stretchy",
                 "item": "tatsugirinite",
                 "min_level": 100,
                 "gender": null
@@ -3089,19 +3089,19 @@
         "gender_rate": 4,
         "evolutions": [
             {
-                "evolves_into": "tatsugiri-curly-mega",
+                "evolves_into": "mega-tatsugiri-curly",
                 "item": "tatsugirinite",
                 "min_level": 100,
                 "gender": null
             },
             {
-                "evolves_into": "tatsugiri-droopy-mega",
+                "evolves_into": "mega-tatsugiri-droopy",
                 "item": "tatsugirinite",
                 "min_level": 100,
                 "gender": null
             },
             {
-                "evolves_into": "tatsugiri-stretchy-mega",
+                "evolves_into": "mega-tatsugiri-stretchy",
                 "item": "tatsugirinite",
                 "min_level": 100,
                 "gender": null
@@ -3143,27 +3143,27 @@
         "gender_rate": 4,
         "evolutions": [
             {
-                "evolves_into": "tatsugiri-curly-mega",
+                "evolves_into": "mega-tatsugiri-curly",
                 "item": "tatsugirinite",
                 "min_level": 100,
                 "gender": null
             },
             {
-                "evolves_into": "tatsugiri-droopy-mega",
+                "evolves_into": "mega-tatsugiri-droopy",
                 "item": "tatsugirinite",
                 "min_level": 100,
                 "gender": null
             },
             {
-                "evolves_into": "tatsugiri-stretchy-mega",
+                "evolves_into": "mega-tatsugiri-stretchy",
                 "item": "tatsugirinite",
                 "min_level": 100,
                 "gender": null
             }
         ]
     },
-    "tatsugiri-curly-mega": {
-        "id": "tatsugiri-curly-mega",
+    "mega-tatsugiri-curly": {
+        "id": "mega-tatsugiri-curly",
         "external_id": "tatsugiri-curly-mega",
         "name": "Mega Tatsugiri (Curly)",
         "types": [
@@ -3197,8 +3197,8 @@
         "gender_rate": 4,
         "evolutions": []
     },
-    "tatsugiri-droopy-mega": {
-        "id": "tatsugiri-droopy-mega",
+    "mega-tatsugiri-droopy": {
+        "id": "mega-tatsugiri-droopy",
         "external_id": "tatsugiri-droopy-mega",
         "name": "Mega Tatsugiri (Droopy)",
         "types": [
@@ -3232,8 +3232,8 @@
         "gender_rate": 4,
         "evolutions": []
     },
-    "tatsugiri-stretchy-mega": {
-        "id": "tatsugiri-stretchy-mega",
+    "mega-tatsugiri-stretchy": {
+        "id": "mega-tatsugiri-stretchy",
         "external_id": "tatsugiri-stretchy-mega",
         "name": "Mega Tatsugiri (Stretchy)",
         "types": [
@@ -3372,8 +3372,8 @@
         "gender_rate": 4,
         "evolutions": []
     },
-    "dudunsparce-two-segment": {
-        "id": "dudunsparce-two-segment",
+    "dudunsparce-two-segment-form": {
+        "id": "dudunsparce-two-segment-form",
         "external_id": "dudunsparce-two-segment",
         "name": "Dudunsparce (Two-Segment Form)",
         "types": [
@@ -3406,8 +3406,8 @@
         "gender_rate": 4,
         "evolutions": []
     },
-    "dudunsparce-three-segment": {
-        "id": "dudunsparce-three-segment",
+    "dudunsparce-three-segment-form": {
+        "id": "dudunsparce-three-segment-form",
         "external_id": "dudunsparce-three-segment",
         "name": "Dudunsparce (Three-Segment Form)",
         "types": [
@@ -4014,15 +4014,15 @@
         "gender_rate": 4,
         "evolutions": [
             {
-                "evolves_into": "baxcalibur-mega",
+                "evolves_into": "mega-baxcalibur",
                 "item": "baxcalibrite",
                 "min_level": 100,
                 "gender": null
             }
         ]
     },
-    "baxcalibur-mega": {
-        "id": "baxcalibur-mega",
+    "mega-baxcalibur": {
+        "id": "mega-baxcalibur",
         "external_id": "baxcalibur-mega",
         "name": "Mega Baxcalibur",
         "types": [
@@ -4056,7 +4056,7 @@
         "gender_rate": 4,
         "evolutions": []
     },
-    "gimmighoul-chest": {
+    "gimmighoul": {
         "id": "gimmighoul",
         "external_id": "gimmighoul",
         "name": "Gimmighoul",
@@ -4565,8 +4565,8 @@
             }
         ]
     },
-    "poltchageist": {
-        "id": "poltchageist",
+    "poltchageist-counterfeit": {
+        "id": "poltchageist-counterfeit",
         "external_id": "poltchageist",
         "name": "Poltchageist (Counterfeit)",
         "types": [
@@ -4747,8 +4747,8 @@
         "gender_rate": 0,
         "evolutions": []
     },
-    "ogerpon": {
-        "id": "ogerpon",
+    "ogerpon-teal-mask": {
+        "id": "ogerpon-teal-mask",
         "external_id": "ogerpon",
         "name": "Ogerpon (Teal Mask)",
         "types": [
@@ -5233,8 +5233,8 @@
         "gender_rate": -1,
         "evolutions": []
     },
-    "tauros-paldea-combat-breed": {
-        "id": "tauros-paldea-combat-breed",
+    "paldean-tauros-combat-breed": {
+        "id": "paldean-tauros-combat-breed",
         "external_id": "tauros-paldea-combat-breed",
         "name": "Paldean Tauros (Combat Breed)",
         "types": [
@@ -5267,8 +5267,8 @@
         "gender_rate": 0,
         "evolutions": []
     },
-    "tauros-paldea-blaze-breed": {
-        "id": "tauros-paldea-blaze-breed",
+    "paldean-tauros-blaze-breed": {
+        "id": "paldean-tauros-blaze-breed",
         "external_id": "tauros-paldea-blaze-breed",
         "name": "Paldean Tauros (Blaze Breed)",
         "types": [
@@ -5302,8 +5302,8 @@
         "gender_rate": 0,
         "evolutions": []
     },
-    "tauros-paldea-aqua-breed": {
-        "id": "tauros-paldea-aqua-breed",
+    "paldean-tauros-aqua-breed": {
+        "id": "paldean-tauros-aqua-breed",
         "external_id": "tauros-paldea-aqua-breed",
         "name": "Paldean Tauros (Aqua Breed)",
         "types": [
@@ -5337,8 +5337,8 @@
         "gender_rate": 0,
         "evolutions": []
     },
-    "wooper-paldea": {
-        "id": "wooper-paldea",
+    "paldean-wooper": {
+        "id": "paldean-wooper",
         "external_id": "wooper-paldea",
         "name": "Paldean Wooper",
         "types": [

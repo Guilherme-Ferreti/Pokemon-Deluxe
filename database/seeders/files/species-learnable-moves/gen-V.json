@@ -2033,7 +2033,7 @@
             "is_base_move": false
         }
     },
-    "samurott-hisui": {
+    "hisuian-samurott": {
         "aqua-jet": {
             "level_learn": 20,
             "is_base_move": true
@@ -10223,7 +10223,7 @@
             "is_base_move": false
         }
     },
-    "lilligant-hisui": {
+    "hisuian-lilligant": {
         "poison-powder": {
             "level_learn": 15,
             "is_base_move": true
@@ -12003,7 +12003,7 @@
             "is_base_move": false
         }
     },
-    "darmanitan-standard": {
+    "darmanitan": {
         "fire-punch": {
             "level_learn": 22,
             "is_base_move": true
@@ -12265,7 +12265,7 @@
             "is_base_move": false
         }
     },
-    "darmanitan-zen": {
+    "darmanitan-zen-mode": {
         "fire-punch": {
             "level_learn": 22,
             "is_base_move": true
@@ -15417,7 +15417,7 @@
             "is_base_move": false
         }
     },
-    "zorua-hisui": {
+    "hisuian-zorua": {
         "scratch": {
             "level_learn": 1,
             "is_base_move": true
@@ -15809,7 +15809,7 @@
             "is_base_move": false
         }
     },
-    "zoroark-hisui": {
+    "hisuian-zoroark": {
         "swift": {
             "level_learn": 11,
             "is_base_move": true
@@ -18125,7 +18125,7 @@
             "is_base_move": false
         }
     },
-    "deerling": {
+    "spring-deerling": {
         "tackle": {
             "level_learn": 1,
             "is_base_move": true
@@ -26513,7 +26513,7 @@
             "is_base_move": false
         }
     },
-    "braviary-hisui": {
+    "hisuian-braviary": {
         "peck": {
             "level_learn": 1,
             "is_base_move": true
@@ -29171,7 +29171,7 @@
             "is_base_move": false
         }
     },
-    "tornadus-incarnate": {
+    "incarnate-tornadus": {
         "astonish": {
             "level_learn": 1,
             "is_base_move": true
@@ -29401,7 +29401,7 @@
             "is_base_move": false
         }
     },
-    "tornadus-therian": {
+    "therian-tornadus": {
         "astonish": {
             "level_learn": 1,
             "is_base_move": true
@@ -29623,7 +29623,7 @@
             "is_base_move": false
         }
     },
-    "thundurus-incarnate": {
+    "incarnate-thundurus": {
         "astonish": {
             "level_learn": 1,
             "is_base_move": true
@@ -29897,7 +29897,7 @@
             "is_base_move": false
         }
     },
-    "thundurus-therian": {
+    "therian-thundurus": {
         "astonish": {
             "level_learn": 1,
             "is_base_move": true
@@ -31385,7 +31385,7 @@
             "is_base_move": false
         }
     },
-    "kyurem-black": {
+    "black-kyurem": {
         "dragon-rage": {
             "level_learn": 1,
             "is_base_move": true
@@ -31639,7 +31639,7 @@
             "is_base_move": false
         }
     },
-    "kyurem-white": {
+    "white-kyurem": {
         "dragon-rage": {
             "level_learn": 1,
             "is_base_move": true
@@ -33087,7 +33087,7 @@
             "is_base_move": false
         }
     },
-    "audino-mega": {
+    "mega-audino": {
         "pound": {
             "level_learn": 1,
             "is_base_move": true
@@ -33337,7 +33337,7 @@
             "is_base_move": false
         }
     },
-    "chandelure-mega": {
+    "mega-chandelure": {
         "flame-burst": {
             "level_learn": 1,
             "is_base_move": true
@@ -33515,7 +33515,7 @@
             "is_base_move": false
         }
     },
-    "eelektross-mega": {
+    "mega-eelektross": {
         "crunch": {
             "level_learn": 1,
             "is_base_move": true
@@ -33825,7 +33825,7 @@
             "is_base_move": false
         }
     },
-    "emboar-mega": {
+    "mega-emboar": {
         "smog": {
             "level_learn": 20,
             "is_base_move": true
@@ -34151,7 +34151,7 @@
             "is_base_move": false
         }
     },
-    "excadrill-mega": {
+    "mega-excadrill": {
         "dig": {
             "level_learn": 22,
             "is_base_move": true
@@ -34369,7 +34369,7 @@
             "is_base_move": false
         }
     },
-    "garbodor-gmax": {
+    "gmax-garbodor": {
         "sludge": {
             "level_learn": 18,
             "is_base_move": true
@@ -34563,7 +34563,7 @@
             "is_base_move": false
         }
     },
-    "golurk-mega": {
+    "mega-golurk": {
         "magnitude": {
             "level_learn": 26,
             "is_base_move": true
@@ -34877,7 +34877,7 @@
             "is_base_move": false
         }
     },
-    "scolipede-mega": {
+    "mega-scolipede": {
         "poison-tail": {
             "level_learn": 18,
             "is_base_move": true
@@ -35111,7 +35111,7 @@
             "is_base_move": false
         }
     },
-    "scrafty-mega": {
+    "mega-scrafty": {
         "chip-away": {
             "level_learn": 27,
             "is_base_move": true

@@ -49,7 +49,6 @@ final class SpeciesFactory extends Factory
             'capture_rate' => fake()->numberBetween(3, 255),
             'gender_rate'  => fake()->numberBetween(-1, 8),
             'slug'         => fake()->unique()->uuid(),
-            'external_id'  => fake()->unique()->uuid(),
         ];
     }
 

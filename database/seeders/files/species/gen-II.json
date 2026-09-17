@@ -115,15 +115,15 @@
         "gender_rate": 1,
         "evolutions": [
             {
-                "evolves_into": "meganium-mega",
+                "evolves_into": "mega-meganium",
                 "item": "meganiumite",
                 "min_level": 100,
                 "gender": null
             }
         ]
     },
-    "meganium-mega": {
-        "id": "meganium-mega",
+    "mega-meganium": {
+        "id": "mega-meganium",
         "external_id": "meganium-mega",
         "name": "Mega Meganium",
         "types": [
@@ -238,7 +238,7 @@
                 "gender": null
             },
             {
-                "evolves_into": "typhlosion-hisui",
+                "evolves_into": "hisuian-typhlosion",
                 "item": null,
                 "min_level": 36,
                 "gender": null
@@ -279,8 +279,8 @@
         "gender_rate": 1,
         "evolutions": []
     },
-    "typhlosion-hisui": {
-        "id": "typhlosion-hisui",
+    "hisuian-typhlosion": {
+        "id": "hisuian-typhlosion",
         "external_id": "typhlosion-hisui",
         "name": "Hisuian Typhlosion",
         "types": [
@@ -430,15 +430,15 @@
         "gender_rate": 1,
         "evolutions": [
             {
-                "evolves_into": "feraligatr-mega",
+                "evolves_into": "mega-feraligatr",
                 "item": "feraligite",
                 "min_level": 100,
                 "gender": null
             }
         ]
     },
-    "feraligatr-mega": {
-        "id": "feraligatr-mega",
+    "mega-feraligatr": {
+        "id": "mega-feraligatr",
         "external_id": "feraligatr-mega",
         "name": "Mega Feraligatr",
         "types": [
@@ -1290,15 +1290,15 @@
         "gender_rate": 4,
         "evolutions": [
             {
-                "evolves_into": "ampharos-mega",
+                "evolves_into": "mega-ampharos",
                 "item": "ampharosite",
                 "min_level": 100,
                 "gender": null
             }
         ]
     },
-    "ampharos-mega": {
-        "id": "ampharos-mega",
+    "mega-ampharos": {
+        "id": "mega-ampharos",
         "external_id": "ampharos-mega",
         "name": "Mega Ampharos",
         "types": [
@@ -3189,13 +3189,13 @@
         "gender_rate": 4,
         "evolutions": [
             {
-                "evolves_into": "dudunsparce-two-segment",
+                "evolves_into": "dudunsparce-two-segment-form",
                 "item": null,
                 "min_level": 32,
                 "gender": null
             },
             {
-                "evolves_into": "dudunsparce-three-segment",
+                "evolves_into": "dudunsparce-three-segment-form",
                 "item": null,
                 "min_level": 32,
                 "gender": null
@@ -3279,15 +3279,15 @@
         "gender_rate": 4,
         "evolutions": [
             {
-                "evolves_into": "steelix-mega",
+                "evolves_into": "mega-steelix",
                 "item": "steelixite",
                 "min_level": 100,
                 "gender": null
             }
         ]
     },
-    "steelix-mega": {
-        "id": "steelix-mega",
+    "mega-steelix": {
+        "id": "mega-steelix",
         "external_id": "steelix-mega",
         "name": "Mega Steelix",
         "types": [
@@ -3431,8 +3431,8 @@
         "gender_rate": 4,
         "evolutions": []
     },
-    "qwilfish-hisui": {
-        "id": "qwilfish-hisui",
+    "hisuian-qwilfish": {
+        "id": "hisuian-qwilfish",
         "external_id": "qwilfish-hisui",
         "name": "Hisuian Qwilfish",
         "types": [
@@ -3508,15 +3508,15 @@
         "gender_rate": 4,
         "evolutions": [
             {
-                "evolves_into": "scizor-mega",
+                "evolves_into": "mega-scizor",
                 "item": "scizorite",
                 "min_level": 100,
                 "gender": null
             }
         ]
     },
-    "scizor-mega": {
-        "id": "scizor-mega",
+    "mega-scizor": {
+        "id": "mega-scizor",
         "external_id": "scizor-mega",
         "name": "Mega Scizor",
         "types": [
@@ -3620,15 +3620,15 @@
         "gender_rate": 4,
         "evolutions": [
             {
-                "evolves_into": "heracross-mega",
+                "evolves_into": "mega-heracross",
                 "item": "heracronite",
                 "min_level": 100,
                 "gender": null
             }
         ]
     },
-    "heracross-mega": {
-        "id": "heracross-mega",
+    "mega-heracross": {
+        "id": "mega-heracross",
         "external_id": "heracross-mega",
         "name": "Mega Heracross",
         "types": [
@@ -3704,8 +3704,8 @@
             }
         ]
     },
-    "sneasel-hisui": {
-        "id": "sneasel-hisui",
+    "hisuian-sneasel": {
+        "id": "hisuian-sneasel",
         "external_id": "sneasel-hisui",
         "name": "Hisuian Sneasel",
         "types": [
@@ -4203,15 +4203,15 @@
         "gender_rate": 4,
         "evolutions": [
             {
-                "evolves_into": "skarmory-mega",
+                "evolves_into": "mega-skarmory",
                 "item": "skarmorite",
                 "min_level": 100,
                 "gender": null
             }
         ]
     },
-    "skarmory-mega": {
-        "id": "skarmory-mega",
+    "mega-skarmory": {
+        "id": "mega-skarmory",
         "external_id": "skarmory-mega",
         "name": "Mega Skarmory",
         "types": [
@@ -4322,15 +4322,15 @@
         "gender_rate": 4,
         "evolutions": [
             {
-                "evolves_into": "houndoom-mega",
+                "evolves_into": "mega-houndoom",
                 "item": "houndoominite",
                 "min_level": 100,
                 "gender": null
             }
         ]
     },
-    "houndoom-mega": {
-        "id": "houndoom-mega",
+    "mega-houndoom": {
+        "id": "mega-houndoom",
         "external_id": "houndoom-mega",
         "name": "Mega Houndoom",
         "types": [
@@ -5090,15 +5090,15 @@
         "gender_rate": 4,
         "evolutions": [
             {
-                "evolves_into": "tyranitar-mega",
+                "evolves_into": "mega-tyranitar",
                 "item": "tyranitarite",
                 "min_level": 100,
                 "gender": null
             }
         ]
     },
-    "tyranitar-mega": {
-        "id": "tyranitar-mega",
+    "mega-tyranitar": {
+        "id": "mega-tyranitar",
         "external_id": "tyranitar-mega",
         "name": "Mega Tyranitar",
         "types": [

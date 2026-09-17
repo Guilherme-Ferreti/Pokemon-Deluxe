@@ -35,7 +35,6 @@ return new class extends Migration
             $table->tinyInteger('gender_rate');
 
             $table->string('slug')->unique();
-            $table->string('external_id');
 
             $table->index('name');
             $table->index('pokedex_number');

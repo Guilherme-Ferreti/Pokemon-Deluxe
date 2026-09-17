@@ -118,21 +118,21 @@
         "gender_rate": 1,
         "evolutions": [
             {
-                "evolves_into": "venusaur-mega",
+                "evolves_into": "mega-venusaur",
                 "item": "venusaurite",
                 "min_level": 100,
                 "gender": null
             },
             {
-                "evolves_into": "venusaur-gmax",
+                "evolves_into": "gmax-venusaur",
                 "item": null,
                 "min_level": 100,
                 "gender": null
             }
         ]
     },
-    "venusaur-mega": {
-        "id": "venusaur-mega",
+    "mega-venusaur": {
+        "id": "mega-venusaur",
         "external_id": "venusaur-mega",
         "name": "Mega Venusaur",
         "types": [
@@ -166,8 +166,8 @@
         "gender_rate": 1,
         "evolutions": []
     },
-    "venusaur-gmax": {
-        "id": "venusaur-gmax",
+    "gmax-venusaur": {
+        "id": "gmax-venusaur",
         "external_id": "venusaur-gmax",
         "name": "G-Max Venusaur",
         "types": [
@@ -318,27 +318,27 @@
         "gender_rate": 1,
         "evolutions": [
             {
-                "evolves_into": "charizard-mega-x",
+                "evolves_into": "mega-charizard-x",
                 "item": "charizardite-x",
                 "min_level": 100,
                 "gender": null
             },
             {
-                "evolves_into": "charizard-mega-y",
+                "evolves_into": "mega-charizard-y",
                 "item": "charizardite-y",
                 "min_level": 100,
                 "gender": null
             },
             {
-                "evolves_into": "charizard-gmax",
+                "evolves_into": "gmax-charizard",
                 "item": null,
                 "min_level": 100,
                 "gender": null
             }
         ]
     },
-    "charizard-mega-x": {
-        "id": "charizard-mega-x",
+    "mega-charizard-x": {
+        "id": "mega-charizard-x",
         "external_id": "charizard-mega-x",
         "name": "Mega Charizard X",
         "types": [
@@ -372,8 +372,8 @@
         "gender_rate": 1,
         "evolutions": []
     },
-    "charizard-mega-y": {
-        "id": "charizard-mega-y",
+    "mega-charizard-y": {
+        "id": "mega-charizard-y",
         "external_id": "charizard-mega-y",
         "name": "Mega Charizard Y",
         "types": [
@@ -407,8 +407,8 @@
         "gender_rate": 1,
         "evolutions": []
     },
-    "charizard-gmax": {
-        "id": "charizard-gmax",
+    "gmax-charizard": {
+        "id": "gmax-charizard",
         "external_id": "charizard-gmax",
         "name": "G-Max Charizard",
         "types": [
@@ -558,21 +558,21 @@
         "gender_rate": 1,
         "evolutions": [
             {
-                "evolves_into": "blastoise-mega",
+                "evolves_into": "mega-blastoise",
                 "item": "blastoisinite",
                 "min_level": 100,
                 "gender": null
             },
             {
-                "evolves_into": "blastoise-gmax",
+                "evolves_into": "gmax-blastoise",
                 "item": null,
                 "min_level": 100,
                 "gender": null
             }
         ]
     },
-    "blastoise-mega": {
-        "id": "blastoise-mega",
+    "mega-blastoise": {
+        "id": "mega-blastoise",
         "external_id": "blastoise-mega",
         "name": "Mega Blastoise",
         "types": [
@@ -605,8 +605,8 @@
         "gender_rate": 1,
         "evolutions": []
     },
-    "blastoise-gmax": {
-        "id": "blastoise-gmax",
+    "gmax-blastoise": {
+        "id": "gmax-blastoise",
         "external_id": "blastoise-gmax",
         "name": "G-Max Blastoise",
         "types": [
@@ -756,15 +756,15 @@
         "gender_rate": 4,
         "evolutions": [
             {
-                "evolves_into": "butterfree-gmax",
+                "evolves_into": "gmax-butterfree",
                 "item": null,
                 "min_level": 100,
                 "gender": null
             }
         ]
     },
-    "butterfree-gmax": {
-        "id": "butterfree-gmax",
+    "gmax-butterfree": {
+        "id": "gmax-butterfree",
         "external_id": "butterfree-gmax",
         "name": "G-Max Butterfree",
         "types": [
@@ -917,15 +917,15 @@
         "gender_rate": 4,
         "evolutions": [
             {
-                "evolves_into": "beedrill-mega",
+                "evolves_into": "mega-beedrill",
                 "item": "beedrillite",
                 "min_level": 100,
                 "gender": null
             }
         ]
     },
-    "beedrill-mega": {
-        "id": "beedrill-mega",
+    "mega-beedrill": {
+        "id": "mega-beedrill",
         "external_id": "beedrill-mega",
         "name": "Mega Beedrill",
         "types": [
@@ -1078,15 +1078,15 @@
         "gender_rate": 4,
         "evolutions": [
             {
-                "evolves_into": "pidgeot-mega",
+                "evolves_into": "mega-pidgeot",
                 "item": "pidgeotite",
                 "min_level": 100,
                 "gender": null
             }
         ]
     },
-    "pidgeot-mega": {
-        "id": "pidgeot-mega",
+    "mega-pidgeot": {
+        "id": "mega-pidgeot",
         "external_id": "pidgeot-mega",
         "name": "Mega Pidgeot",
         "types": [
@@ -1387,21 +1387,21 @@
                 "gender": null
             },
             {
-                "evolves_into": "raichu-alola",
+                "evolves_into": "alolan-raichu",
                 "item": "thunder-stone",
                 "min_level": null,
                 "gender": null
             },
             {
-                "evolves_into": "pikachu-gmax",
+                "evolves_into": "gmax-pikachu",
                 "item": null,
                 "min_level": 100,
                 "gender": null
             }
         ]
     },
-    "pikachu-gmax": {
-        "id": "pikachu-gmax",
+    "gmax-pikachu": {
+        "id": "gmax-pikachu",
         "external_id": "pikachu-gmax",
         "name": "G-Max Pikachu",
         "types": [
@@ -1468,21 +1468,21 @@
         "gender_rate": 4,
         "evolutions": [
             {
-                "evolves_into": "raichu-mega-x",
+                "evolves_into": "mega-raichu-x",
                 "item": "raichunite-x",
                 "min_level": 100,
                 "gender": null
             },
             {
-                "evolves_into": "raichu-mega-y",
+                "evolves_into": "mega-raichu-y",
                 "item": "raichunite-y",
                 "min_level": 100,
                 "gender": null
             }
         ]
     },
-    "raichu-mega-x": {
-        "id": "raichu-mega-x",
+    "mega-raichu-x": {
+        "id": "mega-raichu-x",
         "external_id": "raichu-mega-x",
         "name": "Mega Raichu X",
         "types": [
@@ -1515,8 +1515,8 @@
         "gender_rate": 4,
         "evolutions": []
     },
-    "raichu-mega-y": {
-        "id": "raichu-mega-y",
+    "mega-raichu-y": {
+        "id": "mega-raichu-y",
         "external_id": "raichu-mega-y",
         "name": "Mega Raichu Y",
         "types": [
@@ -1624,8 +1624,8 @@
         "gender_rate": 4,
         "evolutions": []
     },
-    "nidoran-f": {
-        "id": "nidoran-f",
+    "nidoran-female": {
+        "id": "nidoran-female",
         "external_id": "nidoran-f",
         "name": "Nidoran (Female)",
         "types": [
@@ -1741,8 +1741,8 @@
         "gender_rate": 8,
         "evolutions": []
     },
-    "nidoran-m": {
-        "id": "nidoran-m",
+    "nidoran-male": {
+        "id": "nidoran-male",
         "external_id": "nidoran-m",
         "name": "Nidoran (Male)",
         "types": [
@@ -1933,15 +1933,15 @@
         "gender_rate": 6,
         "evolutions": [
             {
-                "evolves_into": "clefable-mega",
+                "evolves_into": "mega-clefable",
                 "item": "clefablite",
                 "min_level": 100,
                 "gender": null
             }
         ]
     },
-    "clefable-mega": {
-        "id": "clefable-mega",
+    "mega-clefable": {
+        "id": "mega-clefable",
         "external_id": "clefable-mega",
         "name": "Mega Clefable",
         "types": [
@@ -2605,15 +2605,15 @@
                 "gender": null
             },
             {
-                "evolves_into": "meowth-gmax",
+                "evolves_into": "gmax-meowth",
                 "item": null,
                 "min_level": 100,
                 "gender": null
             }
         ]
     },
-    "meowth-gmax": {
-        "id": "meowth-gmax",
+    "gmax-meowth": {
+        "id": "gmax-meowth",
         "external_id": "meowth-gmax",
         "name": "G-Max Meowth",
         "types": [
@@ -2878,8 +2878,8 @@
             }
         ]
     },
-    "growlithe-hisui": {
-        "id": "growlithe-hisui",
+    "hisuian-growlithe": {
+        "id": "hisuian-growlithe",
         "external_id": "growlithe-hisui",
         "name": "Hisuian Growlithe",
         "types": [
@@ -2913,7 +2913,7 @@
         "gender_rate": 2,
         "evolutions": [
             {
-                "evolves_into": "arcanine-hisui",
+                "evolves_into": "hisuian-arcanine",
                 "item": "fire-stone",
                 "min_level": null,
                 "gender": null
@@ -2954,8 +2954,8 @@
         "gender_rate": 2,
         "evolutions": []
     },
-    "arcanine-hisui": {
-        "id": "arcanine-hisui",
+    "hisuian-arcanine": {
+        "id": "hisuian-arcanine",
         "external_id": "arcanine-hisui",
         "name": "Hisuian Arcanine",
         "types": [
@@ -3228,15 +3228,15 @@
         "gender_rate": 2,
         "evolutions": [
             {
-                "evolves_into": "alakazam-mega",
+                "evolves_into": "mega-alakazam",
                 "item": "alakazite",
                 "min_level": 100,
                 "gender": null
             }
         ]
     },
-    "alakazam-mega": {
-        "id": "alakazam-mega",
+    "mega-alakazam": {
+        "id": "mega-alakazam",
         "external_id": "alakazam-mega",
         "name": "Mega Alakazam",
         "types": [
@@ -3385,15 +3385,15 @@
         "gender_rate": 2,
         "evolutions": [
             {
-                "evolves_into": "machamp-gmax",
+                "evolves_into": "gmax-machamp",
                 "item": null,
                 "min_level": 100,
                 "gender": null
             }
         ]
     },
-    "machamp-gmax": {
-        "id": "machamp-gmax",
+    "gmax-machamp": {
+        "id": "gmax-machamp",
         "external_id": "machamp-gmax",
         "name": "G-Max Machamp",
         "types": [
@@ -3545,15 +3545,15 @@
         "gender_rate": 4,
         "evolutions": [
             {
-                "evolves_into": "victreebel-mega",
+                "evolves_into": "mega-victreebel",
                 "item": "victreebelite",
                 "min_level": 100,
                 "gender": null
             }
         ]
     },
-    "victreebel-mega": {
-        "id": "victreebel-mega",
+    "mega-victreebel": {
+        "id": "mega-victreebel",
         "external_id": "victreebel-mega",
         "name": "Mega Victreebel",
         "types": [
@@ -3941,15 +3941,15 @@
         "gender_rate": 4,
         "evolutions": [
             {
-                "evolves_into": "slowbro-mega",
+                "evolves_into": "mega-slowbro",
                 "item": "slowbronite",
                 "min_level": 100,
                 "gender": null
             }
         ]
     },
-    "slowbro-mega": {
-        "id": "slowbro-mega",
+    "mega-slowbro": {
+        "id": "mega-slowbro",
         "external_id": "slowbro-mega",
         "name": "Mega Slowbro",
         "types": [
@@ -4525,21 +4525,21 @@
         "gender_rate": 4,
         "evolutions": [
             {
-                "evolves_into": "gengar-mega",
+                "evolves_into": "mega-gengar",
                 "item": "gengarite",
                 "min_level": 100,
                 "gender": null
             },
             {
-                "evolves_into": "gengar-gmax",
+                "evolves_into": "gmax-gengar",
                 "item": null,
                 "min_level": 100,
                 "gender": null
             }
         ]
     },
-    "gengar-mega": {
-        "id": "gengar-mega",
+    "mega-gengar": {
+        "id": "mega-gengar",
         "external_id": "gengar-mega",
         "name": "Mega Gengar",
         "types": [
@@ -4573,8 +4573,8 @@
         "gender_rate": 4,
         "evolutions": []
     },
-    "gengar-gmax": {
-        "id": "gengar-gmax",
+    "gmax-gengar": {
+        "id": "gmax-gengar",
         "external_id": "gengar-gmax",
         "name": "G-Max Gengar",
         "types": [
@@ -4800,15 +4800,15 @@
         "gender_rate": 4,
         "evolutions": [
             {
-                "evolves_into": "kingler-gmax",
+                "evolves_into": "gmax-kingler",
                 "item": null,
                 "min_level": 100,
                 "gender": null
             }
         ]
     },
-    "kingler-gmax": {
-        "id": "kingler-gmax",
+    "gmax-kingler": {
+        "id": "gmax-kingler",
         "external_id": "kingler-gmax",
         "name": "G-Max Kingler",
         "types": [
@@ -4882,8 +4882,8 @@
             }
         ]
     },
-    "voltorb-hisui": {
-        "id": "voltorb-hisui",
+    "hisuian-voltorb": {
+        "id": "hisuian-voltorb",
         "external_id": "voltorb-hisui",
         "name": "Hisuian Voltorb",
         "types": [
@@ -4917,7 +4917,7 @@
         "gender_rate": -1,
         "evolutions": [
             {
-                "evolves_into": "electrode-hisui",
+                "evolves_into": "hisuian-electrode",
                 "item": "leaf-stone",
                 "min_level": null,
                 "gender": null
@@ -4958,8 +4958,8 @@
         "gender_rate": -1,
         "evolutions": []
     },
-    "electrode-hisui": {
-        "id": "electrode-hisui",
+    "hisuian-electrode": {
+        "id": "hisuian-electrode",
         "external_id": "electrode-hisui",
         "name": "Hisuian Electrode",
         "types": [
@@ -5034,7 +5034,7 @@
                 "gender": null
             },
             {
-                "evolves_into": "exeggutor-alola",
+                "evolves_into": "alolan-exeggutor",
                 "item": "leaf-stone",
                 "min_level": null,
                 "gender": null
@@ -5116,7 +5116,7 @@
                 "gender": null
             },
             {
-                "evolves_into": "marowak-alola",
+                "evolves_into": "alolan-marowak",
                 "item": null,
                 "min_level": 28,
                 "gender": null
@@ -5306,7 +5306,7 @@
                 "gender": null
             },
             {
-                "evolves_into": "weezing-galar",
+                "evolves_into": "galarian-weezing",
                 "item": null,
                 "min_level": 35,
                 "gender": null
@@ -5547,15 +5547,15 @@
         "gender_rate": 8,
         "evolutions": [
             {
-                "evolves_into": "kangaskhan-mega",
+                "evolves_into": "mega-kangaskhan",
                 "item": "kangaskhanite",
                 "min_level": 100,
                 "gender": null
             }
         ]
     },
-    "kangaskhan-mega": {
-        "id": "kangaskhan-mega",
+    "mega-kangaskhan": {
+        "id": "mega-kangaskhan",
         "external_id": "kangaskhan-mega",
         "name": "Mega Kangaskhan",
         "types": [
@@ -5821,15 +5821,15 @@
         "gender_rate": -1,
         "evolutions": [
             {
-                "evolves_into": "starmie-mega",
+                "evolves_into": "mega-starmie",
                 "item": "starminite",
                 "min_level": 100,
                 "gender": null
             }
         ]
     },
-    "starmie-mega": {
-        "id": "starmie-mega",
+    "mega-starmie": {
+        "id": "mega-starmie",
         "external_id": "starmie-mega",
         "name": "Mega Starmie",
         "types": [
@@ -6097,15 +6097,15 @@
         "gender_rate": 4,
         "evolutions": [
             {
-                "evolves_into": "pinsir-mega",
+                "evolves_into": "mega-pinsir",
                 "item": "pinsirite",
                 "min_level": 100,
                 "gender": null
             }
         ]
     },
-    "pinsir-mega": {
-        "id": "pinsir-mega",
+    "mega-pinsir": {
+        "id": "mega-pinsir",
         "external_id": "pinsir-mega",
         "name": "Mega Pinsir",
         "types": [
@@ -6249,15 +6249,15 @@
         "gender_rate": 4,
         "evolutions": [
             {
-                "evolves_into": "gyarados-mega",
+                "evolves_into": "mega-gyarados",
                 "item": "gyaradosite",
                 "min_level": 100,
                 "gender": null
             }
         ]
     },
-    "gyarados-mega": {
-        "id": "gyarados-mega",
+    "mega-gyarados": {
+        "id": "mega-gyarados",
         "external_id": "gyarados-mega",
         "name": "Mega Gyarados",
         "types": [
@@ -6326,15 +6326,15 @@
         "gender_rate": 4,
         "evolutions": [
             {
-                "evolves_into": "lapras-gmax",
+                "evolves_into": "gmax-lapras",
                 "item": null,
                 "min_level": 100,
                 "gender": null
             }
         ]
     },
-    "lapras-gmax": {
-        "id": "lapras-gmax",
+    "gmax-lapras": {
+        "id": "gmax-lapras",
         "external_id": "lapras-gmax",
         "name": "G-Max Lapras",
         "types": [
@@ -6484,15 +6484,15 @@
                 "gender": null
             },
             {
-                "evolves_into": "eevee-gmax",
+                "evolves_into": "gmax-eevee",
                 "item": null,
                 "min_level": 100,
                 "gender": null
             }
         ]
     },
-    "eevee-gmax": {
-        "id": "eevee-gmax",
+    "gmax-eevee": {
+        "id": "gmax-eevee",
         "external_id": "eevee-gmax",
         "name": "G-Max Eevee",
         "types": [
@@ -6857,15 +6857,15 @@
         "gender_rate": 1,
         "evolutions": [
             {
-                "evolves_into": "aerodactyl-mega",
+                "evolves_into": "mega-aerodactyl",
                 "item": "aerodactylite",
                 "min_level": 100,
                 "gender": null
             }
         ]
     },
-    "aerodactyl-mega": {
-        "id": "aerodactyl-mega",
+    "mega-aerodactyl": {
+        "id": "mega-aerodactyl",
         "external_id": "aerodactyl-mega",
         "name": "Mega Aerodactyl",
         "types": [
@@ -6933,15 +6933,15 @@
         "gender_rate": 1,
         "evolutions": [
             {
-                "evolves_into": "snorlax-gmax",
+                "evolves_into": "gmax-snorlax",
                 "item": null,
                 "min_level": 100,
                 "gender": null
             }
         ]
     },
-    "snorlax-gmax": {
-        "id": "snorlax-gmax",
+    "gmax-snorlax": {
+        "id": "gmax-snorlax",
         "external_id": "snorlax-gmax",
         "name": "G-Max Snorlax",
         "types": [
@@ -7196,15 +7196,15 @@
         "gender_rate": 4,
         "evolutions": [
             {
-                "evolves_into": "dragonite-mega",
+                "evolves_into": "mega-dragonite",
                 "item": "dragoninite",
                 "min_level": 100,
                 "gender": null
             }
         ]
     },
-    "dragonite-mega": {
-        "id": "dragonite-mega",
+    "mega-dragonite": {
+        "id": "mega-dragonite",
         "external_id": "dragonite-mega",
         "name": "Mega Dragonite",
         "types": [
@@ -7272,21 +7272,21 @@
         "gender_rate": -1,
         "evolutions": [
             {
-                "evolves_into": "mewtwo-mega-x",
+                "evolves_into": "mega-mewtwo-x",
                 "item": "mewtwonite-x",
                 "min_level": 100,
                 "gender": null
             },
             {
-                "evolves_into": "mewtwo-mega-y",
+                "evolves_into": "mega-mewtwo-y",
                 "item": "mewtwonite-y",
                 "min_level": 100,
                 "gender": null
             }
         ]
     },
-    "mewtwo-mega-x": {
-        "id": "mewtwo-mega-x",
+    "mega-mewtwo-x": {
+        "id": "mega-mewtwo-x",
         "external_id": "mewtwo-mega-x",
         "name": "Mega Mewtwo X",
         "types": [
@@ -7320,8 +7320,8 @@
         "gender_rate": -1,
         "evolutions": []
     },
-    "mewtwo-mega-y": {
-        "id": "mewtwo-mega-y",
+    "mega-mewtwo-y": {
+        "id": "mega-mewtwo-y",
         "external_id": "mewtwo-mega-y",
         "name": "Mega Mewtwo Y",
         "types": [

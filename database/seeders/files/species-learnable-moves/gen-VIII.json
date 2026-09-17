@@ -6377,7 +6377,7 @@
             "is_base_move": false
         }
     },
-    "sinistea": {
+    "phony-sinistea": {
         "astonish": {
             "level_learn": 1,
             "is_base_move": true
@@ -6471,7 +6471,7 @@
             "is_base_move": false
         }
     },
-    "polteageist": {
+    "phony-polteageist": {
         "astonish": {
             "level_learn": 1,
             "is_base_move": true
@@ -9247,7 +9247,7 @@
             "is_base_move": false
         }
     },
-    "eiscue-ice": {
+    "eiscue-ice-face": {
         "powder-snow": {
             "level_learn": 1,
             "is_base_move": true
@@ -9385,7 +9385,7 @@
             "is_base_move": false
         }
     },
-    "eiscue-noice": {
+    "eiscue-noice-face": {
         "powder-snow": {
             "level_learn": 1,
             "is_base_move": true
@@ -14235,7 +14235,7 @@
             "is_base_move": false
         }
     },
-    "calyrex-ice": {
+    "calyrex-ice-rider": {
         "double-kick": {
             "level_learn": 1,
             "is_base_move": true
@@ -14485,7 +14485,7 @@
             "is_base_move": false
         }
     },
-    "calyrex-shadow": {
+    "calyrex-shadow-rider": {
         "double-kick": {
             "level_learn": 1,
             "is_base_move": true
@@ -16269,7 +16269,7 @@
             "is_base_move": false
         }
     },
-    "meowth-galar": {
+    "galarian-meowth": {
         "fake-out": {
             "level_learn": 1,
             "is_base_move": true
@@ -16467,7 +16467,7 @@
             "is_base_move": false
         }
     },
-    "ponyta-galar": {
+    "galarian-ponyta": {
         "tackle": {
             "level_learn": 1,
             "is_base_move": true
@@ -16585,7 +16585,7 @@
             "is_base_move": false
         }
     },
-    "rapidash-galar": {
+    "galarian-rapidash": {
         "megahorn": {
             "level_learn": 1,
             "is_base_move": true
@@ -16723,7 +16723,7 @@
             "is_base_move": false
         }
     },
-    "slowpoke-galar": {
+    "galarian-slowpoke": {
         "tackle": {
             "level_learn": 1,
             "is_base_move": true
@@ -16909,7 +16909,7 @@
             "is_base_move": false
         }
     },
-    "slowbro-galar": {
+    "galarian-slowbro": {
         "headbutt": {
             "level_learn": 21,
             "is_base_move": true
@@ -17199,7 +17199,7 @@
             "is_base_move": false
         }
     },
-    "farfetchd-galar": {
+    "galarian-farfetchd": {
         "peck": {
             "level_learn": 1,
             "is_base_move": true
@@ -17333,7 +17333,7 @@
             "is_base_move": false
         }
     },
-    "weezing-galar": {
+    "galarian-weezing": {
         "assurance": {
             "level_learn": 16,
             "is_base_move": true
@@ -17519,7 +17519,7 @@
             "is_base_move": false
         }
     },
-    "mr-mime-galar": {
+    "galarian-mr-mime": {
         "dazzling-gleam": {
             "level_learn": 1,
             "is_base_move": true
@@ -17729,7 +17729,7 @@
             "is_base_move": false
         }
     },
-    "articuno-galar": {
+    "galarian-articuno": {
         "gust": {
             "level_learn": 1,
             "is_base_move": true
@@ -17855,7 +17855,7 @@
             "is_base_move": false
         }
     },
-    "zapdos-galar": {
+    "galarian-zapdos": {
         "peck": {
             "level_learn": 1,
             "is_base_move": true
@@ -18025,7 +18025,7 @@
             "is_base_move": false
         }
     },
-    "moltres-galar": {
+    "galarian-moltres": {
         "gust": {
             "level_learn": 1,
             "is_base_move": true
@@ -18163,7 +18163,7 @@
             "is_base_move": false
         }
     },
-    "slowking-galar": {
+    "galarian-slowking": {
         "water-pulse": {
             "level_learn": 18,
             "is_base_move": true
@@ -18453,7 +18453,7 @@
             "is_base_move": false
         }
     },
-    "corsola-galar": {
+    "galarian-corsola": {
         "tackle": {
             "level_learn": 1,
             "is_base_move": true
@@ -18619,7 +18619,7 @@
             "is_base_move": false
         }
     },
-    "zigzagoon-galar": {
+    "galarian-zigzagoon": {
         "tackle": {
             "level_learn": 1,
             "is_base_move": true
@@ -18773,7 +18773,7 @@
             "is_base_move": false
         }
     },
-    "linoone-galar": {
+    "galarian-linoone": {
         "lick": {
             "level_learn": 1,
             "is_base_move": true
@@ -18955,7 +18955,7 @@
             "is_base_move": false
         }
     },
-    "darumaka-galar": {
+    "galarian-darumaka": {
         "powder-snow": {
             "level_learn": 1,
             "is_base_move": true
@@ -19137,7 +19137,7 @@
             "is_base_move": false
         }
     },
-    "darmanitan-galar-standard": {
+    "galarian-darmanitan": {
         "ice-fang": {
             "level_learn": 20,
             "is_base_move": true
@@ -19351,7 +19351,7 @@
             "is_base_move": false
         }
     },
-    "darmanitan-galar-zen": {
+    "galarian-darmanitan-zen-mode": {
         "ice-fang": {
             "level_learn": 20,
             "is_base_move": true
@@ -19569,7 +19569,7 @@
             "is_base_move": false
         }
     },
-    "yamask-galar": {
+    "galarian-yamask": {
         "astonish": {
             "level_learn": 1,
             "is_base_move": true
@@ -19663,7 +19663,7 @@
             "is_base_move": false
         }
     },
-    "stunfisk-galar": {
+    "galarian-stunfisk": {
         "metal-claw": {
             "level_learn": 1,
             "is_base_move": true
@@ -19833,7 +19833,7 @@
             "is_base_move": false
         }
     },
-    "alcremie-gmax": {
+    "gmax-alcremie": {
         "sweet-kiss": {
             "level_learn": 1,
             "is_base_move": true
@@ -19943,7 +19943,7 @@
             "is_base_move": false
         }
     },
-    "appletun-gmax": {
+    "gmax-appletun": {
         "astonish": {
             "level_learn": 1,
             "is_base_move": true
@@ -20105,7 +20105,7 @@
             "is_base_move": false
         }
     },
-    "centiskorch-gmax": {
+    "gmax-centiskorch": {
         "ember": {
             "level_learn": 1,
             "is_base_move": true
@@ -20267,7 +20267,7 @@
             "is_base_move": false
         }
     },
-    "cinderace-gmax": {
+    "gmax-cinderace": {
         "feint": {
             "level_learn": 1,
             "is_base_move": true
@@ -20497,7 +20497,7 @@
             "is_base_move": false
         }
     },
-    "coalossal-gmax": {
+    "gmax-coalossal": {
         "flame-charge": {
             "level_learn": 1,
             "is_base_move": true
@@ -20695,7 +20695,7 @@
             "is_base_move": false
         }
     },
-    "copperajah-gmax": {
+    "gmax-copperajah": {
         "rock-smash": {
             "level_learn": 1,
             "is_base_move": true
@@ -20889,7 +20889,7 @@
             "is_base_move": false
         }
     },
-    "corviknight-gmax": {
+    "gmax-corviknight": {
         "power-trip": {
             "level_learn": 1,
             "is_base_move": true
@@ -21055,7 +21055,7 @@
             "is_base_move": false
         }
     },
-    "drednaw-gmax": {
+    "gmax-drednaw": {
         "crunch": {
             "level_learn": 1,
             "is_base_move": true
@@ -21297,7 +21297,7 @@
             "is_base_move": false
         }
     },
-    "duraludon-gmax": {
+    "gmax-duraludon": {
         "metal-claw": {
             "level_learn": 1,
             "is_base_move": true
@@ -21471,7 +21471,7 @@
             "is_base_move": false
         }
     },
-    "falinks-mega": {
+    "mega-falinks": {
         "tackle": {
             "level_learn": 1,
             "is_base_move": true
@@ -21629,7 +21629,7 @@
             "is_base_move": false
         }
     },
-    "flapple-gmax": {
+    "gmax-flapple": {
         "acid-spray": {
             "level_learn": 4,
             "is_base_move": true
@@ -21783,7 +21783,7 @@
             "is_base_move": false
         }
     },
-    "grimmsnarl-gmax": {
+    "gmax-grimmsnarl": {
         "false-surrender": {
             "level_learn": 1,
             "is_base_move": true
@@ -21993,7 +21993,7 @@
             "is_base_move": false
         }
     },
-    "hatterene-gmax": {
+    "gmax-hatterene": {
         "brutal-swing": {
             "level_learn": 1,
             "is_base_move": true
@@ -22123,7 +22123,7 @@
             "is_base_move": false
         }
     },
-    "inteleon-gmax": {
+    "gmax-inteleon": {
         "acrobatics": {
             "level_learn": 1,
             "is_base_move": true
@@ -22317,7 +22317,7 @@
             "is_base_move": false
         }
     },
-    "orbeetle-gmax": {
+    "gmax-orbeetle": {
         "confuse-ray": {
             "level_learn": 4,
             "is_base_move": true
@@ -22435,7 +22435,7 @@
             "is_base_move": false
         }
     },
-    "rillaboom-gmax": {
+    "gmax-rillaboom": {
         "branch-poke": {
             "level_learn": 1,
             "is_base_move": true
@@ -22689,7 +22689,7 @@
             "is_base_move": false
         }
     },
-    "sandaconda-gmax": {
+    "gmax-sandaconda": {
         "bulldoze": {
             "level_learn": 15,
             "is_base_move": true
@@ -22863,7 +22863,7 @@
             "is_base_move": false
         }
     },
-    "toxtricity-amped-gmax": {
+    "gmax-toxtricity-amped": {
         "belch": {
             "level_learn": 1,
             "is_base_move": true
@@ -23085,7 +23085,7 @@
             "is_base_move": false
         }
     },
-    "toxtricity-low-key-gmax": {
+    "gmax-toxtricity-low-key": {
         "acid-spray": {
             "level_learn": 1,
             "is_base_move": true
@@ -23307,7 +23307,7 @@
             "is_base_move": false
         }
     },
-    "urshifu-rapid-strike-gmax": {
+    "gmax-urshifu-rapid-strike": {
         "aqua-jet": {
             "level_learn": 1,
             "is_base_move": true
@@ -23525,7 +23525,7 @@
             "is_base_move": false
         }
     },
-    "urshifu-single-strike-gmax": {
+    "gmax-urshifu-single-strike": {
         "sucker-punch": {
             "level_learn": 1,
             "is_base_move": true

@@ -30035,7 +30035,7 @@
             "is_base_move": false
         }
     },
-    "kyogre-primal": {
+    "primal-kyogre": {
         "ancient-power": {
             "level_learn": 1,
             "is_base_move": true
@@ -30547,7 +30547,7 @@
             "is_base_move": false
         }
     },
-    "groudon-primal": {
+    "primal-groudon": {
         "ancient-power": {
             "level_learn": 1,
             "is_base_move": true
@@ -32517,7 +32517,7 @@
             "is_base_move": false
         }
     },
-    "absol-mega": {
+    "mega-absol": {
         "feint": {
             "level_learn": 1,
             "is_base_move": true
@@ -32835,7 +32835,7 @@
             "is_base_move": false
         }
     },
-    "absol-mega-z": {
+    "mega-absol-z": {
         "feint": {
             "level_learn": 1,
             "is_base_move": true
@@ -33157,7 +33157,7 @@
             "is_base_move": false
         }
     },
-    "aggron-mega": {
+    "mega-aggron": {
         "rock-slide": {
             "level_learn": 24,
             "is_base_move": true
@@ -33539,7 +33539,7 @@
             "is_base_move": false
         }
     },
-    "altaria-mega": {
+    "mega-altaria": {
         "dragon-breath": {
             "level_learn": 25,
             "is_base_move": true
@@ -33801,7 +33801,7 @@
             "is_base_move": false
         }
     },
-    "banette-mega": {
+    "mega-banette": {
         "feint-attack": {
             "level_learn": 29,
             "is_base_move": true
@@ -34011,7 +34011,7 @@
             "is_base_move": false
         }
     },
-    "blaziken-mega": {
+    "mega-blaziken": {
         "aerial-ace": {
             "level_learn": 20,
             "is_base_move": true
@@ -34373,7 +34373,7 @@
             "is_base_move": false
         }
     },
-    "camerupt-mega": {
+    "mega-camerupt": {
         "rock-slide": {
             "level_learn": 21,
             "is_base_move": true
@@ -34631,7 +34631,7 @@
             "is_base_move": false
         }
     },
-    "chimecho-mega": {
+    "mega-chimecho": {
         "ominous-wind": {
             "level_learn": 11,
             "is_base_move": true
@@ -34841,7 +34841,7 @@
             "is_base_move": false
         }
     },
-    "gardevoir-mega": {
+    "mega-gardevoir": {
         "draining-kiss": {
             "level_learn": 16,
             "is_base_move": true
@@ -35087,7 +35087,7 @@
             "is_base_move": false
         }
     },
-    "glalie-mega": {
+    "mega-glalie": {
         "icicle-crash": {
             "level_learn": 34,
             "is_base_move": true
@@ -35285,7 +35285,7 @@
             "is_base_move": false
         }
     },
-    "latias-mega": {
+    "mega-latias": {
         "psywave": {
             "level_learn": 1,
             "is_base_move": true
@@ -35579,7 +35579,7 @@
             "is_base_move": false
         }
     },
-    "latios-mega": {
+    "mega-latios": {
         "psywave": {
             "level_learn": 1,
             "is_base_move": true
@@ -35861,7 +35861,7 @@
             "is_base_move": false
         }
     },
-    "manectric-mega": {
+    "mega-manectric": {
         "thunder-wave": {
             "level_learn": 2,
             "is_base_move": true
@@ -36043,7 +36043,7 @@
             "is_base_move": false
         }
     },
-    "mawile-mega": {
+    "mega-mawile": {
         "astonish": {
             "level_learn": 1,
             "is_base_move": true
@@ -36345,7 +36345,7 @@
             "is_base_move": false
         }
     },
-    "medicham-mega": {
+    "mega-medicham": {
         "feint": {
             "level_learn": 18,
             "is_base_move": true
@@ -36619,7 +36619,7 @@
             "is_base_move": false
         }
     },
-    "metagross-mega": {
+    "mega-metagross": {
         "bullet-punch": {
             "level_learn": 22,
             "is_base_move": true
@@ -36897,7 +36897,7 @@
             "is_base_move": false
         }
     },
-    "rayquaza-mega": {
+    "mega-rayquaza": {
         "dragon-ascent": {
             "level_learn": 1,
             "is_base_move": true
@@ -37223,7 +37223,7 @@
             "is_base_move": false
         }
     },
-    "sableye-mega": {
+    "mega-sableye": {
         "scratch": {
             "level_learn": 1,
             "is_base_move": true
@@ -37581,7 +37581,7 @@
             "is_base_move": false
         }
     },
-    "salamence-mega": {
+    "mega-salamence": {
         "dragon-tail": {
             "level_learn": 27,
             "is_base_move": true
@@ -37847,7 +37847,7 @@
             "is_base_move": false
         }
     },
-    "sceptile-mega": {
+    "mega-sceptile": {
         "assurance": {
             "level_learn": 20,
             "is_base_move": true
@@ -38205,7 +38205,7 @@
             "is_base_move": false
         }
     },
-    "sharpedo-mega": {
+    "mega-sharpedo": {
         "poison-fang": {
             "level_learn": 20,
             "is_base_move": true
@@ -38459,7 +38459,7 @@
             "is_base_move": false
         }
     },
-    "swampert-mega": {
+    "mega-swampert": {
         "water-pulse": {
             "level_learn": 20,
             "is_base_move": true

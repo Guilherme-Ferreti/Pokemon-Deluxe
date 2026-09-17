@@ -661,7 +661,7 @@
             "is_base_move": false
         }
     },
-    "decidueye-hisui": {
+    "hisuian-decidueye": {
         "leaf-storm": {
             "level_learn": 22,
             "is_base_move": true
@@ -4147,7 +4147,7 @@
             "is_base_move": false
         }
     },
-    "oricorio-pau": {
+    "pau-oricorio": {
         "pound": {
             "level_learn": 1,
             "is_base_move": true
@@ -11535,7 +11535,7 @@
             "is_base_move": false
         }
     },
-    "minior-red": {
+    "minior-red-core": {
         "tackle": {
             "level_learn": 1,
             "is_base_move": true
@@ -11701,7 +11701,7 @@
             "is_base_move": false
         }
     },
-    "minior-orange": {
+    "minior-orange-core": {
         "tackle": {
             "level_learn": 1,
             "is_base_move": true
@@ -11867,7 +11867,7 @@
             "is_base_move": false
         }
     },
-    "minior-yellow": {
+    "minior-yellow-core": {
         "tackle": {
             "level_learn": 1,
             "is_base_move": true
@@ -12033,7 +12033,7 @@
             "is_base_move": false
         }
     },
-    "minior-green": {
+    "minior-green-core": {
         "tackle": {
             "level_learn": 1,
             "is_base_move": true
@@ -12199,7 +12199,7 @@
             "is_base_move": false
         }
     },
-    "minior-blue": {
+    "minior-blue-core": {
         "tackle": {
             "level_learn": 1,
             "is_base_move": true
@@ -12365,7 +12365,7 @@
             "is_base_move": false
         }
     },
-    "minior-indigo": {
+    "minior-indigo-core": {
         "tackle": {
             "level_learn": 1,
             "is_base_move": true
@@ -12531,7 +12531,7 @@
             "is_base_move": false
         }
     },
-    "minior-violet": {
+    "minior-violet-core": {
         "tackle": {
             "level_learn": 1,
             "is_base_move": true
@@ -17771,7 +17771,7 @@
             "is_base_move": false
         }
     },
-    "necrozma-dusk": {
+    "necrozma-dusk-mane": {
         "charge-beam": {
             "level_learn": 1,
             "is_base_move": true
@@ -18009,7 +18009,7 @@
             "is_base_move": false
         }
     },
-    "necrozma-dawn": {
+    "necrozma-dawn-wings": {
         "charge-beam": {
             "level_learn": 1,
             "is_base_move": true
@@ -18703,7 +18703,7 @@
             "is_base_move": false
         }
     },
-    "magearna-original": {
+    "magearna-original-color": {
         "gyro-ball": {
             "level_learn": 1,
             "is_base_move": true
@@ -20365,7 +20365,7 @@
             "is_base_move": false
         }
     },
-    "rattata-alola": {
+    "alolan-rattata": {
         "tackle": {
             "level_learn": 1,
             "is_base_move": true
@@ -20543,7 +20543,7 @@
             "is_base_move": false
         }
     },
-    "raticate-alola": {
+    "alolan-raticate": {
         "bite": {
             "level_learn": 10,
             "is_base_move": true
@@ -20737,7 +20737,7 @@
             "is_base_move": false
         }
     },
-    "raichu-alola": {
+    "alolan-raichu": {
         "discharge": {
             "level_learn": 1,
             "is_base_move": true
@@ -20999,7 +20999,7 @@
             "is_base_move": false
         }
     },
-    "sandshrew-alola": {
+    "alolan-sandshrew": {
         "scratch": {
             "level_learn": 1,
             "is_base_move": true
@@ -21269,7 +21269,7 @@
             "is_base_move": false
         }
     },
-    "sandslash-alola": {
+    "alolan-sandslash": {
         "ice-shard": {
             "level_learn": 1,
             "is_base_move": true
@@ -21563,7 +21563,7 @@
             "is_base_move": false
         }
     },
-    "vulpix-alola": {
+    "alolan-vulpix": {
         "powder-snow": {
             "level_learn": 1,
             "is_base_move": true
@@ -21761,7 +21761,7 @@
             "is_base_move": false
         }
     },
-    "ninetales-alola": {
+    "alolan-ninetales": {
         "extrasensory": {
             "level_learn": 1,
             "is_base_move": true
@@ -21983,7 +21983,7 @@
             "is_base_move": false
         }
     },
-    "diglett-alola": {
+    "alolan-diglett": {
         "metal-claw": {
             "level_learn": 1,
             "is_base_move": true
@@ -22193,7 +22193,7 @@
             "is_base_move": false
         }
     },
-    "dugtrio-alola": {
+    "alolan-dugtrio": {
         "bulldoze": {
             "level_learn": 17,
             "is_base_move": true
@@ -22419,7 +22419,7 @@
             "is_base_move": false
         }
     },
-    "meowth-alola": {
+    "alolan-meowth": {
         "scratch": {
             "level_learn": 3,
             "is_base_move": true
@@ -22661,7 +22661,7 @@
             "is_base_move": false
         }
     },
-    "persian-alola": {
+    "alolan-persian": {
         "pay-day": {
             "level_learn": 12,
             "is_base_move": true
@@ -22915,7 +22915,7 @@
             "is_base_move": false
         }
     },
-    "geodude-alola": {
+    "alolan-geodude": {
         "tackle": {
             "level_learn": 1,
             "is_base_move": true
@@ -23137,7 +23137,7 @@
             "is_base_move": false
         }
     },
-    "graveler-alola": {
+    "alolan-graveler": {
         "smack-down": {
             "level_learn": 18,
             "is_base_move": true
@@ -23367,7 +23367,7 @@
             "is_base_move": false
         }
     },
-    "golem-alola": {
+    "alolan-golem": {
         "rock-slide": {
             "level_learn": 23,
             "is_base_move": true
@@ -23625,7 +23625,7 @@
             "is_base_move": false
         }
     },
-    "grimer-alola": {
+    "alolan-grimer": {
         "poison-gas": {
             "level_learn": 1,
             "is_base_move": true
@@ -23879,7 +23879,7 @@
             "is_base_move": false
         }
     },
-    "muk-alola": {
+    "alolan-muk": {
         "fling": {
             "level_learn": 26,
             "is_base_move": true
@@ -24133,7 +24133,7 @@
             "is_base_move": false
         }
     },
-    "exeggutor-alola": {
+    "alolan-exeggutor": {
         "psyshock": {
             "level_learn": 9,
             "is_base_move": true
@@ -24391,7 +24391,7 @@
             "is_base_move": false
         }
     },
-    "marowak-alola": {
+    "alolan-marowak": {
         "hex": {
             "level_learn": 16,
             "is_base_move": true
@@ -24689,7 +24689,7 @@
             "is_base_move": false
         }
     },
-    "crabominable-mega": {
+    "mega-crabominable": {
         "power-up-punch": {
             "level_learn": 22,
             "is_base_move": true
@@ -24939,7 +24939,7 @@
             "is_base_move": false
         }
     },
-    "drampa-mega": {
+    "mega-drampa": {
         "echoed-voice": {
             "level_learn": 1,
             "is_base_move": true
@@ -25205,7 +25205,7 @@
             "is_base_move": false
         }
     },
-    "golisopod-mega": {
+    "mega-golisopod": {
         "bug-bite": {
             "level_learn": 12,
             "is_base_move": true
@@ -25447,7 +25447,7 @@
             "is_base_move": false
         }
     },
-    "magearna-mega": {
+    "mega-magearna": {
         "gyro-ball": {
             "level_learn": 1,
             "is_base_move": true
@@ -25689,7 +25689,7 @@
             "is_base_move": false
         }
     },
-    "magearna-original-mega": {
+    "mega-magearna-original-color": {
         "gyro-ball": {
             "level_learn": 1,
             "is_base_move": true
@@ -25931,7 +25931,7 @@
             "is_base_move": false
         }
     },
-    "melmetal-gmax": {
+    "gmax-melmetal": {
         "thunder-shock": {
             "level_learn": 14,
             "is_base_move": true
@@ -26089,7 +26089,7 @@
             "is_base_move": false
         }
     },
-    "zeraora-mega": {
+    "mega-zeraora": {
         "power-up-punch": {
             "level_learn": 1,
             "is_base_move": true

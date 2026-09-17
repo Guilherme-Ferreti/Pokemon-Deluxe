@@ -115,15 +115,15 @@
         "gender_rate": 1,
         "evolutions": [
             {
-                "evolves_into": "rillaboom-gmax",
+                "evolves_into": "gmax-rillaboom",
                 "item": null,
                 "min_level": 100,
                 "gender": null
             }
         ]
     },
-    "rillaboom-gmax": {
-        "id": "rillaboom-gmax",
+    "gmax-rillaboom": {
+        "id": "gmax-rillaboom",
         "external_id": "rillaboom-gmax",
         "name": "G-Max Rillaboom",
         "types": [
@@ -272,15 +272,15 @@
         "gender_rate": 1,
         "evolutions": [
             {
-                "evolves_into": "cinderace-gmax",
+                "evolves_into": "gmax-cinderace",
                 "item": null,
                 "min_level": 100,
                 "gender": null
             }
         ]
     },
-    "cinderace-gmax": {
-        "id": "cinderace-gmax",
+    "gmax-cinderace": {
+        "id": "gmax-cinderace",
         "external_id": "cinderace-gmax",
         "name": "G-Max Cinderace",
         "types": [
@@ -429,15 +429,15 @@
         "gender_rate": 1,
         "evolutions": [
             {
-                "evolves_into": "inteleon-gmax",
+                "evolves_into": "gmax-inteleon",
                 "item": null,
                 "min_level": 100,
                 "gender": null
             }
         ]
     },
-    "inteleon-gmax": {
-        "id": "inteleon-gmax",
+    "gmax-inteleon": {
+        "id": "gmax-inteleon",
         "external_id": "inteleon-gmax",
         "name": "G-Max Inteleon",
         "types": [
@@ -662,15 +662,15 @@
         "gender_rate": 4,
         "evolutions": [
             {
-                "evolves_into": "corviknight-gmax",
+                "evolves_into": "gmax-corviknight",
                 "item": null,
                 "min_level": 100,
                 "gender": null
             }
         ]
     },
-    "corviknight-gmax": {
-        "id": "corviknight-gmax",
+    "gmax-corviknight": {
+        "id": "gmax-corviknight",
         "external_id": "corviknight-gmax",
         "name": "G-Max Corviknight",
         "types": [
@@ -822,15 +822,15 @@
         "gender_rate": 4,
         "evolutions": [
             {
-                "evolves_into": "orbeetle-gmax",
+                "evolves_into": "gmax-orbeetle",
                 "item": null,
                 "min_level": 100,
                 "gender": null
             }
         ]
     },
-    "orbeetle-gmax": {
-        "id": "orbeetle-gmax",
+    "gmax-orbeetle": {
+        "id": "gmax-orbeetle",
         "external_id": "orbeetle-gmax",
         "name": "G-Max Orbeetle",
         "types": [
@@ -1165,15 +1165,15 @@
         "gender_rate": 4,
         "evolutions": [
             {
-                "evolves_into": "drednaw-gmax",
+                "evolves_into": "gmax-drednaw",
                 "item": null,
                 "min_level": 100,
                 "gender": null
             }
         ]
     },
-    "drednaw-gmax": {
-        "id": "drednaw-gmax",
+    "gmax-drednaw": {
+        "id": "gmax-drednaw",
         "external_id": "drednaw-gmax",
         "name": "G-Max Drednaw",
         "types": [
@@ -1400,15 +1400,15 @@
         "gender_rate": 4,
         "evolutions": [
             {
-                "evolves_into": "coalossal-gmax",
+                "evolves_into": "gmax-coalossal",
                 "item": null,
                 "min_level": 100,
                 "gender": null
             }
         ]
     },
-    "coalossal-gmax": {
-        "id": "coalossal-gmax",
+    "gmax-coalossal": {
+        "id": "gmax-coalossal",
         "external_id": "coalossal-gmax",
         "name": "G-Max Coalossal",
         "types": [
@@ -1531,15 +1531,15 @@
         "gender_rate": 4,
         "evolutions": [
             {
-                "evolves_into": "flapple-gmax",
+                "evolves_into": "gmax-flapple",
                 "item": null,
                 "min_level": 100,
                 "gender": null
             }
         ]
     },
-    "flapple-gmax": {
-        "id": "flapple-gmax",
+    "gmax-flapple": {
+        "id": "gmax-flapple",
         "external_id": "flapple-gmax",
         "name": "G-Max Flapple",
         "types": [
@@ -1608,15 +1608,15 @@
         "gender_rate": 4,
         "evolutions": [
             {
-                "evolves_into": "appletun-gmax",
+                "evolves_into": "gmax-appletun",
                 "item": null,
                 "min_level": 100,
                 "gender": null
             }
         ]
     },
-    "appletun-gmax": {
-        "id": "appletun-gmax",
+    "gmax-appletun": {
+        "id": "gmax-appletun",
         "external_id": "appletun-gmax",
         "name": "G-Max Appletun",
         "types": [
@@ -1725,15 +1725,15 @@
         "gender_rate": 4,
         "evolutions": [
             {
-                "evolves_into": "sandaconda-gmax",
+                "evolves_into": "gmax-sandaconda",
                 "item": null,
                 "min_level": 100,
                 "gender": null
             }
         ]
     },
-    "sandaconda-gmax": {
-        "id": "sandaconda-gmax",
+    "gmax-sandaconda": {
+        "id": "gmax-sandaconda",
         "external_id": "sandaconda-gmax",
         "name": "G-Max Sandaconda",
         "types": [
@@ -2029,7 +2029,7 @@
         "gender_rate": 4,
         "evolutions": [
             {
-                "evolves_into": "toxtricity-amped-gmax",
+                "evolves_into": "gmax-toxtricity-amped",
                 "item": null,
                 "min_level": 100,
                 "gender": null
@@ -2071,15 +2071,15 @@
         "gender_rate": 4,
         "evolutions": [
             {
-                "evolves_into": "toxtricity-low-key-gmax",
+                "evolves_into": "gmax-toxtricity-low-key",
                 "item": null,
                 "min_level": 100,
                 "gender": null
             }
         ]
     },
-    "toxtricity-amped-gmax": {
-        "id": "toxtricity-amped-gmax",
+    "gmax-toxtricity-amped": {
+        "id": "gmax-toxtricity-amped",
         "external_id": "toxtricity-amped-gmax",
         "name": "G-Max Toxtricity (Amped)",
         "types": [
@@ -2113,8 +2113,8 @@
         "gender_rate": 4,
         "evolutions": []
     },
-    "toxtricity-low-key-gmax": {
-        "id": "toxtricity-low-key-gmax",
+    "gmax-toxtricity-low-key": {
+        "id": "gmax-toxtricity-low-key",
         "external_id": "toxtricity-low-key-gmax",
         "name": "G-Max Toxtricity (Low Key)",
         "types": [
@@ -2225,15 +2225,15 @@
         "gender_rate": 4,
         "evolutions": [
             {
-                "evolves_into": "centiskorch-gmax",
+                "evolves_into": "gmax-centiskorch",
                 "item": null,
                 "min_level": 100,
                 "gender": null
             }
         ]
     },
-    "centiskorch-gmax": {
-        "id": "centiskorch-gmax",
+    "gmax-centiskorch": {
+        "id": "gmax-centiskorch",
         "external_id": "centiskorch-gmax",
         "name": "G-Max Centiskorch",
         "types": [
@@ -2342,8 +2342,8 @@
         "gender_rate": 4,
         "evolutions": []
     },
-    "sinistea": {
-        "id": "sinistea",
+    "phony-sinistea": {
+        "id": "phony-sinistea",
         "external_id": "sinistea",
         "name": "Phony Sinistea",
         "types": [
@@ -2376,15 +2376,15 @@
         "gender_rate": -1,
         "evolutions": [
             {
-                "evolves_into": "polteageist",
+                "evolves_into": "phony-polteageist",
                 "item": "cracked-pot",
                 "min_level": null,
                 "gender": null
             }
         ]
     },
-    "polteageist": {
-        "id": "polteageist",
+    "phony-polteageist": {
+        "id": "phony-polteageist",
         "external_id": "polteageist",
         "name": "Phony Polteageist",
         "types": [
@@ -2534,15 +2534,15 @@
         "gender_rate": 8,
         "evolutions": [
             {
-                "evolves_into": "hatterene-gmax",
+                "evolves_into": "gmax-hatterene",
                 "item": null,
                 "min_level": 100,
                 "gender": null
             }
         ]
     },
-    "hatterene-gmax": {
-        "id": "hatterene-gmax",
+    "gmax-hatterene": {
+        "id": "gmax-hatterene",
         "external_id": "hatterene-gmax",
         "name": "G-Max Hatterene",
         "types": [
@@ -2695,15 +2695,15 @@
         "gender_rate": 0,
         "evolutions": [
             {
-                "evolves_into": "grimmsnarl-gmax",
+                "evolves_into": "gmax-grimmsnarl",
                 "item": null,
                 "min_level": 100,
                 "gender": null
             }
         ]
     },
-    "grimmsnarl-gmax": {
-        "id": "grimmsnarl-gmax",
+    "gmax-grimmsnarl": {
+        "id": "gmax-grimmsnarl",
         "external_id": "grimmsnarl-gmax",
         "name": "G-Max Grimmsnarl",
         "types": [
@@ -3019,15 +3019,15 @@
         "gender_rate": 8,
         "evolutions": [
             {
-                "evolves_into": "alcremie-gmax",
+                "evolves_into": "gmax-alcremie",
                 "item": null,
                 "min_level": 100,
                 "gender": null
             }
         ]
     },
-    "alcremie-gmax": {
-        "id": "alcremie-gmax",
+    "gmax-alcremie": {
+        "id": "gmax-alcremie",
         "external_id": "alcremie-gmax",
         "name": "G-Max Alcremie",
         "types": [
@@ -3094,15 +3094,15 @@
         "gender_rate": -1,
         "evolutions": [
             {
-                "evolves_into": "falinks-mega",
+                "evolves_into": "mega-falinks",
                 "item": "falinksite",
                 "min_level": 100,
                 "gender": null
             }
         ]
     },
-    "falinks-mega": {
-        "id": "falinks-mega",
+    "mega-falinks": {
+        "id": "mega-falinks",
         "external_id": "falinks-mega",
         "name": "Mega Falinks",
         "types": [
@@ -3280,8 +3280,8 @@
         "gender_rate": 4,
         "evolutions": []
     },
-    "eiscue-ice": {
-        "id": "eiscue-ice",
+    "eiscue-ice-face": {
+        "id": "eiscue-ice-face",
         "external_id": "eiscue-ice",
         "name": "Eiscue (Ice Face)",
         "types": [
@@ -3314,8 +3314,8 @@
         "gender_rate": 4,
         "evolutions": []
     },
-    "eiscue-noice": {
-        "id": "eiscue-noice",
+    "eiscue-noice-face": {
+        "id": "eiscue-noice-face",
         "external_id": "eiscue-noice",
         "name": "Eiscue (Noice Face)",
         "types": [
@@ -3528,15 +3528,15 @@
         "gender_rate": 4,
         "evolutions": [
             {
-                "evolves_into": "copperajah-gmax",
+                "evolves_into": "gmax-copperajah",
                 "item": null,
                 "min_level": 100,
                 "gender": null
             }
         ]
     },
-    "copperajah-gmax": {
-        "id": "copperajah-gmax",
+    "gmax-copperajah": {
+        "id": "gmax-copperajah",
         "external_id": "copperajah-gmax",
         "name": "G-Max Copperajah",
         "types": [
@@ -3750,15 +3750,15 @@
                 "gender": null
             },
             {
-                "evolves_into": "duraludon-gmax",
+                "evolves_into": "gmax-duraludon",
                 "item": null,
                 "min_level": 100,
                 "gender": null
             }
         ]
     },
-    "duraludon-gmax": {
-        "id": "duraludon-gmax",
+    "gmax-duraludon": {
+        "id": "gmax-duraludon",
         "external_id": "duraludon-gmax",
         "name": "G-Max Duraludon",
         "types": [
@@ -4201,7 +4201,7 @@
         "gender_rate": 1,
         "evolutions": [
             {
-                "evolves_into": "urshifu-single-strike-gmax",
+                "evolves_into": "gmax-urshifu-single-strike",
                 "item": null,
                 "min_level": 100,
                 "gender": null
@@ -4243,15 +4243,15 @@
         "gender_rate": 1,
         "evolutions": [
             {
-                "evolves_into": "urshifu-rapid-strike-gmax",
+                "evolves_into": "gmax-urshifu-rapid-strike",
                 "item": null,
                 "min_level": 100,
                 "gender": null
             }
         ]
     },
-    "urshifu-single-strike-gmax": {
-        "id": "urshifu-single-strike-gmax",
+    "gmax-urshifu-single-strike": {
+        "id": "gmax-urshifu-single-strike",
         "external_id": "urshifu-single-strike-gmax",
         "name": "G-Max Urshifu (Single Strike)",
         "types": [
@@ -4285,8 +4285,8 @@
         "gender_rate": 1,
         "evolutions": []
     },
-    "urshifu-rapid-strike-gmax": {
-        "id": "urshifu-rapid-strike-gmax",
+    "gmax-urshifu-rapid-strike": {
+        "id": "gmax-urshifu-rapid-strike",
         "external_id": "urshifu-rapid-strike-gmax",
         "name": "G-Max Urshifu (Rapid Strike)",
         "types": [
@@ -4526,8 +4526,8 @@
         "gender_rate": -1,
         "evolutions": []
     },
-    "calyrex-ice": {
-        "id": "calyrex-ice",
+    "calyrex-ice-rider": {
+        "id": "calyrex-ice-rider",
         "external_id": "calyrex-ice",
         "name": "Calyrex (Ice Rider)",
         "types": [
@@ -4561,8 +4561,8 @@
         "gender_rate": -1,
         "evolutions": []
     },
-    "calyrex-shadow": {
-        "id": "calyrex-shadow",
+    "calyrex-shadow-rider": {
+        "id": "calyrex-shadow-rider",
         "external_id": "calyrex-shadow",
         "name": "Calyrex (Shadow Rider)",
         "types": [
@@ -4911,8 +4911,8 @@
         "gender_rate": 8,
         "evolutions": []
     },
-    "meowth-galar": {
-        "id": "meowth-galar",
+    "galarian-meowth": {
+        "id": "galarian-meowth",
         "external_id": "meowth-galar",
         "name": "Galarian Meowth",
         "types": [
@@ -4952,8 +4952,8 @@
             }
         ]
     },
-    "ponyta-galar": {
-        "id": "ponyta-galar",
+    "galarian-ponyta": {
+        "id": "galarian-ponyta",
         "external_id": "ponyta-galar",
         "name": "Galarian Ponyta",
         "types": [
@@ -4986,15 +4986,15 @@
         "gender_rate": 4,
         "evolutions": [
             {
-                "evolves_into": "rapidash-galar",
+                "evolves_into": "galarian-rapidash",
                 "item": null,
                 "min_level": 40,
                 "gender": null
             }
         ]
     },
-    "rapidash-galar": {
-        "id": "rapidash-galar",
+    "galarian-rapidash": {
+        "id": "galarian-rapidash",
         "external_id": "rapidash-galar",
         "name": "Galarian Rapidash",
         "types": [
@@ -5028,8 +5028,8 @@
         "gender_rate": 4,
         "evolutions": []
     },
-    "slowpoke-galar": {
-        "id": "slowpoke-galar",
+    "galarian-slowpoke": {
+        "id": "galarian-slowpoke",
         "external_id": "slowpoke-galar",
         "name": "Galarian Slowpoke",
         "types": [
@@ -5062,21 +5062,21 @@
         "gender_rate": 4,
         "evolutions": [
             {
-                "evolves_into": "slowbro-galar",
+                "evolves_into": "galarian-slowbro",
                 "item": null,
                 "min_level": 37,
                 "gender": null
             },
             {
-                "evolves_into": "slowking-galar",
+                "evolves_into": "galarian-slowking",
                 "item": "kings-rock",
                 "min_level": null,
                 "gender": null
             }
         ]
     },
-    "slowbro-galar": {
-        "id": "slowbro-galar",
+    "galarian-slowbro": {
+        "id": "galarian-slowbro",
         "external_id": "slowbro-galar",
         "name": "Galarian Slowbro",
         "types": [
@@ -5110,8 +5110,8 @@
         "gender_rate": 4,
         "evolutions": []
     },
-    "farfetchd-galar": {
-        "id": "farfetchd-galar",
+    "galarian-farfetchd": {
+        "id": "galarian-farfetchd",
         "external_id": "farfetchd-galar",
         "name": "Galarian Farfetch’d",
         "types": [
@@ -5151,8 +5151,8 @@
             }
         ]
     },
-    "weezing-galar": {
-        "id": "weezing-galar",
+    "galarian-weezing": {
+        "id": "galarian-weezing",
         "external_id": "weezing-galar",
         "name": "Galarian Weezing",
         "types": [
@@ -5186,8 +5186,8 @@
         "gender_rate": 4,
         "evolutions": []
     },
-    "mr-mime-galar": {
-        "id": "mr-mime-galar",
+    "galarian-mr-mime": {
+        "id": "galarian-mr-mime",
         "external_id": "mr-mime-galar",
         "name": "Galarian Mr. Mime",
         "types": [
@@ -5228,8 +5228,8 @@
             }
         ]
     },
-    "articuno-galar": {
-        "id": "articuno-galar",
+    "galarian-articuno": {
+        "id": "galarian-articuno",
         "external_id": "articuno-galar",
         "name": "Galarian Articuno",
         "types": [
@@ -5263,8 +5263,8 @@
         "gender_rate": -1,
         "evolutions": []
     },
-    "zapdos-galar": {
-        "id": "zapdos-galar",
+    "galarian-zapdos": {
+        "id": "galarian-zapdos",
         "external_id": "zapdos-galar",
         "name": "Galarian Zapdos",
         "types": [
@@ -5298,8 +5298,8 @@
         "gender_rate": -1,
         "evolutions": []
     },
-    "moltres-galar": {
-        "id": "moltres-galar",
+    "galarian-moltres": {
+        "id": "galarian-moltres",
         "external_id": "moltres-galar",
         "name": "Galarian Moltres",
         "types": [
@@ -5333,8 +5333,8 @@
         "gender_rate": -1,
         "evolutions": []
     },
-    "slowking-galar": {
-        "id": "slowking-galar",
+    "galarian-slowking": {
+        "id": "galarian-slowking",
         "external_id": "slowking-galar",
         "name": "Galarian Slowking",
         "types": [
@@ -5368,8 +5368,8 @@
         "gender_rate": 4,
         "evolutions": []
     },
-    "corsola-galar": {
-        "id": "corsola-galar",
+    "galarian-corsola": {
+        "id": "galarian-corsola",
         "external_id": "corsola-galar",
         "name": "Galarian Corsola",
         "types": [
@@ -5409,8 +5409,8 @@
             }
         ]
     },
-    "zigzagoon-galar": {
-        "id": "zigzagoon-galar",
+    "galarian-zigzagoon": {
+        "id": "galarian-zigzagoon",
         "external_id": "zigzagoon-galar",
         "name": "Galarian Zigzagoon",
         "types": [
@@ -5444,15 +5444,15 @@
         "gender_rate": 4,
         "evolutions": [
             {
-                "evolves_into": "linoone-galar",
+                "evolves_into": "galarian-linoone",
                 "item": null,
                 "min_level": 20,
                 "gender": null
             }
         ]
     },
-    "linoone-galar": {
-        "id": "linoone-galar",
+    "galarian-linoone": {
+        "id": "galarian-linoone",
         "external_id": "linoone-galar",
         "name": "Galarian Linoone",
         "types": [
@@ -5493,8 +5493,8 @@
             }
         ]
     },
-    "darumaka-galar": {
-        "id": "darumaka-galar",
+    "galarian-darumaka": {
+        "id": "galarian-darumaka",
         "external_id": "darumaka-galar",
         "name": "Galarian Darumaka",
         "types": [
@@ -5527,21 +5527,21 @@
         "gender_rate": 4,
         "evolutions": [
             {
-                "evolves_into": "darmanitan-galar-standard",
+                "evolves_into": "galarian-darmanitan",
                 "item": "ice-stone",
                 "min_level": 35,
                 "gender": null
             },
             {
-                "evolves_into": "darmanitan-galar-zen",
+                "evolves_into": "galarian-darmanitan-zen-mode",
                 "item": "ice-stone",
                 "min_level": 35,
                 "gender": null
             }
         ]
     },
-    "darmanitan-galar-standard": {
-        "id": "darmanitan-galar-standard",
+    "galarian-darmanitan": {
+        "id": "galarian-darmanitan",
         "external_id": "darmanitan-galar-standard",
         "name": "Galarian Darmanitan",
         "types": [
@@ -5574,8 +5574,8 @@
         "gender_rate": 4,
         "evolutions": []
     },
-    "darmanitan-galar-zen": {
-        "id": "darmanitan-galar-zen",
+    "galarian-darmanitan-zen-mode": {
+        "id": "galarian-darmanitan-zen-mode",
         "external_id": "darmanitan-galar-zen",
         "name": "Galarian Darmanitan (Zen Mode)",
         "types": [
@@ -5609,8 +5609,8 @@
         "gender_rate": 4,
         "evolutions": []
     },
-    "yamask-galar": {
-        "id": "yamask-galar",
+    "galarian-yamask": {
+        "id": "galarian-yamask",
         "external_id": "yamask-galar",
         "name": "Galarian Yamask",
         "types": [
@@ -5651,8 +5651,8 @@
             }
         ]
     },
-    "stunfisk-galar": {
-        "id": "stunfisk-galar",
+    "galarian-stunfisk": {
+        "id": "galarian-stunfisk",
         "external_id": "stunfisk-galar",
         "name": "Galarian Stunfisk",
         "types": [

@@ -116,15 +116,15 @@
         "gender_rate": 1,
         "evolutions": [
             {
-                "evolves_into": "chesnaught-mega",
+                "evolves_into": "mega-chesnaught",
                 "item": "chesnaughtite",
                 "min_level": 100,
                 "gender": null
             }
         ]
     },
-    "chesnaught-mega": {
-        "id": "chesnaught-mega",
+    "mega-chesnaught": {
+        "id": "mega-chesnaught",
         "external_id": "chesnaught-mega",
         "name": "Mega Chesnaught",
         "types": [
@@ -275,15 +275,15 @@
         "gender_rate": 1,
         "evolutions": [
             {
-                "evolves_into": "delphox-mega",
+                "evolves_into": "mega-delphox",
                 "item": "delphoxite",
                 "min_level": 100,
                 "gender": null
             }
         ]
     },
-    "delphox-mega": {
-        "id": "delphox-mega",
+    "mega-delphox": {
+        "id": "mega-delphox",
         "external_id": "delphox-mega",
         "name": "Mega Delphox",
         "types": [
@@ -434,15 +434,15 @@
         "gender_rate": 1,
         "evolutions": [
             {
-                "evolves_into": "greninja-mega",
+                "evolves_into": "mega-greninja",
                 "item": "greninjite",
                 "min_level": 100,
                 "gender": null
             }
         ]
     },
-    "greninja-mega": {
-        "id": "greninja-mega",
+    "mega-greninja": {
+        "id": "mega-greninja",
         "external_id": "greninja-mega",
         "name": "Mega Greninja",
         "types": [
@@ -865,15 +865,15 @@
         "gender_rate": 7,
         "evolutions": [
             {
-                "evolves_into": "pyroar-mega",
+                "evolves_into": "mega-pyroar",
                 "item": "pyroarite",
                 "min_level": 100,
                 "gender": null
             }
         ]
     },
-    "pyroar-mega": {
-        "id": "pyroar-mega",
+    "mega-pyroar": {
+        "id": "mega-pyroar",
         "external_id": "pyroar-mega",
         "name": "Mega Pyroar",
         "types": [
@@ -988,21 +988,21 @@
                 "gender": null
             },
             {
-                "evolves_into": "floette-mega",
+                "evolves_into": "mega-floette",
                 "item": "floettite",
                 "min_level": 100,
                 "gender": null
             },
             {
-                "evolves_into": "floette-eternal",
+                "evolves_into": "eternal-floette",
                 "item": null,
                 "min_level": 100,
                 "gender": null
             }
         ]
     },
-    "floette-eternal": {
-        "id": "floette-eternal",
+    "eternal-floette": {
+        "id": "eternal-floette",
         "external_id": "floette-eternal",
         "name": "Eternal Floette",
         "types": [
@@ -1035,8 +1035,8 @@
         "gender_rate": 8,
         "evolutions": []
     },
-    "floette-mega": {
-        "id": "floette-mega",
+    "mega-floette": {
+        "id": "mega-floette",
         "external_id": "floette-mega",
         "name": "Mega Floette",
         "types": [
@@ -1363,15 +1363,15 @@
         "gender_rate": 4,
         "evolutions": [
             {
-                "evolves_into": "meowstic-mega",
+                "evolves_into": "mega-meowstic",
                 "item": "meowsticite",
                 "min_level": 100,
                 "gender": null
             }
         ]
     },
-    "meowstic-mega": {
-        "id": "meowstic-mega",
+    "mega-meowstic": {
+        "id": "mega-meowstic",
         "external_id": "meowstic-male-mega",
         "name": "Mega Meowstic",
         "types": [
@@ -1791,15 +1791,15 @@
         "gender_rate": 4,
         "evolutions": [
             {
-                "evolves_into": "malamar-mega",
+                "evolves_into": "mega-malamar",
                 "item": "malamarite",
                 "min_level": 100,
                 "gender": null
             }
         ]
     },
-    "malamar-mega": {
-        "id": "malamar-mega",
+    "mega-malamar": {
+        "id": "mega-malamar",
         "external_id": "malamar-mega",
         "name": "Mega Malamar",
         "types": [
@@ -1910,15 +1910,15 @@
         "gender_rate": 4,
         "evolutions": [
             {
-                "evolves_into": "barbaracle-mega",
+                "evolves_into": "mega-barbaracle",
                 "item": "barbaracite",
                 "min_level": 100,
                 "gender": null
             }
         ]
     },
-    "barbaracle-mega": {
-        "id": "barbaracle-mega",
+    "mega-barbaracle": {
+        "id": "mega-barbaracle",
         "external_id": "barbaracle-mega",
         "name": "Mega Barbaracle",
         "types": [
@@ -2029,15 +2029,15 @@
         "gender_rate": 4,
         "evolutions": [
             {
-                "evolves_into": "dragalge-mega",
+                "evolves_into": "mega-dragalge",
                 "item": "dragalgite",
                 "min_level": 100,
                 "gender": null
             }
         ]
     },
-    "dragalge-mega": {
-        "id": "dragalge-mega",
+    "mega-dragalge": {
+        "id": "mega-dragalge",
         "external_id": "dragalge-mega",
         "name": "Mega Dragalge",
         "types": [
@@ -2446,15 +2446,15 @@
         "gender_rate": 4,
         "evolutions": [
             {
-                "evolves_into": "hawlucha-mega",
+                "evolves_into": "mega-hawlucha",
                 "item": "hawluchanite",
                 "min_level": 100,
                 "gender": null
             }
         ]
     },
-    "hawlucha-mega": {
-        "id": "hawlucha-mega",
+    "mega-hawlucha": {
+        "id": "mega-hawlucha",
         "external_id": "hawlucha-mega",
         "name": "Mega Hawlucha",
         "types": [
@@ -2598,7 +2598,7 @@
                 "gender": null
             },
             {
-                "evolves_into": "sliggoo-hisui",
+                "evolves_into": "hisuian-sliggoo",
                 "item": null,
                 "min_level": 40,
                 "gender": null
@@ -2646,8 +2646,8 @@
             }
         ]
     },
-    "sliggoo-hisui": {
-        "id": "sliggoo-hisui",
+    "hisuian-sliggoo": {
+        "id": "hisuian-sliggoo",
         "external_id": "sliggoo-hisui",
         "name": "Hisuian Sliggoo",
         "types": [
@@ -2681,7 +2681,7 @@
         "gender_rate": 4,
         "evolutions": [
             {
-                "evolves_into": "goodra-hisui",
+                "evolves_into": "hisuian-goodra",
                 "item": null,
                 "min_level": 50,
                 "gender": null
@@ -2722,8 +2722,8 @@
         "gender_rate": 4,
         "evolutions": []
     },
-    "goodra-hisui": {
-        "id": "goodra-hisui",
+    "hisuian-goodra": {
+        "id": "hisuian-goodra",
         "external_id": "goodra-hisui",
         "name": "Hisuian Goodra",
         "types": [
@@ -2986,7 +2986,7 @@
                 "gender": null
             },
             {
-                "evolves_into": "avalugg-hisui",
+                "evolves_into": "hisuian-avalugg",
                 "item": null,
                 "min_level": 37,
                 "gender": null
@@ -3027,8 +3027,8 @@
         "gender_rate": 4,
         "evolutions": []
     },
-    "avalugg-hisui": {
-        "id": "avalugg-hisui",
+    "hisuian-avalugg": {
+        "id": "hisuian-avalugg",
         "external_id": "avalugg-hisui",
         "name": "Hisuian Avalugg",
         "types": [
@@ -3327,15 +3327,15 @@
         "gender_rate": -1,
         "evolutions": [
             {
-                "evolves_into": "zygarde-mega",
+                "evolves_into": "mega-zygarde",
                 "item": "zygardite",
                 "min_level": 100,
                 "gender": null
             }
         ]
     },
-    "zygarde-mega": {
-        "id": "zygarde-mega",
+    "mega-zygarde": {
+        "id": "mega-zygarde",
         "external_id": "zygarde-mega",
         "name": "Mega Zygarde",
         "types": [
@@ -3404,15 +3404,15 @@
         "gender_rate": -1,
         "evolutions": [
             {
-                "evolves_into": "diancie-mega",
+                "evolves_into": "mega-diancie",
                 "item": "diancite",
                 "min_level": 100,
                 "gender": null
             }
         ]
     },
-    "diancie-mega": {
-        "id": "diancie-mega",
+    "mega-diancie": {
+        "id": "mega-diancie",
         "external_id": "diancie-mega",
         "name": "Mega Diancie",
         "types": [
@@ -3446,8 +3446,8 @@
         "gender_rate": -1,
         "evolutions": []
     },
-    "hoopa": {
-        "id": "hoopa",
+    "hoopa-confined": {
+        "id": "hoopa-confined",
         "external_id": "hoopa",
         "name": "Hoopa (Confined)",
         "types": [
