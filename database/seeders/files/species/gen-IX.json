@@ -400,7 +400,7 @@
         ],
         "pokedex_number": 916,
         "genus": "Hog Pokémon",
-        "flavor_text": "It entrances female Pokémon with the sweet, alluring scent that wafts from all over its body.",
+        "flavor_text": "Oinkologne is proud of its fine, glossy skin. It emits a concentrated scent from the tip of its tail.",
         "sprites": {
             "back_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/916.png",
             "back_female": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/10254.png",
@@ -422,7 +422,7 @@
         "is_gmax": false,
         "generation": 9,
         "capture_rate": 100,
-        "gender_rate": 0,
+        "gender_rate": 4,
         "evolutions": []
     },
     "tarountula": {
