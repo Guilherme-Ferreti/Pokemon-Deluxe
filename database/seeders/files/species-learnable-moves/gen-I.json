@@ -199,6 +199,14 @@
         "weather-ball": {
             "level_learn": null,
             "is_base_move": false
+        },
+        "acid-downpour--physical": {
+            "level_learn": 100,
+            "is_base_move": false
+        },
+        "bloom-doom--physical": {
+            "level_learn": 100,
+            "is_base_move": false
         }
     },
     "ivysaur": {
@@ -384,6 +392,14 @@
         },
         "weather-ball": {
             "level_learn": null,
+            "is_base_move": false
+        },
+        "acid-downpour--physical": {
+            "level_learn": 100,
+            "is_base_move": false
+        },
+        "bloom-doom--physical": {
+            "level_learn": 100,
             "is_base_move": false
         }
     },
@@ -618,6 +634,14 @@
         },
         "weather-ball": {
             "level_learn": null,
+            "is_base_move": false
+        },
+        "acid-downpour--physical": {
+            "level_learn": 100,
+            "is_base_move": false
+        },
+        "bloom-doom--physical": {
+            "level_learn": 100,
             "is_base_move": false
         }
     },
@@ -921,6 +945,10 @@
         "wing-attack": {
             "level_learn": null,
             "is_base_move": false
+        },
+        "inferno-overdrive--physical": {
+            "level_learn": 100,
+            "is_base_move": false
         }
     },
     "charmeleon": {
@@ -1214,6 +1242,10 @@
         },
         "will-o-wisp": {
             "level_learn": null,
+            "is_base_move": false
+        },
+        "inferno-overdrive--physical": {
+            "level_learn": 100,
             "is_base_move": false
         }
     },
@@ -1601,6 +1633,14 @@
         "will-o-wisp": {
             "level_learn": null,
             "is_base_move": false
+        },
+        "inferno-overdrive--physical": {
+            "level_learn": 100,
+            "is_base_move": false
+        },
+        "supersonic-skystrike--physical": {
+            "level_learn": 100,
+            "is_base_move": false
         }
     },
     "squirtle": {
@@ -1883,6 +1923,10 @@
         "zen-headbutt": {
             "level_learn": null,
             "is_base_move": false
+        },
+        "hydro-vortex--physical": {
+            "level_learn": 100,
+            "is_base_move": false
         }
     },
     "wartortle": {
@@ -2160,6 +2204,10 @@
         },
         "zen-headbutt": {
             "level_learn": null,
+            "is_base_move": false
+        },
+        "hydro-vortex--physical": {
+            "level_learn": 100,
             "is_base_move": false
         }
     },
@@ -2511,6 +2559,10 @@
         "zen-headbutt": {
             "level_learn": null,
             "is_base_move": false
+        },
+        "hydro-vortex--physical": {
+            "level_learn": 100,
+            "is_base_move": false
         }
     },
     "caterpie": {
@@ -2529,6 +2581,10 @@
         "snore": {
             "level_learn": null,
             "is_base_move": false
+        },
+        "savage-spin-out--physical": {
+            "level_learn": 100,
+            "is_base_move": false
         }
     },
     "metapod": {
@@ -2538,6 +2594,10 @@
         },
         "electroweb": {
             "level_learn": null,
+            "is_base_move": false
+        },
+        "savage-spin-out--physical": {
+            "level_learn": 100,
             "is_base_move": false
         }
     },
@@ -2753,6 +2813,14 @@
         "venoshock": {
             "level_learn": null,
             "is_base_move": false
+        },
+        "savage-spin-out--physical": {
+            "level_learn": 100,
+            "is_base_move": false
+        },
+        "supersonic-skystrike--physical": {
+            "level_learn": 100,
+            "is_base_move": false
         }
     },
     "weedle": {
@@ -2767,6 +2835,14 @@
         "electroweb": {
             "level_learn": null,
             "is_base_move": false
+        },
+        "acid-downpour--physical": {
+            "level_learn": 100,
+            "is_base_move": false
+        },
+        "savage-spin-out--physical": {
+            "level_learn": 100,
+            "is_base_move": false
         }
     },
     "kakuna": {
@@ -2776,6 +2852,14 @@
         },
         "electroweb": {
             "level_learn": null,
+            "is_base_move": false
+        },
+        "acid-downpour--physical": {
+            "level_learn": 100,
+            "is_base_move": false
+        },
+        "savage-spin-out--physical": {
+            "level_learn": 100,
             "is_base_move": false
         }
     },
@@ -3027,6 +3111,14 @@
         "x-scissor": {
             "level_learn": null,
             "is_base_move": false
+        },
+        "acid-downpour--physical": {
+            "level_learn": 100,
+            "is_base_move": false
+        },
+        "savage-spin-out--physical": {
+            "level_learn": 100,
+            "is_base_move": false
         }
     },
     "pidgey": {
@@ -3177,6 +3269,14 @@
         "uproar": {
             "level_learn": null,
             "is_base_move": false
+        },
+        "breakneck-blitz--physical": {
+            "level_learn": 100,
+            "is_base_move": false
+        },
+        "supersonic-skystrike--physical": {
+            "level_learn": 100,
+            "is_base_move": false
         }
     },
     "pidgeotto": {
@@ -3314,6 +3414,14 @@
         },
         "uproar": {
             "level_learn": null,
+            "is_base_move": false
+        },
+        "breakneck-blitz--physical": {
+            "level_learn": 100,
+            "is_base_move": false
+        },
+        "supersonic-skystrike--physical": {
+            "level_learn": 100,
             "is_base_move": false
         }
     },
@@ -3468,6 +3576,14 @@
         },
         "uproar": {
             "level_learn": null,
+            "is_base_move": false
+        },
+        "breakneck-blitz--physical": {
+            "level_learn": 100,
+            "is_base_move": false
+        },
+        "supersonic-skystrike--physical": {
+            "level_learn": 100,
             "is_base_move": false
         }
     },
@@ -3706,6 +3822,10 @@
         },
         "zen-headbutt": {
             "level_learn": null,
+            "is_base_move": false
+        },
+        "breakneck-blitz--physical": {
+            "level_learn": 100,
             "is_base_move": false
         }
     },
@@ -3949,6 +4069,10 @@
         "zen-headbutt": {
             "level_learn": null,
             "is_base_move": false
+        },
+        "breakneck-blitz--physical": {
+            "level_learn": 100,
+            "is_base_move": false
         }
     },
     "spearow": {
@@ -4114,6 +4238,14 @@
         },
         "uproar": {
             "level_learn": null,
+            "is_base_move": false
+        },
+        "breakneck-blitz--physical": {
+            "level_learn": 100,
+            "is_base_move": false
+        },
+        "supersonic-skystrike--physical": {
+            "level_learn": 100,
             "is_base_move": false
         }
     },
@@ -4284,6 +4416,14 @@
         },
         "uproar": {
             "level_learn": null,
+            "is_base_move": false
+        },
+        "breakneck-blitz--physical": {
+            "level_learn": 100,
+            "is_base_move": false
+        },
+        "supersonic-skystrike--physical": {
+            "level_learn": 100,
             "is_base_move": false
         }
     },
@@ -4534,6 +4674,10 @@
         },
         "venoshock": {
             "level_learn": null,
+            "is_base_move": false
+        },
+        "acid-downpour--physical": {
+            "level_learn": 100,
             "is_base_move": false
         }
     },
@@ -4813,6 +4957,10 @@
         "venoshock": {
             "level_learn": null,
             "is_base_move": false
+        },
+        "acid-downpour--physical": {
+            "level_learn": 100,
+            "is_base_move": false
         }
     },
     "pikachu": {
@@ -5090,6 +5238,10 @@
         },
         "zap-cannon": {
             "level_learn": null,
+            "is_base_move": false
+        },
+        "gigavolt-havoc--physical": {
+            "level_learn": 100,
             "is_base_move": false
         }
     },
@@ -5389,6 +5541,10 @@
         "zap-cannon": {
             "level_learn": null,
             "is_base_move": false
+        },
+        "gigavolt-havoc--physical": {
+            "level_learn": 100,
+            "is_base_move": false
         }
     },
     "sandshrew": {
@@ -5674,6 +5830,10 @@
         },
         "x-scissor": {
             "level_learn": null,
+            "is_base_move": false
+        },
+        "tectonic-rage--physical": {
+            "level_learn": 100,
             "is_base_move": false
         }
     },
@@ -5981,6 +6141,10 @@
         "x-scissor": {
             "level_learn": null,
             "is_base_move": false
+        },
+        "tectonic-rage--physical": {
+            "level_learn": 100,
+            "is_base_move": false
         }
     },
     "nidoran-f": {
@@ -6179,6 +6343,10 @@
         "water-pulse": {
             "level_learn": null,
             "is_base_move": false
+        },
+        "acid-downpour--physical": {
+            "level_learn": 100,
+            "is_base_move": false
         }
     },
     "nidorina": {
@@ -6376,6 +6544,10 @@
         },
         "water-pulse": {
             "level_learn": null,
+            "is_base_move": false
+        },
+        "acid-downpour--physical": {
+            "level_learn": 100,
             "is_base_move": false
         }
     },
@@ -6775,6 +6947,14 @@
         "whirlpool": {
             "level_learn": null,
             "is_base_move": false
+        },
+        "acid-downpour--physical": {
+            "level_learn": 100,
+            "is_base_move": false
+        },
+        "tectonic-rage--physical": {
+            "level_learn": 100,
+            "is_base_move": false
         }
     },
     "nidoran-m": {
@@ -6985,6 +7165,10 @@
         "water-pulse": {
             "level_learn": null,
             "is_base_move": false
+        },
+        "acid-downpour--physical": {
+            "level_learn": 100,
+            "is_base_move": false
         }
     },
     "nidorino": {
@@ -7182,6 +7366,10 @@
         },
         "water-pulse": {
             "level_learn": null,
+            "is_base_move": false
+        },
+        "acid-downpour--physical": {
+            "level_learn": 100,
             "is_base_move": false
         }
     },
@@ -7589,6 +7777,14 @@
         "whirlpool": {
             "level_learn": null,
             "is_base_move": false
+        },
+        "acid-downpour--physical": {
+            "level_learn": 100,
+            "is_base_move": false
+        },
+        "tectonic-rage--physical": {
+            "level_learn": 100,
+            "is_base_move": false
         }
     },
     "clefairy": {
@@ -7958,6 +8154,10 @@
         },
         "zen-headbutt": {
             "level_learn": null,
+            "is_base_move": false
+        },
+        "twinkle-tackle--physical": {
+            "level_learn": 100,
             "is_base_move": false
         }
     },
@@ -8341,6 +8541,10 @@
         "zen-headbutt": {
             "level_learn": null,
             "is_base_move": false
+        },
+        "twinkle-tackle--physical": {
+            "level_learn": 100,
+            "is_base_move": false
         }
     },
     "vulpix": {
@@ -8546,6 +8750,10 @@
         },
         "zen-headbutt": {
             "level_learn": null,
+            "is_base_move": false
+        },
+        "inferno-overdrive--physical": {
+            "level_learn": 100,
             "is_base_move": false
         }
     },
@@ -8780,6 +8988,10 @@
         },
         "zen-headbutt": {
             "level_learn": null,
+            "is_base_move": false
+        },
+        "inferno-overdrive--physical": {
+            "level_learn": 100,
             "is_base_move": false
         }
     },
@@ -9130,6 +9342,14 @@
         },
         "zen-headbutt": {
             "level_learn": null,
+            "is_base_move": false
+        },
+        "breakneck-blitz--physical": {
+            "level_learn": 100,
+            "is_base_move": false
+        },
+        "twinkle-tackle--physical": {
+            "level_learn": 100,
             "is_base_move": false
         }
     },
@@ -9493,6 +9713,14 @@
         "zen-headbutt": {
             "level_learn": null,
             "is_base_move": false
+        },
+        "breakneck-blitz--physical": {
+            "level_learn": 100,
+            "is_base_move": false
+        },
+        "twinkle-tackle--physical": {
+            "level_learn": 100,
+            "is_base_move": false
         }
     },
     "zubat": {
@@ -9710,6 +9938,14 @@
         },
         "zen-headbutt": {
             "level_learn": null,
+            "is_base_move": false
+        },
+        "acid-downpour--physical": {
+            "level_learn": 100,
+            "is_base_move": false
+        },
+        "supersonic-skystrike--physical": {
+            "level_learn": 100,
             "is_base_move": false
         }
     },
@@ -9929,6 +10165,14 @@
         "zen-headbutt": {
             "level_learn": null,
             "is_base_move": false
+        },
+        "acid-downpour--physical": {
+            "level_learn": 100,
+            "is_base_move": false
+        },
+        "supersonic-skystrike--physical": {
+            "level_learn": 100,
+            "is_base_move": false
         }
     },
     "oddish": {
@@ -10086,6 +10330,14 @@
         },
         "venoshock": {
             "level_learn": null,
+            "is_base_move": false
+        },
+        "acid-downpour--physical": {
+            "level_learn": 100,
+            "is_base_move": false
+        },
+        "bloom-doom--physical": {
+            "level_learn": 100,
             "is_base_move": false
         }
     },
@@ -10260,6 +10512,14 @@
         },
         "venoshock": {
             "level_learn": null,
+            "is_base_move": false
+        },
+        "acid-downpour--physical": {
+            "level_learn": 100,
+            "is_base_move": false
+        },
+        "bloom-doom--physical": {
+            "level_learn": 100,
             "is_base_move": false
         }
     },
@@ -10458,6 +10718,14 @@
         },
         "weather-ball": {
             "level_learn": null,
+            "is_base_move": false
+        },
+        "acid-downpour--physical": {
+            "level_learn": 100,
+            "is_base_move": false
+        },
+        "bloom-doom--physical": {
+            "level_learn": 100,
             "is_base_move": false
         }
     },
@@ -10669,6 +10937,14 @@
         "toxic": {
             "level_learn": null,
             "is_base_move": false
+        },
+        "bloom-doom--physical": {
+            "level_learn": 100,
+            "is_base_move": false
+        },
+        "savage-spin-out--physical": {
+            "level_learn": 100,
+            "is_base_move": false
         }
     },
     "parasect": {
@@ -10871,6 +11147,14 @@
         "toxic": {
             "level_learn": null,
             "is_base_move": false
+        },
+        "bloom-doom--physical": {
+            "level_learn": 100,
+            "is_base_move": false
+        },
+        "savage-spin-out--physical": {
+            "level_learn": 100,
+            "is_base_move": false
         }
     },
     "venonat": {
@@ -11048,6 +11332,14 @@
         },
         "venoshock": {
             "level_learn": null,
+            "is_base_move": false
+        },
+        "acid-downpour--physical": {
+            "level_learn": 100,
+            "is_base_move": false
+        },
+        "savage-spin-out--physical": {
+            "level_learn": 100,
             "is_base_move": false
         }
     },
@@ -11283,6 +11575,14 @@
         "venoshock": {
             "level_learn": null,
             "is_base_move": false
+        },
+        "acid-downpour--physical": {
+            "level_learn": 100,
+            "is_base_move": false
+        },
+        "savage-spin-out--physical": {
+            "level_learn": 100,
+            "is_base_move": false
         }
     },
     "diglett": {
@@ -11496,6 +11796,10 @@
         },
         "uproar": {
             "level_learn": null,
+            "is_base_move": false
+        },
+        "tectonic-rage--physical": {
+            "level_learn": 100,
             "is_base_move": false
         }
     },
@@ -11718,6 +12022,10 @@
         },
         "uproar": {
             "level_learn": null,
+            "is_base_move": false
+        },
+        "tectonic-rage--physical": {
+            "level_learn": 100,
             "is_base_move": false
         }
     },
@@ -11997,6 +12305,10 @@
         "zap-cannon": {
             "level_learn": null,
             "is_base_move": false
+        },
+        "breakneck-blitz--physical": {
+            "level_learn": 100,
+            "is_base_move": false
         }
     },
     "persian": {
@@ -12274,6 +12586,10 @@
         },
         "zap-cannon": {
             "level_learn": null,
+            "is_base_move": false
+        },
+        "breakneck-blitz--physical": {
+            "level_learn": 100,
             "is_base_move": false
         }
     },
@@ -12572,6 +12888,10 @@
         },
         "whirlpool": {
             "level_learn": null,
+            "is_base_move": false
+        },
+        "hydro-vortex--physical": {
+            "level_learn": 100,
             "is_base_move": false
         }
     },
@@ -12886,6 +13206,10 @@
         },
         "whirlpool": {
             "level_learn": null,
+            "is_base_move": false
+        },
+        "hydro-vortex--physical": {
+            "level_learn": 100,
             "is_base_move": false
         }
     },
@@ -13221,6 +13545,10 @@
         "vacuum-wave": {
             "level_learn": null,
             "is_base_move": false
+        },
+        "all-out-pummeling--physical": {
+            "level_learn": 100,
+            "is_base_move": false
         }
     },
     "primeape": {
@@ -13547,6 +13875,10 @@
         "vacuum-wave": {
             "level_learn": null,
             "is_base_move": false
+        },
+        "all-out-pummeling--physical": {
+            "level_learn": 100,
+            "is_base_move": false
         }
     },
     "growlithe": {
@@ -13761,6 +14093,10 @@
         "will-o-wisp": {
             "level_learn": null,
             "is_base_move": false
+        },
+        "inferno-overdrive--physical": {
+            "level_learn": 100,
+            "is_base_move": false
         }
     },
     "growlithe-hisui": {
@@ -13938,6 +14274,14 @@
         },
         "will-o-wisp": {
             "level_learn": null,
+            "is_base_move": false
+        },
+        "continental-crush--physical": {
+            "level_learn": 100,
+            "is_base_move": false
+        },
+        "inferno-overdrive--physical": {
+            "level_learn": 100,
             "is_base_move": false
         }
     },
@@ -14193,6 +14537,10 @@
         "will-o-wisp": {
             "level_learn": null,
             "is_base_move": false
+        },
+        "inferno-overdrive--physical": {
+            "level_learn": 100,
+            "is_base_move": false
         }
     },
     "arcanine-hisui": {
@@ -14423,6 +14771,14 @@
         "will-o-wisp": {
             "level_learn": null,
             "is_base_move": false
+        },
+        "continental-crush--physical": {
+            "level_learn": 100,
+            "is_base_move": false
+        },
+        "inferno-overdrive--physical": {
+            "level_learn": 100,
+            "is_base_move": false
         }
     },
     "poliwag": {
@@ -14620,6 +14976,10 @@
         },
         "whirlpool": {
             "level_learn": null,
+            "is_base_move": false
+        },
+        "hydro-vortex--physical": {
+            "level_learn": 100,
             "is_base_move": false
         }
     },
@@ -14870,6 +15230,10 @@
         },
         "whirlpool": {
             "level_learn": null,
+            "is_base_move": false
+        },
+        "hydro-vortex--physical": {
+            "level_learn": 100,
             "is_base_move": false
         }
     },
@@ -15193,6 +15557,14 @@
         "whirlpool": {
             "level_learn": null,
             "is_base_move": false
+        },
+        "all-out-pummeling--physical": {
+            "level_learn": 100,
+            "is_base_move": false
+        },
+        "hydro-vortex--physical": {
+            "level_learn": 100,
+            "is_base_move": false
         }
     },
     "abra": {
@@ -15386,6 +15758,10 @@
         },
         "zen-headbutt": {
             "level_learn": null,
+            "is_base_move": false
+        },
+        "shattered-psyche--physical": {
+            "level_learn": 100,
             "is_base_move": false
         }
     },
@@ -15604,6 +15980,10 @@
         },
         "zap-cannon": {
             "level_learn": null,
+            "is_base_move": false
+        },
+        "shattered-psyche--physical": {
+            "level_learn": 100,
             "is_base_move": false
         }
     },
@@ -15838,6 +16218,10 @@
         },
         "zap-cannon": {
             "level_learn": null,
+            "is_base_move": false
+        },
+        "shattered-psyche--physical": {
+            "level_learn": 100,
             "is_base_move": false
         }
     },
@@ -16109,6 +16493,10 @@
         "vacuum-wave": {
             "level_learn": null,
             "is_base_move": false
+        },
+        "all-out-pummeling--physical": {
+            "level_learn": 100,
+            "is_base_move": false
         }
     },
     "machoke": {
@@ -16374,6 +16762,10 @@
         },
         "vacuum-wave": {
             "level_learn": null,
+            "is_base_move": false
+        },
+        "all-out-pummeling--physical": {
+            "level_learn": 100,
             "is_base_move": false
         }
     },
@@ -16689,6 +17081,10 @@
         "vacuum-wave": {
             "level_learn": null,
             "is_base_move": false
+        },
+        "all-out-pummeling--physical": {
+            "level_learn": 100,
+            "is_base_move": false
         }
     },
     "bellsprout": {
@@ -16886,6 +17282,14 @@
         },
         "weather-ball": {
             "level_learn": null,
+            "is_base_move": false
+        },
+        "acid-downpour--physical": {
+            "level_learn": 100,
+            "is_base_move": false
+        },
+        "bloom-doom--physical": {
+            "level_learn": 100,
             "is_base_move": false
         }
     },
@@ -17092,6 +17496,14 @@
         },
         "weather-ball": {
             "level_learn": null,
+            "is_base_move": false
+        },
+        "acid-downpour--physical": {
+            "level_learn": 100,
+            "is_base_move": false
+        },
+        "bloom-doom--physical": {
+            "level_learn": 100,
             "is_base_move": false
         }
     },
@@ -17310,6 +17722,14 @@
         },
         "weather-ball": {
             "level_learn": null,
+            "is_base_move": false
+        },
+        "acid-downpour--physical": {
+            "level_learn": 100,
+            "is_base_move": false
+        },
+        "bloom-doom--physical": {
+            "level_learn": 100,
             "is_base_move": false
         }
     },
@@ -17560,6 +17980,14 @@
         },
         "whirlpool": {
             "level_learn": null,
+            "is_base_move": false
+        },
+        "acid-downpour--physical": {
+            "level_learn": 100,
+            "is_base_move": false
+        },
+        "hydro-vortex--physical": {
+            "level_learn": 100,
             "is_base_move": false
         }
     },
@@ -17827,6 +18255,14 @@
         "whirlpool": {
             "level_learn": null,
             "is_base_move": false
+        },
+        "acid-downpour--physical": {
+            "level_learn": 100,
+            "is_base_move": false
+        },
+        "hydro-vortex--physical": {
+            "level_learn": 100,
+            "is_base_move": false
         }
     },
     "geodude": {
@@ -18056,6 +18492,14 @@
         },
         "toxic": {
             "level_learn": null,
+            "is_base_move": false
+        },
+        "continental-crush--physical": {
+            "level_learn": 100,
+            "is_base_move": false
+        },
+        "tectonic-rage--physical": {
+            "level_learn": 100,
             "is_base_move": false
         }
     },
@@ -18302,6 +18746,14 @@
         },
         "toxic": {
             "level_learn": null,
+            "is_base_move": false
+        },
+        "continental-crush--physical": {
+            "level_learn": 100,
+            "is_base_move": false
+        },
+        "tectonic-rage--physical": {
+            "level_learn": 100,
             "is_base_move": false
         }
     },
@@ -18569,6 +19021,14 @@
         "toxic": {
             "level_learn": null,
             "is_base_move": false
+        },
+        "continental-crush--physical": {
+            "level_learn": 100,
+            "is_base_move": false
+        },
+        "tectonic-rage--physical": {
+            "level_learn": 100,
+            "is_base_move": false
         }
     },
     "ponyta": {
@@ -18758,6 +19218,10 @@
         },
         "will-o-wisp": {
             "level_learn": null,
+            "is_base_move": false
+        },
+        "inferno-overdrive--physical": {
+            "level_learn": 100,
             "is_base_move": false
         }
     },
@@ -18984,6 +19448,10 @@
         },
         "will-o-wisp": {
             "level_learn": null,
+            "is_base_move": false
+        },
+        "inferno-overdrive--physical": {
+            "level_learn": 100,
             "is_base_move": false
         }
     },
@@ -19246,6 +19714,14 @@
         },
         "zap-cannon": {
             "level_learn": null,
+            "is_base_move": false
+        },
+        "hydro-vortex--physical": {
+            "level_learn": 100,
+            "is_base_move": false
+        },
+        "shattered-psyche--physical": {
+            "level_learn": 100,
             "is_base_move": false
         }
     },
@@ -19589,6 +20065,14 @@
         "zap-cannon": {
             "level_learn": null,
             "is_base_move": false
+        },
+        "hydro-vortex--physical": {
+            "level_learn": 100,
+            "is_base_move": false
+        },
+        "shattered-psyche--physical": {
+            "level_learn": 100,
+            "is_base_move": false
         }
     },
     "magnemite": {
@@ -19758,6 +20242,14 @@
         },
         "wild-charge": {
             "level_learn": null,
+            "is_base_move": false
+        },
+        "corkscrew-crash--physical": {
+            "level_learn": 100,
+            "is_base_move": false
+        },
+        "gigavolt-havoc--physical": {
+            "level_learn": 100,
             "is_base_move": false
         }
     },
@@ -19940,6 +20432,14 @@
         },
         "wild-charge": {
             "level_learn": null,
+            "is_base_move": false
+        },
+        "corkscrew-crash--physical": {
+            "level_learn": 100,
+            "is_base_move": false
+        },
+        "gigavolt-havoc--physical": {
+            "level_learn": 100,
             "is_base_move": false
         }
     },
@@ -20187,6 +20687,14 @@
         "uproar": {
             "level_learn": null,
             "is_base_move": false
+        },
+        "breakneck-blitz--physical": {
+            "level_learn": 100,
+            "is_base_move": false
+        },
+        "supersonic-skystrike--physical": {
+            "level_learn": 100,
+            "is_base_move": false
         }
     },
     "doduo": {
@@ -20376,6 +20884,14 @@
         },
         "toxic": {
             "level_learn": null,
+            "is_base_move": false
+        },
+        "breakneck-blitz--physical": {
+            "level_learn": 100,
+            "is_base_move": false
+        },
+        "supersonic-skystrike--physical": {
+            "level_learn": 100,
             "is_base_move": false
         }
     },
@@ -20582,6 +21098,14 @@
         },
         "toxic": {
             "level_learn": null,
+            "is_base_move": false
+        },
+        "breakneck-blitz--physical": {
+            "level_learn": 100,
+            "is_base_move": false
+        },
+        "supersonic-skystrike--physical": {
+            "level_learn": 100,
             "is_base_move": false
         }
     },
@@ -20800,6 +21324,10 @@
         },
         "whirlpool": {
             "level_learn": null,
+            "is_base_move": false
+        },
+        "hydro-vortex--physical": {
+            "level_learn": 100,
             "is_base_move": false
         }
     },
@@ -21043,6 +21571,14 @@
         "whirlpool": {
             "level_learn": null,
             "is_base_move": false
+        },
+        "hydro-vortex--physical": {
+            "level_learn": 100,
+            "is_base_move": false
+        },
+        "subzero-slammer--physical": {
+            "level_learn": 100,
+            "is_base_move": false
         }
     },
     "grimer": {
@@ -21280,6 +21816,10 @@
         },
         "zen-headbutt": {
             "level_learn": null,
+            "is_base_move": false
+        },
+        "acid-downpour--physical": {
+            "level_learn": 100,
             "is_base_move": false
         }
     },
@@ -21555,6 +22095,10 @@
         "zen-headbutt": {
             "level_learn": null,
             "is_base_move": false
+        },
+        "acid-downpour--physical": {
+            "level_learn": 100,
+            "is_base_move": false
         }
     },
     "shellder": {
@@ -21728,6 +22272,10 @@
         },
         "waterfall": {
             "level_learn": null,
+            "is_base_move": false
+        },
+        "hydro-vortex--physical": {
+            "level_learn": 100,
             "is_base_move": false
         }
     },
@@ -21951,6 +22499,14 @@
         "weather-ball": {
             "level_learn": null,
             "is_base_move": false
+        },
+        "hydro-vortex--physical": {
+            "level_learn": 100,
+            "is_base_move": false
+        },
+        "subzero-slammer--physical": {
+            "level_learn": 100,
+            "is_base_move": false
         }
     },
     "gastly": {
@@ -22172,6 +22728,14 @@
         },
         "zap-cannon": {
             "level_learn": null,
+            "is_base_move": false
+        },
+        "acid-downpour--physical": {
+            "level_learn": 100,
+            "is_base_move": false
+        },
+        "never-ending-nightmare--physical": {
+            "level_learn": 100,
             "is_base_move": false
         }
     },
@@ -22410,6 +22974,14 @@
         },
         "zap-cannon": {
             "level_learn": null,
+            "is_base_move": false
+        },
+        "acid-downpour--physical": {
+            "level_learn": 100,
+            "is_base_move": false
+        },
+        "never-ending-nightmare--physical": {
+            "level_learn": 100,
             "is_base_move": false
         }
     },
@@ -22729,6 +23301,14 @@
         "zap-cannon": {
             "level_learn": null,
             "is_base_move": false
+        },
+        "acid-downpour--physical": {
+            "level_learn": 100,
+            "is_base_move": false
+        },
+        "never-ending-nightmare--physical": {
+            "level_learn": 100,
+            "is_base_move": false
         }
     },
     "onix": {
@@ -22962,6 +23542,14 @@
         },
         "twister": {
             "level_learn": null,
+            "is_base_move": false
+        },
+        "continental-crush--physical": {
+            "level_learn": 100,
+            "is_base_move": false
+        },
+        "tectonic-rage--physical": {
+            "level_learn": 100,
             "is_base_move": false
         }
     },
@@ -23208,6 +23796,10 @@
         },
         "zap-cannon": {
             "level_learn": null,
+            "is_base_move": false
+        },
+        "shattered-psyche--physical": {
+            "level_learn": 100,
             "is_base_move": false
         }
     },
@@ -23471,6 +24063,10 @@
         "zap-cannon": {
             "level_learn": null,
             "is_base_move": false
+        },
+        "shattered-psyche--physical": {
+            "level_learn": 100,
+            "is_base_move": false
         }
     },
     "krabby": {
@@ -23696,6 +24292,10 @@
         },
         "x-scissor": {
             "level_learn": null,
+            "is_base_move": false
+        },
+        "hydro-vortex--physical": {
+            "level_learn": 100,
             "is_base_move": false
         }
     },
@@ -23935,6 +24535,10 @@
         "x-scissor": {
             "level_learn": null,
             "is_base_move": false
+        },
+        "hydro-vortex--physical": {
+            "level_learn": 100,
+            "is_base_move": false
         }
     },
     "voltorb": {
@@ -24089,6 +24693,10 @@
         "zap-cannon": {
             "level_learn": null,
             "is_base_move": false
+        },
+        "gigavolt-havoc--physical": {
+            "level_learn": 100,
+            "is_base_move": false
         }
     },
     "voltorb-hisui": {
@@ -24222,6 +24830,14 @@
         },
         "wild-charge": {
             "level_learn": null,
+            "is_base_move": false
+        },
+        "bloom-doom--physical": {
+            "level_learn": 100,
+            "is_base_move": false
+        },
+        "gigavolt-havoc--physical": {
+            "level_learn": 100,
             "is_base_move": false
         }
     },
@@ -24389,6 +25005,10 @@
         "zap-cannon": {
             "level_learn": null,
             "is_base_move": false
+        },
+        "gigavolt-havoc--physical": {
+            "level_learn": 100,
+            "is_base_move": false
         }
     },
     "electrode-hisui": {
@@ -24530,6 +25150,14 @@
         },
         "wild-charge": {
             "level_learn": null,
+            "is_base_move": false
+        },
+        "bloom-doom--physical": {
+            "level_learn": 100,
+            "is_base_move": false
+        },
+        "gigavolt-havoc--physical": {
+            "level_learn": 100,
             "is_base_move": false
         }
     },
@@ -24720,6 +25348,14 @@
         },
         "zen-headbutt": {
             "level_learn": null,
+            "is_base_move": false
+        },
+        "bloom-doom--physical": {
+            "level_learn": 100,
+            "is_base_move": false
+        },
+        "shattered-psyche--physical": {
+            "level_learn": 100,
             "is_base_move": false
         }
     },
@@ -24958,6 +25594,14 @@
         },
         "zen-headbutt": {
             "level_learn": null,
+            "is_base_move": false
+        },
+        "bloom-doom--physical": {
+            "level_learn": 100,
+            "is_base_move": false
+        },
+        "shattered-psyche--physical": {
+            "level_learn": 100,
             "is_base_move": false
         }
     },
@@ -25240,6 +25884,10 @@
         },
         "water-gun": {
             "level_learn": null,
+            "is_base_move": false
+        },
+        "tectonic-rage--physical": {
+            "level_learn": 100,
             "is_base_move": false
         }
     },
@@ -25539,6 +26187,10 @@
         "water-gun": {
             "level_learn": null,
             "is_base_move": false
+        },
+        "tectonic-rage--physical": {
+            "level_learn": 100,
+            "is_base_move": false
         }
     },
     "hitmonlee": {
@@ -25813,6 +26465,10 @@
         "vacuum-wave": {
             "level_learn": null,
             "is_base_move": false
+        },
+        "all-out-pummeling--physical": {
+            "level_learn": 100,
+            "is_base_move": false
         }
     },
     "hitmonchan": {
@@ -26082,6 +26738,10 @@
         },
         "uproar": {
             "level_learn": null,
+            "is_base_move": false
+        },
+        "all-out-pummeling--physical": {
+            "level_learn": 100,
             "is_base_move": false
         }
     },
@@ -26441,6 +27101,10 @@
         "whirlpool": {
             "level_learn": null,
             "is_base_move": false
+        },
+        "breakneck-blitz--physical": {
+            "level_learn": 100,
+            "is_base_move": false
         }
     },
     "koffing": {
@@ -26622,6 +27286,10 @@
         },
         "zap-cannon": {
             "level_learn": null,
+            "is_base_move": false
+        },
+        "acid-downpour--physical": {
+            "level_learn": 100,
             "is_base_move": false
         }
     },
@@ -26816,6 +27484,10 @@
         },
         "zap-cannon": {
             "level_learn": null,
+            "is_base_move": false
+        },
+        "acid-downpour--physical": {
+            "level_learn": 100,
             "is_base_move": false
         }
     },
@@ -27134,6 +27806,14 @@
         },
         "zap-cannon": {
             "level_learn": null,
+            "is_base_move": false
+        },
+        "continental-crush--physical": {
+            "level_learn": 100,
+            "is_base_move": false
+        },
+        "tectonic-rage--physical": {
+            "level_learn": 100,
             "is_base_move": false
         }
     },
@@ -27561,6 +28241,14 @@
         "zap-cannon": {
             "level_learn": null,
             "is_base_move": false
+        },
+        "continental-crush--physical": {
+            "level_learn": 100,
+            "is_base_move": false
+        },
+        "tectonic-rage--physical": {
+            "level_learn": 100,
+            "is_base_move": false
         }
     },
     "chansey": {
@@ -27915,6 +28603,10 @@
         "zen-headbutt": {
             "level_learn": null,
             "is_base_move": false
+        },
+        "breakneck-blitz--physical": {
+            "level_learn": 100,
+            "is_base_move": false
         }
     },
     "tangela": {
@@ -28116,6 +28808,10 @@
         },
         "wake-up-slap": {
             "level_learn": null,
+            "is_base_move": false
+        },
+        "bloom-doom--physical": {
+            "level_learn": 100,
             "is_base_move": false
         }
     },
@@ -28491,6 +29187,10 @@
         "zap-cannon": {
             "level_learn": null,
             "is_base_move": false
+        },
+        "breakneck-blitz--physical": {
+            "level_learn": 100,
+            "is_base_move": false
         }
     },
     "horsea": {
@@ -28681,6 +29381,10 @@
         "whirlpool": {
             "level_learn": null,
             "is_base_move": false
+        },
+        "hydro-vortex--physical": {
+            "level_learn": 100,
+            "is_base_move": false
         }
     },
     "seadra": {
@@ -28866,6 +29570,10 @@
         },
         "whirlpool": {
             "level_learn": null,
+            "is_base_move": false
+        },
+        "hydro-vortex--physical": {
+            "level_learn": 100,
             "is_base_move": false
         }
     },
@@ -29072,6 +29780,10 @@
         },
         "whirlpool": {
             "level_learn": null,
+            "is_base_move": false
+        },
+        "hydro-vortex--physical": {
+            "level_learn": 100,
             "is_base_move": false
         }
     },
@@ -29287,6 +29999,10 @@
         "whirlpool": {
             "level_learn": null,
             "is_base_move": false
+        },
+        "hydro-vortex--physical": {
+            "level_learn": 100,
+            "is_base_move": false
         }
     },
     "staryu": {
@@ -29484,6 +30200,10 @@
         },
         "zap-cannon": {
             "level_learn": null,
+            "is_base_move": false
+        },
+        "hydro-vortex--physical": {
+            "level_learn": 100,
             "is_base_move": false
         }
     },
@@ -29734,6 +30454,14 @@
         },
         "zen-headbutt": {
             "level_learn": null,
+            "is_base_move": false
+        },
+        "hydro-vortex--physical": {
+            "level_learn": 100,
+            "is_base_move": false
+        },
+        "shattered-psyche--physical": {
+            "level_learn": 100,
             "is_base_move": false
         }
     },
@@ -30025,6 +30753,14 @@
         "zap-cannon": {
             "level_learn": null,
             "is_base_move": false
+        },
+        "shattered-psyche--physical": {
+            "level_learn": 100,
+            "is_base_move": false
+        },
+        "twinkle-tackle--physical": {
+            "level_learn": 100,
+            "is_base_move": false
         }
     },
     "scyther": {
@@ -30246,6 +30982,14 @@
         },
         "u-turn": {
             "level_learn": null,
+            "is_base_move": false
+        },
+        "savage-spin-out--physical": {
+            "level_learn": 100,
+            "is_base_move": false
+        },
+        "supersonic-skystrike--physical": {
+            "level_learn": 100,
             "is_base_move": false
         }
     },
@@ -30537,6 +31281,14 @@
         "zen-headbutt": {
             "level_learn": null,
             "is_base_move": false
+        },
+        "shattered-psyche--physical": {
+            "level_learn": 100,
+            "is_base_move": false
+        },
+        "subzero-slammer--physical": {
+            "level_learn": 100,
+            "is_base_move": false
         }
     },
     "electabuzz": {
@@ -30798,6 +31550,10 @@
         },
         "zap-cannon": {
             "level_learn": null,
+            "is_base_move": false
+        },
+        "gigavolt-havoc--physical": {
+            "level_learn": 100,
             "is_base_move": false
         }
     },
@@ -31085,6 +31841,10 @@
         "will-o-wisp": {
             "level_learn": null,
             "is_base_move": false
+        },
+        "inferno-overdrive--physical": {
+            "level_learn": 100,
+            "is_base_move": false
         }
     },
     "pinsir": {
@@ -31342,6 +32102,10 @@
         },
         "toxic": {
             "level_learn": null,
+            "is_base_move": false
+        },
+        "savage-spin-out--physical": {
+            "level_learn": 100,
             "is_base_move": false
         }
     },
@@ -31617,6 +32381,10 @@
         "zap-cannon": {
             "level_learn": null,
             "is_base_move": false
+        },
+        "breakneck-blitz--physical": {
+            "level_learn": 100,
+            "is_base_move": false
         }
     },
     "magikarp": {
@@ -31634,6 +32402,10 @@
         },
         "hydro-pump": {
             "level_learn": null,
+            "is_base_move": false
+        },
+        "hydro-vortex--physical": {
+            "level_learn": 100,
             "is_base_move": false
         }
     },
@@ -31920,6 +32692,14 @@
         },
         "zap-cannon": {
             "level_learn": null,
+            "is_base_move": false
+        },
+        "hydro-vortex--physical": {
+            "level_learn": 100,
+            "is_base_move": false
+        },
+        "supersonic-skystrike--physical": {
+            "level_learn": 100,
             "is_base_move": false
         }
     },
@@ -32215,9 +32995,22 @@
         "zen-headbutt": {
             "level_learn": null,
             "is_base_move": false
+        },
+        "hydro-vortex--physical": {
+            "level_learn": 100,
+            "is_base_move": false
+        },
+        "subzero-slammer--physical": {
+            "level_learn": 100,
+            "is_base_move": false
         }
     },
-    "ditto": {},
+    "ditto": {
+        "breakneck-blitz--physical": {
+            "level_learn": 100,
+            "is_base_move": false
+        }
+    },
     "eevee": {
         "tackle": {
             "level_learn": 1,
@@ -32357,6 +33150,10 @@
         },
         "weather-ball": {
             "level_learn": null,
+            "is_base_move": false
+        },
+        "breakneck-blitz--physical": {
+            "level_learn": 100,
             "is_base_move": false
         }
     },
@@ -32588,6 +33385,10 @@
         "whirlpool": {
             "level_learn": null,
             "is_base_move": false
+        },
+        "hydro-vortex--physical": {
+            "level_learn": 100,
+            "is_base_move": false
         }
     },
     "jolteon": {
@@ -32805,6 +33606,10 @@
         },
         "zap-cannon": {
             "level_learn": null,
+            "is_base_move": false
+        },
+        "gigavolt-havoc--physical": {
+            "level_learn": 100,
             "is_base_move": false
         }
     },
@@ -33032,6 +33837,10 @@
         "zap-cannon": {
             "level_learn": null,
             "is_base_move": false
+        },
+        "inferno-overdrive--physical": {
+            "level_learn": 100,
+            "is_base_move": false
         }
     },
     "porygon": {
@@ -33217,6 +34026,10 @@
         },
         "zen-headbutt": {
             "level_learn": null,
+            "is_base_move": false
+        },
+        "breakneck-blitz--physical": {
+            "level_learn": 100,
             "is_base_move": false
         }
     },
@@ -33423,6 +34236,14 @@
         },
         "wring-out": {
             "level_learn": null,
+            "is_base_move": false
+        },
+        "continental-crush--physical": {
+            "level_learn": 100,
+            "is_base_move": false
+        },
+        "hydro-vortex--physical": {
+            "level_learn": 100,
             "is_base_move": false
         }
     },
@@ -33662,6 +34483,14 @@
         "whirlpool": {
             "level_learn": null,
             "is_base_move": false
+        },
+        "continental-crush--physical": {
+            "level_learn": 100,
+            "is_base_move": false
+        },
+        "hydro-vortex--physical": {
+            "level_learn": 100,
+            "is_base_move": false
         }
     },
     "kabuto": {
@@ -33887,6 +34716,14 @@
         },
         "whirlpool": {
             "level_learn": null,
+            "is_base_move": false
+        },
+        "continental-crush--physical": {
+            "level_learn": 100,
+            "is_base_move": false
+        },
+        "hydro-vortex--physical": {
+            "level_learn": 100,
             "is_base_move": false
         }
     },
@@ -34190,6 +35027,14 @@
         "x-scissor": {
             "level_learn": null,
             "is_base_move": false
+        },
+        "continental-crush--physical": {
+            "level_learn": 100,
+            "is_base_move": false
+        },
+        "hydro-vortex--physical": {
+            "level_learn": 100,
+            "is_base_move": false
         }
     },
     "aerodactyl": {
@@ -34447,6 +35292,14 @@
         },
         "twister": {
             "level_learn": null,
+            "is_base_move": false
+        },
+        "continental-crush--physical": {
+            "level_learn": 100,
+            "is_base_move": false
+        },
+        "supersonic-skystrike--physical": {
+            "level_learn": 100,
             "is_base_move": false
         }
     },
@@ -34826,6 +35679,10 @@
         "zap-cannon": {
             "level_learn": null,
             "is_base_move": false
+        },
+        "breakneck-blitz--physical": {
+            "level_learn": 100,
+            "is_base_move": false
         }
     },
     "articuno": {
@@ -35044,6 +35901,14 @@
         "weather-ball": {
             "level_learn": null,
             "is_base_move": false
+        },
+        "subzero-slammer--physical": {
+            "level_learn": 100,
+            "is_base_move": false
+        },
+        "supersonic-skystrike--physical": {
+            "level_learn": 100,
+            "is_base_move": false
         }
     },
     "zapdos": {
@@ -35253,6 +36118,14 @@
         },
         "wild-charge": {
             "level_learn": null,
+            "is_base_move": false
+        },
+        "gigavolt-havoc--physical": {
+            "level_learn": 100,
+            "is_base_move": false
+        },
+        "supersonic-skystrike--physical": {
+            "level_learn": 100,
             "is_base_move": false
         }
     },
@@ -35475,6 +36348,14 @@
         },
         "will-o-wisp": {
             "level_learn": null,
+            "is_base_move": false
+        },
+        "inferno-overdrive--physical": {
+            "level_learn": 100,
+            "is_base_move": false
+        },
+        "supersonic-skystrike--physical": {
+            "level_learn": 100,
             "is_base_move": false
         }
     },
@@ -35706,6 +36587,10 @@
         "zap-cannon": {
             "level_learn": null,
             "is_base_move": false
+        },
+        "devastating-drake--physical": {
+            "level_learn": 100,
+            "is_base_move": false
         }
     },
     "dragonair": {
@@ -35931,6 +36816,10 @@
         },
         "zap-cannon": {
             "level_learn": null,
+            "is_base_move": false
+        },
+        "devastating-drake--physical": {
+            "level_learn": 100,
             "is_base_move": false
         }
     },
@@ -36321,6 +37210,14 @@
         },
         "zap-cannon": {
             "level_learn": null,
+            "is_base_move": false
+        },
+        "devastating-drake--physical": {
+            "level_learn": 100,
+            "is_base_move": false
+        },
+        "supersonic-skystrike--physical": {
+            "level_learn": 100,
             "is_base_move": false
         }
     },
@@ -36731,6 +37628,10 @@
         },
         "zen-headbutt": {
             "level_learn": null,
+            "is_base_move": false
+        },
+        "shattered-psyche--physical": {
+            "level_learn": 100,
             "is_base_move": false
         }
     },
@@ -37746,6 +38647,10 @@
         "zen-headbutt": {
             "level_learn": null,
             "is_base_move": false
+        },
+        "shattered-psyche--physical": {
+            "level_learn": 100,
+            "is_base_move": false
         }
     },
     "aerodactyl-mega": {
@@ -38004,6 +38909,14 @@
         "twister": {
             "level_learn": null,
             "is_base_move": false
+        },
+        "continental-crush--physical": {
+            "level_learn": 100,
+            "is_base_move": false
+        },
+        "supersonic-skystrike--physical": {
+            "level_learn": 100,
+            "is_base_move": false
         }
     },
     "alakazam-mega": {
@@ -38237,6 +39150,10 @@
         },
         "zap-cannon": {
             "level_learn": null,
+            "is_base_move": false
+        },
+        "shattered-psyche--physical": {
+            "level_learn": 100,
             "is_base_move": false
         }
     },
@@ -38487,6 +39404,14 @@
         },
         "x-scissor": {
             "level_learn": null,
+            "is_base_move": false
+        },
+        "acid-downpour--physical": {
+            "level_learn": 100,
+            "is_base_move": false
+        },
+        "savage-spin-out--physical": {
+            "level_learn": 100,
             "is_base_move": false
         }
     },
@@ -38842,6 +39767,10 @@
         "max-geyser": {
             "level_learn": 100,
             "is_base_move": false
+        },
+        "hydro-vortex--physical": {
+            "level_learn": 100,
+            "is_base_move": false
         }
     },
     "blastoise-mega": {
@@ -39192,6 +40121,10 @@
         "zen-headbutt": {
             "level_learn": null,
             "is_base_move": false
+        },
+        "hydro-vortex--physical": {
+            "level_learn": 100,
+            "is_base_move": false
         }
     },
     "butterfree-gmax": {
@@ -39408,6 +40341,14 @@
             "is_base_move": false
         },
         "max-airstream": {
+            "level_learn": 100,
+            "is_base_move": false
+        },
+        "savage-spin-out--physical": {
+            "level_learn": 100,
+            "is_base_move": false
+        },
+        "supersonic-skystrike--physical": {
             "level_learn": 100,
             "is_base_move": false
         }
@@ -39804,6 +40745,14 @@
         "max-airstream": {
             "level_learn": 100,
             "is_base_move": false
+        },
+        "inferno-overdrive--physical": {
+            "level_learn": 100,
+            "is_base_move": false
+        },
+        "supersonic-skystrike--physical": {
+            "level_learn": 100,
+            "is_base_move": false
         }
     },
     "charizard-mega-x": {
@@ -40189,6 +41138,14 @@
         },
         "will-o-wisp": {
             "level_learn": null,
+            "is_base_move": false
+        },
+        "devastating-drake--physical": {
+            "level_learn": 100,
+            "is_base_move": false
+        },
+        "inferno-overdrive--physical": {
+            "level_learn": 100,
             "is_base_move": false
         }
     },
@@ -40576,6 +41533,14 @@
         "will-o-wisp": {
             "level_learn": null,
             "is_base_move": false
+        },
+        "inferno-overdrive--physical": {
+            "level_learn": 100,
+            "is_base_move": false
+        },
+        "supersonic-skystrike--physical": {
+            "level_learn": 100,
+            "is_base_move": false
         }
     },
     "clefable-mega": {
@@ -40957,6 +41922,14 @@
         },
         "zen-headbutt": {
             "level_learn": null,
+            "is_base_move": false
+        },
+        "supersonic-skystrike--physical": {
+            "level_learn": 100,
+            "is_base_move": false
+        },
+        "twinkle-tackle--physical": {
+            "level_learn": 100,
             "is_base_move": false
         }
     },
@@ -41348,6 +42321,14 @@
         "zap-cannon": {
             "level_learn": null,
             "is_base_move": false
+        },
+        "devastating-drake--physical": {
+            "level_learn": 100,
+            "is_base_move": false
+        },
+        "supersonic-skystrike--physical": {
+            "level_learn": 100,
+            "is_base_move": false
         }
     },
     "eevee-gmax": {
@@ -41492,6 +42473,10 @@
             "is_base_move": false
         },
         "max-strike": {
+            "level_learn": 100,
+            "is_base_move": false
+        },
+        "breakneck-blitz--physical": {
             "level_learn": 100,
             "is_base_move": false
         }
@@ -41820,6 +42805,14 @@
         "max-ooze": {
             "level_learn": 100,
             "is_base_move": false
+        },
+        "acid-downpour--physical": {
+            "level_learn": 100,
+            "is_base_move": false
+        },
+        "never-ending-nightmare--physical": {
+            "level_learn": 100,
+            "is_base_move": false
         }
     },
     "gengar-mega": {
@@ -42138,6 +43131,14 @@
         "zap-cannon": {
             "level_learn": null,
             "is_base_move": false
+        },
+        "acid-downpour--physical": {
+            "level_learn": 100,
+            "is_base_move": false
+        },
+        "never-ending-nightmare--physical": {
+            "level_learn": 100,
+            "is_base_move": false
         }
     },
     "gyarados-mega": {
@@ -42423,6 +43424,14 @@
         },
         "zap-cannon": {
             "level_learn": null,
+            "is_base_move": false
+        },
+        "black-hole-eclipse--physical": {
+            "level_learn": 100,
+            "is_base_move": false
+        },
+        "hydro-vortex--physical": {
+            "level_learn": 100,
             "is_base_move": false
         }
     },
@@ -42798,6 +43807,10 @@
         "zap-cannon": {
             "level_learn": null,
             "is_base_move": false
+        },
+        "breakneck-blitz--physical": {
+            "level_learn": 100,
+            "is_base_move": false
         }
     },
     "kingler-gmax": {
@@ -43038,6 +44051,10 @@
             "is_base_move": false
         },
         "max-geyser": {
+            "level_learn": 100,
+            "is_base_move": false
+        },
+        "hydro-vortex--physical": {
             "level_learn": 100,
             "is_base_move": false
         }
@@ -43340,6 +44357,14 @@
             "is_base_move": false
         },
         "max-hailstorm": {
+            "level_learn": 100,
+            "is_base_move": false
+        },
+        "hydro-vortex--physical": {
+            "level_learn": 100,
+            "is_base_move": false
+        },
+        "subzero-slammer--physical": {
             "level_learn": 100,
             "is_base_move": false
         }
@@ -43660,6 +44685,10 @@
         "max-knuckle": {
             "level_learn": 100,
             "is_base_move": false
+        },
+        "all-out-pummeling--physical": {
+            "level_learn": 100,
+            "is_base_move": false
         }
     },
     "meowth-gmax": {
@@ -43940,6 +44969,10 @@
             "is_base_move": false
         },
         "max-strike": {
+            "level_learn": 100,
+            "is_base_move": false
+        },
+        "breakneck-blitz--physical": {
             "level_learn": 100,
             "is_base_move": false
         }
@@ -44352,6 +45385,14 @@
         "zen-headbutt": {
             "level_learn": null,
             "is_base_move": false
+        },
+        "all-out-pummeling--physical": {
+            "level_learn": 100,
+            "is_base_move": false
+        },
+        "shattered-psyche--physical": {
+            "level_learn": 100,
+            "is_base_move": false
         }
     },
     "mewtwo-mega-y": {
@@ -44762,6 +45803,10 @@
         "zen-headbutt": {
             "level_learn": null,
             "is_base_move": false
+        },
+        "shattered-psyche--physical": {
+            "level_learn": 100,
+            "is_base_move": false
         }
     },
     "pidgeot-mega": {
@@ -44915,6 +45960,14 @@
         },
         "uproar": {
             "level_learn": null,
+            "is_base_move": false
+        },
+        "breakneck-blitz--physical": {
+            "level_learn": 100,
+            "is_base_move": false
+        },
+        "supersonic-skystrike--physical": {
+            "level_learn": 100,
             "is_base_move": false
         }
     },
@@ -45198,6 +46251,10 @@
         "max-lightning": {
             "level_learn": 100,
             "is_base_move": false
+        },
+        "gigavolt-havoc--physical": {
+            "level_learn": 100,
+            "is_base_move": false
         }
     },
     "pinsir-mega": {
@@ -45455,6 +46512,14 @@
         },
         "toxic": {
             "level_learn": null,
+            "is_base_move": false
+        },
+        "savage-spin-out--physical": {
+            "level_learn": 100,
+            "is_base_move": false
+        },
+        "supersonic-skystrike--physical": {
+            "level_learn": 100,
             "is_base_move": false
         }
     },
@@ -45754,6 +46819,10 @@
         "zap-cannon": {
             "level_learn": null,
             "is_base_move": false
+        },
+        "gigavolt-havoc--physical": {
+            "level_learn": 100,
+            "is_base_move": false
         }
     },
     "raichu-mega-y": {
@@ -46051,6 +47120,10 @@
         },
         "zap-cannon": {
             "level_learn": null,
+            "is_base_move": false
+        },
+        "gigavolt-havoc--physical": {
+            "level_learn": 100,
             "is_base_move": false
         }
     },
@@ -46393,6 +47466,14 @@
         },
         "zap-cannon": {
             "level_learn": null,
+            "is_base_move": false
+        },
+        "hydro-vortex--physical": {
+            "level_learn": 100,
+            "is_base_move": false
+        },
+        "shattered-psyche--physical": {
+            "level_learn": 100,
             "is_base_move": false
         }
     },
@@ -46776,6 +47857,10 @@
         "max-strike": {
             "level_learn": 100,
             "is_base_move": false
+        },
+        "breakneck-blitz--physical": {
+            "level_learn": 100,
+            "is_base_move": false
         }
     },
     "starmie-mega": {
@@ -47026,6 +48111,14 @@
         "zen-headbutt": {
             "level_learn": null,
             "is_base_move": false
+        },
+        "hydro-vortex--physical": {
+            "level_learn": 100,
+            "is_base_move": false
+        },
+        "shattered-psyche--physical": {
+            "level_learn": 100,
+            "is_base_move": false
         }
     },
     "venusaur-gmax": {
@@ -47268,6 +48361,14 @@
         "max-ooze": {
             "level_learn": 100,
             "is_base_move": false
+        },
+        "acid-downpour--physical": {
+            "level_learn": 100,
+            "is_base_move": false
+        },
+        "bloom-doom--physical": {
+            "level_learn": 100,
+            "is_base_move": false
         }
     },
     "venusaur-mega": {
@@ -47502,6 +48603,14 @@
         "weather-ball": {
             "level_learn": null,
             "is_base_move": false
+        },
+        "acid-downpour--physical": {
+            "level_learn": 100,
+            "is_base_move": false
+        },
+        "bloom-doom--physical": {
+            "level_learn": 100,
+            "is_base_move": false
         }
     },
     "victreebel-mega": {
@@ -47719,6 +48828,14 @@
         },
         "weather-ball": {
             "level_learn": null,
+            "is_base_move": false
+        },
+        "acid-downpour--physical": {
+            "level_learn": 100,
+            "is_base_move": false
+        },
+        "bloom-doom--physical": {
+            "level_learn": 100,
             "is_base_move": false
         }
     }
