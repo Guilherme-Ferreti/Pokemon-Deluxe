@@ -11483,7 +11483,7 @@
             "is_base_move": false
         }
     },
-    "unown": {
+    "unown-a": {
         "hidden-power": {
             "level_learn": 1,
             "is_base_move": true
@@ -26523,6 +26523,276 @@
             "is_base_move": false
         },
         "continental-crush--physical": {
+            "level_learn": 100,
+            "is_base_move": false
+        }
+    },
+    "unown-b": {
+        "hidden-power": {
+            "level_learn": 1,
+            "is_base_move": true
+        },
+        "shattered-psyche--physical": {
+            "level_learn": 100,
+            "is_base_move": false
+        }
+    },
+    "unown-c": {
+        "hidden-power": {
+            "level_learn": 1,
+            "is_base_move": true
+        },
+        "shattered-psyche--physical": {
+            "level_learn": 100,
+            "is_base_move": false
+        }
+    },
+    "unown-d": {
+        "hidden-power": {
+            "level_learn": 1,
+            "is_base_move": true
+        },
+        "shattered-psyche--physical": {
+            "level_learn": 100,
+            "is_base_move": false
+        }
+    },
+    "unown-e": {
+        "hidden-power": {
+            "level_learn": 1,
+            "is_base_move": true
+        },
+        "shattered-psyche--physical": {
+            "level_learn": 100,
+            "is_base_move": false
+        }
+    },
+    "unown-exclamation": {
+        "hidden-power": {
+            "level_learn": 1,
+            "is_base_move": true
+        },
+        "shattered-psyche--physical": {
+            "level_learn": 100,
+            "is_base_move": false
+        }
+    },
+    "unown-f": {
+        "hidden-power": {
+            "level_learn": 1,
+            "is_base_move": true
+        },
+        "shattered-psyche--physical": {
+            "level_learn": 100,
+            "is_base_move": false
+        }
+    },
+    "unown-g": {
+        "hidden-power": {
+            "level_learn": 1,
+            "is_base_move": true
+        },
+        "shattered-psyche--physical": {
+            "level_learn": 100,
+            "is_base_move": false
+        }
+    },
+    "unown-h": {
+        "hidden-power": {
+            "level_learn": 1,
+            "is_base_move": true
+        },
+        "shattered-psyche--physical": {
+            "level_learn": 100,
+            "is_base_move": false
+        }
+    },
+    "unown-i": {
+        "hidden-power": {
+            "level_learn": 1,
+            "is_base_move": true
+        },
+        "shattered-psyche--physical": {
+            "level_learn": 100,
+            "is_base_move": false
+        }
+    },
+    "unown-j": {
+        "hidden-power": {
+            "level_learn": 1,
+            "is_base_move": true
+        },
+        "shattered-psyche--physical": {
+            "level_learn": 100,
+            "is_base_move": false
+        }
+    },
+    "unown-k": {
+        "hidden-power": {
+            "level_learn": 1,
+            "is_base_move": true
+        },
+        "shattered-psyche--physical": {
+            "level_learn": 100,
+            "is_base_move": false
+        }
+    },
+    "unown-l": {
+        "hidden-power": {
+            "level_learn": 1,
+            "is_base_move": true
+        },
+        "shattered-psyche--physical": {
+            "level_learn": 100,
+            "is_base_move": false
+        }
+    },
+    "unown-m": {
+        "hidden-power": {
+            "level_learn": 1,
+            "is_base_move": true
+        },
+        "shattered-psyche--physical": {
+            "level_learn": 100,
+            "is_base_move": false
+        }
+    },
+    "unown-n": {
+        "hidden-power": {
+            "level_learn": 1,
+            "is_base_move": true
+        },
+        "shattered-psyche--physical": {
+            "level_learn": 100,
+            "is_base_move": false
+        }
+    },
+    "unown-o": {
+        "hidden-power": {
+            "level_learn": 1,
+            "is_base_move": true
+        },
+        "shattered-psyche--physical": {
+            "level_learn": 100,
+            "is_base_move": false
+        }
+    },
+    "unown-p": {
+        "hidden-power": {
+            "level_learn": 1,
+            "is_base_move": true
+        },
+        "shattered-psyche--physical": {
+            "level_learn": 100,
+            "is_base_move": false
+        }
+    },
+    "unown-q": {
+        "hidden-power": {
+            "level_learn": 1,
+            "is_base_move": true
+        },
+        "shattered-psyche--physical": {
+            "level_learn": 100,
+            "is_base_move": false
+        }
+    },
+    "unown-question": {
+        "hidden-power": {
+            "level_learn": 1,
+            "is_base_move": true
+        },
+        "shattered-psyche--physical": {
+            "level_learn": 100,
+            "is_base_move": false
+        }
+    },
+    "unown-r": {
+        "hidden-power": {
+            "level_learn": 1,
+            "is_base_move": true
+        },
+        "shattered-psyche--physical": {
+            "level_learn": 100,
+            "is_base_move": false
+        }
+    },
+    "unown-s": {
+        "hidden-power": {
+            "level_learn": 1,
+            "is_base_move": true
+        },
+        "shattered-psyche--physical": {
+            "level_learn": 100,
+            "is_base_move": false
+        }
+    },
+    "unown-t": {
+        "hidden-power": {
+            "level_learn": 1,
+            "is_base_move": true
+        },
+        "shattered-psyche--physical": {
+            "level_learn": 100,
+            "is_base_move": false
+        }
+    },
+    "unown-u": {
+        "hidden-power": {
+            "level_learn": 1,
+            "is_base_move": true
+        },
+        "shattered-psyche--physical": {
+            "level_learn": 100,
+            "is_base_move": false
+        }
+    },
+    "unown-v": {
+        "hidden-power": {
+            "level_learn": 1,
+            "is_base_move": true
+        },
+        "shattered-psyche--physical": {
+            "level_learn": 100,
+            "is_base_move": false
+        }
+    },
+    "unown-w": {
+        "hidden-power": {
+            "level_learn": 1,
+            "is_base_move": true
+        },
+        "shattered-psyche--physical": {
+            "level_learn": 100,
+            "is_base_move": false
+        }
+    },
+    "unown-x": {
+        "hidden-power": {
+            "level_learn": 1,
+            "is_base_move": true
+        },
+        "shattered-psyche--physical": {
+            "level_learn": 100,
+            "is_base_move": false
+        }
+    },
+    "unown-y": {
+        "hidden-power": {
+            "level_learn": 1,
+            "is_base_move": true
+        },
+        "shattered-psyche--physical": {
+            "level_learn": 100,
+            "is_base_move": false
+        }
+    },
+    "unown-z": {
+        "hidden-power": {
+            "level_learn": 1,
+            "is_base_move": true
+        },
+        "shattered-psyche--physical": {
             "level_learn": 100,
             "is_base_move": false
         }

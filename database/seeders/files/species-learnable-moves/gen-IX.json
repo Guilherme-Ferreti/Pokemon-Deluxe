@@ -1343,7 +1343,7 @@
             "is_base_move": false
         }
     },
-    "oinkologne-male": {
+    "oinkologne": {
         "tackle": {
             "level_learn": 1,
             "is_base_move": true
@@ -13501,7 +13501,7 @@
             "is_base_move": false
         }
     },
-    "gimmighoul": {
+    "gimmighoul-chest": {
         "astonish": {
             "level_learn": 1,
             "is_base_move": true

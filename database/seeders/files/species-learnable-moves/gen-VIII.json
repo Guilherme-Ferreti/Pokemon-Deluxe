@@ -9523,7 +9523,7 @@
             "is_base_move": false
         }
     },
-    "indeedee-male": {
+    "indeedee": {
         "stored-power": {
             "level_learn": 1,
             "is_base_move": true
@@ -15475,7 +15475,7 @@
             "is_base_move": false
         }
     },
-    "basculegion-male": {
+    "basculegion": {
         "phantom-force": {
             "level_learn": 1,
             "is_base_move": true

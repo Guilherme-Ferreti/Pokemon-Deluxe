@@ -3459,7 +3459,7 @@
             "is_base_move": false
         }
     },
-    "pyroar-male": {
+    "pyroar": {
         "hyper-beam": {
             "level_learn": 1,
             "is_base_move": true
@@ -5477,7 +5477,7 @@
             "is_base_move": false
         }
     },
-    "meowstic-male": {
+    "meowstic": {
         "scratch": {
             "level_learn": 1,
             "is_base_move": true
@@ -12079,7 +12079,7 @@
             "is_base_move": false
         }
     },
-    "pumpkaboo-average": {
+    "pumpkaboo": {
         "astonish": {
             "level_learn": 1,
             "is_base_move": true
@@ -12249,7 +12249,7 @@
             "is_base_move": false
         }
     },
-    "gourgeist-average": {
+    "gourgeist": {
         "astonish": {
             "level_learn": 1,
             "is_base_move": true
@@ -17493,7 +17493,7 @@
             "is_base_move": false
         }
     },
-    "meowstic-male-mega": {
+    "meowstic-mega": {
         "scratch": {
             "level_learn": 1,
             "is_base_move": true

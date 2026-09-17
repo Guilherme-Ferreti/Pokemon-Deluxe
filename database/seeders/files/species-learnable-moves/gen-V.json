@@ -19287,7 +19287,7 @@
             "is_base_move": false
         }
     },
-    "frillish-male": {
+    "frillish": {
         "bubble": {
             "level_learn": 1,
             "is_base_move": true
@@ -19473,7 +19473,7 @@
             "is_base_move": false
         }
     },
-    "jellicent-male": {
+    "jellicent": {
         "bubble": {
             "level_learn": 1,
             "is_base_move": true
