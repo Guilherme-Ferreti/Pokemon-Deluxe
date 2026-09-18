@@ -11,6 +11,7 @@ use Illuminate\Database\Eloquent\Collection as EloquentCollection;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Support\Carbon;
 use Override;
@@ -41,6 +42,7 @@ use Shared\Enums\MoveDamageClass;
  * @property Carbon $created_at
  * @property Carbon $updated_at
  * @property-read EloquentCollection<int, SpeciesLearnableMove> $learnableBySpecies
+ * @property-read EloquentCollection<int, Pokemon> $learnedByPokemon
  */
 #[Table('moves')]
 #[WithoutTimestamps]
@@ -76,5 +78,13 @@ final class Move extends Model
     public function learnableBySpecies(): HasMany
     {
         return $this->hasMany(SpeciesLearnableMove::class);
+    }
+
+    /**
+     * @return BelongsToMany<Pokemon, $this>
+     */
+    public function learnedByPokemon(): BelongsToMany
+    {
+        return $this->belongsToMany(Pokemon::class, 'pokemon_moves');
     }
 }

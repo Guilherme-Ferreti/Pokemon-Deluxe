@@ -9,10 +9,12 @@ use Illuminate\Database\Eloquent\Attributes\Scope;
 use Illuminate\Database\Eloquent\Attributes\Table;
 use Illuminate\Database\Eloquent\Attributes\Unguarded;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Collection as EloquentCollection;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Support\Carbon;
 use Override;
 use Shared\Enums\PokemonGender;
@@ -24,7 +26,6 @@ use Shared\Enums\PokemonGender;
  * @property string $species_id
  * @property int $level
  * @property int $experience
- * @property string[] $moves_ids
  * @property bool $in_party
  * @property bool $is_shiny
  * @property PokemonGender $gender
@@ -35,6 +36,7 @@ use Shared\Enums\PokemonGender;
  * @property-read User $user
  * @property-read Species $species
  * @property-read Pokeball $pokeball
+ * @property-read EloquentCollection<int, Move> $moves
  */
 #[Table('pokemon')]
 #[Unguarded]
@@ -49,7 +51,6 @@ final class Pokemon extends Model
         return [
             'level'       => 'integer',
             'experience'  => 'integer',
-            'moves_ids'   => 'array',
             'in_party'    => 'boolean',
             'is_shiny'    => 'boolean',
             'gender'      => PokemonGender::class,
@@ -87,6 +88,14 @@ final class Pokemon extends Model
     public function pokeball(): BelongsTo
     {
         return $this->belongsTo(Pokeball::class);
+    }
+
+    /**
+     * @return BelongsToMany<Move, $this>
+     */
+    public function moves(): BelongsToMany
+    {
+        return $this->belongsToMany(Move::class, 'pokemon_moves');
     }
 
     /**

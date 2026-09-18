@@ -25,8 +25,6 @@ return new class extends Migration
             $table->unsignedTinyInteger('level')->default(1);
             $table->unsignedInteger('experience')->default(0);
 
-            $table->json('moves_ids')->default('[]');
-
             $table->boolean('in_party')->default(false);
             $table->boolean('is_shiny')->default(false);
 

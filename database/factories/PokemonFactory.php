@@ -28,7 +28,6 @@ final class PokemonFactory extends Factory
             'species_id'       => Species::factory(),
             'level'            => fake()->numberBetween(1, 100),
             'experience'       => fake()->numberBetween(0, 100),
-            'moves_ids'        => json_encode([]),
             'in_party'         => fake()->boolean(),
             'is_shiny'         => fake()->boolean(10),
             'gender'           => function (array $attributes) {

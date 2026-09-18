@@ -7,6 +7,7 @@ namespace Database\Seeders;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\DB;
 use Shared\Models\Pokeball;
 use Shared\Models\Pokemon;
 use Shared\Models\Species;
@@ -17,12 +18,15 @@ final class UserSeeder extends Seeder
     public function run(): void
     {
         $user = User::factory()->create([
-            // 'name'  => 'Test User',
-            // 'email' => 'test@example.com',
+            'name'  => 'Test User',
+            'email' => 'test@example.com',
         ]);
+
+        $user = User::first();
 
         $this->addPokemonToParty($user);
         $this->addPokemonToBox($user);
+        $this->attachMovesToPokemon($user);
     }
 
     private function addPokemonToParty(User $user): void
@@ -39,9 +43,7 @@ final class UserSeeder extends Seeder
                 ->for($species)
                 ->recycle($pokeballs)
                 ->inParty()
-                ->create([
-                    'moves_ids' => json_encode($this->getRandomLearnableMoves($species->id)),
-                ])
+                ->create()
             );
     }
 
@@ -57,12 +59,10 @@ final class UserSeeder extends Seeder
                 $shiny   = Pokemon::factory()->for($user)->for($user, 'originalUser')->for($species)->recycle($pokeballs)->shiny()->inBox()->make()->toArray();
 
                 $regular['id']         = new Pokemon()->newUniqueId();
-                $regular['moves_ids']  = json_encode($this->getRandomLearnableMoves($species->id));
                 $regular['created_at'] = now();
                 $regular['updated_at'] = now();
 
                 $shiny['id']         = new Pokemon()->newUniqueId();
-                $shiny['moves_ids']  = json_encode($this->getRandomLearnableMoves($species->id));
                 $shiny['created_at'] = now();
                 $shiny['updated_at'] = now();
 
@@ -71,6 +71,19 @@ final class UserSeeder extends Seeder
             ->flatten(1)
             ->chunk(1000)
             ->each(fn (Collection $chunk) => Pokemon::insert($chunk->toArray()));
+    }
+
+    private function attachMovesToPokemon(User $user): void
+    {
+        $user->pokemon()
+            ->select('id', 'species_id')
+            ->get()
+            ->flatMap(fn (Pokemon $pokemon) => Arr::map($this->getRandomLearnableMoves($pokemon->species_id), fn (string $moveId) => [
+                'pokemon_id' => $pokemon->id,
+                'move_id'    => $moveId,
+            ]))
+            ->chunk(1000)
+            ->each(fn (Collection $chunk) => DB::table('pokemon_moves')->insert($chunk->toArray()));
     }
 
     /**
@@ -91,7 +104,7 @@ final class UserSeeder extends Seeder
             return Arr::random($moves, 4);
         }
 
-        while (count($moves) <= 4) {
+        while (count($moves) < 4) {
             $moves = [...$moves, ...$moves];
         }
 
