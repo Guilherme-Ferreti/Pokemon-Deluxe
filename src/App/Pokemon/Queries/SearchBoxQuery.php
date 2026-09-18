@@ -39,7 +39,7 @@ final class SearchBoxQuery
         return Pokemon::query()
             ->whereBelongsTo($user)
             ->inBox()
-            ->with('species:id,slug,name,types,sprites')
+            ->with('species:id,slug,name,types,sprites', 'moves:id,name')
             ->select('pokemon.id', 'pokemon.is_shiny', 'pokemon.gender', 'pokemon.level', 'pokemon.experience', 'pokemon.species_id');
     }
 

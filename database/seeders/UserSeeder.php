@@ -22,8 +22,6 @@ final class UserSeeder extends Seeder
             'email' => 'test@example.com',
         ]);
 
-        $user = User::first();
-
         $this->addPokemonToParty($user);
         $this->addPokemonToBox($user);
         $this->attachMovesToPokemon($user);

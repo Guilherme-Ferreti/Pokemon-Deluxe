@@ -52,6 +52,13 @@ final class SpeciesFactory extends Factory
         ];
     }
 
+    public function singleType(): static
+    {
+        return $this->state([
+            'types' => fake()->randomElement(ElementalType::cases()),
+        ]);
+    }
+
     public function dualType(): static
     {
         return $this->state([

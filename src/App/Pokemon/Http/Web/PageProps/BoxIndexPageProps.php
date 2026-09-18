@@ -9,6 +9,7 @@ use App\Pokemon\Queries\SearchBoxQuery;
 use Inertia\ProvidesInertiaProperties;
 use Inertia\RenderContext;
 use Shared\Helpers\AppHelper;
+use Shared\Models\Move;
 use Shared\Models\Pokemon;
 
 final readonly class BoxIndexPageProps implements ProvidesInertiaProperties
@@ -45,20 +46,9 @@ final readonly class BoxIndexPageProps implements ProvidesInertiaProperties
                 'types' => $pokemon->species->types,
                 'slug'  => $pokemon->species->slug,
             ],
-            'moves' => [
-                [
-                    'name' => 'Giga Impact',
-                ],
-                [
-                    'name' => 'Flamethrower',
-                ],
-                [
-                    'name' => 'Earthquake',
-                ],
-                [
-                    'name' => 'Ice Beam',
-                ],
-            ],
+            'moves' => $pokemon->moves->map(fn (Move $move) => [
+                'name' => $move->name,
+            ]),
         ]);
     }
 }

@@ -5,6 +5,7 @@ declare(strict_types=1);
 use Shared\Enums\ElementalType;
 use Shared\Enums\Generation;
 use Shared\Enums\PokemonTrait;
+use Shared\Models\Move;
 use Shared\Models\Pokemon;
 use Shared\Models\Species;
 use Shared\Models\User;
@@ -24,22 +25,30 @@ it('loads the box page without errors', function () {
 
 it('shows box pokemon', function () {
     $user    = User::factory()->create();
-    $pokemon = Pokemon::factory()->for($user)->count(3)->inBox()->create();
+    $pokemon = Pokemon::factory()->for($user)->for(Species::factory()->dualType())->has(Move::factory()->count(4))->inBox()->create();
 
     actingAs($user);
 
     visit(route('pokemon.web.box.index'))
-        ->assertSee($pokemon[0]->species->name)
-        ->assertSee($pokemon[1]->species->name)
-        ->assertSee($pokemon[2]->species->name)
-        ->assertDontSee('@pokemon-box-empty-state');
+        ->assertSee($pokemon->species->name)
+        ->assertSee($pokemon->species->types[0]->label())
+        ->assertSee($pokemon->species->types[1]->label())
+        ->assertSee($pokemon->species->name)
+        ->assertSee($pokemon->gender->label())
+        ->assertSee($pokemon->level)
+        ->assertSee($pokemon->experience)
+        ->assertSee($pokemon->moves[0]->name)
+        ->assertSee($pokemon->moves[1]->name)
+        ->assertSee($pokemon->moves[2]->name)
+        ->assertSee($pokemon->moves[3]->name)
+        ->assertDontSee('@pokemon-box__empty-state');
 });
 
 it('shows the box empty state when there are no pokemon in the box', function () {
     actingAs(User::factory()->create());
 
     visit(route('pokemon.web.box.index'))
-        ->assertVisible('@pokemon-box-empty-state');
+        ->assertVisible('@pokemon-box__empty-state');
 });
 
 describe('search filters', function () {

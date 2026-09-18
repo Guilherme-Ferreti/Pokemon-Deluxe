@@ -80,9 +80,12 @@
             class="flex items-center gap-1"
           >
             <span class="h-1.5 w-1.5 shrink-0 rounded-full bg-blue-300"></span>
-            <span class="truncate text-xs text-foreground">{{
-              move.name
-            }}</span>
+            <span
+              class="truncate text-xs text-foreground"
+              :title="move.name"
+            >
+              {{ move.name }}
+            </span>
           </li>
         </ul>
       </div>
