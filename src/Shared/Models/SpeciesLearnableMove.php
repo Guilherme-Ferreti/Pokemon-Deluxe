@@ -4,8 +4,10 @@ declare(strict_types=1);
 
 namespace Shared\Models;
 
+use Database\Factories\SpeciesLearnableMoveFactory;
 use Illuminate\Database\Eloquent\Attributes\WithoutTimestamps;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Override;
@@ -19,7 +21,8 @@ use Override;
 #[WithoutTimestamps]
 final class SpeciesLearnableMove extends Model
 {
-    use HasUuids;
+    /** @use HasFactory<SpeciesLearnableMoveFactory> */
+    use HasFactory, HasUuids;
 
     /**
      * @return array<string, string>

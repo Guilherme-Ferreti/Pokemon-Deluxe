@@ -2,9 +2,12 @@
 
 declare(strict_types=1);
 
+use Shared\Enums\MoveCategory;
 use Shared\Enums\PokemonGender;
 use Shared\Enums\SpeciesTrait;
+use Shared\Models\Move;
 use Shared\Models\Species;
+use Shared\Models\SpeciesLearnableMove;
 use Shared\Models\User;
 
 use function Pest\Laravel\actingAs;
@@ -219,5 +222,111 @@ describe('autocomplete search', function () {
             ->type('search', 'non-existent')
             ->wait(1)
             ->assertPresent('@pokedex-species-autocomplete__empty-state');
+    });
+});
+
+describe('learnable moves card', function () {
+    it('displays the card with both move groups', function () {
+        $user    = User::factory()->create();
+        $species = Species::factory()->create();
+
+        actingAs($user);
+
+        visit(route('dex.web.pokedex.show', $species))
+            ->assertPresent('@pokedex-species-learnable-moves')
+            ->assertSeeIn('@pokedex-species-learnable-moves', 'Moves Learned')
+            ->assertSeeIn('@pokedex-species-learnable-moves', 'By level up')
+            ->assertSeeIn('@pokedex-species-learnable-moves', 'By TM')
+            ->assertNoSmoke();
+    });
+
+    it('displays the moves learned by level up', function () {
+        $user    = User::factory()->create();
+        $species = Species::factory()->create();
+
+        $move = Move::factory()->create(['category' => MoveCategory::DAMAGE]);
+
+        $learnableMove = SpeciesLearnableMove::factory()->for($species)->for($move, 'move')->create();
+
+        actingAs($user);
+
+        visit(route('dex.web.pokedex.show', $species))
+            ->assertSeeIn('@pokedex-species-learnable-moves__level-up', $learnableMove->level_learn)
+            ->assertSeeIn('@pokedex-species-learnable-moves__level-up', $move->name)
+            ->assertSeeIn('@pokedex-species-learnable-moves__level-up', $move->type->label())
+            ->assertSeeIn('@pokedex-species-learnable-moves__level-up', $move->power)
+            ->assertSeeIn('@pokedex-species-learnable-moves__level-up', "{$move->accuracy}%")
+            ->assertNoSmoke();
+    });
+
+    it('displays the moves learned by TM', function () {
+        $user    = User::factory()->create();
+        $species = Species::factory()->create();
+
+        $move = Move::factory()->create(['category' => MoveCategory::DAMAGE]);
+
+        SpeciesLearnableMove::factory()->for($species)->for($move, 'move')->learnedByTm()->create();
+
+        actingAs($user);
+
+        visit(route('dex.web.pokedex.show', $species))
+            ->assertSeeIn('@pokedex-species-learnable-moves__tm', '001')
+            ->assertSeeIn('@pokedex-species-learnable-moves__tm', $move->name)
+            ->assertSeeIn('@pokedex-species-learnable-moves__tm', $move->type->label())
+            ->assertSeeIn('@pokedex-species-learnable-moves__tm', $move->power)
+            ->assertSeeIn('@pokedex-species-learnable-moves__tm', "{$move->accuracy}%")
+            ->assertNoSmoke();
+    });
+
+    it('sorts the moves learned by level up by level', function () {
+        $user    = User::factory()->create();
+        $species = Species::factory()->create();
+
+        $lowLevelMove  = Move::factory()->create(['name' => 'Tackle']);
+        $highLevelMove = Move::factory()->create(['name' => 'Hyper Beam']);
+
+        SpeciesLearnableMove::factory()->for($species)->for($lowLevelMove, 'move')->create(['level_learn' => 1]);
+        SpeciesLearnableMove::factory()->for($species)->for($highLevelMove, 'move')->create(['level_learn' => 50]);
+
+        actingAs($user);
+
+        $levelCell  = '[data-test="pokedex-species-learnable-moves__level-up"] tbody tr:first-child td:first-child';
+        $sortButton = '[data-test="pokedex-species-learnable-moves__level-up"] thead [aria-label="Sort by level"]';
+
+        visit(route('dex.web.pokedex.show', $species))
+            ->assertSeeIn($levelCell, '1')
+            ->click($sortButton)
+            ->wait(0.5)
+            ->assertSeeIn($levelCell, '50')
+            ->click($sortButton)
+            ->wait(0.5)
+            ->assertSeeIn($levelCell, '1')
+            ->assertNoSmoke();
+    });
+
+    it('sorts the moves learned by TM by move', function () {
+        $user    = User::factory()->create();
+        $species = Species::factory()->create();
+
+        $firstMove  = Move::factory()->create(['name' => 'Ember']);
+        $secondMove = Move::factory()->create(['name' => 'Tackle']);
+
+        SpeciesLearnableMove::factory()->for($species)->for($firstMove, 'move')->learnedByTm()->create();
+        SpeciesLearnableMove::factory()->for($species)->for($secondMove, 'move')->learnedByTm()->create();
+
+        actingAs($user);
+
+        $moveCell   = '[data-test="pokedex-species-learnable-moves__tm"] tbody tr:first-child td:nth-child(2)';
+        $sortButton = '[data-test="pokedex-species-learnable-moves__tm"] thead [aria-label="Sort by move"]';
+
+        visit(route('dex.web.pokedex.show', $species))
+            ->assertSeeIn($moveCell, 'Ember')
+            ->click($sortButton)
+            ->wait(0.5)
+            ->assertSeeIn($moveCell, 'Ember')
+            ->click($sortButton)
+            ->wait(0.5)
+            ->assertSeeIn($moveCell, 'Tackle')
+            ->assertNoSmoke();
     });
 });

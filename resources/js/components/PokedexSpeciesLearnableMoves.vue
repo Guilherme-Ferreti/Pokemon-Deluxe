@@ -12,7 +12,10 @@
         <CardDescription class="mb-4">
           {{ speciesName }} learns the following moves at the levels specified
         </CardDescription>
-        <Table class="table-content-centered table-empty-cell-placeholder">
+        <Table
+          class="table-content-centered table-empty-cell-placeholder"
+          data-test="pokedex-species-learnable-moves__level-up"
+        >
           <TableHeader>
             <TableRow>
               <AppTableHeadSortableButton
@@ -88,7 +91,10 @@
         <CardDescription class="mb-4">
           {{ speciesName }} is compatible with these Technical Machines
         </CardDescription>
-        <Table class="table-content-centered table-empty-cell-placeholder">
+        <Table
+          class="table-content-centered table-empty-cell-placeholder"
+          data-test="pokedex-species-learnable-moves__tm"
+        >
           <TableHeader>
             <TableRow>
               <AppTableHeadSortableButton

@@ -6,8 +6,10 @@ use Inertia\Testing\AssertableInertia as Assert;
 use Shared\Enums\ElementalType;
 use Shared\Enums\PokemonGender;
 use Shared\Models\EvolutionItem;
+use Shared\Models\Move;
 use Shared\Models\Species;
 use Shared\Models\SpeciesEvolution;
+use Shared\Models\SpeciesLearnableMove;
 use Shared\Models\User;
 
 use function Pest\Laravel\actingAs;
@@ -51,6 +53,8 @@ it('loads the species show page with expected structure', function () {
             ->has('captureStatistics.currentUser.shiny')
             ->where('evolutionChain.previous', [])
             ->where('evolutionChain.into', [])
+            ->where('learnableMoves.levelUp', [])
+            ->where('learnableMoves.tm', [])
             ->has('previousSpecies')
             ->where('previousSpecies.name', $previousSpecies->name)
             ->where('previousSpecies.pokedexNumber', $previousSpecies->pokedex_number)
@@ -126,5 +130,62 @@ it('displays evolution chain', function () {
             ->where('evolutionChain.into.0.gender', null)
             ->where('evolutionChain.into.0.evolutionItem.name', $evolutionItem->name)
             ->where('evolutionChain.into.0.evolutionItem.sprite', $evolutionItem->sprite)
+        );
+});
+
+it('displays learnable moves split into level up and tm', function () {
+    $user    = User::factory()->create();
+    $species = Species::factory()->create();
+
+    $levelUpMove = Move::factory()->create();
+    $tmMove      = Move::factory()->create();
+
+    SpeciesLearnableMove::factory()->for($species)->for($levelUpMove, 'move')->create(['level_learn' => 5]);
+    SpeciesLearnableMove::factory()->for($species)->for($tmMove, 'move')->learnedByTm()->create();
+
+    actingAs($user);
+
+    get(route('dex.web.pokedex.show', $species))
+        ->assertInertia(fn (Assert $page) => $page
+            ->has('learnableMoves.levelUp', 1)
+            ->where('learnableMoves.levelUp.0.move.name', $levelUpMove->name)
+            ->where('learnableMoves.levelUp.0.move.type', $levelUpMove->type->value)
+            ->where('learnableMoves.levelUp.0.move.category', $levelUpMove->category->value)
+            ->where('learnableMoves.levelUp.0.move.power', $levelUpMove->power)
+            ->where('learnableMoves.levelUp.0.move.accuracy', $levelUpMove->accuracy)
+            ->where('learnableMoves.levelUp.0.move.isZMove', $levelUpMove->is_z_move)
+            ->where('learnableMoves.levelUp.0.move.isDynamaxMove', $levelUpMove->is_dynamax_move)
+            ->where('learnableMoves.levelUp.0.levelLearn', 5)
+            ->has('learnableMoves.tm', 1)
+            ->where('learnableMoves.tm.0.move.name', $tmMove->name)
+            ->where('learnableMoves.tm.0.move.type', $tmMove->type->value)
+            ->where('learnableMoves.tm.0.move.category', $tmMove->category->value)
+            ->where('learnableMoves.tm.0.move.power', $tmMove->power)
+            ->where('learnableMoves.tm.0.move.accuracy', $tmMove->accuracy)
+            ->where('learnableMoves.tm.0.move.isZMove', $tmMove->is_z_move)
+            ->where('learnableMoves.tm.0.move.isDynamaxMove', $tmMove->is_dynamax_move)
+            ->where('learnableMoves.tm.0.tmCode', '001')
+        );
+});
+
+it('orders learnable moves by level then by name', function () {
+    $user    = User::factory()->create();
+    $species = Species::factory()->create();
+
+    $highLevelMove = Move::factory()->create(['name' => 'Hyper Beam']);
+    $lowLevelMove  = Move::factory()->create(['name' => 'Tackle']);
+
+    SpeciesLearnableMove::factory()->for($species)->for($highLevelMove, 'move')->create(['level_learn' => 50]);
+    SpeciesLearnableMove::factory()->for($species)->for($lowLevelMove, 'move')->create(['level_learn' => 1]);
+
+    actingAs($user);
+
+    get(route('dex.web.pokedex.show', $species))
+        ->assertInertia(fn (Assert $page) => $page
+            ->has('learnableMoves.levelUp', 2)
+            ->where('learnableMoves.levelUp.0.move.name', $lowLevelMove->name)
+            ->where('learnableMoves.levelUp.0.levelLearn', 1)
+            ->where('learnableMoves.levelUp.1.move.name', $highLevelMove->name)
+            ->where('learnableMoves.levelUp.1.levelLearn', 50)
         );
 });
