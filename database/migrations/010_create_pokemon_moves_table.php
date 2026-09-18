@@ -13,8 +13,8 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('pokemon_moves', function (Blueprint $table): void {
-            $table->foreignIdFor(Pokemon::class);
-            $table->foreignIdFor(Move::class);
+            $table->foreignIdFor(Pokemon::class)->constrained()->cascadeOnDelete();
+            $table->foreignIdFor(Move::class)->constrained()->cascadeOnDelete();
 
             $table->index(['pokemon_id', 'move_id']);
         });
