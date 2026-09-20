@@ -95,7 +95,7 @@ defineProps<{
 </script>
 
 <style scoped>
-@reference '../../../../css/app.css';
+@reference '@css/app.css';
 
 .navigation__wrapper {
   @apply flex h-13.5 items-center gap-4;

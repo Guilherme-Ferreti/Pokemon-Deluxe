@@ -46,7 +46,7 @@ defineProps<{
 </script>
 
 <style scoped>
-@reference '../../../../css/app.css';
+@reference '@css/app.css';
 
 .party-card {
   @apply @container/card gap-3;
