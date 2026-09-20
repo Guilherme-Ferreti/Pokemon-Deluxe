@@ -71,7 +71,7 @@ import AppNavLink from '@/components/AppNavLink.vue';
 import AppPokemonGenderIcon from '@/components/AppPokemonGenderIcon.vue';
 import AppSpeciesPortrait from '@/components/AppSpeciesPortrait.vue';
 import Separator from '@/components/ui/separator/Separator.vue';
-import type { DexPokedexShowPageProps } from '@/pages/Dex/Pokedex/Show.vue';
+import type { DexPokedexShowPageProps } from '@/types';
 import { route } from '@/types/helpers/route.js';
 
 const props = defineProps<{

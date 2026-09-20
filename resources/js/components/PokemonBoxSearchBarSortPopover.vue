@@ -75,7 +75,7 @@ import {
   TooltipContent,
   TooltipTrigger,
 } from '@/components/ui/tooltip';
-import type { PokemonBoxIndexPageProps } from '@/pages/Pokemon/Box/Index.vue';
+import type { PokemonBoxIndexPageProps } from '@/types';
 import { SearchBoxSortBy, SortDirection } from '@/types';
 
 defineProps<{

@@ -25,44 +25,8 @@ import AppIconNotInBox from '@/components/AppIconNotInBox.vue';
 import AppPageHeader from '@/components/AppPageHeader.vue';
 import AppSection from '@/components/AppSection.vue';
 import Pokedex from '@/components/Pokedex.vue';
-import type {
-  ElementalType,
-  FilterOption,
-  Generation,
-  PaginatedList,
-  SearchPokedexSortBy,
-  SortDirection,
-  SpeciesTrait,
-  SpeciesTypes,
-} from '@/types';
+import type { DexPokedexIndexPageProps } from '@/types';
 import { route } from '@/types/helpers/route';
-
-export interface DexPokedexIndexPageProps {
-  speciesList: PaginatedList<{
-    id: string;
-    portrait: string;
-    name: string;
-    pokedexNumber: number;
-    types: SpeciesTypes;
-    generation: string;
-    slug: string;
-    regularInBox: boolean;
-    shinyInBox: boolean;
-  }>;
-  activeFilters: {
-    search: string;
-    types: ElementalType[];
-    traits: SpeciesTrait[];
-    generations: Generation[];
-    sort: SearchPokedexSortBy;
-    dir: SortDirection;
-  };
-  filterOptions: {
-    types: FilterOption<ElementalType>[];
-    traits: FilterOption<SpeciesTrait>[];
-    generations: FilterOption<Generation>[];
-  };
-}
 
 defineProps<DexPokedexIndexPageProps>();
 

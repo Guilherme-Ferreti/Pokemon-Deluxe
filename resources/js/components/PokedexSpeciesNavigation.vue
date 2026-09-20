@@ -85,7 +85,7 @@ import {
   TooltipContent,
 } from '@/components/ui/tooltip';
 import { formatPokedexNumber } from '@/lib/utils';
-import type { DexPokedexShowPageProps } from '@/pages/Dex/Pokedex/Show.vue';
+import type { DexPokedexShowPageProps } from '@/types';
 import { route } from '@/types/helpers/route';
 
 defineProps<{

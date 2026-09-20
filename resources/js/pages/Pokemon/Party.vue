@@ -14,15 +14,7 @@ import { Head } from '@inertiajs/vue3';
 import AppPageHeader from '@/components/AppPageHeader.vue';
 import AppSection from '@/components/AppSection.vue';
 import PokemonParty from '@/components/PokemonParty.vue';
-
-export interface PokemonPartyPageProps {
-  party: {
-    id: string;
-    name: string;
-    frontSprite: string | null;
-    level: number;
-  }[];
-}
+import type { PokemonPartyPageProps } from '@/types';
 
 defineProps<PokemonPartyPageProps>();
 </script>

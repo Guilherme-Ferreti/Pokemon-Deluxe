@@ -18,51 +18,8 @@ import { Head, setLayoutProps } from '@inertiajs/vue3';
 import AppPageHeader from '@/components/AppPageHeader.vue';
 import AppSection from '@/components/AppSection.vue';
 import PokemonBox from '@/components/PokemonBox.vue';
-import type {
-  ElementalType,
-  FilterOption,
-  Generation,
-  PaginatedList,
-  PokemonGender,
-  PokemonTrait,
-  SearchBoxSortBy,
-  SortDirection,
-  SpeciesTypes,
-} from '@/types';
+import type { PokemonBoxIndexPageProps } from '@/types';
 import { route } from '@/types/helpers/route';
-
-export interface PokemonBoxIndexPageProps {
-  pokemonList: PaginatedList<{
-    id: string;
-    name: string;
-    gender: PokemonGender;
-    frontSprite: string | null;
-    level: number;
-    experience: number;
-    species: {
-      types: SpeciesTypes;
-      slug: string;
-    };
-    moves: {
-      name: string;
-    }[];
-  }>;
-  activeFilters: {
-    search: string;
-    types: ElementalType[];
-    traits: PokemonTrait[];
-    generations: Generation[];
-    sort: SearchBoxSortBy;
-    dir: SortDirection;
-  };
-  filterOptions: {
-    types: FilterOption<ElementalType>[];
-    traits: FilterOption<PokemonTrait>[];
-    generations: FilterOption<Generation>[];
-    sort: FilterOption<SearchBoxSortBy>[];
-    dir: FilterOption<SortDirection>[];
-  };
-}
 
 defineProps<PokemonBoxIndexPageProps>();
 

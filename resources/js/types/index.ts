@@ -2,6 +2,11 @@ import type { ElementalType } from './php-types';
 
 export * from './auth';
 export * from './php-types';
+export * from './pageProps/DexAttackdexIndexPageProps';
+export * from './pageProps/DexPokedexIndexPageProps';
+export * from './pageProps/DexPokedexShowPageProps';
+export * from './pageProps/PokemonBoxIndexPageProps';
+export * from './pageProps/PokemonPartyPageProps';
 
 export type PaginatedList<T> = {
   currentPage: number;

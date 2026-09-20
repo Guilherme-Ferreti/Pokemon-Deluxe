@@ -46,7 +46,7 @@ import PokemonBoxSearchBarFiltersDialog from '@/components/PokemonBoxSearchBarFi
 import PokemonBoxSearchBarSortPopover from '@/components/PokemonBoxSearchBarSortPopover.vue';
 import { Card } from '@/components/ui/card';
 import { removeFalsyValues } from '@/lib/utils';
-import type { PokemonBoxIndexPageProps } from '@/pages/Pokemon/Box/Index.vue';
+import type { PokemonBoxIndexPageProps } from '@/types';
 import { route } from '@/types/helpers/route.js';
 
 const props = defineProps<{

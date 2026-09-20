@@ -193,7 +193,7 @@ import {
   TableRow,
 } from '@/components/ui/table';
 import { useSortable } from '@/composables/useSortable.js';
-import type { DexPokedexShowPageProps } from '@/pages/Dex/Pokedex/Show.vue';
+import type { DexPokedexShowPageProps } from '@/types';
 
 const props = defineProps<{
   speciesName: string;

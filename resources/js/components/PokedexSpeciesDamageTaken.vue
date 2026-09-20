@@ -38,7 +38,7 @@ import AppInfoCard from '@/components/AppInfoCard.vue';
 import AppInfoCardSectionTitle from '@/components/AppInfoCardSectionTitle.vue';
 import ElementalTypeBadges from '@/components/ElementalTypeBadges.vue';
 import Separator from '@/components/ui/separator/Separator.vue';
-import type { DexPokedexShowPageProps } from '@/pages/Dex/Pokedex/Show.vue';
+import type { DexPokedexShowPageProps } from '@/types';
 import type { ElementalType } from '@/types';
 
 const props = defineProps<{

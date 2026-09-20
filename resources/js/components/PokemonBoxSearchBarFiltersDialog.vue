@@ -51,7 +51,7 @@ import AppCheckbox from '@/components/AppCheckbox.vue';
 import AppCheckboxGroup from '@/components/AppCheckboxGroup.vue';
 import AppSearchFiltersDialog from '@/components/AppSearchFiltersDialog.vue';
 import { anyItemExists } from '@/lib/utils.js';
-import type { PokemonBoxIndexPageProps } from '@/pages/Pokemon/Box/Index.vue';
+import type { PokemonBoxIndexPageProps } from '@/types';
 import { PokemonTrait } from '@/types';
 
 defineProps<{

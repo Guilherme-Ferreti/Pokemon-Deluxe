@@ -137,7 +137,7 @@ import {
   TableRow,
 } from '@/components/ui/table';
 import { removeFalsyValues } from '@/lib/utils.js';
-import type { DexPokedexIndexPageProps } from '@/pages/Dex/Pokedex/Index.vue';
+import type { DexPokedexIndexPageProps } from '@/types';
 import { SearchPokedexSortBy } from '@/types';
 import { route } from '@/types/helpers/route';
 

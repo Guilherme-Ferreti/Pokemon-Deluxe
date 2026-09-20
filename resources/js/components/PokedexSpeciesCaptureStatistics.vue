@@ -36,7 +36,7 @@ import AppInfoCard from '@/components/AppInfoCard.vue';
 import AppInfoCardRow from '@/components/AppInfoCardRow.vue';
 import AppInfoCardSectionTitle from '@/components/AppInfoCardSectionTitle.vue';
 import { Separator } from '@/components/ui/separator';
-import type { DexPokedexShowPageProps } from '@/pages/Dex/Pokedex/Show.vue';
+import type { DexPokedexShowPageProps } from '@/types';
 
 defineProps<{
   speciesName: string;

@@ -45,7 +45,7 @@
 <script setup lang="ts">
 import { Card } from '@/components/ui/card';
 import { formatPokedexNumber } from '@/lib/utils';
-import type { DexPokedexShowPageProps } from '@/pages/Dex/Pokedex/Show.vue';
+import type { DexPokedexShowPageProps } from '@/types';
 
 defineProps<{
   species: DexPokedexShowPageProps['species'];

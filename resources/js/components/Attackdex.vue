@@ -150,7 +150,7 @@ import {
   TableBody,
 } from '@/components/ui/table';
 import { removeFalsyValues } from '@/lib/utils';
-import type { DexAttackdexIndexPageProps } from '@/pages/Dex/Attackdex/Index.vue';
+import type { DexAttackdexIndexPageProps } from '@/types';
 import { SearchAttackdexSortBy } from '@/types';
 import { route } from '@/types/helpers/route';
 

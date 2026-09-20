@@ -107,7 +107,7 @@ import {
   DropdownMenuContent,
   DropdownMenuItem,
 } from '@/components/ui/dropdown-menu';
-import type { PokemonBoxIndexPageProps } from '@/pages/Pokemon/Box/Index.vue';
+import type { PokemonBoxIndexPageProps } from '@/types';
 import { route } from '@/types/helpers/route';
 
 defineProps<{
