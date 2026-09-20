@@ -1,0 +1,37 @@
+import type {
+  ElementalType,
+  FilterOption,
+  Generation,
+  PaginatedList,
+  SearchPokedexSortBy,
+  SortDirection,
+  SpeciesTrait,
+  SpeciesTypes,
+} from '@/shared/types';
+
+export interface DexPokedexIndexPageProps {
+  speciesList: PaginatedList<{
+    id: string;
+    portrait: string;
+    name: string;
+    pokedexNumber: number;
+    types: SpeciesTypes;
+    generation: string;
+    slug: string;
+    regularInBox: boolean;
+    shinyInBox: boolean;
+  }>;
+  activeFilters: {
+    search: string;
+    types: ElementalType[];
+    traits: SpeciesTrait[];
+    generations: Generation[];
+    sort: SearchPokedexSortBy;
+    dir: SortDirection;
+  };
+  filterOptions: {
+    types: FilterOption<ElementalType>[];
+    traits: FilterOption<SpeciesTrait>[];
+    generations: FilterOption<Generation>[];
+  };
+}

@@ -18,9 +18,9 @@ final class TypeScriptTransformerServiceProvider extends BaseTypeScriptTransform
     {
         $config
             ->transformer(new EnumTransformer(useUnionEnums: false))
-            ->transformDirectories(app_path(), app_path('../App'))
+            ->transformDirectories(base_path('src/App'), base_path('src/Shared'))
             ->writer(new FlatModuleWriter('php-types.ts'))
-            ->outputDirectory(resource_path('js/types'))
+            ->outputDirectory(resource_path('js/shared/types'))
             ->formatter(PrettierFormatter::class)
             ->provider(new LaravelRouteTransformedProvider(
                 filters: [

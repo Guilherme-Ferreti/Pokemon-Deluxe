@@ -13,7 +13,9 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Facades\Vite;
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\Str;
 use Illuminate\Validation\Rules\Password;
+use Inertia\Inertia;
 use Override;
 use ReflectionEnum;
 
@@ -28,6 +30,8 @@ final class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
         $this->configureDefaults();
+
+        $this->configureInertiaPagePaths();
 
         $this->registerCollectionMacros();
     }
@@ -65,6 +69,11 @@ final class AppServiceProvider extends ServiceProvider
         URL::forceHttps(app()->isProduction());
 
         Vite::useAggressivePrefetching();
+    }
+
+    private function configureInertiaPagePaths(): void
+    {
+        Inertia::transformComponentUsing(fn (string $name): string => Str::of($name)->replaceFirst('/', '/pages/')->toString());
     }
 
     private function registerCollectionMacros(): void

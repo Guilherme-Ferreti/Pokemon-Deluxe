@@ -1,0 +1,38 @@
+<template>
+  <div
+    class="flex h-12 items-center gap-2 px-2 group-data-[collapsible=icon]:justify-center"
+  >
+    <Tooltip>
+      <TooltipTrigger as-child>
+        <img
+          src="/assets/logo-icon.png"
+          alt="Pokémon Deluxe"
+          class="max-w-8 group-data-[collapsible=icon]:size-6"
+        />
+      </TooltipTrigger>
+      <TooltipContent
+        side="right"
+        align="center"
+        :hidden="state !== 'collapsed' || isMobile"
+      >
+        Pokémon Deluxe
+      </TooltipContent>
+    </Tooltip>
+    <p
+      class="text-sm leading-tight font-semibold text-sidebar-foreground group-data-[collapsible=icon]:hidden"
+    >
+      Pokémon Deluxe
+    </p>
+  </div>
+</template>
+
+<script setup lang="ts">
+import { useSidebar } from '@/shared/components/ui/sidebar';
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipTrigger,
+} from '@/shared/components/ui/tooltip';
+
+const { isMobile, state } = useSidebar();
+</script>

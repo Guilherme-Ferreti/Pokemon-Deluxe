@@ -38,7 +38,11 @@ return [
     'pages' => [
 
         'paths' => [
-            resource_path('js/pages'),
+            resource_path('js/app/Auth/pages'),
+            resource_path('js/app/Dashboard/pages'),
+            resource_path('js/app/Dex/pages'),
+            resource_path('js/app/Pokemon/pages'),
+            resource_path('js/app/Public/pages'),
         ],
 
         'extensions' => [
