@@ -31,7 +31,7 @@ it('loads the pokedex page with expected structure', function () {
     get(route('dex.web.pokedex.index'))
         ->assertSuccessful()
         ->assertInertia(fn (Assert $page) => $page
-            ->component('Dex/Pokedex/Index')
+            ->component('Dex/pages/Pokedex/Index')
             ->has('activeFilters')
             ->has('filterOptions', fn (Assert $page) => $page->hasAll(['types', 'traits', 'generations']))
             ->has('speciesList.data', 2)

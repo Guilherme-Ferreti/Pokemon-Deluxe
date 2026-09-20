@@ -21,7 +21,7 @@ it('loads the register page with expected structure', function () {
     get(route('auth.web.register.create'))
         ->assertSuccessful()
         ->assertInertia(fn (Assert $page) => $page
-            ->component('Auth/Register')
+            ->component('Auth/pages/Register')
         );
 });
 

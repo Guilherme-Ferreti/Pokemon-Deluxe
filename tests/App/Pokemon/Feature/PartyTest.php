@@ -22,7 +22,7 @@ it('loads the party page with expected structure', function () {
         ->get(route('pokemon.web.party'))
         ->assertSuccessful()
         ->assertInertia(fn (Assert $page) => $page
-            ->component('Pokemon/Party')
+            ->component('Pokemon/pages/Party')
             ->has('party', 3)
             ->where('party.0.id', $partyPokemon[0]->id)
             ->where('party.0.name', $partyPokemon[0]->getName())

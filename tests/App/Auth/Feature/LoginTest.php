@@ -22,7 +22,7 @@ it('loads the login page with expected structure', function () {
     get(route('auth.web.login.create'))
         ->assertSuccessful()
         ->assertInertia(fn (Assert $page) => $page
-            ->component('Auth/Login')
+            ->component('Auth/pages/Login')
         );
 });
 

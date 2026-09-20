@@ -33,7 +33,7 @@ it('loads the species show page with expected structure', function () {
     get(route('dex.web.pokedex.show', $species))
         ->assertSuccessful()
         ->assertInertia(fn (Assert $page) => $page
-            ->component('Dex/Pokedex/Show')
+            ->component('Dex/pages/Pokedex/Show')
             ->has('species')
             ->where('species.id', $species->id)
             ->where('species.name', $species->name)

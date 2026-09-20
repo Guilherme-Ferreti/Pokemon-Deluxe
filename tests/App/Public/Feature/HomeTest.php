@@ -10,6 +10,6 @@ it('loads the public home page with expected structure', function () {
     get(route('public.web.home'))
         ->assertSuccessful()
         ->assertInertia(fn (Assert $page) => $page
-            ->component('Public/Home')
+            ->component('Public/pages/Home')
         );
 });
