@@ -11,7 +11,7 @@
       >
         <img
           loading="lazy"
-          :src="pokemon.frontSprite"
+          :src="pokemon.frontSprite ?? undefined"
           :alt="pokemon.name"
         />
         <p class="party-card__pokemon-name">

@@ -42,11 +42,11 @@ export interface DexAttackdexIndexPageProps {
     name: string;
     type: ElementalType;
     category: MoveCategory;
-    power?: number;
+    power: number | null;
     accuracy: number;
-    ailment?: Ailment;
-    ailmentChance?: number;
-    flinchChance?: number;
+    ailment: Ailment | null;
+    ailmentChance: number | null;
+    flinchChance: number | null;
     isZMove: boolean;
     isDynamaxMove: boolean;
   }>;

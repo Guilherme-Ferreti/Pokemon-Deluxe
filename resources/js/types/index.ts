@@ -12,7 +12,7 @@ export type PaginatedList<T> = {
   links: {
     url: string;
     label: string;
-    page?: number;
+    page: number | null;
     active: boolean;
   }[];
   nextPageUrl: string;
@@ -32,14 +32,14 @@ export interface FilterOption<T extends string | number = string | number> {
 export type SpeciesTypes = [ElementalType] | [ElementalType, ElementalType];
 
 export type SpeciesSprites = {
-  backDefault?: string;
-  backFemale?: string;
-  backShiny?: string;
-  backShinyFemale?: string;
-  frontDefault?: string;
-  frontFemale?: string;
-  frontShiny?: string;
-  frontShinyFemale?: string;
+  backDefault: string | null;
+  backFemale: string | null;
+  backShiny: string | null;
+  backShinyFemale: string | null;
+  frontDefault: string | null;
+  frontFemale: string | null;
+  frontShiny: string | null;
+  frontShinyFemale: string | null;
 };
 
 export type Primitive = string | number | boolean | null | undefined;

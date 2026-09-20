@@ -36,7 +36,7 @@ export interface PokemonBoxIndexPageProps {
     id: string;
     name: string;
     gender: PokemonGender;
-    frontSprite?: string;
+    frontSprite: string | null;
     level: number;
     experience: number;
     species: {

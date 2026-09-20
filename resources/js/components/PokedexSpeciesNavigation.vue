@@ -89,8 +89,8 @@ import type { DexPokedexShowPageProps } from '@/pages/Dex/Pokedex/Show.vue';
 import { route } from '@/types/helpers/route';
 
 defineProps<{
-  previousSpecies?: DexPokedexShowPageProps['previousSpecies'];
-  nextSpecies?: DexPokedexShowPageProps['nextSpecies'];
+  previousSpecies: DexPokedexShowPageProps['previousSpecies'];
+  nextSpecies: DexPokedexShowPageProps['nextSpecies'];
 }>();
 </script>
 

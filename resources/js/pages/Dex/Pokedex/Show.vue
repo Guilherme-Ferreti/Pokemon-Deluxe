@@ -83,8 +83,8 @@ export interface DexPokedexShowPageProps {
     textEntry: string;
     sprites: SpeciesSprites;
     portraits: {
-      regular?: string;
-      shiny?: string;
+      regular: string | null;
+      shiny: string | null;
     };
     traits: {
       isBaby: boolean;
@@ -101,18 +101,18 @@ export interface DexPokedexShowPageProps {
     malePercentage: number;
     femalePercentage: number;
   };
-  previousSpecies?: {
+  previousSpecies: {
     name: string;
     pokedexNumber: number;
     portrait: string;
     slug: string;
-  };
-  nextSpecies?: {
+  } | null;
+  nextSpecies: {
     name: string;
     pokedexNumber: number;
     portrait: string;
     slug: string;
-  };
+  } | null;
   captureStatistics: {
     currentUser: {
       regular: number;
@@ -131,12 +131,12 @@ export interface DexPokedexShowPageProps {
         slug: string;
         portrait: string;
       };
-      evolutionItem?: {
+      evolutionItem: {
         name: string;
-        sprite?: string;
-      };
-      minLevel?: number;
-      gender?: PokemonGender;
+        sprite: string | null;
+      } | null;
+      minLevel: number | null;
+      gender: PokemonGender | null;
     }[];
     into: {
       species: {
@@ -144,12 +144,12 @@ export interface DexPokedexShowPageProps {
         slug: string;
         portrait: string;
       };
-      evolutionItem?: {
+      evolutionItem: {
         name: string;
-        sprite?: string;
-      };
-      minLevel?: number;
-      gender?: PokemonGender;
+        sprite: string | null;
+      } | null;
+      minLevel: number | null;
+      gender: PokemonGender | null;
     }[];
   };
   learnableMoves: {
@@ -158,7 +158,7 @@ export interface DexPokedexShowPageProps {
         name: string;
         type: ElementalType;
         category: MoveCategory;
-        power?: number;
+        power: number | null;
         accuracy: number;
         isZMove: boolean;
         isDynamaxMove: boolean;
@@ -170,7 +170,7 @@ export interface DexPokedexShowPageProps {
         name: string;
         type: ElementalType;
         category: MoveCategory;
-        power?: number;
+        power: number | null;
         accuracy: number;
         isZMove: boolean;
         isDynamaxMove: boolean;

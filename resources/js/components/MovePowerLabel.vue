@@ -8,6 +8,6 @@ import { MoveCategory } from '@/types';
 
 defineProps<{
   category: MoveCategory;
-  power?: number;
+  power: number | null;
 }>();
 </script>

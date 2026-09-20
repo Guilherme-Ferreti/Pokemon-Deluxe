@@ -6,7 +6,7 @@
       >
         <img
           class="size-36 object-contain"
-          :src="species.sprites.frontDefault"
+          :src="species.sprites.frontDefault ?? undefined"
           :alt="`${species.name} sprite`"
         />
       </div>

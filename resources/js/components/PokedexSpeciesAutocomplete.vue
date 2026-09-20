@@ -88,14 +88,14 @@ import { route } from '@/types/helpers/route';
 interface AutocompleOption {
   name: string;
   pokedexNumber: number;
-  portrait?: string;
+  portrait: string | null;
   slug: string;
 }
 
 const autocompleteOptions = ref<AutocompleOption[]>([]);
 const isTyping = ref(false);
 
-let typingTimeout: number | undefined = undefined;
+let typingTimeout: number;
 
 const http = useHttp({
   search: '',

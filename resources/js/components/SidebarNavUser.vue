@@ -139,10 +139,10 @@ const { isMobile } = useSidebar();
 const mode = useColorMode();
 
 const user = {
-  name: page.props.auth.user.name,
-  email: page.props.auth.user.email,
-  avatar: page.props.auth.user.avatar ?? '',
-  initials: page.props.auth.user.name
+  name: page.props.auth.user?.name,
+  email: page.props.auth.user?.email,
+  avatar: '',
+  initials: (page.props.auth.user?.name ?? '')
     .split(' ')
     .map((name) => name[0])
     .join('')

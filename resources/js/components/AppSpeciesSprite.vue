@@ -2,14 +2,14 @@
   <img
     class="size-24 shrink-0"
     loading="lazy"
-    :src="url"
+    :src="url ?? undefined"
     :alt="name"
   />
 </template>
 
 <script setup lang="ts">
 defineProps<{
-  url?: string;
+  url: string | null;
   name: string;
 }>();
 </script>
