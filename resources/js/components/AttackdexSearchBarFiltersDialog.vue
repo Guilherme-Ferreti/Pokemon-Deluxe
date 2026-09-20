@@ -46,7 +46,7 @@ import { nextTick } from 'vue';
 import AppCheckbox from '@/components/AppCheckbox.vue';
 import AppCheckboxGroup from '@/components/AppCheckboxGroup.vue';
 import AppSearchFiltersDialog from '@/components/AppSearchFiltersDialog.vue';
-import type { DexAttackdexIndexPageProps } from '@/types';
+import type { DexAttackdexIndexPageProps } from '@/types/pageProps/dex/AttackdexIndexPageProps';
 
 defineProps<{
   typeOptions: DexAttackdexIndexPageProps['filterOptions']['types'];

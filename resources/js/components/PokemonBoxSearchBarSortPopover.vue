@@ -75,8 +75,8 @@ import {
   TooltipContent,
   TooltipTrigger,
 } from '@/components/ui/tooltip';
-import type { PokemonBoxIndexPageProps } from '@/types';
 import { SearchBoxSortBy, SortDirection } from '@/types';
+import type { PokemonBoxIndexPageProps } from '@/types/pageProps/pokemon/BoxIndexPageProps';
 
 defineProps<{
   sortOptions: PokemonBoxIndexPageProps['filterOptions']['sort'];

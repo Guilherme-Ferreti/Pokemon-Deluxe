@@ -64,8 +64,8 @@ import PokedexSpeciesHero from '@/components/PokedexSpeciesHero.vue';
 import PokedexSpeciesLearnableMoves from '@/components/PokedexSpeciesLearnableMoves.vue';
 import PokedexSpeciesMetadata from '@/components/PokedexSpeciesMetadata.vue';
 import PokedexSpeciesNavigation from '@/components/PokedexSpeciesNavigation.vue';
-import type { DexPokedexShowPageProps } from '@/types';
 import { route } from '@/types/helpers/route';
+import type { DexPokedexShowPageProps } from '@/types/pageProps/dex/PokedexShowPageProps';
 
 const props = defineProps<DexPokedexShowPageProps>();
 

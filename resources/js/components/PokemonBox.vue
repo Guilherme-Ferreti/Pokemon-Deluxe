@@ -32,7 +32,7 @@ import AppEmptyState from '@/components/AppEmptyState.vue';
 import AppPagination from '@/components/AppPagination.vue';
 import PokemonBoxCard from '@/components/PokemonBoxCard.vue';
 import PokemonBoxSearchBar from '@/components/PokemonBoxSearchBar.vue';
-import type { PokemonBoxIndexPageProps } from '@/types';
+import type { PokemonBoxIndexPageProps } from '@/types/pageProps/pokemon/BoxIndexPageProps';
 
 defineProps<{
   pokemonList: PokemonBoxIndexPageProps['pokemonList'];

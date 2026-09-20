@@ -137,9 +137,9 @@ import {
   TableRow,
 } from '@/components/ui/table';
 import { removeFalsyValues } from '@/lib/utils.js';
-import type { DexPokedexIndexPageProps } from '@/types';
 import { SearchPokedexSortBy } from '@/types';
 import { route } from '@/types/helpers/route';
+import type { DexPokedexIndexPageProps } from '@/types/pageProps/dex/PokedexIndexPageProps';
 
 const props = defineProps<{
   speciesList: DexPokedexIndexPageProps['speciesList'];

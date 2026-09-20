@@ -2,7 +2,7 @@
   <Head title="Dashboard" />
   <AppPageHeader
     title="Dashboard"
-    :description="`Welcome back, ${$page.props.auth.user.name}!`"
+    :description="`Welcome back, ${$page.props.auth.user?.name}!`"
   />
 </template>
 

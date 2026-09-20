@@ -18,8 +18,8 @@ import { Head, setLayoutProps } from '@inertiajs/vue3';
 import AppPageHeader from '@/components/AppPageHeader.vue';
 import AppSection from '@/components/AppSection.vue';
 import PokemonBox from '@/components/PokemonBox.vue';
-import type { PokemonBoxIndexPageProps } from '@/types';
 import { route } from '@/types/helpers/route';
+import type { PokemonBoxIndexPageProps } from '@/types/pageProps/pokemon/BoxIndexPageProps';
 
 defineProps<PokemonBoxIndexPageProps>();
 

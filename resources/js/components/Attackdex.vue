@@ -150,9 +150,9 @@ import {
   TableBody,
 } from '@/components/ui/table';
 import { removeFalsyValues } from '@/lib/utils';
-import type { DexAttackdexIndexPageProps } from '@/types';
 import { SearchAttackdexSortBy } from '@/types';
 import { route } from '@/types/helpers/route';
+import type { DexAttackdexIndexPageProps } from '@/types/pageProps/dex/AttackdexIndexPageProps';
 
 const props = defineProps<{
   moves: DexAttackdexIndexPageProps['moves'];

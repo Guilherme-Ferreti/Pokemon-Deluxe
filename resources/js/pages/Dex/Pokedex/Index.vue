@@ -25,8 +25,8 @@ import AppIconNotInBox from '@/components/AppIconNotInBox.vue';
 import AppPageHeader from '@/components/AppPageHeader.vue';
 import AppSection from '@/components/AppSection.vue';
 import Pokedex from '@/components/Pokedex.vue';
-import type { DexPokedexIndexPageProps } from '@/types';
 import { route } from '@/types/helpers/route';
+import type { DexPokedexIndexPageProps } from '@/types/pageProps/dex/PokedexIndexPageProps';
 
 defineProps<DexPokedexIndexPageProps>();
 

@@ -129,8 +129,8 @@ import {
   TooltipTrigger,
   TooltipContent,
 } from '@/components/ui/tooltip';
-import type { DexPokedexShowPageProps } from '@/types';
 import { PokemonGender } from '@/types';
+import type { DexPokedexShowPageProps } from '@/types/pageProps/dex/PokedexShowPageProps';
 
 const props = defineProps<{
   species: DexPokedexShowPageProps['species'];

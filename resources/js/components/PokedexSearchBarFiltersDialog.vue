@@ -51,8 +51,8 @@ import AppCheckbox from '@/components/AppCheckbox.vue';
 import AppCheckboxGroup from '@/components/AppCheckboxGroup.vue';
 import AppSearchFiltersDialog from '@/components/AppSearchFiltersDialog.vue';
 import { anyItemExists } from '@/lib/utils.js';
-import type { DexPokedexIndexPageProps } from '@/types';
 import { SpeciesTrait } from '@/types';
+import type { DexPokedexIndexPageProps } from '@/types/pageProps/dex/PokedexIndexPageProps';
 
 defineProps<{
   typeOptions: DexPokedexIndexPageProps['filterOptions']['types'];

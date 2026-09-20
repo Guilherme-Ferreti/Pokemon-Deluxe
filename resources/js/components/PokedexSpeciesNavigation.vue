@@ -85,8 +85,8 @@ import {
   TooltipContent,
 } from '@/components/ui/tooltip';
 import { formatPokedexNumber } from '@/lib/utils';
-import type { DexPokedexShowPageProps } from '@/types';
 import { route } from '@/types/helpers/route';
+import type { DexPokedexShowPageProps } from '@/types/pageProps/dex/PokedexShowPageProps';
 
 defineProps<{
   previousSpecies: DexPokedexShowPageProps['previousSpecies'];

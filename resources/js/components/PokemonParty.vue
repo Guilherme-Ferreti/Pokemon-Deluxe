@@ -33,7 +33,7 @@
 <script setup lang="ts">
 import { IconPlus } from '@tabler/icons-vue';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import type { PokemonPartyPageProps } from '@/types';
+import type { PokemonPartyPageProps } from '@/types/pageProps/pokemon/PartyPageProps';
 
 defineProps<{
   party: PokemonPartyPageProps['party'];

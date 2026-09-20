@@ -107,8 +107,8 @@ import {
   DropdownMenuContent,
   DropdownMenuItem,
 } from '@/components/ui/dropdown-menu';
-import type { PokemonBoxIndexPageProps } from '@/types';
 import { route } from '@/types/helpers/route';
+import type { PokemonBoxIndexPageProps } from '@/types/pageProps/pokemon/BoxIndexPageProps';
 
 defineProps<{
   pokemon: PokemonBoxIndexPageProps['pokemonList']['data'][number];

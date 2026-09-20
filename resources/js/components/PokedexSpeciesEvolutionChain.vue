@@ -71,8 +71,8 @@ import AppNavLink from '@/components/AppNavLink.vue';
 import AppPokemonGenderIcon from '@/components/AppPokemonGenderIcon.vue';
 import AppSpeciesPortrait from '@/components/AppSpeciesPortrait.vue';
 import Separator from '@/components/ui/separator/Separator.vue';
-import type { DexPokedexShowPageProps } from '@/types';
 import { route } from '@/types/helpers/route.js';
+import type { DexPokedexShowPageProps } from '@/types/pageProps/dex/PokedexShowPageProps';
 
 const props = defineProps<{
   evolutionChain: DexPokedexShowPageProps['evolutionChain'];
