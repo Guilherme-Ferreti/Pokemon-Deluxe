@@ -30,13 +30,13 @@
 import { IconPokeball } from '@tabler/icons-vue';
 import PokemonBoxCard from '@/app/Pokemon/components/PokemonBoxCard.vue';
 import PokemonBoxSearchBar from '@/app/Pokemon/components/PokemonBoxSearchBar.vue';
-import type { PokemonBoxIndexPageProps } from '@/app/Pokemon/types/BoxIndexPageProps';
+import type { BoxIndexPageProps } from '@/app/Pokemon/types/BoxIndexPageProps';
 import AppEmptyState from '@/shared/components/AppEmptyState.vue';
 import AppPagination from '@/shared/components/AppPagination.vue';
 
 defineProps<{
-  pokemonList: PokemonBoxIndexPageProps['pokemonList'];
-  activeFilters: PokemonBoxIndexPageProps['activeFilters'];
-  filterOptions: PokemonBoxIndexPageProps['filterOptions'];
+  pokemonList: BoxIndexPageProps['pokemonList'];
+  activeFilters: BoxIndexPageProps['activeFilters'];
+  filterOptions: BoxIndexPageProps['filterOptions'];
 }>();
 </script>

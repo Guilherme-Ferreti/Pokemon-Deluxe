@@ -43,15 +43,15 @@ import { watchDebounced } from '@vueuse/core';
 import { nextTick } from 'vue';
 import PokemonBoxSearchBarFiltersDialog from '@/app/Pokemon/components/PokemonBoxSearchBarFiltersDialog.vue';
 import PokemonBoxSearchBarSortPopover from '@/app/Pokemon/components/PokemonBoxSearchBarSortPopover.vue';
-import type { PokemonBoxIndexPageProps } from '@/app/Pokemon/types/BoxIndexPageProps';
+import type { BoxIndexPageProps } from '@/app/Pokemon/types/BoxIndexPageProps';
 import AppInput from '@/shared/components/AppInput.vue';
 import { Card } from '@/shared/components/ui/card';
 import { removeFalsyValues } from '@/shared/lib/utils';
 import { route } from '@/shared/types/helpers/route.js';
 
 const props = defineProps<{
-  activeFilters: PokemonBoxIndexPageProps['activeFilters'];
-  filterOptions: PokemonBoxIndexPageProps['filterOptions'];
+  activeFilters: BoxIndexPageProps['activeFilters'];
+  filterOptions: BoxIndexPageProps['filterOptions'];
 }>();
 
 const searchForm = useForm({

@@ -133,7 +133,7 @@ import {
 import { watchDebounced } from '@vueuse/core';
 import { nextTick } from 'vue';
 import AttackdexSearchBarFiltersDialog from '@/app/Dex/components/AttackdexSearchBarFiltersDialog.vue';
-import type { DexAttackdexIndexPageProps } from '@/app/Dex/types/AttackdexIndexPageProps';
+import type { AttackdexIndexPageProps } from '@/app/Dex/types/AttackdexIndexPageProps';
 import AppEmptyState from '@/shared/components/AppEmptyState.vue';
 import AppInput from '@/shared/components/AppInput.vue';
 import AppPagination from '@/shared/components/AppPagination.vue';
@@ -155,9 +155,9 @@ import { SearchAttackdexSortBy } from '@/shared/types';
 import { route } from '@/shared/types/helpers/route';
 
 const props = defineProps<{
-  moves: DexAttackdexIndexPageProps['moves'];
-  activeFilters: DexAttackdexIndexPageProps['activeFilters'];
-  filterOptions: DexAttackdexIndexPageProps['filterOptions'];
+  moves: AttackdexIndexPageProps['moves'];
+  activeFilters: AttackdexIndexPageProps['activeFilters'];
+  filterOptions: AttackdexIndexPageProps['filterOptions'];
 }>();
 
 const searchForm = useForm({

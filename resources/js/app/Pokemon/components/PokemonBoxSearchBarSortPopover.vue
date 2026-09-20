@@ -63,7 +63,7 @@
 <script setup lang="ts">
 import { IconArrowsDownUp } from '@tabler/icons-vue';
 import { PopoverClose } from 'reka-ui';
-import type { PokemonBoxIndexPageProps } from '@/app/Pokemon/types/BoxIndexPageProps';
+import type { BoxIndexPageProps } from '@/app/Pokemon/types/BoxIndexPageProps';
 import AppSelect from '@/shared/components/AppSelect.vue';
 import { Button } from '@/shared/components/ui/button';
 import {
@@ -79,21 +79,23 @@ import {
 import { SearchBoxSortBy, SortDirection } from '@/shared/types';
 
 defineProps<{
-  sortOptions: PokemonBoxIndexPageProps['filterOptions']['sort'];
-  dirOptions: PokemonBoxIndexPageProps['filterOptions']['dir'];
+  sortOptions: BoxIndexPageProps['filterOptions']['sort'];
+  dirOptions: BoxIndexPageProps['filterOptions']['dir'];
 }>();
 
-const selectedSort = defineModel<
-  PokemonBoxIndexPageProps['activeFilters']['sort']
->('sort', {
-  default: SearchBoxSortBy.CAPTURE_DATE,
-});
+const selectedSort = defineModel<BoxIndexPageProps['activeFilters']['sort']>(
+  'sort',
+  {
+    default: SearchBoxSortBy.CAPTURE_DATE,
+  },
+);
 
-const selectedDir = defineModel<
-  PokemonBoxIndexPageProps['activeFilters']['dir']
->('dir', {
-  default: SortDirection.DESC,
-});
+const selectedDir = defineModel<BoxIndexPageProps['activeFilters']['dir']>(
+  'dir',
+  {
+    default: SortDirection.DESC,
+  },
+);
 
 defineEmits<{
   submit: [value: void];

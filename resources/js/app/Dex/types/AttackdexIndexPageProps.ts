@@ -9,7 +9,7 @@ import type {
   SortDirection,
 } from '@/shared/types';
 
-export interface DexAttackdexIndexPageProps {
+export interface AttackdexIndexPageProps {
   moves: PaginatedList<{
     id: string;
     name: string;

@@ -16,12 +16,12 @@
 <script setup lang="ts">
 import { Head, setLayoutProps } from '@inertiajs/vue3';
 import PokemonBox from '@/app/Pokemon/components/PokemonBox.vue';
-import type { PokemonBoxIndexPageProps } from '@/app/Pokemon/types/BoxIndexPageProps';
+import type { BoxIndexPageProps } from '@/app/Pokemon/types/BoxIndexPageProps';
 import AppPageHeader from '@/shared/components/AppPageHeader.vue';
 import AppSection from '@/shared/components/AppSection.vue';
 import { route } from '@/shared/types/helpers/route';
 
-defineProps<PokemonBoxIndexPageProps>();
+defineProps<BoxIndexPageProps>();
 
 setLayoutProps({
   breadcrumbs: [

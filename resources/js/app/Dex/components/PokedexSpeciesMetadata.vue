@@ -118,7 +118,7 @@
 </template>
 
 <script setup lang="ts">
-import type { DexPokedexShowPageProps } from '@/app/Dex/types/PokedexShowPageProps';
+import type { PokedexShowPageProps } from '@/app/Dex/types/PokedexShowPageProps';
 import AppInfoCard from '@/shared/components/AppInfoCard.vue';
 import AppInfoCardRow from '@/shared/components/AppInfoCardRow.vue';
 import AppPokemonGenderIcon from '@/shared/components/AppPokemonGenderIcon.vue';
@@ -133,7 +133,7 @@ import {
 import { PokemonGender } from '@/shared/types';
 
 const props = defineProps<{
-  species: DexPokedexShowPageProps['species'];
+  species: PokedexShowPageProps['species'];
 }>();
 
 const canBeMale = props.species.malePercentage !== 0;

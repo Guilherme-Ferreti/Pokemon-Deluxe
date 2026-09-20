@@ -55,19 +55,19 @@
 
 <script setup lang="ts">
 import { Head, setLayoutProps } from '@inertiajs/vue3';
+import PokedexSpeciesAutocomplete from '@/app/Dex/components/PokedexSpeciesAutocomplete.vue';
+import PokedexSpeciesCaptureStatistics from '@/app/Dex/components/PokedexSpeciesCaptureStatistics.vue';
+import PokedexSpeciesDamageTaken from '@/app/Dex/components/PokedexSpeciesDamageTaken.vue';
+import PokedexSpeciesEvolutionChain from '@/app/Dex/components/PokedexSpeciesEvolutionChain.vue';
+import PokedexSpeciesHero from '@/app/Dex/components/PokedexSpeciesHero.vue';
+import PokedexSpeciesLearnableMoves from '@/app/Dex/components/PokedexSpeciesLearnableMoves.vue';
 import PokedexSpeciesMetadata from '@/app/Dex/components/PokedexSpeciesMetadata.vue';
 import PokedexSpeciesNavigation from '@/app/Dex/components/PokedexSpeciesNavigation.vue';
-import type { DexPokedexShowPageProps } from '@/app/Dex/types/PokedexShowPageProps';
-import PokedexSpeciesAutocomplete from '@/app/Pokemon/components/PokedexSpeciesAutocomplete.vue';
-import PokedexSpeciesCaptureStatistics from '@/app/Pokemon/components/PokedexSpeciesCaptureStatistics.vue';
-import PokedexSpeciesDamageTaken from '@/app/Pokemon/components/PokedexSpeciesDamageTaken.vue';
-import PokedexSpeciesEvolutionChain from '@/app/Pokemon/components/PokedexSpeciesEvolutionChain.vue';
-import PokedexSpeciesHero from '@/app/Pokemon/components/PokedexSpeciesHero.vue';
-import PokedexSpeciesLearnableMoves from '@/app/Pokemon/components/PokedexSpeciesLearnableMoves.vue';
+import type { PokedexShowPageProps } from '@/app/Dex/types/PokedexShowPageProps';
 import AppSection from '@/shared/components/AppSection.vue';
 import { route } from '@/shared/types/helpers/route';
 
-const props = defineProps<DexPokedexShowPageProps>();
+const props = defineProps<PokedexShowPageProps>();
 
 setLayoutProps({
   breadcrumbs: [

@@ -119,7 +119,7 @@ import {
 import { watchDebounced } from '@vueuse/core';
 import { nextTick } from 'vue';
 import PokedexSearchBarFiltersDialog from '@/app/Dex/components/PokedexSearchBarFiltersDialog.vue';
-import type { DexPokedexIndexPageProps } from '@/app/Dex/types/PokedexIndexPageProps';
+import type { PokedexIndexPageProps } from '@/app/Dex/types/PokedexIndexPageProps';
 import AppEmptyState from '@/shared/components/AppEmptyState.vue';
 import AppIconInBox from '@/shared/components/AppIconInBox.vue';
 import AppIconNotInBox from '@/shared/components/AppIconNotInBox.vue';
@@ -142,9 +142,9 @@ import { SearchPokedexSortBy } from '@/shared/types';
 import { route } from '@/shared/types/helpers/route';
 
 const props = defineProps<{
-  speciesList: DexPokedexIndexPageProps['speciesList'];
-  activeFilters: DexPokedexIndexPageProps['activeFilters'];
-  filterOptions: DexPokedexIndexPageProps['filterOptions'];
+  speciesList: PokedexIndexPageProps['speciesList'];
+  activeFilters: PokedexIndexPageProps['activeFilters'];
+  filterOptions: PokedexIndexPageProps['filterOptions'];
 }>();
 
 const searchForm = useForm({

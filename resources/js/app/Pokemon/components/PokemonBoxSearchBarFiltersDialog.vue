@@ -47,7 +47,7 @@
 
 <script setup lang="ts">
 import { nextTick } from 'vue';
-import type { PokemonBoxIndexPageProps } from '@/app/Pokemon/types/BoxIndexPageProps';
+import type { BoxIndexPageProps } from '@/app/Pokemon/types/BoxIndexPageProps';
 import AppCheckbox from '@/shared/components/AppCheckbox.vue';
 import AppCheckboxGroup from '@/shared/components/AppCheckboxGroup.vue';
 import AppSearchFiltersDialog from '@/shared/components/AppSearchFiltersDialog.vue';
@@ -55,26 +55,27 @@ import { anyItemExists } from '@/shared/lib/utils.js';
 import { PokemonTrait } from '@/shared/types';
 
 defineProps<{
-  typeOptions: PokemonBoxIndexPageProps['filterOptions']['types'];
-  traitOptions: PokemonBoxIndexPageProps['filterOptions']['traits'];
-  generationOptions: PokemonBoxIndexPageProps['filterOptions']['generations'];
+  typeOptions: BoxIndexPageProps['filterOptions']['types'];
+  traitOptions: BoxIndexPageProps['filterOptions']['traits'];
+  generationOptions: BoxIndexPageProps['filterOptions']['generations'];
   activeFiltersCount: number;
 }>();
 
-const selectedTypes = defineModel<
-  PokemonBoxIndexPageProps['activeFilters']['types']
->('types', {
-  default: () => [],
-});
+const selectedTypes = defineModel<BoxIndexPageProps['activeFilters']['types']>(
+  'types',
+  {
+    default: () => [],
+  },
+);
 
 const selectedTraits = defineModel<
-  PokemonBoxIndexPageProps['activeFilters']['traits']
+  BoxIndexPageProps['activeFilters']['traits']
 >('traits', {
   default: () => [],
 });
 
 const selectedGenerations = defineModel<
-  PokemonBoxIndexPageProps['activeFilters']['generations']
+  BoxIndexPageProps['activeFilters']['generations']
 >('generations', {
   default: () => [],
 });

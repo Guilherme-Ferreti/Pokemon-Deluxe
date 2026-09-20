@@ -22,12 +22,12 @@
 <script setup lang="ts">
 import { Head, setLayoutProps } from '@inertiajs/vue3';
 import Attackdex from '@/app/Dex/components/Attackdex.vue';
-import type { DexAttackdexIndexPageProps } from '@/app/Dex/types/AttackdexIndexPageProps';
+import type { AttackdexIndexPageProps } from '@/app/Dex/types/AttackdexIndexPageProps';
 import AppPageHeader from '@/shared/components/AppPageHeader.vue';
 import AppSection from '@/shared/components/AppSection.vue';
 import { route } from '@/shared/types/helpers/route';
 
-defineProps<DexAttackdexIndexPageProps>();
+defineProps<AttackdexIndexPageProps>();
 
 setLayoutProps({
   breadcrumbs: [

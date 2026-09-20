@@ -6,7 +6,7 @@ import type {
   SpeciesTypes,
 } from '@/shared/types';
 
-export interface DexPokedexShowPageProps {
+export interface PokedexShowPageProps {
   species: {
     id: string;
     name: string;

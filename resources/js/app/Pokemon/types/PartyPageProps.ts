@@ -1,4 +1,4 @@
-export interface PokemonPartyPageProps {
+export interface PartyPageProps {
   party: {
     id: string;
     name: string;

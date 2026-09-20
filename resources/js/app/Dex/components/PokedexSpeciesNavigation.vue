@@ -76,7 +76,7 @@
 <script setup lang="ts">
 import { Link } from '@inertiajs/vue3';
 import { IconChevronLeft, IconChevronRight } from '@tabler/icons-vue';
-import type { DexPokedexShowPageProps } from '@/app/Dex/types/PokedexShowPageProps';
+import type { PokedexShowPageProps } from '@/app/Dex/types/PokedexShowPageProps';
 import AppSpeciesPortrait from '@/shared/components/AppSpeciesPortrait.vue';
 import { Button } from '@/shared/components/ui/button';
 import { Separator } from '@/shared/components/ui/separator';
@@ -89,8 +89,8 @@ import { formatPokedexNumber } from '@/shared/lib/utils';
 import { route } from '@/shared/types/helpers/route';
 
 defineProps<{
-  previousSpecies: DexPokedexShowPageProps['previousSpecies'];
-  nextSpecies: DexPokedexShowPageProps['nextSpecies'];
+  previousSpecies: PokedexShowPageProps['previousSpecies'];
+  nextSpecies: PokedexShowPageProps['nextSpecies'];
 }>();
 </script>
 

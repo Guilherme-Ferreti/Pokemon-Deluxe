@@ -9,7 +9,7 @@ import type {
   SpeciesTypes,
 } from '@/shared/types';
 
-export interface DexPokedexIndexPageProps {
+export interface PokedexIndexPageProps {
   speciesList: PaginatedList<{
     id: string;
     portrait: string;

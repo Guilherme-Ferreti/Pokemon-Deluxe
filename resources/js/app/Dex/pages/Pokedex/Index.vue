@@ -20,15 +20,15 @@
 
 <script lang="ts" setup>
 import { Head, setLayoutProps } from '@inertiajs/vue3';
-import type { DexPokedexIndexPageProps } from '@/app/Dex/types/PokedexIndexPageProps';
-import Pokedex from '@/app/Pokemon/components/Pokedex.vue';
+import Pokedex from '@/app/Dex/components/Pokedex.vue';
+import type { PokedexIndexPageProps } from '@/app/Dex/types/PokedexIndexPageProps';
 import AppIconInBox from '@/shared/components/AppIconInBox.vue';
 import AppIconNotInBox from '@/shared/components/AppIconNotInBox.vue';
 import AppPageHeader from '@/shared/components/AppPageHeader.vue';
 import AppSection from '@/shared/components/AppSection.vue';
 import { route } from '@/shared/types/helpers/route';
 
-defineProps<DexPokedexIndexPageProps>();
+defineProps<PokedexIndexPageProps>();
 
 setLayoutProps({
   pageSize: 'small',

@@ -47,7 +47,7 @@
 
 <script setup lang="ts">
 import { nextTick } from 'vue';
-import type { DexPokedexIndexPageProps } from '@/app/Dex/types/PokedexIndexPageProps';
+import type { PokedexIndexPageProps } from '@/app/Dex/types/PokedexIndexPageProps';
 import AppCheckbox from '@/shared/components/AppCheckbox.vue';
 import AppCheckboxGroup from '@/shared/components/AppCheckboxGroup.vue';
 import AppSearchFiltersDialog from '@/shared/components/AppSearchFiltersDialog.vue';
@@ -55,26 +55,26 @@ import { anyItemExists } from '@/shared/lib/utils.js';
 import { SpeciesTrait } from '@/shared/types';
 
 defineProps<{
-  typeOptions: DexPokedexIndexPageProps['filterOptions']['types'];
-  traitOptions: DexPokedexIndexPageProps['filterOptions']['traits'];
-  generationOptions: DexPokedexIndexPageProps['filterOptions']['generations'];
+  typeOptions: PokedexIndexPageProps['filterOptions']['types'];
+  traitOptions: PokedexIndexPageProps['filterOptions']['traits'];
+  generationOptions: PokedexIndexPageProps['filterOptions']['generations'];
   activeFiltersCount: number;
 }>();
 
 const selectedTypes = defineModel<
-  DexPokedexIndexPageProps['activeFilters']['types']
+  PokedexIndexPageProps['activeFilters']['types']
 >('types', {
   default: () => [],
 });
 
 const selectedTraits = defineModel<
-  DexPokedexIndexPageProps['activeFilters']['traits']
+  PokedexIndexPageProps['activeFilters']['traits']
 >('traits', {
   default: () => [],
 });
 
 const selectedGenerations = defineModel<
-  DexPokedexIndexPageProps['activeFilters']['generations']
+  PokedexIndexPageProps['activeFilters']['generations']
 >('generations', {
   default: () => [],
 });

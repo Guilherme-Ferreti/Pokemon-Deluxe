@@ -10,7 +10,7 @@ import type {
   SpeciesTypes,
 } from '@/shared/types';
 
-export interface PokemonBoxIndexPageProps {
+export interface BoxIndexPageProps {
   pokemonList: PaginatedList<{
     id: string;
     name: string;

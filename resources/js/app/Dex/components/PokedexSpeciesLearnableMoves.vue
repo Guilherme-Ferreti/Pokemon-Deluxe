@@ -174,7 +174,7 @@ import {
   IconSortAscendingLetters,
   IconSortDescendingLetters,
 } from '@tabler/icons-vue';
-import type { DexPokedexShowPageProps } from '@/app/Dex/types/PokedexShowPageProps';
+import type { PokedexShowPageProps } from '@/app/Dex/types/PokedexShowPageProps';
 import AppTableHeadSortableButton from '@/shared/components/AppTableHeadSortableButton.vue';
 import ElementalTypeBadges from '@/shared/components/ElementalTypeBadges.vue';
 import MoveNameLabel from '@/shared/components/MoveNameLabel.vue';
@@ -197,14 +197,14 @@ import { useSortable } from '@/shared/composables/useSortable.js';
 
 const props = defineProps<{
   speciesName: string;
-  learnableMoves: DexPokedexShowPageProps['learnableMoves'];
+  learnableMoves: PokedexShowPageProps['learnableMoves'];
 }>();
 
 const levelUpMoves = useSortable<
-  DexPokedexShowPageProps['learnableMoves']['levelUp'][number]
+  PokedexShowPageProps['learnableMoves']['levelUp'][number]
 >(props.learnableMoves.levelUp, 'levelLearn');
 
 const tmMoves = useSortable<
-  DexPokedexShowPageProps['learnableMoves']['tm'][number]
+  PokedexShowPageProps['learnableMoves']['tm'][number]
 >(props.learnableMoves.tm, 'tmCode');
 </script>

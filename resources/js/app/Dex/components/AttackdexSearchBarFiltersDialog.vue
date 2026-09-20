@@ -43,32 +43,32 @@
 
 <script setup lang="ts">
 import { nextTick } from 'vue';
-import type { DexAttackdexIndexPageProps } from '@/app/Dex/types/AttackdexIndexPageProps';
+import type { AttackdexIndexPageProps } from '@/app/Dex/types/AttackdexIndexPageProps';
 import AppCheckbox from '@/shared/components/AppCheckbox.vue';
 import AppCheckboxGroup from '@/shared/components/AppCheckboxGroup.vue';
 import AppSearchFiltersDialog from '@/shared/components/AppSearchFiltersDialog.vue';
 
 defineProps<{
-  typeOptions: DexAttackdexIndexPageProps['filterOptions']['types'];
-  ailmentOptions: DexAttackdexIndexPageProps['filterOptions']['ailments'];
-  traitOptions: DexAttackdexIndexPageProps['filterOptions']['traits'];
+  typeOptions: AttackdexIndexPageProps['filterOptions']['types'];
+  ailmentOptions: AttackdexIndexPageProps['filterOptions']['ailments'];
+  traitOptions: AttackdexIndexPageProps['filterOptions']['traits'];
   activeFiltersCount: number;
 }>();
 
 const selectedTypes = defineModel<
-  DexAttackdexIndexPageProps['activeFilters']['types']
+  AttackdexIndexPageProps['activeFilters']['types']
 >('types', {
   default: () => [],
 });
 
 const selectedAilments = defineModel<
-  DexAttackdexIndexPageProps['activeFilters']['ailments']
+  AttackdexIndexPageProps['activeFilters']['ailments']
 >('ailments', {
   default: () => [],
 });
 
 const selectedTraits = defineModel<
-  DexAttackdexIndexPageProps['activeFilters']['traits']
+  AttackdexIndexPageProps['activeFilters']['traits']
 >('traits', {
   default: () => [],
 });
