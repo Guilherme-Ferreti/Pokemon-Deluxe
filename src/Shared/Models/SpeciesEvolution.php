@@ -10,7 +10,6 @@ use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Support\Carbon;
 use Override;
 use Shared\Enums\PokemonGender;
 
@@ -21,8 +20,6 @@ use Shared\Enums\PokemonGender;
  * @property string|null $evolution_item_id
  * @property int|null $min_level
  * @property PokemonGender|null $gender
- * @property Carbon $created_at
- * @property Carbon $updated_at
  * @property-read Species $from
  * @property-read Species $into
  * @property-read EvolutionItem|null $evolutionItem

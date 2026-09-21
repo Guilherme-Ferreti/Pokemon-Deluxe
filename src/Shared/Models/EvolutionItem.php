@@ -9,7 +9,6 @@ use Illuminate\Database\Eloquent\Attributes\WithoutTimestamps;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Carbon;
 
 /**
  * @property string $id
@@ -17,8 +16,6 @@ use Illuminate\Support\Carbon;
  * @property string $name
  * @property string $description
  * @property string|null $sprite
- * @property Carbon $created_at
- * @property Carbon $updated_at
  */
 #[WithoutTimestamps]
 final class EvolutionItem extends Model

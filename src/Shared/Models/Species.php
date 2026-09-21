@@ -15,7 +15,6 @@ use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
-use Illuminate\Support\Carbon;
 use Illuminate\Support\Collection;
 use Override;
 use Shared\Enums\ElementalType;
@@ -41,8 +40,6 @@ use Shared\ValueObjects\SpeciesSprites;
  * @property Generation $generation
  * @property int|null $capture_rate
  * @property int $gender_rate
- * @property Carbon $created_at
- * @property Carbon $updated_at
  * @property-read EloquentCollection<int, SpeciesEvolution> $evolutions
  * @property-read EloquentCollection<int, SpeciesEvolution> $previousEvolutions
  * @property-read EloquentCollection<int, SpeciesLearnableMove> $learnableMoves

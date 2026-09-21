@@ -9,7 +9,6 @@ use Illuminate\Database\Eloquent\Attributes\WithoutTimestamps;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Carbon;
 use Override;
 use Shared\Enums\PokeballType;
 
@@ -21,8 +20,6 @@ use Shared\Enums\PokeballType;
  * @property string|null $sprite
  * @property PokeballType $type
  * @property float $capture_rate
- * @property Carbon $created_at
- * @property Carbon $updated_at
  */
 #[WithoutTimestamps]
 final class Pokeball extends Model

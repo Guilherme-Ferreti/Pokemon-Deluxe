@@ -13,7 +13,6 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
-use Illuminate\Support\Carbon;
 use Override;
 use Shared\Enums\Ailment;
 use Shared\Enums\ElementalType;
@@ -40,8 +39,6 @@ use Shared\Enums\MoveDamageClass;
  * @property bool $is_dynamax_move
  * @property Generation $generation
  * @property string $tm_code
- * @property Carbon $created_at
- * @property Carbon $updated_at
  * @property-read EloquentCollection<int, SpeciesLearnableMove> $learnableBySpecies
  * @property-read EloquentCollection<int, Pokemon> $learnedByPokemon
  */
