@@ -85,14 +85,14 @@ import { Skeleton } from '@/shared/components/ui/skeleton';
 import { formatPokedexNumber } from '@/shared/lib/utils.js';
 import { route } from '@/shared/types/helpers/route';
 
-interface AutocompleOption {
+interface AutocompleteOption {
   name: string;
   pokedexNumber: number;
   portrait: string | null;
   slug: string;
 }
 
-const autocompleteOptions = ref<AutocompleOption[]>([]);
+const autocompleteOptions = ref<AutocompleteOption[]>([]);
 const isTyping = ref(false);
 
 let typingTimeout: number;
@@ -124,12 +124,12 @@ function submitSearch() {
 
   http.get(route('dex.api.species.autocomplete'), {
     onSuccess: (response) => {
-      autocompleteOptions.value = response as AutocompleOption[];
+      autocompleteOptions.value = response as AutocompleteOption[];
     },
   });
 }
 
-function handleOptionSelect(option: AutocompleOption) {
+function handleOptionSelect(option: AutocompleteOption) {
   unwatchSearch();
 
   http.search = option.name;
