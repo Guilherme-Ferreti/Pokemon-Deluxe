@@ -43,6 +43,8 @@ return new class extends Migration
 
             $table->unsignedTinyInteger('generation');
 
+            $table->string('tm_code', 5)->unique();
+
             $table->index('name');
         });
     }

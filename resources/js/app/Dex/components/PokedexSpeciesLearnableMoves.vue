@@ -27,61 +27,61 @@
               />
               <AppTableHeadSortableButton
                 column-name="Move"
-                sort-by="move.name"
+                sort-by="name"
                 :current-sort="levelUpMoves.sort.value"
                 :current-dir="levelUpMoves.direction.value"
                 :sort-asc-icon="IconSortAscendingLetters"
                 :sort-desc-icon="IconSortDescendingLetters"
-                @click="levelUpMoves.toggleSort('move.name')"
+                @click="levelUpMoves.toggleSort('name')"
               />
               <AppTableHeadSortableButton
                 column-name="Type"
-                sort-by="move.type"
+                sort-by="type"
                 :current-sort="levelUpMoves.sort.value"
                 :current-dir="levelUpMoves.direction.value"
                 :sort-asc-icon="IconSortAscendingLetters"
                 :sort-desc-icon="IconSortDescendingLetters"
-                @click="levelUpMoves.toggleSort('move.type')"
+                @click="levelUpMoves.toggleSort('type')"
               />
               <AppTableHeadSortableButton
                 column-name="Power"
-                sort-by="move.power"
+                sort-by="power"
                 :current-sort="levelUpMoves.sort.value"
                 :current-dir="levelUpMoves.direction.value"
-                @click="levelUpMoves.toggleSort('move.power')"
+                @click="levelUpMoves.toggleSort('power')"
               />
               <AppTableHeadSortableButton
                 column-name="Accuracy"
-                sort-by="move.accuracy"
+                sort-by="accuracy"
                 :current-sort="levelUpMoves.sort.value"
                 :current-dir="levelUpMoves.direction.value"
-                @click="levelUpMoves.toggleSort('move.accuracy')"
+                @click="levelUpMoves.toggleSort('accuracy')"
               />
             </TableRow>
           </TableHeader>
           <TableBody>
             <TableRow
               v-for="item in levelUpMoves.sortedItems.value"
-              :key="item.move.name"
+              :key="item.name"
             >
               <TableCell>{{ item.levelLearn }}</TableCell>
               <TableCell>
                 <MoveNameLabel
-                  :name="item.move.name"
-                  :is-z-move="item.move.isZMove"
-                  :is-dynamax-move="item.move.isDynamaxMove"
+                  :name="item.name"
+                  :is-z-move="item.isZMove"
+                  :is-dynamax-move="item.isDynamaxMove"
                 />
               </TableCell>
               <TableCell>
-                <ElementalTypeBadges :types="[item.move.type]" />
+                <ElementalTypeBadges :types="[item.type]" />
               </TableCell>
               <TableCell>
                 <MovePowerLabel
-                  :power="item.move.power"
-                  :category="item.move.category"
+                  :power="item.power"
+                  :category="item.category"
                 />
               </TableCell>
-              <TableCell>{{ item.move.accuracy }}%</TableCell>
+              <TableCell>{{ item.accuracy }}%</TableCell>
             </TableRow>
           </TableBody>
         </Table>
@@ -106,61 +106,61 @@
               />
               <AppTableHeadSortableButton
                 column-name="Move"
-                sort-by="move.name"
+                sort-by="name"
                 :current-sort="tmMoves.sort.value"
                 :current-dir="tmMoves.direction.value"
                 :sort-asc-icon="IconSortAscendingLetters"
                 :sort-desc-icon="IconSortDescendingLetters"
-                @click="tmMoves.toggleSort('move.name')"
+                @click="tmMoves.toggleSort('name')"
               />
               <AppTableHeadSortableButton
                 column-name="Type"
-                sort-by="move.type"
+                sort-by="type"
                 :current-sort="tmMoves.sort.value"
                 :current-dir="tmMoves.direction.value"
                 :sort-asc-icon="IconSortAscendingLetters"
                 :sort-desc-icon="IconSortDescendingLetters"
-                @click="tmMoves.toggleSort('move.type')"
+                @click="tmMoves.toggleSort('type')"
               />
               <AppTableHeadSortableButton
                 column-name="Power"
-                sort-by="move.power"
+                sort-by="power"
                 :current-sort="tmMoves.sort.value"
                 :current-dir="tmMoves.direction.value"
-                @click="tmMoves.toggleSort('move.power')"
+                @click="tmMoves.toggleSort('power')"
               />
               <AppTableHeadSortableButton
                 column-name="Accuracy"
-                sort-by="move.accuracy"
+                sort-by="accuracy"
                 :current-sort="tmMoves.sort.value"
                 :current-dir="tmMoves.direction.value"
-                @click="tmMoves.toggleSort('move.accuracy')"
+                @click="tmMoves.toggleSort('accuracy')"
               />
             </TableRow>
           </TableHeader>
           <TableBody>
             <TableRow
               v-for="item in tmMoves.sortedItems.value"
-              :key="item.move.name"
+              :key="item.name"
             >
               <TableCell>{{ item.tmCode }}</TableCell>
               <TableCell>
                 <MoveNameLabel
-                  :name="item.move.name"
-                  :is-z-move="item.move.isZMove"
-                  :is-dynamax-move="item.move.isDynamaxMove"
+                  :name="item.name"
+                  :is-z-move="item.isZMove"
+                  :is-dynamax-move="item.isDynamaxMove"
                 />
               </TableCell>
               <TableCell>
-                <ElementalTypeBadges :types="[item.move.type]" />
+                <ElementalTypeBadges :types="[item.type]" />
               </TableCell>
               <TableCell>
                 <MovePowerLabel
-                  :power="item.move.power"
-                  :category="item.move.category"
+                  :power="item.power"
+                  :category="item.category"
                 />
               </TableCell>
-              <TableCell>{{ item.move.accuracy }}%</TableCell>
+              <TableCell>{{ item.accuracy }}%</TableCell>
             </TableRow>
           </TableBody>
         </Table>

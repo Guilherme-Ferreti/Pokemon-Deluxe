@@ -40,6 +40,7 @@ final class MoveFactory extends Factory
             'is_z_move'       => fake()->boolean(),
             'is_dynamax_move' => fn (array $attributes) => $attributes['is_z_move'] ? false : fake()->boolean(),
             'generation'      => fake()->randomElement(Generation::cases()),
+            'tm_code'         => 'TM' . str_pad((string) fake()->unique()->randomNumber(3), 3, '0', STR_PAD_LEFT),
         ];
     }
 }

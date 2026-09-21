@@ -54,6 +54,14 @@ final class MoveSeeder extends Seeder
             'is_z_move'       => $move['is_z_move'],
             'is_dynamax_move' => $move['is_dynamax_move'],
             'generation'      => $move['generation'],
+            'tm_code'         => $this->getTMCode(),
         ];
+    }
+
+    private function getTMCode(): string
+    {
+        static $count = 1;
+
+        return 'TM' . str_pad((string) $count++, 3, '0', STR_PAD_LEFT);
     }
 }

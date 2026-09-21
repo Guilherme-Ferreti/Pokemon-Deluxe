@@ -5,7 +5,9 @@ declare(strict_types=1);
 namespace Shared\Models;
 
 use Database\Factories\SpeciesLearnableMoveFactory;
+use Illuminate\Database\Eloquent\Attributes\Scope;
 use Illuminate\Database\Eloquent\Attributes\WithoutTimestamps;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -50,6 +52,24 @@ final class SpeciesLearnableMove extends Model
     public function move(): BelongsTo
     {
         return $this->belongsTo(Move::class);
+    }
+
+    /**
+     * @param  Builder<SpeciesLearnableMove>  $query
+     */
+    #[Scope]
+    public function learnableByLevelUp(Builder $query): void
+    {
+        $query->whereNotNull('level_learn');
+    }
+
+    /**
+     * @param  Builder<SpeciesLearnableMove>  $query
+     */
+    #[Scope]
+    public function learnableByTM(Builder $query): void
+    {
+        $query->whereNull('level_learn');
     }
 
     public function isLearnedByLevelUp(): bool

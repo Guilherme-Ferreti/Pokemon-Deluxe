@@ -265,12 +265,12 @@ describe('learnable moves card', function () {
 
         $move = Move::factory()->create(['category' => MoveCategory::DAMAGE]);
 
-        SpeciesLearnableMove::factory()->for($species)->for($move, 'move')->learnedByTm()->create();
+        SpeciesLearnableMove::factory()->for($species)->for($move, 'move')->learnedByTM()->create();
 
         actingAs($user);
 
         visit(route('dex.web.pokedex.show', $species))
-            ->assertSeeIn('@pokedex-species-learnable-moves__tm', '001')
+            ->assertSeeIn('@pokedex-species-learnable-moves__tm', $move->tm_code)
             ->assertSeeIn('@pokedex-species-learnable-moves__tm', $move->name)
             ->assertSeeIn('@pokedex-species-learnable-moves__tm', $move->type->label())
             ->assertSeeIn('@pokedex-species-learnable-moves__tm', $move->power)
@@ -311,8 +311,8 @@ describe('learnable moves card', function () {
         $firstMove  = Move::factory()->create(['name' => 'Ember']);
         $secondMove = Move::factory()->create(['name' => 'Tackle']);
 
-        SpeciesLearnableMove::factory()->for($species)->for($firstMove, 'move')->learnedByTm()->create();
-        SpeciesLearnableMove::factory()->for($species)->for($secondMove, 'move')->learnedByTm()->create();
+        SpeciesLearnableMove::factory()->for($species)->for($firstMove, 'move')->learnedByTM()->create();
+        SpeciesLearnableMove::factory()->for($species)->for($secondMove, 'move')->learnedByTM()->create();
 
         actingAs($user);
 

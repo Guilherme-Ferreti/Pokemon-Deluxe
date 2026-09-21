@@ -39,6 +39,7 @@ use Shared\Enums\MoveDamageClass;
  * @property bool $is_z_move
  * @property bool $is_dynamax_move
  * @property Generation $generation
+ * @property string $tm_code
  * @property Carbon $created_at
  * @property Carbon $updated_at
  * @property-read EloquentCollection<int, SpeciesLearnableMove> $learnableBySpecies

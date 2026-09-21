@@ -221,45 +221,40 @@ final readonly class PokedexShowPageProps implements ProvidesInertiaProperties
     private function getLearnableMovesProp(): array
     {
         $callback = function (): array {
-            $learnableMoves = SpeciesLearnableMove::query()
-                ->join('moves', 'species_learnable_moves.move_id', '=', 'moves.id')
-                ->select('species_learnable_moves.*')
-                ->whereBelongsTo($this->species)
-                ->orderBy('species_learnable_moves.level_learn')
-                ->orderBy('moves.name')
-                ->get();
-
-            $levelUpMoves = $learnableMoves
+            $levelUpMoves = $this->species
+                ->learnableMoves
                 ->filter(fn (SpeciesLearnableMove $learnableMove) => $learnableMove->isLearnedByLevelUp())
                 ->map(fn (SpeciesLearnableMove $learnableMove) => [
-                    'move' => [
-                        'name'          => $learnableMove->move->name,
-                        'type'          => $learnableMove->move->type,
-                        'category'      => $learnableMove->move->category,
-                        'power'         => $learnableMove->move->power,
-                        'accuracy'      => $learnableMove->move->accuracy,
-                        'isZMove'       => $learnableMove->move->is_z_move,
-                        'isDynamaxMove' => $learnableMove->move->is_dynamax_move,
-                    ],
-                    'levelLearn' => $learnableMove->level_learn,
+                    'name'          => $learnableMove->move->name,
+                    'type'          => $learnableMove->move->type,
+                    'category'      => $learnableMove->move->category,
+                    'power'         => $learnableMove->move->power,
+                    'accuracy'      => $learnableMove->move->accuracy,
+                    'isZMove'       => $learnableMove->move->is_z_move,
+                    'isDynamaxMove' => $learnableMove->move->is_dynamax_move,
+                    'levelLearn'    => $learnableMove->level_learn,
+                ])
+                ->sortBy([
+                    ['levelLearn', 'asc'],
+                    ['name', 'asc'],
                 ])
                 ->values()
                 ->toArray();
 
-            $tmMoves = $learnableMoves
+            $tmMoves = $this->species
+                ->learnableMoves
                 ->filter(fn (SpeciesLearnableMove $learnableMove) => $learnableMove->isLearnedByTm())
                 ->map(fn (SpeciesLearnableMove $learnableMove) => [
-                    'move' => [
-                        'name'          => $learnableMove->move->name,
-                        'type'          => $learnableMove->move->type,
-                        'category'      => $learnableMove->move->category,
-                        'power'         => $learnableMove->move->power,
-                        'accuracy'      => $learnableMove->move->accuracy,
-                        'isZMove'       => $learnableMove->move->is_z_move,
-                        'isDynamaxMove' => $learnableMove->move->is_dynamax_move,
-                    ],
-                    'tmCode' => '001',
+                    'name'          => $learnableMove->move->name,
+                    'type'          => $learnableMove->move->type,
+                    'category'      => $learnableMove->move->category,
+                    'power'         => $learnableMove->move->power,
+                    'accuracy'      => $learnableMove->move->accuracy,
+                    'isZMove'       => $learnableMove->move->is_z_move,
+                    'isDynamaxMove' => $learnableMove->move->is_dynamax_move,
+                    'tmCode'        => $learnableMove->move->tm_code,
                 ])
+                ->sortBy('tmCode')
                 ->values()
                 ->toArray();
 

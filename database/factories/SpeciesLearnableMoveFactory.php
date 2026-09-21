@@ -26,7 +26,7 @@ final class SpeciesLearnableMoveFactory extends Factory
         ];
     }
 
-    public function learnedByTm(): static
+    public function learnedByTM(): static
     {
         return $this->state(fn (): array => ['level_learn' => null]);
     }

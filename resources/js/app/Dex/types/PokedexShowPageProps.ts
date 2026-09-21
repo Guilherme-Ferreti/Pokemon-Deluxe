@@ -87,27 +87,23 @@ export interface PokedexShowPageProps {
   };
   learnableMoves: {
     levelUp: {
-      move: {
-        name: string;
-        type: ElementalType;
-        category: MoveCategory;
-        power: number | null;
-        accuracy: number;
-        isZMove: boolean;
-        isDynamaxMove: boolean;
-      };
+      name: string;
+      type: ElementalType;
+      category: MoveCategory;
+      power: number | null;
+      accuracy: number;
+      isZMove: boolean;
+      isDynamaxMove: boolean;
       levelLearn: number;
     }[];
     tm: {
-      move: {
-        name: string;
-        type: ElementalType;
-        category: MoveCategory;
-        power: number | null;
-        accuracy: number;
-        isZMove: boolean;
-        isDynamaxMove: boolean;
-      };
+      name: string;
+      type: ElementalType;
+      category: MoveCategory;
+      power: number | null;
+      accuracy: number;
+      isZMove: boolean;
+      isDynamaxMove: boolean;
       tmCode: string;
     }[];
   };
