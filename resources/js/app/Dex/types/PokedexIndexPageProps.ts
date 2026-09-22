@@ -16,7 +16,7 @@ export interface PokedexIndexPageProps {
     name: string;
     pokedexNumber: number;
     types: SpeciesTypes;
-    generation: string;
+    generation: Generation;
     slug: string;
     regularInBox: boolean;
     shinyInBox: boolean;

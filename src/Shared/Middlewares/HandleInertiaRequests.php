@@ -10,6 +10,7 @@ use Inertia\Middleware;
 use Override;
 use Shared\Enums\Ailment;
 use Shared\Enums\ElementalType;
+use Shared\Enums\Generation;
 use Shared\Enums\PokemonGender;
 
 final class HandleInertiaRequests extends Middleware
@@ -63,6 +64,7 @@ final class HandleInertiaRequests extends Middleware
             'elementalType' => enumLabels(ElementalType::class),
             'pokemonGender' => enumLabels(PokemonGender::class),
             'ailment'       => enumLabels(Ailment::class),
+            'generation'    => enumLabels(Generation::class),
         ];
     }
 }

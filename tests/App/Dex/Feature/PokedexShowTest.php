@@ -55,7 +55,7 @@ it('loads the species show page with expected structure', function () {
             ->where('metadata.traits.isMythical', $species->is_mythical)
             ->where('metadata.traits.isMega', $species->is_mega)
             ->where('metadata.traits.isGmax', $species->is_gmax)
-            ->where('metadata.generation', $species->generation->label())
+            ->where('metadata.generation', $species->generation)
             ->where('metadata.captureRatePercentage', $species->getCaptureRatePercentage())
             ->where('metadata.isGenderless', $species->isGenderless())
             ->where('metadata.malePercentage', $species->getMalePercentage())

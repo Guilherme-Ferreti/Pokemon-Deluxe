@@ -2,7 +2,6 @@
 
 declare(strict_types=1);
 
-use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Auth;
 use Shared\Models\User;
 
@@ -22,14 +21,17 @@ if (! function_exists('toIntIfWhole')) {
 
 if (! function_exists('enumLabels')) {
     /**
+     * @param  enum-string<BackedEnum>  $enum
      * @return array<string|int, string>
      */
     function enumLabels(string $enum): array
     {
-        $labels = Arr::map($enum::cases(), fn (BackedEnum $case) => [
-            $case->value => method_exists($case, 'label') ? $case->label() : str($case->name)->headline()->toString(),
-        ]);
+        $labels = [];
 
-        return Arr::collapse($labels);
+        foreach ($enum::cases() as $backedEnum) {
+            $labels[$backedEnum->value] = method_exists($backedEnum, 'label') ? $backedEnum->label() : str($backedEnum->name)->headline()->toString();
+        }
+
+        return $labels;
     }
 }

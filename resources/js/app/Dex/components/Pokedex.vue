@@ -72,7 +72,7 @@
             <ElementalTypeBadges :types="species.types" />
           </TableCell>
           <TableCell class="text-muted-foreground">
-            {{ species.generation }}
+            {{ $page.props.labels.generation[species.generation] }}
           </TableCell>
           <TableCell>
             <AppIconInBox v-if="species.regularInBox" />

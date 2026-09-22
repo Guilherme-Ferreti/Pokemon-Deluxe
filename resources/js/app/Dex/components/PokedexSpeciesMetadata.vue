@@ -33,7 +33,7 @@
     <AppInfoCardRow
       title="Generation"
       data-test="pokedex-species-metadata__generation"
-      :text="metadata.generation"
+      :text="$page.props.labels.generation[metadata.generation]"
     />
     <AppInfoCardRow
       v-if="Object.values(metadata.traits).some(Boolean)"

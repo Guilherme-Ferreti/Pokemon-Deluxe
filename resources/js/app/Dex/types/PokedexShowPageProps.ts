@@ -1,5 +1,6 @@
 import type {
   ElementalType,
+  Generation,
   MoveCategory,
   PokemonGender,
   SpeciesTypes,
@@ -35,7 +36,7 @@ export interface PokedexShowPageProps {
       isMega: boolean;
       isGmax: boolean;
     };
-    generation: string;
+    generation: Generation;
     captureRatePercentage: number;
     isGenderless: boolean;
     malePercentage: number;

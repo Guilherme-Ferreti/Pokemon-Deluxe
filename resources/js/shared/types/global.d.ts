@@ -2,6 +2,7 @@ import type {
   Ailment,
   Auth,
   ElementalType,
+  Generation,
   PokemonGender,
 } from '@/shared/types';
 
@@ -27,6 +28,7 @@ declare module '@inertiajs/core' {
         elementalType: Record<ElementalType, string>;
         pokemonGender: Record<PokemonGender, string>;
         ailment: Record<Ailment, string>;
+        generation: Record<Generation, string>;
       };
       authLayout: {
         sprites: string[];
