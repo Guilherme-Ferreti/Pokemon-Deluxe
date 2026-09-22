@@ -1,3 +1,4 @@
+import type { SearchBoxSortBy } from '@/app/Pokemon/types/enums/SearchBoxSortBy';
 import type {
   ElementalType,
   FilterOption,
@@ -5,7 +6,6 @@ import type {
   PaginatedList,
   PokemonGender,
   PokemonTrait,
-  SearchBoxSortBy,
   SortDirection,
   SpeciesTypes,
 } from '@/shared/types';

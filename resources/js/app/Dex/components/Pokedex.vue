@@ -119,6 +119,7 @@ import {
 import { watchDebounced } from '@vueuse/core';
 import { nextTick } from 'vue';
 import PokedexSearchBarFiltersDialog from '@/app/Dex/components/PokedexSearchBarFiltersDialog.vue';
+import { SearchPokedexSortBy } from '@/app/Dex/types/enums/SearchPokedexSortBy';
 import type { PokedexIndexPageProps } from '@/app/Dex/types/PokedexIndexPageProps';
 import AppEmptyState from '@/shared/components/AppEmptyState.vue';
 import AppIconInBox from '@/shared/components/AppIconInBox.vue';
@@ -138,7 +139,6 @@ import {
   TableRow,
 } from '@/shared/components/ui/table';
 import { removeFalsyValues } from '@/shared/lib/utils.js';
-import { SearchPokedexSortBy } from '@/shared/types';
 import { route } from '@/shared/types/helpers/route';
 
 const props = defineProps<{

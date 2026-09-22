@@ -1,4 +1,4 @@
-import type { ElementalType } from '@/shared/types/php-types';
+import type { ElementalType } from '@/shared/types/enums';
 
 export type SpeciesTypes = [ElementalType] | [ElementalType, ElementalType];
 

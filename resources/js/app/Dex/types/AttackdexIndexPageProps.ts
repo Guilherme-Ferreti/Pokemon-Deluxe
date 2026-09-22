@@ -1,3 +1,4 @@
+import type { SearchAttackdexSortBy } from '@/app/Dex/types/enums/SearchAttackdexSortBy';
 import type {
   Ailment,
   ElementalType,
@@ -5,7 +6,6 @@ import type {
   MoveCategory,
   PaginatedList,
   MoveTrait,
-  SearchAttackdexSortBy,
   SortDirection,
 } from '@/shared/types';
 

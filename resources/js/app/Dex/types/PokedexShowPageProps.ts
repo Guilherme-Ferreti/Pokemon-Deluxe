@@ -2,7 +2,6 @@ import type {
   ElementalType,
   MoveCategory,
   PokemonGender,
-  SpeciesSprites,
   SpeciesTypes,
 } from '@/shared/types';
 

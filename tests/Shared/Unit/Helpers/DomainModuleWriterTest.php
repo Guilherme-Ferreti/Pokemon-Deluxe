@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-use Shared\Enums\Ailment;
 use App\Dex\Enums\SearchPokedexSortBy;
-use Shared\Models\Species;
+use Shared\Enums\Ailment;
 use Shared\Enums\ElementalType;
 use Shared\Helpers\DomainModuleWriter;
+use Shared\Models\Species;
 use Spatie\TypeScriptTransformer\Collections\TransformedCollection;
 use Spatie\TypeScriptTransformer\References\ClassStringReference;
 use Spatie\TypeScriptTransformer\Transformed\Transformed;

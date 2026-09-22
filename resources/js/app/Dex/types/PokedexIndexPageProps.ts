@@ -1,9 +1,9 @@
+import type { SearchPokedexSortBy } from '@/app/Dex/types/enums/SearchPokedexSortBy';
 import type {
   ElementalType,
   FilterOption,
   Generation,
   PaginatedList,
-  SearchPokedexSortBy,
   SortDirection,
   SpeciesTrait,
   SpeciesTypes,

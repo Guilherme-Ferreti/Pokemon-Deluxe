@@ -64,6 +64,7 @@
 import { IconArrowsDownUp } from '@tabler/icons-vue';
 import { PopoverClose } from 'reka-ui';
 import type { BoxIndexPageProps } from '@/app/Pokemon/types/BoxIndexPageProps';
+import { SearchBoxSortBy } from '@/app/Pokemon/types/enums/SearchBoxSortBy';
 import AppSelect from '@/shared/components/AppSelect.vue';
 import { Button } from '@/shared/components/ui/button';
 import {
@@ -76,7 +77,7 @@ import {
   TooltipContent,
   TooltipTrigger,
 } from '@/shared/components/ui/tooltip';
-import { SearchBoxSortBy, SortDirection } from '@/shared/types';
+import { SortDirection } from '@/shared/types';
 
 defineProps<{
   sortOptions: BoxIndexPageProps['filterOptions']['sort'];

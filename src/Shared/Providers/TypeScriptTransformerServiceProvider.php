@@ -4,13 +4,13 @@ declare(strict_types=1);
 
 namespace Shared\Providers;
 
+use Shared\Helpers\DomainModuleWriter;
 use Spatie\LaravelTypeScriptTransformer\RouteFilters\NamedRouteFilter;
 use Spatie\LaravelTypeScriptTransformer\TransformedProviders\LaravelRouteTransformedProvider;
 use Spatie\LaravelTypeScriptTransformer\TypeScriptTransformerApplicationServiceProvider as BaseTypeScriptTransformerServiceProvider;
 use Spatie\TypeScriptTransformer\Formatters\PrettierFormatter;
 use Spatie\TypeScriptTransformer\Transformers\EnumTransformer;
 use Spatie\TypeScriptTransformer\TypeScriptTransformerConfigFactory;
-use Spatie\TypeScriptTransformer\Writers\FlatModuleWriter;
 
 final class TypeScriptTransformerServiceProvider extends BaseTypeScriptTransformerServiceProvider
 {
@@ -19,13 +19,14 @@ final class TypeScriptTransformerServiceProvider extends BaseTypeScriptTransform
         $config
             ->transformer(new EnumTransformer(useUnionEnums: false))
             ->transformDirectories(base_path('src/App'), base_path('src/Shared'))
-            ->writer(new FlatModuleWriter('php-types.ts'))
-            ->outputDirectory(resource_path('js/shared/types'))
+            ->writer(new DomainModuleWriter)
+            ->outputDirectory(resource_path('js'))
             ->formatter(PrettierFormatter::class)
             ->provider(new LaravelRouteTransformedProvider(
                 filters: [
                     new NamedRouteFilter('boost.*', 'telescope'),
                 ],
+                path: 'shared/types/helpers/route.ts',
                 absoluteUrlsByDefault: false
             ));
     }
