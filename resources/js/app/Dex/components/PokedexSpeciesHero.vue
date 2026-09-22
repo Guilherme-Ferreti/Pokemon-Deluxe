@@ -6,8 +6,8 @@
       >
         <img
           class="size-36 object-contain"
-          :src="species.sprites.frontDefault ?? undefined"
-          :alt="`${species.name} sprite`"
+          :src="hero.sprites.frontDefault ?? undefined"
+          :alt="`${hero.name} sprite`"
         />
       </div>
       <div class="flex flex-1 flex-col gap-4 p-6">
@@ -15,27 +15,27 @@
           class="text-xs leading-none font-black tracking-widest text-muted-foreground uppercase"
           data-test="pokedex-species-hero__pokedex-number"
         >
-          #{{ formatPokedexNumber(species.pokedexNumber) }}
+          #{{ formatPokedexNumber(hero.pokedexNumber) }}
         </p>
         <div class="flex flex-col gap-1">
           <h1
             class="text-3xl font-bold text-foreground"
             data-test="pokedex-species-hero__name"
           >
-            {{ species.name }}
+            {{ hero.name }}
           </h1>
           <p
             class="text-base text-muted-foreground"
             data-test="pokedex-species-hero__genus"
           >
-            {{ species.genus }}
+            {{ hero.genus }}
           </p>
         </div>
         <p
           class="text-muted-foreground"
           data-test="pokedex-species-hero__text-entry"
         >
-          {{ species.textEntry }}
+          {{ hero.textEntry }}
         </p>
       </div>
     </div>
@@ -48,6 +48,6 @@ import { Card } from '@/shared/components/ui/card';
 import { formatPokedexNumber } from '@/shared/lib/utils';
 
 defineProps<{
-  species: PokedexShowPageProps['species'];
+  hero: PokedexShowPageProps['hero'];
 }>();
 </script>

@@ -30,13 +30,15 @@ final readonly class PokedexShowPageProps implements ProvidesInertiaProperties
     public function toInertiaProperties(RenderContext $context): array
     {
         return [
-            'species'           => fn () => $this->getSpeciesProp(),
-            'previousSpecies'   => fn () => $this->getPreviousSpeciesProp(),
-            'nextSpecies'       => fn () => $this->getNextSpeciesProp(),
-            'captureStatistics' => fn () => $this->getCaptureStatisticsProp(),
-            'damageTaken'       => fn () => $this->getDamageTakenProp(),
-            'evolutionChain'    => fn () => $this->getEvolutionChainProp(),
-            'learnableMoves'    => fn () => $this->getLearnableMovesProp(),
+            'species'           => $this->getSpeciesProp(),
+            'hero'              => $this->getHeroProp(),
+            'metadata'          => $this->getMetadataProp(),
+            'previousSpecies'   => $this->getPreviousSpeciesProp(),
+            'nextSpecies'       => $this->getNextSpeciesProp(),
+            'captureStatistics' => $this->getCaptureStatisticsProp(),
+            'damageTaken'       => $this->getDamageTakenProp(),
+            'evolutionChain'    => $this->getEvolutionChainProp(),
+            'learnableMoves'    => $this->getLearnableMovesProp(),
         ];
     }
 
@@ -46,22 +48,37 @@ final readonly class PokedexShowPageProps implements ProvidesInertiaProperties
     private function getSpeciesProp(): array
     {
         return [
-            'id'            => $this->species->id,
+            'name' => $this->species->name,
+            'slug' => $this->species->slug,
+        ];
+    }
+
+    /**
+     * @return array<string, mixed>
+     */
+    private function getHeroProp(): array
+    {
+        return [
             'name'          => $this->species->name,
-            'types'         => $this->species->types,
             'pokedexNumber' => $this->species->pokedex_number,
             'genus'         => $this->species->genus,
             'textEntry'     => $this->species->text_entry,
             'sprites'       => [
-                'backDefault'      => $this->species->sprites->back_default,
-                'backFemale'       => $this->species->sprites->back_female,
-                'backShiny'        => $this->species->sprites->back_shiny,
-                'backShinyFemale'  => $this->species->sprites->back_shiny_female,
                 'frontDefault'     => $this->species->sprites->front_default,
                 'frontFemale'      => $this->species->sprites->front_female,
                 'frontShiny'       => $this->species->sprites->front_shiny,
                 'frontShinyFemale' => $this->species->sprites->front_shiny_female,
             ],
+        ];
+    }
+
+    /**
+     * @return array<string, mixed>
+     */
+    private function getMetadataProp(): array
+    {
+        return [
+            'types'     => $this->species->types,
             'portraits' => $this->species->portraits,
             'traits'    => [
                 'isBaby'      => $this->species->is_baby,
@@ -71,8 +88,6 @@ final readonly class PokedexShowPageProps implements ProvidesInertiaProperties
                 'isGmax'      => $this->species->is_gmax,
             ],
             'generation'            => $this->species->generation->label(),
-            'slug'                  => $this->species->slug,
-            'isCapturable'          => $this->species->isCapturable(),
             'captureRatePercentage' => $this->species->getCaptureRatePercentage(),
             'isGenderless'          => $this->species->isGenderless(),
             'malePercentage'        => $this->species->getMalePercentage(),

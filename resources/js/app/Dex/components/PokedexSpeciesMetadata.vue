@@ -5,9 +5,9 @@
         <Tooltip>
           <TooltipTrigger>
             <AppSpeciesPortrait
-              v-if="species.portraits.regular"
-              :url="species.portraits.regular"
-              :name="species.name"
+              v-if="metadata.portraits.regular"
+              :url="metadata.portraits.regular"
+              :name="speciesName"
             />
           </TooltipTrigger>
           <TooltipContent>Regular</TooltipContent>
@@ -15,9 +15,9 @@
         <Tooltip>
           <TooltipTrigger>
             <AppSpeciesPortrait
-              v-if="species.portraits.shiny"
-              :url="species.portraits.shiny"
-              :name="species.name"
+              v-if="metadata.portraits.shiny"
+              :url="metadata.portraits.shiny"
+              :name="speciesName"
             />
           </TooltipTrigger>
           <TooltipContent>Shiny</TooltipContent>
@@ -28,49 +28,49 @@
       title="Type(s)"
       data-test="pokedex-species-metadata__types"
     >
-      <ElementalTypeBadges :types="species.types" />
+      <ElementalTypeBadges :types="metadata.types" />
     </AppInfoCardRow>
     <AppInfoCardRow
       title="Generation"
       data-test="pokedex-species-metadata__generation"
-      :text="species.generation"
+      :text="metadata.generation"
     />
     <AppInfoCardRow
-      v-if="Object.values(species.traits).some(Boolean)"
+      v-if="Object.values(metadata.traits).some(Boolean)"
       title="Traits"
       data-test="pokedex-species-metadata__traits"
     >
       <div class="flex flex-wrap gap-2">
         <Badge
-          v-if="species.traits.isBaby"
+          v-if="metadata.traits.isBaby"
           variant="outline"
           class="text-xs font-medium"
         >
           Baby
         </Badge>
         <Badge
-          v-if="species.traits.isLegendary"
+          v-if="metadata.traits.isLegendary"
           variant="outline"
           class="text-xs font-medium"
         >
           Legendary
         </Badge>
         <Badge
-          v-if="species.traits.isMythical"
+          v-if="metadata.traits.isMythical"
           variant="outline"
           class="text-xs font-medium"
         >
           Mythical
         </Badge>
         <Badge
-          v-if="species.traits.isMega"
+          v-if="metadata.traits.isMega"
           variant="outline"
           class="text-xs font-medium"
         >
           Mega
         </Badge>
         <Badge
-          v-if="species.traits.isGmax"
+          v-if="metadata.traits.isGmax"
           variant="outline"
           class="text-xs font-medium"
         >
@@ -85,7 +85,7 @@
       data-test="pokedex-species-metadata__traits"
     />
     <AppInfoCardRow
-      v-if="species.isGenderless"
+      v-if="metadata.isGenderless"
       title="Gender Rate"
       text="Genderless"
       data-test="pokedex-species-metadata__gender-rate"
@@ -100,7 +100,7 @@
           v-if="canBeMale"
           class="flex items-center gap-0.5"
         >
-          {{ species.malePercentage }}%
+          {{ metadata.malePercentage }}%
 
           <AppPokemonGenderIcon :gender="PokemonGender.MALE" />
         </span>
@@ -109,7 +109,7 @@
           v-if="canBeFemale"
           class="flex items-center gap-0.5"
         >
-          {{ species.femalePercentage }}%
+          {{ metadata.femalePercentage }}%
           <AppPokemonGenderIcon :gender="PokemonGender.FEMALE" />
         </span>
       </span>
@@ -133,9 +133,10 @@ import {
 import { PokemonGender } from '@/shared/types';
 
 const props = defineProps<{
-  species: PokedexShowPageProps['species'];
+  speciesName: string;
+  metadata: PokedexShowPageProps['metadata'];
 }>();
 
-const canBeMale = props.species.malePercentage !== 0;
-const canBeFemale = props.species.femalePercentage !== 0;
+const canBeMale = props.metadata.malePercentage !== 0;
+const canBeFemale = props.metadata.femalePercentage !== 0;
 </script>

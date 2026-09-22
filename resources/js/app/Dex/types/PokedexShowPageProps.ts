@@ -8,13 +8,23 @@ import type {
 
 export interface PokedexShowPageProps {
   species: {
-    id: string;
     name: string;
-    types: SpeciesTypes;
+    slug: string;
+  };
+  hero: {
+    name: string;
+    sprites: {
+      frontDefault: string;
+      frontShiny: string;
+      frontFemale: string;
+      frontShinyFemale: string;
+    };
     pokedexNumber: number;
     genus: string;
     textEntry: string;
-    sprites: SpeciesSprites;
+  };
+  metadata: {
+    types: SpeciesTypes;
     portraits: {
       regular: string | null;
       shiny: string | null;
@@ -27,8 +37,6 @@ export interface PokedexShowPageProps {
       isGmax: boolean;
     };
     generation: string;
-    slug: string;
-    isCapturable: boolean;
     captureRatePercentage: number;
     isGenderless: boolean;
     malePercentage: number;

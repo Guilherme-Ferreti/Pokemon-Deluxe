@@ -16,13 +16,14 @@
       <section class="@2xl/main-content:col-span-2">
         <PokedexSpeciesHero
           class="h-full"
-          :species="species"
+          :hero="hero"
         />
       </section>
       <section>
         <PokedexSpeciesMetadata
           class="h-full"
-          :species="species"
+          :species-name="species.name"
+          :metadata="metadata"
         />
       </section>
       <section class="@4xl/main-content:order-1">
