@@ -21,6 +21,7 @@ use Shared\Enums\ElementalType;
 use Shared\Enums\Generation;
 use Shared\ValueObjects\SpeciesPortraits;
 use Shared\ValueObjects\SpeciesSprites;
+use Spatie\TypeScriptTransformer\Attributes\TypeScript;
 
 /**
  * @property string $id
@@ -47,6 +48,7 @@ use Shared\ValueObjects\SpeciesSprites;
  */
 #[Table('species')]
 #[WithoutTimestamps]
+#[TypeScript]
 final class Species extends Model
 {
     /** @use HasFactory<SpeciesFactory> */

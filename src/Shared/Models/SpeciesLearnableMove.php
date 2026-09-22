@@ -13,6 +13,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Override;
+use Spatie\TypeScriptTransformer\Attributes\TypeScript;
 
 /**
  * @property int|null $level_learn
@@ -21,6 +22,7 @@ use Override;
  * @property-read Move $move
  */
 #[WithoutTimestamps]
+#[TypeScript]
 final class SpeciesLearnableMove extends Model
 {
     /** @use HasFactory<SpeciesLearnableMoveFactory> */

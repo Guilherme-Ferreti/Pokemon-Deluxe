@@ -11,6 +11,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Override;
 use Shared\Enums\PokeballType;
+use Spatie\TypeScriptTransformer\Attributes\TypeScript;
 
 /**
  * @property string $id
@@ -22,6 +23,7 @@ use Shared\Enums\PokeballType;
  * @property float $capture_rate
  */
 #[WithoutTimestamps]
+#[TypeScript]
 final class Pokeball extends Model
 {
     /** @use HasFactory<PokeballFactory> */

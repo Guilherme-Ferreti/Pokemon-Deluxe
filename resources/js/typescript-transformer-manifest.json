@@ -13,5 +13,13 @@
   "shared\/types\/enums\/PokemonGender.ts": "74108b5c622404fa5fb1b8aa2ccac507",
   "shared\/types\/enums\/PokemonTrait.ts": "8686ff8c910ea540d28672f786996eab",
   "shared\/types\/enums\/SortDirection.ts": "fd0dd9de07b3476d5e9620a0bc85b37f",
-  "shared\/types\/enums\/SpeciesTrait.ts": "a3cab481b31c0d4fe0b9b4ee6118f499"
+  "shared\/types\/enums\/SpeciesTrait.ts": "a3cab481b31c0d4fe0b9b4ee6118f499",
+  "shared\/types\/models\/EvolutionItem.ts": "4e98b59b6adc3a6d42435d0992136941",
+  "shared\/types\/models\/Move.ts": "aac19b0c9b912953994a028197bad750",
+  "shared\/types\/models\/Pokeball.ts": "813367c21084768f5c6aacc4d0f08042",
+  "shared\/types\/models\/Pokemon.ts": "06165d4fa58cc351d39795d5221da5e5",
+  "shared\/types\/models\/Species.ts": "009833ead5e3467fbaf2b977ba448c69",
+  "shared\/types\/models\/SpeciesEvolution.ts": "856d0878f66bd4ec447ff262d965f94b",
+  "shared\/types\/models\/SpeciesLearnableMove.ts": "43671094db401e9669e4bc65153f074c",
+  "shared\/types\/models\/User.ts": "af0220d51bba8bda46d1012b7dce4da7"
 }

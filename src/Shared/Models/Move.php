@@ -19,6 +19,7 @@ use Shared\Enums\ElementalType;
 use Shared\Enums\Generation;
 use Shared\Enums\MoveCategory;
 use Shared\Enums\MoveDamageClass;
+use Spatie\TypeScriptTransformer\Attributes\TypeScript;
 
 /**
  * @property string $id
@@ -44,6 +45,7 @@ use Shared\Enums\MoveDamageClass;
  */
 #[Table('moves')]
 #[WithoutTimestamps]
+#[TypeScript]
 final class Move extends Model
 {
     /** @use HasFactory<MoveFactory> */

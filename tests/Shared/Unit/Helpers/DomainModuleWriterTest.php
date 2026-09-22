@@ -5,7 +5,7 @@ declare(strict_types=1);
 use App\Dex\Enums\SearchPokedexSortBy;
 use Shared\Enums\Ailment;
 use Shared\Enums\ElementalType;
-use Shared\Helpers\DomainModuleWriter;
+use Shared\Helpers\Typescript\DomainModuleWriter;
 use Shared\Models\Species;
 use Spatie\TypeScriptTransformer\Collections\TransformedCollection;
 use Spatie\TypeScriptTransformer\References\ClassStringReference;
@@ -89,8 +89,40 @@ it('imports referenced types using a relative path', function () {
 
     expect($files)->toHaveCount(1)
         ->and($files[0]->path)->toBe('shared/types/models/Box.ts')
-        ->and($files[0]->contents)->toContain("import { ElementalType } from '../enums/ElementalType';")
+        ->and($files[0]->contents)->toContain("import { ElementalType } from '@/shared/types/enums/ElementalType';")
+        ->and($files[0]->contents)->toContain(
+            "import { ElementalType } from '@/shared/types/enums/ElementalType';\n\nexport type Box = ElementalType;"
+        )
         ->and($files[0]->contents)->toContain('type Box = ElementalType;');
+});
+
+it('resolves nested imports to their @ alias', function () {
+    $writer = new DomainModuleWriter;
+
+    $typeReference = TypeScriptReference::referencingPhpClass(ElementalType::class);
+
+    $box = new Transformed(
+        new TypeScriptAlias(new TypeScriptIdentifier('Box'), $typeReference),
+        new ClassStringReference('App\Dex\Models\Box'),
+        ['App', 'Dex', 'Models'],
+        true,
+        $writer,
+    );
+
+    $elementalType = makeTransformedEnum($writer, ElementalType::class, 'ElementalType');
+
+    $box->references($elementalType->getReference()->getKey(), $typeReference);
+    $elementalType->referencedBy($box->getReference()->getKey());
+    $typeReference->connect($elementalType);
+
+    $files = $writer->output([$box], new TransformedCollection([$box, $elementalType]));
+
+    expect($files)->toHaveCount(1)
+        ->and($files[0]->path)->toBe('app/Dex/types/models/Box.ts')
+        ->and($files[0]->contents)->toContain(
+            "import { ElementalType } from '@/shared/types/enums/ElementalType';"
+        )
+        ->and($files[0]->contents)->not->toContain('../../');
 });
 
 it('merges types that resolve to the same file into one module', function () {

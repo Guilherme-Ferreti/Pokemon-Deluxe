@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Shared\Helpers;
+namespace Shared\Helpers\Typescript;
 
 use Illuminate\Support\Str;
 use Spatie\TypeScriptTransformer\Actions\ResolveImportsAndResolvedReferenceMapAction;
@@ -64,8 +64,16 @@ final readonly class DomainModuleWriter implements Writer
 
         $writingContext = new WritingContext($resolvedReferenceMap);
 
-        foreach ($imports->getTypeScriptNodes() as $typeScriptImport) {
-            $output .= $typeScriptImport->write($writingContext) . "\n";
+        $importNodes = $imports->getTypeScriptNodes();
+
+        foreach ($importNodes as $importNode) {
+            $importNode->path = $this->resolveAliasedImportPath($path, $importNode->path);
+
+            $output .= $importNode->write($writingContext) . "\n";
+        }
+
+        if (count($importNodes) > 0) {
+            $output .= "\n";
         }
 
         foreach ($items as $item) {
@@ -73,6 +81,29 @@ final readonly class DomainModuleWriter implements Writer
         }
 
         return new WriteableFile($path, $output);
+    }
+
+    private function resolveAliasedImportPath(string $currentPath, string $importPath): string
+    {
+        $isDirectory = str_ends_with($importPath, '/');
+
+        $segments = explode('/', dirname($currentPath));
+
+        foreach (explode('/', trim($importPath, '/')) as $segment) {
+            if ($segment === '..') {
+                array_pop($segments);
+
+                continue;
+            }
+
+            if (in_array($segment, ['', '.'], true)) {
+                continue;
+            }
+
+            $segments[] = $segment;
+        }
+
+        return '@/' . implode('/', $segments) . ($isDirectory ? '/' : '');
     }
 
     private function resolveRelativePath(Transformed $transformed): string
