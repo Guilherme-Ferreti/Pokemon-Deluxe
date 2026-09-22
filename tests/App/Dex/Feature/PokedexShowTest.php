@@ -2,6 +2,7 @@
 
 declare(strict_types=1);
 
+use Illuminate\Support\Arr;
 use Inertia\Testing\AssertableInertia as Assert;
 use Shared\Enums\ElementalType;
 use Shared\Enums\PokemonGender;
@@ -46,7 +47,7 @@ it('loads the species show page with expected structure', function () {
             ->where('hero.sprites.frontShiny', $species->sprites->front_shiny)
             ->where('hero.sprites.frontShinyFemale', $species->sprites->front_shiny_female)
             ->has('metadata')
-            ->where('metadata.types', $species->types->pluck('value'))
+            ->where('metadata.types', Arr::pluck($species->types, 'value'))
             ->where('metadata.portraits.regular', $species->portraits->regular)
             ->where('metadata.portraits.shiny', $species->portraits->shiny)
             ->where('metadata.traits.isBaby', $species->is_baby)

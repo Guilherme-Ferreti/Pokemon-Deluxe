@@ -2,6 +2,7 @@
 
 declare(strict_types=1);
 
+use Illuminate\Support\Arr;
 use Inertia\Testing\AssertableInertia as Assert;
 use Shared\Models\Move;
 use Shared\Models\Pokemon;
@@ -46,7 +47,7 @@ it('loads the box page with expected structure', function () {
             ->where('pokemonList.data.0.frontSprite', $newestPokemon->getFrontSprite())
             ->where('pokemonList.data.0.level', $newestPokemon->level)
             ->where('pokemonList.data.0.experience', $newestPokemon->experience)
-            ->where('pokemonList.data.0.species.types', $newestPokemon->species->types->pluck('value'))
+            ->where('pokemonList.data.0.species.types', Arr::pluck($newestPokemon->species->types, 'value'))
             ->where('pokemonList.data.0.moves.0.name', $newestPokemon->moves[0]->name)
             ->where('pokemonList.data.0.moves.1.name', $newestPokemon->moves[1]->name)
             ->where('pokemonList.data.0.moves.2.name', $newestPokemon->moves[2]->name)

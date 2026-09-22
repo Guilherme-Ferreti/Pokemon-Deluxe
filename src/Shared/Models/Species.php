@@ -15,7 +15,6 @@ use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
-use Illuminate\Support\Collection;
 use Override;
 use Shared\Enums\ElementalType;
 use Shared\Enums\Generation;
@@ -27,7 +26,7 @@ use Spatie\TypeScriptTransformer\Attributes\TypeScript;
  * @property string $id
  * @property string $slug
  * @property string $name
- * @property Collection<int, ElementalType> $types
+ * @property array{0: ElementalType, 1?: ElementalType} $types
  * @property int $pokedex_number
  * @property string $genus
  * @property string $text_entry

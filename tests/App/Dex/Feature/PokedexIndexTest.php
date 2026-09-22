@@ -2,6 +2,7 @@
 
 declare(strict_types=1);
 
+use Illuminate\Support\Arr;
 use Inertia\Testing\AssertableInertia as Assert;
 use Shared\Models\Pokemon;
 use Shared\Models\Species;
@@ -39,7 +40,7 @@ it('loads the pokedex page with expected structure', function () {
             ->where('speciesList.data.0.pokedexNumber', $speciesA->pokedex_number)
             ->where('speciesList.data.0.portrait', $speciesA->portraits->regular)
             ->where('speciesList.data.0.name', $speciesA->name)
-            ->where('speciesList.data.0.types', $speciesA->types->pluck('value'))
+            ->where('speciesList.data.0.types', Arr::pluck($speciesA->types, 'value'))
             ->where('speciesList.data.0.generation', $speciesA->generation->label())
             ->where('speciesList.data.0.slug', $speciesA->slug)
             ->where('speciesList.data.0.regularInBox', false)
@@ -48,7 +49,7 @@ it('loads the pokedex page with expected structure', function () {
             ->where('speciesList.data.1.pokedexNumber', $speciesB->pokedex_number)
             ->where('speciesList.data.1.portrait', $speciesB->portraits->regular)
             ->where('speciesList.data.1.name', $speciesB->name)
-            ->where('speciesList.data.1.types', $speciesB->types->pluck('value'))
+            ->where('speciesList.data.1.types', Arr::pluck($speciesB->types, 'value'))
             ->where('speciesList.data.1.generation', $speciesB->generation->label())
             ->where('speciesList.data.1.slug', $speciesB->slug)
             ->where('speciesList.data.1.regularInBox', true)

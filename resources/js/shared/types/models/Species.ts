@@ -5,7 +5,7 @@ export type Species = {
   id: string;
   slug: string;
   name: string;
-  types: ElementalType[];
+  types: [ElementalType, ElementalType?];
   pokedexNumber: number;
   genus: string;
   textEntry: string;

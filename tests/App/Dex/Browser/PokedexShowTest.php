@@ -84,7 +84,7 @@ describe('metadata card', function () {
 
         visit(route('dex.web.pokedex.show', $species))
             ->assertSeeIn('@pokedex-species-metadata__types', $species->types[0]->label())
-            ->assertSeeIn('@pokedex-species-metadata__types', $species->types[1]->label())
+            ->assertSeeIn('@pokedex-species-metadata__types', ($species->types[1] ?? null)?->label())
             ->assertSeeIn('@pokedex-species-metadata__generation', $species->generation->label())
             ->assertSeeIn('@pokedex-species-metadata__traits', SpeciesTrait::BABY->label())
             ->assertSeeIn('@pokedex-species-metadata__traits', SpeciesTrait::LEGENDARY->label())

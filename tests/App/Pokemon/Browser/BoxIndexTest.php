@@ -32,7 +32,7 @@ it('shows box pokemon', function () {
     visit(route('pokemon.web.box.index'))
         ->assertSee($pokemon->species->name)
         ->assertSee($pokemon->species->types[0]->label())
-        ->assertSee($pokemon->species->types[1]->label())
+        ->assertSee(($pokemon->species->types[1] ?? null)?->label())
         ->assertSee($pokemon->species->name)
         ->assertSee($pokemon->gender->label())
         ->assertSee($pokemon->level)
