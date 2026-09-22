@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace Shared\Providers;
 
 use Carbon\Carbon;
-use Shared\Helpers\Typescript\DomainModuleWriter;
-use Shared\Helpers\Typescript\EloquentModelTransformer;
+use Shared\Typescript\DomainModuleWriter;
+use Shared\Typescript\EloquentModelTransformer;
 use Spatie\LaravelTypeScriptTransformer\RouteFilters\NamedRouteFilter;
 use Spatie\LaravelTypeScriptTransformer\TransformedProviders\LaravelRouteTransformedProvider;
 use Spatie\LaravelTypeScriptTransformer\TypeScriptTransformerApplicationServiceProvider as BaseTypeScriptTransformerServiceProvider;

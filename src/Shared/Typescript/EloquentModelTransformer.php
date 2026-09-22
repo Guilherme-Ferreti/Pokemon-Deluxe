@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Shared\Helpers\Typescript;
+namespace Shared\Typescript;
 
 use Illuminate\Database\Eloquent\Collection as EloquentCollection;
 use Illuminate\Database\Eloquent\Model;
@@ -16,6 +16,7 @@ use Spatie\TypeScriptTransformer\Transformers\ClassTransformer;
 use Spatie\TypeScriptTransformer\TypeResolvers\Data\ParsedClass;
 use Spatie\TypeScriptTransformer\TypeScriptNodes\TypeScriptArray;
 use Spatie\TypeScriptTransformer\TypeScriptNodes\TypeScriptGeneric;
+use Spatie\TypeScriptTransformer\TypeScriptNodes\TypeScriptIdentifier;
 use Spatie\TypeScriptTransformer\TypeScriptNodes\TypeScriptNode;
 use Spatie\TypeScriptTransformer\TypeScriptNodes\TypeScriptObject;
 use Spatie\TypeScriptTransformer\TypeScriptNodes\TypeScriptProperty;
@@ -49,11 +50,41 @@ final class EloquentModelTransformer extends ClassTransformer
 
             $properties[] = new TypeScriptProperty(
                 Str::camel($name),
-                $this->inlineValueObjects($this->unwrapCollections($type)),
+                $this->inlineValueObjects($this->listShapesToTuples($this->unwrapCollections($type))),
             );
         }
 
         return new TypeScriptObject($properties);
+    }
+
+    private function listShapesToTuples(TypeScriptNode $type): TypeScriptNode
+    {
+        $convert = Visitor::create()->before(function (TypeScriptObject $object): VisitorOperation {
+            $expectedIndex = 0;
+
+            foreach ($object->properties as $property) {
+                $name = $property->name instanceof TypeScriptIdentifier
+                    ? $property->name->name
+                    : null;
+
+                if ($name === null || (string) $expectedIndex !== $name) {
+                    return VisitorOperation::keep();
+                }
+
+                $expectedIndex++;
+            }
+
+            if ($expectedIndex === 0) {
+                return VisitorOperation::keep();
+            }
+
+            return VisitorOperation::replace(new TypeScriptTuple(
+                array_map(fn (TypeScriptProperty $property) => $property->type, $object->properties),
+                array_map(fn (TypeScriptProperty $property) => $property->isOptional, $object->properties),
+            ));
+        }, [TypeScriptObject::class]);
+
+        return $convert->execute($type);
     }
 
     private function unwrapCollections(TypeScriptNode $type): TypeScriptNode

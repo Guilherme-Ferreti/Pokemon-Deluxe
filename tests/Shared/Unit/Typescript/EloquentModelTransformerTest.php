@@ -5,9 +5,10 @@ declare(strict_types=1);
 use Illuminate\Database\Eloquent\Model;
 use Shared\Enums\ElementalType;
 use Shared\Enums\Generation;
-use Shared\Helpers\Typescript\EloquentModelTransformer;
 use Shared\Models\Move;
 use Shared\Models\Species;
+use Shared\Typescript\EloquentModelTransformer;
+use Shared\Typescript\TypeScriptTuple;
 use Shared\ValueObjects\SpeciesPortraits;
 use Shared\ValueObjects\SpeciesSprites;
 use Spatie\TypeScriptTransformer\Data\TransformationContext;
@@ -16,7 +17,6 @@ use Spatie\TypeScriptTransformer\References\ClassStringReference;
 use Spatie\TypeScriptTransformer\Transformed\Transformed;
 use Spatie\TypeScriptTransformer\Transformed\Untransformable;
 use Spatie\TypeScriptTransformer\TypeScriptNodes\TypeScriptAlias;
-use Spatie\TypeScriptTransformer\TypeScriptNodes\TypeScriptArray;
 use Spatie\TypeScriptTransformer\TypeScriptNodes\TypeScriptIndexSignature;
 use Spatie\TypeScriptTransformer\TypeScriptNodes\TypeScriptNode;
 use Spatie\TypeScriptTransformer\TypeScriptNodes\TypeScriptNull;
@@ -171,16 +171,22 @@ it('ignores @property-read relationship annotations', function () {
     );
 });
 
-it('unwraps collection annotations into arrays', function () {
+it('transforms the species types annotation into a one-or-two tuple', function () {
     $types = narrowNode(
         findProperty(transformEloquentModelProperties(Species::class), 'types')->type,
-        TypeScriptArray::class,
+        TypeScriptTuple::class,
     );
-    $element   = narrowNode($types->types[0], TypeScriptReference::class);
-    $reference = narrowNode($element->reference, ClassStringReference::class);
 
-    expect($types->types)->toHaveCount(1)
-        ->and($reference->classString)->toBe(ElementalType::class);
+    expect($types->types)->toHaveCount(2)
+        ->and($types->optional)->toBe([false, true]);
+
+    $first           = narrowNode($types->types[0], TypeScriptReference::class);
+    $second          = narrowNode($types->types[1], TypeScriptReference::class);
+    $firstReference  = narrowNode($first->reference, ClassStringReference::class);
+    $secondReference = narrowNode($second->reference, ClassStringReference::class);
+
+    expect($firstReference->classString)->toBe(ElementalType::class)
+        ->and($secondReference->classString)->toBe(ElementalType::class);
 });
 
 it('keeps enum annotations as references', function () {

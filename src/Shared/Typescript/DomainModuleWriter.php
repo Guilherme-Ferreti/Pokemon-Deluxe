@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Shared\Helpers\Typescript;
+namespace Shared\Typescript;
 
 use Illuminate\Support\Str;
 use Spatie\TypeScriptTransformer\Actions\ResolveImportsAndResolvedReferenceMapAction;
