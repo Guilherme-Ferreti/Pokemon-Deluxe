@@ -21,7 +21,7 @@
 <script lang="ts" setup>
 import { Head, setLayoutProps } from '@inertiajs/vue3';
 import Pokedex from '@/app/Dex/components/Pokedex.vue';
-import type { PokedexIndexPageProps } from '@/app/Dex/types/PokedexIndexPageProps';
+import type { PokedexIndexPageProps } from '@/app/Dex/types/page-props/PokedexIndexPageProps';
 import AppIconInBox from '@/shared/components/AppIconInBox.vue';
 import AppIconNotInBox from '@/shared/components/AppIconNotInBox.vue';
 import AppPageHeader from '@/shared/components/AppPageHeader.vue';

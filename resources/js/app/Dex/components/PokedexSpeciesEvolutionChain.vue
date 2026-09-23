@@ -64,7 +64,7 @@
 </template>
 
 <script setup lang="ts">
-import type { PokedexShowPageProps } from '@/app/Dex/types/PokedexShowPageProps';
+import type { PokedexShowPageProps } from '@/app/Dex/types/page-props/PokedexShowPageProps';
 import AppInfoCard from '@/shared/components/AppInfoCard.vue';
 import AppInfoCardSectionTitle from '@/shared/components/AppInfoCardSectionTitle.vue';
 import AppItemSprite from '@/shared/components/AppItemSprite.vue';

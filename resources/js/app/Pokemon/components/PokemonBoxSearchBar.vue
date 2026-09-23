@@ -43,7 +43,7 @@ import { watchDebounced } from '@vueuse/core';
 import { nextTick } from 'vue';
 import PokemonBoxSearchBarFiltersDialog from '@/app/Pokemon/components/PokemonBoxSearchBarFiltersDialog.vue';
 import PokemonBoxSearchBarSortPopover from '@/app/Pokemon/components/PokemonBoxSearchBarSortPopover.vue';
-import type { BoxIndexPageProps } from '@/app/Pokemon/types/BoxIndexPageProps';
+import type { BoxIndexPageProps } from '@/app/Pokemon/types/page-props/BoxIndexPageProps';
 import AppInput from '@/shared/components/AppInput.vue';
 import { Card } from '@/shared/components/ui/card';
 import { removeFalsyValues } from '@/shared/lib/utils';

@@ -43,7 +43,7 @@
 </template>
 
 <script setup lang="ts">
-import type { PokedexShowPageProps } from '@/app/Dex/types/PokedexShowPageProps';
+import type { PokedexShowPageProps } from '@/app/Dex/types/page-props/PokedexShowPageProps';
 import { Card } from '@/shared/components/ui/card';
 import { formatPokedexNumber } from '@/shared/lib/utils';
 

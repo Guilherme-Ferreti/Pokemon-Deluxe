@@ -120,7 +120,7 @@ import { watchDebounced } from '@vueuse/core';
 import { nextTick } from 'vue';
 import PokedexSearchBarFiltersDialog from '@/app/Dex/components/PokedexSearchBarFiltersDialog.vue';
 import { SearchPokedexSortBy } from '@/app/Dex/types/enums/SearchPokedexSortBy';
-import type { PokedexIndexPageProps } from '@/app/Dex/types/PokedexIndexPageProps';
+import type { PokedexIndexPageProps } from '@/app/Dex/types/page-props/PokedexIndexPageProps';
 import AppEmptyState from '@/shared/components/AppEmptyState.vue';
 import AppIconInBox from '@/shared/components/AppIconInBox.vue';
 import AppIconNotInBox from '@/shared/components/AppIconNotInBox.vue';

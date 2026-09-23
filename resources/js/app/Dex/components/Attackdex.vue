@@ -133,8 +133,8 @@ import {
 import { watchDebounced } from '@vueuse/core';
 import { nextTick } from 'vue';
 import AttackdexSearchBarFiltersDialog from '@/app/Dex/components/AttackdexSearchBarFiltersDialog.vue';
-import type { AttackdexIndexPageProps } from '@/app/Dex/types/AttackdexIndexPageProps';
 import { SearchAttackdexSortBy } from '@/app/Dex/types/enums/SearchAttackdexSortBy';
+import type { AttackdexIndexPageProps } from '@/app/Dex/types/page-props/AttackdexIndexPageProps';
 import AppEmptyState from '@/shared/components/AppEmptyState.vue';
 import AppInput from '@/shared/components/AppInput.vue';
 import AppPagination from '@/shared/components/AppPagination.vue';

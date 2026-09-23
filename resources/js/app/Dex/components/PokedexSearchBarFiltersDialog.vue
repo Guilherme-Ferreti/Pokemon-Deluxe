@@ -47,7 +47,7 @@
 
 <script setup lang="ts">
 import { nextTick } from 'vue';
-import type { PokedexIndexPageProps } from '@/app/Dex/types/PokedexIndexPageProps';
+import type { PokedexIndexPageProps } from '@/app/Dex/types/page-props/PokedexIndexPageProps';
 import AppCheckbox from '@/shared/components/AppCheckbox.vue';
 import AppCheckboxGroup from '@/shared/components/AppCheckboxGroup.vue';
 import AppSearchFiltersDialog from '@/shared/components/AppSearchFiltersDialog.vue';

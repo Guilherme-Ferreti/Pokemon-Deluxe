@@ -174,7 +174,7 @@ import {
   IconSortAscendingLetters,
   IconSortDescendingLetters,
 } from '@tabler/icons-vue';
-import type { PokedexShowPageProps } from '@/app/Dex/types/PokedexShowPageProps';
+import type { PokedexShowPageProps } from '@/app/Dex/types/page-props/PokedexShowPageProps';
 import AppTableHeadSortableButton from '@/shared/components/AppTableHeadSortableButton.vue';
 import ElementalTypeBadges from '@/shared/components/ElementalTypeBadges.vue';
 import MoveNameLabel from '@/shared/components/MoveNameLabel.vue';

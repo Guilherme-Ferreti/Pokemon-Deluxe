@@ -43,7 +43,7 @@
 
 <script setup lang="ts">
 import { nextTick } from 'vue';
-import type { AttackdexIndexPageProps } from '@/app/Dex/types/AttackdexIndexPageProps';
+import type { AttackdexIndexPageProps } from '@/app/Dex/types/page-props/AttackdexIndexPageProps';
 import AppCheckbox from '@/shared/components/AppCheckbox.vue';
 import AppCheckboxGroup from '@/shared/components/AppCheckboxGroup.vue';
 import AppSearchFiltersDialog from '@/shared/components/AppSearchFiltersDialog.vue';

@@ -76,7 +76,7 @@
 <script setup lang="ts">
 import { Link } from '@inertiajs/vue3';
 import { IconChevronLeft, IconChevronRight } from '@tabler/icons-vue';
-import type { PokedexShowPageProps } from '@/app/Dex/types/PokedexShowPageProps';
+import type { PokedexShowPageProps } from '@/app/Dex/types/page-props/PokedexShowPageProps';
 import AppSpeciesPortrait from '@/shared/components/AppSpeciesPortrait.vue';
 import { Button } from '@/shared/components/ui/button';
 import { Separator } from '@/shared/components/ui/separator';

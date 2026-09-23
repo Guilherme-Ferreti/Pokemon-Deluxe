@@ -63,8 +63,8 @@
 <script setup lang="ts">
 import { IconArrowsDownUp } from '@tabler/icons-vue';
 import { PopoverClose } from 'reka-ui';
-import type { BoxIndexPageProps } from '@/app/Pokemon/types/BoxIndexPageProps';
 import { SearchBoxSortBy } from '@/app/Pokemon/types/enums/SearchBoxSortBy';
+import type { BoxIndexPageProps } from '@/app/Pokemon/types/page-props/BoxIndexPageProps';
 import AppSelect from '@/shared/components/AppSelect.vue';
 import { Button } from '@/shared/components/ui/button';
 import {
