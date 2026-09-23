@@ -30,8 +30,8 @@ export interface PokedexShowPageProps {
     into: EvolutionChainNodes;
   };
   learnableMoves: {
-    levelUp: LevelUpLearnableMoves[];
-    tm: TMLearnableMoves[];
+    levelUp: LevelUpLearnableMove[];
+    tm: TMLearnableMove[];
   };
 }
 
@@ -99,10 +99,10 @@ interface LearnableMove {
   isDynamaxMove: Move['isDynamaxMove'];
 }
 
-type LevelUpLearnableMoves = LearnableMove & {
+export type LevelUpLearnableMove = LearnableMove & {
   levelLearn: SpeciesLearnableMove['levelLearn'];
 };
 
-type TMLearnableMoves = LearnableMove & {
+export type TMLearnableMove = LearnableMove & {
   tmCode: Move['tmCode'];
 };

@@ -77,19 +77,11 @@ export function sortBy<T extends object>(
       );
 
   return [...array].sort((a, b) => {
-    const aValue = getValue(a, key);
-    const bValue = getValue(b, key);
+    const aValue = getValue(a, key) ?? 0;
+    const bValue = getValue(b, key) ?? 0;
 
     if (aValue === bValue) {
       return 0;
-    }
-
-    if (aValue == null) {
-      return 1;
-    }
-
-    if (bValue == null) {
-      return -1;
     }
 
     const result = aValue < bValue ? -1 : 1;

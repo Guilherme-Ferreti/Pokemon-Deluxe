@@ -174,7 +174,11 @@ import {
   IconSortAscendingLetters,
   IconSortDescendingLetters,
 } from '@tabler/icons-vue';
-import type { PokedexShowPageProps } from '@/app/Dex/types/page-props/PokedexShowPageProps';
+import type {
+  LevelUpLearnableMove,
+  PokedexShowPageProps,
+  TMLearnableMove,
+} from '@/app/Dex/types/page-props/PokedexShowPageProps';
 import AppTableHeadSortableButton from '@/shared/components/AppTableHeadSortableButton.vue';
 import ElementalTypeBadges from '@/shared/components/ElementalTypeBadges.vue';
 import MoveNameLabel from '@/shared/components/MoveNameLabel.vue';
@@ -194,6 +198,7 @@ import {
   TableRow,
 } from '@/shared/components/ui/table';
 import { useSortable } from '@/shared/composables/useSortable.js';
+import { MoveCategory } from '@/shared/types/enums';
 import type { Species } from '@/shared/types/models';
 
 const props = defineProps<{
@@ -201,11 +206,24 @@ const props = defineProps<{
   learnableMoves: PokedexShowPageProps['learnableMoves'];
 }>();
 
-const levelUpMoves = useSortable<
-  PokedexShowPageProps['learnableMoves']['levelUp'][number]
->(props.learnableMoves.levelUp, 'levelLearn');
+const levelUpMoves = useSortable<LevelUpLearnableMove>(
+  setMaxPowerForOHKOMoves<LevelUpLearnableMove>(props.learnableMoves.levelUp),
+  'levelLearn',
+);
 
-const tmMoves = useSortable<
-  PokedexShowPageProps['learnableMoves']['tm'][number]
->(props.learnableMoves.tm, 'tmCode');
+const tmMoves = useSortable<TMLearnableMove>(
+  setMaxPowerForOHKOMoves<TMLearnableMove>(props.learnableMoves.tm),
+  'tmCode',
+);
+
+function setMaxPowerForOHKOMoves<
+  T extends LevelUpLearnableMove | TMLearnableMove,
+>(moves: T[]) {
+  return moves.map((move) => {
+    return {
+      ...move,
+      power: move.category === MoveCategory.OHKO ? 999 : move.power,
+    };
+  });
+}
 </script>

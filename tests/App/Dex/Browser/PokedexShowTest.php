@@ -329,4 +329,54 @@ describe('learnable moves card', function () {
             ->assertSeeIn($moveCell, 'Tackle')
             ->assertNoSmoke();
     });
+
+    it('sorts OHKO moves first when sorting by power in descending order', function () {
+        $user    = User::factory()->create();
+        $species = Species::factory()->create();
+
+        $ohkoMove   = Move::factory()->create(['category' => MoveCategory::OHKO]);
+        $strongMove = Move::factory()->create(['category' => MoveCategory::DAMAGE, 'power' => 150]);
+
+        SpeciesLearnableMove::factory()->for($species)->for($ohkoMove, 'move')->create(['level_learn' => 1]);
+        SpeciesLearnableMove::factory()->for($species)->for($strongMove, 'move')->create(['level_learn' => 1]);
+
+        actingAs($user);
+
+        $moveCell   = '[data-test="pokedex-species-learnable-moves__level-up"] tbody tr:first-child td:nth-child(2)';
+        $sortButton = '[data-test="pokedex-species-learnable-moves__level-up"] thead [aria-label="Sort by power"]';
+
+        visit(route('dex.web.pokedex.show', $species))
+            ->click($sortButton)
+            ->wait(0.5)
+            ->assertDontSeeIn($moveCell, $ohkoMove->name)
+            ->click($sortButton)
+            ->wait(0.5)
+            ->assertSeeIn($moveCell, $ohkoMove->name)
+            ->assertNoSmoke();
+    });
+
+    it('sorts powerless moves first when sorting by power in ascending order', function () {
+        $user    = User::factory()->create();
+        $species = Species::factory()->create();
+
+        $powerlessMove = Move::factory()->create(['category' => MoveCategory::AILMENT]);
+        $powerfullMove = Move::factory()->create(['category' => MoveCategory::DAMAGE, 'power' => 150]);
+
+        SpeciesLearnableMove::factory()->for($species)->for($powerlessMove, 'move')->create(['level_learn' => 1]);
+        SpeciesLearnableMove::factory()->for($species)->for($powerfullMove, 'move')->create(['level_learn' => 1]);
+
+        actingAs($user);
+
+        $moveCell   = '[data-test="pokedex-species-learnable-moves__level-up"] tbody tr:first-child td:nth-child(2)';
+        $sortButton = '[data-test="pokedex-species-learnable-moves__level-up"] thead [aria-label="Sort by power"]';
+
+        visit(route('dex.web.pokedex.show', $species))
+            ->click($sortButton)
+            ->wait(0.5)
+            ->assertSeeIn($moveCell, $powerlessMove->name)
+            ->click($sortButton)
+            ->wait(0.5)
+            ->assertDontSeeIn($moveCell, $powerlessMove->name)
+            ->assertNoSmoke();
+    });
 });
