@@ -9,7 +9,7 @@
     :reset-on-error="['password', 'password_confirmation']"
   >
     <FieldGroup>
-      <AppAuthFormHeader
+      <AuthFormHeader
         title="Create an account"
         description="Enter your details below to create your account"
       />
@@ -61,11 +61,11 @@
 <script setup lang="ts">
 import { Form, Head, Link } from '@inertiajs/vue3';
 import AuthLayout from '@/app/Auth/layouts/AuthLayout.vue';
-import AppAuthFormHeader from '@/shared/components/AppAuthFormHeader.vue';
 import AppInput from '@/shared/components/AppInput.vue';
 import { Button } from '@/shared/components/ui/button';
 import { FieldDescription, FieldGroup } from '@/shared/components/ui/field';
 import { route } from '@/shared/types/helpers/route';
+import AuthFormHeader from '@/auth/components/AuthFormHeader.vue';
 
 defineOptions({
   layout: AuthLayout,
