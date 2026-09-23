@@ -1,10 +1,9 @@
+import type { ElementalType, PokemonGender } from '@/shared/types/enums';
 import type {
-  ElementalType,
   Move,
-  PokemonGender,
   Species,
   SpeciesLearnableMove,
-} from '@/shared/types';
+} from '@/shared/types/models';
 
 export interface PokedexShowPageProps {
   species: {

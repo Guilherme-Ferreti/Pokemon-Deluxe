@@ -37,7 +37,7 @@ import AppInfoCard from '@/shared/components/AppInfoCard.vue';
 import AppInfoCardRow from '@/shared/components/AppInfoCardRow.vue';
 import AppInfoCardSectionTitle from '@/shared/components/AppInfoCardSectionTitle.vue';
 import { Separator } from '@/shared/components/ui/separator';
-import type { Species } from '@/shared/types';
+import type { Species } from '@/shared/types/models';
 
 defineProps<{
   speciesName: Species['name'];

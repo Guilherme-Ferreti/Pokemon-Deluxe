@@ -1,4 +1,4 @@
-import type { Pokemon } from '@/shared/types';
+import type { Pokemon } from '@/shared/types/models';
 
 export interface PartyPageProps {
   party: {

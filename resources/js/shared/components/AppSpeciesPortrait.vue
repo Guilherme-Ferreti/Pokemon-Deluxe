@@ -10,7 +10,7 @@
 <script setup lang="ts">
 import type { HTMLAttributes } from 'vue';
 import { cn } from '@/shared/lib/utils';
-import type { Species } from '@/shared/types';
+import type { Species } from '@/shared/types/models';
 
 const props = defineProps<{
   url: Species['portraits'][keyof Species['portraits']];

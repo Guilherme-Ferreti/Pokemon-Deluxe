@@ -1,7 +1,7 @@
 import { computed, ref } from 'vue';
 import { sortBy } from '@/shared/lib/utils';
 import type { Paths } from '@/shared/types';
-import { SortDirection } from '@/shared/types';
+import { SortDirection } from '@/shared/types/enums';
 
 export function useSortable<T extends object>(
   items: T[],

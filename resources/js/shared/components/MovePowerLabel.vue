@@ -4,8 +4,8 @@
 </template>
 
 <script setup lang="ts">
-import type { Move } from '@/shared/types';
-import { MoveCategory } from '@/shared/types';
+import { MoveCategory } from '@/shared/types/enums';
+import type { Move } from '@/shared/types/models';
 
 defineProps<{
   category: Move['category'];

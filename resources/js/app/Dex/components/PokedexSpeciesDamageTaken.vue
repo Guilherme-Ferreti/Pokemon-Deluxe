@@ -39,7 +39,8 @@ import AppInfoCard from '@/shared/components/AppInfoCard.vue';
 import AppInfoCardSectionTitle from '@/shared/components/AppInfoCardSectionTitle.vue';
 import ElementalTypeBadges from '@/shared/components/ElementalTypeBadges.vue';
 import Separator from '@/shared/components/ui/separator/Separator.vue';
-import type { ElementalType, Species } from '@/shared/types';
+import type { ElementalType } from '@/shared/types/enums';
+import type { Species } from '@/shared/types/models';
 
 const props = defineProps<{
   speciesName: Species['name'];

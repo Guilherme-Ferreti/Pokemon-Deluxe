@@ -20,8 +20,8 @@
 
 <script setup lang="ts">
 import { Badge } from '@/shared/components/ui/badge';
-import type { Species } from '@/shared/types';
-import { ElementalType } from '@/shared/types';
+import { ElementalType } from '@/shared/types/enums';
+import type { Species } from '@/shared/types/models';
 
 defineProps<{
   types: Species['types'];

@@ -24,7 +24,7 @@ import {
 import { computed } from 'vue';
 import TableHead from '@/shared/components/ui/table/TableHead.vue';
 import { removeFalsyValues, toQueryString } from '@/shared/lib/utils';
-import { SortDirection } from '@/shared/types';
+import { SortDirection } from '@/shared/types/enums';
 
 const props = defineProps<{
   columnName: string;

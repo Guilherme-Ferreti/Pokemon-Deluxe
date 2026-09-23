@@ -77,7 +77,7 @@ import {
   TooltipContent,
   TooltipTrigger,
 } from '@/shared/components/ui/tooltip';
-import { SortDirection } from '@/shared/types';
+import { SortDirection } from '@/shared/types/enums';
 
 defineProps<{
   sortOptions: BoxIndexPageProps['filterOptions']['sort'];

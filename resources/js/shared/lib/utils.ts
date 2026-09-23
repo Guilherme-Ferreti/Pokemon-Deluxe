@@ -3,7 +3,7 @@ import { clsx } from 'clsx';
 import type { ClassValue } from 'clsx';
 import { twMerge } from 'tailwind-merge';
 import type { Paths } from '@/shared/types';
-import { SortDirection } from '@/shared/types';
+import { SortDirection } from '@/shared/types/enums';
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));

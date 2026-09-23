@@ -20,7 +20,7 @@ import {
 } from '@tabler/icons-vue';
 import { computed } from 'vue';
 import { TableHead } from '@/shared/components/ui/table';
-import { SortDirection } from '@/shared/types';
+import { SortDirection } from '@/shared/types/enums';
 
 const props = defineProps<{
   columnName: string;

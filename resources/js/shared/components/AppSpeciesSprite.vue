@@ -8,7 +8,7 @@
 </template>
 
 <script setup lang="ts">
-import type { Species } from '@/shared/types';
+import type { Species } from '@/shared/types/models';
 
 defineProps<{
   url: Species['sprites'][keyof Species['sprites']];

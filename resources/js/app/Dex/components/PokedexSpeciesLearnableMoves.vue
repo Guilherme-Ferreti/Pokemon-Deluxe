@@ -194,7 +194,7 @@ import {
   TableRow,
 } from '@/shared/components/ui/table';
 import { useSortable } from '@/shared/composables/useSortable.js';
-import type { Species } from '@/shared/types';
+import type { Species } from '@/shared/types/models';
 
 const props = defineProps<{
   speciesName: Species['name'];

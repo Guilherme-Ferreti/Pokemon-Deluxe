@@ -23,7 +23,7 @@ import {
   IconGenderMale,
   IconQuestionMark,
 } from '@tabler/icons-vue';
-import { PokemonGender } from '@/shared/types';
+import { PokemonGender } from '@/shared/types/enums';
 
 defineProps<{
   gender: PokemonGender;

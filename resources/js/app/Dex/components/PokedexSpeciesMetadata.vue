@@ -130,8 +130,8 @@ import {
   TooltipTrigger,
   TooltipContent,
 } from '@/shared/components/ui/tooltip';
-import type { Species } from '@/shared/types';
-import { PokemonGender } from '@/shared/types';
+import { PokemonGender } from '@/shared/types/enums';
+import type { Species } from '@/shared/types/models';
 
 const props = defineProps<{
   speciesName: Species['name'];

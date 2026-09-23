@@ -3,8 +3,8 @@ import type {
   ElementalType,
   Generation,
   PokemonGender,
-  User,
-} from '@/shared/types';
+} from '@/shared/types/enums';
+import type { User } from '@/shared/types/models';
 
 // Extend ImportMeta interface for Vite...
 declare module 'vite/client' {
