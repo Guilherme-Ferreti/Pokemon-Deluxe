@@ -3,7 +3,7 @@ import { sortBy } from '@/shared/lib/utils';
 import type { Paths } from '@/shared/types';
 import { SortDirection } from '@/shared/types';
 
-export function useSortable<T extends Record<string, unknown>>(
+export function useSortable<T extends object>(
   items: T[],
   defaultSort: Paths<T>,
   defaultDirection: SortDirection = SortDirection.ASC,

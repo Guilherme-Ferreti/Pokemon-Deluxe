@@ -63,7 +63,7 @@ export function formatPokedexNumber(pokedexNumber: number): string {
   return pokedexNumber.toString().padStart(4, '0');
 }
 
-export function sortBy<T extends Record<string, unknown>>(
+export function sortBy<T extends object>(
   array: T[],
   key: Paths<T>,
   direction: SortDirection = SortDirection.ASC,

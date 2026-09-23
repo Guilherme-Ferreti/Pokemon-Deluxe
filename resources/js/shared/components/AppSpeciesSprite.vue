@@ -8,8 +8,10 @@
 </template>
 
 <script setup lang="ts">
+import type { Species } from '@/shared/types';
+
 defineProps<{
-  url: string | null;
-  name: string;
+  url: Species['sprites'][keyof Species['sprites']];
+  name: Species['name'];
 }>();
 </script>

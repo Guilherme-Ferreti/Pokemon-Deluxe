@@ -3,27 +3,28 @@ import type {
   ElementalType,
   FilterOption,
   Generation,
+  Move,
   PaginatedList,
-  PokemonGender,
+  Pokemon,
   PokemonTrait,
   SortDirection,
-  SpeciesTypes,
+  Species,
 } from '@/shared/types';
 
 export interface BoxIndexPageProps {
   pokemonList: PaginatedList<{
-    id: string;
+    id: Pokemon['id'];
     name: string;
-    gender: PokemonGender;
-    frontSprite: string | null;
-    level: number;
-    experience: number;
+    gender: Pokemon['gender'];
+    frontSprite: string;
+    level: Pokemon['level'];
+    experience: Pokemon['experience'];
     species: {
-      types: SpeciesTypes;
-      slug: string;
+      types: Species['types'];
+      slug: Species['slug'];
     };
     moves: {
-      name: string;
+      name: Move['name'];
     }[];
   }>;
   activeFilters: {

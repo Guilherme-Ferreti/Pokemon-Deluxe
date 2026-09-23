@@ -10,10 +10,11 @@
 <script setup lang="ts">
 import type { HTMLAttributes } from 'vue';
 import { cn } from '@/shared/lib/utils';
+import type { Species } from '@/shared/types';
 
 const props = defineProps<{
-  url: string | null;
-  name: string;
+  url: Species['portraits'][keyof Species['portraits']];
+  name: Species['name'];
   class?: HTMLAttributes['class'];
 }>();
 </script>

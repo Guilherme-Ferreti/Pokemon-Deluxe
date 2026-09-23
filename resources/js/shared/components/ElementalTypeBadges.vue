@@ -8,7 +8,7 @@
       {{ $page.props.labels.elementalType[types[0]] }}
     </Badge>
     <Badge
-      v-if="types.length === 2"
+      v-if="types[1]"
       variant="secondary"
       class="dark:border-none dark:bg-muted dark:text-foreground"
       :class="colors[types[1]]"
@@ -20,10 +20,11 @@
 
 <script setup lang="ts">
 import { Badge } from '@/shared/components/ui/badge';
+import type { Species } from '@/shared/types';
 import { ElementalType } from '@/shared/types';
 
 defineProps<{
-  types: [ElementalType] | [ElementalType, ElementalType];
+  types: Species['types'];
 }>();
 
 const colors = {

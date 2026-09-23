@@ -3,25 +3,25 @@ import type {
   Ailment,
   ElementalType,
   FilterOption,
-  MoveCategory,
   PaginatedList,
   MoveTrait,
   SortDirection,
+  Move,
 } from '@/shared/types';
 
 export interface AttackdexIndexPageProps {
   moves: PaginatedList<{
-    id: string;
-    name: string;
-    type: ElementalType;
-    category: MoveCategory;
-    power: number | null;
-    accuracy: number;
-    ailment: Ailment | null;
-    ailmentChance: number | null;
-    flinchChance: number | null;
-    isZMove: boolean;
-    isDynamaxMove: boolean;
+    id: Move['id'];
+    name: Move['name'];
+    type: Move['type'];
+    category: Move['category'];
+    power: Move['power'];
+    accuracy: Move['accuracy'];
+    ailment: Move['ailment'];
+    ailmentChance: Move['ailmentChance'];
+    flinchChance: Move['flinchChance'];
+    isZMove: Move['isZMove'];
+    isDynamaxMove: Move['isDynamaxMove'];
   }>;
   activeFilters: {
     search: string;

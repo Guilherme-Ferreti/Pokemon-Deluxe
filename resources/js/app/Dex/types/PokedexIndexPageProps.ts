@@ -5,19 +5,19 @@ import type {
   Generation,
   PaginatedList,
   SortDirection,
+  Species,
   SpeciesTrait,
-  SpeciesTypes,
 } from '@/shared/types';
 
 export interface PokedexIndexPageProps {
   speciesList: PaginatedList<{
-    id: string;
-    portrait: string;
-    name: string;
-    pokedexNumber: number;
-    types: SpeciesTypes;
-    generation: Generation;
-    slug: string;
+    id: Species['id'];
+    portrait: Species['portraits']['regular'];
+    name: Species['name'];
+    pokedexNumber: Species['pokedexNumber'];
+    types: Species['types'];
+    generation: Species['generation'];
+    slug: Species['slug'];
     regularInBox: boolean;
     shinyInBox: boolean;
   }>;

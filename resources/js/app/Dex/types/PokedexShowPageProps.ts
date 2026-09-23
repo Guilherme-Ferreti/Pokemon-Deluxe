@@ -1,59 +1,20 @@
 import type {
   ElementalType,
-  Generation,
-  MoveCategory,
+  Move,
   PokemonGender,
-  SpeciesTypes,
+  Species,
+  SpeciesLearnableMove,
 } from '@/shared/types';
 
 export interface PokedexShowPageProps {
   species: {
-    name: string;
-    slug: string;
+    name: Species['name'];
+    slug: Species['slug'];
   };
-  hero: {
-    name: string;
-    sprites: {
-      frontDefault: string;
-      frontShiny: string;
-      frontFemale: string;
-      frontShinyFemale: string;
-    };
-    pokedexNumber: number;
-    genus: string;
-    textEntry: string;
-  };
-  metadata: {
-    types: SpeciesTypes;
-    portraits: {
-      regular: string | null;
-      shiny: string | null;
-    };
-    traits: {
-      isBaby: boolean;
-      isLegendary: boolean;
-      isMythical: boolean;
-      isMega: boolean;
-      isGmax: boolean;
-    };
-    generation: Generation;
-    captureRatePercentage: number;
-    isGenderless: boolean;
-    malePercentage: number;
-    femalePercentage: number;
-  };
-  previousSpecies: {
-    name: string;
-    pokedexNumber: number;
-    portrait: string;
-    slug: string;
-  } | null;
-  nextSpecies: {
-    name: string;
-    pokedexNumber: number;
-    portrait: string;
-    slug: string;
-  } | null;
+  hero: Hero;
+  metadata: Metadata;
+  previousSpecies: NavigationItem;
+  nextSpecies: NavigationItem;
   captureStatistics: {
     currentUser: {
       regular: number;
@@ -66,53 +27,83 @@ export interface PokedexShowPageProps {
   };
   damageTaken: Record<ElementalType, number>;
   evolutionChain: {
-    previous: {
-      species: {
-        name: string;
-        slug: string;
-        portrait: string;
-      };
-      evolutionItem: {
-        name: string;
-        sprite: string | null;
-      } | null;
-      minLevel: number | null;
-      gender: PokemonGender | null;
-    }[];
-    into: {
-      species: {
-        name: string;
-        slug: string;
-        portrait: string;
-      };
-      evolutionItem: {
-        name: string;
-        sprite: string | null;
-      } | null;
-      minLevel: number | null;
-      gender: PokemonGender | null;
-    }[];
+    previous: EvolutionChainNodes;
+    into: EvolutionChainNodes;
   };
   learnableMoves: {
-    levelUp: {
-      name: string;
-      type: ElementalType;
-      category: MoveCategory;
-      power: number | null;
-      accuracy: number;
-      isZMove: boolean;
-      isDynamaxMove: boolean;
-      levelLearn: number;
-    }[];
-    tm: {
-      name: string;
-      type: ElementalType;
-      category: MoveCategory;
-      power: number | null;
-      accuracy: number;
-      isZMove: boolean;
-      isDynamaxMove: boolean;
-      tmCode: string;
-    }[];
+    levelUp: LevelUpLearnableMoves[];
+    tm: TMLearnableMoves[];
   };
 }
+
+type Hero = {
+  name: Species['name'];
+  sprites: {
+    frontDefault: Species['sprites']['frontDefault'];
+    frontShiny: Species['sprites']['frontShiny'];
+    frontFemale: Species['sprites']['frontFemale'];
+    frontShinyFemale: Species['sprites']['frontShinyFemale'];
+  };
+  pokedexNumber: Species['pokedexNumber'];
+  genus: Species['genus'];
+  textEntry: Species['textEntry'];
+};
+
+type Metadata = {
+  types: Species['types'];
+  portraits: {
+    regular: Species['portraits']['regular'];
+    shiny: Species['portraits']['shiny'];
+  };
+  traits: {
+    isBaby: Species['isBaby'];
+    isLegendary: Species['isLegendary'];
+    isMythical: Species['isMythical'];
+    isMega: Species['isMega'];
+    isGmax: Species['isGmax'];
+  };
+  generation: Species['generation'];
+  captureRatePercentage: number;
+  isGenderless: boolean;
+  malePercentage: number;
+  femalePercentage: number;
+};
+
+type NavigationItem = {
+  name: Species['name'];
+  pokedexNumber: Species['pokedexNumber'];
+  portrait: Species['portraits']['regular'];
+  slug: Species['slug'];
+} | null;
+
+type EvolutionChainNodes = {
+  species: {
+    name: Species['name'];
+    portrait: Species['portraits']['regular'];
+    slug: Species['slug'];
+  };
+  evolutionItem: {
+    name: string;
+    sprite: string | null;
+  } | null;
+  minLevel: number | null;
+  gender: PokemonGender | null;
+}[];
+
+interface LearnableMove {
+  name: Move['name'];
+  type: Move['type'];
+  category: Move['category'];
+  power: Move['power'];
+  accuracy: Move['accuracy'];
+  isZMove: Move['isZMove'];
+  isDynamaxMove: Move['isDynamaxMove'];
+}
+
+type LevelUpLearnableMoves = LearnableMove & {
+  levelLearn: SpeciesLearnableMove['levelLearn'];
+};
+
+type TMLearnableMoves = LearnableMove & {
+  tmCode: Move['tmCode'];
+};

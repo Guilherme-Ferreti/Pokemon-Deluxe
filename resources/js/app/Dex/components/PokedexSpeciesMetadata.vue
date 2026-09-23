@@ -130,10 +130,11 @@ import {
   TooltipTrigger,
   TooltipContent,
 } from '@/shared/components/ui/tooltip';
+import type { Species } from '@/shared/types';
 import { PokemonGender } from '@/shared/types';
 
 const props = defineProps<{
-  speciesName: string;
+  speciesName: Species['name'];
   metadata: PokedexShowPageProps['metadata'];
 }>();
 

@@ -1,9 +1,9 @@
 import type {
   Ailment,
-  Auth,
   ElementalType,
   Generation,
   PokemonGender,
+  User,
 } from '@/shared/types';
 
 // Extend ImportMeta interface for Vite...
@@ -23,7 +23,9 @@ declare module '@inertiajs/core' {
   export interface InertiaConfig {
     sharedPageProps: {
       name: string;
-      auth: Auth;
+      auth: {
+        user: Pick<User, 'id' | 'name' | 'email'> | null;
+      };
       labels: {
         elementalType: Record<ElementalType, string>;
         pokemonGender: Record<PokemonGender, string>;

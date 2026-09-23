@@ -13,9 +13,11 @@
 </template>
 
 <script setup lang="ts">
+import type { Move } from '@/shared/types';
+
 defineProps<{
-  name: string;
-  isZMove: boolean;
-  isDynamaxMove: boolean;
+  name: Move['name'];
+  isZMove: Move['isZMove'];
+  isDynamaxMove: Move['isDynamaxMove'];
 }>();
 </script>

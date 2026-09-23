@@ -4,10 +4,11 @@
 </template>
 
 <script setup lang="ts">
+import type { Move } from '@/shared/types';
 import { MoveCategory } from '@/shared/types';
 
 defineProps<{
-  category: MoveCategory;
-  power: number | null;
+  category: Move['category'];
+  power: Move['power'];
 }>();
 </script>

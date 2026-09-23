@@ -194,9 +194,10 @@ import {
   TableRow,
 } from '@/shared/components/ui/table';
 import { useSortable } from '@/shared/composables/useSortable.js';
+import type { Species } from '@/shared/types';
 
 const props = defineProps<{
-  speciesName: string;
+  speciesName: Species['name'];
   learnableMoves: PokedexShowPageProps['learnableMoves'];
 }>();
 
