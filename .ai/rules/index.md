@@ -22,3 +22,4 @@ Before planning or editing, find the row whose globs match the file's path and r
 | src/** | .ai/rules/src.md |
 | tests/** | .ai/rules/tests.md |
 | src/Shared/ValueObjects/** | .ai/rules/value-objects.md |
+| src/App/**/Http/{Web,Api}/routes.php | .ai/rules/web-api.md |
