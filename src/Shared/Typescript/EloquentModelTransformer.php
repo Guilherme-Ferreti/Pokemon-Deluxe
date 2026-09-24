@@ -23,6 +23,7 @@ use Spatie\TypeScriptTransformer\TypeScriptNodes\TypeScriptProperty;
 use Spatie\TypeScriptTransformer\TypeScriptNodes\TypeScriptReference;
 use Spatie\TypeScriptTransformer\Visitor\Visitor;
 use Spatie\TypeScriptTransformer\Visitor\VisitorOperation;
+use Throwable;
 
 final class EloquentModelTransformer extends ClassTransformer
 {
@@ -41,7 +42,14 @@ final class EloquentModelTransformer extends ClassTransformer
     ): TypeScriptNode {
         $properties = [];
 
+        $hiddenAttributes  = $this->getHiddenAttributes($phpClassNode);
+        $visibleAttributes = $this->getVisibleAttributes($phpClassNode);
+
         foreach ($parsedClass->properties ?? [] as $name => $annotation) {
+            if ($this->isHiddenAttribute($name, $hiddenAttributes, $visibleAttributes)) {
+                continue;
+            }
+
             $type = $this->transpilePhpStanTypeToTypeScriptTypeAction->execute(
                 $annotation->type,
                 $phpClassNode,
@@ -55,6 +63,64 @@ final class EloquentModelTransformer extends ClassTransformer
         }
 
         return new TypeScriptObject($properties);
+    }
+
+    /**
+     * @return array<int, string>
+     */
+    private function getHiddenAttributes(PhpClassNode $phpClassNode): array
+    {
+        return $this->modelAttributes($phpClassNode, 'getHidden');
+    }
+
+    /**
+     * @return array<int, string>
+     */
+    private function getVisibleAttributes(PhpClassNode $phpClassNode): array
+    {
+        return $this->modelAttributes($phpClassNode, 'getVisible');
+    }
+
+    /**
+     * @return array<int, string>
+     */
+    private function modelAttributes(PhpClassNode $phpClassNode, string $method): array
+    {
+        $model = $this->instantiateModel($phpClassNode);
+
+        if ($model === null) {
+            return [];
+        }
+
+        return array_values($model->{$method}());
+    }
+
+    private function instantiateModel(PhpClassNode $phpClassNode): ?Model
+    {
+        $className = $phpClassNode->getName();
+
+        if (! is_subclass_of($className, Model::class) || ! class_exists($className)) {
+            return null;
+        }
+
+        try {
+            return new $className;
+        } catch (Throwable) {
+            return null;
+        }
+    }
+
+    /**
+     * @param  array<int, string>  $hiddenAttributes
+     * @param  array<int, string>  $visibleAttributes
+     */
+    private function isHiddenAttribute(string $attribute, array $hiddenAttributes, array $visibleAttributes): bool
+    {
+        if (in_array($attribute, $hiddenAttributes, true)) {
+            return true;
+        }
+
+        return $visibleAttributes !== [] && ! in_array($attribute, $visibleAttributes, true);
     }
 
     private function listShapesToTuples(TypeScriptNode $type): TypeScriptNode

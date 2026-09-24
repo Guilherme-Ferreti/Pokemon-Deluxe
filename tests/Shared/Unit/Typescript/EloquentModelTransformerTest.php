@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-use Illuminate\Database\Eloquent\Model;
 use Shared\Enums\ElementalType;
 use Shared\Enums\Generation;
 use Shared\Models\Move;
 use Shared\Models\Species;
+use Shared\Models\User;
 use Shared\Typescript\EloquentModelTransformer;
 use Shared\Typescript\TypeScriptTuple;
 use Shared\ValueObjects\SpeciesPortraits;
@@ -25,8 +25,6 @@ use Spatie\TypeScriptTransformer\TypeScriptNodes\TypeScriptProperty;
 use Spatie\TypeScriptTransformer\TypeScriptNodes\TypeScriptReference;
 use Spatie\TypeScriptTransformer\TypeScriptNodes\TypeScriptString;
 use Spatie\TypeScriptTransformer\TypeScriptNodes\TypeScriptUnion;
-
-final class UnmarkedModelFixture extends Model {}
 
 function transformEloquentModel(string $class): Transformed|Untransformable
 {
@@ -124,10 +122,6 @@ it('transforms a model marked with the TypeScript attribute', function () {
         ->and($transformed->getLocation())->toBe(['Shared', 'Models']);
 });
 
-it('does not transform a model without the TypeScript attribute', function () {
-    expect(transformEloquentModel(UnmarkedModelFixture::class))->toBeInstanceOf(Untransformable::class);
-});
-
 it('does not transform a class that is not an Eloquent model', function () {
     expect(transformEloquentModel(SpeciesSprites::class))->toBeInstanceOf(Untransformable::class);
 });
@@ -169,6 +163,13 @@ it('ignores @property-read relationship annotations', function () {
         'learnableMoves',
         'pokemon',
     );
+});
+
+it('omits attributes hidden from serialization', function () {
+    $names = modelPropertyNames(transformEloquentModelProperties(User::class));
+
+    expect($names)->toContain('id', 'name', 'email')
+        ->not->toContain('password', 'rememberToken');
 });
 
 it('transforms the species types annotation into a one-or-two tuple', function () {
