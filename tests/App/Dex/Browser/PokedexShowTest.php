@@ -282,8 +282,8 @@ describe('learnable moves card', function () {
         $user    = User::factory()->create();
         $species = Species::factory()->create();
 
-        $lowLevelMove  = Move::factory()->create(['name' => 'Tackle']);
-        $highLevelMove = Move::factory()->create(['name' => 'Hyper Beam']);
+        $lowLevelMove  = Move::factory()->create();
+        $highLevelMove = Move::factory()->create();
 
         SpeciesLearnableMove::factory()->for($species)->for($lowLevelMove, 'move')->create(['level_learn' => 1]);
         SpeciesLearnableMove::factory()->for($species)->for($highLevelMove, 'move')->create(['level_learn' => 50]);
@@ -291,7 +291,7 @@ describe('learnable moves card', function () {
         actingAs($user);
 
         $levelCell  = '[data-test="pokedex-species-learnable-moves__level-up"] tbody tr:first-child td:first-child';
-        $sortButton = '[data-test="pokedex-species-learnable-moves__level-up"] thead [aria-label="Sort by level"]';
+        $sortButton = '[data-test="pokedex-species-learnable-moves__level-up"] thead tr:first-child th:first-child';
 
         visit(route('dex.web.pokedex.show', $species))
             ->assertSeeIn($levelCell, '1')
@@ -304,12 +304,12 @@ describe('learnable moves card', function () {
             ->assertNoSmoke();
     });
 
-    it('sorts the moves learned by TM by move', function () {
+    it('sorts the moves learned by TM by TM Code', function () {
         $user    = User::factory()->create();
         $species = Species::factory()->create();
 
-        $firstMove  = Move::factory()->create(['name' => 'Ember']);
-        $secondMove = Move::factory()->create(['name' => 'Tackle']);
+        $firstMove  = Move::factory()->create(['tm_code' => 'TM001']);
+        $secondMove = Move::factory()->create(['tm_code' => 'TM002']);
 
         SpeciesLearnableMove::factory()->for($species)->for($firstMove, 'move')->learnedByTM()->create();
         SpeciesLearnableMove::factory()->for($species)->for($secondMove, 'move')->learnedByTM()->create();
@@ -317,16 +317,16 @@ describe('learnable moves card', function () {
         actingAs($user);
 
         $moveCell   = '[data-test="pokedex-species-learnable-moves__tm"] tbody tr:first-child td:nth-child(2)';
-        $sortButton = '[data-test="pokedex-species-learnable-moves__tm"] thead [aria-label="Sort by move"]';
+        $sortButton = '[data-test="pokedex-species-learnable-moves__tm"] thead tr:first-child th:first-child';
 
         visit(route('dex.web.pokedex.show', $species))
-            ->assertSeeIn($moveCell, 'Ember')
+            ->assertSeeIn($moveCell, $firstMove->name)
             ->click($sortButton)
             ->wait(0.5)
-            ->assertSeeIn($moveCell, 'Ember')
+            ->assertSeeIn($moveCell, $secondMove->name)
             ->click($sortButton)
             ->wait(0.5)
-            ->assertSeeIn($moveCell, 'Tackle')
+            ->assertSeeIn($moveCell, $firstMove->name)
             ->assertNoSmoke();
     });
 
@@ -343,7 +343,7 @@ describe('learnable moves card', function () {
         actingAs($user);
 
         $moveCell   = '[data-test="pokedex-species-learnable-moves__level-up"] tbody tr:first-child td:nth-child(2)';
-        $sortButton = '[data-test="pokedex-species-learnable-moves__level-up"] thead [aria-label="Sort by power"]';
+        $sortButton = '[data-test="pokedex-species-learnable-moves__level-up"] thead tr:first-child th:nth-child(4)';
 
         visit(route('dex.web.pokedex.show', $species))
             ->click($sortButton)
@@ -368,7 +368,7 @@ describe('learnable moves card', function () {
         actingAs($user);
 
         $moveCell   = '[data-test="pokedex-species-learnable-moves__level-up"] tbody tr:first-child td:nth-child(2)';
-        $sortButton = '[data-test="pokedex-species-learnable-moves__level-up"] thead [aria-label="Sort by power"]';
+        $sortButton = '[data-test="pokedex-species-learnable-moves__level-up"] thead tr:first-child th:nth-child(4)';
 
         visit(route('dex.web.pokedex.show', $species))
             ->click($sortButton)
