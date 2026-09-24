@@ -60,7 +60,7 @@ final class SpeciesLearnableMove extends Model
      * @param  Builder<SpeciesLearnableMove>  $query
      */
     #[Scope]
-    public function learnableByLevelUp(Builder $query): void
+    protected function learnableByLevelUp(Builder $query): void
     {
         $query->whereNotNull('level_learn');
     }
@@ -69,7 +69,7 @@ final class SpeciesLearnableMove extends Model
      * @param  Builder<SpeciesLearnableMove>  $query
      */
     #[Scope]
-    public function learnableByTM(Builder $query): void
+    protected function learnableByTM(Builder $query): void
     {
         $query->whereNull('level_learn');
     }
