@@ -6,6 +6,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
 use Shared\Models\Pokeball;
@@ -56,13 +57,15 @@ final class UserSeeder extends Seeder
                 $regular = Pokemon::factory()->for($user)->for($user, 'originalUser')->for($species)->recycle($pokeballs)->regular()->inBox()->make()->toArray();
                 $shiny   = Pokemon::factory()->for($user)->for($user, 'originalUser')->for($species)->recycle($pokeballs)->shiny()->inBox()->make()->toArray();
 
-                $regular['id']         = new Pokemon()->newUniqueId();
-                $regular['created_at'] = now();
-                $regular['updated_at'] = now();
+                $regular['id']          = new Pokemon()->newUniqueId();
+                $regular['captured_at'] = Carbon::parse($regular['captured_at'])->format('Y-m-d H:i:s');
+                $regular['created_at']  = now();
+                $regular['updated_at']  = now();
 
-                $shiny['id']         = new Pokemon()->newUniqueId();
-                $shiny['created_at'] = now();
-                $shiny['updated_at'] = now();
+                $shiny['id']          = new Pokemon()->newUniqueId();
+                $shiny['captured_at'] = Carbon::parse($shiny['captured_at'])->format('Y-m-d H:i:s');
+                $shiny['created_at']  = now();
+                $shiny['updated_at']  = now();
 
                 return [$regular, $shiny];
             })
