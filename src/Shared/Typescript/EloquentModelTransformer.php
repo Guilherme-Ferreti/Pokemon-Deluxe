@@ -88,7 +88,7 @@ final class EloquentModelTransformer extends ClassTransformer
     {
         $model = $this->instantiateModel($phpClassNode);
 
-        if ($model === null) {
+        if (!$model instanceof Model) {
             return [];
         }
 
