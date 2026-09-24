@@ -1682,7 +1682,7 @@
                 "evolves_into": "salazzle",
                 "item": null,
                 "min_level": 33,
-                "gender": 2
+                "gender": "female"
             }
         ]
     },

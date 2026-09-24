@@ -1303,7 +1303,7 @@
                 "evolves_into": "gallade",
                 "item": "dawn-stone",
                 "min_level": null,
-                "gender": 1
+                "gender": "male"
             }
         ]
     },
@@ -4967,7 +4967,7 @@
                 "evolves_into": "froslass",
                 "item": "dawn-stone",
                 "min_level": null,
-                "gender": 2
+                "gender": "female"
             }
         ]
     },

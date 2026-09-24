@@ -1045,13 +1045,13 @@
                 "evolves_into": "wormadam-plant-cloak",
                 "item": null,
                 "min_level": 20,
-                "gender": 2
+                "gender": "female"
             },
             {
                 "evolves_into": "mothim",
                 "item": null,
                 "min_level": 20,
-                "gender": 1
+                "gender": "male"
             }
         ]
     },
@@ -1092,13 +1092,13 @@
                 "evolves_into": "wormadam-sandy-cloak",
                 "item": null,
                 "min_level": 20,
-                "gender": 2
+                "gender": "female"
             },
             {
                 "evolves_into": "mothim",
                 "item": null,
                 "min_level": 20,
-                "gender": 1
+                "gender": "male"
             }
         ]
     },
@@ -1139,13 +1139,13 @@
                 "evolves_into": "wormadam-trash-cloak",
                 "item": null,
                 "min_level": 20,
-                "gender": 2
+                "gender": "female"
             },
             {
                 "evolves_into": "mothim",
                 "item": null,
                 "min_level": 20,
-                "gender": 1
+                "gender": "male"
             }
         ]
     },
@@ -1327,7 +1327,7 @@
                 "evolves_into": "vespiquen",
                 "item": null,
                 "min_level": 21,
-                "gender": 2
+                "gender": "female"
             }
         ]
     },
