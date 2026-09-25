@@ -6,7 +6,6 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Arr;
-use Illuminate\Support\Carbon;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
 use Shared\Models\Pokeball;
@@ -53,25 +52,28 @@ final class UserSeeder extends Seeder
         Species::query()
             ->inRandomOrder()
             ->get()
-            ->map(function (Species $species) use ($user, $pokeballs): array {
-                $regular = Pokemon::factory()->for($user)->for($user, 'originalUser')->for($species)->recycle($pokeballs)->regular()->inBox()->make()->toArray();
-                $shiny   = Pokemon::factory()->for($user)->for($user, 'originalUser')->for($species)->recycle($pokeballs)->shiny()->inBox()->make()->toArray();
-
-                $regular['id']          = new Pokemon()->newUniqueId();
-                $regular['captured_at'] = Carbon::parse($regular['captured_at'] ?? null)->format('Y-m-d H:i:s');
-                $regular['created_at']  = now();
-                $regular['updated_at']  = now();
-
-                $shiny['id']          = new Pokemon()->newUniqueId();
-                $shiny['captured_at'] = Carbon::parse($shiny['captured_at'] ?? null)->format('Y-m-d H:i:s');
-                $shiny['created_at']  = now();
-                $shiny['updated_at']  = now();
-
-                return [$regular, $shiny];
-            })
+            ->map(fn (Species $species): array => [
+                $this->prepareForInsert(Pokemon::factory()->for($user)->for($user, 'originalUser')->for($species)->recycle($pokeballs)->regular()->inBox()->make()),
+                $this->prepareForInsert(Pokemon::factory()->for($user)->for($user, 'originalUser')->for($species)->recycle($pokeballs)->shiny()->inBox()->make()),
+            ])
             ->flatten(1)
             ->chunk(1000)
             ->each(fn (Collection $chunk) => Pokemon::insert($chunk->toArray()));
+    }
+
+    /**
+     * @return array<string, mixed>
+     */
+    private function prepareForInsert(Pokemon $pokemon): array
+    {
+        $attributes = $pokemon->toArray();
+
+        $attributes['id']          = $pokemon->newUniqueId();
+        $attributes['captured_at'] = $pokemon->captured_at->format('Y-m-d H:i:s');
+        $attributes['created_at']  = now();
+        $attributes['updated_at']  = now();
+
+        return $attributes;
     }
 
     private function attachMovesToPokemon(User $user): void
