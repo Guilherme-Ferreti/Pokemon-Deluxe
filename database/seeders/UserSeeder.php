@@ -58,12 +58,12 @@ final class UserSeeder extends Seeder
                 $shiny   = Pokemon::factory()->for($user)->for($user, 'originalUser')->for($species)->recycle($pokeballs)->shiny()->inBox()->make()->toArray();
 
                 $regular['id']          = new Pokemon()->newUniqueId();
-                $regular['captured_at'] = Carbon::parse($regular['captured_at'])->format('Y-m-d H:i:s');
+                $regular['captured_at'] = Carbon::parse($regular['captured_at'] ?? null)->format('Y-m-d H:i:s');
                 $regular['created_at']  = now();
                 $regular['updated_at']  = now();
 
                 $shiny['id']          = new Pokemon()->newUniqueId();
-                $shiny['captured_at'] = Carbon::parse($shiny['captured_at'])->format('Y-m-d H:i:s');
+                $shiny['captured_at'] = Carbon::parse($shiny['captured_at'] ?? null)->format('Y-m-d H:i:s');
                 $shiny['created_at']  = now();
                 $shiny['updated_at']  = now();
 
