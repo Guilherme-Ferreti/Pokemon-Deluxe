@@ -31,6 +31,7 @@
         "generation": 9,
         "capture_rate": 45,
         "gender_rate": 1,
+        "egg_obtainable": true,
         "evolutions": [
             {
                 "evolves_into": "floragato",
@@ -72,6 +73,7 @@
         "generation": 9,
         "capture_rate": 45,
         "gender_rate": 1,
+        "egg_obtainable": false,
         "evolutions": [
             {
                 "evolves_into": "meowscarada",
@@ -114,6 +116,7 @@
         "generation": 9,
         "capture_rate": 45,
         "gender_rate": 1,
+        "egg_obtainable": false,
         "evolutions": []
     },
     "fuecoco": {
@@ -148,6 +151,7 @@
         "generation": 9,
         "capture_rate": 45,
         "gender_rate": 1,
+        "egg_obtainable": true,
         "evolutions": [
             {
                 "evolves_into": "crocalor",
@@ -189,6 +193,7 @@
         "generation": 9,
         "capture_rate": 45,
         "gender_rate": 1,
+        "egg_obtainable": false,
         "evolutions": [
             {
                 "evolves_into": "skeledirge",
@@ -231,6 +236,7 @@
         "generation": 9,
         "capture_rate": 45,
         "gender_rate": 1,
+        "egg_obtainable": false,
         "evolutions": []
     },
     "quaxly": {
@@ -265,6 +271,7 @@
         "generation": 9,
         "capture_rate": 45,
         "gender_rate": 1,
+        "egg_obtainable": true,
         "evolutions": [
             {
                 "evolves_into": "quaxwell",
@@ -306,6 +313,7 @@
         "generation": 9,
         "capture_rate": 45,
         "gender_rate": 1,
+        "egg_obtainable": false,
         "evolutions": [
             {
                 "evolves_into": "quaquaval",
@@ -348,6 +356,7 @@
         "generation": 9,
         "capture_rate": 45,
         "gender_rate": 1,
+        "egg_obtainable": false,
         "evolutions": []
     },
     "lechonk": {
@@ -382,6 +391,7 @@
         "generation": 9,
         "capture_rate": 255,
         "gender_rate": 4,
+        "egg_obtainable": true,
         "evolutions": [
             {
                 "evolves_into": "oinkologne",
@@ -423,6 +433,7 @@
         "generation": 9,
         "capture_rate": 100,
         "gender_rate": 4,
+        "egg_obtainable": false,
         "evolutions": []
     },
     "tarountula": {
@@ -457,6 +468,7 @@
         "generation": 9,
         "capture_rate": 255,
         "gender_rate": 4,
+        "egg_obtainable": true,
         "evolutions": [
             {
                 "evolves_into": "spidops",
@@ -498,6 +510,7 @@
         "generation": 9,
         "capture_rate": 120,
         "gender_rate": 4,
+        "egg_obtainable": false,
         "evolutions": []
     },
     "nymble": {
@@ -532,6 +545,7 @@
         "generation": 9,
         "capture_rate": 190,
         "gender_rate": 4,
+        "egg_obtainable": true,
         "evolutions": [
             {
                 "evolves_into": "lokix",
@@ -574,6 +588,7 @@
         "generation": 9,
         "capture_rate": 30,
         "gender_rate": 4,
+        "egg_obtainable": false,
         "evolutions": []
     },
     "pawmi": {
@@ -608,6 +623,7 @@
         "generation": 9,
         "capture_rate": 190,
         "gender_rate": 4,
+        "egg_obtainable": true,
         "evolutions": [
             {
                 "evolves_into": "pawmo",
@@ -650,6 +666,7 @@
         "generation": 9,
         "capture_rate": 80,
         "gender_rate": 4,
+        "egg_obtainable": false,
         "evolutions": [
             {
                 "evolves_into": "pawmot",
@@ -692,6 +709,7 @@
         "generation": 9,
         "capture_rate": 45,
         "gender_rate": 4,
+        "egg_obtainable": false,
         "evolutions": []
     },
     "tandemaus": {
@@ -726,6 +744,7 @@
         "generation": 9,
         "capture_rate": 150,
         "gender_rate": -1,
+        "egg_obtainable": true,
         "evolutions": [
             {
                 "evolves_into": "maushold-family-of-three",
@@ -773,6 +792,7 @@
         "generation": 9,
         "capture_rate": 75,
         "gender_rate": -1,
+        "egg_obtainable": false,
         "evolutions": []
     },
     "maushold-family-of-three": {
@@ -807,6 +827,7 @@
         "generation": 9,
         "capture_rate": 75,
         "gender_rate": -1,
+        "egg_obtainable": false,
         "evolutions": []
     },
     "fidough": {
@@ -841,6 +862,7 @@
         "generation": 9,
         "capture_rate": 190,
         "gender_rate": 4,
+        "egg_obtainable": true,
         "evolutions": [
             {
                 "evolves_into": "dachsbun",
@@ -882,6 +904,7 @@
         "generation": 9,
         "capture_rate": 90,
         "gender_rate": 4,
+        "egg_obtainable": false,
         "evolutions": []
     },
     "smoliv": {
@@ -917,6 +940,7 @@
         "generation": 9,
         "capture_rate": 255,
         "gender_rate": 4,
+        "egg_obtainable": true,
         "evolutions": [
             {
                 "evolves_into": "dolliv",
@@ -959,6 +983,7 @@
         "generation": 9,
         "capture_rate": 120,
         "gender_rate": 4,
+        "egg_obtainable": false,
         "evolutions": [
             {
                 "evolves_into": "arboliva",
@@ -1001,6 +1026,7 @@
         "generation": 9,
         "capture_rate": 45,
         "gender_rate": 4,
+        "egg_obtainable": false,
         "evolutions": []
     },
     "squawkabilly-green-plumage": {
@@ -1036,6 +1062,7 @@
         "generation": 9,
         "capture_rate": 190,
         "gender_rate": 4,
+        "egg_obtainable": true,
         "evolutions": []
     },
     "squawkabilly-blue-plumage": {
@@ -1071,6 +1098,7 @@
         "generation": 9,
         "capture_rate": 190,
         "gender_rate": 4,
+        "egg_obtainable": true,
         "evolutions": []
     },
     "squawkabilly-yellow-plumage": {
@@ -1106,6 +1134,7 @@
         "generation": 9,
         "capture_rate": 190,
         "gender_rate": 4,
+        "egg_obtainable": true,
         "evolutions": []
     },
     "squawkabilly-white-plumage": {
@@ -1141,6 +1170,7 @@
         "generation": 9,
         "capture_rate": 190,
         "gender_rate": 4,
+        "egg_obtainable": true,
         "evolutions": []
     },
     "nacli": {
@@ -1175,6 +1205,7 @@
         "generation": 9,
         "capture_rate": 255,
         "gender_rate": 4,
+        "egg_obtainable": true,
         "evolutions": [
             {
                 "evolves_into": "naclstack",
@@ -1216,6 +1247,7 @@
         "generation": 9,
         "capture_rate": 120,
         "gender_rate": 4,
+        "egg_obtainable": false,
         "evolutions": [
             {
                 "evolves_into": "garganacl",
@@ -1257,6 +1289,7 @@
         "generation": 9,
         "capture_rate": 45,
         "gender_rate": 4,
+        "egg_obtainable": false,
         "evolutions": []
     },
     "charcadet": {
@@ -1291,6 +1324,7 @@
         "generation": 9,
         "capture_rate": 90,
         "gender_rate": 4,
+        "egg_obtainable": true,
         "evolutions": [
             {
                 "evolves_into": "armarouge",
@@ -1339,6 +1373,7 @@
         "generation": 9,
         "capture_rate": 25,
         "gender_rate": 4,
+        "egg_obtainable": false,
         "evolutions": []
     },
     "ceruledge": {
@@ -1374,6 +1409,7 @@
         "generation": 9,
         "capture_rate": 25,
         "gender_rate": 4,
+        "egg_obtainable": false,
         "evolutions": []
     },
     "tadbulb": {
@@ -1408,6 +1444,7 @@
         "generation": 9,
         "capture_rate": 190,
         "gender_rate": 4,
+        "egg_obtainable": true,
         "evolutions": [
             {
                 "evolves_into": "bellibolt",
@@ -1449,6 +1486,7 @@
         "generation": 9,
         "capture_rate": 50,
         "gender_rate": 4,
+        "egg_obtainable": false,
         "evolutions": []
     },
     "wattrel": {
@@ -1484,6 +1522,7 @@
         "generation": 9,
         "capture_rate": 180,
         "gender_rate": 4,
+        "egg_obtainable": true,
         "evolutions": [
             {
                 "evolves_into": "kilowattrel",
@@ -1526,6 +1565,7 @@
         "generation": 9,
         "capture_rate": 90,
         "gender_rate": 4,
+        "egg_obtainable": false,
         "evolutions": []
     },
     "maschiff": {
@@ -1560,6 +1600,7 @@
         "generation": 9,
         "capture_rate": 150,
         "gender_rate": 4,
+        "egg_obtainable": true,
         "evolutions": [
             {
                 "evolves_into": "mabosstiff",
@@ -1601,6 +1642,7 @@
         "generation": 9,
         "capture_rate": 75,
         "gender_rate": 4,
+        "egg_obtainable": false,
         "evolutions": []
     },
     "shroodle": {
@@ -1636,6 +1678,7 @@
         "generation": 9,
         "capture_rate": 190,
         "gender_rate": 4,
+        "egg_obtainable": true,
         "evolutions": [
             {
                 "evolves_into": "grafaiai",
@@ -1678,6 +1721,7 @@
         "generation": 9,
         "capture_rate": 90,
         "gender_rate": 4,
+        "egg_obtainable": false,
         "evolutions": []
     },
     "bramblin": {
@@ -1713,6 +1757,7 @@
         "generation": 9,
         "capture_rate": 190,
         "gender_rate": 4,
+        "egg_obtainable": true,
         "evolutions": [
             {
                 "evolves_into": "brambleghast",
@@ -1755,6 +1800,7 @@
         "generation": 9,
         "capture_rate": 45,
         "gender_rate": 4,
+        "egg_obtainable": false,
         "evolutions": []
     },
     "toedscool": {
@@ -1790,6 +1836,7 @@
         "generation": 9,
         "capture_rate": 190,
         "gender_rate": 4,
+        "egg_obtainable": true,
         "evolutions": [
             {
                 "evolves_into": "toedscruel",
@@ -1832,6 +1879,7 @@
         "generation": 9,
         "capture_rate": 90,
         "gender_rate": 4,
+        "egg_obtainable": false,
         "evolutions": []
     },
     "klawf": {
@@ -1866,6 +1914,7 @@
         "generation": 9,
         "capture_rate": 120,
         "gender_rate": 4,
+        "egg_obtainable": true,
         "evolutions": []
     },
     "capsakid": {
@@ -1900,6 +1949,7 @@
         "generation": 9,
         "capture_rate": 190,
         "gender_rate": 4,
+        "egg_obtainable": true,
         "evolutions": [
             {
                 "evolves_into": "scovillain",
@@ -1942,6 +1992,7 @@
         "generation": 9,
         "capture_rate": 75,
         "gender_rate": 4,
+        "egg_obtainable": false,
         "evolutions": [
             {
                 "evolves_into": "mega-scovillain",
@@ -1984,6 +2035,7 @@
         "generation": 9,
         "capture_rate": null,
         "gender_rate": 4,
+        "egg_obtainable": false,
         "evolutions": []
     },
     "rellor": {
@@ -2018,6 +2070,7 @@
         "generation": 9,
         "capture_rate": 190,
         "gender_rate": 4,
+        "egg_obtainable": true,
         "evolutions": [
             {
                 "evolves_into": "rabsca",
@@ -2060,6 +2113,7 @@
         "generation": 9,
         "capture_rate": 45,
         "gender_rate": 4,
+        "egg_obtainable": false,
         "evolutions": []
     },
     "flittle": {
@@ -2094,6 +2148,7 @@
         "generation": 9,
         "capture_rate": 120,
         "gender_rate": 4,
+        "egg_obtainable": true,
         "evolutions": [
             {
                 "evolves_into": "espathra",
@@ -2135,6 +2190,7 @@
         "generation": 9,
         "capture_rate": 60,
         "gender_rate": 4,
+        "egg_obtainable": false,
         "evolutions": []
     },
     "tinkatink": {
@@ -2170,6 +2226,7 @@
         "generation": 9,
         "capture_rate": 190,
         "gender_rate": 8,
+        "egg_obtainable": true,
         "evolutions": [
             {
                 "evolves_into": "tinkatuff",
@@ -2212,6 +2269,7 @@
         "generation": 9,
         "capture_rate": 90,
         "gender_rate": 8,
+        "egg_obtainable": false,
         "evolutions": [
             {
                 "evolves_into": "tinkaton",
@@ -2254,6 +2312,7 @@
         "generation": 9,
         "capture_rate": 45,
         "gender_rate": 8,
+        "egg_obtainable": false,
         "evolutions": []
     },
     "wiglett": {
@@ -2288,6 +2347,7 @@
         "generation": 9,
         "capture_rate": 255,
         "gender_rate": 4,
+        "egg_obtainable": true,
         "evolutions": [
             {
                 "evolves_into": "wugtrio",
@@ -2329,6 +2389,7 @@
         "generation": 9,
         "capture_rate": 50,
         "gender_rate": 4,
+        "egg_obtainable": false,
         "evolutions": []
     },
     "bombirdier": {
@@ -2364,6 +2425,7 @@
         "generation": 9,
         "capture_rate": 25,
         "gender_rate": 4,
+        "egg_obtainable": true,
         "evolutions": []
     },
     "finizen": {
@@ -2398,6 +2460,7 @@
         "generation": 9,
         "capture_rate": 200,
         "gender_rate": 4,
+        "egg_obtainable": true,
         "evolutions": [
             {
                 "evolves_into": "palafin-zero-form",
@@ -2445,6 +2508,7 @@
         "generation": 9,
         "capture_rate": 45,
         "gender_rate": 4,
+        "egg_obtainable": false,
         "evolutions": []
     },
     "palafin-hero-form": {
@@ -2479,6 +2543,7 @@
         "generation": 9,
         "capture_rate": 45,
         "gender_rate": 4,
+        "egg_obtainable": false,
         "evolutions": []
     },
     "varoom": {
@@ -2514,6 +2579,7 @@
         "generation": 9,
         "capture_rate": 190,
         "gender_rate": 4,
+        "egg_obtainable": true,
         "evolutions": [
             {
                 "evolves_into": "revavroom",
@@ -2556,6 +2622,7 @@
         "generation": 9,
         "capture_rate": 75,
         "gender_rate": 4,
+        "egg_obtainable": false,
         "evolutions": []
     },
     "cyclizar": {
@@ -2591,6 +2658,7 @@
         "generation": 9,
         "capture_rate": 190,
         "gender_rate": 4,
+        "egg_obtainable": true,
         "evolutions": []
     },
     "orthworm": {
@@ -2625,6 +2693,7 @@
         "generation": 9,
         "capture_rate": 25,
         "gender_rate": 4,
+        "egg_obtainable": true,
         "evolutions": []
     },
     "glimmet": {
@@ -2660,6 +2729,7 @@
         "generation": 9,
         "capture_rate": 70,
         "gender_rate": 4,
+        "egg_obtainable": true,
         "evolutions": [
             {
                 "evolves_into": "glimmora",
@@ -2702,6 +2772,7 @@
         "generation": 9,
         "capture_rate": 25,
         "gender_rate": 4,
+        "egg_obtainable": false,
         "evolutions": [
             {
                 "evolves_into": "mega-glimmora",
@@ -2744,6 +2815,7 @@
         "generation": 9,
         "capture_rate": null,
         "gender_rate": 4,
+        "egg_obtainable": false,
         "evolutions": []
     },
     "greavard": {
@@ -2778,6 +2850,7 @@
         "generation": 9,
         "capture_rate": 120,
         "gender_rate": 4,
+        "egg_obtainable": true,
         "evolutions": [
             {
                 "evolves_into": "houndstone",
@@ -2819,6 +2892,7 @@
         "generation": 9,
         "capture_rate": 60,
         "gender_rate": 4,
+        "egg_obtainable": false,
         "evolutions": []
     },
     "flamigo": {
@@ -2854,6 +2928,7 @@
         "generation": 9,
         "capture_rate": 100,
         "gender_rate": 4,
+        "egg_obtainable": true,
         "evolutions": []
     },
     "cetoddle": {
@@ -2888,6 +2963,7 @@
         "generation": 9,
         "capture_rate": 150,
         "gender_rate": 4,
+        "egg_obtainable": true,
         "evolutions": [
             {
                 "evolves_into": "cetitan",
@@ -2929,6 +3005,7 @@
         "generation": 9,
         "capture_rate": 50,
         "gender_rate": 4,
+        "egg_obtainable": false,
         "evolutions": []
     },
     "veluza": {
@@ -2964,6 +3041,7 @@
         "generation": 9,
         "capture_rate": 100,
         "gender_rate": 4,
+        "egg_obtainable": true,
         "evolutions": []
     },
     "dondozo": {
@@ -2998,6 +3076,7 @@
         "generation": 9,
         "capture_rate": 25,
         "gender_rate": 4,
+        "egg_obtainable": true,
         "evolutions": []
     },
     "tatsugiri-curly": {
@@ -3033,6 +3112,7 @@
         "generation": 9,
         "capture_rate": 100,
         "gender_rate": 4,
+        "egg_obtainable": true,
         "evolutions": [
             {
                 "evolves_into": "mega-tatsugiri-curly",
@@ -3087,6 +3167,7 @@
         "generation": 9,
         "capture_rate": 100,
         "gender_rate": 4,
+        "egg_obtainable": true,
         "evolutions": [
             {
                 "evolves_into": "mega-tatsugiri-curly",
@@ -3141,6 +3222,7 @@
         "generation": 9,
         "capture_rate": 100,
         "gender_rate": 4,
+        "egg_obtainable": true,
         "evolutions": [
             {
                 "evolves_into": "mega-tatsugiri-curly",
@@ -3195,6 +3277,7 @@
         "generation": 9,
         "capture_rate": null,
         "gender_rate": 4,
+        "egg_obtainable": false,
         "evolutions": []
     },
     "mega-tatsugiri-droopy": {
@@ -3230,6 +3313,7 @@
         "generation": 9,
         "capture_rate": null,
         "gender_rate": 4,
+        "egg_obtainable": false,
         "evolutions": []
     },
     "mega-tatsugiri-stretchy": {
@@ -3265,6 +3349,7 @@
         "generation": 9,
         "capture_rate": null,
         "gender_rate": 4,
+        "egg_obtainable": false,
         "evolutions": []
     },
     "annihilape": {
@@ -3300,6 +3385,7 @@
         "generation": 9,
         "capture_rate": 45,
         "gender_rate": 4,
+        "egg_obtainable": false,
         "evolutions": []
     },
     "clodsire": {
@@ -3335,6 +3421,7 @@
         "generation": 9,
         "capture_rate": 90,
         "gender_rate": 4,
+        "egg_obtainable": false,
         "evolutions": []
     },
     "farigiraf": {
@@ -3370,6 +3457,7 @@
         "generation": 9,
         "capture_rate": 45,
         "gender_rate": 4,
+        "egg_obtainable": false,
         "evolutions": []
     },
     "dudunsparce-two-segment-form": {
@@ -3404,6 +3492,7 @@
         "generation": 9,
         "capture_rate": 45,
         "gender_rate": 4,
+        "egg_obtainable": false,
         "evolutions": []
     },
     "dudunsparce-three-segment-form": {
@@ -3438,6 +3527,7 @@
         "generation": 9,
         "capture_rate": 45,
         "gender_rate": 4,
+        "egg_obtainable": false,
         "evolutions": []
     },
     "kingambit": {
@@ -3473,6 +3563,7 @@
         "generation": 9,
         "capture_rate": 25,
         "gender_rate": 4,
+        "egg_obtainable": false,
         "evolutions": []
     },
     "great-tusk": {
@@ -3508,6 +3599,7 @@
         "generation": 9,
         "capture_rate": 30,
         "gender_rate": -1,
+        "egg_obtainable": true,
         "evolutions": []
     },
     "scream-tail": {
@@ -3543,6 +3635,7 @@
         "generation": 9,
         "capture_rate": 50,
         "gender_rate": -1,
+        "egg_obtainable": true,
         "evolutions": []
     },
     "brute-bonnet": {
@@ -3578,6 +3671,7 @@
         "generation": 9,
         "capture_rate": 50,
         "gender_rate": -1,
+        "egg_obtainable": true,
         "evolutions": []
     },
     "flutter-mane": {
@@ -3613,6 +3707,7 @@
         "generation": 9,
         "capture_rate": 30,
         "gender_rate": -1,
+        "egg_obtainable": true,
         "evolutions": []
     },
     "slither-wing": {
@@ -3648,6 +3743,7 @@
         "generation": 9,
         "capture_rate": 30,
         "gender_rate": -1,
+        "egg_obtainable": true,
         "evolutions": []
     },
     "sandy-shocks": {
@@ -3683,6 +3779,7 @@
         "generation": 9,
         "capture_rate": 30,
         "gender_rate": -1,
+        "egg_obtainable": true,
         "evolutions": []
     },
     "iron-treads": {
@@ -3718,6 +3815,7 @@
         "generation": 9,
         "capture_rate": 30,
         "gender_rate": -1,
+        "egg_obtainable": true,
         "evolutions": []
     },
     "iron-bundle": {
@@ -3753,6 +3851,7 @@
         "generation": 9,
         "capture_rate": 50,
         "gender_rate": -1,
+        "egg_obtainable": true,
         "evolutions": []
     },
     "iron-hands": {
@@ -3788,6 +3887,7 @@
         "generation": 9,
         "capture_rate": 50,
         "gender_rate": -1,
+        "egg_obtainable": true,
         "evolutions": []
     },
     "iron-jugulis": {
@@ -3823,6 +3923,7 @@
         "generation": 9,
         "capture_rate": 30,
         "gender_rate": -1,
+        "egg_obtainable": true,
         "evolutions": []
     },
     "iron-moth": {
@@ -3858,6 +3959,7 @@
         "generation": 9,
         "capture_rate": 30,
         "gender_rate": -1,
+        "egg_obtainable": true,
         "evolutions": []
     },
     "iron-thorns": {
@@ -3893,6 +3995,7 @@
         "generation": 9,
         "capture_rate": 30,
         "gender_rate": -1,
+        "egg_obtainable": true,
         "evolutions": []
     },
     "frigibax": {
@@ -3928,6 +4031,7 @@
         "generation": 9,
         "capture_rate": 45,
         "gender_rate": 4,
+        "egg_obtainable": true,
         "evolutions": [
             {
                 "evolves_into": "arctibax",
@@ -3970,6 +4074,7 @@
         "generation": 9,
         "capture_rate": 25,
         "gender_rate": 4,
+        "egg_obtainable": false,
         "evolutions": [
             {
                 "evolves_into": "baxcalibur",
@@ -4012,6 +4117,7 @@
         "generation": 9,
         "capture_rate": 10,
         "gender_rate": 4,
+        "egg_obtainable": false,
         "evolutions": [
             {
                 "evolves_into": "mega-baxcalibur",
@@ -4054,6 +4160,7 @@
         "generation": 9,
         "capture_rate": null,
         "gender_rate": 4,
+        "egg_obtainable": false,
         "evolutions": []
     },
     "gimmighoul": {
@@ -4088,6 +4195,7 @@
         "generation": 9,
         "capture_rate": 45,
         "gender_rate": -1,
+        "egg_obtainable": true,
         "evolutions": [
             {
                 "evolves_into": "gholdengo",
@@ -4129,6 +4237,7 @@
         "generation": 9,
         "capture_rate": 45,
         "gender_rate": -1,
+        "egg_obtainable": true,
         "evolutions": [
             {
                 "evolves_into": "gholdengo",
@@ -4171,6 +4280,7 @@
         "generation": 9,
         "capture_rate": 45,
         "gender_rate": -1,
+        "egg_obtainable": false,
         "evolutions": []
     },
     "wo-chien": {
@@ -4206,6 +4316,7 @@
         "generation": 9,
         "capture_rate": 6,
         "gender_rate": -1,
+        "egg_obtainable": true,
         "evolutions": []
     },
     "chien-pao": {
@@ -4241,6 +4352,7 @@
         "generation": 9,
         "capture_rate": 6,
         "gender_rate": -1,
+        "egg_obtainable": true,
         "evolutions": []
     },
     "ting-lu": {
@@ -4276,6 +4388,7 @@
         "generation": 9,
         "capture_rate": 6,
         "gender_rate": -1,
+        "egg_obtainable": true,
         "evolutions": []
     },
     "chi-yu": {
@@ -4311,6 +4424,7 @@
         "generation": 9,
         "capture_rate": 6,
         "gender_rate": -1,
+        "egg_obtainable": true,
         "evolutions": []
     },
     "roaring-moon": {
@@ -4346,6 +4460,7 @@
         "generation": 9,
         "capture_rate": 10,
         "gender_rate": -1,
+        "egg_obtainable": true,
         "evolutions": []
     },
     "iron-valiant": {
@@ -4381,6 +4496,7 @@
         "generation": 9,
         "capture_rate": 10,
         "gender_rate": -1,
+        "egg_obtainable": true,
         "evolutions": []
     },
     "koraidon": {
@@ -4416,6 +4532,7 @@
         "generation": 9,
         "capture_rate": 3,
         "gender_rate": -1,
+        "egg_obtainable": true,
         "evolutions": []
     },
     "miraidon": {
@@ -4451,6 +4568,7 @@
         "generation": 9,
         "capture_rate": 3,
         "gender_rate": -1,
+        "egg_obtainable": true,
         "evolutions": []
     },
     "walking-wake": {
@@ -4486,6 +4604,7 @@
         "generation": 9,
         "capture_rate": 5,
         "gender_rate": -1,
+        "egg_obtainable": true,
         "evolutions": []
     },
     "iron-leaves": {
@@ -4521,6 +4640,7 @@
         "generation": 9,
         "capture_rate": 5,
         "gender_rate": -1,
+        "egg_obtainable": true,
         "evolutions": []
     },
     "dipplin": {
@@ -4556,6 +4676,7 @@
         "generation": 9,
         "capture_rate": 45,
         "gender_rate": 4,
+        "egg_obtainable": false,
         "evolutions": [
             {
                 "evolves_into": "hydrapple",
@@ -4598,6 +4719,7 @@
         "generation": 9,
         "capture_rate": 120,
         "gender_rate": -1,
+        "egg_obtainable": true,
         "evolutions": [
             {
                 "evolves_into": "sinistcha",
@@ -4640,6 +4762,7 @@
         "generation": 9,
         "capture_rate": 60,
         "gender_rate": -1,
+        "egg_obtainable": false,
         "evolutions": []
     },
     "okidogi": {
@@ -4675,6 +4798,7 @@
         "generation": 9,
         "capture_rate": 3,
         "gender_rate": 0,
+        "egg_obtainable": true,
         "evolutions": []
     },
     "munkidori": {
@@ -4710,6 +4834,7 @@
         "generation": 9,
         "capture_rate": 3,
         "gender_rate": 0,
+        "egg_obtainable": true,
         "evolutions": []
     },
     "fezandipiti": {
@@ -4745,6 +4870,7 @@
         "generation": 9,
         "capture_rate": 3,
         "gender_rate": 0,
+        "egg_obtainable": true,
         "evolutions": []
     },
     "ogerpon-teal-mask": {
@@ -4779,6 +4905,7 @@
         "generation": 9,
         "capture_rate": 5,
         "gender_rate": 8,
+        "egg_obtainable": true,
         "evolutions": []
     },
     "ogerpon-wellspring-mask": {
@@ -4814,6 +4941,7 @@
         "generation": 9,
         "capture_rate": 5,
         "gender_rate": 8,
+        "egg_obtainable": true,
         "evolutions": []
     },
     "ogerpon-hearthflame-mask": {
@@ -4849,6 +4977,7 @@
         "generation": 9,
         "capture_rate": 5,
         "gender_rate": 8,
+        "egg_obtainable": true,
         "evolutions": []
     },
     "ogerpon-cornerstone-mask": {
@@ -4884,6 +5013,7 @@
         "generation": 9,
         "capture_rate": 5,
         "gender_rate": 8,
+        "egg_obtainable": true,
         "evolutions": []
     },
     "archaludon": {
@@ -4919,6 +5049,7 @@
         "generation": 9,
         "capture_rate": 10,
         "gender_rate": 4,
+        "egg_obtainable": false,
         "evolutions": []
     },
     "hydrapple": {
@@ -4954,6 +5085,7 @@
         "generation": 9,
         "capture_rate": 10,
         "gender_rate": 4,
+        "egg_obtainable": false,
         "evolutions": []
     },
     "gouging-fire": {
@@ -4989,6 +5121,7 @@
         "generation": 9,
         "capture_rate": 10,
         "gender_rate": -1,
+        "egg_obtainable": true,
         "evolutions": []
     },
     "raging-bolt": {
@@ -5024,6 +5157,7 @@
         "generation": 9,
         "capture_rate": 10,
         "gender_rate": -1,
+        "egg_obtainable": true,
         "evolutions": []
     },
     "iron-boulder": {
@@ -5059,6 +5193,7 @@
         "generation": 9,
         "capture_rate": 10,
         "gender_rate": -1,
+        "egg_obtainable": true,
         "evolutions": []
     },
     "iron-crown": {
@@ -5094,6 +5229,7 @@
         "generation": 9,
         "capture_rate": 10,
         "gender_rate": -1,
+        "egg_obtainable": true,
         "evolutions": []
     },
     "terapagos": {
@@ -5128,6 +5264,7 @@
         "generation": 9,
         "capture_rate": 255,
         "gender_rate": 4,
+        "egg_obtainable": true,
         "evolutions": []
     },
     "terapagos-terastal": {
@@ -5162,6 +5299,7 @@
         "generation": 9,
         "capture_rate": 255,
         "gender_rate": 4,
+        "egg_obtainable": true,
         "evolutions": []
     },
     "terapagos-stellar": {
@@ -5196,6 +5334,7 @@
         "generation": 9,
         "capture_rate": 255,
         "gender_rate": 4,
+        "egg_obtainable": true,
         "evolutions": []
     },
     "pecharunt": {
@@ -5231,6 +5370,7 @@
         "generation": 9,
         "capture_rate": 3,
         "gender_rate": -1,
+        "egg_obtainable": true,
         "evolutions": []
     },
     "paldean-tauros-combat-breed": {
@@ -5265,6 +5405,7 @@
         "generation": 9,
         "capture_rate": 45,
         "gender_rate": 0,
+        "egg_obtainable": true,
         "evolutions": []
     },
     "paldean-tauros-blaze-breed": {
@@ -5300,6 +5441,7 @@
         "generation": 9,
         "capture_rate": 45,
         "gender_rate": 0,
+        "egg_obtainable": true,
         "evolutions": []
     },
     "paldean-tauros-aqua-breed": {
@@ -5335,6 +5477,7 @@
         "generation": 9,
         "capture_rate": 45,
         "gender_rate": 0,
+        "egg_obtainable": true,
         "evolutions": []
     },
     "paldean-wooper": {
@@ -5370,6 +5513,7 @@
         "generation": 9,
         "capture_rate": 255,
         "gender_rate": 4,
+        "egg_obtainable": true,
         "evolutions": [
             {
                 "evolves_into": "clodsire",

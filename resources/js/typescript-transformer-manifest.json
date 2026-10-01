@@ -18,7 +18,7 @@
   "shared\/types\/models\/Move.ts": "aac19b0c9b912953994a028197bad750",
   "shared\/types\/models\/Pokeball.ts": "813367c21084768f5c6aacc4d0f08042",
   "shared\/types\/models\/Pokemon.ts": "06165d4fa58cc351d39795d5221da5e5",
-  "shared\/types\/models\/Species.ts": "249964e45f3e82eca3bf646e170fdcf8",
+  "shared\/types\/models\/Species.ts": "e9cd9c56f6b73d77e9e6643b3343cc90",
   "shared\/types\/models\/SpeciesEvolution.ts": "856d0878f66bd4ec447ff262d965f94b",
   "shared\/types\/models\/SpeciesLearnableMove.ts": "43671094db401e9669e4bc65153f074c",
   "shared\/types\/models\/User.ts": "a6d49d1045fba953ae421210e7c52828"

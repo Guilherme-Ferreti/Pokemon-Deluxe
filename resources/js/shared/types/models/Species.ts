@@ -31,4 +31,5 @@ export type Species = {
   generation: Generation;
   captureRate: number | null;
   genderRate: number;
+  eggObtainable: boolean;
 };

@@ -40,6 +40,7 @@ use Spatie\TypeScriptTransformer\Attributes\TypeScript;
  * @property Generation $generation
  * @property int|null $capture_rate
  * @property int $gender_rate
+ * @property bool $egg_obtainable
  * @property-read EloquentCollection<int, SpeciesEvolution> $evolutions
  * @property-read EloquentCollection<int, SpeciesEvolution> $previousEvolutions
  * @property-read EloquentCollection<int, SpeciesLearnableMove> $learnableMoves
@@ -70,6 +71,7 @@ final class Species extends Model
             'is_gmax'        => 'boolean',
             'capture_rate'   => 'integer',
             'gender_rate'    => 'integer',
+            'egg_obtainable' => 'boolean',
             'sprites'        => SpeciesSprites::class,
             'portraits'      => SpeciesPortraits::class,
         ];

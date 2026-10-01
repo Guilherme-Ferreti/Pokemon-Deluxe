@@ -14,7 +14,7 @@ use Shared\Models\SpeciesEvolution;
  * @phpstan-type SeederEvolution array{evolves_into:string, item:?string, min_level:?int, gender:?string}
  * @phpstan-type SeederSprites array{back_default:?string, back_female:?string, back_shiny:?string, back_shiny_female:?string, front_default:?string, front_female:?string, front_shiny:?string, front_shiny_female:?string}
  * @phpstan-type SeederPortraits array{regular:?string, shiny:?string}
- * @phpstan-type SeederSpecies array{id:string, name:string, types:list<string>, pokedex_number:int, genus:string, flavor_text:string, sprites:SeederSprites, portraits:SeederPortraits, is_baby:bool, is_legendary:bool, is_mythical:bool, is_mega:bool, is_gmax:bool, generation:int, capture_rate:?int, gender_rate:int, evolutions:list<SeederEvolution>}
+ * @phpstan-type SeederSpecies array{id:string, name:string, types:list<string>, pokedex_number:int, genus:string, flavor_text:string, sprites:SeederSprites, portraits:SeederPortraits, is_baby:bool, is_legendary:bool, is_mythical:bool, is_mega:bool, is_gmax:bool, generation:int, capture_rate:?int, gender_rate:int, egg_obtainable:bool, evolutions:list<SeederEvolution>}
  */
 final class SpeciesSeeder extends Seeder
 {
@@ -114,14 +114,15 @@ final class SpeciesSeeder extends Seeder
                 'regular' => $species['portraits']['regular'],
                 'shiny'   => $species['portraits']['shiny'],
             ]),
-            'is_baby'      => $species['is_baby'],
-            'is_legendary' => $species['is_legendary'],
-            'is_mythical'  => $species['is_mythical'],
-            'is_mega'      => $species['is_mega'],
-            'is_gmax'      => $species['is_gmax'],
-            'generation'   => $species['generation'],
-            'capture_rate' => $species['capture_rate'],
-            'gender_rate'  => $species['gender_rate'],
+            'is_baby'        => $species['is_baby'],
+            'is_legendary'   => $species['is_legendary'],
+            'is_mythical'    => $species['is_mythical'],
+            'is_mega'        => $species['is_mega'],
+            'is_gmax'        => $species['is_gmax'],
+            'generation'     => $species['generation'],
+            'capture_rate'   => $species['capture_rate'],
+            'gender_rate'    => $species['gender_rate'],
+            'egg_obtainable' => $species['egg_obtainable'],
         ];
     }
 

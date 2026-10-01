@@ -41,14 +41,15 @@ final class SpeciesFactory extends Factory
                 regular: fake()->imageUrl(width: 96, height: 96, word: 'regular'),
                 shiny: fake()->imageUrl(width: 96, height: 96, word: 'shiny'),
             ),
-            'is_baby'      => fake()->boolean(5),
-            'is_legendary' => fake()->boolean(5),
-            'is_mythical'  => fake()->boolean(2),
-            'is_mega'      => fake()->boolean(5),
-            'is_gmax'      => fake()->boolean(5),
-            'generation'   => fake()->randomElement(Generation::cases()),
-            'capture_rate' => fake()->numberBetween(3, 255),
-            'gender_rate'  => fake()->numberBetween(-1, 8),
+            'is_baby'        => fake()->boolean(5),
+            'is_legendary'   => fake()->boolean(5),
+            'is_mythical'    => fake()->boolean(2),
+            'is_mega'        => fake()->boolean(5),
+            'is_gmax'        => fake()->boolean(5),
+            'generation'     => fake()->randomElement(Generation::cases()),
+            'capture_rate'   => fake()->numberBetween(3, 255),
+            'gender_rate'    => fake()->numberBetween(-1, 8),
+            'egg_obtainable' => fake()->boolean(),
         ];
     }
 
