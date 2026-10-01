@@ -8,6 +8,7 @@ namespace Shared\Models;
 use Database\Factories\UserFactory;
 use Illuminate\Database\Eloquent\Attributes\Fillable;
 use Illuminate\Database\Eloquent\Attributes\Hidden;
+use Illuminate\Database\Eloquent\Collection as EloquentCollection;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -24,8 +25,11 @@ use Spatie\TypeScriptTransformer\Attributes\TypeScript;
  * @property Carbon|null $email_verified_at
  * @property string $password
  * @property string|null $remember_token
+ * @property list<int> $unlocked_egg_incubator_indexes
  * @property Carbon|null $created_at
  * @property Carbon|null $updated_at
+ * @property-read EloquentCollection<int, Pokemon> $pokemon
+ * @property-read EloquentCollection<int, EggIncubationProcess> $eggIncubations
  */
 #[Fillable(['name', 'email', 'password'])]
 #[Hidden(['password', 'remember_token'])]
@@ -42,8 +46,9 @@ final class User extends Authenticatable
     protected function casts(): array
     {
         return [
-            'email_verified_at' => 'datetime',
-            'password'          => 'hashed',
+            'email_verified_at'              => 'datetime',
+            'password'                       => 'hashed',
+            'unlocked_egg_incubator_indexes' => 'array',
         ];
     }
 
@@ -53,5 +58,13 @@ final class User extends Authenticatable
     public function pokemon(): HasMany
     {
         return $this->hasMany(Pokemon::class);
+    }
+
+    /**
+     * @return HasMany<EggIncubationProcess, $this>
+     */
+    public function eggIncubationProcesses(): HasMany
+    {
+        return $this->hasMany(EggIncubationProcess::class);
     }
 }

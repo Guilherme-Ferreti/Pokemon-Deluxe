@@ -4,10 +4,12 @@ declare(strict_types=1);
 
 namespace Database\Seeders;
 
+use Illuminate\Database\Eloquent\Factories\Sequence;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
+use Shared\Models\EggIncubationProcess;
 use Shared\Models\Pokeball;
 use Shared\Models\Pokemon;
 use Shared\Models\Species;
@@ -25,6 +27,7 @@ final class UserSeeder extends Seeder
         $this->addPokemonToParty($user);
         $this->addPokemonToBox($user);
         $this->attachMovesToPokemon($user);
+        $this->addEggIncubationProcesses($user);
     }
 
     private function addPokemonToParty(User $user): void
@@ -112,5 +115,40 @@ final class UserSeeder extends Seeder
         }
 
         return Arr::take($moves, 4);
+    }
+
+    private function addEggIncubationProcesses(User $user): void
+    {
+        $user->update([
+            'unlocked_egg_incubator_indexes' => [1, 2, 3, 4, 5],
+        ]);
+
+        $species = Species::query()
+            ->where('egg_obtainable', true)
+            ->inRandomOrder()
+            ->take(10)
+            ->get();
+
+        EggIncubationProcess::factory()
+            ->incubating(now()->addHour())
+            ->for($user)
+            ->recycle($species)
+            ->count(2)
+            ->sequence(fn (Sequence $sequence) => ['egg_incubator_index' => $sequence->index + 1])
+            ->create();
+
+        EggIncubationProcess::factory()
+            ->readyToHatch()
+            ->for($user)
+            ->recycle($species)
+            ->count(2)
+            ->sequence(fn (Sequence $sequence) => ['egg_incubator_index' => $sequence->index + 3])
+            ->create();
+
+        EggIncubationProcess::factory()
+            ->readyToCapture()
+            ->for($user)
+            ->recycle($species)
+            ->create(['egg_incubator_index' => 5]);
     }
 }
