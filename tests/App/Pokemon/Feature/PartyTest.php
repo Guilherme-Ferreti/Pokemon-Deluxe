@@ -25,8 +25,8 @@ it('loads the party page with expected structure', function () {
             ->component('Pokemon/pages/Party')
             ->has('party', 3)
             ->where('party.0.id', $partyPokemon[0]->id)
-            ->where('party.0.name', $partyPokemon[0]->getName())
-            ->where('party.0.frontSprite', $partyPokemon[0]->getFrontSprite())
+            ->where('party.0.name', $partyPokemon[0]->getDisplayName())
+            ->where('party.0.frontSprite', $partyPokemon[0]->getDisplayFrontSprite())
             ->where('party.0.level', $partyPokemon[0]->level)
         );
 });

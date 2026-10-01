@@ -4,37 +4,37 @@ declare(strict_types=1);
 
 use Shared\Models\Pokemon;
 
-describe('name', function () {
+describe('display name', function () {
     it('prefixes the species name with Shiny when the pokemon is shiny', function () {
         $pokemon = Pokemon::factory()->shiny()->create();
 
-        expect($pokemon->getName())->toBe('Shiny ' . $pokemon->species->name);
+        expect($pokemon->getDisplayName())->toBe('Shiny ' . $pokemon->species->name);
     });
 
     it('returns the species name without the Shiny prefix when the pokemon is regular', function () {
         $pokemon = Pokemon::factory()->regular()->create();
 
-        expect($pokemon->getName())->toBe($pokemon->species->name);
+        expect($pokemon->getDisplayName())->toBe($pokemon->species->name);
     });
 });
 
-describe('front sprite', function () {
+describe('display front sprite', function () {
     it('returns the front shiny sprite when a male pokemon is shiny', function () {
         $shinyMale = Pokemon::factory()->shiny()->male()->create();
 
-        expect($shinyMale->getFrontSprite())->toBe($shinyMale->species->sprites->front_shiny);
+        expect($shinyMale->getDisplayFrontSprite())->toBe($shinyMale->species->sprites->front_shiny);
     });
 
     it('returns the front shiny sprite when a genderless pokemon is shiny', function () {
         $shinyGenderless = Pokemon::factory()->shiny()->genderless()->create();
 
-        expect($shinyGenderless->getFrontSprite())->toBe($shinyGenderless->species->sprites->front_shiny);
+        expect($shinyGenderless->getDisplayFrontSprite())->toBe($shinyGenderless->species->sprites->front_shiny);
     });
 
     it('returns the front shiny female sprite when a female pokemon is shiny', function () {
         $shinyFemale = Pokemon::factory()->shiny()->female()->create();
 
-        expect($shinyFemale->getFrontSprite())->toBe($shinyFemale->species->sprites->front_shiny_female);
+        expect($shinyFemale->getDisplayFrontSprite())->toBe($shinyFemale->species->sprites->front_shiny_female);
     });
 
     it('falls back to the front shiny sprite when a shiny female has no female sprite', function () {
@@ -44,25 +44,25 @@ describe('front sprite', function () {
         $shinyFemale->species->save();
         $shinyFemale->refresh();
 
-        expect($shinyFemale->getFrontSprite())->toBe($shinyFemale->species->sprites->front_shiny);
+        expect($shinyFemale->getDisplayFrontSprite())->toBe($shinyFemale->species->sprites->front_shiny);
     });
 
     it('returns the front default sprite when a male pokemon is regular', function () {
         $male = Pokemon::factory()->regular()->male()->create();
 
-        expect($male->getFrontSprite())->toBe($male->species->sprites->front_default);
+        expect($male->getDisplayFrontSprite())->toBe($male->species->sprites->front_default);
     });
 
     it('returns the front default sprite when a genderless pokemon is regular', function () {
         $genderless = Pokemon::factory()->regular()->genderless()->create();
 
-        expect($genderless->getFrontSprite())->toBe($genderless->species->sprites->front_default);
+        expect($genderless->getDisplayFrontSprite())->toBe($genderless->species->sprites->front_default);
     });
 
     it('returns the front female sprite when a female pokemon is regular', function () {
         $female = Pokemon::factory()->regular()->female()->create();
 
-        expect($female->getFrontSprite())->toBe($female->species->sprites->front_female);
+        expect($female->getDisplayFrontSprite())->toBe($female->species->sprites->front_female);
     });
 
     it('falls back to the front default sprite when a regular female has no female sprite', function () {
@@ -72,6 +72,6 @@ describe('front sprite', function () {
         $female->species->save();
         $female->refresh();
 
-        expect($female->getFrontSprite())->toBe($female->species->sprites->front_default);
+        expect($female->getDisplayFrontSprite())->toBe($female->species->sprites->front_default);
     });
 });

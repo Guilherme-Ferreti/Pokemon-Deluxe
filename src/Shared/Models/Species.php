@@ -18,6 +18,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 use Override;
 use Shared\Enums\ElementalType;
 use Shared\Enums\Generation;
+use Shared\Enums\PokemonGender;
 use Shared\ValueObjects\SpeciesPortraits;
 use Shared\ValueObjects\SpeciesSprites;
 use Spatie\TypeScriptTransformer\Attributes\TypeScript;
@@ -144,6 +145,32 @@ final class Species extends Model
     public function isGenderless(): bool
     {
         return $this->gender_rate === -1;
+    }
+
+    public function getDisplayName(bool $isShiny = false): string
+    {
+        if ($isShiny) {
+            return "Shiny {$this->name}";
+        }
+
+        return $this->name;
+    }
+
+    public function getDisplayFrontSprite(PokemonGender $gender = PokemonGender::MALE, bool $shiny = false): string
+    {
+        $sprite = null;
+
+        if ($gender === PokemonGender::FEMALE && $shiny) {
+            $sprite = $this->sprites->front_shiny_female ?? $this->sprites->front_shiny;
+        } elseif ($gender === PokemonGender::FEMALE) {
+            $sprite = $this->sprites->front_female ?? $this->sprites->front_default;
+        } elseif ($shiny) {
+            $sprite = $this->sprites->front_shiny;
+        } else {
+            $sprite = $this->sprites->front_default;
+        }
+
+        return (string) $sprite;
     }
 
     public function getCaptureRatePercentage(): int|float

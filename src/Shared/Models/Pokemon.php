@@ -151,29 +151,13 @@ final class Pokemon extends Model
         return $this->gender === PokemonGender::FEMALE;
     }
 
-    public function getName(): string
+    public function getDisplayName(): string
     {
-        if ($this->is_shiny) {
-            return 'Shiny ' . $this->species->name;
-        }
-
-        return $this->species->name;
+        return $this->species->getDisplayName($this->is_shiny);
     }
 
-    public function getFrontSprite(): string
+    public function getDisplayFrontSprite(): string
     {
-        $sprite = null;
-
-        if ($this->isFemale() && $this->is_shiny) {
-            $sprite = $this->species->sprites->front_shiny_female ?? $this->species->sprites->front_shiny;
-        } elseif ($this->isFemale()) {
-            $sprite = $this->species->sprites->front_female ?? $this->species->sprites->front_default;
-        } elseif ($this->is_shiny) {
-            $sprite = $this->species->sprites->front_shiny;
-        } else {
-            $sprite = $this->species->sprites->front_default;
-        }
-
-        return (string) $sprite;
+        return $this->species->getDisplayFrontSprite($this->gender, $this->is_shiny);
     }
 }

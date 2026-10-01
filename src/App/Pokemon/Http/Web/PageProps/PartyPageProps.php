@@ -31,8 +31,8 @@ final class PartyPageProps implements ProvidesInertiaProperties
             ->get()
             ->map(fn (Pokemon $pokemon) => [
                 'id'          => $pokemon->id,
-                'name'        => $pokemon->getName(),
-                'frontSprite' => $pokemon->getFrontSprite(),
+                'name'        => $pokemon->getDisplayName(),
+                'frontSprite' => $pokemon->getDisplayFrontSprite(),
                 'level'       => $pokemon->level,
             ])
             ->toArray();

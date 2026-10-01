@@ -272,7 +272,7 @@ it('navigates to the pokedex show page from the pokemon dropdown', function () {
     actingAs($user);
 
     visit(route('pokemon.web.box.index'))
-        ->assertSee($pokemon->getName())
+        ->assertSee($pokemon->getDisplayName())
         ->click('@pokemon-box-card__open-dropdown-menu-button')
         ->click('@pokemon-box-card__view-species-link')
         ->assertPathIs(route('dex.web.pokedex.show', $pokemon->species, absolute: false))

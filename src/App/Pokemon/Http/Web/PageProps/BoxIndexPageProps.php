@@ -37,9 +37,9 @@ final readonly class BoxIndexPageProps implements ProvidesInertiaProperties
 
         return AppHelper::paginatorToArray($pokemonList, fn (Pokemon $pokemon) => [
             'id'          => $pokemon->id,
-            'name'        => $pokemon->getName(),
+            'name'        => $pokemon->getDisplayName(),
             'gender'      => $pokemon->gender,
-            'frontSprite' => $pokemon->getFrontSprite(),
+            'frontSprite' => $pokemon->getDisplayFrontSprite(),
             'level'       => $pokemon->level,
             'experience'  => $pokemon->experience,
             'species'     => [

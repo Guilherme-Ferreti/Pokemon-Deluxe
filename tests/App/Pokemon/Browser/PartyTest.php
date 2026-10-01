@@ -28,7 +28,7 @@ it('shows party pokemon', function () {
     $page = visit(route('pokemon.web.party'));
 
     $partyPokemon->each(fn (Pokemon $pokemon) => $page
-        ->assertSee($pokemon->getName())
+        ->assertSee($pokemon->getDisplayName())
         ->assertSee('Lv. ' . $pokemon->level)
     );
 });
