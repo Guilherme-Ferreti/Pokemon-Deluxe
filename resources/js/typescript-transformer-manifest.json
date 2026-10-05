@@ -1,5 +1,5 @@
 {
-  "shared\/types\/helpers\/route.ts": "8f87a672b00fbfbf2cde5e466519a422",
+  "shared\/types\/helpers\/route.ts": "e5a68d82a5dc49bd1b799e2757621558",
   "app\/Dex\/types\/enums\/SearchAttackdexSortBy.ts": "aeb1f0e2b7001a3d9c5b912b4e293661",
   "app\/Dex\/types\/enums\/SearchPokedexSortBy.ts": "675e439d60cd56ceb9ec4d3027a5f9b6",
   "app\/Pokemon\/types\/enums\/SearchBoxSortBy.ts": "f8e9f0cb315a3eb1014344891e03d6c2",
@@ -14,6 +14,7 @@
   "shared\/types\/enums\/PokemonTrait.ts": "8686ff8c910ea540d28672f786996eab",
   "shared\/types\/enums\/SortDirection.ts": "fd0dd9de07b3476d5e9620a0bc85b37f",
   "shared\/types\/enums\/SpeciesTrait.ts": "a3cab481b31c0d4fe0b9b4ee6118f499",
+  "shared\/types\/models\/EggIncubationProcess.ts": "73bafce0a8bb3ce1126952a5f1fb98eb",
   "shared\/types\/models\/EvolutionItem.ts": "4e98b59b6adc3a6d42435d0992136941",
   "shared\/types\/models\/Move.ts": "aac19b0c9b912953994a028197bad750",
   "shared\/types\/models\/Pokeball.ts": "813367c21084768f5c6aacc4d0f08042",
@@ -21,5 +22,5 @@
   "shared\/types\/models\/Species.ts": "e9cd9c56f6b73d77e9e6643b3343cc90",
   "shared\/types\/models\/SpeciesEvolution.ts": "856d0878f66bd4ec447ff262d965f94b",
   "shared\/types\/models\/SpeciesLearnableMove.ts": "43671094db401e9669e4bc65153f074c",
-  "shared\/types\/models\/User.ts": "a6d49d1045fba953ae421210e7c52828"
+  "shared\/types\/models\/User.ts": "bdc7c5f59ffdcf8bfc5df706d6927c79"
 }

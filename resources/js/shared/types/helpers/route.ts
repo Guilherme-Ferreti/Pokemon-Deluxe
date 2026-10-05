@@ -13,6 +13,7 @@ type RouteParameters = {
   'dex.api.species.autocomplete': never;
   'pokemon.web.party': never;
   'pokemon.web.box.index': never;
+  'pokemon.web.nursery': never;
   'public.web.home': never;
   'storage.local.upload': {
     path: string | number;
@@ -59,6 +60,7 @@ const routes = {
   'dex.api.species.autocomplete': 'dex/api/species/autocomplete',
   'pokemon.web.party': 'your-pokemon/party',
   'pokemon.web.box.index': 'your-pokemon/box',
+  'pokemon.web.nursery': 'your-pokemon/nursery',
   'public.web.home': '',
   'storage.local.upload': 'storage/{path}',
 };

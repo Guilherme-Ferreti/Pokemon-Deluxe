@@ -3,6 +3,7 @@ export type User = {
   name: string;
   email: string;
   emailVerifiedAt: string | null;
+  unlockedEggIncubatorIndexes: number[];
   createdAt: string | null;
   updatedAt: string | null;
 };
