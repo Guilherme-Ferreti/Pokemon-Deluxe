@@ -12,6 +12,7 @@ export interface NurseryPageProps {
       frontSprite: string;
       gender: EggIncubationProcess['gender'];
     } | null;
+    createdAt: string;
   }[];
   incubatorAvailability: {
     inUse: EggIncubationProcess['eggIncubatorIndex'][];

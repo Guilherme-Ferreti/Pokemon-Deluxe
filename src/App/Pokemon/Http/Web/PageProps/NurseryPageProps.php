@@ -41,6 +41,7 @@ final class NurseryPageProps implements ProvidesInertiaProperties
                     'frontSprite' => $process->species->getDisplayFrontSprite($process->gender, $process->is_shiny),
                     'gender'      => $process->gender,
                 ]),
+                'createdAt' => $process->created_at,
             ])
             ->toArray();
     }
