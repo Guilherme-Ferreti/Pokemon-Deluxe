@@ -83,4 +83,13 @@ final class EggIncubationProcessFactory extends Factory
             'egg_captured_at'       => null,
         ]);
     }
+
+    public function completed(): static
+    {
+        return $this->state([
+            'egg_ready_to_hatch_at' => fake()->dateTimeBetween('-2 year', '-1 year'),
+            'egg_hatched_at'        => fake()->dateTimeBetween('-11 months', '-2 months'),
+            'egg_captured_at'       => fake()->dateTimeBetween('-1 month', 'now'),
+        ]);
+    }
 }

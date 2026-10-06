@@ -1,12 +1,11 @@
+import type { EggIncubationProcessesStatus } from '@/shared/types/enums/EggIncubationProcessesStatus';
 import type { EggIncubationProcess } from '@/shared/types/models/EggIncubationProcess';
 
 export interface NurseryPageProps {
   activeEggIncubationProcesses: {
     eggIncubatorIndex: EggIncubationProcess['eggIncubatorIndex'];
     eggReadyToHatchAt: EggIncubationProcess['eggReadyToHatchAt'];
-    isIncubating: boolean;
-    isReadyToHatch: boolean;
-    isReadyToCapture: boolean;
+    status: EggIncubationProcessesStatus;
     pokemon: {
       name: string;
       frontSprite: string;

@@ -2,7 +2,7 @@
   <div class="flex flex-col items-center gap-2">
     <span class="flex items-center gap-1 text-xs text-muted-foreground">
       <IconClock class="size-4" />
-      <span class="w-20.5">
+      <span class="w-[12ch]">
         <WhenMounted>
           {{ days }}d {{ hours }}h {{ minutes }}m {{ seconds }}s
           <template #fallback>Calculating...</template>

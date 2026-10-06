@@ -150,5 +150,11 @@ final class UserSeeder extends Seeder
             ->for($user)
             ->recycle($species)
             ->create(['egg_incubator_index' => 5]);
+
+        EggIncubationProcess::factory()
+            ->completed()
+            ->for($user)
+            ->recycle($species)
+            ->create();
     }
 }

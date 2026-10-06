@@ -79,12 +79,21 @@ final class EggIncubationProcess extends Model
      * @param  Builder<$this>  $query
      */
     #[Scope]
+    protected function completed(Builder $query): void
+    {
+        $query->whereNotNull('egg_captured_at');
+    }
+
+    /**
+     * @param  Builder<$this>  $query
+     */
+    #[Scope]
     protected function incubating(Builder $query): void
     {
         $query
+            ->active()
             ->whereFuture('egg_ready_to_hatch_at')
-            ->whereNull('egg_hatched_at')
-            ->whereNull('egg_captured_at');
+            ->whereNull('egg_hatched_at');
     }
 
     /**
@@ -94,9 +103,9 @@ final class EggIncubationProcess extends Model
     protected function readyToHatch(Builder $query): void
     {
         $query
+            ->active()
             ->wherePast('egg_ready_to_hatch_at')
-            ->whereNull('egg_hatched_at')
-            ->whereNull('egg_captured_at');
+            ->whereNull('egg_hatched_at');
     }
 
     /**
@@ -106,28 +115,13 @@ final class EggIncubationProcess extends Model
     protected function readyToCapture(Builder $query): void
     {
         $query
+            ->active()
             ->wherePast('egg_ready_to_hatch_at')
-            ->wherePast('egg_hatched_at')
-            ->whereNull('egg_captured_at');
+            ->wherePast('egg_hatched_at');
     }
 
-    public function isActive(): bool
+    public function getStatus(): EggIncubationProcessesStatus
     {
-        return $this->egg_captured_at === null;
-    }
-
-    public function isIncubating(): bool
-    {
-        return $this->isActive() && $this->egg_ready_to_hatch_at->isFuture() && $this->egg_hatched_at === null;
-    }
-
-    public function isReadyToHatch(): bool
-    {
-        return $this->isActive() && $this->egg_ready_to_hatch_at->isPast() && $this->egg_hatched_at === null;
-    }
-
-    public function isReadyToCapture(): bool
-    {
-        return $this->isActive() && $this->egg_ready_to_hatch_at->isPast() && $this->egg_hatched_at?->isPast();
+        return EggIncubationProcessesStatus::fromModel($this);
     }
 }

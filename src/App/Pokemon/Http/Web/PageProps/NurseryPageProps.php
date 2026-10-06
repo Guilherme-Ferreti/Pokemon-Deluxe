@@ -6,6 +6,7 @@ namespace App\Pokemon\Http\Web\PageProps;
 
 use Inertia\ProvidesInertiaProperties;
 use Inertia\RenderContext;
+use Shared\Enums\EggIncubationProcessesStatus;
 use Shared\Models\EggIncubationProcess;
 
 final class NurseryPageProps implements ProvidesInertiaProperties
@@ -33,10 +34,8 @@ final class NurseryPageProps implements ProvidesInertiaProperties
             ->map(fn (EggIncubationProcess $process) => [
                 'eggIncubatorIndex' => $process->egg_incubator_index,
                 'eggReadyToHatchAt' => $process->egg_ready_to_hatch_at,
-                'isIncubating'      => $process->isIncubating(),
-                'isReadyToHatch'    => $process->isReadyToHatch(),
-                'isReadyToCapture'  => $process->isReadyToCapture(),
-                'pokemon'           => when($process->isReadyToCapture(), fn () => [
+                'status'            => $process->getStatus(),
+                'pokemon'           => when($process->getStatus() === EggIncubationProcessesStatus::READY_TO_CAPTURE, fn () => [
                     'name'        => $process->species->getDisplayName($process->is_shiny),
                     'frontSprite' => $process->species->getDisplayFrontSprite($process->gender, $process->is_shiny),
                     'gender'      => $process->gender,
