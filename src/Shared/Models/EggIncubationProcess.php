@@ -13,11 +13,13 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Support\Carbon;
 use Override;
+use Shared\Enums\EggIncubationProcessesStatus;
 use Shared\Enums\PokemonGender;
 use Spatie\TypeScriptTransformer\Attributes\TypeScript;
 
 /**
  * @property string $id
+ * @property string $user_id
  * @property int $egg_incubator_index
  * @property string $species_id
  * @property PokemonGender $gender
@@ -25,11 +27,10 @@ use Spatie\TypeScriptTransformer\Attributes\TypeScript;
  * @property Carbon $egg_ready_to_hatch_at
  * @property Carbon|null $egg_hatched_at
  * @property Carbon|null $egg_captured_at
- * @property string $user_id
  * @property Carbon|null $created_at
  * @property Carbon|null $updated_at
- * @property-read Species $species
  * @property-read User $user
+ * @property-read Species $species
  */
 #[TypeScript]
 final class EggIncubationProcess extends Model

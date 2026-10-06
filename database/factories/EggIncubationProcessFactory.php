@@ -23,14 +23,14 @@ final class EggIncubationProcessFactory extends Factory
     public function definition(): array
     {
         return [
-            'egg_incubator_index'   => fn (array $attributes) => $this->resolveEggIncubatorIndex($attributes['user_id']),
+            'user_id'               => User::factory(),
             'species_id'            => Species::factory(),
+            'egg_incubator_index'   => fn (array $attributes) => $this->resolveEggIncubatorIndex($attributes['user_id']),
             'gender'                => fn (array $attributes) => $this->resolveGender($attributes['species_id']),
             'is_shiny'              => fake()->boolean(10),
-            'egg_ready_to_hatch_at' => fake()->dateTimeBetween('-2 year', '-1 year'),
+            'egg_ready_to_hatch_at' => fake()->dateTimeBetween('-2 years', '-1 year'),
             'egg_hatched_at'        => fake()->dateTimeBetween('-11 months', '-2 months'),
             'egg_captured_at'       => fake()->dateTimeBetween('-1 month', 'now'),
-            'user_id'               => User::factory(),
         ];
     }
 
@@ -87,7 +87,7 @@ final class EggIncubationProcessFactory extends Factory
     public function completed(): static
     {
         return $this->state([
-            'egg_ready_to_hatch_at' => fake()->dateTimeBetween('-2 year', '-1 year'),
+            'egg_ready_to_hatch_at' => fake()->dateTimeBetween('-2 years', '-1 year'),
             'egg_hatched_at'        => fake()->dateTimeBetween('-11 months', '-2 months'),
             'egg_captured_at'       => fake()->dateTimeBetween('-1 month', 'now'),
         ]);

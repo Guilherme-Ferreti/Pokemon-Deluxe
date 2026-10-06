@@ -17,6 +17,8 @@ return new class extends Migration
         Schema::create('egg_incubation_processes', function (Blueprint $table): void {
             $table->uuid('id')->primary();
 
+            $table->foreignIdFor(User::class)->constrained()->cascadeOnDelete();
+
             $table->unsignedTinyInteger('egg_incubator_index');
 
             $table->foreignIdFor(Species::class)->constrained()->cascadeOnDelete();
@@ -26,8 +28,6 @@ return new class extends Migration
             $table->timestamp('egg_ready_to_hatch_at');
             $table->timestamp('egg_hatched_at')->nullable();
             $table->timestamp('egg_captured_at')->nullable();
-
-            $table->foreignIdFor(User::class)->constrained()->cascadeOnDelete();
 
             $table->timestamps();
 
