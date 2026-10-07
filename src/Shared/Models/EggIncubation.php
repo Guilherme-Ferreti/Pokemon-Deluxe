@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Shared\Models;
 
+use Carbon\CarbonImmutable;
 use Database\Factories\EggIncubationFactory;
 use Illuminate\Database\Eloquent\Attributes\Scope;
 use Illuminate\Database\Eloquent\Builder;
@@ -11,7 +12,6 @@ use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Support\Carbon;
 use Override;
 use Shared\Enums\EggIncubationStatus;
 use Shared\Enums\PokemonGender;
@@ -24,11 +24,11 @@ use Spatie\TypeScriptTransformer\Attributes\TypeScript;
  * @property string $species_id
  * @property PokemonGender $gender
  * @property bool $is_shiny
- * @property Carbon $ready_to_hatch_at
- * @property Carbon|null $hatched_at
- * @property Carbon|null $captured_at
- * @property Carbon|null $created_at
- * @property Carbon|null $updated_at
+ * @property CarbonImmutable $ready_to_hatch_at
+ * @property CarbonImmutable|null $hatched_at
+ * @property CarbonImmutable|null $captured_at
+ * @property CarbonImmutable|null $created_at
+ * @property CarbonImmutable|null $updated_at
  * @property-read User $user
  * @property-read Species $species
  */

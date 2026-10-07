@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Shared\Providers;
 
 use Carbon\Carbon;
+use Carbon\CarbonImmutable;
 use Shared\Typescript\DomainModuleWriter;
 use Shared\Typescript\EloquentModelTransformer;
 use Spatie\LaravelTypeScriptTransformer\RouteFilters\NamedRouteFilter;
@@ -24,6 +25,7 @@ final class TypeScriptTransformerServiceProvider extends BaseTypeScriptTransform
                 new EloquentModelTransformer,
             )
             ->replaceType(Carbon::class, 'string')
+            ->replaceType(CarbonImmutable::class, 'string')
             ->transformDirectories(base_path('src/App'), base_path('src/Shared'))
             ->writer(new DomainModuleWriter)
             ->outputDirectory(resource_path('js'))
