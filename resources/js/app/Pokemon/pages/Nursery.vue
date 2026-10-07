@@ -16,9 +16,7 @@
       >
         <EggIncubatorActiveCard
           v-if="incubatorAvailability.inUse.includes(incubatorIndex)"
-          :egg-incubation-process="
-            getEggIncubationProcessAtIndex(incubatorIndex)
-          "
+          :egg-incubation="geteggIncubationAtIndex(incubatorIndex)"
         />
       </li>
     </ul>
@@ -43,9 +41,9 @@ const props = defineProps<NurseryPageProps>();
 
 const maxEggIncubatorsCount = 10;
 
-function getEggIncubationProcessAtIndex(index: number) {
-  return props.activeEggIncubationProcesses.find(
+function geteggIncubationAtIndex(index: number) {
+  return props.activeEggIncubations.find(
     (process) => process.eggIncubatorIndex === index,
-  ) as NurseryPageProps['activeEggIncubationProcesses'][number];
+  ) as NurseryPageProps['activeEggIncubations'][number];
 }
 </script>

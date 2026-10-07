@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Shared\Models;
 
-use Database\Factories\EggIncubationProcessFactory;
+use Database\Factories\EggIncubationFactory;
 use Illuminate\Database\Eloquent\Attributes\Scope;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
@@ -13,7 +13,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Support\Carbon;
 use Override;
-use Shared\Enums\EggIncubationProcessesStatus;
+use Shared\Enums\EggIncubationStatus;
 use Shared\Enums\PokemonGender;
 use Spatie\TypeScriptTransformer\Attributes\TypeScript;
 
@@ -24,39 +24,31 @@ use Spatie\TypeScriptTransformer\Attributes\TypeScript;
  * @property string $species_id
  * @property PokemonGender $gender
  * @property bool $is_shiny
- * @property Carbon $egg_ready_to_hatch_at
- * @property Carbon|null $egg_hatched_at
- * @property Carbon|null $egg_captured_at
+ * @property Carbon $ready_to_hatch_at
+ * @property Carbon|null $hatched_at
+ * @property Carbon|null $captured_at
  * @property Carbon|null $created_at
  * @property Carbon|null $updated_at
  * @property-read User $user
  * @property-read Species $species
  */
 #[TypeScript]
-final class EggIncubationProcess extends Model
+final class EggIncubation extends Model
 {
-    /** @use HasFactory<EggIncubationProcessFactory> */
+    /** @use HasFactory<EggIncubationFactory> */
     use HasFactory, HasUuids;
 
     #[Override]
     protected function casts(): array
     {
         return [
-            'egg_incubator_index'   => 'integer',
-            'is_shiny'              => 'boolean',
-            'gender'                => PokemonGender::class,
-            'egg_ready_to_hatch_at' => 'datetime',
-            'egg_hatched_at'        => 'datetime',
-            'egg_captured_at'       => 'datetime',
+            'egg_incubator_index' => 'integer',
+            'is_shiny'            => 'boolean',
+            'gender'              => PokemonGender::class,
+            'ready_to_hatch_at'   => 'datetime',
+            'hatched_at'          => 'datetime',
+            'captured_at'         => 'datetime',
         ];
-    }
-
-    /**
-     * @return BelongsTo<Species, $this>
-     */
-    public function species(): BelongsTo
-    {
-        return $this->belongsTo(Species::class);
     }
 
     /**
@@ -68,12 +60,20 @@ final class EggIncubationProcess extends Model
     }
 
     /**
+     * @return BelongsTo<Species, $this>
+     */
+    public function species(): BelongsTo
+    {
+        return $this->belongsTo(Species::class);
+    }
+
+    /**
      * @param  Builder<$this>  $query
      */
     #[Scope]
     protected function active(Builder $query): void
     {
-        $query->whereNull('egg_captured_at');
+        $query->whereNull('captured_at');
     }
 
     /**
@@ -82,7 +82,7 @@ final class EggIncubationProcess extends Model
     #[Scope]
     protected function completed(Builder $query): void
     {
-        $query->whereNotNull('egg_captured_at');
+        $query->whereNotNull('captured_at');
     }
 
     /**
@@ -93,8 +93,8 @@ final class EggIncubationProcess extends Model
     {
         $query
             ->active()
-            ->whereFuture('egg_ready_to_hatch_at')
-            ->whereNull('egg_hatched_at');
+            ->whereFuture('ready_to_hatch_at')
+            ->whereNull('hatched_at');
     }
 
     /**
@@ -105,8 +105,8 @@ final class EggIncubationProcess extends Model
     {
         $query
             ->active()
-            ->wherePast('egg_ready_to_hatch_at')
-            ->whereNull('egg_hatched_at');
+            ->wherePast('ready_to_hatch_at')
+            ->whereNull('hatched_at');
     }
 
     /**
@@ -117,12 +117,12 @@ final class EggIncubationProcess extends Model
     {
         $query
             ->active()
-            ->wherePast('egg_ready_to_hatch_at')
-            ->wherePast('egg_hatched_at');
+            ->wherePast('ready_to_hatch_at')
+            ->wherePast('hatched_at');
     }
 
-    public function getStatus(): EggIncubationProcessesStatus
+    public function getStatus(): EggIncubationStatus
     {
-        return EggIncubationProcessesStatus::fromModel($this);
+        return EggIncubationStatus::fromModel($this);
     }
 }

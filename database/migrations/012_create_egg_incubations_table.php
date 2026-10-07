@@ -14,7 +14,7 @@ return new class extends Migration
 {
     public function up(): void
     {
-        Schema::create('egg_incubation_processes', function (Blueprint $table): void {
+        Schema::create('egg_incubations', function (Blueprint $table): void {
             $table->uuid('id')->primary();
 
             $table->foreignIdFor(User::class)->constrained()->cascadeOnDelete();
@@ -25,9 +25,9 @@ return new class extends Migration
             $table->enum('gender', Arr::pluck(PokemonGender::cases(), 'value'));
             $table->boolean('is_shiny')->default(false);
 
-            $table->timestamp('egg_ready_to_hatch_at');
-            $table->timestamp('egg_hatched_at')->nullable();
-            $table->timestamp('egg_captured_at')->nullable();
+            $table->timestamp('ready_to_hatch_at');
+            $table->timestamp('hatched_at')->nullable();
+            $table->timestamp('captured_at')->nullable();
 
             $table->timestamps();
 
@@ -37,6 +37,6 @@ return new class extends Migration
 
     public function down(): void
     {
-        Schema::dropIfExists('egg_incubation_processes');
+        Schema::dropIfExists('egg_incubations');
     }
 };

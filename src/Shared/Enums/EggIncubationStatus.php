@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Shared\Enums;
 
-use Shared\Models\EggIncubationProcess;
+use Shared\Models\EggIncubation;
 
-enum EggIncubationProcessesStatus: string
+enum EggIncubationStatus: string
 {
     case INCUBATING       = 'incubating';
     case READY_TO_HATCH   = 'ready-to-hatch';
@@ -23,17 +23,17 @@ enum EggIncubationProcessesStatus: string
         };
     }
 
-    public static function fromModel(EggIncubationProcess $process): self
+    public static function fromModel(EggIncubation $eggIncubation): self
     {
-        if ($process->egg_captured_at !== null) {
+        if ($eggIncubation->captured_at !== null) {
             return self::COMPLETED;
         }
 
-        if ($process->egg_ready_to_hatch_at->isFuture()) {
+        if ($eggIncubation->ready_to_hatch_at->isFuture()) {
             return self::INCUBATING;
         }
 
-        if ($process->egg_hatched_at === null) {
+        if ($eggIncubation->hatched_at === null) {
             return self::READY_TO_HATCH;
         }
 

@@ -6,8 +6,8 @@ namespace App\Pokemon\Http\Web\PageProps;
 
 use Inertia\ProvidesInertiaProperties;
 use Inertia\RenderContext;
-use Shared\Enums\EggIncubationProcessesStatus;
-use Shared\Models\EggIncubationProcess;
+use Shared\Enums\EggIncubationStatus;
+use Shared\Models\EggIncubation;
 
 final class NurseryPageProps implements ProvidesInertiaProperties
 {
@@ -17,30 +17,31 @@ final class NurseryPageProps implements ProvidesInertiaProperties
     public function toInertiaProperties(RenderContext $context): array
     {
         return [
-            'activeEggIncubationProcesses' => $this->getActiveEggIncubationProcessesProp(),
-            'incubatorAvailability'        => $this->getIncubatorAvailabilityProp(),
+            'activeEggIncubations'  => fn () => $this->getActiveEggIncubationProp(),
+            'incubatorAvailability' => fn () => $this->getIncubatorAvailabilityProp(),
         ];
     }
 
     /**
      * @return array<string, mixed>
      */
-    private function getActiveEggIncubationProcessesProp(): array
+    private function getActiveEggIncubationProp(): array
     {
-        return EggIncubationProcess::query()
+        return EggIncubation::query()
             ->whereBelongsTo(currentUser())
             ->active()
             ->get()
-            ->map(fn (EggIncubationProcess $process) => [
-                'eggIncubatorIndex' => $process->egg_incubator_index,
-                'eggReadyToHatchAt' => $process->egg_ready_to_hatch_at,
-                'status'            => $process->getStatus(),
-                'pokemon'           => when($process->getStatus() === EggIncubationProcessesStatus::READY_TO_CAPTURE, fn () => [
-                    'name'        => $process->species->getDisplayName($process->is_shiny),
-                    'frontSprite' => $process->species->getDisplayFrontSprite($process->gender, $process->is_shiny),
-                    'gender'      => $process->gender,
+            ->map(fn (EggIncubation $eggIncubation) => [
+                'id'                => $eggIncubation->id,
+                'eggIncubatorIndex' => $eggIncubation->egg_incubator_index,
+                'readyToHatchAt'    => $eggIncubation->ready_to_hatch_at,
+                'status'            => $eggIncubation->getStatus(),
+                'pokemon'           => when($eggIncubation->getStatus() === EggIncubationStatus::READY_TO_CAPTURE, fn () => [
+                    'name'        => $eggIncubation->species->getDisplayName($eggIncubation->is_shiny),
+                    'frontSprite' => $eggIncubation->species->getDisplayFrontSprite($eggIncubation->gender, $eggIncubation->is_shiny),
+                    'gender'      => $eggIncubation->gender,
                 ]),
-                'createdAt' => $process->created_at,
+                'createdAt' => $eggIncubation->created_at,
             ])
             ->toArray();
     }
@@ -50,7 +51,7 @@ final class NurseryPageProps implements ProvidesInertiaProperties
      */
     private function getIncubatorAvailabilityProp(): array
     {
-        $inUse = EggIncubationProcess::query()
+        $inUse = EggIncubation::query()
             ->whereBelongsTo(currentUser())
             ->active()
             ->get('egg_incubator_index')

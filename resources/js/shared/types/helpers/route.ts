@@ -14,6 +14,9 @@ type RouteParameters = {
   'pokemon.web.party': never;
   'pokemon.web.box.index': never;
   'pokemon.web.nursery': never;
+  'pokemon.web.egg-incubations.hatch': {
+    eggIncubation: string | number;
+  };
   'public.web.home': never;
   'storage.local.upload': {
     path: string | number;
@@ -61,6 +64,7 @@ const routes = {
   'pokemon.web.party': 'your-pokemon/party',
   'pokemon.web.box.index': 'your-pokemon/box',
   'pokemon.web.nursery': 'your-pokemon/nursery',
+  'pokemon.web.egg-incubations.hatch': 'egg-incubations/{eggIncubation}/hatch',
   'public.web.home': '',
   'storage.local.upload': 'storage/{path}',
 };

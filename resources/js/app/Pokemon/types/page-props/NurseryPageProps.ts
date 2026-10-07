@@ -1,21 +1,22 @@
-import type { EggIncubationProcessesStatus } from '@/shared/types/enums/EggIncubationProcessesStatus';
-import type { EggIncubationProcess } from '@/shared/types/models/EggIncubationProcess';
+import type { EggIncubationStatus } from '@/shared/types/enums/EggIncubationStatus';
+import type { EggIncubation } from '@/shared/types/models/EggIncubation';
 
 export interface NurseryPageProps {
-  activeEggIncubationProcesses: {
-    eggIncubatorIndex: EggIncubationProcess['eggIncubatorIndex'];
-    eggReadyToHatchAt: EggIncubationProcess['eggReadyToHatchAt'];
-    status: EggIncubationProcessesStatus;
+  activeEggIncubations: {
+    id: EggIncubation['id'];
+    eggIncubatorIndex: EggIncubation['eggIncubatorIndex'];
+    readyToHatchAt: EggIncubation['readyToHatchAt'];
+    status: EggIncubationStatus;
     pokemon: {
       name: string;
       frontSprite: string;
-      gender: EggIncubationProcess['gender'];
+      gender: EggIncubation['gender'];
     } | null;
     createdAt: string;
   }[];
   incubatorAvailability: {
-    inUse: EggIncubationProcess['eggIncubatorIndex'][];
-    idle: EggIncubationProcess['eggIncubatorIndex'][];
-    locked: EggIncubationProcess['eggIncubatorIndex'][];
+    inUse: EggIncubation['eggIncubatorIndex'][];
+    idle: EggIncubation['eggIncubatorIndex'][];
+    locked: EggIncubation['eggIncubatorIndex'][];
   };
 }

@@ -29,7 +29,7 @@ use Spatie\TypeScriptTransformer\Attributes\TypeScript;
  * @property Carbon|null $created_at
  * @property Carbon|null $updated_at
  * @property-read EloquentCollection<int, Pokemon> $pokemon
- * @property-read EloquentCollection<int, EggIncubationProcess> $eggIncubations
+ * @property-read EloquentCollection<int, EggIncubation> $eggIncubations
  */
 #[Fillable(['name', 'email', 'password'])]
 #[Hidden(['password', 'remember_token'])]
@@ -61,10 +61,10 @@ final class User extends Authenticatable
     }
 
     /**
-     * @return HasMany<EggIncubationProcess, $this>
+     * @return HasMany<EggIncubation, $this>
      */
-    public function eggIncubationProcesses(): HasMany
+    public function eggIncubations(): HasMany
     {
-        return $this->hasMany(EggIncubationProcess::class);
+        return $this->hasMany(EggIncubation::class);
     }
 }
