@@ -14,4 +14,4 @@ Route::get('/your-pokemon/box', [BoxController::class, 'index'])->name('box.inde
 
 Route::get('/your-pokemon/nursery', NurseryController::class)->name('nursery')->middleware('auth');
 
-Route::post('/egg-incubations/{eggIncubation}/hatch', HatchEggController::class)->name('egg-incubations.hatch')->middleware('auth');
+Route::post('/your-pokemon/egg-incubations/{eggIncubation}/hatch', HatchEggController::class)->name('egg-incubations.hatch')->middleware('auth');

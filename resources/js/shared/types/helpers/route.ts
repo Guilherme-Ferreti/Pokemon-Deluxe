@@ -64,7 +64,8 @@ const routes = {
   'pokemon.web.party': 'your-pokemon/party',
   'pokemon.web.box.index': 'your-pokemon/box',
   'pokemon.web.nursery': 'your-pokemon/nursery',
-  'pokemon.web.egg-incubations.hatch': 'egg-incubations/{eggIncubation}/hatch',
+  'pokemon.web.egg-incubations.hatch':
+    'your-pokemon/egg-incubations/{eggIncubation}/hatch',
   'public.web.home': '',
   'storage.local.upload': 'storage/{path}',
 };
