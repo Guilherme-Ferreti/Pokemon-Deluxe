@@ -4,7 +4,7 @@ import type {
   Generation,
   PokemonGender,
 } from '@/shared/types/enums';
-import type { User } from '@/shared/types/models';
+import type { User } from '@/shared/types/response';
 
 // Extend ImportMeta interface for Vite...
 declare module 'vite/client' {

@@ -9,7 +9,6 @@ use Illuminate\Database\Eloquent\Attributes\WithoutTimestamps;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Spatie\TypeScriptTransformer\Attributes\TypeScript;
 
 /**
  * @property string $id
@@ -19,7 +18,6 @@ use Spatie\TypeScriptTransformer\Attributes\TypeScript;
  * @property string|null $sprite
  */
 #[WithoutTimestamps]
-#[TypeScript]
 final class EvolutionItem extends Model
 {
     /** @use HasFactory<EvolutionItemFactory> */

@@ -1,5 +1,5 @@
-import type { EggIncubationStatus } from '@/shared/types/enums/EggIncubationStatus';
-import type { EggIncubation } from '@/shared/types/models/EggIncubation';
+import type { EggIncubationStatus } from '@/shared/types/enums';
+import type { EggIncubation, Pokemon } from '@/shared/types/response';
 
 export interface NurseryPageProps {
   activeEggIncubations: {
@@ -8,11 +8,11 @@ export interface NurseryPageProps {
     readyToHatchAt: EggIncubation['readyToHatchAt'];
     status: EggIncubationStatus;
     pokemon: {
-      name: string;
-      frontSprite: string;
+      name: Pokemon['name'];
+      frontSprite: Pokemon['frontSprite'];
       gender: EggIncubation['gender'];
     } | null;
-    createdAt: string;
+    createdAt: EggIncubation['createdAt'];
   }[];
   incubatorAvailability: {
     inUse: EggIncubation['eggIncubatorIndex'][];

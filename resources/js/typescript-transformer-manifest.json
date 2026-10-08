@@ -1,27 +1,3 @@
 {
-  "shared\/types\/helpers\/route.ts": "265c737846f6dd4bbf22bcd93309c94b",
-  "app\/Dex\/types\/enums\/SearchAttackdexSortBy.ts": "aeb1f0e2b7001a3d9c5b912b4e293661",
-  "app\/Dex\/types\/enums\/SearchPokedexSortBy.ts": "675e439d60cd56ceb9ec4d3027a5f9b6",
-  "app\/Pokemon\/types\/enums\/SearchBoxSortBy.ts": "f8e9f0cb315a3eb1014344891e03d6c2",
-  "shared\/types\/enums\/Ailment.ts": "d40043524023329235225a281105e4ba",
-  "shared\/types\/enums\/EggIncubationStatus.ts": "6db8bb9d7d06cebe931060be6b42d8eb",
-  "shared\/types\/enums\/ElementalType.ts": "e203609b6b47a6632bd38834f3141952",
-  "shared\/types\/enums\/Generation.ts": "6b7544aeb43efedcb9e76599b9c78b23",
-  "shared\/types\/enums\/MoveCategory.ts": "07764ba28c16562ebba1e24484eb86f0",
-  "shared\/types\/enums\/MoveDamageClass.ts": "d8e16556a4d427ebfa301f9761dfdf40",
-  "shared\/types\/enums\/MoveTrait.ts": "619c656ba36eb376c67706aa599049d9",
-  "shared\/types\/enums\/PokeballType.ts": "6c37c6e86a9abe5c7be26376fa656ed2",
-  "shared\/types\/enums\/PokemonGender.ts": "3fdac1d1f6e88062644731761ad5db6f",
-  "shared\/types\/enums\/PokemonTrait.ts": "8686ff8c910ea540d28672f786996eab",
-  "shared\/types\/enums\/SortDirection.ts": "fd0dd9de07b3476d5e9620a0bc85b37f",
-  "shared\/types\/enums\/SpeciesTrait.ts": "a3cab481b31c0d4fe0b9b4ee6118f499",
-  "shared\/types\/models\/EggIncubation.ts": "3f2f7b204d189acaf2942cb34ad1bea2",
-  "shared\/types\/models\/EvolutionItem.ts": "4e98b59b6adc3a6d42435d0992136941",
-  "shared\/types\/models\/Move.ts": "aac19b0c9b912953994a028197bad750",
-  "shared\/types\/models\/Pokeball.ts": "813367c21084768f5c6aacc4d0f08042",
-  "shared\/types\/models\/Pokemon.ts": "06165d4fa58cc351d39795d5221da5e5",
-  "shared\/types\/models\/Species.ts": "e9cd9c56f6b73d77e9e6643b3343cc90",
-  "shared\/types\/models\/SpeciesEvolution.ts": "856d0878f66bd4ec447ff262d965f94b",
-  "shared\/types\/models\/SpeciesLearnableMove.ts": "43671094db401e9669e4bc65153f074c",
-  "shared\/types\/models\/User.ts": "bdc7c5f59ffdcf8bfc5df706d6927c79"
+  "shared\/types\/helpers\/route.ts": "265c737846f6dd4bbf22bcd93309c94b"
 }

@@ -6,7 +6,7 @@ import type {
   MoveTrait,
   SortDirection,
 } from '@/shared/types/enums';
-import type { Move } from '@/shared/types/models';
+import type { Move } from '@/shared/types/response';
 
 export interface AttackdexIndexPageProps {
   moves: PaginatedList<{

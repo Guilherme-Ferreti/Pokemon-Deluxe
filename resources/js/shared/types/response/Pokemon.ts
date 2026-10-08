@@ -1,4 +1,5 @@
 import type { PokemonGender } from '@/shared/types/enums/PokemonGender';
+import type { Species } from '@/shared/types/response/Species';
 
 export type Pokemon = {
   id: string;
@@ -14,4 +15,7 @@ export type Pokemon = {
   capturedAt: string;
   createdAt: string;
   updatedAt: string;
+  frontSprite:
+    Species['sprites']['frontDefault'] | Species['sprites']['frontShiny'];
+  name: string;
 };

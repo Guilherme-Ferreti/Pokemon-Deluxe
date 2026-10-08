@@ -13,7 +13,7 @@
 </template>
 
 <script setup lang="ts">
-import type { Move } from '@/shared/types/models';
+import type { Move } from '@/shared/types/response';
 
 defineProps<{
   name: Move['name'];

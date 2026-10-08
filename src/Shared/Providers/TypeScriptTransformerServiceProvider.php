@@ -4,15 +4,10 @@ declare(strict_types=1);
 
 namespace Shared\Providers;
 
-use Carbon\Carbon;
-use Carbon\CarbonImmutable;
-use Shared\Typescript\DomainModuleWriter;
-use Shared\Typescript\EloquentModelTransformer;
 use Spatie\LaravelTypeScriptTransformer\RouteFilters\NamedRouteFilter;
 use Spatie\LaravelTypeScriptTransformer\TransformedProviders\LaravelRouteTransformedProvider;
 use Spatie\LaravelTypeScriptTransformer\TypeScriptTransformerApplicationServiceProvider as BaseTypeScriptTransformerServiceProvider;
 use Spatie\TypeScriptTransformer\Formatters\PrettierFormatter;
-use Spatie\TypeScriptTransformer\Transformers\EnumTransformer;
 use Spatie\TypeScriptTransformer\TypeScriptTransformerConfigFactory;
 
 final class TypeScriptTransformerServiceProvider extends BaseTypeScriptTransformerServiceProvider
@@ -20,14 +15,6 @@ final class TypeScriptTransformerServiceProvider extends BaseTypeScriptTransform
     protected function configure(TypeScriptTransformerConfigFactory $config): void
     {
         $config
-            ->transformer(
-                new EnumTransformer(useUnionEnums: false),
-                new EloquentModelTransformer,
-            )
-            ->replaceType(Carbon::class, 'string')
-            ->replaceType(CarbonImmutable::class, 'string')
-            ->transformDirectories(base_path('src/App'), base_path('src/Shared'))
-            ->writer(new DomainModuleWriter)
             ->outputDirectory(resource_path('js'))
             ->formatter(PrettierFormatter::class)
             ->provider(new LaravelRouteTransformedProvider(

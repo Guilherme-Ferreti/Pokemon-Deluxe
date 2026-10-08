@@ -21,7 +21,6 @@ use Shared\Enums\Generation;
 use Shared\Enums\PokemonGender;
 use Shared\ValueObjects\SpeciesPortraits;
 use Shared\ValueObjects\SpeciesSprites;
-use Spatie\TypeScriptTransformer\Attributes\TypeScript;
 
 /**
  * @property string $id
@@ -49,7 +48,6 @@ use Spatie\TypeScriptTransformer\Attributes\TypeScript;
  */
 #[Table('species')]
 #[WithoutTimestamps]
-#[TypeScript]
 final class Species extends Model
 {
     /** @use HasFactory<SpeciesFactory> */

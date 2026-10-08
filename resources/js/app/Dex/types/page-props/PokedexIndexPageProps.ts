@@ -6,7 +6,7 @@ import type {
   SortDirection,
   SpeciesTrait,
 } from '@/shared/types/enums';
-import type { Species } from '@/shared/types/models';
+import type { Species } from '@/shared/types/response';
 
 export interface PokedexIndexPageProps {
   speciesList: PaginatedList<{

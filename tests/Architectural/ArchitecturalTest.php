@@ -114,11 +114,6 @@ arch('Helpers')
     ->not->toHaveProtectedMethods()
     ->not->toHavePrivateMethods();
 
-arch('Typescript')
-    ->expect('Shared\Typescript')
-    ->toBeClasses()
-    ->toBeFinal();
-
 arch('Interfaces')
     ->expect('Shared\Interfaces')
     ->toBeInterfaces();

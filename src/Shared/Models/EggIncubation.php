@@ -15,7 +15,6 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Override;
 use Shared\Enums\EggIncubationStatus;
 use Shared\Enums\PokemonGender;
-use Spatie\TypeScriptTransformer\Attributes\TypeScript;
 
 /**
  * @property string $id
@@ -32,7 +31,6 @@ use Spatie\TypeScriptTransformer\Attributes\TypeScript;
  * @property-read User $user
  * @property-read Species $species
  */
-#[TypeScript]
 final class EggIncubation extends Model
 {
     /** @use HasFactory<EggIncubationFactory> */

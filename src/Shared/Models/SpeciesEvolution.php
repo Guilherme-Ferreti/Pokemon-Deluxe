@@ -12,7 +12,6 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Override;
 use Shared\Enums\PokemonGender;
-use Spatie\TypeScriptTransformer\Attributes\TypeScript;
 
 /**
  * @property string $id
@@ -26,7 +25,6 @@ use Spatie\TypeScriptTransformer\Attributes\TypeScript;
  * @property-read EvolutionItem|null $evolutionItem
  */
 #[WithoutTimestamps]
-#[TypeScript]
 final class SpeciesEvolution extends Model
 {
     /** @use HasFactory<SpeciesEvolutionFactory> */

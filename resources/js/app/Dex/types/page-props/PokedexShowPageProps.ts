@@ -3,7 +3,7 @@ import type {
   Move,
   Species,
   SpeciesLearnableMove,
-} from '@/shared/types/models';
+} from '@/shared/types/response';
 
 export interface PokedexShowPageProps {
   species: {

@@ -6,14 +6,14 @@ import type {
   PokemonTrait,
   SortDirection,
 } from '@/shared/types/enums';
-import type { Move, Pokemon, Species } from '@/shared/types/models';
+import type { Move, Pokemon, Species } from '@/shared/types/response';
 
 export interface BoxIndexPageProps {
   pokemonList: PaginatedList<{
     id: Pokemon['id'];
-    name: string;
+    name: Pokemon['name'];
     gender: Pokemon['gender'];
-    frontSprite: string;
+    frontSprite: Pokemon['frontSprite'];
     level: Pokemon['level'];
     experience: Pokemon['experience'];
     species: {

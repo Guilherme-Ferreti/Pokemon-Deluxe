@@ -199,7 +199,7 @@ import {
 } from '@/shared/components/ui/table';
 import { useSortable } from '@/shared/composables/useSortable.js';
 import { MoveCategory } from '@/shared/types/enums';
-import type { Species } from '@/shared/types/models';
+import type { Species } from '@/shared/types/response';
 
 const props = defineProps<{
   speciesName: Species['name'];

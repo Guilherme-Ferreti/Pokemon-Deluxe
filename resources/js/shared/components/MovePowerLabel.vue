@@ -5,7 +5,7 @@
 
 <script setup lang="ts">
 import { MoveCategory } from '@/shared/types/enums';
-import type { Move } from '@/shared/types/models';
+import type { Move } from '@/shared/types/response';
 
 defineProps<{
   category: Move['category'];

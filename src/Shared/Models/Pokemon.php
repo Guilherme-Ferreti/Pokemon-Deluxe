@@ -18,7 +18,6 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Support\Carbon;
 use Override;
 use Shared\Enums\PokemonGender;
-use Spatie\TypeScriptTransformer\Attributes\TypeScript;
 
 /**
  * @property string $id
@@ -41,7 +40,6 @@ use Spatie\TypeScriptTransformer\Attributes\TypeScript;
  */
 #[Table('pokemon')]
 #[Unguarded]
-#[TypeScript]
 final class Pokemon extends Model
 {
     /** @use HasFactory<PokemonFactory> */

@@ -10,6 +10,6 @@ export type EggIncubation = {
   readyToHatchAt: string;
   hatchedAt: string | null;
   capturedAt: string | null;
-  createdAt: string | null;
-  updatedAt: string | null;
+  createdAt: string;
+  updatedAt: string;
 };
