@@ -10,10 +10,6 @@ export type Species = {
   genus: string;
   textEntry: string;
   sprites: {
-    backDefault: string | null;
-    backFemale: string | null;
-    backShiny: string | null;
-    backShinyFemale: string | null;
     frontDefault: string | null;
     frontFemale: string | null;
     frontShiny: string | null;
@@ -29,7 +25,4 @@ export type Species = {
   isMega: boolean;
   isGmax: boolean;
   generation: Generation;
-  captureRate: number | null;
-  genderRate: number;
-  eggObtainable: boolean;
 };
