@@ -9,7 +9,7 @@ use Illuminate\Support\Lottery;
 use Shared\Models\Species;
 use Shared\ValueObjects\SpeciesSprites;
 
-final class ListLayoutSprites
+final class ListLayoutSpritesAction
 {
     /**
      * @return array<mixed>

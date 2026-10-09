@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Auth\Http\Web\Controllers;
 
-use App\Auth\Actions\LoginUser;
+use App\Auth\Actions\LoginUserAction;
 use App\Auth\Http\Web\Requests\StoreLoginRequest;
 use Illuminate\Http\RedirectResponse;
 use Inertia\Response;
@@ -19,7 +19,7 @@ final class LoginController extends Controller
 
     public function store(StoreLoginRequest $request): RedirectResponse
     {
-        $authenticated = new LoginUser()->handle(
+        $authenticated = new LoginUserAction()->handle(
             email: $request->validated('email'),
             password: $request->validated('password'),
             remember: $request->boolean('remember'),

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-use App\Auth\Actions\ListLayoutSprites;
+use App\Auth\Actions\ListLayoutSpritesAction;
 use Illuminate\Support\Lottery;
 use Shared\Models\Species;
 use Shared\ValueObjects\SpeciesSprites;
@@ -17,7 +17,7 @@ it('returns species default sprite when the lottery loses', function () {
 
     Lottery::alwaysLose();
 
-    $sprites = new ListLayoutSprites()->handle();
+    $sprites = new ListLayoutSpritesAction()->handle();
 
     expect($sprites)->toHaveCount(3)
         ->and($sprites)->toEqualCanonicalizing($frontUrls);
@@ -29,7 +29,7 @@ it('returns species shiny sprite when the lottery wins', function () {
 
     Lottery::alwaysWin();
 
-    $sprites = new ListLayoutSprites()->handle();
+    $sprites = new ListLayoutSpritesAction()->handle();
 
     expect($sprites)->toHaveCount(3)
         ->and($sprites)->toEqualCanonicalizing($frontUrls);
@@ -52,7 +52,7 @@ it('excludes species without a front default or shiny sprite', function () {
 
     Lottery::alwaysLose();
 
-    $sprites = new ListLayoutSprites()->handle();
+    $sprites = new ListLayoutSpritesAction()->handle();
 
     expect($sprites)->toHaveCount($species->count())
         ->and($sprites)->toEqualCanonicalizing(
@@ -63,7 +63,7 @@ it('excludes species without a front default or shiny sprite', function () {
 it('limits the returned sprites to 49', function () {
     Species::factory()->count(60)->create();
 
-    $sprites = new ListLayoutSprites()->handle();
+    $sprites = new ListLayoutSpritesAction()->handle();
 
     expect($sprites)->toHaveCount(49);
 });

@@ -6,7 +6,7 @@ namespace App\Auth\Actions;
 
 use Shared\Models\User;
 
-final class RegisterUser
+final class RegisterUserAction
 {
     public function handle(string $name, string $email, string $password): User
     {

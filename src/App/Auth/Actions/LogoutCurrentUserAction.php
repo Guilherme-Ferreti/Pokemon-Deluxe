@@ -7,7 +7,7 @@ namespace App\Auth\Actions;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-final class LogoutCurrentUser
+final class LogoutCurrentUserAction
 {
     public function handle(Request $request): void
     {

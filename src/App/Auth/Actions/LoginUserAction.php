@@ -6,7 +6,7 @@ namespace App\Auth\Actions;
 
 use Illuminate\Support\Facades\Auth;
 
-final class LoginUser
+final class LoginUserAction
 {
     public function handle(string $email, string $password, bool $remember = false): bool
     {
