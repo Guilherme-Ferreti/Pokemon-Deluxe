@@ -120,7 +120,7 @@ final class UserSeeder extends Seeder
     private function addEggIncubations(User $user): void
     {
         $user->update([
-            'purchased_egg_incubator_indexes' => [1, 2, 3, 4, 5],
+            'purchased_egg_incubator_indexes' => [1, 2, 3, 4, 5, 6],
         ]);
 
         $species = Species::query()
