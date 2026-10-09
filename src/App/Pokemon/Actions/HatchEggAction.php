@@ -5,28 +5,70 @@ declare(strict_types=1);
 namespace App\Pokemon\Actions;
 
 use App\Pokemon\Exceptions\EggAlreadyHatchedException;
-use App\Pokemon\Exceptions\EggIncubationAlreadyCompletedException;
+use App\Pokemon\Exceptions\EggIncubatorIdleException;
+use App\Pokemon\Exceptions\EggIncubatorNotPurchasedException;
 use App\Pokemon\Exceptions\EggStillIncubatingException;
 use Shared\Enums\EggIncubationStatus;
 use Shared\Models\EggIncubation;
+use Shared\Models\User;
 
 final class HatchEggAction
 {
-    public function handle(EggIncubation $eggIncubation): void
-    {
-        $this->ensureEggCanBeHatched($eggIncubation);
+    private User $user;
 
-        $eggIncubation->hatched_at = now();
-        $eggIncubation->save();
+    private int $eggIncubatorIndex;
+
+    private EggIncubation $eggIncubation;
+
+    public function handle(User $user, int $eggIncubatorIndex): void
+    {
+        $this->user              = $user;
+        $this->eggIncubatorIndex = $eggIncubatorIndex;
+
+        $this->ensureEggIncubatorIsActive();
+
+        $this->eggIncubation = $user->eggIncubations()->active()->where('egg_incubator_index', $eggIncubatorIndex)->firstOrFail();
+
+        $this->ensureEggIsReadyToHatch();
+
+        $this->hatchEgg();
     }
 
-    private function ensureEggCanBeHatched(EggIncubation $eggIncubation): void
+    private function ensureEggIncubatorIsActive(): void
     {
-        match ($eggIncubation->getStatus()) {
-            EggIncubationStatus::INCUBATING       => throw new EggStillIncubatingException,
-            EggIncubationStatus::READY_TO_HATCH   => null,
-            EggIncubationStatus::READY_TO_CAPTURE => throw new EggAlreadyHatchedException,
-            EggIncubationStatus::COMPLETED        => throw new EggIncubationAlreadyCompletedException,
-        };
+        $availability = new GetEggIncubatorsAvailabilityAction()->handle($this->user);
+
+        if (in_array($this->eggIncubatorIndex, $availability['active'])) {
+            return;
+        }
+
+        if (in_array($this->eggIncubatorIndex, $availability['notPurchased'])) {
+            throw new EggIncubatorNotPurchasedException;
+        }
+
+        if (in_array($this->eggIncubatorIndex, $availability['idle'])) {
+            throw new EggIncubatorIdleException;
+        }
+    }
+
+    private function ensureEggIsReadyToHatch(): void
+    {
+        if ($this->eggIncubation->getStatus() === EggIncubationStatus::READY_TO_HATCH) {
+            return;
+        }
+
+        if ($this->eggIncubation->getStatus() === EggIncubationStatus::INCUBATING) {
+            throw new EggStillIncubatingException;
+        }
+
+        if ($this->eggIncubation->getStatus() === EggIncubationStatus::READY_TO_CAPTURE) {
+            throw new EggAlreadyHatchedException;
+        }
+    }
+
+    private function hatchEgg(): void
+    {
+        $this->eggIncubation->hatched_at = now();
+        $this->eggIncubation->save();
     }
 }

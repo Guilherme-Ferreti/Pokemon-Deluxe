@@ -6,15 +6,15 @@ namespace App\Pokemon\Exceptions;
 
 use Shared\Base\DomainException;
 
-final class EggIncubationAlreadyCompletedException extends DomainException
+final class EggIncubatorIdleException extends DomainException
 {
     public function __construct()
     {
-        parent::__construct('The egg incubation has already completed.');
+        parent::__construct('The egg incubator is idle.');
     }
 
     public function getKey(): string
     {
-        return 'eggIncubation';
+        return 'eggIncubator';
     }
 }

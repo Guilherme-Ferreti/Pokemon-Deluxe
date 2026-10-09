@@ -15,8 +15,8 @@ export interface NurseryPageProps {
     createdAt: EggIncubation['createdAt'];
   }[];
   incubatorAvailability: {
-    inUse: EggIncubation['eggIncubatorIndex'][];
+    active: EggIncubation['eggIncubatorIndex'][];
     idle: EggIncubation['eggIncubatorIndex'][];
-    locked: EggIncubation['eggIncubatorIndex'][];
+    notPurchased: EggIncubation['eggIncubatorIndex'][];
   };
 }

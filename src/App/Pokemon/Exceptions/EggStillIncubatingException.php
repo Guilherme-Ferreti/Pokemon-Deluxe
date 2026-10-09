@@ -15,6 +15,6 @@ final class EggStillIncubatingException extends DomainException
 
     public function getKey(): string
     {
-        return 'eggIncubation';
+        return 'eggIncubator';
     }
 }

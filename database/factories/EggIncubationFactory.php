@@ -39,7 +39,7 @@ final class EggIncubationFactory extends Factory
         /** @var User $user */
         $user = User::find($userId);
 
-        return fake()->randomElement($user->unlocked_egg_incubator_indexes);
+        return fake()->randomElement($user->purchased_egg_incubator_indexes);
     }
 
     private function resolveGender(string $speciesId): PokemonGender

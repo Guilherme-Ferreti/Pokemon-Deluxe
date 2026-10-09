@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Pokemon\Http\Web\PageProps;
 
+use App\Pokemon\Actions\GetEggIncubatorsAvailabilityAction;
 use Inertia\ProvidesInertiaProperties;
 use Inertia\RenderContext;
 use Shared\Enums\EggIncubationStatus;
@@ -51,22 +52,6 @@ final class NurseryPageProps implements ProvidesInertiaProperties
      */
     private function getIncubatorAvailabilityProp(): array
     {
-        $inUse = EggIncubation::query()
-            ->whereBelongsTo(currentUser())
-            ->active()
-            ->get('egg_incubator_index')
-            ->pluck('egg_incubator_index')
-            ->values()
-            ->toArray();
-
-        $idle = collect(currentUser()->unlocked_egg_incubator_indexes)->diff($inUse)->values()->toArray();
-
-        $locked = collect()->range(1, config('game.max_egg_incubators_per_user'))->diff(currentUser()->unlocked_egg_incubator_indexes)->values()->toArray();
-
-        return [
-            'inUse'  => $inUse,
-            'idle'   => $idle,
-            'locked' => $locked,
-        ];
+        return new GetEggIncubatorsAvailabilityAction()->handle(currentUser());
     }
 }

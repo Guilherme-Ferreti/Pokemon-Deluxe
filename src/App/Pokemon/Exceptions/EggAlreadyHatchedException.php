@@ -15,6 +15,6 @@ final class EggAlreadyHatchedException extends DomainException
 
     public function getKey(): string
     {
-        return 'eggIncubation';
+        return 'eggIncubator';
     }
 }

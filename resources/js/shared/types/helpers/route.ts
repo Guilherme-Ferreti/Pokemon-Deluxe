@@ -14,8 +14,14 @@ type RouteParameters = {
   'pokemon.web.party': never;
   'pokemon.web.box.index': never;
   'pokemon.web.nursery': never;
-  'pokemon.web.egg-incubations.hatch': {
-    eggIncubation: string | number;
+  'pokemon.web.egg-incubators.place-egg': {
+    eggIncubatorIndex: string | number;
+  };
+  'pokemon.web.egg-incubators.hatch-egg': {
+    eggIncubatorIndex: string | number;
+  };
+  'pokemon.web.egg-incubators.capture-pokemon': {
+    eggIncubatorIndex: string | number;
   };
   'public.web.home': never;
   'storage.local.upload': {
@@ -64,8 +70,12 @@ const routes = {
   'pokemon.web.party': 'your-pokemon/party',
   'pokemon.web.box.index': 'your-pokemon/box',
   'pokemon.web.nursery': 'your-pokemon/nursery',
-  'pokemon.web.egg-incubations.hatch':
-    'your-pokemon/egg-incubations/{eggIncubation}/hatch',
+  'pokemon.web.egg-incubators.place-egg':
+    'your-pokemon/egg-incubator/{eggIncubatorIndex}/place-egg',
+  'pokemon.web.egg-incubators.hatch-egg':
+    'your-pokemon/egg-incubator/{eggIncubatorIndex}/hatch-egg',
+  'pokemon.web.egg-incubators.capture-pokemon':
+    'your-pokemon/egg-incubator/{eggIncubatorIndex}/capture-pokemon',
   'public.web.home': '',
   'storage.local.upload': 'storage/{path}',
 };

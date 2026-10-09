@@ -25,7 +25,7 @@ use Override;
  * @property CarbonImmutable|null $email_verified_at
  * @property string $password
  * @property string|null $remember_token
- * @property list<int> $unlocked_egg_incubator_indexes
+ * @property list<positive-int> $purchased_egg_incubator_indexes
  * @property CarbonImmutable|null $created_at
  * @property CarbonImmutable|null $updated_at
  * @property-read EloquentCollection<int, Pokemon> $pokemon
@@ -45,9 +45,9 @@ final class User extends Authenticatable
     protected function casts(): array
     {
         return [
-            'email_verified_at'              => 'datetime',
-            'password'                       => 'hashed',
-            'unlocked_egg_incubator_indexes' => 'array',
+            'email_verified_at'               => 'datetime',
+            'password'                        => 'hashed',
+            'purchased_egg_incubator_indexes' => 'array',
         ];
     }
 
