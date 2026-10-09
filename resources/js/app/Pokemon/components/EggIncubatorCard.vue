@@ -12,12 +12,6 @@
       </Badge>
     </div>
     <slot name="picture" />
-    <p
-      v-if="message"
-      class="text-center text-sm text-muted-foreground"
-    >
-      {{ message }}
-    </p>
     <slot />
     <slot name="footer" />
   </Card>
@@ -33,6 +27,5 @@ defineProps<{
   eggIncubatorIndex: EggIncubation['eggIncubatorIndex'];
   badgeIcon: Icon;
   badgeText: string;
-  message?: string;
 }>();
 </script>

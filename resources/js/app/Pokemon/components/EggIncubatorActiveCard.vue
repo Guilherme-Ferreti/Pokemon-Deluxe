@@ -3,7 +3,6 @@
     :egg-incubator-index="eggIncubation.eggIncubatorIndex"
     :badge-icon="badge.icon"
     :badge-text="badge.text"
-    :message="eggIncubationMessage"
   >
     <template #picture>
       <AppSpeciesSprite
@@ -17,6 +16,29 @@
         class="mx-auto"
       />
     </template>
+    <p class="text-center text-sm text-muted-foreground">
+      <template v-if="eggIncubation.status === EggIncubationStatus.INCUBATING">
+        What could be inside?
+      </template>
+      <template
+        v-else-if="eggIncubation.status === EggIncubationStatus.READY_TO_HATCH"
+      >
+        It's ready to hatch!
+      </template>
+      <template
+        v-else-if="
+          eggIncubation.status === EggIncubationStatus.READY_TO_CAPTURE &&
+          eggIncubation.pokemon
+        "
+      >
+        A
+        <PokemonDisplayName
+          :name="eggIncubation.pokemon.name"
+          :gender="eggIncubation.pokemon.gender"
+        />
+        has hatched!
+      </template>
+    </p>
     <template #footer>
       <AppCountdown
         v-if="eggIncubation.status === EggIncubationStatus.INCUBATING"
@@ -55,6 +77,7 @@ import type { NurseryPageProps } from '@/app/Pokemon/types/page-props/NurseryPag
 import AppCountdown from '@/shared/components/AppCountdown.vue';
 import AppPokemonEggSprite from '@/shared/components/AppPokemonEggSprite.vue';
 import AppSpeciesSprite from '@/shared/components/AppSpeciesSprite.vue';
+import PokemonDisplayName from '@/shared/components/PokemonDisplayName.vue';
 import { Button } from '@/shared/components/ui/button';
 import { EggIncubationStatus } from '@/shared/types/enums';
 import { route } from '@/shared/types/helpers/route';
@@ -84,18 +107,6 @@ const badge = computed(() => {
     icon: IconClock,
     text: 'Incubating',
   };
-});
-
-const eggIncubationMessage = computed(() => {
-  if (props.eggIncubation.status === EggIncubationStatus.READY_TO_HATCH) {
-    return "It's ready to hatch!";
-  }
-
-  if (props.eggIncubation.status === EggIncubationStatus.READY_TO_CAPTURE) {
-    return `A ${props.eggIncubation.pokemon?.name} has hatched!`;
-  }
-
-  return 'What could be inside?';
 });
 
 function handleHatchEgg() {

@@ -1,6 +1,6 @@
 <template>
   <li>
-    <Card class="gap-2 p-4 transition-shadow hover:shadow-md">
+    <Card class="h-full gap-2 p-4 transition-shadow hover:shadow-md">
       <div class="grid grid-cols-[auto_1fr] gap-2">
         <AppSpeciesSprite
           :url="pokemon.frontSprite"
@@ -53,7 +53,7 @@
         </div>
       </div>
       <div
-        class="flex items-center justify-between rounded bg-blue-100/40 px-2 py-1 text-xs text-muted-foreground dark:bg-transparent"
+        class="mt-auto flex items-center justify-between rounded bg-blue-100/40 px-2 py-1 text-xs text-muted-foreground dark:bg-transparent"
       >
         <div>
           <span class="flex items-center gap-0.5">

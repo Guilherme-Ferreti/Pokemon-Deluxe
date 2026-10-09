@@ -1,13 +1,15 @@
 <template>
   <EggIncubatorCard
     badge-text="Empty"
-    message="The incubator is empty"
     :egg-incubator-index="eggIncubatorIndex"
     :badge-icon="IconCircleDashed"
   >
     <template #picture>
       <IconPokeball class="mx-auto size-12 opacity-20" />
     </template>
+    <p class="text-center text-sm text-muted-foreground">
+      The incubator is empty
+    </p>
     <template #footer>
       <Button
         type="button"
