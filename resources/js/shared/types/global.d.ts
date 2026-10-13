@@ -35,8 +35,14 @@ declare module '@inertiajs/core' {
       authLayout: {
         sprites: string[];
       };
-      sidebarOpen: boolean;
       [key: string]: unknown;
+    };
+    flashDataType: {
+      toast?: {
+        type: 'success' | 'error' | 'info' | 'warning';
+        title: string;
+        message: string;
+      };
     };
   }
 }

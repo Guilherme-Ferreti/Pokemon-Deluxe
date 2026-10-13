@@ -15,7 +15,6 @@ final class AppHelper
      */
     public static function paginatorToArray(LengthAwarePaginator $paginator, ?callable $mapItems = null): array
     {
-
         return [
             'currentPage'  => $paginator->currentPage(),
             'firstPageUrl' => $paginator->url(1),

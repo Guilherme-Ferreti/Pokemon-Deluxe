@@ -7,6 +7,7 @@ namespace Shared\Providers;
 use BackedEnum;
 use Carbon\CarbonImmutable;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Date;
 use Illuminate\Support\Facades\DB;
@@ -15,9 +16,12 @@ use Illuminate\Support\Facades\Vite;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Str;
 use Illuminate\Validation\Rules\Password;
+use Inertia\ExceptionResponse;
 use Inertia\Inertia;
 use Override;
 use ReflectionEnum;
+use Shared\Base\DomainException;
+use Shared\Helpers\ToastHelper;
 
 final class AppServiceProvider extends ServiceProvider
 {
@@ -32,6 +36,8 @@ final class AppServiceProvider extends ServiceProvider
         $this->configureDefaults();
 
         $this->configureInertiaPagePaths();
+
+        $this->configureInertiaExceptionHandling();
 
         $this->registerCollectionMacros();
     }
@@ -74,6 +80,19 @@ final class AppServiceProvider extends ServiceProvider
     private function configureInertiaPagePaths(): void
     {
         Inertia::transformComponentUsing(fn (string $name): string => Str::of($name)->replaceFirst('/', '/pages/')->toString());
+    }
+
+    private function configureInertiaExceptionHandling(): void
+    {
+        Inertia::handleExceptionsUsing(function (ExceptionResponse $response): RedirectResponse|ExceptionResponse {
+            if ($response->exception instanceof DomainException) {
+                ToastHelper::error('An error occurred!', $response->exception->getMessage());
+
+                return back();
+            }
+
+            return $response;
+        });
     }
 
     private function registerCollectionMacros(): void

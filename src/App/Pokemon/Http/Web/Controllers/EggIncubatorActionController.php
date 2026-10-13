@@ -6,9 +6,7 @@ namespace App\Pokemon\Http\Web\Controllers;
 
 use App\Pokemon\Actions\HatchEggAction;
 use Illuminate\Http\RedirectResponse;
-use Illuminate\Validation\ValidationException;
 use Shared\Base\Controller;
-use Shared\Base\DomainException;
 
 final class EggIncubatorActionController extends Controller
 {
@@ -19,11 +17,7 @@ final class EggIncubatorActionController extends Controller
 
     public function hatchEgg(int $eggIncubatorIndex): RedirectResponse
     {
-        try {
-            new HatchEggAction()->handle(currentUser(), $eggIncubatorIndex);
-        } catch (DomainException $domainException) {
-            throw ValidationException::withMessages([$domainException->getKey() => $domainException->getMessage()]);
-        }
+        new HatchEggAction()->handle(currentUser(), $eggIncubatorIndex);
 
         return back();
     }
