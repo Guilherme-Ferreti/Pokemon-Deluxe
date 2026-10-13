@@ -40,9 +40,14 @@ const form = useForm({
 });
 
 function handlePlaceEgg() {
-  form.post(route('pokemon.web.egg-incubators.place-egg'), {
-    preserveScroll: true,
-    only: ['activeEggIncubations'],
-  });
+  form.post(
+    route('pokemon.web.egg-incubators.place-egg', {
+      eggIncubatorIndex: props.eggIncubatorIndex,
+    }),
+    {
+      preserveScroll: true,
+      only: ['activeEggIncubations'],
+    },
+  );
 }
 </script>

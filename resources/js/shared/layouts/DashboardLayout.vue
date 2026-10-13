@@ -1,31 +1,34 @@
 <template>
-  <SidebarProvider>
-    <AppSidebar />
-    <SidebarInset>
-      <div
-        class="mx-auto w-full pt-4 pr-10 pb-6"
-        :class="{
-          '4xl:pr-0 max-w-4xl': pageSize === 'small',
-          '6xl:pr-0 max-w-6xl': pageSize === 'default',
-        }"
-      >
-        <AppBreadcrumbs
-          v-if="breadcrumbs"
-          class="mb-4"
-          :breadcrumbs="breadcrumbs"
-        />
-        <div class="@container/main-content space-y-8">
-          <slot />
+  <AppLayout>
+    <SidebarProvider>
+      <AppSidebar />
+      <SidebarInset>
+        <div
+          class="mx-auto w-full pt-4 pr-10 pb-6"
+          :class="{
+            '4xl:pr-0 max-w-4xl': pageSize === 'small',
+            '6xl:pr-0 max-w-6xl': pageSize === 'default',
+          }"
+        >
+          <AppBreadcrumbs
+            v-if="breadcrumbs"
+            class="mb-4"
+            :breadcrumbs="breadcrumbs"
+          />
+          <div class="@container/main-content space-y-8">
+            <slot />
+          </div>
         </div>
-      </div>
-    </SidebarInset>
-  </SidebarProvider>
+      </SidebarInset>
+    </SidebarProvider>
+  </AppLayout>
 </template>
 
 <script setup lang="ts">
 import AppBreadcrumbs from '@/shared/components/AppBreadcrumbs.vue';
 import AppSidebar from '@/shared/components/AppSidebar.vue';
 import { SidebarInset, SidebarProvider } from '@/shared/components/ui/sidebar';
+import AppLayout from '@/shared/layouts/AppLayout.vue';
 
 interface DashboardLayoutProps {
   pageSize?: 'small' | 'default';
