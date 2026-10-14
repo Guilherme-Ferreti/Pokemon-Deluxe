@@ -251,11 +251,11 @@ describe('learnable moves card', function () {
         actingAs($user);
 
         visit(route('dex.web.pokedex.show', $species))
-            ->assertSeeIn('@pokedex-species-learnable-moves__level-up', $learnableMove->level_learn)
-            ->assertSeeIn('@pokedex-species-learnable-moves__level-up', $move->name)
-            ->assertSeeIn('@pokedex-species-learnable-moves__level-up', $move->type->label())
-            ->assertSeeIn('@pokedex-species-learnable-moves__level-up', $move->power)
-            ->assertSeeIn('@pokedex-species-learnable-moves__level-up', "{$move->accuracy}%")
+            ->assertSeeIn('[data-test="pokedex-species-learnable-moves__level-up"] tbody tr:first-child td:first-child', $learnableMove->level_learn)
+            ->assertSeeIn('[data-test="pokedex-species-learnable-moves__level-up"] tbody tr:first-child td:nth-child(2)', $move->name)
+            ->assertSeeIn('[data-test="pokedex-species-learnable-moves__level-up"] tbody tr:first-child td:nth-child(3)', $move->type->label())
+            ->assertSeeIn('[data-test="pokedex-species-learnable-moves__level-up"] tbody tr:first-child td:nth-child(4)', $move->power)
+            ->assertSeeIn('[data-test="pokedex-species-learnable-moves__level-up"] tbody tr:first-child td:nth-child(5)', "{$move->accuracy}%")
             ->assertNoSmoke();
     });
 
@@ -270,11 +270,11 @@ describe('learnable moves card', function () {
         actingAs($user);
 
         visit(route('dex.web.pokedex.show', $species))
-            ->assertSeeIn('@pokedex-species-learnable-moves__tm', $move->tm_code)
-            ->assertSeeIn('@pokedex-species-learnable-moves__tm', $move->name)
-            ->assertSeeIn('@pokedex-species-learnable-moves__tm', $move->type->label())
-            ->assertSeeIn('@pokedex-species-learnable-moves__tm', $move->power)
-            ->assertSeeIn('@pokedex-species-learnable-moves__tm', "{$move->accuracy}%")
+            ->assertSeeIn('[data-test="pokedex-species-learnable-moves__tm"] tbody tr:first-child td:first-child', $move->tm_code)
+            ->assertSeeIn('[data-test="pokedex-species-learnable-moves__tm"] tbody tr:first-child td:nth-child(2)', $move->name)
+            ->assertSeeIn('[data-test="pokedex-species-learnable-moves__tm"] tbody tr:first-child td:nth-child(3)', $move->type->label())
+            ->assertSeeIn('[data-test="pokedex-species-learnable-moves__tm"] tbody tr:first-child td:nth-child(4)', $move->power)
+            ->assertSeeIn('[data-test="pokedex-species-learnable-moves__tm"] tbody tr:first-child td:nth-child(5)', "{$move->accuracy}%")
             ->assertNoSmoke();
     });
 
