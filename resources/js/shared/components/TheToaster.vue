@@ -51,6 +51,15 @@ router.on('networkError', () => {
     description: 'Please check your internet connection and try again.',
   });
 });
+
+router.on('httpException', (event) => {
+  event.preventDefault();
+
+  toast.error('Oops! Something went wrong', {
+    description:
+      "We couldn't complete your request. Please try again in a moment.",
+  });
+});
 </script>
 
 <style>

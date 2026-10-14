@@ -8,6 +8,7 @@ use BackedEnum;
 use Carbon\CarbonImmutable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Response;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Date;
 use Illuminate\Support\Facades\DB;
@@ -86,7 +87,7 @@ final class AppServiceProvider extends ServiceProvider
     {
         Inertia::handleExceptionsUsing(function (ExceptionResponse $response): RedirectResponse|ExceptionResponse {
             if ($response->exception instanceof DomainException) {
-                ToastHelper::error('An error occurred!', $response->exception->getMessage());
+                ToastHelper::warning('Unable to complete this action', $response->exception->getMessage());
 
                 return back();
             }
