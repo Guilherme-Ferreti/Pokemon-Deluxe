@@ -4,10 +4,8 @@ declare(strict_types=1);
 
 namespace App\Pokemon\Actions;
 
-use App\Pokemon\Exceptions\EggAlreadyHatchedException;
-use App\Pokemon\Exceptions\EggIncubatorIdleException;
-use App\Pokemon\Exceptions\EggIncubatorNotPurchasedException;
-use App\Pokemon\Exceptions\EggStillIncubatingException;
+use App\Pokemon\Exceptions\EggIncubationNotReadyToHatchException;
+use App\Pokemon\Exceptions\EggIncubatorNotActiveException;
 use Shared\Enums\EggIncubationStatus;
 use Shared\Models\EggIncubation;
 use Shared\Models\User;
@@ -20,7 +18,7 @@ final class HatchEggAction
 
     private EggIncubation $eggIncubation;
 
-    public function handle(User $user, int $eggIncubatorIndex): void
+    public function handle(User $user, int $eggIncubatorIndex): EggIncubation
     {
         $this->user              = $user;
         $this->eggIncubatorIndex = $eggIncubatorIndex;
@@ -32,6 +30,8 @@ final class HatchEggAction
         $this->ensureEggIsReadyToHatch();
 
         $this->hatchEgg();
+
+        return $this->eggIncubation;
     }
 
     private function ensureEggIncubatorIsActive(): void
@@ -42,13 +42,7 @@ final class HatchEggAction
             return;
         }
 
-        if (in_array($this->eggIncubatorIndex, $availability['notPurchased'])) {
-            throw new EggIncubatorNotPurchasedException;
-        }
-
-        if (in_array($this->eggIncubatorIndex, $availability['idle'])) {
-            throw new EggIncubatorIdleException;
-        }
+        throw new EggIncubatorNotActiveException($this->eggIncubatorIndex);
     }
 
     private function ensureEggIsReadyToHatch(): void
@@ -57,13 +51,7 @@ final class HatchEggAction
             return;
         }
 
-        if ($this->eggIncubation->getStatus() === EggIncubationStatus::INCUBATING) {
-            throw new EggStillIncubatingException;
-        }
-
-        if ($this->eggIncubation->getStatus() === EggIncubationStatus::READY_TO_CAPTURE) {
-            throw new EggAlreadyHatchedException;
-        }
+        throw new EggIncubationNotReadyToHatchException;
     }
 
     private function hatchEgg(): void

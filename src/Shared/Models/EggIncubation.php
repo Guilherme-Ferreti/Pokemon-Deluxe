@@ -7,6 +7,7 @@ namespace Shared\Models;
 use Carbon\CarbonImmutable;
 use Database\Factories\EggIncubationFactory;
 use Illuminate\Database\Eloquent\Attributes\Scope;
+use Illuminate\Database\Eloquent\Attributes\Unguarded;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -31,6 +32,7 @@ use Shared\Enums\PokemonGender;
  * @property-read User $user
  * @property-read Species $species
  */
+#[Unguarded]
 final class EggIncubation extends Model
 {
     /** @use HasFactory<EggIncubationFactory> */

@@ -52,6 +52,9 @@ final class HandleInertiaRequests extends Middleware
                 'user' => $request->user() ? Inertia::once(fn () => $request->user()->only('id', 'name', 'email')) : null,
             ],
             'labels' => Inertia::once(fn () => $this->labels()),
+            'game'   => Inertia::once(fn () => [
+                'maxEggIncubatorsPerUser' => config('game.max_egg_incubators_per_user'),
+            ]),
         ];
     }
 

@@ -46,7 +46,6 @@ function handlePlaceEgg() {
     }),
     {
       preserveScroll: true,
-      only: ['activeEggIncubations'],
     },
   );
 }
