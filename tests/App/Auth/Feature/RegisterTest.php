@@ -7,6 +7,7 @@ use Shared\Models\User;
 use Tests\App\Auth\RequestFactories\StoreRegisterRequestFactory;
 
 use function Pest\Laravel\actingAs;
+use function Pest\Laravel\assertDatabaseCount;
 use function Pest\Laravel\assertDatabaseHas;
 use function Pest\Laravel\get;
 use function Pest\Laravel\post;
@@ -30,6 +31,8 @@ it('registers a new user', function () {
 
     post(route('auth.web.register.store'), $data)
         ->assertRedirectToRoute('dashboard.web.home');
+
+    assertDatabaseCount(User::class, 1);
 
     assertDatabaseHas(User::class, [
         'name'  => $data['name'],
