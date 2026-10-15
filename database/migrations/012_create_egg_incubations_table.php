@@ -5,6 +5,7 @@ declare(strict_types=1);
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 use Shared\Enums\PokemonGender;
 use Shared\Models\Species;
@@ -33,6 +34,10 @@ return new class extends Migration
 
             $table->index(['user_id', 'egg_incubator_index']);
         });
+
+        DB::statement(
+            'create unique index egg_incubations_user_id_egg_incubator_index_active_unique on egg_incubations (user_id, egg_incubator_index) where captured_at is null',
+        );
     }
 
     public function down(): void

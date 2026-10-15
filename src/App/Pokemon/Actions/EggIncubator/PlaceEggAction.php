@@ -4,7 +4,9 @@ declare(strict_types=1);
 
 namespace App\Pokemon\Actions\EggIncubator;
 
+use App\Pokemon\CacheKeys\PokemonCacheKeys;
 use App\Pokemon\Exceptions\EggIncubatorNotIdleException;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Lottery;
 use Shared\Enums\PokemonGender;
 use Shared\Models\Species;
@@ -21,9 +23,13 @@ final class PlaceEggAction
         $this->user              = $user;
         $this->eggIncubatorIndex = $eggIncubatorIndex;
 
-        $this->ensureEggIncubatorIsIdle();
+        Cache::withoutOverlapping(
+            key: PokemonCacheKeys::eggIncubatorPlaceEggLock($user->id, $eggIncubatorIndex),
+            callback: function (): void {
+                $this->ensureEggIncubatorIsIdle();
 
-        $this->createEggIncubation();
+                $this->createEggIncubation();
+            });
     }
 
     private function ensureEggIncubatorIsIdle(): void

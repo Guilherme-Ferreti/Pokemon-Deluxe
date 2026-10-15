@@ -15,6 +15,7 @@
         type="button"
         variant="outline"
         size="sm"
+        :disabled="form.processing"
         @click="handlePlaceEgg"
       >
         Place egg
