@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace App\Pokemon\Actions\EggIncubator;
 
-use App\Pokemon\CacheKeys\PokemonCacheKeys;
 use App\Pokemon\Exceptions\EggIncubationNotReadyToHatchException;
 use App\Pokemon\Exceptions\EggIncubatorNotActiveException;
+use App\Pokemon\Support\LockKeys;
 use Illuminate\Support\Facades\Cache;
 use Shared\Enums\EggIncubationStatus;
 use Shared\Models\EggIncubation;
@@ -26,18 +26,22 @@ final class HatchEggAction
         $this->eggIncubatorIndex = $eggIncubatorIndex;
 
         Cache::withoutOverlapping(
-            key: PokemonCacheKeys::eggIncubatorHatchEggLock($this->user->id, $this->eggIncubatorIndex),
-            callback: function (): void {
-                $this->ensureEggIncubatorIsActive();
-
-                $this->loadEggIncubation();
-
-                $this->ensureEggIsReadyToHatch();
-
-                $this->hatchEgg();
-            });
+            key: LockKeys::eggIncubatorHatchEgg($this->user->id, $this->eggIncubatorIndex),
+            callback: fn () => $this->hatchEgg()
+        );
 
         return $this->eggIncubation;
+    }
+
+    private function hatchEgg(): void
+    {
+        $this->ensureEggIncubatorIsActive();
+
+        $this->loadEggIncubation();
+
+        $this->ensureEggIsReadyToHatch();
+
+        $this->markEggAsHatched();
     }
 
     private function ensureEggIncubatorIsActive(): void
@@ -69,7 +73,7 @@ final class HatchEggAction
         throw new EggIncubationNotReadyToHatchException;
     }
 
-    private function hatchEgg(): void
+    private function markEggAsHatched(): void
     {
         $this->eggIncubation->hatched_at = now();
         $this->eggIncubation->save();

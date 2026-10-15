@@ -7,9 +7,9 @@ namespace App\Dex\Http\Web\PageProps;
 use App\Battle\Services\DamageCalculator;
 use App\Dex\Actions\CalculateSpeciesCaptureStatistics;
 use App\Dex\Actions\CalculateUserSpeciesCaptureStatistics;
-use App\Dex\CacheKeys\DexCacheKeys;
 use App\Dex\Queries\NextSpeciesQuery;
 use App\Dex\Queries\PreviousSpeciesQuery;
+use App\Dex\Support\CacheKeys;
 use Illuminate\Support\Facades\Cache;
 use Inertia\ProvidesInertiaProperties;
 use Inertia\RenderContext;
@@ -139,13 +139,13 @@ final readonly class PokedexShowPageProps implements ProvidesInertiaProperties
     private function getCaptureStatisticsProp(): array
     {
         $global = Cache::remember(
-            key: DexCacheKeys::speciesCaptureStatistics($this->species->id),
+            key: CacheKeys::speciesCaptureStatistics($this->species->id),
             ttl: now()->endOfDay(),
             callback: fn () => new CalculateSpeciesCaptureStatistics()->handle($this->species)
         );
 
         $currentUser = Cache::remember(
-            key: DexCacheKeys::userSpeciesCaptureStatistics(currentUser()->id, $this->species->id),
+            key: CacheKeys::userSpeciesCaptureStatistics(currentUser()->id, $this->species->id),
             ttl: now()->endOfDay(),
             callback: fn () => new CalculateUserSpeciesCaptureStatistics()->handle(currentUser(), $this->species)
         );
@@ -225,7 +225,7 @@ final readonly class PokedexShowPageProps implements ProvidesInertiaProperties
         };
 
         return Cache::rememberForever(
-            key: DexCacheKeys::speciesEvolutionChain($this->species->id),
+            key: CacheKeys::speciesEvolutionChain($this->species->id),
             callback: $callback
         );
     }
@@ -280,7 +280,7 @@ final readonly class PokedexShowPageProps implements ProvidesInertiaProperties
         };
 
         return Cache::rememberForever(
-            key: DexCacheKeys::speciesLearnableMoves($this->species->id),
+            key: CacheKeys::speciesLearnableMoves($this->species->id),
             callback: $callback
         );
     }
