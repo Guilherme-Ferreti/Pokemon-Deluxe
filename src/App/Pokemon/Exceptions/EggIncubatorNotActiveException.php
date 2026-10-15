@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Pokemon\Exceptions;
 
-use DomainException;
+use Shared\Base\DomainException;
 
 final class EggIncubatorNotActiveException extends DomainException
 {
