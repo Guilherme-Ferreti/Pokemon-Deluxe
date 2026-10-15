@@ -26,6 +26,7 @@ arch('Controllers')
     ->toBeFinal()
     ->toExtend(Controller::class)
     ->toImplementNothing()
+    ->not->toHavePublicMethodsBesides(['__invoke', 'index', 'show', 'create', 'store', 'edit', 'update', 'delete', 'destroy'])
     ->not->toHavePrivateMethods()
     ->not->toHaveProtectedMethods();
 

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-use App\Pokemon\Actions\GetEggIncubatorsAvailabilityAction;
+use App\Pokemon\Actions\EggIncubator\GetEggIncubatorsAvailabilityAction;
 use Shared\Models\EggIncubation;
 use Shared\Models\User;
 
@@ -30,8 +30,7 @@ it('marks a purchased incubator as active while an egg is incubating', function 
 
     $availability = new GetEggIncubatorsAvailabilityAction()->handle($user);
 
-    expect($availability['active'])->toBe([1]);
-    expect($availability['idle'])->toBe([2]);
+    expect($availability)->toMatchArray(['active' => [1], 'idle' => [2]]);
 });
 
 it('does not mark an incubator as active when its incubation is completed', function () {
@@ -40,8 +39,7 @@ it('does not mark an incubator as active when its incubation is completed', func
 
     $availability = new GetEggIncubatorsAvailabilityAction()->handle($user);
 
-    expect($availability['active'])->toBe([]);
-    expect($availability['idle'])->toBe([1]);
+    expect($availability)->toMatchArray(['active' => [], 'idle' => [1]]);
 });
 
 it("does not count another user's incubation as active", function () {
@@ -51,8 +49,7 @@ it("does not count another user's incubation as active", function () {
 
     $availability = new GetEggIncubatorsAvailabilityAction()->handle($user);
 
-    expect($availability['active'])->toBe([]);
-    expect($availability['idle'])->toBe([1]);
+    expect($availability)->toMatchArray(['active' => [], 'idle' => [1]]);
 });
 
 it('reports every incubator as unpurchased when the user has purchased none', function () {

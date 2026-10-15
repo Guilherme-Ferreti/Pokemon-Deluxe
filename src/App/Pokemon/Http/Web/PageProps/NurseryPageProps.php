@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Pokemon\Http\Web\PageProps;
 
-use App\Pokemon\Actions\GetEggIncubatorsAvailabilityAction;
+use App\Pokemon\Actions\EggIncubator\GetEggIncubatorsAvailabilityAction;
 use Inertia\ProvidesInertiaProperties;
 use Inertia\RenderContext;
 use Shared\Enums\EggIncubationStatus;

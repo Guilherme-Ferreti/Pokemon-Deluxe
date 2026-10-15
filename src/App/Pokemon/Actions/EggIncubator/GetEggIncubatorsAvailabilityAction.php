@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Pokemon\Actions;
+namespace App\Pokemon\Actions\EggIncubator;
 
 use Shared\Models\User;
 
