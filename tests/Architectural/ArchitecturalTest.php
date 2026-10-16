@@ -8,6 +8,7 @@ use Illuminate\Support\ServiceProvider;
 use Inertia\ProvidesInertiaProperties;
 use Shared\Base\Controller;
 use Shared\Interfaces\Filter;
+use Shared\Interfaces\ValueObject;
 
 arch()->preset()->php();
 arch()->preset()->security();
@@ -130,4 +131,5 @@ arch('Value Objects')
     ->expect('Shared\ValueObjects')
     ->toBeClasses()
     ->toBeFinal()
+    ->toImplement(ValueObject::class)
     ->toHaveConstructor();
