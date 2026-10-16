@@ -34,11 +34,11 @@ final class AsEggIncubatorIndexes implements CastsAttributes
     public function set(Model $model, string $key, $value, array $attributes): string
     {
         if (! is_array($value)) {
-            throw new InvalidArgumentException('The value must be an array.');
+            throw new InvalidArgumentException("$key must be an array.");
         }
 
         if (! array_all($value, fn ($item) => $item instanceof EggIncubatorIndex)) {
-            throw new InvalidArgumentException('All items must be an instance of ' . EggIncubatorIndex::class . '.');
+            throw new InvalidArgumentException("All values of $key must be instances of " . EggIncubatorIndex::class);
         }
 
         $indexes = array_values(array_map(fn (EggIncubatorIndex $index) => $index->value, $value));

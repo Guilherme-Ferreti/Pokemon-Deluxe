@@ -4,12 +4,9 @@ declare(strict_types=1);
 
 namespace Shared\ValueObjects;
 
-use Illuminate\Contracts\Database\Eloquent\Castable;
-use Illuminate\Contracts\Database\Eloquent\CastsAttributes;
-use Illuminate\Database\Eloquent\Model;
-use InvalidArgumentException;
+use Shared\Interfaces\ValueObject;
 
-final class SpeciesSprites implements Castable
+final class SpeciesSprites implements ValueObject
 {
     public function __construct(
         public ?string $back_default,
@@ -22,60 +19,19 @@ final class SpeciesSprites implements Castable
         public ?string $front_shiny_female,
     ) {}
 
-    /**
-     * @param  array<string, mixed>  $arguments
-     * @return CastsAttributes<SpeciesSprites, string>
-     */
-    public static function castUsing(array $arguments): CastsAttributes
+    public function equals(ValueObject $other): bool
     {
-        return new class implements CastsAttributes
-        {
-            public function get(Model $model, string $key, $value, array $attributes): SpeciesSprites
-            {
-                if (! is_string($value) || ! is_array($value = json_decode($value, true))) {
-                    return new SpeciesSprites(...[
-                        'back_default'       => null,
-                        'back_female'        => null,
-                        'back_shiny'         => null,
-                        'back_shiny_female'  => null,
-                        'front_default'      => null,
-                        'front_female'       => null,
-                        'front_shiny'        => null,
-                        'front_shiny_female' => null,
-                    ]);
-                }
+        if (! $other instanceof self) {
+            return false;
+        }
 
-                $sprites = array_map(fn ($item) => is_string($item) ? $item : null, $value);
-
-                return new SpeciesSprites(...[
-                    'back_default'       => $sprites['back_default'],
-                    'back_female'        => $sprites['back_female'],
-                    'back_shiny'         => $sprites['back_shiny'],
-                    'back_shiny_female'  => $sprites['back_shiny_female'],
-                    'front_default'      => $sprites['front_default'],
-                    'front_female'       => $sprites['front_female'],
-                    'front_shiny'        => $sprites['front_shiny'],
-                    'front_shiny_female' => $sprites['front_shiny_female'],
-                ]);
-            }
-
-            public function set(Model $model, string $key, $value, array $attributes): string
-            {
-                if (! $value instanceof SpeciesSprites) {
-                    throw new InvalidArgumentException('The value must be an instance of ' . SpeciesSprites::class . '.');
-                }
-
-                return (string) json_encode([
-                    'back_default'       => $value->back_default,
-                    'back_female'        => $value->back_female,
-                    'back_shiny'         => $value->back_shiny,
-                    'back_shiny_female'  => $value->back_shiny_female,
-                    'front_default'      => $value->front_default,
-                    'front_female'       => $value->front_female,
-                    'front_shiny'        => $value->front_shiny,
-                    'front_shiny_female' => $value->front_shiny_female,
-                ]);
-            }
-        };
+        return $this->back_default === $other->back_default
+            && $this->back_female === $other->back_female
+            && $this->back_shiny === $other->back_shiny
+            && $this->back_shiny_female === $other->back_shiny_female
+            && $this->front_default === $other->front_default
+            && $this->front_female === $other->front_female
+            && $this->front_shiny === $other->front_shiny
+            && $this->front_shiny_female === $other->front_shiny_female;
     }
 }

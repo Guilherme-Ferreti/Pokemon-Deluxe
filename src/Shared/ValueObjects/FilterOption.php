@@ -5,13 +5,21 @@ declare(strict_types=1);
 namespace Shared\ValueObjects;
 
 use BackedEnum;
+use Shared\Interfaces\ValueObject;
 
-final class FilterOption
+final class FilterOption implements ValueObject
 {
     public function __construct(
         public string $label,
         public string|int $value,
     ) {}
+
+    public function equals(ValueObject $other): bool
+    {
+        return $other instanceof self
+            && $this->label === $other->label
+            && $this->value === $other->value;
+    }
 
     public static function fromEnum(BackedEnum $case): self
     {
