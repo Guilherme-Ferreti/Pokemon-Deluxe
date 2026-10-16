@@ -11,6 +11,7 @@ use Shared\Enums\PokemonGender;
 use Shared\Models\EggIncubation;
 use Shared\Models\Species;
 use Shared\Models\User;
+use Shared\ValueObjects\EggIncubatorIndex;
 
 /**
  * @extends Factory<EggIncubation>
@@ -34,7 +35,7 @@ final class EggIncubationFactory extends Factory
         ];
     }
 
-    private function resolveEggIncubatorIndex(string $userId): int
+    private function resolveEggIncubatorIndex(string $userId): EggIncubatorIndex
     {
         /** @var User $user */
         $user = User::find($userId);

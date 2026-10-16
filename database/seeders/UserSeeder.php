@@ -14,6 +14,7 @@ use Shared\Models\Pokeball;
 use Shared\Models\Pokemon;
 use Shared\Models\Species;
 use Shared\Models\User;
+use Shared\ValueObjects\EggIncubatorIndex;
 
 final class UserSeeder extends Seeder
 {
@@ -120,7 +121,14 @@ final class UserSeeder extends Seeder
     private function addEggIncubations(User $user): void
     {
         $user->update([
-            'purchased_egg_incubator_indexes' => [1, 2, 3, 4, 5, 6],
+            'purchased_egg_incubator_indexes' => [
+                new EggIncubatorIndex(1),
+                new EggIncubatorIndex(2),
+                new EggIncubatorIndex(3),
+                new EggIncubatorIndex(4),
+                new EggIncubatorIndex(5),
+                new EggIncubatorIndex(6),
+            ],
         ]);
 
         $species = Species::query()
@@ -134,7 +142,7 @@ final class UserSeeder extends Seeder
             ->for($user)
             ->recycle($species)
             ->count(2)
-            ->sequence(fn (Sequence $sequence) => ['egg_incubator_index' => $sequence->index + 1])
+            ->sequence(fn (Sequence $sequence) => ['egg_incubator_index' => new EggIncubatorIndex($sequence->index + 1)])
             ->create();
 
         EggIncubation::factory()
@@ -142,14 +150,14 @@ final class UserSeeder extends Seeder
             ->for($user)
             ->recycle($species)
             ->count(2)
-            ->sequence(fn (Sequence $sequence) => ['egg_incubator_index' => $sequence->index + 3])
+            ->sequence(fn (Sequence $sequence) => ['egg_incubator_index' => new EggIncubatorIndex($sequence->index + 3)])
             ->create();
 
         EggIncubation::factory()
             ->readyToCapture()
             ->for($user)
             ->recycle($species)
-            ->create(['egg_incubator_index' => 5]);
+            ->create(['egg_incubator_index' => new EggIncubatorIndex(5)]);
 
         EggIncubation::factory()
             ->completed()

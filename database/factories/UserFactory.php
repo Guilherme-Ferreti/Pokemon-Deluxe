@@ -5,8 +5,10 @@ declare(strict_types=1);
 namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
+use Shared\Helpers\AppHelper;
 use Shared\Models\User;
 
 /**
@@ -30,7 +32,7 @@ final class UserFactory extends Factory
             'email_verified_at'               => now(),
             'password'                        => self::$password ??= Hash::make('password'),
             'remember_token'                  => Str::random(10),
-            'purchased_egg_incubator_indexes' => collect()->range(1, config('game.max_egg_incubators_per_user'))->take(fake()->numberBetween(1, config('game.max_egg_incubators_per_user')))->toArray(),
+            'purchased_egg_incubator_indexes' => Arr::take(AppHelper::allEggIncubatorIndexes(), fake()->numberBetween(1, config('game.max_egg_incubators_per_user'))),
         ];
     }
 

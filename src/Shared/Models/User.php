@@ -17,6 +17,8 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Override;
+use Shared\Casts\AsEggIncubatorIndexes;
+use Shared\ValueObjects\EggIncubatorIndex;
 
 /**
  * @property string $id
@@ -25,7 +27,7 @@ use Override;
  * @property CarbonImmutable|null $email_verified_at
  * @property string $password
  * @property string|null $remember_token
- * @property list<positive-int> $purchased_egg_incubator_indexes
+ * @property list<EggIncubatorIndex> $purchased_egg_incubator_indexes
  * @property CarbonImmutable|null $created_at
  * @property CarbonImmutable|null $updated_at
  * @property-read EloquentCollection<int, Pokemon> $pokemon
@@ -47,7 +49,7 @@ final class User extends Authenticatable
         return [
             'email_verified_at'               => 'datetime',
             'password'                        => 'hashed',
-            'purchased_egg_incubator_indexes' => 'array',
+            'purchased_egg_incubator_indexes' => AsEggIncubatorIndexes::class,
         ];
     }
 

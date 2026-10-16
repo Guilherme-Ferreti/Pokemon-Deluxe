@@ -16,11 +16,12 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Override;
 use Shared\Enums\EggIncubationStatus;
 use Shared\Enums\PokemonGender;
+use Shared\ValueObjects\EggIncubatorIndex;
 
 /**
  * @property string $id
  * @property string $user_id
- * @property int $egg_incubator_index
+ * @property EggIncubatorIndex $egg_incubator_index
  * @property string $species_id
  * @property PokemonGender $gender
  * @property bool $is_shiny
@@ -42,7 +43,7 @@ final class EggIncubation extends Model
     protected function casts(): array
     {
         return [
-            'egg_incubator_index' => 'integer',
+            'egg_incubator_index' => EggIncubatorIndex::class,
             'is_shiny'            => 'boolean',
             'gender'              => PokemonGender::class,
             'ready_to_hatch_at'   => 'datetime',
