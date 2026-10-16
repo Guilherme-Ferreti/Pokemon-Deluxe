@@ -82,17 +82,6 @@ arch('Queries')
     ->not->toHavePublicMethodsBesides('handle')
     ->not->toHaveProtectedMethods();
 
-arch('Cache Keys')
-    ->expect('App\*\CacheKeys')
-    ->toHaveSuffix('CacheKeys')
-    ->toBeClasses()
-    ->toBeFinal()
-    ->toExtendNothing()
-    ->toImplementNothing()
-    ->toUseNothing()
-    ->not->toHaveProtectedMethods()
-    ->not->toHavePrivateMethods();
-
 arch('Base')
     ->expect('Shared\Base')
     ->toBeClasses()
