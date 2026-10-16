@@ -30,7 +30,7 @@ if (! function_exists('enumLabels')) {
         $labels = [];
 
         foreach ($enum::cases() as $backedEnum) {
-            $labels[$backedEnum->value] = method_exists($backedEnum, 'label') ? $backedEnum->label() : str($backedEnum->name)->headline()->toString();
+            $labels[$backedEnum->value] = method_exists($backedEnum, 'label') ? $backedEnum->label() : str($backedEnum->name)->lower()->headline()->toString();
         }
 
         return $labels;
