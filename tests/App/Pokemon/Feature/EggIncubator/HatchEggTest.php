@@ -5,6 +5,7 @@ declare(strict_types=1);
 use Shared\Models\EggIncubation;
 use Shared\Models\Species;
 use Shared\Models\User;
+use Shared\ValueObjects\EggIncubatorIndex;
 
 use function Pest\Laravel\actingAs;
 use function Pest\Laravel\assertDatabaseCount;
@@ -20,11 +21,11 @@ it('redirects guests to login', function () {
 it('hatches a ready-to-hatch egg', function () {
     travelTo('2026-01-01 12:00:00');
 
-    $user    = User::factory()->create(['purchased_egg_incubator_indexes' => [1]]);
+    $user    = User::factory()->create(['purchased_egg_incubator_indexes' => [new EggIncubatorIndex(1)]]);
     $species = Species::factory()->create();
 
     $incubation = EggIncubation::factory()->for($user)->for($species)->readyToHatch()->create([
-        'egg_incubator_index' => 1,
+        'egg_incubator_index' => new EggIncubatorIndex(1),
     ]);
 
     actingAs($user)
@@ -43,8 +44,11 @@ it('hatches a ready-to-hatch egg', function () {
 });
 
 it('does not hatch an egg that is still incubating', function () {
-    $user       = User::factory()->create(['purchased_egg_incubator_indexes' => [1]]);
-    $incubation = EggIncubation::factory()->for($user)->incubating()->create(['egg_incubator_index' => 1]);
+    $user = User::factory()->create(['purchased_egg_incubator_indexes' => [new EggIncubatorIndex(1)]]);
+
+    $incubation = EggIncubation::factory()->for($user)->incubating()->create([
+        'egg_incubator_index' => new EggIncubatorIndex(1),
+    ]);
 
     actingAs($user)
         ->from(route('pokemon.web.nursery'))
@@ -62,7 +66,7 @@ it('does not hatch an egg that is still incubating', function () {
 });
 
 it('does not hatch an egg when the incubator is not active', function () {
-    $user = User::factory()->create(['purchased_egg_incubator_indexes' => [1]]);
+    $user = User::factory()->create(['purchased_egg_incubator_indexes' => [new EggIncubatorIndex(1)]]);
 
     actingAs($user)
         ->from(route('pokemon.web.nursery'))
@@ -75,9 +79,12 @@ it('does not hatch an egg when the incubator is not active', function () {
 });
 
 it("does not hatch another user's egg", function () {
-    $user       = User::factory()->create(['purchased_egg_incubator_indexes' => [1]]);
-    $otherUser  = User::factory()->create(['purchased_egg_incubator_indexes' => [1]]);
-    $incubation = EggIncubation::factory()->for($otherUser)->readyToHatch()->create(['egg_incubator_index' => 1]);
+    $user      = User::factory()->create(['purchased_egg_incubator_indexes' => [new EggIncubatorIndex(1)]]);
+    $otherUser = User::factory()->create(['purchased_egg_incubator_indexes' => [new EggIncubatorIndex(1)]]);
+
+    $incubation = EggIncubation::factory()->for($otherUser)->readyToHatch()->create([
+        'egg_incubator_index' => new EggIncubatorIndex(1),
+    ]);
 
     actingAs($user)
         ->from(route('pokemon.web.nursery'))

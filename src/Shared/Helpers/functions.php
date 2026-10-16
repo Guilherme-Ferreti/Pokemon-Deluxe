@@ -52,6 +52,7 @@ if (! function_exists('value_object_array_diff')) {
      * Returns the elements of $array1 that are not in $array2
      *
      * @template T of ValueObject
+     *
      * @param  array<int, T>  $array1
      * @param  array<int, ValueObject>  $array2
      * @return array<int, T>

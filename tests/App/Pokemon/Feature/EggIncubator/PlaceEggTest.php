@@ -5,6 +5,7 @@ declare(strict_types=1);
 use Shared\Models\EggIncubation;
 use Shared\Models\Species;
 use Shared\Models\User;
+use Shared\ValueObjects\EggIncubatorIndex;
 
 use function Pest\Laravel\actingAs;
 use function Pest\Laravel\assertDatabaseCount;
@@ -17,7 +18,7 @@ it('redirects guests to login', function () {
 });
 
 it('places an egg in an idle incubator', function () {
-    $user    = User::factory()->create(['purchased_egg_incubator_indexes' => [1]]);
+    $user    = User::factory()->create(['purchased_egg_incubator_indexes' => [new EggIncubatorIndex(1)]]);
     $species = Species::factory()->create(['egg_obtainable' => true]);
 
     actingAs($user)
@@ -37,9 +38,9 @@ it('places an egg in an idle incubator', function () {
 });
 
 it('does not place an egg when the incubator is already incubating', function () {
-    $user = User::factory()->create(['purchased_egg_incubator_indexes' => [1]]);
+    $user = User::factory()->create(['purchased_egg_incubator_indexes' => [new EggIncubatorIndex(1)]]);
 
-    EggIncubation::factory()->for($user)->incubating()->create(['egg_incubator_index' => 1]);
+    EggIncubation::factory()->for($user)->incubating()->create(['egg_incubator_index' => new EggIncubatorIndex(1)]);
 
     actingAs($user)
         ->from(route('pokemon.web.nursery'))
@@ -52,10 +53,10 @@ it('does not place an egg when the incubator is already incubating', function ()
 });
 
 it("ignores another user's incubation when placing an egg", function () {
-    $user      = User::factory()->create(['purchased_egg_incubator_indexes' => [1]]);
-    $otherUser = User::factory()->create(['purchased_egg_incubator_indexes' => [1]]);
+    $user      = User::factory()->create(['purchased_egg_incubator_indexes' => [new EggIncubatorIndex(1)]]);
+    $otherUser = User::factory()->create(['purchased_egg_incubator_indexes' => [new EggIncubatorIndex(1)]]);
 
-    EggIncubation::factory()->for($otherUser)->incubating()->create(['egg_incubator_index' => 1]);
+    EggIncubation::factory()->for($otherUser)->incubating()->create(['egg_incubator_index' => new EggIncubatorIndex(1)]);
     Species::factory()->create(['egg_obtainable' => true]);
 
     actingAs($user)

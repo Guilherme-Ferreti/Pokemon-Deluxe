@@ -53,7 +53,7 @@ final class PlaceEggAction
         $species = $this->getRandomEggObtainableSpecies();
 
         $this->user->eggIncubations()->create([
-            'egg_incubator_index' => $this->eggIncubatorIndex->value,
+            'egg_incubator_index' => $this->eggIncubatorIndex,
             'species_id'          => $species->id,
             'gender'              => $this->rollGender($species),
             'is_shiny'            => $this->rollIsShiny(),

@@ -43,12 +43,14 @@ final class GetEggIncubatorsAvailabilityAction
      */
     private function getActiveEggIncubatorIndexes(): array
     {
-        return $this->user
+        /** @var list<EggIncubatorIndex> */
+        $indexes = $this->user
             ->eggIncubations()
             ->active()
-            ->get(['egg_incubator_index'])
             ->pluck('egg_incubator_index')
             ->values()
-            ->toArray();
+            ->all();
+
+        return $indexes;
     }
 }
