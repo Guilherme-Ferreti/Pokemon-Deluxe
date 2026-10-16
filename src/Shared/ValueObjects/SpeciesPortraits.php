@@ -44,7 +44,7 @@ final class SpeciesPortraits implements Castable
             public function set(Model $model, string $key, $value, array $attributes): string
             {
                 if (! $value instanceof SpeciesPortraits) {
-                    throw new InvalidArgumentException('The value must be an instance of SpeciesPortraits.');
+                    throw new InvalidArgumentException('The value must be an instance of ' . SpeciesPortraits::class . '.');
                 }
 
                 return (string) json_encode([

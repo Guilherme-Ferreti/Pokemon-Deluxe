@@ -62,7 +62,7 @@ final class SpeciesSprites implements Castable
             public function set(Model $model, string $key, $value, array $attributes): string
             {
                 if (! $value instanceof SpeciesSprites) {
-                    throw new InvalidArgumentException('The value must be an instance of SpeciesSprites.');
+                    throw new InvalidArgumentException('The value must be an instance of ' . SpeciesSprites::class . '.');
                 }
 
                 return (string) json_encode([
