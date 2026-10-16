@@ -8,10 +8,11 @@ use App\Pokemon\Actions\EggIncubator\HatchEggAction;
 use Illuminate\Http\RedirectResponse;
 use Shared\Base\Controller;
 use Shared\Helpers\ToastHelper;
+use Shared\ValueObjects\EggIncubatorIndex;
 
 final class HatchEggController extends Controller
 {
-    public function __invoke(int $eggIncubatorIndex): RedirectResponse
+    public function __invoke(EggIncubatorIndex $eggIncubatorIndex): RedirectResponse
     {
         $eggIncubation = new HatchEggAction()->handle(currentUser(), $eggIncubatorIndex);
 

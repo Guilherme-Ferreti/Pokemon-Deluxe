@@ -11,16 +11,17 @@ use Illuminate\Support\Facades\Cache;
 use Shared\Enums\EggIncubationStatus;
 use Shared\Models\EggIncubation;
 use Shared\Models\User;
+use Shared\ValueObjects\EggIncubatorIndex;
 
 final class HatchEggAction
 {
     private User $user;
 
-    private int $eggIncubatorIndex;
+    private EggIncubatorIndex $eggIncubatorIndex;
 
     private EggIncubation $eggIncubation;
 
-    public function handle(User $user, int $eggIncubatorIndex): EggIncubation
+    public function handle(User $user, EggIncubatorIndex $eggIncubatorIndex): EggIncubation
     {
         $this->user              = $user;
         $this->eggIncubatorIndex = $eggIncubatorIndex;
@@ -48,7 +49,7 @@ final class HatchEggAction
     {
         $availability = new GetEggIncubatorsAvailabilityAction()->handle($this->user);
 
-        if (in_array($this->eggIncubatorIndex, $availability['active'])) {
+        if (value_object_array_contains($availability['active'], $this->eggIncubatorIndex)) {
             return;
         }
 
@@ -60,7 +61,7 @@ final class HatchEggAction
         $this->eggIncubation = $this->user
             ->eggIncubations()
             ->active()
-            ->where('egg_incubator_index', $this->eggIncubatorIndex)
+            ->where('egg_incubator_index', $this->eggIncubatorIndex->value)
             ->firstOrFail();
     }
 

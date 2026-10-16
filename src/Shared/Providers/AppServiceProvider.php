@@ -8,9 +8,11 @@ use BackedEnum;
 use Carbon\CarbonImmutable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Response;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Date;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Facades\Vite;
 use Illuminate\Support\ServiceProvider;
@@ -18,10 +20,12 @@ use Illuminate\Support\Str;
 use Illuminate\Validation\Rules\Password;
 use Inertia\ExceptionResponse;
 use Inertia\Inertia;
+use InvalidArgumentException;
 use Override;
 use ReflectionEnum;
 use Shared\Base\DomainException;
 use Shared\Helpers\ToastHelper;
+use Shared\ValueObjects\EggIncubatorIndex;
 
 final class AppServiceProvider extends ServiceProvider
 {
@@ -38,6 +42,8 @@ final class AppServiceProvider extends ServiceProvider
         $this->configureInertiaPagePaths();
 
         $this->configureInertiaExceptionHandling();
+
+        $this->configureRouteBindings();
 
         $this->registerCollectionMacros();
     }
@@ -92,6 +98,17 @@ final class AppServiceProvider extends ServiceProvider
             }
 
             return $response;
+        });
+    }
+
+    private function configureRouteBindings(): void
+    {
+        Route::bind('eggIncubatorIndex', function (string $value): EggIncubatorIndex {
+            try {
+                return new EggIncubatorIndex((int) $value);
+            } catch (InvalidArgumentException) {
+                abort(Response::HTTP_NOT_FOUND);
+            }
         });
     }
 

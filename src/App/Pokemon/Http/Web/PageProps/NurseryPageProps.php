@@ -34,7 +34,7 @@ final class NurseryPageProps implements ProvidesInertiaProperties
             ->get()
             ->map(fn (EggIncubation $eggIncubation) => [
                 'id'                => $eggIncubation->id,
-                'eggIncubatorIndex' => $eggIncubation->egg_incubator_index,
+                'eggIncubatorIndex' => $eggIncubation->egg_incubator_index->value,
                 'readyToHatchAt'    => $eggIncubation->ready_to_hatch_at,
                 'status'            => $eggIncubation->getStatus(),
                 'pokemon'           => when($eggIncubation->getStatus() === EggIncubationStatus::READY_TO_CAPTURE, fn () => [

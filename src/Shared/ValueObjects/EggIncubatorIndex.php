@@ -8,8 +8,9 @@ use Illuminate\Contracts\Database\Eloquent\Castable;
 use Illuminate\Contracts\Database\Eloquent\CastsAttributes;
 use Illuminate\Database\Eloquent\Model;
 use InvalidArgumentException;
+use Shared\Interfaces\ValueObject;
 
-final class EggIncubatorIndex implements Castable
+final class EggIncubatorIndex implements Castable, ValueObject
 {
     /**
      * @var positive-int
@@ -25,6 +26,11 @@ final class EggIncubatorIndex implements Castable
         }
 
         $this->value = $value;
+    }
+
+    public function equals(ValueObject $other): bool
+    {
+        return $other instanceof self && $this->value === $other->value;
     }
 
     /**

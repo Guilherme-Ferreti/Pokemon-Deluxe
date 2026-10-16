@@ -11,14 +11,15 @@ use Illuminate\Support\Lottery;
 use Shared\Enums\PokemonGender;
 use Shared\Models\Species;
 use Shared\Models\User;
+use Shared\ValueObjects\EggIncubatorIndex;
 
 final class PlaceEggAction
 {
     private User $user;
 
-    private int $eggIncubatorIndex;
+    private EggIncubatorIndex $eggIncubatorIndex;
 
-    public function handle(User $user, int $eggIncubatorIndex): void
+    public function handle(User $user, EggIncubatorIndex $eggIncubatorIndex): void
     {
         $this->user              = $user;
         $this->eggIncubatorIndex = $eggIncubatorIndex;
@@ -40,7 +41,7 @@ final class PlaceEggAction
     {
         $availability = new GetEggIncubatorsAvailabilityAction()->handle($this->user);
 
-        if (in_array($this->eggIncubatorIndex, $availability['idle'])) {
+        if (value_object_array_contains($availability['idle'], $this->eggIncubatorIndex)) {
             return;
         }
 
@@ -52,7 +53,7 @@ final class PlaceEggAction
         $species = $this->getRandomEggObtainableSpecies();
 
         $this->user->eggIncubations()->create([
-            'egg_incubator_index' => $this->eggIncubatorIndex,
+            'egg_incubator_index' => $this->eggIncubatorIndex->value,
             'species_id'          => $species->id,
             'gender'              => $this->rollGender($species),
             'is_shiny'            => $this->rollIsShiny(),
