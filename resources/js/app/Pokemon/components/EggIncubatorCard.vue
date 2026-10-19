@@ -1,6 +1,6 @@
 <template>
   <Card
-    class="h-full min-h-60 justify-between gap-4 p-4 transition-shadow hover:shadow-md"
+    class="h-full min-h-68 justify-between gap-4 p-4 transition-shadow hover:shadow-md"
   >
     <div class="flex items-center justify-between gap-2">
       <p class="text-xs font-bold text-muted-foreground">

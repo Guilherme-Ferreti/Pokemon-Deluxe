@@ -9,6 +9,7 @@ use Inertia\ProvidesInertiaProperties;
 use Inertia\RenderContext;
 use Shared\Enums\EggIncubationStatus;
 use Shared\Models\EggIncubation;
+use Shared\ValueObjects\EggIncubatorIndex;
 
 final class NurseryPageProps implements ProvidesInertiaProperties
 {
@@ -52,6 +53,12 @@ final class NurseryPageProps implements ProvidesInertiaProperties
      */
     private function getIncubatorAvailabilityProp(): array
     {
-        return new GetEggIncubatorsAvailabilityAction()->handle(currentUser());
+        $availability = new GetEggIncubatorsAvailabilityAction()->handle(currentUser());
+
+        return [
+            'notPurchased' => array_map(fn (EggIncubatorIndex $index) => $index->value, $availability['notPurchased']),
+            'active'       => array_map(fn (EggIncubatorIndex $index) => $index->value, $availability['active']),
+            'idle'         => array_map(fn (EggIncubatorIndex $index) => $index->value, $availability['idle']),
+        ];
     }
 }

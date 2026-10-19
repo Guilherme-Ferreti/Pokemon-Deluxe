@@ -8,6 +8,11 @@ use Shared\ValueObjects\EggIncubatorIndex;
 
 final class LockKeys
 {
+    public static function eggIncubatorPurchase(string $userId): string
+    {
+        return "pokemon:lock:egg-incubator-purchase:user-{$userId}";
+    }
+
     public static function eggIncubatorPlaceEgg(string $userId, EggIncubatorIndex $eggIncubatorIndex): string
     {
         return "pokemon:lock:egg-incubator-place-egg:user-{$userId}:egg-incubator-{$eggIncubatorIndex->value}";

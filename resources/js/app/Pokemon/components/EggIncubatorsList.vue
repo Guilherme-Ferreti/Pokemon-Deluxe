@@ -4,8 +4,12 @@
       v-for="incubatorIndex in page.props.game.maxEggIncubatorsPerUser"
       :key="incubatorIndex"
     >
+      <EggIncubatorNotPurchasedCard
+        v-if="incubatorAvailability.notPurchased.includes(incubatorIndex)"
+        :egg-incubator-index="incubatorIndex"
+      />
       <EggIncubatorActiveCard
-        v-if="incubatorAvailability.active.includes(incubatorIndex)"
+        v-else-if="incubatorAvailability.active.includes(incubatorIndex)"
         :egg-incubation="getEggIncubationAtIndex(incubatorIndex)"
       />
       <EggIncubatorIdleCard
@@ -20,6 +24,7 @@
 import { usePage } from '@inertiajs/vue3';
 import EggIncubatorActiveCard from '@/app/Pokemon/components/EggIncubatorActiveCard.vue';
 import EggIncubatorIdleCard from '@/app/Pokemon/components/EggIncubatorIdleCard.vue';
+import EggIncubatorNotPurchasedCard from '@/app/Pokemon/components/EggIncubatorNotPurchasedCard.vue';
 import type { NurseryPageProps } from '@/app/Pokemon/types/page-props/NurseryPageProps';
 
 const props = defineProps<{
