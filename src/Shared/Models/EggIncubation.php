@@ -14,6 +14,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Override;
+use Shared\Casts\AsEggIncubatorIndex;
 use Shared\Enums\EggIncubationStatus;
 use Shared\Enums\PokemonGender;
 use Shared\ValueObjects\EggIncubatorIndex;
@@ -43,7 +44,7 @@ final class EggIncubation extends Model
     protected function casts(): array
     {
         return [
-            'egg_incubator_index' => EggIncubatorIndex::class,
+            'egg_incubator_index' => AsEggIncubatorIndex::class,
             'is_shiny'            => 'boolean',
             'gender'              => PokemonGender::class,
             'ready_to_hatch_at'   => 'datetime',

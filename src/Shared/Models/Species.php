@@ -16,6 +16,8 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Override;
+use Shared\Casts\AsSpeciesPortraits;
+use Shared\Casts\AsSpeciesSprites;
 use Shared\Enums\ElementalType;
 use Shared\Enums\Generation;
 use Shared\Enums\PokemonGender;
@@ -71,8 +73,8 @@ final class Species extends Model
             'capture_rate'   => 'integer',
             'gender_rate'    => 'integer',
             'egg_obtainable' => 'boolean',
-            'sprites'        => SpeciesSprites::class,
-            'portraits'      => SpeciesPortraits::class,
+            'sprites'        => AsSpeciesSprites::class,
+            'portraits'      => AsSpeciesPortraits::class,
         ];
     }
 
