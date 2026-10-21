@@ -34,37 +34,37 @@ final class SpeciesSeeder extends Seeder
 
     private function insertSpeciesFromFiles(): void
     {
-        $data = [];
+        $records = [];
 
         foreach ($this->getFilesList() as $path) {
             $speciesList = json_decode((string) file_get_contents($path), true);
 
             foreach ($speciesList as $species) {
-                $data[] = $this->getSpeciesInfo($species);
+                $records[] = $this->getSpeciesInfo($species);
             }
         }
 
-        collect($data)
-            ->chunk(100)
+        collect($records)
+            ->chunk(1000)
             ->each(fn (Collection $chunk) => Species::insert($chunk->toArray()));
     }
 
     private function insertSpeciesEvolutionFromFiles(): void
     {
-        $data = [];
+        $records = [];
 
         foreach ($this->getFilesList() as $path) {
             $speciesList = json_decode((string) file_get_contents($path), true);
 
             foreach ($speciesList as $species) {
-                $data[] = $this->getEvolutionInfo($species);
+                $records[] = $this->getEvolutionInfo($species);
             }
         }
 
-        collect($data)
+        collect($records)
             ->flatten(1)
             ->filter(fn (array $item) => $item !== [])
-            ->chunk(100)
+            ->chunk(1000)
             ->each(fn (Collection $chunk) => SpeciesEvolution::insert($chunk->toArray()));
     }
 

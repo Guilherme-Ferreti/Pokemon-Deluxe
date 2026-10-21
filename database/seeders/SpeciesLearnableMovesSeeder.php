@@ -28,14 +28,14 @@ final class SpeciesLearnableMovesSeeder extends Seeder
 
     private function insertMovesFromFiles(): void
     {
-        $data = [];
+        $records = [];
 
         foreach ($this->getFilesList() as $path) {
             $moves = json_decode((string) file_get_contents($path), true);
 
             foreach ($moves as $speciesId => $moves) {
                 foreach ($moves as $moveId => $move) {
-                    $data[] = [
+                    $records[] = [
                         'id'           => new SpeciesLearnableMove()->newUniqueId(),
                         'species_id'   => $this->speciesIds[$speciesId],
                         'move_id'      => $this->movesIds[$moveId],
@@ -46,8 +46,8 @@ final class SpeciesLearnableMovesSeeder extends Seeder
             }
         }
 
-        collect($data)
-            ->chunk(1000)
+        collect($records)
+            ->chunk(10000)
             ->each(fn (Collection $chunk) => SpeciesLearnableMove::insert($chunk->toArray()));
     }
 

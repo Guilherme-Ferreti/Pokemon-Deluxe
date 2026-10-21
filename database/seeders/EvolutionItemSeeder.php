@@ -15,10 +15,10 @@ final class EvolutionItemSeeder extends Seeder
 
         $items = json_decode((string) file_get_contents($path), true);
 
-        $data = [];
+        $records = [];
 
         foreach ($items as $item) {
-            $data[] = [
+            $records[] = [
                 'id'          => new EvolutionItem()->newUniqueId(),
                 'slug'        => $item['id'],
                 'name'        => $item['name'],
@@ -27,6 +27,6 @@ final class EvolutionItemSeeder extends Seeder
             ];
         }
 
-        EvolutionItem::insert($data);
+        EvolutionItem::insert($records);
     }
 }

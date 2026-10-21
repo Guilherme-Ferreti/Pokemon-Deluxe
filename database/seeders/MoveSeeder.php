@@ -19,14 +19,14 @@ final class MoveSeeder extends Seeder
 
         $moves = json_decode((string) file_get_contents($path), true);
 
-        $data = [];
+        $records = [];
 
         foreach ($moves as $move) {
-            $data[] = $this->getMoveInfo($move);
+            $records[] = $this->getMoveInfo($move);
         }
 
-        collect($data)
-            ->chunk(100)
+        collect($records)
+            ->chunk(500)
             ->each(fn (Collection $chunk) => Move::insert($chunk->toArray()));
     }
 

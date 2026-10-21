@@ -15,10 +15,10 @@ final class PokeballSeeder extends Seeder
 
         $pokeballs = json_decode((string) file_get_contents($path), true);
 
-        $data = [];
+        $records = [];
 
         foreach ($pokeballs as $pokeball) {
-            $data[] = [
+            $records[] = [
                 'id'           => new Pokeball()->newUniqueId(),
                 'slug'         => $pokeball['id'],
                 'name'         => $pokeball['name'],
@@ -29,6 +29,6 @@ final class PokeballSeeder extends Seeder
             ];
         }
 
-        Pokeball::insert($data);
+        Pokeball::insert($records);
     }
 }
