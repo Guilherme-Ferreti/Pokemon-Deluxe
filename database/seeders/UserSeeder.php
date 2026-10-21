@@ -9,7 +9,10 @@ use Illuminate\Database\Seeder;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
+use Shared\Enums\InventoryItemType;
 use Shared\Models\EggIncubation;
+use Shared\Models\EvolutionItem;
+use Shared\Models\InventoryItem;
 use Shared\Models\Pokeball;
 use Shared\Models\Pokemon;
 use Shared\Models\Species;
@@ -29,6 +32,7 @@ final class UserSeeder extends Seeder
         $this->addPokemonToBox($user);
         $this->attachMovesToPokemon($user);
         $this->addEggIncubations($user);
+        $this->addItemsToInventory($user);
     }
 
     private function addPokemonToParty(User $user): void
@@ -57,8 +61,8 @@ final class UserSeeder extends Seeder
             ->inRandomOrder()
             ->get()
             ->map(fn (Species $species): array => [
-                $this->prepareForInsert(Pokemon::factory()->for($user)->for($user, 'originalUser')->for($species)->recycle($pokeballs)->regular()->inBox()->make()),
-                $this->prepareForInsert(Pokemon::factory()->for($user)->for($user, 'originalUser')->for($species)->recycle($pokeballs)->shiny()->inBox()->make()),
+                $this->preparePokemonForInsert(Pokemon::factory()->for($user)->for($user, 'originalUser')->for($species)->recycle($pokeballs)->regular()->inBox()->make()),
+                $this->preparePokemonForInsert(Pokemon::factory()->for($user)->for($user, 'originalUser')->for($species)->recycle($pokeballs)->shiny()->inBox()->make()),
             ])
             ->flatten(1)
             ->chunk(1000)
@@ -68,7 +72,7 @@ final class UserSeeder extends Seeder
     /**
      * @return array<string, mixed>
      */
-    private function prepareForInsert(Pokemon $pokemon): array
+    private function preparePokemonForInsert(Pokemon $pokemon): array
     {
         $attributes = $pokemon->toArray();
 
@@ -164,5 +168,39 @@ final class UserSeeder extends Seeder
             ->for($user)
             ->recycle($species)
             ->create();
+    }
+
+    private function addItemsToInventory(User $user): void
+    {
+        $pokeballs = Pokeball::query()
+            ->get()
+            ->map(fn (Pokeball $pokeball) => [
+                'item_type' => InventoryItemType::POKEBALL->value,
+                'item_id'   => $pokeball->id,
+                'quantity'  => 10,
+            ])
+            ->toArray();
+
+        $evolutionItems = EvolutionItem::query()
+            ->get()
+            ->map(fn (EvolutionItem $evolutionItem) => [
+                'item_type' => InventoryItemType::EVOLUTION_ITEM->value,
+                'item_id'   => $evolutionItem->id,
+                'quantity'  => 2,
+            ])
+            ->toArray();
+
+        $addDefaultAttributes = fn (array $attributes) => [
+            ...$attributes,
+            'id'         => new InventoryItem()->newUniqueId(),
+            'user_id'    => $user->id,
+            'created_at' => now(),
+            'updated_at' => now(),
+        ];
+
+        $pokeballs      = array_map($addDefaultAttributes, $pokeballs);
+        $evolutionItems = array_map($addDefaultAttributes, $evolutionItems);
+
+        InventoryItem::insert([...$pokeballs, ...$evolutionItems]);
     }
 }
