@@ -7,6 +7,7 @@ namespace Shared\Providers;
 use BackedEnum;
 use Carbon\CarbonImmutable;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\Relation;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Response;
 use Illuminate\Support\Collection;
@@ -24,7 +25,10 @@ use InvalidArgumentException;
 use Override;
 use ReflectionEnum;
 use Shared\Base\DomainException;
+use Shared\Enums\InventoryItemType;
 use Shared\Helpers\ToastHelper;
+use Shared\Models\EvolutionItem;
+use Shared\Models\Pokeball;
 use Shared\ValueObjects\EggIncubatorIndex;
 
 final class AppServiceProvider extends ServiceProvider
@@ -44,6 +48,8 @@ final class AppServiceProvider extends ServiceProvider
         $this->configureInertiaExceptionHandling();
 
         $this->configureRouteBindings();
+
+        $this->configureMorphMap();
 
         $this->registerCollectionMacros();
     }
@@ -110,6 +116,14 @@ final class AppServiceProvider extends ServiceProvider
                 abort(Response::HTTP_NOT_FOUND);
             }
         });
+    }
+
+    private function configureMorphMap(): void
+    {
+        Relation::morphMap([
+            InventoryItemType::POKEBALL->value       => Pokeball::class,
+            InventoryItemType::EVOLUTION_ITEM->value => EvolutionItem::class,
+        ]);
     }
 
     private function registerCollectionMacros(): void
