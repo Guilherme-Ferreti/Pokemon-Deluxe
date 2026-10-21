@@ -1,5 +1,5 @@
 <template>
-  <span class="inline-block">
+  <span class="inline-flex items-center gap-[0.25ch]">
     {{ name }}
     <AppPokemonGenderIcon
       v-if="gender !== PokemonGender.GENDERLESS"
