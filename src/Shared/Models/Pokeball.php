@@ -19,7 +19,7 @@ use Shared\Enums\PokeballType;
  * @property string $description
  * @property string|null $sprite
  * @property PokeballType $type
- * @property float $capture_rate
+ * @property float $catch_rate
  */
 #[WithoutTimestamps]
 final class Pokeball extends Model
@@ -31,8 +31,8 @@ final class Pokeball extends Model
     protected function casts(): array
     {
         return [
-            'type'         => PokeballType::class,
-            'capture_rate' => 'float',
+            'type'       => PokeballType::class,
+            'catch_rate' => 'float',
         ];
     }
 }

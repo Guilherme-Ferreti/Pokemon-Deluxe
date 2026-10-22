@@ -28,7 +28,7 @@ return new class extends Migration
 
             $table->timestamp('ready_to_hatch_at');
             $table->timestamp('hatched_at')->nullable();
-            $table->timestamp('captured_at')->nullable();
+            $table->timestamp('caught_at')->nullable();
 
             $table->timestamps();
 
@@ -36,7 +36,7 @@ return new class extends Migration
         });
 
         DB::statement(
-            'create unique index incubations_user_id_incubator_index_active_unique on incubations (user_id, incubator_index) where captured_at is null',
+            'create unique index incubations_user_id_incubator_index_active_unique on incubations (user_id, incubator_index) where caught_at is null',
         );
     }
 

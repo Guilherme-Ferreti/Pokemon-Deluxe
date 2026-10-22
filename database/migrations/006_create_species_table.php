@@ -32,7 +32,7 @@ return new class extends Migration
             $table->boolean('is_gmax')->default(false);
 
             $table->unsignedTinyInteger('generation');
-            $table->unsignedTinyInteger('capture_rate')->nullable();
+            $table->unsignedTinyInteger('catch_rate')->nullable();
             $table->tinyInteger('gender_rate');
             $table->boolean('egg_obtainable')->default(false);
 

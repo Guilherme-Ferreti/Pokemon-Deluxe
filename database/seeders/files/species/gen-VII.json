@@ -30,7 +30,7 @@
         "is_mega": false,
         "is_gmax": false,
         "generation": 7,
-        "capture_rate": 45,
+        "catch_rate": 45,
         "gender_rate": 1,
         "egg_obtainable": true,
         "evolutions": [
@@ -73,7 +73,7 @@
         "is_mega": false,
         "is_gmax": false,
         "generation": 7,
-        "capture_rate": 45,
+        "catch_rate": 45,
         "gender_rate": 1,
         "egg_obtainable": false,
         "evolutions": [
@@ -122,7 +122,7 @@
         "is_mega": false,
         "is_gmax": false,
         "generation": 7,
-        "capture_rate": 45,
+        "catch_rate": 45,
         "gender_rate": 1,
         "egg_obtainable": false,
         "evolutions": []
@@ -158,7 +158,7 @@
         "is_mega": false,
         "is_gmax": false,
         "generation": 7,
-        "capture_rate": 45,
+        "catch_rate": 45,
         "gender_rate": 1,
         "egg_obtainable": false,
         "evolutions": []
@@ -193,7 +193,7 @@
         "is_mega": false,
         "is_gmax": false,
         "generation": 7,
-        "capture_rate": 45,
+        "catch_rate": 45,
         "gender_rate": 1,
         "egg_obtainable": true,
         "evolutions": [
@@ -235,7 +235,7 @@
         "is_mega": false,
         "is_gmax": false,
         "generation": 7,
-        "capture_rate": 45,
+        "catch_rate": 45,
         "gender_rate": 1,
         "egg_obtainable": false,
         "evolutions": [
@@ -278,7 +278,7 @@
         "is_mega": false,
         "is_gmax": false,
         "generation": 7,
-        "capture_rate": 45,
+        "catch_rate": 45,
         "gender_rate": 1,
         "egg_obtainable": false,
         "evolutions": []
@@ -313,7 +313,7 @@
         "is_mega": false,
         "is_gmax": false,
         "generation": 7,
-        "capture_rate": 45,
+        "catch_rate": 45,
         "gender_rate": 1,
         "egg_obtainable": true,
         "evolutions": [
@@ -355,7 +355,7 @@
         "is_mega": false,
         "is_gmax": false,
         "generation": 7,
-        "capture_rate": 45,
+        "catch_rate": 45,
         "gender_rate": 1,
         "egg_obtainable": false,
         "evolutions": [
@@ -398,7 +398,7 @@
         "is_mega": false,
         "is_gmax": false,
         "generation": 7,
-        "capture_rate": 45,
+        "catch_rate": 45,
         "gender_rate": 1,
         "egg_obtainable": false,
         "evolutions": []
@@ -434,7 +434,7 @@
         "is_mega": false,
         "is_gmax": false,
         "generation": 7,
-        "capture_rate": 255,
+        "catch_rate": 255,
         "gender_rate": 4,
         "egg_obtainable": true,
         "evolutions": [
@@ -477,7 +477,7 @@
         "is_mega": false,
         "is_gmax": false,
         "generation": 7,
-        "capture_rate": 120,
+        "catch_rate": 120,
         "gender_rate": 4,
         "egg_obtainable": false,
         "evolutions": [
@@ -520,7 +520,7 @@
         "is_mega": false,
         "is_gmax": false,
         "generation": 7,
-        "capture_rate": 45,
+        "catch_rate": 45,
         "gender_rate": 4,
         "egg_obtainable": false,
         "evolutions": []
@@ -555,7 +555,7 @@
         "is_mega": false,
         "is_gmax": false,
         "generation": 7,
-        "capture_rate": 255,
+        "catch_rate": 255,
         "gender_rate": 4,
         "egg_obtainable": true,
         "evolutions": [
@@ -597,7 +597,7 @@
         "is_mega": false,
         "is_gmax": false,
         "generation": 7,
-        "capture_rate": 127,
+        "catch_rate": 127,
         "gender_rate": 4,
         "egg_obtainable": false,
         "evolutions": []
@@ -632,7 +632,7 @@
         "is_mega": false,
         "is_gmax": false,
         "generation": 7,
-        "capture_rate": 255,
+        "catch_rate": 255,
         "gender_rate": 4,
         "egg_obtainable": true,
         "evolutions": [
@@ -675,7 +675,7 @@
         "is_mega": false,
         "is_gmax": false,
         "generation": 7,
-        "capture_rate": 120,
+        "catch_rate": 120,
         "gender_rate": 4,
         "egg_obtainable": false,
         "evolutions": [
@@ -718,7 +718,7 @@
         "is_mega": false,
         "is_gmax": false,
         "generation": 7,
-        "capture_rate": 45,
+        "catch_rate": 45,
         "gender_rate": 4,
         "egg_obtainable": false,
         "evolutions": []
@@ -753,7 +753,7 @@
         "is_mega": false,
         "is_gmax": false,
         "generation": 7,
-        "capture_rate": 225,
+        "catch_rate": 225,
         "gender_rate": 4,
         "egg_obtainable": true,
         "evolutions": [
@@ -796,7 +796,7 @@
         "is_mega": false,
         "is_gmax": false,
         "generation": 7,
-        "capture_rate": 60,
+        "catch_rate": 60,
         "gender_rate": 4,
         "egg_obtainable": false,
         "evolutions": [
@@ -839,7 +839,7 @@
         "is_mega": true,
         "is_gmax": false,
         "generation": 7,
-        "capture_rate": null,
+        "catch_rate": null,
         "gender_rate": 4,
         "egg_obtainable": false,
         "evolutions": []
@@ -875,7 +875,7 @@
         "is_mega": false,
         "is_gmax": false,
         "generation": 7,
-        "capture_rate": 45,
+        "catch_rate": 45,
         "gender_rate": 6,
         "egg_obtainable": true,
         "evolutions": []
@@ -911,7 +911,7 @@
         "is_mega": false,
         "is_gmax": false,
         "generation": 7,
-        "capture_rate": 45,
+        "catch_rate": 45,
         "gender_rate": 6,
         "egg_obtainable": true,
         "evolutions": []
@@ -947,7 +947,7 @@
         "is_mega": false,
         "is_gmax": false,
         "generation": 7,
-        "capture_rate": 45,
+        "catch_rate": 45,
         "gender_rate": 6,
         "egg_obtainable": true,
         "evolutions": []
@@ -983,7 +983,7 @@
         "is_mega": false,
         "is_gmax": false,
         "generation": 7,
-        "capture_rate": 45,
+        "catch_rate": 45,
         "gender_rate": 6,
         "egg_obtainable": true,
         "evolutions": []
@@ -1019,7 +1019,7 @@
         "is_mega": false,
         "is_gmax": false,
         "generation": 7,
-        "capture_rate": 190,
+        "catch_rate": 190,
         "gender_rate": 4,
         "egg_obtainable": true,
         "evolutions": [
@@ -1062,7 +1062,7 @@
         "is_mega": false,
         "is_gmax": false,
         "generation": 7,
-        "capture_rate": 75,
+        "catch_rate": 75,
         "gender_rate": 4,
         "egg_obtainable": false,
         "evolutions": []
@@ -1097,7 +1097,7 @@
         "is_mega": false,
         "is_gmax": false,
         "generation": 7,
-        "capture_rate": 190,
+        "catch_rate": 190,
         "gender_rate": 4,
         "egg_obtainable": true,
         "evolutions": [
@@ -1151,7 +1151,7 @@
         "is_mega": false,
         "is_gmax": false,
         "generation": 7,
-        "capture_rate": 90,
+        "catch_rate": 90,
         "gender_rate": 4,
         "egg_obtainable": false,
         "evolutions": []
@@ -1186,7 +1186,7 @@
         "is_mega": false,
         "is_gmax": false,
         "generation": 7,
-        "capture_rate": 90,
+        "catch_rate": 90,
         "gender_rate": 4,
         "egg_obtainable": false,
         "evolutions": []
@@ -1221,7 +1221,7 @@
         "is_mega": false,
         "is_gmax": false,
         "generation": 7,
-        "capture_rate": 90,
+        "catch_rate": 90,
         "gender_rate": 4,
         "egg_obtainable": false,
         "evolutions": []
@@ -1256,7 +1256,7 @@
         "is_mega": false,
         "is_gmax": false,
         "generation": 7,
-        "capture_rate": 60,
+        "catch_rate": 60,
         "gender_rate": 4,
         "egg_obtainable": true,
         "evolutions": []
@@ -1291,7 +1291,7 @@
         "is_mega": false,
         "is_gmax": false,
         "generation": 7,
-        "capture_rate": 60,
+        "catch_rate": 60,
         "gender_rate": 4,
         "egg_obtainable": true,
         "evolutions": []
@@ -1327,7 +1327,7 @@
         "is_mega": false,
         "is_gmax": false,
         "generation": 7,
-        "capture_rate": 190,
+        "catch_rate": 190,
         "gender_rate": 4,
         "egg_obtainable": true,
         "evolutions": [
@@ -1370,7 +1370,7 @@
         "is_mega": false,
         "is_gmax": false,
         "generation": 7,
-        "capture_rate": 75,
+        "catch_rate": 75,
         "gender_rate": 4,
         "egg_obtainable": false,
         "evolutions": []
@@ -1405,7 +1405,7 @@
         "is_mega": false,
         "is_gmax": false,
         "generation": 7,
-        "capture_rate": 190,
+        "catch_rate": 190,
         "gender_rate": 4,
         "egg_obtainable": true,
         "evolutions": [
@@ -1447,7 +1447,7 @@
         "is_mega": false,
         "is_gmax": false,
         "generation": 7,
-        "capture_rate": 60,
+        "catch_rate": 60,
         "gender_rate": 4,
         "egg_obtainable": false,
         "evolutions": []
@@ -1483,7 +1483,7 @@
         "is_mega": false,
         "is_gmax": false,
         "generation": 7,
-        "capture_rate": 200,
+        "catch_rate": 200,
         "gender_rate": 4,
         "egg_obtainable": true,
         "evolutions": [
@@ -1526,7 +1526,7 @@
         "is_mega": false,
         "is_gmax": false,
         "generation": 7,
-        "capture_rate": 100,
+        "catch_rate": 100,
         "gender_rate": 4,
         "egg_obtainable": false,
         "evolutions": []
@@ -1561,7 +1561,7 @@
         "is_mega": false,
         "is_gmax": false,
         "generation": 7,
-        "capture_rate": 190,
+        "catch_rate": 190,
         "gender_rate": 4,
         "egg_obtainable": true,
         "evolutions": [
@@ -1603,7 +1603,7 @@
         "is_mega": false,
         "is_gmax": false,
         "generation": 7,
-        "capture_rate": 75,
+        "catch_rate": 75,
         "gender_rate": 4,
         "egg_obtainable": false,
         "evolutions": []
@@ -1639,7 +1639,7 @@
         "is_mega": false,
         "is_gmax": false,
         "generation": 7,
-        "capture_rate": 190,
+        "catch_rate": 190,
         "gender_rate": 4,
         "egg_obtainable": true,
         "evolutions": [
@@ -1682,7 +1682,7 @@
         "is_mega": false,
         "is_gmax": false,
         "generation": 7,
-        "capture_rate": 75,
+        "catch_rate": 75,
         "gender_rate": 4,
         "egg_obtainable": false,
         "evolutions": []
@@ -1718,7 +1718,7 @@
         "is_mega": false,
         "is_gmax": false,
         "generation": 7,
-        "capture_rate": 120,
+        "catch_rate": 120,
         "gender_rate": 1,
         "egg_obtainable": true,
         "evolutions": [
@@ -1761,7 +1761,7 @@
         "is_mega": false,
         "is_gmax": false,
         "generation": 7,
-        "capture_rate": 45,
+        "catch_rate": 45,
         "gender_rate": 8,
         "egg_obtainable": false,
         "evolutions": []
@@ -1797,7 +1797,7 @@
         "is_mega": false,
         "is_gmax": false,
         "generation": 7,
-        "capture_rate": 140,
+        "catch_rate": 140,
         "gender_rate": 4,
         "egg_obtainable": true,
         "evolutions": [
@@ -1840,7 +1840,7 @@
         "is_mega": false,
         "is_gmax": false,
         "generation": 7,
-        "capture_rate": 70,
+        "catch_rate": 70,
         "gender_rate": 4,
         "egg_obtainable": false,
         "evolutions": []
@@ -1875,7 +1875,7 @@
         "is_mega": false,
         "is_gmax": false,
         "generation": 7,
-        "capture_rate": 235,
+        "catch_rate": 235,
         "gender_rate": 8,
         "egg_obtainable": true,
         "evolutions": [
@@ -1917,7 +1917,7 @@
         "is_mega": false,
         "is_gmax": false,
         "generation": 7,
-        "capture_rate": 120,
+        "catch_rate": 120,
         "gender_rate": 8,
         "egg_obtainable": false,
         "evolutions": [
@@ -1959,7 +1959,7 @@
         "is_mega": false,
         "is_gmax": false,
         "generation": 7,
-        "capture_rate": 45,
+        "catch_rate": 45,
         "gender_rate": 8,
         "egg_obtainable": false,
         "evolutions": []
@@ -1994,7 +1994,7 @@
         "is_mega": false,
         "is_gmax": false,
         "generation": 7,
-        "capture_rate": 60,
+        "catch_rate": 60,
         "gender_rate": 6,
         "egg_obtainable": true,
         "evolutions": []
@@ -2030,7 +2030,7 @@
         "is_mega": false,
         "is_gmax": false,
         "generation": 7,
-        "capture_rate": 45,
+        "catch_rate": 45,
         "gender_rate": 4,
         "egg_obtainable": true,
         "evolutions": []
@@ -2065,7 +2065,7 @@
         "is_mega": false,
         "is_gmax": false,
         "generation": 7,
-        "capture_rate": 45,
+        "catch_rate": 45,
         "gender_rate": 4,
         "egg_obtainable": true,
         "evolutions": []
@@ -2101,7 +2101,7 @@
         "is_mega": false,
         "is_gmax": false,
         "generation": 7,
-        "capture_rate": 90,
+        "catch_rate": 90,
         "gender_rate": 4,
         "egg_obtainable": true,
         "evolutions": [
@@ -2144,7 +2144,7 @@
         "is_mega": false,
         "is_gmax": false,
         "generation": 7,
-        "capture_rate": 45,
+        "catch_rate": 45,
         "gender_rate": 4,
         "egg_obtainable": false,
         "evolutions": [
@@ -2187,7 +2187,7 @@
         "is_mega": true,
         "is_gmax": false,
         "generation": 7,
-        "capture_rate": null,
+        "catch_rate": null,
         "gender_rate": 4,
         "egg_obtainable": false,
         "evolutions": []
@@ -2223,7 +2223,7 @@
         "is_mega": false,
         "is_gmax": false,
         "generation": 7,
-        "capture_rate": 140,
+        "catch_rate": 140,
         "gender_rate": 4,
         "egg_obtainable": true,
         "evolutions": [
@@ -2266,7 +2266,7 @@
         "is_mega": false,
         "is_gmax": false,
         "generation": 7,
-        "capture_rate": 60,
+        "catch_rate": 60,
         "gender_rate": 4,
         "egg_obtainable": false,
         "evolutions": []
@@ -2301,7 +2301,7 @@
         "is_mega": false,
         "is_gmax": false,
         "generation": 7,
-        "capture_rate": 60,
+        "catch_rate": 60,
         "gender_rate": 4,
         "egg_obtainable": true,
         "evolutions": []
@@ -2336,7 +2336,7 @@
         "is_mega": false,
         "is_gmax": false,
         "generation": 7,
-        "capture_rate": 3,
+        "catch_rate": 3,
         "gender_rate": -1,
         "egg_obtainable": true,
         "evolutions": [
@@ -2378,7 +2378,7 @@
         "is_mega": false,
         "is_gmax": false,
         "generation": 7,
-        "capture_rate": 3,
+        "catch_rate": 3,
         "gender_rate": -1,
         "egg_obtainable": false,
         "evolutions": []
@@ -2414,7 +2414,7 @@
         "is_mega": false,
         "is_gmax": false,
         "generation": 7,
-        "capture_rate": 30,
+        "catch_rate": 30,
         "gender_rate": -1,
         "egg_obtainable": true,
         "evolutions": []
@@ -2450,7 +2450,7 @@
         "is_mega": false,
         "is_gmax": false,
         "generation": 7,
-        "capture_rate": 30,
+        "catch_rate": 30,
         "gender_rate": -1,
         "egg_obtainable": true,
         "evolutions": []
@@ -2486,7 +2486,7 @@
         "is_mega": false,
         "is_gmax": false,
         "generation": 7,
-        "capture_rate": 30,
+        "catch_rate": 30,
         "gender_rate": -1,
         "egg_obtainable": true,
         "evolutions": []
@@ -2522,7 +2522,7 @@
         "is_mega": false,
         "is_gmax": false,
         "generation": 7,
-        "capture_rate": 30,
+        "catch_rate": 30,
         "gender_rate": -1,
         "egg_obtainable": true,
         "evolutions": []
@@ -2558,7 +2558,7 @@
         "is_mega": false,
         "is_gmax": false,
         "generation": 7,
-        "capture_rate": 30,
+        "catch_rate": 30,
         "gender_rate": -1,
         "egg_obtainable": true,
         "evolutions": []
@@ -2594,7 +2594,7 @@
         "is_mega": false,
         "is_gmax": false,
         "generation": 7,
-        "capture_rate": 30,
+        "catch_rate": 30,
         "gender_rate": -1,
         "egg_obtainable": true,
         "evolutions": []
@@ -2630,7 +2630,7 @@
         "is_mega": false,
         "is_gmax": false,
         "generation": 7,
-        "capture_rate": 30,
+        "catch_rate": 30,
         "gender_rate": -1,
         "egg_obtainable": true,
         "evolutions": []
@@ -2666,7 +2666,7 @@
         "is_mega": false,
         "is_gmax": false,
         "generation": 7,
-        "capture_rate": 30,
+        "catch_rate": 30,
         "gender_rate": -1,
         "egg_obtainable": true,
         "evolutions": []
@@ -2702,7 +2702,7 @@
         "is_mega": false,
         "is_gmax": false,
         "generation": 7,
-        "capture_rate": 30,
+        "catch_rate": 30,
         "gender_rate": -1,
         "egg_obtainable": true,
         "evolutions": []
@@ -2738,7 +2738,7 @@
         "is_mega": false,
         "is_gmax": false,
         "generation": 7,
-        "capture_rate": 30,
+        "catch_rate": 30,
         "gender_rate": -1,
         "egg_obtainable": true,
         "evolutions": []
@@ -2774,7 +2774,7 @@
         "is_mega": false,
         "is_gmax": false,
         "generation": 7,
-        "capture_rate": 30,
+        "catch_rate": 30,
         "gender_rate": -1,
         "egg_obtainable": true,
         "evolutions": []
@@ -2810,7 +2810,7 @@
         "is_mega": false,
         "is_gmax": false,
         "generation": 7,
-        "capture_rate": 30,
+        "catch_rate": 30,
         "gender_rate": -1,
         "egg_obtainable": true,
         "evolutions": []
@@ -2846,7 +2846,7 @@
         "is_mega": false,
         "is_gmax": false,
         "generation": 7,
-        "capture_rate": 30,
+        "catch_rate": 30,
         "gender_rate": -1,
         "egg_obtainable": true,
         "evolutions": []
@@ -2882,7 +2882,7 @@
         "is_mega": false,
         "is_gmax": false,
         "generation": 7,
-        "capture_rate": 30,
+        "catch_rate": 30,
         "gender_rate": -1,
         "egg_obtainable": true,
         "evolutions": []
@@ -2917,7 +2917,7 @@
         "is_mega": false,
         "is_gmax": false,
         "generation": 7,
-        "capture_rate": 45,
+        "catch_rate": 45,
         "gender_rate": 4,
         "egg_obtainable": true,
         "evolutions": []
@@ -2953,7 +2953,7 @@
         "is_mega": false,
         "is_gmax": false,
         "generation": 7,
-        "capture_rate": 70,
+        "catch_rate": 70,
         "gender_rate": 4,
         "egg_obtainable": true,
         "evolutions": []
@@ -2989,7 +2989,7 @@
         "is_mega": false,
         "is_gmax": false,
         "generation": 7,
-        "capture_rate": 180,
+        "catch_rate": 180,
         "gender_rate": 4,
         "egg_obtainable": true,
         "evolutions": []
@@ -3025,7 +3025,7 @@
         "is_mega": false,
         "is_gmax": false,
         "generation": 7,
-        "capture_rate": 45,
+        "catch_rate": 45,
         "gender_rate": 4,
         "egg_obtainable": true,
         "evolutions": []
@@ -3061,7 +3061,7 @@
         "is_mega": false,
         "is_gmax": false,
         "generation": 7,
-        "capture_rate": 45,
+        "catch_rate": 45,
         "gender_rate": 4,
         "egg_obtainable": true,
         "evolutions": []
@@ -3097,7 +3097,7 @@
         "is_mega": false,
         "is_gmax": false,
         "generation": 7,
-        "capture_rate": 80,
+        "catch_rate": 80,
         "gender_rate": 4,
         "egg_obtainable": true,
         "evolutions": []
@@ -3133,7 +3133,7 @@
         "is_mega": false,
         "is_gmax": false,
         "generation": 7,
-        "capture_rate": 70,
+        "catch_rate": 70,
         "gender_rate": 4,
         "egg_obtainable": true,
         "evolutions": [
@@ -3176,7 +3176,7 @@
         "is_mega": true,
         "is_gmax": false,
         "generation": 7,
-        "capture_rate": null,
+        "catch_rate": null,
         "gender_rate": 4,
         "egg_obtainable": false,
         "evolutions": []
@@ -3212,7 +3212,7 @@
         "is_mega": false,
         "is_gmax": false,
         "generation": 7,
-        "capture_rate": 25,
+        "catch_rate": 25,
         "gender_rate": -1,
         "egg_obtainable": true,
         "evolutions": []
@@ -3247,7 +3247,7 @@
         "is_mega": false,
         "is_gmax": false,
         "generation": 7,
-        "capture_rate": 45,
+        "catch_rate": 45,
         "gender_rate": 4,
         "egg_obtainable": true,
         "evolutions": [
@@ -3290,7 +3290,7 @@
         "is_mega": false,
         "is_gmax": false,
         "generation": 7,
-        "capture_rate": 45,
+        "catch_rate": 45,
         "gender_rate": 4,
         "egg_obtainable": false,
         "evolutions": [
@@ -3333,7 +3333,7 @@
         "is_mega": false,
         "is_gmax": false,
         "generation": 7,
-        "capture_rate": 45,
+        "catch_rate": 45,
         "gender_rate": 4,
         "egg_obtainable": false,
         "evolutions": []
@@ -3369,7 +3369,7 @@
         "is_mega": false,
         "is_gmax": false,
         "generation": 7,
-        "capture_rate": 3,
+        "catch_rate": 3,
         "gender_rate": -1,
         "egg_obtainable": true,
         "evolutions": []
@@ -3405,7 +3405,7 @@
         "is_mega": false,
         "is_gmax": false,
         "generation": 7,
-        "capture_rate": 3,
+        "catch_rate": 3,
         "gender_rate": -1,
         "egg_obtainable": true,
         "evolutions": []
@@ -3441,7 +3441,7 @@
         "is_mega": false,
         "is_gmax": false,
         "generation": 7,
-        "capture_rate": 3,
+        "catch_rate": 3,
         "gender_rate": -1,
         "egg_obtainable": true,
         "evolutions": []
@@ -3477,7 +3477,7 @@
         "is_mega": false,
         "is_gmax": false,
         "generation": 7,
-        "capture_rate": 3,
+        "catch_rate": 3,
         "gender_rate": -1,
         "egg_obtainable": true,
         "evolutions": []
@@ -3512,7 +3512,7 @@
         "is_mega": false,
         "is_gmax": false,
         "generation": 7,
-        "capture_rate": 45,
+        "catch_rate": 45,
         "gender_rate": -1,
         "egg_obtainable": true,
         "evolutions": [
@@ -3554,7 +3554,7 @@
         "is_mega": false,
         "is_gmax": false,
         "generation": 7,
-        "capture_rate": 45,
+        "catch_rate": 45,
         "gender_rate": -1,
         "egg_obtainable": false,
         "evolutions": [
@@ -3603,7 +3603,7 @@
         "is_mega": false,
         "is_gmax": false,
         "generation": 7,
-        "capture_rate": 45,
+        "catch_rate": 45,
         "gender_rate": -1,
         "egg_obtainable": false,
         "evolutions": []
@@ -3639,7 +3639,7 @@
         "is_mega": false,
         "is_gmax": false,
         "generation": 7,
-        "capture_rate": 45,
+        "catch_rate": 45,
         "gender_rate": -1,
         "egg_obtainable": false,
         "evolutions": []
@@ -3675,7 +3675,7 @@
         "is_mega": false,
         "is_gmax": false,
         "generation": 7,
-        "capture_rate": 45,
+        "catch_rate": 45,
         "gender_rate": -1,
         "egg_obtainable": true,
         "evolutions": []
@@ -3711,7 +3711,7 @@
         "is_mega": false,
         "is_gmax": false,
         "generation": 7,
-        "capture_rate": 45,
+        "catch_rate": 45,
         "gender_rate": -1,
         "egg_obtainable": true,
         "evolutions": []
@@ -3747,7 +3747,7 @@
         "is_mega": false,
         "is_gmax": false,
         "generation": 7,
-        "capture_rate": 45,
+        "catch_rate": 45,
         "gender_rate": -1,
         "egg_obtainable": true,
         "evolutions": []
@@ -3782,7 +3782,7 @@
         "is_mega": false,
         "is_gmax": false,
         "generation": 7,
-        "capture_rate": 45,
+        "catch_rate": 45,
         "gender_rate": -1,
         "egg_obtainable": true,
         "evolutions": []
@@ -3818,7 +3818,7 @@
         "is_mega": false,
         "is_gmax": false,
         "generation": 7,
-        "capture_rate": 45,
+        "catch_rate": 45,
         "gender_rate": -1,
         "egg_obtainable": true,
         "evolutions": []
@@ -3854,7 +3854,7 @@
         "is_mega": false,
         "is_gmax": false,
         "generation": 7,
-        "capture_rate": 45,
+        "catch_rate": 45,
         "gender_rate": -1,
         "egg_obtainable": true,
         "evolutions": []
@@ -3890,7 +3890,7 @@
         "is_mega": false,
         "is_gmax": false,
         "generation": 7,
-        "capture_rate": 45,
+        "catch_rate": 45,
         "gender_rate": -1,
         "egg_obtainable": true,
         "evolutions": []
@@ -3925,7 +3925,7 @@
         "is_mega": false,
         "is_gmax": false,
         "generation": 7,
-        "capture_rate": 255,
+        "catch_rate": 255,
         "gender_rate": -1,
         "egg_obtainable": true,
         "evolutions": []
@@ -3961,7 +3961,7 @@
         "is_mega": false,
         "is_gmax": false,
         "generation": 7,
-        "capture_rate": 255,
+        "catch_rate": 255,
         "gender_rate": -1,
         "egg_obtainable": true,
         "evolutions": []
@@ -3997,7 +3997,7 @@
         "is_mega": false,
         "is_gmax": false,
         "generation": 7,
-        "capture_rate": 255,
+        "catch_rate": 255,
         "gender_rate": -1,
         "egg_obtainable": true,
         "evolutions": []
@@ -4033,7 +4033,7 @@
         "is_mega": false,
         "is_gmax": false,
         "generation": 7,
-        "capture_rate": 255,
+        "catch_rate": 255,
         "gender_rate": -1,
         "egg_obtainable": true,
         "evolutions": []
@@ -4069,7 +4069,7 @@
         "is_mega": false,
         "is_gmax": false,
         "generation": 7,
-        "capture_rate": 3,
+        "catch_rate": 3,
         "gender_rate": -1,
         "egg_obtainable": true,
         "evolutions": [
@@ -4112,7 +4112,7 @@
         "is_mega": false,
         "is_gmax": false,
         "generation": 7,
-        "capture_rate": 3,
+        "catch_rate": 3,
         "gender_rate": -1,
         "egg_obtainable": true,
         "evolutions": [
@@ -4155,7 +4155,7 @@
         "is_mega": true,
         "is_gmax": false,
         "generation": 7,
-        "capture_rate": null,
+        "catch_rate": null,
         "gender_rate": -1,
         "egg_obtainable": false,
         "evolutions": []
@@ -4191,7 +4191,7 @@
         "is_mega": true,
         "is_gmax": false,
         "generation": 7,
-        "capture_rate": null,
+        "catch_rate": null,
         "gender_rate": -1,
         "egg_obtainable": false,
         "evolutions": []
@@ -4227,7 +4227,7 @@
         "is_mega": false,
         "is_gmax": false,
         "generation": 7,
-        "capture_rate": 3,
+        "catch_rate": 3,
         "gender_rate": -1,
         "egg_obtainable": true,
         "evolutions": []
@@ -4262,7 +4262,7 @@
         "is_mega": false,
         "is_gmax": false,
         "generation": 7,
-        "capture_rate": 45,
+        "catch_rate": 45,
         "gender_rate": -1,
         "egg_obtainable": true,
         "evolutions": [
@@ -4305,7 +4305,7 @@
         "is_mega": false,
         "is_gmax": false,
         "generation": 7,
-        "capture_rate": 45,
+        "catch_rate": 45,
         "gender_rate": -1,
         "egg_obtainable": false,
         "evolutions": []
@@ -4341,7 +4341,7 @@
         "is_mega": false,
         "is_gmax": false,
         "generation": 7,
-        "capture_rate": 30,
+        "catch_rate": 30,
         "gender_rate": -1,
         "egg_obtainable": true,
         "evolutions": []
@@ -4377,7 +4377,7 @@
         "is_mega": false,
         "is_gmax": false,
         "generation": 7,
-        "capture_rate": 30,
+        "catch_rate": 30,
         "gender_rate": -1,
         "egg_obtainable": true,
         "evolutions": []
@@ -4412,7 +4412,7 @@
         "is_mega": false,
         "is_gmax": false,
         "generation": 7,
-        "capture_rate": 3,
+        "catch_rate": 3,
         "gender_rate": -1,
         "egg_obtainable": true,
         "evolutions": [
@@ -4454,7 +4454,7 @@
         "is_mega": true,
         "is_gmax": false,
         "generation": 7,
-        "capture_rate": null,
+        "catch_rate": null,
         "gender_rate": -1,
         "egg_obtainable": false,
         "evolutions": []
@@ -4489,7 +4489,7 @@
         "is_mega": false,
         "is_gmax": false,
         "generation": 7,
-        "capture_rate": 3,
+        "catch_rate": 3,
         "gender_rate": -1,
         "egg_obtainable": true,
         "evolutions": [
@@ -4531,7 +4531,7 @@
         "is_mega": false,
         "is_gmax": false,
         "generation": 7,
-        "capture_rate": 3,
+        "catch_rate": 3,
         "gender_rate": -1,
         "egg_obtainable": false,
         "evolutions": [
@@ -4573,7 +4573,7 @@
         "is_mega": false,
         "is_gmax": true,
         "generation": 7,
-        "capture_rate": null,
+        "catch_rate": null,
         "gender_rate": -1,
         "egg_obtainable": false,
         "evolutions": []
@@ -4609,7 +4609,7 @@
         "is_mega": false,
         "is_gmax": false,
         "generation": 7,
-        "capture_rate": 255,
+        "catch_rate": 255,
         "gender_rate": 4,
         "egg_obtainable": true,
         "evolutions": [
@@ -4652,7 +4652,7 @@
         "is_mega": false,
         "is_gmax": false,
         "generation": 7,
-        "capture_rate": 127,
+        "catch_rate": 127,
         "gender_rate": 4,
         "egg_obtainable": false,
         "evolutions": []
@@ -4688,7 +4688,7 @@
         "is_mega": false,
         "is_gmax": false,
         "generation": 7,
-        "capture_rate": 75,
+        "catch_rate": 75,
         "gender_rate": 4,
         "egg_obtainable": false,
         "evolutions": []
@@ -4724,7 +4724,7 @@
         "is_mega": false,
         "is_gmax": false,
         "generation": 7,
-        "capture_rate": 255,
+        "catch_rate": 255,
         "gender_rate": 4,
         "egg_obtainable": true,
         "evolutions": [
@@ -4767,7 +4767,7 @@
         "is_mega": false,
         "is_gmax": false,
         "generation": 7,
-        "capture_rate": 90,
+        "catch_rate": 90,
         "gender_rate": 4,
         "egg_obtainable": false,
         "evolutions": []
@@ -4802,7 +4802,7 @@
         "is_mega": false,
         "is_gmax": false,
         "generation": 7,
-        "capture_rate": 190,
+        "catch_rate": 190,
         "gender_rate": 6,
         "egg_obtainable": true,
         "evolutions": [
@@ -4845,7 +4845,7 @@
         "is_mega": false,
         "is_gmax": false,
         "generation": 7,
-        "capture_rate": 75,
+        "catch_rate": 75,
         "gender_rate": 6,
         "egg_obtainable": false,
         "evolutions": []
@@ -4881,7 +4881,7 @@
         "is_mega": false,
         "is_gmax": false,
         "generation": 7,
-        "capture_rate": 255,
+        "catch_rate": 255,
         "gender_rate": 4,
         "egg_obtainable": true,
         "evolutions": [
@@ -4924,7 +4924,7 @@
         "is_mega": false,
         "is_gmax": false,
         "generation": 7,
-        "capture_rate": 50,
+        "catch_rate": 50,
         "gender_rate": 4,
         "egg_obtainable": false,
         "evolutions": []
@@ -4959,7 +4959,7 @@
         "is_mega": false,
         "is_gmax": false,
         "generation": 7,
-        "capture_rate": 255,
+        "catch_rate": 255,
         "gender_rate": 4,
         "egg_obtainable": true,
         "evolutions": [
@@ -5001,7 +5001,7 @@
         "is_mega": false,
         "is_gmax": false,
         "generation": 7,
-        "capture_rate": 90,
+        "catch_rate": 90,
         "gender_rate": 4,
         "egg_obtainable": false,
         "evolutions": []
@@ -5037,7 +5037,7 @@
         "is_mega": false,
         "is_gmax": false,
         "generation": 7,
-        "capture_rate": 255,
+        "catch_rate": 255,
         "gender_rate": 4,
         "egg_obtainable": true,
         "evolutions": [
@@ -5080,7 +5080,7 @@
         "is_mega": false,
         "is_gmax": false,
         "generation": 7,
-        "capture_rate": 120,
+        "catch_rate": 120,
         "gender_rate": 4,
         "egg_obtainable": false,
         "evolutions": [
@@ -5123,7 +5123,7 @@
         "is_mega": false,
         "is_gmax": false,
         "generation": 7,
-        "capture_rate": 45,
+        "catch_rate": 45,
         "gender_rate": 4,
         "egg_obtainable": false,
         "evolutions": []
@@ -5159,7 +5159,7 @@
         "is_mega": false,
         "is_gmax": false,
         "generation": 7,
-        "capture_rate": 190,
+        "catch_rate": 190,
         "gender_rate": 4,
         "egg_obtainable": true,
         "evolutions": [
@@ -5202,7 +5202,7 @@
         "is_mega": false,
         "is_gmax": false,
         "generation": 7,
-        "capture_rate": 75,
+        "catch_rate": 75,
         "gender_rate": 4,
         "egg_obtainable": false,
         "evolutions": []
@@ -5238,7 +5238,7 @@
         "is_mega": false,
         "is_gmax": false,
         "generation": 7,
-        "capture_rate": 45,
+        "catch_rate": 45,
         "gender_rate": 4,
         "egg_obtainable": false,
         "evolutions": []
@@ -5274,7 +5274,7 @@
         "is_mega": false,
         "is_gmax": false,
         "generation": 7,
-        "capture_rate": 75,
+        "catch_rate": 75,
         "gender_rate": 4,
         "egg_obtainable": false,
         "evolutions": []

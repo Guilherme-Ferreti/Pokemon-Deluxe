@@ -167,14 +167,14 @@ it('displays the damage taken card', function () {
         ->assertPresent('@pokedex-species-damage-taken');
 });
 
-it('displays the capture statistics card', function () {
+it('displays the catch statistics card', function () {
     $user    = User::factory()->create();
     $species = Species::factory()->create();
 
     actingAs($user);
 
     visit(route('dex.web.pokedex.show', $species))
-        ->assertPresent('@pokedex-species-capture-statistics');
+        ->assertPresent('@pokedex-species-catch-statistics');
 });
 
 describe('autocomplete search', function () {

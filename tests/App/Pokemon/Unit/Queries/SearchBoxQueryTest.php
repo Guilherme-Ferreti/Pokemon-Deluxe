@@ -23,7 +23,7 @@ function makeSearchBoxFilters(
     array $types = [],
     array $traits = [],
     array $generations = [],
-    SearchBoxSortBy $sort = SearchBoxSortBy::CAPTURE_DATE,
+    SearchBoxSortBy $sort = SearchBoxSortBy::CATCH_DATE,
     SortDirection $dir = SortDirection::DESC,
 ): SearchBoxFilters {
     return new SearchBoxFilters(
@@ -203,12 +203,12 @@ it('sorts box pokemon by the given column and direction', function (SearchBoxSor
 
     expect($descResult->pluck('id')->all())->toBe([$highId, $midId, $lowId]);
 })->with([
-    'capture date' => [
-        SearchBoxSortBy::CAPTURE_DATE,
+    'catch date' => [
+        SearchBoxSortBy::CATCH_DATE,
         function (User $user): array {
-            $low  = Pokemon::factory()->for($user)->inBox()->create(['captured_at' => now()->subDays(3)]);
-            $mid  = Pokemon::factory()->for($user)->inBox()->create(['captured_at' => now()->subDays(2)]);
-            $high = Pokemon::factory()->for($user)->inBox()->create(['captured_at' => now()->subDays(1)]);
+            $low  = Pokemon::factory()->for($user)->inBox()->create(['caught_at' => now()->subDays(3)]);
+            $mid  = Pokemon::factory()->for($user)->inBox()->create(['caught_at' => now()->subDays(2)]);
+            $high = Pokemon::factory()->for($user)->inBox()->create(['caught_at' => now()->subDays(1)]);
 
             return [$low->id, $mid->id, $high->id];
         },

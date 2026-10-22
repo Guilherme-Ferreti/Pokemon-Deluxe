@@ -40,7 +40,7 @@ final class SearchBoxFilters implements Filter
             'types'       => $request->collect('types')->toUniqueEnums(ElementalType::class)->take(2),
             'traits'      => $request->collect('traits')->toUniqueEnums(PokemonTrait::class),
             'generations' => $request->collect('generations')->toUniqueEnums(Generation::class),
-            'sort'        => $request->enum('sort', SearchBoxSortBy::class, SearchBoxSortBy::CAPTURE_DATE),
+            'sort'        => $request->enum('sort', SearchBoxSortBy::class, SearchBoxSortBy::CATCH_DATE),
             'dir'         => $request->enum('dir', SortDirection::class, SortDirection::DESC),
         ]);
     }

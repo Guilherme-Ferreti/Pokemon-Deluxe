@@ -6,7 +6,7 @@
     "sprite": "https:\/\/raw.githubusercontent.com\/PokeAPI\/sprites\/master\/sprites\/items\/master-ball.png",
     "description": "A pokeball used to catch a wild Pokémon using a catch rate of 255x.",
     "type": "standard",
-    "capture_rate": 255
+    "catch_rate": 255
   },
   {
     "id": "ultra-ball",
@@ -15,7 +15,7 @@
     "sprite": "https:\/\/raw.githubusercontent.com\/PokeAPI\/sprites\/master\/sprites\/items\/ultra-ball.png",
     "description": "A pokeball used to catch a wild Pokémon using a catch rate of 2x.",
     "type": "standard",
-    "capture_rate": 2
+    "catch_rate": 2
   },
   {
     "id": "great-ball",
@@ -24,7 +24,7 @@
     "sprite": "https:\/\/raw.githubusercontent.com\/PokeAPI\/sprites\/master\/sprites\/items\/great-ball.png",
     "description": "A pokeball used to catch a wild Pokémon using a catch rate of 1.5x.",
     "type": "standard",
-    "capture_rate": 1.5
+    "catch_rate": 1.5
   },
   {
     "id": "poke-ball",
@@ -33,7 +33,7 @@
     "sprite": "https:\/\/raw.githubusercontent.com\/PokeAPI\/sprites\/master\/sprites\/items\/poke-ball.png",
     "description": "A pokeball used to catch a wild Pokémon using a catch rate of 1x.",
     "type": "standard",
-    "capture_rate": 1
+    "catch_rate": 1
   },
   {
     "id": "safari-ball",
@@ -42,7 +42,7 @@
     "sprite": "https:\/\/raw.githubusercontent.com\/PokeAPI\/sprites\/master\/sprites\/items\/safari-ball.png",
     "description": "A pokeball used to catch a wild Pokémon using a catch rate of 1.5x.",
     "type": "standard",
-    "capture_rate": 1.5
+    "catch_rate": 1.5
   },
   {
     "id": "park-ball",
@@ -51,7 +51,7 @@
     "sprite": "https:\/\/raw.githubusercontent.com\/PokeAPI\/sprites\/master\/sprites\/items\/park-ball.png",
     "description": "A pokeball used to catch a wild Pokémon using a catch rate of 255x.",
     "type": "standard",
-    "capture_rate": 255
+    "catch_rate": 255
   },
   {
     "id": "sport-ball",
@@ -60,7 +60,7 @@
     "sprite": "https:\/\/raw.githubusercontent.com\/PokeAPI\/sprites\/master\/sprites\/items\/sport-ball.png",
     "description": "A pokeball used to catch a wild Pokémon using a catch rate of 1.5x.",
     "type": "standard",
-    "capture_rate": 1.5
+    "catch_rate": 1.5
   },
   {
     "id": "net-ball",
@@ -69,7 +69,7 @@
     "sprite": "https:\/\/raw.githubusercontent.com\/PokeAPI\/sprites\/master\/sprites\/items\/net-ball.png",
     "description": "A pokeball used to catch a wild Pokémon using a catch rate of 1x.",
     "type": "special",
-    "capture_rate": 1
+    "catch_rate": 1
   },
   {
     "id": "dive-ball",
@@ -78,7 +78,7 @@
     "sprite": "https:\/\/raw.githubusercontent.com\/PokeAPI\/sprites\/master\/sprites\/items\/dive-ball.png",
     "description": "A pokeball used to catch a wild Pokémon using a catch rate of 1x.",
     "type": "special",
-    "capture_rate": 1
+    "catch_rate": 1
   },
   {
     "id": "nest-ball",
@@ -87,7 +87,7 @@
     "sprite": "https:\/\/raw.githubusercontent.com\/PokeAPI\/sprites\/master\/sprites\/items\/nest-ball.png",
     "description": "A pokeball used to catch a wild Pokémon using a catch rate of 1x.",
     "type": "special",
-    "capture_rate": 1
+    "catch_rate": 1
   },
   {
     "id": "repeat-ball",
@@ -96,7 +96,7 @@
     "sprite": "https:\/\/raw.githubusercontent.com\/PokeAPI\/sprites\/master\/sprites\/items\/repeat-ball.png",
     "description": "A pokeball used to catch a wild Pokémon using a catch rate of 1x.",
     "type": "special",
-    "capture_rate": 1
+    "catch_rate": 1
   },
   {
     "id": "timer-ball",
@@ -105,7 +105,7 @@
     "sprite": "https:\/\/raw.githubusercontent.com\/PokeAPI\/sprites\/master\/sprites\/items\/timer-ball.png",
     "description": "A pokeball used to catch a wild Pokémon using a catch rate of 1x.",
     "type": "special",
-    "capture_rate": 1
+    "catch_rate": 1
   },
   {
     "id": "luxury-ball",
@@ -114,7 +114,7 @@
     "sprite": "https:\/\/raw.githubusercontent.com\/PokeAPI\/sprites\/master\/sprites\/items\/luxury-ball.png",
     "description": "A pokeball used to catch a wild Pokémon using a catch rate of 1x.",
     "type": "special",
-    "capture_rate": 1
+    "catch_rate": 1
   },
   {
     "id": "premier-ball",
@@ -123,7 +123,7 @@
     "sprite": "https:\/\/raw.githubusercontent.com\/PokeAPI\/sprites\/master\/sprites\/items\/premier-ball.png",
     "description": "A pokeball used to catch a wild Pokémon using a catch rate of 1x.",
     "type": "special",
-    "capture_rate": 1
+    "catch_rate": 1
   },
   {
     "id": "dusk-ball",
@@ -132,7 +132,7 @@
     "sprite": "https:\/\/raw.githubusercontent.com\/PokeAPI\/sprites\/master\/sprites\/items\/dusk-ball.png",
     "description": "A pokeball used to catch a wild Pokémon using a catch rate of 1x.",
     "type": "special",
-    "capture_rate": 1
+    "catch_rate": 1
   },
   {
     "id": "heal-ball",
@@ -141,7 +141,7 @@
     "sprite": "https:\/\/raw.githubusercontent.com\/PokeAPI\/sprites\/master\/sprites\/items\/heal-ball.png",
     "description": "A pokeball used to catch a wild Pokémon using a catch rate of 1x.",
     "type": "special",
-    "capture_rate": 1
+    "catch_rate": 1
   },
   {
     "id": "quick-ball",
@@ -150,7 +150,7 @@
     "sprite": "https:\/\/raw.githubusercontent.com\/PokeAPI\/sprites\/master\/sprites\/items\/quick-ball.png",
     "description": "A pokeball used to catch a wild Pokémon using a catch rate of 1x.",
     "type": "special",
-    "capture_rate": 1
+    "catch_rate": 1
   },
   {
     "id": "cherish-ball",
@@ -159,7 +159,7 @@
     "sprite": "https:\/\/raw.githubusercontent.com\/PokeAPI\/sprites\/master\/sprites\/items\/cherish-ball.png",
     "description": "A pokeball used to catch a wild Pokémon using a catch rate of 1x.",
     "type": "special",
-    "capture_rate": 1
+    "catch_rate": 1
   },
   {
     "id": "dream-ball",
@@ -168,7 +168,7 @@
     "sprite": "https:\/\/raw.githubusercontent.com\/PokeAPI\/sprites\/master\/sprites\/items\/dream-ball.png",
     "description": "A pokeball used to catch a wild Pokémon using a catch rate of 1x.",
     "type": "special",
-    "capture_rate": 1
+    "catch_rate": 1
   },
   {
     "id": "beast-ball",
@@ -177,7 +177,7 @@
     "sprite": "https:\/\/raw.githubusercontent.com\/PokeAPI\/sprites\/master\/sprites\/items\/beast-ball.png",
     "description": "A pokeball used to catch a wild Pokémon using a catch rate of 0.1x.",
     "type": "special",
-    "capture_rate": 0.1
+    "catch_rate": 0.1
   },
   {
     "id": "lure-ball",
@@ -186,7 +186,7 @@
     "sprite": "https:\/\/raw.githubusercontent.com\/PokeAPI\/sprites\/master\/sprites\/items\/lure-ball.png",
     "description": "A pokeball used to catch a wild Pokémon using a catch rate of 1x.",
     "type": "apricorn",
-    "capture_rate": 1
+    "catch_rate": 1
   },
   {
     "id": "level-ball",
@@ -195,7 +195,7 @@
     "sprite": "https:\/\/raw.githubusercontent.com\/PokeAPI\/sprites\/master\/sprites\/items\/level-ball.png",
     "description": "A pokeball used to catch a wild Pokémon using a catch rate of 1x.",
     "type": "apricorn",
-    "capture_rate": 1
+    "catch_rate": 1
   },
   {
     "id": "moon-ball",
@@ -204,7 +204,7 @@
     "sprite": "https:\/\/raw.githubusercontent.com\/PokeAPI\/sprites\/master\/sprites\/items\/moon-ball.png",
     "description": "A pokeball used to catch a wild Pokémon using a catch rate of 1x.",
     "type": "apricorn",
-    "capture_rate": 1
+    "catch_rate": 1
   },
   {
     "id": "heavy-ball",
@@ -213,7 +213,7 @@
     "sprite": "https:\/\/raw.githubusercontent.com\/PokeAPI\/sprites\/master\/sprites\/items\/heavy-ball.png",
     "description": "A pokeball used to catch a wild Pokémon using a catch rate of 1x.",
     "type": "apricorn",
-    "capture_rate": 1
+    "catch_rate": 1
   },
   {
     "id": "fast-ball",
@@ -222,7 +222,7 @@
     "sprite": "https:\/\/raw.githubusercontent.com\/PokeAPI\/sprites\/master\/sprites\/items\/fast-ball.png",
     "description": "A pokeball used to catch a wild Pokémon using a catch rate of 1x.",
     "type": "apricorn",
-    "capture_rate": 1
+    "catch_rate": 1
   },
   {
     "id": "friend-ball",
@@ -231,7 +231,7 @@
     "sprite": "https:\/\/raw.githubusercontent.com\/PokeAPI\/sprites\/master\/sprites\/items\/friend-ball.png",
     "description": "A pokeball used to catch a wild Pokémon using a catch rate of 1x.",
     "type": "apricorn",
-    "capture_rate": 1
+    "catch_rate": 1
   },
   {
     "id": "love-ball",
@@ -240,6 +240,6 @@
     "sprite": "https:\/\/raw.githubusercontent.com\/PokeAPI\/sprites\/master\/sprites\/items\/love-ball.png",
     "description": "A pokeball used to catch a wild Pokémon using a catch rate of 1x.",
     "type": "apricorn",
-    "capture_rate": 1
+    "catch_rate": 1
   }
 ]

@@ -19,7 +19,7 @@ return new class extends Migration
             $table->text('description');
             $table->string('sprite')->nullable();
             $table->string('type');
-            $table->decimal('capture_rate', 5, 2)->unsigned();
+            $table->decimal('catch_rate', 5, 2)->unsigned();
         });
     }
 

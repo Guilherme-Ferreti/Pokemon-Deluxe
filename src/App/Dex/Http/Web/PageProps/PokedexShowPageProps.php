@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace App\Dex\Http\Web\PageProps;
 
 use App\Battle\Services\DamageCalculator;
-use App\Dex\Actions\CalculateSpeciesCaptureStatistics;
-use App\Dex\Actions\CalculateUserSpeciesCaptureStatistics;
+use App\Dex\Actions\CalculateSpeciesCatchStatistics;
+use App\Dex\Actions\CalculateUserSpeciesCatchStatistics;
 use App\Dex\Queries\NextSpeciesQuery;
 use App\Dex\Queries\PreviousSpeciesQuery;
 use App\Dex\Support\CacheKeys;
@@ -30,15 +30,15 @@ final readonly class PokedexShowPageProps implements ProvidesInertiaProperties
     public function toInertiaProperties(RenderContext $context): array
     {
         return [
-            'species'           => $this->getSpeciesProp(),
-            'hero'              => $this->getHeroProp(),
-            'metadata'          => $this->getMetadataProp(),
-            'previousSpecies'   => $this->getPreviousSpeciesProp(),
-            'nextSpecies'       => $this->getNextSpeciesProp(),
-            'captureStatistics' => $this->getCaptureStatisticsProp(),
-            'damageTaken'       => $this->getDamageTakenProp(),
-            'evolutionChain'    => $this->getEvolutionChainProp(),
-            'learnableMoves'    => $this->getLearnableMovesProp(),
+            'species'         => $this->getSpeciesProp(),
+            'hero'            => $this->getHeroProp(),
+            'metadata'        => $this->getMetadataProp(),
+            'previousSpecies' => $this->getPreviousSpeciesProp(),
+            'nextSpecies'     => $this->getNextSpeciesProp(),
+            'catchStatistics' => $this->getCatchStatisticsProp(),
+            'damageTaken'     => $this->getDamageTakenProp(),
+            'evolutionChain'  => $this->getEvolutionChainProp(),
+            'learnableMoves'  => $this->getLearnableMovesProp(),
         ];
     }
 
@@ -87,11 +87,11 @@ final readonly class PokedexShowPageProps implements ProvidesInertiaProperties
                 'isMega'      => $this->species->is_mega,
                 'isGmax'      => $this->species->is_gmax,
             ],
-            'generation'            => $this->species->generation,
-            'captureRatePercentage' => $this->species->getCaptureRatePercentage(),
-            'isGenderless'          => $this->species->isGenderless(),
-            'malePercentage'        => $this->species->getMalePercentage(),
-            'femalePercentage'      => $this->species->getFemalePercentage(),
+            'generation'          => $this->species->generation,
+            'catchRatePercentage' => $this->species->getCatchRatePercentage(),
+            'isGenderless'        => $this->species->isGenderless(),
+            'malePercentage'      => $this->species->getMalePercentage(),
+            'femalePercentage'    => $this->species->getFemalePercentage(),
         ];
     }
 
@@ -136,18 +136,18 @@ final readonly class PokedexShowPageProps implements ProvidesInertiaProperties
     /**
      * @return array<string, mixed>
      */
-    private function getCaptureStatisticsProp(): array
+    private function getCatchStatisticsProp(): array
     {
         $global = Cache::remember(
-            key: CacheKeys::speciesCaptureStatistics($this->species->id),
+            key: CacheKeys::speciesCatchStatistics($this->species->id),
             ttl: now()->endOfDay(),
-            callback: fn () => new CalculateSpeciesCaptureStatistics()->handle($this->species)
+            callback: fn () => new CalculateSpeciesCatchStatistics()->handle($this->species)
         );
 
         $currentUser = Cache::remember(
-            key: CacheKeys::userSpeciesCaptureStatistics(currentUser()->id, $this->species->id),
+            key: CacheKeys::userSpeciesCatchStatistics(currentUser()->id, $this->species->id),
             ttl: now()->endOfDay(),
-            callback: fn () => new CalculateUserSpeciesCaptureStatistics()->handle(currentUser(), $this->species)
+            callback: fn () => new CalculateUserSpeciesCatchStatistics()->handle(currentUser(), $this->species)
         );
 
         return [

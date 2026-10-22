@@ -85,7 +85,7 @@ const page = usePage<BoxIndexPageProps>();
 const selectedSort = defineModel<
   BoxIndexPageProps['filters']['active']['sort']
 >('sort', {
-  default: SearchBoxSortBy.CAPTURE_DATE,
+  default: SearchBoxSortBy.CATCH_DATE,
 });
 
 const selectedDir = defineModel<BoxIndexPageProps['filters']['active']['dir']>(
@@ -101,7 +101,7 @@ defineEmits<{
 }>();
 
 function clearFilters() {
-  selectedSort.value = SearchBoxSortBy.CAPTURE_DATE;
+  selectedSort.value = SearchBoxSortBy.CATCH_DATE;
   selectedDir.value = SortDirection.DESC;
 }
 </script>

@@ -44,7 +44,7 @@ final class PokemonFactory extends Factory
                     ->choose();
             },
             'pokeball_id' => Pokeball::factory(),
-            'captured_at' => fake()->dateTimeBetween('-1 year', 'now'),
+            'caught_at'   => fake()->dateTimeBetween('-1 year', 'now'),
         ];
     }
 

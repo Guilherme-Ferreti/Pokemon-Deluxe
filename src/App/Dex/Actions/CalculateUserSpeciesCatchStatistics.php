@@ -7,7 +7,7 @@ namespace App\Dex\Actions;
 use Shared\Models\Species;
 use Shared\Models\User;
 
-final class CalculateUserSpeciesCaptureStatistics
+final class CalculateUserSpeciesCatchStatistics
 {
     /**
      * @return array{regular: int, shiny:int}

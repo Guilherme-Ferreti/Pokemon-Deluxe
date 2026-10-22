@@ -14,7 +14,7 @@ export type PokedexShowPageProps = {
   metadata: Metadata;
   previousSpecies: NavigationItem;
   nextSpecies: NavigationItem;
-  captureStatistics: {
+  catchStatistics: {
     currentUser: {
       regular: number;
       shiny: number;
@@ -62,7 +62,7 @@ type Metadata = {
     isGmax: Species['isGmax'];
   };
   generation: Species['generation'];
-  captureRatePercentage: number;
+  catchRatePercentage: number;
   isGenderless: boolean;
   malePercentage: number;
   femalePercentage: number;

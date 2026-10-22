@@ -19,13 +19,13 @@ final class PokeballSeeder extends Seeder
 
         foreach ($pokeballs as $pokeball) {
             $records[] = [
-                'id'           => new Pokeball()->newUniqueId(),
-                'slug'         => $pokeball['id'],
-                'name'         => $pokeball['name'],
-                'sprite'       => $pokeball['sprite'],
-                'description'  => $pokeball['description'],
-                'type'         => $pokeball['type'],
-                'capture_rate' => $pokeball['capture_rate'],
+                'id'          => new Pokeball()->newUniqueId(),
+                'slug'        => $pokeball['id'],
+                'name'        => $pokeball['name'],
+                'sprite'      => $pokeball['sprite'],
+                'description' => $pokeball['description'],
+                'type'        => $pokeball['type'],
+                'catch_rate'  => $pokeball['catch_rate'],
             ];
         }
 

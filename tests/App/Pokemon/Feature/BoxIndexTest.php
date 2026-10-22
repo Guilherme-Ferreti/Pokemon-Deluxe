@@ -27,7 +27,7 @@ it('loads the box page with expected structure', function () {
         ->has(Move::factory()->count(4))
         ->count($total)
         ->inBox()
-        ->sequence(fn ($sequence) => ['captured_at' => now()->subDays($total - $sequence->index)])
+        ->sequence(fn ($sequence) => ['caught_at' => now()->subDays($total - $sequence->index)])
         ->create();
 
     $newestPokemon = $boxPokemon->last();

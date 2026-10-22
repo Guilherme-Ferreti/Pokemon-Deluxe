@@ -76,10 +76,10 @@ final class UserSeeder extends Seeder
     {
         $attributes = $pokemon->toArray();
 
-        $attributes['id']          = $pokemon->newUniqueId();
-        $attributes['captured_at'] = $pokemon->captured_at->format('Y-m-d H:i:s');
-        $attributes['created_at']  = now();
-        $attributes['updated_at']  = now();
+        $attributes['id']         = $pokemon->newUniqueId();
+        $attributes['caught_at']  = $pokemon->caught_at->format('Y-m-d H:i:s');
+        $attributes['created_at'] = now();
+        $attributes['updated_at'] = now();
 
         return $attributes;
     }
@@ -158,7 +158,7 @@ final class UserSeeder extends Seeder
             ->create();
 
         Incubation::factory()
-            ->readyToCapture()
+            ->readyToCatch()
             ->for($user)
             ->recycle($species)
             ->create(['incubator_index' => new IncubatorIndex(5)]);

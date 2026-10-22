@@ -23,7 +23,7 @@ type RouteParameters = {
   'pokemon.web.incubators.hatch-egg': {
     incubatorIndex: string | number;
   };
-  'pokemon.web.incubators.capture-pokemon': {
+  'pokemon.web.incubators.catch-pokemon': {
     incubatorIndex: string | number;
   };
   'public.web.home': never;
@@ -79,8 +79,8 @@ const routes = {
     'your-pokemon/incubator/{incubatorIndex}/place-egg',
   'pokemon.web.incubators.hatch-egg':
     'your-pokemon/incubator/{incubatorIndex}/hatch-egg',
-  'pokemon.web.incubators.capture-pokemon':
-    'your-pokemon/incubator/{incubatorIndex}/capture-pokemon',
+  'pokemon.web.incubators.catch-pokemon':
+    'your-pokemon/incubator/{incubatorIndex}/catch-pokemon',
   'public.web.home': '',
   'storage.local.upload': 'storage/{path}',
 };

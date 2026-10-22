@@ -47,7 +47,7 @@ final class SpeciesFactory extends Factory
             'is_mega'        => fake()->boolean(5),
             'is_gmax'        => fake()->boolean(5),
             'generation'     => fake()->randomElement(Generation::cases()),
-            'capture_rate'   => fake()->numberBetween(3, 255),
+            'catch_rate'     => fake()->numberBetween(3, 255),
             'gender_rate'    => fake()->numberBetween(-1, 8),
             'egg_obtainable' => fake()->boolean(),
         ];

@@ -32,7 +32,7 @@ return new class extends Migration
 
             $table->foreignIdFor(Pokeball::class, 'pokeball_id')->constrained();
 
-            $table->timestamp('captured_at');
+            $table->timestamp('caught_at');
 
             $table->timestamps();
 

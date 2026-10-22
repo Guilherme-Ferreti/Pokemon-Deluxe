@@ -1,7 +1,7 @@
 <template>
   <AppInfoCard
-    title="Capture Statistics"
-    data-test="pokedex-species-capture-statistics"
+    title="Catch Statistics"
+    data-test="pokedex-species-catch-statistics"
     :description="`Total number of ${page.props.species.name} in accounts across the game`"
   >
     <AppInfoCardSectionTitle
@@ -11,21 +11,21 @@
     />
     <AppInfoCardRow
       title="Regular"
-      :text="page.props.captureStatistics.global.regular.toString()"
+      :text="page.props.catchStatistics.global.regular.toString()"
     />
     <AppInfoCardRow
       title="Shiny"
-      :text="page.props.captureStatistics.global.shiny.toString()"
+      :text="page.props.catchStatistics.global.shiny.toString()"
     />
     <Separator />
     <AppInfoCardSectionTitle title="Your account" />
     <AppInfoCardRow
       title="Regular"
-      :text="page.props.captureStatistics.currentUser.regular.toString()"
+      :text="page.props.catchStatistics.currentUser.regular.toString()"
     />
     <AppInfoCardRow
       title="Shiny"
-      :text="page.props.captureStatistics.currentUser.shiny.toString()"
+      :text="page.props.catchStatistics.currentUser.shiny.toString()"
     />
   </AppInfoCard>
 </template>

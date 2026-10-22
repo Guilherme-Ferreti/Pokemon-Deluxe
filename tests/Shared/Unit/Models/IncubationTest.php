@@ -18,13 +18,13 @@ describe('status', function () {
         expect($incubation->getStatus())->toBe(IncubationStatus::READY_TO_HATCH);
     });
 
-    it('reports a hatched egg that has not been captured as ready to capture', function () {
-        $incubation = Incubation::factory()->readyToCapture()->create();
+    it('reports a hatched egg that has not been caught as ready to catch', function () {
+        $incubation = Incubation::factory()->readyToCatch()->create();
 
-        expect($incubation->getStatus())->toBe(IncubationStatus::READY_TO_CAPTURE);
+        expect($incubation->getStatus())->toBe(IncubationStatus::READY_TO_CATCH);
     });
 
-    it('reports a captured egg as completed', function () {
+    it('reports a caught egg as completed', function () {
         $incubation = Incubation::factory()->completed()->create();
 
         expect($incubation->getStatus())->toBe(IncubationStatus::COMPLETED);

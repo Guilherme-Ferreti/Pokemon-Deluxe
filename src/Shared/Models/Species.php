@@ -40,7 +40,7 @@ use Shared\ValueObjects\SpeciesSprites;
  * @property bool $is_mega
  * @property bool $is_gmax
  * @property Generation $generation
- * @property int|null $capture_rate
+ * @property int|null $catch_rate
  * @property int $gender_rate
  * @property bool $egg_obtainable
  * @property-read EloquentCollection<int, SpeciesEvolution> $evolutions
@@ -70,7 +70,7 @@ final class Species extends Model
             'is_mythical'    => 'boolean',
             'is_mega'        => 'boolean',
             'is_gmax'        => 'boolean',
-            'capture_rate'   => 'integer',
+            'catch_rate'     => 'integer',
             'gender_rate'    => 'integer',
             'egg_obtainable' => 'boolean',
             'sprites'        => AsSpeciesSprites::class,
@@ -139,7 +139,7 @@ final class Species extends Model
 
     public function isCapturable(): bool
     {
-        return ! is_null($this->capture_rate);
+        return ! is_null($this->catch_rate);
     }
 
     public function isGenderless(): bool
@@ -173,9 +173,9 @@ final class Species extends Model
         return (string) $sprite;
     }
 
-    public function getCaptureRatePercentage(): int|float
+    public function getCatchRatePercentage(): int|float
     {
-        return toIntIfWhole(round(($this->capture_rate / 255) * 100, 2));
+        return toIntIfWhole(round(($this->catch_rate / 255) * 100, 2));
     }
 
     public function getMalePercentage(): int|float

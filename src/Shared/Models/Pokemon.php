@@ -30,7 +30,7 @@ use Shared\Enums\PokemonGender;
  * @property bool $is_shiny
  * @property PokemonGender $gender
  * @property string $pokeball_id
- * @property Carbon $captured_at
+ * @property Carbon $caught_at
  * @property Carbon $created_at
  * @property Carbon $updated_at
  * @property-read User $user
@@ -49,12 +49,12 @@ final class Pokemon extends Model
     protected function casts(): array
     {
         return [
-            'level'       => 'integer',
-            'experience'  => 'integer',
-            'in_party'    => 'boolean',
-            'is_shiny'    => 'boolean',
-            'gender'      => PokemonGender::class,
-            'captured_at' => 'datetime',
+            'level'      => 'integer',
+            'experience' => 'integer',
+            'in_party'   => 'boolean',
+            'is_shiny'   => 'boolean',
+            'gender'     => PokemonGender::class,
+            'caught_at'  => 'datetime',
         ];
     }
 

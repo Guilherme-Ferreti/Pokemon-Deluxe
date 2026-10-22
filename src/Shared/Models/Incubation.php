@@ -28,7 +28,7 @@ use Shared\ValueObjects\IncubatorIndex;
  * @property bool $is_shiny
  * @property CarbonImmutable $ready_to_hatch_at
  * @property CarbonImmutable|null $hatched_at
- * @property CarbonImmutable|null $captured_at
+ * @property CarbonImmutable|null $caught_at
  * @property CarbonImmutable|null $created_at
  * @property CarbonImmutable|null $updated_at
  * @property-read User $user
@@ -49,7 +49,7 @@ final class Incubation extends Model
             'gender'            => PokemonGender::class,
             'ready_to_hatch_at' => 'datetime',
             'hatched_at'        => 'datetime',
-            'captured_at'       => 'datetime',
+            'caught_at'         => 'datetime',
         ];
     }
 
@@ -75,7 +75,7 @@ final class Incubation extends Model
     #[Scope]
     protected function active(Builder $query): void
     {
-        $query->whereNull('captured_at');
+        $query->whereNull('caught_at');
     }
 
     /**
@@ -84,7 +84,7 @@ final class Incubation extends Model
     #[Scope]
     protected function completed(Builder $query): void
     {
-        $query->whereNotNull('captured_at');
+        $query->whereNotNull('caught_at');
     }
 
     /**
@@ -115,7 +115,7 @@ final class Incubation extends Model
      * @param  Builder<$this>  $query
      */
     #[Scope]
-    protected function readyToCapture(Builder $query): void
+    protected function readyToCatch(Builder $query): void
     {
         $query
             ->active()

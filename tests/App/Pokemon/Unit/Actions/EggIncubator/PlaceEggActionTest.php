@@ -35,7 +35,7 @@ it('creates an incubation on an idle incubator', function () {
         'species_id'        => $species->id,
         'ready_to_hatch_at' => '2026-01-02 12:00:00',
         'hatched_at'        => null,
-        'captured_at'       => null,
+        'caught_at'         => null,
     ]);
 });
 
@@ -61,10 +61,10 @@ it('does not place an egg when the incubator has an egg ready to hatch', functio
     assertDatabaseCount(Incubation::class, 1);
 });
 
-it('does not place an egg when the incubator has an egg ready to capture', function () {
+it('does not place an egg when the incubator has an egg ready to catch', function () {
     $user = User::first();
 
-    Incubation::factory()->for($user)->readyToCapture()->create(['incubator_index' => new IncubatorIndex(1)]);
+    Incubation::factory()->for($user)->readyToCatch()->create(['incubator_index' => new IncubatorIndex(1)]);
 
     expect(fn () => new PlaceEggAction()->handle($user, new IncubatorIndex(1)))
         ->toThrow(IncubatorNotIdleException::class);

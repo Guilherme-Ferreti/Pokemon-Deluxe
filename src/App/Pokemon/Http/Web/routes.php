@@ -3,7 +3,7 @@
 declare(strict_types=1);
 
 use App\Pokemon\Http\Web\Controllers\BoxController;
-use App\Pokemon\Http\Web\Controllers\Incubator\CapturePokemonController;
+use App\Pokemon\Http\Web\Controllers\Incubator\CatchPokemonController;
 use App\Pokemon\Http\Web\Controllers\Incubator\HatchEggController;
 use App\Pokemon\Http\Web\Controllers\Incubator\PlaceEggController;
 use App\Pokemon\Http\Web\Controllers\Incubator\PurchaseController;
@@ -25,6 +25,6 @@ Route::middleware('auth')->prefix('/your-pokemon')->group(function (): void {
             Route::post('/purchase', PurchaseController::class)->name('purchase');
             Route::post('/place-egg', PlaceEggController::class)->name('place-egg');
             Route::post('/hatch-egg', HatchEggController::class)->name('hatch-egg');
-            Route::post('/capture-pokemon', CapturePokemonController::class)->name('capture-pokemon');
+            Route::post('/catch-pokemon', CatchPokemonController::class)->name('catch-pokemon');
         });
 });

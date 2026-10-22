@@ -6,14 +6,14 @@ namespace App\Dex\Support;
 
 final class CacheKeys
 {
-    public static function speciesCaptureStatistics(string $speciesId): string
+    public static function speciesCatchStatistics(string $speciesId): string
     {
-        return "dex:query:species-capture-statistics:species-{$speciesId}";
+        return "dex:query:species-catch-statistics:species-{$speciesId}";
     }
 
-    public static function userSpeciesCaptureStatistics(string $userId, string $speciesId): string
+    public static function userSpeciesCatchStatistics(string $userId, string $speciesId): string
     {
-        return "dex:query:user-species-capture-statistics:user-{$userId}:species-{$speciesId}";
+        return "dex:query:user-species-catch-statistics:user-{$userId}:species-{$speciesId}";
     }
 
     public static function speciesEvolutionChain(string $speciesId): string

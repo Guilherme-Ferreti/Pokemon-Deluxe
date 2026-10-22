@@ -23,7 +23,7 @@
         <PokedexSpeciesDamageTaken />
       </section>
       <section>
-        <PokedexSpeciesCaptureStatistics />
+        <PokedexSpeciesCatchStatistics />
       </section>
     </div>
     <section>
@@ -35,7 +35,7 @@
 <script setup lang="ts">
 import { Head, setLayoutProps, usePage } from '@inertiajs/vue3';
 import PokedexSpeciesAutocomplete from '@/app/Dex/components/PokedexSpeciesAutocomplete.vue';
-import PokedexSpeciesCaptureStatistics from '@/app/Dex/components/PokedexSpeciesCaptureStatistics.vue';
+import PokedexSpeciesCatchStatistics from '@/app/Dex/components/PokedexSpeciesCatchStatistics.vue';
 import PokedexSpeciesDamageTaken from '@/app/Dex/components/PokedexSpeciesDamageTaken.vue';
 import PokedexSpeciesEvolutionChain from '@/app/Dex/components/PokedexSpeciesEvolutionChain.vue';
 import PokedexSpeciesHero from '@/app/Dex/components/PokedexSpeciesHero.vue';

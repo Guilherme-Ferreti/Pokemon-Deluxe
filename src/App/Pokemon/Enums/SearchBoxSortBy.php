@@ -6,7 +6,7 @@ namespace App\Pokemon\Enums;
 
 enum SearchBoxSortBy: string
 {
-    case CAPTURE_DATE   = 'capture-date';
+    case CATCH_DATE     = 'catch-date';
     case EXPERIENCE     = 'experience';
     case LEVEL          = 'level';
     case POKEDEX_NUMBER = 'pokedex-number';
@@ -14,7 +14,7 @@ enum SearchBoxSortBy: string
     public function label(): string
     {
         return match ($this) {
-            self::CAPTURE_DATE   => 'Capture date',
+            self::CATCH_DATE     => 'Catch date',
             self::EXPERIENCE     => 'Experience',
             self::LEVEL          => 'Level',
             self::POKEDEX_NUMBER => 'Pokedex number',

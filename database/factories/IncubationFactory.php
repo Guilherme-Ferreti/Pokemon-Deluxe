@@ -31,7 +31,7 @@ final class IncubationFactory extends Factory
             'is_shiny'          => fake()->boolean(10),
             'ready_to_hatch_at' => fake()->dateTimeBetween('-2 years', '-1 year'),
             'hatched_at'        => fake()->dateTimeBetween('-11 months', '-2 months'),
-            'captured_at'       => fake()->dateTimeBetween('-1 month', 'now'),
+            'caught_at'         => fake()->dateTimeBetween('-1 month', 'now'),
         ];
     }
 
@@ -63,7 +63,7 @@ final class IncubationFactory extends Factory
         return $this->state([
             'ready_to_hatch_at' => $until ?? now()->addDays(1),
             'hatched_at'        => null,
-            'captured_at'       => null,
+            'caught_at'         => null,
         ]);
     }
 
@@ -72,16 +72,16 @@ final class IncubationFactory extends Factory
         return $this->state([
             'ready_to_hatch_at' => now(),
             'hatched_at'        => null,
-            'captured_at'       => null,
+            'caught_at'         => null,
         ]);
     }
 
-    public function readyToCapture(): static
+    public function readyToCatch(): static
     {
         return $this->state([
             'ready_to_hatch_at' => now()->subMinute(),
             'hatched_at'        => now(),
-            'captured_at'       => null,
+            'caught_at'         => null,
         ]);
     }
 
@@ -90,7 +90,7 @@ final class IncubationFactory extends Factory
         return $this->state([
             'ready_to_hatch_at' => fake()->dateTimeBetween('-2 years', '-1 year'),
             'hatched_at'        => fake()->dateTimeBetween('-11 months', '-2 months'),
-            'captured_at'       => fake()->dateTimeBetween('-1 month', 'now'),
+            'caught_at'         => fake()->dateTimeBetween('-1 month', 'now'),
         ]);
     }
 }

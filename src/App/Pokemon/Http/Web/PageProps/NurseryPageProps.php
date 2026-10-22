@@ -47,7 +47,7 @@ final class NurseryPageProps implements ProvidesInertiaProperties
                         'status'              => $incubation->getStatus(),
                         'incubationStartedAt' => $incubation->created_at,
                         'readyToHatchAt'      => $incubation->ready_to_hatch_at,
-                        'pokemon'             => when($incubation->getStatus() === IncubationStatus::READY_TO_CAPTURE, fn () => [
+                        'pokemon'             => when($incubation->getStatus() === IncubationStatus::READY_TO_CATCH, fn () => [
                             'name'        => $incubation->species->getDisplayName($incubation->is_shiny),
                             'frontSprite' => $incubation->species->getDisplayFrontSprite($incubation->gender, $incubation->is_shiny),
                             'gender'      => $incubation->gender,

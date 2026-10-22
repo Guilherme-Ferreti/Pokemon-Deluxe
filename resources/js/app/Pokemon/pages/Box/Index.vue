@@ -2,7 +2,7 @@
   <Head title="Your Box" />
   <AppPageHeader
     title="Your Box"
-    description="Manage your captured Pokemon."
+    description="Manage your caught Pokemon."
   />
   <AppSection>
     <PokemonBox />

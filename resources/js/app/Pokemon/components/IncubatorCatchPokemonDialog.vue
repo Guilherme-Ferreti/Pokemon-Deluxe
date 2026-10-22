@@ -7,7 +7,7 @@
     <DialogContent>
       <DialogHeader>
         <DialogTitle>
-          Capture
+          Catch
           <PokemonDisplayName
             :name="incubator.pokemon.name"
             :gender="incubator.pokemon.gender"
@@ -15,7 +15,7 @@
         </DialogTitle>
         <DialogDescription>
           Select the Poké Ball you want to throw at the hatched Pokémon, then
-          click Catch to capture it.
+          click Catch to catch it.
         </DialogDescription>
       </DialogHeader>
       <div class="flex flex-col gap-6">
@@ -127,7 +127,7 @@ const form = useForm({
 
 function handleCatch() {
   form.post(
-    route('pokemon.web.incubators.capture-pokemon', {
+    route('pokemon.web.incubators.catch-pokemon', {
       incubatorIndex: props.incubator.index,
     }),
     {
