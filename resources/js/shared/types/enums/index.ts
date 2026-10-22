@@ -1,5 +1,5 @@
 export * from '@/shared/types/enums/Ailment';
-export * from '@/shared/types/enums/EggIncubationStatus';
+export * from '@/shared/types/enums/IncubationStatus';
 export * from '@/shared/types/enums/ElementalType';
 export * from '@/shared/types/enums/Generation';
 export * from '@/shared/types/enums/MoveCategory';

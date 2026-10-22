@@ -17,8 +17,8 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Override;
-use Shared\Casts\AsEggIncubatorIndexes;
-use Shared\ValueObjects\EggIncubatorIndex;
+use Shared\Casts\AsIncubatorIndexes;
+use Shared\ValueObjects\IncubatorIndex;
 
 /**
  * @property string $id
@@ -27,11 +27,11 @@ use Shared\ValueObjects\EggIncubatorIndex;
  * @property CarbonImmutable|null $email_verified_at
  * @property string $password
  * @property string|null $remember_token
- * @property list<EggIncubatorIndex> $purchased_egg_incubator_indexes
+ * @property list<IncubatorIndex> $purchased_incubator_indexes
  * @property CarbonImmutable|null $created_at
  * @property CarbonImmutable|null $updated_at
  * @property-read EloquentCollection<int, Pokemon> $pokemon
- * @property-read EloquentCollection<int, EggIncubation> $eggIncubations
+ * @property-read EloquentCollection<int, Incubation> $Incubations
  */
 #[Fillable(['name', 'email', 'password'])]
 #[Hidden(['password', 'remember_token'])]
@@ -47,9 +47,9 @@ final class User extends Authenticatable
     protected function casts(): array
     {
         return [
-            'email_verified_at'               => 'datetime',
-            'password'                        => 'hashed',
-            'purchased_egg_incubator_indexes' => AsEggIncubatorIndexes::class,
+            'email_verified_at'           => 'datetime',
+            'password'                    => 'hashed',
+            'purchased_incubator_indexes' => AsIncubatorIndexes::class,
         ];
     }
 
@@ -62,10 +62,18 @@ final class User extends Authenticatable
     }
 
     /**
-     * @return HasMany<EggIncubation, $this>
+     * @return HasMany<Incubation, $this>
      */
-    public function eggIncubations(): HasMany
+    public function incubations(): HasMany
     {
-        return $this->hasMany(EggIncubation::class);
+        return $this->hasMany(Incubation::class);
+    }
+
+    /**
+     * @return HasMany<InventoryItem, $this>
+     */
+    public function inventoryItems(): HasMany
+    {
+        return $this->hasMany(InventoryItem::class);
     }
 }

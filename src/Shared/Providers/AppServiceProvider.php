@@ -29,7 +29,7 @@ use Shared\Enums\InventoryItemType;
 use Shared\Helpers\ToastHelper;
 use Shared\Models\EvolutionItem;
 use Shared\Models\Pokeball;
-use Shared\ValueObjects\EggIncubatorIndex;
+use Shared\ValueObjects\IncubatorIndex;
 
 final class AppServiceProvider extends ServiceProvider
 {
@@ -109,9 +109,9 @@ final class AppServiceProvider extends ServiceProvider
 
     private function configureRouteBindings(): void
     {
-        Route::bind('eggIncubatorIndex', function (string $value): EggIncubatorIndex {
+        Route::bind('incubatorIndex', function (string $value): IncubatorIndex {
             try {
-                return new EggIncubatorIndex((int) $value);
+                return new IncubatorIndex((int) $value);
             } catch (InvalidArgumentException) {
                 abort(Response::HTTP_NOT_FOUND);
             }

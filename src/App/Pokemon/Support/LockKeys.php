@@ -4,22 +4,22 @@ declare(strict_types=1);
 
 namespace App\Pokemon\Support;
 
-use Shared\ValueObjects\EggIncubatorIndex;
+use Shared\ValueObjects\IncubatorIndex;
 
 final class LockKeys
 {
-    public static function eggIncubatorPurchase(string $userId): string
+    public static function incubatorPurchase(string $userId): string
     {
-        return "pokemon:lock:egg-incubator-purchase:user-{$userId}";
+        return "pokemon:lock:incubator-purchase:user-{$userId}";
     }
 
-    public static function eggIncubatorPlaceEgg(string $userId, EggIncubatorIndex $eggIncubatorIndex): string
+    public static function incubatorPlaceEgg(string $userId, IncubatorIndex $incubatorIndex): string
     {
-        return "pokemon:lock:egg-incubator-place-egg:user-{$userId}:egg-incubator-{$eggIncubatorIndex->value}";
+        return "pokemon:lock:incubator-place-egg:user-{$userId}:incubator-{$incubatorIndex->value}";
     }
 
-    public static function eggIncubatorHatchEgg(string $userId, EggIncubatorIndex $eggIncubatorIndex): string
+    public static function incubatorHatchEgg(string $userId, IncubatorIndex $incubatorIndex): string
     {
-        return "pokemon:lock:egg-incubator-hatch-egg:user-{$userId}:egg-incubator-{$eggIncubatorIndex->value}";
+        return "pokemon:lock:incubator-hatch-egg:user-{$userId}:incubator-{$incubatorIndex->value}";
     }
 }

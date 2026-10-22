@@ -10,14 +10,14 @@ use Illuminate\Support\Arr;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
 use Shared\Enums\InventoryItemType;
-use Shared\Models\EggIncubation;
 use Shared\Models\EvolutionItem;
+use Shared\Models\Incubation;
 use Shared\Models\InventoryItem;
 use Shared\Models\Pokeball;
 use Shared\Models\Pokemon;
 use Shared\Models\Species;
 use Shared\Models\User;
-use Shared\ValueObjects\EggIncubatorIndex;
+use Shared\ValueObjects\IncubatorIndex;
 
 final class UserSeeder extends Seeder
 {
@@ -31,7 +31,7 @@ final class UserSeeder extends Seeder
         $this->addPokemonToParty($user);
         $this->addPokemonToBox($user);
         $this->attachMovesToPokemon($user);
-        $this->addEggIncubations($user);
+        $this->addIncubations($user);
         $this->addItemsToInventory($user);
     }
 
@@ -122,16 +122,16 @@ final class UserSeeder extends Seeder
         return Arr::take($moves, 4);
     }
 
-    private function addEggIncubations(User $user): void
+    private function addIncubations(User $user): void
     {
         $user->update([
-            'purchased_egg_incubator_indexes' => [
-                new EggIncubatorIndex(1),
-                new EggIncubatorIndex(2),
-                new EggIncubatorIndex(3),
-                new EggIncubatorIndex(4),
-                new EggIncubatorIndex(5),
-                new EggIncubatorIndex(6),
+            'purchased_incubator_indexes' => [
+                new IncubatorIndex(1),
+                new IncubatorIndex(2),
+                new IncubatorIndex(3),
+                new IncubatorIndex(4),
+                new IncubatorIndex(5),
+                new IncubatorIndex(6),
             ],
         ]);
 
@@ -141,29 +141,29 @@ final class UserSeeder extends Seeder
             ->take(10)
             ->get();
 
-        EggIncubation::factory()
+        Incubation::factory()
             ->incubating(now()->addHour())
             ->for($user)
             ->recycle($species)
             ->count(2)
-            ->sequence(fn (Sequence $sequence) => ['egg_incubator_index' => new EggIncubatorIndex($sequence->index + 1)])
+            ->sequence(fn (Sequence $sequence) => ['incubator_index' => new IncubatorIndex($sequence->index + 1)])
             ->create();
 
-        EggIncubation::factory()
+        Incubation::factory()
             ->readyToHatch()
             ->for($user)
             ->recycle($species)
             ->count(2)
-            ->sequence(fn (Sequence $sequence) => ['egg_incubator_index' => new EggIncubatorIndex($sequence->index + 3)])
+            ->sequence(fn (Sequence $sequence) => ['incubator_index' => new IncubatorIndex($sequence->index + 3)])
             ->create();
 
-        EggIncubation::factory()
+        Incubation::factory()
             ->readyToCapture()
             ->for($user)
             ->recycle($species)
-            ->create(['egg_incubator_index' => new EggIncubatorIndex(5)]);
+            ->create(['incubator_index' => new IncubatorIndex(5)]);
 
-        EggIncubation::factory()
+        Incubation::factory()
             ->completed()
             ->for($user)
             ->recycle($species)

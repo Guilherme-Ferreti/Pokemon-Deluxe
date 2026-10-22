@@ -34,7 +34,7 @@ declare module '@inertiajs/core' {
       };
       config: {
         game: {
-          maxEggIncubatorsPerUser: number;
+          maxIncubatorsPerUser: number;
         };
       };
       authLayout: {

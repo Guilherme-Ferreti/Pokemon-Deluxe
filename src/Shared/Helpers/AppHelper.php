@@ -6,7 +6,7 @@ namespace Shared\Helpers;
 
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Collection;
-use Shared\ValueObjects\EggIncubatorIndex;
+use Shared\ValueObjects\IncubatorIndex;
 
 final class AppHelper
 {
@@ -36,13 +36,13 @@ final class AppHelper
     }
 
     /**
-     * @return list<EggIncubatorIndex>
+     * @return list<IncubatorIndex>
      */
-    public static function allEggIncubatorIndexes(): array
+    public static function allIncubatorIndexes(): array
     {
         return array_map(
-            fn (int $index) => new EggIncubatorIndex($index),
-            range(1, config('game.max_egg_incubators_per_user')),
+            fn (int $index) => new IncubatorIndex($index),
+            range(1, config('game.max_incubators_per_user')),
         );
     }
 }

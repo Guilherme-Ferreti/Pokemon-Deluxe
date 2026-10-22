@@ -18,7 +18,9 @@ const props = withDefaults(
 <template>
   <div
     data-slot="dialog-footer"
-    :class="cn('flex flex-col-reverse gap-2 sm:flex-row', props.class)"
+    :class="
+      cn('flex flex-col-reverse justify-end gap-2 sm:flex-row', props.class)
+    "
   >
     <slot />
     <DialogClose

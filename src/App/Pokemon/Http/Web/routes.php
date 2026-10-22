@@ -3,10 +3,10 @@
 declare(strict_types=1);
 
 use App\Pokemon\Http\Web\Controllers\BoxController;
-use App\Pokemon\Http\Web\Controllers\EggIncubator\CapturePokemonController;
-use App\Pokemon\Http\Web\Controllers\EggIncubator\HatchEggController;
-use App\Pokemon\Http\Web\Controllers\EggIncubator\PlaceEggController;
-use App\Pokemon\Http\Web\Controllers\EggIncubator\PurchaseController;
+use App\Pokemon\Http\Web\Controllers\Incubator\CapturePokemonController;
+use App\Pokemon\Http\Web\Controllers\Incubator\HatchEggController;
+use App\Pokemon\Http\Web\Controllers\Incubator\PlaceEggController;
+use App\Pokemon\Http\Web\Controllers\Incubator\PurchaseController;
 use App\Pokemon\Http\Web\Controllers\NurseryController;
 use App\Pokemon\Http\Web\Controllers\PartyController;
 use Illuminate\Support\Facades\Route;
@@ -18,9 +18,9 @@ Route::middleware('auth')->prefix('/your-pokemon')->group(function (): void {
 
     Route::get('/nursery', NurseryController::class)->name('nursery');
 
-    Route::prefix('/egg-incubator/{eggIncubatorIndex}')
-        ->name('egg-incubators.')
-        ->whereNumber('eggIncubatorIndex')
+    Route::prefix('/incubator/{incubatorIndex}')
+        ->name('incubators.')
+        ->whereNumber('incubatorIndex')
         ->group(function (): void {
             Route::post('/purchase', PurchaseController::class)->name('purchase');
             Route::post('/place-egg', PlaceEggController::class)->name('place-egg');

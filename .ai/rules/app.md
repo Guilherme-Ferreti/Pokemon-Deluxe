@@ -8,7 +8,7 @@ paths:
 ## Organize features as domain modules
 Organize features into `src/App/{Domain}/` folders. Each domain contains `Actions/`, `Http/Web/Controllers/`, `Http/Web/PageProps/`, `Http/Web/Requests/`, `Filters/`, `Queries/`, `Enums/`, and `Http/Web/routes.php`. A domain may also have `Http/Api/` in the future. Shared code lives in `src/Shared/`.
 
-A cohesive slice of a domain may be grouped further into a feature subfolder that mirrors across layers (e.g. `Actions/EggIncubator/` and `Http/Web/Controllers/EggIncubator/`). Mirror the same subfolder in the tests (e.g. `tests/App/{Domain}/Unit/Actions/EggIncubator/` and `tests/App/{Domain}/Feature/EggIncubator/`).
+A cohesive slice of a domain may be grouped further into a feature subfolder that mirrors across layers (e.g. `Actions/Incubator/` and `Http/Web/Controllers/Incubator/`). Mirror the same subfolder in the tests (e.g. `tests/App/{Domain}/Unit/Actions/Incubator/` and `tests/App/{Domain}/Feature/Incubator/`).
 
 ## Format toast messages consistently
 Every toast `title` starts with an uppercase letter and has no punctuation at the end. Every toast `message` starts with an uppercase letter and ends with a punctuation mark (`.`, `!`, or `?`). This applies to all `ToastHelper::*` calls and any toast flashed via `Inertia::flash('toast', ...)`.

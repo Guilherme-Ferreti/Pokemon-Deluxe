@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-use App\Pokemon\Actions\EggIncubator\HatchEggAction;
-use App\Pokemon\Exceptions\EggIncubationNotReadyToHatchException;
-use App\Pokemon\Exceptions\EggIncubatorNotActiveException;
-use Shared\Models\EggIncubation;
+use App\Pokemon\Actions\Incubator\HatchEggAction;
+use App\Pokemon\Exceptions\IncubationNotReadyToHatchException;
+use App\Pokemon\Exceptions\IncubatorNotActiveException;
+use Shared\Models\Incubation;
 use Shared\Models\User;
-use Shared\ValueObjects\EggIncubatorIndex;
+use Shared\ValueObjects\IncubatorIndex;
 
 use function Pest\Laravel\assertDatabaseCount;
 use function Pest\Laravel\assertDatabaseHas;
@@ -16,36 +16,36 @@ use function Pest\Laravel\travelTo;
 it('marks a ready-to-hatch egg as hatched', function () {
     travelTo('2026-01-01 12:00:00');
 
-    $user       = User::factory()->create(['purchased_egg_incubator_indexes' => [new EggIncubatorIndex(1)]]);
-    $incubation = EggIncubation::factory()->for($user)->readyToHatch()->create(['egg_incubator_index' => new EggIncubatorIndex(1)]);
+    $user       = User::factory()->create(['purchased_incubator_indexes' => [new IncubatorIndex(1)]]);
+    $incubation = Incubation::factory()->for($user)->readyToHatch()->create(['incubator_index' => new IncubatorIndex(1)]);
 
-    $result = new HatchEggAction()->handle($user, new EggIncubatorIndex(1));
+    $result = new HatchEggAction()->handle($user, new IncubatorIndex(1));
 
     expect($result->is($incubation))->toBeTrue();
 
-    assertDatabaseHas(EggIncubation::class, [
+    assertDatabaseHas(Incubation::class, [
         'id'         => $incubation->id,
         'hatched_at' => '2026-01-01 12:00:00',
     ]);
 });
 
 it('does not hatch an egg when the incubator has no active incubation', function () {
-    $user = User::factory()->create(['purchased_egg_incubator_indexes' => [new EggIncubatorIndex(1)]]);
+    $user = User::factory()->create(['purchased_incubator_indexes' => [new IncubatorIndex(1)]]);
 
-    expect(fn () => new HatchEggAction()->handle($user, new EggIncubatorIndex(1)))
-        ->toThrow(EggIncubatorNotActiveException::class);
+    expect(fn () => new HatchEggAction()->handle($user, new IncubatorIndex(1)))
+        ->toThrow(IncubatorNotActiveException::class);
 
-    assertDatabaseCount(EggIncubation::class, 0);
+    assertDatabaseCount(Incubation::class, 0);
 });
 
 it('does not hatch an egg that is still incubating', function () {
-    $user       = User::factory()->create(['purchased_egg_incubator_indexes' => [new EggIncubatorIndex(1)]]);
-    $incubation = EggIncubation::factory()->for($user)->incubating()->create(['egg_incubator_index' => new EggIncubatorIndex(1)]);
+    $user       = User::factory()->create(['purchased_incubator_indexes' => [new IncubatorIndex(1)]]);
+    $incubation = Incubation::factory()->for($user)->incubating()->create(['incubator_index' => new IncubatorIndex(1)]);
 
-    expect(fn () => new HatchEggAction()->handle($user, new EggIncubatorIndex(1)))
-        ->toThrow(EggIncubationNotReadyToHatchException::class);
+    expect(fn () => new HatchEggAction()->handle($user, new IncubatorIndex(1)))
+        ->toThrow(IncubationNotReadyToHatchException::class);
 
-    assertDatabaseHas(EggIncubation::class, [
+    assertDatabaseHas(Incubation::class, [
         'id'         => $incubation->id,
         'hatched_at' => null,
     ]);

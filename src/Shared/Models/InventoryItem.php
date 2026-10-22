@@ -26,7 +26,7 @@ use Shared\Enums\InventoryItemType;
  * @property CarbonImmutable|null $created_at
  * @property CarbonImmutable|null $updated_at
  * @property-read User $user
- * @property-read Model $item
+ * @property-read EvolutionItem|Pokeball $item
  */
 #[Unguarded]
 final class InventoryItem extends Model
@@ -63,8 +63,8 @@ final class InventoryItem extends Model
      * @param  Builder<$this>  $query
      */
     #[Scope]
-    protected function positiveQuantity(Builder $query): void
+    protected function pokeballs(Builder $query): void
     {
-        $query->where('quantity', '>', 0);
+        $query->where('item_type', InventoryItemType::POKEBALL);
     }
 }

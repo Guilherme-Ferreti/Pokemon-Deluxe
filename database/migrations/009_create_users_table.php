@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
-            $table->json('purchased_egg_incubator_indexes')->default('[]');
+            $table->json('purchased_incubator_indexes')->default('[]');
             $table->rememberToken();
             $table->timestamps();
         });

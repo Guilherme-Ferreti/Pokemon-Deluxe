@@ -6,7 +6,7 @@ use Shared\Enums\Generation;
 use Shared\Enums\PokeballType;
 use Shared\Enums\SortDirection;
 use Shared\Models\User;
-use Shared\ValueObjects\EggIncubatorIndex;
+use Shared\ValueObjects\IncubatorIndex;
 
 use function Pest\Laravel\actingAs;
 
@@ -65,26 +65,26 @@ describe('enumLabels', function () {
 
 describe('value_object_array_contains', function () {
     it('returns true when an equal value object is present', function () {
-        $indexes = [new EggIncubatorIndex(1), new EggIncubatorIndex(2)];
+        $indexes = [new IncubatorIndex(1), new IncubatorIndex(2)];
 
-        expect(value_object_array_contains($indexes, new EggIncubatorIndex(2)))->toBeTrue();
+        expect(value_object_array_contains($indexes, new IncubatorIndex(2)))->toBeTrue();
     });
 
     it('returns false when no equal value object is present', function () {
-        $indexes = [new EggIncubatorIndex(1), new EggIncubatorIndex(2)];
+        $indexes = [new IncubatorIndex(1), new IncubatorIndex(2)];
 
-        expect(value_object_array_contains($indexes, new EggIncubatorIndex(3)))->toBeFalse();
+        expect(value_object_array_contains($indexes, new IncubatorIndex(3)))->toBeFalse();
     });
 
     it('returns false for an empty array', function () {
-        expect(value_object_array_contains([], new EggIncubatorIndex(1)))->toBeFalse();
+        expect(value_object_array_contains([], new IncubatorIndex(1)))->toBeFalse();
     });
 });
 
 describe('value_object_array_diff', function () {
     it('returns the value objects that are not present in the other array', function () {
-        $array1 = [new EggIncubatorIndex(1), new EggIncubatorIndex(2), new EggIncubatorIndex(3)];
-        $array2 = [new EggIncubatorIndex(2)];
+        $array1 = [new IncubatorIndex(1), new IncubatorIndex(2), new IncubatorIndex(3)];
+        $array2 = [new IncubatorIndex(2)];
 
         $result = value_object_array_diff($array1, $array2);
 
@@ -97,7 +97,7 @@ describe('value_object_array_diff', function () {
     });
 
     it('returns every value object when the other array is empty', function () {
-        $array1 = [new EggIncubatorIndex(1), new EggIncubatorIndex(2)];
+        $array1 = [new IncubatorIndex(1), new IncubatorIndex(2)];
 
         $result = value_object_array_diff($array1, []);
 
@@ -110,8 +110,8 @@ describe('value_object_array_diff', function () {
     });
 
     it('returns an empty array when every value object is present in the other array', function () {
-        $array1 = [new EggIncubatorIndex(1), new EggIncubatorIndex(2)];
-        $array2 = [new EggIncubatorIndex(1), new EggIncubatorIndex(2)];
+        $array1 = [new IncubatorIndex(1), new IncubatorIndex(2)];
+        $array2 = [new IncubatorIndex(1), new IncubatorIndex(2)];
 
         expect(value_object_array_diff($array1, $array2))->toBeEmpty();
     });

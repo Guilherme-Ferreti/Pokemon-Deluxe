@@ -66,12 +66,6 @@ final class HandleInertiaRequests extends Middleware
                 'ailment'       => enumLabels(Ailment::class),
                 'generation'    => enumLabels(Generation::class),
             ],
-
-            'config' => fn () => [
-                'game' => [
-                    'maxEggIncubatorsPerUser' => config('game.max_egg_incubators_per_user'),
-                ],
-            ],
         ];
     }
 }
