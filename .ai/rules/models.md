@@ -19,3 +19,6 @@ Define casts via the `protected function casts(): array` method on the model. Ne
 
 ## Make all models final
 All model classes must be `final`. Enforced by architectural tests.
+
+## Cast value objects with dedicated CastsAttributes classes
+Value-object-backed columns use a dedicated final `CastsAttributes` class in `src/Shared/Casts` named `As{ValueObject}`, referenced from the model's `casts()`. Do not use inline `Attribute` casts.

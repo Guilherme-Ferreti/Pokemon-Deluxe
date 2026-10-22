@@ -5,5 +5,5 @@ paths:
 
 # Value Objects
 
-## Use final value objects with promoted constructor properties
-Value objects are `final` classes with `public` promoted properties and no methods beyond what's needed (e.g., `Castable` implementation).
+## Use final value objects implementing Shared\Interfaces\ValueObject
+Value objects are `final` classes implementing `Shared\Interfaces\ValueObject` with `equals(ValueObject $other): bool`. Use promoted public properties, or a validated public `$value` when the constructor enforces constraints. Convert to/from storage with a dedicated cast in `src/Shared/Casts`.

@@ -8,8 +8,10 @@ Before planning or editing, find the row whose globs match the file's path and r
 | src/App/** | .ai/rules/app.md |
 | tests/Architectural/** | .ai/rules/architectural.md |
 | tests/**/Browser/** | .ai/rules/browser.md |
+| src/Shared/Casts/** | .ai/rules/casts.md |
 | src/App/**/Http/Web/Controllers/** | .ai/rules/controllers.md |
 | src/Shared/Enums/** | .ai/rules/enums.md |
+| src/App/**/Exceptions/** | .ai/rules/exceptions.md |
 | tests/**/Feature/** | .ai/rules/feature.md |
 | src/App/**/Filters/** | .ai/rules/filters.md |
 | src/Shared/Helpers/** | .ai/rules/helpers.md |
@@ -21,6 +23,7 @@ Before planning or editing, find the row whose globs match the file's path and r
 | src/App/**/Queries/** | .ai/rules/queries.md |
 | src/App/**/Http/Web/Requests/** | .ai/rules/requests.md |
 | src/** | .ai/rules/src.md |
+| src/App/**/Support/** | .ai/rules/support.md |
 | tests/** | .ai/rules/tests.md |
 | src/Shared/ValueObjects/** | .ai/rules/value-objects.md |
 | src/App/**/Http/{Web,Api}/routes.php | .ai/rules/web-api.md |
