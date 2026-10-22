@@ -17,20 +17,12 @@
         v-model:types="searchForm.types"
         v-model:ailments="searchForm.ailments"
         v-model:traits="searchForm.traits"
-        :type-options="filterOptions.types"
-        :ailment-options="filterOptions.ailments"
-        :trait-options="filterOptions.traits"
-        :active-filters-count="
-          activeFilters.types.length +
-          activeFilters.ailments.length +
-          activeFilters.traits.length
-        "
         @apply="submitSearch"
         @close="nextTick(() => !searchForm.processing && searchForm.reset())"
       />
     </form>
     <Table
-      v-if="moves.data.length > 0"
+      v-if="page.props.moves.data.length > 0"
       class="table-content-centered table-empty-cell-placeholder"
     >
       <TableHeader>
@@ -79,7 +71,7 @@
       </TableHeader>
       <TableBody>
         <TableRow
-          v-for="move in moves.data"
+          v-for="move in page.props.moves.data"
           :key="move.id"
         >
           <TableCell>
@@ -119,11 +111,11 @@
       :icon="IconXMark"
     />
   </Card>
-  <AppPagination :list="moves" />
+  <AppPagination :list="page.props.moves" />
 </template>
 
 <script setup lang="ts">
-import { useForm } from '@inertiajs/vue3';
+import { useForm, usePage } from '@inertiajs/vue3';
 import {
   IconSearch,
   IconSortAscendingLetters,
@@ -154,19 +146,15 @@ import {
 import { removeFalsyValues } from '@/shared/lib/utils';
 import { route } from '@/shared/types/helpers/route';
 
-const props = defineProps<{
-  moves: AttackdexIndexPageProps['moves'];
-  activeFilters: AttackdexIndexPageProps['activeFilters'];
-  filterOptions: AttackdexIndexPageProps['filterOptions'];
-}>();
+const page = usePage<AttackdexIndexPageProps>();
 
 const searchForm = useForm({
-  search: props.activeFilters.search,
-  types: props.activeFilters.types,
-  ailments: props.activeFilters.ailments,
-  traits: props.activeFilters.traits,
-  sort: props.activeFilters.sort,
-  dir: props.activeFilters.dir,
+  search: page.props.filters.active.search,
+  types: page.props.filters.active.types,
+  ailments: page.props.filters.active.ailments,
+  traits: page.props.filters.active.traits,
+  sort: page.props.filters.active.sort,
+  dir: page.props.filters.active.dir,
 });
 
 watchDebounced(
@@ -181,7 +169,7 @@ function submitSearch() {
     .get(route('dex.web.attackdex.index'), {
       preserveScroll: true,
       preserveState: true,
-      only: ['moves', 'activeFilters'],
+      only: ['moves', 'filters.active'],
     });
 }
 </script>

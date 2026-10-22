@@ -10,7 +10,8 @@
       <div>
         <span class="text-sm font-bold">By level up</span>
         <CardDescription class="mb-4">
-          {{ speciesName }} learns the following moves at the levels specified
+          {{ page.props.species.name }} learns the following moves at the levels
+          specified
         </CardDescription>
         <Table
           class="table-content-centered table-empty-cell-placeholder"
@@ -89,7 +90,8 @@
       <div>
         <span class="text-sm font-bold">By TM</span>
         <CardDescription class="mb-4">
-          {{ speciesName }} is compatible with these Technical Machines
+          {{ page.props.species.name }} is compatible with these Technical
+          Machines
         </CardDescription>
         <Table
           class="table-content-centered table-empty-cell-placeholder"
@@ -170,6 +172,7 @@
 </template>
 
 <script setup lang="ts">
+import { usePage } from '@inertiajs/vue3';
 import {
   IconSortAscendingLetters,
   IconSortDescendingLetters,
@@ -199,20 +202,18 @@ import {
 } from '@/shared/components/ui/table';
 import { useSortable } from '@/shared/composables/useSortable.js';
 import { MoveCategory } from '@/shared/types/enums';
-import type { Species } from '@/shared/types/response';
 
-const props = defineProps<{
-  speciesName: Species['name'];
-  learnableMoves: PokedexShowPageProps['learnableMoves'];
-}>();
+const page = usePage<PokedexShowPageProps>();
 
 const levelUpMoves = useSortable<LevelUpLearnableMove>(
-  setMaxPowerForOHKOMoves<LevelUpLearnableMove>(props.learnableMoves.levelUp),
+  setMaxPowerForOHKOMoves<LevelUpLearnableMove>(
+    page.props.learnableMoves.levelUp,
+  ),
   'levelLearn',
 );
 
 const tmMoves = useSortable<TMLearnableMove>(
-  setMaxPowerForOHKOMoves<TMLearnableMove>(props.learnableMoves.tm),
+  setMaxPowerForOHKOMoves<TMLearnableMove>(page.props.learnableMoves.tm),
   'tmCode',
 );
 

@@ -8,7 +8,7 @@ import type {
 } from '@/shared/types/enums';
 import type { Move, Pokemon, Species } from '@/shared/types/response';
 
-export interface BoxIndexPageProps {
+export type BoxIndexPageProps = {
   pokemonList: PaginatedList<{
     id: Pokemon['id'];
     name: Pokemon['name'];
@@ -24,19 +24,21 @@ export interface BoxIndexPageProps {
       name: Move['name'];
     }[];
   }>;
-  activeFilters: {
-    search: string;
-    types: ElementalType[];
-    traits: PokemonTrait[];
-    generations: Generation[];
-    sort: SearchBoxSortBy;
-    dir: SortDirection;
+  filters: {
+    options: {
+      types: FilterOption<ElementalType>[];
+      traits: FilterOption<PokemonTrait>[];
+      generations: FilterOption<Generation>[];
+      sort: FilterOption<SearchBoxSortBy>[];
+      dir: FilterOption<SortDirection>[];
+    };
+    active: {
+      search: string;
+      types: ElementalType[];
+      traits: PokemonTrait[];
+      generations: Generation[];
+      sort: SearchBoxSortBy;
+      dir: SortDirection;
+    };
   };
-  filterOptions: {
-    types: FilterOption<ElementalType>[];
-    traits: FilterOption<PokemonTrait>[];
-    generations: FilterOption<Generation>[];
-    sort: FilterOption<SearchBoxSortBy>[];
-    dir: FilterOption<SortDirection>[];
-  };
-}
+};

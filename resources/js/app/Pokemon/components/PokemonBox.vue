@@ -1,18 +1,15 @@
 <template>
-  <PokemonBoxSearchBar
-    :active-filters="activeFilters"
-    :filter-options="filterOptions"
-  />
-  <template v-if="pokemonList.data.length > 0">
+  <PokemonBoxSearchBar />
+  <template v-if="page.props.pokemonList.data.length > 0">
     <ul class="grid grid-cols-[repeat(auto-fill,minmax(16.25rem,1fr))] gap-4">
       <PokemonBoxCard
-        v-for="pokemon in pokemonList.data"
+        v-for="pokemon in page.props.pokemonList.data"
         :key="pokemon.id"
         :pokemon="pokemon"
       />
     </ul>
     <AppPagination
-      :list="pokemonList"
+      :list="page.props.pokemonList"
       :only="['pokemonList']"
       preserve-scroll
     />
@@ -27,6 +24,7 @@
 </template>
 
 <script setup lang="ts">
+import { usePage } from '@inertiajs/vue3';
 import { IconPokeball } from '@tabler/icons-vue';
 import PokemonBoxCard from '@/app/Pokemon/components/PokemonBoxCard.vue';
 import PokemonBoxSearchBar from '@/app/Pokemon/components/PokemonBoxSearchBar.vue';
@@ -34,9 +32,5 @@ import type { BoxIndexPageProps } from '@/app/Pokemon/types/page-props/BoxIndexP
 import AppEmptyState from '@/shared/components/AppEmptyState.vue';
 import AppPagination from '@/shared/components/AppPagination.vue';
 
-defineProps<{
-  pokemonList: BoxIndexPageProps['pokemonList'];
-  activeFilters: BoxIndexPageProps['activeFilters'];
-  filterOptions: BoxIndexPageProps['filterOptions'];
-}>();
+const page = usePage<BoxIndexPageProps>();
 </script>

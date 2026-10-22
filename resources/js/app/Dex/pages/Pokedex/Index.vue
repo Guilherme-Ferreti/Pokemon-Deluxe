@@ -10,25 +10,18 @@
     The <AppIconNotInBox /> icon indicates pokémon you do not have in your box.
   </p>
   <AppSection>
-    <Pokedex
-      :species-list="speciesList"
-      :active-filters="activeFilters"
-      :filter-options="filterOptions"
-    />
+    <Pokedex />
   </AppSection>
 </template>
 
 <script lang="ts" setup>
 import { Head, setLayoutProps } from '@inertiajs/vue3';
 import Pokedex from '@/app/Dex/components/Pokedex.vue';
-import type { PokedexIndexPageProps } from '@/app/Dex/types/page-props/PokedexIndexPageProps';
 import AppIconInBox from '@/shared/components/AppIconInBox.vue';
 import AppIconNotInBox from '@/shared/components/AppIconNotInBox.vue';
 import AppPageHeader from '@/shared/components/AppPageHeader.vue';
 import AppSection from '@/shared/components/AppSection.vue';
 import { route } from '@/shared/types/helpers/route';
-
-defineProps<PokedexIndexPageProps>();
 
 setLayoutProps({
   pageSize: 'small',

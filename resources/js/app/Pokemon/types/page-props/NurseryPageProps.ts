@@ -1,7 +1,7 @@
 import type { EggIncubationStatus } from '@/shared/types/enums';
 import type { EggIncubation, Pokemon } from '@/shared/types/response';
 
-export interface NurseryPageProps {
+export type NurseryPageProps = {
   activeEggIncubations: {
     id: EggIncubation['id'];
     eggIncubatorIndex: EggIncubation['eggIncubatorIndex'];
@@ -19,4 +19,4 @@ export interface NurseryPageProps {
     idle: EggIncubation['eggIncubatorIndex'][];
     notPurchased: EggIncubation['eggIncubatorIndex'][];
   };
-}
+};

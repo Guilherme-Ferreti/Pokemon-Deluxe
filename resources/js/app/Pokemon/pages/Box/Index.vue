@@ -5,23 +5,16 @@
     description="Manage your captured Pokemon."
   />
   <AppSection>
-    <PokemonBox
-      :pokemon-list="pokemonList"
-      :active-filters="activeFilters"
-      :filter-options="filterOptions"
-    />
+    <PokemonBox />
   </AppSection>
 </template>
 
 <script setup lang="ts">
 import { Head, setLayoutProps } from '@inertiajs/vue3';
 import PokemonBox from '@/app/Pokemon/components/PokemonBox.vue';
-import type { BoxIndexPageProps } from '@/app/Pokemon/types/page-props/BoxIndexPageProps';
 import AppPageHeader from '@/shared/components/AppPageHeader.vue';
 import AppSection from '@/shared/components/AppSection.vue';
 import { route } from '@/shared/types/helpers/route';
-
-defineProps<BoxIndexPageProps>();
 
 setLayoutProps({
   breadcrumbs: [

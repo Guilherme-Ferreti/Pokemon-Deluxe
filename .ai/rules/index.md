@@ -13,6 +13,7 @@ Before planning or editing, find the row whose globs match the file's path and r
 | tests/**/Feature/** | .ai/rules/feature.md |
 | src/App/**/Filters/** | .ai/rules/filters.md |
 | src/Shared/Helpers/** | .ai/rules/helpers.md |
+| resources/js/app/** | .ai/rules/js-app.md |
 | database/migrations/** | .ai/rules/migrations.md |
 | src/Shared/Models/** | .ai/rules/models.md |
 | src/App/**/Http/Web/PageProps/** | .ai/rules/page-props.md |

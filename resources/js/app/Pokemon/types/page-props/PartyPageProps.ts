@@ -1,10 +1,10 @@
 import type { Pokemon } from '@/shared/types/response';
 
-export interface PartyPageProps {
+export type PartyPageProps = {
   party: {
     id: Pokemon['id'];
     name: Pokemon['name'];
     frontSprite: Pokemon['frontSprite'];
     level: Pokemon['level'];
   }[];
-}
+};

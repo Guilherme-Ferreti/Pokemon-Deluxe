@@ -5,7 +5,7 @@ import type {
   SpeciesLearnableMove,
 } from '@/shared/types/response';
 
-export interface PokedexShowPageProps {
+export type PokedexShowPageProps = {
   species: {
     name: Species['name'];
     slug: Species['slug'];
@@ -33,7 +33,7 @@ export interface PokedexShowPageProps {
     levelUp: LevelUpLearnableMove[];
     tm: TMLearnableMove[];
   };
-}
+};
 
 type Hero = {
   name: Species['name'];

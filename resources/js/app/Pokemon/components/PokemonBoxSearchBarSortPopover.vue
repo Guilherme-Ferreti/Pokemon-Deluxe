@@ -26,14 +26,14 @@
           name="sort"
           label="Sort by"
           placeholder="Choose a value"
-          :options="sortOptions"
+          :options="page.props.filters.options.sort"
         />
         <AppSelect
           v-model="selectedDir"
           name="dir"
           label="Direction"
           placeholder="Choose a value"
-          :options="dirOptions"
+          :options="page.props.filters.options.dir"
         />
         <div class="flex">
           <PopoverClose as-child>
@@ -61,6 +61,7 @@
 </template>
 
 <script setup lang="ts">
+import { usePage } from '@inertiajs/vue3';
 import { IconArrowsDownUp } from '@tabler/icons-vue';
 import { PopoverClose } from 'reka-ui';
 import { SearchBoxSortBy } from '@/app/Pokemon/types/enums/SearchBoxSortBy';
@@ -79,19 +80,15 @@ import {
 } from '@/shared/components/ui/tooltip';
 import { SortDirection } from '@/shared/types/enums';
 
-defineProps<{
-  sortOptions: BoxIndexPageProps['filterOptions']['sort'];
-  dirOptions: BoxIndexPageProps['filterOptions']['dir'];
-}>();
+const page = usePage<BoxIndexPageProps>();
 
-const selectedSort = defineModel<BoxIndexPageProps['activeFilters']['sort']>(
-  'sort',
-  {
-    default: SearchBoxSortBy.CAPTURE_DATE,
-  },
-);
+const selectedSort = defineModel<
+  BoxIndexPageProps['filters']['active']['sort']
+>('sort', {
+  default: SearchBoxSortBy.CAPTURE_DATE,
+});
 
-const selectedDir = defineModel<BoxIndexPageProps['activeFilters']['dir']>(
+const selectedDir = defineModel<BoxIndexPageProps['filters']['active']['dir']>(
   'dir',
   {
     default: SortDirection.DESC,

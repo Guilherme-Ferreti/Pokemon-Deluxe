@@ -21,9 +21,11 @@ final class AttackdexIndexPageProps implements ProvidesInertiaProperties
         $searchAttackdexFilters = SearchAttackdexFilters::fromRequest($context->request);
 
         return [
-            'moves'         => fn () => $this->getMovesProp($searchAttackdexFilters),
-            'activeFilters' => fn () => $searchAttackdexFilters,
-            'filterOptions' => fn () => SearchAttackdexFilters::filterOptions(),
+            'moves'   => fn () => $this->getMovesProp($searchAttackdexFilters),
+            'filters' => [
+                'options' => fn () => SearchAttackdexFilters::filterOptions(),
+                'active'  => fn () => $searchAttackdexFilters,
+            ],
         ];
     }
 

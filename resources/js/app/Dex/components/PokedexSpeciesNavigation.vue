@@ -3,7 +3,7 @@
     class="navigation__wrapper"
     aria-label="Pagination"
   >
-    <Tooltip v-if="previousSpecies">
+    <Tooltip v-if="page.props.previousSpecies">
       <TooltipTrigger as-child>
         <Button
           variant="outline"
@@ -12,35 +12,39 @@
           data-test="pokedex-species-navigation__previous-link"
         >
           <Link
-            :aria-label="`Previous species page: ${previousSpecies.name}`"
+            :aria-label="`Previous species page: ${page.props.previousSpecies.name}`"
             :href="
-              route('dex.web.pokedex.show', { species: previousSpecies.slug })
+              route('dex.web.pokedex.show', {
+                species: page.props.previousSpecies.slug,
+              })
             "
           >
             <IconChevronLeft />
             <div class="navigation__text-wrapper text-right">
               <span class="navigation__pokedex-number">
-                #{{ formatPokedexNumber(previousSpecies.pokedexNumber) }}
+                #{{
+                  formatPokedexNumber(page.props.previousSpecies.pokedexNumber)
+                }}
               </span>
               <span class="navigation__species-name">
-                {{ previousSpecies.name }}
+                {{ page.props.previousSpecies.name }}
               </span>
             </div>
             <AppSpeciesPortrait
-              :name="previousSpecies.name"
-              :url="previousSpecies.portrait"
+              :name="page.props.previousSpecies.name"
+              :url="page.props.previousSpecies.portrait"
             />
           </Link>
         </Button>
       </TooltipTrigger>
-      <TooltipContent>{{ previousSpecies.name }}</TooltipContent>
+      <TooltipContent>{{ page.props.previousSpecies.name }}</TooltipContent>
     </Tooltip>
     <Separator
-      v-if="previousSpecies && nextSpecies"
+      v-if="page.props.previousSpecies && page.props.nextSpecies"
       orientation="vertical"
       class="navigation__separator"
     />
-    <Tooltip v-if="nextSpecies">
+    <Tooltip v-if="page.props.nextSpecies">
       <TooltipTrigger as-child>
         <Button
           variant="outline"
@@ -49,32 +53,36 @@
           data-test="pokedex-species-navigation__next-link"
         >
           <Link
-            :aria-label="`Next species page: ${nextSpecies.name}`"
-            :href="route('dex.web.pokedex.show', { species: nextSpecies.slug })"
+            :aria-label="`Next species page: ${page.props.nextSpecies.name}`"
+            :href="
+              route('dex.web.pokedex.show', {
+                species: page.props.nextSpecies.slug,
+              })
+            "
           >
             <AppSpeciesPortrait
-              :name="nextSpecies.name"
-              :url="nextSpecies.portrait"
+              :name="page.props.nextSpecies.name"
+              :url="page.props.nextSpecies.portrait"
             />
             <div class="navigation__text-wrapper">
               <span class="navigation__pokedex-number">
-                #{{ formatPokedexNumber(nextSpecies.pokedexNumber) }}
+                #{{ formatPokedexNumber(page.props.nextSpecies.pokedexNumber) }}
               </span>
               <span class="navigation__species-name">
-                {{ nextSpecies.name }}
+                {{ page.props.nextSpecies.name }}
               </span>
             </div>
             <IconChevronRight />
           </Link>
         </Button>
       </TooltipTrigger>
-      <TooltipContent>{{ nextSpecies.name }}</TooltipContent>
+      <TooltipContent>{{ page.props.nextSpecies.name }}</TooltipContent>
     </Tooltip>
   </nav>
 </template>
 
 <script setup lang="ts">
-import { Link } from '@inertiajs/vue3';
+import { Link, usePage } from '@inertiajs/vue3';
 import { IconChevronLeft, IconChevronRight } from '@tabler/icons-vue';
 import type { PokedexShowPageProps } from '@/app/Dex/types/page-props/PokedexShowPageProps';
 import AppSpeciesPortrait from '@/shared/components/AppSpeciesPortrait.vue';
@@ -88,10 +96,7 @@ import {
 import { formatPokedexNumber } from '@/shared/lib/utils';
 import { route } from '@/shared/types/helpers/route';
 
-defineProps<{
-  previousSpecies: PokedexShowPageProps['previousSpecies'];
-  nextSpecies: PokedexShowPageProps['nextSpecies'];
-}>();
+const page = usePage<PokedexShowPageProps>();
 </script>
 
 <style scoped>

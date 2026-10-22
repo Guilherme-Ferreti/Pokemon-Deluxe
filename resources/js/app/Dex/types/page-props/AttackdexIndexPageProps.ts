@@ -8,7 +8,7 @@ import type {
 } from '@/shared/types/enums';
 import type { Move } from '@/shared/types/response';
 
-export interface AttackdexIndexPageProps {
+export type AttackdexIndexPageProps = {
   moves: PaginatedList<{
     id: Move['id'];
     name: Move['name'];
@@ -22,17 +22,19 @@ export interface AttackdexIndexPageProps {
     isZMove: Move['isZMove'];
     isDynamaxMove: Move['isDynamaxMove'];
   }>;
-  activeFilters: {
-    search: string;
-    types: ElementalType[];
-    ailments: Ailment[];
-    traits: MoveTrait[];
-    sort: SearchAttackdexSortBy;
-    dir: SortDirection;
+  filters: {
+    options: {
+      types: FilterOption<ElementalType>[];
+      ailments: FilterOption<Ailment>[];
+      traits: FilterOption<MoveTrait>[];
+    };
+    active: {
+      search: string;
+      types: ElementalType[];
+      ailments: Ailment[];
+      traits: MoveTrait[];
+      sort: SearchAttackdexSortBy;
+      dir: SortDirection;
+    };
   };
-  filterOptions: {
-    types: FilterOption<ElementalType>[];
-    ailments: FilterOption<Ailment>[];
-    traits: FilterOption<MoveTrait>[];
-  };
-}
+};

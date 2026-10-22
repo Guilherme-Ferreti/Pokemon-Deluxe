@@ -5,9 +5,9 @@
         <Tooltip>
           <TooltipTrigger>
             <AppSpeciesPortrait
-              v-if="metadata.portraits.regular"
-              :url="metadata.portraits.regular"
-              :name="speciesName"
+              v-if="page.props.metadata.portraits.regular"
+              :url="page.props.metadata.portraits.regular"
+              :name="page.props.species.name"
             />
           </TooltipTrigger>
           <TooltipContent>Regular</TooltipContent>
@@ -15,9 +15,9 @@
         <Tooltip>
           <TooltipTrigger>
             <AppSpeciesPortrait
-              v-if="metadata.portraits.shiny"
-              :url="metadata.portraits.shiny"
-              :name="speciesName"
+              v-if="page.props.metadata.portraits.shiny"
+              :url="page.props.metadata.portraits.shiny"
+              :name="page.props.species.name"
             />
           </TooltipTrigger>
           <TooltipContent>Shiny</TooltipContent>
@@ -28,49 +28,49 @@
       title="Type(s)"
       data-test="pokedex-species-metadata__types"
     >
-      <ElementalTypeBadges :types="metadata.types" />
+      <ElementalTypeBadges :types="page.props.metadata.types" />
     </AppInfoCardRow>
     <AppInfoCardRow
       title="Generation"
       data-test="pokedex-species-metadata__generation"
-      :text="$page.props.labels.generation[metadata.generation]"
+      :text="$page.props.labels.generation[page.props.metadata.generation]"
     />
     <AppInfoCardRow
-      v-if="Object.values(metadata.traits).some(Boolean)"
+      v-if="Object.values(page.props.metadata.traits).some(Boolean)"
       title="Traits"
       data-test="pokedex-species-metadata__traits"
     >
       <div class="flex flex-wrap gap-2">
         <Badge
-          v-if="metadata.traits.isBaby"
+          v-if="page.props.metadata.traits.isBaby"
           variant="outline"
           class="text-xs font-medium"
         >
           Baby
         </Badge>
         <Badge
-          v-if="metadata.traits.isLegendary"
+          v-if="page.props.metadata.traits.isLegendary"
           variant="outline"
           class="text-xs font-medium"
         >
           Legendary
         </Badge>
         <Badge
-          v-if="metadata.traits.isMythical"
+          v-if="page.props.metadata.traits.isMythical"
           variant="outline"
           class="text-xs font-medium"
         >
           Mythical
         </Badge>
         <Badge
-          v-if="metadata.traits.isMega"
+          v-if="page.props.metadata.traits.isMega"
           variant="outline"
           class="text-xs font-medium"
         >
           Mega
         </Badge>
         <Badge
-          v-if="metadata.traits.isGmax"
+          v-if="page.props.metadata.traits.isGmax"
           variant="outline"
           class="text-xs font-medium"
         >
@@ -85,7 +85,7 @@
       data-test="pokedex-species-metadata__traits"
     />
     <AppInfoCardRow
-      v-if="metadata.isGenderless"
+      v-if="page.props.metadata.isGenderless"
       title="Gender Rate"
       text="Genderless"
       data-test="pokedex-species-metadata__gender-rate"
@@ -100,7 +100,7 @@
           v-if="canBeMale"
           class="flex items-center gap-0.5"
         >
-          {{ metadata.malePercentage }}%
+          {{ page.props.metadata.malePercentage }}%
 
           <AppPokemonGenderIcon :gender="PokemonGender.MALE" />
         </span>
@@ -109,7 +109,7 @@
           v-if="canBeFemale"
           class="flex items-center gap-0.5"
         >
-          {{ metadata.femalePercentage }}%
+          {{ page.props.metadata.femalePercentage }}%
           <AppPokemonGenderIcon :gender="PokemonGender.FEMALE" />
         </span>
       </span>
@@ -118,6 +118,7 @@
 </template>
 
 <script setup lang="ts">
+import { usePage } from '@inertiajs/vue3';
 import type { PokedexShowPageProps } from '@/app/Dex/types/page-props/PokedexShowPageProps';
 import AppInfoCard from '@/shared/components/AppInfoCard.vue';
 import AppInfoCardRow from '@/shared/components/AppInfoCardRow.vue';
@@ -131,13 +132,9 @@ import {
   TooltipContent,
 } from '@/shared/components/ui/tooltip';
 import { PokemonGender } from '@/shared/types/enums';
-import type { Species } from '@/shared/types/response';
 
-const props = defineProps<{
-  speciesName: Species['name'];
-  metadata: PokedexShowPageProps['metadata'];
-}>();
+const page = usePage<PokedexShowPageProps>();
 
-const canBeMale = props.metadata.malePercentage !== 0;
-const canBeFemale = props.metadata.femalePercentage !== 0;
+const canBeMale = page.props.metadata.malePercentage !== 0;
+const canBeFemale = page.props.metadata.femalePercentage !== 0;
 </script>

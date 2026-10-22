@@ -51,23 +51,27 @@ final class HandleInertiaRequests extends Middleware
             'auth' => [
                 'user' => $request->user() ? Inertia::once(fn () => $request->user()->only('id', 'name', 'email')) : null,
             ],
-            'labels' => Inertia::once(fn () => $this->labels()),
-            'game'   => Inertia::once(fn () => [
-                'maxEggIncubatorsPerUser' => config('game.max_egg_incubators_per_user'),
-            ]),
         ];
     }
 
-    /**
-     * @return array<string, array<string|int, string>>
-     */
-    private function labels(): array
+    #[Override]
+    public function shareOnce(Request $request): array
     {
         return [
-            'elementalType' => enumLabels(ElementalType::class),
-            'pokemonGender' => enumLabels(PokemonGender::class),
-            'ailment'       => enumLabels(Ailment::class),
-            'generation'    => enumLabels(Generation::class),
+            ...parent::shareOnce($request),
+
+            'labels' => fn () => [
+                'elementalType' => enumLabels(ElementalType::class),
+                'pokemonGender' => enumLabels(PokemonGender::class),
+                'ailment'       => enumLabels(Ailment::class),
+                'generation'    => enumLabels(Generation::class),
+            ],
+
+            'config' => fn () => [
+                'game' => [
+                    'maxEggIncubatorsPerUser' => config('game.max_egg_incubators_per_user'),
+                ],
+            ],
         ];
     }
 }

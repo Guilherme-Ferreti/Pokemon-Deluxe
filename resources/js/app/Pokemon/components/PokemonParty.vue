@@ -5,7 +5,7 @@
     </CardHeader>
     <CardContent class="party-card__slots-wrapper">
       <div
-        v-for="pokemon in party"
+        v-for="pokemon in page.props.party"
         :key="pokemon.id"
         class="party-card__pokemon-slot"
       >
@@ -20,7 +20,7 @@
         <p class="party-card__pokemon-level">Lv. {{ pokemon.level }}</p>
       </div>
       <div
-        v-for="i in 6 - party.length"
+        v-for="i in 6 - page.props.party.length"
         :key="i"
         class="party-card__empty-slot"
       >
@@ -31,6 +31,7 @@
 </template>
 
 <script setup lang="ts">
+import { usePage } from '@inertiajs/vue3';
 import { IconPlus } from '@tabler/icons-vue';
 import type { PartyPageProps } from '@/app/Pokemon/types/page-props/PartyPageProps';
 import {
@@ -40,9 +41,7 @@ import {
   CardTitle,
 } from '@/shared/components/ui/card';
 
-defineProps<{
-  party: PartyPageProps['party'];
-}>();
+const page = usePage<PartyPageProps>();
 </script>
 
 <style scoped>

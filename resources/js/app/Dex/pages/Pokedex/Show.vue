@@ -1,61 +1,39 @@
 <template>
-  <Head :title="species.name" />
+  <Head :title="page.props.species.name" />
   <AppSection
     class="flex-wrap items-center justify-center @3xl/main-content:flex-row @3xl/main-content:justify-between"
   >
     <PokedexSpeciesAutocomplete class="w-full max-w-89" />
-    <PokedexSpeciesNavigation
-      :previous-species="previousSpecies"
-      :next-species="nextSpecies"
-    />
+    <PokedexSpeciesNavigation />
   </AppSection>
   <div class="space-y-4">
     <div
       class="grid gap-4 @2xl/main-content:grid-cols-2 @4xl/main-content:grid-cols-3"
     >
       <section class="@2xl/main-content:col-span-2">
-        <PokedexSpeciesHero
-          class="h-full"
-          :hero="hero"
-        />
+        <PokedexSpeciesHero class="h-full" />
       </section>
       <section>
-        <PokedexSpeciesMetadata
-          class="h-full"
-          :species-name="species.name"
-          :metadata="metadata"
-        />
+        <PokedexSpeciesMetadata class="h-full" />
       </section>
       <section class="@4xl/main-content:order-1">
-        <PokedexSpeciesEvolutionChain
-          class="h-full @4xl/main-content:h-auto"
-          :evolution-chain="evolutionChain"
-        />
+        <PokedexSpeciesEvolutionChain class="h-full @4xl/main-content:h-auto" />
       </section>
       <section>
-        <PokedexSpeciesDamageTaken
-          :species-name="species.name"
-          :damage-taken="damageTaken"
-        />
+        <PokedexSpeciesDamageTaken />
       </section>
       <section>
-        <PokedexSpeciesCaptureStatistics
-          :species-name="species.name"
-          :statistics="captureStatistics"
-        />
+        <PokedexSpeciesCaptureStatistics />
       </section>
     </div>
     <section>
-      <PokedexSpeciesLearnableMoves
-        :species-name="species.name"
-        :learnable-moves="learnableMoves"
-      />
+      <PokedexSpeciesLearnableMoves />
     </section>
   </div>
 </template>
 
 <script setup lang="ts">
-import { Head, setLayoutProps } from '@inertiajs/vue3';
+import { Head, setLayoutProps, usePage } from '@inertiajs/vue3';
 import PokedexSpeciesAutocomplete from '@/app/Dex/components/PokedexSpeciesAutocomplete.vue';
 import PokedexSpeciesCaptureStatistics from '@/app/Dex/components/PokedexSpeciesCaptureStatistics.vue';
 import PokedexSpeciesDamageTaken from '@/app/Dex/components/PokedexSpeciesDamageTaken.vue';
@@ -68,7 +46,7 @@ import type { PokedexShowPageProps } from '@/app/Dex/types/page-props/PokedexSho
 import AppSection from '@/shared/components/AppSection.vue';
 import { route } from '@/shared/types/helpers/route';
 
-const props = defineProps<PokedexShowPageProps>();
+const page = usePage<PokedexShowPageProps>();
 
 setLayoutProps({
   breadcrumbs: [
@@ -77,8 +55,10 @@ setLayoutProps({
       href: route('dex.web.pokedex.index'),
     },
     {
-      name: props.species.name,
-      href: route('dex.web.pokedex.show', { species: props.species.slug }),
+      name: page.props.species.name,
+      href: route('dex.web.pokedex.show', {
+        species: page.props.species.slug,
+      }),
     },
     {
       name: 'View',

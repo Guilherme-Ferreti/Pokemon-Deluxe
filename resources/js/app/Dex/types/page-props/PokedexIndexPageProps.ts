@@ -8,7 +8,7 @@ import type {
 } from '@/shared/types/enums';
 import type { Species } from '@/shared/types/response';
 
-export interface PokedexIndexPageProps {
+export type PokedexIndexPageProps = {
   speciesList: PaginatedList<{
     id: Species['id'];
     portrait: Species['portraits']['regular'];
@@ -20,17 +20,19 @@ export interface PokedexIndexPageProps {
     regularInBox: boolean;
     shinyInBox: boolean;
   }>;
-  activeFilters: {
-    search: string;
-    types: ElementalType[];
-    traits: SpeciesTrait[];
-    generations: Generation[];
-    sort: SearchPokedexSortBy;
-    dir: SortDirection;
+  filters: {
+    options: {
+      types: FilterOption<ElementalType>[];
+      traits: FilterOption<SpeciesTrait>[];
+      generations: FilterOption<Generation>[];
+    };
+    active: {
+      search: string;
+      types: ElementalType[];
+      traits: SpeciesTrait[];
+      generations: Generation[];
+      sort: SearchPokedexSortBy;
+      dir: SortDirection;
+    };
   };
-  filterOptions: {
-    types: FilterOption<ElementalType>[];
-    traits: FilterOption<SpeciesTrait>[];
-    generations: FilterOption<Generation>[];
-  };
-}
+};

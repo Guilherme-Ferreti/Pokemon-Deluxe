@@ -17,19 +17,11 @@
         v-model:types="searchForm.types"
         v-model:traits="searchForm.traits"
         v-model:generations="searchForm.generations"
-        :type-options="filterOptions.types"
-        :trait-options="filterOptions.traits"
-        :generation-options="filterOptions.generations"
-        :active-filters-count="
-          activeFilters.traits.length +
-          activeFilters.types.length +
-          activeFilters.generations.length
-        "
         @apply="submitSearch"
         @close="nextTick(() => !searchForm.processing && searchForm.reset())"
       />
     </form>
-    <Table v-if="speciesList.data.length > 0">
+    <Table v-if="page.props.speciesList.data.length > 0">
       <TableHeader>
         <TableRow>
           <TableHead class="w-12 whitespace-normal">Dex No.</TableHead>
@@ -53,7 +45,7 @@
       </TableHeader>
       <TableBody>
         <TableRow
-          v-for="species in speciesList.data"
+          v-for="species in page.props.speciesList.data"
           :key="species.id"
         >
           <TableCell class="text-muted-foreground">
@@ -104,11 +96,11 @@
       :icon="IconXMark"
     />
   </Card>
-  <AppPagination :list="speciesList" />
+  <AppPagination :list="page.props.speciesList" />
 </template>
 
 <script lang="ts" setup>
-import { Link, useForm } from '@inertiajs/vue3';
+import { Link, useForm, usePage } from '@inertiajs/vue3';
 import {
   IconEye,
   IconSearch,
@@ -141,19 +133,15 @@ import {
 import { removeFalsyValues } from '@/shared/lib/utils.js';
 import { route } from '@/shared/types/helpers/route';
 
-const props = defineProps<{
-  speciesList: PokedexIndexPageProps['speciesList'];
-  activeFilters: PokedexIndexPageProps['activeFilters'];
-  filterOptions: PokedexIndexPageProps['filterOptions'];
-}>();
+const page = usePage<PokedexIndexPageProps>();
 
 const searchForm = useForm({
-  search: props.activeFilters.search,
-  types: props.activeFilters.types,
-  traits: props.activeFilters.traits,
-  generations: props.activeFilters.generations,
-  sort: props.activeFilters.sort,
-  dir: props.activeFilters.dir,
+  search: page.props.filters.active.search,
+  types: page.props.filters.active.types,
+  traits: page.props.filters.active.traits,
+  generations: page.props.filters.active.generations,
+  sort: page.props.filters.active.sort,
+  dir: page.props.filters.active.dir,
 });
 
 watchDebounced(
@@ -166,7 +154,7 @@ function submitSearch() {
   searchForm.transform(removeFalsyValues).get(route('dex.web.pokedex.index'), {
     preserveScroll: true,
     preserveState: true,
-    only: ['speciesList', 'activeFilters'],
+    only: ['speciesList', 'filters.active'],
   });
 }
 </script>

@@ -3,14 +3,18 @@
     tooltip-text="Filters"
     dialog-title="Filters"
     dialog-description="Use these filters to narrow down your search."
-    :active-filters-count="activeFiltersCount"
+    :active-filters-count="
+      page.props.filters.active.types.length +
+      page.props.filters.active.ailments.length +
+      page.props.filters.active.traits.length
+    "
     @reset="(resetFilters(), nextTick(() => $emit('apply')))"
     @close="$emit('close')"
     @apply="$emit('apply')"
   >
     <AppCheckboxGroup title="By type:">
       <AppCheckbox
-        v-for="option in typeOptions"
+        v-for="option in page.props.filters.options.types"
         :key="option.value"
         v-model="selectedTypes"
         name="types[]"
@@ -20,7 +24,7 @@
     </AppCheckboxGroup>
     <AppCheckboxGroup title="By ailment:">
       <AppCheckbox
-        v-for="option in ailmentOptions"
+        v-for="option in page.props.filters.options.ailments"
         :key="option.value"
         v-model="selectedAilments"
         name="ailments[]"
@@ -30,7 +34,7 @@
     </AppCheckboxGroup>
     <AppCheckboxGroup title="Traits:">
       <AppCheckbox
-        v-for="option in traitOptions"
+        v-for="option in page.props.filters.options.traits"
         :key="option.value"
         v-model="selectedTraits"
         name="traits[]"
@@ -42,33 +46,29 @@
 </template>
 
 <script setup lang="ts">
+import { usePage } from '@inertiajs/vue3';
 import { nextTick } from 'vue';
 import type { AttackdexIndexPageProps } from '@/app/Dex/types/page-props/AttackdexIndexPageProps';
 import AppCheckbox from '@/shared/components/AppCheckbox.vue';
 import AppCheckboxGroup from '@/shared/components/AppCheckboxGroup.vue';
 import AppSearchFiltersDialog from '@/shared/components/AppSearchFiltersDialog.vue';
 
-defineProps<{
-  typeOptions: AttackdexIndexPageProps['filterOptions']['types'];
-  ailmentOptions: AttackdexIndexPageProps['filterOptions']['ailments'];
-  traitOptions: AttackdexIndexPageProps['filterOptions']['traits'];
-  activeFiltersCount: number;
-}>();
+const page = usePage<AttackdexIndexPageProps>();
 
 const selectedTypes = defineModel<
-  AttackdexIndexPageProps['activeFilters']['types']
+  AttackdexIndexPageProps['filters']['active']['types']
 >('types', {
   default: () => [],
 });
 
 const selectedAilments = defineModel<
-  AttackdexIndexPageProps['activeFilters']['ailments']
+  AttackdexIndexPageProps['filters']['active']['ailments']
 >('ailments', {
   default: () => [],
 });
 
 const selectedTraits = defineModel<
-  AttackdexIndexPageProps['activeFilters']['traits']
+  AttackdexIndexPageProps['filters']['active']['traits']
 >('traits', {
   default: () => [],
 });

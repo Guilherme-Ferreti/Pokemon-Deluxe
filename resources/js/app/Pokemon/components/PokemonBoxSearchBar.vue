@@ -13,22 +13,12 @@
         v-model:types="searchForm.types"
         v-model:traits="searchForm.traits"
         v-model:generations="searchForm.generations"
-        :type-options="filterOptions.types"
-        :trait-options="filterOptions.traits"
-        :generation-options="filterOptions.generations"
-        :active-filters-count="
-          activeFilters.types.length +
-          activeFilters.traits.length +
-          activeFilters.generations.length
-        "
         @apply="submitSearch"
         @close="nextTick(() => !searchForm.processing && searchForm.reset())"
       />
       <PokemonBoxSearchBarSortPopover
         v-model:sort="searchForm.sort"
         v-model:dir="searchForm.dir"
-        :sort-options="filterOptions.sort"
-        :dir-options="filterOptions.dir"
         @submit="submitSearch"
         @close="nextTick(() => !searchForm.processing && searchForm.reset())"
       />
@@ -37,7 +27,7 @@
 </template>
 
 <script setup lang="ts">
-import { useForm } from '@inertiajs/vue3';
+import { useForm, usePage } from '@inertiajs/vue3';
 import { IconSearch } from '@tabler/icons-vue';
 import { watchDebounced } from '@vueuse/core';
 import { nextTick } from 'vue';
@@ -49,18 +39,15 @@ import { Card } from '@/shared/components/ui/card';
 import { removeFalsyValues } from '@/shared/lib/utils';
 import { route } from '@/shared/types/helpers/route.js';
 
-const props = defineProps<{
-  activeFilters: BoxIndexPageProps['activeFilters'];
-  filterOptions: BoxIndexPageProps['filterOptions'];
-}>();
+const page = usePage<BoxIndexPageProps>();
 
 const searchForm = useForm({
-  search: props.activeFilters.search,
-  types: props.activeFilters.types,
-  traits: props.activeFilters.traits,
-  generations: props.activeFilters.generations,
-  sort: props.activeFilters.sort,
-  dir: props.activeFilters.dir,
+  search: page.props.filters.active.search,
+  types: page.props.filters.active.types,
+  traits: page.props.filters.active.traits,
+  generations: page.props.filters.active.generations,
+  sort: page.props.filters.active.sort,
+  dir: page.props.filters.active.dir,
 });
 
 watchDebounced(
@@ -73,7 +60,7 @@ function submitSearch() {
   searchForm.transform(removeFalsyValues).get(route('pokemon.web.box.index'), {
     preserveScroll: true,
     preserveState: true,
-    only: ['pokemonList', 'activeFilters'],
+    only: ['pokemonList', 'filters.active'],
   });
 }
 </script>

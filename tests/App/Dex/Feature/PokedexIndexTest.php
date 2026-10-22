@@ -33,8 +33,8 @@ it('loads the pokedex page with expected structure', function () {
         ->assertSuccessful()
         ->assertInertia(fn (Assert $page) => $page
             ->component('Dex/pages/Pokedex/Index')
-            ->has('activeFilters')
-            ->has('filterOptions', fn (Assert $page) => $page->hasAll(['types', 'traits', 'generations']))
+            ->has('filters.active')
+            ->has('filters.options', fn (Assert $page) => $page->hasAll(['types', 'traits', 'generations']))
             ->has('speciesList.data', 2)
             ->where('speciesList.data.0.id', $speciesA->id)
             ->where('speciesList.data.0.pokedexNumber', $speciesA->pokedex_number)

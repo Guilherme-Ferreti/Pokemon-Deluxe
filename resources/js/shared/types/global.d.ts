@@ -32,8 +32,10 @@ declare module '@inertiajs/core' {
         ailment: Record<Ailment, string>;
         generation: Record<Generation, string>;
       };
-      game: {
-        maxEggIncubatorsPerUser: number;
+      config: {
+        game: {
+          maxEggIncubatorsPerUser: number;
+        };
       };
       authLayout: {
         sprites: string[];

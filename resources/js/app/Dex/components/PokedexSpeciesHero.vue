@@ -6,8 +6,8 @@
       >
         <img
           class="size-36 object-contain"
-          :src="hero.sprites.frontDefault ?? undefined"
-          :alt="`${hero.name} sprite`"
+          :src="page.props.hero.sprites.frontDefault ?? undefined"
+          :alt="`${page.props.hero.name} sprite`"
         />
       </div>
       <div class="flex flex-1 flex-col gap-4 p-6">
@@ -15,27 +15,27 @@
           class="text-xs leading-none font-black tracking-widest text-muted-foreground uppercase"
           data-test="pokedex-species-hero__pokedex-number"
         >
-          #{{ formatPokedexNumber(hero.pokedexNumber) }}
+          #{{ formatPokedexNumber(page.props.hero.pokedexNumber) }}
         </p>
         <div class="flex flex-col gap-1">
           <h1
             class="text-3xl font-bold text-foreground"
             data-test="pokedex-species-hero__name"
           >
-            {{ hero.name }}
+            {{ page.props.hero.name }}
           </h1>
           <p
             class="text-base text-muted-foreground"
             data-test="pokedex-species-hero__genus"
           >
-            {{ hero.genus }}
+            {{ page.props.hero.genus }}
           </p>
         </div>
         <p
           class="text-muted-foreground"
           data-test="pokedex-species-hero__text-entry"
         >
-          {{ hero.textEntry }}
+          {{ page.props.hero.textEntry }}
         </p>
       </div>
     </div>
@@ -43,11 +43,10 @@
 </template>
 
 <script setup lang="ts">
+import { usePage } from '@inertiajs/vue3';
 import type { PokedexShowPageProps } from '@/app/Dex/types/page-props/PokedexShowPageProps';
 import { Card } from '@/shared/components/ui/card';
 import { formatPokedexNumber } from '@/shared/lib/utils';
 
-defineProps<{
-  hero: PokedexShowPageProps['hero'];
-}>();
+const page = usePage<PokedexShowPageProps>();
 </script>

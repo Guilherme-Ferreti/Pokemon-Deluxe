@@ -64,6 +64,7 @@
 </template>
 
 <script setup lang="ts">
+import { usePage } from '@inertiajs/vue3';
 import type { PokedexShowPageProps } from '@/app/Dex/types/page-props/PokedexShowPageProps';
 import AppInfoCard from '@/shared/components/AppInfoCard.vue';
 import AppInfoCardSectionTitle from '@/shared/components/AppInfoCardSectionTitle.vue';
@@ -74,19 +75,17 @@ import AppSpeciesPortrait from '@/shared/components/AppSpeciesPortrait.vue';
 import Separator from '@/shared/components/ui/separator/Separator.vue';
 import { route } from '@/shared/types/helpers/route.js';
 
-const props = defineProps<{
-  evolutionChain: PokedexShowPageProps['evolutionChain'];
-}>();
+const page = usePage<PokedexShowPageProps>();
 
 const sections = [
   {
     title: 'Evolves from',
-    evolutions: props.evolutionChain.previous,
+    evolutions: page.props.evolutionChain.previous,
     emptyMessage: 'This pokemon does not have previous evolutions',
   },
   {
     title: 'Evolves into',
-    evolutions: props.evolutionChain.into,
+    evolutions: page.props.evolutionChain.into,
     emptyMessage: 'This pokemon does not evolve',
   },
 ];

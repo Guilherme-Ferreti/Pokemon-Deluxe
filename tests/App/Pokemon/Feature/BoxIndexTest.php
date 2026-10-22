@@ -38,8 +38,8 @@ it('loads the box page with expected structure', function () {
         ->assertSuccessful()
         ->assertInertia(fn (Assert $page) => $page
             ->component('Pokemon/pages/Box/Index')
-            ->has('activeFilters')
-            ->has('filterOptions', fn (Assert $page) => $page->hasAll(['types', 'traits', 'generations', 'sort', 'dir']))
+            ->has('filters.active')
+            ->has('filters.options', fn (Assert $page) => $page->hasAll(['types', 'traits', 'generations', 'sort', 'dir']))
             ->has('pokemonList.data', $perPage)
             ->where('pokemonList.data.0.id', $newestPokemon->id)
             ->where('pokemonList.data.0.name', $newestPokemon->getDisplayName())

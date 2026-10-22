@@ -1,19 +1,25 @@
 <template>
   <ul class="grid grid-cols-[repeat(auto-fill,minmax(13rem,1fr))] gap-4">
     <li
-      v-for="incubatorIndex in page.props.game.maxEggIncubatorsPerUser"
+      v-for="incubatorIndex in page.props.config.game.maxEggIncubatorsPerUser"
       :key="incubatorIndex"
     >
       <EggIncubatorNotPurchasedCard
-        v-if="incubatorAvailability.notPurchased.includes(incubatorIndex)"
+        v-if="
+          page.props.incubatorAvailability.notPurchased.includes(incubatorIndex)
+        "
         :egg-incubator-index="incubatorIndex"
       />
       <EggIncubatorActiveCard
-        v-else-if="incubatorAvailability.active.includes(incubatorIndex)"
+        v-else-if="
+          page.props.incubatorAvailability.active.includes(incubatorIndex)
+        "
         :egg-incubation="getEggIncubationAtIndex(incubatorIndex)"
       />
       <EggIncubatorIdleCard
-        v-else-if="incubatorAvailability.idle.includes(incubatorIndex)"
+        v-else-if="
+          page.props.incubatorAvailability.idle.includes(incubatorIndex)
+        "
         :egg-incubator-index="incubatorIndex"
       />
     </li>
@@ -27,15 +33,10 @@ import EggIncubatorIdleCard from '@/app/Pokemon/components/EggIncubatorIdleCard.
 import EggIncubatorNotPurchasedCard from '@/app/Pokemon/components/EggIncubatorNotPurchasedCard.vue';
 import type { NurseryPageProps } from '@/app/Pokemon/types/page-props/NurseryPageProps';
 
-const props = defineProps<{
-  activeEggIncubations: NurseryPageProps['activeEggIncubations'];
-  incubatorAvailability: NurseryPageProps['incubatorAvailability'];
-}>();
-
-const page = usePage();
+const page = usePage<NurseryPageProps>();
 
 function getEggIncubationAtIndex(index: number) {
-  return props.activeEggIncubations.find(
+  return page.props.activeEggIncubations.find(
     (process) => process.eggIncubatorIndex === index,
   ) as NurseryPageProps['activeEggIncubations'][number];
 }

@@ -3,14 +3,18 @@
     tooltip-text="Filters"
     dialog-title="Filters"
     dialog-description="Use these filters to narrow down your search."
-    :active-filters-count="activeFiltersCount"
+    :active-filters-count="
+      page.props.filters.active.traits.length +
+      page.props.filters.active.types.length +
+      page.props.filters.active.generations.length
+    "
     @reset="(resetFilters(), nextTick(() => $emit('apply')))"
     @close="$emit('close')"
     @apply="$emit('apply')"
   >
     <AppCheckboxGroup title="By type:">
       <AppCheckbox
-        v-for="option in typeOptions"
+        v-for="option in page.props.filters.options.types"
         :key="option.value"
         v-model="selectedTypes"
         name="types[]"
@@ -23,7 +27,7 @@
     </AppCheckboxGroup>
     <AppCheckboxGroup title="By trait:">
       <AppCheckbox
-        v-for="option in traitOptions"
+        v-for="option in page.props.filters.options.traits"
         :key="option.value"
         v-model="selectedTraits"
         name="traits[]"
@@ -34,7 +38,7 @@
     </AppCheckboxGroup>
     <AppCheckboxGroup title="By generation:">
       <AppCheckbox
-        v-for="option in generationOptions"
+        v-for="option in page.props.filters.options.generations"
         :key="option.value"
         v-model="selectedGenerations"
         name="generations[]"
@@ -46,6 +50,7 @@
 </template>
 
 <script setup lang="ts">
+import { usePage } from '@inertiajs/vue3';
 import { nextTick } from 'vue';
 import type { PokedexIndexPageProps } from '@/app/Dex/types/page-props/PokedexIndexPageProps';
 import AppCheckbox from '@/shared/components/AppCheckbox.vue';
@@ -54,27 +59,22 @@ import AppSearchFiltersDialog from '@/shared/components/AppSearchFiltersDialog.v
 import { anyItemExists } from '@/shared/lib/utils.js';
 import { SpeciesTrait } from '@/shared/types/enums';
 
-defineProps<{
-  typeOptions: PokedexIndexPageProps['filterOptions']['types'];
-  traitOptions: PokedexIndexPageProps['filterOptions']['traits'];
-  generationOptions: PokedexIndexPageProps['filterOptions']['generations'];
-  activeFiltersCount: number;
-}>();
+const page = usePage<PokedexIndexPageProps>();
 
 const selectedTypes = defineModel<
-  PokedexIndexPageProps['activeFilters']['types']
+  PokedexIndexPageProps['filters']['active']['types']
 >('types', {
   default: () => [],
 });
 
 const selectedTraits = defineModel<
-  PokedexIndexPageProps['activeFilters']['traits']
+  PokedexIndexPageProps['filters']['active']['traits']
 >('traits', {
   default: () => [],
 });
 
 const selectedGenerations = defineModel<
-  PokedexIndexPageProps['activeFilters']['generations']
+  PokedexIndexPageProps['filters']['active']['generations']
 >('generations', {
   default: () => [],
 });
