@@ -6,19 +6,19 @@ namespace App\Auth\Http\Web\Controllers;
 
 use App\Auth\Actions\LoginUserAction;
 use App\Auth\Actions\RegisterUserAction;
-use App\Auth\Http\Web\Requests\StoreRegisterRequest;
+use App\Auth\Http\Web\Requests\StoreRegistrationRequest;
 use Illuminate\Http\RedirectResponse;
 use Inertia\Response;
 use Shared\Base\Controller;
 
-final class RegisterController extends Controller
+final class RegistrationController extends Controller
 {
     public function create(): Response
     {
-        return inertia('Auth/Register');
+        return inertia('Auth/Registration');
     }
 
-    public function store(StoreRegisterRequest $request): RedirectResponse
+    public function store(StoreRegistrationRequest $request): RedirectResponse
     {
         $user = new RegisterUserAction()->handle(
             name: $request->validated('name'),

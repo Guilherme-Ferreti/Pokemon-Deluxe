@@ -6,7 +6,7 @@ namespace App\Auth\Http\Web\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-final class StoreRegisterRequest extends FormRequest
+final class StoreRegistrationRequest extends FormRequest
 {
     /**
      * @return array<string, array<int, string>>
@@ -16,7 +16,7 @@ final class StoreRegisterRequest extends FormRequest
         return [
             'name'     => ['required', 'string', 'max:255'],
             'email'    => ['required', 'email', 'max:255', 'unique:users'],
-            'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'password' => ['required', 'string', 'min:8', 'same:passwordConfirmation'],
         ];
     }
 }

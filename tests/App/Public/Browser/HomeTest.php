@@ -15,8 +15,8 @@ it('navigates to the login page', function () {
         ->assertPathIs(route('auth.web.login.create', absolute: false));
 });
 
-it('navigates to the register page', function () {
+it('navigates to the registration page', function () {
     visit(route('public.web.home'))
-        ->click('Register')
-        ->assertPathIs(route('auth.web.register.create', absolute: false));
+        ->click('Sign Up')
+        ->assertPathIs(route('auth.web.registration.create', absolute: false));
 });

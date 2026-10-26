@@ -1,8 +1,8 @@
 type RouteParameters = {
   'auth.web.login.create': never;
   'auth.web.login.store': never;
-  'auth.web.register.create': never;
-  'auth.web.register.store': never;
+  'auth.web.registration.create': never;
+  'auth.web.registration.store': never;
   'auth.web.logout': never;
   'dashboard.web.home': never;
   'dex.web.pokedex.index': never;
@@ -62,8 +62,8 @@ export function route<T extends keyof RouteParameters>(
 const routes = {
   'auth.web.login.create': 'login',
   'auth.web.login.store': 'login',
-  'auth.web.register.create': 'register',
-  'auth.web.register.store': 'register',
+  'auth.web.registration.create': 'registration',
+  'auth.web.registration.store': 'registration',
   'auth.web.logout': 'logout',
   'dashboard.web.home': 'dashboard',
   'dex.web.pokedex.index': 'pokedex',

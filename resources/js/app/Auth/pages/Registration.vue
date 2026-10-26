@@ -1,12 +1,12 @@
 <template>
-  <Head title="Register" />
+  <Head title="Registration" />
   <Form
     v-slot="{ errors, validate }"
     method="post"
     class="flex flex-col gap-6"
-    :action="route('auth.web.register.store')"
+    :action="route('auth.web.registration.store')"
     disable-while-processing
-    :reset-on-error="['password', 'password_confirmation']"
+    :reset-on-error="['password', 'passwordConfirmation']"
   >
     <FieldGroup>
       <AuthFormHeader
@@ -40,9 +40,9 @@
       <AppInput
         label="Confirm Password"
         type="password"
-        name="password_confirmation"
+        name="passwordConfirmation"
         required
-        :error-message="errors.password_confirmation"
+        :error-message="errors.passwordConfirmation"
       />
       <Button
         type="submit"

@@ -23,10 +23,10 @@
           variant="outline"
         >
           <Link
-            :href="route('auth.web.register.create')"
+            :href="route('auth.web.registration.create')"
             prefetch
           >
-            Register
+            Sign Up
           </Link>
         </Button>
       </div>

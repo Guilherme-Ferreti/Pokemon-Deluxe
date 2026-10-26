@@ -49,7 +49,7 @@
       </Button>
       <FieldDescription class="text-center">
         Don't have an account?
-        <Link :href="route('auth.web.register.create')">Sign up</Link>
+        <Link :href="route('auth.web.registration.create')">Sign up</Link>
       </FieldDescription>
     </FieldGroup>
   </Form>
