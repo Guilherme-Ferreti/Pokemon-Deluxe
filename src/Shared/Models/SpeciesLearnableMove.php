@@ -72,6 +72,15 @@ final class SpeciesLearnableMove extends Model
         $query->whereNull('level_learn');
     }
 
+    /**
+     * @param  Builder<SpeciesLearnableMove>  $query
+     */
+    #[Scope]
+    protected function baseMove(Builder $query): void
+    {
+        $query->where('is_base_move', true);
+    }
+
     public function isLearnedByLevelUp(): bool
     {
         return ! is_null($this->level_learn);

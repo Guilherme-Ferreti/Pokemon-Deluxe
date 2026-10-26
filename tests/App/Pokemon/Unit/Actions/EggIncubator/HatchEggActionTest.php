@@ -3,7 +3,7 @@
 declare(strict_types=1);
 
 use App\Pokemon\Actions\Incubator\HatchEggAction;
-use App\Pokemon\Exceptions\IncubationNotReadyToHatchException;
+use App\Pokemon\Exceptions\IncubatorEggNotReadyToHatchException;
 use App\Pokemon\Exceptions\IncubatorNotActiveException;
 use Shared\Models\Incubation;
 use Shared\Models\User;
@@ -43,7 +43,7 @@ it('does not hatch an egg that is still incubating', function () {
     $incubation = Incubation::factory()->for($user)->incubating()->create(['incubator_index' => new IncubatorIndex(1)]);
 
     expect(fn () => new HatchEggAction()->handle($user, new IncubatorIndex(1)))
-        ->toThrow(IncubationNotReadyToHatchException::class);
+        ->toThrow(IncubatorEggNotReadyToHatchException::class);
 
     assertDatabaseHas(Incubation::class, [
         'id'         => $incubation->id,

@@ -45,7 +45,7 @@ final class GetIncubatorsAvailabilityAction
     {
         /** @var list<IncubatorIndex> */
         $indexes = $this->user
-            ->Incubations()
+            ->incubations()
             ->active()
             ->pluck('incubator_index')
             ->values()

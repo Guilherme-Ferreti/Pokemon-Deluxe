@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Pokemon\Actions\Incubator;
 
-use App\Pokemon\Exceptions\IncubationNotReadyToHatchException;
+use App\Pokemon\Exceptions\IncubatorEggNotReadyToHatchException;
 use App\Pokemon\Exceptions\IncubatorNotActiveException;
 use App\Pokemon\Support\LockKeys;
 use Illuminate\Support\Facades\Cache;
@@ -59,7 +59,7 @@ final class HatchEggAction
     private function loadIncubation(): void
     {
         $this->incubation = $this->user
-            ->Incubations()
+            ->incubations()
             ->active()
             ->where('incubator_index', $this->incubatorIndex->value)
             ->firstOrFail();
@@ -71,7 +71,7 @@ final class HatchEggAction
             return;
         }
 
-        throw new IncubationNotReadyToHatchException;
+        throw new IncubatorEggNotReadyToHatchException($this->incubatorIndex);
     }
 
     private function markEggAsHatched(): void

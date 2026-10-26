@@ -34,7 +34,7 @@ final class PlaceEggAction
     {
         $this->ensureIncubatorIsIdle();
 
-        $this->createIncubation();
+        $this->createIncubationRecord();
     }
 
     private function ensureIncubatorIsIdle(): void
@@ -48,11 +48,11 @@ final class PlaceEggAction
         throw new IncubatorNotIdleException($this->incubatorIndex);
     }
 
-    private function createIncubation(): void
+    private function createIncubationRecord(): void
     {
         $species = $this->getRandomEggObtainableSpecies();
 
-        $this->user->Incubations()->create([
+        $this->user->incubations()->create([
             'incubator_index'   => $this->incubatorIndex,
             'species_id'        => $species->id,
             'gender'            => $this->rollGender($species),

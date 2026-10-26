@@ -131,8 +131,9 @@ function handleCatch() {
       incubatorIndex: props.incubator.index,
     }),
     {
-      preserveScroll: true,
-      only: ['incubators'],
+      onSuccess: () => {
+        isOpen.value = false;
+      },
     },
   );
 }

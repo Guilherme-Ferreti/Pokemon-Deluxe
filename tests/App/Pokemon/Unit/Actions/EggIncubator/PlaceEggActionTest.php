@@ -98,7 +98,7 @@ it('assigns the egg a gender the species can have', function (int $genderRate, a
 
     new PlaceEggAction()->handle($user, new IncubatorIndex(1));
 
-    $incubation = $user->Incubations()->sole();
+    $incubation = $user->incubations()->sole();
 
     expect($incubation->species_id)->toBe($species->id)
         ->and($incubation->gender)->toBeIn($possibleGenders);
@@ -117,7 +117,7 @@ it('marks the egg as shiny when the shiny lottery wins', function () {
 
     new PlaceEggAction()->handle($user, new IncubatorIndex(1));
 
-    expect($user->Incubations()->sole()->is_shiny)->toBeTrue();
+    expect($user->incubations()->sole()->is_shiny)->toBeTrue();
 });
 
 it('does not mark the egg as shiny when the shiny lottery loses', function () {
@@ -128,5 +128,5 @@ it('does not mark the egg as shiny when the shiny lottery loses', function () {
 
     new PlaceEggAction()->handle($user, new IncubatorIndex(1));
 
-    expect($user->Incubations()->sole()->is_shiny)->toBeFalse();
+    expect($user->incubations()->sole()->is_shiny)->toBeFalse();
 });
