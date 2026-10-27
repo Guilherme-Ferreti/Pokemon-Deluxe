@@ -1,6 +1,7 @@
 <template>
   <IncubatorCard
     v-if="incubator.pokemon"
+    data-test="incubator-ready-to-catch"
     :index="incubator.index"
     :badge="{
       icon: IconConfetti,
@@ -27,6 +28,7 @@
         type="button"
         variant="outline"
         size="sm"
+        data-test="incubator-catch-button"
         @click="$emit('catchPokemon')"
       >
         Catch

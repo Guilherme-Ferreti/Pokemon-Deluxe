@@ -1,5 +1,6 @@
 <template>
   <IncubatorCard
+    data-test="incubator-not-purchased"
     :index="index"
     :badge="{ icon: IconLock, text: 'Not purchased' }"
   >
@@ -18,6 +19,7 @@
         type="button"
         variant="outline"
         size="sm"
+        data-test="incubator-purchase-button"
         :disabled="form.processing"
         @click="handlePurchase"
       >

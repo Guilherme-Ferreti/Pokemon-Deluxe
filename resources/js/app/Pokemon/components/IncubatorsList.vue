@@ -1,8 +1,12 @@
 <template>
-  <ul class="grid grid-cols-[repeat(auto-fill,minmax(13rem,1fr))] gap-4">
+  <ul
+    class="grid grid-cols-[repeat(auto-fill,minmax(13rem,1fr))] gap-4"
+    data-test="incubators-list"
+  >
     <li
       v-for="incubator in page.props.incubators"
       :key="incubator.index"
+      :data-test="`incubator-${incubator.index}`"
     >
       <IncubatorNotPurchasedCard
         v-if="incubator.status === 'not-purchased'"

@@ -29,7 +29,7 @@ final class PurchaseAction
 
     private function purchase(): void
     {
-        $this->user = $this->user->fresh() ?? $this->user;
+        $this->user->refresh();
 
         $this->ensureIncubatorHasNotBeenPurchased();
 

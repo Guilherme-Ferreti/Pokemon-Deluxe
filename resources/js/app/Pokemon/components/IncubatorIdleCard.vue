@@ -1,5 +1,6 @@
 <template>
   <IncubatorCard
+    data-test="incubator-idle"
     :index="index"
     :badge="{ icon: IconCircleDashed, text: 'Idle' }"
   >
@@ -14,6 +15,7 @@
         type="button"
         variant="outline"
         size="sm"
+        data-test="incubator-place-egg-button"
         :disabled="form.processing"
         @click="handlePlaceEgg"
       >

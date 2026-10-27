@@ -3,6 +3,7 @@
   <AppPageHeader
     title="Nursery"
     description="Manage your Pokémon eggs."
+    data-test="nursery-page-header"
   />
   <AppSection>
     <AppSectionHeading

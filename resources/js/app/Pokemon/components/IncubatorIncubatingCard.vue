@@ -1,5 +1,6 @@
 <template>
   <IncubatorCard
+    data-test="incubator-incubating"
     :index="incubator.index"
     :badge="{
       icon: IconClock,

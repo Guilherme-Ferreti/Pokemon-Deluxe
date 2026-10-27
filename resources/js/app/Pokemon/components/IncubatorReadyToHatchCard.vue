@@ -1,5 +1,6 @@
 <template>
   <IncubatorCard
+    data-test="incubator-ready-to-hatch"
     :index="incubator.index"
     :badge="{
       icon: IconCheck,
@@ -17,6 +18,7 @@
         type="button"
         variant="outline"
         size="sm"
+        data-test="incubator-hatch-button"
         :disabled="form.processing"
         @click="handleHatchEgg"
       >
