@@ -1,7 +1,7 @@
 <template>
   <IncubatorCard
-    data-test="incubator-not-purchased"
     :index="index"
+    :status="IncubatorStatus.NOT_PURCHASED"
     :badge="{ icon: IconLock, text: 'Not purchased' }"
   >
     <template #picture>
@@ -19,7 +19,7 @@
         type="button"
         variant="outline"
         size="sm"
-        data-test="incubator-purchase-button"
+        data-test="incubator-card__purchase-button"
         :disabled="form.processing"
         @click="handlePurchase"
       >
@@ -33,6 +33,7 @@
 import { useForm } from '@inertiajs/vue3';
 import { IconLock } from '@tabler/icons-vue';
 import IncubatorCard from '@/app/Pokemon/components/IncubatorCard.vue';
+import { IncubatorStatus } from '@/app/Pokemon/types/enums/IncubatorStatus';
 import type { Incubator } from '@/app/Pokemon/types/page-props/NurseryPageProps';
 import { Button } from '@/shared/components/ui/button';
 import { route } from '@/shared/types/helpers/route';

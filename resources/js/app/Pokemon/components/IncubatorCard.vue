@@ -1,6 +1,9 @@
 <template>
   <Card
     class="h-full min-h-68 justify-between gap-4 p-4 transition-shadow hover:shadow-md"
+    data-test="incubator-card"
+    :data-index="index"
+    :data-status="status"
   >
     <div class="flex items-center justify-between gap-2">
       <p class="text-xs font-bold text-muted-foreground">#{{ index }}</p>
@@ -17,12 +20,14 @@
 
 <script setup lang="ts">
 import type { Icon } from '@tabler/icons-vue';
+import type { IncubatorStatus } from '@/app/Pokemon/types/enums/IncubatorStatus';
 import type { Incubator } from '@/app/Pokemon/types/page-props/NurseryPageProps';
 import { Badge } from '@/shared/components/ui/badge';
 import { Card } from '@/shared/components/ui/card';
 
 export interface IncubatorCardProps {
   index: Incubator['index'];
+  status: IncubatorStatus;
   badge: {
     icon: Icon;
     text: string;

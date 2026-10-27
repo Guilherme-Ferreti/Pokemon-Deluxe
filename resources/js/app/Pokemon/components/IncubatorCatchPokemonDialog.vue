@@ -29,15 +29,15 @@
           <RadioGroup
             v-model="form.pokeballId"
             class="max-h-80 scrollbar-thin grid-cols-2 gap-2 overflow-y-auto"
-            data-test="incubator-catch-pokemon-pokeball-group"
           >
             <Field
               v-for="pokeball in page.props.pokeballs"
               :key="pokeball.id"
               orientation="horizontal"
               class="cursor-pointer rounded-md border p-3 has-data-[state=checked]:border-primary"
+              data-test="incubator-catch-pokemon-dialog__pokeball-radio"
               :data-invalid="!!form.errors.pokeballId"
-              :data-test="`incubator-catch-pokemon-pokeball-${pokeball.id}`"
+              :data-value="pokeball.id"
               @click="form.pokeballId = pokeball.id"
             >
               <RadioGroupItem
@@ -76,7 +76,7 @@
         </DialogClose>
         <Button
           type="button"
-          data-test="incubator-catch-pokemon-submit"
+          data-test="incubator-catch-pokemon-dialog__submit-button"
           :disabled="form.processing"
           @click="handleCatch"
         >

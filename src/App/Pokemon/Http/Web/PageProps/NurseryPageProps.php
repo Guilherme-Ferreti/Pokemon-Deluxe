@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Pokemon\Http\Web\PageProps;
 
 use App\Pokemon\Actions\Incubator\GetIncubatorsAvailabilityAction;
+use App\Pokemon\Enums\IncubatorStatus;
 use Inertia\ProvidesInertiaProperties;
 use Inertia\RenderContext;
 use Shared\Enums\IncubationStatus;
@@ -44,7 +45,7 @@ final class NurseryPageProps implements ProvidesInertiaProperties
 
                     return [
                         'index'               => $index->value,
-                        'status'              => $incubation->getStatus(),
+                        'status'              => IncubatorStatus::fromIncubationStatus($incubation->getStatus()),
                         'incubationStartedAt' => $incubation->created_at,
                         'readyToHatchAt'      => $incubation->ready_to_hatch_at,
                         'pokemon'             => when($incubation->getStatus() === IncubationStatus::READY_TO_CATCH, fn () => [
@@ -57,7 +58,7 @@ final class NurseryPageProps implements ProvidesInertiaProperties
 
                 return [
                     'index'               => $index->value,
-                    'status'              => value_object_array_contains($availability['idle'], $index) ? 'idle' : 'not-purchased',
+                    'status'              => value_object_array_contains($availability['idle'], $index) ? IncubatorStatus::IDLE : IncubatorStatus::NOT_PURCHASED,
                     'incubationStartedAt' => null,
                     'readyToHatchAt'      => null,
                     'pokemon'             => null,

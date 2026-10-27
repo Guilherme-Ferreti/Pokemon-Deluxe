@@ -1,7 +1,7 @@
 <template>
   <IncubatorCard
-    data-test="incubator-incubating"
     :index="incubator.index"
+    :status="incubator.status"
     :badge="{
       icon: IconClock,
       text: 'Incubating',

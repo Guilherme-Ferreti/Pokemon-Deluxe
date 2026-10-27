@@ -21,7 +21,7 @@ it('loads the nursery page without errors', function () {
     visit(route('pokemon.web.nursery'))
         ->assertNoSmoke()
         ->assertNoAccessibilityIssues()
-        ->assertVisible('@nursery-page-header')
+        ->assertSeeIn('@page-header__title', 'Nursery')
         ->assertVisible('@incubators-list')
         ->assertNoJavascriptErrors();
 });
@@ -32,10 +32,10 @@ it('allows purchasing a not purchased incubator', function () {
     actingAs($user);
 
     visit(route('pokemon.web.nursery'))
-        ->assertVisible('[data-test="incubator-1"] [data-test="incubator-not-purchased"]')
-        ->click('[data-test="incubator-1"] [data-test="incubator-purchase-button"]')
+        ->assertVisible('[data-test="incubator-card"][data-index="1"][data-status="not-purchased"]')
+        ->click('[data-test="incubator-card"][data-index="1"] [data-test="incubator-card__purchase-button"]')
         ->wait(1)
-        ->assertVisible('[data-test="incubator-1"] [data-test="incubator-idle"]')
+        ->assertVisible('[data-test="incubator-card"][data-index="1"][data-status="idle"]')
         ->assertNoJavascriptErrors();
 });
 
@@ -48,10 +48,10 @@ it('allows placing an egg in an idle incubator', function () {
     actingAs($user);
 
     visit(route('pokemon.web.nursery'))
-        ->assertVisible('[data-test="incubator-1"] [data-test="incubator-idle"]')
-        ->click('[data-test="incubator-1"] [data-test="incubator-place-egg-button"]')
+        ->assertVisible('[data-test="incubator-card"][data-index="1"][data-status="idle"]')
+        ->click('[data-test="incubator-card"][data-index="1"] [data-test="incubator-card__place-egg-button"]')
         ->wait(1)
-        ->assertVisible('[data-test="incubator-1"] [data-test="incubator-incubating"]')
+        ->assertVisible('[data-test="incubator-card"][data-index="1"][data-status="incubating"]')
         ->assertNoJavascriptErrors();
 });
 
@@ -66,11 +66,11 @@ it('allows hatching a ready to hatch egg', function () {
     actingAs($user);
 
     visit(route('pokemon.web.nursery'))
-        ->assertVisible('[data-test="incubator-1"] [data-test="incubator-ready-to-hatch"]')
-        ->click('[data-test="incubator-1"] [data-test="incubator-hatch-button"]')
+        ->assertVisible('[data-test="incubator-card"][data-index="1"][data-status="ready-to-hatch"]')
+        ->click('[data-test="incubator-card"][data-index="1"] [data-test="incubator-card__hatch-button"]')
         ->wait(1)
-        ->assertVisible('[data-test="incubator-1"] [data-test="incubator-ready-to-catch"]')
-        ->assertVisible('[data-test="incubator-1"] [data-test="incubator-catch-button"]')
+        ->assertVisible('[data-test="incubator-card"][data-index="1"][data-status="ready-to-catch"]')
+        ->assertVisible('[data-test="incubator-card"][data-index="1"] [data-test="incubator-card__catch-button"]')
         ->assertSee('Pikachu')
         ->assertNoJavascriptErrors();
 });
@@ -93,16 +93,16 @@ it('allows catching a hatched pokemon through the dialog', function () {
     actingAs($user);
 
     visit(route('pokemon.web.nursery'))
-        ->assertVisible('[data-test="incubator-1"] [data-test="incubator-ready-to-catch"]')
-        ->click('[data-test="incubator-1"] [data-test="incubator-catch-button"]')
+        ->assertVisible('[data-test="incubator-card"][data-index="1"][data-status="ready-to-catch"]')
+        ->click('[data-test="incubator-card"][data-index="1"] [data-test="incubator-card__catch-button"]')
         ->wait(1)
         ->assertVisible('@incubator-catch-pokemon-dialog')
         ->assertSee('Bulbasaur')
-        ->click('@incubator-catch-pokemon-pokeball-' . $pokeball->id)
-        ->click('@incubator-catch-pokemon-submit')
+        ->click('[data-test="incubator-catch-pokemon-dialog__pokeball-radio"][data-value="' . $pokeball->id . '"]')
+        ->click('@incubator-catch-pokemon-dialog__submit-button')
         ->wait(2)
-        ->assertDontSee('@incubator-catch-pokemon-dialog')
-        ->assertVisible('[data-test="incubator-1"] [data-test="incubator-idle"]')
+        ->assertMissing('@incubator-catch-pokemon-dialog')
+        ->assertVisible('[data-test="incubator-card"][data-index="1"][data-status="idle"]')
         ->assertNoJavascriptErrors();
 });
 
@@ -117,8 +117,8 @@ it('shows incubating state with countdown', function () {
     actingAs($user);
 
     visit(route('pokemon.web.nursery'))
-        ->assertVisible('[data-test="incubator-1"] [data-test="incubator-incubating"]')
-        ->assertDontSee('[data-test="incubator-1"] [data-test="incubator-place-egg-button"]')
+        ->assertVisible('[data-test="incubator-card"][data-index="1"][data-status="incubating"]')
+        ->assertNotPresent('[data-test="incubator-card"][data-index="1"] [data-test="incubator-card__place-egg-button"]')
         ->assertNoJavascriptErrors();
 });
 
@@ -137,8 +137,8 @@ it('shows multiple incubators in different states', function () {
     actingAs($user);
 
     visit(route('pokemon.web.nursery'))
-        ->assertVisible('[data-test="incubator-1"] [data-test="incubator-incubating"]')
-        ->assertVisible('[data-test="incubator-2"] [data-test="incubator-ready-to-hatch"]')
-        ->assertVisible('[data-test="incubator-3"] [data-test="incubator-idle"]')
+        ->assertVisible('[data-test="incubator-card"][data-index="1"][data-status="incubating"]')
+        ->assertVisible('[data-test="incubator-card"][data-index="2"][data-status="ready-to-hatch"]')
+        ->assertVisible('[data-test="incubator-card"][data-index="3"][data-status="idle"]')
         ->assertNoJavascriptErrors();
 });
