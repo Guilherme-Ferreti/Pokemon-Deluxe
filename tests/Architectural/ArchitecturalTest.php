@@ -2,11 +2,13 @@
 
 declare(strict_types=1);
 
+use Illuminate\Contracts\Database\Eloquent\CastsAttributes;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\ServiceProvider;
 use Inertia\ProvidesInertiaProperties;
 use Shared\Base\Controller;
+use Shared\Base\DomainException;
 use Shared\Interfaces\Filter;
 use Shared\Interfaces\ValueObject;
 
@@ -21,7 +23,10 @@ arch('App & Shared')
     ->toUseStrictEquality();
 
 arch('Controllers')
-    ->expect('App\*\Http\Web\Controllers')
+    ->expect([
+        'App\*\Http\Web\Controllers',
+        'App\*\Http\Api\Controllers',
+    ])
     ->toHaveSuffix('Controller')
     ->toBeClasses()
     ->toBeFinal()
@@ -44,6 +49,7 @@ arch('Form Requests')
 
 arch('Actions')
     ->expect('App\*\Actions')
+    ->toHaveSuffix('Action')
     ->toBeClasses()
     ->toBeFinal()
     ->toExtendNothing()
@@ -83,10 +89,46 @@ arch('Queries')
     ->not->toHavePublicMethodsBesides('handle')
     ->not->toHaveProtectedMethods();
 
+arch('Exceptions')
+    ->expect('App\*\Exceptions')
+    ->toHaveSuffix('Exception')
+    ->toBeClasses()
+    ->toBeFinal()
+    ->toExtend(DomainException::class);
+
+arch('Domain Middlewares')
+    ->expect('App\*\Http\Web\Middlewares')
+    ->toBeClasses()
+    ->toBeFinal()
+    ->toExtendNothing()
+    ->toHaveMethod('handle');
+
+arch('Support')
+    ->expect('App\*\Support')
+    ->toBeClasses()
+    ->toBeFinal()
+    ->toExtendNothing()
+    ->toImplementNothing()
+    ->not->toHaveProtectedMethods();
+
+arch('Services')
+    ->expect('App\*\Services')
+    ->toBeClasses()
+    ->toBeFinal()
+    ->toExtendNothing()
+    ->not->toHaveProtectedMethods();
+
 arch('Base')
     ->expect('Shared\Base')
     ->toBeClasses()
     ->toBeAbstract();
+
+arch('Casts')
+    ->expect('Shared\Casts')
+    ->toHavePrefix('As')
+    ->toBeClasses()
+    ->toBeFinal()
+    ->toImplement(CastsAttributes::class);
 
 arch('Enums')
     ->expect([
