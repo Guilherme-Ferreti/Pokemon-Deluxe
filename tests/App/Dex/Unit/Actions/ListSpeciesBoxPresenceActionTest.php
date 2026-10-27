@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-use App\Dex\Actions\ListSpeciesBoxPresence;
+use App\Dex\Actions\ListSpeciesBoxPresenceAction;
 use Shared\Models\Pokemon;
 use Shared\Models\Species;
 use Shared\Models\User;
@@ -14,7 +14,7 @@ it('marks a species as present when the user owns it', function () {
 
     Pokemon::factory()->for($user)->for($species)->regular()->create();
 
-    $presence = new ListSpeciesBoxPresence()->handle($user, collect([$species->id, $missingSpecies->id]));
+    $presence = new ListSpeciesBoxPresenceAction()->handle($user, collect([$species->id, $missingSpecies->id]));
 
     expect($presence->all())->toBe([
         ['speciesId' => $species->id, 'regularInBox' => true, 'shinyInBox' => false],
@@ -28,7 +28,7 @@ it('marks a species as shiny in box when the user owns a shiny form', function (
 
     Pokemon::factory()->for($user)->for($species)->shiny()->create();
 
-    $presence = new ListSpeciesBoxPresence()->handle($user, collect([$species->id]));
+    $presence = new ListSpeciesBoxPresenceAction()->handle($user, collect([$species->id]));
 
     expect($presence->first())->toBe([
         'speciesId'    => $species->id,
@@ -44,7 +44,7 @@ it('marks both flags when the user owns both a regular and a shiny form', functi
     Pokemon::factory()->for($user)->for($species)->regular()->create();
     Pokemon::factory()->for($user)->for($species)->shiny()->create();
 
-    $presence = new ListSpeciesBoxPresence()->handle($user, collect([$species->id]));
+    $presence = new ListSpeciesBoxPresenceAction()->handle($user, collect([$species->id]));
 
     expect($presence->first())->toBe([
         'speciesId'    => $species->id,
@@ -60,7 +60,7 @@ it('does not mark a species owned by another user', function () {
 
     Pokemon::factory()->for($otherUser)->for($species)->regular()->create();
 
-    $presence = new ListSpeciesBoxPresence()->handle($user, collect([$species->id]));
+    $presence = new ListSpeciesBoxPresenceAction()->handle($user, collect([$species->id]));
 
     expect($presence->first())->toBe([
         'speciesId'    => $species->id,

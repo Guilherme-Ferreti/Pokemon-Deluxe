@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Dex\Http\Web\PageProps;
 
-use App\Dex\Actions\ListSpeciesBoxPresence;
+use App\Dex\Actions\ListSpeciesBoxPresenceAction;
 use App\Dex\Filters\SearchPokedexFilters;
 use App\Dex\Queries\SearchPokedexQuery;
 use Inertia\ProvidesInertiaProperties;
@@ -37,7 +37,7 @@ final class PokedexIndexPageProps implements ProvidesInertiaProperties
     {
         $speciesList = new SearchPokedexQuery()->handle($searchPokedexFilters)->paginate(50)->withQueryString();
 
-        $boxPresence = new ListSpeciesBoxPresence()->handle(currentUser(), $speciesList->pluck('id'));
+        $boxPresence = new ListSpeciesBoxPresenceAction()->handle(currentUser(), $speciesList->pluck('id'));
 
         return AppHelper::paginatorToArray($speciesList, fn (Species $species) => [
             'id'            => $species->id,

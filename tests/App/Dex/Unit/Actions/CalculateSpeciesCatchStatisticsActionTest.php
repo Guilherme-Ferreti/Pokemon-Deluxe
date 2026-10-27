@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-use App\Dex\Actions\CalculateSpeciesCatchStatistics;
+use App\Dex\Actions\CalculateSpeciesCatchStatisticsAction;
 use Shared\Models\Pokemon;
 use Shared\Models\Species;
 
@@ -12,7 +12,7 @@ it('counts regular and shiny catches for the species', function () {
     Pokemon::factory()->for($species)->count(2)->regular()->create();
     Pokemon::factory()->for($species)->count(1)->shiny()->create();
 
-    $statistics = new CalculateSpeciesCatchStatistics()->handle($species);
+    $statistics = new CalculateSpeciesCatchStatisticsAction()->handle($species);
 
     expect($statistics)->toBe(['regular' => 2, 'shiny' => 1]);
 });
@@ -20,7 +20,7 @@ it('counts regular and shiny catches for the species', function () {
 it('returns zero counts when the species has no catches', function () {
     $species = Species::factory()->create();
 
-    $statistics = new CalculateSpeciesCatchStatistics()->handle($species);
+    $statistics = new CalculateSpeciesCatchStatisticsAction()->handle($species);
 
     expect($statistics)->toBe(['regular' => 0, 'shiny' => 0]);
 });
@@ -32,7 +32,7 @@ it('counts only the catches of the given species', function () {
     Pokemon::factory()->for($speciesA)->count(1)->regular()->create();
     Pokemon::factory()->for($speciesB)->count(3)->regular()->create();
 
-    $statistics = new CalculateSpeciesCatchStatistics()->handle($speciesA);
+    $statistics = new CalculateSpeciesCatchStatisticsAction()->handle($speciesA);
 
     expect($statistics)->toBe(['regular' => 1, 'shiny' => 0]);
 });

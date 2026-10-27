@@ -8,7 +8,7 @@ use Illuminate\Support\Collection;
 use Shared\Models\Pokemon;
 use Shared\Models\User;
 
-final class ListSpeciesBoxPresence
+final class ListSpeciesBoxPresenceAction
 {
     /**
      * @param  Collection<int, string>  $speciesIds

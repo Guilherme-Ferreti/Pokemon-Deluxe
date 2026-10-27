@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace App\Dex\Http\Web\PageProps;
 
 use App\Battle\Services\DamageCalculator;
-use App\Dex\Actions\CalculateSpeciesCatchStatistics;
-use App\Dex\Actions\CalculateUserSpeciesCatchStatistics;
+use App\Dex\Actions\CalculateSpeciesCatchStatisticsAction;
+use App\Dex\Actions\CalculateUserSpeciesCatchStatisticsAction;
 use App\Dex\Queries\NextSpeciesQuery;
 use App\Dex\Queries\PreviousSpeciesQuery;
 use App\Dex\Support\CacheKeys;
@@ -141,13 +141,13 @@ final readonly class PokedexShowPageProps implements ProvidesInertiaProperties
         $global = Cache::remember(
             key: CacheKeys::speciesCatchStatistics($this->species->id),
             ttl: now()->endOfDay(),
-            callback: fn () => new CalculateSpeciesCatchStatistics()->handle($this->species)
+            callback: fn () => new CalculateSpeciesCatchStatisticsAction()->handle($this->species)
         );
 
         $currentUser = Cache::remember(
             key: CacheKeys::userSpeciesCatchStatistics(currentUser()->id, $this->species->id),
             ttl: now()->endOfDay(),
-            callback: fn () => new CalculateUserSpeciesCatchStatistics()->handle(currentUser(), $this->species)
+            callback: fn () => new CalculateUserSpeciesCatchStatisticsAction()->handle(currentUser(), $this->species)
         );
 
         return [
