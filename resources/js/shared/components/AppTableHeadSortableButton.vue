@@ -1,9 +1,14 @@
 <template>
-  <TableHead class="px-0">
+  <TableHead
+    class="px-0"
+    :aria-sort="ariaSort"
+    :data-test="`header-${sortBy}`"
+  >
     <button
       class="inline-flex size-full shrink-0 items-center gap-2 px-2 -outline-offset-1 [&_svg]:size-4"
       type="button"
       :aria-label="`Sort by ${columnName.toLowerCase()}`"
+      :data-test="`sort-${sortBy}`"
     >
       <span>{{ columnName }}</span>
       <component :is="visibleIcon" />
@@ -39,5 +44,13 @@ const visibleIcon = computed(() => {
   return props.currentDir === SortDirection.ASC
     ? props.sortAscIcon || IconSortAscending
     : props.sortDescIcon || IconSortDescending;
+});
+
+const ariaSort = computed(() => {
+  if (props.currentSort !== props.sortBy) {
+    return 'none';
+  }
+
+  return props.currentDir === SortDirection.ASC ? 'ascending' : 'descending';
 });
 </script>
