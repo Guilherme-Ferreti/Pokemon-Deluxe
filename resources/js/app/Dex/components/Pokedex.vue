@@ -13,7 +13,7 @@
         :icon="IconSearch"
         @keypress.enter.prevent="() => searchForm.isDirty && submitSearch()"
       />
-      <PokedexSearchBarFiltersDialog
+      <PokedexSearchFiltersDialog
         v-model:types="searchForm.types"
         v-model:traits="searchForm.traits"
         v-model:generations="searchForm.generations"
@@ -110,7 +110,7 @@ import {
 } from '@tabler/icons-vue';
 import { watchDebounced } from '@vueuse/core';
 import { nextTick } from 'vue';
-import PokedexSearchBarFiltersDialog from '@/app/Dex/components/PokedexSearchBarFiltersDialog.vue';
+import PokedexSearchFiltersDialog from '@/app/Dex/components/PokedexSearchFiltersDialog.vue';
 import { SearchPokedexSortBy } from '@/app/Dex/types/enums/SearchPokedexSortBy';
 import type { PokedexIndexPageProps } from '@/app/Dex/types/page-props/PokedexIndexPageProps';
 import AppEmptyState from '@/shared/components/AppEmptyState.vue';

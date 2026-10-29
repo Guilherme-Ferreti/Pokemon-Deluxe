@@ -26,7 +26,7 @@ import TableHead from '@/shared/components/ui/table/TableHead.vue';
 import { removeFalsyValues, toQueryString } from '@/shared/lib/utils';
 import { SortDirection } from '@/shared/types/enums';
 
-const props = defineProps<{
+export interface AppTableHeadSortableLinkProps<T> {
   columnName: string;
   sortBy: T;
   defaultSortBy: T;
@@ -37,7 +37,9 @@ const props = defineProps<{
   routeUrl: string;
   sortAscIcon?: Icon;
   sortDescIcon?: Icon;
-}>();
+}
+
+const props = defineProps<AppTableHeadSortableLinkProps<T>>();
 
 const visibleIcon = computed(() => {
   if (props.searchForm.sort !== props.sortBy) {

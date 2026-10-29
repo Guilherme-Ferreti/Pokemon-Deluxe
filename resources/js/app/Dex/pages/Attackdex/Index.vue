@@ -11,15 +11,28 @@
     moves.
   </p>
   <AppSection>
-    <Attackdex />
+    <Card class="gap-4 p-4">
+      <AttackdexSearchForm ref="searchForm" />
+      <AttackdexTable
+        v-if="attackdexSearchFormRef"
+        :search-form="attackdexSearchFormRef.searchForm"
+      />
+    </Card>
+    <AppPagination :list="page.props.moves" />
   </AppSection>
 </template>
 
 <script setup lang="ts">
 import { Head, setLayoutProps } from '@inertiajs/vue3';
-import Attackdex from '@/app/Dex/components/Attackdex.vue';
+import { usePage } from '@inertiajs/vue3';
+import { useTemplateRef } from 'vue';
+import AttackdexSearchForm from '@/app/Dex/components/AttackdexSearchForm.vue';
+import AttackdexTable from '@/app/Dex/components/AttackdexTable.vue';
+import type { AttackdexIndexPageProps } from '@/app/Dex/types/page-props/AttackdexIndexPageProps';
 import AppPageHeader from '@/shared/components/AppPageHeader.vue';
+import AppPagination from '@/shared/components/AppPagination.vue';
 import AppSection from '@/shared/components/AppSection.vue';
+import { Card } from '@/shared/components/ui/card';
 import { route } from '@/shared/types/helpers/route';
 
 setLayoutProps({
@@ -33,4 +46,8 @@ setLayoutProps({
     },
   ],
 });
+
+const page = usePage<AttackdexIndexPageProps>();
+
+const attackdexSearchFormRef = useTemplateRef('searchForm');
 </script>
