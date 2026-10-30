@@ -8,7 +8,7 @@
     }"
   >
     <template #picture>
-      <AppPokemonEggSprite class="mx-auto" />
+      <PokemonEggSprite class="mx-auto" />
     </template>
     <p class="text-center text-sm text-muted-foreground">
       What could be inside?
@@ -29,8 +29,8 @@ import { router } from '@inertiajs/vue3';
 import { IconClock } from '@tabler/icons-vue';
 import IncubatorCard from '@/app/Pokemon/components/IncubatorCard.vue';
 import type { Incubator } from '@/app/Pokemon/types/page-props/NurseryPageProps';
-import AppPokemonEggSprite from '@/shared/components/AppPokemonEggSprite.vue';
 import AppCountdown from '@/shared/components/content/AppCountdown.vue';
+import PokemonEggSprite from '@/shared/components/game/PokemonEggSprite.vue';
 
 defineProps<{
   incubator: Incubator;

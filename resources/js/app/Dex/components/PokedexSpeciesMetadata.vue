@@ -4,7 +4,7 @@
       <div class="flex gap-2">
         <Tooltip>
           <TooltipTrigger>
-            <AppSpeciesPortrait
+            <SpeciesPortrait
               v-if="page.props.metadata.portraits.regular"
               :url="page.props.metadata.portraits.regular"
               :name="page.props.species.name"
@@ -14,7 +14,7 @@
         </Tooltip>
         <Tooltip>
           <TooltipTrigger>
-            <AppSpeciesPortrait
+            <SpeciesPortrait
               v-if="page.props.metadata.portraits.shiny"
               :url="page.props.metadata.portraits.shiny"
               :name="page.props.species.name"
@@ -102,7 +102,7 @@
         >
           {{ page.props.metadata.malePercentage }}%
 
-          <AppPokemonGenderIcon :gender="PokemonGender.MALE" />
+          <PokemonGenderIcon :gender="PokemonGender.MALE" />
         </span>
         <span v-if="canBeMale && canBeFemale">/</span>
         <span
@@ -110,7 +110,7 @@
           class="flex items-center gap-0.5"
         >
           {{ page.props.metadata.femalePercentage }}%
-          <AppPokemonGenderIcon :gender="PokemonGender.FEMALE" />
+          <PokemonGenderIcon :gender="PokemonGender.FEMALE" />
         </span>
       </span>
     </AppInfoCardRow>
@@ -120,11 +120,11 @@
 <script setup lang="ts">
 import { usePage } from '@inertiajs/vue3';
 import type { PokedexShowPageProps } from '@/app/Dex/types/page-props/PokedexShowPageProps';
-import AppPokemonGenderIcon from '@/shared/components/AppPokemonGenderIcon.vue';
-import AppSpeciesPortrait from '@/shared/components/AppSpeciesPortrait.vue';
 import AppInfoCard from '@/shared/components/content/AppInfoCard.vue';
 import AppInfoCardRow from '@/shared/components/content/AppInfoCardRow.vue';
 import ElementalTypeBadges from '@/shared/components/game/ElementalTypeBadges.vue';
+import PokemonGenderIcon from '@/shared/components/game/PokemonGenderIcon.vue';
+import SpeciesPortrait from '@/shared/components/game/SpeciesPortrait.vue';
 import { Badge } from '@/shared/components/ui/badge';
 import {
   Tooltip,

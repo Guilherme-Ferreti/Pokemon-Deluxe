@@ -8,7 +8,7 @@
     }"
   >
     <template #picture>
-      <AppPokemonEggSprite class="mx-auto" />
+      <PokemonEggSprite class="mx-auto" />
     </template>
     <p class="text-center text-sm text-muted-foreground">
       It's ready to hatch!
@@ -33,7 +33,7 @@ import { useForm } from '@inertiajs/vue3';
 import { IconCheck } from '@tabler/icons-vue';
 import IncubatorCard from '@/app/Pokemon/components/IncubatorCard.vue';
 import type { Incubator } from '@/app/Pokemon/types/page-props/NurseryPageProps';
-import AppPokemonEggSprite from '@/shared/components/AppPokemonEggSprite.vue';
+import PokemonEggSprite from '@/shared/components/game/PokemonEggSprite.vue';
 import { Button } from '@/shared/components/ui/button';
 import { route } from '@/shared/types/helpers/route';
 

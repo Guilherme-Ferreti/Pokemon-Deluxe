@@ -52,7 +52,7 @@
             {{ species.pokedexNumber }}
           </TableCell>
           <TableCell>
-            <AppSpeciesPortrait
+            <SpeciesPortrait
               :name="species.name"
               :url="species.portrait"
             />
@@ -67,12 +67,12 @@
             {{ $page.props.labels.generation[species.generation] }}
           </TableCell>
           <TableCell>
-            <AppIconInBox v-if="species.regularInBox" />
-            <AppIconNotInBox v-else />
+            <InBoxIcon v-if="species.regularInBox" />
+            <NotInBoxIcon v-else />
           </TableCell>
           <TableCell>
-            <AppIconInBox v-if="species.shinyInBox" />
-            <AppIconNotInBox v-else />
+            <InBoxIcon v-if="species.shinyInBox" />
+            <NotInBoxIcon v-else />
           </TableCell>
           <TableCell>
             <Link
@@ -113,12 +113,12 @@ import { nextTick } from 'vue';
 import PokedexSearchFiltersDialog from '@/app/Dex/components/PokedexSearchFiltersDialog.vue';
 import { SearchPokedexSortBy } from '@/app/Dex/types/enums/SearchPokedexSortBy';
 import type { PokedexIndexPageProps } from '@/app/Dex/types/page-props/PokedexIndexPageProps';
-import AppIconInBox from '@/shared/components/AppIconInBox.vue';
-import AppIconNotInBox from '@/shared/components/AppIconNotInBox.vue';
-import AppSpeciesPortrait from '@/shared/components/AppSpeciesPortrait.vue';
 import AppEmptyState from '@/shared/components/content/AppEmptyState.vue';
 import AppInput from '@/shared/components/form/AppInput.vue';
 import ElementalTypeBadges from '@/shared/components/game/ElementalTypeBadges.vue';
+import InBoxIcon from '@/shared/components/game/InBoxIcon.vue';
+import NotInBoxIcon from '@/shared/components/game/NotInBoxIcon.vue';
+import SpeciesPortrait from '@/shared/components/game/SpeciesPortrait.vue';
 import AppPagination from '@/shared/components/list/AppPagination.vue';
 import AppTableHeadSortableLink from '@/shared/components/list/AppTableHeadSortableLink.vue';
 import { Card } from '@/shared/components/ui/card';

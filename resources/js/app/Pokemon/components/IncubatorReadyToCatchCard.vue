@@ -9,7 +9,7 @@
     }"
   >
     <template #picture>
-      <AppSpeciesSprite
+      <SpeciesSprite
         class="mx-auto"
         :url="incubator.pokemon.frontSprite"
         :name="incubator.pokemon.name"
@@ -41,8 +41,8 @@
 import { IconConfetti } from '@tabler/icons-vue';
 import IncubatorCard from '@/app/Pokemon/components/IncubatorCard.vue';
 import type { Incubator } from '@/app/Pokemon/types/page-props/NurseryPageProps';
-import AppSpeciesSprite from '@/shared/components/AppSpeciesSprite.vue';
 import PokemonDisplayName from '@/shared/components/game/PokemonDisplayName.vue';
+import SpeciesSprite from '@/shared/components/game/SpeciesSprite.vue';
 import { Button } from '@/shared/components/ui/button';
 
 defineProps<{

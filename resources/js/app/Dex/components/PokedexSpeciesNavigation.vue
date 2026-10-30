@@ -30,7 +30,7 @@
                 {{ page.props.previousSpecies.name }}
               </span>
             </div>
-            <AppSpeciesPortrait
+            <SpeciesPortrait
               :name="page.props.previousSpecies.name"
               :url="page.props.previousSpecies.portrait"
             />
@@ -60,7 +60,7 @@
               })
             "
           >
-            <AppSpeciesPortrait
+            <SpeciesPortrait
               :name="page.props.nextSpecies.name"
               :url="page.props.nextSpecies.portrait"
             />
@@ -85,7 +85,7 @@
 import { Link, usePage } from '@inertiajs/vue3';
 import { IconChevronLeft, IconChevronRight } from '@tabler/icons-vue';
 import type { PokedexShowPageProps } from '@/app/Dex/types/page-props/PokedexShowPageProps';
-import AppSpeciesPortrait from '@/shared/components/AppSpeciesPortrait.vue';
+import SpeciesPortrait from '@/shared/components/game/SpeciesPortrait.vue';
 import { Button } from '@/shared/components/ui/button';
 import { Separator } from '@/shared/components/ui/separator';
 import {

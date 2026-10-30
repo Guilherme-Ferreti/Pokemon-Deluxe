@@ -2,7 +2,7 @@
   <li>
     <Card class="h-full gap-2 p-4 transition-shadow hover:shadow-md">
       <div class="grid grid-cols-[auto_1fr] gap-2">
-        <AppSpeciesSprite
+        <SpeciesSprite
           :url="pokemon.frontSprite"
           :name="pokemon.name"
         />
@@ -57,7 +57,7 @@
       >
         <div>
           <span class="flex items-center gap-0.5">
-            Gender: <AppPokemonGenderIcon :gender="pokemon.gender" />
+            Gender: <PokemonGenderIcon :gender="pokemon.gender" />
           </span>
         </div>
         <div>
@@ -96,9 +96,9 @@
 <script setup lang="ts">
 import { IconBook, IconDotsVertical, IconEye } from '@tabler/icons-vue';
 import type { BoxIndexPageProps } from '@/app/Pokemon/types/page-props/BoxIndexPageProps';
-import AppPokemonGenderIcon from '@/shared/components/AppPokemonGenderIcon.vue';
-import AppSpeciesSprite from '@/shared/components/AppSpeciesSprite.vue';
 import ElementalTypeBadges from '@/shared/components/game/ElementalTypeBadges.vue';
+import PokemonGenderIcon from '@/shared/components/game/PokemonGenderIcon.vue';
+import SpeciesSprite from '@/shared/components/game/SpeciesSprite.vue';
 import AppNavLink from '@/shared/components/layout/AppNavLink.vue';
 import { Button } from '@/shared/components/ui/button';
 import { Card } from '@/shared/components/ui/card';

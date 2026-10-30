@@ -19,7 +19,7 @@
         </DialogDescription>
       </DialogHeader>
       <div class="flex flex-col gap-6">
-        <AppSpeciesSprite
+        <SpeciesSprite
           class="mx-auto"
           :url="incubator.pokemon.frontSprite"
           :name="incubator.pokemon.name"
@@ -48,7 +48,7 @@
                 class="flex cursor-pointer items-center gap-2 font-normal"
                 :for="`pokeball-${pokeball.id}`"
               >
-                <AppItemSprite
+                <ItemSprite
                   v-if="pokeball.sprite"
                   :name="pokeball.name"
                   :url="pokeball.sprite"
@@ -93,9 +93,9 @@ import type {
   Incubator,
   NurseryPageProps,
 } from '@/app/Pokemon/types/page-props/NurseryPageProps';
-import AppItemSprite from '@/shared/components/AppItemSprite.vue';
-import AppSpeciesSprite from '@/shared/components/AppSpeciesSprite.vue';
+import ItemSprite from '@/shared/components/game/ItemSprite.vue';
 import PokemonDisplayName from '@/shared/components/game/PokemonDisplayName.vue';
+import SpeciesSprite from '@/shared/components/game/SpeciesSprite.vue';
 import { Button } from '@/shared/components/ui/button';
 import {
   Dialog,

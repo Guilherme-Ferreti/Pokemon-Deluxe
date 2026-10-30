@@ -14,7 +14,7 @@
           :key="evolution.species.name"
           class="mb-2 grid grid-cols-[auto_1fr]"
         >
-          <AppSpeciesPortrait
+          <SpeciesPortrait
             class="mr-2 inline-block"
             :url="evolution.species.portrait"
             :name="evolution.species.name"
@@ -35,7 +35,7 @@
             <template v-if="evolution.evolutionItem">
               using
               <span class="inline-block">
-                <AppItemSprite
+                <ItemSprite
                   v-if="evolution.evolutionItem?.sprite"
                   :name="evolution.evolutionItem.name"
                   :url="evolution.evolutionItem?.sprite"
@@ -47,7 +47,7 @@
               v-if="evolution.gender"
               class="inline-block"
             >
-              &nbsp;(<AppPokemonGenderIcon :gender="evolution.gender" /> only)
+              &nbsp;(<PokemonGenderIcon :gender="evolution.gender" /> only)
             </span>
           </span>
         </li>
@@ -66,11 +66,11 @@
 <script setup lang="ts">
 import { usePage } from '@inertiajs/vue3';
 import type { PokedexShowPageProps } from '@/app/Dex/types/page-props/PokedexShowPageProps';
-import AppItemSprite from '@/shared/components/AppItemSprite.vue';
-import AppPokemonGenderIcon from '@/shared/components/AppPokemonGenderIcon.vue';
-import AppSpeciesPortrait from '@/shared/components/AppSpeciesPortrait.vue';
 import AppInfoCard from '@/shared/components/content/AppInfoCard.vue';
 import AppInfoCardSectionTitle from '@/shared/components/content/AppInfoCardSectionTitle.vue';
+import ItemSprite from '@/shared/components/game/ItemSprite.vue';
+import PokemonGenderIcon from '@/shared/components/game/PokemonGenderIcon.vue';
+import SpeciesPortrait from '@/shared/components/game/SpeciesPortrait.vue';
 import AppNavLink from '@/shared/components/layout/AppNavLink.vue';
 import Separator from '@/shared/components/ui/separator/Separator.vue';
 import { route } from '@/shared/types/helpers/route.js';

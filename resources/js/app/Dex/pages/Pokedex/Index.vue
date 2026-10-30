@@ -5,9 +5,9 @@
     description="Below is a list of all Pokémon in the game."
   />
   <p>
-    The <AppIconInBox /> icon indicates pokémon you have in your box.
+    The <InBoxIcon /> icon indicates pokémon you have in your box.
     <br />
-    The <AppIconNotInBox /> icon indicates pokémon you do not have in your box.
+    The <NotInBoxIcon /> icon indicates pokémon you do not have in your box.
   </p>
   <AppSection>
     <Pokedex />
@@ -17,9 +17,9 @@
 <script lang="ts" setup>
 import { Head, setLayoutProps } from '@inertiajs/vue3';
 import Pokedex from '@/app/Dex/components/Pokedex.vue';
-import AppIconInBox from '@/shared/components/AppIconInBox.vue';
-import AppIconNotInBox from '@/shared/components/AppIconNotInBox.vue';
 import AppSection from '@/shared/components/content/AppSection.vue';
+import InBoxIcon from '@/shared/components/game/InBoxIcon.vue';
+import NotInBoxIcon from '@/shared/components/game/NotInBoxIcon.vue';
 import AppPageHeader from '@/shared/components/layout/AppPageHeader.vue';
 import { route } from '@/shared/types/helpers/route';
 

@@ -1,7 +1,7 @@
 <template>
   <span class="inline-flex items-center gap-[0.25ch]">
     {{ name }}
-    <AppPokemonGenderIcon
+    <PokemonGenderIcon
       v-if="gender !== PokemonGender.GENDERLESS"
       :gender="gender"
     />
@@ -9,7 +9,7 @@
 </template>
 
 <script setup lang="ts">
-import AppPokemonGenderIcon from '@/shared/components/AppPokemonGenderIcon.vue';
+import PokemonGenderIcon from '@/shared/components/game/PokemonGenderIcon.vue';
 import { PokemonGender } from '@/shared/types/enums';
 import type { Pokemon } from '@/shared/types/response';
 

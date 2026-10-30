@@ -47,7 +47,7 @@
           :value="option"
           @select="() => handleOptionSelect(option)"
         >
-          <AppSpeciesPortrait
+          <SpeciesPortrait
             :url="option.portrait"
             :name="option.name"
           />
@@ -69,7 +69,7 @@ import { IconSearch } from '@tabler/icons-vue';
 import { watchDebounced } from '@vueuse/core';
 import { ComboboxInput } from 'reka-ui';
 import { ref } from 'vue';
-import AppSpeciesPortrait from '@/shared/components/AppSpeciesPortrait.vue';
+import SpeciesPortrait from '@/shared/components/game/SpeciesPortrait.vue';
 import {
   Combobox,
   ComboboxAnchor,
