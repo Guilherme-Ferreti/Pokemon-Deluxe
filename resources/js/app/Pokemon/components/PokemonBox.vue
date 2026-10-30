@@ -30,7 +30,7 @@ import PokemonBoxCard from '@/app/Pokemon/components/PokemonBoxCard.vue';
 import PokemonBoxSearchBar from '@/app/Pokemon/components/PokemonBoxSearchBar.vue';
 import type { BoxIndexPageProps } from '@/app/Pokemon/types/page-props/BoxIndexPageProps';
 import AppEmptyState from '@/shared/components/AppEmptyState.vue';
-import AppPagination from '@/shared/components/AppPagination.vue';
+import AppPagination from '@/shared/components/list/AppPagination.vue';
 
 const page = usePage<BoxIndexPageProps>();
 </script>

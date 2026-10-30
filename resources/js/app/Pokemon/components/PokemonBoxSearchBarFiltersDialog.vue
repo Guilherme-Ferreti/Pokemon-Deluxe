@@ -53,9 +53,9 @@
 import { usePage } from '@inertiajs/vue3';
 import { nextTick } from 'vue';
 import type { BoxIndexPageProps } from '@/app/Pokemon/types/page-props/BoxIndexPageProps';
-import AppSearchFiltersDialog from '@/shared/components/AppSearchFiltersDialog.vue';
 import AppCheckbox from '@/shared/components/form/AppCheckbox.vue';
 import AppCheckboxGroup from '@/shared/components/form/AppCheckboxGroup.vue';
+import AppSearchFiltersDialog from '@/shared/components/list/AppSearchFiltersDialog.vue';
 import { anyItemExists } from '@/shared/lib/utils.js';
 import { PokemonTrait } from '@/shared/types/enums';
 

@@ -29,9 +29,9 @@ import { useTemplateRef } from 'vue';
 import AttackdexSearchForm from '@/app/Dex/components/AttackdexSearchForm.vue';
 import AttackdexTable from '@/app/Dex/components/AttackdexTable.vue';
 import type { AttackdexIndexPageProps } from '@/app/Dex/types/page-props/AttackdexIndexPageProps';
-import AppPagination from '@/shared/components/AppPagination.vue';
 import AppSection from '@/shared/components/AppSection.vue';
 import AppPageHeader from '@/shared/components/layout/AppPageHeader.vue';
+import AppPagination from '@/shared/components/list/AppPagination.vue';
 import { Card } from '@/shared/components/ui/card';
 import { route } from '@/shared/types/helpers/route';
 

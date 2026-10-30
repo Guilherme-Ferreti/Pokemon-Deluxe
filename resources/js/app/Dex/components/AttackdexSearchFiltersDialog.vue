@@ -49,9 +49,9 @@
 import { usePage } from '@inertiajs/vue3';
 import { nextTick } from 'vue';
 import type { AttackdexIndexPageProps } from '@/app/Dex/types/page-props/AttackdexIndexPageProps';
-import AppSearchFiltersDialog from '@/shared/components/AppSearchFiltersDialog.vue';
 import AppCheckbox from '@/shared/components/form/AppCheckbox.vue';
 import AppCheckboxGroup from '@/shared/components/form/AppCheckboxGroup.vue';
+import AppSearchFiltersDialog from '@/shared/components/list/AppSearchFiltersDialog.vue';
 
 const page = usePage<AttackdexIndexPageProps>();
 
