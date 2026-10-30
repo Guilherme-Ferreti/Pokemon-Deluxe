@@ -69,9 +69,9 @@ import type { PokedexShowPageProps } from '@/app/Dex/types/page-props/PokedexSho
 import AppInfoCard from '@/shared/components/AppInfoCard.vue';
 import AppInfoCardSectionTitle from '@/shared/components/AppInfoCardSectionTitle.vue';
 import AppItemSprite from '@/shared/components/AppItemSprite.vue';
-import AppNavLink from '@/shared/components/AppNavLink.vue';
 import AppPokemonGenderIcon from '@/shared/components/AppPokemonGenderIcon.vue';
 import AppSpeciesPortrait from '@/shared/components/AppSpeciesPortrait.vue';
+import AppNavLink from '@/shared/components/layout/AppNavLink.vue';
 import Separator from '@/shared/components/ui/separator/Separator.vue';
 import { route } from '@/shared/types/helpers/route.js';
 

@@ -12,8 +12,8 @@
 <script setup lang="ts">
 import { Head, setLayoutProps } from '@inertiajs/vue3';
 import PokemonBox from '@/app/Pokemon/components/PokemonBox.vue';
-import AppPageHeader from '@/shared/components/AppPageHeader.vue';
 import AppSection from '@/shared/components/AppSection.vue';
+import AppPageHeader from '@/shared/components/layout/AppPageHeader.vue';
 import { route } from '@/shared/types/helpers/route';
 
 setLayoutProps({

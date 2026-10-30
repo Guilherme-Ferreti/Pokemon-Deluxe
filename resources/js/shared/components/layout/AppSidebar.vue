@@ -19,9 +19,9 @@
 </template>
 
 <script setup lang="ts">
-import SidebarHeaderLogo from '@/shared/components/SidebarHeaderLogo.vue';
-import SidebarNavMain from '@/shared/components/SidebarNavMain.vue';
-import SidebarNavUser from '@/shared/components/SidebarNavUser.vue';
+import SidebarHeaderLogo from '@/shared/components/layout/SidebarHeaderLogo.vue';
+import SidebarNavMain from '@/shared/components/layout/SidebarNavMain.vue';
+import SidebarNavUser from '@/shared/components/layout/SidebarNavUser.vue';
 import { Separator } from '@/shared/components/ui/separator';
 import {
   Sidebar,

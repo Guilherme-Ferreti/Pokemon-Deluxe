@@ -25,8 +25,8 @@
 </template>
 
 <script setup lang="ts">
-import AppBreadcrumbs from '@/shared/components/AppBreadcrumbs.vue';
-import AppSidebar from '@/shared/components/AppSidebar.vue';
+import AppBreadcrumbs from '@/shared/components/layout/AppBreadcrumbs.vue';
+import AppSidebar from '@/shared/components/layout/AppSidebar.vue';
 import { SidebarInset, SidebarProvider } from '@/shared/components/ui/sidebar';
 import AppLayout from '@/shared/layouts/AppLayout.vue';
 

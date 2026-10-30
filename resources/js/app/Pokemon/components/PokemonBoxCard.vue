@@ -96,10 +96,10 @@
 <script setup lang="ts">
 import { IconBook, IconDotsVertical, IconEye } from '@tabler/icons-vue';
 import type { BoxIndexPageProps } from '@/app/Pokemon/types/page-props/BoxIndexPageProps';
-import AppNavLink from '@/shared/components/AppNavLink.vue';
 import AppPokemonGenderIcon from '@/shared/components/AppPokemonGenderIcon.vue';
 import AppSpeciesSprite from '@/shared/components/AppSpeciesSprite.vue';
 import ElementalTypeBadges from '@/shared/components/ElementalTypeBadges.vue';
+import AppNavLink from '@/shared/components/layout/AppNavLink.vue';
 import { Button } from '@/shared/components/ui/button';
 import { Card } from '@/shared/components/ui/card';
 import {

@@ -109,7 +109,7 @@ import {
   IconMoon,
 } from '@tabler/icons-vue';
 import { useColorMode } from '@vueuse/core';
-import AppNavLink from '@/shared/components/AppNavLink.vue';
+import AppNavLink from '@/shared/components/layout/AppNavLink.vue';
 import {
   Avatar,
   AvatarFallback,

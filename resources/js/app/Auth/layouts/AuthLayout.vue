@@ -35,7 +35,7 @@
 
 <script setup lang="ts">
 import { Link, usePage } from '@inertiajs/vue3';
-import AppLogo from '@/shared/components/AppLogo.vue';
+import AppLogo from '@/shared/components/layout/AppLogo.vue';
 import AppLayout from '@/shared/layouts/AppLayout.vue';
 import { route } from '@/shared/types/helpers/route';
 

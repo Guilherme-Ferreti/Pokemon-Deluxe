@@ -22,7 +22,7 @@
 </template>
 
 <script setup lang="ts">
-import AppNavLink from '@/shared/components/AppNavLink.vue';
+import AppNavLink from '@/shared/components/layout/AppNavLink.vue';
 import {
   Breadcrumb,
   BreadcrumbItem,

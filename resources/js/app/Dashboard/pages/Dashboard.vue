@@ -8,7 +8,7 @@
 
 <script setup lang="ts">
 import { Head } from '@inertiajs/vue3';
-import AppPageHeader from '@/shared/components/AppPageHeader.vue';
+import AppPageHeader from '@/shared/components/layout/AppPageHeader.vue';
 import DashboardLayout from '@/shared/layouts/DashboardLayout.vue';
 
 defineOptions({
