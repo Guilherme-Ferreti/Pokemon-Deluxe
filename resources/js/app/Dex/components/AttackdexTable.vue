@@ -99,7 +99,7 @@ import {
 } from '@tabler/icons-vue';
 import { SearchAttackdexSortBy } from '@/app/Dex/types/enums/SearchAttackdexSortBy';
 import type { AttackdexIndexPageProps } from '@/app/Dex/types/page-props/AttackdexIndexPageProps';
-import AppEmptyState from '@/shared/components/AppEmptyState.vue';
+import AppEmptyState from '@/shared/components/content/AppEmptyState.vue';
 import ElementalTypeBadges from '@/shared/components/ElementalTypeBadges.vue';
 import type { AppTableHeadSortableLinkProps } from '@/shared/components/list/AppTableHeadSortableLink.vue';
 import AppTableHeadSortableLink from '@/shared/components/list/AppTableHeadSortableLink.vue';

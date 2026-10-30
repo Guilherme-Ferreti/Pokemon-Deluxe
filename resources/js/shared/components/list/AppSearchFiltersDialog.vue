@@ -69,7 +69,7 @@
 
 <script setup lang="ts">
 import { IconFilter2 } from '@tabler/icons-vue';
-import AppIndicator from '@/shared/components/AppIndicator.vue';
+import AppIndicator from '@/shared/components/content/AppIndicator.vue';
 import { Button } from '@/shared/components/ui/button';
 import {
   Dialog,

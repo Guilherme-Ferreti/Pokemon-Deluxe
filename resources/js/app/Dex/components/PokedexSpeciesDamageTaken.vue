@@ -36,8 +36,8 @@
 import { usePage } from '@inertiajs/vue3';
 import { computed } from 'vue';
 import type { PokedexShowPageProps } from '@/app/Dex/types/page-props/PokedexShowPageProps';
-import AppInfoCard from '@/shared/components/AppInfoCard.vue';
-import AppInfoCardSectionTitle from '@/shared/components/AppInfoCardSectionTitle.vue';
+import AppInfoCard from '@/shared/components/content/AppInfoCard.vue';
+import AppInfoCardSectionTitle from '@/shared/components/content/AppInfoCardSectionTitle.vue';
 import ElementalTypeBadges from '@/shared/components/ElementalTypeBadges.vue';
 import Separator from '@/shared/components/ui/separator/Separator.vue';
 import type { ElementalType } from '@/shared/types/enums';

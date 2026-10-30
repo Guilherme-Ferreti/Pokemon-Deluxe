@@ -29,8 +29,8 @@ import { router } from '@inertiajs/vue3';
 import { IconClock } from '@tabler/icons-vue';
 import IncubatorCard from '@/app/Pokemon/components/IncubatorCard.vue';
 import type { Incubator } from '@/app/Pokemon/types/page-props/NurseryPageProps';
-import AppCountdown from '@/shared/components/AppCountdown.vue';
 import AppPokemonEggSprite from '@/shared/components/AppPokemonEggSprite.vue';
+import AppCountdown from '@/shared/components/content/AppCountdown.vue';
 
 defineProps<{
   incubator: Incubator;

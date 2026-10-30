@@ -19,7 +19,7 @@ import { Head, setLayoutProps } from '@inertiajs/vue3';
 import Pokedex from '@/app/Dex/components/Pokedex.vue';
 import AppIconInBox from '@/shared/components/AppIconInBox.vue';
 import AppIconNotInBox from '@/shared/components/AppIconNotInBox.vue';
-import AppSection from '@/shared/components/AppSection.vue';
+import AppSection from '@/shared/components/content/AppSection.vue';
 import AppPageHeader from '@/shared/components/layout/AppPageHeader.vue';
 import { route } from '@/shared/types/helpers/route';
 

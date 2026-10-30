@@ -43,7 +43,7 @@ import PokedexSpeciesLearnableMoves from '@/app/Dex/components/PokedexSpeciesLea
 import PokedexSpeciesMetadata from '@/app/Dex/components/PokedexSpeciesMetadata.vue';
 import PokedexSpeciesNavigation from '@/app/Dex/components/PokedexSpeciesNavigation.vue';
 import type { PokedexShowPageProps } from '@/app/Dex/types/page-props/PokedexShowPageProps';
-import AppSection from '@/shared/components/AppSection.vue';
+import AppSection from '@/shared/components/content/AppSection.vue';
 import { route } from '@/shared/types/helpers/route';
 
 const page = usePage<PokedexShowPageProps>();

@@ -120,10 +120,10 @@
 <script setup lang="ts">
 import { usePage } from '@inertiajs/vue3';
 import type { PokedexShowPageProps } from '@/app/Dex/types/page-props/PokedexShowPageProps';
-import AppInfoCard from '@/shared/components/AppInfoCard.vue';
-import AppInfoCardRow from '@/shared/components/AppInfoCardRow.vue';
 import AppPokemonGenderIcon from '@/shared/components/AppPokemonGenderIcon.vue';
 import AppSpeciesPortrait from '@/shared/components/AppSpeciesPortrait.vue';
+import AppInfoCard from '@/shared/components/content/AppInfoCard.vue';
+import AppInfoCardRow from '@/shared/components/content/AppInfoCardRow.vue';
 import ElementalTypeBadges from '@/shared/components/ElementalTypeBadges.vue';
 import { Badge } from '@/shared/components/ui/badge';
 import {

@@ -22,7 +22,7 @@
 <script setup lang="ts">
 import { Head } from '@inertiajs/vue3';
 import IncubatorsList from '@/app/Pokemon/components/IncubatorsList.vue';
-import AppSection from '@/shared/components/AppSection.vue';
-import AppSectionHeading from '@/shared/components/AppSectionHeading.vue';
+import AppSection from '@/shared/components/content/AppSection.vue';
+import AppSectionHeading from '@/shared/components/content/AppSectionHeading.vue';
 import AppPageHeader from '@/shared/components/layout/AppPageHeader.vue';
 </script>
