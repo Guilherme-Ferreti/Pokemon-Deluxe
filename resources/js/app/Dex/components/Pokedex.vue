@@ -116,11 +116,11 @@ import type { PokedexIndexPageProps } from '@/app/Dex/types/page-props/PokedexIn
 import AppEmptyState from '@/shared/components/AppEmptyState.vue';
 import AppIconInBox from '@/shared/components/AppIconInBox.vue';
 import AppIconNotInBox from '@/shared/components/AppIconNotInBox.vue';
-import AppInput from '@/shared/components/AppInput.vue';
 import AppPagination from '@/shared/components/AppPagination.vue';
 import AppSpeciesPortrait from '@/shared/components/AppSpeciesPortrait.vue';
 import AppTableHeadSortableLink from '@/shared/components/AppTableHeadSortableLink.vue';
 import ElementalTypeBadges from '@/shared/components/ElementalTypeBadges.vue';
+import AppInput from '@/shared/components/form/AppInput.vue';
 import { Card } from '@/shared/components/ui/card';
 import {
   Table,

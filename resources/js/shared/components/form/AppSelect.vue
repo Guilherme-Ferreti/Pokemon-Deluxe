@@ -3,8 +3,9 @@
     <FieldLabel
       v-if="label"
       :for="name"
-      >{{ label }}</FieldLabel
     >
+      {{ label }}
+    </FieldLabel>
     <Select
       :id="selectId"
       v-model="model"

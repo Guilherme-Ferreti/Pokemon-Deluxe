@@ -59,8 +59,8 @@
 import { Form, Head, Link } from '@inertiajs/vue3';
 import AuthFormHeader from '@/app/Auth/components/AuthFormHeader.vue';
 import AuthLayout from '@/app/Auth/layouts/AuthLayout.vue';
-import AppCheckbox from '@/shared/components/AppCheckbox.vue';
-import AppInput from '@/shared/components/AppInput.vue';
+import AppCheckbox from '@/shared/components/form/AppCheckbox.vue';
+import AppInput from '@/shared/components/form/AppInput.vue';
 import { Button } from '@/shared/components/ui/button';
 import { FieldDescription, FieldGroup } from '@/shared/components/ui/field';
 import { route } from '@/shared/types/helpers/route';

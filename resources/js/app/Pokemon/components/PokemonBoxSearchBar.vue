@@ -34,7 +34,7 @@ import { nextTick } from 'vue';
 import PokemonBoxSearchBarFiltersDialog from '@/app/Pokemon/components/PokemonBoxSearchBarFiltersDialog.vue';
 import PokemonBoxSearchBarSortPopover from '@/app/Pokemon/components/PokemonBoxSearchBarSortPopover.vue';
 import type { BoxIndexPageProps } from '@/app/Pokemon/types/page-props/BoxIndexPageProps';
-import AppInput from '@/shared/components/AppInput.vue';
+import AppInput from '@/shared/components/form/AppInput.vue';
 import { Card } from '@/shared/components/ui/card';
 import { removeFalsyValues } from '@/shared/lib/utils';
 import { route } from '@/shared/types/helpers/route.js';

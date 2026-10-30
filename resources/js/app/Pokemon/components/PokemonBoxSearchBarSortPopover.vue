@@ -66,7 +66,7 @@ import { IconArrowsDownUp } from '@tabler/icons-vue';
 import { PopoverClose } from 'reka-ui';
 import { SearchBoxSortBy } from '@/app/Pokemon/types/enums/SearchBoxSortBy';
 import type { BoxIndexPageProps } from '@/app/Pokemon/types/page-props/BoxIndexPageProps';
-import AppSelect from '@/shared/components/AppSelect.vue';
+import AppSelect from '@/shared/components/form/AppSelect.vue';
 import { Button } from '@/shared/components/ui/button';
 import {
   Popover,

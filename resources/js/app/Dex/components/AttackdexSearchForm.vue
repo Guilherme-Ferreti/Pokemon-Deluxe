@@ -29,7 +29,7 @@ import { watchDebounced } from '@vueuse/core';
 import { nextTick } from 'vue';
 import AttackdexSearchFiltersDialog from '@/app/Dex/components/AttackdexSearchFiltersDialog.vue';
 import type { AttackdexIndexPageProps } from '@/app/Dex/types/page-props/AttackdexIndexPageProps';
-import AppInput from '@/shared/components/AppInput.vue';
+import AppInput from '@/shared/components/form/AppInput.vue';
 import { removeFalsyValues } from '@/shared/lib/utils';
 import { route } from '@/shared/types/helpers/route';
 
