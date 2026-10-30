@@ -95,7 +95,7 @@ import type {
 } from '@/app/Pokemon/types/page-props/NurseryPageProps';
 import AppItemSprite from '@/shared/components/AppItemSprite.vue';
 import AppSpeciesSprite from '@/shared/components/AppSpeciesSprite.vue';
-import PokemonDisplayName from '@/shared/components/PokemonDisplayName.vue';
+import PokemonDisplayName from '@/shared/components/game/PokemonDisplayName.vue';
 import { Button } from '@/shared/components/ui/button';
 import {
   Dialog,

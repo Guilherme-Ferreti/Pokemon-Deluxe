@@ -98,7 +98,7 @@ import { IconBook, IconDotsVertical, IconEye } from '@tabler/icons-vue';
 import type { BoxIndexPageProps } from '@/app/Pokemon/types/page-props/BoxIndexPageProps';
 import AppPokemonGenderIcon from '@/shared/components/AppPokemonGenderIcon.vue';
 import AppSpeciesSprite from '@/shared/components/AppSpeciesSprite.vue';
-import ElementalTypeBadges from '@/shared/components/ElementalTypeBadges.vue';
+import ElementalTypeBadges from '@/shared/components/game/ElementalTypeBadges.vue';
 import AppNavLink from '@/shared/components/layout/AppNavLink.vue';
 import { Button } from '@/shared/components/ui/button';
 import { Card } from '@/shared/components/ui/card';

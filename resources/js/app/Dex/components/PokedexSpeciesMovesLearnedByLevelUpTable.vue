@@ -87,10 +87,10 @@ import type {
   PokedexShowPageProps,
   TMLearnableMove,
 } from '@/app/Dex/types/page-props/PokedexShowPageProps';
-import ElementalTypeBadges from '@/shared/components/ElementalTypeBadges.vue';
+import ElementalTypeBadges from '@/shared/components/game/ElementalTypeBadges.vue';
+import MoveNameLabel from '@/shared/components/game/MoveNameLabel.vue';
+import MovePowerLabel from '@/shared/components/game/MovePowerLabel.vue';
 import AppTableHeadSortableButton from '@/shared/components/list/AppTableHeadSortableButton.vue';
-import MoveNameLabel from '@/shared/components/MoveNameLabel.vue';
-import MovePowerLabel from '@/shared/components/MovePowerLabel.vue';
 import {
   Table,
   TableBody,

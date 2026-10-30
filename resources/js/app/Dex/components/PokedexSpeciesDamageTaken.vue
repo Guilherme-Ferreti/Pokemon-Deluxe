@@ -38,7 +38,7 @@ import { computed } from 'vue';
 import type { PokedexShowPageProps } from '@/app/Dex/types/page-props/PokedexShowPageProps';
 import AppInfoCard from '@/shared/components/content/AppInfoCard.vue';
 import AppInfoCardSectionTitle from '@/shared/components/content/AppInfoCardSectionTitle.vue';
-import ElementalTypeBadges from '@/shared/components/ElementalTypeBadges.vue';
+import ElementalTypeBadges from '@/shared/components/game/ElementalTypeBadges.vue';
 import Separator from '@/shared/components/ui/separator/Separator.vue';
 import type { ElementalType } from '@/shared/types/enums';
 

@@ -124,7 +124,7 @@ import AppPokemonGenderIcon from '@/shared/components/AppPokemonGenderIcon.vue';
 import AppSpeciesPortrait from '@/shared/components/AppSpeciesPortrait.vue';
 import AppInfoCard from '@/shared/components/content/AppInfoCard.vue';
 import AppInfoCardRow from '@/shared/components/content/AppInfoCardRow.vue';
-import ElementalTypeBadges from '@/shared/components/ElementalTypeBadges.vue';
+import ElementalTypeBadges from '@/shared/components/game/ElementalTypeBadges.vue';
 import { Badge } from '@/shared/components/ui/badge';
 import {
   Tooltip,

@@ -100,11 +100,11 @@ import {
 import { SearchAttackdexSortBy } from '@/app/Dex/types/enums/SearchAttackdexSortBy';
 import type { AttackdexIndexPageProps } from '@/app/Dex/types/page-props/AttackdexIndexPageProps';
 import AppEmptyState from '@/shared/components/content/AppEmptyState.vue';
-import ElementalTypeBadges from '@/shared/components/ElementalTypeBadges.vue';
+import ElementalTypeBadges from '@/shared/components/game/ElementalTypeBadges.vue';
+import MoveNameLabel from '@/shared/components/game/MoveNameLabel.vue';
+import MovePowerLabel from '@/shared/components/game/MovePowerLabel.vue';
 import type { AppTableHeadSortableLinkProps } from '@/shared/components/list/AppTableHeadSortableLink.vue';
 import AppTableHeadSortableLink from '@/shared/components/list/AppTableHeadSortableLink.vue';
-import MoveNameLabel from '@/shared/components/MoveNameLabel.vue';
-import MovePowerLabel from '@/shared/components/MovePowerLabel.vue';
 import {
   TableCell,
   TableRow,

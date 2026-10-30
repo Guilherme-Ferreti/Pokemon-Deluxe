@@ -42,7 +42,7 @@ import { IconConfetti } from '@tabler/icons-vue';
 import IncubatorCard from '@/app/Pokemon/components/IncubatorCard.vue';
 import type { Incubator } from '@/app/Pokemon/types/page-props/NurseryPageProps';
 import AppSpeciesSprite from '@/shared/components/AppSpeciesSprite.vue';
-import PokemonDisplayName from '@/shared/components/PokemonDisplayName.vue';
+import PokemonDisplayName from '@/shared/components/game/PokemonDisplayName.vue';
 import { Button } from '@/shared/components/ui/button';
 
 defineProps<{
