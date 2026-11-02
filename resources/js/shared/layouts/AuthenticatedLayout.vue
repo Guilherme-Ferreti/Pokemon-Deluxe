@@ -30,12 +30,12 @@ import AppSidebar from '@/shared/components/layout/AppSidebar.vue';
 import { SidebarInset, SidebarProvider } from '@/shared/components/ui/sidebar';
 import AppLayout from '@/shared/layouts/AppLayout.vue';
 
-interface DashboardLayoutProps {
+interface AuthenticatedLayoutProps {
   pageSize?: 'small' | 'default';
   breadcrumbs?: { name: string; href?: string }[];
 }
 
-withDefaults(defineProps<DashboardLayoutProps>(), {
+withDefaults(defineProps<AuthenticatedLayoutProps>(), {
   pageSize: 'default',
 });
 </script>

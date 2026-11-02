@@ -1,5 +1,5 @@
 import { createInertiaApp } from '@inertiajs/vue3';
-import DashboardLayout from '@/shared/layouts/DashboardLayout.vue';
+import AuthenticatedLayout from '@/shared/layouts/AuthenticatedLayout.vue';
 
 const appName = import.meta.env.VITE_APP_NAME || 'Laravel';
 
@@ -9,5 +9,5 @@ createInertiaApp({
   progress: {
     color: '#4B5563',
   },
-  layout: () => DashboardLayout,
+  layout: () => AuthenticatedLayout,
 });
