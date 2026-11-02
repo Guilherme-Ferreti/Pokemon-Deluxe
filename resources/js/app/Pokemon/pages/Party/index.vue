@@ -5,13 +5,13 @@
     description="Manage your party."
   />
   <AppSection>
-    <PokemonParty />
+    <PartyList />
   </AppSection>
 </template>
 
 <script setup lang="ts">
 import { Head } from '@inertiajs/vue3';
-import PokemonParty from '@/app/Pokemon/components/PokemonParty.vue';
+import PartyList from '@/app/Pokemon/pages/Party/PartyList.vue';
 import AppSection from '@/shared/components/content/AppSection.vue';
 import AppPageHeader from '@/shared/components/layout/AppPageHeader.vue';
 </script>
