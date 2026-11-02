@@ -10,21 +10,21 @@ final class LockKeys
 {
     public static function incubatorPurchase(string $userId): string
     {
-        return "pokemon:lock:incubator-purchase:user-{$userId}";
+        return "pokemon::lock:incubator-purchase:user-{$userId}";
     }
 
     public static function incubatorPlaceEgg(string $userId, IncubatorIndex $incubatorIndex): string
     {
-        return "pokemon:lock:incubator-place-egg:user-{$userId}:incubator-{$incubatorIndex->value}";
+        return "pokemon::lock:incubator-place-egg:user-{$userId}:incubator-{$incubatorIndex->value}";
     }
 
     public static function incubatorHatchEgg(string $userId, IncubatorIndex $incubatorIndex): string
     {
-        return "pokemon:lock:incubator-hatch-egg:user-{$userId}:incubator-{$incubatorIndex->value}";
+        return "pokemon::lock:incubator-hatch-egg:user-{$userId}:incubator-{$incubatorIndex->value}";
     }
 
     public static function incubatorCatchPokemon(string $userId, IncubatorIndex $incubatorIndex): string
     {
-        return "pokemon:lock:incubator-catch-pokemon:user-{$userId}:incubator-{$incubatorIndex->value}";
+        return "pokemon::lock:incubator-catch-pokemon:user-{$userId}:incubator-{$incubatorIndex->value}";
     }
 }
