@@ -12,6 +12,6 @@ final class AttackdexController extends Controller
 {
     public function index(): Response
     {
-        return inertia('Dex/Attackdex/Index')->with(new AttackdexIndexPageProps);
+        return inertia('Dex::Attackdex/Index')->with(new AttackdexIndexPageProps);
     }
 }

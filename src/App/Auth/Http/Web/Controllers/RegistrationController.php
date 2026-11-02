@@ -15,7 +15,7 @@ final class RegistrationController extends Controller
 {
     public function create(): Response
     {
-        return inertia('Auth/Registration');
+        return inertia('Auth::Registration');
     }
 
     public function store(StoreRegistrationRequest $request): RedirectResponse

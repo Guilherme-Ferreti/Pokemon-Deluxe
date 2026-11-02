@@ -12,6 +12,6 @@ final class PartyController extends Controller
 {
     public function __invoke(): Response
     {
-        return inertia('Pokemon/Party')->with(new PartyPageProps);
+        return inertia('Pokemon::Party')->with(new PartyPageProps);
     }
 }

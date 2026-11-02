@@ -91,7 +91,17 @@ final class AppServiceProvider extends ServiceProvider
 
     private function configureInertiaPagePaths(): void
     {
-        Inertia::transformComponentUsing(fn (string $name): string => Str::of($name)->replaceFirst('/', '/pages/')->toString());
+        Inertia::transformComponentUsing(function (string $name): string {
+            throw_unless(
+                Str::contains($name, '::'),
+                InvalidArgumentException::class,
+                "Inertia page [{$name}] must use the Module::Path/Page format.",
+            );
+
+            [$module, $page] = explode('::', $name, 2);
+
+            return "{$module}/pages/{$page}";
+        });
     }
 
     private function configureInertiaExceptionHandling(): void

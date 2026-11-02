@@ -14,7 +14,7 @@ final class LoginController extends Controller
 {
     public function create(): Response
     {
-        return inertia('Auth/Login');
+        return inertia('Auth::Login');
     }
 
     public function store(StoreLoginRequest $request): RedirectResponse

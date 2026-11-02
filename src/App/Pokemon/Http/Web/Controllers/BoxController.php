@@ -12,6 +12,6 @@ final class BoxController extends Controller
 {
     public function index(): Response
     {
-        return inertia('Pokemon/Box/Index')->with(new BoxIndexPageProps);
+        return inertia('Pokemon::Box/Index')->with(new BoxIndexPageProps);
     }
 }

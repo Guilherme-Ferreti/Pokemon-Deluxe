@@ -12,6 +12,6 @@ final class NurseryController extends Controller
 {
     public function __invoke(): Response
     {
-        return inertia('Pokemon/Nursery')->with(new NurseryPageProps);
+        return inertia('Pokemon::Nursery')->with(new NurseryPageProps);
     }
 }
