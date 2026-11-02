@@ -22,7 +22,7 @@ it('loads the registration page with expected structure', function () {
     get(route('auth.web.registration.create'))
         ->assertSuccessful()
         ->assertInertia(fn (Assert $page) => $page
-            ->component('Auth/pages/Registration')
+            ->component('Auth/pages/Registration/index')
         );
 });
 

@@ -37,7 +37,7 @@ it('loads the box page with expected structure', function () {
     get(route('pokemon.web.box.index'))
         ->assertSuccessful()
         ->assertInertia(fn (Assert $page) => $page
-            ->component('Pokemon/pages/Box/Index')
+            ->component('Pokemon/pages/Box/Index/index')
             ->has('filters.active')
             ->has('filters.options', fn (Assert $page) => $page->hasAll(['types', 'traits', 'generations', 'sort', 'dir']))
             ->has('pokemonList.data', $perPage)

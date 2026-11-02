@@ -100,7 +100,7 @@ final class AppServiceProvider extends ServiceProvider
 
             [$module, $page] = explode('::', $name, 2);
 
-            return "{$module}/pages/{$page}";
+            return "{$module}/pages/{$page}/index";
         });
     }
 

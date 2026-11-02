@@ -18,6 +18,6 @@ it('loads the dashboard page with expected structure', function () {
         ->get(route('dashboard.web.home'))
         ->assertSuccessful()
         ->assertInertia(fn (Assert $page) => $page
-            ->component('Dashboard/pages/Dashboard')
+            ->component('Dashboard/pages/Dashboard/index')
         );
 });

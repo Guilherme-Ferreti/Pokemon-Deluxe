@@ -23,7 +23,7 @@ it('loads the nursery page with expected structure', function () {
         ->get(route('pokemon.web.nursery'))
         ->assertSuccessful()
         ->assertInertia(fn (Assert $page) => $page
-            ->component('Pokemon/pages/Nursery')
+            ->component('Pokemon/pages/Nursery/index')
             ->has('incubators', config('game.max_incubators_per_user'))
             ->where('incubators.0.index', 1)
             ->where('incubators.0.status', IncubatorStatus::NOT_PURCHASED->value)
