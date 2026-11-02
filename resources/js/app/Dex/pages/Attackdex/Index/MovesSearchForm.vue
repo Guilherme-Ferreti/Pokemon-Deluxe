@@ -12,7 +12,7 @@
       :icon="IconSearch"
       @keypress.enter.prevent="searchForm.isDirty && submitSearch()"
     />
-    <AttackdexSearchFiltersDialog
+    <MovesSearchFiltersDialog
       v-model:types="searchForm.types"
       v-model:ailments="searchForm.ailments"
       v-model:traits="searchForm.traits"
@@ -27,7 +27,7 @@ import { useForm, usePage } from '@inertiajs/vue3';
 import { IconSearch } from '@tabler/icons-vue';
 import { watchDebounced } from '@vueuse/core';
 import { nextTick } from 'vue';
-import AttackdexSearchFiltersDialog from '@/app/Dex/components/AttackdexSearchFiltersDialog.vue';
+import MovesSearchFiltersDialog from '@/app/Dex/pages/Attackdex/Index/MovesSearchFiltersDialog.vue';
 import type { AttackdexIndexPageProps } from '@/app/Dex/types/page-props/AttackdexIndexPageProps';
 import AppInput from '@/shared/components/form/AppInput.vue';
 import { removeFalsyValues } from '@/shared/lib/utils';

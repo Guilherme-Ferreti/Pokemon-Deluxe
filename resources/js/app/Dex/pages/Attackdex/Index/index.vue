@@ -12,8 +12,8 @@
   </p>
   <AppSection>
     <Card class="gap-4 p-4">
-      <AttackdexSearchForm ref="searchForm" />
-      <AttackdexTable
+      <MovesSearchForm ref="searchForm" />
+      <MovesTable
         v-if="attackdexSearchFormRef"
         :search-form="attackdexSearchFormRef.searchForm"
       />
@@ -26,8 +26,8 @@
 import { Head, setLayoutProps } from '@inertiajs/vue3';
 import { usePage } from '@inertiajs/vue3';
 import { useTemplateRef } from 'vue';
-import AttackdexSearchForm from '@/app/Dex/components/AttackdexSearchForm.vue';
-import AttackdexTable from '@/app/Dex/components/AttackdexTable.vue';
+import MovesSearchForm from '@/app/Dex/pages/Attackdex/Index/MovesSearchForm.vue';
+import MovesTable from '@/app/Dex/pages/Attackdex/Index/MovesTable.vue';
 import type { AttackdexIndexPageProps } from '@/app/Dex/types/page-props/AttackdexIndexPageProps';
 import AppSection from '@/shared/components/content/AppSection.vue';
 import AppPageHeader from '@/shared/components/layout/AppPageHeader.vue';
