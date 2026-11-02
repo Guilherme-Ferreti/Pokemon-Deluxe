@@ -9,14 +9,14 @@
         :icon="IconSearch"
         @keypress.enter.prevent="() => searchForm.isDirty && submitSearch()"
       />
-      <PokemonBoxSearchBarFiltersDialog
+      <PokemonSearchFiltersDialog
         v-model:types="searchForm.types"
         v-model:traits="searchForm.traits"
         v-model:generations="searchForm.generations"
         @apply="submitSearch"
         @close="nextTick(() => !searchForm.processing && searchForm.reset())"
       />
-      <PokemonBoxSearchBarSortPopover
+      <PokemonSortPopover
         v-model:sort="searchForm.sort"
         v-model:dir="searchForm.dir"
         @submit="submitSearch"
@@ -31,8 +31,8 @@ import { useForm, usePage } from '@inertiajs/vue3';
 import { IconSearch } from '@tabler/icons-vue';
 import { watchDebounced } from '@vueuse/core';
 import { nextTick } from 'vue';
-import PokemonBoxSearchBarFiltersDialog from '@/app/Pokemon/components/PokemonBoxSearchBarFiltersDialog.vue';
-import PokemonBoxSearchBarSortPopover from '@/app/Pokemon/components/PokemonBoxSearchBarSortPopover.vue';
+import PokemonSearchFiltersDialog from '@/app/Pokemon/pages/Box/Index/PokemonSearchFiltersDialog.vue';
+import PokemonSortPopover from '@/app/Pokemon/pages/Box/Index/PokemonSortPopover.vue';
 import type { BoxIndexPageProps } from '@/app/Pokemon/types/page-props/BoxIndexPageProps';
 import AppInput from '@/shared/components/form/AppInput.vue';
 import { Card } from '@/shared/components/ui/card';
