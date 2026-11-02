@@ -2,7 +2,7 @@
   <div>
     <ul
       class="grid grid-cols-[repeat(auto-fill,minmax(13rem,1fr))] gap-4"
-      data-test="incubators-list"
+      data-test="incubators-grid"
     >
       <li
         v-for="incubator in page.props.incubators"
@@ -42,12 +42,12 @@
 <script setup lang="ts">
 import { usePage } from '@inertiajs/vue3';
 import { ref } from 'vue';
-import IncubatorCatchPokemonDialog from '@/app/Pokemon/components/IncubatorCatchPokemonDialog.vue';
-import IncubatorIdleCard from '@/app/Pokemon/components/IncubatorIdleCard.vue';
-import IncubatorIncubatingCard from '@/app/Pokemon/components/IncubatorIncubatingCard.vue';
-import IncubatorNotPurchasedCard from '@/app/Pokemon/components/IncubatorNotPurchasedCard.vue';
-import IncubatorReadyToCatchCard from '@/app/Pokemon/components/IncubatorReadyToCatchCard.vue';
-import IncubatorReadyToHatchCard from '@/app/Pokemon/components/IncubatorReadyToHatchCard.vue';
+import IncubatorCatchPokemonDialog from '@/app/Pokemon/pages/Nursery/IncubatorCatchPokemonDialog.vue';
+import IncubatorIdleCard from '@/app/Pokemon/pages/Nursery/IncubatorIdleCard.vue';
+import IncubatorIncubatingCard from '@/app/Pokemon/pages/Nursery/IncubatorIncubatingCard.vue';
+import IncubatorNotPurchasedCard from '@/app/Pokemon/pages/Nursery/IncubatorNotPurchasedCard.vue';
+import IncubatorReadyToCatchCard from '@/app/Pokemon/pages/Nursery/IncubatorReadyToCatchCard.vue';
+import IncubatorReadyToHatchCard from '@/app/Pokemon/pages/Nursery/IncubatorReadyToHatchCard.vue';
 import { IncubatorStatus } from '@/app/Pokemon/types/enums/IncubatorStatus';
 import type {
   Incubator,

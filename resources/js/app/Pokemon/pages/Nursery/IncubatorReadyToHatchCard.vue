@@ -31,7 +31,7 @@
 <script setup lang="ts">
 import { useForm } from '@inertiajs/vue3';
 import { IconCheck } from '@tabler/icons-vue';
-import IncubatorCard from '@/app/Pokemon/components/IncubatorCard.vue';
+import IncubatorCard from '@/app/Pokemon/pages/Nursery/IncubatorCard.vue';
 import type { Incubator } from '@/app/Pokemon/types/page-props/NurseryPageProps';
 import PokemonEggSprite from '@/shared/components/game/PokemonEggSprite.vue';
 import { Button } from '@/shared/components/ui/button';

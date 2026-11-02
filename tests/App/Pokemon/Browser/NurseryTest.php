@@ -22,7 +22,7 @@ it('loads the nursery page without errors', function () {
         ->assertNoSmoke()
         ->assertNoAccessibilityIssues()
         ->assertSeeIn('@page-header__title', 'Nursery')
-        ->assertVisible('@incubators-list')
+        ->assertVisible('@incubators-grid')
         ->assertNoJavascriptErrors();
 });
 

@@ -32,7 +32,7 @@
 <script setup lang="ts">
 import { useForm } from '@inertiajs/vue3';
 import { IconLock } from '@tabler/icons-vue';
-import IncubatorCard from '@/app/Pokemon/components/IncubatorCard.vue';
+import IncubatorCard from '@/app/Pokemon/pages/Nursery/IncubatorCard.vue';
 import { IncubatorStatus } from '@/app/Pokemon/types/enums/IncubatorStatus';
 import type { Incubator } from '@/app/Pokemon/types/page-props/NurseryPageProps';
 import { Button } from '@/shared/components/ui/button';

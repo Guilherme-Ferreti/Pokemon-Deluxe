@@ -39,7 +39,7 @@
 
 <script setup lang="ts">
 import { IconConfetti } from '@tabler/icons-vue';
-import IncubatorCard from '@/app/Pokemon/components/IncubatorCard.vue';
+import IncubatorCard from '@/app/Pokemon/pages/Nursery/IncubatorCard.vue';
 import type { Incubator } from '@/app/Pokemon/types/page-props/NurseryPageProps';
 import PokemonDisplayName from '@/shared/components/game/PokemonDisplayName.vue';
 import SpeciesSprite from '@/shared/components/game/SpeciesSprite.vue';

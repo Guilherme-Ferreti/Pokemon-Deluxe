@@ -9,7 +9,7 @@
       title="Your incubators"
       description="Click on an empty incubator to place an egg, then hatch it when it is ready."
     />
-    <IncubatorsList />
+    <IncubatorsGrid />
   </AppSection>
   <AppSection>
     <AppSectionHeading
@@ -21,7 +21,7 @@
 
 <script setup lang="ts">
 import { Head } from '@inertiajs/vue3';
-import IncubatorsList from '@/app/Pokemon/components/IncubatorsList.vue';
+import IncubatorsGrid from '@/app/Pokemon/pages/Nursery/IncubatorsGrid.vue';
 import AppSection from '@/shared/components/content/AppSection.vue';
 import AppSectionHeading from '@/shared/components/content/AppSectionHeading.vue';
 import AppPageHeader from '@/shared/components/layout/AppPageHeader.vue';
