@@ -32,7 +32,7 @@ final readonly class PokedexShowPageProps implements ProvidesInertiaProperties
         return [
             'species'         => $this->getSpeciesProp(),
             'hero'            => $this->getHeroProp(),
-            'metadata'        => $this->getMetadataProp(),
+            'overview'        => $this->getOverviewProp(),
             'previousSpecies' => $this->getPreviousSpeciesProp(),
             'nextSpecies'     => $this->getNextSpeciesProp(),
             'catchStatistics' => $this->getCatchStatisticsProp(),
@@ -75,7 +75,7 @@ final readonly class PokedexShowPageProps implements ProvidesInertiaProperties
     /**
      * @return array<string, mixed>
      */
-    private function getMetadataProp(): array
+    private function getOverviewProp(): array
     {
         return [
             'types'     => $this->species->types,

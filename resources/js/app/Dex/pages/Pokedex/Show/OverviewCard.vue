@@ -5,8 +5,8 @@
         <Tooltip>
           <TooltipTrigger>
             <SpeciesPortrait
-              v-if="page.props.metadata.portraits.regular"
-              :url="page.props.metadata.portraits.regular"
+              v-if="page.props.overview.portraits.regular"
+              :url="page.props.overview.portraits.regular"
               :name="page.props.species.name"
             />
           </TooltipTrigger>
@@ -15,8 +15,8 @@
         <Tooltip>
           <TooltipTrigger>
             <SpeciesPortrait
-              v-if="page.props.metadata.portraits.shiny"
-              :url="page.props.metadata.portraits.shiny"
+              v-if="page.props.overview.portraits.shiny"
+              :url="page.props.overview.portraits.shiny"
               :name="page.props.species.name"
             />
           </TooltipTrigger>
@@ -26,51 +26,51 @@
     </AppInfoCardRow>
     <AppInfoCardRow
       title="Type(s)"
-      data-test="pokedex-species-metadata__types"
+      data-test="pokedex-species-overview__types"
     >
-      <ElementalTypeBadges :types="page.props.metadata.types" />
+      <ElementalTypeBadges :types="page.props.overview.types" />
     </AppInfoCardRow>
     <AppInfoCardRow
       title="Generation"
-      data-test="pokedex-species-metadata__generation"
-      :text="$page.props.labels.generation[page.props.metadata.generation]"
+      data-test="pokedex-species-overview__generation"
+      :text="$page.props.labels.generation[page.props.overview.generation]"
     />
     <AppInfoCardRow
-      v-if="Object.values(page.props.metadata.traits).some(Boolean)"
+      v-if="Object.values(page.props.overview.traits).some(Boolean)"
       title="Traits"
-      data-test="pokedex-species-metadata__traits"
+      data-test="pokedex-species-overview__traits"
     >
       <div class="flex flex-wrap gap-2">
         <Badge
-          v-if="page.props.metadata.traits.isBaby"
+          v-if="page.props.overview.traits.isBaby"
           variant="outline"
           class="text-xs font-medium"
         >
           Baby
         </Badge>
         <Badge
-          v-if="page.props.metadata.traits.isLegendary"
+          v-if="page.props.overview.traits.isLegendary"
           variant="outline"
           class="text-xs font-medium"
         >
           Legendary
         </Badge>
         <Badge
-          v-if="page.props.metadata.traits.isMythical"
+          v-if="page.props.overview.traits.isMythical"
           variant="outline"
           class="text-xs font-medium"
         >
           Mythical
         </Badge>
         <Badge
-          v-if="page.props.metadata.traits.isMega"
+          v-if="page.props.overview.traits.isMega"
           variant="outline"
           class="text-xs font-medium"
         >
           Mega
         </Badge>
         <Badge
-          v-if="page.props.metadata.traits.isGmax"
+          v-if="page.props.overview.traits.isGmax"
           variant="outline"
           class="text-xs font-medium"
         >
@@ -82,25 +82,25 @@
       v-else
       title="Traits"
       text="None"
-      data-test="pokedex-species-metadata__traits"
+      data-test="pokedex-species-overview__traits"
     />
     <AppInfoCardRow
-      v-if="page.props.metadata.isGenderless"
+      v-if="page.props.overview.isGenderless"
       title="Gender Rate"
       text="Genderless"
-      data-test="pokedex-species-metadata__gender-rate"
+      data-test="pokedex-species-overview__gender-rate"
     />
     <AppInfoCardRow
       v-else
       title="Gender Rate"
-      data-test="pokedex-species-metadata__gender-rate"
+      data-test="pokedex-species-overview__gender-rate"
     >
       <span class="flex items-center gap-1 text-sm text-foreground">
         <span
           v-if="canBeMale"
           class="flex items-center gap-0.5"
         >
-          {{ page.props.metadata.malePercentage }}%
+          {{ page.props.overview.malePercentage }}%
 
           <PokemonGenderIcon :gender="PokemonGender.MALE" />
         </span>
@@ -109,7 +109,7 @@
           v-if="canBeFemale"
           class="flex items-center gap-0.5"
         >
-          {{ page.props.metadata.femalePercentage }}%
+          {{ page.props.overview.femalePercentage }}%
           <PokemonGenderIcon :gender="PokemonGender.FEMALE" />
         </span>
       </span>
@@ -135,6 +135,6 @@ import { PokemonGender } from '@/shared/types/enums';
 
 const page = usePage<PokedexShowPageProps>();
 
-const canBeMale = page.props.metadata.malePercentage !== 0;
-const canBeFemale = page.props.metadata.femalePercentage !== 0;
+const canBeMale = page.props.overview.malePercentage !== 0;
+const canBeFemale = page.props.overview.femalePercentage !== 0;
 </script>

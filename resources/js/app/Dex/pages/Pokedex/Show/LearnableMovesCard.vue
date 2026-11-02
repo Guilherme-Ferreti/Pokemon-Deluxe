@@ -13,7 +13,7 @@
           {{ page.props.species.name }} learns the following moves at the levels
           specified
         </CardDescription>
-        <PokedexSpeciesMovesLearnedByLevelUpTable />
+        <LearnableMovesLevelUpTable />
       </div>
       <div>
         <span class="text-sm font-bold">By TM</span>
@@ -21,7 +21,7 @@
           {{ page.props.species.name }} is compatible with these Technical
           Machines
         </CardDescription>
-        <PokedexSpeciesMovesLearnedByTMTable />
+        <LearnableMovesTmTable />
       </div>
     </CardContent>
   </Card>
@@ -29,8 +29,8 @@
 
 <script setup lang="ts">
 import { usePage } from '@inertiajs/vue3';
-import PokedexSpeciesMovesLearnedByLevelUpTable from '@/app/Dex/components/PokedexSpeciesMovesLearnedByLevelUpTable.vue';
-import PokedexSpeciesMovesLearnedByTMTable from '@/app/Dex/components/PokedexSpeciesMovesLearnedByTMTable.vue';
+import LearnableMovesLevelUpTable from '@/app/Dex/pages/Pokedex/Show/LearnableMovesLevelUpTable.vue';
+import LearnableMovesTmTable from '@/app/Dex/pages/Pokedex/Show/LearnableMovesTmTable.vue';
 import type { PokedexShowPageProps } from '@/app/Dex/types/page-props/PokedexShowPageProps';
 import {
   Card,

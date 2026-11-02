@@ -11,7 +11,7 @@ export type PokedexShowPageProps = {
     slug: Species['slug'];
   };
   hero: Hero;
-  metadata: Metadata;
+  overview: Overview;
   previousSpecies: NavigationItem;
   nextSpecies: NavigationItem;
   catchStatistics: {
@@ -48,7 +48,7 @@ type Hero = {
   textEntry: Species['textEntry'];
 };
 
-type Metadata = {
+type Overview = {
   types: Species['types'];
   portraits: {
     regular: Species['portraits']['regular'];

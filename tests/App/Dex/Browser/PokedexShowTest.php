@@ -68,7 +68,7 @@ it('displays the species hero card', function () {
         ->assertSeeIn('@pokedex-species-hero__text-entry', $species->text_entry);
 });
 
-describe('metadata card', function () {
+describe('overview card', function () {
     it('displays the card', function () {
         $user    = User::factory()->create();
         $species = Species::factory()->dualType()->create([
@@ -83,16 +83,16 @@ describe('metadata card', function () {
         actingAs($user);
 
         visit(route('dex.web.pokedex.show', $species))
-            ->assertSeeIn('@pokedex-species-metadata__types', $species->types[0]->label())
-            ->assertSeeIn('@pokedex-species-metadata__types', ($species->types[1] ?? null)?->label())
-            ->assertSeeIn('@pokedex-species-metadata__generation', $species->generation->label())
-            ->assertSeeIn('@pokedex-species-metadata__traits', SpeciesTrait::BABY->label())
-            ->assertSeeIn('@pokedex-species-metadata__traits', SpeciesTrait::LEGENDARY->label())
-            ->assertSeeIn('@pokedex-species-metadata__traits', SpeciesTrait::MYTHICAL->label())
-            ->assertSeeIn('@pokedex-species-metadata__traits', SpeciesTrait::MEGA->label())
-            ->assertSeeIn('@pokedex-species-metadata__traits', SpeciesTrait::GMAX->label())
-            ->assertSeeIn('@pokedex-species-metadata__gender-rate', $species->getMalePercentage())
-            ->assertSeeIn('@pokedex-species-metadata__gender-rate', $species->getFemalePercentage());
+            ->assertSeeIn('@pokedex-species-overview__types', $species->types[0]->label())
+            ->assertSeeIn('@pokedex-species-overview__types', ($species->types[1] ?? null)?->label())
+            ->assertSeeIn('@pokedex-species-overview__generation', $species->generation->label())
+            ->assertSeeIn('@pokedex-species-overview__traits', SpeciesTrait::BABY->label())
+            ->assertSeeIn('@pokedex-species-overview__traits', SpeciesTrait::LEGENDARY->label())
+            ->assertSeeIn('@pokedex-species-overview__traits', SpeciesTrait::MYTHICAL->label())
+            ->assertSeeIn('@pokedex-species-overview__traits', SpeciesTrait::MEGA->label())
+            ->assertSeeIn('@pokedex-species-overview__traits', SpeciesTrait::GMAX->label())
+            ->assertSeeIn('@pokedex-species-overview__gender-rate', $species->getMalePercentage())
+            ->assertSeeIn('@pokedex-species-overview__gender-rate', $species->getFemalePercentage());
     });
 
     it('does not displays missing traits species traits', function () {
@@ -108,11 +108,11 @@ describe('metadata card', function () {
         actingAs($user);
 
         visit(route('dex.web.pokedex.show', $species))
-            ->assertSeeIn('@pokedex-species-metadata__traits', SpeciesTrait::LEGENDARY->label())
-            ->assertDontSeeIn('@pokedex-species-metadata__traits', SpeciesTrait::BABY->label())
-            ->assertDontSeeIn('@pokedex-species-metadata__traits', SpeciesTrait::MYTHICAL->label())
-            ->assertDontSeeIn('@pokedex-species-metadata__traits', SpeciesTrait::MEGA->label())
-            ->assertDontSeeIn('@pokedex-species-metadata__traits', SpeciesTrait::GMAX->label());
+            ->assertSeeIn('@pokedex-species-overview__traits', SpeciesTrait::LEGENDARY->label())
+            ->assertDontSeeIn('@pokedex-species-overview__traits', SpeciesTrait::BABY->label())
+            ->assertDontSeeIn('@pokedex-species-overview__traits', SpeciesTrait::MYTHICAL->label())
+            ->assertDontSeeIn('@pokedex-species-overview__traits', SpeciesTrait::MEGA->label())
+            ->assertDontSeeIn('@pokedex-species-overview__traits', SpeciesTrait::GMAX->label());
     });
 
     it('displays an empty state message if species has no traits', function () {
@@ -128,12 +128,12 @@ describe('metadata card', function () {
         actingAs($user);
 
         visit(route('dex.web.pokedex.show', $species))
-            ->assertSeeIn('@pokedex-species-metadata__traits', 'None')
-            ->assertDontSeeIn('@pokedex-species-metadata__traits', SpeciesTrait::BABY->label())
-            ->assertDontSeeIn('@pokedex-species-metadata__traits', SpeciesTrait::LEGENDARY->label())
-            ->assertDontSeeIn('@pokedex-species-metadata__traits', SpeciesTrait::MYTHICAL->label())
-            ->assertDontSeeIn('@pokedex-species-metadata__traits', SpeciesTrait::MEGA->label())
-            ->assertDontSeeIn('@pokedex-species-metadata__traits', SpeciesTrait::GMAX->label());
+            ->assertSeeIn('@pokedex-species-overview__traits', 'None')
+            ->assertDontSeeIn('@pokedex-species-overview__traits', SpeciesTrait::BABY->label())
+            ->assertDontSeeIn('@pokedex-species-overview__traits', SpeciesTrait::LEGENDARY->label())
+            ->assertDontSeeIn('@pokedex-species-overview__traits', SpeciesTrait::MYTHICAL->label())
+            ->assertDontSeeIn('@pokedex-species-overview__traits', SpeciesTrait::MEGA->label())
+            ->assertDontSeeIn('@pokedex-species-overview__traits', SpeciesTrait::GMAX->label());
     });
 
     it('displays an empty state message if species is genderless', function () {
@@ -143,7 +143,7 @@ describe('metadata card', function () {
         actingAs($user);
 
         visit(route('dex.web.pokedex.show', $species))
-            ->assertSeeIn('@pokedex-species-metadata__gender-rate', PokemonGender::GENDERLESS->label());
+            ->assertSeeIn('@pokedex-species-overview__gender-rate', PokemonGender::GENDERLESS->label());
     });
 });
 

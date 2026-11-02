@@ -3,45 +3,45 @@
   <AppSection
     class="flex-wrap items-center justify-center @3xl/main-content:flex-row @3xl/main-content:justify-between"
   >
-    <PokedexSpeciesAutocomplete class="w-full max-w-89" />
-    <PokedexSpeciesNavigation />
+    <SpeciesSearchInput class="w-full max-w-89" />
+    <NavigationLinks />
   </AppSection>
   <div class="space-y-4">
     <div
       class="grid gap-4 @2xl/main-content:grid-cols-2 @4xl/main-content:grid-cols-3"
     >
       <section class="@2xl/main-content:col-span-2">
-        <PokedexSpeciesHero class="h-full" />
+        <SpeciesHero class="h-full" />
       </section>
       <section>
-        <PokedexSpeciesMetadata class="h-full" />
+        <OverviewCard class="h-full" />
       </section>
       <section class="@4xl/main-content:order-1">
-        <PokedexSpeciesEvolutionChain class="h-full @4xl/main-content:h-auto" />
+        <EvolutionChain class="h-full @4xl/main-content:h-auto" />
       </section>
       <section>
-        <PokedexSpeciesDamageTaken />
+        <DamageTakenCard />
       </section>
       <section>
-        <PokedexSpeciesCatchStatistics />
+        <CatchStatisticsCard />
       </section>
     </div>
     <section>
-      <PokedexSpeciesLearnableMoves />
+      <LearnableMovesCard />
     </section>
   </div>
 </template>
 
 <script setup lang="ts">
 import { Head, setLayoutProps, usePage } from '@inertiajs/vue3';
-import PokedexSpeciesAutocomplete from '@/app/Dex/components/PokedexSpeciesAutocomplete.vue';
-import PokedexSpeciesCatchStatistics from '@/app/Dex/components/PokedexSpeciesCatchStatistics.vue';
-import PokedexSpeciesDamageTaken from '@/app/Dex/components/PokedexSpeciesDamageTaken.vue';
-import PokedexSpeciesEvolutionChain from '@/app/Dex/components/PokedexSpeciesEvolutionChain.vue';
-import PokedexSpeciesHero from '@/app/Dex/components/PokedexSpeciesHero.vue';
-import PokedexSpeciesLearnableMoves from '@/app/Dex/components/PokedexSpeciesLearnableMoves.vue';
-import PokedexSpeciesMetadata from '@/app/Dex/components/PokedexSpeciesMetadata.vue';
-import PokedexSpeciesNavigation from '@/app/Dex/components/PokedexSpeciesNavigation.vue';
+import CatchStatisticsCard from '@/app/Dex/pages/Pokedex/Show/CatchStatisticsCard.vue';
+import DamageTakenCard from '@/app/Dex/pages/Pokedex/Show/DamageTakenCard.vue';
+import EvolutionChain from '@/app/Dex/pages/Pokedex/Show/EvolutionChain.vue';
+import LearnableMovesCard from '@/app/Dex/pages/Pokedex/Show/LearnableMovesCard.vue';
+import NavigationLinks from '@/app/Dex/pages/Pokedex/Show/NavigationLinks.vue';
+import OverviewCard from '@/app/Dex/pages/Pokedex/Show/OverviewCard.vue';
+import SpeciesHero from '@/app/Dex/pages/Pokedex/Show/SpeciesHero.vue';
+import SpeciesSearchInput from '@/app/Dex/pages/Pokedex/Show/SpeciesSearchInput.vue';
 import type { PokedexShowPageProps } from '@/app/Dex/types/page-props/PokedexShowPageProps';
 import AppSection from '@/shared/components/content/AppSection.vue';
 import { route } from '@/shared/types/helpers/route';
