@@ -29,9 +29,6 @@
 
 <script setup lang="ts">
 import { usePage } from '@inertiajs/vue3';
-import LearnableMovesLevelUpTable from '@/app/Dex/pages/Pokedex/Show/LearnableMovesLevelUpTable.vue';
-import LearnableMovesTmTable from '@/app/Dex/pages/Pokedex/Show/LearnableMovesTmTable.vue';
-import type { PokedexShowPageProps } from '@/app/Dex/types/page-props/PokedexShowPageProps';
 import {
   Card,
   CardContent,
@@ -39,6 +36,9 @@ import {
   CardHeader,
   CardTitle,
 } from '@/shared/components/ui/card';
+import type { PokedexShowPageProps } from '../../../types/page-props/PokedexShowPageProps';
+import LearnableMovesLevelUpTable from './LearnableMovesLevelUpTable.vue';
+import LearnableMovesTmTable from './LearnableMovesTmTable.vue';
 
 const page = usePage<PokedexShowPageProps>();
 </script>

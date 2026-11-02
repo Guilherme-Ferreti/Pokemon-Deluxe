@@ -27,10 +27,10 @@
 <script setup lang="ts">
 import { router } from '@inertiajs/vue3';
 import { IconClock } from '@tabler/icons-vue';
-import IncubatorCard from '@/app/Pokemon/pages/Nursery/IncubatorCard.vue';
-import type { Incubator } from '@/app/Pokemon/types/page-props/NurseryPageProps';
 import AppCountdown from '@/shared/components/content/AppCountdown.vue';
 import PokemonEggSprite from '@/shared/components/game/PokemonEggSprite.vue';
+import type { Incubator } from '../../types/page-props/NurseryPageProps';
+import IncubatorCard from './IncubatorCard.vue';
 
 defineProps<{
   incubator: Incubator;

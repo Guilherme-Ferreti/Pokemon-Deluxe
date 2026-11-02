@@ -64,8 +64,6 @@
 import { usePage } from '@inertiajs/vue3';
 import { IconArrowsDownUp } from '@tabler/icons-vue';
 import { PopoverClose } from 'reka-ui';
-import { SearchBoxSortBy } from '@/app/Pokemon/types/enums/SearchBoxSortBy';
-import type { BoxIndexPageProps } from '@/app/Pokemon/types/page-props/BoxIndexPageProps';
 import AppSelect from '@/shared/components/form/AppSelect.vue';
 import { Button } from '@/shared/components/ui/button';
 import {
@@ -79,6 +77,8 @@ import {
   TooltipTrigger,
 } from '@/shared/components/ui/tooltip';
 import { SortDirection } from '@/shared/types/enums';
+import { SearchBoxSortBy } from '../../../types/enums/SearchBoxSortBy';
+import type { BoxIndexPageProps } from '../../../types/page-props/BoxIndexPageProps';
 
 const page = usePage<BoxIndexPageProps>();
 

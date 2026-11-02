@@ -27,11 +27,11 @@ import { useForm, usePage } from '@inertiajs/vue3';
 import { IconSearch } from '@tabler/icons-vue';
 import { watchDebounced } from '@vueuse/core';
 import { nextTick } from 'vue';
-import SpeciesFiltersDialog from '@/app/Dex/pages/Pokedex/Index/SpeciesFiltersDialog.vue';
-import type { PokedexIndexPageProps } from '@/app/Dex/types/page-props/PokedexIndexPageProps';
 import AppInput from '@/shared/components/form/AppInput.vue';
 import { removeFalsyValues } from '@/shared/lib/utils';
 import { route } from '@/shared/types/helpers/route';
+import type { PokedexIndexPageProps } from '../../../types/page-props/PokedexIndexPageProps';
+import SpeciesFiltersDialog from './SpeciesFiltersDialog.vue';
 
 const page = usePage<PokedexIndexPageProps>();
 

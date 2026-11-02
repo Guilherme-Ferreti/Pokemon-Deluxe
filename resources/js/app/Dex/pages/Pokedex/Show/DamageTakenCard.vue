@@ -35,12 +35,12 @@
 <script setup lang="ts">
 import { usePage } from '@inertiajs/vue3';
 import { computed } from 'vue';
-import type { PokedexShowPageProps } from '@/app/Dex/types/page-props/PokedexShowPageProps';
 import AppInfoCard from '@/shared/components/content/AppInfoCard.vue';
 import AppInfoCardSectionTitle from '@/shared/components/content/AppInfoCardSectionTitle.vue';
 import ElementalTypeBadges from '@/shared/components/game/ElementalTypeBadges.vue';
 import Separator from '@/shared/components/ui/separator/Separator.vue';
 import type { ElementalType } from '@/shared/types/enums';
+import type { PokedexShowPageProps } from '../../../types/page-props/PokedexShowPageProps';
 
 const page = usePage<PokedexShowPageProps>();
 

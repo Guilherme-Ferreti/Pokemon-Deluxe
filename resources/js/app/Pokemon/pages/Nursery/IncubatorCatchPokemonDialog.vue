@@ -89,10 +89,6 @@
 
 <script setup lang="ts">
 import { useForm, usePage } from '@inertiajs/vue3';
-import type {
-  Incubator,
-  NurseryPageProps,
-} from '@/app/Pokemon/types/page-props/NurseryPageProps';
 import ItemSprite from '@/shared/components/game/ItemSprite.vue';
 import PokemonDisplayName from '@/shared/components/game/PokemonDisplayName.vue';
 import SpeciesSprite from '@/shared/components/game/SpeciesSprite.vue';
@@ -115,6 +111,10 @@ import {
 } from '@/shared/components/ui/field';
 import { RadioGroup, RadioGroupItem } from '@/shared/components/ui/radio-group';
 import { route } from '@/shared/types/helpers/route';
+import type {
+  Incubator,
+  NurseryPageProps,
+} from '../../types/page-props/NurseryPageProps';
 
 const props = defineProps<{
   incubator: Incubator;

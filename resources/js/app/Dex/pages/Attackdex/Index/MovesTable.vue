@@ -97,8 +97,6 @@ import {
   IconSortDescendingLetters,
   IconXMark,
 } from '@tabler/icons-vue';
-import { SearchAttackdexSortBy } from '@/app/Dex/types/enums/SearchAttackdexSortBy';
-import type { AttackdexIndexPageProps } from '@/app/Dex/types/page-props/AttackdexIndexPageProps';
 import AppEmptyState from '@/shared/components/content/AppEmptyState.vue';
 import ElementalTypeBadges from '@/shared/components/game/ElementalTypeBadges.vue';
 import MoveNameLabel from '@/shared/components/game/MoveNameLabel.vue';
@@ -114,6 +112,8 @@ import {
   TableBody,
 } from '@/shared/components/ui/table';
 import { route } from '@/shared/types/helpers/route';
+import { SearchAttackdexSortBy } from '../../../types/enums/SearchAttackdexSortBy';
+import type { AttackdexIndexPageProps } from '../../../types/page-props/AttackdexIndexPageProps';
 
 const page = usePage<AttackdexIndexPageProps>();
 

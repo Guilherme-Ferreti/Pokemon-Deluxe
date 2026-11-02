@@ -27,11 +27,11 @@ import { useForm, usePage } from '@inertiajs/vue3';
 import { IconSearch } from '@tabler/icons-vue';
 import { watchDebounced } from '@vueuse/core';
 import { nextTick } from 'vue';
-import MovesSearchFiltersDialog from '@/app/Dex/pages/Attackdex/Index/MovesSearchFiltersDialog.vue';
-import type { AttackdexIndexPageProps } from '@/app/Dex/types/page-props/AttackdexIndexPageProps';
 import AppInput from '@/shared/components/form/AppInput.vue';
 import { removeFalsyValues } from '@/shared/lib/utils';
 import { route } from '@/shared/types/helpers/route';
+import type { AttackdexIndexPageProps } from '../../../types/page-props/AttackdexIndexPageProps';
+import MovesSearchFiltersDialog from './MovesSearchFiltersDialog.vue';
 
 const page = usePage<AttackdexIndexPageProps>();
 

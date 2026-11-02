@@ -82,11 +82,6 @@ import {
   IconSortAscendingLetters,
   IconSortDescendingLetters,
 } from '@tabler/icons-vue';
-import type {
-  LevelUpLearnableMove,
-  PokedexShowPageProps,
-  TMLearnableMove,
-} from '@/app/Dex/types/page-props/PokedexShowPageProps';
 import ElementalTypeBadges from '@/shared/components/game/ElementalTypeBadges.vue';
 import MoveNameLabel from '@/shared/components/game/MoveNameLabel.vue';
 import MovePowerLabel from '@/shared/components/game/MovePowerLabel.vue';
@@ -100,6 +95,11 @@ import {
 } from '@/shared/components/ui/table';
 import { useSortable } from '@/shared/composables/useSortable.js';
 import { MoveCategory } from '@/shared/types/enums';
+import type {
+  LevelUpLearnableMove,
+  PokedexShowPageProps,
+  TMLearnableMove,
+} from '../../../types/page-props/PokedexShowPageProps';
 
 const page = usePage<PokedexShowPageProps>();
 

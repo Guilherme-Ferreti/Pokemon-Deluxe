@@ -33,11 +33,11 @@
 <script setup lang="ts">
 import { usePage } from '@inertiajs/vue3';
 import { IconInfoCircle } from '@tabler/icons-vue';
-import type { PokedexShowPageProps } from '@/app/Dex/types/page-props/PokedexShowPageProps';
 import AppInfoCard from '@/shared/components/content/AppInfoCard.vue';
 import AppInfoCardRow from '@/shared/components/content/AppInfoCardRow.vue';
 import AppInfoCardSectionTitle from '@/shared/components/content/AppInfoCardSectionTitle.vue';
 import { Separator } from '@/shared/components/ui/separator';
+import type { PokedexShowPageProps } from '../../../types/page-props/PokedexShowPageProps';
 
 const page = usePage<PokedexShowPageProps>();
 </script>

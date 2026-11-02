@@ -65,7 +65,6 @@
 
 <script setup lang="ts">
 import { usePage } from '@inertiajs/vue3';
-import type { PokedexShowPageProps } from '@/app/Dex/types/page-props/PokedexShowPageProps';
 import AppInfoCard from '@/shared/components/content/AppInfoCard.vue';
 import AppInfoCardSectionTitle from '@/shared/components/content/AppInfoCardSectionTitle.vue';
 import ItemSprite from '@/shared/components/game/ItemSprite.vue';
@@ -74,6 +73,7 @@ import SpeciesPortrait from '@/shared/components/game/SpeciesPortrait.vue';
 import AppNavLink from '@/shared/components/layout/AppNavLink.vue';
 import Separator from '@/shared/components/ui/separator/Separator.vue';
 import { route } from '@/shared/types/helpers/route.js';
+import type { PokedexShowPageProps } from '../../../types/page-props/PokedexShowPageProps';
 
 const page = usePage<PokedexShowPageProps>();
 

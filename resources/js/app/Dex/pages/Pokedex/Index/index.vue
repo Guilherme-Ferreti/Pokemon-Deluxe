@@ -24,9 +24,6 @@
 <script setup lang="ts">
 import { Head, setLayoutProps, usePage } from '@inertiajs/vue3';
 import { useTemplateRef } from 'vue';
-import SpeciesSearchForm from '@/app/Dex/pages/Pokedex/Index/SpeciesSearchForm.vue';
-import SpeciesTable from '@/app/Dex/pages/Pokedex/Index/SpeciesTable.vue';
-import type { PokedexIndexPageProps } from '@/app/Dex/types/page-props/PokedexIndexPageProps';
 import AppSection from '@/shared/components/content/AppSection.vue';
 import InBoxIcon from '@/shared/components/game/InBoxIcon.vue';
 import NotInBoxIcon from '@/shared/components/game/NotInBoxIcon.vue';
@@ -34,6 +31,9 @@ import AppPageHeader from '@/shared/components/layout/AppPageHeader.vue';
 import AppPagination from '@/shared/components/list/AppPagination.vue';
 import { Card } from '@/shared/components/ui/card';
 import { route } from '@/shared/types/helpers/route';
+import type { PokedexIndexPageProps } from '../../../types/page-props/PokedexIndexPageProps';
+import SpeciesSearchForm from './SpeciesSearchForm.vue';
+import SpeciesTable from './SpeciesTable.vue';
 
 setLayoutProps({
   pageSize: 'small',

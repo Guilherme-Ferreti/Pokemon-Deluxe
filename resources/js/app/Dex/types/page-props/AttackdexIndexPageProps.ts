@@ -1,4 +1,3 @@
-import type { SearchAttackdexSortBy } from '@/app/Dex/types/enums/SearchAttackdexSortBy';
 import type { FilterOption, PaginatedList } from '@/shared/types';
 import type {
   Ailment,
@@ -7,6 +6,7 @@ import type {
   SortDirection,
 } from '@/shared/types/enums';
 import type { Move } from '@/shared/types/response';
+import type { SearchAttackdexSortBy } from '../enums/SearchAttackdexSortBy';
 
 export type AttackdexIndexPageProps = {
   moves: PaginatedList<{

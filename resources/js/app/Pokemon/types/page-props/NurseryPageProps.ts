@@ -1,6 +1,6 @@
-import type { IncubatorStatus } from '@/app/Pokemon/types/enums/IncubatorStatus';
 import type { Incubation, Pokemon } from '@/shared/types/response';
 import type { Pokeball } from '@/shared/types/response/Pokeball';
+import type { IncubatorStatus } from '../enums/IncubatorStatus';
 
 export type Incubator = {
   index: Incubation['incubatorIndex'];

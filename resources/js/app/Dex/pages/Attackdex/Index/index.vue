@@ -26,14 +26,14 @@
 import { Head, setLayoutProps } from '@inertiajs/vue3';
 import { usePage } from '@inertiajs/vue3';
 import { useTemplateRef } from 'vue';
-import MovesSearchForm from '@/app/Dex/pages/Attackdex/Index/MovesSearchForm.vue';
-import MovesTable from '@/app/Dex/pages/Attackdex/Index/MovesTable.vue';
-import type { AttackdexIndexPageProps } from '@/app/Dex/types/page-props/AttackdexIndexPageProps';
 import AppSection from '@/shared/components/content/AppSection.vue';
 import AppPageHeader from '@/shared/components/layout/AppPageHeader.vue';
 import AppPagination from '@/shared/components/list/AppPagination.vue';
 import { Card } from '@/shared/components/ui/card';
 import { route } from '@/shared/types/helpers/route';
+import type { AttackdexIndexPageProps } from '../../../types/page-props/AttackdexIndexPageProps';
+import MovesSearchForm from './MovesSearchForm.vue';
+import MovesTable from './MovesTable.vue';
 
 setLayoutProps({
   breadcrumbs: [

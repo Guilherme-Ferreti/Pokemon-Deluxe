@@ -33,13 +33,13 @@
 <script setup lang="ts">
 import { usePage } from '@inertiajs/vue3';
 import { IconPlus } from '@tabler/icons-vue';
-import type { PartyPageProps } from '@/app/Pokemon/types/page-props/PartyPageProps';
 import {
   Card,
   CardContent,
   CardHeader,
   CardTitle,
 } from '@/shared/components/ui/card';
+import type { PartyPageProps } from '../../types/page-props/PartyPageProps';
 
 const page = usePage<PartyPageProps>();
 </script>

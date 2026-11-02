@@ -48,10 +48,10 @@
 <script setup lang="ts">
 import { usePage } from '@inertiajs/vue3';
 import { nextTick } from 'vue';
-import type { AttackdexIndexPageProps } from '@/app/Dex/types/page-props/AttackdexIndexPageProps';
 import AppCheckbox from '@/shared/components/form/AppCheckbox.vue';
 import AppCheckboxGroup from '@/shared/components/form/AppCheckboxGroup.vue';
 import AppSearchFiltersDialog from '@/shared/components/list/AppSearchFiltersDialog.vue';
+import type { AttackdexIndexPageProps } from '../../../types/page-props/AttackdexIndexPageProps';
 
 const page = usePage<AttackdexIndexPageProps>();
 

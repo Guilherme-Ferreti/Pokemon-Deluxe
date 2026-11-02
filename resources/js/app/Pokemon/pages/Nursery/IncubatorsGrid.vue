@@ -42,17 +42,17 @@
 <script setup lang="ts">
 import { usePage } from '@inertiajs/vue3';
 import { ref } from 'vue';
-import IncubatorCatchPokemonDialog from '@/app/Pokemon/pages/Nursery/IncubatorCatchPokemonDialog.vue';
-import IncubatorIdleCard from '@/app/Pokemon/pages/Nursery/IncubatorIdleCard.vue';
-import IncubatorIncubatingCard from '@/app/Pokemon/pages/Nursery/IncubatorIncubatingCard.vue';
-import IncubatorNotPurchasedCard from '@/app/Pokemon/pages/Nursery/IncubatorNotPurchasedCard.vue';
-import IncubatorReadyToCatchCard from '@/app/Pokemon/pages/Nursery/IncubatorReadyToCatchCard.vue';
-import IncubatorReadyToHatchCard from '@/app/Pokemon/pages/Nursery/IncubatorReadyToHatchCard.vue';
-import { IncubatorStatus } from '@/app/Pokemon/types/enums/IncubatorStatus';
+import { IncubatorStatus } from '../../types/enums/IncubatorStatus';
 import type {
   Incubator,
   NurseryPageProps,
-} from '@/app/Pokemon/types/page-props/NurseryPageProps';
+} from '../../types/page-props/NurseryPageProps';
+import IncubatorCatchPokemonDialog from './IncubatorCatchPokemonDialog.vue';
+import IncubatorIdleCard from './IncubatorIdleCard.vue';
+import IncubatorIncubatingCard from './IncubatorIncubatingCard.vue';
+import IncubatorNotPurchasedCard from './IncubatorNotPurchasedCard.vue';
+import IncubatorReadyToCatchCard from './IncubatorReadyToCatchCard.vue';
+import IncubatorReadyToHatchCard from './IncubatorReadyToHatchCard.vue';
 
 const page = usePage<NurseryPageProps>();
 

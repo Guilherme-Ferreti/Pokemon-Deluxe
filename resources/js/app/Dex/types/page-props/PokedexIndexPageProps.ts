@@ -1,4 +1,3 @@
-import type { SearchPokedexSortBy } from '@/app/Dex/types/enums/SearchPokedexSortBy';
 import type { FilterOption, PaginatedList } from '@/shared/types';
 import type {
   ElementalType,
@@ -7,6 +6,7 @@ import type {
   SpeciesTrait,
 } from '@/shared/types/enums';
 import type { Species } from '@/shared/types/response';
+import type { SearchPokedexSortBy } from '../enums/SearchPokedexSortBy';
 
 export type PokedexIndexPageProps = {
   speciesList: PaginatedList<{

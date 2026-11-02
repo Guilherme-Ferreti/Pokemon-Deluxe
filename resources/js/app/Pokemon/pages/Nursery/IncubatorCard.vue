@@ -20,10 +20,10 @@
 
 <script setup lang="ts">
 import type { Icon } from '@tabler/icons-vue';
-import type { IncubatorStatus } from '@/app/Pokemon/types/enums/IncubatorStatus';
-import type { Incubator } from '@/app/Pokemon/types/page-props/NurseryPageProps';
 import { Badge } from '@/shared/components/ui/badge';
 import { Card } from '@/shared/components/ui/card';
+import type { IncubatorStatus } from '../../types/enums/IncubatorStatus';
+import type { Incubator } from '../../types/page-props/NurseryPageProps';
 
 export interface IncubatorCardProps {
   index: Incubator['index'];

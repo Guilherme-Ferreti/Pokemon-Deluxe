@@ -32,11 +32,11 @@
 <script setup lang="ts">
 import { useForm } from '@inertiajs/vue3';
 import { IconLock } from '@tabler/icons-vue';
-import IncubatorCard from '@/app/Pokemon/pages/Nursery/IncubatorCard.vue';
-import { IncubatorStatus } from '@/app/Pokemon/types/enums/IncubatorStatus';
-import type { Incubator } from '@/app/Pokemon/types/page-props/NurseryPageProps';
 import { Button } from '@/shared/components/ui/button';
 import { route } from '@/shared/types/helpers/route';
+import { IncubatorStatus } from '../../types/enums/IncubatorStatus';
+import type { Incubator } from '../../types/page-props/NurseryPageProps';
+import IncubatorCard from './IncubatorCard.vue';
 
 const props = defineProps<{
   index: Incubator['index'];

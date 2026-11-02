@@ -34,17 +34,17 @@
 
 <script setup lang="ts">
 import { Head, setLayoutProps, usePage } from '@inertiajs/vue3';
-import CatchStatisticsCard from '@/app/Dex/pages/Pokedex/Show/CatchStatisticsCard.vue';
-import DamageTakenCard from '@/app/Dex/pages/Pokedex/Show/DamageTakenCard.vue';
-import EvolutionChain from '@/app/Dex/pages/Pokedex/Show/EvolutionChain.vue';
-import LearnableMovesCard from '@/app/Dex/pages/Pokedex/Show/LearnableMovesCard.vue';
-import NavigationLinks from '@/app/Dex/pages/Pokedex/Show/NavigationLinks.vue';
-import OverviewCard from '@/app/Dex/pages/Pokedex/Show/OverviewCard.vue';
-import SpeciesHero from '@/app/Dex/pages/Pokedex/Show/SpeciesHero.vue';
-import SpeciesSearchInput from '@/app/Dex/pages/Pokedex/Show/SpeciesSearchInput.vue';
-import type { PokedexShowPageProps } from '@/app/Dex/types/page-props/PokedexShowPageProps';
 import AppSection from '@/shared/components/content/AppSection.vue';
 import { route } from '@/shared/types/helpers/route';
+import type { PokedexShowPageProps } from '../../../types/page-props/PokedexShowPageProps';
+import CatchStatisticsCard from './CatchStatisticsCard.vue';
+import DamageTakenCard from './DamageTakenCard.vue';
+import EvolutionChain from './EvolutionChain.vue';
+import LearnableMovesCard from './LearnableMovesCard.vue';
+import NavigationLinks from './NavigationLinks.vue';
+import OverviewCard from './OverviewCard.vue';
+import SpeciesHero from './SpeciesHero.vue';
+import SpeciesSearchInput from './SpeciesSearchInput.vue';
 
 const page = usePage<PokedexShowPageProps>();
 

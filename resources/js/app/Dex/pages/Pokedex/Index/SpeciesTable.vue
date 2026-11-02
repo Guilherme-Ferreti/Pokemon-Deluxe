@@ -83,8 +83,6 @@ import {
   IconSortDescendingLetters,
   IconXMark,
 } from '@tabler/icons-vue';
-import { SearchPokedexSortBy } from '@/app/Dex/types/enums/SearchPokedexSortBy';
-import type { PokedexIndexPageProps } from '@/app/Dex/types/page-props/PokedexIndexPageProps';
 import AppEmptyState from '@/shared/components/content/AppEmptyState.vue';
 import ElementalTypeBadges from '@/shared/components/game/ElementalTypeBadges.vue';
 import InBoxIcon from '@/shared/components/game/InBoxIcon.vue';
@@ -101,6 +99,8 @@ import {
   TableRow,
 } from '@/shared/components/ui/table';
 import { route } from '@/shared/types/helpers/route';
+import { SearchPokedexSortBy } from '../../../types/enums/SearchPokedexSortBy';
+import type { PokedexIndexPageProps } from '../../../types/page-props/PokedexIndexPageProps';
 
 const page = usePage<PokedexIndexPageProps>();
 

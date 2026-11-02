@@ -31,13 +31,13 @@ import { useForm, usePage } from '@inertiajs/vue3';
 import { IconSearch } from '@tabler/icons-vue';
 import { watchDebounced } from '@vueuse/core';
 import { nextTick } from 'vue';
-import PokemonSearchFiltersDialog from '@/app/Pokemon/pages/Box/Index/PokemonSearchFiltersDialog.vue';
-import PokemonSortPopover from '@/app/Pokemon/pages/Box/Index/PokemonSortPopover.vue';
-import type { BoxIndexPageProps } from '@/app/Pokemon/types/page-props/BoxIndexPageProps';
 import AppInput from '@/shared/components/form/AppInput.vue';
 import { Card } from '@/shared/components/ui/card';
 import { removeFalsyValues } from '@/shared/lib/utils';
 import { route } from '@/shared/types/helpers/route.js';
+import type { BoxIndexPageProps } from '../../../types/page-props/BoxIndexPageProps';
+import PokemonSearchFiltersDialog from './PokemonSearchFiltersDialog.vue';
+import PokemonSortPopover from './PokemonSortPopover.vue';
 
 const page = usePage<BoxIndexPageProps>();
 

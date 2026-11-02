@@ -84,7 +84,6 @@
 <script setup lang="ts">
 import { Link, usePage } from '@inertiajs/vue3';
 import { IconChevronLeft, IconChevronRight } from '@tabler/icons-vue';
-import type { PokedexShowPageProps } from '@/app/Dex/types/page-props/PokedexShowPageProps';
 import SpeciesPortrait from '@/shared/components/game/SpeciesPortrait.vue';
 import { Button } from '@/shared/components/ui/button';
 import { Separator } from '@/shared/components/ui/separator';
@@ -95,6 +94,7 @@ import {
 } from '@/shared/components/ui/tooltip';
 import { formatPokedexNumber } from '@/shared/lib/utils';
 import { route } from '@/shared/types/helpers/route';
+import type { PokedexShowPageProps } from '../../../types/page-props/PokedexShowPageProps';
 
 const page = usePage<PokedexShowPageProps>();
 </script>

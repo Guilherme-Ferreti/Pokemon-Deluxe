@@ -25,10 +25,10 @@
 <script setup lang="ts">
 import { usePage } from '@inertiajs/vue3';
 import { IconPokeball } from '@tabler/icons-vue';
-import PokemonCard from '@/app/Pokemon/pages/Box/Index/PokemonCard.vue';
-import type { BoxIndexPageProps } from '@/app/Pokemon/types/page-props/BoxIndexPageProps';
 import AppEmptyState from '@/shared/components/content/AppEmptyState.vue';
 import AppPagination from '@/shared/components/list/AppPagination.vue';
+import type { BoxIndexPageProps } from '../../../types/page-props/BoxIndexPageProps';
+import PokemonCard from './PokemonCard.vue';
 
 const page = usePage<BoxIndexPageProps>();
 </script>

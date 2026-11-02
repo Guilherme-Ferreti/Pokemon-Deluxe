@@ -52,12 +52,12 @@
 <script setup lang="ts">
 import { usePage } from '@inertiajs/vue3';
 import { nextTick } from 'vue';
-import type { PokedexIndexPageProps } from '@/app/Dex/types/page-props/PokedexIndexPageProps';
 import AppCheckbox from '@/shared/components/form/AppCheckbox.vue';
 import AppCheckboxGroup from '@/shared/components/form/AppCheckboxGroup.vue';
 import AppSearchFiltersDialog from '@/shared/components/list/AppSearchFiltersDialog.vue';
 import { anyItemExists } from '@/shared/lib/utils.js';
 import { SpeciesTrait } from '@/shared/types/enums';
+import type { PokedexIndexPageProps } from '../../../types/page-props/PokedexIndexPageProps';
 
 const page = usePage<PokedexIndexPageProps>();
 

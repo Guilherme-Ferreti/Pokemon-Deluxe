@@ -57,13 +57,13 @@
 
 <script setup lang="ts">
 import { Form, Head, Link } from '@inertiajs/vue3';
-import AuthFormHeader from '@/app/Auth/components/AuthFormHeader.vue';
-import AuthLayout from '@/app/Auth/layouts/AuthLayout.vue';
 import AppCheckbox from '@/shared/components/form/AppCheckbox.vue';
 import AppInput from '@/shared/components/form/AppInput.vue';
 import { Button } from '@/shared/components/ui/button';
 import { FieldDescription, FieldGroup } from '@/shared/components/ui/field';
 import { route } from '@/shared/types/helpers/route';
+import AuthFormHeader from '../../components/AuthFormHeader.vue';
+import AuthLayout from '../../layouts/AuthLayout.vue';
 
 defineOptions({
   layout: AuthLayout,

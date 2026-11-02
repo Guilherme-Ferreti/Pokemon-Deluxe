@@ -95,7 +95,6 @@
 
 <script setup lang="ts">
 import { IconBook, IconDotsVertical, IconEye } from '@tabler/icons-vue';
-import type { BoxIndexPageProps } from '@/app/Pokemon/types/page-props/BoxIndexPageProps';
 import ElementalTypeBadges from '@/shared/components/game/ElementalTypeBadges.vue';
 import PokemonGenderIcon from '@/shared/components/game/PokemonGenderIcon.vue';
 import SpeciesSprite from '@/shared/components/game/SpeciesSprite.vue';
@@ -109,6 +108,7 @@ import {
   DropdownMenuItem,
 } from '@/shared/components/ui/dropdown-menu';
 import { route } from '@/shared/types/helpers/route';
+import type { BoxIndexPageProps } from '../../../types/page-props/BoxIndexPageProps';
 
 defineProps<{
   pokemon: BoxIndexPageProps['pokemonList']['data'][number];

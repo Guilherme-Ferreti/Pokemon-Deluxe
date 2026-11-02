@@ -44,9 +44,9 @@
 
 <script setup lang="ts">
 import { usePage } from '@inertiajs/vue3';
-import type { PokedexShowPageProps } from '@/app/Dex/types/page-props/PokedexShowPageProps';
 import { Card } from '@/shared/components/ui/card';
 import { formatPokedexNumber } from '@/shared/lib/utils';
+import type { PokedexShowPageProps } from '../../../types/page-props/PokedexShowPageProps';
 
 const page = usePage<PokedexShowPageProps>();
 </script>

@@ -1,4 +1,3 @@
-import type { SearchBoxSortBy } from '@/app/Pokemon/types/enums/SearchBoxSortBy';
 import type { FilterOption, PaginatedList } from '@/shared/types';
 import type {
   ElementalType,
@@ -7,6 +6,7 @@ import type {
   SortDirection,
 } from '@/shared/types/enums';
 import type { Move, Pokemon, Species } from '@/shared/types/response';
+import type { SearchBoxSortBy } from '../enums/SearchBoxSortBy';
 
 export type BoxIndexPageProps = {
   pokemonList: PaginatedList<{
