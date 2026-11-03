@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 use Shared\Enums\PokemonGender;
 use Shared\Models\Incubation;
+use Shared\Models\InventoryItem;
+use Shared\Models\Pokeball;
 use Shared\Models\Pokemon;
 use Shared\Models\Species;
 use Shared\Models\User;
@@ -24,9 +26,11 @@ it('redirects guests to login', function () {
 it('catches a ready-to-catch egg', function () {
     travelTo('2026-01-01 12:00:00');
 
-    $data    = CatchPokemonRequestFactory::new()->create();
-    $user    = User::factory()->create(['purchased_incubator_indexes' => [new IncubatorIndex(1)]]);
-    $species = Species::factory()->create(['name' => 'Pikachu']);
+    $data          = CatchPokemonRequestFactory::new()->create();
+    $user          = User::factory()->create(['purchased_incubator_indexes' => [new IncubatorIndex(1)]]);
+    $species       = Species::factory()->create(['name' => 'Pikachu']);
+    $pokeball      = Pokeball::first();
+    $inventoryItem = InventoryItem::factory()->for($user)->pokeball($pokeball)->create(['quantity' => 1]);
 
     $incubation = Incubation::factory()->for($user)->for($species)->readyToCatch()->create([
         'incubator_index' => new IncubatorIndex(1),
@@ -62,6 +66,11 @@ it('catches a ready-to-catch egg', function () {
         'gender'           => PokemonGender::FEMALE->value,
         'pokeball_id'      => $data['pokeballId'],
         'caught_at'        => '2026-01-01 12:00:00',
+    ]);
+
+    assertDatabaseHas(InventoryItem::class, [
+        'id'       => $inventoryItem->id,
+        'quantity' => 0,
     ]);
 });
 

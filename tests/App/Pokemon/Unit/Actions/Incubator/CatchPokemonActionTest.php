@@ -7,6 +7,7 @@ use App\Pokemon\Exceptions\IncubatorEggNotReadyToCatchException;
 use App\Pokemon\Exceptions\IncubatorNotActiveException;
 use Shared\Enums\PokemonGender;
 use Shared\Models\Incubation;
+use Shared\Models\InventoryItem;
 use Shared\Models\Move;
 use Shared\Models\Pokeball;
 use Shared\Models\Pokemon;
@@ -25,6 +26,8 @@ it('catches a ready-to-catch egg and adds the pokemon to the user', function () 
     $user     = User::factory()->create(['purchased_incubator_indexes' => [new IncubatorIndex(1)]]);
     $species  = Species::factory()->create();
     $pokeball = Pokeball::factory()->create();
+
+    InventoryItem::factory()->for($user)->pokeball($pokeball)->create();
 
     $incubation = Incubation::factory()->for($user)->for($species)->readyToCatch()->create([
         'incubator_index' => new IncubatorIndex(1),
@@ -72,6 +75,8 @@ it('teaches the caught pokemon up to four base moves', function () {
     $user     = User::factory()->create(['purchased_incubator_indexes' => [new IncubatorIndex(1)]]);
     $species  = Species::factory()->create();
     $pokeball = Pokeball::factory()->create();
+
+    InventoryItem::factory()->for($user)->pokeball($pokeball)->create();
 
     $baseMoves = Move::factory()->count(4)->create();
 
