@@ -32,9 +32,7 @@ final class AsSpeciesPortraits implements CastsAttributes
 
     public function set($model, string $key, $value, array $attributes): string
     {
-        if (! $value instanceof SpeciesPortraits) {
-            throw new InvalidArgumentException("$key must be an instance of " . SpeciesPortraits::class);
-        }
+        throw_if(! $value instanceof SpeciesPortraits, InvalidArgumentException::class, sprintf("[{$key}] must be an instance of [%s]", SpeciesPortraits::class));
 
         return (string) json_encode([
             'regular' => $value->regular,

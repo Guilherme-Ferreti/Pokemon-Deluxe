@@ -44,9 +44,7 @@ final class AsSpeciesSprites implements CastsAttributes
 
     public function set($model, string $key, $value, array $attributes): string
     {
-        if (! $value instanceof SpeciesSprites) {
-            throw new InvalidArgumentException("$key must be an instance of " . SpeciesSprites::class);
-        }
+        throw_if(! $value instanceof SpeciesSprites, InvalidArgumentException::class, sprintf("[{$key}] must be an instance of [%s]", SpeciesSprites::class));
 
         return (string) json_encode([
             'back_default'       => $value->back_default,

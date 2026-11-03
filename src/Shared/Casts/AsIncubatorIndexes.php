@@ -33,13 +33,9 @@ final class AsIncubatorIndexes implements CastsAttributes
 
     public function set(Model $model, string $key, $value, array $attributes): string
     {
-        if (! is_array($value)) {
-            throw new InvalidArgumentException("$key must be an array.");
-        }
+        throw_if(! is_array($value), InvalidArgumentException::class, "[{$key}] must be an array.");
 
-        if (! array_all($value, fn ($item) => $item instanceof IncubatorIndex)) {
-            throw new InvalidArgumentException("All values of $key must be instances of " . IncubatorIndex::class);
-        }
+        throw_if(! array_all($value, fn ($item) => $item instanceof IncubatorIndex), InvalidArgumentException::class, sprintf("All values of [{$key}] must be instances of [%s]", IncubatorIndex::class));
 
         $indexes = array_values(array_map(fn (IncubatorIndex $index) => $index->value, $value));
 

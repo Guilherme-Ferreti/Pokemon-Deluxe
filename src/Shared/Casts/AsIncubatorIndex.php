@@ -21,9 +21,7 @@ final class AsIncubatorIndex implements CastsAttributes
 
     public function set(Model $model, string $key, $value, array $attributes): int
     {
-        if (! $value instanceof IncubatorIndex) {
-            throw new InvalidArgumentException("$key must be an instance of " . IncubatorIndex::class);
-        }
+        throw_if(! $value instanceof IncubatorIndex, InvalidArgumentException::class, sprintf("[{$key}] must be an instance of [%s].", IncubatorIndex::class));
 
         return $value->value;
     }

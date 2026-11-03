@@ -18,9 +18,7 @@ final class IncubatorIndex implements ValueObject
     {
         $max = (int) config('game.max_incubators_per_user');
 
-        if ($value < 1 || $value > $max) {
-            throw new InvalidArgumentException("The incubator index must be between 1 and {$max}.");
-        }
+        throw_if($value < 1 || $value > $max, InvalidArgumentException::class, "The incubator index must be between 1 and {$max}.");
 
         $this->value = $value;
     }
