@@ -1,6 +1,9 @@
 <template>
   <template v-if="page.props.pokemonList.data.length > 0">
-    <ul class="grid grid-cols-[repeat(auto-fill,minmax(16.25rem,1fr))] gap-4">
+    <ul
+      class="grid grid-cols-[repeat(auto-fill,minmax(16.25rem,1fr))] gap-4"
+      data-test="pokemon-grid"
+    >
       <PokemonCard
         v-for="pokemon in page.props.pokemonList.data"
         :key="pokemon.id"
@@ -17,7 +20,7 @@
     v-else
     title="No Pokémon in your box"
     description="Catch some Pokémon to see them here."
-    data-test="pokemon-box__empty-state"
+    data-test="pokemon-grid__empty-state"
     :icon="IconPokeball"
   />
 </template>

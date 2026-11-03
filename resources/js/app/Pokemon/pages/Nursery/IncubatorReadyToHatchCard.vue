@@ -1,7 +1,7 @@
 <template>
   <IncubatorCard
+    :data-test="`incubator-${incubator.index}-card--ready-to-hatch`"
     :index="incubator.index"
-    :status="incubator.status"
     :badge="{
       icon: IconCheck,
       text: 'Ready to hatch',
@@ -18,7 +18,7 @@
         type="button"
         variant="outline"
         size="sm"
-        data-test="incubator-card__hatch-button"
+        :data-test="`incubator-${incubator.index}-card--ready-to-hatch__hatch-button`"
         :disabled="form.processing"
         @click="handleHatchEgg"
       >

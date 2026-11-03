@@ -7,6 +7,7 @@ use Shared\Enums\PokemonGender;
 use Shared\Enums\SpeciesTrait;
 use Shared\Models\Move;
 use Shared\Models\Species;
+use Shared\Models\SpeciesEvolution;
 use Shared\Models\SpeciesLearnableMove;
 use Shared\Models\User;
 
@@ -25,47 +26,99 @@ it('loads the species show page without errors', function () {
         ->assertSee($species->name);
 });
 
-it('navigates to previous species', function () {
-    $user = User::factory()->create();
+describe('species search input', function () {
+    it('searches species when typing in the search input', function () {
+        $user = User::factory()->create();
 
-    $previousSpecies = Species::factory()->create(['pokedex_number' => 2]);
-    $species         = Species::factory()->create(['pokedex_number' => 3]);
+        Species::factory()->create(['name' => 'Pichu']);
+        Species::factory()->create(['name' => 'Pikachu']);
+        $raichu = Species::factory()->create(['name' => 'Raichu']);
 
-    actingAs($user);
+        actingAs($user);
 
-    visit(route('dex.web.pokedex.show', $species))
-        ->click('@pokedex-species-navigation__previous-link')
-        ->assertPathIs(route('dex.web.pokedex.show', $previousSpecies, absolute: false))
-        ->assertSee($previousSpecies->name)
-        ->assertNoSmoke();
+        visit(route('dex.web.pokedex.show', $raichu))
+            ->type('search', 'Pi')
+            ->wait(1)
+            ->assertCount('[role="option"]', 2)
+            ->assertSeeIn('@species-search-input__autocomplete-options-list', 'Pikachu')
+            ->assertSeeIn('@species-search-input__autocomplete-options-list', 'Pichu');
+    });
+
+    it('navigates to the selected species from autocomplete', function () {
+        $user = User::factory()->create();
+
+        $pichu   = Species::factory()->create(['name' => 'Pichu']);
+        $pikachu = Species::factory()->create(['name' => 'Pikachu']);
+
+        actingAs($user);
+
+        visit(route('dex.web.pokedex.show', $pichu))
+            ->type('search', 'Pik')
+            ->wait(1)
+            ->assertSeeIn('@species-search-input__autocomplete-options-list', 'Pikachu')
+            ->click('Pikachu')
+            ->assertPathIs(route('dex.web.pokedex.show', $pikachu, absolute: false))
+            ->assertNoSmoke();
+    });
+
+    it('shows no results message for non-existent species', function () {
+        $user    = User::factory()->create();
+        $species = Species::factory()->create(['name' => 'Pikachu']);
+
+        actingAs($user);
+
+        visit(route('dex.web.pokedex.show', $species))
+            ->type('search', 'non-existent')
+            ->wait(1)
+            ->assertVisible('@species-search-input__empty-state');
+    });
 });
 
-it('navigates to next species', function () {
-    $user = User::factory()->create();
+describe('navigation links', function () {
+    it('navigates to previous species', function () {
+        $user = User::factory()->create();
 
-    $species     = Species::factory()->create(['pokedex_number' => 1]);
-    $nextSpecies = Species::factory()->create(['pokedex_number' => 2]);
+        $previousSpecies = Species::factory()->create(['pokedex_number' => 2]);
+        $species         = Species::factory()->create(['pokedex_number' => 3]);
 
-    actingAs($user);
+        actingAs($user);
 
-    visit(route('dex.web.pokedex.show', $species))
-        ->click('@pokedex-species-navigation__next-link')
-        ->assertPathIs(route('dex.web.pokedex.show', $nextSpecies, absolute: false))
-        ->assertSee($nextSpecies->name)
-        ->assertNoSmoke();
+        visit(route('dex.web.pokedex.show', $species))
+            ->click('@navigation-links__previous-link')
+            ->assertPathIs(route('dex.web.pokedex.show', $previousSpecies, absolute: false))
+            ->assertSee($previousSpecies->name)
+            ->assertNoSmoke();
+    });
+
+    it('navigates to next species', function () {
+        $user = User::factory()->create();
+
+        $species     = Species::factory()->create(['pokedex_number' => 1]);
+        $nextSpecies = Species::factory()->create(['pokedex_number' => 2]);
+
+        actingAs($user);
+
+        visit(route('dex.web.pokedex.show', $species))
+            ->click('@navigation-links__next-link')
+            ->assertPathIs(route('dex.web.pokedex.show', $nextSpecies, absolute: false))
+            ->assertSee($nextSpecies->name)
+            ->assertNoSmoke();
+    });
 });
 
-it('displays the species hero card', function () {
-    $user    = User::factory()->create();
-    $species = Species::factory()->create();
+describe('species hero card', function () {
+    it('displays the card', function () {
+        $user    = User::factory()->create();
+        $species = Species::factory()->create();
 
-    actingAs($user);
+        actingAs($user);
 
-    visit(route('dex.web.pokedex.show', $species))
-        ->assertSeeIn('@pokedex-species-hero__name', $species->name)
-        ->assertSeeIn('@pokedex-species-hero__pokedex-number', $species->pokedex_number)
-        ->assertSeeIn('@pokedex-species-hero__genus', $species->genus)
-        ->assertSeeIn('@pokedex-species-hero__text-entry', $species->text_entry);
+        visit(route('dex.web.pokedex.show', $species))
+            ->assertSeeIn('@species-hero__name', $species->name)
+            ->assertSeeIn('@species-hero__pokedex-number', $species->pokedex_number)
+            ->assertSeeIn('@species-hero__genus', $species->genus)
+            ->assertSeeIn('@species-hero__text-entry', $species->text_entry);
+    });
 });
 
 describe('overview card', function () {
@@ -83,16 +136,16 @@ describe('overview card', function () {
         actingAs($user);
 
         visit(route('dex.web.pokedex.show', $species))
-            ->assertSeeIn('@pokedex-species-overview__types', $species->types[0]->label())
-            ->assertSeeIn('@pokedex-species-overview__types', ($species->types[1] ?? null)?->label())
-            ->assertSeeIn('@pokedex-species-overview__generation', $species->generation->label())
-            ->assertSeeIn('@pokedex-species-overview__traits', SpeciesTrait::BABY->label())
-            ->assertSeeIn('@pokedex-species-overview__traits', SpeciesTrait::LEGENDARY->label())
-            ->assertSeeIn('@pokedex-species-overview__traits', SpeciesTrait::MYTHICAL->label())
-            ->assertSeeIn('@pokedex-species-overview__traits', SpeciesTrait::MEGA->label())
-            ->assertSeeIn('@pokedex-species-overview__traits', SpeciesTrait::GMAX->label())
-            ->assertSeeIn('@pokedex-species-overview__gender-rate', $species->getMalePercentage())
-            ->assertSeeIn('@pokedex-species-overview__gender-rate', $species->getFemalePercentage());
+            ->assertSeeIn('@overview-card__types', $species->types[0]->label())
+            ->assertSeeIn('@overview-card__types', ($species->types[1] ?? null)?->label())
+            ->assertSeeIn('@overview-card__generation', $species->generation->label())
+            ->assertSeeIn('@overview-card__traits', SpeciesTrait::BABY->label())
+            ->assertSeeIn('@overview-card__traits', SpeciesTrait::LEGENDARY->label())
+            ->assertSeeIn('@overview-card__traits', SpeciesTrait::MYTHICAL->label())
+            ->assertSeeIn('@overview-card__traits', SpeciesTrait::MEGA->label())
+            ->assertSeeIn('@overview-card__traits', SpeciesTrait::GMAX->label())
+            ->assertSeeIn('@overview-card__gender-rate', $species->getMalePercentage())
+            ->assertSeeIn('@overview-card__gender-rate', $species->getFemalePercentage());
     });
 
     it('does not displays missing traits species traits', function () {
@@ -108,11 +161,12 @@ describe('overview card', function () {
         actingAs($user);
 
         visit(route('dex.web.pokedex.show', $species))
-            ->assertSeeIn('@pokedex-species-overview__traits', SpeciesTrait::LEGENDARY->label())
-            ->assertDontSeeIn('@pokedex-species-overview__traits', SpeciesTrait::BABY->label())
-            ->assertDontSeeIn('@pokedex-species-overview__traits', SpeciesTrait::MYTHICAL->label())
-            ->assertDontSeeIn('@pokedex-species-overview__traits', SpeciesTrait::MEGA->label())
-            ->assertDontSeeIn('@pokedex-species-overview__traits', SpeciesTrait::GMAX->label());
+            ->assertVisible('@overview-card')
+            ->assertSeeIn('@overview-card__traits', SpeciesTrait::LEGENDARY->label())
+            ->assertDontSeeIn('@overview-card__traits', SpeciesTrait::BABY->label())
+            ->assertDontSeeIn('@overview-card__traits', SpeciesTrait::MYTHICAL->label())
+            ->assertDontSeeIn('@overview-card__traits', SpeciesTrait::MEGA->label())
+            ->assertDontSeeIn('@overview-card__traits', SpeciesTrait::GMAX->label());
     });
 
     it('displays an empty state message if species has no traits', function () {
@@ -128,12 +182,12 @@ describe('overview card', function () {
         actingAs($user);
 
         visit(route('dex.web.pokedex.show', $species))
-            ->assertSeeIn('@pokedex-species-overview__traits', 'None')
-            ->assertDontSeeIn('@pokedex-species-overview__traits', SpeciesTrait::BABY->label())
-            ->assertDontSeeIn('@pokedex-species-overview__traits', SpeciesTrait::LEGENDARY->label())
-            ->assertDontSeeIn('@pokedex-species-overview__traits', SpeciesTrait::MYTHICAL->label())
-            ->assertDontSeeIn('@pokedex-species-overview__traits', SpeciesTrait::MEGA->label())
-            ->assertDontSeeIn('@pokedex-species-overview__traits', SpeciesTrait::GMAX->label());
+            ->assertSeeIn('@overview-card__traits', 'None')
+            ->assertDontSeeIn('@overview-card__traits', SpeciesTrait::BABY->label())
+            ->assertDontSeeIn('@overview-card__traits', SpeciesTrait::LEGENDARY->label())
+            ->assertDontSeeIn('@overview-card__traits', SpeciesTrait::MYTHICAL->label())
+            ->assertDontSeeIn('@overview-card__traits', SpeciesTrait::MEGA->label())
+            ->assertDontSeeIn('@overview-card__traits', SpeciesTrait::GMAX->label());
     });
 
     it('displays an empty state message if species is genderless', function () {
@@ -143,85 +197,48 @@ describe('overview card', function () {
         actingAs($user);
 
         visit(route('dex.web.pokedex.show', $species))
-            ->assertSeeIn('@pokedex-species-overview__gender-rate', PokemonGender::GENDERLESS->label());
+            ->assertSeeIn('@overview-card__gender-rate', PokemonGender::GENDERLESS->label());
     });
 });
 
-it('displays the evolution chain card', function () {
-    $user    = User::factory()->create();
-    $species = Species::factory()->create();
-
-    actingAs($user);
-
-    visit(route('dex.web.pokedex.show', $species))
-        ->assertSee('Evolutions');
-});
-
-it('displays the damage taken card', function () {
-    $user    = User::factory()->create();
-    $species = Species::factory()->create();
-
-    actingAs($user);
-
-    visit(route('dex.web.pokedex.show', $species))
-        ->assertPresent('@pokedex-species-damage-taken');
-});
-
-it('displays the catch statistics card', function () {
-    $user    = User::factory()->create();
-    $species = Species::factory()->create();
-
-    actingAs($user);
-
-    visit(route('dex.web.pokedex.show', $species))
-        ->assertPresent('@pokedex-species-catch-statistics');
-});
-
-describe('autocomplete search', function () {
-    it('searches species when typing in the search bar', function () {
-        $user = User::factory()->create();
-
-        Species::factory()->create(['name' => 'Pichu']);
-        Species::factory()->create(['name' => 'Pikachu']);
-        $raichu = Species::factory()->create(['name' => 'Raichu']);
-
-        actingAs($user);
-
-        visit(route('dex.web.pokedex.show', $raichu))
-            ->type('search', 'Pi')
-            ->wait(1)
-            ->assertCount('[role="option"]', 2)
-            ->assertSee('Pikachu')
-            ->assertSee('Pichu');
-    });
-
-    it('navigates to the selected species from autocomplete', function () {
-        $user = User::factory()->create();
-
-        $pichu   = Species::factory()->create(['name' => 'Pichu']);
-        $pikachu = Species::factory()->create(['name' => 'Pikachu']);
-
-        actingAs($user);
-
-        visit(route('dex.web.pokedex.show', $pichu))
-            ->type('search', 'Pik')
-            ->wait(1)
-            ->assertSee('Pikachu')
-            ->click('Pikachu')
-            ->assertPathIs(route('dex.web.pokedex.show', $pikachu, absolute: false))
-            ->assertNoSmoke();
-    });
-
-    it('shows no results message for non-existent species', function () {
+describe('evolution chain card', function () {
+    it('displays the card', function () {
         $user    = User::factory()->create();
-        $species = Species::factory()->create(['name' => 'Pikachu']);
+        $species = Species::factory()->create();
+
+        $previousEvolution = SpeciesEvolution::factory()->for($species, 'into')->create();
+        $nextEvolution     = SpeciesEvolution::factory()->for($species, 'from')->create();
 
         actingAs($user);
 
         visit(route('dex.web.pokedex.show', $species))
-            ->type('search', 'non-existent')
-            ->wait(1)
-            ->assertPresent('@pokedex-species-autocomplete__empty-state');
+            ->assertVisible('@evolution-chain-card')
+            ->assertSeeIn('@evolution-chain-card', $previousEvolution->from->name)
+            ->assertSeeIn('@evolution-chain-card', $nextEvolution->into->name);
+    });
+});
+
+describe('damage taken card', function () {
+    it('displays the card', function () {
+        $user    = User::factory()->create();
+        $species = Species::factory()->create();
+
+        actingAs($user);
+
+        visit(route('dex.web.pokedex.show', $species))
+            ->assertVisible('@damage-taken-card');
+    });
+});
+
+describe('catch statistics card', function () {
+    it('displays the card', function () {
+        $user    = User::factory()->create();
+        $species = Species::factory()->create();
+
+        actingAs($user);
+
+        visit(route('dex.web.pokedex.show', $species))
+            ->assertVisible('@catch-stats-statistics-card');
     });
 });
 
@@ -233,10 +250,12 @@ describe('learnable moves card', function () {
         actingAs($user);
 
         visit(route('dex.web.pokedex.show', $species))
-            ->assertPresent('@pokedex-species-learnable-moves')
-            ->assertSeeIn('@pokedex-species-learnable-moves', 'Moves Learned')
-            ->assertSeeIn('@pokedex-species-learnable-moves', 'By level up')
-            ->assertSeeIn('@pokedex-species-learnable-moves', 'By TM')
+            ->assertVisible('@learnable-moves-card')
+            ->assertSeeIn('@learnable-moves-card', 'Moves Learned')
+            ->assertSeeIn('@learnable-moves-card', 'By level up')
+            ->assertVisible('@learnable-moves-level-up-table')
+            ->assertSeeIn('@learnable-moves-card', 'By TM')
+            ->assertVisible('@learnable-moves-tm-table')
             ->assertNoSmoke();
     });
 
@@ -251,11 +270,11 @@ describe('learnable moves card', function () {
         actingAs($user);
 
         visit(route('dex.web.pokedex.show', $species))
-            ->assertSeeIn('[data-test="pokedex-species-learnable-moves__level-up"] tbody tr:first-child td:first-child', $learnableMove->level_learn)
-            ->assertSeeIn('[data-test="pokedex-species-learnable-moves__level-up"] tbody tr:first-child td:nth-child(2)', $move->name)
-            ->assertSeeIn('[data-test="pokedex-species-learnable-moves__level-up"] tbody tr:first-child td:nth-child(3)', $move->type->label())
-            ->assertSeeIn('[data-test="pokedex-species-learnable-moves__level-up"] tbody tr:first-child td:nth-child(4)', $move->power)
-            ->assertSeeIn('[data-test="pokedex-species-learnable-moves__level-up"] tbody tr:first-child td:nth-child(5)', "{$move->accuracy}%")
+            ->assertSeeIn('@learnable-moves-level-up-table__row-1-level-learn', $learnableMove->level_learn)
+            ->assertSeeIn('@learnable-moves-level-up-table__row-1-name', $move->name)
+            ->assertSeeIn('@learnable-moves-level-up-table__row-1-type', $move->type->label())
+            ->assertSeeIn('@learnable-moves-level-up-table__row-1-power', $move->power)
+            ->assertSeeIn('@learnable-moves-level-up-table__row-1-accuracy', "{$move->accuracy}%")
             ->assertNoSmoke();
     });
 
@@ -270,11 +289,11 @@ describe('learnable moves card', function () {
         actingAs($user);
 
         visit(route('dex.web.pokedex.show', $species))
-            ->assertSeeIn('[data-test="pokedex-species-learnable-moves__tm"] tbody tr:first-child td:first-child', $move->tm_code)
-            ->assertSeeIn('[data-test="pokedex-species-learnable-moves__tm"] tbody tr:first-child td:nth-child(2)', $move->name)
-            ->assertSeeIn('[data-test="pokedex-species-learnable-moves__tm"] tbody tr:first-child td:nth-child(3)', $move->type->label())
-            ->assertSeeIn('[data-test="pokedex-species-learnable-moves__tm"] tbody tr:first-child td:nth-child(4)', $move->power)
-            ->assertSeeIn('[data-test="pokedex-species-learnable-moves__tm"] tbody tr:first-child td:nth-child(5)', "{$move->accuracy}%")
+            ->assertSeeIn('@learnable-moves-tm-table__row-1-tm-code', $move->tm_code)
+            ->assertSeeIn('@learnable-moves-tm-table__row-1-name', $move->name)
+            ->assertSeeIn('@learnable-moves-tm-table__row-1-type', $move->type->label())
+            ->assertSeeIn('@learnable-moves-tm-table__row-1-power', $move->power)
+            ->assertSeeIn('@learnable-moves-tm-table__row-1-accuracy', "{$move->accuracy}%")
             ->assertNoSmoke();
     });
 
@@ -290,17 +309,14 @@ describe('learnable moves card', function () {
 
         actingAs($user);
 
-        $levelCell  = '[data-test="pokedex-species-learnable-moves__level-up"] tbody tr:first-child td:first-child';
-        $sortButton = '[data-test="pokedex-species-learnable-moves__level-up"] thead tr:first-child th:first-child';
-
         visit(route('dex.web.pokedex.show', $species))
-            ->assertSeeIn($levelCell, '1')
-            ->click($sortButton)
+            ->assertSeeIn('@learnable-moves-level-up-table__row-1-level-learn', '1')
+            ->click('@learnable-moves-level-up-table__head-level-learn')
             ->wait(0.5)
-            ->assertSeeIn($levelCell, '50')
-            ->click($sortButton)
+            ->assertSeeIn('@learnable-moves-level-up-table__row-1-level-learn', '50')
+            ->click('@learnable-moves-level-up-table__head-level-learn')
             ->wait(0.5)
-            ->assertSeeIn($levelCell, '1')
+            ->assertSeeIn('@learnable-moves-level-up-table__row-1-level-learn', '1')
             ->assertNoSmoke();
     });
 
@@ -316,17 +332,14 @@ describe('learnable moves card', function () {
 
         actingAs($user);
 
-        $moveCell   = '[data-test="pokedex-species-learnable-moves__tm"] tbody tr:first-child td:nth-child(2)';
-        $sortButton = '[data-test="pokedex-species-learnable-moves__tm"] thead tr:first-child th:first-child';
-
         visit(route('dex.web.pokedex.show', $species))
-            ->assertSeeIn($moveCell, $firstMove->name)
-            ->click($sortButton)
+            ->assertSeeIn('@learnable-moves-tm-table__row-1-name', $firstMove->name)
+            ->click('@learnable-moves-tm-table__head-tm-code')
             ->wait(0.5)
-            ->assertSeeIn($moveCell, $secondMove->name)
-            ->click($sortButton)
+            ->assertSeeIn('@learnable-moves-tm-table__row-1-name', $secondMove->name)
+            ->click('@learnable-moves-tm-table__head-tm-code')
             ->wait(0.5)
-            ->assertSeeIn($moveCell, $firstMove->name)
+            ->assertSeeIn('@learnable-moves-tm-table__row-1-name', $firstMove->name)
             ->assertNoSmoke();
     });
 
@@ -342,16 +355,13 @@ describe('learnable moves card', function () {
 
         actingAs($user);
 
-        $moveCell   = '[data-test="pokedex-species-learnable-moves__level-up"] tbody tr:first-child td:nth-child(2)';
-        $sortButton = '[data-test="pokedex-species-learnable-moves__level-up"] thead tr:first-child th:nth-child(4)';
-
         visit(route('dex.web.pokedex.show', $species))
-            ->click($sortButton)
+            ->click('@learnable-moves-level-up-table__head-power')
             ->wait(0.5)
-            ->assertDontSeeIn($moveCell, $ohkoMove->name)
-            ->click($sortButton)
+            ->assertDontSeeIn('@learnable-moves-level-up-table__row-1-name', $ohkoMove->name)
+            ->click('@learnable-moves-level-up-table__head-power')
             ->wait(0.5)
-            ->assertSeeIn($moveCell, $ohkoMove->name)
+            ->assertSeeIn('@learnable-moves-level-up-table__row-1-name', $ohkoMove->name)
             ->assertNoSmoke();
     });
 
@@ -367,16 +377,13 @@ describe('learnable moves card', function () {
 
         actingAs($user);
 
-        $moveCell   = '[data-test="pokedex-species-learnable-moves__level-up"] tbody tr:first-child td:nth-child(2)';
-        $sortButton = '[data-test="pokedex-species-learnable-moves__level-up"] thead tr:first-child th:nth-child(4)';
-
         visit(route('dex.web.pokedex.show', $species))
-            ->click($sortButton)
+            ->click('@learnable-moves-level-up-table__head-power')
             ->wait(0.5)
-            ->assertSeeIn($moveCell, $powerlessMove->name)
-            ->click($sortButton)
+            ->assertSeeIn('@learnable-moves-level-up-table__row-1-name', $powerlessMove->name)
+            ->click('@learnable-moves-level-up-table__head-power')
             ->wait(0.5)
-            ->assertDontSeeIn($moveCell, $powerlessMove->name)
+            ->assertDontSeeIn('@learnable-moves-level-up-table__row-1-name', $powerlessMove->name)
             ->assertNoSmoke();
     });
 });

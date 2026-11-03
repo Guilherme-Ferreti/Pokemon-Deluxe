@@ -17,7 +17,7 @@
         <OverviewCard class="h-full" />
       </section>
       <section class="@4xl/main-content:order-1">
-        <EvolutionChain class="h-full @4xl/main-content:h-auto" />
+        <EvolutionChainCard class="h-full @4xl/main-content:h-auto" />
       </section>
       <section>
         <DamageTakenCard />
@@ -39,7 +39,7 @@ import { route } from '@/shared/types/helpers/route';
 import type { PokedexShowPageProps } from '../../../types/page-props/PokedexShowPageProps';
 import CatchStatisticsCard from './CatchStatisticsCard.vue';
 import DamageTakenCard from './DamageTakenCard.vue';
-import EvolutionChain from './EvolutionChain.vue';
+import EvolutionChainCard from './EvolutionChainCard.vue';
 import LearnableMovesCard from './LearnableMovesCard.vue';
 import NavigationLinks from './NavigationLinks.vue';
 import OverviewCard from './OverviewCard.vue';

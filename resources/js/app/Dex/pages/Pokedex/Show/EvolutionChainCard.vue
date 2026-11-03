@@ -1,5 +1,8 @@
 <template>
-  <AppInfoCard title="Evolutions">
+  <AppInfoCard
+    title="Evolutions"
+    data-test="evolution-chain-card"
+  >
     <template
       v-for="(section, index) in sections"
       :key="section.title"

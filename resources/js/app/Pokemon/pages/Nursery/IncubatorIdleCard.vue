@@ -1,7 +1,7 @@
 <template>
   <IncubatorCard
+    :data-test="`incubator-${index}-card--idle`"
     :index="index"
-    :status="IncubatorStatus.IDLE"
     :badge="{ icon: IconCircleDashed, text: 'Idle' }"
   >
     <template #picture>
@@ -15,7 +15,7 @@
         type="button"
         variant="outline"
         size="sm"
-        data-test="incubator-card__place-egg-button"
+        :data-test="`incubator-${index}-card--idle__place-egg-button`"
         :disabled="form.processing"
         @click="handlePlaceEgg"
       >
@@ -30,7 +30,6 @@ import { useForm } from '@inertiajs/vue3';
 import { IconCircleDashed, IconPokeball } from '@tabler/icons-vue';
 import { Button } from '@/shared/components/ui/button';
 import { route } from '@/shared/types/helpers/route';
-import { IncubatorStatus } from '../../types/enums/IncubatorStatus';
 import type { Incubator } from '../../types/page-props/NurseryPageProps';
 import IncubatorCard from './IncubatorCard.vue';
 

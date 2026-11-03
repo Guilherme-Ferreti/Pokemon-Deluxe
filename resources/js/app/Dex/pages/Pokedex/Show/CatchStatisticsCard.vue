@@ -1,7 +1,7 @@
 <template>
   <AppInfoCard
     title="Catch Statistics"
-    data-test="pokedex-species-catch-statistics"
+    data-test="catch-stats-statistics-card"
     :description="`Total number of ${page.props.species.name} in accounts across the game`"
   >
     <AppInfoCardSectionTitle

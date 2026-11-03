@@ -8,7 +8,6 @@
       class="inline-flex size-full shrink-0 items-center gap-2 px-2 -outline-offset-1 [&_svg]:size-4"
       type="button"
       :aria-label="`Sort by ${columnName.toLowerCase()}`"
-      :data-test="`sort-${sortBy}`"
     >
       <span>{{ columnName }}</span>
       <component :is="visibleIcon" />

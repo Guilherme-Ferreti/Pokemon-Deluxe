@@ -32,10 +32,10 @@ it('allows purchasing a not purchased incubator', function () {
     actingAs($user);
 
     visit(route('pokemon.web.nursery'))
-        ->assertVisible('[data-test="incubator-card"][data-index="1"][data-status="not-purchased"]')
-        ->click('[data-test="incubator-card"][data-index="1"] [data-test="incubator-card__purchase-button"]')
+        ->assertVisible('@incubator-1-card--not-purchased')
+        ->click('@incubator-1-card--not-purchased__purchase-button')
         ->wait(1)
-        ->assertVisible('[data-test="incubator-card"][data-index="1"][data-status="idle"]')
+        ->assertVisible('@incubator-1-card--idle')
         ->assertNoJavascriptErrors();
 });
 
@@ -48,10 +48,26 @@ it('allows placing an egg in an idle incubator', function () {
     actingAs($user);
 
     visit(route('pokemon.web.nursery'))
-        ->assertVisible('[data-test="incubator-card"][data-index="1"][data-status="idle"]')
-        ->click('[data-test="incubator-card"][data-index="1"] [data-test="incubator-card__place-egg-button"]')
+        ->assertVisible('@incubator-1-card--idle')
+        ->click('@incubator-1-card--idle__place-egg-button')
         ->wait(1)
-        ->assertVisible('[data-test="incubator-card"][data-index="1"][data-status="incubating"]')
+        ->assertVisible('@incubator-1-card--incubating')
+        ->assertNoJavascriptErrors();
+});
+
+it('shows incubating state with countdown', function () {
+    $user    = User::factory()->create(['purchased_incubator_indexes' => [new IncubatorIndex(1)]]);
+    $species = Species::factory()->create();
+
+    Incubation::factory()->for($user)->for($species)->incubating()->create([
+        'incubator_index' => new IncubatorIndex(1),
+    ]);
+
+    actingAs($user);
+
+    visit(route('pokemon.web.nursery'))
+        ->assertVisible('@incubator-1-card--incubating')
+        ->assertVisible('@incubator-1-card--incubating__countdown')
         ->assertNoJavascriptErrors();
 });
 
@@ -66,12 +82,12 @@ it('allows hatching a ready to hatch egg', function () {
     actingAs($user);
 
     visit(route('pokemon.web.nursery'))
-        ->assertVisible('[data-test="incubator-card"][data-index="1"][data-status="ready-to-hatch"]')
-        ->click('[data-test="incubator-card"][data-index="1"] [data-test="incubator-card__hatch-button"]')
+        ->assertVisible('@incubator-1-card--ready-to-hatch')
+        ->click('@incubator-1-card--ready-to-hatch__hatch-button')
         ->wait(1)
-        ->assertVisible('[data-test="incubator-card"][data-index="1"][data-status="ready-to-catch"]')
-        ->assertVisible('[data-test="incubator-card"][data-index="1"] [data-test="incubator-card__catch-button"]')
-        ->assertSee('Pikachu')
+        ->assertVisible('@incubator-1-card--ready-to-catch')
+        ->assertVisible('@incubator-1-card--ready-to-catch__catch-button')
+        ->assertSeeIn('@incubator-1-card--ready-to-catch', 'Pikachu')
         ->assertNoJavascriptErrors();
 });
 
@@ -93,32 +109,16 @@ it('allows catching a hatched pokemon through the dialog', function () {
     actingAs($user);
 
     visit(route('pokemon.web.nursery'))
-        ->assertVisible('[data-test="incubator-card"][data-index="1"][data-status="ready-to-catch"]')
-        ->click('[data-test="incubator-card"][data-index="1"] [data-test="incubator-card__catch-button"]')
+        ->assertVisible('@incubator-1-card--ready-to-catch')
+        ->click('@incubator-1-card--ready-to-catch__catch-button')
         ->wait(1)
         ->assertVisible('@incubator-catch-pokemon-dialog')
-        ->assertSee('Bulbasaur')
-        ->click('[data-test="incubator-catch-pokemon-dialog__pokeball-radio"][data-value="' . $pokeball->id . '"]')
+        ->assertSeeIn('@incubator-catch-pokemon-dialog', 'Bulbasaur')
+        ->click("@incubator-catch-pokemon-dialog__pokeball-{$pokeball->id}-radio")
         ->click('@incubator-catch-pokemon-dialog__submit-button')
         ->wait(2)
         ->assertMissing('@incubator-catch-pokemon-dialog')
-        ->assertVisible('[data-test="incubator-card"][data-index="1"][data-status="idle"]')
-        ->assertNoJavascriptErrors();
-});
-
-it('shows incubating state with countdown', function () {
-    $user    = User::factory()->create(['purchased_incubator_indexes' => [new IncubatorIndex(1)]]);
-    $species = Species::factory()->create();
-
-    Incubation::factory()->for($user)->for($species)->incubating()->create([
-        'incubator_index' => new IncubatorIndex(1),
-    ]);
-
-    actingAs($user);
-
-    visit(route('pokemon.web.nursery'))
-        ->assertVisible('[data-test="incubator-card"][data-index="1"][data-status="incubating"]')
-        ->assertNotPresent('[data-test="incubator-card"][data-index="1"] [data-test="incubator-card__place-egg-button"]')
+        ->assertVisible('@incubator-1-card--idle')
         ->assertNoJavascriptErrors();
 });
 
@@ -137,8 +137,8 @@ it('shows multiple incubators in different states', function () {
     actingAs($user);
 
     visit(route('pokemon.web.nursery'))
-        ->assertVisible('[data-test="incubator-card"][data-index="1"][data-status="incubating"]')
-        ->assertVisible('[data-test="incubator-card"][data-index="2"][data-status="ready-to-hatch"]')
-        ->assertVisible('[data-test="incubator-card"][data-index="3"][data-status="idle"]')
+        ->assertVisible('@incubator-1-card--incubating')
+        ->assertVisible('@incubator-2-card--ready-to-hatch')
+        ->assertVisible('@incubator-3-card--idle')
         ->assertNoJavascriptErrors();
 });

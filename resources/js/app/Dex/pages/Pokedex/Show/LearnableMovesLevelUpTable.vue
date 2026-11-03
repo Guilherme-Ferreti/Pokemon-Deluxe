@@ -1,13 +1,14 @@
 <template>
   <Table
     class="table-content-centered table-empty-cell-placeholder"
-    data-test="pokedex-species-learnable-moves__level-up"
+    data-test="learnable-moves-level-up-table"
   >
     <TableHeader>
       <TableRow>
         <AppTableHeadSortableButton
           column-name="Level"
           sort-by="levelLearn"
+          data-test="learnable-moves-level-up-table__head-level-learn"
           :current-sort="levelUpMoves.sort.value"
           :current-dir="levelUpMoves.direction.value"
           @click="levelUpMoves.toggleSort('levelLearn')"
@@ -33,6 +34,7 @@
         <AppTableHeadSortableButton
           column-name="Power"
           sort-by="power"
+          data-test="learnable-moves-level-up-table__head-power"
           :current-sort="levelUpMoves.sort.value"
           :current-dir="levelUpMoves.direction.value"
           @click="levelUpMoves.toggleSort('power')"
@@ -48,29 +50,41 @@
     </TableHeader>
     <TableBody>
       <TableRow
-        v-for="item in levelUpMoves.sortedItems.value"
+        v-for="(item, index) in levelUpMoves.sortedItems.value"
         :key="item.name"
       >
-        <TableCell date-test="cell-levelLearn">
+        <TableCell
+          :data-test="`learnable-moves-level-up-table__row-${index + 1}-level-learn`"
+        >
           {{ item.levelLearn }}
         </TableCell>
-        <TableCell date-test="cell-name">
+        <TableCell
+          :data-test="`learnable-moves-level-up-table__row-${index + 1}-name`"
+        >
           <MoveNameLabel
             :name="item.name"
             :is-z-move="item.isZMove"
             :is-dynamax-move="item.isDynamaxMove"
           />
         </TableCell>
-        <TableCell date-test="cell-type">
+        <TableCell
+          :data-test="`learnable-moves-level-up-table__row-${index + 1}-type`"
+        >
           <ElementalTypeBadges :types="[item.type]" />
         </TableCell>
-        <TableCell date-test="cell-power">
+        <TableCell
+          :data-test="`learnable-moves-level-up-table__row-${index + 1}-power`"
+        >
           <MovePowerLabel
             :power="item.power"
             :category="item.category"
           />
         </TableCell>
-        <TableCell date-test="cell-accuracy"> {{ item.accuracy }}% </TableCell>
+        <TableCell
+          :data-test="`learnable-moves-level-up-table__row-${index + 1}-accuracy`"
+        >
+          {{ item.accuracy }}%
+        </TableCell>
       </TableRow>
     </TableBody>
   </Table>

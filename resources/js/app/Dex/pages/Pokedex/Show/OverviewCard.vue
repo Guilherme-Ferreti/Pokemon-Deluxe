@@ -1,5 +1,8 @@
 <template>
-  <AppInfoCard title="Pokédex Data">
+  <AppInfoCard
+    title="Pokédex Data"
+    data-test="overview-card"
+  >
     <AppInfoCardRow title="Regular/Shiny">
       <div class="flex gap-2">
         <Tooltip>
@@ -26,19 +29,19 @@
     </AppInfoCardRow>
     <AppInfoCardRow
       title="Type(s)"
-      data-test="pokedex-species-overview__types"
+      data-test="overview-card__types"
     >
       <ElementalTypeBadges :types="page.props.overview.types" />
     </AppInfoCardRow>
     <AppInfoCardRow
       title="Generation"
-      data-test="pokedex-species-overview__generation"
+      data-test="overview-card__generation"
       :text="$page.props.labels.generation[page.props.overview.generation]"
     />
     <AppInfoCardRow
       v-if="Object.values(page.props.overview.traits).some(Boolean)"
       title="Traits"
-      data-test="pokedex-species-overview__traits"
+      data-test="overview-card__traits"
     >
       <div class="flex flex-wrap gap-2">
         <Badge
@@ -82,18 +85,18 @@
       v-else
       title="Traits"
       text="None"
-      data-test="pokedex-species-overview__traits"
+      data-test="overview-card__traits"
     />
     <AppInfoCardRow
       v-if="page.props.overview.isGenderless"
       title="Gender Rate"
       text="Genderless"
-      data-test="pokedex-species-overview__gender-rate"
+      data-test="overview-card__gender-rate"
     />
     <AppInfoCardRow
       v-else
       title="Gender Rate"
-      data-test="pokedex-species-overview__gender-rate"
+      data-test="overview-card__gender-rate"
     >
       <span class="flex items-center gap-1 text-sm text-foreground">
         <span

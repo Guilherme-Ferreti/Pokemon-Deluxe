@@ -30,25 +30,25 @@ it('shows box pokemon', function () {
     actingAs($user);
 
     visit(route('pokemon.web.box.index'))
-        ->assertSee($pokemon->species->name)
-        ->assertSee($pokemon->species->types[0]->label())
-        ->assertSee(($pokemon->species->types[1] ?? null)?->label())
-        ->assertSee($pokemon->species->name)
-        ->assertSee($pokemon->gender->label())
-        ->assertSee($pokemon->level)
-        ->assertSee($pokemon->experience)
-        ->assertSee($pokemon->moves[0]->name)
-        ->assertSee($pokemon->moves[1]->name)
-        ->assertSee($pokemon->moves[2]->name)
-        ->assertSee($pokemon->moves[3]->name)
-        ->assertDontSee('@pokemon-box__empty-state');
+        ->assertSeeIn('@pokemon-grid', $pokemon->species->name)
+        ->assertSeeIn('@pokemon-grid', $pokemon->species->types[0]->label())
+        ->assertSeeIn('@pokemon-grid', ($pokemon->species->types[1] ?? null)?->label())
+        ->assertSeeIn('@pokemon-grid', $pokemon->species->name)
+        ->assertSeeIn('@pokemon-grid', $pokemon->gender->label())
+        ->assertSeeIn('@pokemon-grid', $pokemon->level)
+        ->assertSeeIn('@pokemon-grid', $pokemon->experience)
+        ->assertSeeIn('@pokemon-grid', $pokemon->moves[0]->name)
+        ->assertSeeIn('@pokemon-grid', $pokemon->moves[1]->name)
+        ->assertSeeIn('@pokemon-grid', $pokemon->moves[2]->name)
+        ->assertSeeIn('@pokemon-grid', $pokemon->moves[3]->name)
+        ->assertMissing('@pokemon-grid__empty-state');
 });
 
 it('shows the box empty state when there are no pokemon in the box', function () {
     actingAs(User::factory()->create());
 
     visit(route('pokemon.web.box.index'))
-        ->assertVisible('@pokemon-box__empty-state');
+        ->assertVisible('@pokemon-grid__empty-state');
 });
 
 describe('search filters', function () {
@@ -63,11 +63,11 @@ describe('search filters', function () {
         actingAs($user);
 
         visit(route('pokemon.web.box.index'))
-            ->assertSee('Pikachu')
-            ->assertSee('Charmander')
+            ->assertSeeIn('@pokemon-grid', 'Pikachu')
+            ->assertSeeIn('@pokemon-grid', 'Charmander')
             ->type('search', 'Pikachu')
-            ->assertSee('Pikachu')
-            ->assertDontSee('Charmander')
+            ->assertSeeIn('@pokemon-grid', 'Pikachu')
+            ->assertDontSeeIn('@pokemon-grid', 'Charmander')
             ->assertQueryStringHas('search', 'Pikachu');
     });
 
@@ -102,8 +102,7 @@ describe('search filters', function () {
             ->click('@search-filters-dialog__reset-filters-button')
             ->assertQueryStringMissing('types')
             ->assertQueryStringMissing('traits')
-            ->assertQueryStringMissing('generations')
-            ->assertDontSee('@search-filters-dialog__active-filters-indicator');
+            ->assertQueryStringMissing('generations');
     });
 
     it('applies filters only after Apply is clicked and discards them when the dialog is closed', function () {
@@ -115,7 +114,6 @@ describe('search filters', function () {
             ->click('[aria-label="Water"]')
             ->click('@search-filters-dialog__close-filters-button')
             ->assertQueryStringMissing('types')
-            ->assertDontSee('@search-filters-dialog__active-filters-indicator')
             ->click('@search-filters-dialog__open-filters-button')
             ->assertAttribute('[aria-label="Fire"]', 'data-state', 'unchecked')
             ->assertAttribute('[aria-label="Water"]', 'data-state', 'unchecked')
@@ -273,8 +271,8 @@ it('navigates to the pokedex show page from the pokemon dropdown', function () {
 
     visit(route('pokemon.web.box.index'))
         ->assertSee($pokemon->getDisplayName())
-        ->click('@pokemon-box-card__open-dropdown-menu-button')
-        ->click('@pokemon-box-card__view-species-link')
+        ->click('@pokemon-card__open-dropdown-menu-button')
+        ->click('@pokemon-card__view-species-link')
         ->assertPathIs(route('dex.web.pokedex.show', $pokemon->species, absolute: false))
         ->assertNoSmoke();
 });

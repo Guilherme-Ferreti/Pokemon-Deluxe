@@ -1,5 +1,8 @@
 <template>
-  <Table v-if="page.props.speciesList.data.length > 0">
+  <Table
+    v-if="page.props.speciesList.data.length > 0"
+    data-test="species-table"
+  >
     <TableHeader>
       <TableRow>
         <TableHead class="w-12 whitespace-normal">Dex No.</TableHead>
@@ -23,10 +26,13 @@
     </TableHeader>
     <TableBody>
       <TableRow
-        v-for="species in page.props.speciesList.data"
+        v-for="(species, index) in page.props.speciesList.data"
         :key="species.id"
       >
-        <TableCell class="text-muted-foreground">
+        <TableCell
+          class="text-muted-foreground"
+          :data-test="`species-table__row-${index + 1}-pokedex-number`"
+        >
           {{ species.pokedexNumber }}
         </TableCell>
         <TableCell>
@@ -35,13 +41,22 @@
             :url="species.portrait"
           />
         </TableCell>
-        <TableCell class="font-medium whitespace-normal">
+        <TableCell
+          class="font-medium whitespace-normal"
+          :data-test="`species-table__row-${index + 1}-name`"
+        >
           {{ species.name }}
         </TableCell>
         <TableCell>
-          <ElementalTypeBadges :types="species.types" />
+          <ElementalTypeBadges
+            :types="species.types"
+            :data-test="`species-table__row-${index + 1}-types`"
+          />
         </TableCell>
-        <TableCell class="text-muted-foreground">
+        <TableCell
+          class="text-muted-foreground"
+          :data-test="`species-table__row-${index + 1}-generation`"
+        >
           {{ $page.props.labels.generation[species.generation] }}
         </TableCell>
         <TableCell>
@@ -55,7 +70,7 @@
         <TableCell>
           <Link
             class="flex items-center gap-1 hover:underline"
-            data-test="pokemon-box-card__view-species-link"
+            :data-test="`species-table__view-species-${species.id}-link`"
             :href="route('dex.web.pokedex.show', { species: species.slug })"
           >
             <IconEye class="size-4" />
@@ -70,7 +85,7 @@
     v-else
     title="No Pokémon found"
     description="Change your search or filters to find some."
-    data-test="pokedex__empty-state"
+    data-test="species-table__empty-state"
     :icon="IconXMark"
   />
 </template>

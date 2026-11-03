@@ -1,7 +1,7 @@
 <template>
   <AppInfoCard
     title="Damage Taken"
-    data-test="pokedex-species-damage-taken"
+    data-test="damage-taken-card"
     :description="`The effectiveness of each type on ${page.props.species.name}`"
   >
     <template

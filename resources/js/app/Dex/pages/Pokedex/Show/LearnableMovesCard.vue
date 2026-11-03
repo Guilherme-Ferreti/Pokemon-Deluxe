@@ -1,7 +1,7 @@
 <template>
   <Card
     class="gap-4"
-    data-test="pokedex-species-learnable-moves"
+    data-test="learnable-moves-card"
   >
     <CardHeader>
       <CardTitle>Moves Learned</CardTitle>

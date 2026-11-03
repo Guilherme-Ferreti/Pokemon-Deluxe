@@ -1,7 +1,7 @@
 <template>
   <IncubatorCard
+    :data-test="`incubator-${incubator.index}-card--incubating`"
     :index="incubator.index"
-    :status="incubator.status"
     :badge="{
       icon: IconClock,
       text: 'Incubating',
@@ -16,6 +16,7 @@
     <template #footer>
       <AppCountdown
         v-if="incubator.incubationStartedAt && incubator.readyToHatchAt"
+        :data-test="`incubator-${incubator.index}-card--incubating__countdown`"
         :start-date="new Date(incubator.incubationStartedAt)"
         :end-date="new Date(incubator.readyToHatchAt)"
         @complete="handleCountdownComplete"

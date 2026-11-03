@@ -2,6 +2,7 @@
   <Table
     v-if="page.props.moves.data.length > 0"
     class="table-content-centered table-empty-cell-placeholder"
+    data-test="moves-table"
   >
     <TableHeader>
       <TableRow>
@@ -85,7 +86,7 @@
     v-else
     title="No moves found"
     description="Change your search or filters to find some."
-    data-test="attackdex__empty-state"
+    data-test="moves-table__empty-state"
     :icon="IconXMark"
   />
 </template>

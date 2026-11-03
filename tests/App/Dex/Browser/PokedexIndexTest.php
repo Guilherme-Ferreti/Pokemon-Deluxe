@@ -22,43 +22,45 @@ it('loads the pokedex page without errors', function () {
         ->assertSeeIn('@page-header__title', 'Pokédex');
 });
 
-it('shows species', function () {
+it('lists species', function () {
     $user = User::factory()->create();
 
-    Species::factory()->create(['name' => 'Pikachu']);
-    Species::factory()->create(['name' => 'Charmander']);
+    $species = Species::factory()->dualType()->create();
 
     actingAs($user);
 
     visit(route('dex.web.pokedex.index'))
-        ->assertSee('Pikachu')
-        ->assertSee('Charmander')
-        ->assertDontSee('@pokedex__empty-state');
+        ->assertSeeIn('@species-table__row-1-pokedex-number', $species->pokedex_number)
+        ->assertSeeIn('@species-table__row-1-name', $species->name)
+        ->assertSeeIn('@species-table__row-1-types', $species->types[0]->label())
+        ->assertSeeIn('@species-table__row-1-types', ($species->types[1] ?? null)?->label())
+        ->assertSeeIn('@species-table__row-1-generation', $species->generation->label())
+        ->assertMissing('@species-table__empty-state');
 });
 
 it('shows the empty state when there are no species', function () {
     actingAs(User::factory()->create());
 
     visit(route('dex.web.pokedex.index'))
-        ->assertVisible('@pokedex__empty-state');
+        ->assertVisible('@species-table__empty-state');
 });
 
 describe('search filters', function () {
     it('searches species when typing in the search bar', function () {
         $user = User::factory()->create();
 
-        Species::factory()->create(['name' => 'Pikachu']);
-        Species::factory()->create(['name' => 'Charmander']);
+        Species::factory()->create(['name' => 'Bulbasaur', 'pokedex_number' => 1]);
+        Species::factory()->create(['name' => 'Charmander', 'pokedex_number' => 4]);
 
         actingAs($user);
 
         visit(route('dex.web.pokedex.index'))
-            ->assertSee('Pikachu')
-            ->assertSee('Charmander')
-            ->type('search', 'Pikachu')
-            ->assertSee('Pikachu')
-            ->assertDontSee('Charmander')
-            ->assertQueryStringHas('search', 'Pikachu');
+            ->assertSeeIn('@species-table__row-1-name', 'Bulbasaur')
+            ->assertSeeIn('@species-table__row-2-name', 'Charmander')
+            ->type('search', 'Bulbasaur')
+            ->assertSeeIn('@species-table__row-1-name', 'Bulbasaur')
+            ->assertMissing('@species-table__row-2-name')
+            ->assertQueryStringHas('search', 'Bulbasaur');
     });
 
     it('shows active filters', function () {
@@ -92,8 +94,7 @@ describe('search filters', function () {
             ->click('@search-filters-dialog__reset-filters-button')
             ->assertQueryStringMissing('types')
             ->assertQueryStringMissing('traits')
-            ->assertQueryStringMissing('generations')
-            ->assertDontSee('@search-filters-dialog__active-filters-indicator');
+            ->assertQueryStringMissing('generations');
     });
 
     it('applies filters only after Apply is clicked and discards them when the dialog is closed', function () {
@@ -105,7 +106,6 @@ describe('search filters', function () {
             ->click('[aria-label="Water"]')
             ->click('@search-filters-dialog__close-filters-button')
             ->assertQueryStringMissing('types')
-            ->assertDontSee('@search-filters-dialog__active-filters-indicator')
             ->click('@search-filters-dialog__open-filters-button')
             ->assertAttribute('[aria-label="Fire"]', 'data-state', 'unchecked')
             ->assertAttribute('[aria-label="Water"]', 'data-state', 'unchecked')
@@ -275,8 +275,8 @@ it('navigates to the species show page when View is clicked', function () {
     actingAs($user);
 
     visit(route('dex.web.pokedex.index'))
-        ->assertSee('Pikachu')
-        ->click('@pokemon-box-card__view-species-link')
+        ->assertSeeIn('@species-table__row-1-name', 'Pikachu')
+        ->click("@species-table__view-species-{$species->id}-link")
         ->assertPathIs(route('dex.web.pokedex.show', $species, absolute: false))
         ->assertNoSmoke();
 });

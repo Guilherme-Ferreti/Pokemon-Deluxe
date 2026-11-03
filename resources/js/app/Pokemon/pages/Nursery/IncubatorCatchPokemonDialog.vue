@@ -35,9 +35,8 @@
               :key="pokeball.id"
               orientation="horizontal"
               class="cursor-pointer rounded-md border p-3 has-data-[state=checked]:border-primary"
-              data-test="incubator-catch-pokemon-dialog__pokeball-radio"
+              :data-test="`incubator-catch-pokemon-dialog__pokeball-${pokeball.id}-radio`"
               :data-invalid="!!form.errors.pokeballId"
-              :data-value="pokeball.id"
               @click="form.pokeballId = pokeball.id"
             >
               <RadioGroupItem

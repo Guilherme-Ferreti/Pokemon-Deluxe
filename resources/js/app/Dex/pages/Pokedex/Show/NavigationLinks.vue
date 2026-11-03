@@ -1,6 +1,6 @@
 <template>
   <nav
-    class="navigation__wrapper"
+    class="navigation-links__wrapper"
     aria-label="Pagination"
   >
     <Tooltip v-if="page.props.previousSpecies">
@@ -8,8 +8,8 @@
         <Button
           variant="outline"
           as-child
-          class="navigation__button"
-          data-test="pokedex-species-navigation__previous-link"
+          class="navigation-links__button"
+          data-test="navigation-links__previous-link"
         >
           <Link
             :aria-label="`Previous species page: ${page.props.previousSpecies.name}`"
@@ -20,13 +20,13 @@
             "
           >
             <IconChevronLeft />
-            <div class="navigation__text-wrapper text-right">
-              <span class="navigation__pokedex-number">
+            <div class="navigation-links__text-wrapper text-right">
+              <span class="navigation-links__pokedex-number">
                 #{{
                   formatPokedexNumber(page.props.previousSpecies.pokedexNumber)
                 }}
               </span>
-              <span class="navigation__species-name">
+              <span class="navigation-links__species-name">
                 {{ page.props.previousSpecies.name }}
               </span>
             </div>
@@ -42,15 +42,15 @@
     <Separator
       v-if="page.props.previousSpecies && page.props.nextSpecies"
       orientation="vertical"
-      class="navigation__separator"
+      class="navigation-links__separator"
     />
     <Tooltip v-if="page.props.nextSpecies">
       <TooltipTrigger as-child>
         <Button
           variant="outline"
           as-child
-          class="navigation__button"
-          data-test="pokedex-species-navigation__next-link"
+          class="navigation-links__button"
+          data-test="navigation-links__next-link"
         >
           <Link
             :aria-label="`Next species page: ${page.props.nextSpecies.name}`"
@@ -64,11 +64,11 @@
               :name="page.props.nextSpecies.name"
               :url="page.props.nextSpecies.portrait"
             />
-            <div class="navigation__text-wrapper">
-              <span class="navigation__pokedex-number">
+            <div class="navigation-links__text-wrapper">
+              <span class="navigation-links__pokedex-number">
                 #{{ formatPokedexNumber(page.props.nextSpecies.pokedexNumber) }}
               </span>
-              <span class="navigation__species-name">
+              <span class="navigation-links__species-name">
                 {{ page.props.nextSpecies.name }}
               </span>
             </div>
@@ -102,23 +102,23 @@ const page = usePage<PokedexShowPageProps>();
 <style scoped>
 @reference '@css/app.css';
 
-.navigation__wrapper {
+.navigation-links__wrapper {
   @apply flex h-13.5 items-center gap-4;
 }
 
-.navigation__button {
+.navigation-links__button {
   @apply h-auto p-2;
 }
 
-.navigation__text-wrapper {
+.navigation-links__text-wrapper {
   @apply hidden flex-col gap-1 @sm:flex;
 }
 
-.navigation__pokedex-number {
+.navigation-links__pokedex-number {
   @apply text-[9px] font-black tracking-widest text-slate-400;
 }
 
-.navigation__species-name {
+.navigation-links__species-name {
   @apply w-[10ch] truncate text-xs font-bold;
 }
 </style>

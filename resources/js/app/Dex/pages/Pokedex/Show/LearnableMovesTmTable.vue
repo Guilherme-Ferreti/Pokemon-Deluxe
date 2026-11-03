@@ -1,13 +1,14 @@
 <template>
   <Table
     class="table-content-centered table-empty-cell-placeholder"
-    data-test="pokedex-species-learnable-moves__tm"
+    data-test="learnable-moves-tm-table"
   >
     <TableHeader>
       <TableRow>
         <AppTableHeadSortableButton
           column-name="TM"
           sort-by="tmCode"
+          data-test="learnable-moves-tm-table__head-tm-code"
           :current-sort="tmMoves.sort.value"
           :current-dir="tmMoves.direction.value"
           @click="tmMoves.toggleSort('tmCode')"
@@ -48,27 +49,41 @@
     </TableHeader>
     <TableBody>
       <TableRow
-        v-for="item in tmMoves.sortedItems.value"
+        v-for="(item, index) in tmMoves.sortedItems.value"
         :key="item.name"
       >
-        <TableCell>{{ item.tmCode }}</TableCell>
-        <TableCell>
+        <TableCell
+          :data-test="`learnable-moves-tm-table__row-${index + 1}-tm-code`"
+        >
+          {{ item.tmCode }}
+        </TableCell>
+        <TableCell
+          :data-test="`learnable-moves-tm-table__row-${index + 1}-name`"
+        >
           <MoveNameLabel
             :name="item.name"
             :is-z-move="item.isZMove"
             :is-dynamax-move="item.isDynamaxMove"
           />
         </TableCell>
-        <TableCell>
+        <TableCell
+          :data-test="`learnable-moves-tm-table__row-${index + 1}-type`"
+        >
           <ElementalTypeBadges :types="[item.type]" />
         </TableCell>
-        <TableCell>
+        <TableCell
+          :data-test="`learnable-moves-tm-table__row-${index + 1}-power`"
+        >
           <MovePowerLabel
             :power="item.power"
             :category="item.category"
           />
         </TableCell>
-        <TableCell>{{ item.accuracy }}%</TableCell>
+        <TableCell
+          :data-test="`learnable-moves-tm-table__row-${index + 1}-accuracy`"
+        >
+          {{ item.accuracy }}%
+        </TableCell>
       </TableRow>
     </TableBody>
   </Table>

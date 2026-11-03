@@ -22,7 +22,7 @@ it('loads the attackdex page without errors', function () {
         ->assertSeeIn('@page-header__title', 'Attackdex');
 });
 
-it('shows moves', function () {
+it('lists moves', function () {
     $user = User::factory()->create();
 
     Move::factory()->create(['name' => 'Tackle']);
@@ -31,16 +31,16 @@ it('shows moves', function () {
     actingAs($user);
 
     visit(route('dex.web.attackdex.index'))
-        ->assertSee('Tackle')
-        ->assertSee('Ember')
-        ->assertDontSee('@attackdex__empty-state');
+        ->assertSeeIn('@moves-table', 'Tackle')
+        ->assertSeeIn('@moves-table', 'Ember')
+        ->assertMissing('@moves-table__empty-state');
 });
 
 it('shows the empty state when there are no moves', function () {
     actingAs(User::factory()->create());
 
     visit(route('dex.web.attackdex.index'))
-        ->assertVisible('@attackdex__empty-state');
+        ->assertVisible('@moves-table__empty-state');
 });
 
 describe('search filters', function () {
@@ -53,11 +53,11 @@ describe('search filters', function () {
         actingAs($user);
 
         visit(route('dex.web.attackdex.index'))
-            ->assertSee('Tackle')
-            ->assertSee('Ember')
+            ->assertSeeIn('@moves-table', 'Tackle')
+            ->assertSeeIn('@moves-table', 'Ember')
             ->type('search', 'Tackle')
-            ->assertSee('Tackle')
-            ->assertDontSee('Ember')
+            ->assertSeeIn('@moves-table', 'Tackle')
+            ->assertDontSeeIn('@moves-table', 'Ember')
             ->assertQueryStringHas('search', 'Tackle');
     });
 
@@ -94,8 +94,7 @@ describe('search filters', function () {
             ->click('@search-filters-dialog__reset-filters-button')
             ->assertQueryStringMissing('types')
             ->assertQueryStringMissing('ailments')
-            ->assertQueryStringMissing('traits')
-            ->assertDontSee('@search-filters-dialog__active-filters-indicator');
+            ->assertQueryStringMissing('traits');
     });
 
     it('applies filters only after Apply is clicked and discards them when the dialog is closed', function () {
@@ -107,7 +106,6 @@ describe('search filters', function () {
             ->click('[aria-label="Water"]')
             ->click('@search-filters-dialog__close-filters-button')
             ->assertQueryStringMissing('types')
-            ->assertDontSee('@search-filters-dialog__active-filters-indicator')
             ->click('@search-filters-dialog__open-filters-button')
             ->assertAttribute('[aria-label="Fire"]', 'data-state', 'unchecked')
             ->assertAttribute('[aria-label="Water"]', 'data-state', 'unchecked')

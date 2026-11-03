@@ -13,27 +13,27 @@
       <div class="flex flex-1 flex-col gap-4 p-6">
         <p
           class="text-xs leading-none font-black tracking-widest text-muted-foreground uppercase"
-          data-test="pokedex-species-hero__pokedex-number"
+          data-test="species-hero__pokedex-number"
         >
           #{{ formatPokedexNumber(page.props.hero.pokedexNumber) }}
         </p>
         <div class="flex flex-col gap-1">
           <h1
             class="text-3xl font-bold text-foreground"
-            data-test="pokedex-species-hero__name"
+            data-test="species-hero__name"
           >
             {{ page.props.hero.name }}
           </h1>
           <p
             class="text-base text-muted-foreground"
-            data-test="pokedex-species-hero__genus"
+            data-test="species-hero__genus"
           >
             {{ page.props.hero.genus }}
           </p>
         </div>
         <p
           class="text-muted-foreground"
-          data-test="pokedex-species-hero__text-entry"
+          data-test="species-hero__text-entry"
         >
           {{ page.props.hero.textEntry }}
         </p>

@@ -36,11 +36,14 @@
       </ul>
       <ComboboxEmpty
         v-else-if="autocompleteOptions.length === 0"
-        data-test="pokedex-species-autocomplete__empty-state"
+        data-test="species-search-input__empty-state"
       >
         No Pokémon found.
       </ComboboxEmpty>
-      <ComboboxGroup v-else>
+      <ComboboxGroup
+        v-else
+        data-test="species-search-input__autocomplete-options-list"
+      >
         <ComboboxItem
           v-for="option in autocompleteOptions"
           :key="option.name"
