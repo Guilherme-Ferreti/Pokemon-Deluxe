@@ -75,6 +75,7 @@ final class NurseryPageProps implements ProvidesInertiaProperties
         return currentUser()
             ->inventoryItems()
             ->pokeballs()
+            ->owned()
             ->with('item:id,name,sprite')
             ->get(['id', 'item_id', 'item_type', 'quantity'])
             ->map(fn (InventoryItem $inventoryItem) => [

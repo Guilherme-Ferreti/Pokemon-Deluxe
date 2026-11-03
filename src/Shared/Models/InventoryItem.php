@@ -78,4 +78,13 @@ final class InventoryItem extends Model
     {
         $query->where('item_type', InventoryItemType::POKEBALL);
     }
+
+    /**
+     * @param  Builder<$this>  $query
+     */
+    #[Scope]
+    protected function owned(Builder $query): void
+    {
+        $query->where('quantity', '>', 0);
+    }
 }

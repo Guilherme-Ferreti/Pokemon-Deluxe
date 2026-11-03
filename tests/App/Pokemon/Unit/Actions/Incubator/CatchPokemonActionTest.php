@@ -32,7 +32,7 @@ it('catches a ready-to-catch egg and adds the pokemon to the user', function () 
         'is_shiny'        => true,
     ]);
 
-    $pokemon = new CatchPokemonAction()->handle($user, new IncubatorIndex(1), $pokeball->id);
+    $pokemon = new CatchPokemonAction()->handle($user, new IncubatorIndex(1), $pokeball);
 
     expect($pokemon->user_id)->toBe($user->id)
         ->and($pokemon->original_user_id)->toBe($user->id)
@@ -91,7 +91,7 @@ it('teaches the caught pokemon up to four base moves', function () {
         'incubator_index' => new IncubatorIndex(1),
     ]);
 
-    $pokemon = new CatchPokemonAction()->handle($user, new IncubatorIndex(1), $pokeball->id);
+    $pokemon = new CatchPokemonAction()->handle($user, new IncubatorIndex(1), $pokeball);
 
     $attachedMoveIds = $pokemon->moves()->pluck('moves.id')->all();
 
@@ -105,7 +105,7 @@ it('does not catch an egg when the incubator has no active incubation', function
     $user     = User::factory()->create(['purchased_incubator_indexes' => [new IncubatorIndex(1)]]);
     $pokeball = Pokeball::factory()->create();
 
-    expect(fn () => new CatchPokemonAction()->handle($user, new IncubatorIndex(1), $pokeball->id))
+    expect(fn () => new CatchPokemonAction()->handle($user, new IncubatorIndex(1), $pokeball))
         ->toThrow(IncubatorNotActiveException::class);
 
     assertDatabaseCount(Pokemon::class, 0);
@@ -120,7 +120,7 @@ it('does not catch an egg that is not ready to catch', function (string $state) 
         'incubator_index' => new IncubatorIndex(1),
     ]);
 
-    expect(fn () => new CatchPokemonAction()->handle($user, new IncubatorIndex(1), $pokeball->id))
+    expect(fn () => new CatchPokemonAction()->handle($user, new IncubatorIndex(1), $pokeball))
         ->toThrow(IncubatorEggNotReadyToCatchException::class);
 
     assertDatabaseCount(Pokemon::class, 0);

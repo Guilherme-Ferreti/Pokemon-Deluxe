@@ -14,8 +14,8 @@
           />
         </DialogTitle>
         <DialogDescription>
-          Select the Poké Ball you want to throw at the hatched Pokémon, then
-          click Catch to catch it.
+          Select the Poké Ball you want to throw at the hatched Pokémon (100%
+          catch rate), then click Catch to catch it.
         </DialogDescription>
       </DialogHeader>
       <div class="flex flex-col gap-6">

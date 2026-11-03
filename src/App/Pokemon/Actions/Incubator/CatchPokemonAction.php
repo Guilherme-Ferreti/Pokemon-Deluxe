@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Pokemon\Actions\Incubator;
 
+use App\Inventory\Actions\RemoveInventoryItemAction;
 use App\Pokemon\Exceptions\IncubatorEggNotReadyToCatchException;
 use App\Pokemon\Exceptions\IncubatorNotActiveException;
 use App\Pokemon\Support\LockKeys;
@@ -11,6 +12,7 @@ use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\DB;
 use Shared\Enums\IncubationStatus;
 use Shared\Models\Incubation;
+use Shared\Models\Pokeball;
 use Shared\Models\Pokemon;
 use Shared\Models\User;
 use Shared\ValueObjects\IncubatorIndex;
@@ -21,17 +23,17 @@ final class CatchPokemonAction
 
     private IncubatorIndex $incubatorIndex;
 
-    private string $pokeballId;
+    private Pokeball $pokeball;
 
     private Incubation $incubation;
 
     private Pokemon $pokemon;
 
-    public function handle(User $user, IncubatorIndex $incubatorIndex, string $pokeballId): Pokemon
+    public function handle(User $user, IncubatorIndex $incubatorIndex, Pokeball $pokeball): Pokemon
     {
         $this->user           = $user;
         $this->incubatorIndex = $incubatorIndex;
-        $this->pokeballId     = $pokeballId;
+        $this->pokeball       = $pokeball;
 
         Cache::withoutOverlapping(
             key: LockKeys::incubatorCatchPokemon($this->user->id, $this->incubatorIndex),
@@ -50,6 +52,8 @@ final class CatchPokemonAction
         $this->ensureEggIsReadyToCatch();
 
         DB::transaction(function (): void {
+            new RemoveInventoryItemAction()->handle($this->user, $this->pokeball);
+
             $this->markEggAsCaught();
             $this->addPokemonToUser();
         });
@@ -101,7 +105,7 @@ final class CatchPokemonAction
             'in_party'         => false,
             'is_shiny'         => $this->incubation->is_shiny,
             'gender'           => $this->incubation->gender,
-            'pokeball_id'      => $this->pokeballId,
+            'pokeball_id'      => $this->pokeball->id,
             'caught_at'        => now(),
         ]);
 
