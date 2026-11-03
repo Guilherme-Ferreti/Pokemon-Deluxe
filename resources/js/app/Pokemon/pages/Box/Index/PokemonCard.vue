@@ -1,96 +1,114 @@
 <template>
-  <li>
-    <Card class="h-full gap-2 p-4 transition-shadow hover:shadow-md">
-      <div class="grid grid-cols-[auto_1fr] gap-2">
-        <SpeciesSprite
-          :url="pokemon.frontSprite"
-          :name="pokemon.name"
-        />
-        <div class="flex flex-col">
-          <div class="flex justify-between gap-1">
-            <p class="self-center text-sm font-semibold text-foreground">
-              {{ pokemon.name }}
-            </p>
-            <DropdownMenu>
-              <DropdownMenuTrigger as-child>
-                <Button
-                  type="button"
-                  variant="ghost"
-                  size="icon-sm"
-                  class="text-ring"
-                  data-test="pokemon-card__open-dropdown-menu-button"
-                >
-                  <IconDotsVertical />
-                </Button>
-              </DropdownMenuTrigger>
-              <DropdownMenuContent align="end">
-                <DropdownMenuItem as-child>
-                  <AppNavLink
-                    title="View"
-                    url="#"
-                    :icon="IconEye"
-                  />
-                </DropdownMenuItem>
-                <DropdownMenuItem as-child>
-                  <AppNavLink
-                    title="Pokédex"
-                    data-test="pokemon-card__view-species-link"
-                    :url="
-                      route('dex.web.pokedex.show', {
-                        species: pokemon.species.slug,
-                      })
-                    "
-                    :icon="IconBook"
-                  />
-                </DropdownMenuItem>
-              </DropdownMenuContent>
-            </DropdownMenu>
-          </div>
-          <ElementalTypeBadges
-            class="mt-1.5"
-            :types="pokemon.species.types"
-          />
-        </div>
-      </div>
-      <div
-        class="mt-auto flex items-center justify-between rounded bg-blue-100/40 px-2 py-1 text-xs text-muted-foreground dark:bg-transparent"
-      >
-        <div>
-          <span class="flex items-center gap-0.5">
-            Gender: <PokemonGenderIcon :gender="pokemon.gender" />
-          </span>
-        </div>
-        <div>
-          <span aria-hidden="true">Lv.</span>
-          <span class="sr-only">Level</span>
-          <span class="font-medium text-foreground">{{ pokemon.level }}</span>
-        </div>
-        <span>{{ pokemon.experience }} XP</span>
-      </div>
-      <div class="flex flex-col gap-0.5">
-        <p
-          class="text-xxs font-medium tracking-wide text-muted-foreground uppercase"
-        >
-          Moves
-        </p>
-        <ul class="grid grid-cols-2 gap-0.5">
-          <li
-            v-for="move in pokemon.moves"
-            :key="move.name"
-            class="flex items-center gap-1"
+  <Card
+    class="h-full gap-2 p-4 transition-shadow hover:shadow-md"
+    :data-test="`pokemon-${pokemon.id}-card`"
+  >
+    <div class="grid grid-cols-[auto_1fr] gap-2">
+      <SpeciesSprite
+        :url="pokemon.frontSprite"
+        :name="pokemon.name"
+      />
+      <div class="flex flex-col">
+        <div class="flex justify-between gap-1">
+          <p
+            class="self-center text-sm font-semibold text-foreground"
+            :data-test="`pokemon-${pokemon.id}-card__name`"
           >
-            <span class="h-1.5 w-1.5 shrink-0 rounded-full bg-blue-300"></span>
-            <span
-              class="truncate text-xs text-foreground"
-              :title="move.name"
-            >
-              {{ move.name }}
-            </span>
-          </li>
-        </ul>
+            {{ pokemon.name }}
+          </p>
+          <DropdownMenu>
+            <DropdownMenuTrigger as-child>
+              <Button
+                type="button"
+                variant="ghost"
+                size="icon-sm"
+                class="text-ring"
+                data-test="pokemon-card__open-dropdown-menu-button"
+              >
+                <IconDotsVertical />
+              </Button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent align="end">
+              <DropdownMenuItem as-child>
+                <AppNavLink
+                  title="View"
+                  url="#"
+                  :icon="IconEye"
+                />
+              </DropdownMenuItem>
+              <DropdownMenuItem as-child>
+                <AppNavLink
+                  title="Pokédex"
+                  data-test="pokemon-card__view-species-link"
+                  :url="
+                    route('dex.web.pokedex.show', {
+                      species: pokemon.species.slug,
+                    })
+                  "
+                  :icon="IconBook"
+                />
+              </DropdownMenuItem>
+            </DropdownMenuContent>
+          </DropdownMenu>
+        </div>
+        <ElementalTypeBadges
+          class="mt-1.5"
+          :data-test="`pokemon-${pokemon.id}-card__types`"
+          :types="pokemon.species.types"
+        />
       </div>
-    </Card>
-  </li>
+    </div>
+    <div
+      class="mt-auto flex items-center justify-between rounded bg-blue-100/40 px-2 py-1 text-xs text-muted-foreground dark:bg-transparent"
+    >
+      <div>
+        <span
+          class="flex items-center gap-0.5"
+          :data-test="`pokemon-${pokemon.id}-card__gender`"
+        >
+          Gender: <PokemonGenderIcon :gender="pokemon.gender" />
+        </span>
+      </div>
+      <div>
+        <span aria-hidden="true">Lv.</span>
+        <span class="sr-only">Level</span>
+        <span
+          class="font-medium text-foreground"
+          :data-test="`pokemon-${pokemon.id}-card__level`"
+        >
+          {{ pokemon.level }}
+        </span>
+      </div>
+      <span :data-test="`pokemon-${pokemon.id}-card__experience`">
+        {{ pokemon.experience }} XP
+      </span>
+    </div>
+    <div class="flex flex-col gap-0.5">
+      <p
+        class="text-xxs font-medium tracking-wide text-muted-foreground uppercase"
+      >
+        Moves
+      </p>
+      <ul
+        class="grid grid-cols-2 gap-0.5"
+        :data-test="`pokemon-${pokemon.id}-card__moves`"
+      >
+        <li
+          v-for="move in pokemon.moves"
+          :key="move.name"
+          class="flex items-center gap-1"
+        >
+          <span class="h-1.5 w-1.5 shrink-0 rounded-full bg-blue-300"></span>
+          <span
+            class="truncate text-xs text-foreground"
+            :title="move.name"
+          >
+            {{ move.name }}
+          </span>
+        </li>
+      </ul>
+    </div>
+  </Card>
 </template>
 
 <script setup lang="ts">

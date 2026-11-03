@@ -30,17 +30,16 @@ it('shows box pokemon', function () {
     actingAs($user);
 
     visit(route('pokemon.web.box.index'))
-        ->assertSeeIn('@pokemon-grid', $pokemon->species->name)
-        ->assertSeeIn('@pokemon-grid', $pokemon->species->types[0]->label())
-        ->assertSeeIn('@pokemon-grid', ($pokemon->species->types[1] ?? null)?->label())
-        ->assertSeeIn('@pokemon-grid', $pokemon->species->name)
-        ->assertSeeIn('@pokemon-grid', $pokemon->gender->label())
-        ->assertSeeIn('@pokemon-grid', $pokemon->level)
-        ->assertSeeIn('@pokemon-grid', $pokemon->experience)
-        ->assertSeeIn('@pokemon-grid', $pokemon->moves[0]->name)
-        ->assertSeeIn('@pokemon-grid', $pokemon->moves[1]->name)
-        ->assertSeeIn('@pokemon-grid', $pokemon->moves[2]->name)
-        ->assertSeeIn('@pokemon-grid', $pokemon->moves[3]->name)
+        ->assertSeeIn("@pokemon-{$pokemon->id}-card__name", $pokemon->species->name)
+        ->assertSeeIn("@pokemon-{$pokemon->id}-card__types", $pokemon->species->types[0]->label())
+        ->assertSeeIn("@pokemon-{$pokemon->id}-card__types", ($pokemon->species->types[1] ?? null)?->label())
+        ->assertSeeIn("@pokemon-{$pokemon->id}-card__gender", $pokemon->gender->label())
+        ->assertSeeIn("@pokemon-{$pokemon->id}-card__level", $pokemon->level)
+        ->assertSeeIn("@pokemon-{$pokemon->id}-card__experience", $pokemon->experience)
+        ->assertSeeIn("@pokemon-{$pokemon->id}-card__moves", $pokemon->moves[0]->name)
+        ->assertSeeIn("@pokemon-{$pokemon->id}-card__moves", $pokemon->moves[1]->name)
+        ->assertSeeIn("@pokemon-{$pokemon->id}-card__moves", $pokemon->moves[2]->name)
+        ->assertSeeIn("@pokemon-{$pokemon->id}-card__moves", $pokemon->moves[3]->name)
         ->assertMissing('@pokemon-grid__empty-state');
 });
 

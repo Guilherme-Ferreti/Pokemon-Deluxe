@@ -4,11 +4,12 @@
       class="grid grid-cols-[repeat(auto-fill,minmax(16.25rem,1fr))] gap-4"
       data-test="pokemon-grid"
     >
-      <PokemonCard
+      <li
         v-for="pokemon in page.props.pokemonList.data"
         :key="pokemon.id"
-        :pokemon="pokemon"
-      />
+      >
+        <PokemonCard :pokemon="pokemon" />
+      </li>
     </ul>
     <AppPagination
       :list="page.props.pokemonList"
