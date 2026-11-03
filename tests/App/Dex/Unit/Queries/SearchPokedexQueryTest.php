@@ -5,14 +5,14 @@ declare(strict_types=1);
 use App\Dex\Enums\SearchPokedexSortBy;
 use App\Dex\Filters\SearchPokedexFilters;
 use App\Dex\Queries\SearchPokedexQuery;
-use Shared\Enums\ElementalType;
 use Shared\Enums\Generation;
+use Shared\Enums\PokemonType;
 use Shared\Enums\SortDirection;
 use Shared\Enums\SpeciesTrait;
 use Shared\Models\Species;
 
 /**
- * @param  array<int, ElementalType>  $types
+ * @param  array<int, PokemonType>  $types
  * @param  array<int, SpeciesTrait>  $traits
  * @param  array<int, Generation>  $generations
  */
@@ -72,21 +72,21 @@ it('returns no results when the search matches nothing', function () {
 });
 
 it('filters species by a single type', function () {
-    $fireOnly  = Species::factory()->create(['types' => [ElementalType::FIRE]]);
-    $waterOnly = Species::factory()->create(['types' => [ElementalType::WATER]]);
-    $fireWater = Species::factory()->create(['types' => [ElementalType::FIRE, ElementalType::WATER]]);
+    $fireOnly  = Species::factory()->create(['types' => [PokemonType::FIRE]]);
+    $waterOnly = Species::factory()->create(['types' => [PokemonType::WATER]]);
+    $fireWater = Species::factory()->create(['types' => [PokemonType::FIRE, PokemonType::WATER]]);
 
-    $result = new SearchPokedexQuery()->handle(makeSearchPokedexFilters(types: [ElementalType::FIRE]))->get();
+    $result = new SearchPokedexQuery()->handle(makeSearchPokedexFilters(types: [PokemonType::FIRE]))->get();
 
     expect($result)->toHaveCount(2)
         ->and($result->pluck('id'))->toContain($fireOnly->id, $fireWater->id)->not->toContain($waterOnly->id);
 });
 
 it('requires both types when two types are selected', function () {
-    $fireOnly  = Species::factory()->create(['types' => [ElementalType::FIRE]]);
-    $fireWater = Species::factory()->create(['types' => [ElementalType::FIRE, ElementalType::WATER]]);
+    $fireOnly  = Species::factory()->create(['types' => [PokemonType::FIRE]]);
+    $fireWater = Species::factory()->create(['types' => [PokemonType::FIRE, PokemonType::WATER]]);
 
-    $result = new SearchPokedexQuery()->handle(makeSearchPokedexFilters(types: [ElementalType::FIRE, ElementalType::WATER]))->get();
+    $result = new SearchPokedexQuery()->handle(makeSearchPokedexFilters(types: [PokemonType::FIRE, PokemonType::WATER]))->get();
 
     expect($result)->toHaveCount(1)
         ->and($result->first()->id)->toBe($fireWater->id);
@@ -185,18 +185,18 @@ it('sorts species by name descending', function () {
 it('combines multiple filters together', function () {
     $match = Species::factory()->create([
         'name'         => 'Charizard',
-        'types'        => [ElementalType::FIRE, ElementalType::FLYING],
+        'types'        => [PokemonType::FIRE, PokemonType::FLYING],
         'generation'   => Generation::I,
         'is_legendary' => false,
     ]);
 
-    Species::factory()->create(['name' => 'Pikachu', 'types' => [ElementalType::ELECTRIC], 'generation' => Generation::I]);
-    Species::factory()->create(['name' => 'Charmander', 'types' => [ElementalType::FIRE], 'generation' => Generation::I]);
-    Species::factory()->create(['name' => 'Charizard', 'types' => [ElementalType::FIRE, ElementalType::FLYING], 'generation' => Generation::VI]);
+    Species::factory()->create(['name' => 'Pikachu', 'types' => [PokemonType::ELECTRIC], 'generation' => Generation::I]);
+    Species::factory()->create(['name' => 'Charmander', 'types' => [PokemonType::FIRE], 'generation' => Generation::I]);
+    Species::factory()->create(['name' => 'Charizard', 'types' => [PokemonType::FIRE, PokemonType::FLYING], 'generation' => Generation::VI]);
 
     $result = new SearchPokedexQuery()->handle(makeSearchPokedexFilters(
         search: 'Charizard',
-        types: [ElementalType::FIRE, ElementalType::FLYING],
+        types: [PokemonType::FIRE, PokemonType::FLYING],
         generations: [Generation::I],
     ))->get();
 

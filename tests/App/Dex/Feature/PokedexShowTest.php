@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 use Illuminate\Support\Arr;
 use Inertia\Testing\AssertableInertia as Assert;
-use Shared\Enums\ElementalType;
 use Shared\Enums\PokemonGender;
+use Shared\Enums\PokemonType;
 use Shared\Models\EvolutionItem;
 use Shared\Models\Move;
 use Shared\Models\Species;
@@ -60,7 +60,7 @@ it('loads the species show page with expected structure', function () {
             ->where('overview.isGenderless', $species->isGenderless())
             ->where('overview.malePercentage', $species->getMalePercentage())
             ->where('overview.femalePercentage', $species->getFemalePercentage())
-            ->has('damageTaken', count(ElementalType::cases()))
+            ->has('damageTaken', count(PokemonType::cases()))
             ->has('catchStatistics.global.regular')
             ->has('catchStatistics.global.shiny')
             ->has('catchStatistics.currentUser.regular')

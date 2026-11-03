@@ -7,9 +7,9 @@ namespace App\Pokemon\Filters;
 use App\Pokemon\Enums\SearchBoxSortBy;
 use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
-use Shared\Enums\ElementalType;
 use Shared\Enums\Generation;
 use Shared\Enums\PokemonTrait;
+use Shared\Enums\PokemonType;
 use Shared\Enums\SortDirection;
 use Shared\Interfaces\Filter;
 use Shared\ValueObjects\FilterOption;
@@ -19,7 +19,7 @@ final class SearchBoxFilters implements Filter
     public function __construct(
         public ?string $search,
 
-        /** @var Collection<int, ElementalType> */
+        /** @var Collection<int, PokemonType> */
         public Collection $types,
 
         /** @var Collection<int, PokemonTrait> */
@@ -37,7 +37,7 @@ final class SearchBoxFilters implements Filter
     {
         return new self(...[
             'search'      => $request->query('search'),
-            'types'       => $request->collect('types')->toUniqueEnums(ElementalType::class)->take(2),
+            'types'       => $request->collect('types')->toUniqueEnums(PokemonType::class)->take(2),
             'traits'      => $request->collect('traits')->toUniqueEnums(PokemonTrait::class),
             'generations' => $request->collect('generations')->toUniqueEnums(Generation::class),
             'sort'        => $request->enum('sort', SearchBoxSortBy::class, SearchBoxSortBy::CATCH_DATE),
@@ -51,7 +51,7 @@ final class SearchBoxFilters implements Filter
     public static function filterOptions(): array
     {
         return [
-            'types'       => FilterOption::listFromEnum(ElementalType::class),
+            'types'       => FilterOption::listFromEnum(PokemonType::class),
             'traits'      => FilterOption::listFromEnum(PokemonTrait::class),
             'generations' => FilterOption::listFromEnum(Generation::class),
             'sort'        => FilterOption::listFromEnum(SearchBoxSortBy::class),

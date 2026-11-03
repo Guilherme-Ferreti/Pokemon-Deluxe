@@ -1,6 +1,6 @@
 import type {
   Ailment,
-  ElementalType,
+  PokemonType,
   Generation,
   PokemonGender,
 } from '@/shared/types/enums';
@@ -27,7 +27,7 @@ declare module '@inertiajs/core' {
         user: Pick<User, 'id' | 'name' | 'email'> | null;
       };
       labels: {
-        elementalType: Record<ElementalType, string>;
+        pokemonType: Record<PokemonType, string>;
         pokemonGender: Record<PokemonGender, string>;
         ailment: Record<Ailment, string>;
         generation: Record<Generation, string>;

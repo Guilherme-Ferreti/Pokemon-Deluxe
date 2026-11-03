@@ -1,4 +1,4 @@
-import type { ElementalType, PokemonGender } from '@/shared/types/enums';
+import type { PokemonType, PokemonGender } from '@/shared/types/enums';
 import type {
   Move,
   Species,
@@ -24,7 +24,7 @@ export type PokedexShowPageProps = {
       shiny: number;
     };
   };
-  damageTaken: Record<ElementalType, number>;
+  damageTaken: Record<PokemonType, number>;
   evolutionChain: {
     previous: EvolutionChainNodes;
     into: EvolutionChainNodes;

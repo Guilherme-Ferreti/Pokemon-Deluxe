@@ -1,7 +1,7 @@
 import type { FilterOption, PaginatedList } from '@/shared/types';
 import type {
   Ailment,
-  ElementalType,
+  PokemonType,
   MoveTrait,
   SortDirection,
 } from '@/shared/types/enums';
@@ -24,13 +24,13 @@ export type AttackdexIndexPageProps = {
   }>;
   filters: {
     options: {
-      types: FilterOption<ElementalType>[];
+      types: FilterOption<PokemonType>[];
       ailments: FilterOption<Ailment>[];
       traits: FilterOption<MoveTrait>[];
     };
     active: {
       search: string;
-      types: ElementalType[];
+      types: PokemonType[];
       ailments: Ailment[];
       traits: MoveTrait[];
       sort: SearchAttackdexSortBy;

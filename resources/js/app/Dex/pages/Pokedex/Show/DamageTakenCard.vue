@@ -14,7 +14,7 @@
           v-if="row.types.length > 0"
           class="flex w-full flex-wrap justify-end gap-2"
         >
-          <ElementalTypeBadges
+          <PokemonTypeBadges
             v-for="type in row.types"
             :key="type"
             :types="[type]"
@@ -37,9 +37,9 @@ import { usePage } from '@inertiajs/vue3';
 import { computed } from 'vue';
 import AppInfoCard from '@/shared/components/content/AppInfoCard.vue';
 import AppInfoCardSectionTitle from '@/shared/components/content/AppInfoCardSectionTitle.vue';
-import ElementalTypeBadges from '@/shared/components/game/ElementalTypeBadges.vue';
+import PokemonTypeBadges from '@/shared/components/game/PokemonTypeBadges.vue';
 import Separator from '@/shared/components/ui/separator/Separator.vue';
-import type { ElementalType } from '@/shared/types/enums';
+import type { PokemonType } from '@/shared/types/enums';
 import type { PokedexShowPageProps } from '../../../types/page-props/PokedexShowPageProps';
 
 const page = usePage<PokedexShowPageProps>();
@@ -71,9 +71,9 @@ const rows = computed(() => [
   },
 ]);
 
-function getTypesForMultiplier(multiplier: number): ElementalType[] {
+function getTypesForMultiplier(multiplier: number): PokemonType[] {
   return Object.entries(page.props.damageTaken)
     .filter(([, value]) => value === multiplier)
-    .map(([key]) => key) as ElementalType[];
+    .map(([key]) => key) as PokemonType[];
 }
 </script>

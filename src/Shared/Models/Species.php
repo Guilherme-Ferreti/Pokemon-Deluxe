@@ -18,9 +18,9 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 use Override;
 use Shared\Casts\AsSpeciesPortraits;
 use Shared\Casts\AsSpeciesSprites;
-use Shared\Enums\ElementalType;
 use Shared\Enums\Generation;
 use Shared\Enums\PokemonGender;
+use Shared\Enums\PokemonType;
 use Shared\ValueObjects\SpeciesPortraits;
 use Shared\ValueObjects\SpeciesSprites;
 
@@ -28,7 +28,7 @@ use Shared\ValueObjects\SpeciesSprites;
  * @property string $id
  * @property string $slug
  * @property string $name
- * @property array{0: ElementalType, 1?: ElementalType} $types
+ * @property array{0: PokemonType, 1?: PokemonType} $types
  * @property int $pokedex_number
  * @property string $genus
  * @property string $text_entry
@@ -62,7 +62,7 @@ final class Species extends Model
     protected function casts(): array
     {
         return [
-            'types'          => AsEnumCollection::of(ElementalType::class),
+            'types'          => AsEnumCollection::of(PokemonType::class),
             'pokedex_number' => 'integer',
             'generation'     => Generation::class,
             'is_baby'        => 'boolean',

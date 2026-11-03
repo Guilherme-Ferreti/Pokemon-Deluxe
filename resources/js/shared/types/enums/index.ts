@@ -1,6 +1,6 @@
 export * from '@/shared/types/enums/Ailment';
 export * from '@/shared/types/enums/IncubationStatus';
-export * from '@/shared/types/enums/ElementalType';
+export * from '@/shared/types/enums/PokemonType';
 export * from '@/shared/types/enums/Generation';
 export * from '@/shared/types/enums/MoveCategory';
 export * from '@/shared/types/enums/MoveTrait';

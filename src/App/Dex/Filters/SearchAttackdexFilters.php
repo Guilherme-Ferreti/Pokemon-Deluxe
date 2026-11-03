@@ -8,8 +8,8 @@ use App\Dex\Enums\SearchAttackdexSortBy;
 use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
 use Shared\Enums\Ailment;
-use Shared\Enums\ElementalType;
 use Shared\Enums\MoveTrait;
+use Shared\Enums\PokemonType;
 use Shared\Enums\SortDirection;
 use Shared\Interfaces\Filter;
 use Shared\ValueObjects\FilterOption;
@@ -19,7 +19,7 @@ final class SearchAttackdexFilters implements Filter
     public function __construct(
         public ?string $search,
 
-        /** @var Collection<int, ElementalType> */
+        /** @var Collection<int, PokemonType> */
         public Collection $types,
 
         /** @var Collection<int, Ailment> */
@@ -37,7 +37,7 @@ final class SearchAttackdexFilters implements Filter
     {
         return new self(...[
             'search'   => $request->query('search'),
-            'types'    => $request->collect('types')->toUniqueEnums(ElementalType::class),
+            'types'    => $request->collect('types')->toUniqueEnums(PokemonType::class),
             'ailments' => $request->collect('ailments')->toUniqueEnums(Ailment::class),
             'traits'   => $request->collect('traits')->toUniqueEnums(MoveTrait::class),
             'sort'     => $request->enum('sort', SearchAttackdexSortBy::class, SearchAttackdexSortBy::NAME),
@@ -51,7 +51,7 @@ final class SearchAttackdexFilters implements Filter
     public static function filterOptions(): array
     {
         return [
-            'types'    => FilterOption::listFromEnum(ElementalType::class),
+            'types'    => FilterOption::listFromEnum(PokemonType::class),
             'ailments' => FilterOption::listFromEnum(Ailment::class),
             'traits'   => FilterOption::listFromEnum(MoveTrait::class),
         ];

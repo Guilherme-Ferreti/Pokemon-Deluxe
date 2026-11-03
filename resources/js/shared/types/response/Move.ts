@@ -1,11 +1,11 @@
 import type { Ailment } from '@/shared/types/enums/Ailment';
-import type { ElementalType } from '@/shared/types/enums/ElementalType';
 import type { MoveCategory } from '@/shared/types/enums/MoveCategory';
+import type { PokemonType } from '@/shared/types/enums/PokemonType';
 
 export type Move = {
   id: string;
   name: string;
-  type: ElementalType;
+  type: PokemonType;
   category: MoveCategory;
   power: number | null;
   accuracy: number;

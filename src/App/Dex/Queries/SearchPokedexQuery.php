@@ -8,8 +8,8 @@ use App\Dex\Enums\SearchPokedexSortBy;
 use App\Dex\Filters\SearchPokedexFilters;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Collection;
-use Shared\Enums\ElementalType;
 use Shared\Enums\Generation;
+use Shared\Enums\PokemonType;
 use Shared\Enums\SortDirection;
 use Shared\Enums\SpeciesTrait;
 use Shared\Models\Species;
@@ -41,7 +41,7 @@ final class SearchPokedexQuery
 
     /**
      * @param  Builder<Species>  $query
-     * @param  Collection<int, ElementalType>  $types
+     * @param  Collection<int, PokemonType>  $types
      * @return Builder<Species>
      */
     private function applyTypes(Builder $query, Collection $types): Builder

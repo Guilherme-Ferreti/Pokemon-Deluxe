@@ -4,18 +4,18 @@ declare(strict_types=1);
 
 namespace App\Battle\Services;
 
-use Shared\Enums\ElementalType;
+use Shared\Enums\PokemonType;
 
 final class DamageCalculator
 {
     public function calculateDamageMultiplier(
-        ElementalType $attackType,
-        ElementalType $defenderType,
-        ?ElementalType $secondDefenderType = null
+        PokemonType $attackType,
+        PokemonType $defenderType,
+        ?PokemonType $secondDefenderType = null
     ): float {
         $multiplier = $attackType->effectiveness()[$defenderType->value];
 
-        if ($secondDefenderType instanceof ElementalType) {
+        if ($secondDefenderType instanceof PokemonType) {
             $multiplier *= $attackType->effectiveness()[$secondDefenderType->value];
         }
 

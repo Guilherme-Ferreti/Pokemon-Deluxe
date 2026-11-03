@@ -61,7 +61,7 @@
           />
         </TableCell>
         <TableCell>
-          <ElementalTypeBadges :types="[move.type]" />
+          <PokemonTypeBadges :types="[move.type]" />
         </TableCell>
         <TableCell>
           <MovePowerLabel
@@ -99,9 +99,9 @@ import {
   IconXMark,
 } from '@tabler/icons-vue';
 import AppEmptyState from '@/shared/components/content/AppEmptyState.vue';
-import ElementalTypeBadges from '@/shared/components/game/ElementalTypeBadges.vue';
 import MoveNameLabel from '@/shared/components/game/MoveNameLabel.vue';
 import MovePowerLabel from '@/shared/components/game/MovePowerLabel.vue';
+import PokemonTypeBadges from '@/shared/components/game/PokemonTypeBadges.vue';
 import type { AppTableHeadSortableLinkProps } from '@/shared/components/list/AppTableHeadSortableLink.vue';
 import AppTableHeadSortableLink from '@/shared/components/list/AppTableHeadSortableLink.vue';
 import {

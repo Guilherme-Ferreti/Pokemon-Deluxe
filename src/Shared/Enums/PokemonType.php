@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Shared\Enums;
 
-enum ElementalType: string
+enum PokemonType: string
 {
     case BUG      = 'bug';
     case DARK     = 'dark';

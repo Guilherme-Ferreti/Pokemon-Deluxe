@@ -13,7 +13,7 @@ use App\Dex\Support\CacheKeys;
 use Illuminate\Support\Facades\Cache;
 use Inertia\ProvidesInertiaProperties;
 use Inertia\RenderContext;
-use Shared\Enums\ElementalType;
+use Shared\Enums\PokemonType;
 use Shared\Models\Species;
 use Shared\Models\SpeciesEvolution;
 use Shared\Models\SpeciesLearnableMove;
@@ -164,7 +164,7 @@ final readonly class PokedexShowPageProps implements ProvidesInertiaProperties
         $damageCalculator = new DamageCalculator;
         $damageTaken      = [];
 
-        foreach (ElementalType::cases() as $attackType) {
+        foreach (PokemonType::cases() as $attackType) {
             $damageTaken[$attackType->value] = $damageCalculator->calculateDamageMultiplier($attackType, ...$this->species->types);
         }
 

@@ -48,7 +48,7 @@
           {{ species.name }}
         </TableCell>
         <TableCell>
-          <ElementalTypeBadges
+          <PokemonTypeBadges
             :types="species.types"
             :data-test="`species-table__row-${index + 1}-types`"
           />
@@ -99,9 +99,9 @@ import {
   IconXMark,
 } from '@tabler/icons-vue';
 import AppEmptyState from '@/shared/components/content/AppEmptyState.vue';
-import ElementalTypeBadges from '@/shared/components/game/ElementalTypeBadges.vue';
 import InBoxIcon from '@/shared/components/game/InBoxIcon.vue';
 import NotInBoxIcon from '@/shared/components/game/NotInBoxIcon.vue';
+import PokemonTypeBadges from '@/shared/components/game/PokemonTypeBadges.vue';
 import SpeciesPortrait from '@/shared/components/game/SpeciesPortrait.vue';
 import type { AppTableHeadSortableLinkProps } from '@/shared/components/list/AppTableHeadSortableLink.vue';
 import AppTableHeadSortableLink from '@/shared/components/list/AppTableHeadSortableLink.vue';

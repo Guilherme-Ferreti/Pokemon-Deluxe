@@ -51,7 +51,7 @@
             </DropdownMenuContent>
           </DropdownMenu>
         </div>
-        <ElementalTypeBadges
+        <PokemonTypeBadges
           class="mt-1.5"
           :data-test="`pokemon-${pokemon.id}-card__types`"
           :types="pokemon.species.types"
@@ -113,8 +113,8 @@
 
 <script setup lang="ts">
 import { IconBook, IconDotsVertical, IconEye } from '@tabler/icons-vue';
-import ElementalTypeBadges from '@/shared/components/game/ElementalTypeBadges.vue';
 import PokemonGenderIcon from '@/shared/components/game/PokemonGenderIcon.vue';
+import PokemonTypeBadges from '@/shared/components/game/PokemonTypeBadges.vue';
 import SpeciesSprite from '@/shared/components/game/SpeciesSprite.vue';
 import AppNavLink from '@/shared/components/layout/AppNavLink.vue';
 import { Button } from '@/shared/components/ui/button';

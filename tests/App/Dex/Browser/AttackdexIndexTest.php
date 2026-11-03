@@ -3,8 +3,8 @@
 declare(strict_types=1);
 
 use Shared\Enums\Ailment;
-use Shared\Enums\ElementalType;
 use Shared\Enums\MoveTrait;
+use Shared\Enums\PokemonType;
 use Shared\Models\Move;
 use Shared\Models\User;
 
@@ -66,7 +66,7 @@ describe('search filters', function () {
 
         visit(route('dex.web.attackdex.index', [
             'search'   => 'Tackle',
-            'types'    => [ElementalType::FIRE, ElementalType::WATER],
+            'types'    => [PokemonType::FIRE, PokemonType::WATER],
             'ailments' => [Ailment::BURN, Ailment::FREEZE],
             'traits'   => [MoveTrait::Z_MOVE],
         ]))
@@ -86,7 +86,7 @@ describe('search filters', function () {
         actingAs(User::factory()->create());
 
         visit(route('dex.web.attackdex.index', [
-            'types'    => [ElementalType::FIRE, ElementalType::WATER],
+            'types'    => [PokemonType::FIRE, PokemonType::WATER],
             'ailments' => [Ailment::BURN, Ailment::FREEZE],
             'traits'   => [MoveTrait::Z_MOVE],
         ]))

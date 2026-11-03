@@ -6,14 +6,14 @@ use App\Dex\Enums\SearchAttackdexSortBy;
 use App\Dex\Filters\SearchAttackdexFilters;
 use App\Dex\Queries\SearchAttackdexQuery;
 use Shared\Enums\Ailment;
-use Shared\Enums\ElementalType;
 use Shared\Enums\MoveCategory;
 use Shared\Enums\MoveTrait;
+use Shared\Enums\PokemonType;
 use Shared\Enums\SortDirection;
 use Shared\Models\Move;
 
 /**
- * @param  array<int, ElementalType>  $types
+ * @param  array<int, PokemonType>  $types
  * @param  array<int, Ailment>  $ailments
  * @param  array<int, MoveTrait>  $traits
  */
@@ -73,21 +73,21 @@ it('returns no results when the search matches nothing', function () {
 });
 
 it('filters moves by a single type', function () {
-    $fireOnly  = Move::factory()->create(['type' => ElementalType::FIRE]);
-    $waterOnly = Move::factory()->create(['type' => ElementalType::WATER]);
+    $fireOnly  = Move::factory()->create(['type' => PokemonType::FIRE]);
+    $waterOnly = Move::factory()->create(['type' => PokemonType::WATER]);
 
-    $result = new SearchAttackdexQuery()->handle(makeSearchAttackdexFilters(types: [ElementalType::FIRE]))->get();
+    $result = new SearchAttackdexQuery()->handle(makeSearchAttackdexFilters(types: [PokemonType::FIRE]))->get();
 
     expect($result)->toHaveCount(1)
         ->and($result->first()->id)->toBe($fireOnly->id);
 });
 
 it('filters moves by multiple types', function () {
-    $fire  = Move::factory()->create(['type' => ElementalType::FIRE]);
-    $water = Move::factory()->create(['type' => ElementalType::WATER]);
-    $grass = Move::factory()->create(['type' => ElementalType::GRASS]);
+    $fire  = Move::factory()->create(['type' => PokemonType::FIRE]);
+    $water = Move::factory()->create(['type' => PokemonType::WATER]);
+    $grass = Move::factory()->create(['type' => PokemonType::GRASS]);
 
-    $result = new SearchAttackdexQuery()->handle(makeSearchAttackdexFilters(types: [ElementalType::FIRE, ElementalType::WATER]))->get();
+    $result = new SearchAttackdexQuery()->handle(makeSearchAttackdexFilters(types: [PokemonType::FIRE, PokemonType::WATER]))->get();
 
     expect($result)->toHaveCount(2)
         ->and($result->pluck('id'))->toContain($fire->id, $water->id)->not->toContain($grass->id);
@@ -239,17 +239,17 @@ it('sorts moves by flinch chance descending', function () {
 it('combines multiple filters together', function () {
     $match = Move::factory()->create([
         'name'    => 'Flamethrower',
-        'type'    => ElementalType::FIRE,
+        'type'    => PokemonType::FIRE,
         'ailment' => Ailment::BURN,
     ]);
 
-    Move::factory()->create(['name' => 'Tackle', 'type' => ElementalType::NORMAL, 'ailment' => null]);
-    Move::factory()->create(['name' => 'Flamethrower', 'type' => ElementalType::FIRE, 'ailment' => null]);
-    Move::factory()->create(['name' => 'Flamethrower', 'type' => ElementalType::WATER, 'ailment' => Ailment::BURN]);
+    Move::factory()->create(['name' => 'Tackle', 'type' => PokemonType::NORMAL, 'ailment' => null]);
+    Move::factory()->create(['name' => 'Flamethrower', 'type' => PokemonType::FIRE, 'ailment' => null]);
+    Move::factory()->create(['name' => 'Flamethrower', 'type' => PokemonType::WATER, 'ailment' => Ailment::BURN]);
 
     $result = new SearchAttackdexQuery()->handle(makeSearchAttackdexFilters(
         search: 'Flamethrower',
-        types: [ElementalType::FIRE],
+        types: [PokemonType::FIRE],
         ailments: [Ailment::BURN],
     ))->get();
 

@@ -31,7 +31,7 @@
       title="Type(s)"
       data-test="overview-card__types"
     >
-      <ElementalTypeBadges :types="page.props.overview.types" />
+      <PokemonTypeBadges :types="page.props.overview.types" />
     </AppInfoCardRow>
     <AppInfoCardRow
       title="Generation"
@@ -124,8 +124,8 @@
 import { usePage } from '@inertiajs/vue3';
 import AppInfoCard from '@/shared/components/content/AppInfoCard.vue';
 import AppInfoCardRow from '@/shared/components/content/AppInfoCardRow.vue';
-import ElementalTypeBadges from '@/shared/components/game/ElementalTypeBadges.vue';
 import PokemonGenderIcon from '@/shared/components/game/PokemonGenderIcon.vue';
+import PokemonTypeBadges from '@/shared/components/game/PokemonTypeBadges.vue';
 import SpeciesPortrait from '@/shared/components/game/SpeciesPortrait.vue';
 import { Badge } from '@/shared/components/ui/badge';
 import {

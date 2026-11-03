@@ -8,9 +8,9 @@ use App\Pokemon\Enums\SearchBoxSortBy;
 use App\Pokemon\Filters\SearchBoxFilters;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Collection;
-use Shared\Enums\ElementalType;
 use Shared\Enums\Generation;
 use Shared\Enums\PokemonTrait;
+use Shared\Enums\PokemonType;
 use Shared\Enums\SortDirection;
 use Shared\Models\Pokemon;
 use Shared\Models\User;
@@ -70,7 +70,7 @@ final class SearchBoxQuery
 
     /**
      * @param  Builder<Pokemon>  $query
-     * @param  Collection<int, ElementalType>  $types
+     * @param  Collection<int, PokemonType>  $types
      * @return Builder<Pokemon>
      */
     private function applyTypes(Builder $query, Collection $types): Builder

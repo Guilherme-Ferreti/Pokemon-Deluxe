@@ -69,7 +69,7 @@
         <TableCell
           :data-test="`learnable-moves-tm-table__row-${index + 1}-type`"
         >
-          <ElementalTypeBadges :types="[item.type]" />
+          <PokemonTypeBadges :types="[item.type]" />
         </TableCell>
         <TableCell
           :data-test="`learnable-moves-tm-table__row-${index + 1}-power`"
@@ -95,9 +95,9 @@ import {
   IconSortAscendingLetters,
   IconSortDescendingLetters,
 } from '@tabler/icons-vue';
-import ElementalTypeBadges from '@/shared/components/game/ElementalTypeBadges.vue';
 import MoveNameLabel from '@/shared/components/game/MoveNameLabel.vue';
 import MovePowerLabel from '@/shared/components/game/MovePowerLabel.vue';
+import PokemonTypeBadges from '@/shared/components/game/PokemonTypeBadges.vue';
 import AppTableHeadSortableButton from '@/shared/components/list/AppTableHeadSortableButton.vue';
 import {
   Table,

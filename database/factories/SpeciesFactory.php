@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
-use Shared\Enums\ElementalType;
 use Shared\Enums\Generation;
+use Shared\Enums\PokemonType;
 use Shared\Models\Species;
 use Shared\ValueObjects\SpeciesPortraits;
 use Shared\ValueObjects\SpeciesSprites;
@@ -23,7 +23,7 @@ final class SpeciesFactory extends Factory
         return [
             'slug'           => fake()->unique()->uuid(),
             'name'           => fake()->unique()->word(),
-            'types'          => fake()->randomElements(ElementalType::cases(), random_int(1, 2)),
+            'types'          => fake()->randomElements(PokemonType::cases(), random_int(1, 2)),
             'pokedex_number' => fake()->unique()->numberBetween(1, 1000),
             'genus'          => fake()->word(),
             'text_entry'     => fake()->sentence(),
@@ -56,14 +56,14 @@ final class SpeciesFactory extends Factory
     public function singleType(): static
     {
         return $this->state([
-            'types' => fake()->randomElement(ElementalType::cases()),
+            'types' => fake()->randomElement(PokemonType::cases()),
         ]);
     }
 
     public function dualType(): static
     {
         return $this->state([
-            'types' => fake()->randomElements(ElementalType::cases(), 2),
+            'types' => fake()->randomElements(PokemonType::cases(), 2),
         ]);
     }
 }

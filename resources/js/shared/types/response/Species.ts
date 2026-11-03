@@ -1,11 +1,11 @@
-import type { ElementalType } from '@/shared/types/enums/ElementalType';
 import type { Generation } from '@/shared/types/enums/Generation';
+import type { PokemonType } from '@/shared/types/enums/PokemonType';
 
 export type Species = {
   id: string;
   slug: string;
   name: string;
-  types: [ElementalType, ElementalType?];
+  types: [PokemonType, PokemonType?];
   pokedexNumber: number;
   genus: string;
   textEntry: string;

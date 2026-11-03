@@ -15,16 +15,16 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Override;
 use Shared\Enums\Ailment;
-use Shared\Enums\ElementalType;
 use Shared\Enums\Generation;
 use Shared\Enums\MoveCategory;
 use Shared\Enums\MoveDamageClass;
+use Shared\Enums\PokemonType;
 
 /**
  * @property string $id
  * @property string $slug
  * @property string $name
- * @property ElementalType $type
+ * @property PokemonType $type
  * @property MoveCategory $category
  * @property MoveDamageClass $damage_class
  * @property int|null $power
@@ -53,7 +53,7 @@ final class Move extends Model
     protected function casts(): array
     {
         return [
-            'type'            => ElementalType::class,
+            'type'            => PokemonType::class,
             'category'        => MoveCategory::class,
             'damage_class'    => MoveDamageClass::class,
             'power'           => 'integer',

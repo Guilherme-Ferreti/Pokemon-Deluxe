@@ -6,9 +6,9 @@ namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Shared\Enums\Ailment;
-use Shared\Enums\ElementalType;
 use Shared\Enums\Generation;
 use Shared\Enums\MoveCategory;
+use Shared\Enums\PokemonType;
 use Shared\Models\Move;
 
 /**
@@ -26,7 +26,7 @@ final class MoveFactory extends Factory
         return [
             'slug'            => fake()->unique()->uuid(),
             'name'            => fake()->unique()->word(),
-            'type'            => fake()->randomElement(ElementalType::cases()),
+            'type'            => fake()->randomElement(PokemonType::cases()),
             'category'        => fake()->randomElement(MoveCategory::cases()),
             'damage_class'    => fn (array $attributes) => fake()->randomElement($attributes['category']->possibleDamageClasses()),
             'power'           => fn (array $attributes) => in_array($attributes['category'], [MoveCategory::AILMENT, MoveCategory::OHKO]) ? null : fake()->numberBetween(10, 250),

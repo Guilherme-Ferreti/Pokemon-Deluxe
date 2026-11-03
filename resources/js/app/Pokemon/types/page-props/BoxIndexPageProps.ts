@@ -1,6 +1,6 @@
 import type { FilterOption, PaginatedList } from '@/shared/types';
 import type {
-  ElementalType,
+  PokemonType,
   Generation,
   PokemonTrait,
   SortDirection,
@@ -26,7 +26,7 @@ export type BoxIndexPageProps = {
   }>;
   filters: {
     options: {
-      types: FilterOption<ElementalType>[];
+      types: FilterOption<PokemonType>[];
       traits: FilterOption<PokemonTrait>[];
       generations: FilterOption<Generation>[];
       sort: FilterOption<SearchBoxSortBy>[];
@@ -34,7 +34,7 @@ export type BoxIndexPageProps = {
     };
     active: {
       search: string;
-      types: ElementalType[];
+      types: PokemonType[];
       traits: PokemonTrait[];
       generations: Generation[];
       sort: SearchBoxSortBy;

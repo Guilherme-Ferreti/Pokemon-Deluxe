@@ -7,8 +7,8 @@ namespace App\Dex\Filters;
 use App\Dex\Enums\SearchPokedexSortBy;
 use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
-use Shared\Enums\ElementalType;
 use Shared\Enums\Generation;
+use Shared\Enums\PokemonType;
 use Shared\Enums\SortDirection;
 use Shared\Enums\SpeciesTrait;
 use Shared\Interfaces\Filter;
@@ -19,7 +19,7 @@ final class SearchPokedexFilters implements Filter
     public function __construct(
         public ?string $search,
 
-        /** @var Collection<int, ElementalType> */
+        /** @var Collection<int, PokemonType> */
         public Collection $types,
 
         /** @var Collection<int, SpeciesTrait> */
@@ -37,7 +37,7 @@ final class SearchPokedexFilters implements Filter
     {
         return new self(...[
             'search'      => $request->query('search'),
-            'types'       => $request->collect('types')->toUniqueEnums(ElementalType::class)->take(2),
+            'types'       => $request->collect('types')->toUniqueEnums(PokemonType::class)->take(2),
             'traits'      => $request->collect('traits')->toUniqueEnums(SpeciesTrait::class),
             'generations' => $request->collect('generations')->toUniqueEnums(Generation::class),
             'sort'        => $request->enum('sort', SearchPokedexSortBy::class, SearchPokedexSortBy::POKEDEX_NUMBER),
@@ -51,7 +51,7 @@ final class SearchPokedexFilters implements Filter
     public static function filterOptions(): array
     {
         return [
-            'types'       => FilterOption::listFromEnum(ElementalType::class),
+            'types'       => FilterOption::listFromEnum(PokemonType::class),
             'generations' => FilterOption::listFromEnum(Generation::class),
             'traits'      => FilterOption::listFromEnum(SpeciesTrait::class),
         ];

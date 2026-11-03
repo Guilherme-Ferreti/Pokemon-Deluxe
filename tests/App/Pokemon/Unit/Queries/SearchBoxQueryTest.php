@@ -5,16 +5,16 @@ declare(strict_types=1);
 use App\Pokemon\Enums\SearchBoxSortBy;
 use App\Pokemon\Filters\SearchBoxFilters;
 use App\Pokemon\Queries\SearchBoxQuery;
-use Shared\Enums\ElementalType;
 use Shared\Enums\Generation;
 use Shared\Enums\PokemonTrait;
+use Shared\Enums\PokemonType;
 use Shared\Enums\SortDirection;
 use Shared\Models\Pokemon;
 use Shared\Models\Species;
 use Shared\Models\User;
 
 /**
- * @param  array<int, ElementalType>  $types
+ * @param  array<int, PokemonType>  $types
  * @param  array<int, PokemonTrait>  $traits
  * @param  array<int, Generation>  $generations
  */
@@ -105,11 +105,11 @@ it('returns no results when the search matches nothing', function () {
 it('filters box pokemon by a single type', function () {
     $user = User::factory()->create();
 
-    $fireOnly  = Pokemon::factory()->for($user)->for(Species::factory()->create(['types' => [ElementalType::FIRE]]))->inBox()->create();
-    $waterOnly = Pokemon::factory()->for($user)->for(Species::factory()->create(['types' => [ElementalType::WATER]]))->inBox()->create();
-    $fireWater = Pokemon::factory()->for($user)->for(Species::factory()->create(['types' => [ElementalType::FIRE, ElementalType::WATER]]))->inBox()->create();
+    $fireOnly  = Pokemon::factory()->for($user)->for(Species::factory()->create(['types' => [PokemonType::FIRE]]))->inBox()->create();
+    $waterOnly = Pokemon::factory()->for($user)->for(Species::factory()->create(['types' => [PokemonType::WATER]]))->inBox()->create();
+    $fireWater = Pokemon::factory()->for($user)->for(Species::factory()->create(['types' => [PokemonType::FIRE, PokemonType::WATER]]))->inBox()->create();
 
-    $result = new SearchBoxQuery()->handle($user, makeSearchBoxFilters(types: [ElementalType::FIRE]))->get();
+    $result = new SearchBoxQuery()->handle($user, makeSearchBoxFilters(types: [PokemonType::FIRE]))->get();
 
     expect($result)->toHaveCount(2)
         ->and($result->pluck('id'))->toContain($fireOnly->id, $fireWater->id)->not->toContain($waterOnly->id);
@@ -118,10 +118,10 @@ it('filters box pokemon by a single type', function () {
 it('requires both types when two types are selected', function () {
     $user = User::factory()->create();
 
-    $fireOnly  = Pokemon::factory()->for($user)->for(Species::factory()->create(['types' => [ElementalType::FIRE]]))->inBox()->create();
-    $fireWater = Pokemon::factory()->for($user)->for(Species::factory()->create(['types' => [ElementalType::FIRE, ElementalType::WATER]]))->inBox()->create();
+    $fireOnly  = Pokemon::factory()->for($user)->for(Species::factory()->create(['types' => [PokemonType::FIRE]]))->inBox()->create();
+    $fireWater = Pokemon::factory()->for($user)->for(Species::factory()->create(['types' => [PokemonType::FIRE, PokemonType::WATER]]))->inBox()->create();
 
-    $result = new SearchBoxQuery()->handle($user, makeSearchBoxFilters(types: [ElementalType::FIRE, ElementalType::WATER]))->get();
+    $result = new SearchBoxQuery()->handle($user, makeSearchBoxFilters(types: [PokemonType::FIRE, PokemonType::WATER]))->get();
 
     expect($result)->toHaveCount(1)
         ->and($result->first()->id)->toBe($fireWater->id);
@@ -266,7 +266,7 @@ it('joins the species table when a filter or the pokedex-number sort requires it
         ]);
 })->with([
     'search'         => [makeSearchBoxFilters(search: 'Pikachu')],
-    'types'          => [makeSearchBoxFilters(types: [ElementalType::FIRE])],
+    'types'          => [makeSearchBoxFilters(types: [PokemonType::FIRE])],
     'traits'         => [makeSearchBoxFilters(traits: [PokemonTrait::LEGENDARY])],
     'generations'    => [makeSearchBoxFilters(generations: [Generation::I])],
     'pokedex number' => [makeSearchBoxFilters(sort: SearchBoxSortBy::POKEDEX_NUMBER)],

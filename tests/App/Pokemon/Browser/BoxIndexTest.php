@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-use Shared\Enums\ElementalType;
 use Shared\Enums\Generation;
 use Shared\Enums\PokemonTrait;
+use Shared\Enums\PokemonType;
 use Shared\Models\Move;
 use Shared\Models\Pokemon;
 use Shared\Models\Species;
@@ -75,7 +75,7 @@ describe('search filters', function () {
 
         visit(route('pokemon.web.box.index', [
             'search'      => 'Pikachu',
-            'types'       => [ElementalType::FIRE, ElementalType::WATER],
+            'types'       => [PokemonType::FIRE, PokemonType::WATER],
             'traits'      => [PokemonTrait::LEGENDARY],
             'generations' => [Generation::I],
         ]))
@@ -93,7 +93,7 @@ describe('search filters', function () {
         actingAs(User::factory()->create());
 
         visit(route('pokemon.web.box.index', [
-            'types'       => [ElementalType::FIRE, ElementalType::WATER],
+            'types'       => [PokemonType::FIRE, PokemonType::WATER],
             'traits'      => [PokemonTrait::LEGENDARY],
             'generations' => [Generation::I],
         ]))

@@ -1,4 +1,4 @@
-export enum ElementalType {
+export enum PokemonType {
   BUG = 'bug',
   DARK = 'dark',
   DRAGON = 'dragon',

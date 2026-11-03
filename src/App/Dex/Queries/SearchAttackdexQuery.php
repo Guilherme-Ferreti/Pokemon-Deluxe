@@ -9,9 +9,9 @@ use App\Dex\Filters\SearchAttackdexFilters;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Collection;
 use Shared\Enums\Ailment;
-use Shared\Enums\ElementalType;
 use Shared\Enums\MoveCategory;
 use Shared\Enums\MoveTrait;
+use Shared\Enums\PokemonType;
 use Shared\Enums\SortDirection;
 use Shared\Models\Move;
 
@@ -41,7 +41,7 @@ final class SearchAttackdexQuery
 
     /**
      * @param  Builder<Move>  $query
-     * @param  Collection<int, ElementalType>  $types
+     * @param  Collection<int, PokemonType>  $types
      * @return Builder<Move>
      */
     private function applyTypes(Builder $query, Collection $types): Builder

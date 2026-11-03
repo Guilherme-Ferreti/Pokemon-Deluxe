@@ -7,9 +7,9 @@ use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Schema;
 use Shared\Enums\Ailment;
-use Shared\Enums\ElementalType;
 use Shared\Enums\MoveCategory;
 use Shared\Enums\MoveDamageClass;
+use Shared\Enums\PokemonType;
 
 return new class extends Migration
 {
@@ -21,7 +21,7 @@ return new class extends Migration
             $table->string('slug')->unique();
 
             $table->string('name');
-            $table->enum('type', Arr::pluck(ElementalType::cases(), 'value'));
+            $table->enum('type', Arr::pluck(PokemonType::cases(), 'value'));
 
             $table->enum('category', Arr::pluck(MoveCategory::cases(), 'value'));
             $table->enum('damage_class', Arr::pluck(MoveDamageClass::cases(), 'value'));
