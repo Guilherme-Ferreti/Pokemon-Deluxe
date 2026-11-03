@@ -21,7 +21,7 @@ return new class extends Migration
             $table->enum('item_type', Arr::pluck(InventoryItemType::cases(), 'value'));
             $table->uuid('item_id');
 
-            $table->unsignedInteger('quantity')->default(0);
+            $table->unsignedSmallInteger('quantity')->default(0);
 
             $table->timestamps();
 

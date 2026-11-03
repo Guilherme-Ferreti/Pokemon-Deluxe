@@ -63,6 +63,17 @@ final class InventoryItem extends Model
      * @param  Builder<$this>  $query
      */
     #[Scope]
+    protected function forItem(Builder $query, EvolutionItem|Pokeball $item): void
+    {
+        $query
+            ->where('item_id', $item->getKey())
+            ->where('item_type', InventoryItemType::fromModel($item));
+    }
+
+    /**
+     * @param  Builder<$this>  $query
+     */
+    #[Scope]
     protected function pokeballs(Builder $query): void
     {
         $query->where('item_type', InventoryItemType::POKEBALL);
