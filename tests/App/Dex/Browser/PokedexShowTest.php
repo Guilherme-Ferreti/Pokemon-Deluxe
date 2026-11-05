@@ -5,6 +5,7 @@ declare(strict_types=1);
 use Shared\Enums\MoveCategory;
 use Shared\Enums\PokemonGender;
 use Shared\Enums\SpeciesTrait;
+use Shared\Models\EvolutionItem;
 use Shared\Models\Move;
 use Shared\Models\Species;
 use Shared\Models\SpeciesEvolution;
@@ -206,15 +207,18 @@ describe('evolution chain card', function () {
         $user    = User::factory()->create();
         $species = Species::factory()->create();
 
-        $previousEvolution = SpeciesEvolution::factory()->for($species, 'into')->create();
+        $evolutionItem = EvolutionItem::factory()->create();
+
+        $previousEvolution = SpeciesEvolution::factory()->for($species, 'into')->for($evolutionItem)->create();
         $nextEvolution     = SpeciesEvolution::factory()->for($species, 'from')->create();
 
         actingAs($user);
 
         visit(route('dex.web.pokedex.show', $species))
             ->assertVisible('@evolution-chain-card')
-            ->assertSeeIn('@evolution-chain-card', $previousEvolution->from->name)
-            ->assertSeeIn('@evolution-chain-card', $nextEvolution->into->name);
+            ->assertSeeIn('@evolution-chain-card__evolution-1-species-link', $previousEvolution->from->name)
+            ->assertSeeIn('@evolution-chain-card__evolution-1-item', $evolutionItem->name)
+            ->assertSeeIn('@evolution-chain-card__evolution-2-species-link', $nextEvolution->into->name);
     });
 });
 

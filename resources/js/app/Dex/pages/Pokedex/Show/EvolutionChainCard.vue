@@ -25,6 +25,7 @@
           <span class="self-center">
             <AppNavLink
               class="font-medium underline"
+              :data-test="`evolution-chain-card__evolution-${index + 1}-species-link`"
               :url="
                 route('dex.web.pokedex.show', {
                   species: evolution.species.slug,
@@ -37,7 +38,10 @@
             </template>
             <template v-if="evolution.evolutionItem">
               using
-              <span class="inline-block">
+              <span
+                class="inline-block"
+                :data-test="`evolution-chain-card__evolution-${index + 1}-item`"
+              >
                 <ItemSprite
                   v-if="evolution.evolutionItem?.sprite"
                   :name="evolution.evolutionItem.name"
