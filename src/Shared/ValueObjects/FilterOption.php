@@ -40,7 +40,7 @@ final class FilterOption implements ValueObject
     public static function listFromEnum(string $class): array
     {
         return array_map(
-            fn (BackedEnum $case) => self::fromEnum($case),
+            self::fromEnum(...),
             $class::cases(),
         );
     }

@@ -16,12 +16,12 @@ final class PartyPageProps implements ProvidesInertiaProperties
     public function toInertiaProperties(RenderContext $context): array
     {
         return [
-            'party' => fn () => $this->getPartyProp(),
+            'party' => $this->getPartyProp(...),
         ];
     }
 
     /**
-     * @return array<string, mixed>
+     * @return array<int, mixed>
      */
     private function getPartyProp(): array
     {

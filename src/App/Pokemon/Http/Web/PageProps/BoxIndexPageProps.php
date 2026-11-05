@@ -24,7 +24,7 @@ final readonly class BoxIndexPageProps implements ProvidesInertiaProperties
         return [
             'pokemonList' => fn () => $this->getPokemonListProp($searchBoxFilters),
             'filters'     => [
-                'options' => fn () => SearchBoxFilters::filterOptions(),
+                'options' => SearchBoxFilters::filterOptions(...),
                 'active'  => fn () => $searchBoxFilters,
             ],
         ];

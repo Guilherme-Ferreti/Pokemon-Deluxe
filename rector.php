@@ -3,14 +3,7 @@
 declare(strict_types=1);
 
 use Pest\Rector\Set\PestSetList;
-use Rector\CodingStyle\Rector\ArrowFunction\ArrowFunctionDelegatingCallToFirstClassCallableRector;
-use Rector\CodingStyle\Rector\Use_\SeparateMultiUseImportsRector;
 use Rector\Config\RectorConfig;
-use Rector\Naming\Rector\Assign\RenameVariableToMatchMethodCallReturnTypeRector;
-use Rector\Naming\Rector\Class_\RenamePropertyToMatchTypeRector;
-use Rector\Naming\Rector\ClassMethod\RenameParamToMatchTypeRector;
-use Rector\TypeDeclaration\Rector\ArrowFunction\AddArrowFunctionReturnTypeRector;
-use Rector\TypeDeclaration\Rector\Closure\AddClosureVoidReturnTypeWhereNoReturnRector;
 
 return RectorConfig::configure()
     ->withPaths([
@@ -26,29 +19,6 @@ return RectorConfig::configure()
     ->withPhpSets()
     ->withComposerBased(laravel: true)
     ->withImportNames()
-    ->withPreparedSets(
-        deadCode: true,
-        codeQuality: true,
-        codingStyle: true,
-        typeDeclarations: true,
-        typeDeclarationDocblocks: true,
-        privatization: true,
-        naming: true,
-        instanceOf: true,
-        earlyReturn: true,
-        carbon: true,
-    )
     ->withSets([
         PestSetList::CODING_STYLE,
-    ])
-    ->withSkip([
-        SeparateMultiUseImportsRector::class,
-        RenameParamToMatchTypeRector::class,
-        RenamePropertyToMatchTypeRector::class,
-        ArrowFunctionDelegatingCallToFirstClassCallableRector::class,
-        AddArrowFunctionReturnTypeRector::class,
-        RenameVariableToMatchMethodCallReturnTypeRector::class,
-        AddClosureVoidReturnTypeWhereNoReturnRector::class => [
-            __DIR__ . '/tests',
-        ],
     ]);

@@ -22,13 +22,13 @@ final class NurseryPageProps implements ProvidesInertiaProperties
     public function toInertiaProperties(RenderContext $context): array
     {
         return [
-            'incubators' => fn () => $this->getIncubatorsProp(),
-            'pokeballs'  => fn () => $this->getPokeballsProp(),
+            'incubators' => $this->getIncubatorsProp(...),
+            'pokeballs'  => $this->getPokeballsProp(...),
         ];
     }
 
     /**
-     * @return array<string, mixed>
+     * @return array<int, mixed>
      */
     private function getIncubatorsProp(): array
     {
@@ -68,7 +68,7 @@ final class NurseryPageProps implements ProvidesInertiaProperties
     }
 
     /**
-     * @return array<string, mixed>
+     * @return array<int, mixed>
      */
     private function getPokeballsProp(): array
     {

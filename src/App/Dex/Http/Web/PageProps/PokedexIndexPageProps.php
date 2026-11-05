@@ -24,7 +24,7 @@ final class PokedexIndexPageProps implements ProvidesInertiaProperties
         return [
             'speciesList' => fn () => $this->getSpeciesListProp($searchPokedexFilters),
             'filters'     => [
-                'options' => fn () => SearchPokedexFilters::filterOptions(),
+                'options' => SearchPokedexFilters::filterOptions(...),
                 'active'  => fn () => $searchPokedexFilters,
             ],
         ];

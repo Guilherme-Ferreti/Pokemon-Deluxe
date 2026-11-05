@@ -87,8 +87,7 @@ final class UserSeeder extends Seeder
     private function attachMovesToPokemon(User $user): void
     {
         $user->pokemon()
-            ->select('id', 'species_id')
-            ->get()
+            ->get(['id', 'species_id'])
             ->flatMap(fn (Pokemon $pokemon) => Arr::map($this->getRandomLearnableMoves($pokemon->species_id), fn (string $moveId) => [
                 'pokemon_id' => $pokemon->id,
                 'move_id'    => $moveId,
@@ -98,7 +97,7 @@ final class UserSeeder extends Seeder
     }
 
     /**
-     * @return array<string, array<string>>
+     * @return array<int, string>
      */
     private function getRandomLearnableMoves(string $speciesId): array
     {
