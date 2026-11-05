@@ -85,7 +85,7 @@
         "test": [
             "@php artisan config:clear --ansi",
             "@format",
-            "npm run build",
+            "npm run build:testing",
             "@php artisan test"
         ],
         "format": [

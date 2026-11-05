@@ -5,32 +5,36 @@ import laravel from 'laravel-vite-plugin';
 import { bunny } from 'laravel-vite-plugin/fonts';
 import { fileURLToPath, URL } from 'node:url';
 import { defineConfig } from 'vite';
+import { stripTestIds } from './resources/js/shared/lib/strip-test-ids.ts';
 
-export default defineConfig({
-    resolve: {
-        alias: {
-            '@css': fileURLToPath(new URL('./resources/css', import.meta.url)),
-        },
+export default defineConfig(({ mode }) => ({
+  resolve: {
+    alias: {
+      '@css': fileURLToPath(new URL('./resources/css', import.meta.url)),
     },
-    plugins: [
-        laravel({
-            input: ['resources/css/app.css', 'resources/js/app.ts'],
-            refresh: true,
-            fonts: [
-                bunny('Instrument Sans', {
-                    weights: [400, 500, 600],
-                }),
-            ],
+  },
+  plugins: [
+    laravel({
+      input: ['resources/css/app.css', 'resources/js/app.ts'],
+      refresh: true,
+      fonts: [
+        bunny('Instrument Sans', {
+          weights: [400, 500, 600],
         }),
-        inertia(),
-        tailwindcss(),
-        vue({
-            template: {
-                transformAssetUrls: {
-                    base: null,
-                    includeAbsolute: false,
-                },
-            },
-        }),
-    ],
-});
+      ],
+    }),
+    inertia(),
+    tailwindcss(),
+    vue({
+      template: {
+        transformAssetUrls: {
+          base: null,
+          includeAbsolute: false,
+        },
+        compilerOptions: {
+          nodeTransforms: mode === 'production' ? [stripTestIds] : [],
+        },
+      },
+    }),
+  ],
+}));
