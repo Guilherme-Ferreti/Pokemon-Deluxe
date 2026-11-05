@@ -173,5 +173,6 @@ arch('Value Objects')
     ->expect('Shared\ValueObjects')
     ->toBeClasses()
     ->toBeFinal()
+    ->toBeReadOnly()
     ->toImplement(ValueObject::class)
     ->toHaveConstructor();

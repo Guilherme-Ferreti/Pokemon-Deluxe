@@ -7,7 +7,7 @@ namespace Shared\ValueObjects;
 use InvalidArgumentException;
 use Shared\Interfaces\ValueObject;
 
-final class IncubatorIndex implements ValueObject
+final readonly class IncubatorIndex implements ValueObject
 {
     /**
      * @var positive-int

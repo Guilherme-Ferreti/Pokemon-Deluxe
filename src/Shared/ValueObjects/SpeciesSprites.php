@@ -6,7 +6,7 @@ namespace Shared\ValueObjects;
 
 use Shared\Interfaces\ValueObject;
 
-final class SpeciesSprites implements ValueObject
+final readonly class SpeciesSprites implements ValueObject
 {
     public function __construct(
         public ?string $back_default,

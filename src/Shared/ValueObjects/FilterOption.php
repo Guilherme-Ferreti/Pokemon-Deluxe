@@ -7,7 +7,7 @@ namespace Shared\ValueObjects;
 use BackedEnum;
 use Shared\Interfaces\ValueObject;
 
-final class FilterOption implements ValueObject
+final readonly class FilterOption implements ValueObject
 {
     public function __construct(
         public string $label,
