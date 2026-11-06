@@ -198,7 +198,7 @@ describe('overview card', function () {
         actingAs($user);
 
         visit(route('dex.web.pokedex.show', $species))
-            ->assertSee('@overview-card__gender-rate-genderless');
+            ->assertVisible('@overview-card__gender-rate-genderless');
     });
 });
 
