@@ -83,6 +83,6 @@ final class Move extends Model
      */
     public function learnedByPokemon(): BelongsToMany
     {
-        return $this->belongsToMany(Pokemon::class);
+        return $this->belongsToMany(Pokemon::class, 'pokemon_move');
     }
 }
