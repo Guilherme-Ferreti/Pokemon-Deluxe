@@ -95,7 +95,7 @@ final class Pokemon extends Model
      */
     public function moves(): BelongsToMany
     {
-        return $this->belongsToMany(Move::class, 'pokemon_moves');
+        return $this->belongsToMany(Move::class);
     }
 
     /**

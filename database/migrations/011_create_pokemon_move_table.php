@@ -12,7 +12,7 @@ return new class extends Migration
 {
     public function up(): void
     {
-        Schema::create('pokemon_moves', function (Blueprint $table): void {
+        Schema::create('pokemon_move', function (Blueprint $table): void {
             $table->foreignIdFor(Pokemon::class)->constrained()->cascadeOnDelete();
             $table->foreignIdFor(Move::class)->constrained()->cascadeOnDelete();
 
@@ -22,6 +22,6 @@ return new class extends Migration
 
     public function down(): void
     {
-        Schema::dropIfExists('pokemon_moves');
+        Schema::dropIfExists('pokemon_move');
     }
 };

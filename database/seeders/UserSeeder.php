@@ -93,7 +93,7 @@ final class UserSeeder extends Seeder
                 'move_id'    => $moveId,
             ]))
             ->chunk(3000)
-            ->each(fn (Collection $chunk) => DB::table('pokemon_moves')->insert($chunk->toArray()));
+            ->each(fn (Collection $chunk) => DB::table('pokemon_move')->insert($chunk->toArray()));
     }
 
     /**
