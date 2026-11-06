@@ -21,13 +21,22 @@ final class SpeciesLearnableMoveFactory extends Factory
         return [
             'species_id'   => Species::factory(),
             'move_id'      => Move::factory(),
-            'level_learn'  => fake()->numberBetween(1, 100),
-            'is_base_move' => false,
+            'level_learn'  => fake()->randomElement([null, fake()->numberBetween(1, config('game.pokemon.max_level'))]),
+            'is_base_move' => fake()->boolean(),
         ];
     }
 
-    public function learnedByTM(): static
+    public function byLevelUp(?int $level = null): static
     {
-        return $this->state(fn (): array => ['level_learn' => null]);
+        return $this->state(fn () => [
+            'level_learn' => $level ?? fake()->numberBetween(1, config('game.pokemon.max_level')),
+        ]);
+    }
+
+    public function byTM(): static
+    {
+        return $this->state(fn () => [
+            'level_learn' => null,
+        ]);
     }
 }

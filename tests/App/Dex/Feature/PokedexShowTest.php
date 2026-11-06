@@ -154,8 +154,8 @@ it('displays learnable moves split into level up and tm', function () {
     $levelUpMove = Move::factory()->create();
     $tmMove      = Move::factory()->create();
 
-    SpeciesLearnableMove::factory()->for($species)->for($levelUpMove, 'move')->create(['level_learn' => 5]);
-    SpeciesLearnableMove::factory()->for($species)->for($tmMove, 'move')->learnedByTM()->create();
+    SpeciesLearnableMove::factory()->for($species)->for($levelUpMove)->byLevelUp(5)->create();
+    SpeciesLearnableMove::factory()->for($species)->for($tmMove)->byTM()->create();
 
     actingAs($user);
 
@@ -189,8 +189,8 @@ it('orders learnable moves by level then by name', function () {
     $highLevelMove = Move::factory()->create(['name' => 'Hyper Beam']);
     $lowLevelMove  = Move::factory()->create(['name' => 'Tackle']);
 
-    SpeciesLearnableMove::factory()->for($species)->for($highLevelMove, 'move')->create(['level_learn' => 50]);
-    SpeciesLearnableMove::factory()->for($species)->for($lowLevelMove, 'move')->create(['level_learn' => 1]);
+    SpeciesLearnableMove::factory()->for($species)->for($highLevelMove)->byLevelUp(50)->create();
+    SpeciesLearnableMove::factory()->for($species)->for($lowLevelMove)->byLevelUp(1)->create();
 
     actingAs($user);
 

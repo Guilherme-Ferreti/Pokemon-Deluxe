@@ -270,7 +270,7 @@ describe('learnable moves card', function () {
 
         $move = Move::factory()->create(['category' => MoveCategory::DAMAGE]);
 
-        $learnableMove = SpeciesLearnableMove::factory()->for($species)->for($move, 'move')->create();
+        $learnableMove = SpeciesLearnableMove::factory()->for($species)->for($move)->byLevelUp()->create();
 
         actingAs($user);
 
@@ -289,7 +289,7 @@ describe('learnable moves card', function () {
 
         $move = Move::factory()->create(['category' => MoveCategory::DAMAGE]);
 
-        SpeciesLearnableMove::factory()->for($species)->for($move, 'move')->learnedByTM()->create();
+        SpeciesLearnableMove::factory()->for($species)->for($move)->byTM()->create();
 
         actingAs($user);
 
@@ -309,8 +309,8 @@ describe('learnable moves card', function () {
         $lowLevelMove  = Move::factory()->create();
         $highLevelMove = Move::factory()->create();
 
-        SpeciesLearnableMove::factory()->for($species)->for($lowLevelMove, 'move')->create(['level_learn' => 1]);
-        SpeciesLearnableMove::factory()->for($species)->for($highLevelMove, 'move')->create(['level_learn' => 50]);
+        SpeciesLearnableMove::factory()->for($species)->for($lowLevelMove)->byLevelUp(1)->create();
+        SpeciesLearnableMove::factory()->for($species)->for($highLevelMove)->byLevelUp(50)->create();
 
         actingAs($user);
 
@@ -332,8 +332,8 @@ describe('learnable moves card', function () {
         $firstMove  = Move::factory()->create(['tm_code' => 'TM001']);
         $secondMove = Move::factory()->create(['tm_code' => 'TM002']);
 
-        SpeciesLearnableMove::factory()->for($species)->for($firstMove, 'move')->learnedByTM()->create();
-        SpeciesLearnableMove::factory()->for($species)->for($secondMove, 'move')->learnedByTM()->create();
+        SpeciesLearnableMove::factory()->for($species)->for($firstMove)->byTM()->create();
+        SpeciesLearnableMove::factory()->for($species)->for($secondMove)->byTM()->create();
 
         actingAs($user);
 
@@ -355,8 +355,8 @@ describe('learnable moves card', function () {
         $ohkoMove   = Move::factory()->create(['category' => MoveCategory::OHKO]);
         $strongMove = Move::factory()->create(['category' => MoveCategory::DAMAGE, 'power' => 150]);
 
-        SpeciesLearnableMove::factory()->for($species)->for($ohkoMove, 'move')->create(['level_learn' => 1]);
-        SpeciesLearnableMove::factory()->for($species)->for($strongMove, 'move')->create(['level_learn' => 1]);
+        SpeciesLearnableMove::factory()->for($species)->for($ohkoMove)->byLevelUp()->create();
+        SpeciesLearnableMove::factory()->for($species)->for($strongMove)->byLevelUp()->create();
 
         actingAs($user);
 
@@ -377,8 +377,8 @@ describe('learnable moves card', function () {
         $powerlessMove = Move::factory()->create(['category' => MoveCategory::AILMENT]);
         $powerfullMove = Move::factory()->create(['category' => MoveCategory::DAMAGE, 'power' => 150]);
 
-        SpeciesLearnableMove::factory()->for($species)->for($powerlessMove, 'move')->create(['level_learn' => 1]);
-        SpeciesLearnableMove::factory()->for($species)->for($powerfullMove, 'move')->create(['level_learn' => 1]);
+        SpeciesLearnableMove::factory()->for($species)->for($powerlessMove)->byLevelUp()->create();
+        SpeciesLearnableMove::factory()->for($species)->for($powerfullMove)->byLevelUp()->create();
 
         actingAs($user);
 
