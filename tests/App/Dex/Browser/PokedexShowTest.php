@@ -3,7 +3,6 @@
 declare(strict_types=1);
 
 use Shared\Enums\MoveCategory;
-use Shared\Enums\PokemonGender;
 use Shared\Enums\PokemonGenderRate;
 use Shared\Enums\SpeciesTrait;
 use Shared\Models\EvolutionItem;

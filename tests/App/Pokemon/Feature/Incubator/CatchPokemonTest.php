@@ -60,7 +60,6 @@ it('catches a ready-to-catch egg', function () {
         'original_user_id' => $user->id,
         'species_id'       => $species->id,
         'level'            => 1,
-        'experience'       => 0,
         'in_party'         => false,
         'is_shiny'         => true,
         'gender'           => PokemonGender::FEMALE->value,

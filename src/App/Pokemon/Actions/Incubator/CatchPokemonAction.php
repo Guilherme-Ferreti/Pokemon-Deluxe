@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Pokemon\Actions\Incubator;
 
 use App\Inventory\Actions\RemoveInventoryItemAction;
+use App\Pokemon\Actions\CreatePokemonAction;
 use App\Pokemon\Exceptions\IncubatorEggNotReadyToCatchException;
 use App\Pokemon\Exceptions\IncubatorNotActiveException;
 use App\Pokemon\Support\LockKeys;
@@ -16,6 +17,7 @@ use Shared\Models\Pokeball;
 use Shared\Models\Pokemon;
 use Shared\Models\User;
 use Shared\ValueObjects\IncubatorIndex;
+use Shared\ValueObjects\NewPokemon;
 
 final class CatchPokemonAction
 {
@@ -54,8 +56,13 @@ final class CatchPokemonAction
         DB::transaction(function (): void {
             new RemoveInventoryItemAction()->handle($this->user, $this->pokeball);
 
+            $this->pokemon = new CreatePokemonAction()->handle(
+                owner: $this->user,
+                newPokemon: NewPokemon::fromIncubation($this->incubation),
+                pokeball: $this->pokeball
+            );
+
             $this->markEggAsCaught();
-            $this->addPokemonToUser();
         });
     }
 
@@ -92,25 +99,5 @@ final class CatchPokemonAction
     {
         $this->incubation->caught_at = now();
         $this->incubation->save();
-    }
-
-    private function addPokemonToUser(): void
-    {
-        $this->pokemon = Pokemon::create([
-            'user_id'          => $this->user->id,
-            'original_user_id' => $this->user->id,
-            'species_id'       => $this->incubation->species_id,
-            'level'            => 1,
-            'experience'       => 0,
-            'in_party'         => false,
-            'is_shiny'         => $this->incubation->is_shiny,
-            'gender'           => $this->incubation->gender,
-            'pokeball_id'      => $this->pokeball->id,
-            'caught_at'        => now(),
-        ]);
-
-        $baseMoveIds = $this->pokemon->species->learnableMoves()->baseMove()->take(4)->pluck('move_id');
-
-        $this->pokemon->moves()->attach($baseMoveIds);
     }
 }

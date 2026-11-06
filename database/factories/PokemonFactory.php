@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Database\Factories;
 
+use App\Pokemon\Services\ExperienceCalculator;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Shared\Enums\PokemonGender;
 use Shared\Models\Pokeball;
@@ -26,7 +27,7 @@ final class PokemonFactory extends Factory
             'original_user_id' => User::factory(),
             'species_id'       => Species::factory(),
             'level'            => fake()->numberBetween(1, 100),
-            'experience'       => fake()->numberBetween(0, 100),
+            'experience'       => fn (array $attributes) => new ExperienceCalculator()->experienceForLevel((int) $attributes['level']),
             'in_party'         => fake()->boolean(),
             'is_shiny'         => fake()->boolean(10),
             'gender'           => fn (array $attributes) => Species::findOrFail((string) $attributes['species_id'])->getRandomGender(),
