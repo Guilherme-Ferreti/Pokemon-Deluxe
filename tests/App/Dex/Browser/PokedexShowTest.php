@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 use Shared\Enums\MoveCategory;
 use Shared\Enums\PokemonGender;
+use Shared\Enums\PokemonGenderRate;
 use Shared\Enums\SpeciesTrait;
 use Shared\Models\EvolutionItem;
 use Shared\Models\Move;
@@ -131,7 +132,7 @@ describe('overview card', function () {
             'is_mythical'  => true,
             'is_mega'      => true,
             'is_gmax'      => true,
-            'gender_rate'  => 2,
+            'gender_rate'  => PokemonGenderRate::EQUAL,
         ]);
 
         actingAs($user);
@@ -145,8 +146,8 @@ describe('overview card', function () {
             ->assertSeeIn('@overview-card__traits', SpeciesTrait::MYTHICAL->label())
             ->assertSeeIn('@overview-card__traits', SpeciesTrait::MEGA->label())
             ->assertSeeIn('@overview-card__traits', SpeciesTrait::GMAX->label())
-            ->assertSeeIn('@overview-card__gender-rate', $species->getMalePercentage())
-            ->assertSeeIn('@overview-card__gender-rate', $species->getFemalePercentage());
+            ->assertSeeIn('@overview-card__gender-rate', $species->gender_rate->malePercentage())
+            ->assertSeeIn('@overview-card__gender-rate', $species->gender_rate->femalePercentage());
     });
 
     it('does not displays missing traits species traits', function () {
@@ -191,9 +192,9 @@ describe('overview card', function () {
             ->assertDontSeeIn('@overview-card__traits', SpeciesTrait::GMAX->label());
     });
 
-    it('displays an empty state message if species is genderless', function () {
+    it('displays the genderless label if species is genderless', function () {
         $user    = User::factory()->create();
-        $species = Species::factory()->create(['gender_rate' => -1]);
+        $species = Species::factory()->create(['gender_rate' => PokemonGenderRate::GENDERLESS]);
 
         actingAs($user);
 

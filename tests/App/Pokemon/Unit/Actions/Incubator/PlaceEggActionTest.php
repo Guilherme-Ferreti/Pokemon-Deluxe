@@ -6,6 +6,7 @@ use App\Pokemon\Actions\Incubator\PlaceEggAction;
 use App\Pokemon\Exceptions\IncubatorNotIdleException;
 use Illuminate\Support\Lottery;
 use Shared\Enums\PokemonGender;
+use Shared\Enums\PokemonGenderRate;
 use Shared\Models\Incubation;
 use Shared\Models\Species;
 use Shared\Models\User;
@@ -92,7 +93,7 @@ it('places an egg in an incubator if the incubation process is complete', functi
     assertDatabaseCount(Incubation::class, 2);
 });
 
-it('assigns the egg a gender the species can have', function (int $genderRate, array $possibleGenders) {
+it('assigns the egg a gender the species can have', function (PokemonGenderRate $genderRate, array $possibleGenders) {
     $user    = User::first();
     $species = Species::factory()->create(['egg_obtainable' => true, 'gender_rate' => $genderRate]);
 
@@ -103,17 +104,17 @@ it('assigns the egg a gender the species can have', function (int $genderRate, a
     expect($incubation->species_id)->toBe($species->id)
         ->and($incubation->gender)->toBeIn($possibleGenders);
 })->with([
-    'genderless species'     => [-1, [PokemonGender::GENDERLESS]],
-    'all-male species'       => [0, [PokemonGender::MALE]],
-    'all-female species'     => [8, [PokemonGender::FEMALE]],
-    'male-or-female species' => [4, [PokemonGender::MALE, PokemonGender::FEMALE]],
+    'genderless species'     => [PokemonGenderRate::GENDERLESS, [PokemonGender::GENDERLESS]],
+    'male-only species'      => [PokemonGenderRate::ONLY_MALE, [PokemonGender::MALE]],
+    'female-only species'    => [PokemonGenderRate::ONLY_FEMALE, [PokemonGender::FEMALE]],
+    'male-or-female species' => [PokemonGenderRate::EQUAL, [PokemonGender::MALE, PokemonGender::FEMALE]],
 ]);
 
 it('marks the egg as shiny when the shiny lottery wins', function () {
     Lottery::alwaysWin();
 
     $user = User::first();
-    Species::factory()->create(['egg_obtainable' => true, 'gender_rate' => -1]);
+    Species::factory()->create(['egg_obtainable' => true]);
 
     new PlaceEggAction()->handle($user, new IncubatorIndex(1));
 
@@ -124,7 +125,7 @@ it('does not mark the egg as shiny when the shiny lottery loses', function () {
     Lottery::alwaysLose();
 
     $user = User::first();
-    Species::factory()->create(['egg_obtainable' => true, 'gender_rate' => -1]);
+    Species::factory()->create(['egg_obtainable' => true]);
 
     new PlaceEggAction()->handle($user, new IncubatorIndex(1));
 

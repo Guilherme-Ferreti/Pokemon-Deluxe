@@ -15,11 +15,13 @@ use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Support\Lottery;
 use Override;
 use Shared\Casts\AsSpeciesPortraits;
 use Shared\Casts\AsSpeciesSprites;
 use Shared\Enums\Generation;
 use Shared\Enums\PokemonGender;
+use Shared\Enums\PokemonGenderRate;
 use Shared\Enums\PokemonType;
 use Shared\ValueObjects\SpeciesPortraits;
 use Shared\ValueObjects\SpeciesSprites;
@@ -41,7 +43,7 @@ use Shared\ValueObjects\SpeciesSprites;
  * @property bool $is_gmax
  * @property Generation $generation
  * @property int|null $catch_rate
- * @property int $gender_rate
+ * @property PokemonGenderRate $gender_rate
  * @property bool $egg_obtainable
  * @property-read EloquentCollection<int, SpeciesEvolution> $evolutions
  * @property-read EloquentCollection<int, SpeciesEvolution> $previousEvolutions
@@ -71,7 +73,7 @@ final class Species extends Model
             'is_mega'        => 'boolean',
             'is_gmax'        => 'boolean',
             'catch_rate'     => 'integer',
-            'gender_rate'    => 'integer',
+            'gender_rate'    => PokemonGenderRate::class,
             'egg_obtainable' => 'boolean',
             'sprites'        => AsSpeciesSprites::class,
             'portraits'      => AsSpeciesPortraits::class,
@@ -144,7 +146,7 @@ final class Species extends Model
 
     public function isGenderless(): bool
     {
-        return $this->gender_rate === -1;
+        return $this->gender_rate === PokemonGenderRate::GENDERLESS;
     }
 
     public function getDisplayName(bool $isShiny = false): string
@@ -178,21 +180,15 @@ final class Species extends Model
         return toIntIfWhole(round(($this->catch_rate / 255) * 100, 2));
     }
 
-    public function getMalePercentage(): int|float
+    public function getRandomGender(): PokemonGender
     {
         if ($this->isGenderless()) {
-            return 0;
+            return PokemonGender::GENDERLESS;
         }
 
-        return toIntIfWhole(round(((8 - $this->gender_rate) / 8) * 100, 2));
-    }
-
-    public function getFemalePercentage(): int|float
-    {
-        if ($this->isGenderless()) {
-            return 0;
-        }
-
-        return toIntIfWhole(round(($this->gender_rate / 8) * 100, 2));
+        return Lottery::odds($this->gender_rate->malePercentage(), 100)
+            ->winner(fn () => PokemonGender::MALE)
+            ->loser(fn () => PokemonGender::FEMALE)
+            ->choose();
     }
 }

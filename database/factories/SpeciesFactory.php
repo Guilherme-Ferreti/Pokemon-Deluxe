@@ -6,6 +6,7 @@ namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Shared\Enums\Generation;
+use Shared\Enums\PokemonGenderRate;
 use Shared\Enums\PokemonType;
 use Shared\Models\Species;
 use Shared\ValueObjects\SpeciesPortraits;
@@ -48,7 +49,7 @@ final class SpeciesFactory extends Factory
             'is_gmax'        => fake()->boolean(5),
             'generation'     => fake()->randomElement(Generation::cases()),
             'catch_rate'     => fake()->numberBetween(3, 255),
-            'gender_rate'    => fake()->numberBetween(-1, 8),
+            'gender_rate'    => fake()->randomElement(PokemonGenderRate::cases()),
             'egg_obtainable' => fake()->boolean(),
         ];
     }

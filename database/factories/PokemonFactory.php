@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
-use Illuminate\Support\Lottery;
 use Shared\Enums\PokemonGender;
 use Shared\Models\Pokeball;
 use Shared\Models\Pokemon;
@@ -30,21 +29,9 @@ final class PokemonFactory extends Factory
             'experience'       => fake()->numberBetween(0, 100),
             'in_party'         => fake()->boolean(),
             'is_shiny'         => fake()->boolean(10),
-            'gender'           => function (array $attributes) {
-                /** @var Species|null $species */
-                $species = Species::find($attributes['species_id']);
-
-                if (! $species || $species->isGenderless()) {
-                    return PokemonGender::GENDERLESS;
-                }
-
-                return Lottery::odds($species->getMalePercentage(), 100)
-                    ->winner(fn () => PokemonGender::MALE)
-                    ->loser(fn () => PokemonGender::FEMALE)
-                    ->choose();
-            },
-            'pokeball_id' => Pokeball::factory(),
-            'caught_at'   => fake()->dateTimeBetween('-1 year', 'now'),
+            'gender'           => fn (array $attributes) => Species::findOrFail((string) $attributes['species_id'])->getRandomGender(),
+            'pokeball_id'      => Pokeball::factory(),
+            'caught_at'        => fake()->dateTimeBetween('-1 year', 'now'),
         ];
     }
 

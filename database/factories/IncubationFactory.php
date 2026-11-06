@@ -6,12 +6,9 @@ namespace Database\Factories;
 
 use Carbon\CarbonImmutable;
 use Illuminate\Database\Eloquent\Factories\Factory;
-use Illuminate\Support\Lottery;
-use Shared\Enums\PokemonGender;
 use Shared\Models\Incubation;
 use Shared\Models\Species;
 use Shared\Models\User;
-use Shared\ValueObjects\IncubatorIndex;
 
 /**
  * @extends Factory<Incubation>
@@ -26,36 +23,13 @@ final class IncubationFactory extends Factory
         return [
             'user_id'           => User::factory(),
             'species_id'        => Species::factory(),
-            'incubator_index'   => fn (array $attributes) => $this->resolveIncubatorIndex($attributes['user_id']),
-            'gender'            => fn (array $attributes) => $this->resolveGender($attributes['species_id']),
+            'incubator_index'   => fn (array $attributes) => fake()->randomElement(User::findOrFail((string) $attributes['user_id'])->purchased_incubator_indexes),
+            'gender'            => fn (array $attributes) => Species::findOrFail((string) $attributes['species_id'])->getRandomGender(),
             'is_shiny'          => fake()->boolean(10),
             'ready_to_hatch_at' => fake()->dateTimeBetween('-2 years', '-1 year'),
             'hatched_at'        => fake()->dateTimeBetween('-11 months', '-2 months'),
             'caught_at'         => fake()->dateTimeBetween('-1 month', 'now'),
         ];
-    }
-
-    private function resolveIncubatorIndex(string $userId): IncubatorIndex
-    {
-        /** @var User $user */
-        $user = User::find($userId);
-
-        return fake()->randomElement($user->purchased_incubator_indexes);
-    }
-
-    private function resolveGender(string $speciesId): PokemonGender
-    {
-        /** @var Species $species */
-        $species = Species::find($speciesId);
-
-        if ($species->isGenderless()) {
-            return PokemonGender::GENDERLESS;
-        }
-
-        return Lottery::odds($species->getMalePercentage(), 100)
-            ->winner(fn () => PokemonGender::MALE)
-            ->loser(fn () => PokemonGender::FEMALE)
-            ->choose();
     }
 
     public function incubating(?CarbonImmutable $until = null): static

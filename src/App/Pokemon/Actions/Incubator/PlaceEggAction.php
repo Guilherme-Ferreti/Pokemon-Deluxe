@@ -8,7 +8,6 @@ use App\Pokemon\Exceptions\IncubatorNotIdleException;
 use App\Pokemon\Support\LockKeys;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Lottery;
-use Shared\Enums\PokemonGender;
 use Shared\Models\Species;
 use Shared\Models\User;
 use Shared\ValueObjects\IncubatorIndex;
@@ -55,7 +54,7 @@ final class PlaceEggAction
         $this->user->incubations()->create([
             'incubator_index'   => $this->incubatorIndex,
             'species_id'        => $species->id,
-            'gender'            => $this->rollGender($species),
+            'gender'            => $species->getRandomGender(),
             'is_shiny'          => $this->rollIsShiny(),
             'ready_to_hatch_at' => now()->addDay(),
         ]);
@@ -67,18 +66,6 @@ final class PlaceEggAction
             ->where('egg_obtainable', true)
             ->inRandomOrder()
             ->firstOrFail();
-    }
-
-    private function rollGender(Species $species): PokemonGender
-    {
-        if ($species->isGenderless()) {
-            return PokemonGender::GENDERLESS;
-        }
-
-        return Lottery::odds($species->getMalePercentage(), 100)
-            ->winner(fn () => PokemonGender::MALE)
-            ->loser(fn () => PokemonGender::FEMALE)
-            ->choose();
     }
 
     private function rollIsShiny(): bool
