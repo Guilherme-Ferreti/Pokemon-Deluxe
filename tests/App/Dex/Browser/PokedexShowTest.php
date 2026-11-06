@@ -146,8 +146,8 @@ describe('overview card', function () {
             ->assertSeeIn('@overview-card__traits', SpeciesTrait::MYTHICAL->label())
             ->assertSeeIn('@overview-card__traits', SpeciesTrait::MEGA->label())
             ->assertSeeIn('@overview-card__traits', SpeciesTrait::GMAX->label())
-            ->assertSeeIn('@overview-card__gender-rate', $species->gender_rate->malePercentage())
-            ->assertSeeIn('@overview-card__gender-rate', $species->gender_rate->femalePercentage());
+            ->assertSeeIn('@overview-card__gender-rate-male', $species->gender_rate->malePercentage())
+            ->assertSeeIn('@overview-card__gender-rate-female', $species->gender_rate->femalePercentage());
     });
 
     it('does not displays missing traits species traits', function () {
@@ -199,7 +199,7 @@ describe('overview card', function () {
         actingAs($user);
 
         visit(route('dex.web.pokedex.show', $species))
-            ->assertSeeIn('@overview-card__gender-rate', PokemonGender::GENDERLESS->label());
+            ->assertSee('@overview-card__gender-rate-genderless');
     });
 });
 

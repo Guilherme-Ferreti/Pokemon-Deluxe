@@ -91,17 +91,17 @@
       v-if="page.props.overview.isGenderless"
       title="Gender Rate"
       text="Genderless"
-      data-test="overview-card__gender-rate"
+      data-test="overview-card__gender-rate-genderless"
     />
     <AppInfoCardRow
       v-else
       title="Gender Rate"
-      data-test="overview-card__gender-rate"
     >
       <span class="flex items-center gap-1 text-sm text-foreground">
         <span
           v-if="canBeMale"
           class="flex items-center gap-0.5"
+          data-test="overview-card__gender-rate-male"
         >
           {{ page.props.overview.malePercentage }}%
 
@@ -111,6 +111,7 @@
         <span
           v-if="canBeFemale"
           class="flex items-center gap-0.5"
+          data-test="overview-card__gender-rate-female"
         >
           {{ page.props.overview.femalePercentage }}%
           <PokemonGenderIcon :gender="PokemonGender.FEMALE" />
