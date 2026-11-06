@@ -8,7 +8,7 @@ use Shared\Models\User;
 use Shared\ValueObjects\IncubatorIndex;
 
 beforeEach(function () {
-    config(['game.max_incubators_per_user' => 3]);
+    config(['game.user.max_incubators' => 3]);
 });
 
 it('returns all, purchased, not purchased, active, and idle incubators indexes', function () {

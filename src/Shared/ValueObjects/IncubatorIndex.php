@@ -16,7 +16,7 @@ final readonly class IncubatorIndex implements ValueObject
 
     public function __construct(int $value)
     {
-        $max = (int) config('game.max_incubators_per_user');
+        $max = (int) config('game.user.max_incubators');
 
         throw_if($value < 1 || $value > $max, InvalidArgumentException::class, "The incubator index must be between 1 and {$max}.");
 

@@ -79,7 +79,7 @@ it('returns 404 for an incubator index outside the configured range', function (
     $user = User::factory()->create(['purchased_incubator_indexes' => []]);
 
     actingAs($user)
-        ->post(route('pokemon.web.incubators.purchase', config('game.max_incubators_per_user') + 1))
+        ->post(route('pokemon.web.incubators.purchase', config('game.user.max_incubators') + 1))
         ->assertNotFound();
 
     assertDatabaseCount(User::class, 1);

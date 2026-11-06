@@ -24,7 +24,7 @@ it('loads the nursery page with expected structure', function () {
         ->assertSuccessful()
         ->assertInertia(fn (Assert $page) => $page
             ->component('Pokemon/pages/Nursery/index')
-            ->has('incubators', config('game.max_incubators_per_user'))
+            ->has('incubators', config('game.user.max_incubators'))
             ->where('incubators.0.index', 1)
             ->where('incubators.0.status', IncubatorStatus::NOT_PURCHASED->value)
             ->has('pokeballs')

@@ -32,7 +32,7 @@ final class UserFactory extends Factory
             'email_verified_at'           => now(),
             'password'                    => self::$password ??= Hash::make('password'),
             'remember_token'              => Str::random(10),
-            'purchased_incubator_indexes' => Arr::take(AppHelper::allIncubatorIndexes(), fake()->numberBetween(1, config('game.max_incubators_per_user'))),
+            'purchased_incubator_indexes' => Arr::take(AppHelper::allIncubatorIndexes(), fake()->numberBetween(1, config('game.user.max_incubators'))),
         ];
     }
 

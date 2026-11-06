@@ -6,7 +6,7 @@ use Shared\ValueObjects\FilterOption;
 use Shared\ValueObjects\IncubatorIndex;
 
 it('accepts an index within the allowed range', function () {
-    $max = (int) config('game.max_incubators_per_user');
+    $max = (int) config('game.user.max_incubators');
 
     expect((new IncubatorIndex(1))->value)->toBe(1)
         ->and((new IncubatorIndex($max))->value)->toBe($max);
@@ -18,7 +18,7 @@ it('rejects an index outside the allowed range', function (int $index) {
 })->with([
     'below one' => fn (): int => 0,
     'negative'  => fn (): int => -1,
-    'above max' => fn (): int => (int) config('game.max_incubators_per_user') + 1,
+    'above max' => fn (): int => (int) config('game.user.max_incubators') + 1,
 ]);
 
 it('equals another index with the same value', function () {

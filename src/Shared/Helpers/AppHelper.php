@@ -42,7 +42,7 @@ final class AppHelper
     {
         return array_map(
             fn (int $index) => new IncubatorIndex($index),
-            range(1, config('game.max_incubators_per_user')),
+            range(1, config('game.user.max_incubators')),
         );
     }
 }
