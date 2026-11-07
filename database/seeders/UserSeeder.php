@@ -101,6 +101,7 @@ final class UserSeeder extends Seeder
      */
     private function getRandomLearnableMoves(string $speciesId): array
     {
+        /** @var array<string, array<int, string>> */
         $allMoves = once(fn () => Species::query()
             ->with('learnableMoves:move_id,species_id')
             ->get()
@@ -108,17 +109,7 @@ final class UserSeeder extends Seeder
             ->toArray()
         );
 
-        $moves = $allMoves[$speciesId];
-
-        if (count($moves) >= 4) {
-            return Arr::random($moves, 4);
-        }
-
-        while (count($moves) < 4) {
-            $moves = [...$moves, ...$moves];
-        }
-
-        return Arr::take($moves, 4);
+        return collect($allMoves[$speciesId] ?? [])->repeatUntil(4)->take(4)->toArray();
     }
 
     private function addIncubations(User $user): void

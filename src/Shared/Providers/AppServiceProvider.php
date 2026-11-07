@@ -147,5 +147,16 @@ final class AppServiceProvider extends ServiceProvider
                 ->filter()
                 ->values();
         });
+
+        Collection::macro('repeatUntil', function (int $size) {
+            if ($this->isEmpty()) {
+                return collect();
+            }
+
+            return collect(range(1, (int) ceil($size / $this->count())))
+                ->flatMap(fn () => $this)
+                ->take($size)
+                ->values();
+        });
     }
 }

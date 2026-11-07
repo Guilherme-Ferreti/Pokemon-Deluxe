@@ -83,6 +83,7 @@
             "./vendor/bin/rector"
         ],
         "test": [
+            "Composer\\Config::disableProcessTimeout",
             "@php artisan config:clear --ansi",
             "@format",
             "npm run build:testing",

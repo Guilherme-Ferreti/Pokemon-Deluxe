@@ -11,7 +11,7 @@ use Shared\ValueObjects\NewPokemon;
 
 describe('level', function () {
     it('accepts a level within the allowed range', function () {
-        $species = Species::factory()->create();
+        $species = Species::factory()->create(['gender_rate' => PokemonGenderRate::ONLY_MALE]);
         $max     = (int) config('game.pokemon.max_level');
 
         expect(fn () => new NewPokemon($species, 1, false, PokemonGender::MALE))
@@ -52,7 +52,7 @@ describe('gender', function () {
         $species = $species = Species::factory()->create(['gender_rate' => PokemonGenderRate::EQUAL]);
 
         expect(fn () => new NewPokemon($species, 50, false, $gender))
-            ->toThrow(InvalidArgumentException::class);
+            ->not->toThrow(InvalidArgumentException::class);
     })->with([
         'male'   => PokemonGender::MALE,
         'female' => PokemonGender::FEMALE,

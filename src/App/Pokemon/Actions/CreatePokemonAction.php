@@ -6,7 +6,6 @@ namespace App\Pokemon\Actions;
 
 use App\Pokemon\Exceptions\BoxFullException;
 use App\Pokemon\Services\ExperienceCalculator;
-use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\DB;
 use Shared\Models\Pokeball;
 use Shared\Models\Pokemon;
@@ -63,12 +62,8 @@ final class CreatePokemonAction
 
     private function addBaseMoves(Pokemon $pokemon): void
     {
-        $moveIds = $this->newPokemon->species->learnableMoves()->baseMove()->take(4)->pluck('move_id')->toArray();
+        $moveIds = $this->newPokemon->species->learnableMoves()->baseMove()->take(4)->pluck('move_id');
 
-        while (count($moveIds) < 4) {
-            $moveIds = [...$moveIds, ...$moveIds];
-        }
-
-        $pokemon->moves()->attach(Arr::take($moveIds, 4));
+        $pokemon->moves()->attach($moveIds->repeatUntil(4));
     }
 }

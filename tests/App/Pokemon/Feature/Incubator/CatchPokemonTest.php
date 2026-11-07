@@ -2,7 +2,6 @@
 
 declare(strict_types=1);
 
-use Shared\Enums\PokemonGender;
 use Shared\Models\Incubation;
 use Shared\Models\InventoryItem;
 use Shared\Models\Pokeball;
@@ -34,7 +33,7 @@ it('catches a ready-to-catch egg', function () {
 
     $incubation = Incubation::factory()->for($user)->for($species)->readyToCatch()->create([
         'incubator_index' => new IncubatorIndex(1),
-        'gender'          => PokemonGender::FEMALE,
+        'gender'          => $species->getRandomGender(),
         'is_shiny'        => true,
     ]);
 
@@ -62,8 +61,8 @@ it('catches a ready-to-catch egg', function () {
         'level'            => 1,
         'in_party'         => false,
         'is_shiny'         => true,
-        'gender'           => PokemonGender::FEMALE->value,
-        'pokeball_id'      => $data['pokeballId'],
+        'gender'           => $incubation->gender,
+        'pokeball_id'      => $pokeball->id,
         'caught_at'        => '2026-01-01 12:00:00',
     ]);
 
