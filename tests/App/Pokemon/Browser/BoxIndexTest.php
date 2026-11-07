@@ -36,10 +36,10 @@ it('shows box pokemon', function () {
         ->assertSeeIn("@pokemon-{$pokemon->id}-card__gender", $pokemon->gender->label())
         ->assertSeeIn("@pokemon-{$pokemon->id}-card__level", $pokemon->level)
         ->assertSeeIn("@pokemon-{$pokemon->id}-card__experience", $pokemon->experience)
-        ->assertSeeIn("@pokemon-{$pokemon->id}-card__moves", $pokemon->moves[0]->name)
-        ->assertSeeIn("@pokemon-{$pokemon->id}-card__moves", $pokemon->moves[1]->name)
-        ->assertSeeIn("@pokemon-{$pokemon->id}-card__moves", $pokemon->moves[2]->name)
-        ->assertSeeIn("@pokemon-{$pokemon->id}-card__moves", $pokemon->moves[3]->name)
+        ->assertSeeIn("@pokemon-{$pokemon->id}-card__move-1", $pokemon->moves[0]->name)
+        ->assertSeeIn("@pokemon-{$pokemon->id}-card__move-2", $pokemon->moves[1]->name)
+        ->assertSeeIn("@pokemon-{$pokemon->id}-card__move-3", $pokemon->moves[2]->name)
+        ->assertSeeIn("@pokemon-{$pokemon->id}-card__move-4", $pokemon->moves[3]->name)
         ->assertMissing('@pokemon-grid__empty-state');
 });
 

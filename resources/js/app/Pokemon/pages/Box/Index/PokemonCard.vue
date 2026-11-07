@@ -89,12 +89,9 @@
       >
         Moves
       </p>
-      <ul
-        class="grid grid-cols-2 gap-0.5"
-        :data-test="`pokemon-${pokemon.id}-card__moves`"
-      >
+      <ul class="grid grid-cols-2 gap-0.5">
         <li
-          v-for="move in pokemon.moves"
+          v-for="(move, index) in pokemon.moves"
           :key="move.name"
           class="flex items-center gap-1"
         >
@@ -102,6 +99,7 @@
           <span
             class="truncate text-xs text-foreground"
             :title="move.name"
+            :data-test="`pokemon-${pokemon.id}-card__move-${index + 1}`"
           >
             {{ move.name }}
           </span>
