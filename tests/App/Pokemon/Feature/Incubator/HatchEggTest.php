@@ -24,9 +24,7 @@ it('hatches a ready-to-hatch egg', function () {
     $user    = User::factory()->create(['purchased_incubator_indexes' => [new IncubatorIndex(1)]]);
     $species = Species::factory()->create();
 
-    $incubation = Incubation::factory()->for($user)->for($species)->readyToHatch()->create([
-        'incubator_index' => new IncubatorIndex(1),
-    ]);
+    $incubation = Incubation::factory()->for($user)->for($species)->readyToHatch()->create();
 
     actingAs($user)
         ->from(route('pokemon.web.nursery'))
@@ -46,9 +44,7 @@ it('hatches a ready-to-hatch egg', function () {
 it('does not hatch an egg that is still incubating', function () {
     $user = User::factory()->create(['purchased_incubator_indexes' => [new IncubatorIndex(1)]]);
 
-    $incubation = Incubation::factory()->for($user)->incubating()->create([
-        'incubator_index' => new IncubatorIndex(1),
-    ]);
+    $incubation = Incubation::factory()->for($user)->incubating()->create();
 
     actingAs($user)
         ->from(route('pokemon.web.nursery'))
@@ -82,9 +78,7 @@ it("does not hatch another user's egg", function () {
     $user      = User::factory()->create(['purchased_incubator_indexes' => [new IncubatorIndex(1)]]);
     $otherUser = User::factory()->create(['purchased_incubator_indexes' => [new IncubatorIndex(1)]]);
 
-    $incubation = Incubation::factory()->for($otherUser)->readyToHatch()->create([
-        'incubator_index' => new IncubatorIndex(1),
-    ]);
+    $incubation = Incubation::factory()->for($otherUser)->readyToHatch()->create();
 
     actingAs($user)
         ->from(route('pokemon.web.nursery'))

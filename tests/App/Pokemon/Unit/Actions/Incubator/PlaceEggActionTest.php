@@ -16,14 +16,10 @@ use function Pest\Laravel\assertDatabaseCount;
 use function Pest\Laravel\assertDatabaseHas;
 use function Pest\Laravel\travelTo;
 
-beforeEach(function () {
-    User::factory()->create(['purchased_incubator_indexes' => [new IncubatorIndex(1)]]);
-});
-
 it('creates an incubation on an idle incubator', function () {
     travelTo('2026-01-01 12:00:00');
 
-    $user    = User::first();
+    $user    = User::factory()->create(['purchased_incubator_indexes' => [new IncubatorIndex(1)]]);
     $species = Species::factory()->create(['egg_obtainable' => true]);
 
     new PlaceEggAction()->handle($user, new IncubatorIndex(1));
@@ -41,40 +37,37 @@ it('creates an incubation on an idle incubator', function () {
 });
 
 it('does not place an egg when the incubator is already incubating', function () {
-    $user = User::first();
+    $user       = User::factory()->create(['purchased_incubator_indexes' => [new IncubatorIndex(1)]]);
+    $incubation = Incubation::factory()->for($user)->incubating()->create();
 
-    Incubation::factory()->for($user)->incubating()->create(['incubator_index' => new IncubatorIndex(1)]);
-
-    expect(fn () => new PlaceEggAction()->handle($user, new IncubatorIndex(1)))
+    expect(fn () => new PlaceEggAction()->handle($user, $incubation->incubator_index))
         ->toThrow(IncubatorNotIdleException::class);
 
     assertDatabaseCount(Incubation::class, 1);
 });
 
 it('does not place an egg when the incubator has an egg ready to hatch', function () {
-    $user = User::first();
+    $user       = User::factory()->create(['purchased_incubator_indexes' => [new IncubatorIndex(1)]]);
+    $incubation = Incubation::factory()->for($user)->readyToHatch()->create();
 
-    Incubation::factory()->for($user)->readyToHatch()->create(['incubator_index' => new IncubatorIndex(1)]);
-
-    expect(fn () => new PlaceEggAction()->handle($user, new IncubatorIndex(1)))
+    expect(fn () => new PlaceEggAction()->handle($user, $incubation->incubator_index))
         ->toThrow(IncubatorNotIdleException::class);
 
     assertDatabaseCount(Incubation::class, 1);
 });
 
 it('does not place an egg when the incubator has an egg ready to catch', function () {
-    $user = User::first();
+    $user       = User::factory()->create(['purchased_incubator_indexes' => [new IncubatorIndex(1)]]);
+    $incubation = Incubation::factory()->for($user)->readyToCatch()->create();
 
-    Incubation::factory()->for($user)->readyToCatch()->create(['incubator_index' => new IncubatorIndex(1)]);
-
-    expect(fn () => new PlaceEggAction()->handle($user, new IncubatorIndex(1)))
+    expect(fn () => new PlaceEggAction()->handle($user, $incubation->incubator_index))
         ->toThrow(IncubatorNotIdleException::class);
 
     assertDatabaseCount(Incubation::class, 1);
 });
 
 it('does not place an egg in an incubator the user has not purchased', function () {
-    $user = User::first();
+    $user = User::factory()->create(['purchased_incubator_indexes' => [new IncubatorIndex(1)]]);
 
     expect(fn () => new PlaceEggAction()->handle($user, new IncubatorIndex(2)))
         ->toThrow(IncubatorNotIdleException::class);
@@ -83,18 +76,16 @@ it('does not place an egg in an incubator the user has not purchased', function 
 });
 
 it('places an egg in an incubator if the incubation process is complete', function () {
-    $user    = User::first();
-    $species = Species::factory()->create(['egg_obtainable' => true]);
+    $user       = User::factory()->create(['purchased_incubator_indexes' => [new IncubatorIndex(1)]]);
+    $incubation = Incubation::factory()->for($user)->completed()->create();
 
-    Incubation::factory()->for($user)->completed()->create(['incubator_index' => new IncubatorIndex(1)]);
-
-    new PlaceEggAction()->handle($user, new IncubatorIndex(1));
+    new PlaceEggAction()->handle($user, $incubation->incubator_index);
 
     assertDatabaseCount(Incubation::class, 2);
 });
 
 it('assigns the egg a gender the species can have', function (PokemonGenderRate $genderRate, array $possibleGenders) {
-    $user    = User::first();
+    $user    = User::factory()->create(['purchased_incubator_indexes' => [new IncubatorIndex(1)]]);
     $species = Species::factory()->create(['egg_obtainable' => true, 'gender_rate' => $genderRate]);
 
     new PlaceEggAction()->handle($user, new IncubatorIndex(1));
@@ -113,7 +104,7 @@ it('assigns the egg a gender the species can have', function (PokemonGenderRate 
 it('marks the egg as shiny when the shiny lottery wins', function () {
     Lottery::alwaysWin();
 
-    $user = User::first();
+    $user = User::factory()->create(['purchased_incubator_indexes' => [new IncubatorIndex(1)]]);
     Species::factory()->create(['egg_obtainable' => true]);
 
     new PlaceEggAction()->handle($user, new IncubatorIndex(1));
@@ -124,7 +115,7 @@ it('marks the egg as shiny when the shiny lottery wins', function () {
 it('does not mark the egg as shiny when the shiny lottery loses', function () {
     Lottery::alwaysLose();
 
-    $user = User::first();
+    $user = User::factory()->create(['purchased_incubator_indexes' => [new IncubatorIndex(1)]]);
     Species::factory()->create(['egg_obtainable' => true]);
 
     new PlaceEggAction()->handle($user, new IncubatorIndex(1));

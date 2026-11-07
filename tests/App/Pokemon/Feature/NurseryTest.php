@@ -56,7 +56,7 @@ it('reports the status of each incubator', function () {
 it("ignores other users' incubations", function () {
     $user = User::factory()->create(['purchased_incubator_indexes' => [new IncubatorIndex(1)]]);
 
-    Incubation::factory()->incubating()->create(['incubator_index' => new IncubatorIndex(1)]);
+    Incubation::factory()->incubating()->create();
 
     actingAs($user)
         ->get(route('pokemon.web.nursery'))

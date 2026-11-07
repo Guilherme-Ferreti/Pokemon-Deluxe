@@ -32,9 +32,7 @@ it('catches a ready-to-catch egg', function () {
     $inventoryItem = InventoryItem::factory()->for($user)->pokeball($pokeball)->create(['quantity' => 1]);
 
     $incubation = Incubation::factory()->for($user)->for($species)->readyToCatch()->create([
-        'incubator_index' => new IncubatorIndex(1),
-        'gender'          => $species->getRandomGender(),
-        'is_shiny'        => true,
+        'is_shiny' => true,
     ]);
 
     actingAs($user)
@@ -60,7 +58,7 @@ it('catches a ready-to-catch egg', function () {
         'species_id'       => $species->id,
         'level'            => 1,
         'in_party'         => false,
-        'is_shiny'         => true,
+        'is_shiny'         => $incubation->is_shiny,
         'gender'           => $incubation->gender,
         'pokeball_id'      => $pokeball->id,
         'caught_at'        => '2026-01-01 12:00:00',
@@ -99,9 +97,7 @@ it('does not catch an egg that has not hatched yet', function () {
     $data = CatchPokemonRequestFactory::new()->create();
     $user = User::factory()->create(['purchased_incubator_indexes' => [new IncubatorIndex(1)]]);
 
-    $incubation = Incubation::factory()->for($user)->readyToHatch()->create([
-        'incubator_index' => new IncubatorIndex(1),
-    ]);
+    $incubation = Incubation::factory()->for($user)->readyToHatch()->create();
 
     actingAs($user)
         ->from(route('pokemon.web.nursery'))
@@ -139,9 +135,7 @@ it("does not catch another user's egg", function () {
     $user      = User::factory()->create(['purchased_incubator_indexes' => [new IncubatorIndex(1)]]);
     $otherUser = User::factory()->create(['purchased_incubator_indexes' => [new IncubatorIndex(1)]]);
 
-    $incubation = Incubation::factory()->for($otherUser)->readyToCatch()->create([
-        'incubator_index' => new IncubatorIndex(1),
-    ]);
+    $incubation = Incubation::factory()->for($otherUser)->readyToCatch()->create();
 
     actingAs($user)
         ->from(route('pokemon.web.nursery'))

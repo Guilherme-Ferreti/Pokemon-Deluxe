@@ -40,7 +40,7 @@ it('places an egg in an idle incubator', function () {
 it('does not place an egg when the incubator is already incubating', function () {
     $user = User::factory()->create(['purchased_incubator_indexes' => [new IncubatorIndex(1)]]);
 
-    Incubation::factory()->for($user)->incubating()->create(['incubator_index' => new IncubatorIndex(1)]);
+    Incubation::factory()->for($user)->incubating()->create();
 
     actingAs($user)
         ->from(route('pokemon.web.nursery'))
@@ -56,7 +56,7 @@ it("ignores another user's incubation when placing an egg", function () {
     $user      = User::factory()->create(['purchased_incubator_indexes' => [new IncubatorIndex(1)]]);
     $otherUser = User::factory()->create(['purchased_incubator_indexes' => [new IncubatorIndex(1)]]);
 
-    Incubation::factory()->for($otherUser)->incubating()->create(['incubator_index' => new IncubatorIndex(1)]);
+    Incubation::factory()->for($otherUser)->incubating()->create();
     Species::factory()->create(['egg_obtainable' => true]);
 
     actingAs($user)

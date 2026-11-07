@@ -22,7 +22,7 @@ final class IncubationFactory extends Factory
     {
         return [
             'user_id'           => User::factory(),
-            'species_id'        => Species::factory(),
+            'species_id'        => Species::factory(state: ['egg_obtainable' => true]),
             'incubator_index'   => fn (array $attributes) => fake()->randomElement(User::findOrFail((string) $attributes['user_id'])->purchased_incubator_indexes),
             'gender'            => fn (array $attributes) => Species::findOrFail((string) $attributes['species_id'])->getRandomGender(),
             'is_shiny'          => fake()->boolean(10),

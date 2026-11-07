@@ -53,7 +53,7 @@ it('marks a purchased incubator as active while an egg is incubating', function 
 it('does not mark an incubator as active when its incubation is completed', function () {
     $user = User::factory()->create(['purchased_incubator_indexes' => [new IncubatorIndex(1)]]);
 
-    Incubation::factory()->for($user)->completed()->create(['incubator_index' => new IncubatorIndex(1)]);
+    Incubation::factory()->for($user)->completed()->create();
 
     $availability = new GetIncubatorsAvailabilityAction()->handle($user);
 
@@ -66,7 +66,7 @@ it("does not count another user's incubation as active", function () {
     $user      = User::factory()->create(['purchased_incubator_indexes' => [new IncubatorIndex(1)]]);
     $otherUser = User::factory()->create(['purchased_incubator_indexes' => [new IncubatorIndex(1)]]);
 
-    Incubation::factory()->for($otherUser)->incubating()->create(['incubator_index' => new IncubatorIndex(1)]);
+    Incubation::factory()->for($otherUser)->incubating()->create();
 
     $availability = new GetIncubatorsAvailabilityAction()->handle($user);
 

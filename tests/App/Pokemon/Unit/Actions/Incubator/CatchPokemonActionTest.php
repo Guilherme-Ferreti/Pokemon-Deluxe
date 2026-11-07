@@ -26,11 +26,7 @@ it('catches a ready-to-catch egg and adds the pokemon to the user', function () 
 
     InventoryItem::factory()->for($user)->pokeball($pokeball)->create();
 
-    $incubation = Incubation::factory()->for($user)->for($species)->readyToCatch()->create([
-        'incubator_index' => new IncubatorIndex(1),
-        'gender'          => $species->getRandomGender(),
-        'is_shiny'        => true,
-    ]);
+    $incubation = Incubation::factory()->for($user)->for($species)->readyToCatch()->create();
 
     $pokemon = new CatchPokemonAction()->handle($user, new IncubatorIndex(1), $pokeball);
 
@@ -49,7 +45,7 @@ it('catches a ready-to-catch egg and adds the pokemon to the user', function () 
         'species_id'       => $species->id,
         'level'            => 1,
         'in_party'         => false,
-        'is_shiny'         => true,
+        'is_shiny'         => $incubation->is_shiny,
         'gender'           => $incubation->gender,
         'pokeball_id'      => $pokeball->id,
         'caught_at'        => '2026-01-01 12:00:00',
@@ -71,9 +67,7 @@ it('does not catch an egg that is not ready to catch', function (string $state) 
     $user     = User::factory()->create(['purchased_incubator_indexes' => [new IncubatorIndex(1)]]);
     $pokeball = Pokeball::factory()->create();
 
-    $incubation = Incubation::factory()->for($user)->{$state}()->create([
-        'incubator_index' => new IncubatorIndex(1),
-    ]);
+    $incubation = Incubation::factory()->for($user)->{$state}()->create();
 
     expect(fn () => new CatchPokemonAction()->handle($user, new IncubatorIndex(1), $pokeball))
         ->toThrow(IncubatorEggNotReadyToCatchException::class);

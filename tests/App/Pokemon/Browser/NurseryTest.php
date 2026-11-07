@@ -3,7 +3,6 @@
 declare(strict_types=1);
 
 use Illuminate\Support\Lottery;
-use Shared\Enums\PokemonGender;
 use Shared\Models\Incubation;
 use Shared\Models\InventoryItem;
 use Shared\Models\Pokeball;
@@ -59,9 +58,7 @@ it('shows incubating state with countdown', function () {
     $user    = User::factory()->create(['purchased_incubator_indexes' => [new IncubatorIndex(1)]]);
     $species = Species::factory()->create();
 
-    Incubation::factory()->for($user)->for($species)->incubating()->create([
-        'incubator_index' => new IncubatorIndex(1),
-    ]);
+    Incubation::factory()->for($user)->for($species)->incubating()->create();
 
     actingAs($user);
 
@@ -75,9 +72,7 @@ it('allows hatching a ready to hatch egg', function () {
     $user    = User::factory()->create(['purchased_incubator_indexes' => [new IncubatorIndex(1)]]);
     $species = Species::factory()->create(['name' => 'Pikachu']);
 
-    Incubation::factory()->for($user)->for($species)->readyToHatch()->create([
-        'incubator_index' => new IncubatorIndex(1),
-    ]);
+    Incubation::factory()->for($user)->for($species)->readyToHatch()->create();
 
     actingAs($user);
 
@@ -100,11 +95,7 @@ it('allows catching a hatched pokemon through the dialog', function () {
 
     InventoryItem::factory()->for($user)->for($pokeball, 'item')->create(['quantity' => 5]);
 
-    Incubation::factory()->for($user)->for($species)->readyToCatch()->create([
-        'incubator_index' => new IncubatorIndex(1),
-        'gender'          => PokemonGender::MALE,
-        'is_shiny'        => false,
-    ]);
+    Incubation::factory()->for($user)->for($species)->readyToCatch()->create();
 
     actingAs($user);
 
