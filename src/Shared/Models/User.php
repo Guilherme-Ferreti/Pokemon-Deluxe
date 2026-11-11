@@ -31,7 +31,7 @@ use Shared\ValueObjects\IncubatorIndex;
  * @property CarbonImmutable|null $created_at
  * @property CarbonImmutable|null $updated_at
  * @property-read EloquentCollection<int, Pokemon> $pokemon
- * @property-read EloquentCollection<int, Incubation> $Incubations
+ * @property-read EloquentCollection<int, Incubation> $incubations
  */
 #[Fillable(['name', 'email', 'password'])]
 #[Hidden(['password', 'remember_token'])]

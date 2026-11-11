@@ -18,3 +18,11 @@ it('throttles excessive autocomplete requests', function () {
     getJson(route('dex.api.species.autocomplete', ['search' => 'pika']))
         ->assertTooManyRequests();
 });
+
+it('returns no options when the search term is not a string', function () {
+    actingAs(User::factory()->create());
+
+    getJson(route('dex.api.species.autocomplete', ['search' => ['pika']]))
+        ->assertSuccessful()
+        ->assertExactJson([]);
+});

@@ -16,6 +16,6 @@ final class IncubatorEggNotReadyToCatchException extends DomainException
 
     public function getKey(): string
     {
-        return 'icubator';
+        return 'incubator';
     }
 }

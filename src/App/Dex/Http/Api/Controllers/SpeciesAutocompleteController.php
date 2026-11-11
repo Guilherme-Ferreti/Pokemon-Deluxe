@@ -19,12 +19,14 @@ final class SpeciesAutocompleteController extends Controller
      */
     public function __invoke(Request $request): array
     {
-        if (is_null($request->query('search'))) {
+        $search = $request->query('search');
+
+        if (! is_string($search) || $search === '') {
             return [];
         }
 
         $searchPokedexFilters = new SearchPokedexFilters(
-            search: $request->query('search'),
+            search: $search,
             types: collect(),
             traits: collect(),
             generations: collect(),
