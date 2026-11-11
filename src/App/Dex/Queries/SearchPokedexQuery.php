@@ -90,7 +90,7 @@ final class SearchPokedexQuery
     private function applySorting(Builder $query, SearchPokedexSortBy $sort, SortDirection $dir): Builder
     {
         return match ($sort) {
-            SearchPokedexSortBy::POKEDEX_NUMBER => $query->orderByPokedexNumber(),
+            SearchPokedexSortBy::POKEDEX_NUMBER => $query->orderBy('pokedex_order'),
             SearchPokedexSortBy::NAME           => $query->orderBy('name', $dir->value),
         };
     }

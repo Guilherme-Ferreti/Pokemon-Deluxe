@@ -27,9 +27,14 @@ final class SpeciesFactory extends Factory
             'name'           => fake()->unique()->word(),
             'types'          => fake()->randomElements(PokemonType::cases(), random_int(1, 2)),
             'pokedex_number' => fake()->unique()->numberBetween(1, 1000),
-            'genus'          => fake()->word(),
-            'text_entry'     => fake()->sentence(),
-            'sprites'        => new SpeciesSprites(
+            'pokedex_order'  => fn (array $attributes): int => $attributes['pokedex_number'] * 10 + match (true) {
+                (bool) $attributes['is_gmax'] => 2,
+                (bool) $attributes['is_mega'] => 1,
+                default                       => 0,
+            },
+            'genus'      => fake()->word(),
+            'text_entry' => fake()->sentence(),
+            'sprites'    => new SpeciesSprites(
                 back_default: fake()->imageUrl(width: 96, height: 96, word: 'back default'),
                 back_female: fake()->imageUrl(width: 96, height: 96, word: 'back female'),
                 back_shiny: fake()->imageUrl(width: 96, height: 96, word: 'back shiny'),

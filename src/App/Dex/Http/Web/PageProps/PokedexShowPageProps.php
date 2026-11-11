@@ -7,8 +7,6 @@ namespace App\Dex\Http\Web\PageProps;
 use App\Battle\Services\DamageCalculator;
 use App\Dex\Actions\CalculateSpeciesCatchStatisticsAction;
 use App\Dex\Actions\CalculateUserSpeciesCatchStatisticsAction;
-use App\Dex\Queries\NextSpeciesQuery;
-use App\Dex\Queries\PreviousSpeciesQuery;
 use App\Dex\Support\CacheKeys;
 use Illuminate\Support\Facades\Cache;
 use Inertia\ProvidesInertiaProperties;
@@ -100,7 +98,11 @@ final readonly class PokedexShowPageProps implements ProvidesInertiaProperties
      */
     private function getPreviousSpeciesProp(): ?array
     {
-        $species = new PreviousSpeciesQuery()->handle($this->species);
+        $species = Species::query()
+            ->select('id', 'slug', 'name', 'pokedex_number', 'portraits')
+            ->where('pokedex_order', '<', $this->species->pokedex_order)
+            ->orderByDesc('pokedex_order')
+            ->first();
 
         if (! $species instanceof Species) {
             return null;
@@ -119,7 +121,11 @@ final readonly class PokedexShowPageProps implements ProvidesInertiaProperties
      */
     private function getNextSpeciesProp(): ?array
     {
-        $species = new NextSpeciesQuery()->handle($this->species);
+        $species = Species::query()
+            ->select('id', 'slug', 'name', 'pokedex_number', 'portraits')
+            ->where('pokedex_order', '>', $this->species->pokedex_order)
+            ->orderBy('pokedex_order')
+            ->first();
 
         if (! $species instanceof Species) {
             return null;

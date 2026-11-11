@@ -21,6 +21,7 @@ return new class extends Migration
             $table->json('types');
 
             $table->unsignedSmallInteger('pokedex_number');
+            $table->unsignedSmallInteger('pokedex_order')->unique();
             $table->string('genus');
             $table->string('text_entry');
 
@@ -39,7 +40,7 @@ return new class extends Migration
             $table->boolean('egg_obtainable')->default(false);
 
             $table->index('name');
-            $table->index('pokedex_number');
+            $table->index('pokedex_order');
         });
     }
 

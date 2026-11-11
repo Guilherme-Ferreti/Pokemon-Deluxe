@@ -5,10 +5,8 @@ declare(strict_types=1);
 namespace Shared\Models;
 
 use Database\Factories\SpeciesFactory;
-use Illuminate\Database\Eloquent\Attributes\Scope;
 use Illuminate\Database\Eloquent\Attributes\Table;
 use Illuminate\Database\Eloquent\Attributes\WithoutTimestamps;
-use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Casts\AsEnumCollection;
 use Illuminate\Database\Eloquent\Collection as EloquentCollection;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
@@ -33,6 +31,7 @@ use Shared\ValueObjects\SpeciesSprites;
  * @property string $name
  * @property array{0: PokemonType, 1?: PokemonType} $types
  * @property int $pokedex_number
+ * @property int $pokedex_order Position in the pokedex: by number, with regular forms before mega forms before gmax forms
  * @property string $genus
  * @property string $text_entry
  * @property SpeciesSprites $sprites
@@ -67,6 +66,7 @@ final class Species extends Model
         return [
             'types'          => AsEnumCollection::of(PokemonType::class),
             'pokedex_number' => 'integer',
+            'pokedex_order'  => 'integer',
             'generation'     => Generation::class,
             'is_baby'        => 'boolean',
             'is_legendary'   => 'boolean',
@@ -111,23 +111,6 @@ final class Species extends Model
     public function pokemon(): HasMany
     {
         return $this->hasMany(Pokemon::class);
-    }
-
-    /**
-     * @param  Builder<Species>  $query
-     */
-    #[Scope]
-    protected function orderByPokedexNumber(Builder $query): void
-    {
-        $query->orderBy('pokedex_number')
-            ->orderByRaw('
-                CASE
-                    WHEN is_mega = 0 AND is_gmax = 0 THEN 1
-                    WHEN is_mega = 1 AND is_gmax = 0 THEN 2
-                    WHEN is_mega = 0 AND is_gmax = 1 THEN 3
-                END
-            ')
-            ->orderBy('id');
     }
 
     public function isSingleType(): bool
