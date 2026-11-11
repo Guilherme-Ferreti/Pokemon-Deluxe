@@ -19,6 +19,6 @@ final class PokedexController extends Controller
 
     public function show(Species $species): Response
     {
-        return inertia('Dex::Pokedex/Show', ['species' => $species])->with(new PokedexShowPageProps($species));
+        return inertia('Dex::Pokedex/Show')->with(new PokedexShowPageProps($species));
     }
 }

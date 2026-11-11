@@ -28,15 +28,15 @@ final readonly class PokedexShowPageProps implements ProvidesInertiaProperties
     public function toInertiaProperties(RenderContext $context): array
     {
         return [
-            'species'         => $this->getSpeciesProp(),
-            'hero'            => $this->getHeroProp(),
-            'overview'        => $this->getOverviewProp(),
-            'previousSpecies' => $this->getPreviousSpeciesProp(),
-            'nextSpecies'     => $this->getNextSpeciesProp(),
-            'catchStatistics' => $this->getCatchStatisticsProp(),
-            'damageTaken'     => $this->getDamageTakenProp(),
-            'evolutionChain'  => $this->getEvolutionChainProp(),
-            'baseMoves'       => $this->getBaseMovesProp(),
+            'species'         => $this->getSpeciesProp(...),
+            'hero'            => $this->getHeroProp(...),
+            'overview'        => $this->getOverviewProp(...),
+            'previousSpecies' => $this->getPreviousSpeciesProp(...),
+            'nextSpecies'     => $this->getNextSpeciesProp(...),
+            'catchStatistics' => $this->getCatchStatisticsProp(...),
+            'damageTaken'     => $this->getDamageTakenProp(...),
+            'evolutionChain'  => $this->getEvolutionChainProp(...),
+            'baseMoves'       => $this->getBaseMovesProp(...),
         ];
     }
 
@@ -178,58 +178,43 @@ final readonly class PokedexShowPageProps implements ProvidesInertiaProperties
      */
     private function getEvolutionChainProp(): array
     {
-        /**
-         * @return array<string, mixed>
-         */
-        $callback = function (): array {
-            $previous = $this->species
-                ->previousEvolutions()
-                ->with('from:id,slug,name,portraits', 'evolutionItem:id,name,sprite')
-                ->get()
-                ->map(fn (SpeciesEvolution $evolution) => [
-                    'species' => [
-                        'name'     => $evolution->from->name,
-                        'slug'     => $evolution->from->slug,
-                        'portrait' => $evolution->from->portraits->regular,
-                    ],
-                    'evolutionItem' => $evolution->evolutionItem ? [
-                        'name'   => $evolution->evolutionItem->name,
-                        'sprite' => $evolution->evolutionItem->sprite,
-                    ] : null,
-                    'minLevel' => $evolution->min_level,
-                    'gender'   => $evolution->gender?->value,
-                ])
-                ->toArray();
-
-            $into = $this->species
-                ->evolutions()
-                ->with('into:id,slug,name,portraits', 'evolutionItem:id,name,sprite')
-                ->get()
-                ->map(fn (SpeciesEvolution $evolution) => [
-                    'species' => [
-                        'name'     => $evolution->into->name,
-                        'slug'     => $evolution->into->slug,
-                        'portrait' => $evolution->into->portraits->regular,
-                    ],
-                    'evolutionItem' => $evolution->evolutionItem ? [
-                        'name'   => $evolution->evolutionItem->name,
-                        'sprite' => $evolution->evolutionItem->sprite,
-                    ] : null,
-                    'minLevel' => $evolution->min_level,
-                    'gender'   => $evolution->gender?->value,
-                ])
-                ->toArray();
-
-            return [
-                'previous' => $previous,
-                'into'     => $into,
-            ];
-        };
-
         return Cache::rememberForever(
             key: CacheKeys::speciesEvolutionChain($this->species->id),
-            callback: $callback
+            callback: fn (): array => [
+                'previous' => $this->species
+                    ->previousEvolutions()
+                    ->with('from:id,slug,name,portraits', 'evolutionItem:id,name,sprite')
+                    ->get()
+                    ->map(fn (SpeciesEvolution $evolution) => $this->getEvolutionProp($evolution, $evolution->from))
+                    ->toArray(),
+                'into' => $this->species
+                    ->evolutions()
+                    ->with('into:id,slug,name,portraits', 'evolutionItem:id,name,sprite')
+                    ->get()
+                    ->map(fn (SpeciesEvolution $evolution) => $this->getEvolutionProp($evolution, $evolution->into))
+                    ->toArray(),
+            ]
         );
+    }
+
+    /**
+     * @return array<string, mixed>
+     */
+    private function getEvolutionProp(SpeciesEvolution $evolution, Species $species): array
+    {
+        return [
+            'species' => [
+                'name'     => $species->name,
+                'slug'     => $species->slug,
+                'portrait' => $species->portraits->regular,
+            ],
+            'evolutionItem' => $evolution->evolutionItem ? [
+                'name'   => $evolution->evolutionItem->name,
+                'sprite' => $evolution->evolutionItem->sprite,
+            ] : null,
+            'minLevel' => $evolution->min_level,
+            'gender'   => $evolution->gender?->value,
+        ];
     }
 
     /**
