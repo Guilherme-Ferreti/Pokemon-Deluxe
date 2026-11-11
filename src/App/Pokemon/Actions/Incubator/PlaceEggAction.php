@@ -38,9 +38,9 @@ final class PlaceEggAction
 
     private function ensureIncubatorIsIdle(): void
     {
-        $availability = new GetIncubatorsAvailabilityAction()->handle($this->user);
+        $incubator = new ListIncubatorsAction()->handle($this->user)->get($this->incubatorIndex->value);
 
-        if (value_object_array_contains($availability['idle'], $this->incubatorIndex)) {
+        if ($incubator?->isIdle()) {
             return;
         }
 

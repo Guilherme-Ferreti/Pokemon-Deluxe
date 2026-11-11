@@ -4,15 +4,12 @@ declare(strict_types=1);
 
 namespace App\Pokemon\Http\Web\PageProps;
 
-use App\Pokemon\Actions\Incubator\GetIncubatorsAvailabilityAction;
+use App\Pokemon\Actions\Incubator\ListIncubatorsAction;
 use App\Pokemon\Enums\IncubatorStatus;
+use App\Pokemon\Support\Incubator;
 use Inertia\ProvidesInertiaProperties;
 use Inertia\RenderContext;
-use Shared\Enums\IncubationStatus;
-use Shared\Helpers\AppHelper;
-use Shared\Models\Incubation;
 use Shared\Models\InventoryItem;
-use Shared\ValueObjects\IncubatorIndex;
 
 final class NurseryPageProps implements ProvidesInertiaProperties
 {
@@ -32,38 +29,24 @@ final class NurseryPageProps implements ProvidesInertiaProperties
      */
     private function getIncubatorsProp(): array
     {
-        $availability      = new GetIncubatorsAvailabilityAction()->handle(currentUser());
-        $activeIncubations = Incubation::query()->whereBelongsTo(currentUser())->active()->get();
-
-        return collect(AppHelper::allIncubatorIndexes())
-            ->map(function (IncubatorIndex $index) use ($availability, $activeIncubations): array {
-                $isActive = value_object_array_contains($availability['active'], $index);
-
-                if ($isActive) {
-                    /** @var Incubation */
-                    $incubation = $activeIncubations->firstWhere('incubator_index', $index);
-
-                    return [
-                        'index'               => $index->value,
-                        'status'              => IncubatorStatus::fromIncubationStatus($incubation->getStatus()),
-                        'incubationStartedAt' => $incubation->created_at,
-                        'readyToHatchAt'      => $incubation->ready_to_hatch_at,
-                        'pokemon'             => when($incubation->getStatus() === IncubationStatus::READY_TO_CATCH, fn () => [
-                            'name'        => $incubation->species->getDisplayName($incubation->is_shiny),
-                            'frontSprite' => $incubation->species->getDisplayFrontSprite($incubation->gender, $incubation->is_shiny),
-                            'gender'      => $incubation->gender,
-                        ]),
-                    ];
-                }
+        return new ListIncubatorsAction()
+            ->handle(currentUser())
+            ->map(function (Incubator $incubator): array {
+                $incubation = $incubator->incubation;
 
                 return [
-                    'index'               => $index->value,
-                    'status'              => value_object_array_contains($availability['idle'], $index) ? IncubatorStatus::IDLE : IncubatorStatus::NOT_PURCHASED,
-                    'incubationStartedAt' => null,
-                    'readyToHatchAt'      => null,
-                    'pokemon'             => null,
+                    'index'               => $incubator->index->value,
+                    'status'              => $incubator->status(),
+                    'incubationStartedAt' => $incubation?->created_at,
+                    'readyToHatchAt'      => $incubation?->ready_to_hatch_at,
+                    'pokemon'             => $incubator->isActive() && $incubator->status() === IncubatorStatus::READY_TO_CATCH ? [
+                        'name'        => $incubation->species->getDisplayName($incubation->is_shiny),
+                        'frontSprite' => $incubation->species->getDisplayFrontSprite($incubation->gender, $incubation->is_shiny),
+                        'gender'      => $incubation->gender,
+                    ] : null,
                 ];
             })
+            ->values()
             ->toArray();
     }
 

@@ -36,33 +36,22 @@ final class HatchEggAction
 
     private function hatchEgg(): void
     {
-        $this->ensureIncubatorIsActive();
-
-        $this->loadIncubation();
+        $this->loadActiveIncubation();
 
         $this->ensureEggIsReadyToHatch();
 
         $this->markEggAsHatched();
     }
 
-    private function ensureIncubatorIsActive(): void
+    private function loadActiveIncubation(): void
     {
-        $availability = new GetIncubatorsAvailabilityAction()->handle($this->user);
+        $incubator = new ListIncubatorsAction()->handle($this->user)->get($this->incubatorIndex->value);
 
-        if (value_object_array_contains($availability['active'], $this->incubatorIndex)) {
-            return;
+        if (! $incubator?->isActive()) {
+            throw new IncubatorNotActiveException($this->incubatorIndex);
         }
 
-        throw new IncubatorNotActiveException($this->incubatorIndex);
-    }
-
-    private function loadIncubation(): void
-    {
-        $this->incubation = $this->user
-            ->incubations()
-            ->active()
-            ->where('incubator_index', $this->incubatorIndex->value)
-            ->firstOrFail();
+        $this->incubation = $incubator->incubation;
     }
 
     private function ensureEggIsReadyToHatch(): void
