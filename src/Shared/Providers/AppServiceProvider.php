@@ -6,13 +6,17 @@ namespace Shared\Providers;
 
 use BackedEnum;
 use Carbon\CarbonImmutable;
+use Illuminate\Cache\RateLimiting\Limit;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\Relation;
+use Illuminate\Http\Exceptions\ThrottleRequestsException;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Date;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Facades\Vite;
@@ -47,6 +51,7 @@ final class AppServiceProvider extends ServiceProvider
 
         $this->configureInertiaExceptionHandling();
 
+        $this->configureRateLimiting();
         $this->configureRouteBindings();
 
         $this->configureMorphMap();
@@ -113,8 +118,25 @@ final class AppServiceProvider extends ServiceProvider
                 return back();
             }
 
+            if ($response->exception instanceof ThrottleRequestsException && ! $response->request->expectsJson() && ! $response->request->isPrecognitive()) {
+                ToastHelper::warning('Too many attempts', 'Please wait a moment and try again.');
+
+                return back();
+            }
+
             return $response;
         });
+    }
+
+    private function configureRateLimiting(): void
+    {
+        RateLimiter::for('login', fn (Request $request) => Limit::perMinute(5)->by(
+            Str::lower($request->string('email')->toString()) . '|' . $request->ip(),
+        ));
+
+        RateLimiter::for('registration', fn (Request $request) => Limit::perMinute(30)->by($request->ip()));
+
+        RateLimiter::for('autocomplete', fn (Request $request) => Limit::perMinute(60)->by($request->user()?->id ?: $request->ip()));
     }
 
     private function configureRouteBindings(): void

@@ -43,3 +43,19 @@ it('rejects login with invalid credentials', function () {
 
     assertGuest();
 });
+
+it('throttles repeated failed login attempts for the same email', function () {
+    $data = StoreLoginRequestFactory::new()->withInvalidCredentials()->create();
+
+    foreach (range(1, 5) as $attempt) {
+        post(route('auth.web.login.store'), $data)
+            ->assertRedirectBackWithErrors('email');
+    }
+
+    post(route('auth.web.login.store'), $data)
+        ->assertRedirectBackWithoutErrors()
+        ->assertInertiaFlash('toast.type', 'warning')
+        ->assertInertiaFlash('toast.title', 'Too many attempts');
+
+    assertGuest();
+});

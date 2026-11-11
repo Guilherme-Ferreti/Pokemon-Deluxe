@@ -64,3 +64,17 @@ it('rejects a password that does not meet the configured password policy', funct
 
     assertDatabaseCount(User::class, 0);
 });
+
+it('throttles repeated registration attempts', function () {
+    $data = StoreRegistrationRequestFactory::new()->withPasswordMismatch()->create();
+
+    foreach (range(1, 30) as $attempt) {
+        post(route('auth.web.registration.store'), $data)
+            ->assertRedirectBackWithErrors('password');
+    }
+
+    post(route('auth.web.registration.store'), $data)
+        ->assertRedirectBackWithoutErrors()
+        ->assertInertiaFlash('toast.type', 'warning')
+        ->assertInertiaFlash('toast.title', 'Too many attempts');
+});
