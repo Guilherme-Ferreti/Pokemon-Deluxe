@@ -75,16 +75,11 @@ final class SearchBoxQuery
      */
     private function applyTypes(Builder $query, Collection $types): Builder
     {
-        return $query->where(fn (Builder $query) => $query
-            ->when(
-                $types->count() === 1,
-                fn (Builder $query) => $query->whereJsonContains('species.types', $types[0]->value)
-            )
-            ->when(
-                $types->count() === 2,
-                fn (Builder $query) => $query->whereJsonContains('species.types', $types[0]->value)->whereJsonContains('species.types', $types[1]->value)
-            )
-        );
+        foreach ($types as $type) {
+            $query->whereJsonContains('species.types', $type->value);
+        }
+
+        return $query;
     }
 
     /**

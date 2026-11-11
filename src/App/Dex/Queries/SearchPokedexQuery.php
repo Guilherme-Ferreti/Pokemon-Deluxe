@@ -46,16 +46,11 @@ final class SearchPokedexQuery
      */
     private function applyTypes(Builder $query, Collection $types): Builder
     {
-        return $query->where(fn (Builder $query) => $query
-            ->when(
-                $types->count() === 1,
-                fn (Builder $query) => $query->whereJsonContains('types', $types[0]->value)
-            )
-            ->when(
-                $types->count() === 2,
-                fn (Builder $query) => $query->whereJsonContains('types', $types[0]->value)->whereJsonContains('types', $types[1]->value)
-            )
-        );
+        foreach ($types as $type) {
+            $query->whereJsonContains('types', $type->value);
+        }
+
+        return $query;
     }
 
     /**

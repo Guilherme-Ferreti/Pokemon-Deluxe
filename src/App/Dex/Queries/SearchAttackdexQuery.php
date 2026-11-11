@@ -26,7 +26,7 @@ final class SearchAttackdexQuery
             ->when($filters->search !== null, fn (Builder $query) => $this->applySearch($query, $filters->search))
             ->when($filters->types->isNotEmpty(), fn (Builder $query) => $this->applyTypes($query, $filters->types))
             ->when($filters->ailments->isNotEmpty(), fn (Builder $query) => $this->applyAilments($query, $filters->ailments))
-            ->when($filters->traits->isNotEmpty(), fn (Builder $query) => $this->applyOthers($query, $filters->traits))
+            ->when($filters->traits->isNotEmpty(), fn (Builder $query) => $this->applyTraits($query, $filters->traits))
             ->when(true, fn (Builder $query) => $this->applySorting($query, $filters->sort, $filters->dir));
     }
 
@@ -64,7 +64,7 @@ final class SearchAttackdexQuery
      * @param  Collection<int, MoveTrait>  $traits
      * @return Builder<Move>
      */
-    private function applyOthers(Builder $query, Collection $traits): Builder
+    private function applyTraits(Builder $query, Collection $traits): Builder
     {
         return $query->where(fn (Builder $query) => $query
             ->when($traits->contains(MoveTrait::Z_MOVE), fn (Builder $query) => $query->orWhere('is_z_move', true))
