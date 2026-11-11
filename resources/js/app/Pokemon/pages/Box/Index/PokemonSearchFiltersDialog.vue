@@ -33,7 +33,7 @@
         name="traits[]"
         :label="option.label"
         :value="option.value"
-        :disabled="isTraitCheckboxDisabled(option.value)"
+        :disabled="isTraitExcludedBySelection(option.value, selectedTraits)"
       />
     </AppCheckboxGroup>
     <AppCheckboxGroup title="By generation:">
@@ -55,8 +55,7 @@ import { nextTick } from 'vue';
 import AppCheckbox from '@/shared/components/form/AppCheckbox.vue';
 import AppCheckboxGroup from '@/shared/components/form/AppCheckboxGroup.vue';
 import AppSearchFiltersDialog from '@/shared/components/list/AppSearchFiltersDialog.vue';
-import { anyItemExists } from '@/shared/lib/utils.js';
-import { PokemonTrait } from '@/shared/types/enums';
+import { isTraitExcludedBySelection } from '@/shared/lib/traits';
 import type { BoxIndexPageProps } from '../../../types/page-props/BoxIndexPageProps';
 
 const page = usePage<BoxIndexPageProps>();
@@ -83,47 +82,6 @@ defineEmits<{
   apply: [value: void];
   close: [value: void];
 }>();
-function isTraitCheckboxDisabled(value: PokemonTrait) {
-  if (value === PokemonTrait.BABY) {
-    return anyItemExists(selectedTraits.value, [
-      PokemonTrait.MEGA,
-      PokemonTrait.GMAX,
-      PokemonTrait.LEGENDARY,
-      PokemonTrait.MYTHICAL,
-    ]);
-  }
-
-  if (value === PokemonTrait.LEGENDARY) {
-    return anyItemExists(selectedTraits.value, [
-      PokemonTrait.MYTHICAL,
-      PokemonTrait.BABY,
-    ]);
-  }
-
-  if (value === PokemonTrait.MYTHICAL) {
-    return anyItemExists(selectedTraits.value, [
-      PokemonTrait.LEGENDARY,
-      PokemonTrait.BABY,
-    ]);
-  }
-
-  if (value === PokemonTrait.MEGA) {
-    return anyItemExists(selectedTraits.value, [
-      PokemonTrait.GMAX,
-      PokemonTrait.BABY,
-    ]);
-  }
-
-  if (value === PokemonTrait.GMAX) {
-    return anyItemExists(selectedTraits.value, [
-      PokemonTrait.MEGA,
-      PokemonTrait.BABY,
-    ]);
-  }
-
-  return false;
-}
-
 function resetFilters() {
   selectedTraits.value = [];
   selectedTypes.value = [];
