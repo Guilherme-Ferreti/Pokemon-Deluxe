@@ -22,28 +22,9 @@ router.on('flash', (event) => {
     return;
   }
 
-  switch (event.detail.flash.toast.type) {
-    case 'success':
-      toast.success(event.detail.flash.toast.title, {
-        description: event.detail.flash.toast.message,
-      });
-      break;
-    case 'error':
-      toast.error(event.detail.flash.toast.title, {
-        description: event.detail.flash.toast.message,
-      });
-      break;
-    case 'info':
-      toast.info(event.detail.flash.toast.title, {
-        description: event.detail.flash.toast.message,
-      });
-      break;
-    case 'warning':
-      toast.warning(event.detail.flash.toast.title, {
-        description: event.detail.flash.toast.message,
-      });
-      break;
-  }
+  const { type, title, message } = event.detail.flash.toast;
+
+  toast[type](title, { description: message });
 });
 
 router.on('networkError', () => {

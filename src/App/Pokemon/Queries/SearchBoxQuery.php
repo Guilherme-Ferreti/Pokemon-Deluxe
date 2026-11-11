@@ -118,7 +118,7 @@ final class SearchBoxQuery
             SearchBoxSortBy::CATCH_DATE     => 'pokemon.caught_at',
             SearchBoxSortBy::EXPERIENCE     => 'pokemon.experience',
             SearchBoxSortBy::LEVEL          => 'pokemon.level',
-            SearchBoxSortBy::POKEDEX_NUMBER => 'species.pokedex_number',
+            SearchBoxSortBy::POKEDEX_NUMBER => 'species.pokedex_order',
         };
 
         return $query

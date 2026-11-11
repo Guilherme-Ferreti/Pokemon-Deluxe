@@ -133,6 +133,8 @@ function handleCatch() {
       incubatorIndex: props.incubator.index,
     }),
     {
+      preserveScroll: true,
+      only: ['incubators', 'pokeballs'],
       onSuccess: () => {
         isOpen.value = false;
       },
