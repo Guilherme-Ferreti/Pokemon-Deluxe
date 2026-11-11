@@ -2,6 +2,7 @@
 
 declare(strict_types=1);
 
+use Illuminate\Validation\Rules\Password;
 use Inertia\Testing\AssertableInertia as Assert;
 use Shared\Models\User;
 use Tests\App\Auth\RequestFactories\StoreRegistrationRequestFactory;
@@ -52,4 +53,14 @@ it('rejects registration if passwords do not match', function () {
 
     post(route('auth.web.registration.store'), $data)
         ->assertRedirectBackWithErrors('password');
+});
+
+it('rejects a password that does not meet the configured password policy', function () {
+    Password::defaults(fn () => Password::min(12));
+    $data = StoreRegistrationRequestFactory::new()->create();
+
+    post(route('auth.web.registration.store'), $data)
+        ->assertRedirectBackWithErrors('password');
+
+    assertDatabaseCount(User::class, 0);
 });
