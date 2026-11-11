@@ -37,7 +37,7 @@ final class PokedexIndexPageProps implements ProvidesInertiaProperties
     {
         $speciesList = new SearchPokedexQuery()->handle($searchPokedexFilters)->paginate(50)->withQueryString();
 
-        $boxPresence = new ListSpeciesBoxPresenceAction()->handle(currentUser(), $speciesList->pluck('id'));
+        $boxPresence = new ListSpeciesBoxPresenceAction()->handle(currentUser(), $speciesList->pluck('id'))->keyBy('speciesId');
 
         return AppHelper::paginatorToArray($speciesList, fn (Species $species) => [
             'id'            => $species->id,
@@ -47,8 +47,8 @@ final class PokedexIndexPageProps implements ProvidesInertiaProperties
             'types'         => $species->types,
             'generation'    => $species->generation,
             'slug'          => $species->slug,
-            'regularInBox'  => $boxPresence->firstwhere('speciesId', $species->id)['regularInBox'],
-            'shinyInBox'    => $boxPresence->firstwhere('speciesId', $species->id)['shinyInBox'],
+            'regularInBox'  => $boxPresence[$species->id]['regularInBox'],
+            'shinyInBox'    => $boxPresence[$species->id]['shinyInBox'],
         ]);
     }
 }

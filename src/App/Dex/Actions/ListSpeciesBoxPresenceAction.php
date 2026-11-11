@@ -19,6 +19,7 @@ final class ListSpeciesBoxPresenceAction
         $pokemonList = Pokemon::query()
             ->whereBelongsTo($user)
             ->whereIn('species_id', $speciesIds)
+            ->distinct()
             ->get(['species_id', 'is_shiny']);
 
         $regularPokemon = $pokemonList
