@@ -56,7 +56,7 @@ final class PlaceEggAction
             'species_id'        => $species->id,
             'gender'            => $species->getRandomGender(),
             'is_shiny'          => $this->rollIsShiny(),
-            'ready_to_hatch_at' => now()->addDay(),
+            'ready_to_hatch_at' => now()->addHours((int) config('game.incubation.hatch_time_in_hours')),
         ]);
     }
 
@@ -70,7 +70,7 @@ final class PlaceEggAction
 
     private function rollIsShiny(): bool
     {
-        return Lottery::odds(1, 100)
+        return Lottery::odds(1, (int) config('game.incubation.shiny_odds'))
             ->winner(fn () => true)
             ->loser(fn () => false)
             ->choose();
