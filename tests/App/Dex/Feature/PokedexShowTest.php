@@ -10,7 +10,6 @@ use Shared\Models\EvolutionItem;
 use Shared\Models\Move;
 use Shared\Models\Species;
 use Shared\Models\SpeciesEvolution;
-use Shared\Models\SpeciesLearnableMove;
 use Shared\Models\User;
 
 use function Pest\Laravel\actingAs;
@@ -67,8 +66,7 @@ it('loads the species show page with expected structure', function () {
             ->has('catchStatistics.currentUser.shiny')
             ->where('evolutionChain.previous', [])
             ->where('evolutionChain.into', [])
-            ->where('learnableMoves.levelUp', [])
-            ->where('learnableMoves.tm', [])
+            ->where('baseMoves', [])
             ->has('previousSpecies')
             ->where('previousSpecies.name', $previousSpecies->name)
             ->where('previousSpecies.pokedexNumber', $previousSpecies->pokedex_number)
@@ -147,59 +145,30 @@ it('displays evolution chain', function () {
         );
 });
 
-it('displays learnable moves split into level up and tm', function () {
+it('displays the species base moves ordered by name', function () {
     $user    = User::factory()->create();
     $species = Species::factory()->create();
 
-    $levelUpMove = Move::factory()->create();
-    $tmMove      = Move::factory()->create();
+    $tackle    = Move::factory()->create(['name' => 'Tackle']);
+    $hyperBeam = Move::factory()->create(['name' => 'Hyper Beam']);
 
-    SpeciesLearnableMove::factory()->for($species)->for($levelUpMove)->byLevelUp(5)->create();
-    SpeciesLearnableMove::factory()->for($species)->for($tmMove)->byTM()->create();
+    $species->baseMoves()->attach([$tackle->id, $hyperBeam->id]);
 
     actingAs($user);
 
     get(route('dex.web.pokedex.show', $species))
         ->assertInertia(fn (Assert $page) => $page
-            ->has('learnableMoves.levelUp', 1)
-            ->where('learnableMoves.levelUp.0.name', $levelUpMove->name)
-            ->where('learnableMoves.levelUp.0.type', $levelUpMove->type->value)
-            ->where('learnableMoves.levelUp.0.category', $levelUpMove->category->value)
-            ->where('learnableMoves.levelUp.0.power', $levelUpMove->power)
-            ->where('learnableMoves.levelUp.0.accuracy', $levelUpMove->accuracy)
-            ->where('learnableMoves.levelUp.0.isZMove', $levelUpMove->is_z_move)
-            ->where('learnableMoves.levelUp.0.isDynamaxMove', $levelUpMove->is_dynamax_move)
-            ->where('learnableMoves.levelUp.0.levelLearn', 5)
-            ->has('learnableMoves.tm', 1)
-            ->where('learnableMoves.tm.0.name', $tmMove->name)
-            ->where('learnableMoves.tm.0.type', $tmMove->type->value)
-            ->where('learnableMoves.tm.0.category', $tmMove->category->value)
-            ->where('learnableMoves.tm.0.power', $tmMove->power)
-            ->where('learnableMoves.tm.0.accuracy', $tmMove->accuracy)
-            ->where('learnableMoves.tm.0.isZMove', $tmMove->is_z_move)
-            ->where('learnableMoves.tm.0.isDynamaxMove', $tmMove->is_dynamax_move)
-            ->where('learnableMoves.tm.0.tmCode', $tmMove->tm_code)
-        );
-});
-
-it('orders learnable moves by level then by name', function () {
-    $user    = User::factory()->create();
-    $species = Species::factory()->create();
-
-    $highLevelMove = Move::factory()->create(['name' => 'Hyper Beam']);
-    $lowLevelMove  = Move::factory()->create(['name' => 'Tackle']);
-
-    SpeciesLearnableMove::factory()->for($species)->for($highLevelMove)->byLevelUp(50)->create();
-    SpeciesLearnableMove::factory()->for($species)->for($lowLevelMove)->byLevelUp(1)->create();
-
-    actingAs($user);
-
-    get(route('dex.web.pokedex.show', $species))
-        ->assertInertia(fn (Assert $page) => $page
-            ->has('learnableMoves.levelUp', 2)
-            ->where('learnableMoves.levelUp.0.name', $lowLevelMove->name)
-            ->where('learnableMoves.levelUp.0.levelLearn', 1)
-            ->where('learnableMoves.levelUp.1.name', $highLevelMove->name)
-            ->where('learnableMoves.levelUp.1.levelLearn', 50)
+            ->has('baseMoves', 2)
+            ->where('baseMoves.0.name', $hyperBeam->name)
+            ->where('baseMoves.0.type', $hyperBeam->type->value)
+            ->where('baseMoves.0.category', $hyperBeam->category->value)
+            ->where('baseMoves.0.power', $hyperBeam->power)
+            ->where('baseMoves.0.accuracy', $hyperBeam->accuracy)
+            ->where('baseMoves.0.ailment', $hyperBeam->ailment?->value)
+            ->where('baseMoves.0.ailmentChance', $hyperBeam->ailment_chance)
+            ->where('baseMoves.0.flinchChance', $hyperBeam->flinch_chance)
+            ->where('baseMoves.0.isZMove', $hyperBeam->is_z_move)
+            ->where('baseMoves.0.isDynamaxMove', $hyperBeam->is_dynamax_move)
+            ->where('baseMoves.1.name', $tackle->name)
         );
 });

@@ -14,6 +14,7 @@ use Illuminate\Database\Eloquent\Collection as EloquentCollection;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Support\Lottery;
 use Override;
@@ -47,7 +48,7 @@ use Shared\ValueObjects\SpeciesSprites;
  * @property bool $egg_obtainable
  * @property-read EloquentCollection<int, SpeciesEvolution> $evolutions
  * @property-read EloquentCollection<int, SpeciesEvolution> $previousEvolutions
- * @property-read EloquentCollection<int, SpeciesLearnableMove> $learnableMoves
+ * @property-read EloquentCollection<int, Move> $baseMoves
  * @property-read EloquentCollection<int, Pokemon> $pokemon
  */
 #[Table('species')]
@@ -97,11 +98,11 @@ final class Species extends Model
     }
 
     /**
-     * @return HasMany<SpeciesLearnableMove, $this>
+     * @return BelongsToMany<Move, $this>
      */
-    public function learnableMoves(): HasMany
+    public function baseMoves(): BelongsToMany
     {
-        return $this->hasMany(SpeciesLearnableMove::class);
+        return $this->belongsToMany(Move::class, 'species_base_move');
     }
 
     /**

@@ -8,7 +8,6 @@ use Shared\Models\Move;
 use Shared\Models\Pokeball;
 use Shared\Models\Pokemon;
 use Shared\Models\Species;
-use Shared\Models\SpeciesLearnableMove;
 use Shared\Models\User;
 use Shared\ValueObjects\NewPokemon;
 
@@ -21,7 +20,7 @@ it('creates a pokemon', function () {
     travelTo('2026-01-01 12:00:00');
 
     $user     = User::factory()->create();
-    $species  = Species::factory()->create();
+    $species  = Species::factory()->withBaseMoves()->create();
     $pokeball = Pokeball::factory()->create();
     $gender   = $species->getRandomGender();
 
@@ -57,8 +56,7 @@ it('adds four base moves to the created pokemon', function () {
     $baseMoves   = Move::factory()->count(4)->create();
     $nonBaseMove = Move::factory()->create();
 
-    $baseMoves->each(fn (Move $move) => SpeciesLearnableMove::factory()->for($species)->for($move)->create(['is_base_move' => true]));
-    SpeciesLearnableMove::factory()->for($species)->for($nonBaseMove)->create(['is_base_move' => false]);
+    $species->baseMoves()->attach($baseMoves);
 
     $pokemon = new CreatePokemonAction()->handle(
         owner: $user,
@@ -82,6 +80,50 @@ it('adds four base moves to the created pokemon', function () {
         'pokemon_id' => $pokemon->id,
         'move_id'    => $nonBaseMove->id,
     ]);
+});
+
+it('repeats the base moves until the pokemon has four moves', function () {
+    $user     = User::factory()->create();
+    $species  = Species::factory()->create();
+    $pokeball = Pokeball::factory()->create();
+    $baseMove = Move::factory()->create();
+
+    $species->baseMoves()->attach($baseMove);
+
+    $pokemon = new CreatePokemonAction()->handle(
+        owner: $user,
+        newPokemon: new NewPokemon(
+            species: $species,
+            level: 1,
+            is_shiny: false,
+            gender: $species->getRandomGender(),
+        ),
+        pokeball: $pokeball,
+    );
+
+    assertDatabaseCount('pokemon_move', 4);
+
+    expect($pokemon->moves()->pluck('moves.id')->unique()->all())->toBe([$baseMove->id]);
+});
+
+it('creates a pokemon without moves when its species has no base moves', function () {
+    $user     = User::factory()->create();
+    $species  = Species::factory()->create();
+    $pokeball = Pokeball::factory()->create();
+
+    new CreatePokemonAction()->handle(
+        owner: $user,
+        newPokemon: new NewPokemon(
+            species: $species,
+            level: 1,
+            is_shiny: false,
+            gender: $species->getRandomGender(),
+        ),
+        pokeball: $pokeball,
+    );
+
+    assertDatabaseCount(Pokemon::class, 1);
+    assertDatabaseCount('pokemon_move', 0);
 });
 
 it('does not create a pokemon if the owner\'s box is full', function () {

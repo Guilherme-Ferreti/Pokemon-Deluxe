@@ -62,7 +62,7 @@ final class CreatePokemonAction
 
     private function addBaseMoves(Pokemon $pokemon): void
     {
-        $moveIds = $this->newPokemon->species->learnableMoves()->baseMove()->take(4)->pluck('move_id');
+        $moveIds = $this->newPokemon->species->baseMoves()->take(4)->pluck('moves.id');
 
         $pokemon->moves()->attach($moveIds->repeatUntil(4));
     }

@@ -12,7 +12,6 @@ use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
-use Illuminate\Database\Eloquent\Relations\HasMany;
 use Override;
 use Shared\Enums\Ailment;
 use Shared\Enums\Generation;
@@ -39,7 +38,6 @@ use Shared\Enums\PokemonType;
  * @property bool $is_dynamax_move
  * @property Generation $generation
  * @property string $tm_code
- * @property-read EloquentCollection<int, SpeciesLearnableMove> $learnableBySpecies
  * @property-read EloquentCollection<int, Pokemon> $learnedByPokemon
  */
 #[Table('moves')]
@@ -68,14 +66,6 @@ final class Move extends Model
             'is_dynamax_move' => 'boolean',
             'generation'      => Generation::class,
         ];
-    }
-
-    /**
-     * @return HasMany<SpeciesLearnableMove, $this>
-     */
-    public function learnableBySpecies(): HasMany
-    {
-        return $this->hasMany(SpeciesLearnableMove::class);
     }
 
     /**

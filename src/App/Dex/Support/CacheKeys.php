@@ -21,8 +21,8 @@ final class CacheKeys
         return "dex::query:species-evolution-chain:species-{$speciesId}";
     }
 
-    public static function speciesLearnableMoves(string $speciesId): string
+    public static function speciesBaseMoves(string $speciesId): string
     {
-        return "dex::query:species-learnable-moves:species-{$speciesId}";
+        return "dex::query:species-base-moves:species-{$speciesId}";
     }
 }

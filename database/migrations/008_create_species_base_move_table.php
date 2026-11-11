@@ -12,14 +12,9 @@ return new class extends Migration
 {
     public function up(): void
     {
-        Schema::create('species_learnable_moves', function (Blueprint $table): void {
-            $table->uuid('id')->primary();
-
+        Schema::create('species_base_move', function (Blueprint $table): void {
             $table->foreignIdFor(Species::class)->constrained()->cascadeOnDelete();
             $table->foreignIdFor(Move::class)->constrained()->cascadeOnDelete();
-
-            $table->unsignedTinyInteger('level_learn')->nullable();
-            $table->boolean('is_base_move')->default(false);
 
             $table->unique(['species_id', 'move_id']);
             $table->index('move_id');
@@ -28,6 +23,6 @@ return new class extends Migration
 
     public function down(): void
     {
-        Schema::dropIfExists('species_learnable_moves');
+        Schema::dropIfExists('species_base_move');
     }
 };

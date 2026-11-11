@@ -88,7 +88,7 @@ final class UserSeeder extends Seeder
     {
         $user->pokemon()
             ->get(['id', 'species_id'])
-            ->flatMap(fn (Pokemon $pokemon) => Arr::map($this->getRandomLearnableMoves($pokemon->species_id), fn (string $moveId) => [
+            ->flatMap(fn (Pokemon $pokemon) => Arr::map($this->getBaseMoves($pokemon->species_id), fn (string $moveId) => [
                 'pokemon_id' => $pokemon->id,
                 'move_id'    => $moveId,
             ]))
@@ -99,13 +99,13 @@ final class UserSeeder extends Seeder
     /**
      * @return array<int, string>
      */
-    private function getRandomLearnableMoves(string $speciesId): array
+    private function getBaseMoves(string $speciesId): array
     {
         /** @var array<string, array<int, string>> */
         $allMoves = once(fn () => Species::query()
-            ->with('learnableMoves:move_id,species_id')
+            ->with('baseMoves:id')
             ->get()
-            ->mapWithKeys(fn (Species $species) => [$species->id => $species->learnableMoves->pluck('move_id')->toArray()])
+            ->mapWithKeys(fn (Species $species) => [$species->id => $species->baseMoves->pluck('id')->toArray()])
             ->toArray()
         );
 

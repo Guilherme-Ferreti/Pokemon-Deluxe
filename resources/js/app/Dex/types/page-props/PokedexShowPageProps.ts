@@ -1,9 +1,5 @@
 import type { PokemonType, PokemonGender } from '@/shared/types/enums';
-import type {
-  Move,
-  Species,
-  SpeciesLearnableMove,
-} from '@/shared/types/response';
+import type { Move, Species } from '@/shared/types/response';
 
 export type PokedexShowPageProps = {
   species: {
@@ -29,10 +25,7 @@ export type PokedexShowPageProps = {
     previous: EvolutionChainNodes;
     into: EvolutionChainNodes;
   };
-  learnableMoves: {
-    levelUp: LevelUpLearnableMove[];
-    tm: TMLearnableMove[];
-  };
+  baseMoves: BaseMove[];
 };
 
 type Hero = {
@@ -89,20 +82,15 @@ type EvolutionChainNodes = {
   gender: PokemonGender | null;
 }[];
 
-interface LearnableMove {
+export type BaseMove = {
   name: Move['name'];
   type: Move['type'];
   category: Move['category'];
   power: Move['power'];
   accuracy: Move['accuracy'];
+  ailment: Move['ailment'];
+  ailmentChance: Move['ailmentChance'];
+  flinchChance: Move['flinchChance'];
   isZMove: Move['isZMove'];
   isDynamaxMove: Move['isDynamaxMove'];
-}
-
-export type LevelUpLearnableMove = LearnableMove & {
-  levelLearn: SpeciesLearnableMove['levelLearn'];
-};
-
-export type TMLearnableMove = LearnableMove & {
-  tmCode: Move['tmCode'];
 };

@@ -13,10 +13,12 @@ use App\Dex\Support\CacheKeys;
 use Illuminate\Support\Facades\Cache;
 use Inertia\ProvidesInertiaProperties;
 use Inertia\RenderContext;
+use Shared\Enums\Ailment;
+use Shared\Enums\MoveCategory;
 use Shared\Enums\PokemonType;
+use Shared\Models\Move;
 use Shared\Models\Species;
 use Shared\Models\SpeciesEvolution;
-use Shared\Models\SpeciesLearnableMove;
 
 final readonly class PokedexShowPageProps implements ProvidesInertiaProperties
 {
@@ -38,7 +40,7 @@ final readonly class PokedexShowPageProps implements ProvidesInertiaProperties
             'catchStatistics' => $this->getCatchStatisticsProp(),
             'damageTaken'     => $this->getDamageTakenProp(),
             'evolutionChain'  => $this->getEvolutionChainProp(),
-            'learnableMoves'  => $this->getLearnableMovesProp(),
+            'baseMoves'       => $this->getBaseMovesProp(),
         ];
     }
 
@@ -231,57 +233,29 @@ final readonly class PokedexShowPageProps implements ProvidesInertiaProperties
     }
 
     /**
-     * @return array<string, mixed>
+     * @return array<int, mixed>
      */
-    private function getLearnableMovesProp(): array
+    private function getBaseMovesProp(): array
     {
-        $callback = function (): array {
-            $levelUpMoves = $this->species
-                ->learnableMoves
-                ->filter(fn (SpeciesLearnableMove $learnableMove) => $learnableMove->isLearnedByLevelUp())
-                ->map(fn (SpeciesLearnableMove $learnableMove) => [
-                    'name'          => $learnableMove->move->name,
-                    'type'          => $learnableMove->move->type,
-                    'category'      => $learnableMove->move->category,
-                    'power'         => $learnableMove->move->power,
-                    'accuracy'      => $learnableMove->move->accuracy,
-                    'isZMove'       => $learnableMove->move->is_z_move,
-                    'isDynamaxMove' => $learnableMove->move->is_dynamax_move,
-                    'levelLearn'    => $learnableMove->level_learn,
-                ])
-                ->sortBy([
-                    ['levelLearn', 'asc'],
-                    ['name', 'asc'],
-                ])
-                ->values()
-                ->toArray();
-
-            $tmMoves = $this->species
-                ->learnableMoves
-                ->filter(fn (SpeciesLearnableMove $learnableMove) => $learnableMove->isLearnedByTm())
-                ->map(fn (SpeciesLearnableMove $learnableMove) => [
-                    'name'          => $learnableMove->move->name,
-                    'type'          => $learnableMove->move->type,
-                    'category'      => $learnableMove->move->category,
-                    'power'         => $learnableMove->move->power,
-                    'accuracy'      => $learnableMove->move->accuracy,
-                    'isZMove'       => $learnableMove->move->is_z_move,
-                    'isDynamaxMove' => $learnableMove->move->is_dynamax_move,
-                    'tmCode'        => $learnableMove->move->tm_code,
-                ])
-                ->sortBy('tmCode')
-                ->values()
-                ->toArray();
-
-            return [
-                'levelUp' => $levelUpMoves,
-                'tm'      => $tmMoves,
-            ];
-        };
-
         return Cache::rememberForever(
-            key: CacheKeys::speciesLearnableMoves($this->species->id),
-            callback: $callback
+            key: CacheKeys::speciesBaseMoves($this->species->id),
+            callback: fn (): array => $this->species
+                ->baseMoves
+                ->sortBy('name')
+                ->map(fn (Move $move) => [
+                    'name'          => $move->name,
+                    'type'          => $move->type,
+                    'category'      => $move->category,
+                    'power'         => $move->power,
+                    'accuracy'      => $move->accuracy,
+                    'ailment'       => $move->ailment,
+                    'ailmentChance' => $move->ailment_chance,
+                    'flinchChance'  => $move->flinch_chance,
+                    'isZMove'       => $move->is_z_move,
+                    'isDynamaxMove' => $move->is_dynamax_move,
+                ])
+                ->values()
+                ->toArray()
         );
     }
 }

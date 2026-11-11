@@ -2,6 +2,7 @@
 
 declare(strict_types=1);
 
+use Shared\Enums\Ailment;
 use Shared\Enums\MoveCategory;
 use Shared\Enums\PokemonGenderRate;
 use Shared\Enums\SpeciesTrait;
@@ -9,7 +10,6 @@ use Shared\Models\EvolutionItem;
 use Shared\Models\Move;
 use Shared\Models\Species;
 use Shared\Models\SpeciesEvolution;
-use Shared\Models\SpeciesLearnableMove;
 use Shared\Models\User;
 
 use function Pest\Laravel\actingAs;
@@ -246,104 +246,42 @@ describe('catch statistics card', function () {
     });
 });
 
-describe('learnable moves card', function () {
-    it('displays the card with both move groups', function () {
+describe('base moves card', function () {
+    it('displays the card', function () {
         $user    = User::factory()->create();
         $species = Species::factory()->create();
 
         actingAs($user);
 
         visit(route('dex.web.pokedex.show', $species))
-            ->assertVisible('@learnable-moves-card')
-            ->assertSeeIn('@learnable-moves-card', 'Moves Learned')
-            ->assertSeeIn('@learnable-moves-card', 'By level up')
-            ->assertVisible('@learnable-moves-level-up-table')
-            ->assertSeeIn('@learnable-moves-card', 'By TM')
-            ->assertVisible('@learnable-moves-tm-table')
+            ->assertVisible('@base-moves-card')
+            ->assertSeeIn('@base-moves-card', 'Base Moves')
             ->assertNoSmoke();
     });
 
-    it('displays the moves learned by level up', function () {
+    it('displays the species base moves', function () {
         $user    = User::factory()->create();
         $species = Species::factory()->create();
 
-        $move = Move::factory()->create(['category' => MoveCategory::DAMAGE]);
+        $move = Move::factory()->create([
+            'category'       => MoveCategory::DAMAGE,
+            'ailment'        => Ailment::BURN,
+            'ailment_chance' => 10,
+            'flinch_chance'  => 30,
+        ]);
 
-        $learnableMove = SpeciesLearnableMove::factory()->for($species)->for($move)->byLevelUp()->create();
+        $species->baseMoves()->attach($move);
 
         actingAs($user);
 
         visit(route('dex.web.pokedex.show', $species))
-            ->assertSeeIn('@learnable-moves-level-up-table__row-1-level-learn', $learnableMove->level_learn)
-            ->assertSeeIn('@learnable-moves-level-up-table__row-1-name', $move->name)
-            ->assertSeeIn('@learnable-moves-level-up-table__row-1-type', $move->type->label())
-            ->assertSeeIn('@learnable-moves-level-up-table__row-1-power', $move->power)
-            ->assertSeeIn('@learnable-moves-level-up-table__row-1-accuracy', "{$move->accuracy}%")
-            ->assertNoSmoke();
-    });
-
-    it('displays the moves learned by TM', function () {
-        $user    = User::factory()->create();
-        $species = Species::factory()->create();
-
-        $move = Move::factory()->create(['category' => MoveCategory::DAMAGE]);
-
-        SpeciesLearnableMove::factory()->for($species)->for($move)->byTM()->create();
-
-        actingAs($user);
-
-        visit(route('dex.web.pokedex.show', $species))
-            ->assertSeeIn('@learnable-moves-tm-table__row-1-tm-code', $move->tm_code)
-            ->assertSeeIn('@learnable-moves-tm-table__row-1-name', $move->name)
-            ->assertSeeIn('@learnable-moves-tm-table__row-1-type', $move->type->label())
-            ->assertSeeIn('@learnable-moves-tm-table__row-1-power', $move->power)
-            ->assertSeeIn('@learnable-moves-tm-table__row-1-accuracy', "{$move->accuracy}%")
-            ->assertNoSmoke();
-    });
-
-    it('sorts the moves learned by level up by level', function () {
-        $user    = User::factory()->create();
-        $species = Species::factory()->create();
-
-        $lowLevelMove  = Move::factory()->create();
-        $highLevelMove = Move::factory()->create();
-
-        SpeciesLearnableMove::factory()->for($species)->for($lowLevelMove)->byLevelUp(1)->create();
-        SpeciesLearnableMove::factory()->for($species)->for($highLevelMove)->byLevelUp(50)->create();
-
-        actingAs($user);
-
-        visit(route('dex.web.pokedex.show', $species))
-            ->assertSeeIn('@learnable-moves-level-up-table__row-1-level-learn', '1')
-            ->click('@learnable-moves-level-up-table__head-level-learn')
-            ->wait(0.5)
-            ->assertSeeIn('@learnable-moves-level-up-table__row-1-level-learn', '50')
-            ->click('@learnable-moves-level-up-table__head-level-learn')
-            ->wait(0.5)
-            ->assertSeeIn('@learnable-moves-level-up-table__row-1-level-learn', '1')
-            ->assertNoSmoke();
-    });
-
-    it('sorts the moves learned by TM by TM Code', function () {
-        $user    = User::factory()->create();
-        $species = Species::factory()->create();
-
-        $firstMove  = Move::factory()->create(['tm_code' => 'TM001']);
-        $secondMove = Move::factory()->create(['tm_code' => 'TM002']);
-
-        SpeciesLearnableMove::factory()->for($species)->for($firstMove)->byTM()->create();
-        SpeciesLearnableMove::factory()->for($species)->for($secondMove)->byTM()->create();
-
-        actingAs($user);
-
-        visit(route('dex.web.pokedex.show', $species))
-            ->assertSeeIn('@learnable-moves-tm-table__row-1-name', $firstMove->name)
-            ->click('@learnable-moves-tm-table__head-tm-code')
-            ->wait(0.5)
-            ->assertSeeIn('@learnable-moves-tm-table__row-1-name', $secondMove->name)
-            ->click('@learnable-moves-tm-table__head-tm-code')
-            ->wait(0.5)
-            ->assertSeeIn('@learnable-moves-tm-table__row-1-name', $firstMove->name)
+            ->assertSeeIn('@base-moves-card__row-1-name', $move->name)
+            ->assertSeeIn('@base-moves-card__row-1-type', $move->type->label())
+            ->assertSeeIn('@base-moves-card__row-1-power', $move->power)
+            ->assertSeeIn('@base-moves-card__row-1-accuracy', "{$move->accuracy}%")
+            ->assertSeeIn('@base-moves-card__row-1-ailment', Ailment::BURN->label())
+            ->assertSeeIn('@base-moves-card__row-1-ailment-chance', '10%')
+            ->assertSeeIn('@base-moves-card__row-1-flinch-chance', '30%')
             ->assertNoSmoke();
     });
 
@@ -354,18 +292,17 @@ describe('learnable moves card', function () {
         $ohkoMove   = Move::factory()->create(['category' => MoveCategory::OHKO]);
         $strongMove = Move::factory()->create(['category' => MoveCategory::DAMAGE, 'power' => 150]);
 
-        SpeciesLearnableMove::factory()->for($species)->for($ohkoMove)->byLevelUp()->create();
-        SpeciesLearnableMove::factory()->for($species)->for($strongMove)->byLevelUp()->create();
+        $species->baseMoves()->attach([$ohkoMove->id, $strongMove->id]);
 
         actingAs($user);
 
         visit(route('dex.web.pokedex.show', $species))
-            ->click('@learnable-moves-level-up-table__head-power')
+            ->click('@base-moves-card__head-power')
             ->wait(0.5)
-            ->assertDontSeeIn('@learnable-moves-level-up-table__row-1-name', $ohkoMove->name)
-            ->click('@learnable-moves-level-up-table__head-power')
+            ->assertDontSeeIn('@base-moves-card__row-1-name', $ohkoMove->name)
+            ->click('@base-moves-card__head-power')
             ->wait(0.5)
-            ->assertSeeIn('@learnable-moves-level-up-table__row-1-name', $ohkoMove->name)
+            ->assertSeeIn('@base-moves-card__row-1-name', $ohkoMove->name)
             ->assertNoSmoke();
     });
 
@@ -374,20 +311,19 @@ describe('learnable moves card', function () {
         $species = Species::factory()->create();
 
         $powerlessMove = Move::factory()->create(['category' => MoveCategory::AILMENT]);
-        $powerfullMove = Move::factory()->create(['category' => MoveCategory::DAMAGE, 'power' => 150]);
+        $powerfulMove  = Move::factory()->create(['category' => MoveCategory::DAMAGE, 'power' => 150]);
 
-        SpeciesLearnableMove::factory()->for($species)->for($powerlessMove)->byLevelUp()->create();
-        SpeciesLearnableMove::factory()->for($species)->for($powerfullMove)->byLevelUp()->create();
+        $species->baseMoves()->attach([$powerlessMove->id, $powerfulMove->id]);
 
         actingAs($user);
 
         visit(route('dex.web.pokedex.show', $species))
-            ->click('@learnable-moves-level-up-table__head-power')
+            ->click('@base-moves-card__head-power')
             ->wait(0.5)
-            ->assertSeeIn('@learnable-moves-level-up-table__row-1-name', $powerlessMove->name)
-            ->click('@learnable-moves-level-up-table__head-power')
+            ->assertSeeIn('@base-moves-card__row-1-name', $powerlessMove->name)
+            ->click('@base-moves-card__head-power')
             ->wait(0.5)
-            ->assertDontSeeIn('@learnable-moves-level-up-table__row-1-name', $powerlessMove->name)
+            ->assertDontSeeIn('@base-moves-card__row-1-name', $powerlessMove->name)
             ->assertNoSmoke();
     });
 });

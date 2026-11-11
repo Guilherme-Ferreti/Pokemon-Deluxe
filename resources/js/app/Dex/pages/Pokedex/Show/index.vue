@@ -27,7 +27,7 @@
       </section>
     </div>
     <section>
-      <LearnableMovesCard />
+      <BaseMovesCard />
     </section>
   </div>
 </template>
@@ -37,10 +37,10 @@ import { Head, setLayoutProps, usePage } from '@inertiajs/vue3';
 import AppSection from '@/shared/components/content/AppSection.vue';
 import { route } from '@/shared/types/helpers/route';
 import type { PokedexShowPageProps } from '../../../types/page-props/PokedexShowPageProps';
+import BaseMovesCard from './BaseMovesCard.vue';
 import CatchStatisticsCard from './CatchStatisticsCard.vue';
 import DamageTakenCard from './DamageTakenCard.vue';
 import EvolutionChainCard from './EvolutionChainCard.vue';
-import LearnableMovesCard from './LearnableMovesCard.vue';
 import NavigationLinks from './NavigationLinks.vue';
 import OverviewCard from './OverviewCard.vue';
 import SpeciesHero from './SpeciesHero.vue';

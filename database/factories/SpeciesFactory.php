@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Factories\Factory;
 use Shared\Enums\Generation;
 use Shared\Enums\PokemonGenderRate;
 use Shared\Enums\PokemonType;
+use Shared\Models\Move;
 use Shared\Models\Species;
 use Shared\ValueObjects\SpeciesPortraits;
 use Shared\ValueObjects\SpeciesSprites;
@@ -66,5 +67,10 @@ final class SpeciesFactory extends Factory
         return $this->state([
             'types' => fake()->randomElements(PokemonType::cases(), 2),
         ]);
+    }
+
+    public function withBaseMoves(int $count = 4): static
+    {
+        return $this->hasAttached(Move::factory()->count($count), [], 'baseMoves');
     }
 }
