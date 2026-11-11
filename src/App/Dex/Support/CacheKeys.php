@@ -11,11 +11,6 @@ final class CacheKeys
         return "dex::query:species-catch-statistics:species-{$speciesId}";
     }
 
-    public static function userSpeciesCatchStatistics(string $userId, string $speciesId): string
-    {
-        return "dex::query:user-species-catch-statistics:user-{$userId}:species-{$speciesId}";
-    }
-
     public static function speciesEvolutionChain(string $speciesId): string
     {
         return "dex::query:species-evolution-chain:species-{$speciesId}";

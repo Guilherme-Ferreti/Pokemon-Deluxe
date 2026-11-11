@@ -14,9 +14,17 @@ final class CalculateUserSpeciesCatchStatisticsAction
      */
     public function handle(User $user, Species $species): array
     {
+        $counts = $species
+            ->pokemon()
+            ->whereBelongsTo($user)
+            ->toBase()
+            ->selectRaw('coalesce(sum(case when is_shiny then 0 else 1 end), 0) as regular')
+            ->selectRaw('coalesce(sum(case when is_shiny then 1 else 0 end), 0) as shiny')
+            ->first();
+
         return [
-            'regular' => $species->pokemon()->regular()->whereBelongsTo($user)->count(),
-            'shiny'   => $species->pokemon()->shiny()->whereBelongsTo($user)->count(),
+            'regular' => (int) $counts->regular,
+            'shiny'   => (int) $counts->shiny,
         ];
     }
 }

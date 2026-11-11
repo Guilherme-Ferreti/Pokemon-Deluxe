@@ -13,9 +13,16 @@ final class CalculateSpeciesCatchStatisticsAction
      */
     public function handle(Species $species): array
     {
+        $counts = $species
+            ->pokemon()
+            ->toBase()
+            ->selectRaw('coalesce(sum(case when is_shiny then 0 else 1 end), 0) as regular')
+            ->selectRaw('coalesce(sum(case when is_shiny then 1 else 0 end), 0) as shiny')
+            ->first();
+
         return [
-            'regular' => $species->pokemon()->regular()->count(),
-            'shiny'   => $species->pokemon()->shiny()->count(),
+            'regular' => (int) $counts->regular,
+            'shiny'   => (int) $counts->shiny,
         ];
     }
 }

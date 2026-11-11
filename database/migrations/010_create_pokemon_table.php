@@ -37,6 +37,8 @@ return new class extends Migration
             $table->timestamps();
 
             $table->index(['user_id', 'in_party']);
+            $table->index(['user_id', 'species_id', 'is_shiny']);
+            $table->index(['species_id', 'is_shiny']);
         });
     }
 

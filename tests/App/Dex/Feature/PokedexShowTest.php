@@ -8,6 +8,7 @@ use Shared\Enums\PokemonGender;
 use Shared\Enums\PokemonType;
 use Shared\Models\EvolutionItem;
 use Shared\Models\Move;
+use Shared\Models\Pokemon;
 use Shared\Models\Species;
 use Shared\Models\SpeciesEvolution;
 use Shared\Models\User;
@@ -101,6 +102,30 @@ it('returns null for next species when at last entry', function () {
     get(route('dex.web.pokedex.show', $species))
         ->assertInertia(fn (Assert $page) => $page
             ->where('nextSpecies', null)
+        );
+});
+
+it("reflects the current user's newly caught pokemon in the catch statistics", function () {
+    $user    = User::factory()->create();
+    $species = Species::factory()->create();
+    Pokemon::factory()->for($user)->for($species)->regular()->create();
+
+    actingAs($user);
+
+    get(route('dex.web.pokedex.show', $species))
+        ->assertSuccessful()
+        ->assertInertia(fn (Assert $page) => $page
+            ->where('catchStatistics.currentUser.regular', 1)
+            ->where('catchStatistics.currentUser.shiny', 0)
+        );
+
+    Pokemon::factory()->for($user)->for($species)->shiny()->create();
+
+    get(route('dex.web.pokedex.show', $species))
+        ->assertSuccessful()
+        ->assertInertia(fn (Assert $page) => $page
+            ->where('catchStatistics.currentUser.regular', 1)
+            ->where('catchStatistics.currentUser.shiny', 1)
         );
 });
 

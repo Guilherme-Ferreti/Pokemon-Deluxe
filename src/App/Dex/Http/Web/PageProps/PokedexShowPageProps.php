@@ -144,11 +144,7 @@ final readonly class PokedexShowPageProps implements ProvidesInertiaProperties
             callback: fn () => new CalculateSpeciesCatchStatisticsAction()->handle($this->species)
         );
 
-        $currentUser = Cache::remember(
-            key: CacheKeys::userSpeciesCatchStatistics(currentUser()->id, $this->species->id),
-            ttl: now()->endOfDay(),
-            callback: fn () => new CalculateUserSpeciesCatchStatisticsAction()->handle(currentUser(), $this->species)
-        );
+        $currentUser = new CalculateUserSpeciesCatchStatisticsAction()->handle(currentUser(), $this->species);
 
         return [
             'global'      => $global,
