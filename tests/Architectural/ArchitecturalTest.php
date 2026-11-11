@@ -137,6 +137,13 @@ arch('Enums')
     ])
     ->toBeEnums();
 
+arch('Shared Exceptions')
+    ->expect('Shared\Exceptions')
+    ->toHaveSuffix('Exception')
+    ->toBeClasses()
+    ->toBeFinal()
+    ->toExtend(RuntimeException::class);
+
 arch('Helpers')
     ->expect('Shared\Helpers')
     ->toHaveSuffix('Helper')

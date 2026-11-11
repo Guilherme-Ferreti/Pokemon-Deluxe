@@ -7,6 +7,8 @@ namespace App\Pokemon\Actions;
 use App\Pokemon\Exceptions\BoxFullException;
 use App\Pokemon\Services\ExperienceCalculator;
 use Illuminate\Support\Facades\DB;
+use Shared\Exceptions\GameDataException;
+use Shared\Models\Move;
 use Shared\Models\Pokeball;
 use Shared\Models\Pokemon;
 use Shared\Models\User;
@@ -64,6 +66,19 @@ final class CreatePokemonAction
     {
         $moveIds = $this->newPokemon->species->baseMoves()->take(4)->pluck('moves.id');
 
+        if ($moveIds->isEmpty()) {
+            report(GameDataException::speciesWithoutBaseMoves($this->newPokemon->species));
+
+            $moveIds = collect([$this->defaultBaseMove()->id]);
+        }
+
         $pokemon->moves()->attach($moveIds->repeatUntil(4));
+    }
+
+    private function defaultBaseMove(): Move
+    {
+        return Move::query()
+            ->where('slug', config('game.pokemon.default_base_move'))
+            ->firstOrFail();
     }
 }

@@ -11,7 +11,7 @@ Before planning or editing, find the row whose globs match the file's path and r
 | src/Shared/Casts/** | .ai/rules/casts.md |
 | src/App/**/Http/Web/Controllers/** | .ai/rules/controllers.md |
 | src/Shared/Enums/** | .ai/rules/enums.md |
-| src/App/**/Exceptions/** | .ai/rules/exceptions.md |
+| src/App/**/Exceptions/**, src/Shared/Exceptions/** | .ai/rules/exceptions.md |
 | tests/**/Feature/** | .ai/rules/feature.md |
 | src/App/**/Filters/** | .ai/rules/filters.md |
 | src/Shared/Helpers/** | .ai/rules/helpers.md |

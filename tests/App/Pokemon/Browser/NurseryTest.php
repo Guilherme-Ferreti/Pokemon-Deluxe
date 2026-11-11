@@ -88,7 +88,7 @@ it('allows hatching a ready to hatch egg', function () {
 
 it('allows catching a hatched pokemon through the dialog', function () {
     $user     = User::factory()->create(['purchased_incubator_indexes' => [new IncubatorIndex(1)]]);
-    $species  = Species::factory()->create(['name' => 'Bulbasaur']);
+    $species  = Species::factory()->withBaseMoves()->create(['name' => 'Bulbasaur']);
     $pokeball = Pokeball::factory()->create(['name' => 'Poke Ball']);
 
     InventoryItem::factory()->for($user)->for($pokeball, 'item')->create(['quantity' => 5]);

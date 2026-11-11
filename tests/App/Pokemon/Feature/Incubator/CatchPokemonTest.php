@@ -27,7 +27,7 @@ it('catches a ready-to-catch egg', function () {
 
     $data          = CatchPokemonRequestFactory::new()->create();
     $user          = User::factory()->create(['purchased_incubator_indexes' => [new IncubatorIndex(1)]]);
-    $species       = Species::factory()->create(['name' => 'Pikachu']);
+    $species       = Species::factory()->withBaseMoves()->create(['name' => 'Pikachu']);
     $pokeball      = Pokeball::first();
     $inventoryItem = InventoryItem::factory()->for($user)->pokeball($pokeball)->create(['quantity' => 1]);
 

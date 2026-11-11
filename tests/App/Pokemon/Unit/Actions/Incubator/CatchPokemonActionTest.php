@@ -21,7 +21,7 @@ it('catches a ready-to-catch egg and adds the pokemon to the user', function () 
     travelTo('2026-01-01 12:00:00');
 
     $user     = User::factory()->create(['purchased_incubator_indexes' => [new IncubatorIndex(1)]]);
-    $species  = Species::factory()->create();
+    $species  = Species::factory()->withBaseMoves()->create();
     $pokeball = Pokeball::factory()->create();
 
     InventoryItem::factory()->for($user)->pokeball($pokeball)->create();

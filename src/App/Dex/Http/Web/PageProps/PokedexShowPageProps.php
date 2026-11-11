@@ -13,8 +13,6 @@ use App\Dex\Support\CacheKeys;
 use Illuminate\Support\Facades\Cache;
 use Inertia\ProvidesInertiaProperties;
 use Inertia\RenderContext;
-use Shared\Enums\Ailment;
-use Shared\Enums\MoveCategory;
 use Shared\Enums\PokemonType;
 use Shared\Models\Move;
 use Shared\Models\Species;
