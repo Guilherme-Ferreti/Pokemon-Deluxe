@@ -119,11 +119,15 @@ final class SearchBoxQuery
      */
     private function applySorting(Builder $query, SearchBoxSortBy $sort, SortDirection $dir): Builder
     {
-        return match ($sort) {
-            SearchBoxSortBy::CATCH_DATE     => $query->orderBy('pokemon.caught_at', $dir->value),
-            SearchBoxSortBy::EXPERIENCE     => $query->orderBy('pokemon.experience', $dir->value),
-            SearchBoxSortBy::LEVEL          => $query->orderBy('pokemon.level', $dir->value),
-            SearchBoxSortBy::POKEDEX_NUMBER => $query->orderBy('species.pokedex_number', $dir->value),
+        $column = match ($sort) {
+            SearchBoxSortBy::CATCH_DATE     => 'pokemon.caught_at',
+            SearchBoxSortBy::EXPERIENCE     => 'pokemon.experience',
+            SearchBoxSortBy::LEVEL          => 'pokemon.level',
+            SearchBoxSortBy::POKEDEX_NUMBER => 'species.pokedex_number',
         };
+
+        return $query
+            ->orderBy($column, $dir->value)
+            ->orderBy('pokemon.id');
     }
 }

@@ -249,6 +249,24 @@ it('sorts box pokemon by the given column and direction', function (SearchBoxSor
     ],
 ]);
 
+it('orders box pokemon with equal sort values by id', function (SortDirection $dir) {
+    $user = User::factory()->create();
+    Pokemon::factory()->for($user)->inBox()->create(['id' => '00000000-0000-0000-0000-000000000003', 'level' => 10]);
+    Pokemon::factory()->for($user)->inBox()->create(['id' => '00000000-0000-0000-0000-000000000001', 'level' => 10]);
+    Pokemon::factory()->for($user)->inBox()->create(['id' => '00000000-0000-0000-0000-000000000002', 'level' => 10]);
+
+    $result = new SearchBoxQuery()->handle($user, makeSearchBoxFilters(sort: SearchBoxSortBy::LEVEL, dir: $dir))->get();
+
+    expect($result->pluck('id')->all())->toBe([
+        '00000000-0000-0000-0000-000000000001',
+        '00000000-0000-0000-0000-000000000002',
+        '00000000-0000-0000-0000-000000000003',
+    ]);
+})->with([
+    'ascending'  => [SortDirection::ASC],
+    'descending' => [SortDirection::DESC],
+]);
+
 it('joins the species table when a filter or the pokedex-number sort requires it', function (SearchBoxFilters $filters) {
     $user  = User::factory()->create();
     $query = new SearchBoxQuery()->handle($user, $filters);
