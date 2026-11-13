@@ -44,6 +44,9 @@
   .mode input[type="number"] { width: 72px; height: 32px; border: 1px solid var(--border); border-radius: 6px; padding: 0 8px; background: var(--card); }
   .tm-search { display: flex; align-items: center; gap: 8px; height: 38px; border: 1px solid var(--border); border-radius: 8px; padding: 0 12px; background: var(--card); }
   .tm-search input { border: 0; outline: 0; background: transparent; flex: 1; min-width: 0; }
+  .tm-types { display: flex; flex-wrap: wrap; gap: 6px; }
+  .tm-chip { border: 1px solid var(--border); background: var(--card); border-radius: 999px; padding: 3px 6px; font-size: 12px; font-weight: 500; display: inline-flex; align-items: center; }
+  .tm-chip[aria-pressed="true"] { border-color: var(--primary); box-shadow: 0 0 0 1px var(--primary); }
   .tm-list { max-height: 280px; overflow-y: auto; padding-right: 2px; }
   .big { font-size: 34px; font-weight: 700; letter-spacing: -.02em; }
 </style>
@@ -194,15 +197,23 @@
     </div>
     <label class="tm-search" for="tm-search">
       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" style="color: var(--muted-fg);"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
-      <input id="tm-search" type="search" placeholder="Search by name, number or type" autocomplete="off">
+      <input id="tm-search" type="search" placeholder="Search by name or number" autocomplete="off">
     </label>
+    <div class="tm-types" role="group" aria-label="Filter by type">
+      <button type="button" class="tm-chip" aria-pressed="true" data-filter="">All types</button>
+      <button type="button" class="tm-chip" aria-pressed="false" data-filter="electric"><span class="type type-electric">Electric</span></button>
+      <button type="button" class="tm-chip" aria-pressed="false" data-filter="fire"><span class="type type-fire">Fire</span></button>
+      <button type="button" class="tm-chip" aria-pressed="false" data-filter="flying"><span class="type type-flying">Flying</span></button>
+      <button type="button" class="tm-chip" aria-pressed="false" data-filter="ice"><span class="type type-ice">Ice</span></button>
+      <button type="button" class="tm-chip" aria-pressed="false" data-filter="psychic"><span class="type type-psychic">Psychic</span></button>
+    </div>
     <div class="pick-list tm-list" id="tm-list">
-      <button type="button" class="pick" data-tm="122 aerial ace flying"><span class="pick-main"><strong>TM 122 Aerial Ace</strong><span class="xs muted">Flying · Power 60 · you own 2</span></span></button>
-      <button type="button" class="pick" disabled data-tm="254 inferno overdrive fire z-move"><span class="pick-main"><strong>TM 254 Inferno Overdrive</strong><span class="xs muted">Z-Move · needs level 100</span></span></button>
-      <button type="button" class="pick" disabled data-tm="393 ember fire"><span class="pick-main"><strong>TM 393 Ember</strong><span class="xs muted">Already known</span></span></button>
-      <button type="button" class="pick" aria-pressed="true" data-tm="395 ice beam ice"><span class="pick-main"><strong>TM 395 Ice Beam</strong><span class="xs muted">Ice · Power 90 · you own 1</span></span></button>
-      <button type="button" class="pick" data-tm="399 thunderbolt electric"><span class="pick-main"><strong>TM 399 Thunderbolt</strong><span class="xs muted">Electric · Power 90 · you own 1</span></span></button>
-      <button type="button" class="pick" data-tm="471 psychic"><span class="pick-main"><strong>TM 471 Psychic</strong><span class="xs muted">Psychic · Power 90 · you own 3</span></span></button>
+      <button type="button" class="pick" data-tm="122 aerial ace flying" data-type="flying"><span class="pick-main"><strong>TM 122 Aerial Ace</strong><span class="row" style="gap: 6px;"><span class="type type-flying">Flying</span><span class="xs muted">Power 60 · you own 2</span></span></span></button>
+      <button type="button" class="pick" disabled data-tm="254 inferno overdrive fire z-move" data-type="fire"><span class="pick-main"><strong>TM 254 Inferno Overdrive</strong><span class="row" style="gap: 6px;"><span class="type type-fire">Fire</span><span class="xs muted">Z-Move · needs level 100</span></span></span></button>
+      <button type="button" class="pick" disabled data-tm="393 ember fire" data-type="fire"><span class="pick-main"><strong>TM 393 Ember</strong><span class="row" style="gap: 6px;"><span class="type type-fire">Fire</span><span class="xs muted">Already known</span></span></span></button>
+      <button type="button" class="pick" aria-pressed="true" data-tm="395 ice beam ice" data-type="ice"><span class="pick-main"><strong>TM 395 Ice Beam</strong><span class="row" style="gap: 6px;"><span class="type type-ice">Ice</span><span class="xs muted">Power 90 · you own 1</span></span></span></button>
+      <button type="button" class="pick" data-tm="399 thunderbolt electric" data-type="electric"><span class="pick-main"><strong>TM 399 Thunderbolt</strong><span class="row" style="gap: 6px;"><span class="type type-electric">Electric</span><span class="xs muted">Power 90 · you own 1</span></span></span></button>
+      <button type="button" class="pick" data-tm="471 psychic psychic" data-type="psychic"><span class="pick-main"><strong>TM 471 Psychic</strong><span class="row" style="gap: 6px;"><span class="type type-psychic">Psychic</span><span class="xs muted">Power 90 · you own 3</span></span></span></button>
       <p class="small muted" id="tm-none" hidden style="text-align: center; padding: 16px 0;">No TMs match your search.</p>
     </div>
     <p class="small"><strong>Teach Ice Beam to Shiny Charmeleon?</strong> <span class="muted">All 4 slots are full, so it goes to the known moves; swap it in when you want it.</span></p>
@@ -210,7 +221,7 @@
       <button type="button" class="btn btn-outline" data-go="overview">Cancel</button>
       <button type="button" class="btn btn-primary" data-go="overview">Teach Ice Beam</button>
     </div>
-    <p class="note">TMs are named by code and move ("TM 395 Ice Beam") and sorted by code. The search matches the number, the move name or its type; the list scrolls inside the dialog.</p>
+    <p class="note">TMs are named by code and move ("TM 395 Ice Beam") and sorted by code. Each option shows the move's type badge. The search matches the number or move name; the type chips filter by move type (only types the player has TMs of); both combine. The list scrolls inside the dialog.</p>
   </div>
 </div>
 
@@ -326,15 +337,24 @@
     input.addEventListener('input', function () { button.disabled = input.value.trim() !== 'Shiny Charmeleon'; });
     document.addEventListener('mockup:state', function () { input.value = ''; button.disabled = true; });
     var tmSearch = document.getElementById('tm-search');
-    tmSearch.addEventListener('input', function () {
-      var q = tmSearch.value.trim().toLowerCase();
+    var typeFilter = '';
+    function filterTms() {
+      var q = tmSearch.value.trim().toLowerCase().replace(/^tm\s*/, '');
       var shown = 0;
       document.querySelectorAll('#tm-list [data-tm]').forEach(function (b) {
-        var match = !q || b.getAttribute('data-tm').indexOf(q.replace(/^tm\s*/, '')) !== -1;
+        var match = (!q || b.getAttribute('data-tm').indexOf(q) !== -1) && (!typeFilter || b.getAttribute('data-type') === typeFilter);
         b.hidden = !match;
         if (match) { shown += 1; }
       });
       document.getElementById('tm-none').hidden = shown !== 0;
+    }
+    tmSearch.addEventListener('input', filterTms);
+    document.querySelectorAll('.tm-chip').forEach(function (chip) {
+      chip.addEventListener('click', function () {
+        typeFilter = chip.getAttribute('data-filter');
+        document.querySelectorAll('.tm-chip').forEach(function (c) { c.setAttribute('aria-pressed', String(c === chip)); });
+        filterTms();
+      });
     });
   })();
 </script>
