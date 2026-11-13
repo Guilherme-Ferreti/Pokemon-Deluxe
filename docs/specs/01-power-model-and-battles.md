@@ -60,6 +60,21 @@ Level factor = level + 10, so a level 100 Pokémon is 10× a level 1, not 100×.
 7. The player can give up at any time. Losing has no penalty other than no reward.
 8. After every battle all Pokémon are fully healed.
 
+## Status effects
+
+| Effect | Rule |
+| --- | --- |
+| Burn | loses 1/16 of max HP at the end of each turn; deals half damage |
+| Poison | loses 1/8 of max HP at the end of each turn |
+| Paralysis | 25% chance to be unable to act each turn |
+| Sleep | cannot act for 1–3 turns |
+| Freeze | cannot act; 20% chance to thaw at the start of each turn |
+| Confusion | lasts 1–4 turns; 33% chance to hit itself (40-power typeless hit) instead of acting |
+
+- A Pokémon has at most one of burn, poison, paralysis, sleep or freeze. Confusion can stack with one of them.
+- A move's ailment does not apply if the target already has one (except confusion).
+- Numbers live in `config/game.php` under `game.battle.ailments`.
+
 ## XP
 
 - Every Pokémon that came onto the field gets XP; the one that knocked out the opponent gets more.

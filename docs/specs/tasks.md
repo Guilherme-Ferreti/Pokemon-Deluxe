@@ -193,25 +193,9 @@ There is no production data yet, so database changes are new migrations and loca
 
 **Done when:** roller and value object exist; tests pass.
 
-### 1.9 Decide status effect numbers (decision, no code)
+### 1.9 Decide status effect numbers ✅
 
-**Goal:** Spec 1 lists the status effects but not their numbers. Agree them and write them into the spec.
-
-**Proposal** (based on the main games):
-
-| Effect | Rule |
-| --- | --- |
-| Burn | loses 1/16 of max HP at the end of each turn; deals half damage |
-| Poison | loses 1/8 of max HP at the end of each turn |
-| Paralysis | 25% chance to be unable to act each turn |
-| Sleep | cannot act for 1–3 turns |
-| Freeze | cannot act; 20% chance to thaw at the start of each turn |
-| Confusion | lasts 1–4 turns; 33% chance to hit itself (40-power typeless hit) instead of acting |
-
-- A Pokémon has at most one of burn, poison, paralysis, sleep or freeze. Confusion can stack with one of them.
-- A move's ailment does not apply if the target already has one (except confusion).
-
-**Done when:** the table is agreed and added to Spec 1, with config keys under `game.battle.ailments`.
+- [x] Agreed and added to Spec 1 under "Status effects". Task 1.11 adds the config keys under `game.battle.ailments`.
 
 ### 1.10 Battle data: table, model and state
 
@@ -235,7 +219,7 @@ There is no production data yet, so database changes are new migrations and loca
 
 **Goal:** the dice for status effects during a turn.
 
-**Build** (numbers from task 1.9):
+**Build** (numbers from Spec 1, "Status effects"; add them to `config/game.php` under `game.battle.ailments`):
 - `App\Battle\Mechanics\StatusEffectRoller` with:
   - `canAct(Combatant $combatant): bool`: handles paralysis, sleep, freeze, and the confusion self-hit roll (returns `false` when it hits itself).
   - `durationFor(Ailment $ailment): int`: sleep and confusion turn counts.
