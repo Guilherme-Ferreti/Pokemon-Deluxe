@@ -45,7 +45,7 @@
     </div>
     <label class="search" for="search">
       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" style="color: var(--muted-fg);"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
-      <input id="search" type="search" placeholder="Search, e.g. Bob or Hiker" autocomplete="off">
+      <input id="search" type="search" placeholder="Search by name" autocomplete="off">
     </label>
   </div>
 
@@ -68,10 +68,10 @@
   <section class="card" id="empty" hidden>
     <div class="empty">
       <h3>No trainers match your search</h3>
-      <p>Try another name or class.</p>
+      <p>Try another name, or another tab.</p>
     </div>
   </section>
-  <p class="note">Tabs group trainers by category (what kind of trainer they are, which hints at their types), not by difficulty; each tab is sorted by level, and the tab goes in the URL. Search works within the chosen tab. "Battle" is outline because it repeats. "Team" (ghost, eye icon) opens the trainer's team in a dialog. The muted hint under a payout appears when your party's average level is above the trainer's (here your party averages Lv 52).</p>
+  <p class="note">Tabs group trainers by category (what kind of trainer they are, which hints at their types), not by difficulty; each tab is sorted by level, and the tab goes in the URL. Search matches the trainer's name only ("Bob", not "Hiker") and works within the chosen tab. "Battle" is outline because it repeats. "Team" (ghost, eye icon) opens the trainer's team in a dialog. The muted hint under a payout appears when your party's average level is above the trainer's (here your party averages Lv 52).</p>
 </main>
 
 <div class="overlay" data-show="team">
@@ -139,7 +139,7 @@
       var q = state === 'no-match' ? 'gary' : search.value.trim().toLowerCase();
       if (state === 'no-match') { search.value = 'Gary'; }
       var inBattle = state === 'in-battle';
-      var shown = trainers.filter(function (t) { return (!q || (t[0] + ' ' + t[1]).toLowerCase().indexOf(q) !== -1) && (!category || t[9] === category); });
+      var shown = trainers.filter(function (t) { return (!q || t[0].slice(t[1].length + 1).toLowerCase().indexOf(q) !== -1) && (!category || t[9] === category); });
       list.innerHTML = '';
       shown.forEach(function (t) {
         var avg = (t[3] + t[4]) / 2;
