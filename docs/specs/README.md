@@ -23,8 +23,7 @@ Planned work is listed in [tasks.md](tasks.md). Names used in code follow [gloss
 
 ## Open questions
 
-- **Money from trainers met while exploring** (`game.trainers.explore_payout_per_level`, task 6.7): their full payout is this amount × the trainer team's average level, before the usual reduction. Proposed: ₽ 100 per level (a Lv 8 team pays ₽ 800, in line with the ₽ 500 of a Lv 5 hand-made trainer). Waiting for a decision.
-- Numbers marked as first proposals are tuned during play-testing.
+- None right now. Numbers marked as first proposals are tuned during play-testing.
 
 ## Future ideas
 
