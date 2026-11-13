@@ -1,0 +1,57 @@
+<title>Pokémon Deluxe Mock-ups</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="assets/mockup.css">
+<style>
+  .intro { max-width: 68ch; display: flex; flex-direction: column; gap: 8px; }
+  .intro p { color: var(--muted-fg); }
+  .spec { display: flex; flex-direction: column; gap: 10px; }
+  .spec h2 { font-size: 13px; font-weight: 600; letter-spacing: .04em; text-transform: uppercase; color: var(--muted-fg); }
+  .list { display: grid; grid-template-columns: repeat(auto-fill, minmax(17rem, 1fr)); gap: 12px; }
+  .item { text-decoration: none; color: inherit; gap: 6px; }
+  .item:hover { border-color: var(--ring); }
+  .item h3 { font-size: 15px; font-weight: 600; }
+  .item p { color: var(--muted-fg); font-size: 13px; }
+  .meta { display: flex; flex-wrap: wrap; gap: 6px; }
+  code { font-size: 12px; background: var(--muted); padding: 1px 5px; border-radius: 4px; }
+</style>
+
+<main class="page">
+  <div class="intro">
+    <h1 style="font-size: 26px; font-weight: 700;">Pokémon Deluxe mock-ups</h1>
+    <p>How each new page should look and behave, page by page. Use the State menu at the top of a mock-up to see its empty, loading, dialog and error states. Dashed boxes stand in for Pokémon sprites and portraits.</p>
+    <p>Mock-ups set the layout, content and states. Build the real pages from the project's components, following <code>.ai/rules/design.md</code>. Source: <code>docs/mockups/</code>.</p>
+  </div>
+
+  <section class="spec">
+    <h2>Spec 1 · Battles</h2>
+    <div class="list">
+      <a class="card item" href="battle.html">
+        <h3>Battle page</h3>
+        <p>Moves, HP bars, battle log, send-out after a faint, giving up, the end screen, and throwing balls in wild battles.</p>
+        <div class="meta"><span class="badge">Tasks 1.19–1.21, 2.19</span><span class="badge">7 states</span></div>
+      </a>
+    </div>
+  </section>
+
+  <section class="spec">
+    <h2>Spec 2 · Catching and exploration</h2>
+    <div class="list">
+      <a class="card item" href="registration.html">
+        <h3>Registration: choose a starter</h3>
+        <p>The registration form with a starter picker, one region at a time.</p>
+        <div class="meta"><span class="badge">Tasks 2.13, 2.14</span><span class="badge">3 states</span></div>
+      </a>
+      <a class="card item" href="explore.html">
+        <h3>Explore</h3>
+        <p>The 9 areas, each with its types and an Explore button.</p>
+        <div class="meta"><span class="badge">Task 2.16</span><span class="badge">2 states</span></div>
+      </a>
+      <a class="card item" href="area.html">
+        <h3>Area page</h3>
+        <p>The wild Pokémon waiting in an area, shiny and legendary encounters, and the "Pokémon found here" window.</p>
+        <div class="meta"><span class="badge">Tasks 2.17, 2.18</span><span class="badge">8 states</span></div>
+      </a>
+    </div>
+  </section>
+</main>

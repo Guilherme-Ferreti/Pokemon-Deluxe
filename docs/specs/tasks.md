@@ -6,7 +6,9 @@ Every task names the classes, methods, columns and files it adds, using [glossar
 
 Each task follows the project rules in `.ai/rules/`. "Tests" lists the behaviour to cover, not every test case.
 
-Tasks that change the screen have **UI suggestions**: common elements and components that could build the page. They are ideas, not requirements; use something else when it fits better. Components named in them are the project's shadcn-vue components (`resources/js/shared/components/ui`) and shared components (`resources/js/shared/components`).
+Tasks that change the screen have **UI suggestions**: common elements and components that could build the page. They are ideas, not requirements; use something else when it fits better.
+
+Tasks with a **Mock-up** link have an interactive mock-up in `docs/mockups/` (open it in a browser; the State menu at the top shows each state). Match its layout, content and states, but build the page from the project's components, not from the mock-up's HTML or CSS. Components named in them are the project's shadcn-vue components (`resources/js/shared/components/ui`) and shared components (`resources/js/shared/components`).
 
 ---
 
@@ -330,6 +332,8 @@ Uses `Combatant` from task 1.10.
 
 **Goal:** a read-only battle page.
 
+**Mock-up:** `docs/mockups/battle.html` (state "Battle, choosing a move")
+
 **Build:**
 - Route `GET /battle` named `battle.web.show` → `App\Battle\Http\Web\Controllers\BattleController@show`; shows the user's `ONGOING` battle or redirects to the Dashboard.
 - `App\Battle\Http\Web\PageProps\BattleShowPageProps`: both active combatants (sprite, name, level, boost, shiny, ailment), player HP as numbers, opponent HP as a percentage only, team dots, active moves (name, type, power), log.
@@ -352,6 +356,8 @@ Uses `Combatant` from task 1.10.
 
 **Goal:** the player can fight.
 
+**Mock-up:** `docs/mockups/battle.html` (state "Battle, choosing a move"; click the moves)
+
 **Build:**
 - Route `POST /battle/turn` named `battle.web.turn` → `TakeTurnController` with `TakeTurnRequest` (`move_slot` 1–4).
 - Move buttons submit the turn; super-effective moves show a hint (from `typeMultiplier`).
@@ -371,6 +377,8 @@ Uses `Combatant` from task 1.10.
 ### 1.21 Battle page: send out, give up and end screen
 
 **Goal:** finish the battle flow on the page.
+
+**Mock-up:** `docs/mockups/battle.html` (states "Pokémon fainted: send out", "Give up confirmation", "Battle won", "Gave up / lost")
 
 **Build:**
 - Route `POST /battle/send-out` (`battle.web.send-out`) → `SendOutPokemonController`; a dialog lists the remaining team (portrait, level, HP) when a Pokémon faints.
@@ -574,6 +582,8 @@ Read [02-catching-and-exploration.md](02-catching-and-exploration.md) first. Nee
 
 **Goal:** the starter picker on the registration form.
 
+**Mock-up:** `docs/mockups/registration.html` (all states)
+
 **Build:** the registration page shows the 27 starters' portraits grouped by region (one row of 3 per region), the selected one highlighted, sent as `starter`. Props come from `ShareAuthLayoutProps` or the registration page props, whichever the page already uses.
 
 **UI suggestions** (ideas, not requirements):
@@ -607,6 +617,8 @@ Read [02-catching-and-exploration.md](02-catching-and-exploration.md) first. Nee
 
 **Goal:** the list of areas.
 
+**Mock-up:** `docs/mockups/explore.html` (all states)
+
 **Build:**
 - Route `GET /explore` named `exploration.web.index` → `App\Exploration\Http\Web\Controllers\ExploreController@index` with `ExploreIndexPageProps` (each area's slug, label, types).
 - Page `resources/js/app/Exploration/pages/Explore/Index/index.vue`: one card per area (name, type badges, Explore button); 3 per row on desktop, 1 on phones. Until area art exists, the card background is a gradient of its two type colours.
@@ -615,7 +627,7 @@ Read [02-catching-and-exploration.md](02-catching-and-exploration.md) first. Nee
 **UI suggestions** (ideas, not requirements):
 - `AppPageHeader`: "Explore", with the description "Pick an area to look for wild Pokémon."
 - A responsive grid: 1 column on phones, 2 on tablets, 3 on desktop.
-- One `Card` per area, the whole card clickable: a coloured band at the top (the two type colours as a gradient) with the area name on it, `PokemonTypeBadges` in the content, and a full-width primary "Explore" `Button` in the footer.
+- One `Card` per area, the whole card clickable: a coloured band at the top (the two type colours as a gradient) with the area name on it, `PokemonTypeBadges` in the content, and a full-width outline "Explore" `Button` in the footer (outline because it repeats on every card; the design guide keeps primary for one action per screen).
 - Sidebar: an "Explore" `AppNavLink` with a compass or map icon, near the top since it is the main activity.
 
 **Tests:** feature test for the props.
@@ -625,6 +637,8 @@ Read [02-catching-and-exploration.md](02-catching-and-exploration.md) first. Nee
 ### 2.17 Area page: encounters
 
 **Goal:** explore an area and see the wild Pokémon.
+
+**Mock-up:** `docs/mockups/area.html` (states "Wild Pokémon found", "Shiny encounter", "Legendary or mythical encounter", "No encounter yet", "A battle is in progress")
 
 **Build:**
 - Route `GET /explore/{area}` named `exploration.web.show` → `ExploreController@show` with `ExploreShowPageProps`: the area, and the player's encounter if it is in this area (sprite, name, gender, level, types, shiny, legendary).
@@ -648,6 +662,8 @@ Read [02-catching-and-exploration.md](02-catching-and-exploration.md) first. Nee
 
 **Goal:** the modal listing an area's species.
 
+**Mock-up:** `docs/mockups/area.html` (states "Pokémon found here" open, loading and no matches)
+
 **Build:** `ExploreShowPageProps` gets `areaSpecies` as an `Inertia::optional()` prop (portrait, name, types), loaded when the modal opens. The modal has a search box and type filters (client-side), using species portraits.
 
 **UI suggestions** (ideas, not requirements):
@@ -664,6 +680,8 @@ Read [02-catching-and-exploration.md](02-catching-and-exploration.md) first. Nee
 ### 2.19 Battle page: throw a ball
 
 **Goal:** catching from the battle page.
+
+**Mock-up:** `docs/mockups/battle.html` (states "Ball picker open" and "Pokémon caught")
 
 **Build:**
 - Route `POST /battle/throw-ball` named `battle.web.throw-ball` → `ThrowBallController` with `ThrowBallRequest` (`pokeball` slug, owned by the player).

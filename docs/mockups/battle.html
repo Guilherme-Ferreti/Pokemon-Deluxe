@@ -1,0 +1,364 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="claude:viewport-fit-sides" content="cover">
+<title>Battle page mock-up</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="assets/mockup.css">
+<style>
+  .arena { position: relative; gap: 8px; }
+  .side { display: flex; flex-wrap: wrap; align-items: center; gap: 16px 24px; }
+  .side-opponent { justify-content: flex-end; }
+  .side-player { justify-content: flex-start; }
+  .info { flex: 0 1 320px; min-width: 240px; border: 1px solid var(--border); border-radius: 10px; padding: 12px 14px; display: flex; flex-direction: column; gap: 8px; }
+  .info .name { font-weight: 600; font-size: 15px; }
+  .hp-row { display: flex; align-items: center; gap: 8px; }
+  .hp-label { font-size: 11px; font-weight: 700; color: var(--muted-fg); }
+  .hp-value { font-size: 13px; font-weight: 600; min-width: 40px; text-align: right; }
+  .platform { width: 150px; height: 18px; border-radius: 50%; background: var(--muted); }
+  .sprite-wrap { display: flex; flex-direction: column; align-items: center; gap: 4px; }
+  .dots { display: flex; gap: 4px; }
+  .dot { width: 10px; height: 10px; border-radius: 999px; border: 2px solid var(--good); background: var(--good); }
+  .dot.fainted { border-color: var(--placeholder); background: transparent; }
+  .bottom { display: flex; flex-wrap: wrap; gap: 16px; align-items: stretch; }
+  .moves-card { flex: 999 1 420px; }
+  .log-card { flex: 1 1 300px; }
+  .moves { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
+  .move { min-height: 72px; text-align: left; border: 1px solid var(--border); border-radius: 10px; background: var(--card); padding: 10px 12px; display: flex; flex-direction: column; justify-content: space-between; gap: 6px; }
+  .move:hover:not(:disabled) { background: var(--muted); }
+  .move:disabled { opacity: .5; }
+  .move-top { display: flex; justify-content: space-between; align-items: center; gap: 6px; }
+  .move-name { font-weight: 600; font-size: 14px; }
+  .hint-super { font-size: 11px; font-weight: 600; color: var(--good); white-space: nowrap; }
+  .hint-status { font-size: 11px; color: var(--muted-fg); white-space: nowrap; }
+  .move-meta { display: flex; align-items: center; gap: 8px; font-size: 12px; color: var(--muted-fg); }
+  .picker-anchor { position: relative; }
+  .picker { position: absolute; left: 0; right: 0; bottom: 52px; z-index: 5; background: var(--card); border: 1px solid var(--border); border-radius: 12px; box-shadow: 0 10px 30px oklch(0 0 0 / 15%); padding: 6px; display: flex; flex-direction: column; }
+  .picker-title { padding: 8px 10px 6px; font-size: 12px; font-weight: 600; color: var(--muted-fg); }
+  .ball-row { display: flex; align-items: center; gap: 10px; padding: 10px; border: 0; border-radius: 8px; background: transparent; text-align: left; }
+  .ball-row:hover { background: var(--muted); }
+  .ball-icon { width: 22px; height: 22px; border-radius: 999px; border: 2px solid var(--fg); flex-shrink: 0; }
+  .log { height: 224px; overflow-y: auto; display: flex; flex-direction: column-reverse; gap: 6px; padding-right: 4px; }
+  .log p { font-size: 13px; }
+  .log .player { font-weight: 500; }
+  .log .good { color: var(--good); font-weight: 500; }
+  .log .bad { color: var(--bad); font-weight: 500; }
+  .log .status { color: var(--warn-fg); font-weight: 500; }
+  .team-row { display: flex; align-items: center; gap: 12px; padding: 10px; border-radius: 10px; border: 1px solid var(--border); background: var(--card); text-align: left; width: 100%; }
+  .team-row:hover:not(:disabled) { background: var(--muted); }
+  .team-row:disabled { opacity: .45; }
+  .team-row[aria-pressed="true"] { border: 2px solid var(--primary); }
+  .result-row { display: flex; align-items: center; gap: 12px; border: 1px solid var(--border); border-radius: 10px; padding: 12px; }
+</style>
+</head>
+<body>
+<div class="mock-bar">
+  <a href="index.html">← All mock-ups</a>
+  <span><strong>Battle page</strong> · tasks 1.19–1.21, 2.19</span>
+  <label for="mockup-state">State
+    <select id="mockup-state">
+      <option value="battle">Battle, choosing a move</option>
+      <option value="ball-picker">Ball picker open</option>
+      <option value="caught">Pokémon caught</option>
+      <option value="send-out">Pokémon fainted: send out</option>
+      <option value="give-up">Give up confirmation</option>
+      <option value="won">Battle won</option>
+      <option value="lost">Gave up / lost</option>
+    </select>
+  </label>
+  <span>Shown inside the app layout (sidebar not drawn). Dashed boxes = sprites.</span>
+</div>
+
+<main class="page">
+  <div class="page-header">
+    <div class="stack" style="gap: 2px;">
+      <h1>Wild battle</h1>
+      <p>A wild Pidgey appeared in the Forest.</p>
+    </div>
+    <button type="button" class="btn btn-destructive-outline" data-go="give-up" data-show="battle ball-picker give-up send-out">Give up</button>
+  </div>
+
+  <section class="card arena" aria-label="Battlefield">
+    <div class="side side-opponent">
+      <div class="info">
+        <div class="row" style="gap: 6px;">
+          <span class="name">Pidgey</span>
+          <span aria-label="Male" style="color: oklch(0.55 0.2 260);">♂</span>
+          <span class="badge num">Lv 34</span>
+          <span class="badge num">+5</span>
+          <span class="badge badge-warn ailment" title="Paralyzed" id="opp-ailment" hidden>PAR</span>
+        </div>
+        <div class="hp-row">
+          <span class="hp-label">HP</span>
+          <div class="bar bar-good" id="opp-bar" role="progressbar" aria-label="Pidgey HP" aria-valuemin="0" aria-valuemax="100" aria-valuenow="62"><span style="width: 62%;"></span></div>
+          <span class="hp-value num" id="opp-hp">62%</span>
+        </div>
+        <div class="dots" aria-label="Opponent has 1 Pokémon"><span class="dot" id="opp-dot"></span></div>
+      </div>
+      <div class="sprite-wrap">
+        <div class="sprite sprite-lg" aria-hidden="true">Pidgey<br>front sprite</div>
+        <div class="platform" aria-hidden="true"></div>
+      </div>
+    </div>
+
+    <div class="side side-player">
+      <div class="sprite-wrap">
+        <div class="sprite sprite-lg sprite-shiny" aria-hidden="true">Shiny Magikarp<br>back sprite</div>
+        <div class="platform" aria-hidden="true"></div>
+      </div>
+      <div class="info shiny-ring">
+        <div class="row" style="gap: 6px;">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="color: var(--gold);" role="img" aria-label="Shiny"><path d="M12 3l2.6 5.6 6.1.7-4.5 4.2 1.2 6L12 16.6 6.6 19.5l1.2-6-4.5-4.2 6.1-.7z"/></svg>
+          <span class="name">Shiny Magikarp</span>
+          <span aria-label="Female" style="color: oklch(0.6 0.2 350);">♀</span>
+          <span class="badge num">Lv 54</span>
+          <span class="badge num">+72</span>
+        </div>
+        <div class="hp-row">
+          <span class="hp-label">HP</span>
+          <div class="bar bar-good" id="player-bar" role="progressbar" aria-label="Your HP" aria-valuemin="0" aria-valuemax="550" aria-valuenow="472"><span style="width: 86%;"></span></div>
+          <span class="hp-value num" id="player-hp" style="min-width: 76px;">472 / 550</span>
+        </div>
+        <div class="dots" aria-label="3 of 6 Pokémon can still fight">
+          <span class="dot" title="Shiny Magikarp"></span><span class="dot" title="Dragonite"></span><span class="dot" title="Lapras"></span>
+          <span class="dot fainted" title="Gible (fainted)"></span><span class="dot fainted" title="Pikachu (fainted)"></span><span class="dot fainted" title="Gengar (fainted)"></span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="bottom">
+    <section class="card moves-card" data-show="battle ball-picker give-up send-out caught">
+      <div class="row" style="justify-content: space-between;">
+        <h2>Moves</h2>
+        <span class="small muted num" id="turn-label">Turn 1 · pick a move</span>
+      </div>
+      <div class="moves">
+        <button type="button" class="move" data-move="surf">
+          <span class="move-top"><span class="move-name">Surf</span></span>
+          <span class="move-meta"><span class="type type-water">Water</span><span>Power 90</span></span>
+        </button>
+        <button type="button" class="move" data-move="thunder-wave">
+          <span class="move-top"><span class="move-name">Thunder Wave</span><span class="hint-status" title="Causes a status effect">Status</span></span>
+          <span class="move-meta"><span class="type type-electric">Electric</span><span>Power —</span></span>
+        </button>
+        <button type="button" class="move" data-move="ice-beam">
+          <span class="move-top"><span class="move-name">Ice Beam</span><span class="hint-super" title="Super effective against Pidgey">↑ Super effective</span></span>
+          <span class="move-meta"><span class="type type-ice">Ice</span><span>Power 90</span></span>
+        </button>
+        <button type="button" class="move" data-move="tackle">
+          <span class="move-top"><span class="move-name">Tackle</span></span>
+          <span class="move-meta"><span class="type type-normal">Normal</span><span>Power 40</span></span>
+        </button>
+      </div>
+      <div class="picker-anchor">
+        <button type="button" class="btn btn-outline btn-block btn-lg" data-go="ball-picker">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h6m6 0h6"/><circle cx="12" cy="12" r="3"/></svg>
+          Throw ball
+        </button>
+        <div class="picker" role="dialog" aria-label="Choose a ball" data-show="ball-picker">
+          <div class="picker-title">Choose a ball</div>
+          <button type="button" class="ball-row" data-go="caught">
+            <span class="ball-icon" style="background: linear-gradient(oklch(0.65 0.15 230) 0 46%, var(--fg) 46% 54%, #fff 54%);" aria-hidden="true"></span>
+            <span style="flex: 1; font-weight: 500;">Quick Ball</span>
+            <span class="badge badge-good xs">Boosted</span>
+            <span class="num" style="font-weight: 600; min-width: 40px; text-align: right;">×5</span>
+            <span class="xs muted num" style="min-width: 32px; text-align: right;">×3</span>
+          </button>
+          <button type="button" class="ball-row" data-go="caught">
+            <span class="ball-icon" style="background: linear-gradient(oklch(0.85 0.17 95) 0 46%, var(--fg) 46% 54%, #fff 54%);" aria-hidden="true"></span>
+            <span style="flex: 1; font-weight: 500;">Ultra Ball</span>
+            <span class="num" style="font-weight: 600; min-width: 40px; text-align: right;">×2</span>
+            <span class="xs muted num" style="min-width: 32px; text-align: right;">×4</span>
+          </button>
+          <button type="button" class="ball-row" data-go="caught">
+            <span class="ball-icon" style="background: linear-gradient(oklch(0.6 0.18 260) 0 46%, var(--fg) 46% 54%, #fff 54%);" aria-hidden="true"></span>
+            <span style="flex: 1; font-weight: 500;">Great Ball</span>
+            <span class="num" style="font-weight: 600; min-width: 40px; text-align: right;">×1.5</span>
+            <span class="xs muted num" style="min-width: 32px; text-align: right;">×12</span>
+          </button>
+          <button type="button" class="ball-row" data-go="caught">
+            <span class="ball-icon" style="background: linear-gradient(oklch(0.6 0.22 27) 0 46%, var(--fg) 46% 54%, #fff 54%);" aria-hidden="true"></span>
+            <span style="flex: 1; font-weight: 500;">Poké Ball</span>
+            <span class="num" style="font-weight: 600; min-width: 40px; text-align: right;">×1</span>
+            <span class="xs muted num" style="min-width: 32px; text-align: right;">×18</span>
+          </button>
+        </div>
+      </div>
+      <p class="note">Boosted balls sort first. Clicking a row throws right away. Wild battles only: trainer battles have no Throw ball button.</p>
+    </section>
+
+    <section class="card moves-card" data-show="won">
+      <div class="stack" style="gap: 2px;">
+        <h2 style="font-size: 22px; font-weight: 700;">You won!</h2>
+        <p class="muted">The wild Pidgey fainted. Your Pokémon have been healed.</p>
+      </div>
+      <div class="result-row">
+        <div class="sprite sprite-sm sprite-shiny" aria-hidden="true"></div>
+        <div class="stack" style="flex: 1; gap: 6px; min-width: 0;">
+          <div class="row" style="gap: 6px;">
+            <span style="font-weight: 600;">Shiny Magikarp</span>
+            <span class="num" style="font-weight: 600; color: var(--good);">+340 XP</span>
+            <span class="badge badge-solid xs">Level up! 54 → 55</span>
+          </div>
+          <div class="bar bar-thin bar-blue" role="progressbar" aria-label="XP to next level" aria-valuemin="0" aria-valuemax="100" aria-valuenow="24"><span style="width: 24%;"></span></div>
+        </div>
+      </div>
+      <div class="result-row">
+        <div class="sprite sprite-sm" aria-hidden="true"></div>
+        <div class="stack" style="flex: 1; gap: 6px; min-width: 0;">
+          <div class="row" style="gap: 6px;">
+            <span style="font-weight: 600;">Dragonite</span>
+            <span class="num" style="font-weight: 600; color: var(--good);">+226 XP</span>
+          </div>
+          <div class="bar bar-thin bar-blue" role="progressbar" aria-label="XP to next level" aria-valuemin="0" aria-valuemax="100" aria-valuenow="61"><span style="width: 61%;"></span></div>
+        </div>
+      </div>
+      <div class="row">
+        <a class="btn btn-primary btn-lg" style="flex: 1 1 180px;" href="area.html#encounter">Keep exploring</a>
+        <a class="btn btn-outline btn-lg" style="flex: 1 1 180px;" href="index.html">Back to Dashboard</a>
+      </div>
+      <p class="note">One row per Pokémon that came onto the field. The one that knocked out the opponent gets more XP.</p>
+    </section>
+
+    <section class="card moves-card" data-show="lost">
+      <div class="stack" style="gap: 2px;">
+        <h2 style="font-size: 22px; font-weight: 700;">You gave up</h2>
+        <p class="muted">No reward this time. Your Pokémon have been healed.</p>
+      </div>
+      <div class="row">
+        <a class="btn btn-primary btn-lg" style="flex: 1 1 180px;" href="area.html#encounter">Keep exploring</a>
+        <a class="btn btn-outline btn-lg" style="flex: 1 1 180px;" href="index.html">Back to Dashboard</a>
+      </div>
+      <p class="note">Losing (every Pokémon fainted) uses the same card with the title "You lost".</p>
+    </section>
+
+    <section class="card log-card">
+      <h2>Battle log</h2>
+      <div class="log" aria-live="polite" id="log">
+        <p data-show="won" class="good">Shiny Magikarp grew to Lv 55!</p>
+        <p data-show="won" class="good">Shiny Magikarp gained 340 XP!</p>
+        <p data-show="won" class="good">The wild Pidgey fainted!</p>
+        <p data-show="lost" class="bad">You gave up the battle.</p>
+        <p data-show="caught" class="good">Gotcha! Pidgey was caught!</p>
+        <p data-show="caught" class="player">You threw a Quick Ball!</p>
+        <p class="muted">Go! Shiny Magikarp!</p>
+        <p class="muted">A wild Pidgey appeared!</p>
+      </div>
+    </section>
+  </div>
+</main>
+
+<div class="overlay" data-show="give-up">
+  <div class="dialog" role="alertdialog" aria-labelledby="give-up-title">
+    <div class="stack" style="gap: 6px;">
+      <h2 id="give-up-title">Give up this battle?</h2>
+      <p class="muted">You won't get any reward. Your Pokémon are healed either way.</p>
+    </div>
+    <div class="dialog-actions">
+      <button type="button" class="btn btn-outline" data-go="battle">Keep fighting</button>
+      <button type="button" class="btn btn-destructive" data-go="lost">Give up</button>
+    </div>
+  </div>
+</div>
+
+<div class="overlay" data-show="caught">
+  <div class="dialog" role="dialog" aria-labelledby="caught-title" style="align-items: center; text-align: center; max-width: 400px;">
+    <div class="sprite sprite-lg" aria-hidden="true">Pidgey<br>front sprite</div>
+    <div class="stack" style="align-items: center; gap: 6px;">
+      <h2 id="caught-title" style="font-size: 20px; font-weight: 700;">Gotcha!</h2>
+      <p class="muted">Pidgey (Lv 34) was caught with a Quick Ball.</p>
+      <span class="badge">Sent to Box · your party is full</span>
+    </div>
+    <div class="row" style="width: 100%;">
+      <a class="btn btn-primary btn-lg" style="flex: 1 1 140px;" href="area.html#encounter">Keep exploring</a>
+      <a class="btn btn-outline btn-lg" style="flex: 1 1 140px;" href="index.html">View Pokémon</a>
+    </div>
+  </div>
+</div>
+
+<div class="overlay" data-show="send-out">
+  <div class="dialog" role="dialog" aria-labelledby="send-out-title" style="max-width: 460px;">
+    <div class="stack" style="gap: 6px;">
+      <h2 id="send-out-title">Shiny Magikarp fainted!</h2>
+      <p class="muted">Choose who to send out next.</p>
+    </div>
+    <div class="stack" style="gap: 6px;" id="team-list">
+      <button type="button" class="team-row" disabled><span class="sprite sprite-xs sprite-shiny" aria-hidden="true"></span><span class="stack" style="flex: 1; gap: 4px; min-width: 0;"><span style="font-weight: 600;">Shiny Magikarp <span class="muted" style="font-weight: 400;">Lv 54</span></span><span class="hp-row"><span class="bar bar-thin"><span style="width: 0;"></span></span><span class="xs muted num" style="min-width: 64px; text-align: right;">Fainted</span></span></span></button>
+      <button type="button" class="team-row" aria-pressed="false"><span class="sprite sprite-xs" aria-hidden="true"></span><span class="stack" style="flex: 1; gap: 4px; min-width: 0;"><span style="font-weight: 600;">Dragonite <span class="muted" style="font-weight: 400;">Lv 61</span></span><span class="hp-row"><span class="bar bar-thin bar-good"><span style="width: 73%;"></span></span><span class="xs muted num" style="min-width: 64px; text-align: right;">412 / 568</span></span></span></button>
+      <button type="button" class="team-row" aria-pressed="false"><span class="sprite sprite-xs" aria-hidden="true"></span><span class="stack" style="flex: 1; gap: 4px; min-width: 0;"><span style="font-weight: 600;">Lapras <span class="muted" style="font-weight: 400;">Lv 50</span></span><span class="hp-row"><span class="bar bar-thin bar-warn"><span style="width: 38%;"></span></span><span class="xs muted num" style="min-width: 64px; text-align: right;">91 / 240</span></span></span></button>
+      <button type="button" class="team-row" disabled><span class="sprite sprite-xs" aria-hidden="true"></span><span class="stack" style="flex: 1; gap: 4px; min-width: 0;"><span style="font-weight: 600;">Gible <span class="muted" style="font-weight: 400;">Lv 48</span></span><span class="hp-row"><span class="bar bar-thin"><span style="width: 0;"></span></span><span class="xs muted num" style="min-width: 64px; text-align: right;">Fainted</span></span></span></button>
+    </div>
+    <button type="button" class="btn btn-primary btn-lg" id="send-out-button" disabled data-go="battle">Send out</button>
+    <p class="note">Cannot be closed: no close button, no click outside, no Escape. Fainted Pokémon are disabled.</p>
+  </div>
+</div>
+
+<script src="assets/mockup.js"></script>
+<script>
+  (function () {
+    var opp = 62, player = 472, max = 550, turn = 1, paralyzed = false;
+    var damage = { 'surf': 30, 'ice-beam': 45, 'tackle': 15, 'thunder-wave': 0 };
+    var names = { 'surf': 'Surf', 'ice-beam': 'Ice Beam', 'tackle': 'Tackle', 'thunder-wave': 'Thunder Wave' };
+    var log = document.getElementById('log');
+
+    function color(pct) { return pct > 50 ? 'bar-good' : (pct >= 20 ? 'bar-warn' : 'bar-bad'); }
+    function setBar(id, pct) {
+      var bar = document.getElementById(id);
+      bar.className = 'bar ' + color(pct);
+      bar.firstElementChild.style.width = pct + '%';
+    }
+    function say(text, kind) {
+      var p = document.createElement('p');
+      p.textContent = text;
+      if (kind) { p.className = kind; }
+      log.insertBefore(p, log.firstChild);
+    }
+
+    document.querySelectorAll('[data-move]').forEach(function (button) {
+      button.addEventListener('click', function () {
+        var id = button.getAttribute('data-move');
+        say('Shiny Magikarp used ' + names[id] + '!', 'player');
+        if (id === 'thunder-wave') {
+          if (paralyzed) { say('But it failed!'); } else {
+            paralyzed = true;
+            document.getElementById('opp-ailment').hidden = false;
+            say('The wild Pidgey is paralyzed! It may be unable to move!', 'status');
+          }
+        } else {
+          if (id === 'ice-beam') { say("It's super effective!", 'good'); }
+          opp = Math.max(0, opp - damage[id]);
+          setBar('opp-bar', opp);
+          document.getElementById('opp-hp').textContent = opp + '%';
+        }
+        if (opp === 0) {
+          document.getElementById('opp-dot').classList.add('fainted');
+          window.mockup.go('won');
+          return;
+        }
+        turn += 1;
+        if (paralyzed && turn % 2 === 0) {
+          say("The wild Pidgey is paralyzed! It can't move!", 'status');
+        } else {
+          say('The wild Pidgey used Gust!');
+          player = Math.max(0, player - 38);
+          setBar('player-bar', Math.round(player / max * 100));
+          document.getElementById('player-hp').textContent = player + ' / ' + max;
+        }
+        document.getElementById('turn-label').textContent = 'Turn ' + turn + ' · pick a move';
+      });
+    });
+
+    document.querySelectorAll('#team-list .team-row:not(:disabled)').forEach(function (row) {
+      row.addEventListener('click', function () {
+        document.querySelectorAll('#team-list .team-row').forEach(function (r) { r.setAttribute('aria-pressed', 'false'); });
+        row.setAttribute('aria-pressed', 'true');
+        document.getElementById('send-out-button').disabled = false;
+      });
+    });
+  })();
+</script>
+</body>
+</html>

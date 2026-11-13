@@ -1,0 +1,229 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="claude:viewport-fit-sides" content="cover">
+<title>Area page mock-up</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="assets/mockup.css">
+<style>
+  .area-title { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px; }
+  .encounter { width: 100%; max-width: 460px; margin: 8px auto 0; align-items: center; text-align: center; padding: 28px 24px; gap: 14px; }
+  .encounter h2 { font-size: 20px; font-weight: 700; }
+  .encounter .actions { display: flex; flex-wrap: wrap; gap: 8px; width: 100%; }
+  .encounter .actions > * { flex: 1 1 160px; }
+  .rare { border: 1px solid var(--gold); box-shadow: 0 0 0 4px var(--gold-soft); }
+  .search { display: flex; align-items: center; gap: 8px; height: 38px; border: 1px solid var(--border); border-radius: 8px; padding: 0 12px; background: var(--card); }
+  .search input { border: 0; outline: 0; background: transparent; flex: 1; min-width: 0; }
+  .chips { display: flex; flex-wrap: wrap; gap: 6px; }
+  .chip { border-radius: 999px; padding: 4px 10px; font-size: 12px; font-weight: 500; border: 1px solid var(--border); background: var(--card); }
+  .chip[aria-pressed="true"] { background: var(--primary); color: var(--primary-fg); border-color: var(--primary); }
+  .species-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(96px, 1fr)); gap: 12px; }
+  .species { display: flex; flex-direction: column; align-items: center; gap: 6px; text-align: center; }
+  .species .sprite { width: 72px; height: 72px; }
+  .species-name { font-size: 12px; font-weight: 500; }
+  @media (max-width: 480px) {
+    .dialog-wide { max-width: none; height: 100%; border-radius: 0; }
+    .overlay.full { padding: 0; }
+  }
+</style>
+</head>
+<body>
+<div class="mock-bar">
+  <a href="index.html">← All mock-ups</a>
+  <span><strong>Area page</strong> · tasks 2.17, 2.18</span>
+  <label for="mockup-state">State
+    <select id="mockup-state">
+      <option value="encounter">Wild Pokémon found</option>
+      <option value="shiny">Shiny encounter</option>
+      <option value="legendary">Legendary or mythical encounter</option>
+      <option value="empty">No encounter yet</option>
+      <option value="in-battle">A battle is in progress</option>
+      <option value="found-here">"Pokémon found here" open</option>
+      <option value="found-loading">"Pokémon found here" loading</option>
+      <option value="found-none">"Pokémon found here" no matches</option>
+    </select>
+  </label>
+  <span>Shown inside the app layout (sidebar not drawn). Dashed boxes = sprites.</span>
+</div>
+
+<main class="page">
+  <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="explore.html">Explore</a><span aria-hidden="true">›</span><span>Forest</span></nav>
+  <div class="area-title">
+    <div class="stack" style="gap: 6px;">
+      <h1 style="font-size: 24px; font-weight: 700;">Forest</h1>
+      <div class="row" style="gap: 4px;"><span class="type type-grass">Grass</span><span class="type type-bug">Bug</span></div>
+    </div>
+    <button type="button" class="btn btn-outline" data-go="found-here">Pokémon found here</button>
+  </div>
+
+  <section class="card encounter" data-show="encounter found-here found-loading found-none">
+    <div class="sprite sprite-xl" aria-hidden="true">Caterpie<br>front sprite</div>
+    <div class="stack" style="align-items: center; gap: 6px;">
+      <h2>A wild Caterpie appeared!</h2>
+      <div class="row" style="justify-content: center; gap: 6px;">
+        <span aria-label="Female" style="color: oklch(0.6 0.2 350);">♀</span>
+        <span class="badge num">Lv 7</span>
+        <span class="type type-bug">Bug</span>
+      </div>
+    </div>
+    <div class="actions">
+      <a class="btn btn-primary btn-lg" href="battle.html">Battle</a>
+      <button type="button" class="btn btn-outline btn-lg" data-go="shiny">Keep exploring</button>
+    </div>
+  </section>
+
+  <section class="card encounter rare" data-show="shiny">
+    <div class="sprite sprite-xl sprite-shiny" aria-hidden="true">Shiny Scyther<br>front sprite</div>
+    <div class="stack" style="align-items: center; gap: 6px;">
+      <span class="badge badge-gold"><svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 3l2.6 5.6 6.1.7-4.5 4.2 1.2 6L12 16.6 6.6 19.5l1.2-6-4.5-4.2 6.1-.7z"/></svg>Shiny</span>
+      <h2>A wild Shiny Scyther appeared!</h2>
+      <div class="row" style="justify-content: center; gap: 6px;">
+        <span aria-label="Male" style="color: oklch(0.55 0.2 260);">♂</span>
+        <span class="badge num">Lv 9</span>
+        <span class="type type-bug">Bug</span><span class="type type-flying">Flying</span>
+      </div>
+    </div>
+    <div class="actions">
+      <a class="btn btn-primary btn-lg" href="battle.html">Battle</a>
+      <button type="button" class="btn btn-outline btn-lg" data-go="legendary">Keep exploring</button>
+    </div>
+  </section>
+
+  <section class="card encounter rare" data-show="legendary">
+    <div class="sprite sprite-xl" aria-hidden="true">Celebi<br>front sprite</div>
+    <div class="stack" style="align-items: center; gap: 6px;">
+      <span class="badge badge-gold">Mythical</span>
+      <h2>A wild Celebi appeared!</h2>
+      <div class="row" style="justify-content: center; gap: 6px;">
+        <span class="badge num">Lv 62</span>
+        <span class="type type-psychic">Psychic</span><span class="type type-grass">Grass</span>
+      </div>
+      <p class="small muted">Mythical Pokémon are much harder to catch. Weaken it and put it to sleep first.</p>
+    </div>
+    <div class="actions">
+      <a class="btn btn-primary btn-lg" href="battle.html">Battle</a>
+      <button type="button" class="btn btn-outline btn-lg" data-go="encounter">Keep exploring</button>
+    </div>
+  </section>
+
+  <section class="card" data-show="empty">
+    <div class="empty">
+      <div class="empty-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg></div>
+      <h3>Nothing here yet</h3>
+      <p>Explore the Forest to find a wild Pokémon.</p>
+      <button type="button" class="btn btn-primary btn-lg" data-go="encounter">Explore</button>
+    </div>
+  </section>
+
+  <section class="card" data-show="in-battle">
+    <div class="empty">
+      <div class="empty-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M14.5 17.5L3 6V3h3l11.5 11.5"/><path d="M13 19l6-6M16 16l4 4M19 21l2-2"/></svg></div>
+      <h3>You're in a battle</h3>
+      <p>Finish your battle before exploring again.</p>
+      <a class="btn btn-primary btn-lg" href="battle.html">Return to battle</a>
+    </div>
+  </section>
+
+  <p class="note">Battle and Keep exploring both show a processing state while their request runs. Shiny, legendary and mythical encounters get the gold border and badge so they stand out before the fight.</p>
+</main>
+
+<div class="overlay full" data-show="found-here found-loading found-none">
+  <div class="dialog dialog-wide" role="dialog" aria-labelledby="found-title">
+    <div class="row" style="justify-content: space-between;">
+      <div class="stack" style="gap: 2px;">
+        <h2 id="found-title">Pokémon found in the Forest</h2>
+        <p class="small muted num" id="found-count">312 species · showing a sample</p>
+      </div>
+      <button type="button" class="btn btn-ghost" data-go="encounter" aria-label="Close">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
+      </button>
+    </div>
+    <label class="search" for="search">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" style="color: var(--muted-fg);"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
+      <input id="search" type="search" placeholder="Search by name" autocomplete="off">
+    </label>
+    <div class="chips" id="chips" aria-label="Filter by type"></div>
+
+    <div class="species-grid" data-show="found-loading" aria-busy="true">
+      <div class="species"><div class="skeleton" style="width: 72px; height: 72px;"></div><div class="skeleton" style="width: 60px; height: 12px;"></div></div>
+      <div class="species"><div class="skeleton" style="width: 72px; height: 72px;"></div><div class="skeleton" style="width: 60px; height: 12px;"></div></div>
+      <div class="species"><div class="skeleton" style="width: 72px; height: 72px;"></div><div class="skeleton" style="width: 60px; height: 12px;"></div></div>
+      <div class="species"><div class="skeleton" style="width: 72px; height: 72px;"></div><div class="skeleton" style="width: 60px; height: 12px;"></div></div>
+      <div class="species"><div class="skeleton" style="width: 72px; height: 72px;"></div><div class="skeleton" style="width: 60px; height: 12px;"></div></div>
+      <div class="species"><div class="skeleton" style="width: 72px; height: 72px;"></div><div class="skeleton" style="width: 60px; height: 12px;"></div></div>
+    </div>
+    <div class="species-grid" id="species" data-show="found-here"></div>
+    <div class="empty" data-show="found-none" id="no-match">
+      <h3>No Pokémon match your search</h3>
+      <p>Try another name or clear the type filters.</p>
+    </div>
+    <p class="note">Optional prop, loaded when the window opens (skeletons meanwhile). Search and type filters work in the browser. Full screen on phones.</p>
+  </div>
+</div>
+
+<script src="assets/mockup.js"></script>
+<script>
+  (function () {
+    var species = [
+      ['Bulbasaur', ['grass', 'poison']], ['Caterpie', ['bug']], ['Weedle', ['bug', 'poison']], ['Oddish', ['grass', 'poison']],
+      ['Paras', ['bug', 'grass']], ['Venonat', ['bug', 'poison']], ['Bellsprout', ['grass', 'poison']], ['Exeggcute', ['grass', 'psychic']],
+      ['Scyther', ['bug', 'flying']], ['Pinsir', ['bug']], ['Chikorita', ['grass']], ['Ledyba', ['bug', 'flying']],
+      ['Spinarak', ['bug', 'poison']], ['Hoppip', ['grass', 'flying']], ['Sunkern', ['grass']], ['Yanma', ['bug', 'flying']],
+      ['Pineco', ['bug']], ['Shuckle', ['bug', 'rock']], ['Heracross', ['bug', 'fighting']], ['Treecko', ['grass']],
+      ['Wurmple', ['bug']], ['Seedot', ['grass']], ['Shroomish', ['grass']], ['Nincada', ['bug', 'ground']]
+    ];
+    var labels = { grass: 'Grass', bug: 'Bug', poison: 'Poison', flying: 'Flying', psychic: 'Psychic', rock: 'Rock', fighting: 'Fighting', ground: 'Ground' };
+    var active = {};
+    var grid = document.getElementById('species');
+    var search = document.getElementById('search');
+    var chips = document.getElementById('chips');
+
+    Object.keys(labels).forEach(function (type) {
+      var chip = document.createElement('button');
+      chip.type = 'button';
+      chip.className = 'chip';
+      chip.textContent = labels[type];
+      chip.setAttribute('aria-pressed', 'false');
+      chip.addEventListener('click', function () {
+        active[type] = !active[type];
+        chip.setAttribute('aria-pressed', String(!!active[type]));
+        draw();
+      });
+      chips.appendChild(chip);
+    });
+
+    function draw() {
+      var state = document.documentElement.getAttribute('data-state');
+      if (state !== 'found-here' && state !== 'found-none') { return; }
+      var q = search.value.trim().toLowerCase();
+      var wanted = Object.keys(active).filter(function (k) { return active[k]; });
+      var shown = species.filter(function (s) {
+        var nameOk = !q || s[0].toLowerCase().indexOf(q) !== -1;
+        var typeOk = !wanted.length || wanted.some(function (t) { return s[1].indexOf(t) !== -1; });
+        return nameOk && typeOk;
+      });
+      grid.innerHTML = '';
+      shown.forEach(function (s) {
+        var tile = document.createElement('div');
+        tile.className = 'species';
+        tile.innerHTML = '<div class="sprite" aria-hidden="true">' + s[0] + '</div><span class="species-name">' + s[0] + '</span>';
+        grid.appendChild(tile);
+      });
+      grid.hidden = shown.length === 0;
+      document.getElementById('no-match').hidden = shown.length !== 0;
+    }
+
+    search.addEventListener('input', draw);
+    document.addEventListener('mockup:state', function (event) {
+      if (event.detail === 'found-none') { search.value = 'Mewtwo'; }
+      if (event.detail === 'found-here') { search.value = ''; }
+      draw();
+    });
+    if (document.documentElement.getAttribute('data-state') === 'found-none') { search.value = 'Mewtwo'; }
+    draw();
+  })();
+</script>
+</body>
+</html>

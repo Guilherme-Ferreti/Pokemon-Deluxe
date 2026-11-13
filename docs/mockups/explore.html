@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="claude:viewport-fit-sides" content="cover">
+<title>Explore page mock-up</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="assets/mockup.css">
+<style>
+  .areas { display: grid; grid-template-columns: repeat(auto-fill, minmax(16rem, 1fr)); gap: 16px; }
+  .area { padding: 0; overflow: hidden; gap: 0; text-decoration: none; color: inherit; }
+  .area:hover { border-color: var(--ring); }
+  .area-band { height: 96px; display: flex; align-items: flex-end; padding: 12px 16px; }
+  .area-band h2 { font-size: 18px; font-weight: 700; color: var(--fg); }
+  .area-body { padding: 12px 16px 16px; display: flex; flex-direction: column; gap: 12px; }
+  .notice { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px; border: 1px solid var(--border); background: var(--card); border-radius: 12px; padding: 12px 16px; }
+</style>
+</head>
+<body>
+<div class="mock-bar">
+  <a href="index.html">← All mock-ups</a>
+  <span><strong>Explore</strong> · task 2.16</span>
+  <label for="mockup-state">State
+    <select id="mockup-state">
+      <option value="default">Areas</option>
+      <option value="in-battle">A battle is in progress</option>
+    </select>
+  </label>
+  <span>Shown inside the app layout (sidebar not drawn). Sidebar gets an "Explore" link near the top.</span>
+</div>
+
+<main class="page">
+  <div class="page-header">
+    <div class="stack" style="gap: 2px;">
+      <h1>Explore</h1>
+      <p>Pick an area to look for wild Pokémon.</p>
+    </div>
+  </div>
+
+  <div class="notice" data-show="in-battle" role="status">
+    <span><strong>You're in a battle.</strong> <span class="muted">Finish it before exploring again.</span></span>
+    <a class="btn btn-primary" href="battle.html">Return to battle</a>
+  </div>
+
+  <div class="areas" id="areas"></div>
+  <p class="note">The whole card links to the area page. The coloured band is a gradient of the area's two type colours until area art exists. 3 columns on desktop, 2 on tablets, 1 on phones.</p>
+</main>
+
+<script src="assets/mockup.js"></script>
+<script>
+  (function () {
+    var areas = [
+      ['Meadow', 'normal', 'Normal', 'fairy', 'Fairy'],
+      ['Forest', 'grass', 'Grass', 'bug', 'Bug'],
+      ['Coast', 'water', 'Water', 'flying', 'Flying'],
+      ['Volcano', 'fire', 'Fire', 'ground', 'Ground'],
+      ['Power Plant', 'electric', 'Electric', 'steel', 'Steel'],
+      ['Cave', 'rock', 'Rock', 'fighting', 'Fighting'],
+      ['Snowy Peak', 'ice', 'Ice', 'dragon', 'Dragon'],
+      ['Haunted Tower', 'ghost', 'Ghost', 'dark', 'Dark'],
+      ['Ancient Ruins', 'psychic', 'Psychic', 'poison', 'Poison']
+    ];
+    var grid = document.getElementById('areas');
+    areas.forEach(function (a) {
+      var card = document.createElement('a');
+      card.className = 'card area';
+      card.href = 'area.html#encounter';
+      card.innerHTML =
+        '<div class="area-band" style="background: linear-gradient(120deg, var(--t-' + a[1] + '-bg), var(--t-' + a[3] + '-bg));"><h2>' + a[0] + '</h2></div>' +
+        '<div class="area-body">' +
+          '<div class="row" style="gap: 4px;"><span class="type type-' + a[1] + '">' + a[2] + '</span><span class="type type-' + a[3] + '">' + a[4] + '</span></div>' +
+          '<span class="btn btn-outline btn-block">Explore</span>' +
+        '</div>';
+      grid.appendChild(card);
+    });
+  })();
+</script>
+</body>
+</html>
