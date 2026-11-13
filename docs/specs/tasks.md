@@ -1373,8 +1373,8 @@ Read [06-trainers-gyms-and-battle-tower.md](06-trainers-gyms-and-battle-tower.md
 **Goal:** store hand-made trainers, gym leaders, Elite Four members and Champions.
 
 **Build:**
-- Enums in `Shared\Enums`: `TrainerRole` (`TRAINER`, `GYM_LEADER`, `ELITE_FOUR`, `CHAMPION`) and `Region` (`KANTO` … `PALDEA`, with `label()` and `generation()`).
-- Migration `029_create_trainers_table.php`: `uuid id`, `slug` unique, `name`, `trainer_class` ("Hiker", "Gym Leader"), nullable `sprite`, `role` enum, nullable `region` enum, nullable `badge_name`, nullable `gym_type` (`PokemonType`), `position` (gym number or Elite Four order), `payout`.
+- Enums in `Shared\Enums`: `TrainerRole` (`TRAINER`, `GYM_LEADER`, `ELITE_FOUR`, `CHAMPION`), `TrainerCategory` (`TOWNSFOLK`, `OUTDOORS`, `WATER`, `FIGHTERS`, `MYSTICS`, `EXPERTS`, with `label()`; only for `TRAINER` role) and `Region` (`KANTO` … `PALDEA`, with `label()` and `generation()`).
+- Migration `029_create_trainers_table.php`: `uuid id`, `slug` unique, `name`, `trainer_class` ("Hiker", "Gym Leader"), nullable `sprite`, `role` enum, nullable `category` enum, nullable `region` enum, nullable `badge_name`, nullable `gym_type` (`PokemonType`), `position` (gym number or Elite Four order), `payout`.
 - Migration `030_create_trainer_pokemon_table.php`: `uuid id`, `foreignIdFor(Trainer)`, `foreignIdFor(Species)`, `level`, `boost`, `is_shiny`, `gender`, `json move_slugs`, `position`.
 - Models `Shared\Models\Trainer` (`team()` ordered by position) and `TrainerPokemon`, with factories.
 - `TrainerSeeder` from `database/seeders/files/trainers.json`.
@@ -1437,13 +1437,14 @@ Read [06-trainers-gyms-and-battle-tower.md](06-trainers-gyms-and-battle-tower.md
 **Mock-up:** `docs/mockups/trainers.html` (all states, including "Trainer's team")
 
 **Build:**
-- Route `GET /trainers` named `trainers.web.index` → `App\Trainers\Http\Web\Controllers\TrainersController@index` with `TrainersIndexPageProps`: every `TRAINER` (name, class, sprite, team size, level range, types used, full payout, the player's wins, and the team: species, level, types, shiny) sorted by level; plus the player's party average level for the payout hint.
+- Route `GET /trainers` named `trainers.web.index` → `App\Trainers\Http\Web\Controllers\TrainersController@index` with `TrainersIndexPageProps`: every `TRAINER` (name, class, sprite, team size, level range, types used, full payout, the player's wins, and the team: species, level, types, shiny) sorted by level, with each trainer's category; plus the player's party average level for the payout hint.
 - Route `POST /trainers/{trainer}/challenge` named `trainers.web.challenge` → `ChallengeTrainerController`, redirects to the battle page.
 - "Trainers" sub-item in the sidebar's "Battle" group (task 1.19), after "Current battle".
 
 **UI suggestions** (ideas, not requirements):
 - `AppPageHeader` with a search `InputGroup` (by name or class) on the right.
-- One list `Card` with a row per trainer: trainer sprite, name and class, "3 Pokémon · Lv 20–25", type badges, payout (`MoneyAmount`) and an outline "Battle" button. No difficulty groups; sorted by level.
+- Tabs by category: All, Townsfolk (Youngster, Lass, Gentleman…), Outdoors (Hiker, Camper, Bug Catcher…), Water (Swimmer, Fisherman, Sailor), Fighters (Black Belt, Battle Girl), Mystics (Psychic, Medium, Hex Maniac), Experts (Ace Trainer, Veteran, Dragon Tamer). The tab goes in the URL (`?category=water`); search works inside the chosen tab.
+- One list `Card` with a row per trainer: trainer sprite, name and class, "3 Pokémon · Lv 20–25", type badges, payout (`MoneyAmount`) and an outline "Battle" button. Sorted by level inside each tab; no difficulty groups.
 - When the party's average level is above the trainer's, a muted hint under the payout: "You'd get about ₽ 900 (your team is stronger)".
 - A small "Won 4×" badge for trainers already beaten.
 - A ghost "Team" button with an eye icon on each row opens a `Dialog` with the trainer's team in sending-out order: portrait, name, level and types for each Pokémon (shinies with the gold border), plus "Close" and a primary "Battle". Moves stay hidden.

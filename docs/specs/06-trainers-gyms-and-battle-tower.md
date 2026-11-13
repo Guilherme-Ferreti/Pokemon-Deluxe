@@ -50,7 +50,7 @@ TRAINERS                                   [Search by name]
 └──────────────────────────────────────────────────────────┘
 ```
 
-- One list, no difficulty groups. Each row: sprite, name, team size, level range, types used, full payout and Battle.
+- Tabs by trainer category (Townsfolk, Outdoors, Water, Fighters, Mystics, Experts), not by difficulty; each sorted by level. Each row: sprite, name, team size, level range, types used, full payout and Battle.
 
 ## Gyms page
 
