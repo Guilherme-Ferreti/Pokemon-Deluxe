@@ -681,3 +681,197 @@ Read [02-catching-and-exploration.md](02-catching-and-exploration.md) first. Nee
 **Tests:** feature tests for the route and props; browser test: throw a ball and see the catch dialog.
 
 **Done when:** a player can explore, battle, throw balls and catch a Pokémon entirely from the pages.
+
+---
+
+## 3. Spec 3 — Money, inventory and shop
+
+Read [03-money-inventory-and-shop.md](03-money-inventory-and-shop.md) first. Money lives in a new domain, `src/App/Economy`; the shop in `src/App/Shop`; the inventory page in the existing `src/App/Inventory`. Using items on a Pokémon (TMs, boost stones, evolution items) comes with Spec 4; the XP Share switch comes with Spec 5.
+
+### 3.1 Money
+
+**Goal:** players have Pokédollars.
+
+**Build:**
+- Migration `021_add_money_to_users_table.php`: `unsignedInteger('money')->default(0)`.
+- `User` model cast; `UserFactory` state `withMoney(int $money)`.
+- `App\Economy\Actions\AddMoneyAction::handle(User $user, int $amount): void` and `SpendMoneyAction::handle(User $user, int $amount): void`. Spending more than the player has throws `App\Economy\Exceptions\NotEnoughMoneyException`. Amounts below 1 throw `InvalidArgumentException`. Both lock with a `LockKeys` method and refresh the user first.
+- Config `game.economy.starting_money` (2000); `RegisterUserAction` (task 2.13) gives it.
+
+**Tests:** add; spend; spending too much is refused and changes nothing; new players start with ₽ 2,000.
+
+**Done when:** tests pass.
+
+### 3.2 Show money in the layout
+
+**Goal:** the player always sees their money.
+
+**Build:** `HandleInertiaRequests` shares `auth.user.money`. The sidebar shows it.
+
+**UI suggestions** (ideas, not requirements):
+- A small row in the sidebar header or user area: a coin icon and "₽ 12,450" in `font-medium`, formatted with thousands separators (`Intl.NumberFormat`).
+- On phones, where the sidebar collapses, show it in the top bar next to the menu button.
+- A shared component `MoneyAmount` (`shared/components/game/`) used everywhere money appears, so the format stays the same.
+
+**Tests:** feature test: the shared prop holds the user's money.
+
+**Done when:** money shows on every page.
+
+### 3.3 Prices
+
+**Goal:** every item the shop sells has a price; earned-only items have none.
+
+**Build:**
+- Migration `022_add_price_to_pokeballs_and_evolution_items_tables.php`: nullable `unsignedInteger('price')` on both tables (null = never sold).
+- Seed data: Poké Ball 200, Great Ball 600, Ultra Ball 1,200; conditional balls (Net, Dive, Nest, Repeat, Timer, Dusk, Quick, Dream, Lure, Level, Moon, Heavy, Fast, Love, Beast) 1,000; Master, Safari, Sport, Park, Luxury, Premier, Heal, Friend and Cherish null. Evolution stones (Fire, Water, Thunder, Leaf, Moon, Sun, Shiny, Dusk, Dawn, Ice) 3,000; Mega Stones null. Other evolution items: see the open question in the README.
+- `App\Shop\Mechanics\TmPriceCalculator::price(Move $move): ?int`: null for Z-Moves and Dynamax moves; 3,000 for status moves (no power); 2,000 under 60 power; 5,000 for 60–89; 10,000 for 90+. Config `game.shop.tm_prices`.
+
+**Tests:** calculator boundaries (59, 60, 89, 90, status, Z-Move); seeder test: Master Ball and Mega Stones have no price.
+
+**Done when:** tests pass.
+
+### 3.4 TMs and special items in the inventory
+
+**Goal:** the inventory can hold TMs, boost stones and key items.
+
+**Build:**
+- Migration `023_create_special_items_table.php`: `uuid id`, `slug` unique, `name`, `description`, nullable `sprite`, `category` enum.
+- Enum `Shared\Enums\SpecialItemCategory`: `BOOST_STONE`, `KEY_ITEM`. Model `Shared\Models\SpecialItem` (with factory); `SpecialItemSeeder` seeds `boost-stone` and `xp-share`.
+- `InventoryItemType`: add `TM` (item is a `Move`) and `SPECIAL_ITEM`; extend `fromModel()` and the morph map.
+- `AddInventoryItemAction` and `RemoveInventoryItemAction` accept `EvolutionItem|Pokeball|Move|SpecialItem`.
+
+**Tests:** add and remove a TM and a boost stone; `fromModel()` for each model.
+
+**Done when:** tests pass.
+
+### 3.5 Today's TMs
+
+**Goal:** 10 TMs for sale each day, the same for every player.
+
+**Build:**
+- Migration `024_create_tm_rotations_table.php`: `uuid id`, `date` unique, `json move_ids`. Model `Shared\Models\TmRotation`.
+- `App\Shop\Actions\GetTodaysTmRotationAction::handle(): TmRotation`: returns today's rotation (server date), creating it on the first request of the day with 10 random TMs that have a price (`RandomHelper`), under a lock so two requests can't create two.
+- Config `game.shop.daily_tm_count` (10).
+
+**Tests:** creates one rotation per day (second call returns the same one); 10 distinct moves; no Z-Moves or Dynamax moves; a new day gives a new rotation.
+
+**Done when:** tests pass.
+
+### 3.6 Buy items
+
+**Goal:** spend money on shop items.
+
+**Build:**
+- `App\Shop\Actions\BuyItemAction::handle(User $user, Pokeball|EvolutionItem|Move $item, int $quantity): void`
+  - The item must be for sale: a price, and for TMs, in today's rotation. Otherwise `App\Shop\Exceptions\ItemNotForSaleException`.
+  - The stack must have room (`InventoryStackFullException`) and the player enough money (`NotEnoughMoneyException`), both checked before anything changes.
+  - In one transaction: `SpendMoneyAction`, then `AddInventoryItemAction`.
+
+**Tests:** buy one and many; not for sale; TM not in today's rotation; not enough money; stack full; nothing changes when refused.
+
+**Done when:** tests pass.
+
+### 3.7 Sell items
+
+**Goal:** sell shop items back for half their price.
+
+**Build:**
+- `App\Shop\Actions\SellItemAction::handle(User $user, Pokeball|EvolutionItem|Move $item, int $quantity): int` returns the money earned.
+  - Earned-only items (no price) throw `App\Shop\Exceptions\ItemNotSellableException`.
+  - Earns floor(price × `game.shop.sell_back_ratio` (0.5) × quantity). TMs use `TmPriceCalculator`, whether or not they are in today's rotation.
+  - In one transaction: `RemoveInventoryItemAction`, then `AddMoneyAction`.
+
+**Tests:** sell one and many; earned-only refused; selling more than owned refused (`InsufficientInventoryException`); money and inventory both change.
+
+**Done when:** tests pass.
+
+### 3.8 Incubators cost money
+
+**Goal:** the first incubator is free, each next one costs ₽ 5,000 more.
+
+**Build:**
+- `App\Pokemon\Mechanics\IncubatorPriceCalculator::price(int $purchasedCount): int` = purchasedCount × `game.incubation.price_step` (5,000).
+- `PurchaseAction` (incubator) spends the price with `SpendMoneyAction` inside its lock, before marking it purchased.
+- `NurseryPageProps` includes the price of the next incubator.
+
+**UI suggestions** (ideas, not requirements):
+- On `IncubatorNotPurchasedCard`, show the price under the button ("₽ 15,000") with `MoneyAmount`; the first one says "Free".
+- When the player can't afford it, disable the button and say why ("You need ₽ 2,550 more").
+
+**Tests:** first is free; second costs 5,000; third costs 10,000; not enough money refused; Nursery props include the price.
+
+**Done when:** tests pass.
+
+### 3.9 Shop page: browse
+
+**Goal:** see what the shop sells.
+
+**Build:**
+- Route `GET /shop` named `shop.web.index` → `App\Shop\Http\Web\Controllers\ShopController@index` with `ShopIndexPageProps`: three groups (balls, evolution items, today's TMs), each item with name, sprite, short effect, price and how many the player owns; for TMs also type, power and when the rotation ends.
+- Page `resources/js/app/Shop/pages/Shop/Index/index.vue`; "Shop" link in the navigation.
+
+**UI suggestions** (ideas, not requirements):
+- `AppPageHeader` ("Shop") with the player's money on the right.
+- Tabs for Balls, Evolution items and TMs (shadcn-vue `tabs`, added with the CLI); the chosen tab in the URL (`?tab=tms`) so it survives a reload.
+- A list, not a grid: one row per item with `ItemSprite`, name, a one-line effect in muted text, price with `MoneyAmount`, and "You own: 42".
+- TMs tab: a line on top with `AppCountdown` ("New TMs in 07:42:10"); each row shows the move's type badge and power.
+- On phones, each row stacks: name and effect on top, price and buy controls below.
+
+**Tests:** feature test for the props, including that only today's TMs appear and earned-only items do not.
+
+**Done when:** the page lists the shop's items.
+
+### 3.10 Shop page: buy
+
+**Goal:** buy from the shop page.
+
+**Build:**
+- Route `POST /shop/buy` named `shop.web.buy` → `BuyItemController` with `BuyItemRequest` (`item_type`, `item_id`, `quantity` 1–9,999).
+- Each row gets a quantity picker and a Buy button; purchases over ₽ 10,000 ask for confirmation first; success shows a toast.
+
+**UI suggestions** (ideas, not requirements):
+- Quantity: an `InputGroup` with − and + buttons around a number input, default 1.
+- "Buy" is an outline `Button` on each row (many rows, so not primary); its label shows the total ("Buy · ₽ 2,400").
+- When the player can't afford the total or the stack would overflow, disable Buy and show the reason in a `Tooltip` or small text under it.
+- Confirmation over ₽ 10,000: a `Dialog` "Buy 10 Ultra Balls for ₽ 12,000?" with "Buy" (primary) and "Not now" (outline).
+- Success toast: "Purchase complete" / "You bought 10 Ultra Balls."
+
+**Tests:** feature tests: buy succeeds; validation errors; not enough money shows an error; browser test: buy with confirmation.
+
+**Done when:** a player can buy items from the page.
+
+### 3.11 Inventory page: browse
+
+**Goal:** see everything the player owns.
+
+**Build:**
+- Route `GET /inventory` named `inventory.web.index` → `App\Inventory\Http\Web\Controllers\InventoryController@index` with `InventoryIndexPageProps`: owned items grouped by Balls, Evolution items, TMs, Boost stones and Key items, each with name, sprite, quantity, description, sell price (null when earned-only).
+- Page `resources/js/app/Inventory/pages/Inventory/Index/index.vue`; "Inventory" link in the navigation.
+
+**UI suggestions** (ideas, not requirements):
+- `AppPageHeader` ("Inventory") with money on the right; tabs for the five groups, the tab in the URL.
+- A grid of item tiles (auto-fill, about 8rem wide): `ItemSprite`, name, and a quantity `Badge` ("×42") in the corner. TMs without a sprite show a disc icon coloured by the move's type.
+- Clicking a tile opens a `Dialog` (a `Sheet` on phones) with the sprite, name, description, quantity and the actions (Sell now; Use comes with Spec 4).
+- Empty tab: `AppEmptyState` saying where to get that kind of item, with a link to the Shop where it applies ("No TMs yet. Buy them in the Shop or earn them from missions.").
+
+**Tests:** feature test for the props per group; empty groups.
+
+**Done when:** the page lists the player's items.
+
+### 3.12 Inventory page: sell
+
+**Goal:** sell items from the inventory.
+
+**Build:**
+- Route `POST /inventory/sell` named `inventory.web.sell` → `SellItemController` with `SellItemRequest` (`item_type`, `item_id`, `quantity`).
+- The item dialog gets a quantity picker and a Sell button; earned-only items show why they can't be sold instead.
+
+**UI suggestions** (ideas, not requirements):
+- In the item dialog: the same − / + quantity picker as the shop, the money it earns ("Sell 5 for ₽ 2,500"), and an outline "Sell" button.
+- Selling always confirms in a small step inside the dialog (selling loses the item), with "Sell" as a destructive button.
+- Earned-only items: muted text "Can't be sold to the shop. Trade it instead." and no Sell button.
+- Success toast: "Sold" / "You sold 5 Ultra Balls for ₽ 3,000."
+
+**Tests:** feature tests: sell succeeds; earned-only refused; quantity above owned refused; browser test: sell from the dialog.
+
+**Done when:** a player can sell items from the page.

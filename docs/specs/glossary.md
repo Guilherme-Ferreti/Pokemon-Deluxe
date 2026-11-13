@@ -40,6 +40,15 @@ One name per idea, used everywhere: specs, code, database, tests and UI. When yo
 | Throw ball | `ThrowBallAction` | |
 | Starter | `starter` | The Pokémon chosen at registration. |
 | Ultra Beast | `is_ultra_beast` | |
+| Money / Pokédollars (₽) | `money` (users column), `MoneyAmount` (Vue) | Never "coins", "cash" or "balance". |
+| Price | `price` | Null means earned only: never sold. |
+| Sell back | `SellItemAction`, `sell_back_ratio` | Half the price. |
+| Today's TMs | `TmRotation` | The 10 TMs for sale today. |
+| TM | `InventoryItemType::TM` | An inventory item whose item is a `Move`. |
+| Special item | `SpecialItem`, `SpecialItemCategory` | Boost stones and key items. |
+| Boost stone | `boost-stone` (special item slug) | |
+| Key item | `SpecialItemCategory::KEY_ITEM` | Items that are switched on, like the XP Share (`xp-share`). |
+| Earned only | price is `null` | Cannot be bought or sold to the shop; can be traded. |
 | Original trainer | `original_user_id` / `originalUser()` | Already in the code. |
 | Party / Box | `in_party` / `inParty()`, `inBox()` | Already in the code. |
 
