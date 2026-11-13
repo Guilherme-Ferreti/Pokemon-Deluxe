@@ -64,6 +64,16 @@ One name per idea, used everywhere: specs, code, database, tests and UI. When yo
 | Streak | `mission_streak`, `streak_last_completed_on` | Days in a row with all 3 dailies done. |
 | Reward | `MissionReward`, `GrantRewardAction` | Money plus items. |
 | XP Share | `xp-share` (key item), `is_xp_share_enabled` | |
+| Trainer (NPC) | `Trainer`, `TrainerRole` | Hand-made trainers, gym leaders, Elite Four, Champions. Not the player ("original trainer" is a player). |
+| Trainer class | `trainer_class` | "Hiker", "Ace Trainer", "Gym Leader". |
+| Region | `Region` enum | Kanto … Paldea. |
+| Badge | a `TrainerVictory` against a gym leader, `badge_name` | |
+| Payout | `payout`, `TrainerPayoutCalculator` | Full money for beating a trainer; reduced when the player outlevels it. |
+| Elite Four run | `EliteFourRun`, `stage` 1–5 | Stage 5 is the Champion. |
+| Battle Tower run | `TowerRun`, `floor` | `floor` is the next floor to fight. |
+| Checkpoint | `TowerFloorCalculator::isCheckpoint()` | Full heal; floors 10, 25, 45, 70, 100… |
+| Battle Points | `battle_points` | Earned in the Tower. |
+| Best floor | `best_tower_floor` | Highest floor won. |
 | Original trainer | `original_user_id` / `originalUser()` | Already in the code. |
 | Party / Box | `in_party` / `inParty()`, `inBox()` | Already in the code. |
 

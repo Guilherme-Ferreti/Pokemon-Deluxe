@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="claude:viewport-fit-sides" content="cover">
+<title>Trainers mock-up</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="assets/mockup.css">
+<style>
+  .search { display: flex; align-items: center; gap: 8px; height: 38px; border: 1px solid var(--border); border-radius: 8px; padding: 0 12px; background: var(--card); width: min(320px, 100%); }
+  .search input { border: 0; outline: 0; background: transparent; flex: 1; min-width: 0; }
+  .list { padding: 0; gap: 0; overflow: hidden; }
+  .trainer { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 16px; padding: 14px 16px; border-top: 1px solid var(--border); }
+  .trainer:first-child { border-top: 0; }
+  .trainer-main { display: flex; align-items: center; gap: 12px; flex: 1 1 260px; min-width: 0; }
+  .trainer-text { display: flex; flex-direction: column; gap: 4px; min-width: 0; }
+  .trainer-side { display: flex; flex-wrap: wrap; align-items: center; justify-content: flex-end; gap: 8px 16px; margin-left: auto; }
+  .payout { display: flex; flex-direction: column; align-items: flex-end; gap: 2px; min-width: 120px; }
+  .notice { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px; border: 1px solid var(--border); background: var(--card); border-radius: 12px; padding: 12px 16px; }
+</style>
+</head>
+<body>
+<div class="mock-bar">
+  <a href="index.html">← All mock-ups</a>
+  <span><strong>Trainers</strong> · task 6.6</span>
+  <label for="mockup-state">State
+    <select id="mockup-state">
+      <option value="list">Trainers</option>
+      <option value="in-battle">A battle is in progress</option>
+      <option value="no-match">No trainers match</option>
+    </select>
+  </label>
+  <span>Shown inside the app layout (sidebar not drawn). Dashed boxes = trainer sprites.</span>
+</div>
+
+<main class="page">
+  <div class="page-header">
+    <div class="stack" style="gap: 2px;">
+      <h1>Trainers</h1>
+      <p>Battle trainers to earn money. Stronger trainers pay more.</p>
+    </div>
+    <label class="search" for="search">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" style="color: var(--muted-fg);"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
+      <input id="search" type="search" placeholder="Search by name or class" autocomplete="off">
+    </label>
+  </div>
+
+  <div class="notice" data-show="in-battle" role="status">
+    <span><strong>You're in a battle.</strong> <span class="muted">Finish it before challenging a trainer.</span></span>
+    <a class="btn btn-primary" href="battle.html">Return to battle</a>
+  </div>
+
+  <section class="card list" id="list"></section>
+  <section class="card" id="empty" hidden>
+    <div class="empty">
+      <h3>No trainers match your search</h3>
+      <p>Try another name or class.</p>
+    </div>
+  </section>
+  <p class="note">One list sorted by level, no difficulty groups. "Battle" is outline because it repeats. The muted hint under a payout appears when your party's average level is above the trainer's (here your party averages Lv 52).</p>
+</main>
+
+<script src="assets/mockup.js"></script>
+<script>
+  (function () {
+    var trainers = [
+      ['Youngster Joey', 'Youngster', 2, 5, 7, [['normal', 'Normal']], 500, 0, 0],
+      ['Lass Robin', 'Lass', 3, 10, 13, [['fairy', 'Fairy'], ['grass', 'Grass']], 900, 3, 0],
+      ['Hiker Bob', 'Hiker', 3, 20, 25, [['rock', 'Rock'], ['ground', 'Ground']], 1800, 1, 0],
+      ['Swimmer Nia', 'Swimmer', 4, 32, 36, [['water', 'Water']], 3200, 0, 0],
+      ['Psychic Ivo', 'Psychic', 4, 45, 48, [['psychic', 'Psychic']], 5400, 0, 0],
+      ['Ace Trainer Liz', 'Ace Trainer', 6, 80, 90, [['dragon', 'Dragon'], ['steel', 'Steel']], 12000, 0, 0],
+      ['Veteran Oak', 'Veteran', 6, 95, 100, [['fire', 'Fire'], ['ice', 'Ice'], ['electric', 'Electric']], 20000, 0, 1]
+    ];
+    var partyAverage = 52;
+    var list = document.getElementById('list');
+    var search = document.getElementById('search');
+    function fmt(n) { return '₽ ' + n.toLocaleString('en-US'); }
+    function draw() {
+      var state = document.documentElement.getAttribute('data-state');
+      var q = state === 'no-match' ? 'gary' : search.value.trim().toLowerCase();
+      if (state === 'no-match') { search.value = 'Gary'; }
+      var inBattle = state === 'in-battle';
+      var shown = trainers.filter(function (t) { return !q || (t[0] + ' ' + t[1]).toLowerCase().indexOf(q) !== -1; });
+      list.innerHTML = '';
+      shown.forEach(function (t) {
+        var avg = (t[3] + t[4]) / 2;
+        var ratio = Math.max(0.1, Math.min(1, avg / partyAverage));
+        var reduced = ratio < 1 ? '<span class="xs muted">You\'d get about ' + fmt(Math.floor(t[6] * ratio)) + ' (your team is stronger)</span>' : '';
+        var row = document.createElement('div');
+        row.className = 'trainer';
+        row.innerHTML =
+          '<div class="trainer-main"><span class="sprite sprite-sm" aria-hidden="true">' + t[1] + '</span><div class="trainer-text">' +
+            '<span class="row" style="gap: 6px;"><strong>' + t[0] + '</strong>' + (t[7] ? '<span class="badge xs">Won ' + t[7] + '×</span>' : '') + (t[8] ? '<span class="badge badge-gold xs">Has a shiny</span>' : '') + '</span>' +
+            '<span class="small muted num">' + t[2] + ' Pokémon · Lv ' + t[3] + '–' + t[4] + '</span>' +
+            '<span class="row" style="gap: 4px;">' + t[5].map(function (ty) { return '<span class="type type-' + ty[0] + '">' + ty[1] + '</span>'; }).join('') + '</span>' +
+          '</div></div>' +
+          '<div class="trainer-side"><span class="payout"><span class="money"><span class="coin" aria-hidden="true"></span>' + fmt(t[6]) + '</span>' + reduced + '</span>' +
+          '<a class="btn btn-outline' + (inBattle ? '" aria-disabled="true" style="pointer-events: none; opacity: .5;"' : '"') + ' href="battle.html#trainer-battle">Battle</a></div>';
+        list.appendChild(row);
+      });
+      list.hidden = shown.length === 0;
+      document.getElementById('empty').hidden = shown.length !== 0;
+    }
+    search.addEventListener('input', draw);
+    document.addEventListener('mockup:state', function () { if (document.documentElement.getAttribute('data-state') !== 'no-match') { search.value = ''; } draw(); });
+    draw();
+  })();
+</script>
+</body>
+</html>

@@ -1,0 +1,205 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="claude:viewport-fit-sides" content="cover">
+<title>Battle Tower mock-up</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="assets/mockup.css">
+<style>
+  .stats { display: flex; flex-wrap: wrap; gap: 12px; }
+  .stat { flex: 1 1 160px; padding: 14px 16px; gap: 2px; }
+  .stat .big { font-size: 28px; font-weight: 700; letter-spacing: -.02em; }
+  .slots { display: grid; grid-template-columns: repeat(auto-fill, minmax(8.5rem, 1fr)); gap: 10px; }
+  .slot { display: flex; flex-direction: column; align-items: center; gap: 6px; padding: 12px 8px; border: 1px solid var(--border); border-radius: 12px; text-align: center; min-height: 128px; justify-content: center; }
+  .slot.empty { border-style: dashed; color: var(--muted-fg); font-size: 12px; }
+  .floor { font-size: 44px; font-weight: 700; letter-spacing: -.03em; line-height: 1; }
+  .member { display: flex; align-items: center; gap: 12px; padding: 10px 0; border-top: 1px solid var(--border); }
+  .member:first-child { border-top: 0; }
+  .member.fainted { opacity: .45; }
+  .member-main { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 4px; }
+  .hp-row { display: flex; align-items: center; gap: 8px; }
+  .good-notice { border: 1px solid color-mix(in oklch, var(--good) 40%, transparent); background: var(--good-soft); color: var(--fg); border-radius: 12px; padding: 12px 16px; }
+  .picker-tabs { margin-bottom: 4px; }
+  .pick-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(9rem, 1fr)); gap: 8px; max-height: 320px; overflow-y: auto; }
+  .pick { display: flex; flex-direction: column; align-items: center; gap: 4px; padding: 10px 6px; border: 1px solid var(--border); border-radius: 10px; background: var(--card); text-align: center; font-size: 12px; position: relative; }
+  .pick[aria-pressed="true"] { border: 2px solid var(--primary); padding: 9px 5px; }
+  .pick .order { position: absolute; top: 6px; left: 6px; width: 20px; height: 20px; border-radius: 999px; background: var(--primary); color: var(--primary-fg); font-size: 11px; font-weight: 700; display: none; align-items: center; justify-content: center; }
+  .pick[aria-pressed="true"] .order { display: flex; }
+  .search { display: flex; align-items: center; gap: 8px; height: 38px; border: 1px solid var(--border); border-radius: 8px; padding: 0 12px; background: var(--card); }
+  .search input { border: 0; outline: 0; background: transparent; flex: 1; min-width: 0; }
+</style>
+</head>
+<body>
+<div class="mock-bar">
+  <a href="index.html">← All mock-ups</a>
+  <span><strong>Battle Tower</strong> · task 6.13</span>
+  <label for="mockup-state">State
+    <select id="mockup-state">
+      <option value="lobby">Lobby: no team yet</option>
+      <option value="picker">Choose your team</option>
+      <option value="ready">Lobby: team chosen</option>
+      <option value="run">Run in progress</option>
+      <option value="checkpoint">Checkpoint reached</option>
+      <option value="quit">Quit confirmation</option>
+      <option value="ended">Run over</option>
+    </select>
+  </label>
+  <span>Shown inside the app layout (sidebar not drawn). Dashed boxes = sprites.</span>
+</div>
+
+<main class="page">
+  <div class="page-header">
+    <div class="stack" style="gap: 2px;">
+      <h1>Battle Tower</h1>
+      <p>Climb as high as you can with 6 Pokémon. Damage carries over between floors.</p>
+    </div>
+  </div>
+
+  <div class="stats">
+    <div class="card stat"><span class="xs muted">Best floor</span><span class="big num" id="best">37</span></div>
+    <div class="card stat"><span class="xs muted">Battle Points</span><span class="big num" id="points">1,240</span></div>
+  </div>
+
+  <!-- Lobby -->
+  <section class="card" data-show="lobby picker ready">
+    <div class="row" style="justify-content: space-between;">
+      <div class="stack" style="gap: 2px;">
+        <h2>Your team</h2>
+        <span class="small muted">Pick 6 Pokémon from your party or Box, in sending-out order.</span>
+      </div>
+      <button type="button" class="btn btn-outline" data-go="picker">Choose your team</button>
+    </div>
+    <div class="slots" id="slots"></div>
+    <div class="row">
+      <button type="button" class="btn btn-primary btn-lg" id="start" data-go="run">Start run</button>
+      <span class="small muted">No healing between floors, except at checkpoints (floors 10, 25, 45, 70, 100…).</span>
+    </div>
+  </section>
+
+  <!-- Run -->
+  <div class="good-notice" data-show="checkpoint" role="status"><strong>Checkpoint!</strong> Your team was fully healed. Next checkpoint at floor 70.</div>
+
+  <section class="card" data-show="run checkpoint quit">
+    <div class="row" style="justify-content: space-between; align-items: flex-end;">
+      <div class="stack" style="gap: 6px;">
+        <span class="xs muted">Next floor</span>
+        <span class="floor num" id="floor">38</span>
+      </div>
+      <div class="stack" style="gap: 6px; flex: 1 1 260px; max-width: 420px;">
+        <span class="small" id="checkpoint-text">Checkpoint at floor 45: full heal</span>
+        <div class="bar bar-blue" role="progressbar" aria-label="Progress to the next checkpoint" aria-valuemin="0" aria-valuemax="20" aria-valuenow="12"><span id="checkpoint-bar" style="width: 60%;"></span></div>
+        <span class="xs muted num">Opponents: Lv 38, 3 Pokémon · this run: 28 floors, 52 Battle Points</span>
+      </div>
+    </div>
+    <div id="team"></div>
+    <div class="row">
+      <a class="btn btn-primary btn-lg" href="battle.html#trainer-battle">Next battle</a>
+      <button type="button" class="btn btn-destructive-outline" data-go="quit">Quit run</button>
+    </div>
+  </section>
+
+  <section class="card" data-show="ended">
+    <div class="stack" style="gap: 4px;">
+      <span class="badge badge-gold" style="align-self: flex-start;">New best floor!</span>
+      <h2 style="font-size: 22px; font-weight: 700;">Run over at floor 41</h2>
+      <p class="muted">You climbed 40 floors and earned 72 Battle Points. Your Pokémon have been healed.</p>
+    </div>
+    <div class="row">
+      <button type="button" class="btn btn-primary btn-lg" data-go="lobby">Start a new run</button>
+      <a class="btn btn-outline btn-lg" href="index.html">Back to Dashboard</a>
+    </div>
+  </section>
+  <p class="note">A run is saved on the server: leaving and coming back shows it again. The battle page's end screen for Tower battles has "Back to the Tower".</p>
+</main>
+
+<div class="overlay" data-show="picker">
+  <div class="dialog dialog-wide" role="dialog" aria-labelledby="picker-title">
+    <div class="row" style="justify-content: space-between;">
+      <div class="stack" style="gap: 2px;">
+        <h2 id="picker-title">Choose 6 Pokémon</h2>
+        <span class="small muted num" id="picked-count">0 / 6 chosen</span>
+      </div>
+    </div>
+    <div class="tabs picker-tabs" role="tablist"><button type="button" class="tab" role="tab" aria-selected="true">Party</button><button type="button" class="tab" role="tab" aria-selected="false">Box</button></div>
+    <label class="search" for="picker-search">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" style="color: var(--muted-fg);"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
+      <input id="picker-search" type="search" placeholder="Search your Pokémon" autocomplete="off">
+    </label>
+    <div class="pick-grid" id="pick-grid"></div>
+    <div class="dialog-actions">
+      <button type="button" class="btn btn-outline" data-go="lobby">Cancel</button>
+      <button type="button" class="btn btn-primary" id="use-team" data-go="ready" disabled>Use this team</button>
+    </div>
+  </div>
+</div>
+
+<div class="overlay" data-show="quit">
+  <div class="dialog" role="alertdialog" aria-labelledby="quit-title">
+    <div class="stack" style="gap: 6px;">
+      <h2 id="quit-title">Quit this run?</h2>
+      <p class="small muted">The run ends at floor 38. You keep your 52 Battle Points and your best floor.</p>
+    </div>
+    <div class="dialog-actions">
+      <button type="button" class="btn btn-outline" data-go="run">Keep climbing</button>
+      <button type="button" class="btn btn-destructive" data-go="ended">Quit run</button>
+    </div>
+  </div>
+</div>
+
+<script src="assets/mockup.js"></script>
+<script>
+  (function () {
+    var mons = [['Shiny Charmeleon', 36, true], ['Dragonite', 61], ['Lapras', 50], ['Shiny Magikarp', 54, true], ['Gible', 48], ['Pikachu', 30], ['Gengar', 57], ['Scizor', 64]];
+    var team = [['Dragonite', 61, 412, 568], ['Scizor', 64, 300, 520], ['Gengar', 57, 0, 268], ['Shiny Magikarp', 54, 120, 550], ['Lapras', 50, 240, 240], ['Gible', 48, 0, 232]];
+    var picked = [];
+    function hpClass(p) { return p > 50 ? 'bar-good' : (p >= 20 ? 'bar-warn' : 'bar-bad'); }
+    function draw(state) {
+      var chosen = state === 'ready' ? mons.slice(0, 6).map(function (m) { return m[0]; }) : (state === 'picker' ? picked : []);
+      var slots = document.getElementById('slots');
+      slots.innerHTML = '';
+      for (var i = 0; i < 6; i++) {
+        var name = chosen[i];
+        slots.insertAdjacentHTML('beforeend', name
+          ? '<div class="slot"><span class="sprite sprite-sm' + (name.indexOf('Shiny') === 0 ? ' sprite-shiny' : '') + '" aria-hidden="true"></span><strong class="small">' + name + '</strong><span class="xs muted">' + (i + 1) + (i === 0 ? 'st' : i === 1 ? 'nd' : i === 2 ? 'rd' : 'th') + ' out</span></div>'
+          : '<div class="slot empty">Empty slot</div>');
+      }
+      document.getElementById('start').disabled = chosen.length !== 6 || state !== 'ready';
+      var healed = state === 'checkpoint';
+      document.getElementById('floor').textContent = healed ? '46' : '38';
+      document.getElementById('checkpoint-text').textContent = healed ? 'Checkpoint at floor 70: full heal' : 'Checkpoint at floor 45: full heal';
+      document.getElementById('checkpoint-bar').style.width = healed ? '4%' : '60%';
+      var list = document.getElementById('team');
+      list.innerHTML = '';
+      team.forEach(function (m) {
+        var hp = healed ? m[3] : m[2];
+        var pct = Math.round(hp / m[3] * 100);
+        list.insertAdjacentHTML('beforeend', '<div class="member' + (hp === 0 ? ' fainted' : '') + '"><span class="sprite sprite-xs' + (m[0].indexOf('Shiny') === 0 ? ' sprite-shiny' : '') + '" aria-hidden="true"></span><div class="member-main"><span class="row" style="gap: 6px;"><strong>' + m[0] + '</strong><span class="xs muted num">Lv ' + m[1] + '</span></span><span class="hp-row"><span class="bar bar-thin ' + hpClass(pct) + '"><span style="width: ' + pct + '%;"></span></span><span class="xs muted num" style="min-width: 72px; text-align: right;">' + (hp === 0 ? 'Fainted' : hp + ' / ' + m[3]) + '</span></span></div></div>');
+      });
+      var grid = document.getElementById('pick-grid');
+      grid.innerHTML = '';
+      mons.forEach(function (m) {
+        var at = picked.indexOf(m[0]);
+        var b = document.createElement('button');
+        b.type = 'button';
+        b.className = 'pick';
+        b.setAttribute('aria-pressed', String(at !== -1));
+        b.innerHTML = '<span class="order">' + (at + 1) + '</span><span class="sprite sprite-sm' + (m[2] ? ' sprite-shiny' : '') + '" aria-hidden="true"></span><strong>' + m[0] + '</strong><span class="muted num">Lv ' + m[1] + '</span>';
+        b.addEventListener('click', function () {
+          if (at !== -1) { picked.splice(at, 1); } else if (picked.length < 6) { picked.push(m[0]); }
+          draw('picker');
+        });
+        grid.appendChild(b);
+      });
+      document.getElementById('picked-count').textContent = picked.length + ' / 6 chosen';
+      document.getElementById('use-team').disabled = picked.length !== 6;
+      document.getElementById('best').textContent = state === 'ended' ? '41' : '37';
+      document.getElementById('points').textContent = state === 'ended' ? '1,312' : '1,240';
+    }
+    document.addEventListener('mockup:state', function (e) { if (e.detail !== 'picker') { picked = []; } draw(e.detail); });
+    draw(document.documentElement.getAttribute('data-state') || 'lobby');
+  })();
+</script>
+</body>
+</html>

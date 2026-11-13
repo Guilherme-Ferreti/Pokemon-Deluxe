@@ -32,12 +32,13 @@
 <body>
 <div class="mock-bar">
   <a href="index.html">← All mock-ups</a>
-  <span><strong>Area page</strong> · tasks 2.17, 2.18</span>
+  <span><strong>Area page</strong> · tasks 2.17, 2.18, 6.7</span>
   <label for="mockup-state">State
     <select id="mockup-state">
       <option value="encounter">Wild Pokémon found</option>
       <option value="shiny">Shiny encounter</option>
       <option value="legendary">Legendary or mythical encounter</option>
+      <option value="trainer">Trainer encounter</option>
       <option value="empty">No encounter yet</option>
       <option value="in-battle">A battle is in progress</option>
       <option value="found-here">"Pokémon found here" open</option>
@@ -104,6 +105,22 @@
     </div>
     <div class="actions">
       <a class="btn btn-primary btn-lg" href="battle.html">Battle</a>
+      <button type="button" class="btn btn-outline btn-lg" data-go="encounter">Keep exploring</button>
+    </div>
+  </section>
+
+  <section class="card encounter" data-show="trainer">
+    <div class="sprite sprite-xl" aria-hidden="true">Hiker<br>trainer sprite</div>
+    <div class="stack" style="align-items: center; gap: 8px;">
+      <span class="badge">Trainer</span>
+      <h2>Bug Catcher Sam wants to battle!</h2>
+      <div class="row" style="justify-content: center; gap: 8px;">
+        <span class="sprite sprite-xs" aria-hidden="true"></span><span class="sprite sprite-xs" aria-hidden="true"></span><span class="sprite sprite-xs" aria-hidden="true"></span>
+      </div>
+      <span class="small muted num">3 Pokémon · Lv 4–9 · pays <span class="money" style="color: var(--fg);"><span class="coin" aria-hidden="true"></span>₽ 650</span></span>
+    </div>
+    <div class="actions">
+      <a class="btn btn-primary btn-lg" href="battle.html#trainer-battle">Battle</a>
       <button type="button" class="btn btn-outline btn-lg" data-go="encounter">Keep exploring</button>
     </div>
   </section>

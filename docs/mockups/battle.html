@@ -56,7 +56,7 @@
 <body>
 <div class="mock-bar">
   <a href="index.html">← All mock-ups</a>
-  <span><strong>Battle page</strong> · tasks 1.19–1.21, 2.19</span>
+  <span><strong>Battle page</strong> · tasks 1.19–1.21, 2.19, 6.14</span>
   <label for="mockup-state">State
     <select id="mockup-state">
       <option value="battle">Battle, choosing a move</option>
@@ -66,6 +66,8 @@
       <option value="give-up">Give up confirmation</option>
       <option value="won">Battle won</option>
       <option value="lost">Gave up / lost</option>
+      <option value="trainer-battle">Trainer battle</option>
+      <option value="trainer-won">Trainer battle won</option>
     </select>
   </label>
   <span>Shown inside the app layout (sidebar not drawn). Dashed boxes = sprites.</span>
@@ -74,10 +76,14 @@
 <main class="page">
   <div class="page-header">
     <div class="stack" style="gap: 2px;">
-      <h1>Wild battle</h1>
-      <p>A wild Pidgey appeared in the Forest.</p>
+      <h1 data-show="battle ball-picker caught send-out give-up won lost">Wild battle</h1>
+      <p data-show="battle ball-picker caught send-out give-up won lost">A wild Pidgey appeared in the Forest.</p>
+      <div class="row" style="gap: 10px;" data-show="trainer-battle trainer-won">
+        <span class="sprite sprite-sm" aria-hidden="true">Hiker</span>
+        <span class="stack" style="gap: 2px;"><h1>Hiker Bob</h1><p>Trainer battle · 3 Pokémon</p></span>
+      </div>
     </div>
-    <button type="button" class="btn btn-destructive-outline" data-go="give-up" data-show="battle ball-picker give-up send-out">Give up</button>
+    <button type="button" class="btn btn-destructive-outline" data-go="give-up" data-show="battle ball-picker give-up send-out trainer-battle">Give up</button>
   </div>
 
   <section class="card arena" aria-label="Battlefield">
@@ -95,7 +101,8 @@
           <div class="bar bar-good" id="opp-bar" role="progressbar" aria-label="Pidgey HP" aria-valuemin="0" aria-valuemax="100" aria-valuenow="62"><span style="width: 62%;"></span></div>
           <span class="hp-value num" id="opp-hp">62%</span>
         </div>
-        <div class="dots" aria-label="Opponent has 1 Pokémon"><span class="dot" id="opp-dot"></span></div>
+        <div class="dots" aria-label="Opponent has 1 Pokémon" data-show="battle ball-picker caught send-out give-up won lost"><span class="dot" id="opp-dot"></span></div>
+        <div class="dots" aria-label="Hiker Bob has 2 of 3 Pokémon left" data-show="trainer-battle trainer-won"><span class="dot fainted" title="Geodude (fainted)"></span><span class="dot" title="Graveler"></span><span class="dot" title="Onix"></span></div>
       </div>
       <div class="sprite-wrap">
         <div class="sprite sprite-lg" aria-hidden="true">Pidgey<br>front sprite</div>
@@ -130,7 +137,7 @@
   </section>
 
   <div class="bottom">
-    <section class="card moves-card" data-show="battle ball-picker give-up send-out caught">
+    <section class="card moves-card" data-show="battle ball-picker give-up send-out caught trainer-battle">
       <div class="row" style="justify-content: space-between;">
         <h2>Moves</h2>
         <span class="small muted num" id="turn-label">Turn 1 · pick a move</span>
@@ -153,7 +160,7 @@
           <span class="move-meta"><span class="type type-normal">Normal</span><span>Power 40</span></span>
         </button>
       </div>
-      <div class="picker-anchor">
+      <div class="picker-anchor" data-show="battle ball-picker give-up send-out caught">
         <button type="button" class="btn btn-outline btn-block btn-lg" data-go="ball-picker">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h6m6 0h6"/><circle cx="12" cy="12" r="3"/></svg>
           Throw ball
@@ -223,6 +230,33 @@
       <p class="note">One row per Pokémon that came onto the field. The one that knocked out the opponent gets more XP.</p>
     </section>
 
+
+    <section class="card moves-card" data-show="trainer-won">
+      <div class="stack" style="gap: 2px;">
+        <h2 style="font-size: 22px; font-weight: 700;">You beat Hiker Bob!</h2>
+        <p class="muted">Your Pokémon have been healed.</p>
+      </div>
+      <div class="result-row">
+        <span class="coin" aria-hidden="true" style="width: 28px; height: 28px;"></span>
+        <div class="stack" style="flex: 1; gap: 2px; min-width: 0;">
+          <span class="num" style="font-weight: 700; font-size: 18px;">+ ₽ 1,440</span>
+          <span class="xs muted">Reduced from ₽ 1,800: your team outlevels Hiker Bob.</span>
+        </div>
+      </div>
+      <div class="result-row">
+        <div class="sprite sprite-sm sprite-shiny" aria-hidden="true"></div>
+        <div class="stack" style="flex: 1; gap: 6px; min-width: 0;">
+          <div class="row" style="gap: 6px;"><span style="font-weight: 600;">Shiny Magikarp</span><span class="num" style="font-weight: 600; color: var(--good);">+410 XP</span></div>
+          <div class="bar bar-thin bar-blue" role="progressbar" aria-label="XP to next level" aria-valuemin="0" aria-valuemax="100" aria-valuenow="65"><span style="width: 65%;"></span></div>
+        </div>
+      </div>
+      <div class="row">
+        <a class="btn btn-primary btn-lg" style="flex: 1 1 180px;" href="trainers.html">Back to Trainers</a>
+        <a class="btn btn-outline btn-lg" style="flex: 1 1 180px;" href="index.html">Back to Dashboard</a>
+      </div>
+      <p class="note">The primary button goes back where the battle came from: "Back to Trainers", "Keep exploring" (trainer met in an area), "Back to Gyms", "Next: Agatha" (Elite Four run) or "Back to the Tower" (Tower, with the team's HP left).</p>
+    </section>
+
     <section class="card moves-card" data-show="lost">
       <div class="stack" style="gap: 2px;">
         <h2 style="font-size: 22px; font-weight: 700;">You gave up</h2>
@@ -238,6 +272,10 @@
     <section class="card log-card">
       <h2>Battle log</h2>
       <div class="log" aria-live="polite" id="log">
+        <p data-show="trainer-won" class="good">You got ₽ 1,440 for winning!</p>
+        <p data-show="trainer-won" class="good">Hiker Bob was defeated!</p>
+        <p data-show="trainer-battle trainer-won" class="player">Hiker Bob sent out Graveler!</p>
+        <p data-show="trainer-battle trainer-won" class="good">Geodude fainted!</p>
         <p data-show="won" class="good">Shiny Magikarp grew to Lv 55!</p>
         <p data-show="won" class="good">Shiny Magikarp gained 340 XP!</p>
         <p data-show="won" class="good">The wild Pidgey fainted!</p>
@@ -245,7 +283,9 @@
         <p data-show="caught" class="good">Gotcha! Pidgey was caught!</p>
         <p data-show="caught" class="player">You threw a Quick Ball!</p>
         <p class="muted">Go! Shiny Magikarp!</p>
-        <p class="muted">A wild Pidgey appeared!</p>
+        <p class="muted" data-show="battle ball-picker caught send-out give-up won lost">A wild Pidgey appeared!</p>
+        <p class="muted" data-show="trainer-battle trainer-won">Hiker Bob sent out Geodude!</p>
+        <p class="muted" data-show="trainer-battle trainer-won">Hiker Bob wants to battle!</p>
       </div>
     </section>
   </div>
@@ -298,6 +338,15 @@
 
 <script src="assets/mockup.js"></script>
 <script>
+  document.addEventListener('mockup:state', function (e) {
+    var trainer = e.detail.indexOf('trainer') === 0;
+    document.querySelector('.side-opponent .name').textContent = trainer ? 'Graveler' : 'Pidgey';
+    document.querySelector('.side-opponent .sprite').innerHTML = trainer ? 'Graveler<br>front sprite' : 'Pidgey<br>front sprite';
+  });
+  if ((document.documentElement.getAttribute('data-state') || '').indexOf('trainer') === 0) {
+    document.querySelector('.side-opponent .name').textContent = 'Graveler';
+    document.querySelector('.side-opponent .sprite').innerHTML = 'Graveler<br>front sprite';
+  }
   (function () {
     var opp = 62, player = 472, max = 550, turn = 1, paralyzed = false;
     var damage = { 'surf': 30, 'ice-beam': 45, 'tackle': 15, 'thunder-wave': 0 };
