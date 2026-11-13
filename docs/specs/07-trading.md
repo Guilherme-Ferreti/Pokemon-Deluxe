@@ -45,7 +45,7 @@ Players list a Pokémon on a trade market, other players make offers of Pokémon
 TRADE MARKET      [Search species] [Type ▾] [Shiny] [Min boost] [Min level]
 ┌───────────┐ ┌───────────┐ ┌───────────┐ ┌───────────┐
 │ (portrait)│ │ (portrait)│ │ (portrait)│ │ (portrait)│
-│ ★ Gible   │ │ Dragonite │ │ Magikarp  │ │ Mewtwo    │
+│ Shiny Gible│ │ Dragonite │ │ Magikarp  │ │ Mewtwo    │
 │ Lv 48 +30 │ │ Lv 100 +5 │ │ Lv 100+90 │ │ Lv 67 +0  │
 │ 3 offers  │ │ 0 offers  │ │ 12 offers │ │ 5 offers  │
 │ 6d left   │ │ 2d left   │ │ 1d left   │ │ 4d left   │
@@ -62,7 +62,7 @@ RECENT TRADES (full list)
 
 ```
 ┌──────────────────────────────────────────────────────────┐
-│ (portrait) ★ Shiny Gible ♂ Lv 48 · Boost +30 · by Ash     │
+│ (portrait) Shiny Gible ♂ Lv 48 · Boost +30 · by Ash     │
 │ Moves: Dragon Claw · Earthquake · Crunch · Fire Fang      │
 │ Looking for: Shiny Dragon types or boost stones           │
 │ Expires in 6 days                              [Details]  │

@@ -84,7 +84,7 @@
   <section class="stack" style="gap: 8px;">
     <h2 style="font-size: 16px; font-weight: 600;">Recent trades</h2>
     <div class="card trades">
-      <div class="trade"><a href="#">Misty</a> traded <span class="badge badge-gold xs">★ Shiny Gible Lv 48 +30</span> to <a href="#">Brock</a> for <span class="badge xs">Onix Lv 100 +50</span><span class="when">2 hours ago</span></div>
+      <div class="trade"><a href="#">Misty</a> traded <span class="badge badge-gold xs">Shiny Gible Lv 48 +30</span> to <a href="#">Brock</a> for <span class="badge xs">Onix Lv 100 +50</span><span class="when">2 hours ago</span></div>
       <div class="trade"><a href="#">Ash</a> traded <span class="badge xs">Dragonite Lv 100 +5</span> to <a href="#">Gary</a> for <span class="badge xs">Lapras Lv 70 +20</span> + 10 boost stones<span class="when">yesterday</span></div>
       <div class="trade"><a href="#">Erika</a> traded <span class="badge xs">Mewtwo Lv 67</span> to <a href="#">Sabrina</a> for <span class="badge xs">Alakazam Lv 100 +40</span> + Master Ball<span class="when">3 days ago</span></div>
     </div>
@@ -123,7 +123,7 @@
     <div class="summary">
       <span class="sprite sprite-md sprite-shiny" aria-hidden="true">Shiny Gible</span>
       <div class="stack" style="gap: 4px;">
-        <strong>★ Shiny Gible ♂</strong>
+        <strong>Shiny Gible ♂</strong>
         <span class="row" style="gap: 4px;"><span class="badge num">Lv 48</span><span class="badge num">+30</span><span class="type type-dragon">Dragon</span><span class="type type-ground">Ground</span></span>
       </div>
     </div>
@@ -160,7 +160,7 @@
         grid.insertAdjacentHTML('beforeend',
           '<div class="card listing' + (l[3] ? ' shiny-ring' : '') + '">' +
           '<span class="sprite sprite-md' + (l[3] ? ' sprite-shiny' : '') + '" aria-hidden="true">' + l[0] + '</span>' +
-          '<a class="name" href="trade-listing.html#visitor" style="text-decoration: none; color: ' + (l[3] ? 'var(--gold-fg)' : 'var(--fg)') + ';">' + (l[3] ? '★ ' : '') + l[0] + '</a>' +
+          '<a class="name" href="trade-listing.html#visitor" style="text-decoration: none; color: ' + (l[3] ? 'var(--gold-fg)' : 'var(--fg)') + ';">' + l[0] + '</a>' +
           '<span class="row" style="justify-content: center; gap: 4px;"><span class="badge num">Lv ' + l[1] + '</span><span class="badge num">+' + l[2] + '</span></span>' +
           '<span class="row" style="justify-content: center; gap: 4px;">' + l[4].map(function (t) { return '<span class="type type-' + t[0] + '">' + t[1] + '</span>'; }).join('') + '</span>' +
           '<span class="xs muted">by ' + l[7] + '</span>' +

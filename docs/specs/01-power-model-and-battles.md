@@ -97,7 +97,7 @@ Level factor = level + 10, so a level 100 Pokémon is 10× a level 1, not 100×.
 │                     HP ████████░░░░  62%   [PAR]          │
 │                            (sprite)                       │
 │   (your sprite)                                           │
-│  YOU  Shiny Magikarp ♀  Lv 100  +72  ★                    │
+│  YOU  Shiny Magikarp ♀  Lv 100  +72                       │
 │  HP ██████████░░  410 / 520                               │
 │  Team: ● ● ● ○ ○ ○                                         │
 ├──────────────────────────────────────────────────────────┤
