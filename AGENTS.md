@@ -193,3 +193,4 @@ Vue components must have a single root element.
 - Before planning or changing a feature, read the spec that covers it. Follow the spec over what the existing code suggests; if they disagree, point it out instead of silently picking one.
 - When a decision changes a spec (a new rule, a changed number, a page change), update the spec file in the same change as the code.
 - Planned work is listed in `docs/specs/tasks.md`. Mark a task done when its work is merged.
+- Use the names in `docs/specs/glossary.md` for classes, methods, columns and variables. When a new name is needed, build it from the glossary's recipes and add it to the glossary in the same change.
