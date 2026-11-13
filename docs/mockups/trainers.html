@@ -149,7 +149,7 @@
         row.className = 'trainer';
         row.innerHTML =
           '<div class="trainer-main"><span class="sprite sprite-sm" aria-hidden="true">' + t[1] + '</span><div class="trainer-text">' +
-            '<span class="row" style="gap: 6px;"><strong>' + t[0] + '</strong>' + (t[7] ? '<span class="badge xs">Won ' + t[7] + '×</span>' : '') + (t[8] ? '<span class="badge badge-gold xs">Has a shiny</span>' : '') + '</span>' +
+            '<span class="row" style="gap: 6px;"><strong>' + t[0] + '</strong>' + (t[8] ? '<span class="badge badge-gold xs">Has a shiny</span>' : '') + '</span>' +
             '<span class="small muted num">' + t[2] + ' Pokémon · Lv ' + t[3] + '–' + t[4] + '</span>' +
             '<span class="row" style="gap: 4px;">' + t[5].map(function (ty) { return '<span class="type type-' + ty[0] + '">' + ty[1] + '</span>'; }).join('') + '</span>' +
           '</div></div>' +
