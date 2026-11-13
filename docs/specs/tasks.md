@@ -1022,6 +1022,7 @@ Read [04-pokemon-page.md](04-pokemon-page.md) first. Builds on Spec 1 (`SetActiv
 **UI suggestions** (ideas, not requirements):
 - `AppBreadcrumbs` (Box › Shiny Charmeleon), then a header `Card`: large `SpeciesSprite` on the left, details on the right; stacked on phones.
 - Badges for level, boost and shiny (gold); `PokemonTypeBadges`; `PokemonGenderIcon`.
+- Catch details: the ball's `ItemSprite` (small, about 20px) before "Caught in an Ultra Ball · 3 Nov 2026".
 - XP: a thin `Progress` with "7,200 / 10,000 XP to Lv 37"; at level 100, "Max level" instead.
 - Stats: an `AppInfoCard` with one `AppInfoCardRow` per stat; a `Tooltip` on each value lists its parts ("Level 36: ×0.66 · Boost +14: ×1.14 · Shiny: ×1.25").
 - Action row: "Evolve" (primary, only when an evolution is allowed), "Use item" (outline), party toggle (outline), lock toggle (ghost with a lock icon), and "Release" (destructive outline, at the end).
