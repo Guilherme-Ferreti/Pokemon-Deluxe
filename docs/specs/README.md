@@ -19,6 +19,8 @@ Each feature depends on the ones above it. All numbers in the specs are first pr
 | 7 | [Trading](07-trading.md) | agreed |
 | 8 | [Social](08-social.md) | agreed |
 
+Planned work is listed in [tasks.md](tasks.md).
+
 ## Open questions
 
 - [ ] Spec 1: how much XP a win gives (tuned later).
