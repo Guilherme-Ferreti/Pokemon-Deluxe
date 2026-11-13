@@ -194,3 +194,7 @@ Vue components must have a single root element.
 - When a decision changes a spec (a new rule, a changed number, a page change), update the spec file in the same change as the code.
 - Planned work is listed in `docs/specs/tasks.md`. Mark a task done when its work is merged.
 - Use the names in `docs/specs/glossary.md` for classes, methods, columns and variables. When a new name is needed, build it from the glossary's recipes and add it to the glossary in the same change.
+
+# Git
+
+- Commit messages are a single line in the existing conventional style (for example `docs(specs): add feature specs`). No body, no explanation paragraph and no attribution or `Co-Authored-By` lines.
