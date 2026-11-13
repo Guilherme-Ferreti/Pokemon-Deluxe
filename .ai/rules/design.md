@@ -50,6 +50,7 @@ How pages look and behave. Follow it for every new page or component; tasks in `
 
 ## Text
 
+- A Pokémon's name always includes "Shiny" when it is shiny ("Shiny Charmeleon", evolving into "Shiny Charizard"), everywhere the name appears: titles, dialogs, toasts, logs and confirmations. Use `PokemonDisplayName` / `getDisplayName()`, never the bare species name, for a Pokémon the player owns or meets.
 - Sentence case everywhere: "Keep exploring", not "Keep Exploring".
 - Numbers players compare use thousands separators (₽ 12,450) and units (Lv 36, +14, ×3.5).
 - Secondary information uses `text-sm text-muted-foreground`.

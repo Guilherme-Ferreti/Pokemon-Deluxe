@@ -1084,8 +1084,8 @@ Read [04-pokemon-page.md](04-pokemon-page.md) first. Builds on Spec 1 (`SetActiv
 
 **UI suggestions** (ideas, not requirements):
 - Options: one row per evolution with the target's `SpeciesPortrait`, name, types and requirement. Allowed rows are selectable; others are disabled with the reason ("Needs a Water Stone", "Needs level 100").
-- Confirmation inside the dialog: "Evolve Charmeleon into Charizard? This can't be undone." Mention the item used up when there is one ("Uses 1 Charizardite X").
-- Toast: "Evolved!" / "Your Charmeleon evolved into Charizard."
+- Confirmation inside the dialog: "Evolve Shiny Charmeleon into Shiny Charizard? This can't be undone." (display names: "Charmeleon into Charizard" for a regular one) Mention the item used up when there is one ("Uses 1 Charizardite X").
+- Toast: "Evolved!" / "Your Shiny Charmeleon evolved into Shiny Charizard."
 
 **Tests:** feature test for the route; browser test: evolve and see the new species.
 
@@ -1099,12 +1099,12 @@ Read [04-pokemon-page.md](04-pokemon-page.md) first. Builds on Spec 1 (`SetActiv
 
 **Build:**
 - Routes: `POST /your-pokemon/{pokemon}/party` (`pokemon.web.party.add`), `DELETE /your-pokemon/{pokemon}/party` (`pokemon.web.party.remove`), `POST /your-pokemon/{pokemon}/lock` (`pokemon.web.lock`, `is_locked` boolean), `DELETE /your-pokemon/{pokemon}` (`pokemon.web.release`, redirects to the Box with a toast).
-- Release asks the player to type the species name to confirm.
+- Release asks the player to type the Pokémon's display name to confirm ("Shiny Charmeleon" for a shiny one).
 
 **UI suggestions** (ideas, not requirements):
 - Party toggle: "Add to party" / "In party ✓" (outline). With a full party it is disabled with "Party full (6)". The last party Pokémon can't be removed: disabled with a tooltip.
 - Lock: a ghost button with a lock icon and "Locked" / "Unlocked"; when locked, Release is disabled with a tooltip "Unlock it first".
-- Release dialog: destructive styling, the input "Type Charmeleon to confirm", the destructive "Release" button enabled only when the text matches. Shiny or boosted Pokémon add a warning block: "This Pokémon is shiny and has +14 boost. Boost stones used on it are lost."
+- Release dialog: destructive styling, the input "Type Shiny Charmeleon to confirm" (the display name), the destructive "Release" button enabled only when the text matches. Shiny or boosted Pokémon add a warning block: "This Pokémon is shiny and has +14 boost. Boost stones used on it are lost."
 
 **Tests:** feature tests for each route and its errors; browser test: release with the typed confirmation.
 

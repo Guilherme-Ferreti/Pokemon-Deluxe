@@ -184,7 +184,7 @@
   <div class="dialog" role="dialog" aria-labelledby="tm-title">
     <div class="stack" style="gap: 4px;">
       <h2 id="tm-title">Teach a TM</h2>
-      <p class="small muted">The TM is used up. The move joins Charmeleon's known moves.</p>
+      <p class="small muted">The TM is used up. The move joins Shiny Charmeleon's known moves.</p>
     </div>
     <div class="pick-list">
       <button type="button" class="pick" aria-pressed="true"><span class="pick-main"><strong>TM Ice Beam</strong><span class="xs muted">Ice · Power 90 · you own 1</span></span></button>
@@ -192,7 +192,7 @@
       <button type="button" class="pick" disabled><span class="pick-main"><strong>TM Ember</strong><span class="xs muted">Already known</span></span></button>
       <button type="button" class="pick" disabled><span class="pick-main"><strong>TM Inferno Overdrive</strong><span class="xs muted">Z-Move · needs level 100</span></span></button>
     </div>
-    <p class="small"><strong>Teach Ice Beam to Charmeleon?</strong> <span class="muted">All 4 slots are full, so it goes to the known moves; swap it in when you want it.</span></p>
+    <p class="small"><strong>Teach Ice Beam to Shiny Charmeleon?</strong> <span class="muted">All 4 slots are full, so it goes to the known moves; swap it in when you want it.</span></p>
     <div class="dialog-actions">
       <button type="button" class="btn btn-outline" data-go="overview">Cancel</button>
       <button type="button" class="btn btn-primary" data-go="overview">Teach Ice Beam</button>
@@ -203,7 +203,7 @@
 <!-- Use item -->
 <div class="overlay" data-show="use-item">
   <div class="dialog" role="dialog" aria-labelledby="use-title">
-    <h2 id="use-title">Use an item on Charmeleon</h2>
+    <h2 id="use-title">Use an item on Shiny Charmeleon</h2>
     <div class="pick-list">
       <span class="group-title">Boost stones</span>
       <button type="button" class="pick" data-go="boost"><span class="item-sprite" aria-hidden="true">Boost</span><span class="pick-main"><strong>Boost Stone <span class="muted num" style="font-weight: 400;">×37</span></strong><span class="xs muted">+14 → +15: always works</span></span></button>
@@ -258,13 +258,13 @@
 <div class="overlay" data-show="evolve">
   <div class="dialog" role="dialog" aria-labelledby="evolve-title">
     <div class="stack" style="gap: 4px;">
-      <h2 id="evolve-title">Evolve Charmeleon</h2>
+      <h2 id="evolve-title">Evolve Shiny Charmeleon</h2>
       <p class="small muted">Choose an evolution. Level, boost, shine and known moves are kept.</p>
     </div>
     <div class="pick-list">
-      <button type="button" class="pick" aria-pressed="true" data-go="evolve-confirm"><span class="sprite sprite-sm sprite-shiny" aria-hidden="true"></span><span class="pick-main"><strong>Charizard</strong><span class="row" style="gap: 4px;"><span class="type type-fire">Fire</span><span class="type type-flying">Flying</span><span class="xs muted">· Level 36 ✓</span></span></span></button>
+      <button type="button" class="pick" aria-pressed="true" data-go="evolve-confirm"><span class="sprite sprite-sm sprite-shiny" aria-hidden="true"></span><span class="pick-main"><strong>Shiny Charizard</strong><span class="row" style="gap: 4px;"><span class="type type-fire">Fire</span><span class="type type-flying">Flying</span><span class="xs muted">· Level 36 ✓</span></span></span></button>
     </div>
-    <p class="note">Species with several evolutions (Eevee, Gloom) list one row each. Rows that can't be chosen yet are disabled with the reason: "Needs a Water Stone", "Needs level 100".</p>
+    <p class="note">Names always use the display name: a shiny Pokémon is "Shiny Charmeleon" and evolves into "Shiny Charizard"; a regular one is "Charmeleon" into "Charizard". Species with several evolutions (Eevee, Gloom) list one row each. Rows that can't be chosen yet are disabled with the reason: "Needs a Water Stone", "Needs level 100".</p>
     <div class="dialog-actions"><button type="button" class="btn btn-ghost" data-go="overview">Cancel</button></div>
   </div>
 </div>
@@ -272,12 +272,12 @@
 <div class="overlay" data-show="evolve-confirm">
   <div class="dialog" role="alertdialog" aria-labelledby="evolve-confirm-title">
     <div class="row" style="justify-content: center; gap: 16px;">
-      <span class="sprite sprite-md sprite-shiny" aria-hidden="true">Charmeleon</span>
+      <span class="sprite sprite-md sprite-shiny" aria-hidden="true">Shiny Charmeleon</span>
       <span aria-hidden="true" class="muted">→</span>
-      <span class="sprite sprite-md sprite-shiny" aria-hidden="true">Charizard</span>
+      <span class="sprite sprite-md sprite-shiny" aria-hidden="true">Shiny Charizard</span>
     </div>
     <div class="stack" style="gap: 4px;">
-      <h2 id="evolve-confirm-title">Evolve Charmeleon into Charizard?</h2>
+      <h2 id="evolve-confirm-title">Evolve Shiny Charmeleon into Shiny Charizard?</h2>
       <p class="small muted">This can't be undone. Charizard's base moves join the known moves.</p>
     </div>
     <div class="dialog-actions">
@@ -291,12 +291,12 @@
 <div class="overlay" data-show="release release-warning">
   <div class="dialog" role="alertdialog" aria-labelledby="release-title">
     <div class="stack" style="gap: 4px;">
-      <h2 id="release-title">Release Charmeleon?</h2>
+      <h2 id="release-title">Release Shiny Charmeleon?</h2>
       <p class="small muted">It leaves for good and you get nothing back.</p>
     </div>
     <div class="warn-box" data-show="release-warning"><strong>This Pokémon is shiny and has +14 boost.</strong> The boost stones used on it are lost too.</div>
     <div class="field stack" style="gap: 6px;">
-      <label for="confirm-name" class="small">Type <strong>Charmeleon</strong> to confirm</label>
+      <label for="confirm-name" class="small">Type <strong>Shiny Charmeleon</strong> to confirm</label>
       <input class="input" id="confirm-name" type="text" autocomplete="off">
     </div>
     <div class="dialog-actions">
@@ -311,7 +311,7 @@
   (function () {
     var input = document.getElementById('confirm-name');
     var button = document.getElementById('release-button');
-    input.addEventListener('input', function () { button.disabled = input.value.trim() !== 'Charmeleon'; });
+    input.addEventListener('input', function () { button.disabled = input.value.trim() !== 'Shiny Charmeleon'; });
     document.addEventListener('mockup:state', function () { input.value = ''; button.disabled = true; });
   })();
 </script>
