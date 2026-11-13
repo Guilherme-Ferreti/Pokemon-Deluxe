@@ -49,6 +49,16 @@
     </label>
   </div>
 
+  <div class="tabs" role="tablist" aria-label="Trainer categories" id="tabs">
+    <button type="button" class="tab" role="tab" aria-selected="true" data-category="">All</button>
+    <button type="button" class="tab" role="tab" aria-selected="false" data-category="townsfolk">Townsfolk</button>
+    <button type="button" class="tab" role="tab" aria-selected="false" data-category="outdoor">Outdoors</button>
+    <button type="button" class="tab" role="tab" aria-selected="false" data-category="water">Water</button>
+    <button type="button" class="tab" role="tab" aria-selected="false" data-category="fighters">Fighters</button>
+    <button type="button" class="tab" role="tab" aria-selected="false" data-category="mystics">Mystics</button>
+    <button type="button" class="tab" role="tab" aria-selected="false" data-category="experts">Experts</button>
+  </div>
+
   <div class="notice" data-show="in-battle" role="status">
     <span><strong>You're in a battle.</strong> <span class="muted">Finish it before challenging a trainer.</span></span>
     <a class="btn btn-primary" href="battle.html">Return to battle</a>
@@ -61,7 +71,7 @@
       <p>Try another name or class.</p>
     </div>
   </section>
-  <p class="note">One list sorted by level, no difficulty groups. "Battle" is outline because it repeats. "Team" (ghost, eye icon) opens the trainer's team in a dialog. The muted hint under a payout appears when your party's average level is above the trainer's (here your party averages Lv 52).</p>
+  <p class="note">Tabs group trainers by category (what kind of trainer they are, which hints at their types), not by difficulty; each tab is sorted by level, and the tab goes in the URL. Search works within the chosen tab. "Battle" is outline because it repeats. "Team" (ghost, eye icon) opens the trainer's team in a dialog. The muted hint under a payout appears when your party's average level is above the trainer's (here your party averages Lv 52).</p>
 </main>
 
 <div class="overlay" data-show="team">
@@ -86,17 +96,22 @@
 <script>
   (function () {
     var trainers = [
-      ['Youngster Joey', 'Youngster', 2, 5, 7, [['normal', 'Normal']], 500, 0, 0],
-      ['Lass Robin', 'Lass', 3, 10, 13, [['fairy', 'Fairy'], ['grass', 'Grass']], 900, 3, 0],
-      ['Hiker Bob', 'Hiker', 3, 20, 25, [['rock', 'Rock'], ['ground', 'Ground']], 1800, 1, 0],
-      ['Swimmer Nia', 'Swimmer', 4, 32, 36, [['water', 'Water']], 3200, 0, 0],
-      ['Psychic Ivo', 'Psychic', 4, 45, 48, [['psychic', 'Psychic']], 5400, 0, 0],
-      ['Ace Trainer Liz', 'Ace Trainer', 6, 80, 90, [['dragon', 'Dragon'], ['steel', 'Steel']], 12000, 0, 0],
-      ['Veteran Oak', 'Veteran', 6, 95, 100, [['fire', 'Fire'], ['ice', 'Ice'], ['electric', 'Electric']], 20000, 0, 1]
+      ['Youngster Joey', 'Youngster', 2, 5, 7, [['normal', 'Normal']], 500, 0, 0, 'townsfolk'],
+      ['Lass Robin', 'Lass', 3, 10, 13, [['fairy', 'Fairy'], ['grass', 'Grass']], 900, 3, 0, 'townsfolk'],
+      ['Fisherman Ray', 'Fisherman', 3, 15, 18, [['water', 'Water']], 1300, 0, 0, 'water'],
+      ['Hiker Bob', 'Hiker', 3, 20, 25, [['rock', 'Rock'], ['ground', 'Ground']], 1800, 1, 0, 'outdoor'],
+      ['Black Belt Ken', 'Black Belt', 3, 28, 31, [['fighting', 'Fighting']], 2600, 0, 0, 'fighters'],
+      ['Swimmer Nia', 'Swimmer', 4, 32, 36, [['water', 'Water']], 3200, 0, 0, 'water'],
+      ['Psychic Ivo', 'Psychic', 4, 45, 48, [['psychic', 'Psychic']], 5400, 0, 0, 'mystics'],
+      ['Ace Trainer Liz', 'Ace Trainer', 6, 80, 90, [['dragon', 'Dragon'], ['steel', 'Steel']], 12000, 0, 0, 'experts'],
+      ['Veteran Oak', 'Veteran', 6, 95, 100, [['fire', 'Fire'], ['ice', 'Ice'], ['electric', 'Electric']], 20000, 0, 1, 'experts']
     ];
+    var category = '';
     var teams = {
       'Youngster Joey': [['Rattata', 5, 'normal', 'Normal'], ['Pidgey', 7, 'normal', 'Normal']],
       'Lass Robin': [['Clefairy', 10, 'fairy', 'Fairy'], ['Oddish', 12, 'grass', 'Grass'], ['Jigglypuff', 13, 'fairy', 'Fairy']],
+      'Fisherman Ray': [['Magikarp', 15, 'water', 'Water'], ['Goldeen', 17, 'water', 'Water'], ['Poliwag', 18, 'water', 'Water']],
+      'Black Belt Ken': [['Machop', 28, 'fighting', 'Fighting'], ['Mankey', 29, 'fighting', 'Fighting'], ['Hitmonlee', 31, 'fighting', 'Fighting']],
       'Hiker Bob': [['Geodude', 20, 'rock', 'Rock'], ['Graveler', 23, 'rock', 'Rock'], ['Onix', 25, 'rock', 'Rock']],
       'Swimmer Nia': [['Tentacool', 32, 'water', 'Water'], ['Staryu', 33, 'water', 'Water'], ['Seaking', 35, 'water', 'Water'], ['Lapras', 36, 'water', 'Water']],
       'Psychic Ivo': [['Abra', 45, 'psychic', 'Psychic'], ['Drowzee', 46, 'psychic', 'Psychic'], ['Kadabra', 47, 'psychic', 'Psychic'], ['Hypno', 48, 'psychic', 'Psychic']],
@@ -124,7 +139,7 @@
       var q = state === 'no-match' ? 'gary' : search.value.trim().toLowerCase();
       if (state === 'no-match') { search.value = 'Gary'; }
       var inBattle = state === 'in-battle';
-      var shown = trainers.filter(function (t) { return !q || (t[0] + ' ' + t[1]).toLowerCase().indexOf(q) !== -1; });
+      var shown = trainers.filter(function (t) { return (!q || (t[0] + ' ' + t[1]).toLowerCase().indexOf(q) !== -1) && (!category || t[9] === category); });
       list.innerHTML = '';
       shown.forEach(function (t) {
         var avg = (t[3] + t[4]) / 2;
@@ -148,6 +163,13 @@
       document.getElementById('empty').hidden = shown.length !== 0;
     }
     search.addEventListener('input', draw);
+    document.querySelectorAll('#tabs [data-category]').forEach(function (tab) {
+      tab.addEventListener('click', function () {
+        category = tab.getAttribute('data-category');
+        document.querySelectorAll('#tabs [data-category]').forEach(function (t) { t.setAttribute('aria-selected', String(t === tab)); });
+        draw();
+      });
+    });
     if (document.documentElement.getAttribute('data-state') === 'team') { draw(); openTeam(trainers[2]); }
     document.addEventListener('mockup:state', function (e) { if (e.detail === 'team') { if (document.getElementById('team-grid').children.length === 0) { openTeam(trainers[2]); } return; } if (e.detail !== 'no-match') { search.value = ''; } draw(); });
     draw();
