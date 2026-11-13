@@ -12,7 +12,7 @@ Each owned Pokémon gets its own page, opened from the Party and the Box, where 
 │                  XP ███████░░░  7,200 / 10,000 → Lv 37        │
 │                  Caught in Ultra Ball · 3 Nov 2026            │
 │                  Original trainer: Ash                        │
-│   [ Evolve ]  [ Use item ]  [ In party ✓ ]  [ Locked ]       │
+│   [ Evolve ]  [ Boost ]  [ In party ✓ ]  [ Locked ]          │
 ├────────────────────────────┬─────────────────────────────────┤
 │ STATS                      │ ACTIVE MOVES (4)                │
 │ HP       520               │ [Flamethrower FIRE 90]  [swap]  │
@@ -33,7 +33,7 @@ Each owned Pokémon gets its own page, opened from the Party and the Box, where 
 ## Actions
 
 - **Evolve:** shown only when the Pokémon can evolve, with a small highlight. It opens a dialog listing every possible evolution with its requirement; ones not yet possible are greyed out with the reason ("Needs a Water Stone"). Evolving asks for confirmation because it is permanent.
-- **Use item:** opens a "choose an item" dialog (TMs, boost stones, evolution items, Mega Stones).
+- **Boost:** opens the boost stones dialog. TMs are taught with **Teach TM** (Moves) and evolution items and Mega Stones are used through **Evolve**, so there is no general "Use item" button. Items can also be used from the inventory, which opens this page's matching dialog.
 - **Party:** add to or remove from the party here or on the Party page. A full party shows "Party full (6)".
 - **Lock:** a locked Pokémon cannot be released or traded until unlocked. Locking asks for confirmation and says exactly that; unlocking does not ask.
 - **Release:** permanent and gives nothing back. The player confirms by typing the Pokémon's display name ("Shiny Charmeleon" for a shiny one); boosted or shiny Pokémon get a stronger warning. Locked Pokémon cannot be released.

@@ -54,7 +54,6 @@
       <option value="overview">Overview</option>
       <option value="swap">Swap a move</option>
       <option value="teach-tm">Teach a TM</option>
-      <option value="use-item">Use item</option>
       <option value="boost">Use boost stones</option>
       <option value="boost-result">Boost stones result</option>
       <option value="evolve">Evolution options</option>
@@ -102,19 +101,22 @@
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 3v4M12 17v4M3 12h4M17 12h4M6 6l2.5 2.5M15.5 15.5L18 18M6 18l2.5-2.5M15.5 8.5L18 6"/></svg>
           Evolve
         </button>
-        <button type="button" class="btn btn-outline" data-go="use-item">Use item</button>
-        <button type="button" class="btn btn-outline" data-show="overview swap teach-tm use-item boost boost-result evolve evolve-confirm locked release release-warning lock-confirm">In party ✓</button>
+        <button type="button" class="btn btn-outline" data-go="boost">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+          Boost
+        </button>
+        <button type="button" class="btn btn-outline" data-show="overview swap teach-tm boost boost-result evolve evolve-confirm locked release release-warning lock-confirm">In party ✓</button>
         <span class="stack" style="gap: 2px;" data-show="party-full">
           <button type="button" class="btn btn-outline" disabled>Add to party</button>
           <span class="xs muted">Party full (6)</span>
         </span>
-        <button type="button" class="btn btn-ghost" data-go="lock-confirm" data-show="overview swap teach-tm use-item boost boost-result evolve evolve-confirm party-full release release-warning lock-confirm">
+        <button type="button" class="btn btn-ghost" data-go="lock-confirm" data-show="overview swap teach-tm boost boost-result evolve evolve-confirm party-full release release-warning lock-confirm">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 7.5-2"/></svg>Unlocked
         </button>
         <button type="button" class="btn btn-ghost" data-go="overview" data-show="locked">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>Locked
         </button>
-        <button type="button" class="btn btn-destructive-outline push" data-go="release-warning" data-show="overview swap teach-tm use-item boost boost-result evolve evolve-confirm party-full release release-warning lock-confirm">Release</button>
+        <button type="button" class="btn btn-destructive-outline push" data-go="release-warning" data-show="overview swap teach-tm boost boost-result evolve evolve-confirm party-full release release-warning lock-confirm">Release</button>
         <button type="button" class="btn btn-destructive-outline push" disabled title="Unlock it first" data-show="locked">Release</button>
       </div>
     </div>
@@ -201,29 +203,12 @@
   </div>
 </div>
 
-<!-- Use item -->
-<div class="overlay" data-show="use-item">
-  <div class="dialog" role="dialog" aria-labelledby="use-title">
-    <h2 id="use-title">Use an item on Shiny Charmeleon</h2>
-    <div class="pick-list">
-      <span class="group-title">Boost stones</span>
-      <button type="button" class="pick" data-go="boost"><span class="item-sprite" aria-hidden="true">Boost</span><span class="pick-main"><strong>Boost Stone <span class="muted num" style="font-weight: 400;">×37</span></strong><span class="xs muted">+14 → +15: always works</span></span></button>
-      <span class="group-title">TMs</span>
-      <button type="button" class="pick" data-go="teach-tm"><span class="item-sprite" aria-hidden="true">TM</span><span class="pick-main"><strong>TM Ice Beam <span class="muted num" style="font-weight: 400;">×1</span></strong><span class="xs muted">Teaches Ice Beam</span></span></button>
-      <button type="button" class="pick" disabled><span class="item-sprite" aria-hidden="true">TM</span><span class="pick-main"><strong>TM Ember</strong><span class="xs muted">Already known</span></span></button>
-      <span class="group-title">Evolution items</span>
-      <button type="button" class="pick" disabled><span class="item-sprite" aria-hidden="true">Fire Stone</span><span class="pick-main"><strong>Fire Stone <span class="muted num" style="font-weight: 400;">×1</span></strong><span class="xs muted">No evolution uses this item</span></span></button>
-    </div>
-    <div class="dialog-actions"><button type="button" class="btn btn-ghost" data-go="overview">Cancel</button></div>
-  </div>
-</div>
-
 <!-- Boost stones -->
 <div class="overlay" data-show="boost">
   <div class="dialog" role="dialog" aria-labelledby="boost-title">
     <div class="stack" style="gap: 4px;">
       <h2 id="boost-title">Use boost stones</h2>
-      <p class="small muted">Each stone that works adds +1 boost (+1% HP and damage). Failed stones are used up. Above +20, stones can fail.</p>
+      <p class="small muted">Shiny Charmeleon · Each stone that works adds +1 boost (+1% HP and damage). Failed stones are used up. Above +20, stones can fail.</p>
     </div>
     <div class="row" style="gap: 24px;">
       <span class="stack" style="gap: 0;"><span class="xs muted">Boost now</span><span class="big num">+14</span></span>
