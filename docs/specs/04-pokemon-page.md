@@ -36,7 +36,7 @@ Each owned Pokémon gets its own page, opened from the Party and the Box, where 
 - **Use item:** opens a "choose an item" dialog (TMs, boost stones, evolution items, Mega Stones).
 - **Party:** add to or remove from the party here or on the Party page. A full party shows "Party full (6)".
 - **Lock:** a locked Pokémon cannot be released or traded until unlocked.
-- **Release:** permanent and gives nothing back. The player confirms by typing the species name; boosted or shiny Pokémon get a stronger warning. Locked Pokémon cannot be released.
+- **Release:** permanent and gives nothing back. The player confirms by typing the Pokémon's display name ("Shiny Charmeleon" for a shiny one); boosted or shiny Pokémon get a stronger warning. Locked Pokémon cannot be released.
 
 ## Stats
 
