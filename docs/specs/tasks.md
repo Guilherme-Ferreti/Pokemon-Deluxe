@@ -6,6 +6,8 @@ Every task names the classes, methods, columns and files it adds, using [glossar
 
 Each task follows the project rules in `.ai/rules/`. "Tests" lists the behaviour to cover, not every test case.
 
+Tasks that change the screen have **UI suggestions**: common elements and components that could build the page. They are ideas, not requirements; use something else when it fits better. Components named in them are the project's shadcn-vue components (`resources/js/shared/components/ui`) and shared components (`resources/js/shared/components`).
+
 ---
 
 ## 0. Foundations
@@ -333,6 +335,15 @@ Uses `Combatant` from task 1.10.
 - `App\Battle\Http\Web\PageProps\BattleShowPageProps`: both active combatants (sprite, name, level, boost, shiny, ailment), player HP as numbers, opponent HP as a percentage only, team dots, active moves (name, type, power), log.
 - Page `resources/js/app/Battle/pages/Battle/index.vue` with the Spec 1 layout; stacks on phones.
 
+**UI suggestions** (ideas, not requirements):
+- Layout: a CSS grid with two `Card`s, opponent at the top right and player at the bottom left; one column on phones (opponent, player, moves, log).
+- Each Pokémon card: `SpeciesSprite`, `PokemonDisplayName`, `PokemonGenderIcon`, level and boost as `Badge`s, ailment as a small coloured `Badge` ("PAR", "BRN").
+- HP: a `Progress` bar coloured by HP left (green above 50%, yellow 20–50%, red below 20%). Player card shows "410 / 520"; opponent card shows only "62%".
+- Team: a row of small dots (filled = can fight, outlined = fainted), with a `Tooltip` naming each Pokémon.
+- Moves: a 2×2 grid of large outline `Button`s, each with `MoveNameLabel`, a type badge and `MovePowerLabel`.
+- Log: a `Card` with a fixed height and its own scroll, newest line at the bottom, scrolled down automatically.
+- Header: `AppPageHeader` ("Wild battle") with the "Give up" button on the right (task 1.21).
+
 **Tests:** feature test for the props, including that opponent HP is a percentage only; redirect when there is no battle.
 
 **Done when:** page shows a battle started with `battle:start-wild`.
@@ -346,6 +357,13 @@ Uses `Combatant` from task 1.10.
 - Move buttons submit the turn; super-effective moves show a hint (from `typeMultiplier`).
 - The HP bar slides down (the only animation).
 
+**UI suggestions** (ideas, not requirements):
+- While a turn is being sent, disable all move buttons and show a spinner on the clicked one, so a double click can't send two turns.
+- Effectiveness hint on move buttons: a small arrow-up icon for super effective, a muted arrow-down for not very effective, a crossed-out icon for no effect, each with a `Tooltip` explaining it.
+- HP bar: animate its width with a Tailwind transition (`transition-[width] duration-500`).
+- Highlight new log lines for a moment (a light background that fades).
+- Errors (for example the battle already ended) as a toast through the existing toaster.
+
 **Tests:** feature test: a valid turn updates the battle; invalid slot is rejected; browser test: clicking a move updates HP and the log.
 
 **Done when:** a full battle can be played to the end from the page, except sending out and giving up.
@@ -358,6 +376,11 @@ Uses `Combatant` from task 1.10.
 - Route `POST /battle/send-out` (`battle.web.send-out`) → `SendOutPokemonController`; a dialog lists the remaining team (portrait, level, HP) when a Pokémon faints.
 - Route `POST /battle/forfeit` (`battle.web.forfeit`) → `ForfeitBattleController`; "Give up" button with a confirmation.
 - End screen: won or lost, XP gained per Pokémon, level-ups, and a button back to the Dashboard.
+
+**UI suggestions** (ideas, not requirements):
+- Send-out: a `Dialog` that can't be closed (no close button, no click outside) listing the team as selectable rows: `SpeciesPortrait`, name, level, HP `Progress`. Fainted Pokémon are greyed out and disabled. One primary button: "Send out".
+- Give up: a destructive `Button` that opens a confirmation dialog (shadcn-vue `alert-dialog`, added with the shadcn-vue CLI) with "Keep fighting" (secondary) and "Give up" (destructive).
+- End screen: the moves area is replaced by a result `Card`: a large "You won!" or "You lost" title; one row per Pokémon that fought with portrait, "+300 XP", an XP `Progress` bar and a "Level up! 36 → 37" `Badge`; one primary button, "Back to Dashboard".
 
 **Tests:** feature tests for both routes; browser test for the faint dialog and giving up.
 
@@ -553,6 +576,13 @@ Read [02-catching-and-exploration.md](02-catching-and-exploration.md) first. Nee
 
 **Build:** the registration page shows the 27 starters' portraits grouped by region (one row of 3 per region), the selected one highlighted, sent as `starter`. Props come from `ShareAuthLayoutProps` or the registration page props, whichever the page already uses.
 
+**UI suggestions** (ideas, not requirements):
+- A `Field` labelled "Choose your starter" below the password fields.
+- A `RadioGroup` styled as cards (accessible and keyboard-friendly): one small heading per region ("Kanto") and a row of 3 cards, each with `SpeciesPortrait`, name and type badge.
+- The selected card gets a primary-coloured border and a check icon.
+- On phones, 27 cards are a long scroll: consider a region `Select` that shows one region's 3 cards at a time.
+- Validation error under the group with `FieldError`. "Create account" stays the only primary button.
+
 **Tests:** feature test for the props; browser test: choose a starter and register.
 
 **Done when:** a new player can choose a starter and lands on the Dashboard with it in their party.
@@ -564,6 +594,10 @@ Read [02-catching-and-exploration.md](02-catching-and-exploration.md) first. Nee
 **Build:**
 - Pokédex overview shows "10%" (or "1%" for legendaries and mythicals) from `game.catching`, or "Not found in the wild" when `wild_min_level` is null.
 - Migration `020_drop_catch_rate_from_species_table.php`; remove `catch_rate` from the seeder, model, `isCapturable()` and `getCatchRatePercentage()`.
+
+**UI suggestions** (ideas, not requirements):
+- Keep the existing `AppInfoCardRow` in the overview card: "Catch rate: 10%".
+- For species never in the wild, show muted text "Not found in the wild", with a `Tooltip` explaining why (Megas and G-Max evolve, babies hatch).
 
 **Tests:** update `PokedexShowTest` for the three cases.
 
@@ -577,6 +611,12 @@ Read [02-catching-and-exploration.md](02-catching-and-exploration.md) first. Nee
 - Route `GET /explore` named `exploration.web.index` → `App\Exploration\Http\Web\Controllers\ExploreController@index` with `ExploreIndexPageProps` (each area's slug, label, types).
 - Page `resources/js/app/Exploration/pages/Explore/Index/index.vue`: one card per area (name, type badges, Explore button); 3 per row on desktop, 1 on phones. Until area art exists, the card background is a gradient of its two type colours.
 - "Explore" link in the main navigation.
+
+**UI suggestions** (ideas, not requirements):
+- `AppPageHeader`: "Explore", with the description "Pick an area to look for wild Pokémon."
+- A responsive grid: 1 column on phones, 2 on tablets, 3 on desktop.
+- One `Card` per area, the whole card clickable: a coloured band at the top (the two type colours as a gradient) with the area name on it, `PokemonTypeBadges` in the content, and a full-width primary "Explore" `Button` in the footer.
+- Sidebar: an "Explore" `AppNavLink` with a compass or map icon, near the top since it is the main activity.
 
 **Tests:** feature test for the props.
 
@@ -592,6 +632,14 @@ Read [02-catching-and-exploration.md](02-catching-and-exploration.md) first. Nee
 - Route `POST /explore/battle` named `exploration.web.battle` → `BattleEncounterController`: calls `BattleEncounterAction`, redirects to `battle.web.show`.
 - Encounter card as in the Spec 2 sketch; shiny and legendary encounters get a gold border and badge. While a battle is ongoing, a banner links to it instead.
 
+**UI suggestions** (ideas, not requirements):
+- `AppBreadcrumbs` (Explore › Forest), then the area name with its type badges and an outline "Pokémon found here" button on the right.
+- A centred encounter `Card` (about 450px wide): large `SpeciesSprite`, name with `PokemonGenderIcon`, a level `Badge` and type badges.
+- Shiny: a gold border and a "Shiny" `Badge` with a star icon. Legendary or mythical: a "Legendary" `Badge`.
+- Buttons: primary "Battle" and outline "Keep exploring", side by side; stacked full width on phones. Both show a processing state while the request runs.
+- No encounter yet: `AppEmptyState` ("Nothing here yet") with a primary "Explore" button.
+- Ongoing battle: replace the card with a notice ("You're in a battle") and one primary "Return to battle" button (shadcn-vue `alert` or `AppInfoCard`).
+
 **Tests:** feature tests for the three routes; browser test: explore, keep exploring, battle.
 
 **Done when:** a player can explore an area and start a battle from the page.
@@ -601,6 +649,13 @@ Read [02-catching-and-exploration.md](02-catching-and-exploration.md) first. Nee
 **Goal:** the modal listing an area's species.
 
 **Build:** `ExploreShowPageProps` gets `areaSpecies` as an `Inertia::optional()` prop (portrait, name, types), loaded when the modal opens. The modal has a search box and type filters (client-side), using species portraits.
+
+**UI suggestions** (ideas, not requirements):
+- A `Dialog` with scrolling content, titled "Pokémon found in Forest" with the species count.
+- At the top, a search `InputGroup` with a search icon, and type filters as toggle chips (`Badge`-styled buttons) for the types present in the list.
+- A grid of `SpeciesPortrait` tiles with the name underneath: 5–6 per row on desktop, 3 on phones.
+- `Skeleton` tiles while the optional prop loads; `AppEmptyState` ("No Pokémon match your search") when filters hide everything.
+- On phones, consider making the dialog full screen.
 
 **Tests:** feature test: the prop is absent by default and returned when requested.
 
@@ -615,6 +670,13 @@ Read [02-catching-and-exploration.md](02-catching-and-exploration.md) first. Nee
 - `BattleShowPageProps`: in wild battles, the player's balls (sprite, name, quantity, current multiplier from `BallMultiplierCalculator`, `isBoosted` when above its `catch_rate`).
 - "Throw ball" button under the moves (wild battles only) opens the ball picker; boosted balls show a "Boosted" tag.
 - Catch dialog: the Pokémon, where it went (Party or Box), buttons "View Pokémon" (to the Box until the Pokémon page exists) and "Keep exploring" (back to the area page).
+
+**UI suggestions** (ideas, not requirements):
+- An outline "Throw ball" `Button` with a ball icon, full width under the move grid (wild battles only).
+- Ball picker: a `Popover` on desktop (a `Dialog` on phones) listing one row per ball: `ItemSprite`, name, "×42" owned, and the current multiplier ("×3.5"). Boosted balls get a green "Boosted" `Badge` and are sorted first.
+- Clicking a row throws right away, with a processing state on the row.
+- Catch dialog: the Pokémon's sprite, "Gotcha! Shiny Caterpie was caught!", a `Badge` saying "Sent to Party" or "Sent to Box", then a primary "Keep exploring" and an outline "View Pokémon".
+- A ball that fails only adds a log line; no extra popup.
 
 **Tests:** feature tests for the route and props; browser test: throw a ball and see the catch dialog.
 
