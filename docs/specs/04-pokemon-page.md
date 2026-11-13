@@ -45,6 +45,7 @@ Each owned Pokémon gets its own page, opened from the Party and the Box, where 
 ## Moves
 
 - Four active slots. **Swap** on a slot opens the known-moves pool to pick a replacement.
+- The active moves can be **reordered** (drag and drop, or up and down arrows). Their order is the order of the move buttons in battle.
 - The known-moves pool lists every move learned, with type and power. **Teach TM** opens the TMs the player owns.
 
 ## Boost stones

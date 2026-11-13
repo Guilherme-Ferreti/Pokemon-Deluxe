@@ -22,14 +22,25 @@
   .stat-name { font-weight: 500; }
   .stat-value { font-weight: 600; font-size: 16px; text-align: right; }
   .stat-parts { font-size: 12px; color: var(--muted-fg); text-align: right; }
-  .slots { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
-  @media (max-width: 520px) { .slots { grid-template-columns: minmax(0, 1fr); } }
-  .slot { display: flex; align-items: center; justify-content: space-between; gap: 8px; border: 1px solid var(--border); border-radius: 10px; padding: 10px 12px; min-width: 0; }
-  .slot-main { display: flex; flex-direction: column; gap: 4px; min-width: 0; }
+  .slots { display: flex; flex-direction: column; gap: 6px; padding: 0; margin: 0; list-style: none; }
+  .slot { display: flex; align-items: center; gap: 10px; border: 1px solid var(--border); border-radius: 10px; padding: 8px 10px; min-width: 0; background: var(--card); }
+  .slot.drag-over { border-color: var(--primary); box-shadow: 0 0 0 1px var(--primary); }
+  .slot.dragging { opacity: .4; }
+  .slot-number { width: 22px; height: 22px; border-radius: 999px; background: var(--muted); font-size: 12px; font-weight: 600; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+  .handle { cursor: grab; color: var(--muted-fg); display: flex; flex-shrink: 0; touch-action: none; }
+  .slot-main { flex: 1; display: flex; flex-direction: column; gap: 4px; min-width: 0; }
   .slot-name { font-weight: 600; }
-  .slot-meta { display: flex; align-items: center; gap: 8px; font-size: 12px; color: var(--muted-fg); }
-  .pool { display: flex; flex-wrap: wrap; gap: 6px; }
-  .pool .badge { font-weight: 500; }
+  .slot-meta { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; font-size: 12px; color: var(--muted-fg); }
+  .slot-tools { display: flex; align-items: center; gap: 2px; }
+  .icon-btn { width: 30px; height: 30px; border: 0; border-radius: 6px; background: transparent; color: var(--muted-fg); display: flex; align-items: center; justify-content: center; }
+  .icon-btn:hover:not(:disabled) { background: var(--muted); color: var(--fg); }
+  .icon-btn:disabled { opacity: .3; }
+  .stab { font-size: 10px; font-weight: 700; letter-spacing: .04em; padding: 1px 5px; border-radius: 4px; background: var(--good-soft); color: var(--good); }
+  .pool { display: grid; grid-template-columns: repeat(auto-fill, minmax(11rem, 1fr)); gap: 6px; }
+  .pool-move { display: flex; align-items: center; gap: 8px; border: 1px dashed var(--border); border-radius: 8px; padding: 6px 8px; cursor: grab; background: var(--card); min-width: 0; }
+  .pool-move:hover { border-style: solid; }
+  .pool-move .slot-name { font-size: 13px; }
+  .pool-move.is-active { opacity: .45; cursor: default; }
   .pick-list { display: flex; flex-direction: column; gap: 6px; }
   .pick { display: flex; align-items: center; gap: 12px; width: 100%; padding: 10px 12px; border: 1px solid var(--border); border-radius: 10px; background: var(--card); text-align: left; }
   .pick:hover:not(:disabled) { background: var(--muted); }
@@ -150,21 +161,19 @@
 
     <section class="card moves-card">
       <div class="row" style="justify-content: space-between;">
-        <h2>Active moves</h2>
+        <div class="stack" style="gap: 2px;">
+          <h2>Active moves</h2>
+          <span class="xs muted">Drag to reorder. The order is the order of the move buttons in battle.</span>
+        </div>
         <button type="button" class="btn btn-outline" data-go="teach-tm">Teach TM</button>
       </div>
-      <div class="slots">
-        <div class="slot"><div class="slot-main"><span class="slot-name">Flamethrower</span><span class="slot-meta"><span class="type type-fire">Fire</span><span>Power 90</span></span></div><button type="button" class="btn btn-ghost" data-go="swap">Swap</button></div>
-        <div class="slot"><div class="slot-main"><span class="slot-name">Slash</span><span class="slot-meta"><span class="type type-normal">Normal</span><span>Power 70</span></span></div><button type="button" class="btn btn-ghost" data-go="swap">Swap</button></div>
-        <div class="slot"><div class="slot-main"><span class="slot-name">Dragon Claw</span><span class="slot-meta"><span class="type type-dragon">Dragon</span><span>Power 80</span></span></div><button type="button" class="btn btn-ghost" data-go="swap">Swap</button></div>
-        <div class="slot"><div class="slot-main"><span class="slot-name">Will-O-Wisp</span><span class="slot-meta"><span class="type type-fire">Fire</span><span>Status</span></span></div><button type="button" class="btn btn-ghost" data-go="swap">Swap</button></div>
+      <ol class="slots" id="slots"></ol>
+      <div class="row" style="justify-content: space-between; padding-top: 4px;">
+        <h2>Known moves <span class="muted" style="font-weight: 400;">· 9</span></h2>
+        <span class="xs muted">Drag one onto a slot to use it</span>
       </div>
-      <h2 style="padding-top: 4px;">Known moves <span class="muted" style="font-weight: 400;">· 9</span></h2>
-      <div class="pool">
-        <span class="badge">Dragon Claw</span><span class="badge">Ember</span><span class="badge">Fire Fang</span><span class="badge">Flamethrower</span>
-        <span class="badge">Growl</span><span class="badge">Metal Claw</span><span class="badge">Scratch</span><span class="badge">Slash</span><span class="badge">Will-O-Wisp</span>
-      </div>
-      <p class="note">A slot can be empty when the species had fewer than 4 base moves: dashed outline and "Empty slot", with Swap filling it.</p>
+      <div class="pool" id="pool"></div>
+      <p class="note">Desktop: drag a slot by its handle to reorder, or drag a known move onto a slot to replace it (the replaced move goes back to the known moves). Keyboard and touch: the up and down arrows reorder, and Swap opens the picker. "STAB" marks damaging moves of the Pokémon's own type (×1.5 damage).</p>
     </section>
   </div>
 </main>
@@ -356,6 +365,82 @@
         filterTms();
       });
     });
+  })();
+  (function () {
+    var types = { fire: 'Fire', normal: 'Normal', dragon: 'Dragon', steel: 'Steel' };
+    var all = {
+      flamethrower: ['Flamethrower', 'fire', 'Power 90', true], slash: ['Slash', 'normal', 'Power 70', false],
+      'dragon-claw': ['Dragon Claw', 'dragon', 'Power 80', false], 'will-o-wisp': ['Will-O-Wisp', 'fire', 'Status', false],
+      ember: ['Ember', 'fire', 'Power 40', true], 'fire-fang': ['Fire Fang', 'fire', 'Power 65', true],
+      growl: ['Growl', 'normal', 'Status', false], 'metal-claw': ['Metal Claw', 'steel', 'Power 50', false], scratch: ['Scratch', 'normal', 'Power 40', false]
+    };
+    var active = ['flamethrower', 'dragon-claw', 'slash', 'will-o-wisp'];
+    var slotsEl = document.getElementById('slots');
+    var poolEl = document.getElementById('pool');
+    var dragged = null;
+
+    function meta(id) {
+      var m = all[id];
+      return '<span class="type type-' + m[1] + '">' + types[m[1]] + '</span><span>' + m[2] + '</span>' + (m[3] ? '<span class="stab" title="Same type as the Pokémon: ×1.5 damage">STAB</span>' : '');
+    }
+    function arrow(dir) {
+      return '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="' + (dir === 'up' ? 'M6 15l6-6 6 6' : 'M6 9l6 6 6-6') + '"/></svg>';
+    }
+    function render() {
+      slotsEl.innerHTML = '';
+      active.forEach(function (id, i) {
+        var li = document.createElement('li');
+        li.className = 'slot';
+        li.draggable = true;
+        li.dataset.index = i;
+        li.innerHTML =
+          '<span class="handle" title="Drag to reorder" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><circle cx="9" cy="6" r="1.6"/><circle cx="15" cy="6" r="1.6"/><circle cx="9" cy="12" r="1.6"/><circle cx="15" cy="12" r="1.6"/><circle cx="9" cy="18" r="1.6"/><circle cx="15" cy="18" r="1.6"/></svg></span>' +
+          '<span class="slot-number">' + (i + 1) + '</span>' +
+          '<span class="slot-main"><span class="slot-name">' + all[id][0] + '</span><span class="slot-meta">' + meta(id) + '</span></span>' +
+          '<span class="slot-tools">' +
+            '<button type="button" class="icon-btn" data-move-up="' + i + '" aria-label="Move ' + all[id][0] + ' up"' + (i === 0 ? ' disabled' : '') + '>' + arrow('up') + '</button>' +
+            '<button type="button" class="icon-btn" data-move-down="' + i + '" aria-label="Move ' + all[id][0] + ' down"' + (i === active.length - 1 ? ' disabled' : '') + '>' + arrow('down') + '</button>' +
+            '<button type="button" class="btn btn-ghost" data-go="swap" style="min-height: 32px; padding: 0 10px;">Swap</button>' +
+          '</span>';
+        li.addEventListener('dragstart', function (e) { dragged = { from: 'slot', index: i }; li.classList.add('dragging'); e.dataTransfer.effectAllowed = 'move'; });
+        li.addEventListener('dragend', function () { li.classList.remove('dragging'); });
+        li.addEventListener('dragover', function (e) { e.preventDefault(); li.classList.add('drag-over'); });
+        li.addEventListener('dragleave', function () { li.classList.remove('drag-over'); });
+        li.addEventListener('drop', function (e) {
+          e.preventDefault();
+          li.classList.remove('drag-over');
+          if (!dragged) { return; }
+          if (dragged.from === 'slot') {
+            var moved = active.splice(dragged.index, 1)[0];
+            active.splice(i, 0, moved);
+          } else if (active.indexOf(dragged.id) === -1) {
+            active[i] = dragged.id;
+          }
+          dragged = null;
+          render();
+        });
+        slotsEl.appendChild(li);
+      });
+      poolEl.innerHTML = '';
+      Object.keys(all).sort(function (a, b) { return all[a][0].localeCompare(all[b][0]); }).forEach(function (id) {
+        var el = document.createElement('div');
+        var isActive = active.indexOf(id) !== -1;
+        el.className = 'pool-move' + (isActive ? ' is-active' : '');
+        el.draggable = !isActive;
+        el.title = isActive ? 'Already in slot ' + (active.indexOf(id) + 1) : 'Drag onto a slot';
+        el.innerHTML = '<span class="slot-main"><span class="slot-name">' + all[id][0] + '</span><span class="slot-meta">' + meta(id) + '</span></span>';
+        el.addEventListener('dragstart', function (e) { dragged = { from: 'pool', id: id }; e.dataTransfer.effectAllowed = 'move'; });
+        poolEl.appendChild(el);
+      });
+    }
+    slotsEl.addEventListener('click', function (e) {
+      var up = e.target.closest('[data-move-up]');
+      var down = e.target.closest('[data-move-down]');
+      var i;
+      if (up) { i = +up.getAttribute('data-move-up'); active.splice(i - 1, 0, active.splice(i, 1)[0]); render(); }
+      if (down) { i = +down.getAttribute('data-move-down'); active.splice(i + 1, 0, active.splice(i, 1)[0]); render(); }
+    });
+    render();
   })();
 </script>
 </body>
