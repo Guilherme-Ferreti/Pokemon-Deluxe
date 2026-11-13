@@ -18,6 +18,10 @@
   .nav a.active { font-weight: 500; }
   .nav .sub { padding-left: 26px; }
   .nav-icon { width: 16px; height: 16px; border-radius: 4px; border: 1.5px solid var(--muted-fg); flex-shrink: 0; }
+  .nav-dot { position: absolute; top: -4px; right: -4px; width: 8px; height: 8px; border-radius: 999px; background: var(--primary); display: none; }
+  :root[data-state="collapsed"] .nav-dot { display: block; }
+  .dot-label { width: 8px; height: 8px; border-radius: 999px; background: var(--primary); margin-left: auto; flex-shrink: 0; }
+  :root[data-state="collapsed"] .dot-label { display: none; }
   .new { font-size: 10px; font-weight: 600; padding: 1px 6px; border-radius: 6px; background: var(--good-soft); color: var(--good); }
   .sidebar-foot { padding: 8px; display: flex; flex-direction: column; gap: 4px; border-top: 1px solid var(--border); }
   .wallet { display: flex; align-items: center; justify-content: space-between; gap: 8px; height: 40px; padding: 0 10px; border-radius: 8px; color: var(--fg); text-decoration: none; }
@@ -45,7 +49,7 @@
 <body>
 <div class="mock-bar">
   <a href="index.html">← All mock-ups</a>
-  <span><strong>App layout: money</strong> · task 3.2 (and the new sidebar links from tasks 2.16, 3.9, 3.11)</span>
+  <span><strong>App layout: money and Missions dot</strong> · tasks 3.2, 5.14 (and the sidebar links from tasks 2.16, 3.9, 3.11, 5.11)</span>
   <label for="mockup-state">State
     <select id="mockup-state">
       <option value="expanded">Sidebar expanded</option>
@@ -67,6 +71,7 @@
         <a href="#" class="sub"><span class="nav-icon"></span><span class="label">Box</span></a>
         <a href="nursery.html" class="sub"><span class="nav-icon"></span><span class="label">Nursery</span></a>
         <a href="battle.html"><span class="nav-icon"></span><span class="label">Battle</span></a>
+        <a href="missions.html" title="2 rewards to claim"><span class="nav-icon" style="position: relative;"><span class="nav-dot" aria-hidden="true"></span></span><span class="label">Missions</span><span class="dot-label" aria-label="2 rewards to claim"></span></a>
         <a href="shop.html" class="active"><span class="nav-icon"></span><span class="label">Shop</span><span class="new">New</span></a>
         <a href="inventory.html"><span class="nav-icon"></span><span class="label">Inventory</span><span class="new">New</span></a>
         <a href="#"><span class="nav-icon"></span><span class="label">Pokédex</span></a>
@@ -94,7 +99,7 @@
         <h1 style="font-size: 24px; font-weight: 700;">Shop</h1>
         <p class="muted">Page content goes here.</p>
         <p class="note">Money sits in the sidebar footer, above the user menu, and links to the Shop. Collapsed sidebar: coin icon only, amount in a tooltip. Phones (sidebar hidden in a sheet): money shows in the top bar next to the menu button. Always formatted with thousands separators through one shared <code>MoneyAmount</code> component.</p>
-        <p class="note">"Explore" and "Battle" replace the sidebar's existing placeholder links ("Wild Areas" and "Battle", both pointing to <code>#</code> today). "Shop" and "Inventory" are new; the "New" badges are only for this mock-up.</p>
+        <p class="note">"Explore" and "Battle" replace the sidebar's existing placeholder links ("Wild Areas" and "Battle", both pointing to <code>#</code> today). "Shop", "Inventory" and "Missions" are new; the "New" badges are only for this mock-up. The dot after "Missions" means rewards are waiting (count in a tooltip); collapsed, it sits on the icon's corner.</p>
       </div>
     </div>
   </div>

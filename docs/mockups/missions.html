@@ -1,0 +1,219 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="claude:viewport-fit-sides" content="cover">
+<title>Missions mock-up</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="assets/mockup.css">
+<style>
+  .mission { flex-direction: row; flex-wrap: wrap; align-items: center; gap: 12px 16px; }
+  .mission.done { border-color: color-mix(in oklch, var(--good) 45%, transparent); box-shadow: 0 0 0 1px color-mix(in oklch, var(--good) 25%, transparent); }
+  .mission.claimed { opacity: .55; }
+  .mission.bonus { border-color: var(--gold); box-shadow: 0 0 0 3px var(--gold-soft); }
+  .mission-main { flex: 1 1 280px; min-width: 0; display: flex; flex-direction: column; gap: 8px; }
+  .mission-title { font-weight: 600; font-size: 15px; }
+  .progress-row { display: flex; align-items: center; gap: 10px; }
+  .progress-row .num { font-size: 13px; font-weight: 600; min-width: 48px; text-align: right; }
+  .reward { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; font-size: 13px; }
+  .reward-item { display: inline-flex; align-items: center; gap: 4px; }
+  .reward-item .item-sprite { width: 24px; height: 24px; border-radius: 6px; font-size: 7px; border-width: 1.5px; }
+  .mission-side { display: flex; flex-direction: column; align-items: flex-end; gap: 8px; margin-left: auto; }
+  .diff-easy { background: var(--good-soft); color: var(--good); }
+  .diff-medium { background: var(--warn-soft); color: var(--warn-fg); }
+  .diff-hard { background: color-mix(in oklch, var(--bad) 14%, var(--card)); color: var(--bad); }
+  .streak { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px; }
+  .streak-dots { display: flex; gap: 6px; }
+  .streak-dot { width: 14px; height: 14px; border-radius: 999px; border: 2px solid var(--border); }
+  .streak-dot.on { background: var(--good); border-color: var(--good); }
+  .ach-row { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 16px; padding: 12px 16px; border-top: 1px solid var(--border); }
+  .ach-row:first-child { border-top: 0; }
+  .ach-name { flex: 1 1 220px; min-width: 0; font-weight: 500; }
+  .ach-progress { flex: 1 1 200px; display: flex; align-items: center; gap: 10px; }
+  .ach-row.claimed { opacity: .5; }
+  .ach-list { padding: 0; gap: 0; overflow: hidden; }
+</style>
+</head>
+<body>
+<div class="mock-bar">
+  <a href="index.html">← All mock-ups</a>
+  <span><strong>Missions</strong> · tasks 5.11–5.13</span>
+  <label for="mockup-state">State
+    <select id="mockup-state">
+      <option value="daily">Daily missions</option>
+      <option value="claimable">Ready to claim</option>
+      <option value="claimed">Claimed</option>
+      <option value="overflow">Reward won't fit</option>
+      <option value="reroll-used">Reroll used</option>
+      <option value="bonus">Streak bonus</option>
+      <option value="all-done">All done for today</option>
+      <option value="achievements">Achievements</option>
+    </select>
+  </label>
+  <span>Shown inside the app layout (sidebar not drawn). Small dashed boxes = item sprites.</span>
+</div>
+
+<main class="page">
+  <div class="page-header">
+    <div class="stack" style="gap: 2px;">
+      <h1>Missions</h1>
+      <p>Finish missions to earn boost stones, TMs and more.</p>
+    </div>
+    <span class="small muted num" data-show="daily claimable claimed overflow reroll-used bonus all-done">New daily missions in <strong style="color: var(--fg);">07:42:10</strong></span>
+  </div>
+
+  <div class="tabs" role="tablist" aria-label="Mission types">
+    <button type="button" class="tab" role="tab" data-tab="daily" data-go="daily">Daily</button>
+    <button type="button" class="tab" role="tab" data-tab="achievements" data-go="achievements">Achievements <span class="badge badge-good xs" style="margin-left: 4px;">1</span></button>
+  </div>
+
+  <!-- Daily -->
+  <div class="stack" style="gap: 10px;" data-show="daily claimable claimed overflow reroll-used bonus">
+    <section class="card mission bonus" data-show="bonus">
+      <div class="mission-main">
+        <div class="row" style="gap: 8px;"><span class="badge badge-gold">Streak bonus</span><span class="mission-title">7 days in a row!</span></div>
+        <div class="reward"><span class="muted">Reward:</span><span class="reward-item"><span class="item-sprite" aria-hidden="true">Boost</span>1 boost stone</span></div>
+      </div>
+      <div class="mission-side"><button type="button" class="btn btn-primary" data-go="daily">Claim</button></div>
+    </section>
+
+    <section class="card mission">
+      <div class="mission-main">
+        <div class="row" style="gap: 8px;"><span class="badge diff-easy">Easy</span><span class="mission-title">Catch 4 Water Pokémon</span></div>
+        <div class="progress-row"><div class="bar bar-good"><span style="width: 75%;"></span></div><span class="num">3 / 4</span></div>
+        <div class="reward"><span class="muted">Reward:</span><span class="money"><span class="coin" aria-hidden="true"></span>₽ 1,500</span><span class="reward-item"><span class="item-sprite" aria-hidden="true">Great</span>×3 Great Ball</span></div>
+      </div>
+      <div class="mission-side">
+        <button type="button" class="btn btn-ghost" data-go="reroll-used" data-show="daily claimable claimed overflow bonus">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 11a8 8 0 1 0-2.3 5.7M20 4v7h-7"/></svg>Reroll
+        </button>
+        <button type="button" class="btn btn-ghost" disabled title="One reroll per day" data-show="reroll-used">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 11a8 8 0 1 0-2.3 5.7M20 4v7h-7"/></svg>Reroll
+        </button>
+      </div>
+    </section>
+
+    <section class="card mission" data-show="daily reroll-used bonus">
+      <div class="mission-main">
+        <div class="row" style="gap: 8px;"><span class="badge diff-medium">Medium</span><span class="mission-title">Catch 3 Pokémon in the Volcano</span></div>
+        <div class="progress-row"><div class="bar bar-good"><span style="width: 33%;"></span></div><span class="num">1 / 3</span></div>
+        <div class="reward"><span class="muted">Reward:</span><span class="money"><span class="coin" aria-hidden="true"></span>₽ 3,000</span><span class="reward-item"><span class="item-sprite" aria-hidden="true">TM</span>a random TM</span></div>
+      </div>
+      <div class="mission-side">
+        <button type="button" class="btn btn-ghost" data-go="reroll-used" data-show="daily bonus"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 11a8 8 0 1 0-2.3 5.7M20 4v7h-7"/></svg>Reroll</button>
+        <button type="button" class="btn btn-ghost" disabled title="One reroll per day" data-show="reroll-used"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 11a8 8 0 1 0-2.3 5.7M20 4v7h-7"/></svg>Reroll</button>
+      </div>
+    </section>
+
+    <section class="card mission done" data-show="claimable overflow">
+      <div class="mission-main">
+        <div class="row" style="gap: 8px;"><span class="badge diff-medium">Medium</span><span class="mission-title">Win 3 battles against trainers</span></div>
+        <div class="progress-row"><div class="bar bar-good"><span style="width: 100%;"></span></div><span class="num">3 / 3 ✓</span></div>
+        <div class="reward"><span class="muted">Reward:</span><span class="money"><span class="coin" aria-hidden="true"></span>₽ 3,000</span><span class="reward-item"><span class="item-sprite" aria-hidden="true">Boost</span>1 boost stone</span></div>
+      </div>
+      <div class="mission-side"><button type="button" class="btn btn-primary" data-go="claimed">Claim</button></div>
+    </section>
+
+    <section class="card mission claimed" data-show="claimed">
+      <div class="mission-main">
+        <div class="row" style="gap: 8px;"><span class="badge diff-medium">Medium</span><span class="mission-title">Win 3 battles against trainers</span></div>
+        <div class="progress-row"><div class="bar bar-good"><span style="width: 100%;"></span></div><span class="num">3 / 3</span></div>
+      </div>
+      <div class="mission-side"><span class="small muted">Claimed ✓</span></div>
+    </section>
+
+    <section class="card mission">
+      <div class="mission-main">
+        <div class="row" style="gap: 8px;"><span class="badge diff-hard">Hard</span><span class="mission-title">Catch a Pokémon at level 55 or higher</span></div>
+        <div class="progress-row"><div class="bar"><span style="width: 0%;"></span></div><span class="num">0 / 1</span></div>
+        <div class="reward"><span class="muted">Reward:</span><span class="reward-item"><span class="item-sprite" aria-hidden="true">Boost</span>3 boost stones</span></div>
+      </div>
+      <div class="mission-side">
+        <button type="button" class="btn btn-ghost" data-go="reroll-used" data-show="daily claimable claimed overflow bonus"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 11a8 8 0 1 0-2.3 5.7M20 4v7h-7"/></svg>Reroll</button>
+        <button type="button" class="btn btn-ghost" disabled title="One reroll per day" data-show="reroll-used"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 11a8 8 0 1 0-2.3 5.7M20 4v7h-7"/></svg>Reroll</button>
+      </div>
+    </section>
+
+    <section class="card streak">
+      <div class="stack" style="gap: 2px;">
+        <strong>Streak: <span class="num" data-show="daily claimable claimed overflow reroll-used">4 days</span><span class="num" data-show="bonus">7 days</span></strong>
+        <span class="small muted">Finish all 3 dailies every day. Every 7 days in a row gives a bonus boost stone.</span>
+      </div>
+      <div class="streak-dots" aria-label="Streak progress toward the 7-day bonus">
+        <span class="streak-dot on"></span><span class="streak-dot on"></span><span class="streak-dot on"></span><span class="streak-dot on"></span>
+        <span class="streak-dot" data-show="daily claimable claimed overflow reroll-used"></span><span class="streak-dot" data-show="daily claimable claimed overflow reroll-used"></span><span class="streak-dot" data-show="daily claimable claimed overflow reroll-used"></span>
+        <span class="streak-dot on" data-show="bonus"></span><span class="streak-dot on" data-show="bonus"></span><span class="streak-dot on" data-show="bonus"></span>
+      </div>
+    </section>
+    <p class="note">Claim is primary and only on completed missions (green border). Reroll is ghost; one per day across all three dailies. Claimed missions dim and stay until the reset.</p>
+  </div>
+
+  <section class="card" data-show="all-done">
+    <div class="empty">
+      <div class="empty-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg></div>
+      <h3>All done for today</h3>
+      <p>New missions in 07:42:10. Your streak is now 5 days.</p>
+      <button type="button" class="btn btn-outline" data-go="achievements">See achievements</button>
+    </div>
+  </section>
+
+  <!-- Achievements -->
+  <div class="stack" style="gap: 20px;" data-show="achievements">
+    <section class="stack" style="gap: 8px;">
+      <div class="row" style="justify-content: space-between;"><h2 style="font-size: 16px; font-weight: 600;">Catching</h2><span class="small muted num">2 / 5</span></div>
+      <div class="card ach-list">
+        <div class="ach-row"><span class="ach-name">Catch 100 Pokémon</span><span class="ach-progress"><span class="bar bar-good"><span style="width: 37%;"></span></span><span class="num small" style="min-width: 70px; text-align: right;">37 / 100</span></span><span class="reward"><span class="reward-item"><span class="item-sprite" aria-hidden="true">Boost</span>10 boost stones</span></span></div>
+        <div class="ach-row"><span class="ach-name">Catch a shiny Pokémon</span><span class="ach-progress"><span class="bar bar-good"><span style="width: 100%;"></span></span><span class="num small" style="min-width: 70px; text-align: right;">1 / 1 ✓</span></span><button type="button" class="btn btn-primary" data-go="achievements">Claim</button></div>
+        <div class="ach-row"><span class="ach-name">Catch a legendary or mythical Pokémon</span><span class="ach-progress"><span class="bar"><span style="width: 0;"></span></span><span class="num small" style="min-width: 70px; text-align: right;">0 / 1</span></span><span class="reward"><span class="reward-item"><span class="item-sprite" aria-hidden="true">Boost</span>10 boost stones</span></span></div>
+        <div class="ach-row"><span class="ach-name">Catch 1,000 Pokémon</span><span class="ach-progress"><span class="bar bar-good"><span style="width: 3.7%;"></span></span><span class="num small" style="min-width: 70px; text-align: right;">37 / 1,000</span></span><span class="reward"><span class="reward-item"><span class="item-sprite" aria-hidden="true">Master</span>Master Ball</span></span></div>
+        <div class="ach-row claimed"><span class="ach-name">Catch 10 Pokémon</span><span class="small muted">Claimed ✓</span></div>
+      </div>
+    </section>
+    <section class="stack" style="gap: 8px;">
+      <div class="row" style="justify-content: space-between;"><h2 style="font-size: 16px; font-weight: 600;">Battling</h2><span class="small muted num">1 / 6</span></div>
+      <div class="card ach-list">
+        <div class="ach-row"><span class="ach-name">Win 100 battles</span><span class="ach-progress"><span class="bar bar-good"><span style="width: 42%;"></span></span><span class="num small" style="min-width: 70px; text-align: right;">42 / 100</span></span><span class="reward"><span class="reward-item"><span class="item-sprite" aria-hidden="true">Boost</span>10 boost stones</span></span></div>
+        <div class="ach-row"><span class="ach-name">Earn all 8 badges of a region</span><span class="ach-progress"><span class="bar bar-good"><span style="width: 37.5%;"></span></span><span class="num small" style="min-width: 70px; text-align: right;">3 / 8</span></span><span class="reward"><span class="reward-item"><span class="item-sprite" aria-hidden="true">Mega</span>a random Mega Stone</span></span></div>
+        <div class="ach-row claimed"><span class="ach-name">Win 10 battles</span><span class="small muted">Claimed ✓ · XP Share</span></div>
+      </div>
+    </section>
+    <p class="note">Rows, not big cards: there will be many achievements. Claimed ones sink to the bottom of their group, dimmed. Collection is the third group (not drawn).</p>
+  </div>
+</main>
+
+<div class="overlay" data-show="overflow">
+  <div class="dialog" role="alertdialog" aria-labelledby="overflow-title">
+    <div class="stack" style="gap: 6px;">
+      <h2 id="overflow-title">Some of this reward won't fit</h2>
+      <p class="small muted">You can hold up to 9,999 of each item.</p>
+    </div>
+    <div class="card" style="padding: 12px; gap: 6px;">
+      <div class="row" style="justify-content: space-between;"><span>Boost stone</span><span class="small num">1 won't fit</span></div>
+    </div>
+    <p class="small">Claim anyway and lose what doesn't fit, or use some items first.</p>
+    <div class="dialog-actions">
+      <button type="button" class="btn btn-outline" data-go="claimable">Not now</button>
+      <button type="button" class="btn btn-primary" data-go="claimed">Claim anyway</button>
+    </div>
+  </div>
+</div>
+
+<div class="toast" role="status" data-show="claimed">
+  <span class="toast-icon" aria-hidden="true"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L20 7"/></svg></span>
+  <div><strong>Reward claimed</strong><p>You got ₽ 3,000 and 1 boost stone.</p></div>
+</div>
+
+<script src="assets/mockup.js"></script>
+<script>
+  (function () {
+    function draw(state) {
+      var tab = state === 'achievements' ? 'achievements' : 'daily';
+      document.querySelectorAll('[data-tab]').forEach(function (t) { t.setAttribute('aria-selected', String(t.getAttribute('data-tab') === tab)); });
+    }
+    document.addEventListener('mockup:state', function (e) { draw(e.detail); });
+    draw(document.documentElement.getAttribute('data-state') || 'daily');
+  })();
+</script>
+</body>
+</html>

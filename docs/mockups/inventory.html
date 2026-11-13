@@ -18,13 +18,15 @@
   .sell { display: flex; flex-direction: column; gap: 10px; border-top: 1px solid var(--border); padding-top: 14px; }
   .choose { display: flex; align-items: center; gap: 12px; padding: 10px 12px; border: 1px solid var(--border); border-radius: 10px; color: inherit; text-decoration: none; }
   a.choose:hover { background: var(--muted); }
+  .switch-row { display: flex; align-items: center; justify-content: space-between; gap: 16px; border: 1px solid var(--border); border-radius: 10px; padding: 12px; cursor: pointer; }
+  .switch-row input { width: 40px; height: 22px; accent-color: var(--primary); }
   .confirm-box { border: 1px solid color-mix(in oklch, var(--destructive) 35%, transparent); border-radius: 10px; padding: 12px; display: flex; flex-direction: column; gap: 10px; }
 </style>
 </head>
 <body>
 <div class="mock-bar">
   <a href="index.html">← All mock-ups</a>
-  <span><strong>Inventory</strong> · tasks 3.11, 3.12, 4.13</span>
+  <span><strong>Inventory</strong> · tasks 3.11, 3.12, 4.13, 5.10</span>
   <label for="mockup-state">State
     <select id="mockup-state">
       <option value="balls">Balls tab</option>
@@ -38,6 +40,7 @@
       <option value="earned">Item details: earned only</option>
       <option value="sold">Sold</option>
       <option value="use">Use: choose a Pokémon</option>
+      <option value="xp-share">XP Share settings</option>
     </select>
   </label>
   <span>Shown inside the app layout (sidebar not drawn). Dashed boxes = item sprites.</span>
@@ -144,6 +147,23 @@
   </div>
 </div>
 
+<div class="overlay" data-show="xp-share">
+  <div class="dialog" role="dialog" aria-labelledby="xp-title">
+    <div class="detail">
+      <span class="item-sprite item-sprite-lg" aria-hidden="true">XP Share</span>
+      <div class="stack" style="gap: 4px; min-width: 0;">
+        <div class="row" style="gap: 6px;"><h2 id="xp-title">XP Share</h2><span class="badge xs">Key item</span></div>
+        <p class="small muted">Party Pokémon that don't fight still get half the XP from each battle.</p>
+      </div>
+    </div>
+    <label class="switch-row" for="xp-switch">
+      <span class="stack" style="gap: 2px;"><strong>Share XP with the whole party</strong><span class="xs muted">Turn it off to train only the Pokémon that fight.</span></span>
+      <input type="checkbox" id="xp-switch" role="switch" checked>
+    </label>
+    <div class="dialog-actions"><button type="button" class="btn btn-ghost" data-go="key">Close</button></div>
+  </div>
+</div>
+
 <div class="toast" role="status" data-show="sold">
   <span class="toast-icon" aria-hidden="true"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L20 7"/></svg></span>
   <div><strong>Sold</strong><p>You sold 2 Ultra Balls for ₽ 1,200.</p></div>
@@ -157,11 +177,11 @@
       evolution: [['Fire Stone', 1, 'item'], ['Leaf Stone', 2, 'item'], ['Charizardite X', 1, 'earned'], ['Metal Coat', 1, 'item']],
       tms: [['TM 122 Aerial Ace', 2, 'item', 'flying'], ['TM 256 Bloom Doom', 1, 'earned', 'grass'], ['TM 395 Ice Beam', 1, 'item', 'ice'], ['TM 399 Thunderbolt', 1, 'item', 'electric']],
       boost: [['Boost Stone', 37, 'earned']],
-      key: [['XP Share', 1, 'earned']]
+      key: [['XP Share', 1, 'xp-share']]
     };
     var tiles = document.getElementById('tiles');
     function draw(state) {
-      var tab = groups[state] ? state : ((state === 'empty' || state === 'use') ? 'tms' : 'balls');
+      var tab = groups[state] ? state : ((state === 'empty' || state === 'use') ? 'tms' : (state === 'xp-share' ? 'key' : 'balls'));
       document.querySelectorAll('[data-tab]').forEach(function (t) { t.setAttribute('aria-selected', String(t.getAttribute('data-tab') === tab)); });
       document.getElementById('wallet').textContent = state === 'sold' ? '₽ 13,650' : '₽ 12,450';
       tiles.innerHTML = '';
@@ -171,11 +191,11 @@
         var tile = document.createElement('button');
         tile.type = 'button';
         tile.className = 'tile';
-        tile.setAttribute('data-go', g[2] === 'earned' ? 'earned' : 'item');
+        tile.setAttribute('data-go', g[2] === 'xp-share' ? 'xp-share' : (g[2] === 'earned' ? 'earned' : 'item'));
         var picture = g[3]
           ? '<span class="tm-disc" style="background: var(--t-' + g[3] + '-fg);" aria-hidden="true"></span>'
           : '<span class="item-sprite item-sprite-lg" aria-hidden="true">' + g[0] + '</span>';
-        tile.innerHTML = '<span class="badge num">×' + g[1] + '</span>' + picture + '<span class="tile-name">' + g[0] + '</span>';
+        tile.innerHTML = (g[2] === 'xp-share' ? '<span class="badge badge-good">On</span>' : '<span class="badge num">×' + g[1] + '</span>') + picture + '<span class="tile-name">' + g[0] + '</span>';
         tiles.appendChild(tile);
       });
     }

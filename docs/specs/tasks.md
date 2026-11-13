@@ -1150,3 +1150,212 @@ Read [04-pokemon-page.md](04-pokemon-page.md) first. Builds on Spec 1 (`SetActiv
 **Tests:** browser test: add from the Box, and swap when the party is full.
 
 **Done when:** party changes work from the Box.
+
+---
+
+## 5. Spec 5 — Missions
+
+Read [05-missions.md](05-missions.md) first, including its "Starting content" and "Counting rules". Missions live in a new domain, `src/App/Missions`, and learn about the game only through events (task 0.4): they never call other domains, and other domains never call them. Goals whose feature is not built yet (trainers, gyms, the Battle Tower, trades) get their events when that feature is built.
+
+### 5.1 Mission data
+
+**Goal:** store achievements and each player's missions.
+
+**Build:**
+- Enums in `Shared\Enums`: `MissionKind` (`DAILY`, `ACHIEVEMENT`, `STREAK_BONUS`), `MissionDifficulty` (`EASY`, `MEDIUM`, `HARD`), `MissionCategory` (`CATCHING`, `BATTLING`, `COLLECTION`), `MissionGoal` (`CATCH_POKEMON`, `CATCH_POKEMON_OF_TYPE`, `CATCH_POKEMON_IN_AREA`, `CATCH_SHINY`, `CATCH_LEGENDARY`, `CATCH_POKEMON_AT_LEVEL`, `WIN_BATTLES`, `WIN_WILD_BATTLES`, `WIN_TRAINER_BATTLES`, `BEAT_GYM`, `EARN_REGION_BADGES`, `BECOME_CHAMPION`, `CLIMB_TOWER_FLOORS`, `HATCH_EGGS`, `EVOLVE_POKEMON`, `MEGA_EVOLVE`, `REACH_LEVEL`, `REACH_BOOST`, `TEACH_TMS`, `SPEND_MONEY`, `MAKE_TRADES`), each with `label()`.
+- Value object `Shared\ValueObjects\MissionReward`: `int $money`, `array $items` (each: item type, slug, quantity, or `random` with a pool such as `normal-tm`, `mega-stone`, `z-move-tm`, `dynamax-tm`). Cast `AsMissionReward`.
+- Migration `026_create_achievements_table.php`: `uuid id`, `slug` unique, `name`, `category` enum, `goal` enum, `json goal_parameters`, `target`, `json reward`, `sort_order`. Model `Shared\Models\Achievement`; `AchievementSeeder` from `database/seeders/files/achievements.json` (the Spec 5 list).
+- Migration `027_create_user_missions_table.php`: `uuid id`, `foreignIdFor(User)`, `kind` enum, nullable `foreignIdFor(Achievement)`, nullable `date` (dailies), nullable `difficulty`, `goal`, `json goal_parameters`, `target`, `progress` default 0, `json reward`, nullable `completed_at`, nullable `claimed_at`, timestamps; unique `['user_id', 'achievement_id']`; index `['user_id', 'date']`. Model `Shared\Models\UserMission` (with factory): `isCompleted()`, `isClaimable()`.
+- Migration `028_add_mission_columns_to_users_table.php`: `mission_streak` (default 0), nullable `streak_last_completed_on` date, nullable `last_reroll_on` date, `is_xp_share_enabled` (default false).
+
+**Tests:** achievements seed from the file; casts round-trip; `isClaimable()` only when completed and not claimed.
+
+**Done when:** tables, models, enums and seed data exist; tests pass.
+
+### 5.2 Give rewards
+
+**Goal:** one way to hand out money and items, used by missions and later by other features.
+
+**Build:**
+- `App\Missions\Mechanics\RewardRoller::roll(MissionReward $reward): MissionReward`: replaces each `random` item with a concrete one from its pool (`RandomHelper::pick`).
+- `App\Missions\Actions\GrantRewardAction::handle(User $user, MissionReward $reward, bool $acceptOverflow = false): void`
+  - Gives money (`AddMoneyAction`) and items (`AddInventoryItemAction`) in one transaction.
+  - When an item would go over the stack limit, throws `App\Missions\Exceptions\RewardOverflowException` listing what wouldn't fit, unless `$acceptOverflow` is true; then it fills the stack and drops the rest.
+
+**Tests:** money and items given; random pools resolved (faked); overflow refused with the list; overflow accepted caps at the limit.
+
+**Done when:** tests pass.
+
+### 5.3 Daily mission templates
+
+**Goal:** turn templates into three concrete daily missions.
+
+**Build:**
+- `config/missions.php`: the Spec 5 daily templates, each with difficulty, goal, target range, parameter choices (`type`: any `PokemonType`; `area`: any `Area`; `level`: range) and reward; plus `enabled` so templates for unbuilt features stay off.
+- `App\Missions\Mechanics\DailyMissionRoller::roll(): array`: one enabled template per difficulty, with target and parameters rolled (`RandomHelper`), the description filled in ("Catch 4 Water Pokémon").
+
+**Tests:** one mission per difficulty; values within their ranges; disabled templates never picked.
+
+**Done when:** tests pass.
+
+### 5.4 Today's missions
+
+**Goal:** every player has 3 dailies for today, created when first needed.
+
+**Build:**
+- `App\Missions\Actions\EnsureDailyMissionsAction::handle(User $user): Collection`: returns today's 3 dailies (server date), creating them with `DailyMissionRoller` on the first call of the day, under a lock.
+- Also creates the player's achievement rows the first time (one `UserMission` per `Achievement`), so progress can be stored.
+- `REACH_LEVEL` and `REACH_BOOST` rows start with the player's current best, so they complete at once if already reached.
+
+**Tests:** creates 3 dailies once per day; a new day creates 3 new ones; achievements created once; reach goals start completed when already reached.
+
+**Done when:** tests pass.
+
+### 5.5 Advance progress
+
+**Goal:** events move missions forward.
+
+**Build:**
+- `App\Missions\Mechanics\MissionGoalChecker::matches(UserMission $mission, MissionGoal $goal, array $context): bool`: the goal is the same and the parameters fit (type in the Pokémon's types, the same area, level at least the target, shiny, legendary or mythical).
+- `App\Missions\Actions\AdvanceMissionsAction::handle(User $user, MissionGoal $goal, array $context, int $amount = 1): void`: calls `EnsureDailyMissionsAction`, then adds `$amount` to every open matching mission (today's dailies and achievements), capping at `target` and setting `completed_at` when reached. For `REACH_LEVEL` and `REACH_BOOST`, progress is the highest value seen, not a sum.
+- `PokemonCaught` (task 0.4) gains `source` (`WILD` or `EGG`), `speciesId`, `types`, `area`, `level`, `isShiny`, `isLegendary`.
+- Listener `App\Missions\Listeners\AdvanceMissionsOnPokemonCaught`: wild catches advance the `CATCH_*` goals; egg catches advance `HATCH_EGGS`.
+
+**Tests:** matching and non-matching parameters; caps at target; completed once; reach goals use the highest value; egg catches don't count as catches.
+
+**Done when:** catching advances the right missions.
+
+### 5.6 Events for the other goals
+
+**Goal:** the rest of today's built features advance missions.
+
+**Build:** events and listeners for: `BattleWon` (battle type, from task 1.16) → `WIN_BATTLES`, `WIN_WILD_BATTLES`; `PokemonEvolved` (with `isMega`, from task 1.18) → `EVOLVE_POKEMON`, `MEGA_EVOLVE`; `PokemonLevelledUp` (task 1.17) → `REACH_LEVEL`; `PokemonBoosted` (task 4.6) → `REACH_BOOST`; `TmTaught` (task 4.4) → `TEACH_TMS`; `MoneySpent` (task 3.1) → `SPEND_MONEY` with the amount. One listener per event in `App\Missions\Listeners`. Trainer, gym, tower and trade goals are wired in their own specs.
+
+**Tests:** each event advances its goal (one test per listener).
+
+**Done when:** tests pass.
+
+### 5.7 Claim a reward
+
+**Goal:** the Claim button.
+
+**Build:**
+- `App\Missions\Actions\ClaimMissionAction::handle(UserMission $mission, bool $acceptOverflow = false): MissionReward`: refuses when not claimable (`App\Missions\Exceptions\MissionNotClaimableException`); rolls the reward, grants it (`GrantRewardAction`), sets `claimed_at`, returns what was given. Locked so a double click can't claim twice.
+
+**Tests:** claim gives the reward once; not completed refused; already claimed refused; overflow refused unless accepted.
+
+**Done when:** tests pass.
+
+### 5.8 Reroll a daily
+
+**Goal:** one free reroll per day.
+
+**Build:**
+- `App\Missions\Actions\RerollDailyMissionAction::handle(UserMission $mission): UserMission`: only today's unclaimed, uncompleted dailies; only if `last_reroll_on` is not today (`App\Missions\Exceptions\RerollAlreadyUsedException`). Replaces it with a new mission of the same difficulty (a different template when possible) and sets `last_reroll_on`.
+
+**Tests:** reroll replaces the mission; second reroll the same day refused; completed missions refused; works again the next day.
+
+**Done when:** tests pass.
+
+### 5.9 Streak and bonus
+
+**Goal:** finishing all 3 dailies on consecutive days builds a streak; every 7 days gives a bonus boost stone.
+
+**Build:**
+- When the third daily of a day completes (inside `AdvanceMissionsAction`): if `streak_last_completed_on` was yesterday, `mission_streak` + 1, otherwise 1; set `streak_last_completed_on` to today.
+- Every multiple of 7 (`game.missions.streak_bonus_every`) creates a `STREAK_BONUS` mission, already completed, with the bonus reward (`game.missions.streak_bonus_reward`: 1 boost stone), claimed like any mission.
+- The streak shown to the player is 0 when `streak_last_completed_on` is older than yesterday.
+
+**Tests:** streak grows on consecutive days; resets after a missed day; bonus created at 7 and 14; shown streak drops to 0 after a gap.
+
+**Done when:** tests pass.
+
+### 5.10 XP Share
+
+**Goal:** the XP Share key item works.
+
+**Build:**
+- `App\Inventory\Actions\SetXpShareAction::handle(User $user, bool $isEnabled): void`: needs the `xp-share` item (`InsufficientInventoryException`).
+- Task 1.17's XP award: when `is_xp_share_enabled`, party Pokémon that did not enter the field get `game.experience.xp_share_ratio` (0.5) of the base XP.
+- Route `POST /inventory/xp-share` named `inventory.web.xp-share` → `SetXpShareController` (`is_enabled`).
+
+**Mock-up:** `docs/mockups/inventory.html` (states "Key items tab", "XP Share settings")
+
+**UI suggestions** (ideas, not requirements):
+- The XP Share tile in the Key items tab shows an "On" / "Off" badge; its dialog has a `Switch` (shadcn-vue `switch`) labelled "Share XP with the whole party", with one line explaining it.
+
+**Tests:** switch on and off; refused without the item; XP split with and without it.
+
+**Done when:** tests pass.
+
+### 5.11 Missions page: daily missions
+
+**Goal:** see today's missions.
+
+**Mock-up:** `docs/mockups/missions.html` (states "Daily missions", "All done for today")
+
+**Build:**
+- Route `GET /missions` named `missions.web.index` → `App\Missions\Http\Web\Controllers\MissionsController@index` (`?tab=daily|achievements`), with `MissionsIndexPageProps`: today's dailies (and any streak bonus), time until reset, streak, whether the reroll is used.
+- Page `resources/js/app/Missions/pages/Missions/Index/index.vue`; "Missions" link in the navigation.
+
+**UI suggestions** (ideas, not requirements):
+- `AppPageHeader` ("Missions") with the reset countdown (`AppCountdown`) on the right.
+- Tabs: Daily and Achievements, the tab in the URL.
+- One `Card` per mission, stacked: a difficulty `Badge` (Easy, Medium, Hard), the goal, a `Progress` bar with "3 / 5", and the reward on the right (item sprites and `MoneyAmount`).
+- A streak row under the list: seven dots for the current week toward the 7-day bonus, and "Streak: 4 days".
+- When all three are claimed: `AppEmptyState` "All done for today" with the countdown to new missions.
+
+**Tests:** feature test for the props.
+
+**Done when:** the page shows today's missions.
+
+### 5.12 Missions page: claim and reroll
+
+**Goal:** the actions on the daily cards.
+
+**Mock-up:** `docs/mockups/missions.html` (states "Ready to claim", "Claimed", "Reward won't fit", "Reroll used", "Streak bonus")
+
+**Build:**
+- Routes `POST /missions/{userMission}/claim` (`missions.web.claim`, optional `accept_overflow`) and `POST /missions/{userMission}/reroll` (`missions.web.reroll`), each only for the owner's missions.
+- Claim shows a toast with what was given ("You got 3 boost stones."). A `RewardOverflowException` opens a warning dialog that lists what won't fit, with "Claim anyway" (sends `accept_overflow`) and "Not now".
+
+**UI suggestions** (ideas, not requirements):
+- "Claim" is the primary button, shown only on completed missions; the card gets a subtle green border.
+- "Reroll" is a ghost button with a refresh icon on uncompleted dailies; after using it, all Reroll buttons are disabled with a tooltip "One reroll per day".
+- Claimed missions are dimmed with "Claimed ✓".
+- Streak bonus: a card at the top with a gold border, "7-day streak bonus", and Claim.
+
+**Tests:** feature tests for both routes and their errors; browser test: claim and reroll.
+
+**Done when:** a player can claim and reroll from the page.
+
+### 5.13 Missions page: achievements
+
+**Goal:** the Achievements tab.
+
+**Mock-up:** `docs/mockups/missions.html` (state "Achievements")
+
+**Build:** the achievements tab lists every achievement grouped by category, with progress and reward; finished-and-claimed ones go to the bottom of each group, dimmed. Claiming uses task 5.12's route.
+
+**UI suggestions** (ideas, not requirements):
+- One section per category (`AppSectionHeading`: Catching, Battling, Collection), with a count ("4 / 5").
+- Compact rows instead of big cards: name, `Progress` with numbers ("37 / 100"), reward, and Claim when ready.
+
+**Tests:** feature test for the grouped props.
+
+**Done when:** the tab lists achievements and they can be claimed.
+
+### 5.14 Something to claim: navigation dot
+
+**Goal:** players notice rewards waiting.
+
+**Mock-up:** `docs/mockups/layout.html` (states "Sidebar expanded", "Sidebar collapsed to icons")
+
+**Build:** `HandleInertiaRequests` shares `missions.claimableCount` (today's dailies, streak bonuses and achievements ready to claim); the sidebar's "Missions" item shows a dot (count in a tooltip) when it is above 0.
+
+**UI suggestions** (ideas, not requirements):
+- A small primary-coloured dot after the "Missions" label; in the collapsed sidebar, on the icon's corner.
+
+**Tests:** feature test: the shared count.
+
+**Done when:** the dot shows when something is claimable.
