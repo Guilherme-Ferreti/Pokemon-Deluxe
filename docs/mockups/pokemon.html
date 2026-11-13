@@ -1,0 +1,319 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="claude:viewport-fit-sides" content="cover">
+<title>Pokémon page mock-up</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="assets/mockup.css">
+<style>
+  .hero { flex-direction: row; flex-wrap: wrap; gap: 20px; align-items: center; }
+  .hero-info { flex: 1 1 300px; min-width: 0; display: flex; flex-direction: column; gap: 10px; }
+  .hero-info h1 { font-size: 24px; font-weight: 700; display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+  .facts { display: flex; flex-wrap: wrap; gap: 4px 16px; font-size: 13px; color: var(--muted-fg); }
+  .actions { display: flex; flex-wrap: wrap; gap: 8px; padding-top: 4px; }
+  .actions .push { margin-left: auto; }
+  .columns { display: flex; flex-wrap: wrap; gap: 16px; align-items: flex-start; }
+  .stats-card { flex: 1 1 280px; }
+  .moves-card { flex: 999 1 420px; }
+  .stat { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; padding: 10px 0; border-top: 1px solid var(--border); }
+  .stat:first-of-type { border-top: 0; }
+  .stat-name { font-weight: 500; }
+  .stat-value { font-weight: 600; font-size: 16px; text-align: right; }
+  .stat-parts { font-size: 12px; color: var(--muted-fg); text-align: right; }
+  .slots { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
+  @media (max-width: 520px) { .slots { grid-template-columns: minmax(0, 1fr); } }
+  .slot { display: flex; align-items: center; justify-content: space-between; gap: 8px; border: 1px solid var(--border); border-radius: 10px; padding: 10px 12px; min-width: 0; }
+  .slot-main { display: flex; flex-direction: column; gap: 4px; min-width: 0; }
+  .slot-name { font-weight: 600; }
+  .slot-meta { display: flex; align-items: center; gap: 8px; font-size: 12px; color: var(--muted-fg); }
+  .pool { display: flex; flex-wrap: wrap; gap: 6px; }
+  .pool .badge { font-weight: 500; }
+  .pick-list { display: flex; flex-direction: column; gap: 6px; }
+  .pick { display: flex; align-items: center; gap: 12px; width: 100%; padding: 10px 12px; border: 1px solid var(--border); border-radius: 10px; background: var(--card); text-align: left; }
+  .pick:hover:not(:disabled) { background: var(--muted); }
+  .pick:disabled { opacity: .5; }
+  .pick[aria-pressed="true"] { border: 2px solid var(--primary); padding: 9px 11px; }
+  .pick-main { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 2px; }
+  .group-title { font-size: 12px; font-weight: 600; color: var(--muted-fg); text-transform: uppercase; letter-spacing: .04em; padding-top: 6px; }
+  .chance-good { color: var(--good); font-weight: 600; }
+  .warn-box { border: 1px solid color-mix(in oklch, var(--destructive) 35%, transparent); background: color-mix(in oklch, var(--destructive) 8%, var(--card)); border-radius: 10px; padding: 12px; font-size: 13px; }
+  .input { height: 38px; border: 1px solid var(--border); border-radius: 8px; padding: 0 12px; background: var(--card); width: 100%; }
+  .mode { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; padding: 10px 12px; border: 1px solid var(--border); border-radius: 10px; }
+  .mode input[type="number"] { width: 72px; height: 32px; border: 1px solid var(--border); border-radius: 6px; padding: 0 8px; background: var(--card); }
+  .big { font-size: 34px; font-weight: 700; letter-spacing: -.02em; }
+</style>
+</head>
+<body>
+<div class="mock-bar">
+  <a href="index.html">← All mock-ups</a>
+  <span><strong>Pokémon page</strong> · tasks 4.8–4.13</span>
+  <label for="mockup-state">State
+    <select id="mockup-state">
+      <option value="overview">Overview</option>
+      <option value="swap">Swap a move</option>
+      <option value="teach-tm">Teach a TM</option>
+      <option value="use-item">Use item</option>
+      <option value="boost">Use boost stones</option>
+      <option value="boost-result">Boost stones result</option>
+      <option value="evolve">Evolution options</option>
+      <option value="evolve-confirm">Confirm evolution</option>
+      <option value="party-full">Party full</option>
+      <option value="locked">Locked</option>
+      <option value="release">Release</option>
+      <option value="release-warning">Release a shiny or boosted Pokémon</option>
+    </select>
+  </label>
+  <span>Shown inside the app layout (sidebar not drawn). Dashed boxes = sprites.</span>
+</div>
+
+<main class="page">
+  <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="#">Box</a><span aria-hidden="true">›</span><span>Shiny Charmeleon</span></nav>
+
+  <section class="card hero shiny-ring">
+    <div class="sprite sprite-xl sprite-shiny" aria-hidden="true">Shiny Charmeleon<br>sprite</div>
+    <div class="hero-info">
+      <h1>
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" style="color: var(--gold);" role="img" aria-label="Shiny"><path d="M12 3l2.6 5.6 6.1.7-4.5 4.2 1.2 6L12 16.6 6.6 19.5l1.2-6-4.5-4.2 6.1-.7z"/></svg>
+        Shiny Charmeleon
+        <span aria-label="Male" style="color: oklch(0.55 0.2 260); font-size: 18px;">♂</span>
+      </h1>
+      <div class="row" style="gap: 6px;">
+        <span class="type type-fire">Fire</span>
+        <span class="badge num">Lv 36</span>
+        <span class="badge num">Boost +14</span>
+        <span class="badge badge-gold">Shiny</span>
+        <span class="badge" data-show="locked">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>Locked
+        </span>
+      </div>
+      <div class="stack" style="gap: 4px; max-width: 420px;">
+        <div class="bar bar-thin bar-blue" role="progressbar" aria-label="XP to next level" aria-valuemin="0" aria-valuemax="100" aria-valuenow="72"><span style="width: 72%;"></span></div>
+        <span class="xs muted num">7,200 / 10,000 XP to Lv 37</span>
+      </div>
+      <div class="facts">
+        <span>Caught in an Ultra Ball · 3 Nov 2026</span>
+        <span>Original trainer: Ash</span>
+      </div>
+      <div class="actions">
+        <button type="button" class="btn btn-primary" data-go="evolve">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 3v4M12 17v4M3 12h4M17 12h4M6 6l2.5 2.5M15.5 15.5L18 18M6 18l2.5-2.5M15.5 8.5L18 6"/></svg>
+          Evolve
+        </button>
+        <button type="button" class="btn btn-outline" data-go="use-item">Use item</button>
+        <button type="button" class="btn btn-outline" data-show="overview swap teach-tm use-item boost boost-result evolve evolve-confirm locked release release-warning">In party ✓</button>
+        <span class="stack" style="gap: 2px;" data-show="party-full">
+          <button type="button" class="btn btn-outline" disabled>Add to party</button>
+          <span class="xs muted">Party full (6)</span>
+        </span>
+        <button type="button" class="btn btn-ghost" data-go="locked" data-show="overview swap teach-tm use-item boost boost-result evolve evolve-confirm party-full release release-warning">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 7.5-2"/></svg>Unlocked
+        </button>
+        <button type="button" class="btn btn-ghost" data-go="overview" data-show="locked">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>Locked
+        </button>
+        <button type="button" class="btn btn-destructive-outline push" data-go="release-warning" data-show="overview swap teach-tm use-item boost boost-result evolve evolve-confirm party-full release release-warning">Release</button>
+        <button type="button" class="btn btn-destructive-outline push" disabled title="Unlock it first" data-show="locked">Release</button>
+      </div>
+    </div>
+  </section>
+
+  <div class="columns">
+    <section class="card stats-card">
+      <h2>Stats</h2>
+      <div>
+        <div class="stat" title="Level 36 · Boost +14: ×1.14 · Shiny: ×1.25">
+          <span class="stat-name">HP</span>
+          <span class="stack" style="gap: 0;"><span class="stat-value num">262</span><span class="stat-parts">Level 36 · +14% boost · +25% shiny</span></span>
+        </div>
+        <div class="stat" title="Level 36: ×0.66 · Boost +14: ×1.14 · Shiny: ×1.25">
+          <span class="stat-name">Attack</span>
+          <span class="stack" style="gap: 0;"><span class="stat-value num">×0.94</span><span class="stat-parts">Damage multiplier</span></span>
+        </div>
+        <div class="stat" title="Shiny: takes 25% less damage">
+          <span class="stat-name">Defense</span>
+          <span class="stack" style="gap: 0;"><span class="stat-value num">−25%</span><span class="stat-parts">Damage taken (shiny)</span></span>
+        </div>
+      </div>
+      <p class="note">Hovering a value shows its parts (Tooltip in the real page).</p>
+    </section>
+
+    <section class="card moves-card">
+      <div class="row" style="justify-content: space-between;">
+        <h2>Active moves</h2>
+        <button type="button" class="btn btn-outline" data-go="teach-tm">Teach TM</button>
+      </div>
+      <div class="slots">
+        <div class="slot"><div class="slot-main"><span class="slot-name">Flamethrower</span><span class="slot-meta"><span class="type type-fire">Fire</span><span>Power 90</span></span></div><button type="button" class="btn btn-ghost" data-go="swap">Swap</button></div>
+        <div class="slot"><div class="slot-main"><span class="slot-name">Slash</span><span class="slot-meta"><span class="type type-normal">Normal</span><span>Power 70</span></span></div><button type="button" class="btn btn-ghost" data-go="swap">Swap</button></div>
+        <div class="slot"><div class="slot-main"><span class="slot-name">Dragon Claw</span><span class="slot-meta"><span class="type type-dragon">Dragon</span><span>Power 80</span></span></div><button type="button" class="btn btn-ghost" data-go="swap">Swap</button></div>
+        <div class="slot"><div class="slot-main"><span class="slot-name">Will-O-Wisp</span><span class="slot-meta"><span class="type type-fire">Fire</span><span>Status</span></span></div><button type="button" class="btn btn-ghost" data-go="swap">Swap</button></div>
+      </div>
+      <h2 style="padding-top: 4px;">Known moves <span class="muted" style="font-weight: 400;">· 9</span></h2>
+      <div class="pool">
+        <span class="badge">Dragon Claw</span><span class="badge">Ember</span><span class="badge">Fire Fang</span><span class="badge">Flamethrower</span>
+        <span class="badge">Growl</span><span class="badge">Metal Claw</span><span class="badge">Scratch</span><span class="badge">Slash</span><span class="badge">Will-O-Wisp</span>
+      </div>
+      <p class="note">A slot can be empty when the species had fewer than 4 base moves: dashed outline and "Empty slot", with Swap filling it.</p>
+    </section>
+  </div>
+</main>
+
+<!-- Swap -->
+<div class="overlay" data-show="swap">
+  <div class="dialog" role="dialog" aria-labelledby="swap-title">
+    <div class="stack" style="gap: 4px;">
+      <h2 id="swap-title">Replace Flamethrower</h2>
+      <p class="small muted">Pick a known move for slot 1. A move already in another slot swaps places.</p>
+    </div>
+    <div class="pick-list">
+      <button type="button" class="pick" data-go="overview"><span class="pick-main"><strong>Ember</strong><span class="xs muted">Fire · Power 40</span></span></button>
+      <button type="button" class="pick" data-go="overview"><span class="pick-main"><strong>Fire Fang</strong><span class="xs muted">Fire · Power 65</span></span></button>
+      <button type="button" class="pick" data-go="overview"><span class="pick-main"><strong>Metal Claw</strong><span class="xs muted">Steel · Power 50</span></span></button>
+      <button type="button" class="pick" data-go="overview"><span class="pick-main"><strong>Slash</strong><span class="xs muted">Normal · Power 70</span></span><span class="badge xs">In slot 2</span></button>
+      <button type="button" class="pick" data-go="overview"><span class="pick-main"><strong>Scratch</strong><span class="xs muted">Normal · Power 40</span></span></button>
+      <button type="button" class="pick" data-go="overview"><span class="pick-main"><strong>Growl</strong><span class="xs muted">Normal · Status</span></span></button>
+    </div>
+    <div class="dialog-actions"><button type="button" class="btn btn-ghost" data-go="overview">Cancel</button></div>
+  </div>
+</div>
+
+<!-- Teach TM -->
+<div class="overlay" data-show="teach-tm">
+  <div class="dialog" role="dialog" aria-labelledby="tm-title">
+    <div class="stack" style="gap: 4px;">
+      <h2 id="tm-title">Teach a TM</h2>
+      <p class="small muted">The TM is used up. The move joins Charmeleon's known moves.</p>
+    </div>
+    <div class="pick-list">
+      <button type="button" class="pick" aria-pressed="true"><span class="pick-main"><strong>TM Ice Beam</strong><span class="xs muted">Ice · Power 90 · you own 1</span></span></button>
+      <button type="button" class="pick"><span class="pick-main"><strong>TM Aerial Ace</strong><span class="xs muted">Flying · Power 60 · you own 2</span></span></button>
+      <button type="button" class="pick" disabled><span class="pick-main"><strong>TM Ember</strong><span class="xs muted">Already known</span></span></button>
+      <button type="button" class="pick" disabled><span class="pick-main"><strong>TM Inferno Overdrive</strong><span class="xs muted">Z-Move · needs level 100</span></span></button>
+    </div>
+    <p class="small"><strong>Teach Ice Beam to Charmeleon?</strong> <span class="muted">All 4 slots are full, so it goes to the known moves; swap it in when you want it.</span></p>
+    <div class="dialog-actions">
+      <button type="button" class="btn btn-outline" data-go="overview">Cancel</button>
+      <button type="button" class="btn btn-primary" data-go="overview">Teach Ice Beam</button>
+    </div>
+  </div>
+</div>
+
+<!-- Use item -->
+<div class="overlay" data-show="use-item">
+  <div class="dialog" role="dialog" aria-labelledby="use-title">
+    <h2 id="use-title">Use an item on Charmeleon</h2>
+    <div class="pick-list">
+      <span class="group-title">Boost stones</span>
+      <button type="button" class="pick" data-go="boost"><span class="item-sprite" aria-hidden="true">Boost</span><span class="pick-main"><strong>Boost Stone <span class="muted num" style="font-weight: 400;">×37</span></strong><span class="xs muted">+14 → +15: always works</span></span></button>
+      <span class="group-title">TMs</span>
+      <button type="button" class="pick" data-go="teach-tm"><span class="item-sprite" aria-hidden="true">TM</span><span class="pick-main"><strong>TM Ice Beam <span class="muted num" style="font-weight: 400;">×1</span></strong><span class="xs muted">Teaches Ice Beam</span></span></button>
+      <button type="button" class="pick" disabled><span class="item-sprite" aria-hidden="true">TM</span><span class="pick-main"><strong>TM Ember</strong><span class="xs muted">Already known</span></span></button>
+      <span class="group-title">Evolution items</span>
+      <button type="button" class="pick" disabled><span class="item-sprite" aria-hidden="true">Fire Stone</span><span class="pick-main"><strong>Fire Stone <span class="muted num" style="font-weight: 400;">×1</span></strong><span class="xs muted">No evolution uses this item</span></span></button>
+    </div>
+    <div class="dialog-actions"><button type="button" class="btn btn-ghost" data-go="overview">Cancel</button></div>
+  </div>
+</div>
+
+<!-- Boost stones -->
+<div class="overlay" data-show="boost">
+  <div class="dialog" role="dialog" aria-labelledby="boost-title">
+    <div class="stack" style="gap: 4px;">
+      <h2 id="boost-title">Use boost stones</h2>
+      <p class="small muted">Each stone that works adds +1 boost (+1% HP and damage). Failed stones are used up. Above +20, stones can fail.</p>
+    </div>
+    <div class="row" style="gap: 24px;">
+      <span class="stack" style="gap: 0;"><span class="xs muted">Boost now</span><span class="big num">+14</span></span>
+      <span class="stack" style="gap: 0;"><span class="xs muted">You own</span><span class="big num">37</span></span>
+    </div>
+    <p class="small">Next stone: <span class="num">+14 → +15</span>, <span class="chance-good">always works</span></p>
+    <fieldset class="stack" style="border: 0; padding: 0; margin: 0; gap: 8px;">
+      <legend class="small" style="font-weight: 500; padding: 0 0 6px;">How many</legend>
+      <label class="mode"><input type="radio" name="mode" checked> Use up to <input type="number" value="20" min="1" max="37" aria-label="Stones"> stones</label>
+      <label class="mode"><input type="radio" name="mode"> Use until <input type="number" value="30" min="15" max="100" aria-label="Target boost"> boost</label>
+    </fieldset>
+    <p class="xs muted">Chance to fail grows by 1% per level above +20: +60 → +61 fails 40% of the time, +99 → +100 fails 80%. Shown in yellow from 1%, red from 40%.</p>
+    <div class="dialog-actions">
+      <button type="button" class="btn btn-outline" data-go="overview">Cancel</button>
+      <button type="button" class="btn btn-primary" data-go="boost-result">Use stones</button>
+    </div>
+  </div>
+</div>
+
+<div class="overlay" data-show="boost-result">
+  <div class="dialog" role="dialog" aria-labelledby="boost-result-title" style="text-align: center; align-items: center;">
+    <h2 id="boost-result-title">Boost +14 → +33</h2>
+    <span class="big num">+33</span>
+    <p class="muted">Used 20 stones: 19 worked, 1 failed. 17 stones left.</p>
+    <div class="dialog-actions" style="justify-content: center; width: 100%;">
+      <button type="button" class="btn btn-outline" data-go="boost">Use more</button>
+      <button type="button" class="btn btn-primary" data-go="overview">Done</button>
+    </div>
+  </div>
+</div>
+
+<!-- Evolve -->
+<div class="overlay" data-show="evolve">
+  <div class="dialog" role="dialog" aria-labelledby="evolve-title">
+    <div class="stack" style="gap: 4px;">
+      <h2 id="evolve-title">Evolve Charmeleon</h2>
+      <p class="small muted">Choose an evolution. Level, boost, shine and known moves are kept.</p>
+    </div>
+    <div class="pick-list">
+      <button type="button" class="pick" aria-pressed="true" data-go="evolve-confirm"><span class="sprite sprite-sm sprite-shiny" aria-hidden="true"></span><span class="pick-main"><strong>Charizard</strong><span class="row" style="gap: 4px;"><span class="type type-fire">Fire</span><span class="type type-flying">Flying</span><span class="xs muted">· Level 36 ✓</span></span></span></button>
+    </div>
+    <p class="note">Species with several evolutions (Eevee, Gloom) list one row each. Rows that can't be chosen yet are disabled with the reason: "Needs a Water Stone", "Needs level 100".</p>
+    <div class="dialog-actions"><button type="button" class="btn btn-ghost" data-go="overview">Cancel</button></div>
+  </div>
+</div>
+
+<div class="overlay" data-show="evolve-confirm">
+  <div class="dialog" role="alertdialog" aria-labelledby="evolve-confirm-title">
+    <div class="row" style="justify-content: center; gap: 16px;">
+      <span class="sprite sprite-md sprite-shiny" aria-hidden="true">Charmeleon</span>
+      <span aria-hidden="true" class="muted">→</span>
+      <span class="sprite sprite-md sprite-shiny" aria-hidden="true">Charizard</span>
+    </div>
+    <div class="stack" style="gap: 4px;">
+      <h2 id="evolve-confirm-title">Evolve Charmeleon into Charizard?</h2>
+      <p class="small muted">This can't be undone. Charizard's base moves join the known moves.</p>
+    </div>
+    <div class="dialog-actions">
+      <button type="button" class="btn btn-outline" data-go="evolve">Back</button>
+      <button type="button" class="btn btn-primary" data-go="overview">Evolve</button>
+    </div>
+  </div>
+</div>
+
+<!-- Release -->
+<div class="overlay" data-show="release release-warning">
+  <div class="dialog" role="alertdialog" aria-labelledby="release-title">
+    <div class="stack" style="gap: 4px;">
+      <h2 id="release-title">Release Charmeleon?</h2>
+      <p class="small muted">It leaves for good and you get nothing back.</p>
+    </div>
+    <div class="warn-box" data-show="release-warning"><strong>This Pokémon is shiny and has +14 boost.</strong> The boost stones used on it are lost too.</div>
+    <div class="field stack" style="gap: 6px;">
+      <label for="confirm-name" class="small">Type <strong>Charmeleon</strong> to confirm</label>
+      <input class="input" id="confirm-name" type="text" autocomplete="off">
+    </div>
+    <div class="dialog-actions">
+      <button type="button" class="btn btn-outline" data-go="overview">Keep it</button>
+      <button type="button" class="btn btn-destructive" id="release-button" disabled>Release</button>
+    </div>
+  </div>
+</div>
+
+<script src="assets/mockup.js"></script>
+<script>
+  (function () {
+    var input = document.getElementById('confirm-name');
+    var button = document.getElementById('release-button');
+    input.addEventListener('input', function () { button.disabled = input.value.trim() !== 'Charmeleon'; });
+    document.addEventListener('mockup:state', function () { input.value = ''; button.disabled = true; });
+  })();
+</script>
+</body>
+</html>

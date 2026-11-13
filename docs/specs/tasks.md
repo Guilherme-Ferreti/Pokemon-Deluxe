@@ -906,3 +906,225 @@ Read [03-money-inventory-and-shop.md](03-money-inventory-and-shop.md) first. Mon
 **Tests:** feature tests: sell succeeds; earned-only refused; quantity above owned refused; browser test: sell from the dialog.
 
 **Done when:** a player can sell items from the page.
+
+---
+
+## 4. Spec 4 — Pokémon page
+
+Read [04-pokemon-page.md](04-pokemon-page.md) first. Builds on Spec 1 (`SetActiveMoveAction`, `EvolutionRequirementChecker`, `EvolvePokemonAction`) and Spec 3 (TMs, boost stones and evolution items in the inventory). Everything lives in `src/App/Pokemon`.
+
+### 4.1 Lock a Pokémon
+
+**Goal:** a locked Pokémon can't be released (or traded, Spec 7) by accident.
+
+**Build:**
+- Migration `025_add_is_locked_to_pokemon_table.php`: `boolean('is_locked')->default(false)`.
+- `Pokemon` cast; `PokemonFactory` state `locked()`.
+- `App\Pokemon\Actions\SetPokemonLockAction::handle(Pokemon $pokemon, bool $isLocked): void`.
+
+**Tests:** lock and unlock.
+
+**Done when:** tests pass.
+
+### 4.2 Add to and remove from the party
+
+**Goal:** party changes from the Pokémon page.
+
+**Build:**
+- `App\Pokemon\Actions\AddToPartyAction::handle(Pokemon $pokemon): void`: throws `App\Pokemon\Exceptions\PartyFullException` at `game.user.max_party_size` (6).
+- `App\Pokemon\Actions\RemoveFromPartyAction::handle(Pokemon $pokemon): void`: throws `App\Pokemon\Exceptions\PartyCannotBeEmptyException` for the last party Pokémon, since battles need a party.
+- Both refuse during an ongoing battle (`BattleAlreadyInProgressException`): the battle uses a snapshot of the party.
+
+**Tests:** add; party full; remove; last one refused; refused during a battle.
+
+**Done when:** tests pass.
+
+### 4.3 Release a Pokémon
+
+**Goal:** release is permanent and gives nothing back.
+
+**Build:**
+- `App\Pokemon\Actions\ReleasePokemonAction::handle(Pokemon $pokemon): void`: deletes the Pokémon (its known moves go with it).
+  - Refuses locked Pokémon (`App\Pokemon\Exceptions\PokemonLockedException`), the last party Pokémon (`PartyCannotBeEmptyException`) and any release during an ongoing battle.
+
+**Tests:** released (row gone, moves gone); locked refused; last party Pokémon refused; refused during a battle.
+
+**Done when:** tests pass.
+
+### 4.4 Teach a TM
+
+**Goal:** a TM adds a move to the known-moves pool and is used up.
+
+**Build:**
+- `App\Pokemon\Actions\TeachTmAction::handle(Pokemon $pokemon, Move $move): void`
+  - The owner must have the TM (`RemoveInventoryItemAction` throws `InsufficientInventoryException`).
+  - Already known: `App\Pokemon\Exceptions\MoveAlreadyKnownException`, TM kept.
+  - Z-Move and Dynamax TMs need level 100: `App\Pokemon\Exceptions\TmRequirementNotMetException`, TM kept.
+  - The move joins the pool. If an active slot is empty, it fills the first empty slot; otherwise it waits in the pool.
+
+**Tests:** taught and TM used up; fills an empty slot; goes to the pool when slots are full; already known; Z-Move below level 100; TM not owned. Nothing changes when refused.
+
+**Done when:** tests pass.
+
+### 4.5 Boost stone odds
+
+**Goal:** the chance a boost stone fails, and the roll.
+
+**Build:**
+- `App\Pokemon\Mechanics\BoostStoneCalculator::failureChance(int $currentBoost): float`: 0 below +20; from +20, (currentBoost − 19) / 100, so +20 → +21 fails 1% and +99 → +100 fails 80%. Config `game.boost.safe_until` (20), `game.boost.failure_step` (0.01).
+- `App\Pokemon\Mechanics\BoostStoneRoller::roll(int $currentBoost): bool` (true = success), with `RandomHelper`.
+
+**Tests:** chances at +0, +19, +20, +60, +99; roller with `RandomHelper::fake()`.
+
+**Done when:** tests pass.
+
+### 4.6 Use boost stones
+
+**Goal:** use one or several boost stones in one go.
+
+**Build:**
+- Value object `Shared\ValueObjects\BoostResult`: `int $stonesUsed`, `int $successes`, `int $failures`, `int $boostBefore`, `int $boostAfter`.
+- `App\Pokemon\Actions\UseBoostStonesAction::handle(Pokemon $pokemon, int $maxStones, ?int $targetBoost = null): BoostResult`
+  - Uses stones one at a time until `$maxStones` are used, `$targetBoost` is reached, the Pokémon is at +100, or the player runs out.
+  - Refuses at +100 (`App\Pokemon\Exceptions\MaxBoostReachedException`) and with no stones (`InsufficientInventoryException`).
+  - One transaction and a lock; each stone is removed from the inventory whether it succeeds or fails.
+
+**Tests:** one stone; stops at target; stops at max stones; stops at +100; runs out of stones; failures still use stones (faked rolls).
+
+**Done when:** tests pass.
+
+### 4.7 Pokémon page: route and props
+
+**Goal:** the data for the page.
+
+**Build:**
+- Route `GET /your-pokemon/{pokemon}` named `pokemon.web.show` → `App\Pokemon\Http\Web\Controllers\PokemonController@show`. Only the owner may open it (404 for anyone else).
+- `App\Pokemon\Http\Web\PageProps\PokemonShowPageProps`:
+  - Header: species, types, gender, shiny, level, boost, XP progress to the next level, ball, catch date, original trainer, `is_locked`, `in_party`, party size.
+  - Stats: HP, Attack and Defense from `getStats()`, each with its parts (level, boost, shiny) for the hover breakdown.
+  - Moves: active moves by slot and the known-moves pool (name, type, power, category).
+  - Evolution options: each `SpeciesEvolution` of the species with the target species and `EvolutionRequirementChecker::check()`'s reason (null = allowed).
+  - Items for "Use item": owned TMs (with "already known" flags), boost stones (count, current failure chance), evolution items and Mega Stones that one of the options needs.
+- Box card "View" and the Party list link to the page.
+
+**Tests:** feature test for the props; another user's Pokémon gives 404; guest redirected to login.
+
+**Done when:** the page loads with all props.
+
+### 4.8 Pokémon page: header and stats
+
+**Goal:** the read-only part of the page.
+
+**Mock-up:** `docs/mockups/pokemon.html` (state "Overview")
+
+**Build:** page `resources/js/app/Pokemon/pages/Pokemon/Show/index.vue` with the header (portrait, name, badges, XP bar, catch details), the action buttons (wired in later tasks) and the stats card.
+
+**UI suggestions** (ideas, not requirements):
+- `AppBreadcrumbs` (Box › Shiny Charmeleon), then a header `Card`: large `SpeciesSprite` on the left, details on the right; stacked on phones.
+- Badges for level, boost and shiny (gold); `PokemonTypeBadges`; `PokemonGenderIcon`.
+- XP: a thin `Progress` with "7,200 / 10,000 XP to Lv 37"; at level 100, "Max level" instead.
+- Stats: an `AppInfoCard` with one `AppInfoCardRow` per stat; a `Tooltip` on each value lists its parts ("Level 36: ×0.66 · Boost +14: ×1.14 · Shiny: ×1.25").
+- Action row: "Evolve" (primary, only when an evolution is allowed), "Use item" (outline), party toggle (outline), lock toggle (ghost with a lock icon), and "Release" (destructive outline, at the end).
+
+**Tests:** browser test: the page shows the Pokémon's name, level, boost and stats.
+
+**Done when:** the page matches the mock-up's overview.
+
+### 4.9 Pokémon page: moves
+
+**Goal:** swap active moves and teach TMs from the page.
+
+**Mock-up:** `docs/mockups/pokemon.html` (states "Overview", "Swap a move", "Teach a TM")
+
+**Build:**
+- Route `POST /your-pokemon/{pokemon}/active-moves` named `pokemon.web.set-active-move` → `SetActiveMoveController` (`move_id`, `slot` 1–4).
+- Route `POST /your-pokemon/{pokemon}/teach-tm` named `pokemon.web.teach-tm` → `TeachTmController` (`move_id`).
+- Moves card: four slots with Swap buttons; the known-moves pool below; a "Teach TM" button.
+
+**UI suggestions** (ideas, not requirements):
+- Active slots: a 2×2 grid of rows, each with `MoveNameLabel`, type badge, `MovePowerLabel` and a ghost "Swap" button. An empty slot shows a dashed outline and "Empty slot".
+- Swap: a `Dialog` listing the known moves (the active ones marked "In slot 2"), with a search input when the pool is long. Picking one swaps it in.
+- Known moves: compact chips or a short `Table` (name, type, power), sorted by name.
+- Teach TM: a `Dialog` listing owned TMs; TMs the Pokémon already knows are disabled with "Already known"; Z-Move and Dynamax TMs show "Needs level 100" when not allowed. Teaching asks for a confirmation step inside the dialog, since the TM is used up.
+
+**Tests:** feature tests for both routes and their errors; browser test: swap a move.
+
+**Done when:** a player can swap moves and teach TMs from the page.
+
+### 4.10 Pokémon page: boost stones
+
+**Goal:** use boost stones from the page.
+
+**Mock-up:** `docs/mockups/pokemon.html` (states "Use boost stones", "Boost stones result")
+
+**Build:**
+- Route `POST /your-pokemon/{pokemon}/boost` named `pokemon.web.boost` → `UseBoostStonesController` (`max_stones` ≥ 1, optional `target_boost` up to 100).
+- Dialog opened from "Use item" → Boost stones.
+
+**UI suggestions** (ideas, not requirements):
+- The dialog shows the current boost, stones owned and the chance for the next stone ("+60 → +61: 40% chance to fail"), with the chance coloured green (0%), yellow (1–39%) or red (40%+).
+- Two modes as a `RadioGroup`: "Use up to [ 20 ] stones" and "Use until +[ 70 ]".
+- Primary "Use stones" button.
+- Result: a summary in the same dialog: "Used 20 stones: 13 worked, 7 failed. Boost +60 → +73." with the new boost in a large number.
+
+**Tests:** feature test for the route and its errors; browser test: use stones and see the result.
+
+**Done when:** a player can boost a Pokémon from the page.
+
+### 4.11 Pokémon page: evolve
+
+**Goal:** evolve from the page.
+
+**Mock-up:** `docs/mockups/pokemon.html` (states "Evolution options", "Confirm evolution")
+
+**Build:**
+- Route `POST /your-pokemon/{pokemon}/evolve` named `pokemon.web.evolve` → `EvolvePokemonController` (`species_evolution_id`).
+- The Evolve button shows only when at least one option is allowed; it opens the options dialog.
+- After evolving, the page reloads with the new species and a toast.
+
+**UI suggestions** (ideas, not requirements):
+- Options: one row per evolution with the target's `SpeciesPortrait`, name, types and requirement. Allowed rows are selectable; others are disabled with the reason ("Needs a Water Stone", "Needs level 100").
+- Confirmation inside the dialog: "Evolve Charmeleon into Charizard? This can't be undone." Mention the item used up when there is one ("Uses 1 Charizardite X").
+- Toast: "Evolved!" / "Your Charmeleon evolved into Charizard."
+
+**Tests:** feature test for the route; browser test: evolve and see the new species.
+
+**Done when:** a player can evolve from the page.
+
+### 4.12 Pokémon page: party, lock and release
+
+**Goal:** the remaining actions.
+
+**Mock-up:** `docs/mockups/pokemon.html` (states "Overview", "Party full", "Locked", "Release", "Release a shiny or boosted Pokémon")
+
+**Build:**
+- Routes: `POST /your-pokemon/{pokemon}/party` (`pokemon.web.party.add`), `DELETE /your-pokemon/{pokemon}/party` (`pokemon.web.party.remove`), `POST /your-pokemon/{pokemon}/lock` (`pokemon.web.lock`, `is_locked` boolean), `DELETE /your-pokemon/{pokemon}` (`pokemon.web.release`, redirects to the Box with a toast).
+- Release asks the player to type the species name to confirm.
+
+**UI suggestions** (ideas, not requirements):
+- Party toggle: "Add to party" / "In party ✓" (outline). With a full party it is disabled with "Party full (6)". The last party Pokémon can't be removed: disabled with a tooltip.
+- Lock: a ghost button with a lock icon and "Locked" / "Unlocked"; when locked, Release is disabled with a tooltip "Unlock it first".
+- Release dialog: destructive styling, the input "Type Charmeleon to confirm", the destructive "Release" button enabled only when the text matches. Shiny or boosted Pokémon add a warning block: "This Pokémon is shiny and has +14 boost. Boost stones used on it are lost."
+
+**Tests:** feature tests for each route and its errors; browser test: release with the typed confirmation.
+
+**Done when:** every Spec 4 action works from the page.
+
+### 4.13 Use items from the inventory
+
+**Goal:** the "Use" button on the inventory's item dialog (Spec 3) and the "Use item" button on the Pokémon page share one flow.
+
+**Mock-up:** `docs/mockups/pokemon.html` (state "Use item") and `docs/mockups/inventory.html` (state "Use: choose a Pokémon")
+
+**Build:**
+- Inventory item dialog: a "Use" button for TMs, boost stones, evolution items and Mega Stones. It opens a "Choose a Pokémon" dialog; after picking, the matching Pokémon-page dialog opens (teach TM, boost stones, or the evolution options with that item).
+- Pokémon page "Use item": a dialog listing the usable items the player owns, grouped by kind; picking one opens the same dialogs.
+- Items that do nothing for that Pokémon are disabled with the reason ("No evolution uses this item").
+
+**UI suggestions** (ideas, not requirements):
+- "Choose a Pokémon": a searchable list of the player's Pokémon (party first) with `SpeciesPortrait`, name, level and boost; for TMs, Pokémon that already know the move are disabled.
+- "Use item": `ItemSprite`, name, quantity, and a short line on what it does for this Pokémon ("Teaches Ice Beam", "+60 → +61, 40% to fail").
+
+**Tests:** feature test: the inventory props say which items can be used; browser test: teach a TM starting from the inventory.
+
+**Done when:** every usable item can be used from either page.

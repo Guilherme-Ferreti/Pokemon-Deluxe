@@ -16,13 +16,15 @@
   .tm-disc { width: 72px; height: 72px; border-radius: 999px; border: 6px solid var(--card); box-shadow: 0 0 0 1px var(--border); }
   .detail { display: flex; gap: 16px; align-items: flex-start; }
   .sell { display: flex; flex-direction: column; gap: 10px; border-top: 1px solid var(--border); padding-top: 14px; }
+  .choose { display: flex; align-items: center; gap: 12px; padding: 10px 12px; border: 1px solid var(--border); border-radius: 10px; color: inherit; text-decoration: none; }
+  a.choose:hover { background: var(--muted); }
   .confirm-box { border: 1px solid color-mix(in oklch, var(--destructive) 35%, transparent); border-radius: 10px; padding: 12px; display: flex; flex-direction: column; gap: 10px; }
 </style>
 </head>
 <body>
 <div class="mock-bar">
   <a href="index.html">← All mock-ups</a>
-  <span><strong>Inventory</strong> · tasks 3.11, 3.12</span>
+  <span><strong>Inventory</strong> · tasks 3.11, 3.12, 4.13</span>
   <label for="mockup-state">State
     <select id="mockup-state">
       <option value="balls">Balls tab</option>
@@ -35,6 +37,7 @@
       <option value="sell-confirm">Confirm selling</option>
       <option value="earned">Item details: earned only</option>
       <option value="sold">Sold</option>
+      <option value="use">Use: choose a Pokémon</option>
     </select>
   </label>
   <span>Shown inside the app layout (sidebar not drawn). Dashed boxes = item sprites.</span>
@@ -68,7 +71,7 @@
     </div>
   </section>
 
-  <p class="note">Tiles open a dialog (a sheet on phones). "Use" (teach a TM, use a boost stone or evolution item) arrives with Spec 4; the XP Share on/off switch arrives with Spec 5.</p>
+  <p class="note">Tiles open a dialog (a sheet on phones). TMs, boost stones, evolution items and Mega Stones get a "Use" button (Spec 4, task 4.13) that opens "Choose a Pokémon". The XP Share on/off switch arrives with Spec 5.</p>
 </main>
 
 <div class="overlay" data-show="item sell-confirm">
@@ -117,6 +120,30 @@
   </div>
 </div>
 
+
+<div class="overlay" data-show="use">
+  <div class="dialog" role="dialog" aria-labelledby="use-title">
+    <div class="stack" style="gap: 4px;">
+      <h2 id="use-title">Teach TM Ice Beam to…</h2>
+      <p class="small muted">Choose a Pokémon. Your party comes first.</p>
+    </div>
+    <label class="search" for="use-search" style="display: flex; align-items: center; gap: 8px; height: 38px; border: 1px solid var(--border); border-radius: 8px; padding: 0 12px;">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" style="color: var(--muted-fg);"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
+      <input id="use-search" type="search" placeholder="Search your Pokémon" autocomplete="off" style="border: 0; outline: 0; background: transparent; flex: 1; min-width: 0;">
+    </label>
+    <div class="stack" style="gap: 6px;">
+      <span class="xs muted" style="font-weight: 600; text-transform: uppercase; letter-spacing: .04em;">Party</span>
+      <a class="choose" href="pokemon.html#teach-tm"><span class="sprite sprite-xs sprite-shiny" aria-hidden="true"></span><span class="stack" style="gap: 0; flex: 1;"><strong>Shiny Charmeleon</strong><span class="xs muted num">Lv 36 · +14</span></span></a>
+      <a class="choose" href="pokemon.html#teach-tm"><span class="sprite sprite-xs" aria-hidden="true"></span><span class="stack" style="gap: 0; flex: 1;"><strong>Dragonite</strong><span class="xs muted num">Lv 61 · +40</span></span></a>
+      <span class="choose" aria-disabled="true" style="opacity: .5;"><span class="sprite sprite-xs" aria-hidden="true"></span><span class="stack" style="gap: 0; flex: 1;"><strong>Lapras</strong><span class="xs muted">Already knows Ice Beam</span></span></span>
+      <span class="xs muted" style="font-weight: 600; text-transform: uppercase; letter-spacing: .04em; padding-top: 6px;">Box</span>
+      <a class="choose" href="pokemon.html#teach-tm"><span class="sprite sprite-xs" aria-hidden="true"></span><span class="stack" style="gap: 0; flex: 1;"><strong>Gible</strong><span class="xs muted num">Lv 48 · +0</span></span></a>
+    </div>
+    <p class="note">Picking a Pokémon opens that Pokémon's page with the matching dialog (here, Teach a TM).</p>
+    <div class="dialog-actions"><button type="button" class="btn btn-ghost" data-go="tms">Cancel</button></div>
+  </div>
+</div>
+
 <div class="toast" role="status" data-show="sold">
   <span class="toast-icon" aria-hidden="true"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L20 7"/></svg></span>
   <div><strong>Sold</strong><p>You sold 2 Ultra Balls for ₽ 1,200.</p></div>
@@ -134,7 +161,7 @@
     };
     var tiles = document.getElementById('tiles');
     function draw(state) {
-      var tab = groups[state] ? state : (state === 'empty' ? 'tms' : 'balls');
+      var tab = groups[state] ? state : ((state === 'empty' || state === 'use') ? 'tms' : 'balls');
       document.querySelectorAll('[data-tab]').forEach(function (t) { t.setAttribute('aria-selected', String(t.getAttribute('data-tab') === tab)); });
       document.getElementById('wallet').textContent = state === 'sold' ? '₽ 13,650' : '₽ 12,450';
       tiles.innerHTML = '';
