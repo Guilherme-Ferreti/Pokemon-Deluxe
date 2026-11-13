@@ -362,3 +362,260 @@ Uses `Combatant` from task 1.10.
 **Tests:** feature tests for both routes; browser test for the faint dialog and giving up.
 
 **Done when:** a battle can be played from start to end screen on the page.
+
+---
+
+## 2. Spec 2 — Catching and exploration
+
+Read [02-catching-and-exploration.md](02-catching-and-exploration.md) first. Needs Spec 1 tasks done (battles, `RandomHelper`, `PokemonCaught` event). Exploring lives in a new domain, `src/App/Exploration`; catching lives in `src/App/Battle`. NPC trainers met while exploring come with Spec 6.
+
+### 2.1 Mark Ultra Beasts
+
+**Goal:** the Beast Ball can tell Ultra Beasts apart.
+
+**Build:**
+- Migration `017_add_is_ultra_beast_to_species_table.php`: `boolean('is_ultra_beast')->default(false)` after `is_gmax`.
+- Seed files: `"is_ultra_beast": true` on Nihilego, Buzzwole, Pheromosa, Xurkitree, Celesteela, Kartana, Guzzlord, Poipole, Naganadel, Stakataka and Blacephalon; `false` on every other species. `SpeciesSeeder` reads it.
+- `Species` model: cast to boolean. `SpeciesTrait::ULTRA_BEAST` with label "Ultra Beast", wherever the other traits are listed (Pokédex filters).
+
+**Tests:** seeder test: exactly 11 Ultra Beasts.
+
+**Done when:** column, data and trait exist; tests pass.
+
+### 2.2 Wild data on species
+
+**Goal:** every species knows whether it can appear in the wild, at which evolution stage, and at which levels. Calculated once while seeding.
+
+**Build:**
+- Migration `018_add_wild_data_to_species_table.php`: `unsignedTinyInteger('evolution_stage')->default(1)`, nullable `unsignedTinyInteger('wild_min_level')` and `wild_max_level` (null = never in the wild).
+- `App\Exploration\Mechanics\WildSpawnCalculator` (reads loaded `previousEvolutions` relations, no queries):
+  - `evolutionStage(Species $species): int`: 1 + the stage of the previous evolution; baby previous evolutions do not count (Pikachu is stage 1).
+  - `levelRange(Species $species): ?array` returning `[min, max]`:
+    - Mega, G-Max or baby → `null`.
+    - Legendary or mythical → 50–70.
+    - Stage 1 → 2–12.
+    - Evolved by level → `min_level` to `min_level` + 4.
+    - Evolved another way → min = the larger of 18 and the previous stage's `wild_min_level`; max = min + 4.
+    - With several ways to evolve into a species, use the lowest result.
+- Config `game.exploration`: `unevolved_levels` ([2, 12]), `legendary_levels` ([50, 70]), `other_evolution_min_level` (18), `evolved_level_spread` (4).
+- Seeder `SpeciesWildDataSeeder`, run after species and evolutions, saves the three columns using the calculator.
+
+**Tests:** `tests/App/Exploration/Unit/Mechanics/WildSpawnCalculatorTest.php`: Charmander 2–12 stage 1; Charizard 36–40 stage 3; Raichu 18–22; Vileplume never below Gloom's minimum; Pikachu stage 1; Mewtwo 50–70; Pichu, Mega Charizard X and G-Max Pikachu → `null`.
+
+**Done when:** columns are filled after `migrate:fresh --seed`; tests pass.
+
+### 2.3 Areas
+
+**Goal:** the 9 areas exist in code.
+
+**Build:**
+- Enum `Shared\Enums\Area`: `MEADOW`, `FOREST`, `COAST`, `VOLCANO`, `POWER_PLANT`, `CAVE`, `SNOWY_PEAK`, `HAUNTED_TOWER`, `ANCIENT_RUINS` (values in kebab-case, for example `power-plant`).
+- `label(): string` and `types(): array` (the two `PokemonType`s from the Spec 2 table).
+
+**Tests:** every `PokemonType` belongs to exactly one area.
+
+**Done when:** enum exists; tests pass.
+
+### 2.4 Which species live in an area
+
+**Goal:** list the species that can appear in an area.
+
+**Build:**
+- `App\Exploration\Queries\AreaSpeciesQuery::get(Area $area): Collection`: species with at least one of the area's types and a non-null `wild_min_level`. Ordered by `pokedex_order`.
+
+**Tests:** includes a matching dual-type species; excludes other types, Megas, G-Max and babies.
+
+**Done when:** query exists; tests pass.
+
+### 2.5 Roll an encounter
+
+**Goal:** pick the wild Pokémon for one explore.
+
+**Build:**
+- Move `game.incubation.shiny_odds` to `game.pokemon.shiny_odds` (eggs and the wild share it; update `PlaceEggAction`).
+- Config `game.exploration`: `legendary_odds` (500), `stage_weights` ([1 => 85, 2 => 12, 3 => 3]).
+- `App\Exploration\Mechanics\EncounterRoller::roll(Collection $areaSpecies): NewPokemon`, using `RandomHelper`:
+  1. 1 in 500: a legendary or mythical, if the area has any.
+  2. Otherwise a stage from the weights; if the area has no species at that stage, fall back to the next lower stage.
+  3. A species picked evenly from that group (legendaries and mythicals excluded in this step).
+  4. Level between the species' `wild_min_level` and `wild_max_level`; shiny with 1 / `shiny_odds`; gender from `getRandomGender()`.
+
+**Tests:** with `RandomHelper::fake()`: legendary roll, each stage, fallback to a lower stage, level within range, shiny.
+
+**Done when:** roller exists; tests pass.
+
+### 2.6 Save the encounter and explore
+
+**Goal:** pressing Explore (or Keep exploring) stores one wild Pokémon for the player.
+
+**Build:**
+- Migration `019_create_encounters_table.php`: `uuid id`, `foreignIdFor(User)` unique, `area` enum, `foreignIdFor(Species)`, `level`, `is_shiny`, `gender` enum, timestamps.
+- Model `Shared\Models\Encounter` (with factory), `User::encounter(): HasOne`, `Encounter::toNewPokemon(): NewPokemon`.
+- `App\Exploration\Actions\ExploreAction::handle(User $user, Area $area): Encounter`: refuses with `BattleAlreadyInProgressException` when a battle is ongoing; replaces any existing encounter with a new roll from `EncounterRoller`.
+
+**Tests:** creates one encounter; a second explore replaces it (still one row); refused during a battle.
+
+**Done when:** table, model and action exist; tests pass.
+
+### 2.7 Battle the encounter
+
+**Goal:** turn the stored encounter into a wild battle.
+
+**Build:**
+- `BattleState`: add `?Area $area` (null outside wild battles), saved by `AsBattleState`.
+- `StartWildBattleAction::handle()`: add an `?Area $area = null` parameter and store it.
+- `App\Exploration\Actions\BattleEncounterAction::handle(User $user): Battle`: throws `App\Exploration\Exceptions\NoEncounterException` without an encounter; starts the battle with the encounter's Pokémon and area; deletes the encounter.
+
+**Tests:** battle created with the encounter's species, level, shiny and area; encounter deleted; refused without an encounter.
+
+**Done when:** tests pass.
+
+### 2.8 Catch chance
+
+**Goal:** the Spec 2 catch formula.
+
+**Build:**
+- Config `game.catching`: `base_chance` (0.10), `legendary_base_chance` (0.01), `low_hp_bonus` (1.5), `ailment_multipliers` (sleep and freeze 2, paralysis, burn and poison 1.5).
+- `App\Battle\Mechanics\CatchChanceCalculator::calculate(Species $species, int $currentHp, int $maxHp, ?Ailment $ailment, float $ballMultiplier): float`: base × ball × (1 + 1.5 × (1 − HP ratio)) × ailment, capped at 1.0.
+
+**Tests:** every row of the Spec 2 example table.
+
+**Done when:** calculator exists; tests pass.
+
+### 2.9 Ball multipliers: basic balls
+
+**Goal:** balls without conditions.
+
+**Build:**
+- `pokeballs.json`: `catch_rate` holds the multiplier when no condition applies: Poké 1, Great 1.5, Ultra 2, Safari, Sport and Park 1.5, collectible balls 1, conditional balls 1, Beast Ball 0.1.
+- `App\Battle\Mechanics\BallMultiplierCalculator::multiplier(Pokeball $pokeball, CatchContext $context): float`: returns `catch_rate`; `isGuaranteed(Pokeball $pokeball): bool` is true for the Master Ball.
+- Value object `Shared\ValueObjects\CatchContext`: `int $turn`, `?Area $area`, `bool $isNight`, `Species $wildSpecies`, `int $wildLevel`, `PokemonGender $wildGender`, `Species $activeSpecies`, `int $activeLevel`, `PokemonGender $activeGender`, `bool $playerOwnsSpecies`.
+
+**Tests:** basic balls return their multiplier; Master Ball is guaranteed.
+
+**Done when:** data, calculator and value object exist; tests pass.
+
+### 2.10 Ball multipliers: conditional balls
+
+**Goal:** the conditions from the Spec 2 ball table.
+
+**Build:** in `BallMultiplierCalculator::multiplier()`, a `match` on the ball's slug for Quick, Timer, Repeat, Nest, Level, Dusk, Dream (needs the wild ailment: add `?Ailment $wildAilment` to `CatchContext`), Love, Moon (species evolves with `moon-stone`), Net, Lure, Dive, Heavy, Fast and Beast. Config `game.catching.night_starts_at` (18) and `night_ends_at` (6).
+
+**Tests:** for each ball, one case where the condition applies and one where it does not.
+
+**Done when:** tests pass.
+
+### 2.11 Add items to the inventory
+
+**Goal:** a reusable way to give a player items (starter balls now, shop and missions later).
+
+**Build:**
+- `App\Inventory\Actions\AddInventoryItemAction::handle(User $user, EvolutionItem|Pokeball $item, int $quantity = 1): void`: creates or increases the stack; throws `App\Inventory\Exceptions\InventoryStackFullException` above `game.inventory.max_stack`.
+
+**Tests:** new stack; existing stack grows (still one row); over the limit is refused; quantity below 1 is refused.
+
+**Done when:** action and exception exist; tests pass.
+
+### 2.12 Throw a ball
+
+**Goal:** catching in a wild battle.
+
+**Build:**
+- Extract the opponent's half of a turn from `TakeTurnAction` (its move, status effects, end-of-turn damage, fainting) into `App\Battle\Actions\OpponentActsAction::handle(Battle $battle): Battle`, used by both actions.
+- `CreatePokemonAction`: add `bool $joinPartyIfRoom = false`; when true, the Pokémon joins the party if it has fewer than `game.user.max_party_size` (new config, 6).
+- `App\Battle\Actions\ThrowBallAction::handle(Battle $battle, Pokeball $pokeball): Battle`:
+  - Refuses outside `ONGOING` wild battles or while awaiting a send-out (`App\Battle\Exceptions\NotAWildBattleException`, `BattleNotReadyForTurnException`).
+  - Refuses with `BoxFullException` before using the ball when the Box is full.
+  - Uses one ball (`RemoveInventoryItemAction`).
+  - Caught (guaranteed or `RandomHelper::chance()` with the catch chance): creates the Pokémon (`joinPartyIfRoom: true`, the thrown ball), status `CAUGHT`, logs "Gotcha! … was caught!", dispatches `PokemonCaught`.
+  - Not caught: logs "Oh no! The Pokémon broke free!", then `OpponentActsAction`.
+
+**Tests:** catch; break free then the opponent attacks; ball used either way; Master Ball always catches; joins party or Box; refused when not wild, Box full or no ball.
+
+**Done when:** tests pass.
+
+### 2.13 Starter and free balls at registration
+
+**Goal:** new players start with a Pokémon and balls.
+
+**Build:**
+- Config `game.registration`: `starters` (the 27 first-stage starters: Bulbasaur, Charmander, Squirtle … Sprigatito, Fuecoco, Quaxly, as slugs), `starter_level` (5), `starting_items` (`poke-ball` 20, `great-ball` 5).
+- `RegisterUserAction::handle()`: add `Species $starter`; in one transaction creates the user, the starter (in the party, Poké Ball, random gender, not shiny) and the items (`AddInventoryItemAction`).
+- `RegistrationRequest`: required `starter` slug, must be in the starters list.
+
+**Tests:** registration creates the user, one Pokémon in the party at level 5 and the two ball stacks; a starter outside the list is rejected.
+
+**Done when:** tests pass.
+
+### 2.14 Registration page: choose a starter
+
+**Goal:** the starter picker on the registration form.
+
+**Build:** the registration page shows the 27 starters' portraits grouped by region (one row of 3 per region), the selected one highlighted, sent as `starter`. Props come from `ShareAuthLayoutProps` or the registration page props, whichever the page already uses.
+
+**Tests:** feature test for the props; browser test: choose a starter and register.
+
+**Done when:** a new player can choose a starter and lands on the Dashboard with it in their party.
+
+### 2.15 Pokédex: game catch rate
+
+**Goal:** the Pokédex shows this game's catch rate, not the main games'.
+
+**Build:**
+- Pokédex overview shows "10%" (or "1%" for legendaries and mythicals) from `game.catching`, or "Not found in the wild" when `wild_min_level` is null.
+- Migration `020_drop_catch_rate_from_species_table.php`; remove `catch_rate` from the seeder, model, `isCapturable()` and `getCatchRatePercentage()`.
+
+**Tests:** update `PokedexShowTest` for the three cases.
+
+**Done when:** tests pass.
+
+### 2.16 Explore page
+
+**Goal:** the list of areas.
+
+**Build:**
+- Route `GET /explore` named `exploration.web.index` → `App\Exploration\Http\Web\Controllers\ExploreController@index` with `ExploreIndexPageProps` (each area's slug, label, types).
+- Page `resources/js/app/Exploration/pages/Explore/Index/index.vue`: one card per area (name, type badges, Explore button); 3 per row on desktop, 1 on phones. Until area art exists, the card background is a gradient of its two type colours.
+- "Explore" link in the main navigation.
+
+**Tests:** feature test for the props.
+
+**Done when:** the page lists the 9 areas.
+
+### 2.17 Area page: encounters
+
+**Goal:** explore an area and see the wild Pokémon.
+
+**Build:**
+- Route `GET /explore/{area}` named `exploration.web.show` → `ExploreController@show` with `ExploreShowPageProps`: the area, and the player's encounter if it is in this area (sprite, name, gender, level, types, shiny, legendary).
+- Route `POST /explore/{area}` named `exploration.web.explore` → `ExploreAreaController`: calls `ExploreAction`, redirects to the area page. Used by both Explore and Keep exploring.
+- Route `POST /explore/battle` named `exploration.web.battle` → `BattleEncounterController`: calls `BattleEncounterAction`, redirects to `battle.web.show`.
+- Encounter card as in the Spec 2 sketch; shiny and legendary encounters get a gold border and badge. While a battle is ongoing, a banner links to it instead.
+
+**Tests:** feature tests for the three routes; browser test: explore, keep exploring, battle.
+
+**Done when:** a player can explore an area and start a battle from the page.
+
+### 2.18 Area page: Pokémon found here
+
+**Goal:** the modal listing an area's species.
+
+**Build:** `ExploreShowPageProps` gets `areaSpecies` as an `Inertia::optional()` prop (portrait, name, types), loaded when the modal opens. The modal has a search box and type filters (client-side), using species portraits.
+
+**Tests:** feature test: the prop is absent by default and returned when requested.
+
+**Done when:** the modal lists the area's species with search and filters.
+
+### 2.19 Battle page: throw a ball
+
+**Goal:** catching from the battle page.
+
+**Build:**
+- Route `POST /battle/throw-ball` named `battle.web.throw-ball` → `ThrowBallController` with `ThrowBallRequest` (`pokeball` slug, owned by the player).
+- `BattleShowPageProps`: in wild battles, the player's balls (sprite, name, quantity, current multiplier from `BallMultiplierCalculator`, `isBoosted` when above its `catch_rate`).
+- "Throw ball" button under the moves (wild battles only) opens the ball picker; boosted balls show a "Boosted" tag.
+- Catch dialog: the Pokémon, where it went (Party or Box), buttons "View Pokémon" (to the Box until the Pokémon page exists) and "Keep exploring" (back to the area page).
+
+**Tests:** feature tests for the route and props; browser test: throw a ball and see the catch dialog.
+
+**Done when:** a player can explore, battle, throw balls and catch a Pokémon entirely from the pages.
