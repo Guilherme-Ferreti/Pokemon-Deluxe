@@ -1387,7 +1387,7 @@ Read [06-trainers-gyms-and-battle-tower.md](06-trainers-gyms-and-battle-tower.md
 
 **Goal:** fill `trainers.json`.
 
-**Build:** about 30 hand-made trainers (Lv 5–100, payouts ₽ 500–20,000; shinies only on the hardest), then for each of the 9 regions its 8 gym leaders, Elite Four and Champion with their main-game teams, at the levels and boosts in "Details to confirm". Moves: each Pokémon's base moves unless the main-game team suggests better ones that exist as moves here.
+**Build:** about 30 hand-made trainers (Lv 5–100, payouts ₽ 500–20,000; shinies only on the hardest), then for each of the 9 regions its 8 gym leaders (2 to 6 Pokémon each, depending on the leader), Elite Four and Champion with their main-game teams, at the levels and boosts in "Details to confirm". Moves: each Pokémon's base moves unless the main-game team suggests better ones that exist as moves here.
 
 **Done when:** `migrate:fresh --seed` loads every trainer; a seeder test checks each region has 8 gym leaders, 4 Elite Four members and 1 Champion.
 
@@ -1501,7 +1501,7 @@ Read [06-trainers-gyms-and-battle-tower.md](06-trainers-gyms-and-battle-tower.md
 - Region tabs (the region in the URL), the count "Badges 5 / 8" on the right.
 - The badge case: a grid of 8 tiles, each with the badge (coloured when earned, outline when not), the gym type badge and the leader's name.
 - Clicking a gym opens a `Dialog`: the leader's sprite and name, the gym type, the team as portraits with levels, the rule ("Bring 3 Pokémon"), and a primary "Challenge".
-- "Choose your team": the party as selectable rows; exactly as many as the leader has; the order picked is the sending-out order (numbers on the selected rows); the primary button reads "Challenge with 3 Pokémon" and is disabled until the count is right.
+- "Choose your team": the party as selectable rows; exactly as many as the leader has (2 to 6, depending on the leader; titles and buttons use that number); the order picked is the sending-out order (numbers on the selected rows); the primary button reads "Challenge with 3 Pokémon" and is disabled until the count is right.
 - Under the badge case, an Elite Four card: locked with "Earn all 8 badges" and a lock icon, or unlocked with the four members and the Champion in order and a primary "Start the Elite Four".
 
 **Tests:** feature tests for the props and the challenge route errors; browser test: challenge a gym with a chosen team.
