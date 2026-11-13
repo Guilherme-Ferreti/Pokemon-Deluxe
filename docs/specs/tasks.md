@@ -1478,11 +1478,11 @@ Read [06-trainers-gyms-and-battle-tower.md](06-trainers-gyms-and-battle-tower.md
 **Goal:** challenge gym leaders and earn badges.
 
 **Build:**
-- `App\Trainers\Actions\ChallengeGymAction::handle(User $user, Trainer $leader, array $pokemonIds): Battle`: only `GYM_LEADER`; `$pokemonIds` must be exactly as many party Pokémon as the leader has (`App\Trainers\Exceptions\GymTeamSizeException`), in the chosen order; a party smaller than the leader's team is refused (`GymTeamSizeException`); starts a `GYM` battle.
+- `App\Trainers\Actions\ChallengeGymAction::handle(User $user, Trainer $leader, array $pokemonIds): Battle`: only `GYM_LEADER`; `$pokemonIds` must be 1 to as many party Pokémon as the leader has, never more (`App\Trainers\Exceptions\GymTeamSizeException`), in the chosen order. Fewer is allowed (the page confirms it first); starts a `GYM` battle.
 - A badge is a `TrainerVictory` against a gym leader. `App\Trainers\Queries\BadgesQuery::forRegion(User $user, Region $region)`.
 - `BattleWon` for a gym: pays (task 6.5) and, on the first win, dispatches `BadgeEarned` (region, leader) for missions (`BEAT_GYM`, `EARN_REGION_BADGES`).
 
-**Tests:** wrong team size refused; non-party Pokémon refused; first win gives the badge and the event once; rematch pays but no new badge.
+**Tests:** more Pokémon than the leader refused; fewer allowed; none refused; non-party Pokémon refused; first win gives the badge and the event once; rematch pays but no new badge.
 
 **Done when:** tests pass.
 
@@ -1490,7 +1490,7 @@ Read [06-trainers-gyms-and-battle-tower.md](06-trainers-gyms-and-battle-tower.md
 
 **Goal:** the badge case per region.
 
-**Mock-up:** `docs/mockups/gyms.html` (states "Region badges", "Gym details", "Choose your team", "Leader brings 6: choose the order", "Party smaller than the leader's team", "Elite Four locked", "Elite Four unlocked")
+**Mock-up:** `docs/mockups/gyms.html` (states "Region badges", "Gym details", "Choose your team", "Leader brings 6: choose the order", "Party smaller than the leader's team", "Confirm battling with fewer", "Elite Four locked", "Elite Four unlocked")
 
 **Build:**
 - Route `GET /gyms` named `trainers.web.gyms.index` → `GymsController@index` (`?region=kanto`), with `GymsIndexPageProps`: the region's 8 leaders (badge name, type, leader, team preview, won or not), Elite Four and Champion status, and the player's party.
@@ -1501,8 +1501,8 @@ Read [06-trainers-gyms-and-battle-tower.md](06-trainers-gyms-and-battle-tower.md
 - Region tabs (the region in the URL), the count "Badges 5 / 8" on the right.
 - The badge case: a grid of 8 tiles, each with the badge (coloured when earned, outline when not), the gym type badge and the leader's name.
 - Clicking a gym opens a `Dialog`: the leader's sprite and name, the gym type, the team as portraits with levels, the rule ("Bring 3 Pokémon"), and a primary "Challenge".
-- When the leader brings 6, the player still picks all six in this dialog: the picking order is the sending-out order. When the party has fewer Pokémon than the leader, the rows and Challenge are disabled with "You need 6 Pokémon in your party to challenge Giovanni. You have 4."
-- "Choose your team": the party as selectable rows; exactly as many as the leader has (2 to 6, depending on the leader; the title uses that number); the order picked is the sending-out order (numbers on the selected rows); the primary button reads "Challenge" and is disabled until the count is right.
+- The player picks 1 up to as many Pokémon as the leader brings, never more: once the limit is reached, the other rows are disabled. A counter shows "2 / 6 chosen". The picking order is the sending-out order. A party smaller than the leader's team can still challenge.
+- "Choose up to 6 Pokémon" (the leader's team size, 2 to 6): the party as selectable rows, numbered in picking order; the primary "Challenge" is enabled from 1 Pokémon. With fewer than the leader, Challenge opens a confirmation: "Challenge with 4 of 6 Pokémon? Giovanni brings 6 Pokémon. You can battle with fewer, but you'll be at a disadvantage." with "Choose more" (outline) and "Challenge anyway" (primary).
 - Under the badge case, an Elite Four card: locked with "Earn all 8 badges" and a lock icon, or unlocked with the four members and the Champion in order and a primary "Start the Elite Four".
 
 **Tests:** feature tests for the props and the challenge route errors; browser test: challenge a gym with a chosen team.

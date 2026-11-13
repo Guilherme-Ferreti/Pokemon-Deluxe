@@ -42,6 +42,7 @@
       <option value="team">Choose your team</option>
       <option value="team-all">Leader brings 6: choose the order</option>
       <option value="too-few">Party smaller than the leader's team</option>
+      <option value="fewer">Confirm battling with fewer</option>
       <option value="unlocked">All badges: Elite Four unlocked</option>
       <option value="run">Elite Four run in progress</option>
       <option value="champion">Champion beaten</option>
@@ -99,7 +100,7 @@
       <a class="btn btn-outline btn-lg" href="battle.html#trainer-battle" data-show="champion">Challenge again</a>
     </div>
   </section>
-  <p class="note">Badge order is free. Leaders bring 2 to 6 Pokémon (here Brock 2, Giovanni 6); the rule, the team picker and the Challenge button follow the leader's team size. When the leader brings 6, you still pick all six: the picking order is the sending-out order. If your party has fewer Pokémon than the leader, the rows and Challenge are disabled with "You need 6 Pokémon in your party". Gym leaders and badge names are placeholders for the content in task 6.2.</p>
+  <p class="note">Badge order is free. Leaders bring 2 to 6 Pokémon (here Brock 2, Giovanni 6); the rule, the team picker and the Challenge button follow the leader's team size. When the leader brings 6, you still pick all six: the picking order is the sending-out order. You can bring fewer than the leader (Challenge then asks to confirm), never more: once you've picked as many as the leader brings, the other rows are disabled. A party smaller than the leader's team can still challenge. Gym leaders and badge names are placeholders for the content in task 6.2.</p>
 </main>
 
 <div class="overlay" data-show="gym">
@@ -123,16 +124,30 @@
   </div>
 </div>
 
-<div class="overlay" data-show="team team-all too-few">
+<div class="overlay" data-show="team team-all too-few fewer">
   <div class="dialog" role="dialog" aria-labelledby="team-title">
     <div class="stack" style="gap: 4px;">
       <h2 id="team-title">Choose 2 Pokémon</h2>
       <p class="small muted" id="team-help">Pick in the order they'll be sent out.</p>
     </div>
     <div class="pick-list" id="party"></div>
-    <div class="dialog-actions">
+    <div class="dialog-actions" style="align-items: center;">
+      <span class="small muted num" id="picked-count" style="margin-right: auto;">0 / 2 chosen</span>
       <button type="button" class="btn btn-outline" data-go="gym">Back</button>
       <a class="btn btn-primary" id="challenge" href="battle.html#trainer-battle" aria-disabled="true" style="pointer-events: none; opacity: .5;">Challenge</a>
+    </div>
+  </div>
+</div>
+
+<div class="overlay" data-show="fewer" style="z-index: 35;">
+  <div class="dialog" role="alertdialog" aria-labelledby="fewer-title">
+    <div class="stack" style="gap: 6px;">
+      <h2 id="fewer-title">Challenge with 4 of 6 Pokémon?</h2>
+      <p class="small muted" id="fewer-text">Giovanni brings 6 Pokémon. You can battle with fewer, but you'll be at a disadvantage.</p>
+    </div>
+    <div class="dialog-actions">
+      <button type="button" class="btn btn-outline" data-go="team-all">Choose more</button>
+      <a class="btn btn-primary" href="battle.html#trainer-battle">Challenge anyway</a>
     </div>
   </div>
 </div>
@@ -196,15 +211,15 @@
         var tag = state === 'run' ? (i < 2 ? 'Beaten ✓' : (i === 2 ? 'Next' : '')) : (state === 'champion' ? 'Beaten ✓' : '');
         steps.insertAdjacentHTML('beforeend', '<div class="e4-step' + cls + '"><span class="sprite sprite-sm" aria-hidden="true"></span><strong>' + name + '</strong><span class="xs muted">' + (i < 4 ? 'Elite Four · ' + (i + 1) : 'Champion') + '</span><span class="xs">' + tag + '</span></div>');
       });
-      if ((state === 'team-all' || state === 'too-few') && current !== 7) { openGym(7); }
+      if ((state === 'team-all' || state === 'too-few' || (state === 'fewer' && picked.length === 0)) && current !== 7) { openGym(7); }
       if (state === 'team' && current === 7) { openGym(0); }
-      var members = state === 'too-few' ? party.slice(0, 4) : party;
-      var tooFew = members.length < size();
-      document.getElementById('team-title').textContent = 'Choose ' + size() + ' Pokémon';
-      document.getElementById('team-help').textContent = tooFew
-        ? 'You need ' + size() + ' Pokémon in your party to challenge ' + gyms[current][1] + '. You have ' + members.length + '.'
-        : (size() === members.length ? 'All of your party battles: pick them in the order they\'ll be sent out.' : 'Pick in the order they\'ll be sent out.');
-      document.getElementById('team-help').style.color = tooFew ? 'var(--destructive)' : '';
+      var members = (state === 'too-few' || (state === 'fewer' && current === 7)) ? party.slice(0, 4) : party;
+      if (state === 'fewer' && picked.length === 0) { picked = members.map(function (m) { return m[0]; }).slice(0, Math.min(4, size() - 1)); }
+      var smaller = members.length < size();
+      document.getElementById('team-title').textContent = 'Choose up to ' + size() + ' Pokémon';
+      document.getElementById('team-help').textContent = smaller
+        ? 'You have ' + members.length + ' Pokémon; ' + gyms[current][1] + ' brings ' + size() + '. You can still challenge with fewer. Pick them in the order they\'ll be sent out.'
+        : 'Pick in the order they\'ll be sent out. ' + gyms[current][1] + ' brings ' + size() + ', so you can bring up to ' + size() + '.';
       var list = document.getElementById('party');
       list.innerHTML = '';
       members.forEach(function (p) {
@@ -212,7 +227,7 @@
         var row = document.createElement('button');
         row.type = 'button';
         row.className = 'pick';
-        row.disabled = tooFew;
+        row.disabled = at === -1 && picked.length >= size();
         row.setAttribute('aria-pressed', String(at !== -1));
         row.innerHTML = '<span class="order">' + (at !== -1 ? at + 1 : '') + '</span><span class="sprite sprite-xs' + (p[0].indexOf('Shiny') === 0 ? ' sprite-shiny' : '') + '" aria-hidden="true"></span><span class="stack" style="gap: 0; flex: 1;"><strong>' + p[0] + '</strong><span class="xs muted num">Lv ' + p[1] + '</span></span>';
         row.addEventListener('click', function () {
@@ -221,12 +236,18 @@
         });
         list.appendChild(row);
       });
+      document.getElementById('picked-count').textContent = picked.length + ' / ' + size() + ' chosen';
+      document.getElementById('fewer-title').textContent = 'Challenge with ' + picked.length + ' of ' + size() + ' Pokémon?';
+      document.getElementById('fewer-text').textContent = gyms[current][1] + ' brings ' + size() + ' Pokémon. You can battle with fewer, but you\'ll be at a disadvantage.';
       var button = document.getElementById('challenge');
-      var ready = !tooFew && picked.length === size();
+      var ready = picked.length >= 1;
       button.textContent = 'Challenge';
       button.style.pointerEvents = ready ? '' : 'none';
       button.style.opacity = ready ? '' : '.5';
       button.setAttribute('aria-disabled', String(!ready));
+      button.onclick = function (event) {
+        if (picked.length < size()) { event.preventDefault(); window.mockup.go('fewer'); }
+      };
     }
     openGym(0);
     document.addEventListener('mockup:state', function (e) { draw(e.detail); });
