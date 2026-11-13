@@ -9,6 +9,7 @@ Players get 3 daily missions and a list of one-time achievements; both are activ
 - **Daily:** 3 missions a day (easy, medium, hard), generated from templates such as "Catch {5–10} {type} Pokémon". They reset at midnight server time. One free reroll per day.
 - **Achievements:** one-time goals written by hand, such as "Catch 100 Pokémon", "Reach +50 boost on any Pokémon" or "Beat all gyms". Gym, Elite Four and Champion rewards are given as achievements (Spec 6).
 - Weekly missions and story chains may come later.
+- Idea for later: TM collection achievements, one per move type plus one for every TM, counting TMs the player has ever owned (see Future ideas in the README).
 
 ## Goals a mission can ask for
 
