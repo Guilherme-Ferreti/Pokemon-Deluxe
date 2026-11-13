@@ -1387,7 +1387,7 @@ Read [06-trainers-gyms-and-battle-tower.md](06-trainers-gyms-and-battle-tower.md
 
 **Goal:** fill `trainers.json`.
 
-**Build:** about 30 hand-made trainers (Lv 5–100, payouts ₽ 500–20,000; shinies only on the hardest), then for each of the 9 regions its 8 gym leaders (2 to 6 Pokémon each, depending on the leader), Elite Four and Champion with their main-game teams, at the levels and boosts in "Details to confirm". Moves: each Pokémon's base moves unless the main-game team suggests better ones that exist as moves here.
+**Build:** about 30 hand-made trainers (Lv 5–100, payouts ₽ 500–20,000; shinies only on the hardest), then for each of the 9 regions its 8 gym leaders (2 to 6 Pokémon each, depending on the leader), Elite Four and Champion with their main-game teams, at the levels and boosts in Spec 6's "Details" section. Moves: each Pokémon's base moves unless the main-game team suggests better ones that exist as moves here.
 
 **Done when:** `migrate:fresh --seed` loads every trainer; a seeder test checks each region has 8 gym leaders, 4 Elite Four members and 1 Champion.
 
