@@ -1,0 +1,179 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="claude:viewport-fit-sides" content="cover">
+<title>Trade market mock-up</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="assets/mockup.css">
+<style>
+  .toolbar { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; }
+  .search { display: flex; align-items: center; gap: 8px; height: 38px; border: 1px solid var(--border); border-radius: 8px; padding: 0 12px; background: var(--card); flex: 1 1 240px; max-width: 360px; }
+  .search input { border: 0; outline: 0; background: transparent; flex: 1; min-width: 0; }
+  .chip { display: inline-flex; align-items: center; gap: 4px; border: 1px solid var(--border); border-radius: 999px; padding: 3px 4px 3px 10px; font-size: 12px; background: var(--card); }
+  .chip button { border: 0; background: transparent; width: 18px; height: 18px; border-radius: 999px; color: var(--muted-fg); }
+  .listings { display: grid; grid-template-columns: repeat(auto-fill, minmax(13rem, 1fr)); gap: 12px; }
+  .listing { align-items: center; text-align: center; gap: 8px; padding: 16px 12px 12px; }
+  .listing .name { font-weight: 600; }
+  .listing .meta { display: flex; justify-content: space-between; width: 100%; font-size: 12px; color: var(--muted-fg); border-top: 1px solid var(--border); padding-top: 8px; }
+  .trades { padding: 0; gap: 0; overflow: hidden; }
+  .trade { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 12px; padding: 12px 16px; border-top: 1px solid var(--border); font-size: 13px; }
+  .trade:first-child { border-top: 0; }
+  .trade a { color: var(--fg); font-weight: 600; }
+  .trade .when { margin-left: auto; color: var(--muted-fg); font-size: 12px; }
+  .pick-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(9rem, 1fr)); gap: 8px; max-height: 320px; overflow-y: auto; }
+  .pick { display: flex; flex-direction: column; align-items: center; gap: 4px; padding: 10px 6px; border: 1px solid var(--border); border-radius: 10px; background: var(--card); text-align: center; font-size: 12px; }
+  .pick:hover:not(:disabled) { background: var(--muted); }
+  .pick:disabled { opacity: .45; }
+  .textarea { width: 100%; min-height: 84px; border: 1px solid var(--border); border-radius: 8px; padding: 8px 12px; background: var(--card); resize: vertical; }
+  .summary { display: flex; align-items: center; gap: 12px; border: 1px solid var(--border); border-radius: 10px; padding: 12px; }
+</style>
+</head>
+<body>
+<div class="mock-bar">
+  <a href="index.html">← All mock-ups</a>
+  <span><strong>Trade market</strong> · tasks 7.9, 7.10</span>
+  <label for="mockup-state">State
+    <select id="mockup-state">
+      <option value="market">Market</option>
+      <option value="filtered">Filters applied</option>
+      <option value="no-match">No listings match</option>
+      <option value="new-pick">New listing: choose a Pokémon</option>
+      <option value="new-details">New listing: details</option>
+    </select>
+  </label>
+  <span>Shown inside the app layout (sidebar not drawn). Dashed boxes = portraits.</span>
+</div>
+
+<main class="page">
+  <div class="page-header">
+    <div class="stack" style="gap: 2px;">
+      <h1>Trade market</h1>
+      <p>Offer your Pokémon and items for Pokémon other players have listed.</p>
+    </div>
+    <div class="row">
+      <a class="btn btn-outline" href="trade-mine.html">My trades</a>
+      <button type="button" class="btn btn-primary" data-go="new-pick">New listing</button>
+    </div>
+  </div>
+
+  <div class="toolbar">
+    <label class="search" for="search">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" style="color: var(--muted-fg);"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
+      <input id="search" type="search" placeholder="Search by species" autocomplete="off">
+    </label>
+    <button type="button" class="btn btn-outline">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 6h16M7 12h10M10 18h4"/></svg>Filters
+    </button>
+    <span class="row" style="gap: 6px;" data-show="filtered no-match">
+      <span class="chip">Shiny<button type="button" aria-label="Remove filter" data-go="market">×</button></span>
+      <span class="chip">Boost +20 or more<button type="button" aria-label="Remove filter" data-go="market">×</button></span>
+    </span>
+  </div>
+
+  <div class="listings" id="listings"></div>
+  <section class="card" data-show="no-match">
+    <div class="empty">
+      <h3>No listings match</h3>
+      <p>Try fewer filters, or check back later: new listings arrive all the time.</p>
+      <button type="button" class="btn btn-outline" data-go="market">Clear filters</button>
+    </div>
+  </section>
+
+  <section class="stack" style="gap: 8px;">
+    <h2 style="font-size: 16px; font-weight: 600;">Recent trades</h2>
+    <div class="card trades">
+      <div class="trade"><a href="#">Misty</a> traded <span class="badge badge-gold xs">★ Shiny Gible Lv 48 +30</span> to <a href="#">Brock</a> for <span class="badge xs">Onix Lv 100 +50</span><span class="when">2 hours ago</span></div>
+      <div class="trade"><a href="#">Ash</a> traded <span class="badge xs">Dragonite Lv 100 +5</span> to <a href="#">Gary</a> for <span class="badge xs">Lapras Lv 70 +20</span> + 10 boost stones<span class="when">yesterday</span></div>
+      <div class="trade"><a href="#">Erika</a> traded <span class="badge xs">Mewtwo Lv 67</span> to <a href="#">Sabrina</a> for <span class="badge xs">Alakazam Lv 100 +40</span> + Master Ball<span class="when">3 days ago</span></div>
+    </div>
+  </section>
+  <p class="note">Filters work like the Box: search, a filters dialog (type, shiny, minimum boost, minimum level) and removable chips. Player names link to their profiles (Spec 8). The Dashboard shows a short version of Recent trades.</p>
+</main>
+
+<div class="overlay" data-show="new-pick">
+  <div class="dialog dialog-wide" role="dialog" aria-labelledby="new-title">
+    <div class="stack" style="gap: 4px;">
+      <h2 id="new-title">New listing · choose a Pokémon</h2>
+      <p class="small muted">Step 1 of 2. Locked Pokémon and Pokémon already in a trade can't be listed.</p>
+    </div>
+    <label class="search" for="pick-search" style="max-width: none;">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" style="color: var(--muted-fg);"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
+      <input id="pick-search" type="search" placeholder="Search your Pokémon" autocomplete="off">
+    </label>
+    <div class="pick-grid">
+      <button type="button" class="pick" data-go="new-details"><span class="sprite sprite-sm sprite-shiny" aria-hidden="true"></span><strong>Shiny Gible</strong><span class="muted num">Lv 48 · +30</span></button>
+      <button type="button" class="pick" data-go="new-details"><span class="sprite sprite-sm" aria-hidden="true"></span><strong>Dragonite</strong><span class="muted num">Lv 61 · +40</span></button>
+      <button type="button" class="pick" disabled title="Locked"><span class="sprite sprite-sm sprite-shiny" aria-hidden="true"></span><strong>Shiny Charmeleon</strong><span class="muted">Locked</span></button>
+      <button type="button" class="pick" disabled title="Already in a trade"><span class="sprite sprite-sm" aria-hidden="true"></span><strong>Scizor</strong><span class="muted">In a trade</span></button>
+      <button type="button" class="pick" data-go="new-details"><span class="sprite sprite-sm" aria-hidden="true"></span><strong>Lapras</strong><span class="muted num">Lv 50 · +12</span></button>
+      <button type="button" class="pick" data-go="new-details"><span class="sprite sprite-sm" aria-hidden="true"></span><strong>Gengar</strong><span class="muted num">Lv 57 · +20</span></button>
+    </div>
+    <div class="dialog-actions"><button type="button" class="btn btn-outline" data-go="market">Cancel</button></div>
+  </div>
+</div>
+
+<div class="overlay" data-show="new-details">
+  <div class="dialog" role="dialog" aria-labelledby="details-title" style="max-width: 520px;">
+    <div class="stack" style="gap: 4px;">
+      <h2 id="details-title">New listing · details</h2>
+      <p class="small muted">Step 2 of 2.</p>
+    </div>
+    <div class="summary">
+      <span class="sprite sprite-md sprite-shiny" aria-hidden="true">Shiny Gible</span>
+      <div class="stack" style="gap: 4px;">
+        <strong>★ Shiny Gible ♂</strong>
+        <span class="row" style="gap: 4px;"><span class="badge num">Lv 48</span><span class="badge num">+30</span><span class="type type-dragon">Dragon</span><span class="type type-ground">Ground</span></span>
+      </div>
+    </div>
+    <div class="stack" style="gap: 6px;">
+      <label for="looking-for" class="small" style="font-weight: 500;">Looking for <span class="muted" style="font-weight: 400;">(optional)</span></label>
+      <textarea class="textarea" id="looking-for" maxlength="200">Shiny Dragon types or boost stones</textarea>
+      <span class="xs muted num" id="counter" style="align-self: flex-end;">34 / 200</span>
+    </div>
+    <p class="small"><span class="money"><span class="coin" aria-hidden="true"></span>₽ 500</span> <span class="muted">listing fee, refunded if no one trades within 7 days. Kept if you cancel. The Pokémon leaves your party while it's listed.</span></p>
+    <div class="dialog-actions">
+      <button type="button" class="btn btn-outline" data-go="new-pick">Back</button>
+      <a class="btn btn-primary" href="trade-listing.html#seller">List for ₽ 500</a>
+    </div>
+  </div>
+</div>
+
+<script src="assets/mockup.js"></script>
+<script>
+  (function () {
+    var listings = [
+      ['Shiny Gible', 48, 30, true, [['dragon', 'Dragon'], ['ground', 'Ground']], 3, '6 days', 'Ash'],
+      ['Dragonite', 100, 5, false, [['dragon', 'Dragon'], ['flying', 'Flying']], 0, '2 days', 'Lance'],
+      ['Shiny Magikarp', 100, 90, true, [['water', 'Water']], 12, '1 day', 'Misty'],
+      ['Mewtwo', 67, 0, false, [['psychic', 'Psychic']], 5, '4 days', 'Sabrina'],
+      ['Scizor', 85, 22, false, [['bug', 'Bug'], ['steel', 'Steel']], 2, '5 days', 'Bugsy'],
+      ['Lapras', 50, 12, false, [['water', 'Water'], ['ice', 'Ice']], 1, '7 days', 'Lorelei']
+    ];
+    function draw(state) {
+      var grid = document.getElementById('listings');
+      var shown = state === 'no-match' ? [] : (state === 'filtered' ? listings.filter(function (l) { return l[3] && l[2] >= 20; }) : listings);
+      grid.innerHTML = '';
+      grid.hidden = shown.length === 0;
+      shown.forEach(function (l) {
+        grid.insertAdjacentHTML('beforeend',
+          '<div class="card listing' + (l[3] ? ' shiny-ring' : '') + '">' +
+          '<span class="sprite sprite-md' + (l[3] ? ' sprite-shiny' : '') + '" aria-hidden="true">' + l[0] + '</span>' +
+          '<a class="name" href="trade-listing.html#visitor" style="text-decoration: none; color: ' + (l[3] ? 'var(--gold-fg)' : 'var(--fg)') + ';">' + (l[3] ? '★ ' : '') + l[0] + '</a>' +
+          '<span class="row" style="justify-content: center; gap: 4px;"><span class="badge num">Lv ' + l[1] + '</span><span class="badge num">+' + l[2] + '</span></span>' +
+          '<span class="row" style="justify-content: center; gap: 4px;">' + l[4].map(function (t) { return '<span class="type type-' + t[0] + '">' + t[1] + '</span>'; }).join('') + '</span>' +
+          '<span class="xs muted">by ' + l[7] + '</span>' +
+          '<span class="meta"><span class="num">' + l[5] + (l[5] === 1 ? ' offer' : ' offers') + '</span><span>' + l[6] + ' left</span></span>' +
+          '<span class="row" style="width: 100%; gap: 6px;"><a class="btn btn-ghost" style="flex: 1; min-height: 34px;" href="trade-listing.html#details">Details</a><a class="btn btn-outline" style="flex: 1; min-height: 34px;" href="trade-listing.html#visitor">View</a></span>' +
+          '</div>');
+      });
+    }
+    var area = document.getElementById('looking-for');
+    area.addEventListener('input', function () { document.getElementById('counter').textContent = area.value.length + ' / 200'; });
+    document.addEventListener('mockup:state', function (e) { draw(e.detail); });
+    draw(document.documentElement.getAttribute('data-state') || 'market');
+  })();
+</script>
+</body>
+</html>

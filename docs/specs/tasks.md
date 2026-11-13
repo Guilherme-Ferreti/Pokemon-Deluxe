@@ -1593,3 +1593,209 @@ Read [06-trainers-gyms-and-battle-tower.md](06-trainers-gyms-and-battle-tower.md
 **Tests:** feature test: trainer battle props (no balls, trainer name, team size); browser test: the win screen shows the money.
 
 **Done when:** trainer, gym, Elite Four and Tower battles all look right on the page.
+
+---
+
+## 7. Spec 7 — Trading
+
+Read [07-trading.md](07-trading.md) first, including "Details to confirm". Trading lives in a new domain, `src/App/Trading`. Notifications use Laravel's database notifications and are shared by later features.
+
+### 7.1 Trade data
+
+**Goal:** store listings and offers.
+
+**Build:**
+- Enums in `Shared\Enums`: `ListingStatus` (`OPEN`, `TRADED`, `CANCELLED`, `EXPIRED`), `OfferStatus` (`PENDING`, `ACCEPTED`, `DECLINED`, `WITHDRAWN`).
+- Migration `036_create_trade_listings_table.php`: `uuid id`, `foreignIdFor(User)` (seller), `foreignIdFor(Pokemon)`, nullable `looking_for` (200), `status` enum, `fee`, `expires_at`, nullable `traded_at`, timestamps; index `['status', 'expires_at']`.
+- Migration `037_create_trade_offers_table.php`: `uuid id`, `foreignIdFor(TradeListing)`, `foreignIdFor(User)` (offerer), `status` enum, timestamps; unique pending offer per user per listing (checked in code).
+- Migration `038_create_trade_offer_pokemon_table.php` (`trade_offer_id`, `pokemon_id`) and `039_create_trade_offer_items_table.php` (`trade_offer_id`, `item_type`, `item_id`, `quantity`).
+- Migration `040_add_is_on_trade_hold_to_pokemon_table.php`: `boolean('is_on_trade_hold')->default(false)`.
+- Models `Shared\Models\TradeListing`, `TradeOffer`, `TradeOfferItem` (with factories); `Pokemon::scopeTradeable()` (owned, not locked, not on hold).
+- Config `game.trading`: `listing_fee` (500), `listing_days` (7), `max_offer_pokemon` (6), `max_offer_items` (10), `looking_for_max_length` (200).
+
+**Tests:** relations and the tradeable scope.
+
+**Done when:** tables and models exist; tests pass.
+
+### 7.2 Trade holds everywhere
+
+**Goal:** a Pokémon on hold can't be used.
+
+**Build:**
+- Exception `App\Pokemon\Exceptions\PokemonOnTradeHoldException`.
+- Refuse Pokémon on hold in: `AddToPartyAction`, `SwapPartyPokemonAction`, `ReleasePokemonAction`, `EvolvePokemonAction`, `TeachTmAction`, `UseBoostStonesAction`, `SetActiveMoveAction`, `ReorderActiveMovesAction`, `StartTowerRunAction`, gym and battle team selection.
+- Pokémon page and Box show an "On trade" badge and disable those actions with the reason.
+
+**Tests:** one test per action that a held Pokémon is refused.
+
+**Done when:** tests pass.
+
+### 7.3 Notifications
+
+**Goal:** a reusable notification bell.
+
+**Build:**
+- `php artisan make:notifications-table` → migration `041_create_notifications_table.php`.
+- Notifications in `App\Trading\Notifications`: `OfferReceived`, `OfferAccepted`, `OfferDeclined`, `ListingTraded`, `ListingExpired` (database channel; each stores a short message and a link).
+- `HandleInertiaRequests` shares `notifications.unreadCount`.
+- Route `GET /notifications` (`notifications.web.index`, the latest 20) and `POST /notifications/read` (`notifications.web.read`, marks all read).
+
+**Mock-up:** `docs/mockups/layout.html` (state "Notifications open")
+
+**UI suggestions** (ideas, not requirements):
+- A bell icon button in the top bar with a small count badge (hidden at 0).
+- Clicking opens a `Popover` (a `Sheet` on phones) listing notifications: icon, one line ("Misty made an offer on your Shiny Gible"), time ago, unread ones with a dot; each links to its page. A "Mark all as read" ghost button at the top.
+- Empty: "No notifications yet".
+
+**Tests:** feature tests for the shared count and both routes.
+
+**Done when:** the bell works with a test notification.
+
+### 7.4 List a Pokémon
+
+**Goal:** put a Pokémon on the market.
+
+**Build:**
+- `App\Trading\Actions\CreateListingAction::handle(User $user, Pokemon $pokemon, ?string $lookingFor): TradeListing`
+  - The Pokémon must be tradeable (`App\Trading\Exceptions\PokemonNotTradeableException` with the reason: locked, on hold) and not the last party Pokémon (`PartyCannotBeEmptyException`).
+  - Spends the fee (`SpendMoneyAction`), removes it from the party, sets `is_on_trade_hold`, sets `expires_at`. One transaction.
+
+**Tests:** listing created and fee spent; leaves the party and goes on hold; locked, held and last-party Pokémon refused; not enough money refused; nothing changes when refused.
+
+**Done when:** tests pass.
+
+### 7.5 Make, withdraw and decline offers
+
+**Goal:** the offer side.
+
+**Build:**
+- `App\Trading\Actions\MakeOfferAction::handle(User $user, TradeListing $listing, array $pokemonIds, array $items): TradeOffer`
+  - Refuses: own listing, listing not open, an existing pending offer by the player, empty offer, more than the limits, Pokémon not tradeable or last party Pokémon, items not owned.
+  - Puts the Pokémon on hold (leaving the party) and removes the items from the inventory (`RemoveInventoryItemAction`). Notifies the seller (`OfferReceived`).
+- `WithdrawOfferAction::handle(TradeOffer $offer): void` (offerer only, pending only) and `DeclineOfferAction::handle(TradeOffer $offer): void` (seller only, pending only, notifies `OfferDeclined`): both release the holds and return the items (`AddInventoryItemAction`).
+
+**Tests:** offer made, holds and items set aside; each refusal; withdraw and decline give everything back; notifications sent.
+
+**Done when:** tests pass.
+
+### 7.6 Accept an offer
+
+**Goal:** the trade happens.
+
+**Build:**
+- `App\Trading\Actions\AcceptOfferAction::handle(TradeOffer $offer): void`, seller only, under a lock for the listing:
+  - Refuses when the listing isn't open or the offer isn't pending, and when either player's Box would overflow (`App\Trading\Exceptions\TradeBoxFullException` saying whose).
+  - Swaps owners: the listed Pokémon to the offerer, the offer's Pokémon to the seller, the offer's items to the seller's inventory. Traded Pokémon keep everything (moves, level, boost, shiny, original trainer), go to the Box and lose the hold.
+  - Listing `TRADED` (`traded_at`), offer `ACCEPTED`, every other pending offer declined (`DeclineOfferAction`).
+  - Notifies the offerer (`OfferAccepted`) and dispatches `TradeCompleted` (missions: `MAKE_TRADES` for both players).
+
+**Tests:** owners swapped and everything kept; items moved; other offers declined and returned; Box full refused for each side; second accept refused; event and notifications.
+
+**Done when:** tests pass.
+
+### 7.7 Cancel and expire listings
+
+**Goal:** listings end without a trade.
+
+**Build:**
+- `App\Trading\Actions\CancelListingAction::handle(TradeListing $listing): void` (seller only, open only): `CANCELLED`, fee kept, hold released, pending offers declined.
+- `ExpireListingAction::handle(TradeListing $listing): void`: `EXPIRED`, fee refunded (`AddMoneyAction`), hold released, pending offers declined, seller notified (`ListingExpired`).
+- Command `trading:expire-listings`, scheduled every 5 minutes in `routes/console.php`, expires open listings past `expires_at`.
+
+**Tests:** cancel keeps the fee; expire refunds it; offers declined in both; the command expires only past-due listings.
+
+**Done when:** tests pass.
+
+### 7.8 Pokémon details dialog
+
+**Goal:** see everything about a Pokémon in a trade.
+
+**Mock-up:** `docs/mockups/trade-listing.html` (state "Pokémon details")
+
+**Build:** a shared component `resources/js/shared/components/game/PokemonDetailsDialog.vue` (Spec 8's profile can reuse it), fed by a `PokemonDetails` shape from a shared PHP presenter: sprite, display name, gender, types, level, boost, shiny, stats, active moves, the full known-moves pool, ball, original trainer.
+
+**UI suggestions** (ideas, not requirements):
+- A read-only version of the Pokémon page's header, stats and moves, in a wide `Dialog`; known moves as compact type-coloured chips with power.
+
+**Tests:** feature test: listing props include the details for the listed and offered Pokémon.
+
+**Done when:** the dialog opens from listings and offers.
+
+### 7.9 Trade market page
+
+**Goal:** browse open listings.
+
+**Mock-up:** `docs/mockups/trade-market.html` (states "Market", "No listings match", "Recent trades")
+
+**Build:**
+- Route `GET /trading` named `trading.web.index` → `TradeMarketController@index`, with `TradeMarketIndexPageProps`: open listings (paginated, newest first) filtered by species, type, shiny, minimum boost and minimum level, each with the Pokémon summary, offer count and time left; plus the latest public trades.
+- Sidebar "Trading" link, after "Inventory".
+
+**Mock-up (sidebar):** `docs/mockups/layout.html`
+
+**UI suggestions** (ideas, not requirements):
+- `AppPageHeader` ("Trade market") with "My trades" (outline) and "New listing" (primary) on the right.
+- Filters like the Box: a search `InputGroup`, a filters button opening `AppSearchFiltersDialog` (type, shiny, min boost, min level), active filters as removable chips.
+- A grid of listing cards (auto-fill, about 13rem): portrait, display name (gold for shiny), level and boost badges, types, "3 offers", "6 days left", the seller, and two buttons: "Details" (ghost, opens `PokemonDetailsDialog`) and "View" (outline, the listing page). The card itself is not a link, so the buttons don't sit inside one.
+- Below, "Recent trades": rows "Misty traded ★ Shiny Gible Lv 48 +30 to Brock for Onix +50", time ago, each name linking to the profile (Spec 8).
+
+**Tests:** feature tests for filters and props.
+
+**Done when:** a player can browse and filter listings.
+
+### 7.10 New listing
+
+**Goal:** list a Pokémon from the page.
+
+**Mock-up:** `docs/mockups/trade-market.html` (states "New listing: choose a Pokémon", "New listing: details")
+
+**Build:**
+- Route `POST /trading/listings` (`trading.web.listings.store`, `pokemon_id`, `looking_for`).
+- "New listing" opens a two-step dialog: pick a tradeable Pokémon (search; locked and held ones disabled with the reason), then "Looking for" and the fee confirmation.
+- The Pokémon page (Spec 4) gets a "Trade" action that opens step two directly.
+
+**UI suggestions** (ideas, not requirements):
+- Step 2 shows the chosen Pokémon's summary, a `Textarea` for "Looking for" with a 200-character counter, the fee ("Listing costs ₽ 500, refunded if no one trades within 7 days"), and a primary "List for ₽ 500".
+
+**Tests:** feature test for the route and its errors; browser test: list a Pokémon.
+
+**Done when:** a player can list from the market and the Pokémon page.
+
+### 7.11 Listing page and offers
+
+**Goal:** see a listing, make offers, and (as seller) accept or decline them.
+
+**Mock-up:** `docs/mockups/trade-listing.html` (all states)
+
+**Build:**
+- Route `GET /trading/listings/{listing}` (`trading.web.listings.show`) with `TradeListingShowPageProps`: the Pokémon details, seller, "Looking for", time left, status, offers (offerer, Pokémon summaries, items) and whether the viewer is the seller.
+- Routes: `POST /trading/listings/{listing}/offers` (`trading.web.offers.store`), `DELETE /trading/offers/{offer}` (withdraw), `POST /trading/offers/{offer}/accept`, `POST /trading/offers/{offer}/decline`, `DELETE /trading/listings/{listing}` (cancel).
+
+**UI suggestions** (ideas, not requirements):
+- Top: the listed Pokémon (portrait, name, badges, moves) with a "Details" button, the seller, "Looking for" in a quote block, "Expires in 6 days".
+- Offers: one `Card` per offer with the offerer's name, their Pokémon as small cards (each with "Details") and items with quantities. The seller sees "Accept" (primary) and "Decline" (ghost); the offerer sees "Withdraw" on their own.
+- Visitors without an offer see a primary "Make an offer"; it opens a dialog with two tabs, Pokémon (tradeable ones, search) and Items (quantity pickers), a summary of what's offered, and "Send offer".
+- Accept asks for confirmation: "Trade your Shiny Gible for Shiny Dratini and 5 boost stones? The other 2 offers will be declined."
+- Seller's own listing: "Cancel listing" (destructive outline) with a confirmation that the fee isn't refunded.
+
+**Tests:** feature tests for each route and error; browser tests: make an offer; accept an offer.
+
+**Done when:** a full trade can be done from the pages.
+
+### 7.12 My trades
+
+**Goal:** a player's listings, offers and history.
+
+**Mock-up:** `docs/mockups/trade-mine.html` (all states)
+
+**Build:**
+- Route `GET /trading/mine` (`trading.web.mine`, `?tab=listings|offers|history`) with `MyTradesPageProps`: open listings with offer counts, pending offers with their listing, and finished trades (traded, cancelled, expired, declined, withdrawn), newest first.
+
+**UI suggestions** (ideas, not requirements):
+- Tabs: My listings, My offers, History.
+- Listings and offers as compact rows linking to the listing page, with status badges (Open, Pending, Accepted, Declined, Expired, Cancelled) coloured by meaning.
+- History rows say what happened in a sentence: "You traded Shiny Gible to Brock for Onix" with the date.
+
+**Tests:** feature test for each tab's props.
+
+**Done when:** a player can follow their trades.

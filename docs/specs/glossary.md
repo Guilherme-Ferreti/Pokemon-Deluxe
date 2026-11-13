@@ -74,6 +74,14 @@ One name per idea, used everywhere: specs, code, database, tests and UI. When yo
 | Checkpoint | `TowerFloorCalculator::isCheckpoint()` | Full heal; floors 10, 25, 45, 70, 100… |
 | Battle Points | `battle_points` | Earned in the Tower. |
 | Best floor | `best_tower_floor` | Highest floor won. |
+| Listing | `TradeListing`, `ListingStatus` | A Pokémon put on the trade market. |
+| Seller / offerer | `user_id` on the listing / on the offer | |
+| Offer | `TradeOffer`, `OfferStatus` | Pokémon and items offered for a listing. |
+| Looking for | `looking_for` | The seller's free-text wish, up to 200 characters. |
+| Listing fee | `fee`, `game.trading.listing_fee` | ₽ 500, refunded on expiry. |
+| On trade hold | `is_on_trade_hold` | The Pokémon is in a listing or offer and can't be used. |
+| Accept / decline / withdraw / cancel / expire | `AcceptOfferAction`, `DeclineOfferAction`, `WithdrawOfferAction`, `CancelListingAction`, `ExpireListingAction` | |
+| Notification | Laravel database notifications | Shown under the bell. |
 | Original trainer | `original_user_id` / `originalUser()` | Already in the code. |
 | Party / Box | `in_party` / `inParty()`, `inBox()` | Already in the code. |
 
