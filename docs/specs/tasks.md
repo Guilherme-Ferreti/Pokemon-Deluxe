@@ -1711,16 +1711,16 @@ Read [06-trainers-gyms-and-battle-tower.md](06-trainers-gyms-and-battle-tower.md
 **Mock-up:** `docs/mockups/area.html` (state "Trainer encounter")
 
 **Build:**
-- `App\Trainers\Mechanics\TrainerTeamRoller::roll(Collection $species, int $size, int $minLevel, int $maxLevel, int $boost = 0): array` (shared with the Tower): random species, levels, genders, shiny at the normal odds, base moves.
+- `App\Trainers\Mechanics\TrainerTeamRoller::roll(Collection $species, int $size, int $minLevel, int $maxLevel, int $boost = 0): array` (used by the Battle Tower, task 6.12): random species, levels, genders, shiny at the normal odds, base moves. Trainers met while exploring use `EncounterRoller` instead (below).
 - A small list of names and classes for generated trainers in `config/trainers.php`.
 - Migration `033_add_trainer_columns_to_encounters_table.php`: `kind` enum (`POKEMON`, `TRAINER`), nullable `trainer_name`, `trainer_class`, `json trainer_team`, `payout`.
-- `ExploreAction` (task 2.6): 1 in `game.exploration.trainer_odds` (20) rolls a trainer of 1–3 Pokémon from the area at its wild levels. Full payout = `game.trainers.explore_payout_per_level` × the team's average level (the value is still an open question in the README), reduced like any trainer.
+- `ExploreAction` (task 2.6): 1 in `game.exploration.trainer_odds` (20) rolls a trainer of 1–3 Pokémon, each picked with `EncounterRoller` (task 2.5) from the area's species: the same stage weights, 1 in 500 legendary or mythical, its own wild levels. Full payout = `game.trainers.explore_payout_per_level` (100) × the team's average level, reduced like any trainer.
 - `BattleEncounterAction` starts a `TRAINER` battle for trainer encounters (paid like any trainer).
 
 **UI suggestions** (ideas, not requirements):
 - The encounter card shows the trainer sprite, "Hiker Bob wants to battle!", the team as small portraits (or "3 Pokémon"), the level range and the payout, with "Battle" (primary) and "Keep exploring" (outline).
 
-**Tests:** trainer rolled with the faked odds; team from the area within its levels; battle starts as a trainer battle and pays.
+**Tests:** trainer rolled with the faked odds; each team member rolled like a wild encounter (stage and legendary rolls faked) within its levels; payout from the average level; battle starts as a trainer battle and pays.
 
 **Done when:** tests pass.
 
@@ -1774,7 +1774,7 @@ Read [06-trainers-gyms-and-battle-tower.md](06-trainers-gyms-and-battle-tower.md
 - Migration `034_create_elite_four_runs_table.php`: `uuid id`, `foreignIdFor(User)`, `region` enum, `stage` (1–5), `status` enum (`ACTIVE`, `WON`, `LOST`, `QUIT`), timestamps.
 - `App\Trainers\Actions\StartEliteFourRunAction::handle(User $user, Region $region): EliteFourRun`: needs all 8 badges of the region (`App\Trainers\Exceptions\BadgesMissingException`); one active run at a time.
 - `ContinueEliteFourRunAction::handle(EliteFourRun $run): Battle`: starts an `ELITE_FOUR` battle against the stage's opponent with the party in party order (healed: normal battles always heal).
-- Listener `App\Trainers\Listeners\AdvanceEliteFourRunOnBattleEnded` for `ELITE_FOUR` battles: a win → next stage; after the Champion: `WON`, pay `game.trainers.champion_prize` (30,000) with `AddMoneyAction` (no level reduction), record the victory, dispatch `ChampionDefeated`. A loss or a run → `LOST`.
+- Listener `App\Trainers\Listeners\AdvanceEliteFourRunOnBattleEnded` for `ELITE_FOUR` battles: a win → next stage; after the Champion: `WON`, record the victory, dispatch `ChampionDefeated`, and on the player's first win against that Champion pay `game.trainers.champion_prize` (30,000) with `AddMoneyAction` (no level reduction). A loss or a run → `LOST`.
 - `QuitEliteFourRunAction::handle(EliteFourRun $run): void`: only an active run, and only between battles (refused while its battle is ongoing: the player runs from the battle instead); status `QUIT`.
 - Routes: `POST /gyms/{region}/elite-four` (`trainers.web.elite-four.start`), `POST /gyms/elite-four/continue` (`trainers.web.elite-four.continue`, redirects to the battle) and `DELETE /gyms/elite-four` (`trainers.web.elite-four.quit`, back to the Gyms page with a toast).
 - Gyms page (task 6.9) during a run: the five steps with the beaten ones ticked, a primary "Continue: battle Agatha" and a destructive-outline "Quit the Elite Four" that asks for confirmation. The battle end screen after a member is beaten shows "Next: Agatha" and the same quit button (task 6.14).
@@ -1783,9 +1783,9 @@ Read [06-trainers-gyms-and-battle-tower.md](06-trainers-gyms-and-battle-tower.md
 
 **UI suggestions** (ideas, not requirements):
 - Quit confirmation (`alert-dialog`): "Quit the Kanto Elite Four?" / "Your run ends here. Next time you start again from Lorelei." with "Keep going" (outline) and "Quit" (destructive).
-- Champion beaten: a gold "Champion ✓" badge on the card and "+ ₽ 30,000 Champion prize" on the battle's end screen.
+- Champion beaten: a gold "Champion ✓" badge on the card and, the first time only, "+ ₽ 30,000 Champion prize" on the battle's end screen.
 
-**Tests:** refused without 8 badges; stages advance; a loss or a run ends the run; quit sets `QUIT` and is refused during the run's battle; the next run starts at stage 1; members pay nothing; beating the Champion pays the prize, records it and fires the event; feature tests for the three routes.
+**Tests:** refused without 8 badges; stages advance; a loss or a run ends the run; quit sets `QUIT` and is refused during the run's battle; the next run starts at stage 1; members pay nothing; beating the Champion records it and fires the event, and pays the prize only the first time; feature tests for the three routes.
 
 **Done when:** tests pass, and the run can be played and quit from the Gyms page and the battle page.
 
@@ -1864,7 +1864,7 @@ Read [06-trainers-gyms-and-battle-tower.md](06-trainers-gyms-and-battle-tower.md
 
 **Mock-up:** `docs/mockups/battle.html` (states "Trainer battle", "Run confirmation: trainer", "Trainer battle won", "Lost: XP kept", "Elite Four battle won", "Quit the Elite Four")
 
-**Build:** the header names the trainer ("Hiker Bob" / "Gym Leader Brock"); the opponent's team dots show all its Pokémon; no Throw ball button; the end screen shows the money earned (with the reduced-payout note when it applies) and the XP rows of task 1.21 for wins and losses; "Next: …" and "Quit the Elite Four" for Elite Four runs, with the Champion's prize after the last battle; and "Back to the Tower" with the HP left and the XP saved in the run for Tower battles.
+**Build:** the header names the trainer ("Hiker Bob" / "Gym Leader Brock"); the opponent's team dots show all its Pokémon; no Throw ball button; the end screen shows the money earned (with the reduced-payout note when it applies) and the XP rows of task 1.21 for wins and losses; "Next: …" and "Quit the Elite Four" for Elite Four runs, with the Champion's prize after the first win against the Champion; and "Back to the Tower" with the HP left and the XP saved in the run for Tower battles.
 - The Run confirmation says what running costs: against a trainer, "Running counts as a loss: no money, but you keep the XP for opponents you knocked out."; in an Elite Four run, "…and it ends your Elite Four run."; in the Tower, "…and it ends your Tower run."
 
 **UI suggestions** (ideas, not requirements):

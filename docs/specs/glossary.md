@@ -95,7 +95,7 @@ One name per idea, used everywhere: specs, code, database, tests and UI. When yo
 | Party order | `party_position` (1–6), `ReorderPartyAction` | The sending-out order; the first one leads. |
 | Tower team order | `ReorderTowerTeamAction` | The run's own sending-out order. |
 | Quit the Elite Four | `QuitEliteFourRunAction`, status `QUIT` on `EliteFourRun` | Between battles only. |
-| Champion prize | `game.trainers.champion_prize` | ₽ 30,000 for beating a Champion. |
+| Champion prize | `game.trainers.champion_prize` | ₽ 30,000 for beating a region's Champion the first time. |
 
 ## Naming recipes
 

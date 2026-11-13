@@ -7,7 +7,7 @@ Players earn Pokédollars (₽) from trainers, gyms, missions and selling items,
 ## Money
 
 - One currency for now: Pokédollars (₽). A second currency, Battle Points, comes with the Battle Tower (Spec 6).
-- **Earned from:** beating NPC trainers and gyms, beating a region's Champion at the end of an Elite Four run (₽ 30,000; Spec 6), missions, and selling items back to the shop.
+- **Earned from:** beating NPC trainers and gyms, beating a region's Champion for the first time (₽ 30,000; Spec 6), missions, and selling items back to the shop.
 - **Not earned from:** wild battles, Elite Four members (only the Champion pays), or selling or releasing Pokémon (this would let players farm money by catching and selling).
 - **Spent on:** the shop, unlocking incubators, and a trade listing fee (Spec 7). The fee comes back if the listing expires.
 - New players start with ₽ 2,000, enough for 10 Poké Balls.
