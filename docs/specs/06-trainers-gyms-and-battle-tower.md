@@ -78,9 +78,9 @@ During a run: floor number, team HP that carries over,
 next checkpoint, [Next battle] [Quit run]
 ```
 
-## Details to confirm (proposal)
+## Details (agreed)
 
-Gaps found while splitting this spec into tasks. Each is a first proposal.
+Gaps found while splitting this spec into tasks, agreed on 13 Nov 2026.
 
 - **Gym money:** gym battles pay money with the trainer formula on every win, like any trainer. The badge and achievement come only from the first win.
 - **Gym levels:** the same in every region, rising with the gym's number: gym 1 Lv 12–15, gym 2 Lv 18–21, gym 3 Lv 24–27, gym 4 Lv 30–33, gym 5 Lv 36–39, gym 6 Lv 42–45, gym 7 Lv 48–51, gym 8 Lv 54–57. Elite Four Lv 62–68 with +10 boost; Champion Lv 70–75 with +20 boost. Badge order stays free.

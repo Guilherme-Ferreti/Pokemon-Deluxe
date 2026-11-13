@@ -1366,7 +1366,7 @@ Read [05-missions.md](05-missions.md) first, including its "Starting content" an
 
 ## 6. Spec 6 — NPC trainers, Gyms and the Battle Tower
 
-Read [06-trainers-gyms-and-battle-tower.md](06-trainers-gyms-and-battle-tower.md) first, including "Details to confirm". Trainers, gyms and the Elite Four live in a new domain, `src/App/Trainers`; the Battle Tower in `src/App/BattleTower`. All of them start battles through the Spec 1 battle engine (`src/App/Battle`), which gets a few general additions here.
+Read [06-trainers-gyms-and-battle-tower.md](06-trainers-gyms-and-battle-tower.md) first, including its "Details" section. Trainers, gyms and the Elite Four live in a new domain, `src/App/Trainers`; the Battle Tower in `src/App/BattleTower`. All of them start battles through the Spec 1 battle engine (`src/App/Battle`), which gets a few general additions here.
 
 ### 6.1 Trainers and their teams
 
@@ -1598,7 +1598,7 @@ Read [06-trainers-gyms-and-battle-tower.md](06-trainers-gyms-and-battle-tower.md
 
 ## 7. Spec 7 — Trading
 
-Read [07-trading.md](07-trading.md) first, including "Details to confirm". Trading lives in a new domain, `src/App/Trading`. Notifications use Laravel's database notifications and are shared by later features.
+Read [07-trading.md](07-trading.md) first, including its "Details" section. Trading lives in a new domain, `src/App/Trading`. Notifications use Laravel's database notifications and are shared by later features.
 
 ### 7.1 Trade data
 
@@ -1657,10 +1657,10 @@ Read [07-trading.md](07-trading.md) first, including "Details to confirm". Tradi
 
 **Build:**
 - `App\Trading\Actions\CreateListingAction::handle(User $user, Pokemon $pokemon, ?string $lookingFor): TradeListing`
-  - The Pokémon must be tradeable (`App\Trading\Exceptions\PokemonNotTradeableException` with the reason: locked, on hold) and not the last party Pokémon (`PartyCannotBeEmptyException`).
+  - The Pokémon must be tradeable (`App\Trading\Exceptions\PokemonNotTradeableException` with the reason: locked, on hold, or taking part in an ongoing battle, meaning its ID is on the player's side of the player's `ONGOING` battle) and not the last party Pokémon (`PartyCannotBeEmptyException`).
   - Spends the fee (`SpendMoneyAction`), removes it from the party, sets `is_on_trade_hold`, sets `expires_at`. One transaction.
 
-**Tests:** listing created and fee spent; leaves the party and goes on hold; locked, held and last-party Pokémon refused; not enough money refused; nothing changes when refused.
+**Tests:** listing created and fee spent; leaves the party and goes on hold; locked, held, in-battle and last-party Pokémon refused; not enough money refused; nothing changes when refused.
 
 **Done when:** tests pass.
 
@@ -1670,7 +1670,7 @@ Read [07-trading.md](07-trading.md) first, including "Details to confirm". Tradi
 
 **Build:**
 - `App\Trading\Actions\MakeOfferAction::handle(User $user, TradeListing $listing, array $pokemonIds, array $items): TradeOffer`
-  - Refuses: own listing, listing not open, an existing pending offer by the player, empty offer, more than the limits, Pokémon not tradeable or last party Pokémon, items not owned.
+  - Refuses: own listing, listing not open, an existing pending offer by the player, empty offer, more than the limits, Pokémon not tradeable (locked, on hold, or in an ongoing battle) or last party Pokémon, items not owned.
   - Puts the Pokémon on hold (leaving the party) and removes the items from the inventory (`RemoveInventoryItemAction`). Notifies the seller (`OfferReceived`).
 - `WithdrawOfferAction::handle(TradeOffer $offer): void` (offerer only, pending only) and `DeclineOfferAction::handle(TradeOffer $offer): void` (seller only, pending only, notifies `OfferDeclined`): both release the holds and return the items (`AddInventoryItemAction`).
 
@@ -1805,7 +1805,7 @@ Read [07-trading.md](07-trading.md) first, including "Details to confirm". Tradi
 
 ## 8. Spec 8 — Social
 
-Read [08-social.md](08-social.md) first, including "Details to confirm". Profiles, player search and the captures feed live in a new domain, `src/App/Social`; the Dashboard stays in `src/App/Dashboard`.
+Read [08-social.md](08-social.md) first, including its "Details" section. Profiles, player search and the captures feed live in a new domain, `src/App/Social`; the Dashboard stays in `src/App/Dashboard`.
 
 ### 8.1 Unique player names
 

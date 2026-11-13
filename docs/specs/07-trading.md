@@ -22,6 +22,7 @@ Players list a Pokémon on a trade market, other players make offers of Pokémon
 - A Pokémon can be in only one listing or offer at a time.
 - Items in an offer are set aside from the inventory and returned if the offer is turned down or withdrawn.
 - Locked Pokémon (Spec 4) cannot be listed or offered.
+- A Pokémon taking part in an ongoing battle (it is on the player's side of a battle that hasn't ended) cannot be listed or offered.
 
 ## Accepting and withdrawing
 
@@ -78,9 +79,9 @@ RECENT TRADES (full list)
 - Accept buttons are visible only to the seller; others see **Make an offer**, which opens a picker for their Pokémon and items.
 - Listing cards and offer cards have a **Details** button that opens a modal with everything about the Pokémon: stats, active moves, the full known-moves pool, boost and shiny.
 
-## Details to confirm (proposal)
+## Details (agreed)
 
-Gaps found while splitting this spec into tasks. Each is a first proposal.
+Gaps found while splitting this spec into tasks, agreed on 13 Nov 2026.
 
 - **Declining:** the seller can decline a single offer; its Pokémon and items go back to the offerer.
 - **One offer per player per listing:** to change it, withdraw it and make a new one.

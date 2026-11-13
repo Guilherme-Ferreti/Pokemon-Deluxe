@@ -61,9 +61,9 @@ DASHBOARD                               Welcome back, Ash!
 - Player names in the feeds open their profiles.
 - Phone order: waiting, missions, captures, trades, shortcuts.
 
-## Details to confirm (proposal)
+## Details (agreed)
 
-Gaps found while splitting this spec into tasks. Each is a first proposal.
+Gaps found while splitting this spec into tasks, agreed on 13 Nov 2026.
 
 - **Profile link:** `/players/{id}`, so a name never has to be URL-safe.
 - **Names:** 3–20 characters (letters, numbers, spaces, `-` and `_`), unique ignoring upper and lower case ("Ash" and "ash" can't both exist).
