@@ -64,7 +64,7 @@ Streak: 4 days  ● ● ● ● ○ ○ ○   (7 days → bonus Boost Stone)
 - A dot on "Missions" in the navigation bar when something is ready to claim.
 - The Achievements tab groups the same cards by category (Catching, Battling, Collection…); finished ones are dimmed at the bottom.
 
-## Starting content (proposal)
+## Starting content (agreed)
 
 A first set to build and play-test with; easy to change because it lives in config and seed files.
 
