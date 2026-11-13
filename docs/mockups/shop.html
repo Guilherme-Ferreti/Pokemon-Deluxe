@@ -1,0 +1,180 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="claude:viewport-fit-sides" content="cover">
+<title>Shop mock-up</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="assets/mockup.css">
+<style>
+  .list { padding: 0; gap: 0; overflow: hidden; }
+  .item-row { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 16px; padding: 14px 16px; border-top: 1px solid var(--border); }
+  .item-row:first-child { border-top: 0; }
+  .item-main { display: flex; align-items: center; gap: 12px; flex: 1 1 260px; min-width: 0; }
+  .item-text { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+  .item-name { font-weight: 600; }
+  .item-buy { display: flex; flex-wrap: wrap; align-items: center; justify-content: flex-end; gap: 8px 12px; margin-left: auto; }
+  .owned { font-size: 12px; color: var(--muted-fg); min-width: 72px; }
+  .price-col { min-width: 84px; text-align: right; }
+  .buy-col { display: flex; flex-direction: column; align-items: flex-end; gap: 2px; }
+  .reason { font-size: 11px; color: var(--destructive); }
+  .rotation { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px; padding: 10px 16px; border-bottom: 1px solid var(--border); background: var(--muted); font-size: 13px; }
+  .tm-disc { width: 40px; height: 40px; border-radius: 999px; flex-shrink: 0; border: 3px solid var(--card); box-shadow: 0 0 0 1px var(--border); }
+</style>
+</head>
+<body>
+<div class="mock-bar">
+  <a href="index.html">← All mock-ups</a>
+  <span><strong>Shop</strong> · tasks 3.9, 3.10</span>
+  <label for="mockup-state">State
+    <select id="mockup-state">
+      <option value="balls">Balls tab</option>
+      <option value="evolution">Evolution items tab</option>
+      <option value="tms">TMs tab (today's 10)</option>
+      <option value="confirm">Confirm a purchase over ₽ 10,000</option>
+      <option value="poor">Can't afford</option>
+      <option value="bought">Purchase complete</option>
+    </select>
+  </label>
+  <span>Shown inside the app layout (sidebar not drawn). Dashed boxes = item sprites.</span>
+</div>
+
+<main class="page">
+  <div class="page-header">
+    <div class="stack" style="gap: 2px;">
+      <h1>Shop</h1>
+      <p>Buy balls, evolution items and today's TMs.</p>
+    </div>
+    <span class="money" title="Your money"><span class="coin" aria-hidden="true"></span><span id="wallet">₽ 12,450</span></span>
+  </div>
+
+  <div class="tabs" role="tablist" aria-label="Shop sections">
+    <button type="button" class="tab" role="tab" data-tab="balls" data-go="balls">Balls</button>
+    <button type="button" class="tab" role="tab" data-tab="evolution" data-go="evolution">Evolution items</button>
+    <button type="button" class="tab" role="tab" data-tab="tms" data-go="tms">TMs</button>
+  </div>
+
+  <section class="card list" id="list" aria-live="polite"></section>
+  <p class="note">The chosen tab is in the URL (<code>?tab=tms</code>). Buy is outline because it repeats on every row; its label shows the total. Purchases over ₽ 10,000 ask first. Earned-only items (Master Ball, Mega Stones, boost stones, Z-Move and Dynamax TMs) never appear here.</p>
+</main>
+
+<div class="overlay" data-show="confirm">
+  <div class="dialog" role="alertdialog" aria-labelledby="confirm-title">
+    <div class="stack" style="gap: 6px;">
+      <h2 id="confirm-title">Buy 10 Ultra Balls for ₽ 12,000?</h2>
+      <p class="muted">You'll have ₽ 450 left.</p>
+    </div>
+    <div class="dialog-actions">
+      <button type="button" class="btn btn-outline" data-go="balls">Not now</button>
+      <button type="button" class="btn btn-primary" data-go="bought">Buy</button>
+    </div>
+  </div>
+</div>
+
+<div class="toast" role="status" data-show="bought">
+  <span class="toast-icon" aria-hidden="true"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L20 7"/></svg></span>
+  <div><strong>Purchase complete</strong><p>You bought 10 Ultra Balls.</p></div>
+</div>
+
+<script src="assets/mockup.js"></script>
+<script>
+  (function () {
+    var catalog = {
+      balls: [
+        ['Poké Ball', 'Catches wild Pokémon. 1× catch rate.', 200, 18],
+        ['Great Ball', '1.5× catch rate.', 600, 12],
+        ['Ultra Ball', '2× catch rate.', 1200, 4],
+        ['Quick Ball', '5× on the first turn of a battle.', 1000, 3],
+        ['Timer Ball', 'Gets better every turn, up to 4×.', 1000, 0],
+        ['Net Ball', '3.5× on Bug and Grass Pokémon.', 1000, 7],
+        ['Dusk Ball', '3× at night or in the Cave.', 1000, 0],
+        ['Repeat Ball', '3.5× on species you already own.', 1000, 2]
+      ],
+      evolution: [
+        ['Fire Stone', 'Evolves some Fire-type Pokémon, such as Vulpix.', 3000, 1],
+        ['Water Stone', 'Evolves some Water-type Pokémon, such as Poliwhirl.', 3000, 0],
+        ['Thunder Stone', 'Evolves some Electric-type Pokémon, such as Pikachu.', 3000, 0],
+        ['Leaf Stone', 'Evolves some Grass-type Pokémon, such as Gloom.', 3000, 2],
+        ['Moon Stone', 'Evolves some Pokémon, such as Clefairy.', 3000, 0],
+        ['Metal Coat', 'Evolves Onix and Scyther.', 3000, 0],
+        ["King's Rock", 'Evolves Poliwhirl and Slowpoke.', 3000, 0],
+        ['Dragon Scale', 'Evolves Seadra.', 3000, 0]
+      ],
+      tms: [
+        ['Ice Beam', 'ice', 'Ice', '90', 10000, 0],
+        ['Thunderbolt', 'electric', 'Electric', '90', 10000, 1],
+        ['Flamethrower', 'fire', 'Fire', '90', 10000, 0],
+        ['Earthquake', 'ground', 'Ground', '100', 10000, 0],
+        ['Psychic', 'psychic', 'Psychic', '90', 10000, 0],
+        ['Dragon Claw', 'dragon', 'Dragon', '80', 5000, 0],
+        ['Aerial Ace', 'flying', 'Flying', '60', 5000, 2],
+        ['Bug Bite', 'bug', 'Bug', '60', 5000, 0],
+        ['Ember', 'fire', 'Fire', '40', 2000, 0],
+        ['Thunder Wave', 'electric', 'Electric', '—', 3000, 0]
+      ]
+    };
+    var money = 12450;
+    var list = document.getElementById('list');
+    function fmt(n) { return '₽ ' + n.toLocaleString('en-US'); }
+
+    function row(name, effectHtml, price, owned, spriteHtml) {
+      var el = document.createElement('div');
+      el.className = 'item-row';
+      el.innerHTML =
+        '<div class="item-main">' + spriteHtml + '<div class="item-text"><span class="item-name">' + name + '</span><span class="small muted">' + effectHtml + '</span></div></div>' +
+        '<div class="item-buy">' +
+          '<span class="owned num">You own: ' + owned + '</span>' +
+          '<span class="price-col money"><span class="coin" aria-hidden="true"></span>' + fmt(price) + '</span>' +
+          '<span class="qty"><button type="button" aria-label="Fewer">−</button><input type="number" min="1" max="9999" value="1" aria-label="Quantity of ' + name + '"><button type="button" aria-label="More">+</button></span>' +
+          '<span class="buy-col"><button type="button" class="btn btn-outline buy"></button><span class="reason"></span></span>' +
+        '</div>';
+      var input = el.querySelector('input');
+      var buy = el.querySelector('.buy');
+      var reason = el.querySelector('.reason');
+      function update() {
+        var q = Math.max(1, Math.min(9999, parseInt(input.value, 10) || 1));
+        input.value = q;
+        var total = q * price;
+        buy.textContent = 'Buy · ' + fmt(total);
+        buy.disabled = total > money;
+        reason.textContent = total > money ? 'You need ' + fmt(total - money) + ' more' : '';
+      }
+      el.querySelectorAll('.qty button')[0].addEventListener('click', function () { input.value = (parseInt(input.value, 10) || 1) - 1; update(); });
+      el.querySelectorAll('.qty button')[1].addEventListener('click', function () { input.value = (parseInt(input.value, 10) || 1) + 1; update(); });
+      input.addEventListener('input', update);
+      buy.addEventListener('click', function () {
+        if ((parseInt(input.value, 10) || 1) * price > 10000) { window.mockup.go('confirm'); } else { window.mockup.go('bought'); }
+      });
+      if (name === 'Ultra Ball' && (document.documentElement.getAttribute('data-state') === 'confirm')) { input.value = 10; }
+      update();
+      return el;
+    }
+
+    function draw(state) {
+      var tab = (state === 'evolution' || state === 'tms') ? state : 'balls';
+      money = state === 'poor' ? 450 : 12450;
+      document.getElementById('wallet').textContent = fmt(money);
+      document.querySelectorAll('[data-tab]').forEach(function (t) { t.setAttribute('aria-selected', String(t.getAttribute('data-tab') === tab)); });
+      list.innerHTML = '';
+      if (tab === 'tms') {
+        var bar = document.createElement('div');
+        bar.className = 'rotation';
+        bar.innerHTML = '<span><strong>Today\'s TMs</strong> <span class="muted">· the same 10 for every player</span></span><span class="num">New TMs in <strong>07:42:10</strong></span>';
+        list.appendChild(bar);
+        catalog.tms.forEach(function (t) {
+          list.appendChild(row('TM ' + t[0], '<span class="type type-' + t[1] + '">' + t[2] + '</span> &nbsp;Power ' + t[3], t[4], t[5],
+            '<span class="tm-disc" style="background: var(--t-' + t[1] + '-fg);" aria-hidden="true"></span>'));
+        });
+      } else {
+        catalog[tab].forEach(function (i) {
+          list.appendChild(row(i[0], i[1], i[2], i[3], '<span class="item-sprite" aria-hidden="true">' + i[0] + '</span>'));
+        });
+      }
+    }
+    document.addEventListener('mockup:state', function (e) { draw(e.detail); });
+    draw(document.documentElement.getAttribute('data-state') || 'balls');
+  })();
+</script>
+</body>
+</html>
