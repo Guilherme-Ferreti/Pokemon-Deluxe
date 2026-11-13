@@ -1046,7 +1046,7 @@ Read [04-pokemon-page.md](04-pokemon-page.md) first. Builds on Spec 1 (`SetActiv
 - Active slots: a 2×2 grid of rows, each with `MoveNameLabel`, type badge, `MovePowerLabel` and a ghost "Swap" button. An empty slot shows a dashed outline and "Empty slot".
 - Swap: a `Dialog` listing the known moves (the active ones marked "In slot 2"), with a search input when the pool is long. Picking one swaps it in.
 - Known moves: compact chips or a short `Table` (name, type, power), sorted by name.
-- Teach TM: a `Dialog` listing owned TMs; TMs the Pokémon already knows are disabled with "Already known"; Z-Move and Dynamax TMs show "Needs level 100" when not allowed. Teaching asks for a confirmation step inside the dialog, since the TM is used up.
+- Teach TM: a `Dialog` with a search input (name, number or type; players will own hundreds of TMs) over a scrolling list of owned TMs, sorted by code; TMs the Pokémon already knows are disabled with "Already known"; Z-Move and Dynamax TMs show "Needs level 100" when not allowed. Teaching asks for a confirmation step inside the dialog, since the TM is used up.
 
 **Tests:** feature tests for both routes and their errors; browser test: swap a move.
 

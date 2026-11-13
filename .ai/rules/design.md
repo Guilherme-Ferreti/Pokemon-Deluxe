@@ -52,6 +52,7 @@ How pages look and behave. Follow it for every new page or component; tasks in `
 
 - A Pokémon's name always includes "Shiny" when it is shiny ("Shiny Charmeleon", evolving into "Shiny Charizard"), everywhere the name appears: titles, dialogs, toasts, logs and confirmations. Use `PokemonDisplayName` / `getDisplayName()`, never the bare species name, for a Pokémon the player owns or meets.
 - Sentence case everywhere: "Keep exploring", not "Keep Exploring".
+- A TM is always named by its code and move: "TM 395 Ice Beam" (the move's `tm_code`, with a space after "TM"), in lists, dialogs, toasts and the inventory. Lists of TMs are sorted by code.
 - Numbers players compare use thousands separators (₽ 12,450) and units (Lv 36, +14, ×3.5).
 - Secondary information uses `text-sm text-muted-foreground`.
 
