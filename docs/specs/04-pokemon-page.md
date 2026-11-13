@@ -35,7 +35,7 @@ Each owned Pokémon gets its own page, opened from the Party and the Box, where 
 - **Evolve:** shown only when the Pokémon can evolve, with a small highlight. It opens a dialog listing every possible evolution with its requirement; ones not yet possible are greyed out with the reason ("Needs a Water Stone"). Evolving asks for confirmation because it is permanent.
 - **Use item:** opens a "choose an item" dialog (TMs, boost stones, evolution items, Mega Stones).
 - **Party:** add to or remove from the party here or on the Party page. A full party shows "Party full (6)".
-- **Lock:** a locked Pokémon cannot be released or traded until unlocked.
+- **Lock:** a locked Pokémon cannot be released or traded until unlocked. Locking asks for confirmation and says exactly that; unlocking does not ask.
 - **Release:** permanent and gives nothing back. The player confirms by typing the Pokémon's display name ("Shiny Charmeleon" for a shiny one); boosted or shiny Pokémon get a stronger warning. Locked Pokémon cannot be released.
 
 ## Stats

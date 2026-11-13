@@ -1095,15 +1095,16 @@ Read [04-pokemon-page.md](04-pokemon-page.md) first. Builds on Spec 1 (`SetActiv
 
 **Goal:** the remaining actions.
 
-**Mock-up:** `docs/mockups/pokemon.html` (states "Overview", "Party full", "Locked", "Release", "Release a shiny or boosted Pokémon")
+**Mock-up:** `docs/mockups/pokemon.html` (states "Overview", "Party full", "Confirm locking", "Locked", "Release", "Release a shiny or boosted Pokémon")
 
 **Build:**
 - Routes: `POST /your-pokemon/{pokemon}/party` (`pokemon.web.party.add`), `DELETE /your-pokemon/{pokemon}/party` (`pokemon.web.party.remove`), `POST /your-pokemon/{pokemon}/lock` (`pokemon.web.lock`, `is_locked` boolean), `DELETE /your-pokemon/{pokemon}` (`pokemon.web.release`, redirects to the Box with a toast).
+- Locking asks for confirmation and explains that a locked Pokémon can't be released or traded; unlocking does not ask.
 - Release asks the player to type the Pokémon's display name to confirm ("Shiny Charmeleon" for a shiny one).
 
 **UI suggestions** (ideas, not requirements):
 - Party toggle: "Add to party" / "In party ✓" (outline). With a full party it is disabled with "Party full (6)". The last party Pokémon can't be removed: disabled with a tooltip.
-- Lock: a ghost button with a lock icon and "Locked" / "Unlocked"; when locked, Release is disabled with a tooltip "Unlock it first".
+- Lock: a ghost button with a lock icon and "Locked" / "Unlocked". Locking asks for confirmation in a dialog: "Lock Shiny Charmeleon?" / "A locked Pokémon can't be released or traded until you unlock it. You can still battle with it, train it and use items on it." with "Not now" (outline) and "Lock" (primary). Unlocking needs no confirmation. When locked, Release is disabled with a tooltip "Unlock it first".
 - Release dialog: destructive styling, the input "Type Shiny Charmeleon to confirm" (the display name), the destructive "Release" button enabled only when the text matches. Shiny or boosted Pokémon add a warning block: "This Pokémon is shiny and has +14 boost. Boost stones used on it are lost."
 
 **Tests:** feature tests for each route and its errors; browser test: release with the typed confirmation.
