@@ -1716,6 +1716,7 @@ Read [07-trading.md](07-trading.md) first, including "Details to confirm". Tradi
 
 **UI suggestions** (ideas, not requirements):
 - A read-only version of the Pokémon page's header, stats and moves, in a wide `Dialog`; known moves as compact type-coloured chips with power.
+- Catch details as on the Pokémon page: "Caught in a [sprite] Ultra Ball", the ball's `ItemSprite` right before its name, then the original trainer.
 
 **Tests:** feature test: listing props include the details for the listed and offered Pokémon.
 
