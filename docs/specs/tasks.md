@@ -1359,3 +1359,233 @@ Read [05-missions.md](05-missions.md) first, including its "Starting content" an
 **Tests:** feature test: the shared count.
 
 **Done when:** the dot shows when something is claimable.
+
+---
+
+## 6. Spec 6 — NPC trainers, Gyms and the Battle Tower
+
+Read [06-trainers-gyms-and-battle-tower.md](06-trainers-gyms-and-battle-tower.md) first, including "Details to confirm". Trainers, gyms and the Elite Four live in a new domain, `src/App/Trainers`; the Battle Tower in `src/App/BattleTower`. All of them start battles through the Spec 1 battle engine (`src/App/Battle`), which gets a few general additions here.
+
+### 6.1 Trainers and their teams
+
+**Goal:** store hand-made trainers, gym leaders, Elite Four members and Champions.
+
+**Build:**
+- Enums in `Shared\Enums`: `TrainerRole` (`TRAINER`, `GYM_LEADER`, `ELITE_FOUR`, `CHAMPION`) and `Region` (`KANTO` … `PALDEA`, with `label()` and `generation()`).
+- Migration `029_create_trainers_table.php`: `uuid id`, `slug` unique, `name`, `trainer_class` ("Hiker", "Gym Leader"), nullable `sprite`, `role` enum, nullable `region` enum, nullable `badge_name`, nullable `gym_type` (`PokemonType`), `position` (gym number or Elite Four order), `payout`.
+- Migration `030_create_trainer_pokemon_table.php`: `uuid id`, `foreignIdFor(Trainer)`, `foreignIdFor(Species)`, `level`, `boost`, `is_shiny`, `gender`, `json move_slugs`, `position`.
+- Models `Shared\Models\Trainer` (`team()` ordered by position) and `TrainerPokemon`, with factories.
+- `TrainerSeeder` from `database/seeders/files/trainers.json`.
+
+**Tests:** seeder loads a trainer with its team in order.
+
+**Done when:** tables, models and seeder exist; tests pass.
+
+### 6.2 Trainer content (data, no code)
+
+**Goal:** fill `trainers.json`.
+
+**Build:** about 30 hand-made trainers (Lv 5–100, payouts ₽ 500–20,000; shinies only on the hardest), then for each of the 9 regions its 8 gym leaders, Elite Four and Champion with their main-game teams, at the levels and boosts in "Details to confirm". Moves: each Pokémon's base moves unless the main-game team suggests better ones that exist as moves here.
+
+**Done when:** `migrate:fresh --seed` loads every trainer; a seeder test checks each region has 8 gym leaders, 4 Elite Four members and 1 Champion.
+
+### 6.3 Payout
+
+**Goal:** the money formula.
+
+**Build:** `App\Trainers\Mechanics\TrainerPayoutCalculator::payout(int $fullPayout, float $trainerAverageLevel, float $fieldAverageLevel): int` = full payout × (trainer average ÷ field average), capped between 10% and 100%, rounded down. Config `game.trainers.min_payout_ratio` (0.1).
+
+**Tests:** every row of the Spec 6 table, plus the 10% floor.
+
+**Done when:** tests pass.
+
+### 6.4 Battles against trainers
+
+**Goal:** the battle engine handles NPC teams.
+
+**Build:**
+- `BattleState`: add nullable `trainer_id`, nullable `trainer_name` and `bool $heals_after` (default true; the Tower sets false).
+- `App\Battle\Actions\StartTrainerBattleAction::handle(User $user, BattleType $type, array $opponentTeam, ?Trainer $trainer, ?array $playerPokemonIds = null): Battle`: player side from `$playerPokemonIds` (in that order) or the whole party; opponent side from `$opponentTeam` (a list of `NewPokemon` plus boost and moves, or `TrainerPokemon` rows).
+- Opponent AI: a random active move each turn (as wild battles); after a faint it sends out its next Pokémon automatically and the log says "Hiker Bob sent out Geodude!".
+- `ThrowBallAction` already refuses non-wild battles (task 2.12).
+- When a trainer battle is won, dispatch `BattleWon` with type and trainer, then the domain that started it pays and records (tasks 6.5, 6.8, 6.12).
+
+**Tests:** opponent sends out the next Pokémon; win only when the whole opponent team faints; trainer name in the log.
+
+**Done when:** tests pass.
+
+### 6.5 Fight a trainer from the list
+
+**Goal:** battle hand-made trainers and get paid.
+
+**Build:**
+- `App\Trainers\Actions\ChallengeTrainerAction::handle(User $user, Trainer $trainer): Battle`: only `TRAINER` role; starts a `TRAINER` battle with the party.
+- Migration `031_create_trainer_victories_table.php`: `uuid id`, `foreignIdFor(User)`, `foreignIdFor(Trainer)`, `wins` (default 0), `first_won_at`; unique `['user_id', 'trainer_id']`. Model `TrainerVictory`.
+- Listener `App\Trainers\Listeners\PayOutOnBattleWon`: for trainer and gym battles, pays `TrainerPayoutCalculator` money (using the player's Pokémon that entered the field) with `AddMoneyAction`, records the victory, and stores the amount in the battle log for the end screen ("You got ₽ 1,440 for winning!").
+- Mission listeners from Spec 5 now get `WIN_TRAINER_BATTLES` from `BattleWon`.
+
+**Tests:** win pays the formula; a higher-level team gets less; victory counted; loss pays nothing.
+
+**Done when:** tests pass.
+
+### 6.6 Trainers page
+
+**Goal:** the list of hand-made trainers.
+
+**Mock-up:** `docs/mockups/trainers.html` (all states)
+
+**Build:**
+- Route `GET /trainers` named `trainers.web.index` → `App\Trainers\Http\Web\Controllers\TrainersController@index` with `TrainersIndexPageProps`: every `TRAINER` (name, class, sprite, team size, level range, types used, full payout, the player's wins) sorted by level; plus the player's party average level for the payout hint.
+- Route `POST /trainers/{trainer}/challenge` named `trainers.web.challenge` → `ChallengeTrainerController`, redirects to the battle page.
+- Sidebar "Trainers" link.
+
+**UI suggestions** (ideas, not requirements):
+- `AppPageHeader` with a search `InputGroup` (by name or class) on the right.
+- One list `Card` with a row per trainer: trainer sprite, name and class, "3 Pokémon · Lv 20–25", type badges, payout (`MoneyAmount`) and an outline "Battle" button. No difficulty groups; sorted by level.
+- When the party's average level is above the trainer's, a muted hint under the payout: "You'd get about ₽ 900 (your team is stronger)".
+- A small "Won 4×" badge for trainers already beaten.
+- While a battle is ongoing, the Battle buttons are disabled and a notice links to the battle.
+
+**Tests:** feature tests for the props and the challenge route (refused during a battle).
+
+**Done when:** a player can find and battle trainers.
+
+### 6.7 Trainers met while exploring
+
+**Goal:** about 1 in 20 explores meets a generated trainer.
+
+**Mock-up:** `docs/mockups/area.html` (state "Trainer encounter")
+
+**Build:**
+- `App\Trainers\Mechanics\TrainerTeamRoller::roll(Collection $species, int $size, int $minLevel, int $maxLevel, int $boost = 0): array` (shared with the Tower): random species, levels, genders, shiny at the normal odds, base moves.
+- A small list of names and classes for generated trainers in `config/trainers.php`.
+- Migration `032_add_trainer_columns_to_encounters_table.php`: `kind` enum (`POKEMON`, `TRAINER`), nullable `trainer_name`, `trainer_class`, `json trainer_team`, `payout`.
+- `ExploreAction` (task 2.6): 1 in `game.exploration.trainer_odds` (20) rolls a trainer of 1–3 Pokémon from the area at its wild levels, payout from `game.trainers.explore_payout_per_level`.
+- `BattleEncounterAction` starts a `TRAINER` battle for trainer encounters (paid like any trainer).
+
+**UI suggestions** (ideas, not requirements):
+- The encounter card shows the trainer sprite, "Hiker Bob wants to battle!", the team as small portraits (or "3 Pokémon"), the level range and the payout, with "Battle" (primary) and "Keep exploring" (outline).
+
+**Tests:** trainer rolled with the faked odds; team from the area within its levels; battle starts as a trainer battle and pays.
+
+**Done when:** tests pass.
+
+### 6.8 Gyms and badges
+
+**Goal:** challenge gym leaders and earn badges.
+
+**Build:**
+- `App\Trainers\Actions\ChallengeGymAction::handle(User $user, Trainer $leader, array $pokemonIds): Battle`: only `GYM_LEADER`; `$pokemonIds` must be exactly as many party Pokémon as the leader has (`App\Trainers\Exceptions\GymTeamSizeException`), in the chosen order; starts a `GYM` battle.
+- A badge is a `TrainerVictory` against a gym leader. `App\Trainers\Queries\BadgesQuery::forRegion(User $user, Region $region)`.
+- `BattleWon` for a gym: pays (task 6.5) and, on the first win, dispatches `BadgeEarned` (region, leader) for missions (`BEAT_GYM`, `EARN_REGION_BADGES`).
+
+**Tests:** wrong team size refused; non-party Pokémon refused; first win gives the badge and the event once; rematch pays but no new badge.
+
+**Done when:** tests pass.
+
+### 6.9 Gyms page
+
+**Goal:** the badge case per region.
+
+**Mock-up:** `docs/mockups/gyms.html` (states "Region badges", "Gym details", "Choose your team", "Elite Four locked", "Elite Four unlocked")
+
+**Build:**
+- Route `GET /gyms` named `trainers.web.gyms.index` → `GymsController@index` (`?region=kanto`), with `GymsIndexPageProps`: the region's 8 leaders (badge name, type, leader, team preview, won or not), Elite Four and Champion status, and the player's party.
+- Route `POST /gyms/{trainer}/challenge` named `trainers.web.gyms.challenge` → `ChallengeGymController` (`pokemon_ids`).
+- Sidebar "Gyms" link.
+
+**UI suggestions** (ideas, not requirements):
+- Region tabs (the region in the URL), the count "Badges 5 / 8" on the right.
+- The badge case: a grid of 8 tiles, each with the badge (coloured when earned, outline when not), the gym type badge and the leader's name.
+- Clicking a gym opens a `Dialog`: the leader's sprite and name, the gym type, the team as portraits with levels, the rule ("Bring 3 Pokémon"), and a primary "Challenge".
+- "Choose your team": the party as selectable rows; exactly as many as the leader has; the order picked is the sending-out order (numbers on the selected rows); the primary button reads "Challenge with 3 Pokémon" and is disabled until the count is right.
+- Under the badge case, an Elite Four card: locked with "Earn all 8 badges" and a lock icon, or unlocked with the four members and the Champion in order and a primary "Start the Elite Four".
+
+**Tests:** feature tests for the props and the challenge route errors; browser test: challenge a gym with a chosen team.
+
+**Done when:** a player can browse gyms and challenge one.
+
+### 6.10 Elite Four run
+
+**Goal:** the four members then the Champion, in order.
+
+**Build:**
+- Migration `033_create_elite_four_runs_table.php`: `uuid id`, `foreignIdFor(User)`, `region` enum, `stage` (1–5), `status` enum (`ACTIVE`, `WON`, `LOST`, `QUIT`), timestamps.
+- `App\Trainers\Actions\StartEliteFourRunAction::handle(User $user, Region $region): EliteFourRun`: needs all 8 badges of the region (`App\Trainers\Exceptions\BadgesMissingException`); one active run at a time.
+- `ContinueEliteFourRunAction::handle(EliteFourRun $run): Battle`: starts an `ELITE_FOUR` battle against the stage's opponent with the party (healed: normal battles always heal).
+- Listener on `BattleWon` / battle lost for `ELITE_FOUR` battles: win → next stage (after the Champion: `WON`, record the victory, dispatch `ChampionDefeated`); loss → `LOST`.
+- The battle end screen shows "Next: Lance" and a button to continue the run.
+
+**Tests:** refused without 8 badges; stages advance; loss ends the run; the next run starts at stage 1; beating the Champion records it and fires the event.
+
+**Done when:** tests pass, and the run can be played from the Gyms page and the battle page.
+
+### 6.11 Battle Tower: rules
+
+**Goal:** checkpoints, opponent strength and Battle Points.
+
+**Build:**
+- `App\BattleTower\Mechanics\TowerFloorCalculator`:
+  - `isCheckpoint(int $floor): bool` and `nextCheckpoint(int $floor): int`: checkpoints at 10, 25, 45, 70, 100… (each gap 5 floors longer).
+  - `opponentLevel(int $floor): int` = min(floor, 100); `opponentBoost(int $floor): int` = 0 up to floor 100, then round((floor − 100) ÷ 9), max 100.
+  - `teamSize(int $floor): int`: 3, or 6 on checkpoints.
+  - `battlePoints(int $floor): int`: 1, plus 5 × the checkpoint's number on checkpoints.
+- Config `game.battle_tower`: `top_floor` (1000), `first_checkpoint` (10), `checkpoint_gap_step` (5), `team_size` (3), `checkpoint_team_size` (6), `points_per_floor` (1), `points_per_checkpoint_number` (5).
+
+**Tests:** the first five checkpoints; level and boost at floors 1, 100, 101, 550, 1000; team sizes; points on normal and checkpoint floors.
+
+**Done when:** tests pass.
+
+### 6.12 Battle Tower: runs
+
+**Goal:** start, climb, resume, quit.
+
+**Build:**
+- Migration `034_create_tower_runs_table.php`: `uuid id`, `foreignIdFor(User)`, `status` enum (`ACTIVE`, `ENDED`), `floor` (the next floor to fight), `json team` (6 Pokémon IDs and each one's current HP), `battle_points_earned`, timestamps. Migration `035_add_tower_columns_to_users_table.php`: `best_tower_floor` (default 0), `battle_points` (default 0).
+- `App\BattleTower\Actions\StartTowerRunAction::handle(User $user, array $pokemonIds): TowerRun`: exactly 6 of the player's Pokémon (party or Box), none locked in a trade (Spec 7); one active run.
+- `ClimbTowerFloorAction::handle(TowerRun $run): Battle`: a `BATTLE_TOWER` battle against `TrainerTeamRoller` with the floor's level, boost and size (species from every wild-eligible species); the player's side starts at the HP stored in the run; `heals_after` false.
+- On a win: store each team member's HP back in the run, add the floor's points, `floor` + 1; on a checkpoint floor, heal the whole team. On a loss: status `ENDED`. Either way update `best_tower_floor` (highest floor won) and add points to `users.battle_points`.
+- `QuitTowerRunAction::handle(TowerRun $run): void`: ends the run, keeping points and best floor.
+
+**Tests:** start needs 6; damage carries over between floors; checkpoint heals; loss ends the run and keeps points; best floor updated; quit; resume after reload (the run is just loaded again).
+
+**Done when:** tests pass.
+
+### 6.13 Battle Tower page
+
+**Goal:** the lobby and the run screen.
+
+**Mock-up:** `docs/mockups/tower.html` (all states)
+
+**Build:**
+- Route `GET /battle-tower` named `battle-tower.web.index` → `BattleTowerController@index` with `BattleTowerIndexPageProps`: best floor, Battle Points, the active run (floor, next checkpoint, team with HP) or the player's Pokémon for picking.
+- Routes `POST /battle-tower/runs` (`battle-tower.web.runs.store`, `pokemon_ids`), `POST /battle-tower/runs/climb` (`battle-tower.web.runs.climb`, redirects to the battle), `DELETE /battle-tower/runs` (`battle-tower.web.runs.destroy`).
+- After a Tower battle, the battle page's end screen links back to the Tower ("Back to the Tower").
+- Sidebar "Battle Tower" link.
+
+**UI suggestions** (ideas, not requirements):
+- Header with two stats: "Best floor 37" and "Battle Points 1,240".
+- Lobby: six empty team slots and "Choose your team", which opens a picker dialog with search and Party / Box tabs; picked Pokémon fill the slots in order; primary "Start run" enabled at 6.
+- Run in progress: a big "Floor 38", a progress line to the next checkpoint ("Checkpoint at floor 45: full heal"), the team as rows with HP bars (fainted greyed out), primary "Next battle" and a destructive-outline "Quit run" with a confirmation.
+- Checkpoint reached: a green notice "Checkpoint! Your team was fully healed."
+- Run over: floors climbed, Battle Points earned, "New best floor!" when it is, and "Start a new run".
+
+**Tests:** feature tests for the props and routes; browser test: start a run and climb one floor.
+
+**Done when:** a player can play the Tower from the page.
+
+### 6.14 Battle page: trainer battles
+
+**Goal:** the battle page shows trainer battles properly.
+
+**Mock-up:** `docs/mockups/battle.html` (states "Trainer battle", "Trainer battle won")
+
+**Build:** the header names the trainer ("Hiker Bob" / "Gym Leader Brock"); the opponent's team dots show all its Pokémon; no Throw ball button; the end screen shows the money earned (with the reduced-payout note when it applies), "Next: …" for Elite Four runs, and "Back to the Tower" with the HP left for Tower battles.
+
+**UI suggestions** (ideas, not requirements):
+- Header: the trainer's sprite next to "Gym Leader Brock" and "Pewter City Gym · Rock".
+- End screen money line: "+ ₽ 1,440" with a muted note "Reduced: your team outlevels Hiker Bob".
+
+**Tests:** feature test: trainer battle props (no balls, trainer name, team size); browser test: the win screen shows the money.
+
+**Done when:** trainer, gym, Elite Four and Tower battles all look right on the page.

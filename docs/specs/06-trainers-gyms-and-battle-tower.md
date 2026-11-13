@@ -77,3 +77,15 @@ BATTLE TOWER        Best floor: 37      Battle Points: 1,240
 During a run: floor number, team HP that carries over,
 next checkpoint, [Next battle] [Quit run]
 ```
+
+## Details to confirm (proposal)
+
+Gaps found while splitting this spec into tasks. Each is a first proposal.
+
+- **Gym money:** gym battles pay money with the trainer formula on every win, like any trainer. The badge and achievement come only from the first win.
+- **Gym levels:** the same in every region, rising with the gym's number: gym 1 Lv 12–15, gym 2 Lv 18–21, gym 3 Lv 24–27, gym 4 Lv 30–33, gym 5 Lv 36–39, gym 6 Lv 42–45, gym 7 Lv 48–51, gym 8 Lv 54–57. Elite Four Lv 62–68 with +10 boost; Champion Lv 70–75 with +20 boost. Badge order stays free.
+- **Elite Four run:** the four members and then the Champion are fought in order, healed after each battle. Losing ends the run; the next attempt starts again from the first member. Beating the Champion records it on the profile (Spec 8).
+- **Hand-made trainers:** about 30 to start, spread from Lv 5 to Lv 100, payouts from ₽ 500 to ₽ 20,000.
+- **Opponent behaviour:** NPCs pick a random active move each turn and send out their next Pokémon in team order.
+- **Battle Points:** 1 per floor won, plus 5 × the checkpoint's number at each checkpoint (10 at the 2nd checkpoint, 25 at the 5th).
+- **Tower XP:** Battle Tower battles give XP like any battle (Spec 1).
