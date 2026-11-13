@@ -49,6 +49,13 @@ One name per idea, used everywhere: specs, code, database, tests and UI. When yo
 | Boost stone | `boost-stone` (special item slug) | |
 | Key item | `SpecialItemCategory::KEY_ITEM` | Items that are switched on, like the XP Share (`xp-share`). |
 | Earned only | price is `null` | Cannot be bought or sold to the shop; can be traded. |
+| Lock | `is_locked`, `SetPokemonLockAction` | Locked Pokémon can't be released or traded. |
+| Release | `ReleasePokemonAction` | Permanent; gives nothing back. |
+| Teach a TM | `TeachTmAction` | Adds a move to the known moves; the TM is used up. |
+| Boost failure chance | `BoostStoneCalculator::failureChance()` | 0.0–1.0 for the next stone. |
+| Boost result | `BoostResult` | Stones used, successes, failures, boost before and after. |
+| Evolution option | a `SpeciesEvolution` plus its requirement reason | Shown in the Evolve dialog. |
+| Party size limit | `game.user.max_party_size` | 6. |
 | Original trainer | `original_user_id` / `originalUser()` | Already in the code. |
 | Party / Box | `in_party` / `inParty()`, `inBox()` | Already in the code. |
 
