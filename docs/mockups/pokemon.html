@@ -42,6 +42,9 @@
   .input { height: 38px; border: 1px solid var(--border); border-radius: 8px; padding: 0 12px; background: var(--card); width: 100%; }
   .mode { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; padding: 10px 12px; border: 1px solid var(--border); border-radius: 10px; }
   .mode input[type="number"] { width: 72px; height: 32px; border: 1px solid var(--border); border-radius: 6px; padding: 0 8px; background: var(--card); }
+  .tm-search { display: flex; align-items: center; gap: 8px; height: 38px; border: 1px solid var(--border); border-radius: 8px; padding: 0 12px; background: var(--card); }
+  .tm-search input { border: 0; outline: 0; background: transparent; flex: 1; min-width: 0; }
+  .tm-list { max-height: 280px; overflow-y: auto; padding-right: 2px; }
   .big { font-size: 34px; font-weight: 700; letter-spacing: -.02em; }
 </style>
 </head>
@@ -189,17 +192,25 @@
       <h2 id="tm-title">Teach a TM</h2>
       <p class="small muted">The TM is used up. The move joins Shiny Charmeleon's known moves.</p>
     </div>
-    <div class="pick-list">
-      <button type="button" class="pick" aria-pressed="true"><span class="pick-main"><strong>TM Ice Beam</strong><span class="xs muted">Ice · Power 90 · you own 1</span></span></button>
-      <button type="button" class="pick"><span class="pick-main"><strong>TM Aerial Ace</strong><span class="xs muted">Flying · Power 60 · you own 2</span></span></button>
-      <button type="button" class="pick" disabled><span class="pick-main"><strong>TM Ember</strong><span class="xs muted">Already known</span></span></button>
-      <button type="button" class="pick" disabled><span class="pick-main"><strong>TM Inferno Overdrive</strong><span class="xs muted">Z-Move · needs level 100</span></span></button>
+    <label class="tm-search" for="tm-search">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" style="color: var(--muted-fg);"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
+      <input id="tm-search" type="search" placeholder="Search by name, number or type" autocomplete="off">
+    </label>
+    <div class="pick-list tm-list" id="tm-list">
+      <button type="button" class="pick" data-tm="122 aerial ace flying"><span class="pick-main"><strong>TM 122 Aerial Ace</strong><span class="xs muted">Flying · Power 60 · you own 2</span></span></button>
+      <button type="button" class="pick" disabled data-tm="254 inferno overdrive fire z-move"><span class="pick-main"><strong>TM 254 Inferno Overdrive</strong><span class="xs muted">Z-Move · needs level 100</span></span></button>
+      <button type="button" class="pick" disabled data-tm="393 ember fire"><span class="pick-main"><strong>TM 393 Ember</strong><span class="xs muted">Already known</span></span></button>
+      <button type="button" class="pick" aria-pressed="true" data-tm="395 ice beam ice"><span class="pick-main"><strong>TM 395 Ice Beam</strong><span class="xs muted">Ice · Power 90 · you own 1</span></span></button>
+      <button type="button" class="pick" data-tm="399 thunderbolt electric"><span class="pick-main"><strong>TM 399 Thunderbolt</strong><span class="xs muted">Electric · Power 90 · you own 1</span></span></button>
+      <button type="button" class="pick" data-tm="471 psychic"><span class="pick-main"><strong>TM 471 Psychic</strong><span class="xs muted">Psychic · Power 90 · you own 3</span></span></button>
+      <p class="small muted" id="tm-none" hidden style="text-align: center; padding: 16px 0;">No TMs match your search.</p>
     </div>
     <p class="small"><strong>Teach Ice Beam to Shiny Charmeleon?</strong> <span class="muted">All 4 slots are full, so it goes to the known moves; swap it in when you want it.</span></p>
     <div class="dialog-actions">
       <button type="button" class="btn btn-outline" data-go="overview">Cancel</button>
       <button type="button" class="btn btn-primary" data-go="overview">Teach Ice Beam</button>
     </div>
+    <p class="note">TMs are named by code and move ("TM 395 Ice Beam") and sorted by code. The search matches the number, the move name or its type; the list scrolls inside the dialog.</p>
   </div>
 </div>
 
@@ -314,6 +325,17 @@
     var button = document.getElementById('release-button');
     input.addEventListener('input', function () { button.disabled = input.value.trim() !== 'Shiny Charmeleon'; });
     document.addEventListener('mockup:state', function () { input.value = ''; button.disabled = true; });
+    var tmSearch = document.getElementById('tm-search');
+    tmSearch.addEventListener('input', function () {
+      var q = tmSearch.value.trim().toLowerCase();
+      var shown = 0;
+      document.querySelectorAll('#tm-list [data-tm]').forEach(function (b) {
+        var match = !q || b.getAttribute('data-tm').indexOf(q.replace(/^tm\s*/, '')) !== -1;
+        b.hidden = !match;
+        if (match) { shown += 1; }
+      });
+      document.getElementById('tm-none').hidden = shown !== 0;
+    });
   })();
 </script>
 </body>
