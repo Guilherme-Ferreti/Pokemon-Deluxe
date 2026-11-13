@@ -24,6 +24,8 @@
   .pick { display: flex; flex-direction: column; align-items: center; gap: 4px; padding: 10px 6px; border: 1px solid var(--border); border-radius: 10px; background: var(--card); text-align: center; font-size: 12px; }
   .pick[aria-pressed="true"] { border: 2px solid var(--primary); padding: 9px 5px; }
   .pick:disabled { opacity: .45; }
+  .offer-search { display: flex; align-items: center; gap: 8px; height: 38px; border: 1px solid var(--border); border-radius: 8px; padding: 0 12px; background: var(--card); }
+  .offer-search input { border: 0; outline: 0; background: transparent; flex: 1; min-width: 0; }
   .item-row { display: flex; align-items: center; gap: 10px; padding: 8px 0; border-top: 1px solid var(--border); }
   .item-row:first-child { border-top: 0; }
   .details-grid { display: flex; flex-wrap: wrap; gap: 16px; }
@@ -138,16 +140,24 @@
       <button type="button" class="tab" role="tab" aria-selected="true" id="tab-pokemon">Pokémon</button>
       <button type="button" class="tab" role="tab" aria-selected="false" id="tab-items">Items</button>
     </div>
-    <div class="pick-grid" id="offer-pokemon">
+    <div class="stack" id="offer-pokemon-pane" style="gap: 8px;">
+      <label class="offer-search" for="offer-pokemon-search"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" style="color: var(--muted-fg);"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg><input id="offer-pokemon-search" type="search" placeholder="Search your Pokémon" autocomplete="off"></label>
+      <div class="pick-grid" id="offer-pokemon">
       <button type="button" class="pick" aria-pressed="true"><span class="sprite sprite-sm sprite-shiny" aria-hidden="true"></span><strong>★ Shiny Dratini</strong><span class="muted num">Lv 30 · +10</span></button>
       <button type="button" class="pick" aria-pressed="false"><span class="sprite sprite-sm" aria-hidden="true"></span><strong>Lapras</strong><span class="muted num">Lv 50 · +12</span></button>
       <button type="button" class="pick" disabled><span class="sprite sprite-sm sprite-shiny" aria-hidden="true"></span><strong>★ Shiny Charmeleon</strong><span class="muted">Locked</span></button>
       <button type="button" class="pick" aria-pressed="false"><span class="sprite sprite-sm" aria-hidden="true"></span><strong>Gengar</strong><span class="muted num">Lv 57 · +20</span></button>
     </div>
-    <div class="stack" id="offer-items" hidden style="gap: 0;">
+    <p class="small muted" id="pokemon-none" hidden>No Pokémon match your search.</p>
+    </div>
+    <div class="stack" id="offer-items-pane" hidden style="gap: 8px;">
+      <label class="offer-search" for="offer-items-search"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" style="color: var(--muted-fg);"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg><input id="offer-items-search" type="search" placeholder="Search your items" autocomplete="off"></label>
+    <div class="stack" id="offer-items" style="gap: 0;">
       <div class="item-row"><span class="item-sprite" aria-hidden="true">Boost</span><span style="flex: 1;"><strong class="small">Boost Stone</strong><br><span class="xs muted">You own 37</span></span><span class="qty"><button type="button" aria-label="Fewer">−</button><input type="number" value="5" min="0" max="37" aria-label="Boost stones to offer"><button type="button" aria-label="More">+</button></span></div>
       <div class="item-row"><span class="item-sprite" aria-hidden="true">TM</span><span style="flex: 1;"><strong class="small">TM 395 Ice Beam</strong><br><span class="xs muted">You own 1</span></span><span class="qty"><button type="button" aria-label="Fewer">−</button><input type="number" value="0" min="0" max="1" aria-label="TM 395 Ice Beam to offer"><button type="button" aria-label="More">+</button></span></div>
       <div class="item-row"><span class="item-sprite" aria-hidden="true">Master</span><span style="flex: 1;"><strong class="small">Master Ball</strong><br><span class="xs muted">You own 1</span></span><span class="qty"><button type="button" aria-label="Fewer">−</button><input type="number" value="0" min="0" max="1" aria-label="Master Balls to offer"><button type="button" aria-label="More">+</button></span></div>
+    </div>
+    <p class="small muted" id="items-none" hidden>No items match your search.</p>
     </div>
     <div class="card" style="padding: 12px; gap: 6px; background: var(--muted);">
       <strong class="small">Your offer</strong>
@@ -240,9 +250,24 @@
     function show(items) {
       tp.setAttribute('aria-selected', String(!items));
       ti.setAttribute('aria-selected', String(items));
-      document.getElementById('offer-pokemon').hidden = items;
-      document.getElementById('offer-items').hidden = !items;
+      document.getElementById('offer-pokemon-pane').hidden = items;
+      document.getElementById('offer-items-pane').hidden = !items;
     }
+    function filter(inputId, selector, noneId) {
+      var input = document.getElementById(inputId);
+      input.addEventListener('input', function () {
+        var q = input.value.trim().toLowerCase();
+        var shown = 0;
+        document.querySelectorAll(selector).forEach(function (el) {
+          var match = !q || el.textContent.toLowerCase().indexOf(q) !== -1;
+          el.hidden = !match;
+          if (match) { shown += 1; }
+        });
+        document.getElementById(noneId).hidden = shown !== 0;
+      });
+    }
+    filter('offer-pokemon-search', '#offer-pokemon .pick', 'pokemon-none');
+    filter('offer-items-search', '#offer-items .item-row', 'items-none');
     tp.addEventListener('click', function () { show(false); });
     ti.addEventListener('click', function () { show(true); });
     document.querySelectorAll('#offer-pokemon .pick:not(:disabled)').forEach(function (b) {
