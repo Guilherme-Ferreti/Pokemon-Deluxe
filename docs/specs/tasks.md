@@ -1478,7 +1478,7 @@ Read [06-trainers-gyms-and-battle-tower.md](06-trainers-gyms-and-battle-tower.md
 **Goal:** challenge gym leaders and earn badges.
 
 **Build:**
-- `App\Trainers\Actions\ChallengeGymAction::handle(User $user, Trainer $leader, array $pokemonIds): Battle`: only `GYM_LEADER`; `$pokemonIds` must be exactly as many party Pokémon as the leader has (`App\Trainers\Exceptions\GymTeamSizeException`), in the chosen order; starts a `GYM` battle.
+- `App\Trainers\Actions\ChallengeGymAction::handle(User $user, Trainer $leader, array $pokemonIds): Battle`: only `GYM_LEADER`; `$pokemonIds` must be exactly as many party Pokémon as the leader has (`App\Trainers\Exceptions\GymTeamSizeException`), in the chosen order; when the leader brings as many as the party holds, the whole party is used in party order and `$pokemonIds` may be omitted; a party smaller than the leader's team is refused (`GymTeamSizeException`); starts a `GYM` battle.
 - A badge is a `TrainerVictory` against a gym leader. `App\Trainers\Queries\BadgesQuery::forRegion(User $user, Region $region)`.
 - `BattleWon` for a gym: pays (task 6.5) and, on the first win, dispatches `BadgeEarned` (region, leader) for missions (`BEAT_GYM`, `EARN_REGION_BADGES`).
 
@@ -1490,7 +1490,7 @@ Read [06-trainers-gyms-and-battle-tower.md](06-trainers-gyms-and-battle-tower.md
 
 **Goal:** the badge case per region.
 
-**Mock-up:** `docs/mockups/gyms.html` (states "Region badges", "Gym details", "Choose your team", "Elite Four locked", "Elite Four unlocked")
+**Mock-up:** `docs/mockups/gyms.html` (states "Region badges", "Gym details", "Choose your team", "Leader brings 6: whole party battles", "Elite Four locked", "Elite Four unlocked")
 
 **Build:**
 - Route `GET /gyms` named `trainers.web.gyms.index` → `GymsController@index` (`?region=kanto`), with `GymsIndexPageProps`: the region's 8 leaders (badge name, type, leader, team preview, won or not), Elite Four and Champion status, and the player's party.
@@ -1501,6 +1501,7 @@ Read [06-trainers-gyms-and-battle-tower.md](06-trainers-gyms-and-battle-tower.md
 - Region tabs (the region in the URL), the count "Badges 5 / 8" on the right.
 - The badge case: a grid of 8 tiles, each with the badge (coloured when earned, outline when not), the gym type badge and the leader's name.
 - Clicking a gym opens a `Dialog`: the leader's sprite and name, the gym type, the team as portraits with levels, the rule ("Bring 3 Pokémon"), and a primary "Challenge".
+- When the leader brings at least as many Pokémon as the party holds, there is nothing to choose: the same dialog shows "Your whole party battles" with the party as read-only rows numbered in party order ("Change the order on the Party page") and a primary "Challenge with your party". When the party has fewer Pokémon than the leader, Challenge is disabled with "You need 6 Pokémon in your party".
 - "Choose your team": the party as selectable rows; exactly as many as the leader has (2 to 6, depending on the leader; titles and buttons use that number); the order picked is the sending-out order (numbers on the selected rows); the primary button reads "Challenge with 3 Pokémon" and is disabled until the count is right.
 - Under the badge case, an Elite Four card: locked with "Earn all 8 badges" and a lock icon, or unlocked with the four members and the Champion in order and a primary "Start the Elite Four".
 
