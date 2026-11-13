@@ -30,6 +30,16 @@ One name per idea, used everywhere: specs, code, database, tests and UI. When yo
 | Send out | `SendOutPokemonAction` | Picking the next Pokémon after a faint. |
 | Forfeit / give up | `ForfeitBattleAction` | The UI says "Give up". |
 | First mover | `firstMoverChance` | Chance to act first this turn. |
+| Area | `Area` enum | The 9 places to explore (`Area::FOREST`). |
+| Explore / Keep exploring | `ExploreAction` | Both roll a new encounter. |
+| Encounter | `Encounter` model | The one wild Pokémon waiting for the player. |
+| Wild level range | `wild_min_level`, `wild_max_level` | Null when a species never appears in the wild. |
+| Evolution stage | `evolution_stage` | 1 = unevolved, 2, 3. Babies don't count. |
+| Catch chance | `CatchChanceCalculator` | 0.0–1.0. |
+| Ball multiplier | `BallMultiplierCalculator`, `catch_rate` (Poké Ball column) | The column holds the multiplier when no condition applies. |
+| Throw ball | `ThrowBallAction` | |
+| Starter | `starter` | The Pokémon chosen at registration. |
+| Ultra Beast | `is_ultra_beast` | |
 | Original trainer | `original_user_id` / `originalUser()` | Already in the code. |
 | Party / Box | `in_party` / `inParty()`, `inBox()` | Already in the code. |
 
