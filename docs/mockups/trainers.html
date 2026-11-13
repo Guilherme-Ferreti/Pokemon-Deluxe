@@ -17,6 +17,8 @@
   .trainer-text { display: flex; flex-direction: column; gap: 4px; min-width: 0; }
   .trainer-side { display: flex; flex-wrap: wrap; align-items: center; justify-content: flex-end; gap: 8px 16px; margin-left: auto; }
   .payout { display: flex; flex-direction: column; align-items: flex-end; gap: 2px; min-width: 120px; }
+  .team-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(9rem, 1fr)); gap: 10px; }
+  .team-member { display: flex; flex-direction: column; align-items: center; gap: 4px; padding: 12px 8px; border: 1px solid var(--border); border-radius: 10px; text-align: center; font-size: 13px; }
   .notice { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px; border: 1px solid var(--border); background: var(--card); border-radius: 12px; padding: 12px 16px; }
 </style>
 </head>
@@ -29,6 +31,7 @@
       <option value="list">Trainers</option>
       <option value="in-battle">A battle is in progress</option>
       <option value="no-match">No trainers match</option>
+      <option value="team">Trainer's team</option>
     </select>
   </label>
   <span>Shown inside the app layout (sidebar not drawn). Dashed boxes = trainer sprites.</span>
@@ -58,8 +61,26 @@
       <p>Try another name or class.</p>
     </div>
   </section>
-  <p class="note">One list sorted by level, no difficulty groups. "Battle" is outline because it repeats. The muted hint under a payout appears when your party's average level is above the trainer's (here your party averages Lv 52).</p>
+  <p class="note">One list sorted by level, no difficulty groups. "Battle" is outline because it repeats. "Team" (ghost, eye icon) opens the trainer's team in a dialog. The muted hint under a payout appears when your party's average level is above the trainer's (here your party averages Lv 52).</p>
 </main>
+
+<div class="overlay" data-show="team">
+  <div class="dialog" role="dialog" aria-labelledby="team-title" style="max-width: 560px;">
+    <div class="row" style="gap: 12px;">
+      <span class="sprite sprite-sm" aria-hidden="true" id="team-sprite">Hiker</span>
+      <div class="stack" style="gap: 2px;">
+        <h2 id="team-title">Hiker Bob's team</h2>
+        <span class="small muted num" id="team-sub">3 Pokémon · pays ₽ 1,800</span>
+      </div>
+    </div>
+    <div class="team-grid" id="team-grid"></div>
+    <div class="dialog-actions">
+      <button type="button" class="btn btn-outline" data-go="list">Close</button>
+      <a class="btn btn-primary" href="battle.html#trainer-battle">Battle</a>
+    </div>
+    <p class="note">The team in sending-out order. Moves are not shown, to keep some surprise.</p>
+  </div>
+</div>
 
 <script src="assets/mockup.js"></script>
 <script>
@@ -73,12 +94,33 @@
       ['Ace Trainer Liz', 'Ace Trainer', 6, 80, 90, [['dragon', 'Dragon'], ['steel', 'Steel']], 12000, 0, 0],
       ['Veteran Oak', 'Veteran', 6, 95, 100, [['fire', 'Fire'], ['ice', 'Ice'], ['electric', 'Electric']], 20000, 0, 1]
     ];
+    var teams = {
+      'Youngster Joey': [['Rattata', 5, 'normal', 'Normal'], ['Pidgey', 7, 'normal', 'Normal']],
+      'Lass Robin': [['Clefairy', 10, 'fairy', 'Fairy'], ['Oddish', 12, 'grass', 'Grass'], ['Jigglypuff', 13, 'fairy', 'Fairy']],
+      'Hiker Bob': [['Geodude', 20, 'rock', 'Rock'], ['Graveler', 23, 'rock', 'Rock'], ['Onix', 25, 'rock', 'Rock']],
+      'Swimmer Nia': [['Tentacool', 32, 'water', 'Water'], ['Staryu', 33, 'water', 'Water'], ['Seaking', 35, 'water', 'Water'], ['Lapras', 36, 'water', 'Water']],
+      'Psychic Ivo': [['Abra', 45, 'psychic', 'Psychic'], ['Drowzee', 46, 'psychic', 'Psychic'], ['Kadabra', 47, 'psychic', 'Psychic'], ['Hypno', 48, 'psychic', 'Psychic']],
+      'Ace Trainer Liz': [['Dragonite', 90, 'dragon', 'Dragon'], ['Metagross', 88, 'steel', 'Steel'], ['Garchomp', 86, 'dragon', 'Dragon'], ['Scizor', 84, 'steel', 'Steel'], ['Salamence', 82, 'dragon', 'Dragon'], ['Skarmory', 80, 'steel', 'Steel']],
+      'Veteran Oak': [['Arcanine', 100, 'fire', 'Fire'], ['Lapras', 98, 'ice', 'Ice'], ['Jolteon', 97, 'electric', 'Electric'], ['Ninetales', 96, 'fire', 'Fire'], ['Glaceon', 95, 'ice', 'Ice'], ['Shiny Raichu', 100, 'electric', 'Electric', true]]
+    };
+    function openTeam(t) {
+      document.getElementById('team-title').textContent = t[0] + "'s team";
+      document.getElementById('team-sprite').textContent = t[1];
+      document.getElementById('team-sub').textContent = t[2] + ' Pokémon · pays ' + fmt(t[6]);
+      var grid = document.getElementById('team-grid');
+      grid.innerHTML = '';
+      teams[t[0]].forEach(function (m) {
+        grid.insertAdjacentHTML('beforeend', '<div class="team-member"' + (m[4] ? ' style="border-color: var(--gold); box-shadow: 0 0 0 2px var(--gold-soft);"' : '') + '><span class="sprite sprite-md' + (m[4] ? ' sprite-shiny' : '') + '" aria-hidden="true">' + m[0] + '</span><strong>' + m[0] + '</strong><span class="xs muted num">Lv ' + m[1] + '</span><span class="type type-' + m[2] + '">' + m[3] + '</span></div>');
+      });
+      window.mockup.go('team');
+    }
     var partyAverage = 52;
     var list = document.getElementById('list');
     var search = document.getElementById('search');
     function fmt(n) { return '₽ ' + n.toLocaleString('en-US'); }
     function draw() {
       var state = document.documentElement.getAttribute('data-state');
+      if (state === 'team') { state = 'list'; }
       var q = state === 'no-match' ? 'gary' : search.value.trim().toLowerCase();
       if (state === 'no-match') { search.value = 'Gary'; }
       var inBattle = state === 'in-battle';
@@ -97,14 +139,17 @@
             '<span class="row" style="gap: 4px;">' + t[5].map(function (ty) { return '<span class="type type-' + ty[0] + '">' + ty[1] + '</span>'; }).join('') + '</span>' +
           '</div></div>' +
           '<div class="trainer-side"><span class="payout"><span class="money"><span class="coin" aria-hidden="true"></span>' + fmt(t[6]) + '</span>' + reduced + '</span>' +
+          '<button type="button" class="btn btn-ghost view-team" aria-label="View ' + t[0] + '\'s team"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg>Team</button>' +
           '<a class="btn btn-outline' + (inBattle ? '" aria-disabled="true" style="pointer-events: none; opacity: .5;"' : '"') + ' href="battle.html#trainer-battle">Battle</a></div>';
+        row.querySelector('.view-team').addEventListener('click', function () { openTeam(t); });
         list.appendChild(row);
       });
       list.hidden = shown.length === 0;
       document.getElementById('empty').hidden = shown.length !== 0;
     }
     search.addEventListener('input', draw);
-    document.addEventListener('mockup:state', function () { if (document.documentElement.getAttribute('data-state') !== 'no-match') { search.value = ''; } draw(); });
+    if (document.documentElement.getAttribute('data-state') === 'team') { draw(); openTeam(trainers[2]); }
+    document.addEventListener('mockup:state', function (e) { if (e.detail === 'team') { if (document.getElementById('team-grid').children.length === 0) { openTeam(trainers[2]); } return; } if (e.detail !== 'no-match') { search.value = ''; } draw(); });
     draw();
   })();
 </script>
