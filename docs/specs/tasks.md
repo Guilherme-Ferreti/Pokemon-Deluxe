@@ -1004,7 +1004,7 @@ Read [04-pokemon-page.md](04-pokemon-page.md) first. Builds on Spec 1 (`SetActiv
   - Stats: HP, Attack and Defense from `getStats()`, each with its parts (level, boost, shiny) for the hover breakdown.
   - Moves: active moves by slot and the known-moves pool (name, type, power, category).
   - Evolution options: each `SpeciesEvolution` of the species with the target species and `EvolutionRequirementChecker::check()`'s reason (null = allowed).
-  - Items for "Use item": owned TMs (with "already known" flags), boost stones (count, current failure chance), evolution items and Mega Stones that one of the options needs.
+  - Items: owned TMs (with "already known" flags) for Teach TM, boost stones (count, current failure chance) for Boost, and for each evolution option whether the player owns the item it needs.
 - Box card "View" and the Party list link to the page.
 
 **Tests:** feature test for the props; another user's Pokémon gives 404; guest redirected to login.
@@ -1025,7 +1025,7 @@ Read [04-pokemon-page.md](04-pokemon-page.md) first. Builds on Spec 1 (`SetActiv
 - Catch details: "Caught in a [sprite] Ultra Ball · 3 Nov 2026", with the ball's `ItemSprite` right before the ball's name, the same way the Pokédex's Evolution Chain card shows an evolution item.
 - XP: a thin `Progress` with "7,200 / 10,000 XP to Lv 37"; at level 100, "Max level" instead.
 - Stats: an `AppInfoCard` with one `AppInfoCardRow` per stat; a `Tooltip` on each value lists its parts ("Level 36: ×0.66 · Boost +14: ×1.14 · Shiny: ×1.25").
-- Action row: "Evolve" (primary, only when an evolution is allowed), "Use item" (outline), party toggle (outline), lock toggle (ghost with a lock icon), and "Release" (destructive outline, at the end).
+- Action row: "Evolve" (primary, only when an evolution is allowed), "Boost" (outline, opens the boost stones dialog), party toggle (outline), lock toggle (ghost with a lock icon), and "Release" (destructive outline, at the end).
 
 **Tests:** browser test: the page shows the Pokémon's name, level, boost and stats.
 
@@ -1056,11 +1056,11 @@ Read [04-pokemon-page.md](04-pokemon-page.md) first. Builds on Spec 1 (`SetActiv
 
 **Goal:** use boost stones from the page.
 
-**Mock-up:** `docs/mockups/pokemon.html` (states "Use boost stones", "Boost stones result")
+**Mock-up:** `docs/mockups/pokemon.html` (states "Use boost stones", "Boost stones result"; the "Boost" button in "Overview")
 
 **Build:**
 - Route `POST /your-pokemon/{pokemon}/boost` named `pokemon.web.boost` → `UseBoostStonesController` (`max_stones` ≥ 1, optional `target_boost` up to 100).
-- Dialog opened from "Use item" → Boost stones.
+- Dialog opened by the "Boost" button in the action row. Evolution items and Mega Stones are used through Evolve, TMs through Teach TM, so the page needs no general "Use item" button.
 
 **UI suggestions** (ideas, not requirements):
 - The dialog shows the current boost, stones owned and the chance for the next stone ("+60 → +61: 40% chance to fail"), with the chance coloured green (0%), yellow (1–39%) or red (40%+).
@@ -1114,18 +1114,16 @@ Read [04-pokemon-page.md](04-pokemon-page.md) first. Builds on Spec 1 (`SetActiv
 
 ### 4.13 Use items from the inventory
 
-**Goal:** the "Use" button on the inventory's item dialog (Spec 3) and the "Use item" button on the Pokémon page share one flow.
+**Goal:** the "Use" button on the inventory's item dialog (Spec 3) leads to the Pokémon page's own dialogs.
 
-**Mock-up:** `docs/mockups/pokemon.html` (state "Use item") and `docs/mockups/inventory.html` (state "Use: choose a Pokémon")
+**Mock-up:** `docs/mockups/inventory.html` (state "Use: choose a Pokémon")
 
 **Build:**
-- Inventory item dialog: a "Use" button for TMs, boost stones, evolution items and Mega Stones. It opens a "Choose a Pokémon" dialog; after picking, the matching Pokémon-page dialog opens (teach TM, boost stones, or the evolution options with that item).
-- Pokémon page "Use item": a dialog listing the usable items the player owns, grouped by kind; picking one opens the same dialogs.
-- Items that do nothing for that Pokémon are disabled with the reason ("No evolution uses this item").
+- Inventory item dialog: a "Use" button for TMs, boost stones, evolution items and Mega Stones. It opens a "Choose a Pokémon" dialog; after picking, that Pokémon's page opens with the matching dialog: Teach TM, Boost, or the evolution options.
+- In "Choose a Pokémon", Pokémon the item does nothing for are disabled with the reason ("Already knows Ice Beam", "No evolution uses this item", "Already at +100").
 
 **UI suggestions** (ideas, not requirements):
 - "Choose a Pokémon": a searchable list of the player's Pokémon (party first) with `SpeciesPortrait`, name, level and boost; for TMs, Pokémon that already know the move are disabled.
-- "Use item": `ItemSprite`, name, quantity, and a short line on what it does for this Pokémon ("Teaches Ice Beam", "+60 → +61, 40% to fail").
 
 **Tests:** feature test: the inventory props say which items can be used; browser test: teach a TM starting from the inventory.
 
