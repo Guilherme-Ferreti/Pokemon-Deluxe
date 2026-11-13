@@ -1570,7 +1570,7 @@ Read [06-trainers-gyms-and-battle-tower.md](06-trainers-gyms-and-battle-tower.md
 **UI suggestions** (ideas, not requirements):
 - Header with two stats: "Best floor 37" and "Battle Points 1,240".
 - Lobby: six empty team slots and "Choose your team", which opens a picker dialog with search and Party / Box tabs; picked Pokémon fill the slots in order; primary "Start run" enabled at 6.
-- Run in progress: a big "Floor 38", a progress line to the next checkpoint ("Checkpoint at floor 45: full heal"), the team as rows with HP bars (fainted greyed out), primary "Next battle" and a destructive-outline "Quit run" with a confirmation.
+- Run in progress: a big "Floor 38", a progress line to the next checkpoint ("Checkpoint at floor 45: full heal"), the team with HP bars (fainted greyed out), two per row when the screen is wide enough and one per row on phones, primary "Next battle" and a destructive-outline "Quit run" with a confirmation.
 - Checkpoint reached: a green notice "Checkpoint! Your team was fully healed."
 - Run over: floors climbed, Battle Points earned, "New best floor!" when it is, and "Start a new run".
 
