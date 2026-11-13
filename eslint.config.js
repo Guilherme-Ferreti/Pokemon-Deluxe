@@ -104,6 +104,7 @@ export default defineConfigWithVueTs(
             'bootstrap/ssr',
             'tailwind.config.js',
             'vite.config.ts',
+            'docs',
         ],
     },
     prettier, // Turn off all rules that might conflict with Prettier
