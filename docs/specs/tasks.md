@@ -723,10 +723,10 @@ Read [03-money-inventory-and-shop.md](03-money-inventory-and-shop.md) first. Mon
 
 **Build:**
 - Migration `022_add_price_to_pokeballs_and_evolution_items_tables.php`: nullable `unsignedInteger('price')` on both tables (null = never sold).
-- Seed data: Poké Ball 200, Great Ball 600, Ultra Ball 1,200; conditional balls (Net, Dive, Nest, Repeat, Timer, Dusk, Quick, Dream, Lure, Level, Moon, Heavy, Fast, Love, Beast) 1,000; Master, Safari, Sport, Park, Luxury, Premier, Heal, Friend and Cherish null. Evolution stones (Fire, Water, Thunder, Leaf, Moon, Sun, Shiny, Dusk, Dawn, Ice) 3,000; Mega Stones null. Other evolution items: see the open question in the README.
+- Seed data: Poké Ball 200, Great Ball 600, Ultra Ball 1,200; conditional balls (Net, Dive, Nest, Repeat, Timer, Dusk, Quick, Dream, Lure, Level, Moon, Heavy, Fast, Love, Beast) 1,000; Master, Safari, Sport, Park, Luxury, Premier, Heal, Friend and Cherish null. Every evolution item (stones and items such as Metal Coat or King's Rock) 3,000, except Mega Stones, which are null.
 - `App\Shop\Mechanics\TmPriceCalculator::price(Move $move): ?int`: null for Z-Moves and Dynamax moves; 3,000 for status moves (no power); 2,000 under 60 power; 5,000 for 60–89; 10,000 for 90+. Config `game.shop.tm_prices`.
 
-**Tests:** calculator boundaries (59, 60, 89, 90, status, Z-Move); seeder test: Master Ball and Mega Stones have no price.
+**Tests:** calculator boundaries (59, 60, 89, 90, status, Z-Move); seeder test: Master Ball and Mega Stones have no price; every other evolution item costs 3,000.
 
 **Done when:** tests pass.
 

@@ -21,7 +21,7 @@ Players earn Pokédollars (₽) from trainers, gyms, missions and selling items,
 | Great Ball | always | ₽ 600 |
 | Ultra Ball | always | ₽ 1,200 |
 | Special balls (Net, Dusk, Quick, Timer…) | always | ₽ 1,000 |
-| Evolution stones | always | ₽ 3,000 |
+| Evolution stones and other evolution items (Metal Coat, King's Rock…) | always | ₽ 3,000 |
 | Normal TMs | 10 per day, rotating | ₽ 2,000 (power under 60), ₽ 5,000 (60–89), ₽ 10,000 (90+), ₽ 3,000 (status moves) |
 | Collectible and event balls, Master Ball | never; earned only | — |
 | Mega Stones, Z-Move and Dynamax TMs | never; earned only | — |
