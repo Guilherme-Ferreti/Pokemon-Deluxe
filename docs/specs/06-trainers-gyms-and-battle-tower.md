@@ -24,7 +24,7 @@ All three reuse the Spec 1 battle engine: trainers are the main source of money,
 - 8 gyms per region, as in the main games, plus each region's Elite Four and Champion.
 - All regions are at about the same level. Leaders use their main-game teams, at levels suited to this game.
 - Gyms can be beaten in any order. All 8 badges of a region are needed to challenge its Elite Four and Champion.
-- Gyms are plain battles with one rule: the player picks as many Pokémon **from the party** as the leader has (a leader with 3 Pokémon means 3 of yours).
+- Gym leaders bring 2 to 6 Pokémon, depending on the leader. Gyms are plain battles with one rule: the player picks as many Pokémon **from the party** as the leader has (a leader with 3 Pokémon means 3 of yours).
 - Elite Four and Champion: the player uses their party, and the team is fully healed after each battle.
 - A gym win gives the badge and an achievement; achievement rewards come from Spec 5. Rematches give no special prize.
 
