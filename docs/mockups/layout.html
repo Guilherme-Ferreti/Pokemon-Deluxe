@@ -33,7 +33,16 @@
   .topbar { height: 48px; display: flex; align-items: center; justify-content: space-between; padding: 0 8px; }
   .trigger { width: 32px; height: 32px; border-radius: 8px; border: 0; background: transparent; display: flex; align-items: center; justify-content: center; }
   .trigger:hover { background: var(--muted); }
-  .topbar .money { display: none; font-size: 14px; padding-right: 8px; }
+  .topbar .money { display: none; font-size: 14px; padding-right: 4px; }
+  .topbar-right { display: flex; align-items: center; gap: 4px; }
+  .bell-wrap { position: relative; }
+  .bell { position: relative; }
+  .bell-count { position: absolute; top: 0; right: -2px; min-width: 16px; height: 16px; padding: 0 4px; border-radius: 999px; background: var(--destructive); color: var(--destructive-fg); font-size: 10px; font-weight: 700; display: flex; align-items: center; justify-content: center; }
+  .notif { position: absolute; right: 0; top: 40px; z-index: 20; width: min(340px, calc(100vw - 32px)); background: var(--card); border: 1px solid var(--border); border-radius: 12px; box-shadow: 0 10px 30px oklch(0 0 0 / 15%); padding: 6px; display: flex; flex-direction: column; gap: 2px; }
+  .notif-row { display: flex; gap: 10px; align-items: flex-start; padding: 8px; border-radius: 8px; color: inherit; text-decoration: none; }
+  .notif-row:hover { background: var(--muted); }
+  .notif-dot { width: 8px; height: 8px; border-radius: 999px; background: var(--primary); margin-top: 6px; flex-shrink: 0; }
+  .notif-dot.read { background: transparent; }
   .content { padding: 8px 24px 24px; display: flex; flex-direction: column; gap: 12px; }
 
   :root[data-state="collapsed"] .sidebar { width: 56px; }
@@ -50,12 +59,13 @@
 <body>
 <div class="mock-bar">
   <a href="index.html">← All mock-ups</a>
-  <span><strong>App layout: sidebar, money and dots</strong> · tasks 1.19, 3.2, 5.14 (and the sidebar links from tasks 2.16, 3.9, 3.11, 5.11, 6.6, 6.9, 6.13)</span>
+  <span><strong>App layout: sidebar, money, dots and notifications</strong> · tasks 1.19, 3.2, 5.14, 7.3 (and the sidebar links from tasks 2.16, 3.9, 3.11, 5.11, 6.6, 6.9, 6.13, 7.9)</span>
   <label for="mockup-state">State
     <select id="mockup-state">
       <option value="expanded">Sidebar expanded</option>
       <option value="collapsed">Sidebar collapsed to icons</option>
       <option value="phone">Phone (sidebar hidden)</option>
+      <option value="notifications">Notifications open</option>
     </select>
   </label>
 </div>
@@ -79,6 +89,7 @@
         <a href="missions.html" title="2 rewards to claim"><span class="nav-icon" style="position: relative;"><span class="nav-dot" aria-hidden="true"></span></span><span class="label">Missions</span><span class="dot-label" aria-label="2 rewards to claim"></span></a>
         <a href="shop.html" class="active"><span class="nav-icon"></span><span class="label">Shop</span><span class="new">New</span></a>
         <a href="inventory.html"><span class="nav-icon"></span><span class="label">Inventory</span><span class="new">New</span></a>
+        <a href="trade-market.html"><span class="nav-icon"></span><span class="label">Trading</span><span class="new">New</span></a>
         <a href="#"><span class="nav-icon"></span><span class="label">Pokédex</span></a>
       </nav>
       <div class="sidebar-foot">
@@ -98,13 +109,28 @@
         <button type="button" class="trigger" aria-label="Toggle sidebar" id="toggle">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M9 4v16"/></svg>
         </button>
-        <span class="money" title="Your money"><span class="coin" aria-hidden="true"></span>₽ 12,450</span>
+        <span class="topbar-right">
+          <span class="money" title="Your money"><span class="coin" aria-hidden="true"></span>₽ 12,450</span>
+          <span class="bell-wrap">
+            <button type="button" class="trigger bell" aria-label="Notifications, 2 unread" data-go="notifications">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 8a6 6 0 1 1 12 0c0 7 3 9 3 9H3s3-2 3-9M10 21h4"/></svg>
+              <span class="bell-count num">2</span>
+            </button>
+            <div class="notif" role="dialog" aria-label="Notifications" data-show="notifications">
+              <div class="row" style="justify-content: space-between; padding: 6px 8px;"><strong>Notifications</strong><button type="button" class="btn btn-ghost" style="min-height: 30px; padding: 0 8px; font-size: 12px;">Mark all as read</button></div>
+              <a class="notif-row unread" href="trade-listing.html#seller"><span class="notif-dot"></span><span class="stack" style="gap: 2px;"><span class="small">Misty made an offer on your ★ Shiny Gible</span><span class="xs muted">2 hours ago</span></span></a>
+              <a class="notif-row unread" href="trade-mine.html#history"><span class="notif-dot"></span><span class="stack" style="gap: 2px;"><span class="small">Erika accepted your offer for Mewtwo</span><span class="xs muted">yesterday</span></span></a>
+              <a class="notif-row" href="trade-mine.html#history"><span class="notif-dot read"></span><span class="stack" style="gap: 2px;"><span class="small">Your Pikachu listing expired. ₽ 500 refunded.</span><span class="xs muted">5 Nov</span></span></a>
+              <button type="button" class="btn btn-ghost btn-block" data-go="expanded" style="min-height: 32px; font-size: 12px;">Close</button>
+            </div>
+          </span>
+        </span>
       </div>
       <div class="content">
         <h1 style="font-size: 24px; font-weight: 700;">Shop</h1>
         <p class="muted">Page content goes here.</p>
         <p class="note">Money sits in the sidebar footer, above the user menu, and links to the Shop. Collapsed sidebar: coin icon only, amount in a tooltip. Phones (sidebar hidden in a sheet): money shows in the top bar next to the menu button. Always formatted with thousands separators through one shared <code>MoneyAmount</code> component.</p>
-        <p class="note">"Explore" replaces the placeholder "Wild Areas". "Battle" becomes a collapsible group like "Your Pokémon": Current battle (dot while one is ongoing), Trainers, Gyms and Battle Tower. "Shop", "Inventory" and "Missions" are new; the "New" badges are only for this mock-up. The dot after "Missions" means rewards are waiting (count in a tooltip); collapsed, it sits on the icon's corner.</p>
+        <p class="note">"Explore" replaces the placeholder "Wild Areas". "Battle" becomes a collapsible group like "Your Pokémon": Current battle (dot while one is ongoing), Trainers, Gyms and Battle Tower. "Shop", "Inventory", "Missions" and "Trading" are new; the bell in the top bar (count badge, popover with the latest notifications) comes with Spec 7; the "New" badges are only for this mock-up. The dot after "Missions" means rewards are waiting (count in a tooltip); collapsed, it sits on the icon's corner.</p>
       </div>
     </div>
   </div>
@@ -114,6 +140,7 @@
 <script>
   document.getElementById('toggle').addEventListener('click', function () {
     var state = document.documentElement.getAttribute('data-state');
+    if (state === 'notifications') { state = 'expanded'; }
     if (state !== 'phone') { window.mockup.go(state === 'collapsed' ? 'expanded' : 'collapsed'); }
   });
 </script>

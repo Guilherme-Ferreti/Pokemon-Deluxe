@@ -77,3 +77,17 @@ RECENT TRADES (full list)
 
 - Accept buttons are visible only to the seller; others see **Make an offer**, which opens a picker for their Pokémon and items.
 - Listing cards and offer cards have a **Details** button that opens a modal with everything about the Pokémon: stats, active moves, the full known-moves pool, boost and shiny.
+
+## Details to confirm (proposal)
+
+Gaps found while splitting this spec into tasks. Each is a first proposal.
+
+- **Declining:** the seller can decline a single offer; its Pokémon and items go back to the offerer.
+- **One offer per player per listing:** to change it, withdraw it and make a new one.
+- **Offer size:** at least one Pokémon or item; at most 6 Pokémon and 10 different items.
+- **No self-trading:** a player can't make an offer on their own listing.
+- **Listings can't be edited:** cancel (the fee is kept) and list again.
+- **Box space:** an offer can only be accepted when both players have room for what they receive; otherwise accepting shows why.
+- **Party:** the last party Pokémon can't be listed or offered, since battles need a party.
+- **Holds:** a Pokémon on hold can't battle, join the party, evolve, be released, use items or enter the Battle Tower.
+- **Expiry:** checked every few minutes; when a listing expires, its fee is refunded and every pending offer is declined.

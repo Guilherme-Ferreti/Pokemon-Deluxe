@@ -1,0 +1,254 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="claude:viewport-fit-sides" content="cover">
+<title>Trade listing mock-up</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="assets/mockup.css">
+<style>
+  .hero { flex-direction: row; flex-wrap: wrap; gap: 20px; align-items: center; }
+  .hero-info { flex: 1 1 300px; min-width: 0; display: flex; flex-direction: column; gap: 10px; }
+  .hero-info h1 { font-size: 24px; font-weight: 700; color: var(--gold-fg); }
+  .quote { border-left: 3px solid var(--border); padding: 4px 0 4px 12px; font-size: 14px; }
+  .moves { display: flex; flex-wrap: wrap; gap: 6px; }
+  .offer { gap: 12px; }
+  .offer-head { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px; }
+  .offer-things { display: flex; flex-wrap: wrap; gap: 8px; }
+  .thing { display: flex; align-items: center; gap: 10px; border: 1px solid var(--border); border-radius: 10px; padding: 8px 10px; min-width: 0; }
+  .thing .item-sprite { width: 32px; height: 32px; font-size: 8px; }
+  .status { font-size: 12px; }
+  .tabs-row { margin-bottom: 4px; }
+  .pick-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(9rem, 1fr)); gap: 8px; max-height: 260px; overflow-y: auto; }
+  .pick { display: flex; flex-direction: column; align-items: center; gap: 4px; padding: 10px 6px; border: 1px solid var(--border); border-radius: 10px; background: var(--card); text-align: center; font-size: 12px; }
+  .pick[aria-pressed="true"] { border: 2px solid var(--primary); padding: 9px 5px; }
+  .pick:disabled { opacity: .45; }
+  .item-row { display: flex; align-items: center; gap: 10px; padding: 8px 0; border-top: 1px solid var(--border); }
+  .item-row:first-child { border-top: 0; }
+  .details-grid { display: flex; flex-wrap: wrap; gap: 16px; }
+  .details-grid > * { flex: 1 1 220px; min-width: 0; }
+  .stat { display: flex; justify-content: space-between; padding: 6px 0; border-top: 1px solid var(--border); font-size: 13px; }
+  .stat:first-child { border-top: 0; }
+  .move-chip { display: inline-flex; align-items: center; gap: 6px; padding: 4px 8px; border: 1px solid var(--border); border-radius: 8px; font-size: 12px; }
+</style>
+</head>
+<body>
+<div class="mock-bar">
+  <a href="index.html">← All mock-ups</a>
+  <span><strong>Trade listing</strong> · tasks 7.8, 7.11</span>
+  <label for="mockup-state">State
+    <select id="mockup-state">
+      <option value="visitor">Visitor (no offer yet)</option>
+      <option value="make-offer">Make an offer</option>
+      <option value="offered">Visitor with an offer</option>
+      <option value="seller">Seller with offers</option>
+      <option value="accept">Confirm accepting</option>
+      <option value="cancel">Confirm cancelling</option>
+      <option value="traded">Traded</option>
+      <option value="details">Pokémon details</option>
+    </select>
+  </label>
+  <span>Shown inside the app layout (sidebar not drawn). Dashed boxes = sprites and item sprites.</span>
+</div>
+
+<main class="page">
+  <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="trade-market.html">Trade market</a><span aria-hidden="true">›</span><span>Shiny Gible</span></nav>
+
+  <section class="card hero shiny-ring">
+    <div class="sprite sprite-xl sprite-shiny" aria-hidden="true">Shiny Gible<br>sprite</div>
+    <div class="hero-info">
+      <div class="row" style="gap: 8px;">
+        <h1>★ Shiny Gible <span aria-label="Male" style="color: oklch(0.55 0.2 260); font-size: 18px;">♂</span></h1>
+        <span class="badge" data-show="visitor make-offer offered seller accept cancel details">Open</span>
+        <span class="badge badge-good" data-show="traded">Traded</span>
+      </div>
+      <div class="row" style="gap: 6px;">
+        <span class="badge num">Lv 48</span><span class="badge num">Boost +30</span><span class="type type-dragon">Dragon</span><span class="type type-ground">Ground</span>
+      </div>
+      <div class="moves">
+        <span class="move-chip"><span class="type type-dragon">Dragon</span>Dragon Claw 80</span>
+        <span class="move-chip"><span class="type type-ground">Ground</span>Earthquake 100</span>
+        <span class="move-chip"><span class="type type-dark">Dark</span>Crunch 80</span>
+        <span class="move-chip"><span class="type type-fire">Fire</span>Fire Fang 65</span>
+      </div>
+      <div class="quote"><span class="xs muted">Looking for</span><br>Shiny Dragon types or boost stones</div>
+      <div class="row small muted"><span>Listed by <a href="#" style="color: var(--fg); font-weight: 600;">Ash</a></span><span data-show="visitor make-offer offered seller accept cancel details">· Expires in 6 days</span><span data-show="traded">· Traded to Misty on 13 Nov 2026</span></div>
+      <div class="row">
+        <button type="button" class="btn btn-ghost" data-go="details">All details</button>
+        <button type="button" class="btn btn-primary" data-go="make-offer" data-show="visitor make-offer">Make an offer</button>
+        <button type="button" class="btn btn-destructive-outline" data-go="cancel" data-show="seller accept cancel">Cancel listing</button>
+      </div>
+    </div>
+  </section>
+
+  <section class="stack" style="gap: 10px;" data-show="seller accept cancel offered traded details">
+    <h2 style="font-size: 16px; font-weight: 600;"><span data-show="seller accept cancel traded details">Offers · 3</span><span data-show="offered">Your offer</span></h2>
+
+    <div class="card offer" data-show="seller accept cancel offered traded details">
+      <div class="offer-head">
+        <span><a href="#" style="color: var(--fg); font-weight: 600;">Misty</a> <span class="small muted">· 2 hours ago</span></span>
+        <span class="row">
+          <span class="badge badge-good status" data-show="traded">Accepted</span>
+          <button type="button" class="btn btn-ghost" data-show="seller accept cancel details">Decline</button>
+          <button type="button" class="btn btn-primary" data-go="accept" data-show="seller accept cancel details">Accept</button>
+          <span class="badge status" data-show="offered">Pending</span>
+          <button type="button" class="btn btn-ghost" data-show="offered">Withdraw</button>
+        </span>
+      </div>
+      <div class="offer-things">
+        <div class="thing"><span class="sprite sprite-xs sprite-shiny" aria-hidden="true"></span><span class="stack" style="gap: 0;"><strong class="small">★ Shiny Dratini</strong><span class="xs muted num">Lv 30 · +10</span></span><button type="button" class="btn btn-ghost" style="min-height: 30px; padding: 0 8px;" data-go="details">Details</button></div>
+        <div class="thing"><span class="item-sprite" aria-hidden="true">Boost</span><span class="small"><strong>×5</strong> Boost Stone</span></div>
+      </div>
+    </div>
+
+    <div class="card offer" data-show="seller accept cancel details">
+      <div class="offer-head">
+        <span><a href="#" style="color: var(--fg); font-weight: 600;">Brock</a> <span class="small muted">· yesterday</span></span>
+        <span class="row"><button type="button" class="btn btn-ghost">Decline</button><button type="button" class="btn btn-primary" data-go="accept">Accept</button></span>
+      </div>
+      <div class="offer-things">
+        <div class="thing"><span class="sprite sprite-xs" aria-hidden="true"></span><span class="stack" style="gap: 0;"><strong class="small">Onix</strong><span class="xs muted num">Lv 100 · +50</span></span><button type="button" class="btn btn-ghost" style="min-height: 30px; padding: 0 8px;" data-go="details">Details</button></div>
+      </div>
+    </div>
+
+    <div class="card offer" data-show="seller accept cancel details">
+      <div class="offer-head">
+        <span><a href="#" style="color: var(--fg); font-weight: 600;">Gary</a> <span class="small muted">· 2 days ago</span></span>
+        <span class="row"><button type="button" class="btn btn-ghost">Decline</button><button type="button" class="btn btn-primary" data-go="accept">Accept</button></span>
+      </div>
+      <div class="offer-things">
+        <div class="thing"><span class="sprite sprite-xs" aria-hidden="true"></span><span class="stack" style="gap: 0;"><strong class="small">Salamence</strong><span class="xs muted num">Lv 62 · +8</span></span><button type="button" class="btn btn-ghost" style="min-height: 30px; padding: 0 8px;" data-go="details">Details</button></div>
+        <div class="thing"><span class="sprite sprite-xs" aria-hidden="true"></span><span class="stack" style="gap: 0;"><strong class="small">Bagon</strong><span class="xs muted num">Lv 12 · +0</span></span><button type="button" class="btn btn-ghost" style="min-height: 30px; padding: 0 8px;" data-go="details">Details</button></div>
+        <div class="thing"><span class="item-sprite" aria-hidden="true">TM</span><span class="small"><strong>×1</strong> TM 124 Dragon Claw</span></div>
+      </div>
+    </div>
+  </section>
+  <p class="note">Only the seller sees Accept and Decline; an offerer sees Withdraw on their own offer; other visitors see "Make an offer" and no offers. Player names link to profiles (Spec 8).</p>
+</main>
+
+<!-- Make an offer -->
+<div class="overlay" data-show="make-offer">
+  <div class="dialog dialog-wide" role="dialog" aria-labelledby="offer-title">
+    <div class="stack" style="gap: 4px;">
+      <h2 id="offer-title">Make an offer for ★ Shiny Gible</h2>
+      <p class="small muted">Ash is looking for: Shiny Dragon types or boost stones. Up to 6 Pokémon and 10 different items. They're set aside until the offer ends.</p>
+    </div>
+    <div class="tabs tabs-row" role="tablist">
+      <button type="button" class="tab" role="tab" aria-selected="true" id="tab-pokemon">Pokémon</button>
+      <button type="button" class="tab" role="tab" aria-selected="false" id="tab-items">Items</button>
+    </div>
+    <div class="pick-grid" id="offer-pokemon">
+      <button type="button" class="pick" aria-pressed="true"><span class="sprite sprite-sm sprite-shiny" aria-hidden="true"></span><strong>★ Shiny Dratini</strong><span class="muted num">Lv 30 · +10</span></button>
+      <button type="button" class="pick" aria-pressed="false"><span class="sprite sprite-sm" aria-hidden="true"></span><strong>Lapras</strong><span class="muted num">Lv 50 · +12</span></button>
+      <button type="button" class="pick" disabled><span class="sprite sprite-sm sprite-shiny" aria-hidden="true"></span><strong>★ Shiny Charmeleon</strong><span class="muted">Locked</span></button>
+      <button type="button" class="pick" aria-pressed="false"><span class="sprite sprite-sm" aria-hidden="true"></span><strong>Gengar</strong><span class="muted num">Lv 57 · +20</span></button>
+    </div>
+    <div class="stack" id="offer-items" hidden style="gap: 0;">
+      <div class="item-row"><span class="item-sprite" aria-hidden="true">Boost</span><span style="flex: 1;"><strong class="small">Boost Stone</strong><br><span class="xs muted">You own 37</span></span><span class="qty"><button type="button" aria-label="Fewer">−</button><input type="number" value="5" min="0" max="37" aria-label="Boost stones to offer"><button type="button" aria-label="More">+</button></span></div>
+      <div class="item-row"><span class="item-sprite" aria-hidden="true">TM</span><span style="flex: 1;"><strong class="small">TM 395 Ice Beam</strong><br><span class="xs muted">You own 1</span></span><span class="qty"><button type="button" aria-label="Fewer">−</button><input type="number" value="0" min="0" max="1" aria-label="TM 395 Ice Beam to offer"><button type="button" aria-label="More">+</button></span></div>
+      <div class="item-row"><span class="item-sprite" aria-hidden="true">Master</span><span style="flex: 1;"><strong class="small">Master Ball</strong><br><span class="xs muted">You own 1</span></span><span class="qty"><button type="button" aria-label="Fewer">−</button><input type="number" value="0" min="0" max="1" aria-label="Master Balls to offer"><button type="button" aria-label="More">+</button></span></div>
+    </div>
+    <div class="card" style="padding: 12px; gap: 6px; background: var(--muted);">
+      <strong class="small">Your offer</strong>
+      <span class="small">★ Shiny Dratini (Lv 30, +10) · 5 Boost Stones</span>
+    </div>
+    <div class="dialog-actions">
+      <button type="button" class="btn btn-outline" data-go="visitor">Cancel</button>
+      <button type="button" class="btn btn-primary" data-go="offered">Send offer</button>
+    </div>
+  </div>
+</div>
+
+<!-- Accept -->
+<div class="overlay" data-show="accept">
+  <div class="dialog" role="alertdialog" aria-labelledby="accept-title">
+    <div class="stack" style="gap: 6px;">
+      <h2 id="accept-title">Trade ★ Shiny Gible to Misty?</h2>
+      <p class="small">You get <strong>★ Shiny Dratini</strong> (Lv 30, +10) and <strong>5 Boost Stones</strong>.</p>
+      <p class="small muted">The other 2 offers will be declined and returned. This can't be undone.</p>
+    </div>
+    <div class="dialog-actions">
+      <button type="button" class="btn btn-outline" data-go="seller">Not now</button>
+      <button type="button" class="btn btn-primary" data-go="traded">Trade</button>
+    </div>
+  </div>
+</div>
+
+<!-- Cancel -->
+<div class="overlay" data-show="cancel">
+  <div class="dialog" role="alertdialog" aria-labelledby="cancel-title">
+    <div class="stack" style="gap: 6px;">
+      <h2 id="cancel-title">Cancel this listing?</h2>
+      <p class="small muted">The ₽ 500 fee isn't refunded. The 3 offers will be declined and returned, and Shiny Gible goes back to your Box.</p>
+    </div>
+    <div class="dialog-actions">
+      <button type="button" class="btn btn-outline" data-go="seller">Keep listing</button>
+      <button type="button" class="btn btn-destructive" data-go="seller">Cancel listing</button>
+    </div>
+  </div>
+</div>
+
+<!-- Details -->
+<div class="overlay" data-show="details">
+  <div class="dialog dialog-wide" role="dialog" aria-labelledby="pd-title">
+    <div class="row" style="gap: 14px;">
+      <span class="sprite sprite-lg sprite-shiny" aria-hidden="true">Shiny Gible</span>
+      <div class="stack" style="gap: 6px;">
+        <h2 id="pd-title" style="color: var(--gold-fg);">★ Shiny Gible ♂</h2>
+        <span class="row" style="gap: 4px;"><span class="badge num">Lv 48</span><span class="badge num">+30</span><span class="badge badge-gold">Shiny</span><span class="type type-dragon">Dragon</span><span class="type type-ground">Ground</span></span>
+        <span class="xs muted">Caught in an Ultra Ball · Original trainer: Ash</span>
+      </div>
+    </div>
+    <div class="details-grid">
+      <div>
+        <strong class="small">Stats</strong>
+        <div class="stat"><span>HP</span><span class="num">385</span></div>
+        <div class="stat"><span>Attack</span><span class="num">×1.30</span></div>
+        <div class="stat"><span>Defense</span><span class="num">−25%</span></div>
+      </div>
+      <div class="stack" style="gap: 8px;">
+        <strong class="small">Active moves</strong>
+        <div class="moves">
+          <span class="move-chip"><span class="type type-dragon">Dragon</span>Dragon Claw 80</span>
+          <span class="move-chip"><span class="type type-ground">Ground</span>Earthquake 100</span>
+          <span class="move-chip"><span class="type type-dark">Dark</span>Crunch 80</span>
+          <span class="move-chip"><span class="type type-fire">Fire</span>Fire Fang 65</span>
+        </div>
+        <strong class="small">Known moves · 11</strong>
+        <div class="moves">
+          <span class="move-chip"><span class="type type-dragon">Dragon</span>Dragon Rage</span>
+          <span class="move-chip"><span class="type type-ground">Ground</span>Sand Attack</span>
+          <span class="move-chip"><span class="type type-normal">Normal</span>Tackle 40</span>
+          <span class="move-chip"><span class="type type-ground">Ground</span>Dig 80</span>
+          <span class="move-chip"><span class="type type-dragon">Dragon</span>Outrage 120</span>
+          <span class="move-chip"><span class="type type-rock">Rock</span>Rock Slide 75</span>
+          <span class="move-chip"><span class="type type-steel">Steel</span>Iron Head 80</span>
+        </div>
+      </div>
+    </div>
+    <div class="dialog-actions"><button type="button" class="btn btn-outline" data-go="visitor">Close</button></div>
+    <p class="note">The same PokemonDetailsDialog opens from listing cards, the listing hero and each offered Pokémon.</p>
+  </div>
+</div>
+
+<script src="assets/mockup.js"></script>
+<script>
+  (function () {
+    var tp = document.getElementById('tab-pokemon');
+    var ti = document.getElementById('tab-items');
+    function show(items) {
+      tp.setAttribute('aria-selected', String(!items));
+      ti.setAttribute('aria-selected', String(items));
+      document.getElementById('offer-pokemon').hidden = items;
+      document.getElementById('offer-items').hidden = !items;
+    }
+    tp.addEventListener('click', function () { show(false); });
+    ti.addEventListener('click', function () { show(true); });
+    document.querySelectorAll('#offer-pokemon .pick:not(:disabled)').forEach(function (b) {
+      b.addEventListener('click', function () { b.setAttribute('aria-pressed', String(b.getAttribute('aria-pressed') !== 'true')); });
+    });
+  })();
+</script>
+</body>
+</html>
