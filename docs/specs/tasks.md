@@ -307,11 +307,12 @@ Uses `Combatant` from task 1.10.
 **Goal:** Pokémon that fought gain XP and level up.
 
 **Build:**
-- `App\Pokemon\Services\ExperienceCalculator` → move to `App\Pokemon\Mechanics\ExperienceCalculator` (update callers). Add `experienceForDefeating(int $opponentLevel, bool $isKnockout): int`. Placeholder until the open question is settled: opponent level × 10, ×1.5 for the Pokémon that knocked it out (config `game.experience.per_opponent_level`, `game.experience.knockout_multiplier`).
+- `App\Pokemon\Services\ExperienceCalculator` → move to `App\Pokemon\Mechanics\ExperienceCalculator` (update callers). Add `experienceForDefeating(int $opponentLevel, int $pokemonLevel, BattleType $battleType, bool $isKnockout): int` = 250 × clamp(opponentLevel ÷ pokemonLevel, 0.1, 3) × battle bonus × 1.5 when it knocked the opponent out, rounded down (Spec 1, "XP").
+- Config `game.experience`: `base` (250), `min_ratio` (0.1), `max_ratio` (3), `battle_bonuses` (wild 1, trainer 1.5, gym 2, elite four 2, battle tower 1), `knockout_multiplier` (1.5), `xp_share_ratio` (0.5, used by task 5.10).
 - `App\Pokemon\Actions\AwardExperienceAction::handle(Pokemon $pokemon, int $experience): void`: adds XP, updates `level` with `levelForExperience()`, stops at level 100.
-- When `TakeTurnAction` ends with `WON`, award XP to every player combatant with `has_entered_field`. Track who knocked out each opponent in the state.
+- When a battle ends with `WON`, every player combatant with `has_entered_field` gets the sum, over each defeated opponent Pokémon, of `experienceForDefeating()` (with the knockout bonus for the opponents it knocked out). Track who knocked out each opponent in the state. Battle Tower battles don't pay here: task 6.12 saves their XP in the run.
 
-**Tests:** XP added; level goes up; level 100 gains nothing; only Pokémon that entered the field gain XP; the knockout bonus.
+**Tests:** `ExperienceCalculatorTest` with every row of Spec 1's XP table, the 0.1 and 3 caps and each battle bonus; XP added; level goes up; level 100 gains nothing; only Pokémon that entered the field gain XP; the knockout bonus; several defeated opponents add up.
 
 **Done when:** tests pass.
 
@@ -1545,13 +1546,15 @@ Read [06-trainers-gyms-and-battle-tower.md](06-trainers-gyms-and-battle-tower.md
 **Goal:** start, climb, resume, quit.
 
 **Build:**
-- Migration `034_create_tower_runs_table.php`: `uuid id`, `foreignIdFor(User)`, `status` enum (`ACTIVE`, `ENDED`), `floor` (the next floor to fight), `json team` (6 Pokémon IDs and each one's current HP), `battle_points_earned`, timestamps. Migration `035_add_tower_columns_to_users_table.php`: `best_tower_floor` (default 0), `battle_points` (default 0).
-- `App\BattleTower\Actions\StartTowerRunAction::handle(User $user, array $pokemonIds): TowerRun`: exactly 6 of the player's Pokémon (party or Box), none locked in a trade (Spec 7); one active run.
-- `ClimbTowerFloorAction::handle(TowerRun $run): Battle`: a `BATTLE_TOWER` battle against `TrainerTeamRoller` with the floor's level, boost and size (species from every wild-eligible species); the player's side starts at the HP stored in the run; `heals_after` false.
-- On a win: store each team member's HP back in the run, add the floor's points, `floor` + 1; on a checkpoint floor, heal the whole team. On a loss: status `ENDED`. Either way update `best_tower_floor` (highest floor won) and add points to `users.battle_points`.
-- `QuitTowerRunAction::handle(TowerRun $run): void`: ends the run, keeping points and best floor.
+- Migration `034_create_tower_runs_table.php`: `uuid id`, `foreignIdFor(User)`, `status` enum (`ACTIVE`, `ENDED`), `floor` (the next floor to fight), `json team` (for each of the 6: Pokémon ID, the frozen copy taken at the start — species, level, boost, shiny, gender, types, active moves, max HP and stats — its current HP, and the XP saved up so far), `battle_points_earned`, timestamps. Migration `035_add_tower_columns_to_users_table.php`: `best_tower_floor` (default 0), `battle_points` (default 0).
+- `App\BattleTower\Actions\StartTowerRunAction::handle(User $user, array $pokemonIds): TowerRun`: exactly 6 of the player's Pokémon (party or Box), none on trade hold (Spec 7); one active run; copies each Pokémon into `team`.
+- `ClimbTowerFloorAction::handle(TowerRun $run): Battle`: a `BATTLE_TOWER` battle against `TrainerTeamRoller` with the floor's level, boost and size (species from every wild-eligible species). The player's side is built from the frozen copies, not the live Pokémon, starting at the HP stored in the run; `heals_after` false. Refused while another battle is ongoing (one battle at a time).
+- On a win: store each team member's HP back in the run, add each member's XP for the floor (Spec 1's formula with the Tower bonus) to its saved-up XP, add the floor's points, `floor` + 1; on a checkpoint floor, heal the whole team. On a loss: status `ENDED`.
+- When the run ends (loss, quit or floor 1,000): pay each member's saved-up XP with `AwardExperienceAction` (to the live Pokémon), update `best_tower_floor` (highest floor won) and add points to `users.battle_points`.
+- Tower hold: `App\BattleTower\Queries\ActiveTowerTeamQuery::contains(Pokemon $pokemon): bool`. `ReleasePokemonAction` and `EvolvePokemonAction` refuse a Pokémon in an active run (`App\BattleTower\Exceptions\PokemonInTowerRunException`); so do `CreateListingAction` and `MakeOfferAction` (Spec 7, when built). The Pokémon page shows an "In a Battle Tower run" badge, with a tooltip that boosts and TMs count from its next run.
+- `QuitTowerRunAction::handle(TowerRun $run): void`: ends the run, paying XP and keeping points and best floor.
 
-**Tests:** start needs 6; damage carries over between floors; checkpoint heals; loss ends the run and keeps points; best floor updated; quit; resume after reload (the run is just loaded again).
+**Tests:** start needs 6; the run uses the frozen copy even after a team member levels up elsewhere; damage carries over between floors; checkpoint heals; XP is saved up per floor and paid only when the run ends (loss, quit); loss ends the run and keeps points; best floor updated; Tower hold refuses release and evolve; climbing is refused during another battle; resume after reload (the run is just loaded again).
 
 **Done when:** tests pass.
 
@@ -1572,7 +1575,8 @@ Read [06-trainers-gyms-and-battle-tower.md](06-trainers-gyms-and-battle-tower.md
 - Lobby: six empty team slots and "Choose your team", which opens a picker dialog with search and Party / Box tabs; picked Pokémon fill the slots in order; primary "Start run" enabled at 6.
 - Run in progress: a big "Floor 38", a progress line to the next checkpoint ("Checkpoint at floor 45: full heal"), the team with HP bars (fainted greyed out), two per row when the screen is wide enough and one per row on phones, primary "Next battle" and a destructive-outline "Quit run" with a confirmation.
 - Checkpoint reached: a green notice "Checkpoint! Your team was fully healed."
-- Run over: floors climbed, Battle Points earned, "New best floor!" when it is, and "Start a new run".
+- Run over: floors climbed, Battle Points earned, the XP each team member received (with level-ups), "New best floor!" when it is, and "Start a new run".
+- Lobby and run screens say the team is a frozen copy: "Your team as it was when the run started".
 
 **Tests:** feature tests for the props and routes; browser test: start a run and climb one floor.
 

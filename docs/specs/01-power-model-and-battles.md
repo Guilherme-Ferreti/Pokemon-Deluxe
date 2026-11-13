@@ -77,9 +77,32 @@ Level factor = level + 10, so a level 100 Pokémon is 10× a level 1, not 100×.
 
 ## XP
 
-- Every Pokémon that came onto the field gets XP; the one that knocked out the opponent gets more.
-- Pokémon that never came out get none, unless an XP Share is active (see Spec 5).
-- Higher-level opponents give more XP. Level 100 gains nothing. Amounts are tuned later; today a level costs 1,000 XP.
+- A level costs 1,000 XP (`game.pokemon.experience_per_level`). Level 100 gains nothing.
+- For each opponent Pokémon defeated, every Pokémon of the player's that came onto the field gets the full amount (it isn't split):
+
+```math
+\text{XP} = 250 \times \text{clamp}\left(\frac{\text{opponent level}}{\text{your Pokémon's level}}, 0.1, 3\right) \times \text{battle bonus}
+```
+
+- Battle bonus: wild ×1, trainer ×1.5, gym, Elite Four and Champion ×2, Battle Tower ×1.
+- The Pokémon that knocked the opponent out gets ×1.5.
+- Pokémon that never came out get none, unless an XP Share is active: then they get 50% (see Spec 5).
+- Every number lives in `config/game.php` under `game.experience`.
+
+| Situation | XP | Wins per level |
+| --- | --- | --- |
+| Lv 5 starter knocks out a wild Lv 7 | 525 | about 2 |
+| Lv 30 beats a wild Lv 10 | 83 | about 12 |
+| Lv 50 beats a Lv 50 trainer's Pokémon | 375–562 | about 2–3 |
+| Lv 50 beats a Lv 55 gym leader's 5 Pokémon | about 2,750–4,100 in total | 3–4 levels |
+| Lv 90 clears a Tower floor of 3 Lv 90 Pokémon | 750–1,125 | about 1 per floor |
+
+Taking one Pokémon from level 1 to 100 takes about 300 fair fights, fewer when fighting stronger opponents.
+
+## One battle at a time
+
+- A player has at most one battle in progress, of any kind (wild, trainer, gym, Elite Four, Battle Tower). Starting another is refused with a link to the ongoing one.
+- A Battle Tower run or an Elite Four run is not a battle in itself: between its battles the player can do anything else (Spec 6).
 
 ## Evolution
 

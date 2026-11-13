@@ -23,7 +23,7 @@ Planned work is listed in [tasks.md](tasks.md). Names used in code follow [gloss
 
 ## Open questions
 
-- [ ] Spec 1: how much XP a win gives (tuned later).
+- None right now. Numbers marked as first proposals are tuned during play-testing.
 
 ## Future ideas
 
