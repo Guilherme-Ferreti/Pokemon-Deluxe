@@ -1442,7 +1442,7 @@ Read [06-trainers-gyms-and-battle-tower.md](06-trainers-gyms-and-battle-tower.md
 - "Trainers" sub-item in the sidebar's "Battle" group (task 1.19), after "Current battle".
 
 **UI suggestions** (ideas, not requirements):
-- `AppPageHeader` with a search `InputGroup` (by name or class) on the right.
+- `AppPageHeader` with a search `InputGroup` on the right, placeholder "Search, e.g. Bob or Hiker" (matches the name and the trainer class).
 - Tabs by category: All, Townsfolk (Youngster, Lass, Gentleman…), Outdoors (Hiker, Camper, Bug Catcher…), Water (Swimmer, Fisherman, Sailor), Fighters (Black Belt, Battle Girl), Mystics (Psychic, Medium, Hex Maniac), Experts (Ace Trainer, Veteran, Dragon Tamer). The tab goes in the URL (`?category=water`); search works inside the chosen tab.
 - One list `Card` with a row per trainer: trainer sprite, name and class, "3 Pokémon · Lv 20–25", type badges, payout (`MoneyAmount`) and an outline "Battle" button. Sorted by level inside each tab; no difficulty groups.
 - When the party's average level is above the trainer's, a muted hint under the payout: "You'd get about ₽ 900 (your team is stronger)".
