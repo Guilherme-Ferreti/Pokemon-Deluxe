@@ -1437,7 +1437,7 @@ Read [06-trainers-gyms-and-battle-tower.md](06-trainers-gyms-and-battle-tower.md
 **Mock-up:** `docs/mockups/trainers.html` (all states, including "Trainer's team")
 
 **Build:**
-- Route `GET /trainers` named `trainers.web.index` → `App\Trainers\Http\Web\Controllers\TrainersController@index` with `TrainersIndexPageProps`: every `TRAINER` (name, class, sprite, team size, level range, types used, full payout, the player's wins, and the team: species, level, types, shiny) sorted by level, with each trainer's category; plus the player's party average level for the payout hint.
+- Route `GET /trainers` named `trainers.web.index` → `App\Trainers\Http\Web\Controllers\TrainersController@index` with `TrainersIndexPageProps`: every `TRAINER` (name, class, sprite, team size, level range, types used, full payout, and the team: species, level, types, shiny) sorted by level, with each trainer's category; plus the player's party average level for the payout hint.
 - Route `POST /trainers/{trainer}/challenge` named `trainers.web.challenge` → `ChallengeTrainerController`, redirects to the battle page.
 - "Trainers" sub-item in the sidebar's "Battle" group (task 1.19), after "Current battle".
 
@@ -1446,7 +1446,6 @@ Read [06-trainers-gyms-and-battle-tower.md](06-trainers-gyms-and-battle-tower.md
 - Tabs by category: All, Townsfolk (Youngster, Lass, Gentleman…), Outdoors (Hiker, Camper, Bug Catcher…), Water (Swimmer, Fisherman, Sailor), Fighters (Black Belt, Battle Girl), Mystics (Psychic, Medium, Hex Maniac), Experts (Ace Trainer, Veteran, Dragon Tamer). The tab goes in the URL (`?category=water`); search works inside the chosen tab.
 - One list `Card` with a row per trainer: trainer sprite, name and class, "3 Pokémon · Lv 20–25", type badges, payout (`MoneyAmount`) and an outline "Battle" button. Sorted by level inside each tab; no difficulty groups.
 - When the party's average level is above the trainer's, a muted hint under the payout: "You'd get about ₽ 900 (your team is stronger)".
-- A small "Won 4×" badge for trainers already beaten.
 - A ghost "Team" button with an eye icon on each row opens a `Dialog` with the trainer's team in sending-out order: portrait, name, level and types for each Pokémon (shinies with the gold border), plus "Close" and a primary "Battle". Moves stay hidden.
 - While a battle is ongoing, the Battle buttons are disabled and a notice links to the battle.
 
