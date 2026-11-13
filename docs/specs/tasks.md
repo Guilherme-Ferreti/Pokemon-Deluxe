@@ -338,7 +338,9 @@ Uses `Combatant` from task 1.10.
 - Route `GET /battle` named `battle.web.show` → `App\Battle\Http\Web\Controllers\BattleController@show`; shows the user's `ONGOING` battle or redirects to the Dashboard.
 - `App\Battle\Http\Web\PageProps\BattleShowPageProps`: both active combatants (sprite, name, level, boost, shiny, ailment), player HP as numbers, opponent HP as a percentage only, team dots, active moves (name, type, power), log.
 - Page `resources/js/app/Battle/pages/Battle/index.vue` with the Spec 1 layout; stacks on phones.
-- The sidebar already has a placeholder "Battle" item pointing to `#`: point it to `battle.web.show`.
+- The sidebar already has a placeholder "Battle" item pointing to `#`. Turn it into a collapsible group, like "Your Pokémon", with one sub-item for now: "Current battle" → `battle.web.show`. Spec 6 adds Trainers, Gyms and Battle Tower to the same group (tasks 6.6, 6.9, 6.13). While a battle is ongoing, "Current battle" shows a dot.
+
+**Mock-up:** `docs/mockups/layout.html` (the "Battle" group)
 
 **UI suggestions** (ideas, not requirements):
 - Layout: a CSS grid with two `Card`s, opponent at the top right and player at the bottom left; one column on phones (opponent, player, moves, log).
@@ -1437,7 +1439,7 @@ Read [06-trainers-gyms-and-battle-tower.md](06-trainers-gyms-and-battle-tower.md
 **Build:**
 - Route `GET /trainers` named `trainers.web.index` → `App\Trainers\Http\Web\Controllers\TrainersController@index` with `TrainersIndexPageProps`: every `TRAINER` (name, class, sprite, team size, level range, types used, full payout, the player's wins) sorted by level; plus the player's party average level for the payout hint.
 - Route `POST /trainers/{trainer}/challenge` named `trainers.web.challenge` → `ChallengeTrainerController`, redirects to the battle page.
-- Sidebar "Trainers" link.
+- "Trainers" sub-item in the sidebar's "Battle" group (task 1.19), after "Current battle".
 
 **UI suggestions** (ideas, not requirements):
 - `AppPageHeader` with a search `InputGroup` (by name or class) on the right.
@@ -1492,7 +1494,7 @@ Read [06-trainers-gyms-and-battle-tower.md](06-trainers-gyms-and-battle-tower.md
 **Build:**
 - Route `GET /gyms` named `trainers.web.gyms.index` → `GymsController@index` (`?region=kanto`), with `GymsIndexPageProps`: the region's 8 leaders (badge name, type, leader, team preview, won or not), Elite Four and Champion status, and the player's party.
 - Route `POST /gyms/{trainer}/challenge` named `trainers.web.gyms.challenge` → `ChallengeGymController` (`pokemon_ids`).
-- Sidebar "Gyms" link.
+- "Gyms" sub-item in the sidebar's "Battle" group, after "Trainers".
 
 **UI suggestions** (ideas, not requirements):
 - Region tabs (the region in the URL), the count "Badges 5 / 8" on the right.
@@ -1561,7 +1563,7 @@ Read [06-trainers-gyms-and-battle-tower.md](06-trainers-gyms-and-battle-tower.md
 - Route `GET /battle-tower` named `battle-tower.web.index` → `BattleTowerController@index` with `BattleTowerIndexPageProps`: best floor, Battle Points, the active run (floor, next checkpoint, team with HP) or the player's Pokémon for picking.
 - Routes `POST /battle-tower/runs` (`battle-tower.web.runs.store`, `pokemon_ids`), `POST /battle-tower/runs/climb` (`battle-tower.web.runs.climb`, redirects to the battle), `DELETE /battle-tower/runs` (`battle-tower.web.runs.destroy`).
 - After a Tower battle, the battle page's end screen links back to the Tower ("Back to the Tower").
-- Sidebar "Battle Tower" link.
+- "Battle Tower" sub-item in the sidebar's "Battle" group, after "Gyms".
 
 **UI suggestions** (ideas, not requirements):
 - Header with two stats: "Best floor 37" and "Battle Points 1,240".

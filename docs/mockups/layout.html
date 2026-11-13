@@ -22,6 +22,7 @@
   :root[data-state="collapsed"] .nav-dot { display: block; }
   .dot-label { width: 8px; height: 8px; border-radius: 999px; background: var(--primary); margin-left: auto; flex-shrink: 0; }
   :root[data-state="collapsed"] .dot-label { display: none; }
+  .chevron { margin-left: auto; color: var(--muted-fg); font-size: 12px; }
   .new { font-size: 10px; font-weight: 600; padding: 1px 6px; border-radius: 6px; background: var(--good-soft); color: var(--good); }
   .sidebar-foot { padding: 8px; display: flex; flex-direction: column; gap: 4px; border-top: 1px solid var(--border); }
   .wallet { display: flex; align-items: center; justify-content: space-between; gap: 8px; height: 40px; padding: 0 10px; border-radius: 8px; color: var(--fg); text-decoration: none; }
@@ -49,7 +50,7 @@
 <body>
 <div class="mock-bar">
   <a href="index.html">← All mock-ups</a>
-  <span><strong>App layout: money and Missions dot</strong> · tasks 3.2, 5.14 (and the sidebar links from tasks 2.16, 3.9, 3.11, 5.11)</span>
+  <span><strong>App layout: sidebar, money and dots</strong> · tasks 1.19, 3.2, 5.14 (and the sidebar links from tasks 2.16, 3.9, 3.11, 5.11, 6.6, 6.9, 6.13)</span>
   <label for="mockup-state">State
     <select id="mockup-state">
       <option value="expanded">Sidebar expanded</option>
@@ -70,7 +71,11 @@
         <a href="#" class="sub"><span class="nav-icon"></span><span class="label">Party</span></a>
         <a href="#" class="sub"><span class="nav-icon"></span><span class="label">Box</span></a>
         <a href="nursery.html" class="sub"><span class="nav-icon"></span><span class="label">Nursery</span></a>
-        <a href="battle.html"><span class="nav-icon"></span><span class="label">Battle</span></a>
+        <a href="#" aria-expanded="true"><span class="nav-icon"></span><span class="label">Battle</span><span class="label chevron" aria-hidden="true">▾</span></a>
+        <a href="battle.html" class="sub"><span class="nav-icon" style="position: relative;"><span class="nav-dot" aria-hidden="true"></span></span><span class="label">Current battle</span><span class="dot-label" title="A battle is in progress"></span></a>
+        <a href="trainers.html" class="sub"><span class="nav-icon"></span><span class="label">Trainers</span><span class="new">New</span></a>
+        <a href="gyms.html" class="sub"><span class="nav-icon"></span><span class="label">Gyms</span><span class="new">New</span></a>
+        <a href="tower.html" class="sub"><span class="nav-icon"></span><span class="label">Battle Tower</span><span class="new">New</span></a>
         <a href="missions.html" title="2 rewards to claim"><span class="nav-icon" style="position: relative;"><span class="nav-dot" aria-hidden="true"></span></span><span class="label">Missions</span><span class="dot-label" aria-label="2 rewards to claim"></span></a>
         <a href="shop.html" class="active"><span class="nav-icon"></span><span class="label">Shop</span><span class="new">New</span></a>
         <a href="inventory.html"><span class="nav-icon"></span><span class="label">Inventory</span><span class="new">New</span></a>
@@ -99,7 +104,7 @@
         <h1 style="font-size: 24px; font-weight: 700;">Shop</h1>
         <p class="muted">Page content goes here.</p>
         <p class="note">Money sits in the sidebar footer, above the user menu, and links to the Shop. Collapsed sidebar: coin icon only, amount in a tooltip. Phones (sidebar hidden in a sheet): money shows in the top bar next to the menu button. Always formatted with thousands separators through one shared <code>MoneyAmount</code> component.</p>
-        <p class="note">"Explore" and "Battle" replace the sidebar's existing placeholder links ("Wild Areas" and "Battle", both pointing to <code>#</code> today). "Shop", "Inventory" and "Missions" are new; the "New" badges are only for this mock-up. The dot after "Missions" means rewards are waiting (count in a tooltip); collapsed, it sits on the icon's corner.</p>
+        <p class="note">"Explore" replaces the placeholder "Wild Areas". "Battle" becomes a collapsible group like "Your Pokémon": Current battle (dot while one is ongoing), Trainers, Gyms and Battle Tower. "Shop", "Inventory" and "Missions" are new; the "New" badges are only for this mock-up. The dot after "Missions" means rewards are waiting (count in a tooltip); collapsed, it sits on the icon's corner.</p>
       </div>
     </div>
   </div>
