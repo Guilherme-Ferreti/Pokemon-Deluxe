@@ -76,7 +76,11 @@
       <option value="boost-result">Boost stones result</option>
       <option value="evolve">Evolution options</option>
       <option value="evolve-confirm">Confirm evolution</option>
-      <option value="party-full">Party full</option>
+      <option value="remove-party">Remove from party</option>
+      <option value="not-in-party">Not in party</option>
+      <option value="added">Added to party</option>
+      <option value="party-full">Not in party, party full</option>
+      <option value="party-swap">Party full: choose who to swap</option>
       <option value="lock-confirm">Confirm locking</option>
       <option value="locked">Locked</option>
       <option value="release">Release</option>
@@ -123,18 +127,17 @@
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
           Boost
         </button>
-        <button type="button" class="btn btn-outline" data-show="overview swap teach-tm boost boost-result evolve evolve-confirm locked release release-warning lock-confirm">In party ✓</button>
-        <span class="stack" style="gap: 2px;" data-show="party-full">
-          <button type="button" class="btn btn-outline" disabled>Add to party</button>
-          <span class="xs muted">Party full (6)</span>
-        </span>
-        <button type="button" class="btn btn-ghost" data-go="lock-confirm" data-show="overview swap teach-tm boost boost-result evolve evolve-confirm party-full release release-warning lock-confirm">
+        <button type="button" class="btn btn-outline" data-go="remove-party" data-show="overview swap teach-tm boost boost-result evolve evolve-confirm locked release release-warning lock-confirm remove-party">Remove from party</button>
+        <button type="button" class="btn btn-outline" data-go="added" data-show="not-in-party">Add to party</button>
+        <button type="button" class="btn btn-outline" data-go="party-swap" data-show="party-full party-swap">Add to party</button>
+        <button type="button" class="btn btn-outline" data-go="remove-party" data-show="added">Remove from party</button>
+        <button type="button" class="btn btn-ghost" data-go="lock-confirm" data-show="overview swap teach-tm boost boost-result evolve evolve-confirm party-full release release-warning lock-confirm not-in-party added party-swap remove-party">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 7.5-2"/></svg>Unlocked
         </button>
         <button type="button" class="btn btn-ghost" data-go="overview" data-show="locked">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>Locked
         </button>
-        <button type="button" class="btn btn-destructive-outline push" data-go="release-warning" data-show="overview swap teach-tm boost boost-result evolve evolve-confirm party-full release release-warning lock-confirm">Release</button>
+        <button type="button" class="btn btn-destructive-outline push" data-go="release-warning" data-show="overview swap teach-tm boost boost-result evolve evolve-confirm party-full release release-warning lock-confirm not-in-party added party-swap remove-party">Release</button>
         <button type="button" class="btn btn-destructive-outline push" disabled title="Unlock it first" data-show="locked">Release</button>
       </div>
     </div>
@@ -305,6 +308,48 @@
   </div>
 </div>
 
+<!-- Party -->
+<div class="overlay" data-show="remove-party">
+  <div class="dialog" role="alertdialog" aria-labelledby="remove-party-title">
+    <div class="stack" style="gap: 6px;">
+      <h2 id="remove-party-title">Remove Shiny Charmeleon from your party?</h2>
+      <p class="small muted">It goes to your Box. You can add it back any time.</p>
+    </div>
+    <div class="dialog-actions">
+      <button type="button" class="btn btn-outline" data-go="overview">Keep in party</button>
+      <button type="button" class="btn btn-primary" data-go="not-in-party">Remove</button>
+    </div>
+    <p class="note">Your last party Pokémon can't be removed: the button is disabled with a tooltip ("Your party needs at least one Pokémon").</p>
+  </div>
+</div>
+
+<div class="overlay" data-show="party-swap">
+  <div class="dialog" role="dialog" aria-labelledby="party-swap-title">
+    <div class="stack" style="gap: 6px;">
+      <h2 id="party-swap-title">Your party is full</h2>
+      <p class="small muted">Choose a Pokémon to send to the Box. Shiny Charmeleon takes its place.</p>
+    </div>
+    <div class="pick-list" id="swap-list">
+      <button type="button" class="pick"><span class="sprite sprite-xs" aria-hidden="true"></span><span class="pick-main"><strong>Dragonite</strong><span class="xs muted num">Lv 61 · +40</span></span></button>
+      <button type="button" class="pick"><span class="sprite sprite-xs" aria-hidden="true"></span><span class="pick-main"><strong>Lapras</strong><span class="xs muted num">Lv 50 · +12</span></span></button>
+      <button type="button" class="pick"><span class="sprite sprite-xs sprite-shiny" aria-hidden="true"></span><span class="pick-main"><strong>Shiny Magikarp</strong><span class="xs muted num">Lv 54 · +72</span></span></button>
+      <button type="button" class="pick"><span class="sprite sprite-xs" aria-hidden="true"></span><span class="pick-main"><strong>Gible</strong><span class="xs muted num">Lv 48 · +0</span></span></button>
+      <button type="button" class="pick"><span class="sprite sprite-xs" aria-hidden="true"></span><span class="pick-main"><strong>Pikachu</strong><span class="xs muted num">Lv 30 · +5</span></span></button>
+      <button type="button" class="pick"><span class="sprite sprite-xs" aria-hidden="true"></span><span class="pick-main"><strong>Gengar</strong><span class="xs muted num">Lv 57 · +20</span></span></button>
+    </div>
+    <div class="dialog-actions">
+      <button type="button" class="btn btn-outline" data-go="party-full">Cancel</button>
+      <button type="button" class="btn btn-primary" id="swap-button" disabled data-go="added">Swap</button>
+    </div>
+    <p class="note">The same dialog is used from the Box: a card's menu gets "Add to party", which opens it when the party is full.</p>
+  </div>
+</div>
+
+<div class="toast" role="status" data-show="added">
+  <span class="toast-icon" aria-hidden="true"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L20 7"/></svg></span>
+  <div><strong>Added to party</strong><p>Shiny Charmeleon joined your party.</p></div>
+</div>
+
 <!-- Lock -->
 <div class="overlay" data-show="lock-confirm">
   <div class="dialog" role="alertdialog" aria-labelledby="lock-title">
@@ -346,6 +391,16 @@
     var button = document.getElementById('release-button');
     input.addEventListener('input', function () { button.disabled = input.value.trim() !== 'Shiny Charmeleon'; });
     document.addEventListener('mockup:state', function () { input.value = ''; button.disabled = true; });
+    document.querySelectorAll('#swap-list .pick').forEach(function (row) {
+      row.addEventListener('click', function () {
+        document.querySelectorAll('#swap-list .pick').forEach(function (r) { r.setAttribute('aria-pressed', 'false'); });
+        row.setAttribute('aria-pressed', 'true');
+        var name = row.querySelector('strong').textContent;
+        var button = document.getElementById('swap-button');
+        button.disabled = false;
+        button.textContent = 'Swap with ' + name;
+      });
+    });
     var tmSearch = document.getElementById('tm-search');
     var typeFilter = '';
     function filterTms() {

@@ -933,9 +933,10 @@ Read [04-pokemon-page.md](04-pokemon-page.md) first. Builds on Spec 1 (`SetActiv
 **Build:**
 - `App\Pokemon\Actions\AddToPartyAction::handle(Pokemon $pokemon): void`: throws `App\Pokemon\Exceptions\PartyFullException` at `game.user.max_party_size` (6).
 - `App\Pokemon\Actions\RemoveFromPartyAction::handle(Pokemon $pokemon): void`: throws `App\Pokemon\Exceptions\PartyCannotBeEmptyException` for the last party Pokémon, since battles need a party.
+- `App\Pokemon\Actions\SwapPartyPokemonAction::handle(Pokemon $joining, Pokemon $leaving): void`: `$leaving` must be in the party and `$joining` must not; in one transaction `$leaving` goes to the Box and `$joining` takes its place.
 - Both refuse during an ongoing battle (`BattleAlreadyInProgressException`): the battle uses a snapshot of the party.
 
-**Tests:** add; party full; remove; last one refused; refused during a battle.
+**Tests:** add; party full; remove; last one refused; swap (party size unchanged); swap with a Pokémon outside the party refused; refused during a battle.
 
 **Done when:** tests pass.
 
@@ -1100,15 +1101,17 @@ Read [04-pokemon-page.md](04-pokemon-page.md) first. Builds on Spec 1 (`SetActiv
 
 **Goal:** the remaining actions.
 
-**Mock-up:** `docs/mockups/pokemon.html` (states "Overview", "Party full", "Confirm locking", "Locked", "Release", "Release a shiny or boosted Pokémon")
+**Mock-up:** `docs/mockups/pokemon.html` (states "Overview", "Remove from party", "Not in party", "Added to party", "Not in party, party full", "Party full: choose who to swap", "Confirm locking", "Locked", "Release", "Release a shiny or boosted Pokémon")
 
 **Build:**
-- Routes: `POST /your-pokemon/{pokemon}/party` (`pokemon.web.party.add`), `DELETE /your-pokemon/{pokemon}/party` (`pokemon.web.party.remove`), `POST /your-pokemon/{pokemon}/lock` (`pokemon.web.lock`, `is_locked` boolean), `DELETE /your-pokemon/{pokemon}` (`pokemon.web.release`, redirects to the Box with a toast).
+- Routes: `POST /your-pokemon/{pokemon}/party` (`pokemon.web.party.add`), `DELETE /your-pokemon/{pokemon}/party` (`pokemon.web.party.remove`), `POST /your-pokemon/{pokemon}/party/swap` (`pokemon.web.party.swap`, `leaving_pokemon_id`), `POST /your-pokemon/{pokemon}/lock` (`pokemon.web.lock`, `is_locked` boolean), `DELETE /your-pokemon/{pokemon}` (`pokemon.web.release`, redirects to the Box with a toast).
 - Locking asks for confirmation and explains that a locked Pokémon can't be released or traded; unlocking does not ask.
 - Release asks the player to type the Pokémon's display name to confirm ("Shiny Charmeleon" for a shiny one).
 
 **UI suggestions** (ideas, not requirements):
-- Party toggle: "Add to party" / "In party ✓" (outline). With a full party it is disabled with "Party full (6)". The last party Pokémon can't be removed: disabled with a tooltip.
+- In the party: an outline "Remove from party" button that opens a confirmation ("Remove Shiny Charmeleon from your party? It goes to your Box. You can add it back any time." with "Keep in party" and "Remove"). The last party Pokémon can't be removed: disabled with a tooltip.
+- Not in the party: an outline "Add to party" button that adds it right away with a toast. When the party is full it opens "Your party is full": the six party Pokémon to pick from, and a primary "Swap with Dragonite" button.
+- The swap dialog is a component in `resources/js/app/Pokemon/components/` (`PartySwapDialog`), because the Box uses it too (task 4.14).
 - Lock: a ghost button with a lock icon and "Locked" / "Unlocked". Locking asks for confirmation in a dialog: "Lock Shiny Charmeleon?" / "A locked Pokémon can't be released or traded until you unlock it. You can still battle with it, train it and use items on it." with "Not now" (outline) and "Lock" (primary). Unlocking needs no confirmation. When locked, Release is disabled with a tooltip "Unlock it first".
 - Release dialog: destructive styling, the input "Type Shiny Charmeleon to confirm" (the display name), the destructive "Release" button enabled only when the text matches. Shiny or boosted Pokémon add a warning block: "This Pokémon is shiny and has +14 boost. Boost stones used on it are lost."
 
@@ -1132,3 +1135,18 @@ Read [04-pokemon-page.md](04-pokemon-page.md) first. Builds on Spec 1 (`SetActiv
 **Tests:** feature test: the inventory props say which items can be used; browser test: teach a TM starting from the inventory.
 
 **Done when:** every usable item can be used from either page.
+
+### 4.14 Box: add to party from a card
+
+**Goal:** add a Pokémon to the party straight from the Box.
+
+**Mock-up:** `docs/mockups/pokemon.html` (state "Party full: choose who to swap"; the same dialog)
+
+**Build:**
+- The Box card's menu (today "View" and "Pokédex") gets "Add to party" for Pokémon not in the party, and "Remove from party" for those in it, using the routes from task 4.12.
+- "Add to party" with a full party opens `PartySwapDialog`; "Remove from party" opens the same confirmation as the Pokémon page.
+- The card shows an "In party" badge.
+
+**Tests:** browser test: add from the Box, and swap when the party is full.
+
+**Done when:** party changes work from the Box.
