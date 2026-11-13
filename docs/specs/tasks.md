@@ -338,6 +338,7 @@ Uses `Combatant` from task 1.10.
 - Route `GET /battle` named `battle.web.show` → `App\Battle\Http\Web\Controllers\BattleController@show`; shows the user's `ONGOING` battle or redirects to the Dashboard.
 - `App\Battle\Http\Web\PageProps\BattleShowPageProps`: both active combatants (sprite, name, level, boost, shiny, ailment), player HP as numbers, opponent HP as a percentage only, team dots, active moves (name, type, power), log.
 - Page `resources/js/app/Battle/pages/Battle/index.vue` with the Spec 1 layout; stacks on phones.
+- The sidebar already has a placeholder "Battle" item pointing to `#`: point it to `battle.web.show`.
 
 **UI suggestions** (ideas, not requirements):
 - Layout: a CSS grid with two `Card`s, opponent at the top right and player at the bottom left; one column on phones (opponent, player, moves, log).
@@ -622,13 +623,13 @@ Read [02-catching-and-exploration.md](02-catching-and-exploration.md) first. Nee
 **Build:**
 - Route `GET /explore` named `exploration.web.index` → `App\Exploration\Http\Web\Controllers\ExploreController@index` with `ExploreIndexPageProps` (each area's slug, label, types).
 - Page `resources/js/app/Exploration/pages/Explore/Index/index.vue`: one card per area (name, type badges, Explore button); 3 per row on desktop, 1 on phones. Until area art exists, the card background is a gradient of its two type colours.
-- "Explore" link in the main navigation.
+- The sidebar already has a placeholder "Wild Areas" item pointing to `#`: rename it "Explore" and point it to `exploration.web.index`.
 
 **UI suggestions** (ideas, not requirements):
 - `AppPageHeader`: "Explore", with the description "Pick an area to look for wild Pokémon."
 - A responsive grid: 1 column on phones, 2 on tablets, 3 on desktop.
 - One `Card` per area, the whole card clickable: a coloured band at the top (the two type colours as a gradient) with the area name on it, `PokemonTypeBadges` in the content, and a full-width outline "Explore" `Button` in the footer (outline because it repeats on every card; the design guide keeps primary for one action per screen).
-- Sidebar: an "Explore" `AppNavLink` with a compass or map icon, near the top since it is the main activity.
+- Sidebar: the renamed "Explore" item keeps its current place near the top, since exploring is the main activity.
 
 **Tests:** feature test for the props.
 
@@ -724,6 +725,8 @@ Read [03-money-inventory-and-shop.md](03-money-inventory-and-shop.md) first. Mon
 
 **Goal:** the player always sees their money.
 
+**Mock-up:** `docs/mockups/layout.html` (all states)
+
 **Build:** `HandleInertiaRequests` shares `auth.user.money`. The sidebar shows it.
 
 **UI suggestions** (ideas, not requirements):
@@ -807,6 +810,8 @@ Read [03-money-inventory-and-shop.md](03-money-inventory-and-shop.md) first. Mon
 
 **Goal:** the first incubator is free, each next one costs ₽ 5,000 more.
 
+**Mock-up:** `docs/mockups/nursery.html` (all states)
+
 **Build:**
 - `App\Pokemon\Mechanics\IncubatorPriceCalculator::price(int $purchasedCount): int` = purchasedCount × `game.incubation.price_step` (5,000).
 - `PurchaseAction` (incubator) spends the price with `SpendMoneyAction` inside its lock, before marking it purchased.
@@ -823,6 +828,8 @@ Read [03-money-inventory-and-shop.md](03-money-inventory-and-shop.md) first. Mon
 ### 3.9 Shop page: browse
 
 **Goal:** see what the shop sells.
+
+**Mock-up:** `docs/mockups/shop.html` (states "Balls tab", "Evolution items tab", "TMs tab")
 
 **Build:**
 - Route `GET /shop` named `shop.web.index` → `App\Shop\Http\Web\Controllers\ShopController@index` with `ShopIndexPageProps`: three groups (balls, evolution items, today's TMs), each item with name, sprite, short effect, price and how many the player owns; for TMs also type, power and when the rotation ends.
@@ -843,6 +850,8 @@ Read [03-money-inventory-and-shop.md](03-money-inventory-and-shop.md) first. Mon
 
 **Goal:** buy from the shop page.
 
+**Mock-up:** `docs/mockups/shop.html` (states "Confirm a purchase over ₽ 10,000", "Can't afford", "Purchase complete")
+
 **Build:**
 - Route `POST /shop/buy` named `shop.web.buy` → `BuyItemController` with `BuyItemRequest` (`item_type`, `item_id`, `quantity` 1–9,999).
 - Each row gets a quantity picker and a Buy button; purchases over ₽ 10,000 ask for confirmation first; success shows a toast.
@@ -862,6 +871,8 @@ Read [03-money-inventory-and-shop.md](03-money-inventory-and-shop.md) first. Mon
 
 **Goal:** see everything the player owns.
 
+**Mock-up:** `docs/mockups/inventory.html` (the five tab states, "Empty tab", "Item details: earned only")
+
 **Build:**
 - Route `GET /inventory` named `inventory.web.index` → `App\Inventory\Http\Web\Controllers\InventoryController@index` with `InventoryIndexPageProps`: owned items grouped by Balls, Evolution items, TMs, Boost stones and Key items, each with name, sprite, quantity, description, sell price (null when earned-only).
 - Page `resources/js/app/Inventory/pages/Inventory/Index/index.vue`; "Inventory" link in the navigation.
@@ -879,6 +890,8 @@ Read [03-money-inventory-and-shop.md](03-money-inventory-and-shop.md) first. Mon
 ### 3.12 Inventory page: sell
 
 **Goal:** sell items from the inventory.
+
+**Mock-up:** `docs/mockups/inventory.html` (states "Item details: can be sold", "Confirm selling", "Sold")
 
 **Build:**
 - Route `POST /inventory/sell` named `inventory.web.sell` → `SellItemController` with `SellItemRequest` (`item_type`, `item_id`, `quantity`).

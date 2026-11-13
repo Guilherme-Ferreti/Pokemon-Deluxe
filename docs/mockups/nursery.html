@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="claude:viewport-fit-sides" content="cover">
+<title>Nursery incubator price mock-up</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="assets/mockup.css">
+<style>
+  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(13rem, 1fr)); gap: 16px; }
+  .incubator { min-height: 272px; justify-content: space-between; gap: 16px; }
+  .incubator-head { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+  .index { font-size: 12px; font-weight: 700; color: var(--muted-fg); }
+  .lock { width: 48px; height: 48px; margin: 0 auto; border-radius: 999px; border: 2px dashed var(--placeholder); display: flex; align-items: center; justify-content: center; color: var(--muted-fg); }
+  .footer { display: flex; flex-direction: column; align-items: center; gap: 6px; }
+  .price { font-size: 13px; }
+  .reason { font-size: 12px; color: var(--destructive); text-align: center; }
+</style>
+</head>
+<body>
+<div class="mock-bar">
+  <a href="index.html">← All mock-ups</a>
+  <span><strong>Nursery: incubator price</strong> · task 3.8</span>
+  <label for="mockup-state">State
+    <select id="mockup-state">
+      <option value="some">3 bought, can afford the next</option>
+      <option value="none">None bought yet (first is free)</option>
+      <option value="poor">Can't afford the next</option>
+    </select>
+  </label>
+  <span>Only the "Not purchased" card changes; the others are today's cards, simplified.</span>
+</div>
+
+<main class="page">
+  <div class="page-header">
+    <div class="stack" style="gap: 2px;">
+      <h1>Nursery</h1>
+      <p>Manage your Pokémon eggs.</p>
+    </div>
+    <span class="money"><span class="coin" aria-hidden="true"></span><span id="wallet">₽ 21,300</span></span>
+  </div>
+
+  <section class="stack" style="gap: 12px;">
+    <div class="stack" style="gap: 2px;">
+      <h2 style="font-size: 16px; font-weight: 600;">Your incubators</h2>
+      <p class="small muted">Click on an empty incubator to place an egg, then hatch it when it is ready.</p>
+    </div>
+    <div class="grid" id="grid"></div>
+    <p class="note">Every not-purchased incubator shows the same price: the price of your next one (₽ 5,000 × incubators already bought). The first is free. Buying one updates the price on the others.</p>
+  </section>
+</main>
+
+<script src="assets/mockup.js"></script>
+<script>
+  (function () {
+    var grid = document.getElementById('grid');
+    function card(i, badge, picture, text, footer) {
+      return '<div class="card incubator"><div class="incubator-head"><span class="index">#' + i + '</span><span class="badge">' + badge + '</span></div>' +
+        picture + '<p class="small muted" style="text-align: center;">' + text + '</p><div class="footer">' + footer + '</div></div>';
+    }
+    function draw(state) {
+      var bought = state === 'none' ? 0 : 3;
+      var money = state === 'poor' ? 12450 : (state === 'none' ? 2000 : 21300);
+      var price = bought * 5000;
+      document.getElementById('wallet').textContent = '₽ ' + money.toLocaleString('en-US');
+      var html = '';
+      for (var i = 1; i <= 6; i++) {
+        if (i <= bought) {
+          html += i === 1
+            ? card(i, 'Incubating', '<div class="sprite sprite-md" style="margin: 0 auto; border-radius: 999px;" aria-hidden="true">Egg</div>', 'Hatches in 14:22:05', '<button type="button" class="btn btn-outline" disabled>Hatch</button>')
+            : card(i, 'Idle', '<div class="lock" aria-hidden="true">○</div>', 'This incubator is empty', '<button type="button" class="btn btn-outline">Place egg</button>');
+        } else {
+          var afford = money >= price;
+          var priceText = price === 0 ? '<span class="price muted">Free</span>' : '<span class="price money"><span class="coin" aria-hidden="true"></span>₽ ' + price.toLocaleString('en-US') + '</span>';
+          var reason = afford ? '' : '<span class="reason">You need ₽ ' + (price - money).toLocaleString('en-US') + ' more</span>';
+          html += card(i, 'Not purchased',
+            '<div class="lock" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg></div>',
+            'This incubator has not been purchased yet',
+            '<button type="button" class="btn btn-outline"' + (afford ? '' : ' disabled') + '>Purchase</button>' + priceText + reason);
+        }
+      }
+      grid.innerHTML = html;
+    }
+    document.addEventListener('mockup:state', function (e) { draw(e.detail); });
+    draw(document.documentElement.getAttribute('data-state') || 'some');
+  })();
+</script>
+</body>
+</html>
