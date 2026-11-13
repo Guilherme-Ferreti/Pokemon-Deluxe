@@ -58,7 +58,8 @@
   .tm-types { display: flex; flex-wrap: wrap; gap: 6px; }
   .tm-chip { border: 1px solid var(--border); background: var(--card); border-radius: 999px; padding: 3px 6px; font-size: 12px; font-weight: 500; display: inline-flex; align-items: center; }
   .tm-chip[aria-pressed="true"] { border-color: var(--primary); box-shadow: 0 0 0 1px var(--primary); }
-  .tm-list { max-height: 280px; overflow-y: auto; padding-right: 2px; }
+  .tm-list { max-height: 340px; overflow-y: auto; padding-right: 2px; display: grid; grid-template-columns: repeat(auto-fill, minmax(17rem, 1fr)); gap: 6px; align-content: start; }
+  .tm-list #tm-none { grid-column: 1 / -1; }
   .big { font-size: 34px; font-weight: 700; letter-spacing: -.02em; }
 </style>
 </head>
@@ -199,7 +200,7 @@
 
 <!-- Teach TM -->
 <div class="overlay" data-show="teach-tm">
-  <div class="dialog" role="dialog" aria-labelledby="tm-title">
+  <div class="dialog" role="dialog" aria-labelledby="tm-title" style="max-width: 720px;">
     <div class="stack" style="gap: 4px;">
       <h2 id="tm-title">Teach a TM</h2>
       <p class="small muted">The TM is used up. The move joins Shiny Charmeleon's known moves.</p>
