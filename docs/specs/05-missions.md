@@ -62,3 +62,49 @@ Streak: 4 days  ● ● ● ● ○ ○ ○   (7 days → bonus Boost Stone)
 - The **Claim** button is coloured and shown only when a mission is complete.
 - A dot on "Missions" in the navigation bar when something is ready to claim.
 - The Achievements tab groups the same cards by category (Catching, Battling, Collection…); finished ones are dimmed at the bottom.
+
+## Starting content (proposal)
+
+A first set to build and play-test with; easy to change because it lives in config and seed files.
+
+### Daily templates
+
+| Difficulty | Template | Reward |
+| --- | --- | --- |
+| Easy | Catch {5–10} Pokémon | ₽ 1,000 + 5 Poké Balls |
+| Easy | Catch {3–5} {type} Pokémon | ₽ 1,500 + 3 Great Balls |
+| Easy | Win {3–5} wild battles | ₽ 1,500 |
+| Easy | Hatch {1–2} eggs | ₽ 2,000 |
+| Medium | Win {3–5} battles against trainers | ₽ 3,000 + 1 boost stone |
+| Medium | Catch {3–5} Pokémon in the {area} | ₽ 3,000 + a random normal TM |
+| Medium | Evolve {1–2} Pokémon | ₽ 3,000 + 1 boost stone |
+| Hard | Catch a Pokémon at level {50–60} or higher | 3 boost stones |
+| Hard | Win {8–10} battles against trainers | 2 boost stones + 3 Ultra Balls |
+| Hard | Climb {10–15} Battle Tower floors in one run | 3 boost stones |
+
+Templates whose feature is not built yet (trainers, the Battle Tower) are skipped until it exists.
+
+### Achievements
+
+| Category | Achievement | Reward |
+| --- | --- | --- |
+| Catching | Catch 10 Pokémon | ₽ 5,000 |
+| Catching | Catch 100 Pokémon | 10 boost stones |
+| Catching | Catch 1,000 Pokémon | Master Ball |
+| Catching | Catch a shiny Pokémon | 5 boost stones + a Cherish Ball |
+| Catching | Catch a legendary or mythical Pokémon | 10 boost stones |
+| Battling | Win 10 battles | XP Share |
+| Battling | Win 100 battles | 10 boost stones |
+| Battling | Beat a gym | ₽ 10,000 |
+| Battling | Earn all 8 badges of a region | a random Mega Stone |
+| Battling | Become Champion of a region | a random Z-Move TM |
+| Battling | Reach floor 100 of the Battle Tower | a random Dynamax TM |
+| Collection | Get a Pokémon to level 100 | 10 boost stones |
+| Collection | Reach +50 boost on any Pokémon | a random Z-Move TM |
+| Collection | Reach +100 boost on any Pokémon | Master Ball |
+| Collection | Mega evolve a Pokémon | 10 boost stones |
+
+### Counting rules
+
+- "Catch" goals count wild catches only. Hatched Pokémon count for "Hatch eggs".
+- "Reach a level / boost" goals look at the player's best Pokémon, so a Pokémon that already qualifies completes them at once.

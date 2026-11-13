@@ -56,6 +56,14 @@ One name per idea, used everywhere: specs, code, database, tests and UI. When yo
 | Boost result | `BoostResult` | Stones used, successes, failures, boost before and after. |
 | Evolution option | a `SpeciesEvolution` plus its requirement reason | Shown in the Evolve dialog. |
 | Party size limit | `game.user.max_party_size` | 6. |
+| Daily mission / achievement | `UserMission` with `MissionKind::DAILY` / `ACHIEVEMENT` | One row per player per mission. |
+| Mission goal | `MissionGoal` | What a mission counts (`CATCH_POKEMON_OF_TYPE`). |
+| Progress / target | `progress`, `target` | "3 / 5". |
+| Claim | `ClaimMissionAction`, `claimed_at` | Pressing Claim gives the reward. |
+| Reroll | `RerollDailyMissionAction`, `last_reroll_on` | One per day. |
+| Streak | `mission_streak`, `streak_last_completed_on` | Days in a row with all 3 dailies done. |
+| Reward | `MissionReward`, `GrantRewardAction` | Money plus items. |
+| XP Share | `xp-share` (key item), `is_xp_share_enabled` | |
 | Original trainer | `original_user_id` / `originalUser()` | Already in the code. |
 | Party / Box | `in_party` / `inParty()`, `inBox()` | Already in the code. |
 
