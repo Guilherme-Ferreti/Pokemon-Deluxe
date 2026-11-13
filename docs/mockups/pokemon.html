@@ -60,6 +60,7 @@
       <option value="evolve">Evolution options</option>
       <option value="evolve-confirm">Confirm evolution</option>
       <option value="party-full">Party full</option>
+      <option value="lock-confirm">Confirm locking</option>
       <option value="locked">Locked</option>
       <option value="release">Release</option>
       <option value="release-warning">Release a shiny or boosted Pokémon</option>
@@ -102,18 +103,18 @@
           Evolve
         </button>
         <button type="button" class="btn btn-outline" data-go="use-item">Use item</button>
-        <button type="button" class="btn btn-outline" data-show="overview swap teach-tm use-item boost boost-result evolve evolve-confirm locked release release-warning">In party ✓</button>
+        <button type="button" class="btn btn-outline" data-show="overview swap teach-tm use-item boost boost-result evolve evolve-confirm locked release release-warning lock-confirm">In party ✓</button>
         <span class="stack" style="gap: 2px;" data-show="party-full">
           <button type="button" class="btn btn-outline" disabled>Add to party</button>
           <span class="xs muted">Party full (6)</span>
         </span>
-        <button type="button" class="btn btn-ghost" data-go="locked" data-show="overview swap teach-tm use-item boost boost-result evolve evolve-confirm party-full release release-warning">
+        <button type="button" class="btn btn-ghost" data-go="lock-confirm" data-show="overview swap teach-tm use-item boost boost-result evolve evolve-confirm party-full release release-warning lock-confirm">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 7.5-2"/></svg>Unlocked
         </button>
         <button type="button" class="btn btn-ghost" data-go="overview" data-show="locked">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>Locked
         </button>
-        <button type="button" class="btn btn-destructive-outline push" data-go="release-warning" data-show="overview swap teach-tm use-item boost boost-result evolve evolve-confirm party-full release release-warning">Release</button>
+        <button type="button" class="btn btn-destructive-outline push" data-go="release-warning" data-show="overview swap teach-tm use-item boost boost-result evolve evolve-confirm party-full release release-warning lock-confirm">Release</button>
         <button type="button" class="btn btn-destructive-outline push" disabled title="Unlock it first" data-show="locked">Release</button>
       </div>
     </div>
@@ -284,6 +285,21 @@
       <button type="button" class="btn btn-outline" data-go="evolve">Back</button>
       <button type="button" class="btn btn-primary" data-go="overview">Evolve</button>
     </div>
+  </div>
+</div>
+
+<!-- Lock -->
+<div class="overlay" data-show="lock-confirm">
+  <div class="dialog" role="alertdialog" aria-labelledby="lock-title">
+    <div class="stack" style="gap: 6px;">
+      <h2 id="lock-title">Lock Shiny Charmeleon?</h2>
+      <p class="small muted">A locked Pokémon can't be released or traded until you unlock it. You can still battle with it, train it and use items on it.</p>
+    </div>
+    <div class="dialog-actions">
+      <button type="button" class="btn btn-outline" data-go="overview">Not now</button>
+      <button type="button" class="btn btn-primary" data-go="locked">Lock</button>
+    </div>
+    <p class="note">Unlocking needs no confirmation: it removes a protection and can be undone at once.</p>
   </div>
 </div>
 
