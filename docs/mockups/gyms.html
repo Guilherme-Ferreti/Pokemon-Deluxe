@@ -131,7 +131,7 @@
     <div class="pick-list" id="party"></div>
     <div class="dialog-actions">
       <button type="button" class="btn btn-outline" data-go="gym">Back</button>
-      <a class="btn btn-primary" id="challenge" href="battle.html#trainer-battle" aria-disabled="true" style="pointer-events: none; opacity: .5;">Choose 2 more</a>
+      <a class="btn btn-primary" id="challenge" href="battle.html#trainer-battle" aria-disabled="true" style="pointer-events: none; opacity: .5;">Challenge</a>
     </div>
   </div>
 </div>
@@ -223,7 +223,7 @@
       });
       var button = document.getElementById('challenge');
       var ready = whole || picked.length === size();
-      button.textContent = whole ? 'Challenge with your party' : (ready ? 'Challenge with ' + size() + ' Pokémon' : 'Choose ' + (size() - picked.length) + ' more');
+      button.textContent = 'Challenge';
       button.style.pointerEvents = ready ? '' : 'none';
       button.style.opacity = ready ? '' : '.5';
       button.setAttribute('aria-disabled', String(!ready));
