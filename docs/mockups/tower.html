@@ -15,7 +15,8 @@
   .slot { display: flex; flex-direction: column; align-items: center; gap: 6px; padding: 12px 8px; border: 1px solid var(--border); border-radius: 12px; text-align: center; min-height: 128px; justify-content: center; }
   .slot.empty { border-style: dashed; color: var(--muted-fg); font-size: 12px; }
   .floor { font-size: 44px; font-weight: 700; letter-spacing: -.03em; line-height: 1; }
-  .team-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(20rem, 1fr)); gap: 8px; }
+  .team-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
+  @media (max-width: 640px) { .team-grid { grid-template-columns: minmax(0, 1fr); } }
   .member { display: flex; align-items: center; gap: 12px; padding: 10px 12px; border: 1px solid var(--border); border-radius: 10px; min-width: 0; }
   .member.fainted { opacity: .45; }
   .member-main { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 4px; }
