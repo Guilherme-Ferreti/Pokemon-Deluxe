@@ -1738,7 +1738,7 @@ Read [07-trading.md](07-trading.md) first, including "Details to confirm". Tradi
 - `AppPageHeader` ("Trade market") with "My trades" (outline) and "New listing" (primary) on the right.
 - Filters like the Box: a search `InputGroup`, a filters button opening `AppSearchFiltersDialog` (type, shiny, min boost, min level), active filters as removable chips.
 - A grid of listing cards (auto-fill, about 13rem): portrait, display name (gold for shiny), level and boost badges, types, "3 offers", "6 days left", the seller, and two buttons: "Details" (ghost, opens `PokemonDetailsDialog`) and "View" (outline, the listing page). The card itself is not a link, so the buttons don't sit inside one.
-- Below, "Recent trades": rows "Misty traded ★ Shiny Gible Lv 48 +30 to Brock for Onix +50", time ago, each name linking to the profile (Spec 8).
+- Below, "Recent trades": rows "Misty traded Shiny Gible Lv 48 +30 to Brock for Onix +50", time ago, each name linking to the profile (Spec 8).
 
 **Tests:** feature tests for filters and props.
 

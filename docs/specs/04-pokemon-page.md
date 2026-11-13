@@ -7,7 +7,7 @@ Each owned Pokémon gets its own page, opened from the Party and the Box, where 
 ```
 ← Box
 ┌──────────────────────────────────────────────────────────────┐
-│ (big portrait)   ★ Shiny Charmeleon  ♂                        │
+│ (big portrait)   Shiny Charmeleon  ♂                        │
 │                  [FIRE]    Lv 36   Boost +14                  │
 │                  XP ███████░░░  7,200 / 10,000 → Lv 37        │
 │                  Caught in Ultra Ball · 3 Nov 2026            │

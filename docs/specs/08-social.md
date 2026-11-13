@@ -47,10 +47,10 @@ DASHBOARD                               Welcome back, Ash!
 │ • Battle in progress     [Go] │ Streak: 4 days           │
 ├───────────────────────────────┴──────────────────────────┤
 │ LATEST CAPTURES                                          │
-│ (portrait) Misty caught ★ Shiny Gyarados Lv 34 · 2m ago  │
+│ (portrait) Misty caught Shiny Gyarados Lv 34 · 2m ago  │
 ├──────────────────────────────────────────────────────────┤
 │ RECENT TRADES                                            │
-│ Misty traded ★ Gible Lv 48 +30 to Brock for Onix +50     │
+│ Misty traded Shiny Gible Lv 48 +30 to Brock for Onix +50     │
 ├──────────────────────────────────────────────────────────┤
 │ SHORTCUTS  [Explore] [Party] [Box] [Shop] [Missions] …   │
 └──────────────────────────────────────────────────────────┘

@@ -130,7 +130,7 @@ Balls have conditions, as in the main games. The game has no weight, speed, fish
 ┌──────────────────────────────────────────────────────────┐
 │  ← Explore    Forest  [GRASS][BUG]    [Pokémon found here] │
 │  ┌─────────────────────────────────────────────────────┐  │
-│  │      A wild ★ Shiny Caterpie ♀ (Lv 7) appeared!      │  │
+│  │      A wild Shiny Caterpie ♀ (Lv 7) appeared!      │  │
 │  │                     (sprite)                        │  │
 │  │                    [BUG]                            │  │
 │  │         [ Battle ]        [ Keep exploring ]        │  │
