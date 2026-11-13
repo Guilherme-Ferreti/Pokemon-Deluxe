@@ -1,0 +1,148 @@
+# Spec 2 — Catching and exploration
+
+Status: agreed.
+
+Players pick an area, press Explore to meet one random wild Pokémon of that area's types, and catch it by battling and throwing balls.
+
+## Areas
+
+- Players explore **areas**, not a walkable map. A map can be added later on top of areas.
+- Each area is themed by **type** and holds **every species** that has one of its types, so areas are large.
+- No locked areas and no area-specific rare spawns. Levels and how often evolved forms appear follow the Encounters rules below.
+- No limit or cooldown on exploring for now.
+
+There are 9 areas, two types each, covering all 18 types. A dual-type species appears in every area that matches one of its types.
+
+| Area | Types |
+| --- | --- |
+| Meadow | Normal, Fairy |
+| Forest | Grass, Bug |
+| Coast | Water, Flying |
+| Volcano | Fire, Ground |
+| Power Plant | Electric, Steel |
+| Cave | Rock, Fighting |
+| Snowy Peak | Ice, Dragon |
+| Haunted Tower | Ghost, Dark |
+| Ancient Ruins | Psychic, Poison |
+
+## Encounters
+
+- One wild Pokémon at a time, saved on the server. **Keep exploring** throws it away and rolls a new one; **Battle** starts a wild battle.
+- Shiny chance 1 in 100, the same as eggs.
+- Megas, G-Max and baby Pokémon never appear in the wild. Babies come only from eggs.
+- Unevolved Pokémon are common; evolved forms appear rarely. Each encounter is 85% unevolved, 12% second stage, 3% third stage, then a species is picked evenly from that group in the area.
+- Pokémon that do not evolve (Tauros, Lapras) and Pokémon whose only pre-evolution is a baby (Pikachu, from Pichu) count as unevolved.
+- Legendaries and mythicals appear in 1 in 500 encounters.
+- About 1 in 20 explores meets an NPC trainer instead (see Spec 6).
+- A caught Pokémon keeps its wild level.
+- Wild battles are always one Pokémon against the player's party. Running always works.
+
+| Wild Pokémon | Level | Example |
+| --- | --- | --- |
+| Unevolved | 2–12 | Charmander: 2–12 |
+| Evolved by level | its evolution level to 4 above | Charizard (evolves at 36): 36–40 |
+| Evolved another way (item, gender, other) | 18–22, never below the previous stage's minimum | Raichu: 18–22 |
+| Legendary or mythical | 50–70 | — |
+
+## Catching
+
+- **Throw ball** is available on any turn of a wild battle. A throw uses the player's turn, so the wild Pokémon still attacks.
+- A failed ball is used up. Wild Pokémon never flee.
+- All species share one catch rate, except legendaries and mythicals, which are harder.
+- Catch chance rises as the wild Pokémon's HP falls and when it has a status effect.
+
+The formula, capped at 100%:
+
+```math
+\text{chance} = \text{base} \times \text{ball} \times \left(1 + 1.5 \times (1 - \text{HP\%})\right) \times \text{status}
+```
+
+- Base: 10% for normal species, 1% for legendaries and mythicals.
+- Status: sleep or freeze ×2; paralysis, burn or poison ×1.5; none or confusion ×1.
+
+| Situation | Normal species | Legendary |
+| --- | --- | --- |
+| Poké Ball, full HP | 10% | 1% |
+| Poké Ball, 10% HP | 24% | 2% |
+| Poké Ball, 10% HP, asleep | 47% | 5% |
+| Ultra Ball, 10% HP, asleep | 94% | 9% |
+| Master Ball | 100% | 100% |
+
+## Ball conditions
+
+Balls have conditions, as in the main games. The game has no weight, speed, fishing or friendship, so those conditions are adapted.
+
+| Ball | Multiplier |
+| --- | --- |
+| Poké Ball | 1× |
+| Great Ball | 1.5× |
+| Ultra Ball | 2× |
+| Master Ball | always catches; only from difficult missions |
+| Quick Ball | 5× on the first turn, 1× after |
+| Timer Ball | 1×, +0.3× per turn, up to 4× |
+| Repeat Ball | 3.5× if the player already owns that species |
+| Nest Ball | up to 4× against low-level Pokémon, falling to 1× at level 30 |
+| Level Ball | 2×, 4× or 8× when the player's active Pokémon is above, 2× or 4× the wild level |
+| Dusk Ball | 3× at night (server time 18:00–06:00) or in the Cave |
+| Dream Ball | 4× if the wild Pokémon is asleep |
+| Love Ball | 8× if same species and opposite gender to the active Pokémon |
+| Moon Ball | 4× on species that evolve with a Moon Stone |
+| Net Ball | 3.5× on Bug and Grass types |
+| Lure Ball | 3.5× on Water types |
+| Dive Ball | 3.5× in the Coast |
+| Heavy Ball | 3.5× on Rock, Steel and Ground types |
+| Fast Ball | 3.5× on Electric and Flying types |
+| Beast Ball | 5× on Ultra Beasts, 0.1× on everything else (needs a new Ultra Beast mark on species) |
+| Luxury, Premier, Heal, Friend, Cherish | 1×; collectible looks |
+| Safari, Sport, Park | 1.5×; event-only collectibles |
+
+## After a catch
+
+- The Pokémon gets its species' base moves and a random gender.
+- It joins the party if there is room, otherwise the Box. If the Box is full (9,999), catching is blocked.
+- The ball used is recorded on the Pokémon, as today.
+
+## New players
+
+- At registration the player picks a starter at level 5: any first-stage starter from any region.
+- The player also gets 20 Poké Balls and 5 Great Balls.
+
+## Explore page
+
+```
+┌──────────────────────────────────────────────────────────┐
+│  Explore                                                  │
+│  ┌──────────────┐ ┌──────────────┐ ┌──────────────┐       │
+│  │ (area image) │ │ (area image) │ │ (area image) │       │
+│  │ Forest       │ │ Coast        │ │ Volcano      │       │
+│  │ [GRASS][BUG] │ │ [WATER][FLY] │ │ [FIRE][GRND] │       │
+│  │ [ Explore ]  │ │ [ Explore ]  │ │ [ Explore ]  │       │
+│  └──────────────┘ └──────────────┘ └──────────────┘       │
+│  ... one card per area; 3 per row on desktop, 1 on phones │
+└──────────────────────────────────────────────────────────┘
+```
+
+- One card per area: image, name, type badges (the same badges the Pokédex uses) and an Explore button.
+
+## Area page
+
+```
+┌──────────────────────────────────────────────────────────┐
+│  ← Explore    Forest  [GRASS][BUG]    [Pokémon found here] │
+│  ┌─────────────────────────────────────────────────────┐  │
+│  │      A wild ★ Shiny Caterpie ♀ (Lv 7) appeared!      │  │
+│  │                     (sprite)                        │  │
+│  │                    [BUG]                            │  │
+│  │         [ Battle ]        [ Keep exploring ]        │  │
+│  └─────────────────────────────────────────────────────┘  │
+└──────────────────────────────────────────────────────────┘
+```
+
+- The encounter card is the centre of the page. Shiny and legendary encounters get a gold border and badge so they stand out before the fight.
+- **Pokémon found here** opens a modal: a grid of species portraits with names, a search box, and type filters. No caught counts.
+- On a phone the card fills the width and the two buttons stack.
+
+## Catching in the battle page
+
+- In wild battles a **Throw ball** button sits under the moves. It opens a ball picker: each owned ball with its sprite, quantity and multiplier right now; balls whose condition applies get a "Boosted" tag.
+- On a catch, a dialog shows the Pokémon, where it went (Party or Box), and buttons **View Pokémon** and **Keep exploring**.
