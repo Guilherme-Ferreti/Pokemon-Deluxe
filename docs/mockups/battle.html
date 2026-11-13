@@ -51,23 +51,28 @@
   .team-row:disabled { opacity: .45; }
   .team-row[aria-pressed="true"] { border: 2px solid var(--primary); }
   .result-row { display: flex; align-items: center; gap: 12px; border: 1px solid var(--border); border-radius: 10px; padding: 12px; }
+  .result-row .bar { flex: none; }
 </style>
 </head>
 <body>
 <div class="mock-bar">
   <a href="index.html">← All mock-ups</a>
-  <span><strong>Battle page</strong> · tasks 1.19–1.21, 2.19, 6.14</span>
+  <span><strong>Battle page</strong> · tasks 1.19–1.21, 2.19, 6.10, 6.14</span>
   <label for="mockup-state">State
     <select id="mockup-state">
       <option value="battle">Battle, choosing a move</option>
       <option value="ball-picker">Ball picker open</option>
       <option value="caught">Pokémon caught</option>
       <option value="send-out">Pokémon fainted: send out</option>
-      <option value="give-up">Give up confirmation</option>
+      <option value="run">Run confirmation</option>
       <option value="won">Battle won</option>
-      <option value="lost">Gave up / lost</option>
+      <option value="ran">Ran away</option>
       <option value="trainer-battle">Trainer battle</option>
+      <option value="trainer-run">Run confirmation: trainer</option>
       <option value="trainer-won">Trainer battle won</option>
+      <option value="trainer-lost">Lost: XP kept</option>
+      <option value="e4-won">Elite Four battle won</option>
+      <option value="e4-quit">Quit the Elite Four</option>
     </select>
   </label>
   <span>Shown inside the app layout (sidebar not drawn). Dashed boxes = sprites.</span>
@@ -76,14 +81,19 @@
 <main class="page">
   <div class="page-header">
     <div class="stack" style="gap: 2px;">
-      <h1 data-show="battle ball-picker caught send-out give-up won lost">Wild battle</h1>
-      <p data-show="battle ball-picker caught send-out give-up won lost">A wild Pidgey appeared in the Forest.</p>
-      <div class="row" style="gap: 10px;" data-show="trainer-battle trainer-won">
+      <h1 data-show="battle ball-picker caught send-out run won ran">Wild battle</h1>
+      <p data-show="battle ball-picker caught send-out run won ran">A wild Pidgey appeared in the Forest.</p>
+      <div class="row" style="gap: 10px;" data-show="trainer-battle trainer-run trainer-won trainer-lost">
         <span class="sprite sprite-sm" aria-hidden="true">Hiker</span>
         <span class="stack" style="gap: 2px;"><h1>Hiker Bob</h1><p>Trainer battle · 3 Pokémon</p></span>
       </div>
+      <div class="row" style="gap: 10px;" data-show="e4-won e4-quit">
+        <span class="sprite sprite-sm" aria-hidden="true">Bruno</span>
+        <span class="stack" style="gap: 2px;"><h1>Elite Four Bruno</h1><p>Kanto Elite Four · battle 2 of 5</p></span>
+      </div>
     </div>
-    <button type="button" class="btn btn-destructive-outline" data-go="give-up" data-show="battle ball-picker give-up send-out trainer-battle">Give up</button>
+    <button type="button" class="btn btn-destructive-outline" data-go="run" data-show="battle ball-picker run send-out">Run</button>
+    <button type="button" class="btn btn-destructive-outline" data-go="trainer-run" data-show="trainer-battle trainer-run">Run</button>
   </div>
 
   <section class="card arena" aria-label="Battlefield">
@@ -101,8 +111,9 @@
           <div class="bar bar-good" id="opp-bar" role="progressbar" aria-label="Pidgey HP" aria-valuemin="0" aria-valuemax="100" aria-valuenow="62"><span style="width: 62%;"></span></div>
           <span class="hp-value num" id="opp-hp">62%</span>
         </div>
-        <div class="dots" aria-label="Opponent has 1 Pokémon" data-show="battle ball-picker caught send-out give-up won lost"><span class="dot" id="opp-dot"></span></div>
-        <div class="dots" aria-label="Hiker Bob has 2 of 3 Pokémon left" data-show="trainer-battle trainer-won"><span class="dot fainted" title="Geodude (fainted)"></span><span class="dot" title="Graveler"></span><span class="dot" title="Onix"></span></div>
+        <div class="dots" aria-label="Opponent has 1 Pokémon" data-show="battle ball-picker caught send-out run won ran"><span class="dot" id="opp-dot"></span></div>
+        <div class="dots" aria-label="Hiker Bob has 2 of 3 Pokémon left" data-show="trainer-battle trainer-run trainer-won trainer-lost"><span class="dot fainted" title="Geodude (fainted)"></span><span class="dot" title="Graveler"></span><span class="dot" title="Onix"></span></div>
+        <div class="dots" aria-label="Bruno has no Pokémon left" data-show="e4-won e4-quit"><span class="dot fainted" title="Onix (fainted)"></span><span class="dot fainted" title="Hitmonchan (fainted)"></span><span class="dot fainted" title="Hitmonlee (fainted)"></span><span class="dot fainted" title="Machamp (fainted)"></span></div>
       </div>
       <div class="sprite-wrap">
         <div class="sprite sprite-lg" aria-hidden="true">Pidgey<br>front sprite</div>
@@ -136,7 +147,7 @@
   </section>
 
   <div class="bottom">
-    <section class="card moves-card" data-show="battle ball-picker give-up send-out caught trainer-battle">
+    <section class="card moves-card" data-show="battle ball-picker run send-out caught trainer-battle trainer-run">
       <div class="row" style="justify-content: space-between;">
         <h2>Moves</h2>
         <span class="small muted num" id="turn-label">Turn 1 · pick a move</span>
@@ -159,7 +170,7 @@
           <span class="move-meta"><span class="type type-normal">Normal</span><span>Power 40</span></span>
         </button>
       </div>
-      <div class="picker-anchor" data-show="battle ball-picker give-up send-out caught">
+      <div class="picker-anchor" data-show="battle ball-picker run send-out caught">
         <button type="button" class="btn btn-outline btn-block btn-lg" data-go="ball-picker">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h6m6 0h6"/><circle cx="12" cy="12" r="3"/></svg>
           Throw ball
@@ -222,11 +233,15 @@
           <div class="bar bar-thin bar-blue" role="progressbar" aria-label="XP to next level" aria-valuemin="0" aria-valuemax="100" aria-valuenow="61"><span style="width: 61%;"></span></div>
         </div>
       </div>
+      <div class="row xs muted" style="gap: 6px;">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="9" cy="8" r="3"/><circle cx="17" cy="9" r="2.5"/><path d="M3 20c0-3.3 2.7-6 6-6s6 2.7 6 6M15 20c0-2.2 1.3-4 3-4.6"/></svg>
+        <span>XP Share: Lapras, Gengar, Scizor and Gible got half XP too (+95 to +125).</span>
+      </div>
       <div class="row">
         <a class="btn btn-primary btn-lg" style="flex: 1 1 180px;" href="area.html#encounter">Keep exploring</a>
         <a class="btn btn-outline btn-lg" style="flex: 1 1 180px;" href="index.html">Back to Dashboard</a>
       </div>
-      <p class="note">One row per Pokémon that came onto the field. The one that knocked out the opponent gets more XP.</p>
+      <p class="note">XP is counted during the battle and paid when it ends, whatever the result (won, lost, ran, caught). One row per Pokémon that came onto the field; the one that knocked out the opponent gets ×1.5. The XP Share line shows only while it's on (never in the Battle Tower).</p>
     </section>
 
 
@@ -253,52 +268,142 @@
         <a class="btn btn-primary btn-lg" style="flex: 1 1 180px;" href="trainers.html">Back to Trainers</a>
         <a class="btn btn-outline btn-lg" style="flex: 1 1 180px;" href="index.html">Back to Dashboard</a>
       </div>
-      <p class="note">The primary button goes back where the battle came from: "Back to Trainers", "Keep exploring" (trainer met in an area), "Back to Gyms", "Next: Agatha" (Elite Four run) or "Back to the Tower" (Tower, with the team's HP left).</p>
+      <p class="note">The primary button goes back where the battle came from: "Back to Trainers", "Keep exploring" (trainer met in an area), "Back to Gyms", "Next: Agatha" (Elite Four run, see "Elite Four battle won") or "Back to the Tower" (Tower: the team's HP left and "+410 XP saved for the end of the run" instead of the XP bars).</p>
     </section>
 
-    <section class="card moves-card" data-show="lost">
+    <section class="card moves-card" data-show="ran">
       <div class="stack" style="gap: 2px;">
-        <h2 style="font-size: 22px; font-weight: 700;">You gave up</h2>
-        <p class="muted">No reward this time. Your Pokémon have been healed.</p>
+        <h2 style="font-size: 22px; font-weight: 700;">You got away safely</h2>
+        <p class="muted">Your Pokémon have been healed.</p>
+      </div>
+      <div class="result-row">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" style="color: var(--muted-fg);"><circle cx="12" cy="12" r="9"/><path d="M12 8v4M12 16h.01"/></svg>
+        <span class="small muted">No XP this time: the wild Pidgey wasn't knocked out or caught.</span>
       </div>
       <div class="row">
         <a class="btn btn-primary btn-lg" style="flex: 1 1 180px;" href="area.html#encounter">Keep exploring</a>
         <a class="btn btn-outline btn-lg" style="flex: 1 1 180px;" href="index.html">Back to Dashboard</a>
       </div>
-      <p class="note">Losing (every Pokémon fainted) uses the same card with the title "You lost".</p>
+      <p class="note">Losing a wild battle (every Pokémon fainted) uses the same card titled "You lost".</p>
+    </section>
+
+    <section class="card moves-card" data-show="trainer-lost">
+      <div class="stack" style="gap: 2px;">
+        <h2 style="font-size: 22px; font-weight: 700;">You lost to Hiker Bob</h2>
+        <p class="muted">No money this time. Your Pokémon have been healed.</p>
+      </div>
+      <div class="result-row">
+        <div class="sprite sprite-sm sprite-shiny" aria-hidden="true"></div>
+        <div class="stack" style="flex: 1; gap: 6px; min-width: 0;">
+          <div class="row" style="gap: 6px;"><span style="font-weight: 600;">Shiny Magikarp</span><span class="num" style="font-weight: 600; color: var(--good);">+187 XP</span></div>
+          <div class="bar bar-thin bar-blue" role="progressbar" aria-label="XP to next level" aria-valuemin="0" aria-valuemax="100" aria-valuenow="43"><span style="width: 43%;"></span></div>
+        </div>
+      </div>
+      <div class="result-row">
+        <div class="sprite sprite-sm" aria-hidden="true"></div>
+        <div class="stack" style="flex: 1; gap: 6px; min-width: 0;">
+          <div class="row" style="gap: 6px;"><span style="font-weight: 600;">Dragonite</span><span class="num" style="font-weight: 600; color: var(--good);">+125 XP</span></div>
+          <div class="bar bar-thin bar-blue" role="progressbar" aria-label="XP to next level" aria-valuemin="0" aria-valuemax="100" aria-valuenow="74"><span style="width: 74%;"></span></div>
+        </div>
+      </div>
+      <p class="xs muted">XP is kept for the opponents you knocked out (Geodude).</p>
+      <div class="row">
+        <a class="btn btn-primary btn-lg" style="flex: 1 1 180px;" href="trainers.html">Back to Trainers</a>
+        <a class="btn btn-outline btn-lg" style="flex: 1 1 180px;" href="index.html">Back to Dashboard</a>
+      </div>
+      <p class="note">Running from a trainer uses the same card titled "You ran from Hiker Bob". With no opponent knocked out, the XP rows are replaced by "No XP this time".</p>
+    </section>
+
+    <section class="card moves-card" data-show="e4-won e4-quit">
+      <div class="stack" style="gap: 2px;">
+        <h2 style="font-size: 22px; font-weight: 700;">You beat Elite Four Bruno!</h2>
+        <p class="muted">2 of 5 beaten. Your Pokémon have been healed.</p>
+      </div>
+      <div class="result-row">
+        <div class="sprite sprite-sm sprite-shiny" aria-hidden="true"></div>
+        <div class="stack" style="flex: 1; gap: 6px; min-width: 0;">
+          <div class="row" style="gap: 6px;"><span style="font-weight: 600;">Shiny Magikarp</span><span class="num" style="font-weight: 600; color: var(--good);">+1,420 XP</span><span class="badge badge-solid xs">Level up! 62 → 63</span></div>
+          <div class="bar bar-thin bar-blue" role="progressbar" aria-label="XP to next level" aria-valuemin="0" aria-valuemax="100" aria-valuenow="38"><span style="width: 38%;"></span></div>
+        </div>
+      </div>
+      <div class="result-row">
+        <div class="sprite sprite-sm" aria-hidden="true"></div>
+        <div class="stack" style="flex: 1; gap: 6px; min-width: 0;">
+          <div class="row" style="gap: 6px;"><span style="font-weight: 600;">Dragonite</span><span class="num" style="font-weight: 600; color: var(--good);">+960 XP</span></div>
+          <div class="bar bar-thin bar-blue" role="progressbar" aria-label="XP to next level" aria-valuemin="0" aria-valuemax="100" aria-valuenow="92"><span style="width: 92%;"></span></div>
+        </div>
+      </div>
+      <div class="row">
+        <a class="btn btn-primary btn-lg" style="flex: 1 1 180px;" href="battle.html#trainer-battle">Next: Agatha</a>
+        <button type="button" class="btn btn-destructive-outline btn-lg" style="flex: 1 1 180px;" data-go="e4-quit">Quit the Elite Four</button>
+      </div>
+      <p class="note">Elite Four members pay no money. After the Champion: "You're the Kanto Champion!", a money row "+ ₽ 30,000 Champion prize", and "Back to Gyms" instead of "Next". Losing or running in an Elite Four battle ends the run (the Run confirmation says so).</p>
     </section>
 
     <section class="card log-card">
       <h2>Battle log</h2>
       <div class="log" aria-live="polite" id="log">
+        <p data-show="trainer-lost" class="good">Shiny Magikarp gained 187 XP!</p>
+        <p data-show="trainer-lost" class="bad">You lost to Hiker Bob!</p>
+        <p data-show="e4-won e4-quit" class="good">Shiny Magikarp grew to Lv 63!</p>
+        <p data-show="e4-won e4-quit" class="good">You beat Elite Four Bruno!</p>
+        <p data-show="ran" class="muted">You got away safely!</p>
         <p data-show="trainer-won" class="good">You got ₽ 1,440 for winning!</p>
         <p data-show="trainer-won" class="good">Hiker Bob was defeated!</p>
-        <p data-show="trainer-battle trainer-won" class="player">Hiker Bob sent out Graveler!</p>
-        <p data-show="trainer-battle trainer-won" class="good">Geodude fainted!</p>
+        <p data-show="trainer-battle trainer-run trainer-won trainer-lost" class="player">Hiker Bob sent out Graveler!</p>
+        <p data-show="trainer-battle trainer-run trainer-won trainer-lost" class="good">Geodude fainted!</p>
         <p data-show="won" class="good">Shiny Magikarp grew to Lv 55!</p>
         <p data-show="won" class="good">Shiny Magikarp gained 340 XP!</p>
         <p data-show="won" class="good">The wild Pidgey fainted!</p>
-        <p data-show="lost" class="bad">You gave up the battle.</p>
+        <p data-show="caught" class="good">Shiny Magikarp gained 340 XP!</p>
         <p data-show="caught" class="good">Gotcha! Pidgey was caught!</p>
         <p data-show="caught" class="player">You threw a Quick Ball!</p>
         <p class="muted">Go! Shiny Magikarp!</p>
-        <p class="muted" data-show="battle ball-picker caught send-out give-up won lost">A wild Pidgey appeared!</p>
-        <p class="muted" data-show="trainer-battle trainer-won">Hiker Bob sent out Geodude!</p>
-        <p class="muted" data-show="trainer-battle trainer-won">Hiker Bob wants to battle!</p>
+        <p class="muted" data-show="battle ball-picker caught send-out run won ran">A wild Pidgey appeared!</p>
+        <p class="muted" data-show="trainer-battle trainer-run trainer-won trainer-lost">Hiker Bob sent out Geodude!</p>
+        <p class="muted" data-show="trainer-battle trainer-run trainer-won trainer-lost">Hiker Bob wants to battle!</p>
+        <p class="muted" data-show="e4-won e4-quit">Elite Four Bruno wants to battle!</p>
       </div>
     </section>
   </div>
 </main>
 
-<div class="overlay" data-show="give-up">
-  <div class="dialog" role="alertdialog" aria-labelledby="give-up-title">
+<div class="overlay" data-show="run">
+  <div class="dialog" role="alertdialog" aria-labelledby="run-title">
     <div class="stack" style="gap: 6px;">
-      <h2 id="give-up-title">Give up this battle?</h2>
-      <p class="muted">You won't get any reward. Your Pokémon are healed either way.</p>
+      <h2 id="run-title">Run from the wild Pidgey?</h2>
+      <p class="muted">You won't get anything for this battle. Your Pokémon are healed either way.</p>
     </div>
     <div class="dialog-actions">
       <button type="button" class="btn btn-outline" data-go="battle">Keep fighting</button>
-      <button type="button" class="btn btn-destructive" data-go="lost">Give up</button>
+      <button type="button" class="btn btn-destructive" data-go="ran">Run</button>
+    </div>
+  </div>
+</div>
+
+<div class="overlay" data-show="trainer-run">
+  <div class="dialog" role="alertdialog" aria-labelledby="trainer-run-title">
+    <div class="stack" style="gap: 6px;">
+      <h2 id="trainer-run-title">Run from Hiker Bob?</h2>
+      <p class="muted">Running counts as a loss: no money, but you keep the XP for opponents you knocked out.</p>
+    </div>
+    <div class="dialog-actions">
+      <button type="button" class="btn btn-outline" data-go="trainer-battle">Keep fighting</button>
+      <button type="button" class="btn btn-destructive" data-go="trainer-lost">Run</button>
+    </div>
+    <p class="note">In an Elite Four battle the text adds "…and it ends your Elite Four run."; in the Battle Tower, "…and it ends your Tower run."</p>
+  </div>
+</div>
+
+<div class="overlay" data-show="e4-quit">
+  <div class="dialog" role="alertdialog" aria-labelledby="e4-quit-title">
+    <div class="stack" style="gap: 6px;">
+      <h2 id="e4-quit-title">Quit the Kanto Elite Four?</h2>
+      <p class="muted">Your run ends here. Next time you start again from Lorelei.</p>
+    </div>
+    <div class="dialog-actions">
+      <button type="button" class="btn btn-outline" data-go="e4-won">Keep going</button>
+      <a class="btn btn-destructive" href="gyms.html#unlocked">Quit</a>
     </div>
   </div>
 </div>
@@ -310,6 +415,16 @@
       <h2 id="caught-title" style="font-size: 20px; font-weight: 700;">Gotcha!</h2>
       <p class="muted">Pidgey (Lv 34) was caught with a Quick Ball.</p>
       <span class="badge">Sent to Box · your party is full</span>
+    </div>
+    <div class="stack" style="gap: 6px; width: 100%; text-align: left;">
+      <div class="result-row" style="padding: 8px 10px;">
+        <div class="sprite sprite-xs sprite-shiny" aria-hidden="true"></div>
+        <div class="stack" style="flex: 1; gap: 4px; min-width: 0;">
+          <div class="row" style="gap: 6px;"><span class="small" style="font-weight: 600;">Shiny Magikarp</span><span class="small num" style="font-weight: 600; color: var(--good);">+340 XP</span><span class="badge badge-solid xs">Level up! 54 → 55</span></div>
+          <div class="bar bar-thin bar-blue" role="progressbar" aria-label="XP to next level" aria-valuemin="0" aria-valuemax="100" aria-valuenow="24"><span style="width: 24%;"></span></div>
+        </div>
+      </div>
+      <span class="xs muted">A catch counts as winning the battle: the same XP as knocking Pidgey out.</span>
     </div>
     <div class="row" style="width: 100%;">
       <a class="btn btn-primary btn-lg" style="flex: 1 1 140px;" href="area.html#encounter">Keep exploring</a>
@@ -338,14 +453,26 @@
 <script src="assets/mockup.js"></script>
 <script>
   document.addEventListener('mockup:state', function (e) {
-    var trainer = e.detail.indexOf('trainer') === 0;
-    document.querySelector('.side-opponent .name').textContent = trainer ? 'Graveler' : 'Pidgey';
-    document.querySelector('.side-opponent .sprite').innerHTML = trainer ? 'Graveler<br>front sprite' : 'Pidgey<br>front sprite';
+    var name = e.detail.indexOf('trainer') === 0 ? 'Graveler' : (e.detail.indexOf('e4') === 0 ? 'Machamp' : 'Pidgey');
+    document.querySelector('.side-opponent .name').textContent = name;
+    var badges = document.querySelectorAll('.side-opponent .info .badge.num');
+    badges[0].textContent = e.detail.indexOf('e4') === 0 ? 'Lv 66' : 'Lv 34';
+    badges[1].textContent = e.detail.indexOf('e4') === 0 ? '+10' : '+5';
+    document.querySelector('.side-opponent .sprite').innerHTML = name + '<br>front sprite';
   });
-  if ((document.documentElement.getAttribute('data-state') || '').indexOf('trainer') === 0) {
-    document.querySelector('.side-opponent .name').textContent = 'Graveler';
-    document.querySelector('.side-opponent .sprite').innerHTML = 'Graveler<br>front sprite';
-  }
+  (function () {
+    var st = document.documentElement.getAttribute('data-state') || '';
+    var name = st.indexOf('trainer') === 0 ? 'Graveler' : (st.indexOf('e4') === 0 ? 'Machamp' : null);
+    if (name) {
+      document.querySelector('.side-opponent .name').textContent = name;
+      if (name === 'Machamp') {
+        var b = document.querySelectorAll('.side-opponent .info .badge.num');
+        b[0].textContent = 'Lv 66';
+        b[1].textContent = '+10';
+      }
+      document.querySelector('.side-opponent .sprite').innerHTML = name + '<br>front sprite';
+    }
+  })();
   (function () {
     var opp = 62, player = 472, max = 550, turn = 1, paralyzed = false;
     var damage = { 'surf': 30, 'ice-beam': 45, 'tackle': 15, 'thunder-wave': 0 };

@@ -38,6 +38,7 @@ Players get 3 daily missions and a list of one-time achievements; both are activ
 - A key item earned from an early achievement (such as "Win 10 battles").
 - Turned on or off from the inventory.
 - While on, party Pokémon that did not fight get 50% of the XP.
+- It does nothing in the Battle Tower: only the run's team gets XP there.
 
 ## Missions page
 
@@ -98,6 +99,7 @@ Templates whose feature is not built yet (trainers, the Battle Tower) are skippe
 | Battling | Win 100 battles | 10 boost stones |
 | Battling | Beat a gym | ₽ 10,000 |
 | Battling | Earn all 8 badges of a region | a random Mega Stone |
+| Battling | Beat all gyms (every badge of every region, 72) | Master Ball |
 | Battling | Become Champion of a region | a random Z-Move TM |
 | Battling | Reach floor 100 of the Battle Tower | a random Dynamax TM |
 | Collection | Get a Pokémon to level 100 | 10 boost stones |
@@ -108,4 +110,6 @@ Templates whose feature is not built yet (trainers, the Battle Tower) are skippe
 ### Counting rules
 
 - "Catch" goals count wild catches only. Hatched Pokémon count for "Hatch eggs".
+- "Win battles" goals count won battles and wild catches: a catch counts as winning the wild battle. Losses and runs never count.
+- "Beat a gym" and "Beat all gyms" count badges, so only the first win against each leader counts.
 - "Reach a level / boost" goals look at the player's best Pokémon, so a Pokémon that already qualifies completes them at once.

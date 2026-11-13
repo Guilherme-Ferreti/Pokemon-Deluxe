@@ -33,7 +33,7 @@ How pages look and behave. Follow it for every new page or component; tasks in `
 
 - **One primary button per screen or dialog**: the main thing the player came to do (Battle, Buy, Claim, Send out). It uses the default `Button` variant.
 - Secondary actions use `variant="outline"`; minor or repeated row actions use `variant="ghost"`.
-- Anything permanent or that loses something (Release, Give up, Cancel listing) uses `variant="destructive"` and opens a confirmation dialog first. The dialog's confirm button is the destructive one; the other says what the player keeps ("Keep fighting", not "Cancel").
+- Anything permanent or that loses something (Release, Run, Cancel listing, Quit the Elite Four) uses `variant="destructive"` and opens a confirmation dialog first. The dialog's confirm button is the destructive one; the other says what the player keeps ("Keep fighting", not "Cancel").
 - Button labels are verbs: "Explore", "Throw ball", "Claim", not "OK" or "Submit".
 - While a request runs, disable the button and the other actions it competes with (`form.processing`), so a double click never sends twice.
 
@@ -51,7 +51,7 @@ How pages look and behave. Follow it for every new page or component; tasks in `
 ## Text
 
 - A Pokémon's name always includes "Shiny" when it is shiny ("Shiny Charmeleon", evolving into "Shiny Charizard"), everywhere the name appears: titles, dialogs, toasts, logs and confirmations. Use `PokemonDisplayName` / `getDisplayName()`, never the bare species name, for a Pokémon the player owns or meets.
-- No star or other icon before a shiny Pokémon's name: "Shiny" in the name says it. Shiny is shown with the gold border or a "Shiny" badge where a card needs extra emphasis.
+- No star or other icon before or inside a shiny Pokémon's name: "Shiny" in the name says it. Shiny is shown with the gold border or a "Shiny" badge where a card needs extra emphasis; the badge itself may carry a star icon.
 - Sentence case everywhere: "Keep exploring", not "Keep Exploring".
 - A TM is always named by its code and move: "TM 395 Ice Beam" (the move's `tm_code`, with a space after "TM"), in lists, dialogs, toasts and the inventory. Lists of TMs are sorted by code.
 - Numbers players compare use thousands separators (₽ 12,450) and units (Lv 36, +14, ×3.5).

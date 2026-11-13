@@ -23,6 +23,7 @@ Players list a Pokémon on a trade market, other players make offers of Pokémon
 - Items in an offer are set aside from the inventory and returned if the offer is turned down or withdrawn.
 - Locked Pokémon (Spec 4) cannot be listed or offered.
 - A Pokémon taking part in an ongoing battle (it is on the player's side of a battle that hasn't ended) cannot be listed or offered.
+- A Pokémon in an active Battle Tower run (Spec 6) cannot be listed or offered until the run ends.
 
 ## Accepting and withdrawing
 

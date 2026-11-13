@@ -35,7 +35,7 @@ There are 9 areas, two types each, covering all 18 types. A dual-type species ap
 - Legendaries and mythicals appear in 1 in 500 encounters.
 - About 1 in 20 explores meets an NPC trainer instead (see Spec 6).
 - A caught Pokémon keeps its wild level.
-- Wild battles are always one Pokémon against the player's party. Running always works.
+- Wild battles are always one Pokémon against the player's party. **Run** always works.
 
 | Wild Pokémon | Level | Example |
 | --- | --- | --- |
@@ -48,6 +48,7 @@ There are 9 areas, two types each, covering all 18 types. A dual-type species ap
 
 - **Throw ball** is available on any turn of a wild battle. A throw uses the player's turn, so the wild Pokémon still attacks.
 - A failed ball is used up. Wild Pokémon never flee.
+- **Catching counts as winning the wild battle:** the player's Pokémon get XP as if they had knocked it out (Spec 1), and the catch counts for "win battles" missions (Spec 5).
 - All species share one catch rate, except legendaries and mythicals, which are harder.
 - Catch chance rises as the wild Pokémon's HP falls and when it has a status effect.
 
@@ -81,8 +82,8 @@ Balls have conditions, as in the main games. The game has no weight, speed, fish
 | Quick Ball | 5× on the first turn, 1× after |
 | Timer Ball | 1×, +0.3× per turn, up to 4× |
 | Repeat Ball | 3.5× if the player already owns that species |
-| Nest Ball | up to 4× against low-level Pokémon, falling to 1× at level 30 |
-| Level Ball | 2×, 4× or 8× when the player's active Pokémon is above, 2× or 4× the wild level |
+| Nest Ball | 3× against level 2 Pokémon, falling evenly to 1× at level 20 and above: 1 + (20 − level) ÷ 9, kept between 1× and 3× (level 11: 2×) |
+| Level Ball | compares the player's active Pokémon with the wild one: 2× when its level is higher, 4× when it is at least double, 8× when it is at least four times; 1× otherwise |
 | Dusk Ball | 3× at night (server time 18:00–06:00) or in the Cave |
 | Dream Ball | 4× if the wild Pokémon is asleep |
 | Love Ball | 8× if same species and opposite gender to the active Pokémon |
@@ -145,4 +146,4 @@ Balls have conditions, as in the main games. The game has no weight, speed, fish
 ## Catching in the battle page
 
 - In wild battles a **Throw ball** button sits under the moves. It opens a ball picker: each owned ball with its sprite, quantity and multiplier right now; balls whose condition applies get a "Boosted" tag.
-- On a catch, a dialog shows the Pokémon, where it went (Party or Box), and buttons **View Pokémon** and **Keep exploring**.
+- On a catch, a dialog shows the Pokémon, where it went (Party or Box), the XP each of the player's Pokémon got (with level-ups), and buttons **View Pokémon** and **Keep exploring**.
