@@ -192,9 +192,9 @@ Vue components must have a single root element.
 - Feature behaviour (game rules, formulas, numbers and page designs) is defined in `docs/specs/`. `docs/specs/README.md` lists every spec and its status.
 - Before planning or changing a feature, read the spec that covers it. Follow the spec over what the existing code suggests; if they disagree, point it out instead of silently picking one.
 - When a decision changes a spec (a new rule, a changed number, a page change), update the spec file in the same change as the code.
-- Planned work is listed in `docs/specs/tasks.md`. Mark a task done when its work is merged.
+- Planned work is listed in `docs/specs/tasks.md`. Each task has a `- [ ] Done` box: tick it (`- [x] Done`) in the same commit or pull request that finishes the task.
 - Screen tasks may link a mock-up in `docs/mockups/` (plain HTML; open it in a browser or read its source). Match its layout, content and every state in its State menu, but build the page from the project's components and `.ai/rules/design.md`, never by copying the mock-up's HTML or CSS.
-- Use the names in `docs/specs/glossary.md` for classes, methods, columns and variables. When a new name is needed, build it from the glossary's recipes and add it to the glossary in the same change.
+- Start from the names in `docs/specs/glossary.md` (and in the task) for classes, methods, columns and variables. They are suggestions, not final names: the final name is decided when the task is built. When a name changes or a new one is needed, build it from the glossary's recipes and update the glossary (and later tasks that use it) in the same change.
 
 # Git
 

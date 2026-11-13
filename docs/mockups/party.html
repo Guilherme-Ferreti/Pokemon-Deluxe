@@ -1,0 +1,196 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="claude:viewport-fit-sides" content="cover">
+<title>Party mock-up</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="assets/mockup.css">
+<style>
+  .slots { display: grid; grid-template-columns: repeat(auto-fill, minmax(9.5rem, 1fr)); gap: 12px; list-style: none; margin: 0; padding: 0; }
+  .slot { position: relative; display: flex; flex-direction: column; align-items: center; gap: 6px; padding: 30px 10px 10px; border: 1px solid var(--border); border-radius: 12px; background: var(--card); text-align: center; min-width: 0; color: inherit; text-decoration: none; transition: border-color .15s, box-shadow .15s; }
+  .slot:hover { border-color: color-mix(in oklch, var(--primary) 50%, transparent); box-shadow: 0 1px 3px oklch(0 0 0 / 8%); }
+  .slot.lead { border-color: var(--primary); box-shadow: 0 0 0 1px var(--primary); }
+  .slot.drag-over { border-color: var(--primary); box-shadow: 0 0 0 2px var(--primary); }
+  .slot.dragging { opacity: .4; }
+  .slot.empty { border-style: dashed; background: color-mix(in oklch, var(--muted) 30%, transparent); color: var(--muted-fg); justify-content: center; min-height: 196px; padding-top: 10px; font-size: 13px; }
+  .slot-number { position: absolute; top: 8px; left: 8px; width: 22px; height: 22px; border-radius: 999px; background: var(--muted); font-size: 12px; font-weight: 700; display: flex; align-items: center; justify-content: center; }
+  .slot.lead .slot-number { background: var(--primary); color: var(--primary-fg); }
+  .lead-badge { position: absolute; top: 8px; left: 36px; }
+  .handle { position: absolute; top: 8px; right: 8px; cursor: grab; color: var(--muted-fg); display: flex; touch-action: none; }
+  .slot-name { font-weight: 600; font-size: 14px; overflow-wrap: anywhere; }
+  .slot-tools { display: flex; gap: 4px; margin-top: 2px; }
+  .icon-btn { width: 32px; height: 32px; border: 1px solid var(--border); border-radius: 8px; background: var(--card); color: var(--muted-fg); display: flex; align-items: center; justify-content: center; }
+  .icon-btn:hover:not(:disabled) { background: var(--muted); color: var(--fg); }
+  .icon-btn:disabled { opacity: .3; }
+  .arrow-v { display: none; }
+  .stack-mobile { display: contents; }
+  @media (max-width: 420px) {
+    .slots { grid-template-columns: minmax(0, 1fr); }
+    .slot { flex-direction: row; text-align: left; padding: 10px 10px 10px 40px; }
+    .slot .stack-mobile { flex: 1; min-width: 0; display: flex; flex-direction: column; align-items: flex-start; gap: 4px; }
+    .slot-number { top: 50%; transform: translateY(-50%); }
+    .lead-badge, .handle { display: none; }
+    .slot.empty { min-height: 72px; flex-direction: row; justify-content: center; }
+    .arrow-h { display: none; }
+    .arrow-v { display: flex; }
+  }
+  .save-state { font-size: 12px; color: var(--muted-fg); display: inline-flex; align-items: center; gap: 6px; min-height: 18px; }
+  .save-state .tick { color: var(--good); }
+  .notice { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 10px; border: 1px solid var(--border); background: var(--muted); border-radius: 12px; padding: 12px 16px; }
+  .locked .slot { cursor: default; }
+  .locked .slot:hover { border-color: var(--border); box-shadow: none; }
+  .locked .slot.lead:hover { border-color: var(--primary); box-shadow: 0 0 0 1px var(--primary); }
+</style>
+</head>
+<body>
+<div class="mock-bar">
+  <a href="index.html">← All mock-ups</a>
+  <span><strong>Party</strong> · tasks 4.15, 4.16</span>
+  <label for="mockup-state">State
+    <select id="mockup-state">
+      <option value="full">Full party: reorder</option>
+      <option value="saved">Order saved</option>
+      <option value="partial">Party of 4</option>
+      <option value="battle">A battle is in progress</option>
+    </select>
+  </label>
+  <span>Shown inside the app layout (sidebar not drawn). Dashed boxes = portraits. Try the arrows, or drag a slot on desktop.</span>
+</div>
+
+<main class="page">
+  <div class="page-header">
+    <div class="stack" style="gap: 2px;">
+      <h1>Your Party</h1>
+      <p>The first Pokémon leads every battle. Drag to change the order.</p>
+    </div>
+    <span class="save-state" id="save-state" aria-live="polite"></span>
+  </div>
+
+  <div class="notice" data-show="battle" role="status">
+    <span class="small"><strong>You're in a battle.</strong> The party order can't change until it ends.</span>
+    <a class="btn btn-primary" href="battle.html">Return to battle</a>
+  </div>
+
+  <section class="card" id="party-card">
+    <div class="row" style="justify-content: space-between;">
+      <h2>Party</h2>
+      <span class="xs muted num" id="count">6 / 6</span>
+    </div>
+    <ol class="slots" id="slots" aria-label="Party in sending-out order"></ol>
+  </section>
+
+  <p class="note">The existing Party page keeps its card of six square slots; each slot now shows its place in the sending-out order (1 leads, marked "Leads"), the portrait, display name, level and boost, types, and two arrow buttons. Desktop: drag a slot by its handle (or anywhere on it) onto another place; the others shift. Keyboard and touch: "Move earlier" and "Move later" (left and right arrows; up and down when the slots stack on narrow phones). Each change is saved right away, with a small "Saving… / Saved" text instead of a toast; errors use a toast. The slot links to the Pokémon page; the arrows don't. Empty slots link to the Box. Gyms use the order picked for that challenge and the Battle Tower its own team order.</p>
+</main>
+
+<script src="assets/mockup.js"></script>
+<script>
+  (function () {
+    var all = [
+      ['Shiny Magikarp', 54, 72, [['water', 'Water']], true],
+      ['Dragonite', 61, 20, [['dragon', 'Dragon'], ['flying', 'Flying']]],
+      ['Lapras', 50, 8, [['water', 'Water'], ['ice', 'Ice']]],
+      ['Gengar', 57, 15, [['ghost', 'Ghost'], ['poison', 'Poison']]],
+      ['Scizor', 64, 30, [['bug', 'Bug'], ['steel', 'Steel']]],
+      ['Gible', 48, 0, [['dragon', 'Dragon'], ['ground', 'Ground']]]
+    ];
+    var order = [];
+    var dragged = null;
+    var slotsEl = document.getElementById('slots');
+    var saveEl = document.getElementById('save-state');
+    var saveTimer = null;
+
+    function svg(path) { return '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="' + path + '"/></svg>'; }
+    var LEFT = 'M15 6l-6 6 6 6', RIGHT = 'M9 6l6 6-6 6', UP = 'M6 15l6-6 6 6', DOWN = 'M6 9l6 6 6-6';
+    var GRIP = '<svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><circle cx="9" cy="6" r="1.6"/><circle cx="15" cy="6" r="1.6"/><circle cx="9" cy="12" r="1.6"/><circle cx="15" cy="12" r="1.6"/><circle cx="9" cy="18" r="1.6"/><circle cx="15" cy="18" r="1.6"/></svg>';
+
+    function state() { return document.documentElement.getAttribute('data-state') || 'full'; }
+    function locked() { return state() === 'battle'; }
+
+    function showSaved(text, done) {
+      saveEl.innerHTML = done ? '<span class="tick">✓</span> ' + text : text;
+    }
+    function save() {
+      showSaved('Saving…', false);
+      clearTimeout(saveTimer);
+      saveTimer = setTimeout(function () { showSaved('Order saved', true); }, 600);
+    }
+    function move(from, to) {
+      if (to < 0 || to >= order.length || from === to) { return; }
+      order.splice(to, 0, order.splice(from, 1)[0]);
+      render();
+      save();
+    }
+
+    function render() {
+      var isLocked = locked();
+      document.getElementById('party-card').classList.toggle('locked', isLocked);
+      slotsEl.innerHTML = '';
+      order.forEach(function (m, i) {
+        var li = document.createElement('li');
+        li.style.display = 'contents';
+        var a = document.createElement('a');
+        a.href = 'pokemon.html';
+        a.className = 'slot' + (i === 0 ? ' lead' : '');
+        a.draggable = !isLocked;
+        var types = m[3].map(function (t) { return '<span class="type type-' + t[0] + '">' + t[1] + '</span>'; }).join('');
+        a.innerHTML =
+          '<span class="slot-number" aria-label="Position ' + (i + 1) + '">' + (i + 1) + '</span>' +
+          (i === 0 ? '<span class="badge badge-solid xs lead-badge">Leads</span>' : '') +
+          (isLocked ? '' : '<span class="handle" title="Drag to reorder">' + GRIP + '</span>') +
+          '<span class="sprite sprite-md' + (m[4] ? ' sprite-shiny' : '') + '" aria-hidden="true">' + m[0].replace('Shiny ', '') + '</span>' +
+          '<span class="stack-mobile">' +
+            '<span class="slot-name">' + m[0] + '</span>' +
+            '<span class="xs muted num">Lv ' + m[1] + (m[2] ? ' · +' + m[2] : '') + '</span>' +
+            '<span class="row" style="gap: 4px; justify-content: center;">' + types + '</span>' +
+          '</span>' +
+          '<span class="slot-tools">' +
+            '<button type="button" class="icon-btn arrow-h" data-earlier="' + i + '" aria-label="Move ' + m[0] + ' earlier"' + (i === 0 || isLocked ? ' disabled' : '') + '>' + svg(LEFT) + '</button>' +
+            '<button type="button" class="icon-btn arrow-h" data-later="' + i + '" aria-label="Move ' + m[0] + ' later"' + (i === order.length - 1 || isLocked ? ' disabled' : '') + '>' + svg(RIGHT) + '</button>' +
+            '<button type="button" class="icon-btn arrow-v" data-earlier="' + i + '" aria-label="Move ' + m[0] + ' earlier"' + (i === 0 || isLocked ? ' disabled' : '') + '>' + svg(UP) + '</button>' +
+            '<button type="button" class="icon-btn arrow-v" data-later="' + i + '" aria-label="Move ' + m[0] + ' later"' + (i === order.length - 1 || isLocked ? ' disabled' : '') + '>' + svg(DOWN) + '</button>' +
+          '</span>';
+        if (!isLocked) {
+          a.addEventListener('dragstart', function (e) { dragged = i; a.classList.add('dragging'); e.dataTransfer.effectAllowed = 'move'; });
+          a.addEventListener('dragend', function () { a.classList.remove('dragging'); });
+          a.addEventListener('dragover', function (e) { e.preventDefault(); a.classList.add('drag-over'); });
+          a.addEventListener('dragleave', function () { a.classList.remove('drag-over'); });
+          a.addEventListener('drop', function (e) {
+            e.preventDefault();
+            a.classList.remove('drag-over');
+            if (dragged !== null) { move(dragged, i); }
+            dragged = null;
+          });
+        }
+        li.appendChild(a);
+        slotsEl.appendChild(li);
+      });
+      for (var k = order.length; k < 6; k++) {
+        slotsEl.insertAdjacentHTML('beforeend', '<li style="display: contents;"><a class="slot empty" href="#" title="Opens the Box" aria-label="Empty slot: add a Pokémon from your Box"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg><span>Add from your Box</span></a></li>');
+      }
+      document.getElementById('count').textContent = order.length + ' / 6';
+    }
+
+    slotsEl.addEventListener('click', function (e) {
+      var earlier = e.target.closest('[data-earlier]');
+      var later = e.target.closest('[data-later]');
+      if (!earlier && !later) { return; }
+      e.preventDefault();
+      if (earlier) { var i = +earlier.getAttribute('data-earlier'); move(i, i - 1); }
+      if (later) { var j = +later.getAttribute('data-later'); move(j, j + 1); }
+    });
+
+    function reset(s) {
+      order = (s === 'partial' ? all.slice(0, 4) : all.slice());
+      if (s === 'saved') { order = [all[1], all[0], all[2], all[3], all[4], all[5]]; }
+      clearTimeout(saveTimer);
+      showSaved(s === 'saved' ? 'Order saved' : '', s === 'saved');
+      render();
+    }
+    document.addEventListener('mockup:state', function (e) { reset(e.detail); });
+    reset(state());
+  })();
+</script>
+</body>
+</html>

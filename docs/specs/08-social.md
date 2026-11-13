@@ -22,7 +22,7 @@ Players can look each other up through public profiles, see notable catches and 
 ```
 ┌──────────────────────────────────────────────────────────┐
 │ Ash                                Joined Nov 2026        │
-│ Pokédex 702 / 1025 (68%) · Shinies 41 · Best Tower 137    │
+│ Pokédex 702 / 1,330 (53%) · Shinies 41 · Best Tower 137   │
 ├──────────────────────────────────────────────────────────┤
 │ BADGES                                                    │
 │ Kanto   ● ● ● ● ● ● ● ●   Elite Four ✓  Champion ✓        │
@@ -67,7 +67,7 @@ Gaps found while splitting this spec into tasks, agreed on 13 Nov 2026.
 
 - **Profile link:** `/players/{id}`, so a name never has to be URL-safe.
 - **Names:** 3–20 characters (letters, numbers, spaces, `-` and `_`), unique ignoring upper and lower case ("Ash" and "ash" can't both exist).
-- **Pokédex count:** the species the player owns right now, out of every species in the Pokédex, matching the Pokédex page's own catch statistics. A traded or released Pokémon stops counting.
+- **Pokédex count:** the species the player owns right now, out of every species row in the Pokédex (1,330 today). Megas, G-Max and other forms count as separate species. It matches the Pokédex page's own catch statistics. A traded or released Pokémon stops counting.
 - **Shiny count:** shiny Pokémon the player owns right now.
 - **Latest captures:** recorded at the moment of the catch or hatch (level as caught), so later level-ups, trades or releases don't change the feed. 20 most recent.
 - **Player search:** by name, results as a list with join date and Pokédex %, 20 per page.

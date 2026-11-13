@@ -52,9 +52,9 @@
   <div class="tiles">
     <div class="card tile">
       <span class="xs muted">Pokédex</span>
-      <span class="big num" id="dex">702 <span class="muted" style="font-size: 16px; font-weight: 500;">/ 1,025</span></span>
-      <div class="bar bar-thin bar-blue" role="progressbar" aria-label="Pokédex completion" aria-valuemin="0" aria-valuemax="100" aria-valuenow="68"><span id="dex-bar" style="width: 68%;"></span></div>
-      <span class="xs muted num" id="dex-pct">68% of every species</span>
+      <span class="big num" id="dex">702 <span class="muted" style="font-size: 16px; font-weight: 500;">/ 1,330</span></span>
+      <div class="bar bar-thin bar-blue" role="progressbar" aria-label="Pokédex completion" aria-valuemin="0" aria-valuemax="100" aria-valuenow="53"><span id="dex-bar" style="width: 53%;"></span></div>
+      <span class="xs muted num" id="dex-pct">53% of every species</span>
     </div>
     <div class="card tile"><span class="xs muted">Shinies</span><span class="big num" id="shinies" style="color: var(--gold-fg);">41</span><span class="xs muted">owned now</span></div>
     <div class="card tile"><span class="xs muted">Best Battle Tower floor</span><span class="big num" id="tower">137</span><span class="xs muted" id="tower-sub">Highest floor won</span></div>
@@ -91,8 +91,8 @@
       document.getElementById('crumb').textContent = d.name;
       document.getElementById('initials').textContent = d.initials;
       document.getElementById('joined').textContent = d.joined;
-      var pct = Math.round(d.dex / 1025 * 100);
-      document.getElementById('dex').innerHTML = d.dex.toLocaleString('en-US') + ' <span class="muted" style="font-size: 16px; font-weight: 500;">/ 1,025</span>';
+      var pct = Math.round(d.dex / 1330 * 100);
+      document.getElementById('dex').innerHTML = d.dex.toLocaleString('en-US') + ' <span class="muted" style="font-size: 16px; font-weight: 500;">/ 1,330</span>';
       document.getElementById('dex-bar').style.width = Math.max(pct, 1) + '%';
       document.getElementById('dex-pct').textContent = pct + '% of every species';
       document.getElementById('shinies').textContent = d.shinies;

@@ -42,7 +42,7 @@ Level factor = level + 10, so a level 100 Pokémon is 10× a level 1, not 100×.
 
 ## Moves and TMs
 
-- Every Pokémon starts with its species' 4 base moves. It keeps a **pool of known moves** and **4 active slots**, swapped freely outside battle.
+- Every species has exactly 4 different base moves, and every Pokémon starts with them in its 4 active slots. It keeps a **pool of known moves** and **4 active slots**, swapped freely outside battle.
 - The pool grows only by TM or evolution. A TM is used up when taught, and any Pokémon can learn any move.
 - On evolution, the new species' base moves join the pool. Example: Charmander knows A B C D; Charmeleon's base moves are A E F G; after evolving it knows A B C D E F G.
 - **Z-Move TMs:** only level 100 Pokémon can learn them; usable once per battle.
@@ -51,14 +51,14 @@ Level factor = level + 10, so a level 100 Pokémon is 10× a level 1, not 100×.
 
 ## Battle flow
 
-1. The battle is saved on the server: refreshing or closing the page resumes the same turn. One active battle per player.
+1. The battle is saved on the server: refreshing or closing the page resumes the same turn. One active battle per player. A battle that uses the party starts with its first Pokémon, in the order set on the Party page (Spec 4).
 2. Each turn the player picks one of the 4 active moves (or throws a ball in a wild battle, see Spec 2).
 3. Turn order is rolled every turn: chance to move first = my level ÷ (my level + their level).
 4. Moves can miss (accuracy), land a critical hit (1 in 16, ×1.5), flinch, or hit several times. Type effectiveness and STAB (×1.5) apply.
 5. Status effects (burn, poison, paralysis, sleep, freeze, confusion) are in from the first version and last only for that battle. Status-only moves such as Thunder Wave are kept.
 6. When a Pokémon faints, **the player picks which Pokémon comes out next**, like the main games. No other switching, no items in battle.
-7. The player can give up at any time. Losing has no penalty other than no reward.
-8. After every battle all Pokémon are fully healed.
+7. The player can run at any time with the **Run** button. Running counts as a loss. Losing has no penalty: trainers pay nothing, but XP already earned is kept (see XP).
+8. After every battle all Pokémon are fully healed, except in the Battle Tower, where damage carries over between floors until a checkpoint (Spec 6).
 
 ## Status effects
 
@@ -78,15 +78,18 @@ Level factor = level + 10, so a level 100 Pokémon is 10× a level 1, not 100×.
 ## XP
 
 - A level costs 1,000 XP (`game.pokemon.experience_per_level`). Level 100 gains nothing.
-- For each opponent Pokémon defeated, every Pokémon of the player's that came onto the field gets the full amount (it isn't split):
+- XP is counted during the battle and paid **when the battle ends**, whatever the result: won, lost, ran or caught. Opponents knocked out before a loss still count.
+- Catching a wild Pokémon counts as defeating it (Spec 2).
+- For each opponent Pokémon knocked out or caught, every Pokémon of the player's that came onto the field gets the full amount (it isn't split):
 
 ```math
 \text{XP} = 250 \times \text{clamp}\left(\frac{\text{opponent level}}{\text{your Pokémon's level}}, 0.1, 3\right) \times \text{battle bonus}
 ```
 
 - Battle bonus: wild ×1, trainer ×1.5, gym, Elite Four and Champion ×2, Battle Tower ×1.
-- The Pokémon that knocked the opponent out gets ×1.5.
-- Pokémon that never came out get none, unless an XP Share is active: then they get 50% (see Spec 5).
+- The Pokémon that knocked the opponent out, or that was on the field when it was caught, gets ×1.5.
+- Pokémon that never came out get none, unless an XP Share is active: then the rest of the party gets 50% of the formula (with their own level, without the knockout bonus; see Spec 5). The XP Share does nothing in the Battle Tower.
+- Battle Tower battles save their XP in the run and pay it when the run ends (Spec 6).
 - Every number lives in `config/game.php` under `game.experience`.
 
 | Situation | XP | Wins per level |
@@ -114,7 +117,7 @@ Taking one Pokémon from level 1 to 100 takes about 300 fair fights, fewer when 
 
 ```
 ┌──────────────────────────────────────────────────────────┐
-│  Wild Pokémon battle                          [Give up]  │
+│  Wild Pokémon battle                              [Run]  │
 ├──────────────────────────────────────────────────────────┤
 │                     OPPONENT  Pidgey ♂  Lv 34  +5         │
 │                     HP ████████░░░░  62%   [PAR]          │
@@ -140,3 +143,5 @@ Taking one Pokémon from level 1 to 100 takes about 300 fair fights, fewer when 
 - Team dots show who is left on each side. A battle log lists what happened.
 - When a Pokémon faints, a dialog lists the remaining team (portrait, level, HP) to pick the next one.
 - The only animation is the HP bar sliding down.
+- **Run** asks for confirmation. Against trainers it says that running counts as a loss; in an Elite Four run, that it also ends the run.
+- When the battle ends, the moves area becomes a result card for every ending (won, lost, ran, caught): the result, the money earned against trainers, and one row per Pokémon that came out with the XP it got, an XP bar and any level-up. With the XP Share on, one more line sums up what the rest of the party got. A loss with no opponent knocked out says "No XP this time". Tower battles show the XP saved in the run instead.

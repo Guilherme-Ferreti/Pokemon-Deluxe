@@ -45,6 +45,7 @@
       <option value="fewer">Confirm battling with fewer</option>
       <option value="unlocked">All badges: Elite Four unlocked</option>
       <option value="run">Elite Four run in progress</option>
+      <option value="quit-e4">Quit the Elite Four</option>
       <option value="champion">Champion beaten</option>
     </select>
   </label>
@@ -84,24 +85,38 @@
     </div>
   </section>
 
-  <section class="card e4" data-show="unlocked run champion">
+  <section class="card e4" data-show="unlocked run quit-e4 champion">
     <div class="row" style="justify-content: space-between;">
       <div class="stack" style="gap: 2px;">
         <h2>Kanto Elite Four</h2>
-        <span class="small muted">Four battles, then the Champion, in order. Your party is healed after each battle. Losing ends the run.</span>
+        <span class="small muted">Four battles, then the Champion, in order, with your party in party order. Your party is healed after each battle. Losing or running ends the run. Beating the Champion pays ₽ 30,000.</span>
       </div>
       <span class="badge badge-gold" data-show="champion">Champion ✓</span>
     </div>
     <div class="e4-steps" id="e4"></div>
     <div class="row">
       <a class="btn btn-primary btn-lg" href="battle.html#trainer-battle" data-show="unlocked">Start the Elite Four</a>
-      <a class="btn btn-primary btn-lg" href="battle.html#trainer-battle" data-show="run">Continue: battle Agatha</a>
-      <button type="button" class="btn btn-destructive-outline" data-show="run">Give up the run</button>
+      <a class="btn btn-primary btn-lg" href="battle.html#trainer-battle" data-show="run quit-e4">Continue: battle Agatha</a>
+      <button type="button" class="btn btn-destructive-outline" data-show="run quit-e4" data-go="quit-e4">Quit the Elite Four</button>
       <a class="btn btn-outline btn-lg" href="battle.html#trainer-battle" data-show="champion">Challenge again</a>
+      <span class="small muted" data-show="champion">You earned ₽ 30,000 for beating Champion Blue. Every win of a new run pays it again.</span>
     </div>
   </section>
   <p class="note">Badge order is free. Leaders bring 2 to 6 Pokémon (here Brock 2, Giovanni 6); the rule, the team picker and the Challenge button follow the leader's team size. When the leader brings 6, you still pick all six: the picking order is the sending-out order. You can bring fewer than the leader (Challenge then asks to confirm), never more: once you've picked as many as the leader brings, the other rows are disabled. A party smaller than the leader's team can still challenge. Gym leaders and badge names are placeholders for the content in task 6.2.</p>
 </main>
+
+<div class="overlay" data-show="quit-e4">
+  <div class="dialog" role="alertdialog" aria-labelledby="quit-e4-title">
+    <div class="stack" style="gap: 6px;">
+      <h2 id="quit-e4-title">Quit the Kanto Elite Four?</h2>
+      <p class="small muted">Your run ends here. Next time you start again from Lorelei.</p>
+    </div>
+    <div class="dialog-actions">
+      <button type="button" class="btn btn-outline" data-go="run">Keep going</button>
+      <button type="button" class="btn btn-destructive" data-go="unlocked">Quit</button>
+    </div>
+  </div>
+</div>
 
 <div class="overlay" data-show="gym">
   <div class="dialog" role="dialog" aria-labelledby="gym-title">
@@ -207,8 +222,9 @@
       var steps = document.getElementById('e4');
       steps.innerHTML = '';
       e4.forEach(function (name, i) {
-        var cls = state === 'run' ? (i < 2 ? ' done' : (i === 2 ? ' current' : '')) : (state === 'champion' ? ' done' : '');
-        var tag = state === 'run' ? (i < 2 ? 'Beaten ✓' : (i === 2 ? 'Next' : '')) : (state === 'champion' ? 'Beaten ✓' : '');
+        var inRun = state === 'run' || state === 'quit-e4';
+        var cls = inRun ? (i < 2 ? ' done' : (i === 2 ? ' current' : '')) : (state === 'champion' ? ' done' : '');
+        var tag = inRun ? (i < 2 ? 'Beaten ✓' : (i === 2 ? 'Next' : '')) : (state === 'champion' ? 'Beaten ✓' : '');
         steps.insertAdjacentHTML('beforeend', '<div class="e4-step' + cls + '"><span class="sprite sprite-sm" aria-hidden="true"></span><strong>' + name + '</strong><span class="xs muted">' + (i < 4 ? 'Elite Four · ' + (i + 1) : 'Champion') + '</span><span class="xs">' + tag + '</span></div>');
       });
       if ((state === 'team-all' || state === 'too-few' || (state === 'fewer' && picked.length === 0)) && current !== 7) { openGym(7); }

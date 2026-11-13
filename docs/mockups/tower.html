@@ -14,6 +14,19 @@
   .slots { display: grid; grid-template-columns: repeat(auto-fill, minmax(8.5rem, 1fr)); gap: 10px; }
   .slot { display: flex; flex-direction: column; align-items: center; gap: 6px; padding: 12px 8px; border: 1px solid var(--border); border-radius: 12px; text-align: center; min-height: 128px; justify-content: center; }
   .slot.empty { border-style: dashed; color: var(--muted-fg); font-size: 12px; }
+  .slot { position: relative; }
+  .slot.lead, .member.lead { border-color: var(--primary); box-shadow: 0 0 0 1px var(--primary); }
+  .slot.drag-over, .member.drag-over { border-color: var(--primary); box-shadow: 0 0 0 2px var(--primary); }
+  .slot.dragging, .member.dragging { opacity: .4; }
+  .order-num { width: 22px; height: 22px; border-radius: 999px; background: var(--muted); font-size: 12px; font-weight: 700; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+  .lead .order-num { background: var(--primary); color: var(--primary-fg); }
+  .slot .order-num { position: absolute; top: 8px; left: 8px; }
+  .handle { cursor: grab; color: var(--muted-fg); display: flex; flex-shrink: 0; touch-action: none; }
+  .slot .handle { position: absolute; top: 8px; right: 8px; }
+  .tools { display: flex; gap: 4px; }
+  .icon-btn { width: 30px; height: 30px; border: 1px solid var(--border); border-radius: 8px; background: var(--card); color: var(--muted-fg); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+  .icon-btn:hover:not(:disabled) { background: var(--muted); color: var(--fg); }
+  .icon-btn:disabled { opacity: .3; }
   .floor { font-size: 44px; font-weight: 700; letter-spacing: -.03em; line-height: 1; }
   .team-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
   @media (max-width: 640px) { .team-grid { grid-template-columns: minmax(0, 1fr); } }
@@ -68,7 +81,7 @@
     <div class="row" style="justify-content: space-between;">
       <div class="stack" style="gap: 2px;">
         <h2>Your team</h2>
-        <span class="small muted">Pick 6 Pokémon from your party or Box, in sending-out order. The run uses them as they are when it starts.</span>
+        <span class="small muted">Pick 6 Pokémon from your party or Box, in sending-out order; drag or use the arrows to change it. The run uses them as they are when it starts.</span>
       </div>
       <button type="button" class="btn btn-outline" data-go="picker">Choose your team</button>
     </div>
@@ -90,9 +103,13 @@
       </div>
       <div class="stack" style="gap: 6px; flex: 1 1 260px; max-width: 420px;">
         <span class="small" id="checkpoint-text">Checkpoint at floor 45: full heal</span>
-        <div class="bar bar-blue" role="progressbar" aria-label="Progress to the next checkpoint" aria-valuemin="0" aria-valuemax="20" aria-valuenow="12"><span id="checkpoint-bar" style="width: 60%;"></span></div>
+        <div class="bar bar-blue" style="flex: none;" role="progressbar" aria-label="Progress to the next checkpoint" aria-valuemin="0" aria-valuemax="20" aria-valuenow="12"><span id="checkpoint-bar" style="width: 60%;"></span></div>
         <span class="xs muted num">Opponents: Lv 38, 3 Pokémon · this run: 28 floors, 52 Battle Points, XP paid when the run ends</span>
       </div>
+    </div>
+    <div class="row" style="justify-content: space-between;">
+      <strong class="small">Your team, in sending-out order</strong>
+      <span class="xs muted" id="team-save" aria-live="polite">The first Pokémon with HP left leads the next floor. Drag or use the arrows to change the order.</span>
     </div>
     <div id="team" class="team-grid"></div>
     <div class="row">
@@ -124,7 +141,7 @@
       <a class="btn btn-outline btn-lg" href="index.html">Back to Dashboard</a>
     </div>
   </section>
-  <p class="note">The team is a frozen copy taken when the run starts: levels, boosts and moves gained elsewhere count from the next run. Between floors you can explore, battle trainers or gyms; while the run is active its 6 Pokémon can't be traded, released or evolved. A run is saved on the server: leaving and coming back shows it again. The battle page's end screen for Tower battles has "Back to the Tower".</p>
+  <p class="note">Order: the lobby slots and the run's team list are numbered (1 leads) and can be reordered by dragging (desktop) or with the "Move earlier" / "Move later" arrows (everywhere). In the lobby the order is sent with "Start run"; during a run each change is saved right away and applies from the next floor (not during a Tower battle). A fainted Pokémon can sit anywhere: the first one with HP left goes out first. The team is a frozen copy taken when the run starts: levels, boosts and moves gained elsewhere count from the next run. Between floors you can explore, battle trainers or gyms; while the run is active its 6 Pokémon can't be traded, released or evolved. A run is saved on the server: leaving and coming back shows it again. The battle page's end screen for Tower battles has "Back to the Tower".</p>
 </main>
 
 <div class="overlay" data-show="picker">
@@ -165,18 +182,67 @@
 <script>
   (function () {
     var mons = [['Shiny Charmeleon', 36, true], ['Dragonite', 61], ['Lapras', 50], ['Shiny Magikarp', 54, true], ['Gible', 48], ['Pikachu', 30], ['Gengar', 57], ['Scizor', 64]];
-    var team = [['Dragonite', 61, 412, 568], ['Scizor', 64, 300, 520], ['Gengar', 57, 0, 268], ['Shiny Magikarp', 54, 120, 550], ['Lapras', 50, 240, 240], ['Gible', 48, 0, 232]];
+    var startTeam = [['Dragonite', 61, 412, 568], ['Scizor', 64, 300, 520], ['Gengar', 57, 0, 268], ['Shiny Magikarp', 54, 120, 550], ['Lapras', 50, 240, 240], ['Gible', 48, 0, 232]];
+    var team = startTeam.slice();
+    var lobby = [];
     var picked = [];
+    var dragged = null;
+    var GRIP = '<svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><circle cx="9" cy="6" r="1.6"/><circle cx="15" cy="6" r="1.6"/><circle cx="9" cy="12" r="1.6"/><circle cx="15" cy="12" r="1.6"/><circle cx="9" cy="18" r="1.6"/><circle cx="15" cy="18" r="1.6"/></svg>';
+    function arrow(path) { return '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="' + path + '"/></svg>'; }
+    function tools(list, i, name) {
+      return '<span class="tools">' +
+        '<button type="button" class="icon-btn" data-list="' + list + '" data-from="' + i + '" data-to="' + (i - 1) + '" aria-label="Move ' + name + ' earlier"' + (i === 0 ? ' disabled' : '') + '>' + arrow('M15 6l-6 6 6 6') + '</button>' +
+        '<button type="button" class="icon-btn" data-list="' + list + '" data-from="' + i + '" data-to="' + (i + 1) + '" aria-label="Move ' + name + ' later"' + (i === 5 ? ' disabled' : '') + '>' + arrow('M9 6l6 6-6 6') + '</button>' +
+        '</span>';
+    }
     function hpClass(p) { return p > 50 ? 'bar-good' : (p >= 20 ? 'bar-warn' : 'bar-bad'); }
+    function current() { return document.documentElement.getAttribute('data-state') || 'lobby'; }
+    function move(list, from, to) {
+      var arr = list === 'team' ? team : lobby;
+      if (to < 0 || to >= arr.length || from === to) { return; }
+      arr.splice(to, 0, arr.splice(from, 1)[0]);
+      if (list === 'team') { document.getElementById('team-save').innerHTML = '<span style="color: var(--good);">✓</span> Order saved. ' + firstAble() + ' leads the next floor.'; }
+      draw(current());
+    }
+    function firstAble() {
+      var healed = current() === 'checkpoint';
+      for (var i = 0; i < team.length; i++) { if (healed || team[i][2] > 0) { return team[i][0]; } }
+      return '';
+    }
+    function dnd(el, list, i) {
+      el.draggable = true;
+      el.addEventListener('dragstart', function (e) { dragged = { list: list, i: i }; el.classList.add('dragging'); e.dataTransfer.effectAllowed = 'move'; });
+      el.addEventListener('dragend', function () { el.classList.remove('dragging'); });
+      el.addEventListener('dragover', function (e) { e.preventDefault(); el.classList.add('drag-over'); });
+      el.addEventListener('dragleave', function () { el.classList.remove('drag-over'); });
+      el.addEventListener('drop', function (e) {
+        e.preventDefault();
+        el.classList.remove('drag-over');
+        if (dragged && dragged.list === list) { move(list, dragged.i, i); }
+        dragged = null;
+      });
+    }
+    document.addEventListener('click', function (e) {
+      var b = e.target.closest('[data-list]');
+      if (b) { move(b.getAttribute('data-list'), +b.getAttribute('data-from'), +b.getAttribute('data-to')); }
+    });
     function draw(state) {
-      var chosen = state === 'ready' ? mons.slice(0, 6).map(function (m) { return m[0]; }) : (state === 'picker' ? picked : []);
+      if (state === 'ready' && lobby.length !== 6) { lobby = mons.slice(0, 6).map(function (m) { return m[0]; }); }
+      var chosen = state === 'ready' ? lobby : (state === 'picker' ? picked : []);
+      var canReorder = state === 'ready';
       var slots = document.getElementById('slots');
       slots.innerHTML = '';
       for (var i = 0; i < 6; i++) {
         var name = chosen[i];
-        slots.insertAdjacentHTML('beforeend', name
-          ? '<div class="slot"><span class="sprite sprite-sm' + (name.indexOf('Shiny') === 0 ? ' sprite-shiny' : '') + '" aria-hidden="true"></span><strong class="small">' + name + '</strong><span class="xs muted">' + (i + 1) + (i === 0 ? 'st' : i === 1 ? 'nd' : i === 2 ? 'rd' : 'th') + ' out</span></div>'
-          : '<div class="slot empty">Empty slot</div>');
+        if (!name) { slots.insertAdjacentHTML('beforeend', '<div class="slot empty">Empty slot</div>'); continue; }
+        var div = document.createElement('div');
+        div.className = 'slot' + (i === 0 ? ' lead' : '');
+        div.innerHTML = '<span class="order-num">' + (i + 1) + '</span>' + (canReorder ? '<span class="handle" title="Drag to reorder">' + GRIP + '</span>' : '') +
+          '<span class="sprite sprite-sm' + (name.indexOf('Shiny') === 0 ? ' sprite-shiny' : '') + '" aria-hidden="true"></span><strong class="small">' + name + '</strong>' +
+          (i === 0 ? '<span class="badge badge-solid xs">Leads</span>' : '<span class="xs muted">' + (i + 1) + (i === 1 ? 'nd' : i === 2 ? 'rd' : 'th') + ' out</span>') +
+          (canReorder ? tools('lobby', i, name) : '');
+        if (canReorder) { dnd(div, 'lobby', i); }
+        slots.appendChild(div);
       }
       document.getElementById('start').disabled = chosen.length !== 6 || state !== 'ready';
       var healed = state === 'checkpoint';
@@ -185,10 +251,16 @@
       document.getElementById('checkpoint-bar').style.width = healed ? '4%' : '60%';
       var list = document.getElementById('team');
       list.innerHTML = '';
-      team.forEach(function (m) {
+      var leadIndex = -1;
+      team.forEach(function (m, idx) { if (leadIndex === -1 && (healed || m[2] > 0)) { leadIndex = idx; } });
+      team.forEach(function (m, idx) {
         var hp = healed ? m[3] : m[2];
         var pct = Math.round(hp / m[3] * 100);
-        list.insertAdjacentHTML('beforeend', '<div class="member' + (hp === 0 ? ' fainted' : '') + '"><span class="sprite sprite-xs' + (m[0].indexOf('Shiny') === 0 ? ' sprite-shiny' : '') + '" aria-hidden="true"></span><div class="member-main"><span class="row" style="gap: 6px;"><strong>' + m[0] + '</strong><span class="xs muted num">Lv ' + m[1] + '</span></span><span class="hp-row"><span class="bar bar-thin ' + hpClass(pct) + '"><span style="width: ' + pct + '%;"></span></span><span class="xs muted num" style="min-width: 72px; text-align: right;">' + (hp === 0 ? 'Fainted' : hp + ' / ' + m[3]) + '</span></span></div></div>');
+        var div = document.createElement('div');
+        div.className = 'member' + (hp === 0 ? ' fainted' : '') + (idx === leadIndex ? ' lead' : '');
+        div.innerHTML = '<span class="handle" title="Drag to reorder">' + GRIP + '</span><span class="order-num">' + (idx + 1) + '</span><span class="sprite sprite-xs' + (m[0].indexOf('Shiny') === 0 ? ' sprite-shiny' : '') + '" aria-hidden="true"></span><div class="member-main"><span class="row" style="gap: 6px;"><strong>' + m[0] + '</strong><span class="xs muted num">Lv ' + m[1] + '</span>' + (idx === leadIndex ? '<span class="badge badge-solid xs">Leads</span>' : '') + '</span><span class="hp-row"><span class="bar bar-thin ' + hpClass(pct) + '"><span style="width: ' + pct + '%;"></span></span><span class="xs muted num" style="min-width: 72px; text-align: right;">' + (hp === 0 ? 'Fainted' : hp + ' / ' + m[3]) + '</span></span></div>' + tools('team', idx, m[0]);
+        dnd(div, 'team', idx);
+        list.appendChild(div);
       });
       var grid = document.getElementById('pick-grid');
       grid.innerHTML = '';
@@ -210,8 +282,14 @@
       document.getElementById('best').textContent = state === 'ended' ? '41' : '37';
       document.getElementById('points').textContent = state === 'ended' ? '1,312' : '1,240';
     }
-    document.addEventListener('mockup:state', function (e) { if (e.detail !== 'picker') { picked = []; } draw(e.detail); });
-    draw(document.documentElement.getAttribute('data-state') || 'lobby');
+    document.getElementById('use-team').addEventListener('click', function () { if (picked.length === 6) { lobby = picked.slice(); } });
+    document.addEventListener('mockup:state', function (e) {
+      if (e.detail !== 'picker') { picked = []; }
+      if (e.detail === 'lobby') { lobby = []; }
+      if (e.detail === 'run') { team = startTeam.slice(); document.getElementById('team-save').textContent = 'The first Pokémon with HP left leads the next floor. Drag or use the arrows to change the order.'; }
+      draw(e.detail);
+    });
+    draw(current());
   })();
 </script>
 </body>

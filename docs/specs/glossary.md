@@ -2,6 +2,8 @@
 
 One name per idea, used everywhere: specs, code, database, tests and UI. When you need a name, look here first. If the idea is missing, build the name from the recipes below and add it to this file in the same change.
 
+**These are ideas, not final names.** The names here and in [tasks.md](tasks.md) are suggestions to start from, so nobody has to invent names from scratch. The final name is decided when a task is built, and it may differ (a Checker that returns a bool, a method named after what it answers, an existing method such as `getStats()` that keeps its `get` prefix). When it does, update this file and the later tasks that use the name in the same change.
+
 ## Game terms
 
 | Term in the specs | Name in code | Notes |
@@ -28,7 +30,9 @@ One name per idea, used everywhere: specs, code, database, tests and UI. When yo
 | Battle log | `log` | List of text lines shown under the battle. |
 | Faint | `isFainted()` | `current_hp` is 0. |
 | Send out | `SendOutPokemonAction` | Picking the next Pokémon after a faint. |
-| Forfeit / give up | `ForfeitBattleAction` | The UI says "Give up". |
+| Run (forfeit) | `ForfeitBattleAction`, `BattleStatus::FORFEITED` | The UI says "Run". Counts as a loss. |
+| Battle ended | `EndBattleAction`, `BattleEnded` event | The one place a battle ends; `isWin` for won and caught battles. |
+| Earned XP | `earned_experience`, `level_before`, `level_after` | Each player combatant's result, shown on the end screen. |
 | First mover | `firstMoverChance` | Chance to act first this turn. |
 | Area | `Area` enum | The 9 places to explore (`Area::FOREST`). |
 | Explore / Keep exploring | `ExploreAction` | Both roll a new encounter. |
@@ -88,6 +92,10 @@ One name per idea, used everywhere: specs, code, database, tests and UI. When yo
 | Waiting for you | Dashboard section | Things the player can act on now. |
 | Original trainer | `original_user_id` / `originalUser()` | Already in the code. |
 | Party / Box | `in_party` / `inParty()`, `inBox()` | Already in the code. |
+| Party order | `party_position` (1–6), `ReorderPartyAction` | The sending-out order; the first one leads. |
+| Tower team order | `ReorderTowerTeamAction` | The run's own sending-out order. |
+| Quit the Elite Four | `QuitEliteFourRunAction`, status `QUIT` on `EliteFourRun` | Between battles only. |
+| Champion prize | `game.trainers.champion_prize` | ₽ 30,000 for beating a Champion. |
 
 ## Naming recipes
 
@@ -96,14 +104,14 @@ One name per idea, used everywhere: specs, code, database, tests and UI. When yo
 | Action (does one thing, may write to the database) | `{Verb}{Noun}Action`, method `handle()` | `StartWildBattleAction`, `TakeTurnAction`, `EvolvePokemonAction` |
 | Mechanics: pure math, no randomness | `{Noun}Calculator` in `{Domain}/Mechanics/` | `StatsCalculator`, `DamageCalculator`, `TurnOrderCalculator` |
 | Mechanics: rolls dice through `RandomHelper` | `{Noun}Roller` in `{Domain}/Mechanics/` | `MoveOutcomeRoller`, `StatusEffectRoller` |
-| Mechanics: answers "is this allowed?" | `{Noun}Checker`, returns `null` or a reason string | `EvolutionRequirementChecker` |
+| Mechanics: answers "is this allowed?" | `{Noun}Checker`, usually returns `null` or a reason string (a bool is fine for a plain yes or no) | `EvolutionRequirementChecker` |
 | Result of a mechanic | Value object `{Noun}` or `{Noun}Result` in `Shared/ValueObjects` | `PokemonStats`, `MoveOutcome` |
 | Exception | `{What went wrong}Exception` | `BattleAlreadyInProgressException`, `MoveNotKnownException` |
-| Event (task 0.4) | Past tense: `{Noun}{Verb in past tense}` | `PokemonCaught`, `BattleWon` |
+| Event (task 0.4) | Past tense: `{Noun}{Verb in past tense}` | `PokemonCaught`, `BattleEnded` |
 | Enum | Singular noun, cases `UPPER_SNAKE_CASE` | `BattleStatus::ONGOING` |
 | Boolean | `is…`, `has…`, `can…` | `isFainted`, `hasEnteredField`, `canEvolve` |
 | Method returning a number | The noun, no `get` prefix | `maxHp()`, `firstMoverChance()` |
-| Method computing something from inputs | `calculate()` on a Calculator, `roll()` on a Roller, `check()` on a Checker | |
+| Method computing something from inputs | `calculate()` on a Calculator, `roll()` on a Roller, `check()` on a Checker, or a name saying what it returns when a class has several | `failureChance()`, `isCheckpoint()` |
 | Config key | `game.{area}.{snake_case}` in `config/game.php` | `game.battle.stab_multiplier` |
 | Migration | `{next number}_{verb}_{noun}_table.php` | `014_add_boost_to_pokemon_table.php` |
 | Test file | `{ClassName}Test.php`, mirrored folders | `tests/App/Battle/Unit/Mechanics/DamageCalculatorTest.php` |

@@ -7,11 +7,11 @@ Players earn Pokédollars (₽) from trainers, gyms, missions and selling items,
 ## Money
 
 - One currency for now: Pokédollars (₽). A second currency, Battle Points, comes with the Battle Tower (Spec 6).
-- **Earned from:** beating NPC trainers and gyms, missions, and selling items back to the shop.
-- **Not earned from:** wild battles, or selling or releasing Pokémon (this would let players farm money by catching and selling).
+- **Earned from:** beating NPC trainers and gyms, beating a region's Champion at the end of an Elite Four run (₽ 30,000; Spec 6), missions, and selling items back to the shop.
+- **Not earned from:** wild battles, Elite Four members (only the Champion pays), or selling or releasing Pokémon (this would let players farm money by catching and selling).
 - **Spent on:** the shop, unlocking incubators, and a trade listing fee (Spec 7). The fee comes back if the listing expires.
 - New players start with ₽ 2,000, enough for 10 Poké Balls.
-- The player's money shows in the top navigation bar on every page.
+- The player's money shows on every page: in the sidebar footer, above the user menu, linking to the Shop (a coin icon with the amount in a tooltip when the sidebar is collapsed); on phones, in the top bar.
 
 ## Shop catalog
 
@@ -46,8 +46,9 @@ INVENTORY                                       ₽ 12,450
 ```
 
 - Tabs: Balls, Evolution items, TMs, Boost stones, Key items (such as the XP Share).
-- A grid of item icons with quantities. Clicking one opens its details with **Use** and **Sell** buttons.
-- **Use** opens a "choose a Pokémon" dialog. Items can also be used from the Pokémon page with a "choose an item" dialog.
+- A grid of item icons with quantities. Clicking one opens its details with **Use** (TMs, boost stones, evolution items and Mega Stones) and **Sell** (items with a price) buttons. Earned-only items say they can't be sold to the shop, only traded.
+- **Use** opens a "Choose a Pokémon" dialog; Pokémon the item does nothing for are disabled with the reason. Picking one opens that Pokémon's page with the matching dialog: Teach TM, Boost or Evolve (Spec 4). The Pokémon page has no general "Use item" button.
+- The XP Share (Key items) has an on/off switch in its details instead of Use (Spec 5).
 - Empty tabs say what the tab holds and where to get it ("No TMs yet. Buy them in the Shop or earn them from missions.").
 
 ## Shop page

@@ -1,8 +1,10 @@
 # Tasks
 
-Planned work, in order. Each task is small enough to build, test and merge on its own. Tick a task when its work is merged.
+Planned work, in order. Each task is small enough to build, test and merge on its own.
 
-Every task names the classes, methods, columns and files it adds, using [glossary.md](glossary.md). If a task needs a name it does not give, build it from the glossary's recipes and add it to the glossary.
+Each task starts with a `- [ ] Done` box. Tick it (`- [x] Done`) in the same commit or pull request that finishes the task, so this file always shows what is left.
+
+Every task names the classes, methods, columns and files it adds, using [glossary.md](glossary.md). These names are suggestions to start from, not final: the final name is decided when the task is built. When a name changes, or a task needs one it does not give, update the glossary (and later tasks that use the name) in the same change.
 
 Each task follows the project rules in `.ai/rules/`. "Tests" lists the behaviour to cover, not every test case.
 
@@ -14,11 +16,15 @@ Tasks with a **Mock-up** link have an interactive mock-up in `docs/mockups/` (op
 
 ## 0. Foundations
 
-### 0.1 Point AI sessions at the specs ✅
+### 0.1 Point AI sessions at the specs
 
-- [x] `AGENTS.md` and `.ai/rules/index.md` say that feature behaviour lives in `docs/specs/`, that the relevant spec is read before working on a feature, and that specs are updated when a decision changes.
+- [x] Done
+
+`AGENTS.md` and `.ai/rules/index.md` say that feature behaviour lives in `docs/specs/`, that the relevant spec is read before working on a feature, and that specs are updated when a decision changes.
 
 ### 0.2 A home for game mechanics
+
+- [ ] Done
 
 **Goal:** pure game rules (formulas, odds, rolls) live in one strictly tested kind of folder.
 
@@ -34,6 +40,8 @@ Tasks with a **Mock-up** link have an interactive mock-up in `docs/mockups/` (op
 **Done when:** rule file, index row and `arch()` rule exist; `DamageCalculator` is in `Mechanics`; the suite passes.
 
 ### 0.3 Testable randomness
+
+- [ ] Done
 
 **Goal:** one source of randomness that tests can control.
 
@@ -56,6 +64,8 @@ Tasks with a **Mock-up** link have an interactive mock-up in `docs/mockups/` (op
 
 ### 0.4 Events and listeners between domains
 
+- [ ] Done
+
 **Goal:** domains announce what happened instead of calling each other. Needed before Spec 5 at the latest.
 
 **Build:**
@@ -76,11 +86,13 @@ Tasks with a **Mock-up** link have an interactive mock-up in `docs/mockups/` (op
 
 ## 1. Spec 1 — Power model and battle system
 
-Read [01-power-model-and-battles.md](01-power-model-and-battles.md) first. Tasks 1.1–1.18 are backend only; the battle page comes last (1.19–1.21).
+Read [01-power-model-and-battles.md](01-power-model-and-battles.md) first. Tasks 1.1–1.18 are backend only; the battle page comes next (1.19–1.21); task 1.22 is seed data.
 
 There is no production data yet, so database changes are new migrations and local databases are rebuilt with `php artisan migrate:fresh --seed`. No data migrations.
 
 ### 1.1 Add boost to Pokémon
+
+- [ ] Done
 
 **Goal:** every Pokémon has a boost level from 0 to 100.
 
@@ -95,6 +107,8 @@ There is no production data yet, so database changes are new migrations and loca
 **Done when:** column, cast, factory state and config key exist; tests pass.
 
 ### 1.2 Calculate a Pokémon's stats
+
+- [ ] Done
 
 **Goal:** turn level, boost and shiny into HP, Attack and Defense.
 
@@ -113,12 +127,14 @@ There is no production data yet, so database changes are new migrations and loca
 
 ### 1.3 Split moves into known moves and active slots
 
+- [ ] Done
+
 **Goal:** a Pokémon has a pool of known moves; up to 4 of them sit in active slots.
 
 **Build:**
 - Migration `015_add_slot_to_pokemon_move_table.php`: nullable `unsignedTinyInteger('slot')`; unique `['pokemon_id', 'move_id']`; unique `['pokemon_id', 'slot']`.
 - `Pokemon` model: rename `moves()` to `knownMoves()` (with `withPivot('slot')`); add `activeMoves()` = known moves with a slot, ordered by slot.
-- `CreatePokemonAction::addBaseMoves()`: attach the species' unique base moves (up to 4) with slots 1, 2, 3…; remove `repeatUntil(4)`. A species with fewer than 4 base moves gives fewer active moves.
+- `CreatePokemonAction::addBaseMoves()`: attach the species' unique base moves (up to 4) with slots 1, 2, 3…; remove `repeatUntil(4)`. Every species gets exactly 4 different base moves in task 1.22; until then, a species with fewer gives fewer active moves.
 - Update every use of `moves` (`BoxIndexPageProps`, Box tests) to `activeMoves`.
 
 **Tests:** `CreatePokemonActionTest`: base moves become active in slots 1–4; no duplicates; a species with 2 base moves gives 2 active moves; the default-move fallback still works.
@@ -126,6 +142,8 @@ There is no production data yet, so database changes are new migrations and loca
 **Done when:** migration, relations and action changes are in; Box page still shows the moves; the suite passes.
 
 ### 1.4 Put a known move in an active slot
+
+- [ ] Done
 
 **Goal:** the backend for "swap" on the Pokémon page (the page itself is Spec 4).
 
@@ -141,6 +159,8 @@ There is no production data yet, so database changes are new migrations and loca
 
 ### 1.5 Remove one-hit-KO moves
 
+- [ ] Done
+
 **Goal:** OHKO moves (Fissure, Guillotine, Horn Drill, Sheer Cold) never exist in the game.
 
 **Build:**
@@ -152,6 +172,8 @@ There is no production data yet, so database changes are new migrations and loca
 **Done when:** no OHKO moves after `migrate:fresh --seed`; tests pass.
 
 ### 1.6 Damage formula
+
+- [ ] Done
 
 **Goal:** calculate the damage of one hit.
 
@@ -170,6 +192,8 @@ There is no production data yet, so database changes are new migrations and loca
 
 ### 1.7 Turn order
 
+- [ ] Done
+
 **Goal:** decide who acts first each turn.
 
 **Build:**
@@ -180,6 +204,8 @@ There is no production data yet, so database changes are new migrations and loca
 **Done when:** calculator exists; tests pass.
 
 ### 1.8 Roll a move's outcome
+
+- [ ] Done
 
 **Goal:** all the dice for one move use, in one place.
 
@@ -197,11 +223,15 @@ There is no production data yet, so database changes are new migrations and loca
 
 **Done when:** roller and value object exist; tests pass.
 
-### 1.9 Decide status effect numbers ✅
+### 1.9 Decide status effect numbers
 
-- [x] Agreed and added to Spec 1 under "Status effects". Task 1.11 adds the config keys under `game.battle.ailments`.
+- [x] Done
+
+Agreed and added to Spec 1 under "Status effects". Task 1.11 adds the config keys under `game.battle.ailments`.
 
 ### 1.10 Battle data: table, model and state
+
+- [ ] Done
 
 **Goal:** a battle can be saved and loaded. No turn logic yet.
 
@@ -221,6 +251,8 @@ There is no production data yet, so database changes are new migrations and loca
 
 ### 1.11 Status effect rolls
 
+- [ ] Done
+
 **Goal:** the dice for status effects during a turn.
 
 **Build** (numbers from Spec 1, "Status effects"; add them to `config/game.php` under `game.battle.ailments`):
@@ -237,14 +269,16 @@ Uses `Combatant` from task 1.10.
 
 ### 1.12 Start a wild battle
 
+- [ ] Done
+
 **Goal:** create a battle against one wild Pokémon.
 
 **Build:**
 - `App\Battle\Actions\StartWildBattleAction::handle(User $user, NewPokemon $wildPokemon): Battle`
   - Throws `App\Battle\Exceptions\BattleAlreadyInProgressException` if the user has an `ONGOING` battle.
   - Throws `App\Battle\Exceptions\EmptyPartyException` if the party is empty.
-  - Player side: party Pokémon in Party-page order, as `Combatant`s built with `StatsCalculator` and their active moves. The first one is active and `has_entered_field = true`.
-  - Opponent side: one `Combatant` from `$wildPokemon` (boost 0, active moves = the species' base moves, up to 4).
+  - Player side: party Pokémon in party order (`party_position`, task 4.15; until that task, oldest first), as `Combatant`s built with `StatsCalculator` and their active moves. The first one is active and `has_entered_field = true`.
+  - Opponent side: one `Combatant` from `$wildPokemon` (boost 0, active moves = the species' 4 base moves).
 - Artisan command `battle:start-wild {email} {species-slug} {level}` for local testing until Spec 2 adds exploring. Available only when `app()->isLocal()`.
 
 **Tests:** creates one battle with the right sides; refuses a second ongoing battle; refuses an empty party.
@@ -252,6 +286,8 @@ Uses `Combatant` from task 1.10.
 **Done when:** action, exceptions and command exist; tests pass.
 
 ### 1.13 Take a turn: damage only
+
+- [ ] Done
 
 **Goal:** the core turn loop, without accuracy, crits, flinch or status effects.
 
@@ -270,6 +306,8 @@ Uses `Combatant` from task 1.10.
 
 ### 1.14 Take a turn: accuracy, critical hits, multi-hit and flinch
 
+- [ ] Done
+
 **Goal:** plug `MoveOutcomeRoller` into the turn.
 
 **Build:** `TakeTurnAction` uses `MoveOutcomeRoller::roll()` for each move: misses log "…'s attack missed!"; each hit of a multi-hit move deals damage; criticals log "A critical hit!"; flinch only works when the attacker acted first. Z-Moves and Dynamax moves (`is_z_move`, `is_dynamax_move`) can be used once per battle, tracked in `used_once_per_battle_move_ids`; Dynamax moves only by G-Max species.
@@ -280,6 +318,8 @@ Uses `Combatant` from task 1.10.
 
 ### 1.15 Take a turn: status effects
 
+- [ ] Done
+
 **Goal:** plug status effects into the turn.
 
 **Build:** before acting, `StatusEffectRoller::canAct()`; after a hit, apply the outcome's ailment (one major ailment at a time); at the end of the turn, `StatusEffectCalculator::endOfTurnDamage()`; count down durations. Log each effect ("Pidgey is paralyzed! It can't move!").
@@ -288,35 +328,45 @@ Uses `Combatant` from task 1.10.
 
 **Done when:** tests pass.
 
-### 1.16 Fainting, sending out, winning, losing and giving up
+### 1.16 Fainting, sending out, winning, losing and running
 
-**Goal:** the battle can end.
+- [ ] Done
+
+**Goal:** the battle can end, always through one place.
 
 **Build:**
-- In `TakeTurnAction`: when the player's active Pokémon faints and others are left, set `is_awaiting_send_out`. When none are left, status `LOST`. When the opponent has none left, status `WON`.
+- `App\Battle\Actions\EndBattleAction::handle(Battle $battle, BattleStatus $status): Battle`: the only place a battle ends. Sets the status, pays XP (task 1.17) and dispatches `App\Battle\Events\BattleEnded` (`battleId`, `userId`, `type`, `status`, `isWin` for `WON` and `CAUGHT`, `trainerId` when there is one). Other domains (missions, trainers, the Elite Four, the Battle Tower) react to this event; they never end battles or check statuses themselves.
+- In `TakeTurnAction`: when the player's active Pokémon faints and others are left, set `is_awaiting_send_out`. When none are left, end as `LOST`. When the opponent has none left, end as `WON`.
 - `App\Battle\Actions\SendOutPokemonAction::handle(Battle $battle, int $combatantIndex): Battle`: only while awaiting a send-out; the chosen combatant must not be fainted; sets `has_entered_field = true`.
-- `App\Battle\Actions\ForfeitBattleAction::handle(Battle $battle): Battle`: status `FORFEITED`.
+- `App\Battle\Actions\ForfeitBattleAction::handle(Battle $battle): Battle`: the **Run** button; ends as `FORFEITED`, which counts as a loss everywhere.
 - Nothing is written back to `Pokemon` rows: every battle ends fully healed (Spec 1).
 
-**Tests:** win, loss, awaiting send-out, sending out a fainted Pokémon is refused, forfeit.
+**Tests:** win, loss, awaiting send-out, sending out a fainted Pokémon is refused, forfeit; `BattleEnded` is dispatched once per ending with the right status and `isWin`.
 
 **Done when:** tests pass.
 
-### 1.17 XP after a won battle
+### 1.17 XP when a battle ends
 
-**Goal:** Pokémon that fought gain XP and level up.
+- [ ] Done
+
+**Goal:** Pokémon that fought gain XP and level up, whatever the result.
 
 **Build:**
 - `App\Pokemon\Services\ExperienceCalculator` → move to `App\Pokemon\Mechanics\ExperienceCalculator` (update callers). Add `experienceForDefeating(int $opponentLevel, int $pokemonLevel, BattleType $battleType, bool $isKnockout): int` = 250 × clamp(opponentLevel ÷ pokemonLevel, 0.1, 3) × battle bonus × 1.5 when it knocked the opponent out, rounded down (Spec 1, "XP").
 - Config `game.experience`: `base` (250), `min_ratio` (0.1), `max_ratio` (3), `battle_bonuses` (wild 1, trainer 1.5, gym 2, elite four 2, battle tower 1), `knockout_multiplier` (1.5), `xp_share_ratio` (0.5, used by task 5.10).
 - `App\Pokemon\Actions\AwardExperienceAction::handle(Pokemon $pokemon, int $experience): void`: adds XP, updates `level` with `levelForExperience()`, stops at level 100.
-- When a battle ends with `WON`, every player combatant with `has_entered_field` gets the sum, over each defeated opponent Pokémon, of `experienceForDefeating()` (with the knockout bonus for the opponents it knocked out). Track who knocked out each opponent in the state. Battle Tower battles don't pay here: task 6.12 saves their XP in the run.
+- Track on each opponent `Combatant` which player combatant knocked it out (`knocked_out_by`, an index).
+- In `EndBattleAction`, for every ending (`WON`, `LOST`, `FORFEITED`, `CAUGHT`): every player combatant with `has_entered_field` gets the sum, over each opponent Pokémon knocked out, of `experienceForDefeating()` (with the knockout bonus for the ones it knocked out). A caught Pokémon counts as knocked out by the player's active combatant. Opponents still standing give nothing, so running from a wild battle gives no XP.
+- Save each player combatant's result in the state for the end screen: `earned_experience`, `level_before`, `level_after`.
+- Battle Tower battles are counted the same way but not paid here: task 6.12 saves their XP in the run.
 
-**Tests:** `ExperienceCalculatorTest` with every row of Spec 1's XP table, the 0.1 and 3 caps and each battle bonus; XP added; level goes up; level 100 gains nothing; only Pokémon that entered the field gain XP; the knockout bonus; several defeated opponents add up.
+**Tests:** `ExperienceCalculatorTest` with every row of Spec 1's XP table, the 0.1 and 3 caps and each battle bonus; XP added; level goes up; level 100 gains nothing; only Pokémon that entered the field gain XP; the knockout bonus; several defeated opponents add up; a loss pays for the opponents knocked out before it; running with none knocked out pays nothing; a catch pays like a knockout by the active Pokémon; the state holds each result.
 
 **Done when:** tests pass.
 
 ### 1.18 Evolution
+
+- [ ] Done
 
 **Goal:** the backend for the Evolve button (the button itself is on the Pokémon page, Spec 4).
 
@@ -330,6 +380,8 @@ Uses `Combatant` from task 1.10.
 **Done when:** checker and action exist; tests pass.
 
 ### 1.19 Battle page: show the battle
+
+- [ ] Done
 
 **Goal:** a read-only battle page.
 
@@ -350,13 +402,15 @@ Uses `Combatant` from task 1.10.
 - Team: a row of small dots (filled = can fight, outlined = fainted), with a `Tooltip` naming each Pokémon.
 - Moves: a 2×2 grid of large outline `Button`s, each with `MoveNameLabel`, a type badge and `MovePowerLabel`.
 - Log: a `Card` with a fixed height and its own scroll, newest line at the bottom, scrolled down automatically.
-- Header: `AppPageHeader` ("Wild battle") with the "Give up" button on the right (task 1.21).
+- Header: `AppPageHeader` ("Wild battle") with the "Run" button on the right (task 1.21).
 
 **Tests:** feature test for the props, including that opponent HP is a percentage only; redirect when there is no battle.
 
 **Done when:** page shows a battle started with `battle:start-wild`.
 
 ### 1.20 Battle page: take turns
+
+- [ ] Done
 
 **Goal:** the player can fight.
 
@@ -376,27 +430,48 @@ Uses `Combatant` from task 1.10.
 
 **Tests:** feature test: a valid turn updates the battle; invalid slot is rejected; browser test: clicking a move updates HP and the log.
 
-**Done when:** a full battle can be played to the end from the page, except sending out and giving up.
+**Done when:** a full battle can be played to the end from the page, except sending out and running.
 
-### 1.21 Battle page: send out, give up and end screen
+### 1.21 Battle page: send out, run and end screen
+
+- [ ] Done
 
 **Goal:** finish the battle flow on the page.
 
-**Mock-up:** `docs/mockups/battle.html` (states "Pokémon fainted: send out", "Give up confirmation", "Battle won", "Gave up / lost")
+**Mock-up:** `docs/mockups/battle.html` (states "Pokémon fainted: send out", "Run confirmation", "Battle won", "Lost: XP kept", "Ran away")
 
 **Build:**
 - Route `POST /battle/send-out` (`battle.web.send-out`) → `SendOutPokemonController`; a dialog lists the remaining team (portrait, level, HP) when a Pokémon faints.
-- Route `POST /battle/forfeit` (`battle.web.forfeit`) → `ForfeitBattleController`; "Give up" button with a confirmation.
-- End screen: won or lost, XP gained per Pokémon, level-ups, and a button back to the Dashboard.
+- Route `POST /battle/forfeit` (`battle.web.forfeit`) → `ForfeitBattleController`; a "Run" button with a confirmation.
+- With no ongoing battle, `GET /battle` shows the end screen of the player's latest battle if it ended less than `game.battle.end_screen_minutes` (10) ago, so it survives a reload; otherwise it still redirects to the Dashboard (task 1.19).
+- End screen for every ending (won, lost, ran; caught comes with task 2.19): the result, and one row per Pokémon that came out with the XP it got, its XP bar and any level-up (from the state saved by task 1.17). With no opponent knocked out, a short "No XP this time" line instead. A button back to the Dashboard.
 
 **UI suggestions** (ideas, not requirements):
 - Send-out: a `Dialog` that can't be closed (no close button, no click outside) listing the team as selectable rows: `SpeciesPortrait`, name, level, HP `Progress`. Fainted Pokémon are greyed out and disabled. One primary button: "Send out".
-- Give up: a destructive `Button` that opens a confirmation dialog (shadcn-vue `alert-dialog`, added with the shadcn-vue CLI) with "Keep fighting" (secondary) and "Give up" (destructive).
-- End screen: the moves area is replaced by a result `Card`: a large "You won!" or "You lost" title; one row per Pokémon that fought with portrait, "+300 XP", an XP `Progress` bar and a "Level up! 36 → 37" `Badge`; one primary button, "Back to Dashboard".
+- Run: a destructive-outline `Button` that opens a confirmation dialog (shadcn-vue `alert-dialog`, added with the shadcn-vue CLI) with "Keep fighting" (outline) and "Run" (destructive). In a wild battle: "Run from the wild Pidgey? You won't get anything for this battle." (Trainer and Elite Four wording comes with task 6.14.)
+- End screen: the moves area is replaced by a result `Card`: a large title ("You won!", "You lost", "You got away safely"); one row per Pokémon that fought with portrait, "+300 XP", an XP `Progress` bar and a "Level up! 36 → 37" `Badge`; one primary button, "Back to Dashboard" (later tasks point it back where the battle came from).
+- After a loss, a muted line under the XP rows: "XP is kept for the opponents you knocked out."
+- The battle log also gets one line per Pokémon at the end ("Shiny Magikarp gained 340 XP!", "Shiny Magikarp grew to Lv 55!").
 
-**Tests:** feature tests for both routes; browser test for the faint dialog and giving up.
+**Tests:** feature tests for both routes; the end screen's XP props after a win, a loss and a run; browser test for the faint dialog and running.
 
 **Done when:** a battle can be played from start to end screen on the page.
+
+### 1.22 Four base moves for every species (data)
+
+- [ ] Done
+
+**Goal:** every species has exactly 4 different base moves (Spec 1), so every Pokémon starts with 4 active moves. Data only; can be done any time after task 1.5.
+
+**Build:**
+- Edit `database/seeders/files/species-base-moves.json` so every species lists 4 different moves that exist in `moves.json` after task 1.5 (no one-hit-KO moves). Today 40 species have fewer: Metapod, Weedle, Kakuna, Ditto, the 28 Unown forms, Wobbuffet, Smeargle, Wynaut, Spewpa, Pyukumuku, Cosmog, Cosmoem and Blipbug.
+- Pick moves the species learns early in the main games when it has them; otherwise moves of its own type or Normal moves that fit it. Prefer at least one damaging move, so no Pokémon is stuck with only status moves.
+- `SpeciesBaseMovesSeeder` throws a clear error when a species doesn't end up with exactly 4 different moves, so bad data fails the seed instead of creating Pokémon with fewer moves.
+- `CreatePokemonAction` keeps its default-move fallback only if something still needs it; remove it otherwise.
+
+**Tests:** seeder test (in `tests/Shared/Unit/Seeders`): every species has exactly 4 different base moves; a new Pokémon of a species that had fewer (Ditto) gets 4 active moves.
+
+**Done when:** `migrate:fresh --seed` passes with the check; tests pass.
 
 ---
 
@@ -405,6 +480,8 @@ Uses `Combatant` from task 1.10.
 Read [02-catching-and-exploration.md](02-catching-and-exploration.md) first. Needs Spec 1 tasks done (battles, `RandomHelper`, `PokemonCaught` event). Exploring lives in a new domain, `src/App/Exploration`; catching lives in `src/App/Battle`. NPC trainers met while exploring come with Spec 6.
 
 ### 2.1 Mark Ultra Beasts
+
+- [ ] Done
 
 **Goal:** the Beast Ball can tell Ultra Beasts apart.
 
@@ -418,6 +495,8 @@ Read [02-catching-and-exploration.md](02-catching-and-exploration.md) first. Nee
 **Done when:** column, data and trait exist; tests pass.
 
 ### 2.2 Wild data on species
+
+- [ ] Done
 
 **Goal:** every species knows whether it can appear in the wild, at which evolution stage, and at which levels. Calculated once while seeding.
 
@@ -441,6 +520,8 @@ Read [02-catching-and-exploration.md](02-catching-and-exploration.md) first. Nee
 
 ### 2.3 Areas
 
+- [ ] Done
+
 **Goal:** the 9 areas exist in code.
 
 **Build:**
@@ -453,6 +534,8 @@ Read [02-catching-and-exploration.md](02-catching-and-exploration.md) first. Nee
 
 ### 2.4 Which species live in an area
 
+- [ ] Done
+
 **Goal:** list the species that can appear in an area.
 
 **Build:**
@@ -463,6 +546,8 @@ Read [02-catching-and-exploration.md](02-catching-and-exploration.md) first. Nee
 **Done when:** query exists; tests pass.
 
 ### 2.5 Roll an encounter
+
+- [ ] Done
 
 **Goal:** pick the wild Pokémon for one explore.
 
@@ -481,6 +566,8 @@ Read [02-catching-and-exploration.md](02-catching-and-exploration.md) first. Nee
 
 ### 2.6 Save the encounter and explore
 
+- [ ] Done
+
 **Goal:** pressing Explore (or Keep exploring) stores one wild Pokémon for the player.
 
 **Build:**
@@ -493,6 +580,8 @@ Read [02-catching-and-exploration.md](02-catching-and-exploration.md) first. Nee
 **Done when:** table, model and action exist; tests pass.
 
 ### 2.7 Battle the encounter
+
+- [ ] Done
 
 **Goal:** turn the stored encounter into a wild battle.
 
@@ -507,6 +596,8 @@ Read [02-catching-and-exploration.md](02-catching-and-exploration.md) first. Nee
 
 ### 2.8 Catch chance
 
+- [ ] Done
+
 **Goal:** the Spec 2 catch formula.
 
 **Build:**
@@ -518,6 +609,8 @@ Read [02-catching-and-exploration.md](02-catching-and-exploration.md) first. Nee
 **Done when:** calculator exists; tests pass.
 
 ### 2.9 Ball multipliers: basic balls
+
+- [ ] Done
 
 **Goal:** balls without conditions.
 
@@ -532,15 +625,21 @@ Read [02-catching-and-exploration.md](02-catching-and-exploration.md) first. Nee
 
 ### 2.10 Ball multipliers: conditional balls
 
+- [ ] Done
+
 **Goal:** the conditions from the Spec 2 ball table.
 
 **Build:** in `BallMultiplierCalculator::multiplier()`, a `match` on the ball's slug for Quick, Timer, Repeat, Nest, Level, Dusk, Dream (needs the wild ailment: add `?Ailment $wildAilment` to `CatchContext`), Love, Moon (species evolves with `moon-stone`), Net, Lure, Dive, Heavy, Fast and Beast. Config `game.catching.night_starts_at` (18) and `night_ends_at` (6).
+- Nest Ball: 1 + (`nest_ball_until_level` − wild level) ÷ 9, kept between 1 and `nest_ball_max`. Config `game.catching.nest_ball_max` (3) and `nest_ball_until_level` (20): level 2 → ×3, level 11 → ×2, level 20 and above → ×1.
+- Level Ball: ×8 when the active Pokémon's level is at least 4 times the wild level, ×4 when at least double, ×2 when higher, ×1 otherwise.
 
-**Tests:** for each ball, one case where the condition applies and one where it does not.
+**Tests:** for each ball, one case where the condition applies and one where it does not; Nest Ball at levels 2, 11, 20 and 40; Level Ball at each threshold.
 
 **Done when:** tests pass.
 
 ### 2.11 Add items to the inventory
+
+- [ ] Done
 
 **Goal:** a reusable way to give a player items (starter balls now, shop and missions later).
 
@@ -553,6 +652,8 @@ Read [02-catching-and-exploration.md](02-catching-and-exploration.md) first. Nee
 
 ### 2.12 Throw a ball
 
+- [ ] Done
+
 **Goal:** catching in a wild battle.
 
 **Build:**
@@ -562,27 +663,31 @@ Read [02-catching-and-exploration.md](02-catching-and-exploration.md) first. Nee
   - Refuses outside `ONGOING` wild battles or while awaiting a send-out (`App\Battle\Exceptions\NotAWildBattleException`, `BattleNotReadyForTurnException`).
   - Refuses with `BoxFullException` before using the ball when the Box is full.
   - Uses one ball (`RemoveInventoryItemAction`).
-  - Caught (guaranteed or `RandomHelper::chance()` with the catch chance): creates the Pokémon (`joinPartyIfRoom: true`, the thrown ball), status `CAUGHT`, logs "Gotcha! … was caught!", dispatches `PokemonCaught`.
+  - Caught (guaranteed or `RandomHelper::chance()` with the catch chance): creates the Pokémon (`joinPartyIfRoom: true`, the thrown ball), logs "Gotcha! … was caught!", dispatches `PokemonCaught`, and ends the battle as `CAUGHT` with `EndBattleAction` (XP as for a win, `BattleEnded` with `isWin`).
   - Not caught: logs "Oh no! The Pokémon broke free!", then `OpponentActsAction`.
 
-**Tests:** catch; break free then the opponent attacks; ball used either way; Master Ball always catches; joins party or Box; refused when not wild, Box full or no ball.
+**Tests:** catch; break free then the opponent attacks; ball used either way; Master Ball always catches; joins party or Box; a catch pays XP like a win; refused when not wild, Box full or no ball.
 
 **Done when:** tests pass.
 
 ### 2.13 Starter and free balls at registration
+
+- [ ] Done
 
 **Goal:** new players start with a Pokémon and balls.
 
 **Build:**
 - Config `game.registration`: `starters` (the 27 first-stage starters: Bulbasaur, Charmander, Squirtle … Sprigatito, Fuecoco, Quaxly, as slugs), `starter_level` (5), `starting_items` (`poke-ball` 20, `great-ball` 5).
 - `RegisterUserAction::handle()`: add `Species $starter`; in one transaction creates the user, the starter (in the party, Poké Ball, random gender, not shiny) and the items (`AddInventoryItemAction`).
-- `RegistrationRequest`: required `starter` slug, must be in the starters list.
+- `StoreRegistrationRequest`: required `starter` slug, must be in the starters list.
 
 **Tests:** registration creates the user, one Pokémon in the party at level 5 and the two ball stacks; a starter outside the list is rejected.
 
 **Done when:** tests pass.
 
 ### 2.14 Registration page: choose a starter
+
+- [ ] Done
 
 **Goal:** the starter picker on the registration form.
 
@@ -603,6 +708,8 @@ Read [02-catching-and-exploration.md](02-catching-and-exploration.md) first. Nee
 
 ### 2.15 Pokédex: game catch rate
 
+- [ ] Done
+
 **Goal:** the Pokédex shows this game's catch rate, not the main games'.
 
 **Build:**
@@ -618,6 +725,8 @@ Read [02-catching-and-exploration.md](02-catching-and-exploration.md) first. Nee
 **Done when:** tests pass.
 
 ### 2.16 Explore page
+
+- [ ] Done
 
 **Goal:** the list of areas.
 
@@ -639,6 +748,8 @@ Read [02-catching-and-exploration.md](02-catching-and-exploration.md) first. Nee
 **Done when:** the page lists the 9 areas.
 
 ### 2.17 Area page: encounters
+
+- [ ] Done
 
 **Goal:** explore an area and see the wild Pokémon.
 
@@ -664,6 +775,8 @@ Read [02-catching-and-exploration.md](02-catching-and-exploration.md) first. Nee
 
 ### 2.18 Area page: Pokémon found here
 
+- [ ] Done
+
 **Goal:** the modal listing an area's species.
 
 **Mock-up:** `docs/mockups/area.html` (states "Pokémon found here" open, loading and no matches)
@@ -683,6 +796,8 @@ Read [02-catching-and-exploration.md](02-catching-and-exploration.md) first. Nee
 
 ### 2.19 Battle page: throw a ball
 
+- [ ] Done
+
 **Goal:** catching from the battle page.
 
 **Mock-up:** `docs/mockups/battle.html` (states "Ball picker open" and "Pokémon caught")
@@ -691,13 +806,13 @@ Read [02-catching-and-exploration.md](02-catching-and-exploration.md) first. Nee
 - Route `POST /battle/throw-ball` named `battle.web.throw-ball` → `ThrowBallController` with `ThrowBallRequest` (`pokeball` slug, owned by the player).
 - `BattleShowPageProps`: in wild battles, the player's balls (sprite, name, quantity, current multiplier from `BallMultiplierCalculator`, `isBoosted` when above its `catch_rate`).
 - "Throw ball" button under the moves (wild battles only) opens the ball picker; boosted balls show a "Boosted" tag.
-- Catch dialog: the Pokémon, where it went (Party or Box), buttons "View Pokémon" (to the Box until the Pokémon page exists) and "Keep exploring" (back to the area page).
+- Catch dialog: the Pokémon, where it went (Party or Box), the XP each of the player's Pokémon got (the same rows as task 1.21's end screen), buttons "View Pokémon" (to the Box until the Pokémon page exists) and "Keep exploring" (back to the area page).
 
 **UI suggestions** (ideas, not requirements):
 - An outline "Throw ball" `Button` with a ball icon, full width under the move grid (wild battles only).
 - Ball picker: a `Popover` on desktop (a `Dialog` on phones) listing one row per ball: `ItemSprite`, name, "×42" owned, and the current multiplier ("×3.5"). Boosted balls get a green "Boosted" `Badge` and are sorted first.
 - Clicking a row throws right away, with a processing state on the row.
-- Catch dialog: the Pokémon's sprite, "Gotcha! Shiny Caterpie was caught!", a `Badge` saying "Sent to Party" or "Sent to Box", then a primary "Keep exploring" and an outline "View Pokémon".
+- Catch dialog: the Pokémon's sprite, "Gotcha! Shiny Caterpie was caught!", a `Badge` saying "Sent to Party" or "Sent to Box", compact XP rows ("Shiny Magikarp +340 XP · Level up! 54 → 55"), then a primary "Keep exploring" and an outline "View Pokémon".
 - A ball that fails only adds a log line; no extra popup.
 
 **Tests:** feature tests for the route and props; browser test: throw a ball and see the catch dialog.
@@ -711,6 +826,8 @@ Read [02-catching-and-exploration.md](02-catching-and-exploration.md) first. Nee
 Read [03-money-inventory-and-shop.md](03-money-inventory-and-shop.md) first. Money lives in a new domain, `src/App/Economy`; the shop in `src/App/Shop`; the inventory page in the existing `src/App/Inventory`. Using items on a Pokémon (TMs, boost stones, evolution items) comes with Spec 4; the XP Share switch comes with Spec 5.
 
 ### 3.1 Money
+
+- [ ] Done
 
 **Goal:** players have Pokédollars.
 
@@ -726,6 +843,8 @@ Read [03-money-inventory-and-shop.md](03-money-inventory-and-shop.md) first. Mon
 
 ### 3.2 Show money in the layout
 
+- [ ] Done
+
 **Goal:** the player always sees their money.
 
 **Mock-up:** `docs/mockups/layout.html` (all states)
@@ -733,7 +852,7 @@ Read [03-money-inventory-and-shop.md](03-money-inventory-and-shop.md) first. Mon
 **Build:** `HandleInertiaRequests` shares `auth.user.money`. The sidebar shows it.
 
 **UI suggestions** (ideas, not requirements):
-- A small row in the sidebar header or user area: a coin icon and "₽ 12,450" in `font-medium`, formatted with thousands separators (`Intl.NumberFormat`).
+- A small row in the sidebar footer, above the user menu, linking to the Shop: a coin icon and "₽ 12,450" in `font-medium`, formatted with thousands separators (`Intl.NumberFormat`). With the sidebar collapsed, only the coin, with the amount in a tooltip.
 - On phones, where the sidebar collapses, show it in the top bar next to the menu button.
 - A shared component `MoneyAmount` (`shared/components/game/`) used everywhere money appears, so the format stays the same.
 
@@ -742,6 +861,8 @@ Read [03-money-inventory-and-shop.md](03-money-inventory-and-shop.md) first. Mon
 **Done when:** money shows on every page.
 
 ### 3.3 Prices
+
+- [ ] Done
 
 **Goal:** every item the shop sells has a price; earned-only items have none.
 
@@ -755,6 +876,8 @@ Read [03-money-inventory-and-shop.md](03-money-inventory-and-shop.md) first. Mon
 **Done when:** tests pass.
 
 ### 3.4 TMs and special items in the inventory
+
+- [ ] Done
 
 **Goal:** the inventory can hold TMs, boost stones and key items.
 
@@ -770,6 +893,8 @@ Read [03-money-inventory-and-shop.md](03-money-inventory-and-shop.md) first. Mon
 
 ### 3.5 Today's TMs
 
+- [ ] Done
+
 **Goal:** 10 TMs for sale each day, the same for every player.
 
 **Build:**
@@ -782,6 +907,8 @@ Read [03-money-inventory-and-shop.md](03-money-inventory-and-shop.md) first. Mon
 **Done when:** tests pass.
 
 ### 3.6 Buy items
+
+- [ ] Done
 
 **Goal:** spend money on shop items.
 
@@ -797,6 +924,8 @@ Read [03-money-inventory-and-shop.md](03-money-inventory-and-shop.md) first. Mon
 
 ### 3.7 Sell items
 
+- [ ] Done
+
 **Goal:** sell shop items back for half their price.
 
 **Build:**
@@ -810,6 +939,8 @@ Read [03-money-inventory-and-shop.md](03-money-inventory-and-shop.md) first. Mon
 **Done when:** tests pass.
 
 ### 3.8 Incubators cost money
+
+- [ ] Done
 
 **Goal:** the first incubator is free, each next one costs ₽ 5,000 more.
 
@@ -830,9 +961,11 @@ Read [03-money-inventory-and-shop.md](03-money-inventory-and-shop.md) first. Mon
 
 ### 3.9 Shop page: browse
 
+- [ ] Done
+
 **Goal:** see what the shop sells.
 
-**Mock-up:** `docs/mockups/shop.html` (states "Balls tab", "Evolution items tab", "TMs tab")
+**Mock-up:** `docs/mockups/shop.html` (states "Balls tab", "Evolution items tab", "TMs tab (today's 10)")
 
 **Build:**
 - Route `GET /shop` named `shop.web.index` → `App\Shop\Http\Web\Controllers\ShopController@index` with `ShopIndexPageProps`: three groups (balls, evolution items, today's TMs), each item with name, sprite, short effect, price and how many the player owns; for TMs also type, power and when the rotation ends.
@@ -850,6 +983,8 @@ Read [03-money-inventory-and-shop.md](03-money-inventory-and-shop.md) first. Mon
 **Done when:** the page lists the shop's items.
 
 ### 3.10 Shop page: buy
+
+- [ ] Done
 
 **Goal:** buy from the shop page.
 
@@ -872,6 +1007,8 @@ Read [03-money-inventory-and-shop.md](03-money-inventory-and-shop.md) first. Mon
 
 ### 3.11 Inventory page: browse
 
+- [ ] Done
+
 **Goal:** see everything the player owns.
 
 **Mock-up:** `docs/mockups/inventory.html` (the five tab states, "Empty tab", "Item details: earned only")
@@ -891,6 +1028,8 @@ Read [03-money-inventory-and-shop.md](03-money-inventory-and-shop.md) first. Mon
 **Done when:** the page lists the player's items.
 
 ### 3.12 Inventory page: sell
+
+- [ ] Done
 
 **Goal:** sell items from the inventory.
 
@@ -918,6 +1057,8 @@ Read [04-pokemon-page.md](04-pokemon-page.md) first. Builds on Spec 1 (`SetActiv
 
 ### 4.1 Lock a Pokémon
 
+- [ ] Done
+
 **Goal:** a locked Pokémon can't be released (or traded, Spec 7) by accident.
 
 **Build:**
@@ -930,6 +1071,8 @@ Read [04-pokemon-page.md](04-pokemon-page.md) first. Builds on Spec 1 (`SetActiv
 **Done when:** tests pass.
 
 ### 4.2 Add to and remove from the party
+
+- [ ] Done
 
 **Goal:** party changes from the Pokémon page.
 
@@ -945,6 +1088,8 @@ Read [04-pokemon-page.md](04-pokemon-page.md) first. Builds on Spec 1 (`SetActiv
 
 ### 4.3 Release a Pokémon
 
+- [ ] Done
+
 **Goal:** release is permanent and gives nothing back.
 
 **Build:**
@@ -956,6 +1101,8 @@ Read [04-pokemon-page.md](04-pokemon-page.md) first. Builds on Spec 1 (`SetActiv
 **Done when:** tests pass.
 
 ### 4.4 Teach a TM
+
+- [ ] Done
 
 **Goal:** a TM adds a move to the known-moves pool and is used up.
 
@@ -972,6 +1119,8 @@ Read [04-pokemon-page.md](04-pokemon-page.md) first. Builds on Spec 1 (`SetActiv
 
 ### 4.5 Boost stone odds
 
+- [ ] Done
+
 **Goal:** the chance a boost stone fails, and the roll.
 
 **Build:**
@@ -983,6 +1132,8 @@ Read [04-pokemon-page.md](04-pokemon-page.md) first. Builds on Spec 1 (`SetActiv
 **Done when:** tests pass.
 
 ### 4.6 Use boost stones
+
+- [ ] Done
 
 **Goal:** use one or several boost stones in one go.
 
@@ -998,6 +1149,8 @@ Read [04-pokemon-page.md](04-pokemon-page.md) first. Builds on Spec 1 (`SetActiv
 **Done when:** tests pass.
 
 ### 4.7 Pokémon page: route and props
+
+- [ ] Done
 
 **Goal:** the data for the page.
 
@@ -1017,6 +1170,8 @@ Read [04-pokemon-page.md](04-pokemon-page.md) first. Builds on Spec 1 (`SetActiv
 
 ### 4.8 Pokémon page: header and stats
 
+- [ ] Done
+
 **Goal:** the read-only part of the page.
 
 **Mock-up:** `docs/mockups/pokemon.html` (state "Overview")
@@ -1027,7 +1182,7 @@ Read [04-pokemon-page.md](04-pokemon-page.md) first. Builds on Spec 1 (`SetActiv
 - `AppBreadcrumbs` (Box › Shiny Charmeleon), then a header `Card`: large `SpeciesSprite` on the left, details on the right; stacked on phones.
 - Badges for level, boost and shiny (gold); `PokemonTypeBadges`; `PokemonGenderIcon`.
 - Catch details: "Caught in a [sprite] Ultra Ball · 3 Nov 2026", with the ball's `ItemSprite` right before the ball's name, the same way the Pokédex's Evolution Chain card shows an evolution item.
-- XP: a thin `Progress` with "7,200 / 10,000 XP to Lv 37"; at level 100, "Max level" instead.
+- XP: a thin `Progress` with "720 / 1,000 XP to Lv 37"; at level 100, "Max level" instead.
 - Stats: an `AppInfoCard` with one `AppInfoCardRow` per stat; a `Tooltip` on each value lists its parts ("Level 36: ×0.66 · Boost +14: ×1.14 · Shiny: ×1.25").
 - Action row: "Evolve" (primary, only when an evolution is allowed), "Boost" (outline, opens the boost stones dialog), party toggle (outline), lock toggle (ghost with a lock icon), and "Release" (destructive outline, at the end).
 
@@ -1036,6 +1191,8 @@ Read [04-pokemon-page.md](04-pokemon-page.md) first. Builds on Spec 1 (`SetActiv
 **Done when:** the page matches the mock-up's overview.
 
 ### 4.9 Pokémon page: moves
+
+- [ ] Done
 
 **Goal:** swap active moves and teach TMs from the page.
 
@@ -1062,6 +1219,8 @@ Read [04-pokemon-page.md](04-pokemon-page.md) first. Builds on Spec 1 (`SetActiv
 
 ### 4.10 Pokémon page: boost stones
 
+- [ ] Done
+
 **Goal:** use boost stones from the page.
 
 **Mock-up:** `docs/mockups/pokemon.html` (states "Use boost stones", "Boost stones result"; the "Boost" button in "Overview")
@@ -1082,6 +1241,8 @@ Read [04-pokemon-page.md](04-pokemon-page.md) first. Builds on Spec 1 (`SetActiv
 
 ### 4.11 Pokémon page: evolve
 
+- [ ] Done
+
 **Goal:** evolve from the page.
 
 **Mock-up:** `docs/mockups/pokemon.html` (states "Evolution options", "Confirm evolution")
@@ -1101,6 +1262,8 @@ Read [04-pokemon-page.md](04-pokemon-page.md) first. Builds on Spec 1 (`SetActiv
 **Done when:** a player can evolve from the page.
 
 ### 4.12 Pokémon page: party, lock and release
+
+- [ ] Done
 
 **Goal:** the remaining actions.
 
@@ -1124,6 +1287,8 @@ Read [04-pokemon-page.md](04-pokemon-page.md) first. Builds on Spec 1 (`SetActiv
 
 ### 4.13 Use items from the inventory
 
+- [ ] Done
+
 **Goal:** the "Use" button on the inventory's item dialog (Spec 3) leads to the Pokémon page's own dialogs.
 
 **Mock-up:** `docs/mockups/inventory.html` (state "Use: choose a Pokémon")
@@ -1141,6 +1306,8 @@ Read [04-pokemon-page.md](04-pokemon-page.md) first. Builds on Spec 1 (`SetActiv
 
 ### 4.14 Box: add to party from a card
 
+- [ ] Done
+
 **Goal:** add a Pokémon to the party straight from the Box.
 
 **Mock-up:** `docs/mockups/pokemon.html` (state "Party full: choose who to swap"; the same dialog)
@@ -1154,6 +1321,47 @@ Read [04-pokemon-page.md](04-pokemon-page.md) first. Builds on Spec 1 (`SetActiv
 
 **Done when:** party changes work from the Box.
 
+### 4.15 Party order
+
+- [ ] Done
+
+**Goal:** the player chooses the party's order; battles that use the party send out the first one.
+
+**Build:**
+- Migration `026_add_party_position_to_pokemon_table.php`: nullable `unsignedTinyInteger('party_position')` (1–6; null in the Box).
+- Everything that puts a Pokémon in the party gives it the next position: `AddToPartyAction` (task 4.2), `CreatePokemonAction`'s `joinPartyIfRoom` (task 2.12) and the starter (task 2.13). `SwapPartyPokemonAction` gives the joining Pokémon the leaving one's position. `RemoveFromPartyAction`, `ReleasePokemonAction` and listing for trade (task 7.4) close the gap, so positions stay 1, 2, 3… with no holes.
+- The `inParty()` scope orders by `party_position`; `PartyPageProps`, `StartWildBattleAction` (task 1.12) and every later battle that uses the party follow it.
+- `App\Pokemon\Actions\ReorderPartyAction::handle(User $user, array $pokemonIds): void`: `$pokemonIds` must be exactly the party's Pokémon (otherwise `InvalidArgumentException`); saves positions 1, 2, 3… in that order. Refused during an ongoing battle (`BattleAlreadyInProgressException`): the battle uses a snapshot of the party.
+
+**Tests:** a new party member joins at the end; removing one closes the gap; a swap keeps the position; reorder saves the new order; a list that is not exactly the party is refused; refused during a battle; a wild battle starts with the first party Pokémon.
+
+**Done when:** tests pass.
+
+### 4.16 Party page: reorder
+
+- [ ] Done
+
+**Goal:** reorder the party from the existing Party page.
+
+**Mock-up:** `docs/mockups/party.html` (all states)
+
+**Build:**
+- Route `POST /your-pokemon/party/order` named `pokemon.web.party.reorder` → `ReorderPartyController` (`pokemon_ids`).
+- `PartyPageProps`: each party Pokémon also gets its portrait, display name, level, boost, types and a link to its page (task 4.7); plus whether a battle is ongoing.
+- The Party page (`resources/js/app/Pokemon/pages/Party/`) keeps its card of 6 slots, now numbered in sending-out order, with the first marked "Leads". Each change is saved right away.
+- While a battle is ongoing, reordering is disabled and a notice links to the battle.
+
+**UI suggestions** (ideas, not requirements):
+- Keep today's square slots and `AppPageHeader` ("Your Party"), with the description "The first Pokémon leads every battle. Drag to change the order."
+- Each slot: a number badge in the corner (1–6), `SpeciesPortrait`, `PokemonDisplayName`, "Lv 54 · +72", type badges, and two small ghost icon buttons, "Move earlier" and "Move later" (arrow left and right; up and down when the slots stack on phones). The whole slot links to the Pokémon page; the buttons don't.
+- Drag and drop on desktop: drag a slot onto another place, the others shift. Use the same approach as the move reorder in task 4.9 (native drag events, or `vue-draggable-plus` if it was approved there). The arrow buttons are the keyboard and touch way.
+- A short "Saved" toast is too noisy for every move: show a small "Saving…" / "Saved" text under the header instead, and a toast only on errors.
+- Empty slots stay dashed with a plus icon and link to the Box ("Add from your Box").
+
+**Tests:** feature tests for the route (saved; a list that is not exactly the party is refused; refused during a battle) and the props; browser test: move a Pokémon earlier with the arrows and see the new order after a reload.
+
+**Done when:** a player can reorder the party from the Party page, and the next battle starts with the new first Pokémon.
+
 ---
 
 ## 5. Spec 5 — Missions
@@ -1162,20 +1370,24 @@ Read [05-missions.md](05-missions.md) first, including its "Starting content" an
 
 ### 5.1 Mission data
 
+- [ ] Done
+
 **Goal:** store achievements and each player's missions.
 
 **Build:**
 - Enums in `Shared\Enums`: `MissionKind` (`DAILY`, `ACHIEVEMENT`, `STREAK_BONUS`), `MissionDifficulty` (`EASY`, `MEDIUM`, `HARD`), `MissionCategory` (`CATCHING`, `BATTLING`, `COLLECTION`), `MissionGoal` (`CATCH_POKEMON`, `CATCH_POKEMON_OF_TYPE`, `CATCH_POKEMON_IN_AREA`, `CATCH_SHINY`, `CATCH_LEGENDARY`, `CATCH_POKEMON_AT_LEVEL`, `WIN_BATTLES`, `WIN_WILD_BATTLES`, `WIN_TRAINER_BATTLES`, `BEAT_GYM`, `EARN_REGION_BADGES`, `BECOME_CHAMPION`, `CLIMB_TOWER_FLOORS`, `HATCH_EGGS`, `EVOLVE_POKEMON`, `MEGA_EVOLVE`, `REACH_LEVEL`, `REACH_BOOST`, `TEACH_TMS`, `SPEND_MONEY`, `MAKE_TRADES`), each with `label()`.
 - Value object `Shared\ValueObjects\MissionReward`: `int $money`, `array $items` (each: item type, slug, quantity, or `random` with a pool such as `normal-tm`, `mega-stone`, `z-move-tm`, `dynamax-tm`). Cast `AsMissionReward`.
-- Migration `026_create_achievements_table.php`: `uuid id`, `slug` unique, `name`, `category` enum, `goal` enum, `json goal_parameters`, `target`, `json reward`, `sort_order`. Model `Shared\Models\Achievement`; `AchievementSeeder` from `database/seeders/files/achievements.json` (the Spec 5 list).
-- Migration `027_create_user_missions_table.php`: `uuid id`, `foreignIdFor(User)`, `kind` enum, nullable `foreignIdFor(Achievement)`, nullable `date` (dailies), nullable `difficulty`, `goal`, `json goal_parameters`, `target`, `progress` default 0, `json reward`, nullable `completed_at`, nullable `claimed_at`, timestamps; unique `['user_id', 'achievement_id']`; index `['user_id', 'date']`. Model `Shared\Models\UserMission` (with factory): `isCompleted()`, `isClaimable()`.
-- Migration `028_add_mission_columns_to_users_table.php`: `mission_streak` (default 0), nullable `streak_last_completed_on` date, nullable `last_reroll_on` date, `is_xp_share_enabled` (default false).
+- Migration `027_create_achievements_table.php`: `uuid id`, `slug` unique, `name`, `category` enum, `goal` enum, `json goal_parameters`, `target`, `json reward`, `sort_order`. Model `Shared\Models\Achievement`; `AchievementSeeder` from `database/seeders/files/achievements.json` (the Spec 5 list; "Beat all gyms" is `BEAT_GYM` with target 72, since only first wins count).
+- Migration `028_create_user_missions_table.php`: `uuid id`, `foreignIdFor(User)`, `kind` enum, nullable `foreignIdFor(Achievement)`, nullable `date` (dailies), nullable `difficulty`, `goal`, `json goal_parameters`, `target`, `progress` default 0, `json reward`, nullable `completed_at`, nullable `claimed_at`, timestamps; unique `['user_id', 'achievement_id']`; index `['user_id', 'date']`. Model `Shared\Models\UserMission` (with factory): `isCompleted()`, `isClaimable()`.
+- Migration `029_add_mission_columns_to_users_table.php`: `mission_streak` (default 0), nullable `streak_last_completed_on` date, nullable `last_reroll_on` date, `is_xp_share_enabled` (default false).
 
 **Tests:** achievements seed from the file; casts round-trip; `isClaimable()` only when completed and not claimed.
 
 **Done when:** tables, models, enums and seed data exist; tests pass.
 
 ### 5.2 Give rewards
+
+- [ ] Done
 
 **Goal:** one way to hand out money and items, used by missions and later by other features.
 
@@ -1191,6 +1403,8 @@ Read [05-missions.md](05-missions.md) first, including its "Starting content" an
 
 ### 5.3 Daily mission templates
 
+- [ ] Done
+
 **Goal:** turn templates into three concrete daily missions.
 
 **Build:**
@@ -1202,6 +1416,8 @@ Read [05-missions.md](05-missions.md) first, including its "Starting content" an
 **Done when:** tests pass.
 
 ### 5.4 Today's missions
+
+- [ ] Done
 
 **Goal:** every player has 3 dailies for today, created when first needed.
 
@@ -1215,6 +1431,8 @@ Read [05-missions.md](05-missions.md) first, including its "Starting content" an
 **Done when:** tests pass.
 
 ### 5.5 Advance progress
+
+- [ ] Done
 
 **Goal:** events move missions forward.
 
@@ -1230,15 +1448,19 @@ Read [05-missions.md](05-missions.md) first, including its "Starting content" an
 
 ### 5.6 Events for the other goals
 
+- [ ] Done
+
 **Goal:** the rest of today's built features advance missions.
 
-**Build:** events and listeners for: `BattleWon` (battle type, from task 1.16) → `WIN_BATTLES`, `WIN_WILD_BATTLES`; `PokemonEvolved` (with `isMega`, from task 1.18) → `EVOLVE_POKEMON`, `MEGA_EVOLVE`; `PokemonLevelledUp` (task 1.17) → `REACH_LEVEL`; `PokemonBoosted` (task 4.6) → `REACH_BOOST`; `TmTaught` (task 4.4) → `TEACH_TMS`; `MoneySpent` (task 3.1) → `SPEND_MONEY` with the amount. One listener per event in `App\Missions\Listeners`. Trainer, gym, tower and trade goals are wired in their own specs.
+**Build:** events and listeners for: `BattleEnded` (from task 1.16; only when `isWin`, so `WON` and `CAUGHT`) → `WIN_BATTLES`, and `WIN_WILD_BATTLES` for wild battles, catches included; `PokemonEvolved` (with `isMega`, from task 1.18) → `EVOLVE_POKEMON`, `MEGA_EVOLVE`; `PokemonLevelledUp` (task 1.17) → `REACH_LEVEL`; `PokemonBoosted` (task 4.6) → `REACH_BOOST`; `TmTaught` (task 4.4) → `TEACH_TMS`; `MoneySpent` (task 3.1) → `SPEND_MONEY` with the amount. One listener per event in `App\Missions\Listeners`. Trainer, gym, tower and trade goals are wired in their own specs.
 
-**Tests:** each event advances its goal (one test per listener).
+**Tests:** each event advances its goal (one test per listener); a catch counts as a wild win; losses and runs count for nothing.
 
 **Done when:** tests pass.
 
 ### 5.7 Claim a reward
+
+- [ ] Done
 
 **Goal:** the Claim button.
 
@@ -1251,6 +1473,8 @@ Read [05-missions.md](05-missions.md) first, including its "Starting content" an
 
 ### 5.8 Reroll a daily
 
+- [ ] Done
+
 **Goal:** one free reroll per day.
 
 **Build:**
@@ -1261,6 +1485,8 @@ Read [05-missions.md](05-missions.md) first, including its "Starting content" an
 **Done when:** tests pass.
 
 ### 5.9 Streak and bonus
+
+- [ ] Done
 
 **Goal:** finishing all 3 dailies on consecutive days builds a streak; every 7 days gives a bonus boost stone.
 
@@ -1275,11 +1501,13 @@ Read [05-missions.md](05-missions.md) first, including its "Starting content" an
 
 ### 5.10 XP Share
 
+- [ ] Done
+
 **Goal:** the XP Share key item works.
 
 **Build:**
 - `App\Inventory\Actions\SetXpShareAction::handle(User $user, bool $isEnabled): void`: needs the `xp-share` item (`InsufficientInventoryException`).
-- Task 1.17's XP award: when `is_xp_share_enabled`, party Pokémon that did not enter the field get `game.experience.xp_share_ratio` (0.5) of the base XP.
+- Task 1.17's XP award: when `is_xp_share_enabled`, party Pokémon that did not enter the field get `game.experience.xp_share_ratio` (0.5) × the XP they would get for the opponents knocked out (the formula with their own level, without the knockout bonus). Never in Battle Tower battles. The state keeps what each got, for the end screen's summary line.
 - Route `POST /inventory/xp-share` named `inventory.web.xp-share` → `SetXpShareController` (`is_enabled`).
 
 **Mock-up:** `docs/mockups/inventory.html` (states "Key items tab", "XP Share settings")
@@ -1287,11 +1515,13 @@ Read [05-missions.md](05-missions.md) first, including its "Starting content" an
 **UI suggestions** (ideas, not requirements):
 - The XP Share tile in the Key items tab shows an "On" / "Off" badge; its dialog has a `Switch` (shadcn-vue `switch`) labelled "Share XP with the whole party", with one line explaining it.
 
-**Tests:** switch on and off; refused without the item; XP split with and without it.
+**Tests:** switch on and off; refused without the item; XP with and without it; nothing extra in a Battle Tower battle.
 
 **Done when:** tests pass.
 
 ### 5.11 Missions page: daily missions
+
+- [ ] Done
 
 **Goal:** see today's missions.
 
@@ -1314,6 +1544,8 @@ Read [05-missions.md](05-missions.md) first, including its "Starting content" an
 
 ### 5.12 Missions page: claim and reroll
 
+- [ ] Done
+
 **Goal:** the actions on the daily cards.
 
 **Mock-up:** `docs/mockups/missions.html` (states "Ready to claim", "Claimed", "Reward won't fit", "Reroll used", "Streak bonus")
@@ -1334,6 +1566,8 @@ Read [05-missions.md](05-missions.md) first, including its "Starting content" an
 
 ### 5.13 Missions page: achievements
 
+- [ ] Done
+
 **Goal:** the Achievements tab.
 
 **Mock-up:** `docs/mockups/missions.html` (state "Achievements")
@@ -1349,6 +1583,8 @@ Read [05-missions.md](05-missions.md) first, including its "Starting content" an
 **Done when:** the tab lists achievements and they can be claimed.
 
 ### 5.14 Something to claim: navigation dot
+
+- [ ] Done
 
 **Goal:** players notice rewards waiting.
 
@@ -1371,12 +1607,14 @@ Read [06-trainers-gyms-and-battle-tower.md](06-trainers-gyms-and-battle-tower.md
 
 ### 6.1 Trainers and their teams
 
+- [ ] Done
+
 **Goal:** store hand-made trainers, gym leaders, Elite Four members and Champions.
 
 **Build:**
 - Enums in `Shared\Enums`: `TrainerRole` (`TRAINER`, `GYM_LEADER`, `ELITE_FOUR`, `CHAMPION`), `TrainerCategory` (`TOWNSFOLK`, `OUTDOORS`, `WATER`, `FIGHTERS`, `MYSTICS`, `EXPERTS`, with `label()`; only for `TRAINER` role) and `Region` (`KANTO` … `PALDEA`, with `label()` and `generation()`).
-- Migration `029_create_trainers_table.php`: `uuid id`, `slug` unique, `name`, `trainer_class` ("Hiker", "Gym Leader"), nullable `sprite`, `role` enum, nullable `category` enum, nullable `region` enum, nullable `badge_name`, nullable `gym_type` (`PokemonType`), `position` (gym number or Elite Four order), `payout`.
-- Migration `030_create_trainer_pokemon_table.php`: `uuid id`, `foreignIdFor(Trainer)`, `foreignIdFor(Species)`, `level`, `boost`, `is_shiny`, `gender`, `json move_slugs`, `position`.
+- Migration `030_create_trainers_table.php`: `uuid id`, `slug` unique, `name`, `trainer_class` ("Hiker", "Gym Leader"), nullable `sprite`, `role` enum, nullable `category` enum, nullable `region` enum, nullable `badge_name`, nullable `gym_type` (`PokemonType`), `position` (gym number or Elite Four order), `payout` (0 for Elite Four members and Champions: the Champion's prize comes from config, task 6.10).
+- Migration `031_create_trainer_pokemon_table.php`: `uuid id`, `foreignIdFor(Trainer)`, `foreignIdFor(Species)`, `level`, `boost`, `is_shiny`, `gender`, `json move_slugs`, `position`.
 - Models `Shared\Models\Trainer` (`team()` ordered by position) and `TrainerPokemon`, with factories.
 - `TrainerSeeder` from `database/seeders/files/trainers.json`.
 
@@ -1386,6 +1624,8 @@ Read [06-trainers-gyms-and-battle-tower.md](06-trainers-gyms-and-battle-tower.md
 
 ### 6.2 Trainer content (data, no code)
 
+- [ ] Done
+
 **Goal:** fill `trainers.json`.
 
 **Build:** about 30 hand-made trainers (Lv 5–100, payouts ₽ 500–20,000; shinies only on the hardest), then for each of the 9 regions its 8 gym leaders (2 to 6 Pokémon each, depending on the leader), Elite Four and Champion with their main-game teams, at the levels and boosts in Spec 6's "Details" section. Moves: each Pokémon's base moves unless the main-game team suggests better ones that exist as moves here.
@@ -1393,6 +1633,8 @@ Read [06-trainers-gyms-and-battle-tower.md](06-trainers-gyms-and-battle-tower.md
 **Done when:** `migrate:fresh --seed` loads every trainer; a seeder test checks each region has 8 gym leaders, 4 Elite Four members and 1 Champion.
 
 ### 6.3 Payout
+
+- [ ] Done
 
 **Goal:** the money formula.
 
@@ -1404,14 +1646,16 @@ Read [06-trainers-gyms-and-battle-tower.md](06-trainers-gyms-and-battle-tower.md
 
 ### 6.4 Battles against trainers
 
+- [ ] Done
+
 **Goal:** the battle engine handles NPC teams.
 
 **Build:**
 - `BattleState`: add nullable `trainer_id`, nullable `trainer_name` and `bool $heals_after` (default true; the Tower sets false).
-- `App\Battle\Actions\StartTrainerBattleAction::handle(User $user, BattleType $type, array $opponentTeam, ?Trainer $trainer, ?array $playerPokemonIds = null): Battle`: player side from `$playerPokemonIds` (in that order) or the whole party; opponent side from `$opponentTeam` (a list of `NewPokemon` plus boost and moves, or `TrainerPokemon` rows).
+- `App\Battle\Actions\StartTrainerBattleAction::handle(User $user, BattleType $type, array $opponentTeam, ?Trainer $trainer, ?array $playerPokemonIds = null): Battle`: player side from `$playerPokemonIds` (in that order) or the whole party in party order (task 4.15); opponent side from `$opponentTeam` (a list of `NewPokemon` plus boost and moves, or `TrainerPokemon` rows).
 - Opponent AI: a random active move each turn (as wild battles); after a faint it sends out its next Pokémon automatically and the log says "Hiker Bob sent out Geodude!".
 - `ThrowBallAction` already refuses non-wild battles (task 2.12).
-- When a trainer battle is won, dispatch `BattleWon` with type and trainer, then the domain that started it pays and records (tasks 6.5, 6.8, 6.12).
+- The battle ends through `EndBattleAction` like any other (task 1.16): `BattleEnded` carries the type and trainer, and the domain that started the battle reacts to it (tasks 6.5, 6.8, 6.10, 6.12).
 
 **Tests:** opponent sends out the next Pokémon; win only when the whole opponent team faints; trainer name in the log.
 
@@ -1419,19 +1663,23 @@ Read [06-trainers-gyms-and-battle-tower.md](06-trainers-gyms-and-battle-tower.md
 
 ### 6.5 Fight a trainer from the list
 
+- [ ] Done
+
 **Goal:** battle hand-made trainers and get paid.
 
 **Build:**
 - `App\Trainers\Actions\ChallengeTrainerAction::handle(User $user, Trainer $trainer): Battle`: only `TRAINER` role; starts a `TRAINER` battle with the party.
-- Migration `031_create_trainer_victories_table.php`: `uuid id`, `foreignIdFor(User)`, `foreignIdFor(Trainer)`, `wins` (default 0), `first_won_at`; unique `['user_id', 'trainer_id']`. Model `TrainerVictory`.
-- Listener `App\Trainers\Listeners\PayOutOnBattleWon`: for trainer and gym battles, pays `TrainerPayoutCalculator` money (using the player's Pokémon that entered the field) with `AddMoneyAction`, records the victory, and stores the amount in the battle log for the end screen ("You got ₽ 1,440 for winning!").
-- Mission listeners from Spec 5 now get `WIN_TRAINER_BATTLES` from `BattleWon`.
+- Migration `032_create_trainer_victories_table.php`: `uuid id`, `foreignIdFor(User)`, `foreignIdFor(Trainer)`, `wins` (default 0), `first_won_at`; unique `['user_id', 'trainer_id']`. Model `TrainerVictory`.
+- Listener `App\Trainers\Listeners\PayOutOnBattleEnded`: for won `TRAINER` and `GYM` battles only (Elite Four members pay nothing), pays `TrainerPayoutCalculator` money (using the player's Pokémon that entered the field) with `AddMoneyAction`, records the victory, and stores the amount in the battle log for the end screen ("You got ₽ 1,440 for winning!").
+- Mission listeners from Spec 5 now advance `WIN_TRAINER_BATTLES` from `BattleEnded` (won `TRAINER` battles).
 
-**Tests:** win pays the formula; a higher-level team gets less; victory counted; loss pays nothing.
+**Tests:** win pays the formula; a higher-level team gets less; victory counted; a loss or a run pays nothing.
 
 **Done when:** tests pass.
 
 ### 6.6 Trainers page
+
+- [ ] Done
 
 **Goal:** the list of hand-made trainers.
 
@@ -1456,6 +1704,8 @@ Read [06-trainers-gyms-and-battle-tower.md](06-trainers-gyms-and-battle-tower.md
 
 ### 6.7 Trainers met while exploring
 
+- [ ] Done
+
 **Goal:** about 1 in 20 explores meets a generated trainer.
 
 **Mock-up:** `docs/mockups/area.html` (state "Trainer encounter")
@@ -1463,8 +1713,8 @@ Read [06-trainers-gyms-and-battle-tower.md](06-trainers-gyms-and-battle-tower.md
 **Build:**
 - `App\Trainers\Mechanics\TrainerTeamRoller::roll(Collection $species, int $size, int $minLevel, int $maxLevel, int $boost = 0): array` (shared with the Tower): random species, levels, genders, shiny at the normal odds, base moves.
 - A small list of names and classes for generated trainers in `config/trainers.php`.
-- Migration `032_add_trainer_columns_to_encounters_table.php`: `kind` enum (`POKEMON`, `TRAINER`), nullable `trainer_name`, `trainer_class`, `json trainer_team`, `payout`.
-- `ExploreAction` (task 2.6): 1 in `game.exploration.trainer_odds` (20) rolls a trainer of 1–3 Pokémon from the area at its wild levels, payout from `game.trainers.explore_payout_per_level`.
+- Migration `033_add_trainer_columns_to_encounters_table.php`: `kind` enum (`POKEMON`, `TRAINER`), nullable `trainer_name`, `trainer_class`, `json trainer_team`, `payout`.
+- `ExploreAction` (task 2.6): 1 in `game.exploration.trainer_odds` (20) rolls a trainer of 1–3 Pokémon from the area at its wild levels. Full payout = `game.trainers.explore_payout_per_level` × the team's average level (the value is still an open question in the README), reduced like any trainer.
 - `BattleEncounterAction` starts a `TRAINER` battle for trainer encounters (paid like any trainer).
 
 **UI suggestions** (ideas, not requirements):
@@ -1476,12 +1726,14 @@ Read [06-trainers-gyms-and-battle-tower.md](06-trainers-gyms-and-battle-tower.md
 
 ### 6.8 Gyms and badges
 
+- [ ] Done
+
 **Goal:** challenge gym leaders and earn badges.
 
 **Build:**
 - `App\Trainers\Actions\ChallengeGymAction::handle(User $user, Trainer $leader, array $pokemonIds): Battle`: only `GYM_LEADER`; `$pokemonIds` must be 1 to as many party Pokémon as the leader has, never more (`App\Trainers\Exceptions\GymTeamSizeException`), in the chosen order. Fewer is allowed (the page confirms it first); starts a `GYM` battle.
 - A badge is a `TrainerVictory` against a gym leader. `App\Trainers\Queries\BadgesQuery::forRegion(User $user, Region $region)`.
-- `BattleWon` for a gym: pays (task 6.5) and, on the first win, dispatches `BadgeEarned` (region, leader) for missions (`BEAT_GYM`, `EARN_REGION_BADGES`).
+- A won gym battle (`BattleEnded`): pays (task 6.5) and, on the first win, dispatches `BadgeEarned` (region, leader) for missions (`BEAT_GYM`, `EARN_REGION_BADGES`).
 
 **Tests:** more Pokémon than the leader refused; fewer allowed; none refused; non-party Pokémon refused; first win gives the badge and the event once; rematch pays but no new badge.
 
@@ -1489,9 +1741,11 @@ Read [06-trainers-gyms-and-battle-tower.md](06-trainers-gyms-and-battle-tower.md
 
 ### 6.9 Gyms page
 
+- [ ] Done
+
 **Goal:** the badge case per region.
 
-**Mock-up:** `docs/mockups/gyms.html` (states "Region badges", "Gym details", "Choose your team", "Leader brings 6: choose the order", "Party smaller than the leader's team", "Confirm battling with fewer", "Elite Four locked", "Elite Four unlocked")
+**Mock-up:** `docs/mockups/gyms.html` (states "Region badges (Elite Four locked)", "Gym details", "Choose your team", "Leader brings 6: choose the order", "Party smaller than the leader's team", "Confirm battling with fewer", "All badges: Elite Four unlocked")
 
 **Build:**
 - Route `GET /gyms` named `trainers.web.gyms.index` → `GymsController@index` (`?region=kanto`), with `GymsIndexPageProps`: the region's 8 leaders (badge name, type, leader, team preview, won or not), Elite Four and Champion status, and the player's party.
@@ -1512,20 +1766,32 @@ Read [06-trainers-gyms-and-battle-tower.md](06-trainers-gyms-and-battle-tower.md
 
 ### 6.10 Elite Four run
 
+- [ ] Done
+
 **Goal:** the four members then the Champion, in order.
 
 **Build:**
-- Migration `033_create_elite_four_runs_table.php`: `uuid id`, `foreignIdFor(User)`, `region` enum, `stage` (1–5), `status` enum (`ACTIVE`, `WON`, `LOST`, `QUIT`), timestamps.
+- Migration `034_create_elite_four_runs_table.php`: `uuid id`, `foreignIdFor(User)`, `region` enum, `stage` (1–5), `status` enum (`ACTIVE`, `WON`, `LOST`, `QUIT`), timestamps.
 - `App\Trainers\Actions\StartEliteFourRunAction::handle(User $user, Region $region): EliteFourRun`: needs all 8 badges of the region (`App\Trainers\Exceptions\BadgesMissingException`); one active run at a time.
-- `ContinueEliteFourRunAction::handle(EliteFourRun $run): Battle`: starts an `ELITE_FOUR` battle against the stage's opponent with the party (healed: normal battles always heal).
-- Listener on `BattleWon` / battle lost for `ELITE_FOUR` battles: win → next stage (after the Champion: `WON`, record the victory, dispatch `ChampionDefeated`); loss → `LOST`.
-- The battle end screen shows "Next: Lance" and a button to continue the run.
+- `ContinueEliteFourRunAction::handle(EliteFourRun $run): Battle`: starts an `ELITE_FOUR` battle against the stage's opponent with the party in party order (healed: normal battles always heal).
+- Listener `App\Trainers\Listeners\AdvanceEliteFourRunOnBattleEnded` for `ELITE_FOUR` battles: a win → next stage; after the Champion: `WON`, pay `game.trainers.champion_prize` (30,000) with `AddMoneyAction` (no level reduction), record the victory, dispatch `ChampionDefeated`. A loss or a run → `LOST`.
+- `QuitEliteFourRunAction::handle(EliteFourRun $run): void`: only an active run, and only between battles (refused while its battle is ongoing: the player runs from the battle instead); status `QUIT`.
+- Routes: `POST /gyms/{region}/elite-four` (`trainers.web.elite-four.start`), `POST /gyms/elite-four/continue` (`trainers.web.elite-four.continue`, redirects to the battle) and `DELETE /gyms/elite-four` (`trainers.web.elite-four.quit`, back to the Gyms page with a toast).
+- Gyms page (task 6.9) during a run: the five steps with the beaten ones ticked, a primary "Continue: battle Agatha" and a destructive-outline "Quit the Elite Four" that asks for confirmation. The battle end screen after a member is beaten shows "Next: Agatha" and the same quit button (task 6.14).
 
-**Tests:** refused without 8 badges; stages advance; loss ends the run; the next run starts at stage 1; beating the Champion records it and fires the event.
+**Mock-up:** `docs/mockups/gyms.html` (states "Elite Four run in progress", "Quit the Elite Four", "Champion beaten") and `docs/mockups/battle.html` (states "Elite Four battle won", "Quit the Elite Four")
 
-**Done when:** tests pass, and the run can be played from the Gyms page and the battle page.
+**UI suggestions** (ideas, not requirements):
+- Quit confirmation (`alert-dialog`): "Quit the Kanto Elite Four?" / "Your run ends here. Next time you start again from Lorelei." with "Keep going" (outline) and "Quit" (destructive).
+- Champion beaten: a gold "Champion ✓" badge on the card and "+ ₽ 30,000 Champion prize" on the battle's end screen.
+
+**Tests:** refused without 8 badges; stages advance; a loss or a run ends the run; quit sets `QUIT` and is refused during the run's battle; the next run starts at stage 1; members pay nothing; beating the Champion pays the prize, records it and fires the event; feature tests for the three routes.
+
+**Done when:** tests pass, and the run can be played and quit from the Gyms page and the battle page.
 
 ### 6.11 Battle Tower: rules
+
+- [ ] Done
 
 **Goal:** checkpoints, opponent strength and Battle Points.
 
@@ -1535,30 +1801,36 @@ Read [06-trainers-gyms-and-battle-tower.md](06-trainers-gyms-and-battle-tower.md
   - `opponentLevel(int $floor): int` = min(floor, 100); `opponentBoost(int $floor): int` = 0 up to floor 100, then round((floor − 100) ÷ 9), max 100.
   - `teamSize(int $floor): int`: 3, or 6 on checkpoints.
   - `battlePoints(int $floor): int`: 1, plus 5 × the checkpoint's number on checkpoints.
-- Config `game.battle_tower`: `top_floor` (1000), `first_checkpoint` (10), `checkpoint_gap_step` (5), `team_size` (3), `checkpoint_team_size` (6), `points_per_floor` (1), `points_per_checkpoint_number` (5).
+  - `allowsLegendaries(int $floor): bool`: true after `legendaries_after_floor`.
+- Config `game.battle_tower`: `top_floor` (1000), `first_checkpoint` (10), `checkpoint_gap_step` (5), `team_size` (3), `checkpoint_team_size` (6), `points_per_floor` (1), `points_per_checkpoint_number` (5), `legendaries_after_floor` (50).
 
-**Tests:** the first five checkpoints; level and boost at floors 1, 100, 101, 550, 1000; team sizes; points on normal and checkpoint floors.
+**Tests:** the first five checkpoints; level and boost at floors 1, 100, 101, 550, 1000; team sizes; points on normal and checkpoint floors; legendaries not allowed at floor 50, allowed at 51.
 
 **Done when:** tests pass.
 
 ### 6.12 Battle Tower: runs
 
-**Goal:** start, climb, resume, quit.
+- [ ] Done
+
+**Goal:** start, climb, reorder, resume, quit.
 
 **Build:**
-- Migration `034_create_tower_runs_table.php`: `uuid id`, `foreignIdFor(User)`, `status` enum (`ACTIVE`, `ENDED`), `floor` (the next floor to fight), `json team` (for each of the 6: Pokémon ID, the frozen copy taken at the start — species, level, boost, shiny, gender, types, active moves, max HP and stats — its current HP, and the XP saved up so far), `battle_points_earned`, timestamps. Migration `035_add_tower_columns_to_users_table.php`: `best_tower_floor` (default 0), `battle_points` (default 0).
-- `App\BattleTower\Actions\StartTowerRunAction::handle(User $user, array $pokemonIds): TowerRun`: exactly 6 of the player's Pokémon (party or Box), none on trade hold (Spec 7); one active run; copies each Pokémon into `team`.
-- `ClimbTowerFloorAction::handle(TowerRun $run): Battle`: a `BATTLE_TOWER` battle against `TrainerTeamRoller` with the floor's level, boost and size (species from every wild-eligible species). The player's side is built from the frozen copies, not the live Pokémon, starting at the HP stored in the run; `heals_after` false. Refused while another battle is ongoing (one battle at a time).
-- On a win: store each team member's HP back in the run, add each member's XP for the floor (Spec 1's formula with the Tower bonus) to its saved-up XP, add the floor's points, `floor` + 1; on a checkpoint floor, heal the whole team. On a loss: status `ENDED`.
+- Migration `035_create_tower_runs_table.php`: `uuid id`, `foreignIdFor(User)`, `status` enum (`ACTIVE`, `ENDED`), `floor` (the next floor to fight), `json team` (for each of the 6: Pokémon ID, the frozen copy taken at the start — species, level, boost, shiny, gender, types, active moves, max HP and stats — its current HP, and the XP saved up so far), `battle_points_earned`, timestamps. Migration `036_add_tower_columns_to_users_table.php`: `best_tower_floor` (default 0), `battle_points` (default 0).
+- `App\BattleTower\Actions\StartTowerRunAction::handle(User $user, array $pokemonIds): TowerRun`: exactly 6 of the player's Pokémon (party or Box), none on trade hold (Spec 7); one active run; copies each Pokémon into `team`, in the given order (the sending-out order).
+- `ClimbTowerFloorAction::handle(TowerRun $run): Battle`: a `BATTLE_TOWER` battle against `TrainerTeamRoller` with the floor's level, boost and size. Species come from every species with wild levels; legendaries and mythicals only when `TowerFloorCalculator::allowsLegendaries()` (after floor 50). The player's side is built from the frozen copies in the run's team order, not the live Pokémon, starting at the HP stored in the run; the first with HP left starts. `heals_after` false. Refused while another battle is ongoing (one battle at a time).
+- `ReorderTowerTeamAction::handle(TowerRun $run, array $pokemonIds): void`: exactly the run's 6 Pokémon in a new order (otherwise `InvalidArgumentException`); only between floors (refused while the run's battle is ongoing).
+- Listener `App\BattleTower\Listeners\AdvanceTowerRunOnBattleEnded` for `BATTLE_TOWER` battles. Every ending: add each member's XP from the battle (task 1.17's counting with the Tower bonus; no XP Share) to its saved-up XP. On a win: store each member's HP back in the run, add the floor's points, `floor` + 1; on a checkpoint floor, heal the whole team. On a loss or a run: status `ENDED`.
 - When the run ends (loss, quit or floor 1,000): pay each member's saved-up XP with `AwardExperienceAction` (to the live Pokémon), update `best_tower_floor` (highest floor won) and add points to `users.battle_points`.
-- Tower hold: `App\BattleTower\Queries\ActiveTowerTeamQuery::contains(Pokemon $pokemon): bool`. `ReleasePokemonAction` and `EvolvePokemonAction` refuse a Pokémon in an active run (`App\BattleTower\Exceptions\PokemonInTowerRunException`); so do `CreateListingAction` and `MakeOfferAction` (Spec 7, when built). The Pokémon page shows an "In a Battle Tower run" badge, with a tooltip that boosts and TMs count from its next run.
+- Tower hold: `App\BattleTower\Queries\ActiveTowerTeamQuery::contains(Pokemon $pokemon): bool`. `ReleasePokemonAction` and `EvolvePokemonAction` refuse a Pokémon in an active run (`App\BattleTower\Exceptions\PokemonInTowerRunException`). Listing and offering refuse it too (tasks 7.4 and 7.5, as a reason of `PokemonNotTradeableException`). The Pokémon page shows an "In a Battle Tower run" badge, with a tooltip that boosts and TMs count from its next run.
 - `QuitTowerRunAction::handle(TowerRun $run): void`: ends the run, paying XP and keeping points and best floor.
 
-**Tests:** start needs 6; the run uses the frozen copy even after a team member levels up elsewhere; damage carries over between floors; checkpoint heals; XP is saved up per floor and paid only when the run ends (loss, quit); loss ends the run and keeps points; best floor updated; Tower hold refuses release and evolve; climbing is refused during another battle; resume after reload (the run is just loaded again).
+**Tests:** start needs 6 and keeps their order; the run uses the frozen copy even after a team member levels up elsewhere; damage carries over between floors; checkpoint heals; XP is saved up per floor (the lost floor's too) and paid only when the run ends (loss, run, quit); loss ends the run and keeps points; best floor updated; reorder changes who starts the next floor, refuses a wrong list and is refused during the run's battle; a fainted first member is skipped; no legendaries on floor 50; Tower hold refuses release and evolve; climbing is refused during another battle; resume after reload (the run is just loaded again).
 
 **Done when:** tests pass.
 
 ### 6.13 Battle Tower page
+
+- [ ] Done
 
 **Goal:** the lobby and the run screen.
 
@@ -1566,35 +1838,40 @@ Read [06-trainers-gyms-and-battle-tower.md](06-trainers-gyms-and-battle-tower.md
 
 **Build:**
 - Route `GET /battle-tower` named `battle-tower.web.index` → `BattleTowerController@index` with `BattleTowerIndexPageProps`: best floor, Battle Points, the active run (floor, next checkpoint, team with HP) or the player's Pokémon for picking.
-- Routes `POST /battle-tower/runs` (`battle-tower.web.runs.store`, `pokemon_ids`), `POST /battle-tower/runs/climb` (`battle-tower.web.runs.climb`, redirects to the battle), `DELETE /battle-tower/runs` (`battle-tower.web.runs.destroy`).
+- Routes `POST /battle-tower/runs` (`battle-tower.web.runs.store`, `pokemon_ids` in sending-out order), `POST /battle-tower/runs/climb` (`battle-tower.web.runs.climb`, redirects to the battle), `POST /battle-tower/runs/order` (`battle-tower.web.runs.reorder`, `pokemon_ids`), `DELETE /battle-tower/runs` (`battle-tower.web.runs.destroy`).
+- The team can be reordered in the lobby before starting (client-side, sent with `pokemon_ids`) and between floors (saved right away with the reorder route).
 - After a Tower battle, the battle page's end screen links back to the Tower ("Back to the Tower").
 - "Battle Tower" sub-item in the sidebar's "Battle" group, after "Gyms".
 
 **UI suggestions** (ideas, not requirements):
 - Header with two stats: "Best floor 37" and "Battle Points 1,240".
 - Lobby: six empty team slots and "Choose your team", which opens a picker dialog with search and Party / Box tabs; picked Pokémon fill the slots in order; primary "Start run" enabled at 6.
+- Reordering, in the lobby and during a run: each team member shows its number (1 = leads), a drag handle on desktop and "Move earlier" / "Move later" arrow buttons, the same pattern as the Party page (task 4.16). During a run, a line says "The first Pokémon with HP left leads the next floor."
 - Run in progress: a big "Floor 38", a progress line to the next checkpoint ("Checkpoint at floor 45: full heal"), the team with HP bars (fainted greyed out), two per row when the screen is wide enough and one per row on phones, primary "Next battle" and a destructive-outline "Quit run" with a confirmation.
 - Checkpoint reached: a green notice "Checkpoint! Your team was fully healed."
 - Run over: floors climbed, Battle Points earned, the XP each team member received (with level-ups), "New best floor!" when it is, and "Start a new run".
 - Lobby and run screens say the team is a frozen copy: "Your team as it was when the run started".
 
-**Tests:** feature tests for the props and routes; browser test: start a run and climb one floor.
+**Tests:** feature tests for the props and routes; browser tests: reorder the team in the lobby and start a run; reorder between floors and climb one floor.
 
 **Done when:** a player can play the Tower from the page.
 
 ### 6.14 Battle page: trainer battles
 
+- [ ] Done
+
 **Goal:** the battle page shows trainer battles properly.
 
-**Mock-up:** `docs/mockups/battle.html` (states "Trainer battle", "Trainer battle won")
+**Mock-up:** `docs/mockups/battle.html` (states "Trainer battle", "Run confirmation: trainer", "Trainer battle won", "Lost: XP kept", "Elite Four battle won", "Quit the Elite Four")
 
-**Build:** the header names the trainer ("Hiker Bob" / "Gym Leader Brock"); the opponent's team dots show all its Pokémon; no Throw ball button; the end screen shows the money earned (with the reduced-payout note when it applies), "Next: …" for Elite Four runs, and "Back to the Tower" with the HP left for Tower battles.
+**Build:** the header names the trainer ("Hiker Bob" / "Gym Leader Brock"); the opponent's team dots show all its Pokémon; no Throw ball button; the end screen shows the money earned (with the reduced-payout note when it applies) and the XP rows of task 1.21 for wins and losses; "Next: …" and "Quit the Elite Four" for Elite Four runs, with the Champion's prize after the last battle; and "Back to the Tower" with the HP left and the XP saved in the run for Tower battles.
+- The Run confirmation says what running costs: against a trainer, "Running counts as a loss: no money, but you keep the XP for opponents you knocked out."; in an Elite Four run, "…and it ends your Elite Four run."; in the Tower, "…and it ends your Tower run."
 
 **UI suggestions** (ideas, not requirements):
 - Header: the trainer's sprite next to "Gym Leader Brock" and "Pewter City Gym · Rock".
 - End screen money line: "+ ₽ 1,440" with a muted note "Reduced: your team outlevels Hiker Bob".
 
-**Tests:** feature test: trainer battle props (no balls, trainer name, team size); browser test: the win screen shows the money.
+**Tests:** feature test: trainer battle props (no balls, trainer name, team size); browser tests: the win screen shows the money and XP; quitting the Elite Four from the end screen.
 
 **Done when:** trainer, gym, Elite Four and Tower battles all look right on the page.
 
@@ -1606,14 +1883,16 @@ Read [07-trading.md](07-trading.md) first, including its "Details" section. Trad
 
 ### 7.1 Trade data
 
+- [ ] Done
+
 **Goal:** store listings and offers.
 
 **Build:**
 - Enums in `Shared\Enums`: `ListingStatus` (`OPEN`, `TRADED`, `CANCELLED`, `EXPIRED`), `OfferStatus` (`PENDING`, `ACCEPTED`, `DECLINED`, `WITHDRAWN`).
-- Migration `036_create_trade_listings_table.php`: `uuid id`, `foreignIdFor(User)` (seller), `foreignIdFor(Pokemon)`, nullable `looking_for` (200), `status` enum, `fee`, `expires_at`, nullable `traded_at`, timestamps; index `['status', 'expires_at']`.
-- Migration `037_create_trade_offers_table.php`: `uuid id`, `foreignIdFor(TradeListing)`, `foreignIdFor(User)` (offerer), `status` enum, timestamps; unique pending offer per user per listing (checked in code).
-- Migration `038_create_trade_offer_pokemon_table.php` (`trade_offer_id`, `pokemon_id`) and `039_create_trade_offer_items_table.php` (`trade_offer_id`, `item_type`, `item_id`, `quantity`).
-- Migration `040_add_is_on_trade_hold_to_pokemon_table.php`: `boolean('is_on_trade_hold')->default(false)`.
+- Migration `037_create_trade_listings_table.php`: `uuid id`, `foreignIdFor(User)` (seller), `foreignIdFor(Pokemon)`, nullable `looking_for` (200), `status` enum, `fee`, `expires_at`, nullable `traded_at`, timestamps; index `['status', 'expires_at']`.
+- Migration `038_create_trade_offers_table.php`: `uuid id`, `foreignIdFor(TradeListing)`, `foreignIdFor(User)` (offerer), `status` enum, timestamps; unique pending offer per user per listing (checked in code).
+- Migration `039_create_trade_offer_pokemon_table.php` (`trade_offer_id`, `pokemon_id`) and `040_create_trade_offer_items_table.php` (`trade_offer_id`, `item_type`, `item_id`, `quantity`).
+- Migration `041_add_is_on_trade_hold_to_pokemon_table.php`: `boolean('is_on_trade_hold')->default(false)`.
 - Models `Shared\Models\TradeListing`, `TradeOffer`, `TradeOfferItem` (with factories); `Pokemon::scopeTradeable()` (owned, not locked, not on hold).
 - Config `game.trading`: `listing_fee` (500), `listing_days` (7), `max_offer_pokemon` (6), `max_offer_items` (10), `looking_for_max_length` (200).
 
@@ -1622,6 +1901,8 @@ Read [07-trading.md](07-trading.md) first, including its "Details" section. Trad
 **Done when:** tables and models exist; tests pass.
 
 ### 7.2 Trade holds everywhere
+
+- [ ] Done
 
 **Goal:** a Pokémon on hold can't be used.
 
@@ -1636,10 +1917,12 @@ Read [07-trading.md](07-trading.md) first, including its "Details" section. Trad
 
 ### 7.3 Notifications
 
+- [ ] Done
+
 **Goal:** a reusable notification bell.
 
 **Build:**
-- `php artisan make:notifications-table` → migration `041_create_notifications_table.php`.
+- `php artisan make:notifications-table` → migration `042_create_notifications_table.php`.
 - Notifications in `App\Trading\Notifications`: `OfferReceived`, `OfferAccepted`, `OfferDeclined`, `ListingTraded`, `ListingExpired` (database channel; each stores a short message and a link).
 - `HandleInertiaRequests` shares `notifications.unreadCount`.
 - Route `GET /notifications` (`notifications.web.index`, the latest 20) and `POST /notifications/read` (`notifications.web.read`, marks all read).
@@ -1657,32 +1940,38 @@ Read [07-trading.md](07-trading.md) first, including its "Details" section. Trad
 
 ### 7.4 List a Pokémon
 
+- [ ] Done
+
 **Goal:** put a Pokémon on the market.
 
 **Build:**
 - `App\Trading\Actions\CreateListingAction::handle(User $user, Pokemon $pokemon, ?string $lookingFor): TradeListing`
-  - The Pokémon must be tradeable (`App\Trading\Exceptions\PokemonNotTradeableException` with the reason: locked, on hold, or taking part in an ongoing battle, meaning its ID is on the player's side of the player's `ONGOING` battle) and not the last party Pokémon (`PartyCannotBeEmptyException`).
-  - Spends the fee (`SpendMoneyAction`), removes it from the party, sets `is_on_trade_hold`, sets `expires_at`. One transaction.
+  - The Pokémon must be tradeable (`App\Trading\Exceptions\PokemonNotTradeableException` with the reason: locked, on hold, taking part in an ongoing battle (its ID is on the player's side of the player's `ONGOING` battle), or in an active Battle Tower run (`ActiveTowerTeamQuery`, task 6.12)) and not the last party Pokémon (`PartyCannotBeEmptyException`).
+  - Spends the fee (`SpendMoneyAction`), removes it from the party (closing the gap in the party order, task 4.15), sets `is_on_trade_hold`, sets `expires_at`. One transaction.
 
-**Tests:** listing created and fee spent; leaves the party and goes on hold; locked, held, in-battle and last-party Pokémon refused; not enough money refused; nothing changes when refused.
+**Tests:** listing created and fee spent; leaves the party and goes on hold; locked, held, in-battle, in-Tower-run and last-party Pokémon refused; not enough money refused; nothing changes when refused.
 
 **Done when:** tests pass.
 
 ### 7.5 Make, withdraw and decline offers
 
+- [ ] Done
+
 **Goal:** the offer side.
 
 **Build:**
 - `App\Trading\Actions\MakeOfferAction::handle(User $user, TradeListing $listing, array $pokemonIds, array $items): TradeOffer`
-  - Refuses: own listing, listing not open, an existing pending offer by the player, empty offer, more than the limits, Pokémon not tradeable (locked, on hold, or in an ongoing battle) or last party Pokémon, items not owned.
+  - Refuses: own listing, listing not open, an existing pending offer by the player, empty offer, more than the limits, Pokémon not tradeable (locked, on hold, in an ongoing battle, or in an active Battle Tower run) or last party Pokémon, items not owned.
   - Puts the Pokémon on hold (leaving the party) and removes the items from the inventory (`RemoveInventoryItemAction`). Notifies the seller (`OfferReceived`).
 - `WithdrawOfferAction::handle(TradeOffer $offer): void` (offerer only, pending only) and `DeclineOfferAction::handle(TradeOffer $offer): void` (seller only, pending only, notifies `OfferDeclined`): both release the holds and return the items (`AddInventoryItemAction`).
 
-**Tests:** offer made, holds and items set aside; each refusal; withdraw and decline give everything back; notifications sent.
+**Tests:** offer made, holds and items set aside; each refusal, including a Pokémon in an active Battle Tower run; withdraw and decline give everything back; notifications sent.
 
 **Done when:** tests pass.
 
 ### 7.6 Accept an offer
+
+- [ ] Done
 
 **Goal:** the trade happens.
 
@@ -1699,6 +1988,8 @@ Read [07-trading.md](07-trading.md) first, including its "Details" section. Trad
 
 ### 7.7 Cancel and expire listings
 
+- [ ] Done
+
 **Goal:** listings end without a trade.
 
 **Build:**
@@ -1711,6 +2002,8 @@ Read [07-trading.md](07-trading.md) first, including its "Details" section. Trad
 **Done when:** tests pass.
 
 ### 7.8 Pokémon details dialog
+
+- [ ] Done
 
 **Goal:** see everything about a Pokémon in a trade.
 
@@ -1728,9 +2021,11 @@ Read [07-trading.md](07-trading.md) first, including its "Details" section. Trad
 
 ### 7.9 Trade market page
 
+- [ ] Done
+
 **Goal:** browse open listings.
 
-**Mock-up:** `docs/mockups/trade-market.html` (states "Market", "No listings match", "Recent trades")
+**Mock-up:** `docs/mockups/trade-market.html` (states "Market", "Filters applied", "No listings match"; the "Recent trades" section is under the listings)
 
 **Build:**
 - Route `GET /trading` named `trading.web.index` → `TradeMarketController@index`, with `TradeMarketIndexPageProps`: open listings (paginated, newest first) filtered by species, type, shiny, minimum boost and minimum level, each with the Pokémon summary, offer count and time left; plus the latest public trades.
@@ -1750,23 +2045,26 @@ Read [07-trading.md](07-trading.md) first, including its "Details" section. Trad
 
 ### 7.10 New listing
 
+- [ ] Done
+
 **Goal:** list a Pokémon from the page.
 
 **Mock-up:** `docs/mockups/trade-market.html` (states "New listing: choose a Pokémon", "New listing: details")
 
 **Build:**
 - Route `POST /trading/listings` (`trading.web.listings.store`, `pokemon_id`, `looking_for`).
-- "New listing" opens a two-step dialog: pick a tradeable Pokémon (search; locked and held ones disabled with the reason), then "Looking for" and the fee confirmation.
-- The Pokémon page (Spec 4) gets a "Trade" action that opens step two directly.
+- "New listing" opens a two-step dialog: pick a tradeable Pokémon (search; locked, held and Tower-run ones disabled with the reason), then "Looking for" and the fee confirmation. Build it so step two can open on its own: the Pokémon page's "Trade" button (task 8.7) uses it.
 
 **UI suggestions** (ideas, not requirements):
 - Step 2 shows the chosen Pokémon's summary, a `Textarea` for "Looking for" with a 200-character counter, the fee ("Listing costs ₽ 500, refunded if no one trades within 7 days"), and a primary "List for ₽ 500".
 
 **Tests:** feature test for the route and its errors; browser test: list a Pokémon.
 
-**Done when:** a player can list from the market and the Pokémon page.
+**Done when:** a player can list from the market.
 
 ### 7.11 Listing page and offers
+
+- [ ] Done
 
 **Goal:** see a listing, make offers, and (as seller) accept or decline them.
 
@@ -1788,6 +2086,8 @@ Read [07-trading.md](07-trading.md) first, including its "Details" section. Trad
 **Done when:** a full trade can be done from the pages.
 
 ### 7.12 My trades
+
+- [ ] Done
 
 **Goal:** a player's listings, offers and history.
 
@@ -1813,10 +2113,12 @@ Read [08-social.md](08-social.md) first, including its "Details" section. Profil
 
 ### 8.1 Unique player names
 
+- [ ] Done
+
 **Goal:** every name is unique and usable on a profile.
 
 **Build:**
-- Migration `042_add_unique_name_index_to_users_table.php`: a unique index on `lower(name)` (or a `name_normalized` column if the database can't index an expression).
+- Migration `043_add_unique_name_index_to_users_table.php`: a unique index on `lower(name)` (or a `name_normalized` column if the database can't index an expression).
 - `StoreRegistrationRequest`: `name` 3–20 characters, letters, numbers, spaces, `-` and `_`, unique ignoring case, with a clear message ("That name is taken.").
 - `UserFactory` gives unique names.
 
@@ -1826,10 +2128,12 @@ Read [08-social.md](08-social.md) first, including its "Details" section. Profil
 
 ### 8.2 Latest captures feed
 
+- [ ] Done
+
 **Goal:** record notable catches and hatches as they happen.
 
 **Build:**
-- Migration `043_create_capture_feed_entries_table.php`: `uuid id`, `foreignIdFor(User)`, nullable `foreignIdFor(Pokemon)` (null on delete), `foreignIdFor(Species)`, `level`, `is_shiny`, `source` enum (`WILD`, `EGG`), `created_at`. Model `Shared\Models\CaptureFeedEntry`.
+- Migration `044_create_capture_feed_entries_table.php`: `uuid id`, `foreignIdFor(User)`, nullable `foreignIdFor(Pokemon)` (null on delete), `foreignIdFor(Species)`, `level`, `is_shiny`, `source` enum (`WILD`, `EGG`), `created_at`. Model `Shared\Models\CaptureFeedEntry`.
 - `App\Social\Mechanics\NotableCaptureChecker::isNotable(Species $species, int $level, bool $isShiny): bool`: shiny, legendary or mythical, or level ≥ `game.social.notable_level` (60).
 - Listener `App\Social\Listeners\RecordCaptureOnPokemonCaught` adds an entry for notable catches and hatches.
 - `App\Social\Queries\LatestCapturesQuery::get(int $limit = 20)`.
@@ -1840,10 +2144,12 @@ Read [08-social.md](08-social.md) first, including its "Details" section. Profil
 
 ### 8.3 Profile data
 
+- [ ] Done
+
 **Goal:** what a profile shows.
 
 **Build:**
-- `App\Social\Queries\PlayerProfileQuery::get(User $user)`: name, join date, Pokédex count (distinct species owned now) and total species, shiny count (owned now), best Battle Tower floor, badges per region with Elite Four and Champion status (Spec 6's `TrainerVictory`), and open trade listings (Spec 7).
+- `App\Social\Queries\PlayerProfileQuery::get(User $user)`: name, join date, Pokédex count (distinct species owned now) and total species (every species row, Megas, G-Max and forms included: 1,330 today), shiny count (owned now), best Battle Tower floor, badges per region with Elite Four and Champion status (Spec 6's `TrainerVictory`), and open trade listings (Spec 7).
 - Badges, Tower and listings show as empty until those specs are built.
 
 **Tests:** each number for a seeded player; a traded-away Pokémon no longer counts.
@@ -1851,6 +2157,8 @@ Read [08-social.md](08-social.md) first, including its "Details" section. Profil
 **Done when:** tests pass.
 
 ### 8.4 Profile page
+
+- [ ] Done
 
 **Goal:** a player's public profile.
 
@@ -1863,7 +2171,7 @@ Read [08-social.md](08-social.md) first, including its "Details" section. Profil
 
 **UI suggestions** (ideas, not requirements):
 - A header `Card`: an avatar with the initials (the same `Avatar` as the sidebar), the name, "Joined Nov 2026", and "This is you" for your own profile.
-- Three stat tiles: Pokédex "702 / 1,025" with a thin `Progress` and the %, Shinies, Best Tower floor.
+- Three stat tiles: Pokédex "702 / 1,330" with a thin `Progress` and the %, Shinies, Best Tower floor.
 - Badges: one row per region with 8 small badge marks (gold when earned, outline when not), then "Elite Four" and "Champion" marks; regions with no badges collapse into "No badges yet" text.
 - Active trade listings as the same listing cards as the trade market (Spec 7); empty: "No active listings".
 
@@ -1872,6 +2180,8 @@ Read [08-social.md](08-social.md) first, including its "Details" section. Profil
 **Done when:** profiles open from every player name.
 
 ### 8.5 Player search
+
+- [ ] Done
 
 **Goal:** find a player by name.
 
@@ -1894,6 +2204,8 @@ Read [08-social.md](08-social.md) first, including its "Details" section. Profil
 
 ### 8.6 Dashboard
 
+- [ ] Done
+
 **Goal:** the new home page.
 
 **Mock-up:** `docs/mockups/dashboard.html` (all states)
@@ -1915,11 +2227,13 @@ Read [08-social.md](08-social.md) first, including its "Details" section. Profil
 
 ### 8.7 Pokémon page: Trade action
 
+- [ ] Done
+
 **Goal:** list a Pokémon from its own page (task 7.10).
 
 **Mock-up:** `docs/mockups/pokemon.html` (states "Overview" and "Locked")
 
-**Build:** a "Trade" outline button in the Pokémon page's action row opens task 7.10's listing dialog at step two. Disabled with the reason when the Pokémon is locked, on trade hold, or the last party Pokémon; "View listing" instead when it is already listed.
+**Build:** a "Trade" outline button in the Pokémon page's action row opens task 7.10's listing dialog at step two. Disabled with the reason when the Pokémon is locked, on trade hold, in a Battle Tower run, or the last party Pokémon; "View listing" instead when it is already listed.
 
 **Tests:** browser test: list a Pokémon from its page.
 
