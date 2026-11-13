@@ -2,6 +2,8 @@
 
 Before planning or editing, find the row whose globs match the file's path and read that rule file.
 
+Feature behaviour (game rules, formulas, page designs) lives in `docs/specs/`; read the relevant spec before working on a feature.
+
 | Applies to | Rule file |
 | --- | --- |
 | src/App/**/Actions/** | .ai/rules/actions.md |

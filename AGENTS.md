@@ -186,3 +186,10 @@ Vue components must have a single root element.
 - IMPORTANT: Activate `inertia-vue-development` when working with Inertia Vue client-side patterns.
 
 </laravel-boost-guidelines>
+
+# Feature Specs
+
+- Feature behaviour (game rules, formulas, numbers and page designs) is defined in `docs/specs/`. `docs/specs/README.md` lists every spec and its status.
+- Before planning or changing a feature, read the spec that covers it. Follow the spec over what the existing code suggests; if they disagree, point it out instead of silently picking one.
+- When a decision changes a spec (a new rule, a changed number, a page change), update the spec file in the same change as the code.
+- Planned work is listed in `docs/specs/tasks.md`. Mark a task done when its work is merged.
