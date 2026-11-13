@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="claude:viewport-fit-sides" content="cover">
+<title>Registration mock-up</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="assets/mockup.css">
+<style>
+  .auth { display: grid; min-height: 100vh; background: var(--card); }
+  @media (min-width: 1024px) { .auth { grid-template-columns: 1fr 1fr; } }
+  .auth-form-side {
+    display: flex; flex-direction: column; gap: 16px;
+    padding-block: 24px;
+    padding-left: max(24px, env(safe-area-inset-left, 0px));
+    padding-right: max(24px, env(safe-area-inset-right, 0px));
+  }
+  .logo { font-weight: 700; font-size: 18px; letter-spacing: -.01em; }
+  .auth-main { flex: 1; display: flex; align-items: center; justify-content: center; }
+  .form { width: 100%; max-width: 320px; display: flex; flex-direction: column; gap: 20px; }
+  .form-header { text-align: center; display: flex; flex-direction: column; gap: 4px; }
+  .form-header h1 { font-size: 22px; font-weight: 700; }
+  .field { display: flex; flex-direction: column; gap: 6px; }
+  .field label, .field legend { font-size: 14px; font-weight: 500; padding: 0; }
+  .input, .select { height: 38px; border: 1px solid var(--border); border-radius: 8px; padding: 0 12px; background: var(--card); width: 100%; }
+  fieldset { border: 0; margin: 0; padding: 0; min-width: 0; }
+  .starters { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
+  .starter { position: relative; display: flex; flex-direction: column; align-items: center; gap: 6px; padding: 10px 6px; border: 1px solid var(--border); border-radius: 10px; background: var(--card); cursor: pointer; text-align: center; }
+  .starter:hover { background: var(--muted); }
+  .starter input { position: absolute; opacity: 0; pointer-events: none; }
+  .starter:has(input:checked) { border: 2px solid var(--primary); padding: 9px 5px; }
+  .starter:has(input:focus-visible) { outline: 2px solid var(--ring); outline-offset: 2px; }
+  .check { position: absolute; top: 6px; right: 6px; width: 18px; height: 18px; border-radius: 999px; background: var(--primary); color: var(--primary-fg); display: none; align-items: center; justify-content: center; }
+  .starter:has(input:checked) .check { display: flex; }
+  .starter-name { font-size: 13px; font-weight: 600; }
+  .field-error { font-size: 13px; color: var(--destructive); }
+  .field-description { font-size: 13px; color: var(--muted-fg); }
+  .art { display: none; background: var(--muted); padding: 24px; }
+  @media (min-width: 1024px) { .art { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); place-items: center; gap: 12px; } }
+  .art .sprite { width: 56px; height: 56px; border-radius: 10px; }
+</style>
+</head>
+<body>
+<div class="mock-bar">
+  <a href="index.html">← All mock-ups</a>
+  <span><strong>Registration: choose a starter</strong> · tasks 2.13, 2.14</span>
+  <label for="mockup-state">State
+    <select id="mockup-state">
+      <option value="empty">No starter chosen yet</option>
+      <option value="chosen">Starter chosen</option>
+      <option value="error">Submitted without a starter</option>
+    </select>
+  </label>
+  <span>Uses the existing AuthLayout.</span>
+</div>
+
+<div class="auth">
+  <div class="auth-form-side">
+    <div class="logo">Pokémon Deluxe</div>
+    <main class="auth-main">
+      <form class="form" id="form" novalidate>
+        <div class="form-header">
+          <h1>Create an account</h1>
+          <p class="small muted">Enter your details and pick your first Pokémon.</p>
+        </div>
+        <div class="field"><label for="name">Name</label><input class="input" id="name" type="text" value="Ash Ketchum" autocomplete="name"></div>
+        <div class="field"><label for="email">Email</label><input class="input" id="email" type="email" value="ash@example.com" autocomplete="email"></div>
+        <div class="field"><label for="password">Password</label><input class="input" id="password" type="password" value="pikachu123" autocomplete="new-password"></div>
+        <div class="field"><label for="password-confirmation">Confirm password</label><input class="input" id="password-confirmation" type="password" value="pikachu123" autocomplete="new-password"></div>
+
+        <fieldset class="field">
+          <legend>Choose your starter</legend>
+          <p class="field-description">It joins your party at level 5. You'll also get 20 Poké Balls, 5 Great Balls and ₽ 2,000.</p>
+          <label for="region" class="xs muted" style="font-weight: 500;">Region</label>
+          <select class="select" id="region">
+            <option value="kanto">Kanto</option><option value="johto">Johto</option><option value="hoenn">Hoenn</option>
+            <option value="sinnoh">Sinnoh</option><option value="unova">Unova</option><option value="kalos">Kalos</option>
+            <option value="alola">Alola</option><option value="galar">Galar</option><option value="paldea">Paldea</option>
+          </select>
+          <div class="starters" role="radiogroup" aria-label="Starter" id="starters"></div>
+          <p class="field-error" data-show="error">Choose a starter to continue.</p>
+          <p class="field-description" id="chosen-text" data-show="chosen"></p>
+        </fieldset>
+
+        <button type="submit" class="btn btn-primary btn-lg">Create account</button>
+        <p class="field-description" style="text-align: center;">Already have an account? <a href="#" style="color: var(--fg);">Log in</a></p>
+        <p class="note">Region select keeps the narrow form short: 3 cards per region instead of 27 at once. The choice stays selected when switching regions. Real page: RadioGroup styled as cards, sent as <code>starter</code>.</p>
+      </form>
+    </main>
+  </div>
+  <div class="art" aria-hidden="true" id="art"></div>
+</div>
+
+<script src="assets/mockup.js"></script>
+<script>
+  (function () {
+    var regions = {
+      kanto: ['Bulbasaur', 'Charmander', 'Squirtle'], johto: ['Chikorita', 'Cyndaquil', 'Totodile'],
+      hoenn: ['Treecko', 'Torchic', 'Mudkip'], sinnoh: ['Turtwig', 'Chimchar', 'Piplup'],
+      unova: ['Snivy', 'Tepig', 'Oshawott'], kalos: ['Chespin', 'Fennekin', 'Froakie'],
+      alola: ['Rowlet', 'Litten', 'Popplio'], galar: ['Grookey', 'Scorbunny', 'Sobble'],
+      paldea: ['Sprigatito', 'Fuecoco', 'Quaxly']
+    };
+    var types = [['grass', 'Grass'], ['fire', 'Fire'], ['water', 'Water']];
+    var chosen = null;
+    var list = document.getElementById('starters');
+    var region = document.getElementById('region');
+
+    function render() {
+      list.innerHTML = '';
+      regions[region.value].forEach(function (name, i) {
+        var label = document.createElement('label');
+        label.className = 'starter';
+        label.innerHTML =
+          '<input type="radio" name="starter" value="' + name.toLowerCase() + '">' +
+          '<span class="check" aria-hidden="true"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L20 7"/></svg></span>' +
+          '<span class="sprite sprite-md" aria-hidden="true">' + name + '<br>portrait</span>' +
+          '<span class="starter-name">' + name + '</span>' +
+          '<span class="type type-' + types[i][0] + '">' + types[i][1] + '</span>';
+        var input = label.querySelector('input');
+        if (chosen === name) { input.checked = true; }
+        input.addEventListener('change', function () { chosen = name; window.mockup.go('chosen'); });
+        list.appendChild(label);
+      });
+      document.getElementById('chosen-text').textContent = chosen ? 'You chose ' + chosen + '.' : '';
+    }
+
+    region.addEventListener('change', render);
+    document.addEventListener('mockup:state', function (event) {
+      if (event.detail === 'chosen' && !chosen) { chosen = 'Charmander'; region.value = 'kanto'; }
+      if (event.detail !== 'chosen') { chosen = null; }
+      render();
+    });
+    document.getElementById('form').addEventListener('submit', function (event) {
+      event.preventDefault();
+      if (!chosen) { window.mockup.go('error'); }
+    });
+
+    var art = document.getElementById('art');
+    for (var i = 0; i < 49; i++) { var s = document.createElement('div'); s.className = 'sprite'; art.appendChild(s); }
+    if (document.documentElement.getAttribute('data-state') === 'chosen') { chosen = 'Charmander'; }
+    render();
+  })();
+</script>
+</body>
+</html>

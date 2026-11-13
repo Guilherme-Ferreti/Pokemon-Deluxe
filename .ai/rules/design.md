@@ -7,6 +7,13 @@ paths:
 
 How pages look and behave. Follow it for every new page or component; tasks in `docs/specs/tasks.md` add **UI suggestions** on top of it.
 
+## Mock-ups
+
+- A task with a **Mock-up** link has an interactive mock-up in `docs/mockups/`. Match its layout, content, copy and every state in its State menu.
+- The mock-up shows the result, not the code: build it from the components below. Its CSS classes and colours are stand-ins for the project's components and theme tokens.
+- Dashed boxes in a mock-up stand for `SpeciesSprite` or `SpeciesPortrait`.
+- When the mock-up and this guide disagree, follow the guide and mention the difference.
+
 ## Build from what exists
 
 - Use, in this order: game components (`shared/components/game/`), app wrappers (`shared/components/{layout,content,form,list}/`), then shadcn-vue primitives (`shared/components/ui/`). Write a new component only when none of them fits.
