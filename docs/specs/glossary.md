@@ -82,6 +82,10 @@ One name per idea, used everywhere: specs, code, database, tests and UI. When yo
 | On trade hold | `is_on_trade_hold` | The Pokémon is in a listing or offer and can't be used. |
 | Accept / decline / withdraw / cancel / expire | `AcceptOfferAction`, `DeclineOfferAction`, `WithdrawOfferAction`, `CancelListingAction`, `ExpireListingAction` | |
 | Notification | Laravel database notifications | Shown under the bell. |
+| Player / profile | `User`, `PlayerProfileQuery`, `/players/{user}` | Another person playing. Not an NPC trainer. |
+| Latest captures | `CaptureFeedEntry`, `LatestCapturesQuery` | Notable catches and hatches, recorded at catch time. |
+| Notable capture | `NotableCaptureChecker` | Shiny, legendary, mythical or level 60+. |
+| Waiting for you | Dashboard section | Things the player can act on now. |
 | Original trainer | `original_user_id` / `originalUser()` | Already in the code. |
 | Party / Box | `in_party` / `inParty()`, `inBox()` | Already in the code. |
 

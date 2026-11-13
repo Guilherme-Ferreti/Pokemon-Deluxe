@@ -1800,3 +1800,123 @@ Read [07-trading.md](07-trading.md) first, including "Details to confirm". Tradi
 **Tests:** feature test for each tab's props.
 
 **Done when:** a player can follow their trades.
+
+---
+
+## 8. Spec 8 — Social
+
+Read [08-social.md](08-social.md) first, including "Details to confirm". Profiles, player search and the captures feed live in a new domain, `src/App/Social`; the Dashboard stays in `src/App/Dashboard`.
+
+### 8.1 Unique player names
+
+**Goal:** every name is unique and usable on a profile.
+
+**Build:**
+- Migration `042_add_unique_name_index_to_users_table.php`: a unique index on `lower(name)` (or a `name_normalized` column if the database can't index an expression).
+- `StoreRegistrationRequest`: `name` 3–20 characters, letters, numbers, spaces, `-` and `_`, unique ignoring case, with a clear message ("That name is taken.").
+- `UserFactory` gives unique names.
+
+**Tests:** registration refuses a taken name in any case; refuses bad characters and lengths.
+
+**Done when:** tests pass.
+
+### 8.2 Latest captures feed
+
+**Goal:** record notable catches and hatches as they happen.
+
+**Build:**
+- Migration `043_create_capture_feed_entries_table.php`: `uuid id`, `foreignIdFor(User)`, nullable `foreignIdFor(Pokemon)` (null on delete), `foreignIdFor(Species)`, `level`, `is_shiny`, `source` enum (`WILD`, `EGG`), `created_at`. Model `Shared\Models\CaptureFeedEntry`.
+- `App\Social\Mechanics\NotableCaptureChecker::isNotable(Species $species, int $level, bool $isShiny): bool`: shiny, legendary or mythical, or level ≥ `game.social.notable_level` (60).
+- Listener `App\Social\Listeners\RecordCaptureOnPokemonCaught` adds an entry for notable catches and hatches.
+- `App\Social\Queries\LatestCapturesQuery::get(int $limit = 20)`.
+
+**Tests:** shiny, legendary, mythical and level 60 are recorded; ordinary ones are not; the entry keeps the catch level after a level-up; the newest come first.
+
+**Done when:** tests pass.
+
+### 8.3 Profile data
+
+**Goal:** what a profile shows.
+
+**Build:**
+- `App\Social\Queries\PlayerProfileQuery::get(User $user)`: name, join date, Pokédex count (distinct species owned now) and total species, shiny count (owned now), best Battle Tower floor, badges per region with Elite Four and Champion status (Spec 6's `TrainerVictory`), and open trade listings (Spec 7).
+- Badges, Tower and listings show as empty until those specs are built.
+
+**Tests:** each number for a seeded player; a traded-away Pokémon no longer counts.
+
+**Done when:** tests pass.
+
+### 8.4 Profile page
+
+**Goal:** a player's public profile.
+
+**Mock-up:** `docs/mockups/profile.html` (all states)
+
+**Build:**
+- Route `GET /players/{user}` named `social.web.players.show` → `PlayerController@show` with `PlayerShowPageProps` from `PlayerProfileQuery`. Visible to every logged-in player.
+- Every player name in the app (captures feed, recent trades, listings, offers, notifications) links here.
+- The sidebar user menu gets "My profile".
+
+**UI suggestions** (ideas, not requirements):
+- A header `Card`: an avatar with the initials (the same `Avatar` as the sidebar), the name, "Joined Nov 2026", and "This is you" for your own profile.
+- Three stat tiles: Pokédex "702 / 1,025" with a thin `Progress` and the %, Shinies, Best Tower floor.
+- Badges: one row per region with 8 small badge marks (gold when earned, outline when not), then "Elite Four" and "Champion" marks; regions with no badges collapse into "No badges yet" text.
+- Active trade listings as the same listing cards as the trade market (Spec 7); empty: "No active listings".
+
+**Tests:** feature test for the props; guests redirected to login.
+
+**Done when:** profiles open from every player name.
+
+### 8.5 Player search
+
+**Goal:** find a player by name.
+
+**Mock-up:** `docs/mockups/players.html` (all states)
+
+**Build:**
+- Route `GET /players` named `social.web.players.index` (`?search=`) with `PlayersIndexPageProps`: matching players (name, join date, Pokédex %), 20 per page, sorted by name.
+- Sidebar "Players" link, after "Trading".
+
+**Mock-up (sidebar):** `docs/mockups/layout.html`
+
+**UI suggestions** (ideas, not requirements):
+- `AppPageHeader` ("Players") with a search `InputGroup` that searches as you type (debounced).
+- One list `Card` with rows: avatar initials, name, "Joined Nov 2026", "Pokédex 68%", the whole row linking to the profile. `AppPagination` below.
+- Empty search shows the newest players; no match: `AppEmptyState` "No players named "gary"".
+
+**Tests:** feature tests: search by part of a name, ignoring case; pagination.
+
+**Done when:** a player can find others by name.
+
+### 8.6 Dashboard
+
+**Goal:** the new home page.
+
+**Mock-up:** `docs/mockups/dashboard.html` (all states)
+
+**Build:**
+- `DashboardPageProps` (replacing the empty Dashboard): "waiting for you" items (eggs ready to hatch or catch, rewards to claim with their count, new offers on the player's listings, an ongoing battle, an active Tower run), today's daily missions in short form with the reset time and streak, the latest captures (`LatestCapturesQuery`, 10), recent trades (5), and the shortcuts.
+- Load captures and trades as deferred props so the page shows fast; skeletons meanwhile.
+
+**UI suggestions** (ideas, not requirements):
+- `AppPageHeader` "Welcome back, Ash!".
+- Top row: "Waiting for you" `Card` (each item a row with an icon, a short sentence and a "Go" link; empty: "All caught up" with a check icon) next to a compact "Daily missions" `Card` (goal, "3 / 5", the reset countdown, the streak).
+- Then "Latest captures" and "Recent trades" side by side on desktop, stacked on phones; each row: portrait, "Misty caught Shiny Gyarados Lv 34", time ago; names link to profiles.
+- Shortcuts: a row of outline buttons (Explore, Party, Box, Shop, Missions, Trading).
+- Phone order: waiting, missions, captures, trades, shortcuts.
+
+**Tests:** feature test for each prop group, including "All caught up" when nothing waits.
+
+**Done when:** the Dashboard matches the mock-up.
+
+### 8.7 Pokémon page: Trade action
+
+**Goal:** list a Pokémon from its own page (task 7.10).
+
+**Mock-up:** `docs/mockups/pokemon.html` (states "Overview" and "Locked")
+
+**Build:** a "Trade" outline button in the Pokémon page's action row opens task 7.10's listing dialog at step two. Disabled with the reason when the Pokémon is locked, on trade hold, or the last party Pokémon; "View listing" instead when it is already listed.
+
+**Tests:** browser test: list a Pokémon from its page.
+
+**Done when:** a Pokémon can be listed from its page.

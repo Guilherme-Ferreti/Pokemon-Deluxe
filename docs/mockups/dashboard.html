@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="claude:viewport-fit-sides" content="cover">
+<title>Dashboard mock-up</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="assets/mockup.css">
+<style>
+  .two { display: flex; flex-wrap: wrap; gap: 16px; align-items: stretch; }
+  .two > .card { flex: 1 1 340px; }
+  .wait-row { display: flex; align-items: center; gap: 12px; padding: 10px 0; border-top: 1px solid var(--border); }
+  .wait-row:first-child { border-top: 0; }
+  .wait-icon { width: 32px; height: 32px; border-radius: 8px; background: var(--muted); display: flex; align-items: center; justify-content: center; flex-shrink: 0; color: var(--fg); }
+  .wait-row .text { flex: 1; min-width: 0; font-size: 14px; }
+  .go { font-size: 13px; font-weight: 500; color: var(--fg); text-decoration: none; padding: 4px 10px; border-radius: 6px; border: 1px solid var(--border); white-space: nowrap; }
+  .go:hover { background: var(--muted); }
+  .mission-row { display: flex; align-items: center; gap: 10px; padding: 8px 0; border-top: 1px solid var(--border); font-size: 13px; }
+  .mission-row:first-child { border-top: 0; }
+  .mission-row .goal { flex: 1; min-width: 0; }
+  .feed-row { display: flex; align-items: center; gap: 10px; padding: 8px 0; border-top: 1px solid var(--border); font-size: 13px; }
+  .feed-row:first-child { border-top: 0; }
+  .feed-row .text { flex: 1; min-width: 0; }
+  .feed-row a { color: var(--fg); font-weight: 600; }
+  .feed-row .when { color: var(--muted-fg); font-size: 12px; white-space: nowrap; }
+  .shortcuts { display: flex; flex-wrap: wrap; gap: 8px; }
+  .caught-up { display: flex; align-items: center; gap: 12px; padding: 16px 0; color: var(--muted-fg); }
+  .caught-up .wait-icon { background: var(--good-soft); color: var(--good); }
+</style>
+</head>
+<body>
+<div class="mock-bar">
+  <a href="index.html">← All mock-ups</a>
+  <span><strong>Dashboard</strong> · task 8.6</span>
+  <label for="mockup-state">State
+    <select id="mockup-state">
+      <option value="default">Things waiting</option>
+      <option value="caught-up">All caught up</option>
+      <option value="loading">Feeds loading</option>
+      <option value="new-player">Brand-new player</option>
+    </select>
+  </label>
+  <span>Shown inside the app layout (sidebar not drawn). Dashed boxes = portraits.</span>
+</div>
+
+<main class="page">
+  <div class="page-header">
+    <div class="stack" style="gap: 2px;">
+      <h1>Welcome back, Ash!</h1>
+      <p>Here's what's happening.</p>
+    </div>
+  </div>
+
+  <div class="two">
+    <section class="card">
+      <h2>Waiting for you</h2>
+      <div data-show="default loading">
+        <div class="wait-row"><span class="wait-icon" aria-hidden="true">⚔</span><span class="text">You're in the middle of a battle with a wild Pidgey.</span><a class="go" href="battle.html">Go</a></div>
+        <div class="wait-row"><span class="wait-icon" aria-hidden="true">◎</span><span class="text">2 eggs are ready to hatch.</span><a class="go" href="nursery.html">Go</a></div>
+        <div class="wait-row"><span class="wait-icon" aria-hidden="true">✓</span><span class="text">3 rewards to claim.</span><a class="go" href="missions.html#claimable">Go</a></div>
+        <div class="wait-row"><span class="wait-icon" aria-hidden="true">⇄</span><span class="text">Misty made an offer on your Shiny Gible.</span><a class="go" href="trade-listing.html#seller">Go</a></div>
+        <div class="wait-row"><span class="wait-icon" aria-hidden="true">▲</span><span class="text">Your Battle Tower run is waiting at floor 38.</span><a class="go" href="tower.html#run">Go</a></div>
+      </div>
+      <div class="caught-up" data-show="caught-up">
+        <span class="wait-icon" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12l5 5L20 7"/></svg></span>
+        <span>All caught up. Nothing needs you right now.</span>
+      </div>
+      <div class="stack" data-show="new-player" style="gap: 10px;">
+        <div class="wait-row"><span class="wait-icon" aria-hidden="true">➜</span><span class="text">Start exploring to find wild Pokémon.</span><a class="go" href="explore.html">Explore</a></div>
+        <div class="wait-row"><span class="wait-icon" aria-hidden="true">✓</span><span class="text">Your first daily missions are ready.</span><a class="go" href="missions.html">Go</a></div>
+      </div>
+    </section>
+
+    <section class="card">
+      <div class="row" style="justify-content: space-between;">
+        <h2>Daily missions</h2>
+        <span class="xs muted num">New in 07:42:10</span>
+      </div>
+      <div>
+        <div class="mission-row"><span class="badge xs" style="background: var(--good-soft); color: var(--good);">Easy</span><span class="goal">Catch 4 Water Pokémon</span><span class="num muted">3 / 4</span></div>
+        <div class="mission-row"><span class="badge xs" style="background: var(--warn-soft); color: var(--warn-fg);">Medium</span><span class="goal">Win 3 battles against trainers</span><span class="num" style="color: var(--good); font-weight: 600;">3 / 3 ✓</span></div>
+        <div class="mission-row"><span class="badge xs" style="background: color-mix(in oklch, var(--bad) 14%, var(--card)); color: var(--bad);">Hard</span><span class="goal">Catch a Pokémon at level 55 or higher</span><span class="num muted">0 / 1</span></div>
+      </div>
+      <div class="row" style="justify-content: space-between;"><span class="small"><strong>Streak:</strong> <span class="num" data-show="default caught-up loading">4 days</span><span class="num" data-show="new-player">0 days</span></span><a class="go" href="missions.html">All missions</a></div>
+    </section>
+  </div>
+
+  <div class="two">
+    <section class="card">
+      <h2>Latest captures</h2>
+      <div data-show="default caught-up new-player">
+        <div class="feed-row"><span class="sprite sprite-xs sprite-shiny" aria-hidden="true"></span><span class="text"><a href="profile.html">Misty</a> caught <strong style="color: var(--gold-fg);">Shiny Gyarados</strong> Lv 34</span><span class="when">2m ago</span></div>
+        <div class="feed-row"><span class="sprite sprite-xs" aria-hidden="true"></span><span class="text"><a href="profile.html">Brock</a> hatched <strong>Mewtwo</strong> Lv 1</span><span class="when">15m ago</span></div>
+        <div class="feed-row"><span class="sprite sprite-xs" aria-hidden="true"></span><span class="text"><a href="profile.html">Ash</a> caught <strong>Dragonite</strong> Lv 62</span><span class="when">1h ago</span></div>
+        <div class="feed-row"><span class="sprite sprite-xs" aria-hidden="true"></span><span class="text"><a href="profile.html">Erika</a> caught <strong>Celebi</strong> Lv 64</span><span class="when">3h ago</span></div>
+        <div class="feed-row"><span class="sprite sprite-xs sprite-shiny" aria-hidden="true"></span><span class="text"><a href="profile.html">Gary</a> hatched <strong style="color: var(--gold-fg);">Shiny Eevee</strong> Lv 1</span><span class="when">yesterday</span></div>
+      </div>
+      <div class="stack" data-show="loading" aria-busy="true" style="gap: 10px;">
+        <div class="skeleton" style="height: 28px;"></div><div class="skeleton" style="height: 28px;"></div><div class="skeleton" style="height: 28px;"></div><div class="skeleton" style="height: 28px;"></div>
+      </div>
+    </section>
+
+    <section class="card">
+      <div class="row" style="justify-content: space-between;"><h2>Recent trades</h2><a class="go" href="trade-market.html">Trade market</a></div>
+      <div data-show="default caught-up new-player">
+        <div class="feed-row"><span class="text"><a href="profile.html">Misty</a> traded <strong style="color: var(--gold-fg);">Shiny Gible</strong> Lv 48 +30 to <a href="profile.html">Brock</a> for <strong>Onix</strong> +50</span><span class="when">2h ago</span></div>
+        <div class="feed-row"><span class="text"><a href="profile.html">Ash</a> traded <strong>Dragonite</strong> to <a href="profile.html">Gary</a> for <strong>Lapras</strong> + 10 boost stones</span><span class="when">yesterday</span></div>
+        <div class="feed-row"><span class="text"><a href="profile.html">Erika</a> traded <strong>Mewtwo</strong> to <a href="profile.html">Sabrina</a> for <strong>Alakazam</strong> + Master Ball</span><span class="when">3 days ago</span></div>
+      </div>
+      <div class="stack" data-show="loading" aria-busy="true" style="gap: 10px;">
+        <div class="skeleton" style="height: 28px;"></div><div class="skeleton" style="height: 28px;"></div><div class="skeleton" style="height: 28px;"></div>
+      </div>
+    </section>
+  </div>
+
+  <section class="stack" style="gap: 8px;">
+    <h2 style="font-size: 15px; font-weight: 600;">Shortcuts</h2>
+    <div class="shortcuts">
+      <a class="btn btn-outline" href="explore.html">Explore</a>
+      <a class="btn btn-outline" href="#">Party</a>
+      <a class="btn btn-outline" href="#">Box</a>
+      <a class="btn btn-outline" href="shop.html">Shop</a>
+      <a class="btn btn-outline" href="missions.html">Missions</a>
+      <a class="btn btn-outline" href="trade-market.html">Trading</a>
+    </div>
+  </section>
+  <p class="note">Icons here are stand-ins: the real page uses Tabler icons (swords, egg, gift, arrows, tower). Captures and trades are deferred props with skeletons. Player names link to profiles. Shiny names use the gold colour, never a star.</p>
+</main>
+
+<script src="assets/mockup.js"></script>
+</body>
+</html>

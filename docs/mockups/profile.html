@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="claude:viewport-fit-sides" content="cover">
+<title>Player profile mock-up</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="assets/mockup.css">
+<style>
+  .head { flex-direction: row; flex-wrap: wrap; align-items: center; gap: 16px; }
+  .avatar { width: 64px; height: 64px; border-radius: 16px; background: var(--muted); display: flex; align-items: center; justify-content: center; font-size: 22px; font-weight: 700; flex-shrink: 0; }
+  .tiles { display: flex; flex-wrap: wrap; gap: 12px; }
+  .tile { flex: 1 1 180px; gap: 4px; padding: 14px 16px; }
+  .tile .big { font-size: 26px; font-weight: 700; letter-spacing: -.02em; }
+  .region { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 16px; padding: 10px 0; border-top: 1px solid var(--border); }
+  .region:first-child { border-top: 0; }
+  .region-name { width: 72px; font-weight: 600; font-size: 14px; }
+  .marks { display: flex; gap: 5px; }
+  .mark { width: 16px; height: 16px; border-radius: 5px; border: 2px dashed var(--placeholder); }
+  .mark.on { border: 2px solid var(--gold); background: var(--gold-soft); }
+  .titles { display: flex; gap: 6px; }
+  .listings { display: grid; grid-template-columns: repeat(auto-fill, minmax(12rem, 1fr)); gap: 12px; }
+  .listing { align-items: center; text-align: center; gap: 6px; padding: 14px 10px 10px; }
+</style>
+</head>
+<body>
+<div class="mock-bar">
+  <a href="index.html">← All mock-ups</a>
+  <span><strong>Player profile</strong> · task 8.4</span>
+  <label for="mockup-state">State
+    <select id="mockup-state">
+      <option value="other">Another player</option>
+      <option value="own">Your own profile</option>
+      <option value="new">A new player</option>
+    </select>
+  </label>
+  <span>Shown inside the app layout (sidebar not drawn).</span>
+</div>
+
+<main class="page">
+  <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="players.html">Players</a><span aria-hidden="true">›</span><span id="crumb">Misty</span></nav>
+
+  <section class="card head">
+    <span class="avatar" aria-hidden="true" id="initials">MI</span>
+    <div class="stack" style="gap: 4px;">
+      <div class="row" style="gap: 8px;"><h1 style="font-size: 24px; font-weight: 700;" id="name">Misty</h1><span class="badge" data-show="own">This is you</span></div>
+      <span class="small muted" id="joined">Joined Mar 2026</span>
+    </div>
+  </section>
+
+  <div class="tiles">
+    <div class="card tile">
+      <span class="xs muted">Pokédex</span>
+      <span class="big num" id="dex">702 <span class="muted" style="font-size: 16px; font-weight: 500;">/ 1,025</span></span>
+      <div class="bar bar-thin bar-blue" role="progressbar" aria-label="Pokédex completion" aria-valuemin="0" aria-valuemax="100" aria-valuenow="68"><span id="dex-bar" style="width: 68%;"></span></div>
+      <span class="xs muted num" id="dex-pct">68% of every species</span>
+    </div>
+    <div class="card tile"><span class="xs muted">Shinies</span><span class="big num" id="shinies" style="color: var(--gold-fg);">41</span><span class="xs muted">owned now</span></div>
+    <div class="card tile"><span class="xs muted">Best Battle Tower floor</span><span class="big num" id="tower">137</span><span class="xs muted" id="tower-sub">Highest floor won</span></div>
+  </div>
+
+  <section class="card">
+    <h2>Badges</h2>
+    <div id="badges"></div>
+  </section>
+
+  <section class="stack" style="gap: 8px;">
+    <h2 style="font-size: 16px; font-weight: 600;">Active trade listings</h2>
+    <div class="listings" data-show="other own">
+      <div class="card listing shiny-ring"><span class="sprite sprite-md sprite-shiny" aria-hidden="true">Shiny Gyarados</span><strong style="color: var(--gold-fg);">Shiny Gyarados</strong><span class="row" style="justify-content: center; gap: 4px;"><span class="badge num">Lv 34</span><span class="badge num">+6</span></span><span class="xs muted">2 offers · 5 days left</span><a class="btn btn-outline btn-block" style="min-height: 34px;" href="trade-listing.html#visitor">View</a></div>
+      <div class="card listing"><span class="sprite sprite-md" aria-hidden="true">Lapras</span><strong>Lapras</strong><span class="row" style="justify-content: center; gap: 4px;"><span class="badge num">Lv 70</span><span class="badge num">+20</span></span><span class="xs muted">No offers · 3 days left</span><a class="btn btn-outline btn-block" style="min-height: 34px;" href="trade-listing.html#visitor">View</a></div>
+    </div>
+    <section class="card" data-show="new"><p class="small muted">No active listings.</p></section>
+  </section>
+  <p class="note">Visible to every logged-in player. The Box, inventory and money are never shown. Every player name in the app links here; the sidebar user menu gets "My profile".</p>
+</main>
+
+<script src="assets/mockup.js"></script>
+<script>
+  (function () {
+    var regions = ['Kanto', 'Johto', 'Hoenn', 'Sinnoh', 'Unova', 'Kalos', 'Alola', 'Galar', 'Paldea'];
+    var data = {
+      other: { name: 'Misty', initials: 'MI', joined: 'Joined Mar 2026', dex: 702, shinies: 41, tower: 137, badges: [8, 8, 5, 0, 0, 0, 0, 0, 0], e4: [true, false], champ: [true, false] },
+      own: { name: 'Ash', initials: 'AS', joined: 'Joined Nov 2026', dex: 133, shinies: 4, tower: 37, badges: [5, 0, 0, 0, 0, 0, 0, 0, 0], e4: [], champ: [] },
+      'new': { name: 'Dawn', initials: 'DA', joined: 'Joined today', dex: 1, shinies: 0, tower: 0, badges: [0, 0, 0, 0, 0, 0, 0, 0, 0], e4: [], champ: [] }
+    };
+    function draw(state) {
+      var d = data[state] || data.other;
+      document.getElementById('name').textContent = d.name;
+      document.getElementById('crumb').textContent = d.name;
+      document.getElementById('initials').textContent = d.initials;
+      document.getElementById('joined').textContent = d.joined;
+      var pct = Math.round(d.dex / 1025 * 100);
+      document.getElementById('dex').innerHTML = d.dex.toLocaleString('en-US') + ' <span class="muted" style="font-size: 16px; font-weight: 500;">/ 1,025</span>';
+      document.getElementById('dex-bar').style.width = Math.max(pct, 1) + '%';
+      document.getElementById('dex-pct').textContent = pct + '% of every species';
+      document.getElementById('shinies').textContent = d.shinies;
+      document.getElementById('tower').textContent = d.tower ? d.tower : '—';
+      document.getElementById('tower-sub').textContent = d.tower ? 'Highest floor won' : 'Not climbed yet';
+      var html = '';
+      var any = false;
+      regions.forEach(function (r, i) {
+        var n = d.badges[i];
+        if (!n) { return; }
+        any = true;
+        var marks = '';
+        for (var b = 0; b < 8; b++) { marks += '<span class="mark' + (b < n ? ' on' : '') + '" title="' + (b < n ? 'Badge earned' : 'Not earned') + '"></span>'; }
+        html += '<div class="region"><span class="region-name">' + r + '</span><span class="marks" aria-label="' + n + ' of 8 badges">' + marks + '</span><span class="small muted num">' + n + ' / 8</span><span class="titles">' +
+          (d.e4[i] ? '<span class="badge xs">Elite Four ✓</span>' : '') + (d.champ[i] ? '<span class="badge badge-gold xs">Champion</span>' : '') + '</span></div>';
+      });
+      var untouched = regions.filter(function (r, i) { return !d.badges[i]; });
+      if (untouched.length) { html += '<p class="small muted" style="padding-top: 10px;">' + (any ? 'No badges yet in ' + untouched.join(', ') + '.' : 'No badges yet.') + '</p>'; }
+      document.getElementById('badges').innerHTML = html;
+    }
+    document.addEventListener('mockup:state', function (e) { draw(e.detail); });
+    draw(document.documentElement.getAttribute('data-state') || 'other');
+  })();
+</script>
+</body>
+</html>
