@@ -34,6 +34,7 @@ Not planned yet; noted so they are not lost.
 - **Dungeons:** like the Battle Tower, a run of battles ending in a boss; beating it gives a pack of rewards instead of points.
 - **More streak prizes** beyond the 7-day boost stone.
 - **Weekly missions and story chains.**
+- **TM collection achievements:** one achievement per move type ("Collect every Fire TM") and one for collecting every TM in the game. A TM counts once the player has owned it at least once; it does not have to stay in the inventory, so teaching, selling or trading it later keeps the progress. Needs a record of every TM a player has ever obtained.
 - **Double battles.**
 - **Pokémon history** on the Pokémon page (times traded, battles won, date it reached level 100).
 - **Direct trades** and **selling Pokémon for money.**
