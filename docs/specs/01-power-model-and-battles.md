@@ -52,13 +52,22 @@ Level factor = level + 10, so a level 100 Pokémon is 10× a level 1, not 100×.
 ## Battle flow
 
 1. The battle is saved on the server: refreshing or closing the page resumes the same turn. One active battle per player. A battle that uses the party starts with its first Pokémon, in the order set on the Party page (Spec 4).
-2. Each turn the player picks one of the 4 active moves (or throws a ball in a wild battle, see Spec 2).
+2. Each turn the player picks one of the 4 active moves, switches to another Pokémon (see Switching), or throws a ball in a wild battle (Spec 2).
 3. Turn order is rolled every turn: chance to move first = my level ÷ (my level + their level).
 4. Moves can miss (accuracy), land a critical hit (1 in 16, ×1.5), flinch, or hit several times. Type effectiveness and STAB (×1.5) apply.
 5. Status effects (burn, poison, paralysis, sleep, freeze, confusion) are in from the first version and last only for that battle. Status-only moves such as Thunder Wave are kept.
-6. When a Pokémon faints, **the player picks which Pokémon comes out next**, like the main games. No other switching, no items in battle.
+6. When a Pokémon faints, **the player picks which Pokémon comes out next**, like the main games. Free send-outs happen only after a faint; any other switch uses a turn. No items in battle.
 7. The player can run at any time with the **Run** button. Running counts as a loss. Losing has no penalty: trainers pay nothing, but XP already earned is kept (see XP).
 8. After every battle all Pokémon are fully healed, except in the Battle Tower, where damage carries over between floors until a checkpoint (Spec 6).
+
+## Switching
+
+- On their turn, instead of using a move, the player can **switch** the Pokémon in battle for any other Pokémon of the battle's team that hasn't fainted, like the main games.
+- The battle's team is the snapshot taken when the battle started: the party for most battles, the Pokémon picked for a gym, the run's team in the Battle Tower.
+- Switching uses the player's turn: the new Pokémon always comes out before the opponent acts, then the opponent attacks it. End-of-turn effects (burn, poison) still apply.
+- A Pokémon that switches in has come onto the field, so it gets XP (see XP).
+- Burn, poison, paralysis, sleep and freeze stay with a Pokémon when it switches out (sleep turns keep counting only while it is in battle); confusion ends.
+- NPC trainers never switch; they send out their next Pokémon only after a faint.
 
 ## Status effects
 
@@ -129,7 +138,7 @@ Taking one Pokémon from level 1 to 100 takes about 300 fair fights, fewer when 
 ├──────────────────────────────────────────────────────────┤
 │  [ Surf      WATER  90 ]   [ Thunder Wave  ELEC  — ]      │
 │  [ Ice Beam  ICE    90 ]   [ Tackle        NORM  40 ]     │
-│  [ Throw ball ]   (wild battles only)                     │
+│  [ Throw ball ] (wild battles only)  [ Switch Pokémon ]   │
 ├──────────────────────────────────────────────────────────┤
 │  Battle log                                               │
 │  > Magikarp used Surf! It's super effective!              │
@@ -142,6 +151,7 @@ Taking one Pokémon from level 1 to 100 takes about 300 fair fights, fewer when 
 - Move buttons show type and power, with a hint on super-effective moves.
 - Team dots show who is left on each side. A battle log lists what happened.
 - When a Pokémon faints, a dialog lists the remaining team (portrait, level, HP) to pick the next one.
+- **Switch Pokémon** (every battle) opens a similar dialog that can be cancelled: the Pokémon in battle and fainted ones are disabled, and it says that switching uses the turn.
 - The only animation is the HP bar sliding down.
 - **Run** asks for confirmation. Against trainers it says that running counts as a loss; in an Elite Four run, that it also ends the run.
 - When the battle ends, the moves area becomes a result card for every ending (won, lost, ran, caught): the result, the money earned against trainers, and one row per Pokémon that came out with the XP it got, an XP bar and any level-up. With the XP Share on, one more line sums up what the rest of the party got. A loss with no opponent knocked out says "No XP this time". Tower battles show the XP saved in the run instead.

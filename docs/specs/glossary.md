@@ -29,7 +29,9 @@ One name per idea, used everywhere: specs, code, database, tests and UI. When yo
 | Turn | `turn` | Both sides acting once. |
 | Battle log | `log` | List of text lines shown under the battle. |
 | Faint | `isFainted()` | `current_hp` is 0. |
-| Send out | `SendOutPokemonAction` | Picking the next Pokémon after a faint. |
+| Send out | `SendOutPokemonAction` | Picking the next Pokémon after a faint. Free. |
+| Switch | `SwitchPokemonAction` | Changing the Pokémon in battle on the player's turn. Uses the turn. |
+| Opponent's half of a turn | `OpponentActsAction` | The opponent's move, end-of-turn damage and fainting; shared by moves, switches and ball throws. |
 | Run (forfeit) | `ForfeitBattleAction`, `BattleStatus::FORFEITED` | The UI says "Run". Counts as a loss. |
 | Battle ended | `EndBattleAction`, `BattleEnded` event | The one place a battle ends; `isWin` for won and caught battles. |
 | Earned XP | `earned_experience`, `level_before`, `level_after` | Each player combatant's result, shown on the end screen. |
