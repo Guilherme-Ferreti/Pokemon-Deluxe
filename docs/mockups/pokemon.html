@@ -66,7 +66,7 @@
 <body>
 <div class="mock-bar">
   <a href="index.html">← All mock-ups</a>
-  <span><strong>Pokémon page</strong> · tasks 4.8–4.13</span>
+  <span><strong>Pokémon page</strong> · tasks 4.8–4.13, 8.7</span>
   <label for="mockup-state">State
     <select id="mockup-state">
       <option value="overview">Overview</option>
@@ -125,6 +125,14 @@
         <button type="button" class="btn btn-outline" data-go="boost">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
           Boost
+        </button>
+        <a class="btn btn-outline" href="trade-market.html#new-details" data-show="overview swap teach-tm boost boost-result evolve evolve-confirm party-full release release-warning lock-confirm not-in-party added party-swap remove-party">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M7 7h11l-3-3M17 17H6l3 3"/></svg>
+          Trade
+        </a>
+        <button type="button" class="btn btn-outline" disabled title="Unlock it to trade" data-show="locked">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M7 7h11l-3-3M17 17H6l3 3"/></svg>
+          Trade
         </button>
         <button type="button" class="btn btn-outline" data-go="remove-party" data-show="overview swap teach-tm boost boost-result evolve evolve-confirm locked release release-warning lock-confirm remove-party">Remove from party</button>
         <button type="button" class="btn btn-outline" data-go="added" data-show="not-in-party">Add to party</button>

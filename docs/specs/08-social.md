@@ -60,3 +60,15 @@ DASHBOARD                               Welcome back, Ash!
 - **Daily missions** is a compact version of the Missions page.
 - Player names in the feeds open their profiles.
 - Phone order: waiting, missions, captures, trades, shortcuts.
+
+## Details to confirm (proposal)
+
+Gaps found while splitting this spec into tasks. Each is a first proposal.
+
+- **Profile link:** `/players/{id}`, so a name never has to be URL-safe.
+- **Names:** 3–20 characters (letters, numbers, spaces, `-` and `_`), unique ignoring upper and lower case ("Ash" and "ash" can't both exist).
+- **Pokédex count:** the species the player owns right now, out of every species in the Pokédex, matching the Pokédex page's own catch statistics. A traded or released Pokémon stops counting.
+- **Shiny count:** shiny Pokémon the player owns right now.
+- **Latest captures:** recorded at the moment of the catch or hatch (level as caught), so later level-ups, trades or releases don't change the feed. 20 most recent.
+- **Player search:** by name, results as a list with join date and Pokédex %, 20 per page.
+- **"Waiting for you"** on the Dashboard: eggs ready to hatch or catch, rewards to claim, new offers on the player's listings, an ongoing battle, an active Battle Tower run.

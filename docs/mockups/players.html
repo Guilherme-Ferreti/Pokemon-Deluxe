@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="claude:viewport-fit-sides" content="cover">
+<title>Player search mock-up</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="assets/mockup.css">
+<style>
+  .search { display: flex; align-items: center; gap: 8px; height: 38px; border: 1px solid var(--border); border-radius: 8px; padding: 0 12px; background: var(--card); width: min(320px, 100%); }
+  .search input { border: 0; outline: 0; background: transparent; flex: 1; min-width: 0; }
+  .list { padding: 0; gap: 0; overflow: hidden; }
+  .player { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 14px; padding: 12px 16px; border-top: 1px solid var(--border); color: inherit; text-decoration: none; }
+  .player:first-child { border-top: 0; }
+  .player:hover { background: var(--muted); }
+  .avatar { width: 36px; height: 36px; border-radius: 10px; background: var(--muted); display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 700; flex-shrink: 0; }
+  .player-main { flex: 1 1 200px; min-width: 0; display: flex; flex-direction: column; gap: 2px; }
+  .pager { display: flex; justify-content: center; gap: 4px; }
+  .pager span { min-width: 32px; height: 32px; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 13px; border: 1px solid var(--border); background: var(--card); }
+  .pager .current { background: var(--primary); color: var(--primary-fg); border-color: var(--primary); }
+</style>
+</head>
+<body>
+<div class="mock-bar">
+  <a href="index.html">← All mock-ups</a>
+  <span><strong>Player search</strong> · task 8.5</span>
+  <label for="mockup-state">State
+    <select id="mockup-state">
+      <option value="newest">No search: newest players</option>
+      <option value="results">Search results</option>
+      <option value="no-match">No players match</option>
+    </select>
+  </label>
+  <span>Shown inside the app layout (sidebar not drawn).</span>
+</div>
+
+<main class="page">
+  <div class="page-header">
+    <div class="stack" style="gap: 2px;">
+      <h1>Players</h1>
+      <p id="subtitle">Find other players by name.</p>
+    </div>
+    <label class="search" for="search">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" style="color: var(--muted-fg);"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
+      <input id="search" type="search" placeholder="Search by name" autocomplete="off">
+    </label>
+  </div>
+
+  <section class="card list" id="list"></section>
+  <section class="card" id="none" hidden>
+    <div class="empty">
+      <h3 id="none-title">No players named "gary"</h3>
+      <p>Check the spelling, or search for part of the name.</p>
+    </div>
+  </section>
+  <div class="pager" id="pager" aria-label="Pages"><span class="current">1</span><span>2</span><span>3</span><span>›</span></div>
+  <p class="note">Searches as you type (debounced), ignoring upper and lower case and matching any part of the name. With no search, the newest players are listed. 20 per page with AppPagination. Each row links to the profile.</p>
+</main>
+
+<script src="assets/mockup.js"></script>
+<script>
+  (function () {
+    var players = [
+      ['Dawn', 'Joined today', 0], ['Ash', 'Joined Nov 2026', 13], ['Ashley', 'Joined Oct 2026', 22], ['Brock', 'Joined Sep 2026', 51],
+      ['Misty', 'Joined Mar 2026', 68], ['Gary', 'Joined Feb 2026', 81], ['Erika', 'Joined Jan 2026', 44]
+    ];
+    var input = document.getElementById('search');
+    function draw() {
+      var state = document.documentElement.getAttribute('data-state');
+      var q = input.value.trim().toLowerCase();
+      var shown = players.filter(function (p) { return !q || p[0].toLowerCase().indexOf(q) !== -1; });
+      if (!q) { shown = shown.slice(); }
+      var list = document.getElementById('list');
+      list.innerHTML = '';
+      shown.forEach(function (p) {
+        list.insertAdjacentHTML('beforeend', '<a class="player" href="profile.html"><span class="avatar" aria-hidden="true">' + p[0].slice(0, 2).toUpperCase() + '</span><span class="player-main"><strong>' + p[0] + '</strong><span class="xs muted">' + p[1] + '</span></span><span class="small muted num">Pokédex ' + p[2] + '%</span></a>');
+      });
+      list.hidden = shown.length === 0;
+      document.getElementById('none').hidden = shown.length !== 0;
+      document.getElementById('none-title').textContent = 'No players named "' + input.value.trim() + '"';
+      document.getElementById('pager').hidden = shown.length === 0 || !!q;
+      document.getElementById('subtitle').textContent = q ? shown.length + ' player' + (shown.length === 1 ? '' : 's') + ' found' : 'Find other players by name. Newest players first.';
+    }
+    document.addEventListener('mockup:state', function (e) {
+      input.value = e.detail === 'results' ? 'ash' : (e.detail === 'no-match' ? 'garry' : '');
+      draw();
+    });
+    input.addEventListener('input', draw);
+    var s = document.documentElement.getAttribute('data-state');
+    input.value = s === 'results' ? 'ash' : (s === 'no-match' ? 'garry' : '');
+    draw();
+  })();
+</script>
+</body>
+</html>
