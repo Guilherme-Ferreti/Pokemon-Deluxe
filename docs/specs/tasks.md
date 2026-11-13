@@ -1040,15 +1040,19 @@ Read [04-pokemon-page.md](04-pokemon-page.md) first. Builds on Spec 1 (`SetActiv
 **Build:**
 - Route `POST /your-pokemon/{pokemon}/active-moves` named `pokemon.web.set-active-move` → `SetActiveMoveController` (`move_id`, `slot` 1–4).
 - Route `POST /your-pokemon/{pokemon}/teach-tm` named `pokemon.web.teach-tm` → `TeachTmController` (`move_id`).
+- `App\Pokemon\Actions\ReorderActiveMovesAction::handle(Pokemon $pokemon, array $moveIds): void`: `$moveIds` must be exactly the current active moves in their new order (otherwise `InvalidArgumentException`); saves slots 1, 2, 3… in that order. Route `POST /your-pokemon/{pokemon}/active-moves/order` named `pokemon.web.reorder-active-moves` → `ReorderActiveMovesController` (`move_ids` array).
+- The slot order is the order of the move buttons on the battle page (task 1.19).
 - Moves card: four slots with Swap buttons; the known-moves pool below; a "Teach TM" button.
 
 **UI suggestions** (ideas, not requirements):
-- Active slots: a 2×2 grid of rows, each with `MoveNameLabel`, type badge, `MovePowerLabel` and a ghost "Swap" button. An empty slot shows a dashed outline and "Empty slot".
+- Active slots: a numbered list (1–4, the battle order). Each row: a drag handle, the number, `MoveNameLabel`, type badge, `MovePowerLabel`, a "STAB" badge for damaging moves of the Pokémon's own type, up and down arrow buttons, and a ghost "Swap" button. An empty slot shows a dashed outline and "Empty slot".
+- Drag and drop (desktop): drag a slot by its handle to reorder; drag a known move onto a slot to replace it. Every drag action also has a non-drag way: the arrows reorder, Swap replaces. Keyboard and touch users rely on those.
+- Drag and drop needs a library for touch support and smooth sorting (for example `vue-draggable-plus`, built on SortableJS). Adding it needs approval (AGENTS.md: no new dependencies without approval); without it, use the native HTML drag events on desktop and the arrow buttons everywhere.
 - Swap: a `Dialog` listing the known moves (the active ones marked "In slot 2"), with a search input when the pool is long. Picking one swaps it in.
-- Known moves: compact chips or a short `Table` (name, type, power), sorted by name.
+- Known moves: a grid of small cards (name, type badge, power, STAB), sorted by name; moves already active are dimmed with "In slot 2". When the pool grows past about 12 moves, add the same search and type chips as the Teach TM dialog.
 - Teach TM: a `Dialog` with a search input (name or number; players will own hundreds of TMs) and type filter chips (only types the player owns TMs of, plus "All types"), over a scrolling list of owned TMs sorted by code. Each option shows "TM 395 Ice Beam", its type badge, power and how many are owned; TMs the Pokémon already knows are disabled with "Already known"; Z-Move and Dynamax TMs show "Needs level 100" when not allowed. Teaching asks for a confirmation step inside the dialog, since the TM is used up.
 
-**Tests:** feature tests for both routes and their errors; browser test: swap a move.
+**Tests:** `ReorderActiveMovesActionTest` (new order saved; a list that is not exactly the active moves is refused); feature tests for the three routes and their errors; browser test: swap a move and reorder with the arrows.
 
 **Done when:** a player can swap moves and teach TMs from the page.
 
