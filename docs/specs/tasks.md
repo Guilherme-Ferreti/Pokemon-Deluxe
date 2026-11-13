@@ -86,7 +86,7 @@ Tasks with a **Mock-up** link have an interactive mock-up in `docs/mockups/` (op
 
 ## 1. Spec 1 — Power model and battle system
 
-Read [01-power-model-and-battles.md](01-power-model-and-battles.md) first. Tasks 1.1–1.18 are backend only; the battle page comes next (1.19–1.21); task 1.22 is seed data.
+Read [01-power-model-and-battles.md](01-power-model-and-battles.md) first. Tasks 1.1–1.18 are backend only; the battle page comes next (1.19–1.21); task 1.22 is seed data; tasks 1.23–1.24 add switching Pokémon.
 
 There is no production data yet, so database changes are new migrations and local databases are rebuilt with `php artisan migrate:fresh --seed`. No data migrations.
 
@@ -473,6 +473,49 @@ Uses `Combatant` from task 1.10.
 
 **Done when:** `migrate:fresh --seed` passes with the check; tests pass.
 
+### 1.23 Switch Pokémon during a battle
+
+- [ ] Done
+
+**Goal:** on their turn, the player can switch the Pokémon in battle for another one of the battle's team; it uses the turn (Spec 1, "Switching").
+
+**Build:**
+- Extract the opponent's half of a turn from `TakeTurnAction` (its move, status effects, end-of-turn damage on both sides, fainting, ending the battle through `EndBattleAction`) into `App\Battle\Actions\OpponentActsAction::handle(Battle $battle): Battle`, used by `TakeTurnAction`, the new switch action and later by `ThrowBallAction` (task 2.12).
+- `App\Battle\Actions\SwitchPokemonAction::handle(Battle $battle, int $combatantIndex): Battle`, under the same lock as `TakeTurnAction`:
+  - Refuses when the battle is not `ONGOING` or is awaiting a send-out (`BattleNotReadyForTurnException`: a faint uses the free `SendOutPokemonAction` instead).
+  - Refuses an index outside the player's side, the active combatant or a fainted one (`App\Battle\Exceptions\InvalidSwitchException` with the reason).
+  - The leaving combatant loses its confusion; its other ailment stays. The chosen one becomes active with `has_entered_field = true`.
+  - Logs "Come back, Shiny Magikarp!" and "Go! Dragonite!", then `OpponentActsAction` (the opponent always acts after the switch, with no turn-order roll), and increments `turn`.
+- The player's side is the battle's own snapshot (party, chosen gym team or Tower team), so switching never reads the party again.
+- Route `POST /battle/switch` named `battle.web.switch` → `SwitchPokemonController` with `SwitchPokemonRequest` (`combatant_index`).
+
+**Tests:** the switch makes the chosen Pokémon active and the opponent then attacks it; `has_entered_field` set (it gets XP at the end); confusion cleared, other ailments kept; refused for the active, a fainted or an unknown combatant, while awaiting a send-out and after the battle ended; end-of-turn damage still applies; a switch that ends with the new Pokémon fainting asks for a send-out; feature test for the route.
+
+**Done when:** tests pass.
+
+### 1.24 Battle page: switch Pokémon
+
+- [ ] Done
+
+**Goal:** switch from the battle page.
+
+**Mock-up:** `docs/mockups/battle.html` (states "Switch Pokémon", "Switched: the opponent attacks")
+
+**Build:**
+- `BattleShowPageProps`: the player's whole team for the dialog (portrait, display name, level, HP, ailment, fainted, active).
+- A "Switch Pokémon" button under the moves in every battle (next to "Throw ball" in wild battles). It opens a dialog listing the team; the active and fainted Pokémon are disabled; picking one and pressing "Switch" sends task 1.23's route.
+- After the switch, the player card, HP and move buttons show the new Pokémon.
+
+**UI suggestions** (ideas, not requirements):
+- An outline `Button` with a swap icon, full width under the move grid (or side by side with "Throw ball" in wild battles).
+- The dialog reuses the send-out dialog's rows (`SpeciesPortrait`, name, level, HP `Progress`, ailment badge), with an "In battle" badge on the active one. Unlike the send-out dialog, it can be closed ("Cancel" keeps the turn).
+- One line under the title: "Switching uses your turn: your new Pokémon comes out first, then the opponent attacks it."
+- Disable "Switch Pokémon" while a turn is being sent, like the move buttons, and when no other Pokémon can fight.
+
+**Tests:** feature test for the team props; browser test: switch to another Pokémon and see it in battle with a new log line.
+
+**Done when:** a player can switch Pokémon from the battle page in any battle.
+
 ---
 
 ## 2. Spec 2 — Catching and exploration
@@ -657,7 +700,7 @@ Read [02-catching-and-exploration.md](02-catching-and-exploration.md) first. Nee
 **Goal:** catching in a wild battle.
 
 **Build:**
-- Extract the opponent's half of a turn from `TakeTurnAction` (its move, status effects, end-of-turn damage, fainting) into `App\Battle\Actions\OpponentActsAction::handle(Battle $battle): Battle`, used by both actions.
+- A failed throw uses the turn like a switch: reuse `OpponentActsAction` (task 1.23).
 - `CreatePokemonAction`: add `bool $joinPartyIfRoom = false`; when true, the Pokémon joins the party if it has fewer than `game.user.max_party_size` (new config, 6).
 - `App\Battle\Actions\ThrowBallAction::handle(Battle $battle, Pokeball $pokeball): Battle`:
   - Refuses outside `ONGOING` wild battles or while awaiting a send-out (`App\Battle\Exceptions\NotAWildBattleException`, `BattleNotReadyForTurnException`).
