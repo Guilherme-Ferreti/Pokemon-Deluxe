@@ -88,4 +88,7 @@ Gaps found while splitting this spec into tasks, agreed on 13 Nov 2026.
 - **Hand-made trainers:** about 30 to start, spread from Lv 5 to Lv 100, payouts from ₽ 500 to ₽ 20,000.
 - **Opponent behaviour:** NPCs pick a random active move each turn and send out their next Pokémon in team order.
 - **Battle Points:** 1 per floor won, plus 5 × the checkpoint's number at each checkpoint (10 at the 2nd checkpoint, 25 at the 5th).
-- **Tower XP:** Battle Tower battles give XP like any battle (Spec 1).
+- **Tower XP:** Battle Tower battles give XP with Spec 1's formula, saved up in the run and paid to each team member when the run ends (lost, quit or floor 1,000). The run summary shows each Pokémon's XP.
+- **Frozen Tower team:** the run copies its 6 Pokémon when it starts (level, boost, moves, stats) and uses that copy for the whole run. Levelling, boosting or teaching a team member elsewhere doesn't change the run; the changes count from its next run.
+- **Tower hold:** while a run is active, its 6 Pokémon can't be traded, released or evolved. They can still battle elsewhere between floors, join the party and use boost stones or TMs. The Pokémon page shows "In a Battle Tower run".
+- **Other battles during a run:** allowed between floors; only one battle can be in progress at a time (Spec 1).
