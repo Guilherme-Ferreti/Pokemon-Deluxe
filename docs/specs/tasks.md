@@ -1774,7 +1774,7 @@ Read [07-trading.md](07-trading.md) first, including "Details to confirm". Tradi
 **UI suggestions** (ideas, not requirements):
 - Top: the listed Pokémon (portrait, name, badges, moves) with a "Details" button, the seller, "Looking for" in a quote block, "Expires in 6 days".
 - Offers: one `Card` per offer with the offerer's name, their Pokémon as small cards (each with "Details") and items with quantities. The seller sees "Accept" (primary) and "Decline" (ghost); the offerer sees "Withdraw" on their own.
-- Visitors without an offer see a primary "Make an offer"; it opens a dialog with two tabs, Pokémon (tradeable ones, search) and Items (quantity pickers), a summary of what's offered, and "Send offer".
+- Visitors without an offer see a primary "Make an offer"; it opens a dialog with two tabs, Pokémon (tradeable ones) and Items (quantity pickers), each with its own search input (Pokémon by name; items by name, including TM codes such as "395"), a summary of what's offered, and "Send offer".
 - Accept asks for confirmation: "Trade your Shiny Gible for Shiny Dratini and 5 boost stones? The other 2 offers will be declined."
 - Seller's own listing: "Cancel listing" (destructive outline) with a confirmation that the fee isn't refunded.
 
