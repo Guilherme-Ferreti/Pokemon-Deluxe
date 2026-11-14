@@ -7,7 +7,6 @@ namespace App\Dex\Queries;
 use App\Dex\Enums\SearchPokedexSortBy;
 use App\Dex\Filters\SearchPokedexFilters;
 use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Support\Collection;
 use Shared\Enums\Generation;
 use Shared\Enums\PokemonType;
 use Shared\Enums\SortDirection;
@@ -24,9 +23,9 @@ final class SearchPokedexQuery
         return Species::query()
             ->select('id', 'slug', 'name', 'types', 'pokedex_number', 'portraits', 'generation')
             ->when($filters->search !== null, fn (Builder $query) => $this->applySearch($query, $filters->search))
-            ->when($filters->types->isNotEmpty(), fn (Builder $query) => $this->applyTypes($query, $filters->types))
-            ->when($filters->traits->isNotEmpty(), fn (Builder $query) => $this->applyTraits($query, $filters->traits))
-            ->when($filters->generations->isNotEmpty(), fn (Builder $query) => $this->applyGenerations($query, $filters->generations))
+            ->when($filters->types !== [], fn (Builder $query) => $this->applyTypes($query, $filters->types))
+            ->when($filters->traits !== [], fn (Builder $query) => $this->applyTraits($query, $filters->traits))
+            ->when($filters->generations !== [], fn (Builder $query) => $this->applyGenerations($query, $filters->generations))
             ->when(true, fn (Builder $query) => $this->applySorting($query, $filters->sort, $filters->dir));
     }
 
@@ -41,10 +40,10 @@ final class SearchPokedexQuery
 
     /**
      * @param  Builder<Species>  $query
-     * @param  Collection<int, PokemonType>  $types
+     * @param  list<PokemonType>  $types
      * @return Builder<Species>
      */
-    private function applyTypes(Builder $query, Collection $types): Builder
+    private function applyTypes(Builder $query, array $types): Builder
     {
         foreach ($types as $type) {
             $query->whereJsonContains('types', $type->value);
@@ -55,25 +54,25 @@ final class SearchPokedexQuery
 
     /**
      * @param  Builder<Species>  $query
-     * @param  Collection<int, SpeciesTrait>  $traits
+     * @param  list<SpeciesTrait>  $traits
      * @return Builder<Species>
      */
-    private function applyTraits(Builder $query, Collection $traits): Builder
+    private function applyTraits(Builder $query, array $traits): Builder
     {
         return $query
-            ->when($traits->contains(SpeciesTrait::BABY), fn (Builder $query) => $query->where('is_baby', true))
-            ->when($traits->contains(SpeciesTrait::LEGENDARY), fn (Builder $query) => $query->where('is_legendary', true))
-            ->when($traits->contains(SpeciesTrait::MYTHICAL), fn (Builder $query) => $query->where('is_mythical', true))
-            ->when($traits->contains(SpeciesTrait::MEGA), fn (Builder $query) => $query->where('is_mega', true))
-            ->when($traits->contains(SpeciesTrait::GMAX), fn (Builder $query) => $query->where('is_gmax', true));
+            ->when(in_array(SpeciesTrait::BABY, $traits, true), fn (Builder $query) => $query->where('is_baby', true))
+            ->when(in_array(SpeciesTrait::LEGENDARY, $traits, true), fn (Builder $query) => $query->where('is_legendary', true))
+            ->when(in_array(SpeciesTrait::MYTHICAL, $traits, true), fn (Builder $query) => $query->where('is_mythical', true))
+            ->when(in_array(SpeciesTrait::MEGA, $traits, true), fn (Builder $query) => $query->where('is_mega', true))
+            ->when(in_array(SpeciesTrait::GMAX, $traits, true), fn (Builder $query) => $query->where('is_gmax', true));
     }
 
     /**
      * @param  Builder<Species>  $query
-     * @param  Collection<int, Generation>  $generations
+     * @param  list<Generation>  $generations
      * @return Builder<Species>
      */
-    private function applyGenerations(Builder $query, Collection $generations): Builder
+    private function applyGenerations(Builder $query, array $generations): Builder
     {
         return $query->whereIn('generation', $generations);
     }

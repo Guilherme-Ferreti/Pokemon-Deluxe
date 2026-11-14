@@ -13,34 +13,18 @@ use Shared\Models\Pokemon;
 use Shared\Models\Species;
 use Shared\Models\User;
 
-/**
- * @param  array<int, PokemonType>  $types
- * @param  array<int, PokemonTrait>  $traits
- * @param  array<int, Generation>  $generations
- */
-function makeSearchBoxFilters(
-    ?string $search = null,
-    array $types = [],
-    array $traits = [],
-    array $generations = [],
-    SearchBoxSortBy $sort = SearchBoxSortBy::CATCH_DATE,
-    SortDirection $dir = SortDirection::DESC,
-): SearchBoxFilters {
-    return new SearchBoxFilters(
-        search: $search,
-        types: collect($types),
-        traits: collect($traits),
-        generations: collect($generations),
-        sort: $sort,
-        dir: $dir,
-    );
-}
-
 it('returns all box pokemon for the user when no filters are applied', function () {
     $user = User::factory()->create();
     Pokemon::factory()->for($user)->count(3)->inBox()->create();
 
-    $result = new SearchBoxQuery()->handle($user, makeSearchBoxFilters())->get();
+    $result = new SearchBoxQuery()->handle($user, new SearchBoxFilters(
+        search: null,
+        types: [],
+        traits: [],
+        generations: [],
+        sort: SearchBoxSortBy::CATCH_DATE,
+        dir: SortDirection::DESC,
+    ))->get();
 
     expect($result)->toHaveCount(3);
 });
@@ -50,7 +34,14 @@ it('excludes party pokemon', function () {
     $boxPokemon   = Pokemon::factory()->for($user)->inBox()->create();
     $partyPokemon = Pokemon::factory()->for($user)->inParty()->create();
 
-    $result = new SearchBoxQuery()->handle($user, makeSearchBoxFilters())->get();
+    $result = new SearchBoxQuery()->handle($user, new SearchBoxFilters(
+        search: null,
+        types: [],
+        traits: [],
+        generations: [],
+        sort: SearchBoxSortBy::CATCH_DATE,
+        dir: SortDirection::DESC,
+    ))->get();
 
     expect($result)->toHaveCount(1)
         ->and($result->first()->id)->toBe($boxPokemon->id);
@@ -63,7 +54,14 @@ it("excludes other users's pokemon", function () {
     $pokemon = Pokemon::factory()->for($userA)->inBox()->create();
     Pokemon::factory()->for($userB)->inBox()->create();
 
-    $result = new SearchBoxQuery()->handle($userA, makeSearchBoxFilters())->get();
+    $result = new SearchBoxQuery()->handle($userA, new SearchBoxFilters(
+        search: null,
+        types: [],
+        traits: [],
+        generations: [],
+        sort: SearchBoxSortBy::CATCH_DATE,
+        dir: SortDirection::DESC,
+    ))->get();
 
     expect($result)->toHaveCount(1)
         ->and($result->first()->id)->toBe($pokemon->id);
@@ -75,7 +73,14 @@ it('filters box pokemon by matching name', function () {
     $pikachu    = Pokemon::factory()->for($user)->for(Species::factory()->create(['name' => 'Pikachu']))->inBox()->create();
     $charmander = Pokemon::factory()->for($user)->for(Species::factory()->create(['name' => 'Charmander']))->inBox()->create();
 
-    $result = new SearchBoxQuery()->handle($user, makeSearchBoxFilters(search: 'Pikachu'))->get();
+    $result = new SearchBoxQuery()->handle($user, new SearchBoxFilters(
+        search: 'Pikachu',
+        types: [],
+        traits: [],
+        generations: [],
+        sort: SearchBoxSortBy::CATCH_DATE,
+        dir: SortDirection::DESC,
+    ))->get();
 
     expect($result)->toHaveCount(1)
         ->and($result->first()->id)->toBe($pikachu->id);
@@ -88,7 +93,14 @@ it('filters box pokemon by partial name match', function () {
     $raichu     = Pokemon::factory()->for($user)->for(Species::factory()->create(['name' => 'Raichu']))->inBox()->create();
     $charmander = Pokemon::factory()->for($user)->for(Species::factory()->create(['name' => 'Charmander']))->inBox()->create();
 
-    $result = new SearchBoxQuery()->handle($user, makeSearchBoxFilters(search: 'chu'))->get();
+    $result = new SearchBoxQuery()->handle($user, new SearchBoxFilters(
+        search: 'chu',
+        types: [],
+        traits: [],
+        generations: [],
+        sort: SearchBoxSortBy::CATCH_DATE,
+        dir: SortDirection::DESC,
+    ))->get();
 
     expect($result)->toHaveCount(2)
         ->and($result->pluck('id'))->toContain($pikachu->id, $raichu->id)->not->toContain($charmander->id);
@@ -97,7 +109,14 @@ it('filters box pokemon by partial name match', function () {
 it('returns no results when the search matches nothing', function () {
     $pokemon = Pokemon::factory()->inBox()->create();
 
-    $result = new SearchBoxQuery()->handle($pokemon->user, makeSearchBoxFilters(search: 'Missing'))->get();
+    $result = new SearchBoxQuery()->handle($pokemon->user, new SearchBoxFilters(
+        search: 'Missing',
+        types: [],
+        traits: [],
+        generations: [],
+        sort: SearchBoxSortBy::CATCH_DATE,
+        dir: SortDirection::DESC,
+    ))->get();
 
     expect($result)->toBeEmpty();
 });
@@ -109,7 +128,14 @@ it('filters box pokemon by a single type', function () {
     $waterOnly = Pokemon::factory()->for($user)->for(Species::factory()->create(['types' => [PokemonType::WATER]]))->inBox()->create();
     $fireWater = Pokemon::factory()->for($user)->for(Species::factory()->create(['types' => [PokemonType::FIRE, PokemonType::WATER]]))->inBox()->create();
 
-    $result = new SearchBoxQuery()->handle($user, makeSearchBoxFilters(types: [PokemonType::FIRE]))->get();
+    $result = new SearchBoxQuery()->handle($user, new SearchBoxFilters(
+        search: null,
+        types: [PokemonType::FIRE],
+        traits: [],
+        generations: [],
+        sort: SearchBoxSortBy::CATCH_DATE,
+        dir: SortDirection::DESC,
+    ))->get();
 
     expect($result)->toHaveCount(2)
         ->and($result->pluck('id'))->toContain($fireOnly->id, $fireWater->id)->not->toContain($waterOnly->id);
@@ -121,7 +147,14 @@ it('requires both types when two types are selected', function () {
     $fireOnly  = Pokemon::factory()->for($user)->for(Species::factory()->create(['types' => [PokemonType::FIRE]]))->inBox()->create();
     $fireWater = Pokemon::factory()->for($user)->for(Species::factory()->create(['types' => [PokemonType::FIRE, PokemonType::WATER]]))->inBox()->create();
 
-    $result = new SearchBoxQuery()->handle($user, makeSearchBoxFilters(types: [PokemonType::FIRE, PokemonType::WATER]))->get();
+    $result = new SearchBoxQuery()->handle($user, new SearchBoxFilters(
+        search: null,
+        types: [PokemonType::FIRE, PokemonType::WATER],
+        traits: [],
+        generations: [],
+        sort: SearchBoxSortBy::CATCH_DATE,
+        dir: SortDirection::DESC,
+    ))->get();
 
     expect($result)->toHaveCount(1)
         ->and($result->first()->id)->toBe($fireWater->id);
@@ -140,7 +173,14 @@ it('filters box pokemon by traits', function (PokemonTrait $trait, ?string $colu
         Pokemon::factory(5)->for($user)->for(Species::factory()->create([$column => false]))->inBox()->create();
     }
 
-    $result = new SearchBoxQuery()->handle($user, makeSearchBoxFilters(traits: [$trait]))->get();
+    $result = new SearchBoxQuery()->handle($user, new SearchBoxFilters(
+        search: null,
+        types: [],
+        traits: [$trait],
+        generations: [],
+        sort: SearchBoxSortBy::CATCH_DATE,
+        dir: SortDirection::DESC,
+    ))->get();
 
     expect($result)->toHaveCount(1)
         ->and($result->first()->id)->toBe($pokemon->id);
@@ -159,7 +199,14 @@ it('requires all selected traits to match', function () {
     $legendaryBaby = Pokemon::factory()->for($user)->for(Species::factory()->create(['is_legendary' => true, 'is_baby' => true]))->inBox()->create();
     $legendaryOnly = Pokemon::factory()->for($user)->for(Species::factory()->create(['is_legendary' => true, 'is_baby' => false]))->inBox()->create();
 
-    $result = new SearchBoxQuery()->handle($user, makeSearchBoxFilters(traits: [PokemonTrait::LEGENDARY, PokemonTrait::BABY]))->get();
+    $result = new SearchBoxQuery()->handle($user, new SearchBoxFilters(
+        search: null,
+        types: [],
+        traits: [PokemonTrait::LEGENDARY, PokemonTrait::BABY],
+        generations: [],
+        sort: SearchBoxSortBy::CATCH_DATE,
+        dir: SortDirection::DESC,
+    ))->get();
 
     expect($result)->toHaveCount(1)
         ->and($result->first()->id)->toBe($legendaryBaby->id);
@@ -171,7 +218,14 @@ it('filters box pokemon by a single generation', function () {
     $genI  = Pokemon::factory()->for($user)->for(Species::factory()->create(['generation' => Generation::I]))->inBox()->create();
     $genII = Pokemon::factory()->for($user)->for(Species::factory()->create(['generation' => Generation::II]))->inBox()->create();
 
-    $result = new SearchBoxQuery()->handle($user, makeSearchBoxFilters(generations: [Generation::I]))->get();
+    $result = new SearchBoxQuery()->handle($user, new SearchBoxFilters(
+        search: null,
+        types: [],
+        traits: [],
+        generations: [Generation::I],
+        sort: SearchBoxSortBy::CATCH_DATE,
+        dir: SortDirection::DESC,
+    ))->get();
 
     expect($result)->toHaveCount(1)
         ->and($result->first()->id)->toBe($genI->id);
@@ -184,7 +238,14 @@ it('filters box pokemon by multiple generations', function () {
     $genII  = Pokemon::factory()->for($user)->for(Species::factory()->create(['generation' => Generation::II]))->inBox()->create();
     $genIII = Pokemon::factory()->for($user)->for(Species::factory()->create(['generation' => Generation::III]))->inBox()->create();
 
-    $result = new SearchBoxQuery()->handle($user, makeSearchBoxFilters(generations: [Generation::I, Generation::II]))->get();
+    $result = new SearchBoxQuery()->handle($user, new SearchBoxFilters(
+        search: null,
+        types: [],
+        traits: [],
+        generations: [Generation::I, Generation::II],
+        sort: SearchBoxSortBy::CATCH_DATE,
+        dir: SortDirection::DESC,
+    ))->get();
 
     expect($result)->toHaveCount(2)
         ->and($result->pluck('id'))->toContain($genI->id, $genII->id)->not->toContain($genIII->id);
@@ -195,11 +256,25 @@ it('sorts box pokemon by the given column and direction', function (SearchBoxSor
 
     [$lowId, $midId, $highId] = $createFixtures($user);
 
-    $ascResult = new SearchBoxQuery()->handle($user, makeSearchBoxFilters(sort: $sort, dir: SortDirection::ASC))->get();
+    $ascResult = new SearchBoxQuery()->handle($user, new SearchBoxFilters(
+        search: null,
+        types: [],
+        traits: [],
+        generations: [],
+        sort: $sort,
+        dir: SortDirection::ASC,
+    ))->get();
 
     expect($ascResult->pluck('id')->all())->toBe([$lowId, $midId, $highId]);
 
-    $descResult = new SearchBoxQuery()->handle($user, makeSearchBoxFilters(sort: $sort, dir: SortDirection::DESC))->get();
+    $descResult = new SearchBoxQuery()->handle($user, new SearchBoxFilters(
+        search: null,
+        types: [],
+        traits: [],
+        generations: [],
+        sort: $sort,
+        dir: SortDirection::DESC,
+    ))->get();
 
     expect($descResult->pluck('id')->all())->toBe([$highId, $midId, $lowId]);
 })->with([
@@ -255,7 +330,14 @@ it('orders box pokemon with equal sort values by id', function (SortDirection $d
     Pokemon::factory()->for($user)->inBox()->create(['id' => '00000000-0000-0000-0000-000000000001', 'level' => 10]);
     Pokemon::factory()->for($user)->inBox()->create(['id' => '00000000-0000-0000-0000-000000000002', 'level' => 10]);
 
-    $result = new SearchBoxQuery()->handle($user, makeSearchBoxFilters(sort: SearchBoxSortBy::LEVEL, dir: $dir))->get();
+    $result = new SearchBoxQuery()->handle($user, new SearchBoxFilters(
+        search: null,
+        types: [],
+        traits: [],
+        generations: [],
+        sort: SearchBoxSortBy::LEVEL,
+        dir: $dir,
+    ))->get();
 
     expect($result->pluck('id')->all())->toBe([
         '00000000-0000-0000-0000-000000000001',
@@ -283,16 +365,58 @@ it('joins the species table when a filter or the pokedex-number sort requires it
             'second'   => 'pokemon.species_id',
         ]);
 })->with([
-    'search'         => [makeSearchBoxFilters(search: 'Pikachu')],
-    'types'          => [makeSearchBoxFilters(types: [PokemonType::FIRE])],
-    'traits'         => [makeSearchBoxFilters(traits: [PokemonTrait::LEGENDARY])],
-    'generations'    => [makeSearchBoxFilters(generations: [Generation::I])],
-    'pokedex number' => [makeSearchBoxFilters(sort: SearchBoxSortBy::POKEDEX_NUMBER)],
+    'search' => [new SearchBoxFilters(
+        search: 'Pikachu',
+        types: [],
+        traits: [],
+        generations: [],
+        sort: SearchBoxSortBy::CATCH_DATE,
+        dir: SortDirection::DESC,
+    )],
+    'types' => [new SearchBoxFilters(
+        search: null,
+        types: [PokemonType::FIRE],
+        traits: [],
+        generations: [],
+        sort: SearchBoxSortBy::CATCH_DATE,
+        dir: SortDirection::DESC,
+    )],
+    'traits' => [new SearchBoxFilters(
+        search: null,
+        types: [],
+        traits: [PokemonTrait::LEGENDARY],
+        generations: [],
+        sort: SearchBoxSortBy::CATCH_DATE,
+        dir: SortDirection::DESC,
+    )],
+    'generations' => [new SearchBoxFilters(
+        search: null,
+        types: [],
+        traits: [],
+        generations: [Generation::I],
+        sort: SearchBoxSortBy::CATCH_DATE,
+        dir: SortDirection::DESC,
+    )],
+    'pokedex number' => [new SearchBoxFilters(
+        search: null,
+        types: [],
+        traits: [],
+        generations: [],
+        sort: SearchBoxSortBy::POKEDEX_NUMBER,
+        dir: SortDirection::DESC,
+    )],
 ]);
 
 it('does not join the species table when no filters are applied', function () {
     $user  = User::factory()->create();
-    $query = new SearchBoxQuery()->handle($user, makeSearchBoxFilters());
+    $query = new SearchBoxQuery()->handle($user, new SearchBoxFilters(
+        search: null,
+        types: [],
+        traits: [],
+        generations: [],
+        sort: SearchBoxSortBy::CATCH_DATE,
+        dir: SortDirection::DESC,
+    ));
 
     expect($query->getQuery()->joins)->toBeNull();
 });

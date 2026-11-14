@@ -10,3 +10,6 @@ A test that creates or updates records must assert the expected number of rows w
 
 ## Use worksome/request-factories for form request testing
 Create `RequestFactory` subclasses per form request for test data generation. Place them in `tests/{Domain}/RequestFactories/`.
+
+## Arrange every test inline, without helper functions
+Do not declare helper functions in test files (e.g. `makeSearchBoxFilters()`, `createPokemonOfSpecies()`), even when they would make the tests shorter. Each test builds its own data with factories and constructors, so it can be read on its own. Use datasets to vary inputs, and factory states for reusable setup.

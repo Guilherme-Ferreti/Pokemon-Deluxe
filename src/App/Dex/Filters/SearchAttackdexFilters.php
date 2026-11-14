@@ -6,7 +6,6 @@ namespace App\Dex\Filters;
 
 use App\Dex\Enums\SearchAttackdexSortBy;
 use Illuminate\Http\Request;
-use Illuminate\Support\Collection;
 use Shared\Enums\Ailment;
 use Shared\Enums\MoveTrait;
 use Shared\Enums\PokemonType;
@@ -19,14 +18,14 @@ final class SearchAttackdexFilters implements Filter
     public function __construct(
         public ?string $search,
 
-        /** @var Collection<int, PokemonType> */
-        public Collection $types,
+        /** @var list<PokemonType> */
+        public array $types,
 
-        /** @var Collection<int, Ailment> */
-        public Collection $ailments,
+        /** @var list<Ailment> */
+        public array $ailments,
 
-        /** @var Collection<int, MoveTrait> */
-        public Collection $traits,
+        /** @var list<MoveTrait> */
+        public array $traits,
 
         public SearchAttackdexSortBy $sort,
 
@@ -37,9 +36,9 @@ final class SearchAttackdexFilters implements Filter
     {
         return new self(...[
             'search'   => $request->query('search'),
-            'types'    => $request->collect('types')->toUniqueEnums(PokemonType::class),
-            'ailments' => $request->collect('ailments')->toUniqueEnums(Ailment::class),
-            'traits'   => $request->collect('traits')->toUniqueEnums(MoveTrait::class),
+            'types'    => $request->collect('types')->toUniqueEnums(PokemonType::class)->all(),
+            'ailments' => $request->collect('ailments')->toUniqueEnums(Ailment::class)->all(),
+            'traits'   => $request->collect('traits')->toUniqueEnums(MoveTrait::class)->all(),
             'sort'     => $request->enum('sort', SearchAttackdexSortBy::class, SearchAttackdexSortBy::NAME),
             'dir'      => $request->enum('dir', SortDirection::class, SortDirection::ASC),
         ]);

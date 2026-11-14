@@ -7,7 +7,7 @@ namespace App\Dex\Queries;
 use App\Dex\Enums\SearchAttackdexSortBy;
 use App\Dex\Filters\SearchAttackdexFilters;
 use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Support\Collection;
+use Illuminate\Support\Arr;
 use Shared\Enums\Ailment;
 use Shared\Enums\MoveCategory;
 use Shared\Enums\MoveTrait;
@@ -24,9 +24,9 @@ final class SearchAttackdexQuery
     {
         return Move::query()
             ->when($filters->search !== null, fn (Builder $query) => $this->applySearch($query, $filters->search))
-            ->when($filters->types->isNotEmpty(), fn (Builder $query) => $this->applyTypes($query, $filters->types))
-            ->when($filters->ailments->isNotEmpty(), fn (Builder $query) => $this->applyAilments($query, $filters->ailments))
-            ->when($filters->traits->isNotEmpty(), fn (Builder $query) => $this->applyTraits($query, $filters->traits))
+            ->when($filters->types !== [], fn (Builder $query) => $this->applyTypes($query, $filters->types))
+            ->when($filters->ailments !== [], fn (Builder $query) => $this->applyAilments($query, $filters->ailments))
+            ->when($filters->traits !== [], fn (Builder $query) => $this->applyTraits($query, $filters->traits))
             ->when(true, fn (Builder $query) => $this->applySorting($query, $filters->sort, $filters->dir));
     }
 
@@ -41,34 +41,34 @@ final class SearchAttackdexQuery
 
     /**
      * @param  Builder<Move>  $query
-     * @param  Collection<int, PokemonType>  $types
+     * @param  list<PokemonType>  $types
      * @return Builder<Move>
      */
-    private function applyTypes(Builder $query, Collection $types): Builder
+    private function applyTypes(Builder $query, array $types): Builder
     {
-        return $query->whereIn('type', $types->pluck('value'));
+        return $query->whereIn('type', Arr::pluck($types, 'value'));
     }
 
     /**
      * @param  Builder<Move>  $query
-     * @param  Collection<int, Ailment>  $ailments
+     * @param  list<Ailment>  $ailments
      * @return Builder<Move>
      */
-    private function applyAilments(Builder $query, Collection $ailments): Builder
+    private function applyAilments(Builder $query, array $ailments): Builder
     {
-        return $query->whereIn('ailment', $ailments->pluck('value'));
+        return $query->whereIn('ailment', Arr::pluck($ailments, 'value'));
     }
 
     /**
      * @param  Builder<Move>  $query
-     * @param  Collection<int, MoveTrait>  $traits
+     * @param  list<MoveTrait>  $traits
      * @return Builder<Move>
      */
-    private function applyTraits(Builder $query, Collection $traits): Builder
+    private function applyTraits(Builder $query, array $traits): Builder
     {
         return $query->where(fn (Builder $query) => $query
-            ->when($traits->contains(MoveTrait::Z_MOVE), fn (Builder $query) => $query->orWhere('is_z_move', true))
-            ->when($traits->contains(MoveTrait::DYNAMAX_MOVE), fn (Builder $query) => $query->orWhere('is_dynamax_move', true))
+            ->when(in_array(MoveTrait::Z_MOVE, $traits, true), fn (Builder $query) => $query->orWhere('is_z_move', true))
+            ->when(in_array(MoveTrait::DYNAMAX_MOVE, $traits, true), fn (Builder $query) => $query->orWhere('is_dynamax_move', true))
         );
     }
 

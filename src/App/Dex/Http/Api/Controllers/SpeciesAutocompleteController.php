@@ -27,9 +27,9 @@ final class SpeciesAutocompleteController extends Controller
 
         $searchPokedexFilters = new SearchPokedexFilters(
             search: $search,
-            types: collect(),
-            traits: collect(),
-            generations: collect(),
+            types: [],
+            traits: [],
+            generations: [],
             sort: SearchPokedexSortBy::POKEDEX_NUMBER,
             dir: SortDirection::ASC,
         );

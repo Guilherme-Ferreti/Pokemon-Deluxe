@@ -6,7 +6,6 @@ namespace App\Dex\Filters;
 
 use App\Dex\Enums\SearchPokedexSortBy;
 use Illuminate\Http\Request;
-use Illuminate\Support\Collection;
 use Shared\Enums\Generation;
 use Shared\Enums\PokemonType;
 use Shared\Enums\SortDirection;
@@ -19,14 +18,14 @@ final class SearchPokedexFilters implements Filter
     public function __construct(
         public ?string $search,
 
-        /** @var Collection<int, PokemonType> */
-        public Collection $types,
+        /** @var list<PokemonType> */
+        public array $types,
 
-        /** @var Collection<int, SpeciesTrait> */
-        public Collection $traits,
+        /** @var list<SpeciesTrait> */
+        public array $traits,
 
-        /** @var Collection<int, Generation> */
-        public Collection $generations,
+        /** @var list<Generation> */
+        public array $generations,
 
         public SearchPokedexSortBy $sort,
 
@@ -37,9 +36,9 @@ final class SearchPokedexFilters implements Filter
     {
         return new self(...[
             'search'      => $request->query('search'),
-            'types'       => $request->collect('types')->toUniqueEnums(PokemonType::class)->take(2),
-            'traits'      => $request->collect('traits')->toUniqueEnums(SpeciesTrait::class),
-            'generations' => $request->collect('generations')->toUniqueEnums(Generation::class),
+            'types'       => $request->collect('types')->toUniqueEnums(PokemonType::class)->take(2)->all(),
+            'traits'      => $request->collect('traits')->toUniqueEnums(SpeciesTrait::class)->all(),
+            'generations' => $request->collect('generations')->toUniqueEnums(Generation::class)->all(),
             'sort'        => $request->enum('sort', SearchPokedexSortBy::class, SearchPokedexSortBy::POKEDEX_NUMBER),
             'dir'         => $request->enum('dir', SortDirection::class, SortDirection::ASC),
         ]);
