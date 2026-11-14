@@ -48,7 +48,7 @@ final readonly class BoxIndexPageProps implements ProvidesInertiaProperties
                 'types' => $pokemon->species->types,
                 'slug'  => $pokemon->species->slug,
             ],
-            'moves' => $pokemon->moves->map(fn (Move $move) => [
+            'moves' => $pokemon->activeMoves->map(fn (Move $move) => [
                 'name' => $move->name,
             ]),
         ]);

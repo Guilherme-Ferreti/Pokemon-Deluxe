@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 use Illuminate\Support\Arr;
 use Inertia\Testing\AssertableInertia as Assert;
-use Shared\Models\Move;
 use Shared\Models\Pokemon;
 use Shared\Models\Species;
 use Shared\Models\User;
@@ -24,7 +23,7 @@ it('loads the box page with expected structure', function () {
 
     $boxPokemon = Pokemon::factory()
         ->for($user)
-        ->has(Move::factory()->count(4))
+        ->withActiveMoves()
         ->count($total)
         ->inBox()
         ->sequence(fn ($sequence) => ['caught_at' => now()->subDays($total - $sequence->index)])
@@ -48,10 +47,10 @@ it('loads the box page with expected structure', function () {
             ->where('pokemonList.data.0.level', $newestPokemon->level)
             ->where('pokemonList.data.0.experience', $newestPokemon->experience)
             ->where('pokemonList.data.0.species.types', Arr::pluck($newestPokemon->species->types, 'value'))
-            ->where('pokemonList.data.0.moves.0.name', $newestPokemon->moves[0]->name)
-            ->where('pokemonList.data.0.moves.1.name', $newestPokemon->moves[1]->name)
-            ->where('pokemonList.data.0.moves.2.name', $newestPokemon->moves[2]->name)
-            ->where('pokemonList.data.0.moves.3.name', $newestPokemon->moves[3]->name)
+            ->where('pokemonList.data.0.moves.0.name', $newestPokemon->activeMoves[0]->name)
+            ->where('pokemonList.data.0.moves.1.name', $newestPokemon->activeMoves[1]->name)
+            ->where('pokemonList.data.0.moves.2.name', $newestPokemon->activeMoves[2]->name)
+            ->where('pokemonList.data.0.moves.3.name', $newestPokemon->activeMoves[3]->name)
             ->where('pokemonList.total', $total)
             ->where('pokemonList.perPage', $perPage)
             ->where('pokemonList.lastPage', 2)

@@ -127,7 +127,7 @@ There is no production data yet, so a new column (or index, or a dropped column)
 
 ### 1.3 Split moves into known moves and active slots
 
-- [ ] Done
+- [x] Done
 
 **Goal:** a Pokémon has a pool of known moves; up to 4 of them sit in active slots.
 
@@ -135,7 +135,7 @@ There is no production data yet, so a new column (or index, or a dropped column)
 - In `011_create_pokemon_move_table.php`: nullable `unsignedTinyInteger('slot')`; unique `['pokemon_id', 'move_id']`; unique `['pokemon_id', 'slot']`.
 - `Pokemon` model: rename `moves()` to `knownMoves()` (with `withPivot('slot')`); add `activeMoves()` = known moves with a slot, ordered by slot.
 - `CreatePokemonAction::addBaseMoves()`: attach the species' unique base moves (up to 4) with slots 1, 2, 3…; remove `repeatUntil(4)`. Every species gets exactly 4 different base moves in task 1.22; until then, a species with fewer gives fewer active moves.
-- Update every use of `moves` (`BoxIndexPageProps`, Box tests) to `activeMoves`.
+- Update every use of `moves` (`BoxIndexPageProps`, `SearchBoxQuery`, `UserSeeder`, Box tests) to `activeMoves`. `PokemonFactory` gets a `withActiveMoves(int $count = 4)` state. The `repeatUntil` collection macro is removed (no longer used).
 
 **Tests:** `CreatePokemonActionTest`: base moves become active in slots 1–4; no duplicates; a species with 2 base moves gives 2 active moves; the default-move fallback still works.
 

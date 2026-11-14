@@ -73,7 +73,9 @@ final class CreatePokemonAction
             $moveIds = collect([$this->defaultBaseMove()->id]);
         }
 
-        $pokemon->moves()->attach($moveIds->repeatUntil(4));
+        $pokemon->knownMoves()->attach(
+            $moveIds->mapWithKeys(fn (string $moveId, int $index) => [$moveId => ['slot' => $index + 1]])->all(),
+        );
     }
 
     private function defaultBaseMove(): Move

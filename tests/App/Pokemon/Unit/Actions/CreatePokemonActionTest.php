@@ -15,7 +15,6 @@ use Shared\ValueObjects\NewPokemon;
 
 use function Pest\Laravel\assertDatabaseCount;
 use function Pest\Laravel\assertDatabaseHas;
-use function Pest\Laravel\assertDatabaseMissing;
 use function Pest\Laravel\travelTo;
 
 it('creates a pokemon', function () {
@@ -51,91 +50,104 @@ it('creates a pokemon', function () {
     ]);
 });
 
-it('adds four base moves to the created pokemon', function () {
-    $user     = User::factory()->create();
-    $species  = Species::factory()->create();
-    $pokeball = Pokeball::factory()->create();
-
+it('puts the species base moves in active slots 1 to 4', function () {
     Exceptions::fake();
 
+    $species     = Species::factory()->create();
     $baseMoves   = Move::factory()->count(4)->create();
     $nonBaseMove = Move::factory()->create();
 
     $species->baseMoves()->attach($baseMoves);
 
     $pokemon = new CreatePokemonAction()->handle(
-        owner: $user,
+        owner: User::factory()->create(),
         newPokemon: new NewPokemon(
             species: $species,
             level: 1,
             is_shiny: false,
             gender: $species->getRandomGender(),
         ),
-        pokeball: $pokeball,
+        pokeball: Pokeball::factory()->create(),
     );
 
     assertDatabaseCount('pokemon_move', 4);
+
+    expect($pokemon->activeMoves->pluck('pivot.slot')->all())->toBe([1, 2, 3, 4])
+        ->and($pokemon->activeMoves->pluck('id')->all())->toEqualCanonicalizing($baseMoves->pluck('id')->all())
+        ->and($pokemon->knownMoves->pluck('id')->all())->not->toContain($nonBaseMove->id);
 
     Exceptions::assertNothingReported();
-
-    $baseMoves->each(fn (Move $move) => assertDatabaseHas('pokemon_move', [
-        'pokemon_id' => $pokemon->id,
-        'move_id'    => $move->id,
-    ]));
-
-    assertDatabaseMissing('pokemon_move', [
-        'pokemon_id' => $pokemon->id,
-        'move_id'    => $nonBaseMove->id,
-    ]);
 });
 
-it('repeats the base moves until the pokemon has four moves', function () {
-    $user     = User::factory()->create();
-    $species  = Species::factory()->create();
-    $pokeball = Pokeball::factory()->create();
-    $baseMove = Move::factory()->create();
+it('gives only four active moves when the species has more base moves', function () {
+    $species = Species::factory()->create();
 
-    $species->baseMoves()->attach($baseMove);
+    $species->baseMoves()->attach(Move::factory()->count(5)->create());
 
     $pokemon = new CreatePokemonAction()->handle(
-        owner: $user,
+        owner: User::factory()->create(),
         newPokemon: new NewPokemon(
             species: $species,
             level: 1,
             is_shiny: false,
             gender: $species->getRandomGender(),
         ),
-        pokeball: $pokeball,
+        pokeball: Pokeball::factory()->create(),
     );
 
     assertDatabaseCount('pokemon_move', 4);
 
-    expect($pokemon->moves()->pluck('moves.id')->unique()->all())->toBe([$baseMove->id]);
+    expect($pokemon->activeMoves->pluck('pivot.slot')->all())->toBe([1, 2, 3, 4]);
 });
 
-it('adds the default base move four times and reports a game data error when the species has no base moves', function () {
+it('gives as many active moves as the species has base moves, without repeating them', function () {
+    $species   = Species::factory()->create();
+    $baseMoves = Move::factory()->count(2)->create();
+
+    $species->baseMoves()->attach($baseMoves);
+
+    $pokemon = new CreatePokemonAction()->handle(
+        owner: User::factory()->create(),
+        newPokemon: new NewPokemon(
+            species: $species,
+            level: 1,
+            is_shiny: false,
+            gender: $species->getRandomGender(),
+        ),
+        pokeball: Pokeball::factory()->create(),
+    );
+
+    assertDatabaseCount('pokemon_move', 2);
+
+    expect($pokemon->activeMoves->pluck('pivot.slot')->all())->toBe([1, 2])
+        ->and($pokemon->activeMoves->pluck('id')->all())->toEqualCanonicalizing($baseMoves->pluck('id')->all());
+});
+
+it('gives the default base move in slot 1 and reports a game data error when the species has no base moves', function () {
     Exceptions::fake();
 
-    $user        = User::factory()->create();
     $species     = Species::factory()->create();
-    $pokeball    = Pokeball::factory()->create();
     $defaultMove = Move::factory()->create(['slug' => config('game.pokemon.default_base_move')]);
 
     $pokemon = new CreatePokemonAction()->handle(
-        owner: $user,
+        owner: User::factory()->create(),
         newPokemon: new NewPokemon(
             species: $species,
             level: 1,
             is_shiny: false,
             gender: $species->getRandomGender(),
         ),
-        pokeball: $pokeball,
+        pokeball: Pokeball::factory()->create(),
     );
 
     assertDatabaseCount(Pokemon::class, 1);
-    assertDatabaseCount('pokemon_move', 4);
+    assertDatabaseCount('pokemon_move', 1);
 
-    expect($pokemon->moves()->pluck('moves.id')->unique()->all())->toBe([$defaultMove->id]);
+    assertDatabaseHas('pokemon_move', [
+        'pokemon_id' => $pokemon->id,
+        'move_id'    => $defaultMove->id,
+        'slot'       => 1,
+    ]);
 
     Exceptions::assertReported(fn (GameDataException $exception) => $exception->getMessage() === "Species [{$species->slug}] has no base moves.");
 });

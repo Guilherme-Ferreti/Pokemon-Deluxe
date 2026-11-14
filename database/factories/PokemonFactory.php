@@ -7,6 +7,7 @@ namespace Database\Factories;
 use App\Pokemon\Services\ExperienceCalculator;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Shared\Enums\PokemonGender;
+use Shared\Models\Move;
 use Shared\Models\Pokeball;
 use Shared\Models\Pokemon;
 use Shared\Models\Species;
@@ -40,6 +41,13 @@ final class PokemonFactory extends Factory
     public function boosted(int $boost): static
     {
         return $this->state(['boost' => $boost]);
+    }
+
+    public function withActiveMoves(int $count = 4): static
+    {
+        return $this->afterCreating(fn (Pokemon $pokemon) => $pokemon->knownMoves()->attach(
+            Move::factory()->count($count)->create()->values()->mapWithKeys(fn (Move $move, int $index) => [$move->id => ['slot' => $index + 1]])->all(),
+        ));
     }
 
     public function inParty(): static

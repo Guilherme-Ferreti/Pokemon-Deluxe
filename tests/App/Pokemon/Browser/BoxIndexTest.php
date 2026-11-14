@@ -5,7 +5,6 @@ declare(strict_types=1);
 use Shared\Enums\Generation;
 use Shared\Enums\PokemonTrait;
 use Shared\Enums\PokemonType;
-use Shared\Models\Move;
 use Shared\Models\Pokemon;
 use Shared\Models\Species;
 use Shared\Models\User;
@@ -25,7 +24,7 @@ it('loads the box page without errors', function () {
 
 it('shows box pokemon', function () {
     $user    = User::factory()->create();
-    $pokemon = Pokemon::factory()->for($user)->for(Species::factory()->dualType())->has(Move::factory()->count(4))->inBox()->create();
+    $pokemon = Pokemon::factory()->for($user)->for(Species::factory()->dualType())->withActiveMoves()->inBox()->create();
 
     actingAs($user);
 
@@ -36,10 +35,10 @@ it('shows box pokemon', function () {
         ->assertSeeIn("@pokemon-{$pokemon->id}-card__gender", $pokemon->gender->label())
         ->assertSeeIn("@pokemon-{$pokemon->id}-card__level", $pokemon->level)
         ->assertSeeIn("@pokemon-{$pokemon->id}-card__experience", $pokemon->experience)
-        ->assertSeeIn("@pokemon-{$pokemon->id}-card__move-1", $pokemon->moves[0]->name)
-        ->assertSeeIn("@pokemon-{$pokemon->id}-card__move-2", $pokemon->moves[1]->name)
-        ->assertSeeIn("@pokemon-{$pokemon->id}-card__move-3", $pokemon->moves[2]->name)
-        ->assertSeeIn("@pokemon-{$pokemon->id}-card__move-4", $pokemon->moves[3]->name)
+        ->assertSeeIn("@pokemon-{$pokemon->id}-card__move-1", $pokemon->activeMoves[0]->name)
+        ->assertSeeIn("@pokemon-{$pokemon->id}-card__move-2", $pokemon->activeMoves[1]->name)
+        ->assertSeeIn("@pokemon-{$pokemon->id}-card__move-3", $pokemon->activeMoves[2]->name)
+        ->assertSeeIn("@pokemon-{$pokemon->id}-card__move-4", $pokemon->activeMoves[3]->name)
         ->assertMissing('@pokemon-grid__empty-state');
 });
 

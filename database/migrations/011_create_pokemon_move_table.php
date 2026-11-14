@@ -16,7 +16,10 @@ return new class extends Migration
             $table->foreignIdFor(Pokemon::class)->constrained()->cascadeOnDelete();
             $table->foreignIdFor(Move::class)->constrained()->cascadeOnDelete();
 
-            $table->index(['pokemon_id', 'move_id']);
+            $table->unsignedTinyInteger('slot')->nullable();
+
+            $table->unique(['pokemon_id', 'move_id']);
+            $table->unique(['pokemon_id', 'slot']);
         });
     }
 

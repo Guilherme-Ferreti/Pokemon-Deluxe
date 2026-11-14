@@ -39,7 +39,8 @@ use Shared\ValueObjects\PokemonStats;
  * @property-read User $user
  * @property-read Species $species
  * @property-read Pokeball $pokeball
- * @property-read EloquentCollection<int, Move> $moves
+ * @property-read EloquentCollection<int, Move> $knownMoves
+ * @property-read EloquentCollection<int, Move> $activeMoves
  */
 #[Table('pokemon')]
 #[Unguarded]
@@ -97,9 +98,19 @@ final class Pokemon extends Model
     /**
      * @return BelongsToMany<Move, $this>
      */
-    public function moves(): BelongsToMany
+    public function knownMoves(): BelongsToMany
     {
-        return $this->belongsToMany(Move::class, 'pokemon_move');
+        return $this->belongsToMany(Move::class, 'pokemon_move')->withPivot('slot');
+    }
+
+    /**
+     * @return BelongsToMany<Move, $this>
+     */
+    public function activeMoves(): BelongsToMany
+    {
+        return $this->knownMoves()
+            ->wherePivotNotNull('slot')
+            ->orderByPivot('slot');
     }
 
     /**

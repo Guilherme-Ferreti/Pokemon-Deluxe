@@ -88,9 +88,10 @@ final class UserSeeder extends Seeder
     {
         $user->pokemon()
             ->get(['id', 'species_id'])
-            ->flatMap(fn (Pokemon $pokemon) => Arr::map($this->getBaseMoves($pokemon->species_id), fn (string $moveId) => [
+            ->flatMap(fn (Pokemon $pokemon) => Arr::map($this->getBaseMoves($pokemon->species_id), fn (string $moveId, int $index) => [
                 'pokemon_id' => $pokemon->id,
                 'move_id'    => $moveId,
+                'slot'       => $index + 1,
             ]))
             ->chunk(3000)
             ->each(fn (Collection $chunk) => DB::table('pokemon_move')->insert($chunk->toArray()));
@@ -109,7 +110,7 @@ final class UserSeeder extends Seeder
             ->toArray()
         );
 
-        return collect($allMoves[$speciesId] ?? [])->repeatUntil(4)->take(4)->toArray();
+        return array_slice($allMoves[$speciesId] ?? [], 0, 4);
     }
 
     private function addIncubations(User $user): void
