@@ -10,3 +10,6 @@ Every class in `src/` must be `final`. Enforced by Pint (`final_class: true`) an
 
 ## Mark overridden methods with #[Override]
 Every method that overrides a parent method carries the native PHP `#[Override]` attribute.
+
+## Name methods so they need no explaining comment
+Do not write descriptive comments above functions or methods; their PHPDoc blocks hold only type information (`@param`, `@return`, `@template`, `@throws`, array shapes). Give the function a name that says what it does instead of a generic name explained by a comment (`rollIsShiny()`, not `roll()` with "Rolls whether the egg is shiny"). Add a description only when the code cannot be understood without it, such as a non-obvious contract a caller must know.

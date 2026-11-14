@@ -14,7 +14,7 @@ return [
 
     'incubation' => [
         'hatch_time_in_hours' => 24,
-        'shiny_odds'          => 100, // An egg is shiny 1 time in this many.
+        'shiny_chance'        => 1, // 1% chance that an egg is shiny.
     ],
 
     'pokemon' => [

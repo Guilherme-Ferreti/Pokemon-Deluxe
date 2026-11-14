@@ -7,10 +7,12 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Lottery;
 use Illuminate\Support\ServiceProvider;
 use Inertia\ProvidesInertiaProperties;
 use Shared\Base\Controller;
 use Shared\Base\DomainException;
+use Shared\Helpers\RandomHelper;
 use Shared\Interfaces\Filter;
 use Shared\Interfaces\ValueObject;
 
@@ -196,3 +198,21 @@ arch('Value Objects')
     ->toBeReadOnly()
     ->toImplement(ValueObject::class)
     ->toHaveConstructor();
+
+$randomnessOutsideRandomHelper = [
+    'rand',
+    'mt_rand',
+    'random_int',
+    'array_rand',
+    'shuffle',
+    Lottery::class,
+];
+
+arch('App gets randomness only from RandomHelper')
+    ->expect('App')
+    ->not->toUse($randomnessOutsideRandomHelper);
+
+arch('Shared gets randomness only from RandomHelper')
+    ->expect('Shared')
+    ->not->toUse($randomnessOutsideRandomHelper)
+    ->ignoring(RandomHelper::class);

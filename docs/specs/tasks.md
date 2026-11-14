@@ -41,13 +41,13 @@ Tasks with a **Mock-up** link have an interactive mock-up in `docs/mockups/` (op
 
 ### 0.3 Testable randomness
 
-- [ ] Done
+- [x] Done
 
 **Goal:** one source of randomness that tests can control.
 
 **Build:**
 - `Shared\Helpers\RandomHelper`, a final class with static methods:
-  - `chance(float $probability): bool`: true with the given probability (0.0–1.0).
+  - `chance(float $percentage): bool`: true with the given percentage chance (0–100). Throws `InvalidArgumentException` below 0 or above 100, even while faked.
   - `integer(int $min, int $max): int`: inclusive range.
   - `float(float $min, float $max): float`
   - `pick(array $items): mixed`: one random item.
@@ -55,8 +55,8 @@ Tasks with a **Mock-up** link have an interactive mock-up in `docs/mockups/` (op
 - Use PHP's `Random\Randomizer` inside.
 - Replace the three `Lottery::odds()` calls (`Species`, `PlaceEggAction`, `ListLayoutSpritesAction`) with `RandomHelper::chance()`, and update their tests.
 - Reset the fake after each test in `tests/Pest.php`.
-- Rule in `.ai/rules/helpers.md`: game code gets randomness only from `RandomHelper`.
-- `arch()` rule: `rand`, `mt_rand`, `random_int`, `array_rand`, `shuffle`, `Illuminate\Support\Lottery` and `Illuminate\Support\Arr::random` are not used in `App` or `Shared`, except inside `RandomHelper`.
+- Rule in `.ai/rules/helpers.md`: game code gets randomness only from `RandomHelper`. Picking random database rows with `inRandomOrder()` in a query stays allowed.
+- `arch()` rule: `rand`, `mt_rand`, `random_int`, `array_rand`, `shuffle` and `Illuminate\Support\Lottery` are not used in `App` or `Shared`, except inside `RandomHelper`. Pest cannot ban a single method, so `Arr::random()` is named in the rule file instead.
 
 **Tests:** `tests/Shared/Unit/Helpers/RandomHelperTest.php`: each method returns values in range; `fake()` returns values in order; running out throws; `reset()` restores randomness.
 
@@ -197,9 +197,9 @@ There is no production data yet, so database changes are new migrations and loca
 **Goal:** decide who acts first each turn.
 
 **Build:**
-- `App\Battle\Mechanics\TurnOrderCalculator::firstMoverChance(int $level, int $opponentLevel): float` = level ÷ (level + opponentLevel).
+- `App\Battle\Mechanics\TurnOrderCalculator::firstMoverChance(int $level, int $opponentLevel): float` = 100 × level ÷ (level + opponentLevel), a percentage.
 
-**Tests:** 100 vs 100 → 0.5; 1 vs 100 → about 0.0099.
+**Tests:** 100 vs 100 → 50; 1 vs 100 → about 0.99.
 
 **Done when:** calculator exists; tests pass.
 
@@ -214,7 +214,7 @@ There is no production data yet, so database changes are new migrations and loca
 - `App\Battle\Mechanics\MoveOutcomeRoller::roll(Move $move): MoveOutcome`, using `RandomHelper`:
   - hit if a roll is within the move's accuracy;
   - hit count between `min_hits` and `max_hits` (1 when empty);
-  - critical with chance 1 / `game.battle.critical_hit_odds` (16);
+  - critical with `game.battle.critical_hit_chance` (6.25, 1 in 16);
   - random factor between `game.battle.damage_random_min` (0.85) and 1.0;
   - flinch with `flinch_chance`; ailment with `ailment_chance`.
   - A miss sets everything else to its "nothing happened" value.
@@ -255,7 +255,7 @@ Agreed and added to Spec 1 under "Status effects". Task 1.11 adds the config key
 
 **Goal:** the dice for status effects during a turn.
 
-**Build** (numbers from Spec 1, "Status effects"; add them to `config/game.php` under `game.battle.ailments`):
+**Build** (numbers from Spec 1, "Status effects"; add them to `config/game.php` under `game.battle.ailments`, chances as percentages such as `paralysis_chance` (25)):
 - `App\Battle\Mechanics\StatusEffectRoller` with:
   - `canAct(Combatant $combatant): bool`: handles paralysis, sleep, freeze, and the confusion self-hit roll (returns `false` when it hits itself).
   - `durationFor(Ailment $ailment): int`: sleep and confusion turn counts.
@@ -595,13 +595,13 @@ Read [02-catching-and-exploration.md](02-catching-and-exploration.md) first. Nee
 **Goal:** pick the wild Pokémon for one explore.
 
 **Build:**
-- Move `game.incubation.shiny_odds` to `game.pokemon.shiny_odds` (eggs and the wild share it; update `PlaceEggAction`).
-- Config `game.exploration`: `legendary_odds` (500), `stage_weights` ([1 => 85, 2 => 12, 3 => 3]).
+- Move `game.incubation.shiny_chance` to `game.pokemon.shiny_chance` (eggs and the wild share it; update `PlaceEggAction`).
+- Config `game.exploration`: `legendary_chance` (0.2, 1 in 500), `stage_weights` ([1 => 85, 2 => 12, 3 => 3]).
 - `App\Exploration\Mechanics\EncounterRoller::roll(Collection $areaSpecies): NewPokemon`, using `RandomHelper`:
-  1. 1 in 500: a legendary or mythical, if the area has any.
+  1. With `legendary_chance`: a legendary or mythical, if the area has any.
   2. Otherwise a stage from the weights; if the area has no species at that stage, fall back to the next lower stage.
   3. A species picked evenly from that group (legendaries and mythicals excluded in this step).
-  4. Level between the species' `wild_min_level` and `wild_max_level`; shiny with 1 / `shiny_odds`; gender from `getRandomGender()`.
+  4. Level between the species' `wild_min_level` and `wild_max_level`; shiny with `shiny_chance`; gender from `getRandomGender()`.
 
 **Tests:** with `RandomHelper::fake()`: legendary roll, each stage, fallback to a lower stage, level within range, shiny.
 
@@ -644,8 +644,8 @@ Read [02-catching-and-exploration.md](02-catching-and-exploration.md) first. Nee
 **Goal:** the Spec 2 catch formula.
 
 **Build:**
-- Config `game.catching`: `base_chance` (0.10), `legendary_base_chance` (0.01), `low_hp_bonus` (1.5), `ailment_multipliers` (sleep and freeze 2, paralysis, burn and poison 1.5).
-- `App\Battle\Mechanics\CatchChanceCalculator::calculate(Species $species, int $currentHp, int $maxHp, ?Ailment $ailment, float $ballMultiplier): float`: base × ball × (1 + 1.5 × (1 − HP ratio)) × ailment, capped at 1.0.
+- Config `game.catching`: `base_chance` (10), `legendary_base_chance` (1), `low_hp_bonus` (1.5), `ailment_multipliers` (sleep and freeze 2, paralysis, burn and poison 1.5).
+- `App\Battle\Mechanics\CatchChanceCalculator::calculate(Species $species, int $currentHp, int $maxHp, ?Ailment $ailment, float $ballMultiplier): float`: base × ball × (1 + 1.5 × (1 − HP ratio)) × ailment, as a percentage capped at 100.
 
 **Tests:** every row of the Spec 2 example table.
 
@@ -1167,7 +1167,7 @@ Read [04-pokemon-page.md](04-pokemon-page.md) first. Builds on Spec 1 (`SetActiv
 **Goal:** the chance a boost stone fails, and the roll.
 
 **Build:**
-- `App\Pokemon\Mechanics\BoostStoneCalculator::failureChance(int $currentBoost): float`: 0 below +20; from +20, (currentBoost − 19) / 100, so +20 → +21 fails 1% and +99 → +100 fails 80%. Config `game.boost.safe_until` (20), `game.boost.failure_step` (0.01).
+- `App\Pokemon\Mechanics\BoostStoneCalculator::failureChance(int $currentBoost): float`: a percentage; 0 below +20; from +20, (currentBoost − 19) × `failure_step`, so +20 → +21 fails 1% and +99 → +100 fails 80%. Config `game.boost.safe_until` (20), `game.boost.failure_step` (1).
 - `App\Pokemon\Mechanics\BoostStoneRoller::roll(int $currentBoost): bool` (true = success), with `RandomHelper`.
 
 **Tests:** chances at +0, +19, +20, +60, +99; roller with `RandomHelper::fake()`.
@@ -1757,7 +1757,7 @@ Read [06-trainers-gyms-and-battle-tower.md](06-trainers-gyms-and-battle-tower.md
 - `App\Trainers\Mechanics\TrainerTeamRoller::roll(Collection $species, int $size, int $minLevel, int $maxLevel, int $boost = 0): array` (used by the Battle Tower, task 6.12): random species, levels, genders, shiny at the normal odds, base moves. Trainers met while exploring use `EncounterRoller` instead (below).
 - A small list of names and classes for generated trainers in `config/trainers.php`.
 - Migration `033_add_trainer_columns_to_encounters_table.php`: `kind` enum (`POKEMON`, `TRAINER`), nullable `trainer_name`, `trainer_class`, `json trainer_team`, `payout`.
-- `ExploreAction` (task 2.6): 1 in `game.exploration.trainer_odds` (20) rolls a trainer of 1–3 Pokémon, each picked with `EncounterRoller` (task 2.5) from the area's species: the same stage weights, 1 in 500 legendary or mythical, its own wild levels. Full payout = `game.trainers.explore_payout_per_level` (100) × the team's average level, reduced like any trainer.
+- `ExploreAction` (task 2.6): `game.exploration.trainer_chance` (5, 1 in 20) rolls a trainer of 1–3 Pokémon, each picked with `EncounterRoller` (task 2.5) from the area's species: the same stage weights, 1 in 500 legendary or mythical, its own wild levels. Full payout = `game.trainers.explore_payout_per_level` (100) × the team's average level, reduced like any trainer.
 - `BattleEncounterAction` starts a `TRAINER` battle for trainer encounters (paid like any trainer).
 
 **UI suggestions** (ideas, not requirements):

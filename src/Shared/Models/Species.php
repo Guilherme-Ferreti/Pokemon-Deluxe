@@ -14,7 +14,6 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
-use Illuminate\Support\Lottery;
 use Override;
 use Shared\Casts\AsSpeciesPortraits;
 use Shared\Casts\AsSpeciesSprites;
@@ -22,6 +21,7 @@ use Shared\Enums\Generation;
 use Shared\Enums\PokemonGender;
 use Shared\Enums\PokemonGenderRate;
 use Shared\Enums\PokemonType;
+use Shared\Helpers\RandomHelper;
 use Shared\ValueObjects\SpeciesPortraits;
 use Shared\ValueObjects\SpeciesSprites;
 
@@ -170,9 +170,8 @@ final class Species extends Model
             return PokemonGender::GENDERLESS;
         }
 
-        return Lottery::odds($this->gender_rate->malePercentage(), 100)
-            ->winner(fn () => PokemonGender::MALE)
-            ->loser(fn () => PokemonGender::FEMALE)
-            ->choose();
+        return RandomHelper::chance($this->gender_rate->malePercentage())
+            ? PokemonGender::MALE
+            : PokemonGender::FEMALE;
     }
 }

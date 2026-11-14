@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace App\Auth\Actions;
 
 use Illuminate\Support\Facades\Cache;
-use Illuminate\Support\Lottery;
+use Shared\Helpers\RandomHelper;
 use Shared\Models\Species;
 use Shared\ValueObjects\SpeciesSprites;
 
@@ -34,10 +34,9 @@ final class ListLayoutSpritesAction
             ->inRandomOrder()
             ->limit(49)
             ->pluck('sprites')
-            ->map(fn (SpeciesSprites $sprites) => Lottery::odds(1, 100)
-                ->winner(fn () => $sprites->front_shiny)
-                ->loser(fn () => $sprites->front_default)
-                ->choose()
+            ->map(fn (SpeciesSprites $sprites) => RandomHelper::chance(1)
+                ? $sprites->front_shiny
+                : $sprites->front_default
             )
             ->toArray();
     }

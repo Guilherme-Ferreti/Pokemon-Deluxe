@@ -2,7 +2,6 @@
 
 declare(strict_types=1);
 
-use Illuminate\Support\Lottery;
 use Shared\Models\Incubation;
 use Shared\Models\InventoryItem;
 use Shared\Models\Pokeball;
@@ -39,8 +38,6 @@ it('allows purchasing a not purchased incubator', function () {
 });
 
 it('allows placing an egg in an idle incubator', function () {
-    Lottery::alwaysLose();
-
     $user    = User::factory()->create(['purchased_incubator_indexes' => [new IncubatorIndex(1)]]);
     $species = Species::factory()->create(['egg_obtainable' => true]);
 

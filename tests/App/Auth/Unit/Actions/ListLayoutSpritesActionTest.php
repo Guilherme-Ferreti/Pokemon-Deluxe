@@ -3,19 +3,15 @@
 declare(strict_types=1);
 
 use App\Auth\Actions\ListLayoutSpritesAction;
-use Illuminate\Support\Lottery;
+use Shared\Helpers\RandomHelper;
 use Shared\Models\Species;
 use Shared\ValueObjects\SpeciesSprites;
 
-afterEach(function () {
-    Lottery::determineResultsNormally();
-});
-
-it('returns species default sprite when the lottery loses', function () {
+it('returns species default sprite when the shiny roll fails', function () {
     $species   = Species::factory()->count(3)->create();
     $frontUrls = $species->map(fn (Species $species) => $species->sprites->front_default)->all();
 
-    Lottery::alwaysLose();
+    RandomHelper::fake([false, false, false]);
 
     $sprites = new ListLayoutSpritesAction()->handle();
 
@@ -23,11 +19,11 @@ it('returns species default sprite when the lottery loses', function () {
         ->and($sprites)->toEqualCanonicalizing($frontUrls);
 });
 
-it('returns species shiny sprite when the lottery wins', function () {
+it('returns species shiny sprite when the shiny roll succeeds', function () {
     $species   = Species::factory()->count(3)->create();
     $frontUrls = $species->map(fn (Species $species) => $species->sprites->front_shiny)->all();
 
-    Lottery::alwaysWin();
+    RandomHelper::fake([true, true, true]);
 
     $sprites = new ListLayoutSpritesAction()->handle();
 
@@ -50,7 +46,7 @@ it('excludes species without a front default or shiny sprite', function () {
         ),
     ]);
 
-    Lottery::alwaysLose();
+    RandomHelper::fake([false, false]);
 
     $sprites = new ListLayoutSpritesAction()->handle();
 

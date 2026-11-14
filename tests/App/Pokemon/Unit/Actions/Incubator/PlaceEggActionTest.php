@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 use App\Pokemon\Actions\Incubator\PlaceEggAction;
 use App\Pokemon\Exceptions\IncubatorNotIdleException;
-use Illuminate\Support\Lottery;
 use Shared\Enums\PokemonGender;
 use Shared\Enums\PokemonGenderRate;
+use Shared\Helpers\RandomHelper;
 use Shared\Models\Incubation;
 use Shared\Models\Species;
 use Shared\Models\User;
@@ -101,22 +101,22 @@ it('assigns the egg a gender the species can have', function (PokemonGenderRate 
     'male-or-female species' => [PokemonGenderRate::EQUAL, [PokemonGender::MALE, PokemonGender::FEMALE]],
 ]);
 
-it('marks the egg as shiny when the shiny lottery wins', function () {
-    Lottery::alwaysWin();
-
+it('marks the egg as shiny when the shiny roll succeeds', function () {
     $user = User::factory()->create(['purchased_incubator_indexes' => [new IncubatorIndex(1)]]);
-    Species::factory()->create(['egg_obtainable' => true]);
+    Species::factory()->create(['egg_obtainable' => true, 'gender_rate' => PokemonGenderRate::GENDERLESS]);
+
+    RandomHelper::fake([true]);
 
     new PlaceEggAction()->handle($user, new IncubatorIndex(1));
 
     expect($user->incubations()->sole()->is_shiny)->toBeTrue();
 });
 
-it('does not mark the egg as shiny when the shiny lottery loses', function () {
-    Lottery::alwaysLose();
-
+it('does not mark the egg as shiny when the shiny roll fails', function () {
     $user = User::factory()->create(['purchased_incubator_indexes' => [new IncubatorIndex(1)]]);
-    Species::factory()->create(['egg_obtainable' => true]);
+    Species::factory()->create(['egg_obtainable' => true, 'gender_rate' => PokemonGenderRate::GENDERLESS]);
+
+    RandomHelper::fake([false]);
 
     new PlaceEggAction()->handle($user, new IncubatorIndex(1));
 

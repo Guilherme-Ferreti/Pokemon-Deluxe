@@ -3,6 +3,7 @@
 declare(strict_types=1);
 
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Shared\Helpers\RandomHelper;
 use Tests\TestCase;
 
 /*
@@ -18,6 +19,7 @@ use Tests\TestCase;
 
 pest()->extend(TestCase::class)
     ->use(RefreshDatabase::class)
+    ->afterEach(fn () => RandomHelper::reset())
     ->in('App/*/Browser', 'App/*/Feature', 'App/*/Unit', 'Shared/Unit/*');
 
 pest()->browser()->timeout(10000);

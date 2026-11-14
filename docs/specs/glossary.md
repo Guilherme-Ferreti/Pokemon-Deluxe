@@ -35,13 +35,13 @@ One name per idea, used everywhere: specs, code, database, tests and UI. When yo
 | Run (forfeit) | `ForfeitBattleAction`, `BattleStatus::FORFEITED` | The UI says "Run". Counts as a loss. |
 | Battle ended | `EndBattleAction`, `BattleEnded` event | The one place a battle ends; `isWin` for won and caught battles. |
 | Earned XP | `earned_experience`, `level_before`, `level_after` | Each player combatant's result, shown on the end screen. |
-| First mover | `firstMoverChance` | Chance to act first this turn. |
+| First mover | `firstMoverChance` | Percentage chance (0–100) to act first this turn. |
 | Area | `Area` enum | The 9 places to explore (`Area::FOREST`). |
 | Explore / Keep exploring | `ExploreAction` | Both roll a new encounter. |
 | Encounter | `Encounter` model | The one wild Pokémon waiting for the player. |
 | Wild level range | `wild_min_level`, `wild_max_level` | Null when a species never appears in the wild. |
 | Evolution stage | `evolution_stage` | 1 = unevolved, 2, 3. Babies don't count. |
-| Catch chance | `CatchChanceCalculator` | 0.0–1.0. |
+| Catch chance | `CatchChanceCalculator` | Percentage, 0–100. |
 | Ball multiplier | `BallMultiplierCalculator`, `catch_rate` (Poké Ball column) | The column holds the multiplier when no condition applies. |
 | Throw ball | `ThrowBallAction` | |
 | Starter | `starter` | The Pokémon chosen at registration. |
@@ -58,7 +58,7 @@ One name per idea, used everywhere: specs, code, database, tests and UI. When yo
 | Lock | `is_locked`, `SetPokemonLockAction` | Locked Pokémon can't be released or traded. |
 | Release | `ReleasePokemonAction` | Permanent; gives nothing back. |
 | Teach a TM | `TeachTmAction` | Adds a move to the known moves; the TM is used up. |
-| Boost failure chance | `BoostStoneCalculator::failureChance()` | 0.0–1.0 for the next stone. |
+| Boost failure chance | `BoostStoneCalculator::failureChance()` | Percentage (0–100) for the next stone. |
 | Boost result | `BoostResult` | Stones used, successes, failures, boost before and after. |
 | Evolution option | a `SpeciesEvolution` plus its requirement reason | Shown in the Evolve dialog. |
 | Party size limit | `game.user.max_party_size` | 6. |
@@ -115,6 +115,7 @@ One name per idea, used everywhere: specs, code, database, tests and UI. When yo
 | Method returning a number | The noun, no `get` prefix | `maxHp()`, `firstMoverChance()` |
 | Method computing something from inputs | `calculate()` on a Calculator, `roll()` on a Roller, `check()` on a Checker, or a name saying what it returns when a class has several | `failureChance()`, `isCheckpoint()` |
 | Config key | `game.{area}.{snake_case}` in `config/game.php` | `game.battle.stab_multiplier` |
+| Chance | `{noun}_chance` (config, column) or `{noun}Chance()` (method), always a percentage from 0 to 100, never a 0.0–1.0 fraction or "1 in N" odds; `RandomHelper::chance()` takes it as is | `game.battle.critical_hit_chance` (6.25), `flinch_chance`, `failureChance()` |
 | Migration | `{next number}_{verb}_{noun}_table.php` | `014_add_boost_to_pokemon_table.php` |
 | Test file | `{ClassName}Test.php`, mirrored folders | `tests/App/Battle/Unit/Mechanics/DamageCalculatorTest.php` |
 

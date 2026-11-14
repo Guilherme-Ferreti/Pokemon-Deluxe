@@ -7,7 +7,7 @@ namespace App\Pokemon\Actions\Incubator;
 use App\Pokemon\Exceptions\IncubatorNotIdleException;
 use App\Pokemon\Support\LockKeys;
 use Illuminate\Support\Facades\Cache;
-use Illuminate\Support\Lottery;
+use Shared\Helpers\RandomHelper;
 use Shared\Models\Species;
 use Shared\Models\User;
 use Shared\ValueObjects\IncubatorIndex;
@@ -70,9 +70,6 @@ final class PlaceEggAction
 
     private function rollIsShiny(): bool
     {
-        return Lottery::odds(1, (int) config('game.incubation.shiny_odds'))
-            ->winner(fn () => true)
-            ->loser(fn () => false)
-            ->choose();
+        return RandomHelper::chance((float) config('game.incubation.shiny_chance'));
     }
 }
