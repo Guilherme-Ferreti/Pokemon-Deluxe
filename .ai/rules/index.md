@@ -19,6 +19,7 @@ Feature behaviour (game rules, formulas, page designs) lives in `docs/specs/`; r
 | src/Shared/Helpers/** | .ai/rules/helpers.md |
 | resources/js/** | .ai/rules/design.md |
 | resources/js/app/** | .ai/rules/js-app.md |
+| src/App/**/Mechanics/** | .ai/rules/mechanics.md |
 | database/migrations/** | .ai/rules/migrations.md |
 | src/Shared/Models/** | .ai/rules/models.md |
 | src/App/**/Http/Web/PageProps/** | .ai/rules/page-props.md |

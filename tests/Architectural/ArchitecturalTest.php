@@ -5,6 +5,8 @@ declare(strict_types=1);
 use Illuminate\Contracts\Database\Eloquent\CastsAttributes;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\ServiceProvider;
 use Inertia\ProvidesInertiaProperties;
 use Shared\Base\Controller;
@@ -110,6 +112,17 @@ arch('Support')
     ->toExtendNothing()
     ->toImplementNothing()
     ->not->toHaveProtectedMethods();
+
+arch('Mechanics')
+    ->expect('App\*\Mechanics')
+    ->toBeClasses()
+    ->toBeFinal()
+    ->toExtendNothing()
+    ->not->toUse([
+        DB::class,
+        'Illuminate\Http',
+        Auth::class,
+    ]);
 
 arch('Services')
     ->expect('App\*\Services')

@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Dex\Http\Web\PageProps;
 
-use App\Battle\Services\DamageCalculator;
+use App\Battle\Mechanics\DamageCalculator;
 use App\Dex\Actions\CalculateSpeciesCatchStatisticsAction;
 use App\Dex\Actions\CalculateUserSpeciesCatchStatisticsAction;
 use App\Dex\Support\CacheKeys;

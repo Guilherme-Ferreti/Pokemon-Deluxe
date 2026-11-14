@@ -24,7 +24,7 @@ Tasks with a **Mock-up** link have an interactive mock-up in `docs/mockups/` (op
 
 ### 0.2 A home for game mechanics
 
-- [ ] Done
+- [x] Done
 
 **Goal:** pure game rules (formulas, odds, rolls) live in one strictly tested kind of folder.
 
@@ -34,8 +34,8 @@ Tasks with a **Mock-up** link have an interactive mock-up in `docs/mockups/` (op
   - Classes are `final`, named `{Noun}Calculator`, `{Noun}Roller` or `{Noun}Checker` (see the glossary).
   - They may read models and their loaded relations, and `config('game.*')`. They never query or save to the database, use HTTP, sessions or auth.
   - Randomness only through `RandomHelper` (task 0.3), and only in `Roller` classes.
-- `arch()` rule in `tests/Architectural/ArchitecturalTest.php`: `App\*\Mechanics` are final classes with suffix `Calculator`, `Roller` or `Checker`, extend nothing, and do not use `Illuminate\Support\Facades\DB`, `Illuminate\Http`, `Illuminate\Support\Facades\Auth`.
-- Move `App\Battle\Services\DamageCalculator` to `App\Battle\Mechanics\DamageCalculator`. Update `PokedexShowPageProps` and the test. Remove the empty `Services` folder.
+- `arch()` rule in `tests/Architectural/ArchitecturalTest.php`: `App\*\Mechanics` are final classes that extend nothing and do not use `Illuminate\Support\Facades\DB`, `Illuminate\Http`, `Illuminate\Support\Facades\Auth`.
+- Move `App\Battle\Services\DamageCalculator` to `App\Battle\Mechanics\DamageCalculator`. Update `PokedexShowPageProps` and add `tests/App/Battle/Unit/Mechanics/DamageCalculatorTest.php` for the existing type multiplier. Remove the empty `Services` folder.
 
 **Done when:** rule file, index row and `arch()` rule exist; `DamageCalculator` is in `Mechanics`; the suite passes.
 

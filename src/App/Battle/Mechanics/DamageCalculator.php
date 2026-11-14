@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Battle\Services;
+namespace App\Battle\Mechanics;
 
 use Shared\Enums\PokemonType;
 
