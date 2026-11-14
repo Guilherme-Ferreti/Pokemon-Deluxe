@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 use Shared\Models\Pokemon;
 use Shared\Models\Species;
+use Shared\ValueObjects\PokemonStats;
 use Shared\ValueObjects\SpeciesSprites;
 
 describe('display name', function () {
@@ -93,5 +94,13 @@ describe('display front sprite', function () {
         $female = Pokemon::factory()->for($species)->regular()->female()->create();
 
         expect($female->getDisplayFrontSprite())->toBe($female->species->sprites->front_default);
+    });
+});
+
+describe('stats', function () {
+    it('calculates the stats from its level, boost and shine', function () {
+        $pokemon = Pokemon::factory()->boosted(100)->shiny()->create(['level' => 100]);
+
+        expect($pokemon->getStats())->toEqual(new PokemonStats(hp: 1000, attack: 110 / 77 * 2 * 1.25, defense: 0.75));
     });
 });

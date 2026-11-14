@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Shared\Models;
 
+use App\Pokemon\Mechanics\StatsCalculator;
 use Database\Factories\PokemonFactory;
 use Illuminate\Database\Eloquent\Attributes\Scope;
 use Illuminate\Database\Eloquent\Attributes\Table;
@@ -18,6 +19,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Support\Carbon;
 use Override;
 use Shared\Enums\PokemonGender;
+use Shared\ValueObjects\PokemonStats;
 
 /**
  * @property string $id
@@ -159,5 +161,10 @@ final class Pokemon extends Model
     public function getDisplayFrontSprite(): string
     {
         return $this->species->getDisplayFrontSprite($this->gender, $this->is_shiny);
+    }
+
+    public function getStats(): PokemonStats
+    {
+        return new StatsCalculator()->calculate($this->level, $this->boost, $this->is_shiny);
     }
 }

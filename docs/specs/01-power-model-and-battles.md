@@ -17,14 +17,14 @@ Species decides only base moves and types. Legendaries get no bonus.
 
 ## Formulas
 
-Level factor = level + 10, so a level 100 Pokémon is 10× a level 1, not 100×.
+Level factor = level + 10, so a level 100 Pokémon is 10× a level 1, not 100×. A level 100 Pokémon with no boost and no shine has 400 HP; a level 1 has 40.
 
 ```math
-\text{HP} = 4 \times (\text{level} + 10) \times \left(1 + \frac{\text{boost}}{100}\right) \times \text{shiny}_{1.25}
+\text{HP} = 400 \times \frac{\text{level} + 10}{110} \times \left(1 + \frac{\text{boost}}{100}\right) \times \text{shiny}_{1.25}
 ```
 
 ```math
-\text{Damage} = \text{power} \times \frac{\text{level} + 10}{70} \times \left(1 + \frac{\text{boost}}{100}\right) \times \text{shiny}_{1.25} \times \text{STAB}_{1.5} \times \text{type} \times \text{crit}_{1.5} \times \text{random}_{0.85\text{–}1} \times \text{defender shiny}_{0.75}
+\text{Damage} = \text{power} \times \frac{\text{level} + 10}{77} \times \left(1 + \frac{\text{boost}}{100}\right) \times \text{shiny}_{1.25} \times \text{STAB}_{1.5} \times \text{type} \times \text{crit}_{1.5} \times \text{random}_{0.85\text{–}1} \times \text{defender shiny}_{0.75}
 ```
 
 | Matchup (neutral 80-power move, no boost) | Expected result |

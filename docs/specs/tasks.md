@@ -108,20 +108,20 @@ There is no production data yet, so a new column (or index, or a dropped column)
 
 ### 1.2 Calculate a Pokémon's stats
 
-- [ ] Done
+- [x] Done
 
 **Goal:** turn level, boost and shiny into HP, Attack and Defense.
 
 **Build:**
 - Value object `Shared\ValueObjects\PokemonStats` (`final readonly`, implements `ValueObject`): `int $hp`, `float $attack`, `float $defense`.
 - `App\Pokemon\Mechanics\StatsCalculator::calculate(int $level, int $boost, bool $isShiny): PokemonStats`:
-  - `hp` = round(4 × (level + 10) × (1 + boost / 100) × (1.25 if shiny))
-  - `attack` = (level + 10) / 70 × (1 + boost / 100) × (1.25 if shiny)
+  - `hp` = round(400 × (level + 10) / (100 + 10) × (1 + boost / 100) × (1.25 if shiny))
+  - `attack` = (level + 10) / 77 × (1 + boost / 100) × (1.25 if shiny)
   - `defense` = 0.75 if shiny, else 1.0 (multiplier on damage taken)
-- New config keys under `game.stats`: `hp_factor` (4), `level_offset` (10), `attack_divisor` (70), `shiny_hp_multiplier` (1.25), `shiny_attack_multiplier` (1.25), `shiny_defense_multiplier` (0.75).
+- New config keys under `game.pokemon.stats`: `max_level_hp` (400), `level_bonus` (10), `damage_scale` (77), `shiny_hp_multiplier` (1.25), `shiny_damage_done_multiplier` (1.25), `shiny_damage_taken_multiplier` (0.75).
 - `Pokemon::getStats(): PokemonStats` calls the calculator.
 
-**Tests:** `tests/App/Pokemon/Unit/Mechanics/StatsCalculatorTest.php`: level 1 → HP 44; level 100 → HP 440; +100 boost doubles HP and attack; shiny gives ×1.25 HP and attack and 0.75 defense.
+**Tests:** `tests/App/Pokemon/Unit/Mechanics/StatsCalculatorTest.php`: level 1 → HP 40; level 100 → HP 400; +100 boost doubles HP and attack; shiny gives ×1.25 HP and attack and 0.75 defense.
 
 **Done when:** calculator, value object, config keys and model method exist; tests pass.
 
