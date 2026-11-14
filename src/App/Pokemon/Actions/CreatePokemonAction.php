@@ -65,7 +65,7 @@ final class CreatePokemonAction
 
     private function addBaseMoves(Pokemon $pokemon): void
     {
-        $moveIds = $this->newPokemon->species->baseMoves()->take(4)->pluck('moves.id');
+        $moveIds = $this->newPokemon->species->baseMoves()->take((int) config('game.pokemon.max_active_moves'))->pluck('moves.id');
 
         if ($moveIds->isEmpty()) {
             report(GameDataException::speciesWithoutBaseMoves($this->newPokemon->species));

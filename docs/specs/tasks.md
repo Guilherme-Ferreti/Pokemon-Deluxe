@@ -143,15 +143,16 @@ There is no production data yet, so a new column (or index, or a dropped column)
 
 ### 1.4 Put a known move in an active slot
 
-- [ ] Done
+- [x] Done
 
 **Goal:** the backend for "swap" on the Pokémon page (the page itself is Spec 4).
 
 **Build:**
 - `App\Pokemon\Actions\SetActiveMoveAction::handle(Pokemon $pokemon, Move $move, int $slot): void`
   - `$move` must be a known move, otherwise throw `App\Pokemon\Exceptions\MoveNotKnownException`.
-  - `$slot` must be 1–4, otherwise throw `InvalidArgumentException`.
-  - If `$move` is already active in another slot, the two moves swap slots. Otherwise the move that was in `$slot` (if any) goes back to the pool (slot `null`).
+  - `$slot` must be 1–`game.pokemon.max_active_moves` (4, also used by `CreatePokemonAction`), otherwise throw `InvalidArgumentException`.
+  - If `$move` is already active in another slot, the two moves swap slots (an active move sent to an empty slot leaves its old slot empty). Otherwise the move that was in `$slot` (if any) goes back to the pool (slot `null`).
+  - Locked per Pokémon with `LockKeys::pokemonActiveMoves()`.
 
 **Tests:** `tests/App/Pokemon/Unit/Actions/SetActiveMoveActionTest.php`: replace, swap, empty slot, unknown move, invalid slot.
 

@@ -27,4 +27,9 @@ final class LockKeys
     {
         return "pokemon::lock:incubator-catch-pokemon:user-{$userId}:incubator-{$incubatorIndex->value}";
     }
+
+    public static function pokemonActiveMoves(string $pokemonId): string
+    {
+        return "pokemon::lock:active-moves:pokemon-{$pokemonId}";
+    }
 }

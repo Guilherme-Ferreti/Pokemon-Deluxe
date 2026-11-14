@@ -22,6 +22,7 @@ return [
         'max_boost'            => 100,      // Highest boost a Pokémon can reach with boost stones.
         'experience_per_level' => 1000,     // XP needed to go up one level.
         'default_base_move'    => 'tackle', // Move given to a new Pokémon whose species has no base moves.
+        'max_active_moves'     => 4,        // Number of active move slots a Pokémon uses in battle.
 
         'stats' => [
             'max_level_hp'                  => 400,  // Max HP of a level 100 Pokémon with no boost and no shine.
