@@ -26,14 +26,20 @@ final class PokemonFactory extends Factory
             'user_id'          => User::factory(),
             'original_user_id' => User::factory(),
             'species_id'       => Species::factory(),
-            'level'            => fake()->numberBetween(1, 100),
+            'level'            => fake()->numberBetween(1, (int) config('game.pokemon.max_level')),
             'experience'       => fn (array $attributes) => new ExperienceCalculator()->experienceForLevel((int) $attributes['level']),
+            'boost'            => fake()->numberBetween(0, (int) config('game.pokemon.max_boost')),
             'in_party'         => fake()->boolean(),
             'is_shiny'         => fake()->boolean(10),
             'gender'           => fn (array $attributes) => Species::findOrFail((string) $attributes['species_id'])->getRandomGender(),
             'pokeball_id'      => Pokeball::factory(),
             'caught_at'        => fake()->dateTimeBetween('-1 year', 'now'),
         ];
+    }
+
+    public function boosted(int $boost): static
+    {
+        return $this->state(['boost' => $boost]);
     }
 
     public function inParty(): static

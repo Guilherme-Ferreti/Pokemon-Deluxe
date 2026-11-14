@@ -88,17 +88,17 @@ Tasks with a **Mock-up** link have an interactive mock-up in `docs/mockups/` (op
 
 Read [01-power-model-and-battles.md](01-power-model-and-battles.md) first. Tasks 1.1–1.18 are backend only; the battle page comes next (1.19–1.21); task 1.22 is seed data; tasks 1.23–1.24 add switching Pokémon.
 
-There is no production data yet, so database changes are new migrations and local databases are rebuilt with `php artisan migrate:fresh --seed`. No data migrations.
+There is no production data yet, so a new column (or index, or a dropped column) goes into the table's existing `create_…` migration, and only a new table gets a new migration file. Local databases are rebuilt with `php artisan migrate:fresh --seed`. No data migrations.
 
 ### 1.1 Add boost to Pokémon
 
-- [ ] Done
+- [x] Done
 
 **Goal:** every Pokémon has a boost level from 0 to 100.
 
 **Build:**
-- Migration `014_add_boost_to_pokemon_table.php`: `unsignedTinyInteger('boost')->default(0)` after `experience`.
-- `Pokemon` model: cast `'boost' => 'integer'`.
+- In `010_create_pokemon_table.php`: `unsignedTinyInteger('boost')->default(0)` after `experience`.
+- `Pokemon` model: cast `'boost' => 'integer'`. `CreatePokemonAction` sets `boost` to 0.
 - `PokemonFactory`: `boost` defaults to 0; new state `boosted(int $boost)`.
 - `config/game.php`: `'pokemon' => ['max_boost' => 100, ...]`.
 
@@ -132,14 +132,14 @@ There is no production data yet, so database changes are new migrations and loca
 **Goal:** a Pokémon has a pool of known moves; up to 4 of them sit in active slots.
 
 **Build:**
-- Migration `015_add_slot_to_pokemon_move_table.php`: nullable `unsignedTinyInteger('slot')`; unique `['pokemon_id', 'move_id']`; unique `['pokemon_id', 'slot']`.
+- In `011_create_pokemon_move_table.php`: nullable `unsignedTinyInteger('slot')`; unique `['pokemon_id', 'move_id']`; unique `['pokemon_id', 'slot']`.
 - `Pokemon` model: rename `moves()` to `knownMoves()` (with `withPivot('slot')`); add `activeMoves()` = known moves with a slot, ordered by slot.
 - `CreatePokemonAction::addBaseMoves()`: attach the species' unique base moves (up to 4) with slots 1, 2, 3…; remove `repeatUntil(4)`. Every species gets exactly 4 different base moves in task 1.22; until then, a species with fewer gives fewer active moves.
 - Update every use of `moves` (`BoxIndexPageProps`, Box tests) to `activeMoves`.
 
 **Tests:** `CreatePokemonActionTest`: base moves become active in slots 1–4; no duplicates; a species with 2 base moves gives 2 active moves; the default-move fallback still works.
 
-**Done when:** migration, relations and action changes are in; Box page still shows the moves; the suite passes.
+**Done when:** column, relations and action changes are in; Box page still shows the moves; the suite passes.
 
 ### 1.4 Put a known move in an active slot
 
@@ -237,7 +237,7 @@ Agreed and added to Spec 1 under "Status effects". Task 1.11 adds the config key
 
 **Build:**
 - Enums in `Shared\Enums`: `BattleType` (`WILD`, `TRAINER`, `GYM`, `ELITE_FOUR`, `BATTLE_TOWER`), `BattleStatus` (`ONGOING`, `WON`, `LOST`, `FORFEITED`, `CAUGHT`).
-- Migration `016_create_battles_table.php`: `uuid id`, `foreignIdFor(User)`, `type` enum, `status` enum, `json state`, timestamps; index `['user_id', 'status']`.
+- Migration `014_create_battles_table.php`: `uuid id`, `foreignIdFor(User)`, `type` enum, `status` enum, `json state`, timestamps; index `['user_id', 'status']`.
 - Model `Shared\Models\Battle` (with factory), relation `User::battles()`.
 - Value objects in `Shared\ValueObjects`:
   - `Combatant`: `?string $pokemon_id` (null for wild or NPC), `string $species_id`, `int $level`, `int $boost`, `bool $is_shiny`, `PokemonGender $gender`, `array $types`, `array $move_ids`, `int $max_hp`, `int $current_hp`, `?Ailment $ailment`, `int $ailment_turns_left`, `int $confusion_turns_left`, `bool $has_entered_field`, `array $used_once_per_battle_move_ids`. Method `isFainted(): bool`.
@@ -529,7 +529,7 @@ Read [02-catching-and-exploration.md](02-catching-and-exploration.md) first. Nee
 **Goal:** the Beast Ball can tell Ultra Beasts apart.
 
 **Build:**
-- Migration `017_add_is_ultra_beast_to_species_table.php`: `boolean('is_ultra_beast')->default(false)` after `is_gmax`.
+- In `006_create_species_table.php`: `boolean('is_ultra_beast')->default(false)` after `is_gmax`.
 - Seed files: `"is_ultra_beast": true` on Nihilego, Buzzwole, Pheromosa, Xurkitree, Celesteela, Kartana, Guzzlord, Poipole, Naganadel, Stakataka and Blacephalon; `false` on every other species. `SpeciesSeeder` reads it.
 - `Species` model: cast to boolean. `SpeciesTrait::ULTRA_BEAST` with label "Ultra Beast", wherever the other traits are listed (Pokédex filters).
 
@@ -544,7 +544,7 @@ Read [02-catching-and-exploration.md](02-catching-and-exploration.md) first. Nee
 **Goal:** every species knows whether it can appear in the wild, at which evolution stage, and at which levels. Calculated once while seeding.
 
 **Build:**
-- Migration `018_add_wild_data_to_species_table.php`: `unsignedTinyInteger('evolution_stage')->default(1)`, nullable `unsignedTinyInteger('wild_min_level')` and `wild_max_level` (null = never in the wild).
+- In `006_create_species_table.php`: `unsignedTinyInteger('evolution_stage')->default(1)`, nullable `unsignedTinyInteger('wild_min_level')` and `wild_max_level` (null = never in the wild).
 - `App\Exploration\Mechanics\WildSpawnCalculator` (reads loaded `previousEvolutions` relations, no queries):
   - `evolutionStage(Species $species): int`: 1 + the stage of the previous evolution; baby previous evolutions do not count (Pikachu is stage 1).
   - `levelRange(Species $species): ?array` returning `[min, max]`:
@@ -614,7 +614,7 @@ Read [02-catching-and-exploration.md](02-catching-and-exploration.md) first. Nee
 **Goal:** pressing Explore (or Keep exploring) stores one wild Pokémon for the player.
 
 **Build:**
-- Migration `019_create_encounters_table.php`: `uuid id`, `foreignIdFor(User)` unique, `area` enum, `foreignIdFor(Species)`, `level`, `is_shiny`, `gender` enum, timestamps.
+- Migration `015_create_encounters_table.php`: `uuid id`, `foreignIdFor(User)` unique, `area` enum, `foreignIdFor(Species)`, `level`, `is_shiny`, `gender` enum, timestamps.
 - Model `Shared\Models\Encounter` (with factory), `User::encounter(): HasOne`, `Encounter::toNewPokemon(): NewPokemon`.
 - `App\Exploration\Actions\ExploreAction::handle(User $user, Area $area): Encounter`: refuses with `BattleAlreadyInProgressException` when a battle is ongoing; replaces any existing encounter with a new roll from `EncounterRoller`.
 
@@ -757,7 +757,7 @@ Read [02-catching-and-exploration.md](02-catching-and-exploration.md) first. Nee
 
 **Build:**
 - Pokédex overview shows "10%" (or "1%" for legendaries and mythicals) from `game.catching`, or "Not found in the wild" when `wild_min_level` is null.
-- Migration `020_drop_catch_rate_from_species_table.php`; remove `catch_rate` from the seeder, model, `isCapturable()` and `getCatchRatePercentage()`.
+- Remove `catch_rate` from `006_create_species_table.php`, the seeder, model, `isCapturable()` and `getCatchRatePercentage()`.
 
 **UI suggestions** (ideas, not requirements):
 - Keep the existing `AppInfoCardRow` in the overview card: "Catch rate: 10%".
@@ -875,7 +875,7 @@ Read [03-money-inventory-and-shop.md](03-money-inventory-and-shop.md) first. Mon
 **Goal:** players have Pokédollars.
 
 **Build:**
-- Migration `021_add_money_to_users_table.php`: `unsignedInteger('money')->default(0)`.
+- In `009_create_users_table.php`: `unsignedInteger('money')->default(0)`.
 - `User` model cast; `UserFactory` state `withMoney(int $money)`.
 - `App\Economy\Actions\AddMoneyAction::handle(User $user, int $amount): void` and `SpendMoneyAction::handle(User $user, int $amount): void`. Spending more than the player has throws `App\Economy\Exceptions\NotEnoughMoneyException`. Amounts below 1 throw `InvalidArgumentException`. Both lock with a `LockKeys` method and refresh the user first.
 - Config `game.economy.starting_money` (2000); `RegisterUserAction` (task 2.13) gives it.
@@ -910,7 +910,7 @@ Read [03-money-inventory-and-shop.md](03-money-inventory-and-shop.md) first. Mon
 **Goal:** every item the shop sells has a price; earned-only items have none.
 
 **Build:**
-- Migration `022_add_price_to_pokeballs_and_evolution_items_tables.php`: nullable `unsignedInteger('price')` on both tables (null = never sold).
+- In `003_create_pokeballs_table.php` and `004_create_evolution_items_table.php`: nullable `unsignedInteger('price')` on both tables (null = never sold).
 - Seed data: Poké Ball 200, Great Ball 600, Ultra Ball 1,200; conditional balls (Net, Dive, Nest, Repeat, Timer, Dusk, Quick, Dream, Lure, Level, Moon, Heavy, Fast, Love, Beast) 1,000; Master, Safari, Sport, Park, Luxury, Premier, Heal, Friend and Cherish null. Every evolution item (stones and items such as Metal Coat or King's Rock) 3,000, except Mega Stones, which are null.
 - `App\Shop\Mechanics\TmPriceCalculator::price(Move $move): ?int`: null for Z-Moves and Dynamax moves; 3,000 for status moves (no power); 2,000 under 60 power; 5,000 for 60–89; 10,000 for 90+. Config `game.shop.tm_prices`.
 
@@ -925,7 +925,7 @@ Read [03-money-inventory-and-shop.md](03-money-inventory-and-shop.md) first. Mon
 **Goal:** the inventory can hold TMs, boost stones and key items.
 
 **Build:**
-- Migration `023_create_special_items_table.php`: `uuid id`, `slug` unique, `name`, `description`, nullable `sprite`, `category` enum.
+- Migration `016_create_special_items_table.php`: `uuid id`, `slug` unique, `name`, `description`, nullable `sprite`, `category` enum.
 - Enum `Shared\Enums\SpecialItemCategory`: `BOOST_STONE`, `KEY_ITEM`. Model `Shared\Models\SpecialItem` (with factory); `SpecialItemSeeder` seeds `boost-stone` and `xp-share`.
 - `InventoryItemType`: add `TM` (item is a `Move`) and `SPECIAL_ITEM`; extend `fromModel()` and the morph map.
 - `AddInventoryItemAction` and `RemoveInventoryItemAction` accept `EvolutionItem|Pokeball|Move|SpecialItem`.
@@ -941,7 +941,7 @@ Read [03-money-inventory-and-shop.md](03-money-inventory-and-shop.md) first. Mon
 **Goal:** 10 TMs for sale each day, the same for every player.
 
 **Build:**
-- Migration `024_create_tm_rotations_table.php`: `uuid id`, `date` unique, `json move_ids`. Model `Shared\Models\TmRotation`.
+- Migration `017_create_tm_rotations_table.php`: `uuid id`, `date` unique, `json move_ids`. Model `Shared\Models\TmRotation`.
 - `App\Shop\Actions\GetTodaysTmRotationAction::handle(): TmRotation`: returns today's rotation (server date), creating it on the first request of the day with 10 random TMs that have a price (`RandomHelper`), under a lock so two requests can't create two.
 - Config `game.shop.daily_tm_count` (10).
 
@@ -1105,7 +1105,7 @@ Read [04-pokemon-page.md](04-pokemon-page.md) first. Builds on Spec 1 (`SetActiv
 **Goal:** a locked Pokémon can't be released (or traded, Spec 7) by accident.
 
 **Build:**
-- Migration `025_add_is_locked_to_pokemon_table.php`: `boolean('is_locked')->default(false)`.
+- In `010_create_pokemon_table.php`: `boolean('is_locked')->default(false)`.
 - `Pokemon` cast; `PokemonFactory` state `locked()`.
 - `App\Pokemon\Actions\SetPokemonLockAction::handle(Pokemon $pokemon, bool $isLocked): void`.
 
@@ -1371,7 +1371,7 @@ Read [04-pokemon-page.md](04-pokemon-page.md) first. Builds on Spec 1 (`SetActiv
 **Goal:** the player chooses the party's order; battles that use the party send out the first one.
 
 **Build:**
-- Migration `026_add_party_position_to_pokemon_table.php`: nullable `unsignedTinyInteger('party_position')` (1–6; null in the Box).
+- In `010_create_pokemon_table.php`: nullable `unsignedTinyInteger('party_position')` (1–6; null in the Box).
 - Everything that puts a Pokémon in the party gives it the next position: `AddToPartyAction` (task 4.2), `CreatePokemonAction`'s `joinPartyIfRoom` (task 2.12) and the starter (task 2.13). `SwapPartyPokemonAction` gives the joining Pokémon the leaving one's position. `RemoveFromPartyAction`, `ReleasePokemonAction` and listing for trade (task 7.4) close the gap, so positions stay 1, 2, 3… with no holes.
 - The `inParty()` scope orders by `party_position`; `PartyPageProps`, `StartWildBattleAction` (task 1.12) and every later battle that uses the party follow it.
 - `App\Pokemon\Actions\ReorderPartyAction::handle(User $user, array $pokemonIds): void`: `$pokemonIds` must be exactly the party's Pokémon (otherwise `InvalidArgumentException`); saves positions 1, 2, 3… in that order. Refused during an ongoing battle (`BattleAlreadyInProgressException`): the battle uses a snapshot of the party.
@@ -1420,9 +1420,9 @@ Read [05-missions.md](05-missions.md) first, including its "Starting content" an
 **Build:**
 - Enums in `Shared\Enums`: `MissionKind` (`DAILY`, `ACHIEVEMENT`, `STREAK_BONUS`), `MissionDifficulty` (`EASY`, `MEDIUM`, `HARD`), `MissionCategory` (`CATCHING`, `BATTLING`, `COLLECTION`), `MissionGoal` (`CATCH_POKEMON`, `CATCH_POKEMON_OF_TYPE`, `CATCH_POKEMON_IN_AREA`, `CATCH_SHINY`, `CATCH_LEGENDARY`, `CATCH_POKEMON_AT_LEVEL`, `WIN_BATTLES`, `WIN_WILD_BATTLES`, `WIN_TRAINER_BATTLES`, `BEAT_GYM`, `EARN_REGION_BADGES`, `BECOME_CHAMPION`, `CLIMB_TOWER_FLOORS`, `HATCH_EGGS`, `EVOLVE_POKEMON`, `MEGA_EVOLVE`, `REACH_LEVEL`, `REACH_BOOST`, `TEACH_TMS`, `SPEND_MONEY`, `MAKE_TRADES`), each with `label()`.
 - Value object `Shared\ValueObjects\MissionReward`: `int $money`, `array $items` (each: item type, slug, quantity, or `random` with a pool such as `normal-tm`, `mega-stone`, `z-move-tm`, `dynamax-tm`). Cast `AsMissionReward`.
-- Migration `027_create_achievements_table.php`: `uuid id`, `slug` unique, `name`, `category` enum, `goal` enum, `json goal_parameters`, `target`, `json reward`, `sort_order`. Model `Shared\Models\Achievement`; `AchievementSeeder` from `database/seeders/files/achievements.json` (the Spec 5 list; "Beat all gyms" is `BEAT_GYM` with target 72, since only first wins count).
-- Migration `028_create_user_missions_table.php`: `uuid id`, `foreignIdFor(User)`, `kind` enum, nullable `foreignIdFor(Achievement)`, nullable `date` (dailies), nullable `difficulty`, `goal`, `json goal_parameters`, `target`, `progress` default 0, `json reward`, nullable `completed_at`, nullable `claimed_at`, timestamps; unique `['user_id', 'achievement_id']`; index `['user_id', 'date']`. Model `Shared\Models\UserMission` (with factory): `isCompleted()`, `isClaimable()`.
-- Migration `029_add_mission_columns_to_users_table.php`: `mission_streak` (default 0), nullable `streak_last_completed_on` date, nullable `last_reroll_on` date, `is_xp_share_enabled` (default false).
+- Migration `018_create_achievements_table.php`: `uuid id`, `slug` unique, `name`, `category` enum, `goal` enum, `json goal_parameters`, `target`, `json reward`, `sort_order`. Model `Shared\Models\Achievement`; `AchievementSeeder` from `database/seeders/files/achievements.json` (the Spec 5 list; "Beat all gyms" is `BEAT_GYM` with target 72, since only first wins count).
+- Migration `019_create_user_missions_table.php`: `uuid id`, `foreignIdFor(User)`, `kind` enum, nullable `foreignIdFor(Achievement)`, nullable `date` (dailies), nullable `difficulty`, `goal`, `json goal_parameters`, `target`, `progress` default 0, `json reward`, nullable `completed_at`, nullable `claimed_at`, timestamps; unique `['user_id', 'achievement_id']`; index `['user_id', 'date']`. Model `Shared\Models\UserMission` (with factory): `isCompleted()`, `isClaimable()`.
+- In `009_create_users_table.php`: `mission_streak` (default 0), nullable `streak_last_completed_on` date, nullable `last_reroll_on` date, `is_xp_share_enabled` (default false).
 
 **Tests:** achievements seed from the file; casts round-trip; `isClaimable()` only when completed and not claimed.
 
@@ -1656,8 +1656,8 @@ Read [06-trainers-gyms-and-battle-tower.md](06-trainers-gyms-and-battle-tower.md
 
 **Build:**
 - Enums in `Shared\Enums`: `TrainerRole` (`TRAINER`, `GYM_LEADER`, `ELITE_FOUR`, `CHAMPION`), `TrainerCategory` (`TOWNSFOLK`, `OUTDOORS`, `WATER`, `FIGHTERS`, `MYSTICS`, `EXPERTS`, with `label()`; only for `TRAINER` role) and `Region` (`KANTO` … `PALDEA`, with `label()` and `generation()`).
-- Migration `030_create_trainers_table.php`: `uuid id`, `slug` unique, `name`, `trainer_class` ("Hiker", "Gym Leader"), nullable `sprite`, `role` enum, nullable `category` enum, nullable `region` enum, nullable `badge_name`, nullable `gym_type` (`PokemonType`), `position` (gym number or Elite Four order), `payout` (0 for Elite Four members and Champions: the Champion's prize comes from config, task 6.10).
-- Migration `031_create_trainer_pokemon_table.php`: `uuid id`, `foreignIdFor(Trainer)`, `foreignIdFor(Species)`, `level`, `boost`, `is_shiny`, `gender`, `json move_slugs`, `position`.
+- Migration `020_create_trainers_table.php`: `uuid id`, `slug` unique, `name`, `trainer_class` ("Hiker", "Gym Leader"), nullable `sprite`, `role` enum, nullable `category` enum, nullable `region` enum, nullable `badge_name`, nullable `gym_type` (`PokemonType`), `position` (gym number or Elite Four order), `payout` (0 for Elite Four members and Champions: the Champion's prize comes from config, task 6.10).
+- Migration `021_create_trainer_pokemon_table.php`: `uuid id`, `foreignIdFor(Trainer)`, `foreignIdFor(Species)`, `level`, `boost`, `is_shiny`, `gender`, `json move_slugs`, `position`.
 - Models `Shared\Models\Trainer` (`team()` ordered by position) and `TrainerPokemon`, with factories.
 - `TrainerSeeder` from `database/seeders/files/trainers.json`.
 
@@ -1712,7 +1712,7 @@ Read [06-trainers-gyms-and-battle-tower.md](06-trainers-gyms-and-battle-tower.md
 
 **Build:**
 - `App\Trainers\Actions\ChallengeTrainerAction::handle(User $user, Trainer $trainer): Battle`: only `TRAINER` role; starts a `TRAINER` battle with the party.
-- Migration `032_create_trainer_victories_table.php`: `uuid id`, `foreignIdFor(User)`, `foreignIdFor(Trainer)`, `wins` (default 0), `first_won_at`; unique `['user_id', 'trainer_id']`. Model `TrainerVictory`.
+- Migration `022_create_trainer_victories_table.php`: `uuid id`, `foreignIdFor(User)`, `foreignIdFor(Trainer)`, `wins` (default 0), `first_won_at`; unique `['user_id', 'trainer_id']`. Model `TrainerVictory`.
 - Listener `App\Trainers\Listeners\PayOutOnBattleEnded`: for won `TRAINER` and `GYM` battles only (Elite Four members pay nothing), pays `TrainerPayoutCalculator` money (using the player's Pokémon that entered the field) with `AddMoneyAction`, records the victory, and stores the amount in the battle log for the end screen ("You got ₽ 1,440 for winning!").
 - Mission listeners from Spec 5 now advance `WIN_TRAINER_BATTLES` from `BattleEnded` (won `TRAINER` battles).
 
@@ -1756,7 +1756,7 @@ Read [06-trainers-gyms-and-battle-tower.md](06-trainers-gyms-and-battle-tower.md
 **Build:**
 - `App\Trainers\Mechanics\TrainerTeamRoller::roll(Collection $species, int $size, int $minLevel, int $maxLevel, int $boost = 0): array` (used by the Battle Tower, task 6.12): random species, levels, genders, shiny at the normal odds, base moves. Trainers met while exploring use `EncounterRoller` instead (below).
 - A small list of names and classes for generated trainers in `config/trainers.php`.
-- Migration `033_add_trainer_columns_to_encounters_table.php`: `kind` enum (`POKEMON`, `TRAINER`), nullable `trainer_name`, `trainer_class`, `json trainer_team`, `payout`.
+- In `015_create_encounters_table.php`: `kind` enum (`POKEMON`, `TRAINER`), nullable `trainer_name`, `trainer_class`, `json trainer_team`, `payout`.
 - `ExploreAction` (task 2.6): `game.exploration.trainer_chance` (5, 1 in 20) rolls a trainer of 1–3 Pokémon, each picked with `EncounterRoller` (task 2.5) from the area's species: the same stage weights, 1 in 500 legendary or mythical, its own wild levels. Full payout = `game.trainers.explore_payout_per_level` (100) × the team's average level, reduced like any trainer.
 - `BattleEncounterAction` starts a `TRAINER` battle for trainer encounters (paid like any trainer).
 
@@ -1814,7 +1814,7 @@ Read [06-trainers-gyms-and-battle-tower.md](06-trainers-gyms-and-battle-tower.md
 **Goal:** the four members then the Champion, in order.
 
 **Build:**
-- Migration `034_create_elite_four_runs_table.php`: `uuid id`, `foreignIdFor(User)`, `region` enum, `stage` (1–5), `status` enum (`ACTIVE`, `WON`, `LOST`, `QUIT`), timestamps.
+- Migration `023_create_elite_four_runs_table.php`: `uuid id`, `foreignIdFor(User)`, `region` enum, `stage` (1–5), `status` enum (`ACTIVE`, `WON`, `LOST`, `QUIT`), timestamps.
 - `App\Trainers\Actions\StartEliteFourRunAction::handle(User $user, Region $region): EliteFourRun`: needs all 8 badges of the region (`App\Trainers\Exceptions\BadgesMissingException`); one active run at a time.
 - `ContinueEliteFourRunAction::handle(EliteFourRun $run): Battle`: starts an `ELITE_FOUR` battle against the stage's opponent with the party in party order (healed: normal battles always heal).
 - Listener `App\Trainers\Listeners\AdvanceEliteFourRunOnBattleEnded` for `ELITE_FOUR` battles: a win → next stage; after the Champion: `WON`, record the victory, dispatch `ChampionDefeated`, and on the player's first win against that Champion pay `game.trainers.champion_prize` (30,000) with `AddMoneyAction` (no level reduction). A loss or a run → `LOST`.
@@ -1858,7 +1858,7 @@ Read [06-trainers-gyms-and-battle-tower.md](06-trainers-gyms-and-battle-tower.md
 **Goal:** start, climb, reorder, resume, quit.
 
 **Build:**
-- Migration `035_create_tower_runs_table.php`: `uuid id`, `foreignIdFor(User)`, `status` enum (`ACTIVE`, `ENDED`), `floor` (the next floor to fight), `json team` (for each of the 6: Pokémon ID, the frozen copy taken at the start — species, level, boost, shiny, gender, types, active moves, max HP and stats — its current HP, and the XP saved up so far), `battle_points_earned`, timestamps. Migration `036_add_tower_columns_to_users_table.php`: `best_tower_floor` (default 0), `battle_points` (default 0).
+- Migration `024_create_tower_runs_table.php`: `uuid id`, `foreignIdFor(User)`, `status` enum (`ACTIVE`, `ENDED`), `floor` (the next floor to fight), `json team` (for each of the 6: Pokémon ID, the frozen copy taken at the start — species, level, boost, shiny, gender, types, active moves, max HP and stats — its current HP, and the XP saved up so far), `battle_points_earned`, timestamps. In `009_create_users_table.php`: `best_tower_floor` (default 0), `battle_points` (default 0).
 - `App\BattleTower\Actions\StartTowerRunAction::handle(User $user, array $pokemonIds): TowerRun`: exactly 6 of the player's Pokémon (party or Box), none on trade hold (Spec 7); one active run; copies each Pokémon into `team`, in the given order (the sending-out order).
 - `ClimbTowerFloorAction::handle(TowerRun $run): Battle`: a `BATTLE_TOWER` battle against `TrainerTeamRoller` with the floor's level, boost and size. Species come from every species with wild levels; legendaries and mythicals only when `TowerFloorCalculator::allowsLegendaries()` (after floor 50). The player's side is built from the frozen copies in the run's team order, not the live Pokémon, starting at the HP stored in the run; the first with HP left starts. `heals_after` false. Refused while another battle is ongoing (one battle at a time).
 - `ReorderTowerTeamAction::handle(TowerRun $run, array $pokemonIds): void`: exactly the run's 6 Pokémon in a new order (otherwise `InvalidArgumentException`); only between floors (refused while the run's battle is ongoing).
@@ -1932,10 +1932,10 @@ Read [07-trading.md](07-trading.md) first, including its "Details" section. Trad
 
 **Build:**
 - Enums in `Shared\Enums`: `ListingStatus` (`OPEN`, `TRADED`, `CANCELLED`, `EXPIRED`), `OfferStatus` (`PENDING`, `ACCEPTED`, `DECLINED`, `WITHDRAWN`).
-- Migration `037_create_trade_listings_table.php`: `uuid id`, `foreignIdFor(User)` (seller), `foreignIdFor(Pokemon)`, nullable `looking_for` (200), `status` enum, `fee`, `expires_at`, nullable `traded_at`, timestamps; index `['status', 'expires_at']`.
-- Migration `038_create_trade_offers_table.php`: `uuid id`, `foreignIdFor(TradeListing)`, `foreignIdFor(User)` (offerer), `status` enum, timestamps; unique pending offer per user per listing (checked in code).
-- Migration `039_create_trade_offer_pokemon_table.php` (`trade_offer_id`, `pokemon_id`) and `040_create_trade_offer_items_table.php` (`trade_offer_id`, `item_type`, `item_id`, `quantity`).
-- Migration `041_add_is_on_trade_hold_to_pokemon_table.php`: `boolean('is_on_trade_hold')->default(false)`.
+- Migration `025_create_trade_listings_table.php`: `uuid id`, `foreignIdFor(User)` (seller), `foreignIdFor(Pokemon)`, nullable `looking_for` (200), `status` enum, `fee`, `expires_at`, nullable `traded_at`, timestamps; index `['status', 'expires_at']`.
+- Migration `026_create_trade_offers_table.php`: `uuid id`, `foreignIdFor(TradeListing)`, `foreignIdFor(User)` (offerer), `status` enum, timestamps; unique pending offer per user per listing (checked in code).
+- Migration `027_create_trade_offer_pokemon_table.php` (`trade_offer_id`, `pokemon_id`) and `028_create_trade_offer_items_table.php` (`trade_offer_id`, `item_type`, `item_id`, `quantity`).
+- In `010_create_pokemon_table.php`: `boolean('is_on_trade_hold')->default(false)`.
 - Models `Shared\Models\TradeListing`, `TradeOffer`, `TradeOfferItem` (with factories); `Pokemon::scopeTradeable()` (owned, not locked, not on hold).
 - Config `game.trading`: `listing_fee` (500), `listing_days` (7), `max_offer_pokemon` (6), `max_offer_items` (10), `looking_for_max_length` (200).
 
@@ -1965,7 +1965,7 @@ Read [07-trading.md](07-trading.md) first, including its "Details" section. Trad
 **Goal:** a reusable notification bell.
 
 **Build:**
-- `php artisan make:notifications-table` → migration `042_create_notifications_table.php`.
+- `php artisan make:notifications-table` → migration `029_create_notifications_table.php` (rename the generated file to the next number).
 - Notifications in `App\Trading\Notifications`: `OfferReceived`, `OfferAccepted`, `OfferDeclined`, `ListingTraded`, `ListingExpired` (database channel; each stores a short message and a link).
 - `HandleInertiaRequests` shares `notifications.unreadCount`.
 - Route `GET /notifications` (`notifications.web.index`, the latest 20) and `POST /notifications/read` (`notifications.web.read`, marks all read).
@@ -2161,7 +2161,7 @@ Read [08-social.md](08-social.md) first, including its "Details" section. Profil
 **Goal:** every name is unique and usable on a profile.
 
 **Build:**
-- Migration `043_add_unique_name_index_to_users_table.php`: a unique index on `lower(name)` (or a `name_normalized` column if the database can't index an expression).
+- In `009_create_users_table.php`: a unique index on `lower(name)` (or a `name_normalized` column if the database can't index an expression).
 - `StoreRegistrationRequest`: `name` 3–20 characters, letters, numbers, spaces, `-` and `_`, unique ignoring case, with a clear message ("That name is taken.").
 - `UserFactory` gives unique names.
 
@@ -2176,7 +2176,7 @@ Read [08-social.md](08-social.md) first, including its "Details" section. Profil
 **Goal:** record notable catches and hatches as they happen.
 
 **Build:**
-- Migration `044_create_capture_feed_entries_table.php`: `uuid id`, `foreignIdFor(User)`, nullable `foreignIdFor(Pokemon)` (null on delete), `foreignIdFor(Species)`, `level`, `is_shiny`, `source` enum (`WILD`, `EGG`), `created_at`. Model `Shared\Models\CaptureFeedEntry`.
+- Migration `030_create_capture_feed_entries_table.php`: `uuid id`, `foreignIdFor(User)`, nullable `foreignIdFor(Pokemon)` (null on delete), `foreignIdFor(Species)`, `level`, `is_shiny`, `source` enum (`WILD`, `EGG`), `created_at`. Model `Shared\Models\CaptureFeedEntry`.
 - `App\Social\Mechanics\NotableCaptureChecker::isNotable(Species $species, int $level, bool $isShiny): bool`: shiny, legendary or mythical, or level ≥ `game.social.notable_level` (60).
 - Listener `App\Social\Listeners\RecordCaptureOnPokemonCaught` adds an entry for notable catches and hatches.
 - `App\Social\Queries\LatestCapturesQuery::get(int $limit = 20)`.

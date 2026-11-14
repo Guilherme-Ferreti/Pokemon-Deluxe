@@ -26,6 +26,7 @@ use Shared\Enums\PokemonGender;
  * @property string $species_id
  * @property int $level
  * @property int $experience
+ * @property int $boost
  * @property bool $in_party
  * @property bool $is_shiny
  * @property PokemonGender $gender
@@ -51,6 +52,7 @@ final class Pokemon extends Model
         return [
             'level'      => 'integer',
             'experience' => 'integer',
+            'boost'      => 'integer',
             'in_party'   => 'boolean',
             'is_shiny'   => 'boolean',
             'gender'     => PokemonGender::class,

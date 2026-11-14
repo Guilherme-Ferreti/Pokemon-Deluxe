@@ -24,6 +24,7 @@ return new class extends Migration
 
             $table->unsignedTinyInteger('level')->default(1);
             $table->unsignedInteger('experience')->default(0);
+            $table->unsignedTinyInteger('boost')->default(0);
 
             $table->boolean('in_party')->default(false);
             $table->boolean('is_shiny')->default(false);

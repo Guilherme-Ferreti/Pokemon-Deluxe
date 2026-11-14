@@ -19,6 +19,7 @@ return [
 
     'pokemon' => [
         'max_level'            => 100,
+        'max_boost'            => 100,
         'experience_per_level' => 1000,
         'default_base_move'    => 'tackle',
     ],

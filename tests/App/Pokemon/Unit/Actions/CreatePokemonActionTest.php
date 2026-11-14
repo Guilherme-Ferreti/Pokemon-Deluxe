@@ -43,6 +43,7 @@ it('creates a pokemon', function () {
         'species_id'       => $species->id,
         'level'            => 50,
         'experience'       => 50_000,
+        'boost'            => 0,
         'is_shiny'         => false,
         'gender'           => $gender,
         'pokeball_id'      => $pokeball->id,

@@ -54,6 +54,7 @@ final class CreatePokemonAction
             'species_id'       => $this->newPokemon->species->id,
             'level'            => $this->newPokemon->level,
             'experience'       => new ExperienceCalculator()->experienceForLevel($this->newPokemon->level),
+            'boost'            => 0,
             'in_party'         => false,
             'is_shiny'         => $this->newPokemon->is_shiny,
             'gender'           => $this->newPokemon->gender,

@@ -116,7 +116,7 @@ One name per idea, used everywhere: specs, code, database, tests and UI. When yo
 | Method computing something from inputs | `calculate()` on a Calculator, `roll()` on a Roller, `check()` on a Checker, or a name saying what it returns when a class has several | `failureChance()`, `isCheckpoint()` |
 | Config key | `game.{area}.{snake_case}` in `config/game.php` | `game.battle.stab_multiplier` |
 | Chance | `{noun}_chance` (config, column) or `{noun}Chance()` (method), always a percentage from 0 to 100, never a 0.0–1.0 fraction or "1 in N" odds; `RandomHelper::chance()` takes it as is | `game.battle.critical_hit_chance` (6.25), `flinch_chance`, `failureChance()` |
-| Migration | `{next number}_{verb}_{noun}_table.php` | `014_add_boost_to_pokemon_table.php` |
+| Migration | `{next number}_create_{table}_table.php`, for new tables only; until there is live data, new columns go into the table's existing `create_…` migration | `014_create_battles_table.php` |
 | Test file | `{ClassName}Test.php`, mirrored folders | `tests/App/Battle/Unit/Mechanics/DamageCalculatorTest.php` |
 
 ## Rules of thumb
