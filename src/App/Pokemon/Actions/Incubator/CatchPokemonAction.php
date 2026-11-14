@@ -6,6 +6,7 @@ namespace App\Pokemon\Actions\Incubator;
 
 use App\Inventory\Actions\RemoveInventoryItemAction;
 use App\Pokemon\Actions\CreatePokemonAction;
+use App\Pokemon\Events\PokemonCaught;
 use App\Pokemon\Exceptions\IncubatorEggNotReadyToCatchException;
 use App\Pokemon\Exceptions\IncubatorNotActiveException;
 use App\Pokemon\Support\LockKeys;
@@ -62,6 +63,8 @@ final class CatchPokemonAction
 
             $this->markEggAsCaught();
         });
+
+        PokemonCaught::dispatch($this->pokemon->id, $this->user->id);
     }
 
     private function loadActiveIncubation(): void

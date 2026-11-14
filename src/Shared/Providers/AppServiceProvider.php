@@ -9,6 +9,7 @@ use Carbon\CarbonImmutable;
 use Illuminate\Cache\RateLimiting\Limit;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\Relation;
+use Illuminate\Foundation\Events\DiscoverEvents;
 use Illuminate\Http\Exceptions\ThrottleRequestsException;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -28,12 +29,14 @@ use Inertia\Inertia;
 use InvalidArgumentException;
 use Override;
 use ReflectionEnum;
+use ReflectionException;
 use Shared\Base\DomainException;
 use Shared\Enums\InventoryItemType;
 use Shared\Helpers\ToastHelper;
 use Shared\Models\EvolutionItem;
 use Shared\Models\Pokeball;
 use Shared\ValueObjects\IncubatorIndex;
+use SplFileInfo;
 
 final class AppServiceProvider extends ServiceProvider
 {
@@ -41,6 +44,8 @@ final class AppServiceProvider extends ServiceProvider
     public function register(): void
     {
         $this->registerLaravelTelescope();
+
+        $this->configureListenerDiscovery();
     }
 
     public function boot(): void
@@ -65,6 +70,23 @@ final class AppServiceProvider extends ServiceProvider
             $this->app->register(\Laravel\Telescope\TelescopeServiceProvider::class);
             $this->app->register(TelescopeServiceProvider::class);
         }
+    }
+
+    private function configureListenerDiscovery(): void
+    {
+        DiscoverEvents::guessClassNamesUsing(function (SplFileInfo $file): string {
+            $class = Str::of($file->getRealPath())
+                ->after(base_path('src') . DIRECTORY_SEPARATOR)
+                ->beforeLast('.php')
+                ->replace(DIRECTORY_SEPARATOR, '\\')
+                ->toString();
+
+            if (! class_exists($class)) {
+                throw new ReflectionException("Listener file [{$file->getRealPath()}] holds no class.");
+            }
+
+            return $class;
+        });
     }
 
     private function configureDefaults(): void

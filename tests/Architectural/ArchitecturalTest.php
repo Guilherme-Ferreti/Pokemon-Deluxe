@@ -3,7 +3,9 @@
 declare(strict_types=1);
 
 use Illuminate\Contracts\Database\Eloquent\CastsAttributes;
+use Illuminate\Contracts\Events\ShouldDispatchAfterCommit;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -114,6 +116,22 @@ arch('Support')
     ->toExtendNothing()
     ->toImplementNothing()
     ->not->toHaveProtectedMethods();
+
+arch('Events')
+    ->expect('App\*\Events')
+    ->toBeClasses()
+    ->toBeFinal()
+    ->toBeReadonly()
+    ->toExtendNothing()
+    ->toUseTrait(Dispatchable::class)
+    ->toImplement(ShouldDispatchAfterCommit::class);
+
+arch('Listeners')
+    ->expect('App\*\Listeners')
+    ->toBeClasses()
+    ->toBeFinal()
+    ->toExtendNothing()
+    ->toHaveMethod('handle');
 
 arch('Mechanics')
     ->expect('App\*\Mechanics')

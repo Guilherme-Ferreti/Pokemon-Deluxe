@@ -27,6 +27,9 @@ return Application::configure(basePath: dirname(__DIR__))
             });
         }
     )
+    ->withEvents(discover: [
+        __DIR__ . '/../src/App/*/Listeners',
+    ])
     ->withCommands([
         __DIR__ . '/../src/Shared/Console/Commands',
     ])

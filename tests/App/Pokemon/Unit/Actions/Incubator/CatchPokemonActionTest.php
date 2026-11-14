@@ -2,9 +2,12 @@
 
 declare(strict_types=1);
 
+use App\Inventory\Exceptions\InsufficientInventoryException;
 use App\Pokemon\Actions\Incubator\CatchPokemonAction;
+use App\Pokemon\Events\PokemonCaught;
 use App\Pokemon\Exceptions\IncubatorEggNotReadyToCatchException;
 use App\Pokemon\Exceptions\IncubatorNotActiveException;
+use Illuminate\Support\Facades\Event;
 use Shared\Models\Incubation;
 use Shared\Models\InventoryItem;
 use Shared\Models\Pokeball;
@@ -52,6 +55,24 @@ it('catches a ready-to-catch egg and adds the pokemon to the user', function () 
     ]);
 });
 
+it('announces the caught pokemon to other domains', function () {
+    Event::fake([PokemonCaught::class]);
+
+    $user     = User::factory()->create(['purchased_incubator_indexes' => [new IncubatorIndex(1)]]);
+    $pokeball = Pokeball::factory()->create();
+
+    InventoryItem::factory()->for($user)->pokeball($pokeball)->create();
+    Incubation::factory()->for($user)->for(Species::factory()->withBaseMoves())->readyToCatch()->create();
+
+    $pokemon = new CatchPokemonAction()->handle($user, new IncubatorIndex(1), $pokeball);
+
+    Event::assertDispatchedTimes(PokemonCaught::class, 1);
+    Event::assertDispatched(
+        PokemonCaught::class,
+        fn (PokemonCaught $event) => $event->pokemonId === $pokemon->id && $event->userId === $user->id,
+    );
+});
+
 it('does not catch an egg when the incubator has no active incubation', function () {
     $user     = User::factory()->create(['purchased_incubator_indexes' => [new IncubatorIndex(1)]]);
     $pokeball = Pokeball::factory()->create();
@@ -63,7 +84,31 @@ it('does not catch an egg when the incubator has no active incubation', function
     assertDatabaseCount(Incubation::class, 0);
 });
 
+it('does not catch or announce the pokemon when the user does not own the pokeball', function () {
+    Event::fake([PokemonCaught::class]);
+
+    $user     = User::factory()->create(['purchased_incubator_indexes' => [new IncubatorIndex(1)]]);
+    $pokeball = Pokeball::factory()->create();
+
+    $incubation = Incubation::factory()->for($user)->for(Species::factory()->withBaseMoves())->readyToCatch()->create();
+
+    expect(fn () => new CatchPokemonAction()->handle($user, new IncubatorIndex(1), $pokeball))
+        ->toThrow(InsufficientInventoryException::class);
+
+    assertDatabaseCount(Pokemon::class, 0);
+    assertDatabaseCount(Incubation::class, 1);
+
+    assertDatabaseHas(Incubation::class, [
+        'id'        => $incubation->id,
+        'caught_at' => null,
+    ]);
+
+    Event::assertNotDispatched(PokemonCaught::class);
+});
+
 it('does not catch an egg that is not ready to catch', function (string $state) {
+    Event::fake([PokemonCaught::class]);
+
     $user     = User::factory()->create(['purchased_incubator_indexes' => [new IncubatorIndex(1)]]);
     $pokeball = Pokeball::factory()->create();
 
@@ -79,6 +124,8 @@ it('does not catch an egg that is not ready to catch', function (string $state) 
         'id'        => $incubation->id,
         'caught_at' => null,
     ]);
+
+    Event::assertNotDispatched(PokemonCaught::class);
 })->with([
     'incubating egg'     => ['incubating'],
     'egg ready to hatch' => ['readyToHatch'],

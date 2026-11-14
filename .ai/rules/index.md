@@ -12,6 +12,7 @@ Feature behaviour (game rules, formulas, page designs) lives in `docs/specs/`; r
 | tests/**/Browser/** | .ai/rules/browser.md |
 | src/Shared/Casts/** | .ai/rules/casts.md |
 | src/App/**/Http/Web/Controllers/** | .ai/rules/controllers.md |
+| src/App/**/Events/**, src/App/**/Listeners/**, src/App/**/Actions/** | .ai/rules/events.md |
 | src/Shared/Enums/** | .ai/rules/enums.md |
 | src/App/**/Exceptions/**, src/Shared/Exceptions/** | .ai/rules/exceptions.md |
 | tests/**/Feature/** | .ai/rules/feature.md |

@@ -64,7 +64,7 @@ Tasks with a **Mock-up** link have an interactive mock-up in `docs/mockups/` (op
 
 ### 0.4 Events and listeners between domains
 
-- [ ] Done
+- [x] Done
 
 **Goal:** domains announce what happened instead of calling each other. Needed before Spec 5 at the latest.
 
@@ -72,9 +72,9 @@ Tasks with a **Mock-up** link have an interactive mock-up in `docs/mockups/` (op
 - Folders `src/App/{Domain}/Events/` and `src/App/{Domain}/Listeners/`.
 - Rule file `.ai/rules/events.md` and index rows:
   - An Action that finishes something other domains may care about dispatches an event, named in the past tense (`PokemonCaught`).
-  - Events are `final readonly` classes carrying IDs and plain values, using the `Dispatchable` trait.
-  - Listeners live in the domain that reacts, are named `{Verb}{Noun}On{Event}` (for example `AdvanceMissionsOnPokemonCaught`) and have a `handle({Event} $event)` method.
-  - Listeners run synchronously for now.
+  - Events are `final readonly` classes carrying IDs and plain values, using the `Dispatchable` trait and implementing `ShouldDispatchAfterCommit`. Actions dispatch them after their transaction, never inside it.
+  - Listeners live in the domain that reacts, are named `{Verb}{Noun}On{Event}` (for example `AdvanceMissionsOnPokemonCaught`) and have a `handle({Event} $event)` method. They are discovered automatically from `src/App/*/Listeners` (`bootstrap/app.php`, with a class-name resolver in `AppServiceProvider`).
+  - Whether a listener runs synchronously or queued is decided by each feature when it is built.
 - `arch()` rules for both folders.
 - Example: `App\Pokemon\Actions\Incubator\CatchPokemonAction` dispatches `App\Pokemon\Events\PokemonCaught` with `pokemonId` and `userId`.
 
