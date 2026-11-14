@@ -217,10 +217,10 @@ it('sorts moves by name descending', function () {
     expect($result->pluck('id')->all())->toBe([$waterGun->id, $tackle->id, $ember->id]);
 });
 
-it('sorts moves by power ascending with ohko moves last', function () {
+it('sorts moves by power ascending', function () {
     $low  = Move::factory()->create(['category' => MoveCategory::DAMAGE, 'power' => 20]);
     $high = Move::factory()->create(['category' => MoveCategory::DAMAGE, 'power' => 100]);
-    $ohko = Move::factory()->create(['category' => MoveCategory::OHKO, 'power' => null]);
+    $mid  = Move::factory()->create(['category' => MoveCategory::DAMAGE, 'power' => 60]);
 
     $result = new SearchAttackdexQuery()->handle(new SearchAttackdexFilters(
         search: null,
@@ -231,13 +231,13 @@ it('sorts moves by power ascending with ohko moves last', function () {
         dir: SortDirection::ASC,
     ))->get();
 
-    expect($result->pluck('id')->all())->toBe([$low->id, $high->id, $ohko->id]);
+    expect($result->pluck('id')->all())->toBe([$low->id, $mid->id, $high->id]);
 });
 
-it('sorts moves by power descending with ohko moves first', function () {
+it('sorts moves by power descending', function () {
     $low  = Move::factory()->create(['category' => MoveCategory::DAMAGE, 'power' => 20]);
     $high = Move::factory()->create(['category' => MoveCategory::DAMAGE, 'power' => 100]);
-    $ohko = Move::factory()->create(['category' => MoveCategory::OHKO, 'power' => null]);
+    $mid  = Move::factory()->create(['category' => MoveCategory::DAMAGE, 'power' => 60]);
 
     $result = new SearchAttackdexQuery()->handle(new SearchAttackdexFilters(
         search: null,
@@ -248,7 +248,7 @@ it('sorts moves by power descending with ohko moves first', function () {
         dir: SortDirection::DESC,
     ))->get();
 
-    expect($result->pluck('id')->all())->toBe([$ohko->id, $high->id, $low->id]);
+    expect($result->pluck('id')->all())->toBe([$high->id, $mid->id, $low->id]);
 });
 
 it('sorts moves by accuracy ascending', function () {

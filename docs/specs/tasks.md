@@ -160,15 +160,15 @@ There is no production data yet, so a new column (or index, or a dropped column)
 
 ### 1.5 Remove one-hit-KO moves
 
-- [ ] Done
+- [x] Done
 
 **Goal:** OHKO moves (Fissure, Guillotine, Horn Drill, Sheer Cold) never exist in the game.
 
 **Build:**
-- `MoveSeeder` skips moves whose category is `ohko`. `SpeciesBaseMovesSeeder` skips references to skipped moves.
-- Remove `MoveCategory::OHKO` if nothing else uses it.
+- Delete the OHKO moves from `database/seeders/files/moves.json`, and their references from `species-base-moves.json`; the seeders stay unchanged.
+- Remove `MoveCategory::OHKO` (PHP and TypeScript) and the code that only handled OHKO moves: the Attackdex power sort, the Pokédex base-moves power sort and the "One-hit KO" power label (`MovePowerLabel`).
 
-**Tests:** seeder test (in `tests/Shared/Unit/Seeders`): no move with category `ohko` after seeding.
+**Tests:** seeder test (in `tests/Shared/Unit/Seeders/MoveSeederTest.php`): no move with category `ohko` after seeding.
 
 **Done when:** no OHKO moves after `migrate:fresh --seed`; tests pass.
 
@@ -465,7 +465,7 @@ Uses `Combatant` from task 1.10.
 **Goal:** every species has exactly 4 different base moves (Spec 1), so every Pokémon starts with 4 active moves. Data only; can be done any time after task 1.5.
 
 **Build:**
-- Edit `database/seeders/files/species-base-moves.json` so every species lists 4 different moves that exist in `moves.json` after task 1.5 (no one-hit-KO moves). Today 40 species have fewer: Metapod, Weedle, Kakuna, Ditto, the 28 Unown forms, Wobbuffet, Smeargle, Wynaut, Spewpa, Pyukumuku, Cosmog, Cosmoem and Blipbug.
+- Edit `database/seeders/files/species-base-moves.json` so every species lists 4 different moves that exist in `moves.json` after task 1.5 (no one-hit-KO moves). Today 49 species have fewer: Metapod, Weedle, Kakuna, Ditto, the 28 Unown forms, Wobbuffet, Smeargle, Wynaut, Spewpa, Pyukumuku, Cosmog, Cosmoem and Blipbug, plus the 9 that lost a one-hit-KO move in task 1.5 (Dewgong, Suicune, Glalie, Mega Glalie, Rhyperior, Vanilluxe, Bisharp, Vikavolt and Alolan Ninetales).
 - Pick moves the species learns early in the main games when it has them; otherwise moves of its own type or Normal moves that fit it. Prefer at least one damaging move, so no Pokémon is stuck with only status moves.
 - `SpeciesBaseMovesSeeder` throws a clear error when a species doesn't end up with exactly 4 different moves, so bad data fails the seed instead of creating Pokémon with fewer moves.
 - `CreatePokemonAction` keeps its default-move fallback only if something still needs it; remove it otherwise.

@@ -82,10 +82,7 @@
             <PokemonTypeBadges :types="[move.type]" />
           </TableCell>
           <TableCell :data-test="`base-moves-card__row-${index + 1}-power`">
-            <MovePowerLabel
-              :power="move.power"
-              :category="move.category"
-            />
+            {{ move.power }}
           </TableCell>
           <TableCell :data-test="`base-moves-card__row-${index + 1}-accuracy`">
             {{ move.accuracy }}%
@@ -117,7 +114,6 @@ import {
 } from '@tabler/icons-vue';
 import AppInfoCard from '@/shared/components/content/AppInfoCard.vue';
 import MoveNameLabel from '@/shared/components/game/MoveNameLabel.vue';
-import MovePowerLabel from '@/shared/components/game/MovePowerLabel.vue';
 import PokemonTypeBadges from '@/shared/components/game/PokemonTypeBadges.vue';
 import AppTableHeadSortableButton from '@/shared/components/list/AppTableHeadSortableButton.vue';
 import {
@@ -128,7 +124,6 @@ import {
   TableRow,
 } from '@/shared/components/ui/table';
 import { useSortable } from '@/shared/composables/useSortable.js';
-import { MoveCategory } from '@/shared/types/enums';
 import type {
   BaseMove,
   PokedexShowPageProps,
@@ -136,11 +131,5 @@ import type {
 
 const page = usePage<PokedexShowPageProps>();
 
-const baseMoves = useSortable<BaseMove>(
-  page.props.baseMoves.map((move) => ({
-    ...move,
-    power: move.category === MoveCategory.OHKO ? 999 : move.power,
-  })),
-  'name',
-);
+const baseMoves = useSortable<BaseMove>(page.props.baseMoves, 'name');
 </script>

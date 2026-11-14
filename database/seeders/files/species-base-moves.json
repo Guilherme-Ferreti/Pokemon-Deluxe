@@ -637,7 +637,6 @@
         "ice-shard"
     ],
     "dewgong": [
-        "sheer-cold",
         "aqua-jet",
         "waterfall",
         "brine"
@@ -1818,7 +1817,6 @@
     ],
     "suicune": [
         "extreme-speed",
-        "sheer-cold",
         "bite",
         "water-gun"
     ],
@@ -2639,14 +2637,12 @@
     "glalie": [
         "icicle-crash",
         "ice-beam",
-        "crunch",
-        "sheer-cold"
+        "crunch"
     ],
     "mega-glalie": [
         "icicle-crash",
         "ice-beam",
-        "crunch",
-        "sheer-cold"
+        "crunch"
     ],
     "spheal": [
         "water-gun",
@@ -3401,8 +3397,7 @@
     "rhyperior": [
         "take-down",
         "drill-run",
-        "double-edge",
-        "horn-drill"
+        "double-edge"
     ],
     "tangrowth": [
         "energy-ball",
@@ -4277,8 +4272,7 @@
     "vanilluxe": [
         "avalanche",
         "mirror-shot",
-        "ice-beam",
-        "sheer-cold"
+        "ice-beam"
     ],
     "spring-deerling": [
         "tackle",
@@ -4541,7 +4535,6 @@
     "bisharp": [
         "iron-head",
         "night-slash",
-        "guillotine",
         "retaliate"
     ],
     "bouffalant": [
@@ -5392,8 +5385,7 @@
     "vikavolt": [
         "spark",
         "dig",
-        "bug-buzz",
-        "guillotine"
+        "bug-buzz"
     ],
     "crabrawler": [
         "bubble",
@@ -6039,8 +6031,7 @@
     "alolan-ninetales": [
         "extrasensory",
         "ice-shard",
-        "icy-wind",
-        "sheer-cold"
+        "icy-wind"
     ],
     "alolan-diglett": [
         "metal-claw",

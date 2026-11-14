@@ -285,27 +285,6 @@ describe('base moves card', function () {
             ->assertNoSmoke();
     });
 
-    it('sorts OHKO moves first when sorting by power in descending order', function () {
-        $user    = User::factory()->create();
-        $species = Species::factory()->create();
-
-        $ohkoMove   = Move::factory()->create(['category' => MoveCategory::OHKO]);
-        $strongMove = Move::factory()->create(['category' => MoveCategory::DAMAGE, 'power' => 150]);
-
-        $species->baseMoves()->attach([$ohkoMove->id, $strongMove->id]);
-
-        actingAs($user);
-
-        visit(route('dex.web.pokedex.show', $species))
-            ->click('@base-moves-card__head-power')
-            ->wait(0.5)
-            ->assertDontSeeIn('@base-moves-card__row-1-name', $ohkoMove->name)
-            ->click('@base-moves-card__head-power')
-            ->wait(0.5)
-            ->assertSeeIn('@base-moves-card__row-1-name', $ohkoMove->name)
-            ->assertNoSmoke();
-    });
-
     it('sorts powerless moves first when sorting by power in ascending order', function () {
         $user    = User::factory()->create();
         $species = Species::factory()->create();

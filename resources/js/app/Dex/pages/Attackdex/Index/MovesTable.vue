@@ -63,12 +63,7 @@
         <TableCell>
           <PokemonTypeBadges :types="[move.type]" />
         </TableCell>
-        <TableCell>
-          <MovePowerLabel
-            :power="move.power"
-            :category="move.category"
-          />
-        </TableCell>
+        <TableCell>{{ move.power }}</TableCell>
         <TableCell>{{ move.accuracy }}%</TableCell>
         <TableCell>
           {{ move.ailment ? $page.props.labels.ailment[move.ailment] : '' }}
@@ -100,7 +95,6 @@ import {
 } from '@tabler/icons-vue';
 import AppEmptyState from '@/shared/components/content/AppEmptyState.vue';
 import MoveNameLabel from '@/shared/components/game/MoveNameLabel.vue';
-import MovePowerLabel from '@/shared/components/game/MovePowerLabel.vue';
 import PokemonTypeBadges from '@/shared/components/game/PokemonTypeBadges.vue';
 import type { AppTableHeadSortableLinkProps } from '@/shared/components/list/AppTableHeadSortableLink.vue';
 import AppTableHeadSortableLink from '@/shared/components/list/AppTableHeadSortableLink.vue';

@@ -9,7 +9,6 @@ enum MoveCategory: string
     case DAMAGE         = 'damage';
     case AILMENT        = 'ailment';
     case DAMAGE_AILMENT = 'damage-ailment';
-    case OHKO           = 'ohko';
 
     public function label(): string
     {
@@ -17,7 +16,6 @@ enum MoveCategory: string
             self::DAMAGE         => 'Damage',
             self::AILMENT        => 'Ailment',
             self::DAMAGE_AILMENT => 'Damage & Ailment',
-            self::OHKO           => 'OHKO',
         };
     }
 
@@ -30,7 +28,6 @@ enum MoveCategory: string
             self::DAMAGE         => [MoveDamageClass::PHYSICAL, MoveDamageClass::SPECIAL],
             self::AILMENT        => [MoveDamageClass::STATUS],
             self::DAMAGE_AILMENT => [MoveDamageClass::PHYSICAL, MoveDamageClass::SPECIAL],
-            self::OHKO           => [MoveDamageClass::PHYSICAL, MoveDamageClass::SPECIAL],
         };
     }
 }

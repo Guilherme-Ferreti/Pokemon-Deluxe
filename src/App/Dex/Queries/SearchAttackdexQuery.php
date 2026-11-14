@@ -9,7 +9,6 @@ use App\Dex\Filters\SearchAttackdexFilters;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Arr;
 use Shared\Enums\Ailment;
-use Shared\Enums\MoveCategory;
 use Shared\Enums\MoveTrait;
 use Shared\Enums\PokemonType;
 use Shared\Enums\SortDirection;
@@ -80,7 +79,7 @@ final class SearchAttackdexQuery
     {
         return match ($sort) {
             SearchAttackdexSortBy::NAME           => $query->orderBy('name', $dir->value),
-            SearchAttackdexSortBy::POWER          => $query->orderByRaw('CASE WHEN category = ? THEN ? ELSE ? END', [MoveCategory::OHKO->value, $dir === SortDirection::ASC ? 1 : 0, $dir === SortDirection::ASC ? 0 : 1])->orderBy('power', $dir->value),
+            SearchAttackdexSortBy::POWER          => $query->orderBy('power', $dir->value),
             SearchAttackdexSortBy::ACCURACY       => $query->orderBy('accuracy', $dir->value),
             SearchAttackdexSortBy::AILMENT_CHANCE => $query->orderBy('ailment_chance', $dir->value),
             SearchAttackdexSortBy::FLINCH_CHANCE  => $query->orderBy('flinch_chance', $dir->value),
