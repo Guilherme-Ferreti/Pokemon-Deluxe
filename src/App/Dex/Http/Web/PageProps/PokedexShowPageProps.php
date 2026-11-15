@@ -167,7 +167,7 @@ final readonly class PokedexShowPageProps implements ProvidesInertiaProperties
         $damageTaken      = [];
 
         foreach (PokemonType::cases() as $attackType) {
-            $damageTaken[$attackType->value] = $damageCalculator->calculateDamageMultiplier($attackType, ...$this->species->types);
+            $damageTaken[$attackType->value] = $damageCalculator->typeMultiplier($attackType, ...$this->species->types);
         }
 
         return $damageTaken;

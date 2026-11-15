@@ -174,13 +174,13 @@ There is no production data yet, so a new column (or index, or a dropped column)
 
 ### 1.6 Damage formula
 
-- [ ] Done
+- [x] Done
 
 **Goal:** calculate the damage of one hit.
 
 **Build:**
 - `App\Battle\Mechanics\DamageCalculator`:
-  - Rename the existing `calculateDamageMultiplier()` to `typeMultiplier()` (update `PokedexShowPageProps`).
+  - Rename the existing `calculateDamageMultiplier()` to `typeMultiplier(PokemonType $attackType, PokemonType ...$defenderTypes)` (update `PokedexShowPageProps`).
   - Add `calculate(PokemonStats $attackerStats, array $attackerTypes, PokemonStats $defenderStats, array $defenderTypes, Move $move, bool $isCriticalHit, float $randomFactor): int`:
     - damage = move power × attacker attack × STAB (1.5 if the move's type is one of the attacker's types) × type multiplier × critical (1.5) × randomFactor × defender defense
     - Rounded down. At least 1 when the type multiplier is above 0. 0 when the move has no power.

@@ -20,6 +20,7 @@ One name per idea, used everywhere: specs, code, database, tests and UI. When yo
 | Base moves | `baseMoves()` (species) | Already in the code. |
 | STAB | `stab` | Same-type attack bonus. |
 | Critical hit | `isCriticalHit` | |
+| Random factor | `randomFactor` | 0.85–1.0 damage spread, rolled by the caller and passed to `DamageCalculator`. |
 | Type effectiveness | `typeMultiplier` | ×0, ×0.25, ×0.5, ×1, ×2, ×4. |
 | Ailment / status effect | `Ailment` enum (existing) | Burn, poison, paralysis, sleep, freeze, confusion. |
 | Battle | `Battle` model | One fight, saved on the server. |

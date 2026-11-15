@@ -33,4 +33,9 @@ return [
             'shiny_damage_taken_multiplier' => 0.75, // Damage a shiny Pokémon takes (0.75 = 25% less).
         ],
     ],
+
+    'battle' => [
+        'stab_multiplier'         => 1.5, // Extra damage when the move's type is one of the attacker's types (1.5 = 50% more).
+        'critical_hit_multiplier' => 1.5, // Extra damage a critical hit deals (1.5 = 50% more).
+    ],
 ];
