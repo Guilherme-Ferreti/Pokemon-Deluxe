@@ -21,6 +21,8 @@ One name per idea, used everywhere: specs, code, database, tests and UI. When yo
 | STAB | `stab` | Same-type attack bonus. |
 | Critical hit | `isCriticalHit` | |
 | Random factor | `randomFactor` | 0.85–1.0 damage spread, rolled by the caller and passed to `DamageCalculator`. |
+| Move hit | `MoveHit` | One hit of a move use, with its own `isCriticalHit` and `randomFactor`. A multi-hit move has several. |
+| Move outcome | `MoveOutcome` | Everything the dice decided for one move use: `hasHit`, `hits`, `causesFlinch`, `inflictedAilment`. |
 | Type effectiveness | `typeMultiplier` | ×0, ×0.25, ×0.5, ×1, ×2, ×4. |
 | Ailment / status effect | `Ailment` enum (existing) | Burn, poison, paralysis, sleep, freeze, confusion. |
 | Battle | `Battle` model | One fight, saved on the server. |

@@ -206,21 +206,22 @@ There is no production data yet, so a new column (or index, or a dropped column)
 
 ### 1.8 Roll a move's outcome
 
-- [ ] Done
+- [x] Done
 
 **Goal:** all the dice for one move use, in one place.
 
 **Build:**
-- Value object `Shared\ValueObjects\MoveOutcome`: `bool $hasHit`, `int $hitCount`, `bool $isCriticalHit`, `float $randomFactor`, `bool $causesFlinch`, `?Ailment $inflictedAilment`.
+- Value object `Shared\ValueObjects\MoveHit`: `bool $isCriticalHit`, `float $randomFactor` (above 0, at most 1). One per hit.
+- Value object `Shared\ValueObjects\MoveOutcome`: `bool $hasHit`, `list<MoveHit> $hits`, `bool $causesFlinch`, `?Ailment $inflictedAilment`; `hitCount()`; `MoveOutcome::miss()`.
 - `App\Battle\Mechanics\MoveOutcomeRoller::roll(Move $move): MoveOutcome`, using `RandomHelper`:
   - hit if a roll is within the move's accuracy;
-  - hit count between `min_hits` and `max_hits` (1 when empty);
-  - critical with `game.battle.critical_hit_chance` (6.25, 1 in 16);
-  - random factor between `game.battle.damage_random_min` (0.85) and 1.0;
-  - flinch with `flinch_chance`; ailment with `ailment_chance`.
-  - A miss sets everything else to its "nothing happened" value.
+  - hit count between `min_hits` and `max_hits` (1 when empty; no roll when both are equal);
+  - each hit rolls its own critical hit with `game.battle.critical_hit_chance` (6.25, 1 in 16) and its own random factor between `game.battle.damage_random_min` (0.85) and 1.0;
+  - a move without power (status move) has no hits;
+  - flinch with `flinch_chance`; ailment with `ailment_chance` (100 when empty). The `unknown` ailment (Tri Attack) picks burn, paralysis or freeze at random.
+  - A miss rolls nothing else and returns `MoveOutcome::miss()`.
 
-**Tests:** with `RandomHelper::fake()`: miss, hit, multi-hit, critical, flinch, ailment.
+**Tests:** with `RandomHelper::fake()`: miss, hit, multi-hit (each hit rolled separately), critical, flinch, ailment, status move, unknown ailment.
 
 **Done when:** roller and value object exist; tests pass.
 
@@ -311,7 +312,7 @@ Uses `Combatant` from task 1.10.
 
 **Goal:** plug `MoveOutcomeRoller` into the turn.
 
-**Build:** `TakeTurnAction` uses `MoveOutcomeRoller::roll()` for each move: misses log "…'s attack missed!"; each hit of a multi-hit move deals damage; criticals log "A critical hit!"; flinch only works when the attacker acted first. Z-Moves and Dynamax moves (`is_z_move`, `is_dynamax_move`) can be used once per battle, tracked in `used_once_per_battle_move_ids`; Dynamax moves only by G-Max species.
+**Build:** `TakeTurnAction` uses `MoveOutcomeRoller::roll()` for each move: misses log "…'s attack missed!"; each `MoveHit` deals damage with its own critical hit and random factor; criticals log "A critical hit!"; flinch only works when the attacker acted first. Z-Moves and Dynamax moves (`is_z_move`, `is_dynamax_move`) can be used once per battle, tracked in `used_once_per_battle_move_ids`; Dynamax moves only by G-Max species.
 
 **Tests:** one per behaviour, with `RandomHelper::fake()`.
 

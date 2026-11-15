@@ -54,7 +54,7 @@ Level factor = level + 10, so a level 100 Pokémon is 10× a level 1, not 100×.
 1. The battle is saved on the server: refreshing or closing the page resumes the same turn. One active battle per player. A battle that uses the party starts with its first Pokémon, in the order set on the Party page (Spec 4).
 2. Each turn the player picks one of the 4 active moves, switches to another Pokémon (see Switching), or throws a ball in a wild battle (Spec 2).
 3. Turn order is rolled every turn: chance to move first = my level ÷ (my level + their level).
-4. Moves can miss (accuracy), land a critical hit (1 in 16, ×1.5), flinch, or hit several times. Type effectiveness and STAB (×1.5) apply.
+4. Moves can miss (accuracy), land a critical hit (1 in 16, ×1.5), flinch, or hit several times. Each hit of a multi-hit move rolls its own critical hit and random factor. Type effectiveness and STAB (×1.5) apply. Tri Attack's ailment is burn, paralysis or freeze, picked at random.
 5. Status effects (burn, poison, paralysis, sleep, freeze, confusion) are in from the first version and last only for that battle. Status-only moves such as Thunder Wave are kept.
 6. When a Pokémon faints, **the player picks which Pokémon comes out next**, like the main games. Free send-outs happen only after a faint; any other switch uses a turn. No items in battle.
 7. The player can run at any time with the **Run** button. Running counts as a loss. Losing has no penalty: trainers pay nothing, but XP already earned is kept (see XP).
