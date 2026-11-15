@@ -331,10 +331,10 @@ Uses `Combatant` from task 1.10.
 - Before acting, `StatusEffectRoller::rollActionBlocker()`. On `HURT_ITSELF_IN_CONFUSION`, the Pokémon takes a typeless hit of `confusion_self_hit_power` (40) from its own attack instead of acting. A frozen Pokémon that is not blocked by `FROZEN` has thawed: clear its freeze. A sleeping Pokémon with `ailment_turns_left` at 0 wakes up: clear its sleep. After an `ASLEEP` block, count `ailment_turns_left` down; count `confusion_turns_left` down every turn the Pokémon is confused.
 - After a hit, apply the outcome's ailment: `CONFUSION` sets `confusion_turns_left` from `durationFor()` (never the `ailment` field) unless already confused; any other ailment applies only when the target has none (one major ailment at a time), with `ailment_turns_left` from `durationFor()`.
 - A burned attacker deals `burn_damage_done_multiplier` (half) damage.
-- At the end of the turn, `StatusEffectCalculator::endOfTurnDamage()`.
+- At the end of the turn, after both Pokémon have acted or been stopped, `StatusEffectCalculator::endOfTurnDamage()` for each, in the order they moved that turn. If the first one's damage knocks out its side's last Pokémon, the battle ends there (through `EndBattleAction`) and the second takes no damage.
 - Log each effect ("Pidgey is paralyzed! It can't move!").
 
-**Tests:** one per effect.
+**Tests:** one per effect; end-of-turn damage follows that turn's move order, and when both sides' last Pokémon would faint from it, the one that moved first faints and the battle ends.
 
 **Done when:** tests pass.
 
