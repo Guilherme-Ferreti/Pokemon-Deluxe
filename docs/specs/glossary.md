@@ -25,6 +25,7 @@ One name per idea, used everywhere: specs, code, database, tests and UI. When yo
 | Move outcome | `MoveOutcome` | Everything the dice decided for one move use: `hasHit`, `hits`, `causesFlinch`, `inflictedAilment`. |
 | Type effectiveness | `typeMultiplier` | ×0, ×0.25, ×0.5, ×1, ×2, ×4. |
 | Ailment / status effect | `Ailment` enum (existing) | Burn, poison, paralysis, sleep, freeze, confusion. |
+| Action blocker | `ActionBlocker` enum | Why a Pokémon can't act this turn: `FROZEN`, `ASLEEP`, `HURT_ITSELF_IN_CONFUSION`, `PARALYZED`. |
 | Battle | `Battle` model | One fight, saved on the server. |
 | Battle state | `BattleState`, `state` column | Everything that changes during a battle (turn, both sides, log), saved as JSON with `AsBattleState`. |
 | Battle side | `BattleSide` | The player's or the opponent's team in a battle. |

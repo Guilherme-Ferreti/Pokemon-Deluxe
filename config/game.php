@@ -40,5 +40,19 @@ return [
         'critical_hit_chance'     => 6.25, // 6.25% chance (1 in 16) that a hit is critical.
         'damage_random_min'       => 0.85, // Lowest random damage roll per hit (0.85 = a hit can deal down to 85%).
         'keep_ended_days'         => 7,    // Days an ended battle is kept before it is deleted.
+
+        'ailments' => [
+            'burn_damage_percentage'      => 6.25, // Share of max HP a burned Pokémon loses at the end of each turn (6.25 = 1/16).
+            'burn_damage_done_multiplier' => 0.5,  // Damage a burned Pokémon deals (0.5 = half).
+            'poison_damage_percentage'    => 12.5, // Share of max HP a poisoned Pokémon loses at the end of each turn (12.5 = 1/8).
+            'paralysis_chance'            => 25,   // 25% chance that a paralyzed Pokémon can't act on its turn.
+            'sleep_min_turns'             => 1,    // Fewest turns a Pokémon stays asleep.
+            'sleep_max_turns'             => 3,    // Most turns a Pokémon stays asleep.
+            'freeze_thaw_chance'          => 20,   // 20% chance that a frozen Pokémon thaws out at the start of its turn.
+            'confusion_min_turns'         => 1,    // Fewest turns a Pokémon stays confused.
+            'confusion_max_turns'         => 4,    // Most turns a Pokémon stays confused.
+            'confusion_self_hit_chance'   => 33,   // 33% chance that a confused Pokémon hits itself instead of acting.
+            'confusion_self_hit_power'    => 40,   // Power of the typeless hit a confused Pokémon deals to itself.
+        ],
     ],
 ];

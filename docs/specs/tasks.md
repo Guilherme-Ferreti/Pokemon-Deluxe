@@ -255,15 +255,16 @@ Agreed and added to Spec 1 under "Status effects". Task 1.11 adds the config key
 
 ### 1.11 Status effect rolls
 
-- [ ] Done
+- [x] Done
 
 **Goal:** the dice for status effects during a turn.
 
 **Build** (numbers from Spec 1, "Status effects"; add them to `config/game.php` under `game.battle.ailments`, chances as percentages such as `paralysis_chance` (25)):
 - `App\Battle\Mechanics\StatusEffectRoller` with:
-  - `canAct(Combatant $combatant): bool`: handles paralysis, sleep, freeze, and the confusion self-hit roll (returns `false` when it hits itself).
-  - `durationFor(Ailment $ailment): int`: sleep and confusion turn counts.
-- `App\Battle\Mechanics\StatusEffectCalculator::endOfTurnDamage(Combatant $combatant): int`: burn and poison.
+  - `rollActionBlocker(Combatant $combatant): ?ActionBlocker`: `null` when the Pokémon can act, otherwise why it can't. Checked in this order: freeze (`FROZEN` unless the thaw roll succeeds), sleep (`ASLEEP` while `ailment_turns_left` > 0, no roll), confusion (`HURT_ITSELF_IN_CONFUSION` while `confusion_turns_left` > 0 and the self-hit roll succeeds), paralysis (`PARALYZED`). Enum `Shared\Enums\ActionBlocker`.
+  - `durationFor(Ailment $ailment): int`: sleep (1–3) and confusion (1–4) turn counts; 0 for ailments that last until the battle ends.
+- `App\Battle\Mechanics\StatusEffectCalculator::endOfTurnDamage(Combatant $combatant): int`: burn (6.25% of max HP) and poison (12.5%), at least 1; 0 otherwise or when fainted.
+- Config `game.battle.ailments` also holds `burn_damage_done_multiplier` (0.5) and `confusion_self_hit_power` (40), used by task 1.15.
 
 Uses `Combatant` from task 1.10.
 
@@ -326,7 +327,12 @@ Uses `Combatant` from task 1.10.
 
 **Goal:** plug status effects into the turn.
 
-**Build:** before acting, `StatusEffectRoller::canAct()`; after a hit, apply the outcome's ailment (one major ailment at a time); at the end of the turn, `StatusEffectCalculator::endOfTurnDamage()`; count down durations. Log each effect ("Pidgey is paralyzed! It can't move!").
+**Build:**
+- Before acting, `StatusEffectRoller::rollActionBlocker()`. On `HURT_ITSELF_IN_CONFUSION`, the Pokémon takes a typeless hit of `confusion_self_hit_power` (40) from its own attack instead of acting. A frozen Pokémon that is not blocked by `FROZEN` has thawed: clear its freeze. A sleeping Pokémon with `ailment_turns_left` at 0 wakes up: clear its sleep. After an `ASLEEP` block, count `ailment_turns_left` down; count `confusion_turns_left` down every turn the Pokémon is confused.
+- After a hit, apply the outcome's ailment: `CONFUSION` sets `confusion_turns_left` from `durationFor()` (never the `ailment` field) unless already confused; any other ailment applies only when the target has none (one major ailment at a time), with `ailment_turns_left` from `durationFor()`.
+- A burned attacker deals `burn_damage_done_multiplier` (half) damage.
+- At the end of the turn, `StatusEffectCalculator::endOfTurnDamage()`.
+- Log each effect ("Pidgey is paralyzed! It can't move!").
 
 **Tests:** one per effect.
 

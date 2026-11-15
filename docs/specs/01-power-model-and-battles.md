@@ -83,6 +83,7 @@ Level factor = level + 10, so a level 100 Pokémon is 10× a level 1, not 100×.
 
 - A Pokémon has at most one of burn, poison, paralysis, sleep or freeze. Confusion can stack with one of them.
 - A move's ailment does not apply if the target already has one (except confusion).
+- Before acting, effects are checked in this order: freeze (thaw roll), sleep, confusion (self-hit roll), paralysis. The first one that stops the Pokémon ends the check.
 - Numbers live in `config/game.php` under `game.battle.ailments`.
 
 ## XP
