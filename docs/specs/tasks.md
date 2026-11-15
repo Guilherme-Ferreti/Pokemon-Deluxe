@@ -274,7 +274,7 @@ Uses `Combatant` from task 1.10.
 
 ### 1.12 Start a wild battle
 
-- [ ] Done
+- [x] Done
 
 **Goal:** create a battle against one wild Pokémon.
 
@@ -283,10 +283,12 @@ Uses `Combatant` from task 1.10.
   - Throws `App\Battle\Exceptions\BattleAlreadyInProgressException` if the user has an `ONGOING` battle.
   - Throws `App\Battle\Exceptions\EmptyPartyException` if the party is empty.
   - Player side: party Pokémon in party order (`party_position`, task 4.15; until that task, oldest first), as `Combatant`s built with `StatsCalculator` and their active moves. The first one is active and `has_entered_field = true`.
-  - Opponent side: one `Combatant` from `$wildPokemon` (boost 0, active moves = the species' 4 base moves).
-- Artisan command `battle:start-wild {email} {species-slug} {level}` for local testing until Spec 2 adds exploring. Available only when `app()->isLocal()`.
+  - Opponent side: one `Combatant` from `$wildPokemon` (boost 0, active moves = the species' 4 base moves; like `CreatePokemonAction`, the default move and a reported `GameDataException` when the species has none).
+  - Log starts with "A wild Pidgey appeared!" and "Go! Pikachu!" (display names, so shiny ones read "Shiny Pidgey").
+  - Locked per user with `App\Battle\Support\LockKeys::startBattle()`.
+- Artisan command `battle:start-wild {email} {species-slug} {level} {--shiny}` (`Shared\Console\Commands\StartWildBattleCommand`) for local testing until Spec 2 adds exploring. Available only when `app()->isLocal()`.
 
-**Tests:** creates one battle with the right sides; refuses a second ongoing battle; refuses an empty party.
+**Tests:** creates one battle with the right sides; refuses a second ongoing battle (an ended one doesn't block); refuses an empty party; default move for a species without base moves; the command runs only locally.
 
 **Done when:** action, exceptions and command exist; tests pass.
 

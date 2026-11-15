@@ -1,0 +1,38 @@
+<?php
+
+declare(strict_types=1);
+
+use Illuminate\Support\Facades\Artisan;
+use Shared\Enums\PokemonGenderRate;
+use Shared\Models\Battle;
+use Shared\Models\Pokemon;
+use Shared\Models\Species;
+use Shared\Models\User;
+
+use function Pest\Laravel\assertDatabaseCount;
+
+it('starts a wild battle in the local environment', function () {
+    app()->detectEnvironment(fn () => 'local');
+
+    $user    = User::factory()->create(['email' => 'ash@example.com']);
+    $species = Species::factory()->withBaseMoves()->create(['slug' => 'pidgey', 'gender_rate' => PokemonGenderRate::EQUAL]);
+    Pokemon::factory()->for($user)->inParty()->withActiveMoves()->create();
+
+    expect(Artisan::call('battle:start-wild', ['email' => 'ash@example.com', 'species-slug' => 'pidgey', 'level' => 7]))->toBe(0);
+
+    $battle = Battle::query()->sole();
+
+    expect($battle->user_id)->toBe($user->id)
+        ->and($battle->state->opponent_side->activeCombatant()->species_id)->toBe($species->id)
+        ->and($battle->state->opponent_side->activeCombatant()->level)->toBe(7);
+});
+
+it('refuses to run outside the local environment', function () {
+    $user = User::factory()->create(['email' => 'ash@example.com']);
+    Species::factory()->withBaseMoves()->create(['slug' => 'pidgey', 'gender_rate' => PokemonGenderRate::EQUAL]);
+    Pokemon::factory()->for($user)->inParty()->withActiveMoves()->create();
+
+    expect(Artisan::call('battle:start-wild', ['email' => 'ash@example.com', 'species-slug' => 'pidgey', 'level' => 7]))->toBe(1);
+
+    assertDatabaseCount(Battle::class, 0);
+});

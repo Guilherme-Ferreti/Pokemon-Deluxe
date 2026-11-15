@@ -14,6 +14,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Support\Collection;
 use Override;
 use Shared\Casts\AsSpeciesPortraits;
 use Shared\Casts\AsSpeciesSprites;
@@ -29,7 +30,7 @@ use Shared\ValueObjects\SpeciesSprites;
  * @property string $id
  * @property string $slug
  * @property string $name
- * @property array{0: PokemonType, 1?: PokemonType} $types
+ * @property Collection<int, PokemonType> $types
  * @property int $pokedex_number
  * @property int $pokedex_order Position in the pokedex: by number, with regular forms before mega forms before gmax forms
  * @property string $genus
