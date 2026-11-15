@@ -32,6 +32,7 @@ use Shared\ValueObjects\IncubatorIndex;
  * @property CarbonImmutable|null $updated_at
  * @property-read EloquentCollection<int, Pokemon> $pokemon
  * @property-read EloquentCollection<int, Incubation> $incubations
+ * @property-read EloquentCollection<int, Battle> $battles
  */
 #[Fillable(['name', 'email', 'password'])]
 #[Hidden(['password', 'remember_token'])]
@@ -75,5 +76,13 @@ final class User extends Authenticatable
     public function inventoryItems(): HasMany
     {
         return $this->hasMany(InventoryItem::class);
+    }
+
+    /**
+     * @return HasMany<Battle, $this>
+     */
+    public function battles(): HasMany
+    {
+        return $this->hasMany(Battle::class);
     }
 }

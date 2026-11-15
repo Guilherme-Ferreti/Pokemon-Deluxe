@@ -233,7 +233,7 @@ Agreed and added to Spec 1 under "Status effects". Task 1.11 adds the config key
 
 ### 1.10 Battle data: table, model and state
 
-- [ ] Done
+- [x] Done
 
 **Goal:** a battle can be saved and loaded. No turn logic yet.
 
@@ -241,13 +241,15 @@ Agreed and added to Spec 1 under "Status effects". Task 1.11 adds the config key
 - Enums in `Shared\Enums`: `BattleType` (`WILD`, `TRAINER`, `GYM`, `ELITE_FOUR`, `BATTLE_TOWER`), `BattleStatus` (`ONGOING`, `WON`, `LOST`, `FORFEITED`, `CAUGHT`).
 - Migration `014_create_battles_table.php`: `uuid id`, `foreignIdFor(User)`, `type` enum, `status` enum, `json state`, timestamps; index `['user_id', 'status']`.
 - Model `Shared\Models\Battle` (with factory), relation `User::battles()`.
+- Pruning: `Battle` uses `MassPrunable`; battles that are not `ONGOING` and were last updated more than `game.battle.keep_ended_days` (7) days ago are deleted by `model:prune`, scheduled daily with `withSchedule()` in `bootstrap/app.php`.
 - Value objects in `Shared\ValueObjects`:
   - `Combatant`: `?string $pokemon_id` (null for wild or NPC), `string $species_id`, `int $level`, `int $boost`, `bool $is_shiny`, `PokemonGender $gender`, `array $types`, `array $move_ids`, `int $max_hp`, `int $current_hp`, `?Ailment $ailment`, `int $ailment_turns_left`, `int $confusion_turns_left`, `bool $has_entered_field`, `array $used_once_per_battle_move_ids`. Method `isFainted(): bool`.
   - `BattleSide`: `array $combatants`, `int $active_index`. Methods `activeCombatant(): Combatant`, `hasCombatantsLeft(): bool`.
   - `BattleState`: `int $turn`, `BattleSide $player_side`, `BattleSide $opponent_side`, `bool $is_awaiting_send_out`, `array $log`.
+  - Each has `fromArray()` / `toArray()` for the JSON column, and its constructor rejects impossible values (level, boost, HP, 1–2 types, 1–4 moves, `ailment` never `CONFUSION` (tracked by `confusion_turns_left`) or `UNKNOWN`, active index in range, turn at least 1).
 - Cast `Shared\Casts\AsBattleState`.
 
-**Tests:** `BattleState` survives a save and reload unchanged; `Combatant::isFainted()`; `BattleSide::hasCombatantsLeft()`.
+**Tests:** `BattleState` survives a save and reload unchanged; `Combatant::isFainted()`; `BattleSide::hasCombatantsLeft()`; only ended battles older than 7 days are pruned; pruning is scheduled daily.
 
 **Done when:** enums, migration, model, value objects and cast exist; tests pass.
 
@@ -2040,7 +2042,7 @@ Read [07-trading.md](07-trading.md) first, including its "Details" section. Trad
 **Build:**
 - `App\Trading\Actions\CancelListingAction::handle(TradeListing $listing): void` (seller only, open only): `CANCELLED`, fee kept, hold released, pending offers declined.
 - `ExpireListingAction::handle(TradeListing $listing): void`: `EXPIRED`, fee refunded (`AddMoneyAction`), hold released, pending offers declined, seller notified (`ListingExpired`).
-- Command `trading:expire-listings`, scheduled every 5 minutes in `routes/console.php`, expires open listings past `expires_at`.
+- Command `trading:expire-listings`, scheduled every 5 minutes in `withSchedule()` in `bootstrap/app.php`, expires open listings past `expires_at`.
 
 **Tests:** cancel keeps the fee; expire refunds it; offers declined in both; the command expires only past-due listings.
 

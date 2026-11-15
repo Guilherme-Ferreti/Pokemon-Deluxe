@@ -37,5 +37,6 @@ Not planned yet; noted so they are not lost.
 - **TM collection achievements:** one achievement per move type ("Collect every Fire TM") and one for collecting every TM in the game. A TM counts once the player has owned it at least once; it does not have to stay in the inventory, so teaching, selling or trading it later keeps the progress. Needs a record of every TM a player has ever obtained.
 - **Double battles.**
 - **Pokémon history** on the Pokémon page (times traded, battles won, date it reached level 100).
+- **Battle history:** a separate table recording each finished battle (opponent, result, date), since `battles` rows are deleted 7 days after they end.
 - **Direct trades** and **selling Pokémon for money.**
 - **Friends, chat and private messages.**

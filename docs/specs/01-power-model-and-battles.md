@@ -59,6 +59,7 @@ Level factor = level + 10, so a level 100 Pokémon is 10× a level 1, not 100×.
 6. When a Pokémon faints, **the player picks which Pokémon comes out next**, like the main games. Free send-outs happen only after a faint; any other switch uses a turn. No items in battle.
 7. The player can run at any time with the **Run** button. Running counts as a loss. Losing has no penalty: trainers pay nothing, but XP already earned is kept (see XP).
 8. After every battle all Pokémon are fully healed, except in the Battle Tower, where damage carries over between floors until a checkpoint (Spec 6).
+9. An ended battle is kept for 7 days (for the end screen and the reactions to it), then deleted. An ongoing battle is never deleted. There is no battle history yet.
 
 ## Switching
 
