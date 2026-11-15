@@ -27,6 +27,24 @@ final readonly class BattleState implements ValueObject
         throw_if($turn < 1, InvalidArgumentException::class, "The turn must be at least 1, [{$turn}] given.");
     }
 
+    public function withPlayerSide(BattleSide $playerSide): self
+    {
+        return new self(...[...get_object_vars($this), 'player_side' => $playerSide]);
+    }
+
+    public function withOpponentSide(BattleSide $opponentSide): self
+    {
+        return new self(...[...get_object_vars($this), 'opponent_side' => $opponentSide]);
+    }
+
+    /**
+     * @param  list<string>  $logLines
+     */
+    public function withNextTurn(array $logLines): self
+    {
+        return new self(...[...get_object_vars($this), 'turn' => $this->turn + 1, 'log' => [...$this->log, ...$logLines]]);
+    }
+
     /**
      * @param  BattleStateArray  $data
      */

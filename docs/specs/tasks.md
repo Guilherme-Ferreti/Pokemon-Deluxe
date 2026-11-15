@@ -294,7 +294,7 @@ Uses `Combatant` from task 1.10.
 
 ### 1.13 Take a turn: damage only
 
-- [ ] Done
+- [x] Done
 
 **Goal:** the core turn loop, without accuracy, crits, flinch or status effects.
 
@@ -304,10 +304,12 @@ Uses `Combatant` from task 1.10.
   - The opponent picks a random active move (`RandomHelper::pick`).
   - Turn order from `TurnOrderCalculator` and `RandomHelper::chance`.
   - Each side's move deals damage from `DamageCalculator` (no critical, random factor 1.0 for now). A fainted Pokémon does not act.
-  - Adds log lines ("Magikarp used Surf!", "It's super effective!") and increments `turn`.
+  - `$moveSlot` (1–4) picks from the active combatant's `move_ids`; a slot it doesn't have throws `InvalidArgumentException`.
+  - Adds log lines and increments `turn`: "Magikarp used Surf!" (a wild opponent reads "The wild Pidgey used Gust!"), then "It's super effective!", "It's not very effective..." or "It doesn't affect the wild Pidgey..." for damaging moves, and "Pikachu fainted!" when HP reaches 0. HP never goes below 0.
+  - Value objects get `Combatant::withCurrentHp()`, `BattleSide::withActiveCombatant()` and `BattleState::withPlayerSide()`, `withOpponentSide()` and `withNextTurn()`; each builds a new object through the constructor, so its checks still run.
   - Wraps the update in `Cache::withoutOverlapping` with a `LockKeys` method, per the Support rule.
 
-**Tests:** both sides lose HP; order follows the faked roll; a fainted opponent does not act; log lines are added; refused when not ongoing.
+**Tests:** both sides lose HP; order follows the faked roll; a fainted opponent (or player) does not act; log lines are added; immune moves deal nothing; refused when not ongoing or awaiting a send-out; invalid move slot.
 
 **Done when:** action works for one turn; tests pass.
 

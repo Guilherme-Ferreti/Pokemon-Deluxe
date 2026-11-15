@@ -65,6 +65,11 @@ final readonly class Combatant implements ValueObject
         return $this->current_hp === 0;
     }
 
+    public function withCurrentHp(int $currentHp): self
+    {
+        return new self(...[...get_object_vars($this), 'current_hp' => $currentHp]);
+    }
+
     /**
      * @param  CombatantArray  $data
      */

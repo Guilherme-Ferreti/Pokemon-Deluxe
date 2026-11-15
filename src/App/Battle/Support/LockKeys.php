@@ -10,4 +10,9 @@ final class LockKeys
     {
         return "battle::lock:start-battle:user-{$userId}";
     }
+
+    public static function battleTurn(string $battleId): string
+    {
+        return "battle::lock:turn:battle-{$battleId}";
+    }
 }
