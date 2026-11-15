@@ -193,12 +193,12 @@ There is no production data yet, so a new column (or index, or a dropped column)
 
 ### 1.7 Turn order
 
-- [ ] Done
+- [x] Done
 
 **Goal:** decide who acts first each turn.
 
 **Build:**
-- `App\Battle\Mechanics\TurnOrderCalculator::firstMoverChance(int $level, int $opponentLevel): float` = 100 × level ÷ (level + opponentLevel), a percentage.
+- `App\Battle\Mechanics\TurnOrderCalculator::firstMoverChance(int $level, int $opponentLevel): float` = 100 × level ÷ (level + opponentLevel), a percentage. Throws `InvalidArgumentException` when either level is below 1.
 
 **Tests:** 100 vs 100 → 50; 1 vs 100 → about 0.99.
 
