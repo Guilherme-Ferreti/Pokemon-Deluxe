@@ -64,7 +64,7 @@ final class TakeActions
     {
         $attacker = $action->attacker();
 
-        if ($action->wasConfused && $attacker->confusion_turns_left === 0 && ! $attacker->isFainted()) {
+        if ($action->isConfusionChecked && $attacker->confusion_turns_left === 0 && ! $attacker->isFainted()) {
             $action->turn->log("{$action->turn->displayName($action->side, atStart: true)} snapped out of its confusion!");
         }
     }

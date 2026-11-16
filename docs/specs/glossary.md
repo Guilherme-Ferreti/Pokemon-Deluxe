@@ -32,7 +32,7 @@ One name per idea, used everywhere: specs, code, database, tests and UI. When yo
 | Turn order roll | `TurnOrderRoller::rollIsPlayerFirst()` | Rolls `TurnOrderCalculator::firstMoverChance()`. |
 | Opponent move roll | `OpponentMoveRoller::rollMoveId()` | Picks one of the opponent's usable moves. |
 | Turn data | `TurnData` (`App\Battle\Data`) | What the turn pipeline carries: the battle, the move slot (`playerMove()` reads the move in it), the state, the opponent's chosen move (`opponentMove`), the turn order, each side's action (`playerAction`, `opponentAction`, null until that side acts) and the log lines. |
-| Turn action data | `TurnActionData` (`App\Battle\Data`) | One side's action in a turn, sent through the turn action pipeline: its `side`, `move`, `blocker`, `wasConfused`, `moveOutcome`, `typeMultiplier` and `outcome`. |
+| Turn action data | `TurnActionData` (`App\Battle\Data`) | One side's action in a turn, sent through the turn action pipeline: its `side`, `move`, `blocker`, `isConfusionChecked`, `moveOutcome`, `typeMultiplier` and `outcome`. |
 | Battle side | `Side` (`App\Battle\Enums`): `PLAYER`, `OPPONENT`; `other()` | Which side of a battle acts, defends or flinches. Not to be confused with the `BattleSide` value object, which holds one side's team. |
 | Turn pipeline | `App\Battle\Pipes\Turn\*` | The steps of `TakeTurnAction`: ready check, loading, the player's move check (`EnsurePlayerMoveIsUsable`), the opponent's move choice, turn order, actions, end-of-turn damage, saving. |
 | Turn action pipeline | `App\Battle\Pipes\TurnAction\*` | One side's action (`TurnActionData`), run by `TakeActions` for each side: skips, status checks, the move, hits and ailments. |

@@ -16,7 +16,7 @@ final class TurnActionData
 {
     public ?ActionBlocker $blocker = null;
 
-    public bool $wasConfused = false;
+    public bool $isConfusionChecked = false;
 
     public ?MoveOutcome $moveOutcome = null;
 
