@@ -160,6 +160,23 @@ final class Species extends Model
         return (string) $sprite;
     }
 
+    public function getDisplayBackSprite(PokemonGender $gender = PokemonGender::MALE, bool $shiny = false): string
+    {
+        $sprite = null;
+
+        if ($gender === PokemonGender::FEMALE && $shiny) {
+            $sprite = $this->sprites->back_shiny_female ?? $this->sprites->back_shiny;
+        } elseif ($gender === PokemonGender::FEMALE) {
+            $sprite = $this->sprites->back_female ?? $this->sprites->back_default;
+        } elseif ($shiny) {
+            $sprite = $this->sprites->back_shiny;
+        } else {
+            $sprite = $this->sprites->back_default;
+        }
+
+        return $sprite ?? $this->getDisplayFrontSprite($gender, $shiny);
+    }
+
     public function getCatchRatePercentage(): int|float
     {
         return toIntIfWhole(round(($this->catch_rate / 255) * 100, 2));

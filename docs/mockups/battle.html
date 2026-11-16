@@ -12,13 +12,12 @@
   .side { display: flex; flex-wrap: wrap; align-items: center; gap: 16px 24px; }
   .side-opponent { justify-content: flex-end; }
   .side-player { justify-content: flex-start; }
+  .arena .sprite { width: 96px; height: 96px; }
   .info { flex: 0 1 320px; min-width: 240px; border: 1px solid var(--border); border-radius: 10px; padding: 12px 14px; display: flex; flex-direction: column; gap: 8px; }
   .info .name { font-weight: 600; font-size: 15px; }
   .hp-row { display: flex; align-items: center; gap: 8px; }
   .hp-label { font-size: 11px; font-weight: 700; color: var(--muted-fg); }
   .hp-value { font-size: 13px; font-weight: 600; min-width: 40px; text-align: right; }
-  .platform { width: 150px; height: 18px; border-radius: 50%; background: var(--muted); }
-  .sprite-wrap { display: flex; flex-direction: column; align-items: center; gap: 4px; }
   .dots { display: flex; gap: 4px; }
   .dot { width: 10px; height: 10px; border-radius: 999px; border: 2px solid var(--good); background: var(--good); }
   .dot.fainted { border-color: var(--placeholder); background: transparent; }
@@ -40,7 +39,7 @@
   .ball-row { display: flex; align-items: center; gap: 10px; padding: 10px; border: 0; border-radius: 8px; background: transparent; text-align: left; }
   .ball-row:hover { background: var(--muted); }
   .ball-icon { width: 22px; height: 22px; border-radius: 999px; border: 2px solid var(--fg); flex-shrink: 0; }
-  .log { height: 224px; overflow-y: auto; display: flex; flex-direction: column-reverse; gap: 6px; padding-right: 4px; }
+  .log { height: 224px; overflow-y: auto; display: flex; flex-direction: column; gap: 6px; padding-right: 4px; }
   .log p { font-size: 13px; }
   .log .player { font-weight: 500; }
   .log .good { color: var(--good); font-weight: 500; }
@@ -117,17 +116,11 @@
         <div class="dots" aria-label="Hiker Bob has 2 of 3 Pokémon left" data-show="trainer-battle trainer-run trainer-won trainer-lost"><span class="dot fainted" title="Geodude (fainted)"></span><span class="dot" title="Graveler"></span><span class="dot" title="Onix"></span></div>
         <div class="dots" aria-label="Bruno has no Pokémon left" data-show="e4-won e4-quit"><span class="dot fainted" title="Onix (fainted)"></span><span class="dot fainted" title="Hitmonchan (fainted)"></span><span class="dot fainted" title="Hitmonlee (fainted)"></span><span class="dot fainted" title="Machamp (fainted)"></span></div>
       </div>
-      <div class="sprite-wrap">
-        <div class="sprite sprite-lg" aria-hidden="true">Pidgey<br>front sprite</div>
-        <div class="platform" aria-hidden="true"></div>
-      </div>
+      <div class="sprite" aria-hidden="true">Pidgey<br>front sprite</div>
     </div>
 
     <div class="side side-player">
-      <div class="sprite-wrap">
-        <div class="sprite sprite-lg sprite-shiny" aria-hidden="true">Shiny Magikarp<br>back sprite</div>
-        <div class="platform" aria-hidden="true"></div>
-      </div>
+      <div class="sprite sprite-shiny" aria-hidden="true">Shiny Magikarp<br>back sprite</div>
       <div class="info shiny-ring">
         <div class="row" style="gap: 6px;">
           <span class="name">Shiny Magikarp</span>
@@ -349,29 +342,29 @@
     <section class="card log-card">
       <h2>Battle log</h2>
       <div class="log" aria-live="polite" id="log">
-        <p data-show="switched">The wild Pidgey used Gust! Dragonite took 21 damage.</p>
-        <p data-show="switched" class="player">Go! Dragonite!</p>
-        <p data-show="switched" class="player">Come back, Shiny Magikarp!</p>
-        <p data-show="trainer-lost" class="good">Shiny Magikarp gained 187 XP!</p>
-        <p data-show="trainer-lost" class="bad">You lost to Hiker Bob!</p>
-        <p data-show="e4-won e4-quit" class="good">Shiny Magikarp grew to Lv 63!</p>
-        <p data-show="e4-won e4-quit" class="good">You beat Elite Four Bruno!</p>
-        <p data-show="ran" class="muted">You got away safely!</p>
-        <p data-show="trainer-won" class="good">You got ₽ 1,440 for winning!</p>
-        <p data-show="trainer-won" class="good">Hiker Bob was defeated!</p>
-        <p data-show="trainer-battle trainer-run trainer-won trainer-lost" class="player">Hiker Bob sent out Graveler!</p>
-        <p data-show="trainer-battle trainer-run trainer-won trainer-lost" class="good">Geodude fainted!</p>
-        <p data-show="won" class="good">Shiny Magikarp grew to Lv 55!</p>
-        <p data-show="won" class="good">Shiny Magikarp gained 340 XP!</p>
-        <p data-show="won" class="good">The wild Pidgey fainted!</p>
-        <p data-show="caught" class="good">Shiny Magikarp gained 340 XP!</p>
-        <p data-show="caught" class="good">Gotcha! Pidgey was caught!</p>
-        <p data-show="caught" class="player">You threw a Quick Ball!</p>
-        <p class="muted">Go! Shiny Magikarp!</p>
-        <p class="muted" data-show="battle ball-picker caught send-out run won ran switch switched">A wild Pidgey appeared!</p>
-        <p class="muted" data-show="trainer-battle trainer-run trainer-won trainer-lost">Hiker Bob sent out Geodude!</p>
-        <p class="muted" data-show="trainer-battle trainer-run trainer-won trainer-lost">Hiker Bob wants to battle!</p>
         <p class="muted" data-show="e4-won e4-quit">Elite Four Bruno wants to battle!</p>
+        <p class="muted" data-show="trainer-battle trainer-run trainer-won trainer-lost">Hiker Bob wants to battle!</p>
+        <p class="muted" data-show="trainer-battle trainer-run trainer-won trainer-lost">Hiker Bob sent out Geodude!</p>
+        <p class="muted" data-show="battle ball-picker caught send-out run won ran switch switched">A wild Pidgey appeared!</p>
+        <p class="muted">Go! Shiny Magikarp!</p>
+        <p data-show="caught" class="player">You threw a Quick Ball!</p>
+        <p data-show="caught" class="good">Gotcha! Pidgey was caught!</p>
+        <p data-show="caught" class="good">Shiny Magikarp gained 340 XP!</p>
+        <p data-show="won" class="good">The wild Pidgey fainted!</p>
+        <p data-show="won" class="good">Shiny Magikarp gained 340 XP!</p>
+        <p data-show="won" class="good">Shiny Magikarp grew to Lv 55!</p>
+        <p data-show="trainer-battle trainer-run trainer-won trainer-lost" class="good">Geodude fainted!</p>
+        <p data-show="trainer-battle trainer-run trainer-won trainer-lost" class="player">Hiker Bob sent out Graveler!</p>
+        <p data-show="trainer-won" class="good">Hiker Bob was defeated!</p>
+        <p data-show="trainer-won" class="good">You got ₽ 1,440 for winning!</p>
+        <p data-show="ran" class="muted">You got away safely!</p>
+        <p data-show="e4-won e4-quit" class="good">You beat Elite Four Bruno!</p>
+        <p data-show="e4-won e4-quit" class="good">Shiny Magikarp grew to Lv 63!</p>
+        <p data-show="trainer-lost" class="bad">You lost to Hiker Bob!</p>
+        <p data-show="trainer-lost" class="good">Shiny Magikarp gained 187 XP!</p>
+        <p data-show="switched" class="player">Come back, Shiny Magikarp!</p>
+        <p data-show="switched" class="player">Go! Dragonite!</p>
+        <p data-show="switched">The wild Pidgey used Gust! Dragonite took 21 damage.</p>
       </div>
     </section>
   </div>
@@ -518,7 +511,8 @@
       var p = document.createElement('p');
       p.textContent = text;
       if (kind) { p.className = kind; }
-      log.insertBefore(p, log.firstChild);
+      log.appendChild(p);
+      log.scrollTop = log.scrollHeight;
     }
 
     document.querySelectorAll('[data-move]').forEach(function (button) {

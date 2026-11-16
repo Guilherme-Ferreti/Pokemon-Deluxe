@@ -6,6 +6,7 @@ namespace Shared\Models;
 
 use Carbon\CarbonImmutable;
 use Database\Factories\BattleFactory;
+use Illuminate\Database\Eloquent\Attributes\Scope;
 use Illuminate\Database\Eloquent\Attributes\Unguarded;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
@@ -61,5 +62,14 @@ final class Battle extends Model
         return self::query()
             ->whereNot('status', BattleStatus::ONGOING)
             ->where('updated_at', '<=', now()->subDays((int) config('game.battle.keep_ended_days')));
+    }
+
+    /**
+     * @param  Builder<$this>  $query
+     */
+    #[Scope]
+    protected function ongoing(Builder $query): void
+    {
+        $query->where('status', BattleStatus::ONGOING);
     }
 }

@@ -1,15 +1,18 @@
 <template>
   <span>
     {{ name }}
-    <sup
-      v-if="isZMove || isDynamaxMove"
-      class="font-extrabold"
-      aria-hidden="true"
-    >
-      {{ isZMove ? 'Z' : 'D' }}
-    </sup>
+    <template v-if="isZMove || isDynamaxMove">
+      <sup
+        class="font-extrabold"
+        aria-hidden="true"
+      >
+        {{ isZMove ? 'Z' : 'D' }}
+      </sup>
+      <span class="sr-only">
+        {{ isZMove ? '(Z Move)' : '(Dynamax Move)' }}
+      </span>
+    </template>
   </span>
-  <span class="sr-only">{{ isZMove ? '(Z Move)' : '(Dynamax Move)' }}</span>
 </template>
 
 <script setup lang="ts">

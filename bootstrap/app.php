@@ -17,6 +17,8 @@ return Application::configure(basePath: dirname(__DIR__))
             Route::middleware('web')->group(function (): void {
                 Route::name('auth.web.')->group(base_path('src/App/Auth/Http/Web/routes.php'));
 
+                Route::name('battle.web.')->group(base_path('src/App/Battle/Http/Web/routes.php'));
+
                 Route::name('dashboard.web.')->group(base_path('src/App/Dashboard/Http/Web/routes.php'));
 
                 Route::name('dex.web.')->group(base_path('src/App/Dex/Http/Web/routes.php'));

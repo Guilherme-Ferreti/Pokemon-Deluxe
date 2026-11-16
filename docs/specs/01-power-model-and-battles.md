@@ -150,15 +150,15 @@ Taking one Pokémon from level 1 to 100 takes about 300 fair fights, fewer when 
 │  [ Throw ball ] (wild battles only)  [ Switch Pokémon ]   │
 ├──────────────────────────────────────────────────────────┤
 │  Battle log                                               │
-│  > Magikarp used Surf! It's super effective!              │
-│  > Pidgey is paralyzed! It can't move!                    │
+│  Magikarp used Surf! It's super effective!                │
+│  Pidgey is paralyzed! It can't move!                      │
 └──────────────────────────────────────────────────────────┘
 ```
 
 - Opponent at the top right, the player at the bottom left, as in the main games. On a phone the parts stack: opponent, player, moves, log.
 - The player's HP shows exact numbers; the opponent's shows only a percentage.
 - Move buttons show type and power, with a hint on super-effective moves.
-- Team dots show who is left on each side. A battle log lists what happened.
+- Team dots show who is left on each side. A battle log lists what happened, oldest line first, and scrolls to the newest line.
 - When a Pokémon faints, a dialog lists the remaining team (portrait, level, HP) to pick the next one.
 - **Switch Pokémon** (every battle) opens a similar dialog that can be cancelled: the Pokémon in battle and fainted ones are disabled, and it says that switching uses the turn.
 - The only animation is the HP bar sliding down.

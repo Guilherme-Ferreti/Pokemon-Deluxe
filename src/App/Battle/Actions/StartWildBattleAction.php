@@ -69,7 +69,7 @@ final class StartWildBattleAction
 
     private function ensureNoBattleIsOngoing(): void
     {
-        $hasOngoingBattle = $this->user->battles()->where('status', BattleStatus::ONGOING)->exists();
+        $hasOngoingBattle = $this->user->battles()->ongoing()->exists();
 
         throw_if($hasOngoingBattle, BattleAlreadyInProgressException::class);
     }

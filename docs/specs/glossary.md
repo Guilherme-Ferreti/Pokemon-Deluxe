@@ -43,6 +43,8 @@ One name per idea, used everywhere: specs, code, database, tests and UI. When yo
 | Active combatant | `active_index` on `BattleSide` | The one currently on the field. |
 | Turn | `turn` | Both sides acting once. |
 | Battle log | `log` | List of text lines shown under the battle. |
+| Ongoing battle | `Battle::ongoing()` scope | The user's battle with status `ONGOING`. |
+| Battle sprites | `Species::getDisplayFrontSprite()` (opponent), `getDisplayBackSprite()` (player) | The back sprite falls back to the front one when the species has none. |
 | Faint | `isFainted()` | `current_hp` is 0. |
 | Send out | `SendOutPokemonAction` | Picking the next Pokémon after a faint. Free. |
 | Switch | `SwitchPokemonAction` | Changing the Pokémon in battle on the player's turn. Uses the turn. |

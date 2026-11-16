@@ -403,30 +403,27 @@ Uses `Combatant` from task 1.10.
 
 ### 1.19 Battle page: show the battle
 
-- [ ] Done
+- [x] Done
 
 **Goal:** a read-only battle page.
 
 **Mock-up:** `docs/mockups/battle.html` (state "Battle, choosing a move")
 
 **Build:**
-- Route `GET /battle` named `battle.web.show` → `App\Battle\Http\Web\Controllers\BattleController@show`; shows the user's `ONGOING` battle or redirects to the Dashboard.
-- `App\Battle\Http\Web\PageProps\BattleShowPageProps`: both active combatants (sprite, name, level, boost, shiny, ailment), player HP as numbers, opponent HP as a percentage only, team dots, active moves (name, type, power), log.
-- Page `resources/js/app/Battle/pages/Battle/index.vue` with the Spec 1 layout; stacks on phones.
-- The sidebar already has a placeholder "Battle" item pointing to `#`. Turn it into a collapsible group, like "Your Pokémon", with one sub-item for now: "Current battle" → `battle.web.show`. Spec 6 adds Trainers, Gyms and Battle Tower to the same group (tasks 6.6, 6.9, 6.13). While a battle is ongoing, "Current battle" shows a dot.
-
-**Mock-up:** `docs/mockups/layout.html` (the "Battle" group)
+- Route `GET /battle` named `battle.web.show` → `App\Battle\Http\Web\Controllers\BattleController@show`; shows the user's `ONGOING` battle (`Battle::ongoing()` scope) or redirects to the Dashboard.
+- `App\Battle\Http\Web\PageProps\BattleShowPageProps`: `battle` (type, turn, log), `player` and `opponent` (the active combatant's display name, gender, level, boost, shiny, ailment, sprite and `team` of names with `isFainted`), the player's HP as `currentHp`/`maxHp`, the opponent's HP only as `hpPercentage` (rounded up, so a sliver shows 1%), and `moves` (the player's active moves in slot order: name, type, power, Z/Dynamax). The player's sprite is the back sprite (`Species::getDisplayBackSprite()`, falling back to the front one).
+- Page `resources/js/app/Battle/pages/Battle/index.vue` with the Spec 1 layout; stacks on phones. Sprites are shown at their natural 96px (80px on phones). The log reads oldest first and scrolls to the newest line. Title from the battle type ("Wild battle"), description "A wild Pidgey appeared.". The move buttons are shown disabled until task 1.20 wires them; status moves say "Status" and "Power —".
 
 **UI suggestions** (ideas, not requirements):
 - Layout: a CSS grid with two `Card`s, opponent at the top right and player at the bottom left; one column on phones (opponent, player, moves, log).
 - Each Pokémon card: `SpeciesSprite`, `PokemonDisplayName`, `PokemonGenderIcon`, level and boost as `Badge`s, ailment as a small coloured `Badge` ("PAR", "BRN").
 - HP: a `Progress` bar coloured by HP left (green above 50%, yellow 20–50%, red below 20%). Player card shows "410 / 520"; opponent card shows only "62%".
 - Team: a row of small dots (filled = can fight, outlined = fainted), with a `Tooltip` naming each Pokémon.
-- Moves: a 2×2 grid of large outline `Button`s, each with `MoveNameLabel`, a type badge and `MovePowerLabel`.
+- Moves: a 2×2 grid of large outline `Button`s, each with `MoveNameLabel`, a type badge and the power ("Power 90", "Power —" for status moves).
 - Log: a `Card` with a fixed height and its own scroll, newest line at the bottom, scrolled down automatically.
 - Header: `AppPageHeader` ("Wild battle") with the "Run" button on the right (task 1.21).
 
-**Tests:** feature test for the props, including that opponent HP is a percentage only; redirect when there is no battle.
+**Tests:** feature test for the props, including that opponent HP is a percentage only (rounded up); redirect when there is no battle in progress; the back sprite and its fallback.
 
 **Done when:** page shows a battle started with `battle:start-wild`.
 
@@ -1271,7 +1268,7 @@ Read [04-pokemon-page.md](04-pokemon-page.md) first. Builds on Spec 1 (`SetActiv
 - Moves card: four slots with Swap buttons; the known-moves pool below; a "Teach TM" button.
 
 **UI suggestions** (ideas, not requirements):
-- Active slots: a numbered list (1–4, the battle order). Each row: a drag handle, the number, `MoveNameLabel`, type badge, `MovePowerLabel`, a "STAB" badge for damaging moves of the Pokémon's own type, up and down arrow buttons, and a ghost "Swap" button. An empty slot shows a dashed outline and "Empty slot".
+- Active slots: a numbered list (1–4, the battle order). Each row: a drag handle, the number, `MoveNameLabel`, type badge, the power ("—" for status moves), a "STAB" badge for damaging moves of the Pokémon's own type, up and down arrow buttons, and a ghost "Swap" button. An empty slot shows a dashed outline and "Empty slot".
 - Drag and drop (desktop): drag a slot by its handle to reorder; drag a known move onto a slot to replace it. Every drag action also has a non-drag way: the arrows reorder, Swap replaces. Keyboard and touch users rely on those.
 - Drag and drop needs a library for touch support and smooth sorting (for example `vue-draggable-plus`, built on SortableJS). Adding it needs approval (AGENTS.md: no new dependencies without approval); without it, use the native HTML drag events on desktop and the arrow buttons everywhere.
 - Swap: a `Dialog` listing the known moves (the active ones marked "In slot 2"), with a search input when the pool is long. Picking one swaps it in.
@@ -1754,7 +1751,7 @@ Read [06-trainers-gyms-and-battle-tower.md](06-trainers-gyms-and-battle-tower.md
 **Build:**
 - Route `GET /trainers` named `trainers.web.index` → `App\Trainers\Http\Web\Controllers\TrainersController@index` with `TrainersIndexPageProps`: every `TRAINER` (name, class, sprite, team size, level range, types used, full payout, and the team: species, level, types, shiny) sorted by level, with each trainer's category; plus the player's party average level for the payout hint.
 - Route `POST /trainers/{trainer}/challenge` named `trainers.web.challenge` → `ChallengeTrainerController`, redirects to the battle page.
-- "Trainers" sub-item in the sidebar's "Battle" group (task 1.19), after "Current battle".
+- The sidebar's placeholder "Battle" item becomes a collapsible group, like "Your Pokémon", with "Trainers" as its first sub-item; tasks 6.9 and 6.13 add "Gyms" and "Battle Tower".
 
 **UI suggestions** (ideas, not requirements):
 - `AppPageHeader` with a search `InputGroup` on the right, placeholder "Search by name". It matches the trainer's `name` only ("Bob"), not the trainer class; the category tabs cover classes.
