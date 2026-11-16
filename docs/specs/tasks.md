@@ -331,18 +331,20 @@ Uses `Combatant` from task 1.10.
 
 ### 1.15 Take a turn: status effects
 
-- [ ] Done
+- [x] Done
 
 **Goal:** plug status effects into the turn.
 
 **Build:**
-- Before acting, `StatusEffectRoller::rollActionBlocker()`. On `HURT_ITSELF_IN_CONFUSION`, the Pokémon takes a typeless hit of `confusion_self_hit_power` (40) from its own attack instead of acting. A frozen Pokémon that is not blocked by `FROZEN` has thawed: clear its freeze. A sleeping Pokémon with `ailment_turns_left` at 0 wakes up: clear its sleep. After an `ASLEEP` block, count `ailment_turns_left` down; count `confusion_turns_left` down every turn the Pokémon is confused.
-- After a hit, apply the outcome's ailment: `CONFUSION` sets `confusion_turns_left` from `durationFor()` (never the `ailment` field) unless already confused; any other ailment applies only when the target has none (one major ailment at a time), with `ailment_turns_left` from `durationFor()`.
-- A burned attacker deals `burn_damage_done_multiplier` (half) damage.
-- At the end of the turn, after both Pokémon have acted or been stopped, `StatusEffectCalculator::endOfTurnDamage()` for each, in the order they moved that turn. If the first one's damage knocks out its side's last Pokémon, the battle ends there (through `EndBattleAction`) and the second takes no damage.
-- Log each effect ("Pidgey is paralyzed! It can't move!").
+- Before acting, `StatusEffectRoller::rollActionBlocker()`. On `HURT_ITSELF_IN_CONFUSION`, the Pokémon takes a typeless hit of `confusion_self_hit_power` (40) from its own attack instead of acting. A frozen Pokémon that is not blocked by `FROZEN` has thawed: clear its freeze. A sleeping Pokémon with `ailment_turns_left` at 0 wakes up: clear its sleep. After an `ASLEEP` block, count `ailment_turns_left` down.
+- Confusion counts down on each turn the Pokémon reaches the confusion check; when it reaches 0 the log says "… snapped out of its confusion!" right after that turn's action. The self-hit damage is `StatusEffectCalculator::confusionSelfHitDamage(PokemonStats $stats): int`.
+- A blocked Pokémon's action returns `TurnActionOutcome::BLOCKED`.
+- After a hit (or a status move that lands), apply the outcome's ailment when `App\Battle\Mechanics\AilmentInflictionChecker::canInflict(Ailment $ailment, Combatant $target): bool` allows it: `CONFUSION` sets `confusion_turns_left` from `durationFor()` (never the `ailment` field) unless already confused; any other ailment applies only when the target has none (one major ailment at a time) and its types aren't immune (Fire to burn, Ice to freeze, Electric to paralysis, Poison and Steel to poison), with `ailment_turns_left` from `durationFor()`. A status move whose ailment can't apply logs "But it failed!". Status moves also check type effectiveness ("It doesn't affect …").
+- A burned attacker deals `burn_damage_done_multiplier` (half) damage (`DamageCalculator::calculate()` takes `bool $isAttackerBurned`).
+- At the end of the turn, after both Pokémon have acted or been stopped, `StatusEffectCalculator::endOfTurnDamage()` for each, in the order they moved that turn. Once either side has no Pokémon left (from a move or from the first one's end-of-turn damage), no more end-of-turn damage is dealt. Ending the battle comes with task 1.16.
+- Log each effect: "Pikachu is frozen solid!", "Pikachu thawed out!", "Pikachu is fast asleep.", "Pikachu woke up!", "Pikachu is confused!", "It hurt itself in its confusion!", "Pikachu is paralyzed! It can't move!"; when inflicted: "… was burned!", "… was poisoned!", "… is paralyzed! It may be unable to move!", "… fell asleep!", "… was frozen solid!", "… became confused!"; at the end of the turn: "… is hurt by its burn!", "… is hurt by poison!".
 
-**Tests:** one per effect; end-of-turn damage follows that turn's move order, and when both sides' last Pokémon would faint from it, the one that moved first faints and the battle ends.
+**Tests:** one per effect; end-of-turn damage follows that turn's move order, and when both sides' last Pokémon would faint from it, the one that moved first faints and the other takes no damage.
 
 **Done when:** tests pass.
 
@@ -354,7 +356,7 @@ Uses `Combatant` from task 1.10.
 
 **Build:**
 - `App\Battle\Actions\EndBattleAction::handle(Battle $battle, BattleStatus $status): Battle`: the only place a battle ends. Sets the status, pays XP (task 1.17) and dispatches `App\Battle\Events\BattleEnded` (`battleId`, `userId`, `type`, `status`, `isWin` for `WON` and `CAUGHT`, `trainerId` when there is one). Other domains (missions, trainers, the Elite Four, the Battle Tower) react to this event; they never end battles or check statuses themselves.
-- In `TakeTurnAction`: when the player's active Pokémon faints and others are left, set `is_awaiting_send_out`. When none are left, end as `LOST`. When the opponent has none left, end as `WON`.
+- In `TakeTurnAction`: when the player's active Pokémon faints and others are left, set `is_awaiting_send_out`. When none are left, end as `LOST`. When the opponent has none left, end as `WON`. This covers every knockout: from a move, from a confusion self-hit and from end-of-turn damage (task 1.15 already stops end-of-turn damage once a side has no Pokémon left).
 - `App\Battle\Actions\SendOutPokemonAction::handle(Battle $battle, int $combatantIndex): Battle`: only while awaiting a send-out; the chosen combatant must not be fainted; sets `has_entered_field = true`.
 - `App\Battle\Actions\ForfeitBattleAction::handle(Battle $battle): Battle`: the **Run** button; ends as `FORFEITED`, which counts as a loss everywhere.
 - Nothing is written back to `Pokemon` rows: every battle ends fully healed (Spec 1).

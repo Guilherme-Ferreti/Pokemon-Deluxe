@@ -6,6 +6,7 @@ namespace App\Battle\Mechanics;
 
 use Shared\Enums\Ailment;
 use Shared\ValueObjects\Combatant;
+use Shared\ValueObjects\PokemonStats;
 
 final class StatusEffectCalculator
 {
@@ -26,5 +27,12 @@ final class StatusEffectCalculator
         }
 
         return max(1, (int) floor($combatant->max_hp * $maxHpPercentage / 100));
+    }
+
+    public function confusionSelfHitDamage(PokemonStats $stats): int
+    {
+        $damage = (int) config('game.battle.ailments.confusion_self_hit_power') * $stats->attack * $stats->defense;
+
+        return max(1, (int) floor($damage));
     }
 }

@@ -22,6 +22,7 @@ final class DamageCalculator
         Move $move,
         bool $isCriticalHit,
         float $randomFactor,
+        bool $isAttackerBurned,
     ): int {
         if ($move->power === null) {
             return 0;
@@ -39,6 +40,7 @@ final class DamageCalculator
             * $typeMultiplier
             * $this->criticalHitMultiplier($isCriticalHit)
             * $randomFactor
+            * $this->burnMultiplier($isAttackerBurned)
             * $defenderStats->defense;
 
         return max(1, (int) floor($damage));
@@ -61,6 +63,11 @@ final class DamageCalculator
     private function stabMultiplier(PokemonType $moveType, array $attackerTypes): float
     {
         return in_array($moveType, $attackerTypes, true) ? (float) config('game.battle.stab_multiplier') : 1.0;
+    }
+
+    private function burnMultiplier(bool $isAttackerBurned): float
+    {
+        return $isAttackerBurned ? (float) config('game.battle.ailments.burn_damage_done_multiplier') : 1.0;
     }
 
     private function criticalHitMultiplier(bool $isCriticalHit): float

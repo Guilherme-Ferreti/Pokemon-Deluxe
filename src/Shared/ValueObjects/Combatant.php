@@ -70,6 +70,16 @@ final readonly class Combatant implements ValueObject
         return new self(...[...get_object_vars($this), 'current_hp' => $currentHp]);
     }
 
+    public function withAilment(?Ailment $ailment, int $ailmentTurnsLeft): self
+    {
+        return new self(...[...get_object_vars($this), 'ailment' => $ailment, 'ailment_turns_left' => $ailmentTurnsLeft]);
+    }
+
+    public function withConfusionTurnsLeft(int $confusionTurnsLeft): self
+    {
+        return new self(...[...get_object_vars($this), 'confusion_turns_left' => $confusionTurnsLeft]);
+    }
+
     public function withUsedOncePerBattleMove(string $moveId): self
     {
         return new self(...[...get_object_vars($this), 'used_once_per_battle_move_ids' => [...$this->used_once_per_battle_move_ids, $moveId]]);

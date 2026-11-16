@@ -7,6 +7,7 @@ namespace App\Battle\Enums;
 enum TurnActionOutcome: string
 {
     case SKIPPED       = 'skipped';
+    case BLOCKED       = 'blocked';
     case MISSED        = 'missed';
     case NO_EFFECT     = 'no-effect';
     case USED          = 'used';

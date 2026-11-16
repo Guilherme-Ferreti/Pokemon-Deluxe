@@ -36,7 +36,7 @@ describe('spec 1 matchups with a neutral 80-power move and no boost', function (
         $level100Stats = new StatsCalculator()->calculate(level: 100, boost: 0, isShiny: false);
         $tackle        = Move::factory()->make(['category' => MoveCategory::DAMAGE, 'type' => PokemonType::NORMAL, 'power' => 80]);
 
-        $damage = new DamageCalculator()->calculate($level100Stats, [PokemonType::FIRE], $level100Stats, [PokemonType::WATER], $tackle, isCriticalHit: false, randomFactor: 1.0);
+        $damage = new DamageCalculator()->calculate($level100Stats, [PokemonType::FIRE], $level100Stats, [PokemonType::WATER], $tackle, isCriticalHit: false, randomFactor: 1.0, isAttackerBurned: false);
 
         expect($damage)->toBe(114)
             ->and((int) ceil($level100Stats->hp / $damage))->toBe(4);
@@ -47,8 +47,8 @@ describe('spec 1 matchups with a neutral 80-power move and no boost', function (
         $level50Stats  = new StatsCalculator()->calculate(level: 50, boost: 0, isShiny: false);
         $tackle        = Move::factory()->make(['category' => MoveCategory::DAMAGE, 'type' => PokemonType::NORMAL, 'power' => 80]);
 
-        $level100Damage = new DamageCalculator()->calculate($level100Stats, [PokemonType::FIRE], $level50Stats, [PokemonType::WATER], $tackle, isCriticalHit: false, randomFactor: 1.0);
-        $level50Damage  = new DamageCalculator()->calculate($level50Stats, [PokemonType::WATER], $level100Stats, [PokemonType::FIRE], $tackle, isCriticalHit: false, randomFactor: 1.0);
+        $level100Damage = new DamageCalculator()->calculate($level100Stats, [PokemonType::FIRE], $level50Stats, [PokemonType::WATER], $tackle, isCriticalHit: false, randomFactor: 1.0, isAttackerBurned: false);
+        $level50Damage  = new DamageCalculator()->calculate($level50Stats, [PokemonType::WATER], $level100Stats, [PokemonType::FIRE], $tackle, isCriticalHit: false, randomFactor: 1.0, isAttackerBurned: false);
 
         expect((int) ceil($level50Stats->hp / $level100Damage))->toBe(2)
             ->and((int) ceil($level100Stats->hp / $level50Damage))->toBe(7);
@@ -60,8 +60,8 @@ describe('spec 1 matchups with a neutral 80-power move and no boost', function (
         $ember               = Move::factory()->make(['category' => MoveCategory::DAMAGE, 'type' => PokemonType::FIRE, 'power' => 80]);
         $tackle              = Move::factory()->make(['category' => MoveCategory::DAMAGE, 'type' => PokemonType::NORMAL, 'power' => 80]);
 
-        $level50Damage  = new DamageCalculator()->calculate($boostedLevel50Stats, [PokemonType::FIRE], $level100Stats, [PokemonType::GRASS], $ember, isCriticalHit: false, randomFactor: 1.0);
-        $level100Damage = new DamageCalculator()->calculate($level100Stats, [PokemonType::GRASS], $boostedLevel50Stats, [PokemonType::FIRE], $tackle, isCriticalHit: false, randomFactor: 1.0);
+        $level50Damage  = new DamageCalculator()->calculate($boostedLevel50Stats, [PokemonType::FIRE], $level100Stats, [PokemonType::GRASS], $ember, isCriticalHit: false, randomFactor: 1.0, isAttackerBurned: false);
+        $level100Damage = new DamageCalculator()->calculate($level100Stats, [PokemonType::GRASS], $boostedLevel50Stats, [PokemonType::FIRE], $tackle, isCriticalHit: false, randomFactor: 1.0, isAttackerBurned: false);
 
         expect((int) ceil($level100Stats->hp / $level50Damage))->toBe(2)
             ->and((int) ceil($boostedLevel50Stats->hp / $level100Damage))->toBe(4);
@@ -72,35 +72,36 @@ describe('spec 1 matchups with a neutral 80-power move and no boost', function (
         $level1Stats   = new StatsCalculator()->calculate(level: 1, boost: 0, isShiny: false);
         $tackle        = Move::factory()->make(['category' => MoveCategory::DAMAGE, 'type' => PokemonType::NORMAL, 'power' => 80]);
 
-        $damage = new DamageCalculator()->calculate($level100Stats, [PokemonType::FIRE], $level1Stats, [PokemonType::WATER], $tackle, isCriticalHit: false, randomFactor: 1.0);
+        $damage = new DamageCalculator()->calculate($level100Stats, [PokemonType::FIRE], $level1Stats, [PokemonType::WATER], $tackle, isCriticalHit: false, randomFactor: 1.0, isAttackerBurned: false);
 
         expect((int) ceil($level1Stats->hp / $damage))->toBe(1);
     });
 });
 
 describe('damage', function () {
-    it('applies each multiplier to a level 100 hit', function (array $attackerTypes, bool $isShinyDefender, bool $isCriticalHit, float $randomFactor, int $expectedDamage) {
+    it('applies each multiplier to a level 100 hit', function (array $attackerTypes, bool $isShinyDefender, bool $isCriticalHit, float $randomFactor, bool $isAttackerBurned, int $expectedDamage) {
         $attackerStats = new StatsCalculator()->calculate(level: 100, boost: 0, isShiny: false);
         $defenderStats = new StatsCalculator()->calculate(level: 100, boost: 0, isShiny: $isShinyDefender);
         $ember         = Move::factory()->make(['category' => MoveCategory::DAMAGE, 'type' => PokemonType::FIRE, 'power' => 80]);
 
-        $damage = new DamageCalculator()->calculate($attackerStats, $attackerTypes, $defenderStats, [PokemonType::NORMAL], $ember, $isCriticalHit, $randomFactor);
+        $damage = new DamageCalculator()->calculate($attackerStats, $attackerTypes, $defenderStats, [PokemonType::NORMAL], $ember, $isCriticalHit, $randomFactor, $isAttackerBurned);
 
         expect($damage)->toBe($expectedDamage);
     })->with([
-        'no multiplier'   => [[PokemonType::WATER], false, false, 1.0, 114],
-        'STAB'            => [[PokemonType::FIRE], false, false, 1.0, 171],
-        'critical hit'    => [[PokemonType::WATER], false, true, 1.0, 171],
-        'shiny defender'  => [[PokemonType::WATER], true, false, 1.0, 85],
-        'low random roll' => [[PokemonType::WATER], false, false, 0.85, 97],
-        'all multipliers' => [[PokemonType::FIRE], true, true, 0.85, 163],
+        'no multiplier'   => [[PokemonType::WATER], false, false, 1.0, false, 114],
+        'STAB'            => [[PokemonType::FIRE], false, false, 1.0, false, 171],
+        'critical hit'    => [[PokemonType::WATER], false, true, 1.0, false, 171],
+        'shiny defender'  => [[PokemonType::WATER], true, false, 1.0, false, 85],
+        'low random roll' => [[PokemonType::WATER], false, false, 0.85, false, 97],
+        'burned attacker' => [[PokemonType::WATER], false, false, 1.0, true, 57],
+        'all multipliers' => [[PokemonType::FIRE], true, true, 0.85, false, 163],
     ]);
 
     it('deals no damage to an immune defender', function () {
         $stats  = new StatsCalculator()->calculate(level: 100, boost: 0, isShiny: false);
         $tackle = Move::factory()->make(['category' => MoveCategory::DAMAGE, 'type' => PokemonType::NORMAL, 'power' => 80]);
 
-        $damage = new DamageCalculator()->calculate($stats, [PokemonType::NORMAL], $stats, [PokemonType::GHOST], $tackle, isCriticalHit: true, randomFactor: 1.0);
+        $damage = new DamageCalculator()->calculate($stats, [PokemonType::NORMAL], $stats, [PokemonType::GHOST], $tackle, isCriticalHit: true, randomFactor: 1.0, isAttackerBurned: false);
 
         expect($damage)->toBe(0);
     });
@@ -110,7 +111,7 @@ describe('damage', function () {
         $shinyLevel1Stats = new StatsCalculator()->calculate(level: 1, boost: 0, isShiny: true);
         $weakEmber        = Move::factory()->make(['category' => MoveCategory::DAMAGE, 'type' => PokemonType::FIRE, 'power' => 10]);
 
-        $damage = new DamageCalculator()->calculate($level1Stats, [PokemonType::NORMAL], $shinyLevel1Stats, [PokemonType::WATER, PokemonType::DRAGON], $weakEmber, isCriticalHit: false, randomFactor: 0.85);
+        $damage = new DamageCalculator()->calculate($level1Stats, [PokemonType::NORMAL], $shinyLevel1Stats, [PokemonType::WATER, PokemonType::DRAGON], $weakEmber, isCriticalHit: false, randomFactor: 0.85, isAttackerBurned: false);
 
         expect($damage)->toBe(1);
     });
@@ -119,7 +120,7 @@ describe('damage', function () {
         $stats       = new StatsCalculator()->calculate(level: 100, boost: 0, isShiny: false);
         $thunderWave = Move::factory()->make(['category' => MoveCategory::AILMENT, 'type' => PokemonType::ELECTRIC, 'power' => null]);
 
-        $damage = new DamageCalculator()->calculate($stats, [PokemonType::ELECTRIC], $stats, [PokemonType::WATER], $thunderWave, isCriticalHit: false, randomFactor: 1.0);
+        $damage = new DamageCalculator()->calculate($stats, [PokemonType::ELECTRIC], $stats, [PokemonType::WATER], $thunderWave, isCriticalHit: false, randomFactor: 1.0, isAttackerBurned: false);
 
         expect($damage)->toBe(0);
     });

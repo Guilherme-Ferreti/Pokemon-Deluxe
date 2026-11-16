@@ -3,6 +3,7 @@
 declare(strict_types=1);
 
 use App\Battle\Mechanics\StatusEffectCalculator;
+use App\Pokemon\Mechanics\StatsCalculator;
 use Shared\Enums\Ailment;
 use Shared\Enums\PokemonGender;
 use Shared\Enums\PokemonType;
@@ -35,4 +36,13 @@ it('deals end-of-turn damage from burn and poison', function (?Ailment $ailment,
     'no ailment'                   => [null, 400, 400, 0],
     'paralysis deals no damage'    => [Ailment::PARALYSIS, 400, 400, 0],
     'a fainted pokemon takes none' => [Ailment::POISON, 400, 0, 0],
+]);
+
+it('deals a 40-power typeless hit to a pokemon that hurts itself in confusion', function (bool $isShiny, int $expectedDamage) {
+    $stats = new StatsCalculator()->calculate(level: 50, boost: 0, isShiny: $isShiny);
+
+    expect(new StatusEffectCalculator()->confusionSelfHitDamage($stats))->toBe($expectedDamage);
+})->with([
+    'regular' => [false, 31],
+    'shiny'   => [true, 29],
 ]);
