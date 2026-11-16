@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Pokemon\Actions;
 
+use App\Pokemon\Events\PokemonLevelledUp;
 use App\Pokemon\Mechanics\ExperienceCalculator;
 use Illuminate\Support\Facades\DB;
 use InvalidArgumentException;
@@ -15,23 +16,31 @@ final class AwardExperienceAction
 
     private int $experience;
 
+    private int $levelBefore;
+
     public function handle(Pokemon $pokemon, int $experience): Pokemon
     {
         $this->pokemon    = $pokemon;
         $this->experience = $experience;
 
-        return DB::transaction(function () {
+        DB::transaction(function (): void {
             $this->lockPokemon();
 
             $this->ensureExperienceIsNotNegative();
+
+            $this->levelBefore = $this->pokemon->level;
 
             $this->pokemon->update([
                 'experience' => $this->newExperience(),
                 'level'      => new ExperienceCalculator()->levelForExperience($this->newExperience()),
             ]);
-
-            return $this->pokemon;
         });
+
+        if ($this->pokemon->level > $this->levelBefore) {
+            PokemonLevelledUp::dispatch($this->pokemon->id, $this->pokemon->user_id, $this->levelBefore, $this->pokemon->level);
+        }
+
+        return $this->pokemon;
     }
 
     private function lockPokemon(): void

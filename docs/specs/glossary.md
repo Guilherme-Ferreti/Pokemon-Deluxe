@@ -53,6 +53,9 @@ One name per idea, used everywhere: specs, code, database, tests and UI. When yo
 | Earned XP per combatant | `EarnedExperienceCalculator::earnedByCombatant()` | The XP each player combatant that entered the field earned in a battle. |
 | XP for one defeated Pokémon | `ExperienceCalculator::experienceForDefeating()` (`App\Pokemon\Mechanics`) | Spec 1's formula. |
 | Paying XP | `AwardExperienceAction` | Adds XP to a Pokémon and levels it up, up to level 100. |
+| Levelling up | `PokemonLevelledUp` event | Dispatched by `AwardExperienceAction` when the level goes up. |
+| Evolution requirement | `EvolutionRequirement` enum (`GENDER`, `LEVEL`, `ITEM`), `EvolutionRequirementChecker::check()` | The first unmet requirement of a `SpeciesEvolution`, or null. `reason($evolution)` words it ("Needs a Water Stone") for the Evolve dialog and `EvolutionNotAllowedException`. |
+| Evolving | `EvolvePokemonAction`, `PokemonEvolved` event (`isMega`) | Changes the species, uses up the evolution item and adds the new base moves. |
 | Knocked out by | `Combatant::$knocked_out_by` | The index of the player combatant credited with an opponent's knockout (`CreditOpponentKnockout`). |
 | First mover | `firstMoverChance` | Percentage chance (0–100) to act first this turn. |
 | Area | `Area` enum | The 9 places to explore (`Area::FOREST`). |
@@ -79,7 +82,7 @@ One name per idea, used everywhere: specs, code, database, tests and UI. When yo
 | Teach a TM | `TeachTmAction` | Adds a move to the known moves; the TM is used up. |
 | Boost failure chance | `BoostStoneCalculator::failureChance()` | Percentage (0–100) for the next stone. |
 | Boost result | `BoostResult` | Stones used, successes, failures, boost before and after. |
-| Evolution option | a `SpeciesEvolution` plus its requirement reason | Shown in the Evolve dialog. |
+| Evolution option | a `SpeciesEvolution` plus its unmet `EvolutionRequirement` | Shown in the Evolve dialog with the reason. |
 | Party size limit | `game.user.max_party_size` | 6. |
 | Daily mission / achievement | `UserMission` with `MissionKind::DAILY` / `ACHIEVEMENT` | One row per player per mission. |
 | Mission goal | `MissionGoal` | What a mission counts (`CATCH_POKEMON_OF_TYPE`). |

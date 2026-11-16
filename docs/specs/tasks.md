@@ -375,7 +375,7 @@ Uses `Combatant` from task 1.10.
 **Build:**
 - `App\Pokemon\Services\ExperienceCalculator` → move to `App\Pokemon\Mechanics\ExperienceCalculator` (update callers; the `Services` folder and its architecture rule are gone, since nothing else lived there). Add `experienceForDefeating(int $opponentLevel, int $pokemonLevel, BattleType $battleType, bool $isKnockout): int` = 250 × clamp(opponentLevel ÷ pokemonLevel, 0.1, 3) × battle bonus × 1.5 when it knocked the opponent out, rounded down (Spec 1, "XP").
 - Config `game.experience`: `base` (250), `min_ratio` (0.1), `max_ratio` (3), `battle_bonuses` (wild 1, trainer 1.5, gym 2, elite four 2, battle tower 1), `knockout_multiplier` (1.5), `xp_share_ratio` (0.5, used by task 5.10).
-- `App\Pokemon\Actions\AwardExperienceAction::handle(Pokemon $pokemon, int $experience): Pokemon`: locks the Pokémon's row, refuses negative XP, adds the XP up to the level 100 total (`experienceForLevel(100)`) and updates `level` with `levelForExperience()`.
+- `App\Pokemon\Actions\AwardExperienceAction::handle(Pokemon $pokemon, int $experience): Pokemon`: locks the Pokémon's row, refuses negative XP, adds the XP up to the level 100 total (`experienceForLevel(100)`) and updates `level` with `levelForExperience()`. When the level goes up, it dispatches `App\Pokemon\Events\PokemonLevelledUp` (`pokemonId`, `userId`, `levelBefore`, `levelAfter`) for the missions (task 5.x; added with task 1.18).
 - Each opponent `Combatant` has `knocked_out_by` (the player combatant's index, null while standing). The turn pipe `CreditOpponentKnockout` (after `ApplyEndOfTurnDamage`) sets it to the player's active combatant whenever the opponent's active Pokémon faints, whatever knocked it out: a move, its own burn or poison, or hurting itself in confusion.
 - `App\Battle\Mechanics\EarnedExperienceCalculator::earnedByCombatant(BattleState, BattleType, BattleStatus): array<int, int>`: for every player combatant with `has_entered_field`, the sum over each fainted opponent of `experienceForDefeating()` (with the knockout bonus when `knocked_out_by` is its index). On `CAUGHT`, the opponent's active Pokémon counts as knocked out by the player's active combatant. Opponents still standing give nothing, so running from a wild battle gives no XP.
 - `EndBattleAction`, for every ending (`WON`, `LOST`, `FORFEITED`, `CAUGHT`), pays each amount through `AwardExperienceAction` inside its own `DB::transaction` (the exception in `.ai/rules/events.md`), and saves each result in `BattleState::experience_gains`: a list of `Shared\ValueObjects\ExperienceGain` (`combatant_index`, `earned_experience`, `level_before`, `level_after`) for the end screen. `earned_experience` is what was really added (0 at level 100). A combatant whose Pokémon no longer exists gets 0.
@@ -387,16 +387,17 @@ Uses `Combatant` from task 1.10.
 
 ### 1.18 Evolution
 
-- [ ] Done
+- [x] Done
 
 **Goal:** the backend for the Evolve button (the button itself is on the Pokémon page, Spec 4).
 
 **Build:**
-- First check the seed data: Mega evolutions need `min_level` 100 and their Mega Stone as `item`; G-Max evolutions need `min_level` 100. Fix the data if any are missing.
-- `App\Pokemon\Mechanics\EvolutionRequirementChecker::check(Pokemon $pokemon, SpeciesEvolution $evolution, User $owner): ?string`: `null` when allowed, otherwise the reason ("Needs level 36", "Needs a Water Stone").
-- `App\Pokemon\Actions\EvolvePokemonAction::handle(Pokemon $pokemon, SpeciesEvolution $evolution): Pokemon`: re-checks the requirement (throws `App\Pokemon\Exceptions\EvolutionNotAllowedException`), uses up the item (Mega Stones and evolution stones), changes `species_id`, adds the new species' base moves to the known moves (no duplicates, active slots unchanged). Level, boost, shiny stay.
+- Seed data checked: every Mega evolution has `min_level` 100 and its Mega Stone as `item`, except Mega Rayquaza (level 100 only, Spec 1); every G-Max evolution has `min_level` 100 and no item.
+- `App\Pokemon\Mechanics\EvolutionRequirementChecker::check(Pokemon $pokemon, SpeciesEvolution $evolution, list<string> $ownedEvolutionItemIds): ?EvolutionRequirement`: `null` when allowed, otherwise the first unmet `App\Pokemon\Enums\EvolutionRequirement`, in this order: `GENDER`, `LEVEL`, `ITEM`. It takes the IDs of the evolution items the owner holds instead of the `User`, because Mechanics never query (the caller loads them once, also for the Evolve dialog), and needs `evolutionItem` loaded on the evolution.
+- `App\Pokemon\Actions\EvolvePokemonAction::handle(Pokemon $pokemon, SpeciesEvolution $evolution): Pokemon`, under `LockKeys::pokemonEvolution()`: refuses an evolution that doesn't start from the Pokémon's species (`InvalidArgumentException`), re-checks the requirement (throws `App\Pokemon\Exceptions\EvolutionNotAllowedException` with the unmet requirement and the evolution; its message is "This Pokémon can't evolve yet." plus `EvolutionRequirement::reason($evolution)`: "Needs a female Pokémon", "Needs level 36", "Needs a Water Stone", "Needs an Ice Stone"), uses up the evolution item, if any, through `RemoveInventoryItemAction` (every evolution item, Spec 1), changes `species_id`, adds the new species' base moves to the known moves (no duplicates, active slots unchanged). Level, boost, shiny stay.
+- Dispatches `App\Pokemon\Events\PokemonEvolved` (`pokemonId`, `userId`, `fromSpeciesId`, `intoSpeciesId`, `isMega`) for the missions (task 5.x).
 
-**Tests:** checker reasons (level, item, gender); evolution keeps level, boost and shiny; known moves grow without duplicates; item used up; refused when requirements are not met.
+**Tests:** checker's unmet requirement (level, item, gender, in that order) and allowed cases; `EvolutionRequirement::reason()` (gender, level, item with "a" and "an"); the exception's message; evolution keeps level, boost, shiny and active slots; known moves grow without duplicates; item used up; an evolution by level alone; refused when requirements are not met (level, item) with nothing changed; refused for another species' evolution; `PokemonEvolved` with `isMega`.
 
 **Done when:** checker and action exist; tests pass.
 
@@ -1224,7 +1225,7 @@ Read [04-pokemon-page.md](04-pokemon-page.md) first. Builds on Spec 1 (`SetActiv
   - Header: species, types, gender, shiny, level, boost, XP progress to the next level, ball, catch date, original trainer, `is_locked`, `in_party`, party size.
   - Stats: HP, Attack and Defense from `getStats()`, each with its parts (level, boost, shiny) for the hover breakdown.
   - Moves: active moves by slot and the known-moves pool (name, type, power, category).
-  - Evolution options: each `SpeciesEvolution` of the species with the target species and `EvolutionRequirementChecker::check()`'s reason (null = allowed).
+  - Evolution options: each `SpeciesEvolution` of the species with the target species and `EvolutionRequirementChecker::check()`'s unmet `EvolutionRequirement` (null = allowed). The disabled rows show `EvolutionRequirement::reason($evolution)` ("Needs a Water Stone"), the same wording `EvolutionNotAllowedException` uses.
   - Items: owned TMs (with "already known" flags) for Teach TM, boost stones (count, current failure chance) for Boost, and for each evolution option whether the player owns the item it needs.
 - Box card "View" and the Party list link to the page.
 

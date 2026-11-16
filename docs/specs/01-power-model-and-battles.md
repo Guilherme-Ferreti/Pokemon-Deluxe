@@ -127,7 +127,8 @@ Taking one Pokémon from level 1 to 100 takes about 300 fair fights, fewer when 
 ## Evolution
 
 - When a Pokémon qualifies, an **Evolve** button appears; evolution is never automatic, so a level 100 Charmander is possible.
-- Mega: level 100 plus the matching Mega Stone, which is used up. G-Max: level 100.
+- Mega: level 100 plus the matching Mega Stone, which is used up. Mega Rayquaza has no Mega Stone and needs only level 100. G-Max: level 100.
+- Every evolution item is used up when the Pokémon evolves: stones, Mega Stones and items like Metal Coat or King's Rock alike.
 - Every evolution is permanent. Level, boost, shine and known moves are kept. Megas and G-Max cannot be caught or hatched.
 
 ## Battle page
