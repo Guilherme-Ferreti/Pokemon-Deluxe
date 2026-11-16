@@ -133,6 +133,25 @@ arch('Listeners')
     ->toExtendNothing()
     ->toHaveMethod('handle');
 
+arch('Data')
+    ->expect('App\*\Data')
+    ->toHaveSuffix('Data')
+    ->toBeClasses()
+    ->toBeFinal()
+    ->toExtendNothing()
+    ->toImplementNothing()
+    ->not->toHaveProtectedMethods();
+
+arch('Pipes')
+    ->expect('App\*\Pipes')
+    ->toBeClasses()
+    ->toBeFinal()
+    ->toExtendNothing()
+    ->toImplementNothing()
+    ->toHaveMethod('handle')
+    ->not->toHavePublicMethodsBesides('handle')
+    ->not->toHaveProtectedMethods();
+
 arch('Mechanics')
     ->expect('App\*\Mechanics')
     ->toBeClasses()

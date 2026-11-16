@@ -26,8 +26,16 @@ One name per idea, used everywhere: specs, code, database, tests and UI. When yo
 | Type effectiveness | `typeMultiplier` | ×0, ×0.25, ×0.5, ×1, ×2, ×4. |
 | Ailment / status effect | `Ailment` enum (existing) | Burn, poison, paralysis, sleep, freeze, confusion. |
 | Action blocker | `ActionBlocker` enum | Why a Pokémon can't act this turn: `FROZEN`, `ASLEEP`, `HURT_ITSELF_IN_CONFUSION`, `PARALYZED`. |
-| Turn action outcome | `TurnActionOutcome` enum | What happened when one side acted in a turn: `SKIPPED` (already fainted), `BLOCKED` (by an action blocker), `MISSED`, `NO_EFFECT` (immune defender), `USED`, `CAUSED_FLINCH`, `KNOCKED_OUT`. |
+| Turn action outcome | `TurnActionOutcome` enum | What happened when one side acted in a turn: `SKIPPED` (already fainted), `BLOCKED` (by an action blocker or a flinch), `MISSED`, `NO_EFFECT` (immune defender), `USED`, `CAUSED_FLINCH`, `KNOCKED_OUT`. |
 | Ailment infliction | `AilmentInflictionChecker::canInflict()` | Whether a move's ailment can land on the target: not fainted, no major ailment yet (or not confused yet, for confusion), and not a type immune to it. |
+| Move usability | `MoveUsabilityChecker` | Whether a combatant can still use a move: `isOncePerBattleMoveAlreadyUsed()` (Z-Moves and Dynamax moves, once per battle), `isDynamaxMoveAllowed()` (only G-Max species), `isUsable()` for both. |
+| Turn order roll | `TurnOrderRoller::rollIsPlayerFirst()` | Rolls `TurnOrderCalculator::firstMoverChance()`. |
+| Opponent move roll | `OpponentMoveRoller::rollMoveId()` | Picks one of the opponent's usable moves. |
+| Turn data | `TurnData` (`App\Battle\Data`) | What the turn pipeline carries: the battle, the move slot (`playerMove()` reads the move in it), the state, the opponent's chosen move (`opponentMove`), the turn order, each side's action (`playerAction`, `opponentAction`, null until that side acts) and the log lines. |
+| Turn action data | `TurnActionData` (`App\Battle\Data`) | One side's action in a turn, sent through the turn action pipeline: its `side`, `move`, `blocker`, `wasConfused`, `moveOutcome`, `typeMultiplier` and `outcome`. |
+| Battle side | `Side` (`App\Battle\Enums`): `PLAYER`, `OPPONENT`; `other()` | Which side of a battle acts, defends or flinches. Not to be confused with the `BattleSide` value object, which holds one side's team. |
+| Turn pipeline | `App\Battle\Pipes\Turn\*` | The steps of `TakeTurnAction`: ready check, loading, the player's move check (`EnsurePlayerMoveIsUsable`), the opponent's move choice, turn order, actions, end-of-turn damage, saving. |
+| Turn action pipeline | `App\Battle\Pipes\TurnAction\*` | One side's action (`TurnActionData`), run by `TakeActions` for each side: skips, status checks, the move, hits and ailments. |
 | Battle | `Battle` model | One fight, saved on the server. |
 | Battle state | `BattleState`, `state` column | Everything that changes during a battle (turn, both sides, log), saved as JSON with `AsBattleState`. |
 | Battle side | `BattleSide` | The player's or the opponent's team in a battle. |
@@ -38,7 +46,7 @@ One name per idea, used everywhere: specs, code, database, tests and UI. When yo
 | Faint | `isFainted()` | `current_hp` is 0. |
 | Send out | `SendOutPokemonAction` | Picking the next Pokémon after a faint. Free. |
 | Switch | `SwitchPokemonAction` | Changing the Pokémon in battle on the player's turn. Uses the turn. |
-| Opponent's half of a turn | `OpponentActsAction` | The opponent's move, end-of-turn damage and fainting; shared by moves, switches and ball throws. |
+| Opponent's half of a turn | The turn pipes with only the opponent acting | The opponent's move, end-of-turn damage and fainting; shared by moves, switches and ball throws (task 1.23). |
 | Run (forfeit) | `ForfeitBattleAction`, `BattleStatus::FORFEITED` | The UI says "Run". Counts as a loss. |
 | Battle ended | `EndBattleAction`, `BattleEnded` event | The one place a battle ends; `isWin` for won and caught battles. |
 | Earned XP | `earned_experience`, `level_before`, `level_after` | Each player combatant's result, shown on the end screen. |
@@ -113,6 +121,8 @@ One name per idea, used everywhere: specs, code, database, tests and UI. When yo
 | Action (does one thing, may write to the database) | `{Verb}{Noun}Action`, method `handle()` | `StartWildBattleAction`, `TakeTurnAction`, `EvolvePokemonAction` |
 | Mechanics: pure math, no randomness | `{Noun}Calculator` in `{Domain}/Mechanics/` | `StatsCalculator`, `DamageCalculator`, `TurnOrderCalculator` |
 | Mechanics: rolls dice through `RandomHelper` | `{Noun}Roller` in `{Domain}/Mechanics/` | `MoveOutcomeRoller`, `StatusEffectRoller` |
+| Data passed through a pipeline | `{Noun}Data` in `{Domain}/Data/` | `TurnData`, `TurnActionData` |
+| Pipeline step | What it does, in `{Domain}/Pipes/{Pipeline}/` | `RollTurnOrder`, `DealHits` |
 | Mechanics: answers "is this allowed?" | `{Noun}Checker`, usually returns `null` or a reason string (a bool is fine for a plain yes or no) | `EvolutionRequirementChecker` |
 | Result of a mechanic | Value object `{Noun}` or `{Noun}Result` in `{Domain}/ValueObjects`, or `Shared/ValueObjects` when it is stored in a database column or used by more than one domain | `MoveOutcome`, `MoveHit` |
 | Exception | `{What went wrong}Exception` | `BattleAlreadyInProgressException`, `MoveNotKnownException` |

@@ -7,7 +7,7 @@ namespace App\Battle\Exceptions;
 use Shared\Base\DomainException;
 use Shared\Models\Move;
 
-final class MoveAlreadyUsedException extends DomainException
+final class OncePerBattleMoveAlreadyUsedException extends DomainException
 {
     public function __construct(Move $move)
     {

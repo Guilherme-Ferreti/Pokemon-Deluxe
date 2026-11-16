@@ -323,7 +323,7 @@ Uses `Combatant` from task 1.10.
 - Misses log "Pikachu's attack missed!" ("The wild Pidgey's attack missed!").
 - Each `MoveHit` deals damage with its own critical hit and random factor; criticals log "A critical hit!" after that hit. A multi-hit move stops once the defender faints and logs "It hit 3 times!" (or "It hit once!"). Against an immune defender only "It doesn't affect …" is logged.
 - Flinch only works when the attacker acted first and the defender is still standing: the defender logs "… flinched and couldn't move!" instead of acting.
-- Z-Moves and Dynamax moves (`is_z_move`, `is_dynamax_move`) can be used once per battle, tracked in `used_once_per_battle_move_ids` (`Combatant::withUsedOncePerBattleMove()`); Dynamax moves only by G-Max species. The player gets `App\Battle\Exceptions\MoveAlreadyUsedException` or `DynamaxMoveNotAllowedException`; the opponent only picks among moves it can still use.
+- Z-Moves and Dynamax moves (`is_z_move`, `is_dynamax_move`) can be used once per battle, tracked in `used_once_per_battle_move_ids` (`Combatant::withUsedOncePerBattleMove()`); Dynamax moves only by G-Max species. The player gets `App\Battle\Exceptions\OncePerBattleMoveAlreadyUsedException` or `DynamaxMoveNotAllowedException`; the opponent only picks among moves it can still use.
 
 **Tests:** one per behaviour, with `RandomHelper::fake()`.
 
@@ -501,12 +501,12 @@ Uses `Combatant` from task 1.10.
 **Goal:** on their turn, the player can switch the Pokémon in battle for another one of the battle's team; it uses the turn (Spec 1, "Switching").
 
 **Build:**
-- Extract the opponent's half of a turn from `TakeTurnAction` (its move, status effects, end-of-turn damage on both sides, fainting, ending the battle through `EndBattleAction`) into `App\Battle\Actions\OpponentActsAction::handle(Battle $battle): Battle`, used by `TakeTurnAction`, the new switch action and later by `ThrowBallAction` (task 2.12).
+- The opponent's half of a turn (its move, status effects, end-of-turn damage on both sides, fainting, ending the battle through `EndBattleAction`) reuses the turn pipes instead of a separate action: the switch sends `TurnData` through `EnsureBattleIsReadyForTurn`, `LoadMovesAndSpecies`, a new switch pipe, `ChooseOpponentMove`, `TakeActions` with only the opponent acting, `ApplyEndOfTurnDamage` (both sides) and `SaveTurn`. The player's `TurnData::$playerAction` stays null. Decide in this task how `TakeActions` learns that only the opponent acts (today it starts an action for every side in `turnOrder`, which also orders the end-of-turn damage). `ThrowBallAction` (task 2.12) reuses the same pipes.
 - `App\Battle\Actions\SwitchPokemonAction::handle(Battle $battle, int $combatantIndex): Battle`, under the same lock as `TakeTurnAction`:
   - Refuses when the battle is not `ONGOING` or is awaiting a send-out (`BattleNotReadyForTurnException`: a faint uses the free `SendOutPokemonAction` instead).
   - Refuses an index outside the player's side, the active combatant or a fainted one (`App\Battle\Exceptions\InvalidSwitchException` with the reason).
   - The leaving combatant loses its confusion; its other ailment stays. The chosen one becomes active with `has_entered_field = true`.
-  - Logs "Come back, Shiny Magikarp!" and "Go! Dragonite!", then `OpponentActsAction` (the opponent always acts after the switch, with no turn-order roll), and increments `turn`.
+  - Logs "Come back, Shiny Magikarp!" and "Go! Dragonite!", then the opponent acts (always after the switch, with no turn-order roll), and `SaveTurn` increments `turn`.
 - The player's side is the battle's own snapshot (party, chosen gym team or Tower team), so switching never reads the party again.
 - Route `POST /battle/switch` named `battle.web.switch` → `SwitchPokemonController` with `SwitchPokemonRequest` (`combatant_index`).
 
@@ -721,14 +721,14 @@ Read [02-catching-and-exploration.md](02-catching-and-exploration.md) first. Nee
 **Goal:** catching in a wild battle.
 
 **Build:**
-- A failed throw uses the turn like a switch: reuse `OpponentActsAction` (task 1.23).
+- A failed throw uses the turn like a switch: reuse the opponent's half of the turn from task 1.23 (the turn pipes).
 - `CreatePokemonAction`: add `bool $joinPartyIfRoom = false`; when true, the Pokémon joins the party if it has fewer than `game.user.max_party_size` (new config, 6).
 - `App\Battle\Actions\ThrowBallAction::handle(Battle $battle, Pokeball $pokeball): Battle`:
   - Refuses outside `ONGOING` wild battles or while awaiting a send-out (`App\Battle\Exceptions\NotAWildBattleException`, `BattleNotReadyForTurnException`).
   - Refuses with `BoxFullException` before using the ball when the Box is full.
   - Uses one ball (`RemoveInventoryItemAction`).
   - Caught (guaranteed or `RandomHelper::chance()` with the catch chance): creates the Pokémon (`joinPartyIfRoom: true`, the thrown ball), logs "Gotcha! … was caught!", dispatches `PokemonCaught`, and ends the battle as `CAUGHT` with `EndBattleAction` (XP as for a win, `BattleEnded` with `isWin`).
-  - Not caught: logs "Oh no! The Pokémon broke free!", then `OpponentActsAction`.
+  - Not caught: logs "Oh no! The Pokémon broke free!", then the opponent acts (the turn pipes, as in task 1.23).
 
 **Tests:** catch; break free then the opponent attacks; ball used either way; Master Ball always catches; joins party or Box; a catch pays XP like a win; refused when not wild, Box full or no ball.
 

@@ -6,7 +6,7 @@ use App\Battle\Actions\TakeTurnAction;
 use App\Battle\Events\BattleEnded;
 use App\Battle\Exceptions\BattleNotReadyForTurnException;
 use App\Battle\Exceptions\DynamaxMoveNotAllowedException;
-use App\Battle\Exceptions\MoveAlreadyUsedException;
+use App\Battle\Exceptions\OncePerBattleMoveAlreadyUsedException;
 use Illuminate\Support\Facades\Event;
 use Shared\Enums\Ailment;
 use Shared\Enums\BattleStatus;
@@ -659,7 +659,7 @@ describe('once-per-battle moves', function () {
         RandomHelper::fake([]);
 
         expect(fn () => new TakeTurnAction()->handle($battle, moveSlot: 1))
-            ->toThrow(MoveAlreadyUsedException::class);
+            ->toThrow(OncePerBattleMoveAlreadyUsedException::class);
     });
 
     it('lets a G-Max pokemon use a Dynamax move once', function () {
