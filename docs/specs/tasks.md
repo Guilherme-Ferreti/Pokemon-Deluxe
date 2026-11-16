@@ -480,15 +480,15 @@ Uses `Combatant` from task 1.10.
 
 ### 1.22 Four base moves for every species (data)
 
-- [ ] Done
+- [x] Done
 
 **Goal:** every species has exactly 4 different base moves (Spec 1), so every Pokémon starts with 4 active moves. Data only; can be done any time after task 1.5.
 
 **Build:**
 - Edit `database/seeders/files/species-base-moves.json` so every species lists 4 different moves that exist in `moves.json` after task 1.5 (no one-hit-KO moves). Today 49 species have fewer: Metapod, Weedle, Kakuna, Ditto, the 28 Unown forms, Wobbuffet, Smeargle, Wynaut, Spewpa, Pyukumuku, Cosmog, Cosmoem and Blipbug, plus the 9 that lost a one-hit-KO move in task 1.5 (Dewgong, Suicune, Glalie, Mega Glalie, Rhyperior, Vanilluxe, Bisharp, Vikavolt and Alolan Ninetales).
 - Pick moves the species learns early in the main games when it has them; otherwise moves of its own type or Normal moves that fit it. Prefer at least one damaging move, so no Pokémon is stuck with only status moves.
-- `SpeciesBaseMovesSeeder` throws a clear error when a species doesn't end up with exactly 4 different moves, so bad data fails the seed instead of creating Pokémon with fewer moves.
-- `CreatePokemonAction` keeps its default-move fallback only if something still needs it; remove it otherwise.
+- `SpeciesBaseMovesSeeder` throws a clear `RuntimeException` when a species doesn't end up with exactly `game.pokemon.max_active_moves` (4) different moves, including a species missing from the file, and when the file names a species that doesn't exist, so bad data fails the seed instead of creating Pokémon with fewer moves.
+- Nothing needs the default-move fallback any more, so it is removed from `CreatePokemonAction` and `StartWildBattleAction`, along with `game.pokemon.default_base_move`, `Shared\Exceptions\GameDataException` (its only use) and the `game-data` log channel.
 
 **Tests:** seeder test (in `tests/Shared/Unit/Seeders`): every species has exactly 4 different base moves; a new Pokémon of a species that had fewer (Ditto) gets 4 active moves.
 

@@ -102,7 +102,9 @@
         "snore"
     ],
     "metapod": [
+        "tackle",
         "bug-bite",
+        "struggle-bug",
         "electroweb"
     ],
     "butterfree": [
@@ -120,10 +122,13 @@
     "weedle": [
         "poison-sting",
         "bug-bite",
+        "struggle-bug",
         "electroweb"
     ],
     "kakuna": [
+        "poison-sting",
         "bug-bite",
+        "struggle-bug",
         "electroweb"
     ],
     "beedrill": [
@@ -638,6 +643,7 @@
     ],
     "dewgong": [
         "aqua-jet",
+        "aurora-beam",
         "waterfall",
         "brine"
     ],
@@ -966,7 +972,10 @@
         "confuse-ray"
     ],
     "ditto": [
-        "tackle"
+        "tackle",
+        "pound",
+        "bind",
+        "body-slam"
     ],
     "eevee": [
         "tackle",
@@ -1437,92 +1446,178 @@
         "astonish"
     ],
     "unown-a": [
-        "hidden-power"
+        "hidden-power",
+        "confusion",
+        "psybeam",
+        "psywave"
     ],
     "unown-b": [
-        "hidden-power"
+        "hidden-power",
+        "confusion",
+        "psybeam",
+        "psywave"
     ],
     "unown-c": [
-        "hidden-power"
+        "hidden-power",
+        "confusion",
+        "psybeam",
+        "psywave"
     ],
     "unown-d": [
-        "hidden-power"
+        "hidden-power",
+        "confusion",
+        "psybeam",
+        "psywave"
     ],
     "unown-e": [
-        "hidden-power"
+        "hidden-power",
+        "confusion",
+        "psybeam",
+        "psywave"
     ],
     "unown-f": [
-        "hidden-power"
+        "hidden-power",
+        "confusion",
+        "psybeam",
+        "psywave"
     ],
     "unown-g": [
-        "hidden-power"
+        "hidden-power",
+        "confusion",
+        "psybeam",
+        "psywave"
     ],
     "unown-h": [
-        "hidden-power"
+        "hidden-power",
+        "confusion",
+        "psybeam",
+        "psywave"
     ],
     "unown-i": [
-        "hidden-power"
+        "hidden-power",
+        "confusion",
+        "psybeam",
+        "psywave"
     ],
     "unown-j": [
-        "hidden-power"
+        "hidden-power",
+        "confusion",
+        "psybeam",
+        "psywave"
     ],
     "unown-k": [
-        "hidden-power"
+        "hidden-power",
+        "confusion",
+        "psybeam",
+        "psywave"
     ],
     "unown-l": [
-        "hidden-power"
+        "hidden-power",
+        "confusion",
+        "psybeam",
+        "psywave"
     ],
     "unown-m": [
-        "hidden-power"
+        "hidden-power",
+        "confusion",
+        "psybeam",
+        "psywave"
     ],
     "unown-n": [
-        "hidden-power"
+        "hidden-power",
+        "confusion",
+        "psybeam",
+        "psywave"
     ],
     "unown-o": [
-        "hidden-power"
+        "hidden-power",
+        "confusion",
+        "psybeam",
+        "psywave"
     ],
     "unown-p": [
-        "hidden-power"
+        "hidden-power",
+        "confusion",
+        "psybeam",
+        "psywave"
     ],
     "unown-q": [
-        "hidden-power"
+        "hidden-power",
+        "confusion",
+        "psybeam",
+        "psywave"
     ],
     "unown-r": [
-        "hidden-power"
+        "hidden-power",
+        "confusion",
+        "psybeam",
+        "psywave"
     ],
     "unown-s": [
-        "hidden-power"
+        "hidden-power",
+        "confusion",
+        "psybeam",
+        "psywave"
     ],
     "unown-t": [
-        "hidden-power"
+        "hidden-power",
+        "confusion",
+        "psybeam",
+        "psywave"
     ],
     "unown-u": [
-        "hidden-power"
+        "hidden-power",
+        "confusion",
+        "psybeam",
+        "psywave"
     ],
     "unown-v": [
-        "hidden-power"
+        "hidden-power",
+        "confusion",
+        "psybeam",
+        "psywave"
     ],
     "unown-w": [
-        "hidden-power"
+        "hidden-power",
+        "confusion",
+        "psybeam",
+        "psywave"
     ],
     "unown-x": [
-        "hidden-power"
+        "hidden-power",
+        "confusion",
+        "psybeam",
+        "psywave"
     ],
     "unown-y": [
-        "hidden-power"
+        "hidden-power",
+        "confusion",
+        "psybeam",
+        "psywave"
     ],
     "unown-z": [
-        "hidden-power"
+        "hidden-power",
+        "confusion",
+        "psybeam",
+        "psywave"
     ],
     "unown-exclamation": [
-        "hidden-power"
+        "hidden-power",
+        "confusion",
+        "psybeam",
+        "psywave"
     ],
     "unown-question": [
-        "hidden-power"
+        "hidden-power",
+        "confusion",
+        "psybeam",
+        "psywave"
     ],
     "wobbuffet": [
         "counter",
-        "mirror-coat"
+        "mirror-coat",
+        "confusion",
+        "psybeam"
     ],
     "girafarig": [
         "tackle",
@@ -1759,7 +1854,10 @@
         "hypnosis"
     ],
     "smeargle": [
-        "tackle"
+        "tackle",
+        "scratch",
+        "fury-swipes",
+        "slam"
     ],
     "tyrogue": [
         "fake-out",
@@ -1816,9 +1914,10 @@
         "flame-wheel"
     ],
     "suicune": [
-        "extreme-speed",
+        "water-gun",
         "bite",
-        "water-gun"
+        "bubble-beam",
+        "extreme-speed"
     ],
     "larvitar": [
         "tackle",
@@ -2625,8 +2724,10 @@
         "knock-off"
     ],
     "wynaut": [
+        "pound",
         "counter",
-        "mirror-coat"
+        "mirror-coat",
+        "confusion"
     ],
     "snorunt": [
         "astonish",
@@ -2635,11 +2736,13 @@
         "icy-wind"
     ],
     "glalie": [
+        "ice-fang",
         "icicle-crash",
         "ice-beam",
         "crunch"
     ],
     "mega-glalie": [
+        "ice-fang",
         "icicle-crash",
         "ice-beam",
         "crunch"
@@ -3395,6 +3498,7 @@
         "slam"
     ],
     "rhyperior": [
+        "rock-blast",
         "take-down",
         "drill-run",
         "double-edge"
@@ -4270,6 +4374,7 @@
         "mirror-shot"
     ],
     "vanilluxe": [
+        "icicle-spear",
         "avalanche",
         "mirror-shot",
         "ice-beam"
@@ -4533,6 +4638,7 @@
         "metal-claw"
     ],
     "bisharp": [
+        "metal-claw",
         "iron-head",
         "night-slash",
         "retaliate"
@@ -4838,6 +4944,7 @@
         "struggle-bug"
     ],
     "spewpa": [
+        "tackle",
         "bug-bite",
         "struggle-bug",
         "electroweb"
@@ -5384,8 +5491,9 @@
     ],
     "vikavolt": [
         "spark",
+        "bug-buzz",
         "dig",
-        "bug-buzz"
+        "thunderbolt"
     ],
     "crabrawler": [
         "bubble",
@@ -5628,9 +5736,10 @@
         "giga-drain"
     ],
     "pyukumuku": [
+        "water-gun",
         "counter",
-        "toxic",
-        "mirror-coat"
+        "mirror-coat",
+        "toxic"
     ],
     "type-null": [
         "tackle",
@@ -5825,10 +5934,16 @@
         "whirlpool"
     ],
     "cosmog": [
-        "tackle"
+        "tackle",
+        "confusion",
+        "psywave",
+        "swift"
     ],
     "cosmoem": [
-        "tackle"
+        "tackle",
+        "confusion",
+        "psywave",
+        "swift"
     ],
     "solgaleo": [
         "zen-headbutt",
@@ -6029,9 +6144,10 @@
         "icy-wind"
     ],
     "alolan-ninetales": [
-        "extrasensory",
         "ice-shard",
-        "icy-wind"
+        "icy-wind",
+        "extrasensory",
+        "aurora-beam"
     ],
     "alolan-diglett": [
         "metal-claw",
@@ -6209,6 +6325,7 @@
     ],
     "blipbug": [
         "struggle-bug",
+        "bug-bite",
         "infestation",
         "supersonic"
     ],

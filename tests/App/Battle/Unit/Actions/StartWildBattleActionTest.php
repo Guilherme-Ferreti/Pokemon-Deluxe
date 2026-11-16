@@ -6,15 +6,12 @@ use App\Battle\Actions\StartWildBattleAction;
 use App\Battle\Exceptions\BattleAlreadyInProgressException;
 use App\Battle\Exceptions\EmptyPartyException;
 use App\Pokemon\ValueObjects\NewPokemon;
-use Illuminate\Support\Facades\Exceptions;
 use Shared\Enums\BattleStatus;
 use Shared\Enums\BattleType;
 use Shared\Enums\PokemonGender;
 use Shared\Enums\PokemonGenderRate;
 use Shared\Enums\PokemonType;
-use Shared\Exceptions\GameDataException;
 use Shared\Models\Battle;
-use Shared\Models\Move;
 use Shared\Models\Pokemon;
 use Shared\Models\Species;
 use Shared\Models\User;
@@ -112,24 +109,4 @@ it('refuses to start a battle with an empty party', function () {
     )))->toThrow(EmptyPartyException::class);
 
     assertDatabaseCount(Battle::class, 0);
-});
-
-it('gives the wild pokemon the default move and reports a game data error when its species has no base moves', function () {
-    Exceptions::fake();
-
-    $user        = User::factory()->create();
-    $species     = Species::factory()->create(['gender_rate' => PokemonGenderRate::EQUAL]);
-    $defaultMove = Move::factory()->create(['slug' => config('game.pokemon.default_base_move')]);
-    Pokemon::factory()->for($user)->inParty()->withActiveMoves()->create();
-
-    $battle = new StartWildBattleAction()->handle($user, new NewPokemon(
-        species: $species,
-        level: 5,
-        is_shiny: false,
-        gender: PokemonGender::MALE,
-    ));
-
-    expect($battle->state->opponent_side->activeCombatant()->move_ids)->toBe([$defaultMove->id]);
-
-    Exceptions::assertReported(fn (GameDataException $exception) => $exception->getMessage() === "Species [{$species->slug}] has no base moves.");
 });

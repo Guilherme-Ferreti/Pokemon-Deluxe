@@ -25,6 +25,9 @@ final class SpeciesBaseMovesSeeder extends Seeder
         /** @var array<string, list<string>> $baseMoves */
         $baseMoves = json_decode((string) file_get_contents(__DIR__ . '/files/species-base-moves.json'), true);
 
+        $this->ensureEverySpeciesExists($baseMoves, $speciesIds);
+        $this->ensureEverySpeciesHasEnoughDifferentMoves($baseMoves, $speciesIds);
+
         $records = [];
 
         foreach ($baseMoves as $speciesSlug => $moveSlugs) {
@@ -45,5 +48,46 @@ final class SpeciesBaseMovesSeeder extends Seeder
         collect($records)
             ->chunk(1000)
             ->each(fn (Collection $chunk) => DB::table('species_base_move')->insert($chunk->toArray()));
+    }
+
+    /**
+     * @param  array<string, list<string>>  $baseMoves
+     * @param  array<string, string>  $speciesIds
+     */
+    private function ensureEverySpeciesExists(array $baseMoves, array $speciesIds): void
+    {
+        foreach (array_keys($baseMoves) as $speciesSlug) {
+            throw_unless(
+                isset($speciesIds[$speciesSlug]),
+                RuntimeException::class,
+                "Species [{$speciesSlug}] has base moves but does not exist.",
+            );
+        }
+    }
+
+    /**
+     * @param  array<string, list<string>>  $baseMoves
+     * @param  array<string, string>  $speciesIds
+     */
+    private function ensureEverySpeciesHasEnoughDifferentMoves(array $baseMoves, array $speciesIds): void
+    {
+        $moveCount = (int) config('game.pokemon.max_active_moves');
+
+        foreach (array_keys($speciesIds) as $speciesSlug) {
+            $moveSlugs          = $baseMoves[$speciesSlug] ?? [];
+            $differentMoveSlugs = array_unique($moveSlugs);
+
+            throw_unless(
+                count($moveSlugs) === $moveCount && count($differentMoveSlugs) === $moveCount,
+                RuntimeException::class,
+                sprintf(
+                    'Species [%s] must have exactly %d different base moves, [%d] given: [%s].',
+                    $speciesSlug,
+                    $moveCount,
+                    count($differentMoveSlugs),
+                    implode(', ', $moveSlugs),
+                ),
+            );
+        }
     }
 }

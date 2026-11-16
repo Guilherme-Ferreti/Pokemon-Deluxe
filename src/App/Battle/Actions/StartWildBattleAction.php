@@ -13,7 +13,6 @@ use Illuminate\Database\Eloquent\Collection as EloquentCollection;
 use Illuminate\Support\Facades\Cache;
 use Shared\Enums\BattleStatus;
 use Shared\Enums\BattleType;
-use Shared\Exceptions\GameDataException;
 use Shared\Models\Battle;
 use Shared\Models\Move;
 use Shared\Models\Pokemon;
@@ -151,18 +150,11 @@ final class StartWildBattleAction
      */
     private function wildMoveIds(): array
     {
-        $species = $this->wildPokemon->species;
-        $moveIds = $species->baseMoves()
+        $moveIds = $this->wildPokemon->species->baseMoves()
             ->take((int) config('game.pokemon.max_active_moves'))
             ->get(['moves.id'])
             ->map(fn (Move $move): string => $move->id);
 
-        if ($moveIds->isNotEmpty()) {
-            return array_values($moveIds->all());
-        }
-
-        report(GameDataException::speciesWithoutBaseMoves($species));
-
-        return [Move::query()->where('slug', config('game.pokemon.default_base_move'))->firstOrFail()->id];
+        return array_values($moveIds->all());
     }
 }

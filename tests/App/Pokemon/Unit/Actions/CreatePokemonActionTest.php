@@ -6,7 +6,6 @@ use App\Pokemon\Actions\CreatePokemonAction;
 use App\Pokemon\Exceptions\BoxFullException;
 use App\Pokemon\ValueObjects\NewPokemon;
 use Illuminate\Support\Facades\Exceptions;
-use Shared\Exceptions\GameDataException;
 use Shared\Models\Move;
 use Shared\Models\Pokeball;
 use Shared\Models\Pokemon;
@@ -121,35 +120,6 @@ it('gives as many active moves as the species has base moves, without repeating 
 
     expect($pokemon->activeMoves->pluck('pivot.slot')->all())->toBe([1, 2])
         ->and($pokemon->activeMoves->pluck('id')->all())->toEqualCanonicalizing($baseMoves->pluck('id')->all());
-});
-
-it('gives the default base move in slot 1 and reports a game data error when the species has no base moves', function () {
-    Exceptions::fake();
-
-    $species     = Species::factory()->create();
-    $defaultMove = Move::factory()->create(['slug' => config('game.pokemon.default_base_move')]);
-
-    $pokemon = new CreatePokemonAction()->handle(
-        owner: User::factory()->create(),
-        newPokemon: new NewPokemon(
-            species: $species,
-            level: 1,
-            is_shiny: false,
-            gender: $species->getRandomGender(),
-        ),
-        pokeball: Pokeball::factory()->create(),
-    );
-
-    assertDatabaseCount(Pokemon::class, 1);
-    assertDatabaseCount('pokemon_move', 1);
-
-    assertDatabaseHas('pokemon_move', [
-        'pokemon_id' => $pokemon->id,
-        'move_id'    => $defaultMove->id,
-        'slot'       => 1,
-    ]);
-
-    Exceptions::assertReported(fn (GameDataException $exception) => $exception->getMessage() === "Species [{$species->slug}] has no base moves.");
 });
 
 it('does not create a pokemon if the owner\'s box is full', function () {
