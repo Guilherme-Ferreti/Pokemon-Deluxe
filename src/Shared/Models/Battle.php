@@ -72,4 +72,13 @@ final class Battle extends Model
     {
         $query->where('status', BattleStatus::ONGOING);
     }
+
+    /** @param  Builder<$this>  $query */
+    #[Scope]
+    protected function recentlyEnded(Builder $query): void
+    {
+        $query
+            ->whereNot('status', BattleStatus::ONGOING)
+            ->where('updated_at', '>=', now()->subMinutes((int) config('game.battle.end_screen_minutes')));
+    }
 }

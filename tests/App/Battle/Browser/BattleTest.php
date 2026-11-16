@@ -17,9 +17,38 @@ use Shared\ValueObjects\Combatant;
 use function Pest\Laravel\actingAs;
 
 it('loads the battle page without errors', function () {
-    $user = User::factory()->create();
+    $user    = User::factory()->create();
+    $pikachu = Species::factory()->create(['name' => 'Pikachu']);
+    $tackle  = Move::factory()->plainDamage()->create(['name' => 'Tackle']);
 
-    Battle::factory()->for($user)->create(['status' => BattleStatus::ONGOING]);
+    $combatant = [
+        'pokemon_id'                    => 'pokemon-1',
+        'species_id'                    => $pikachu->id,
+        'level'                         => 50,
+        'boost'                         => 0,
+        'is_shiny'                      => false,
+        'gender'                        => PokemonGender::MALE,
+        'types'                         => [PokemonType::NORMAL],
+        'move_ids'                      => [$tackle->id],
+        'max_hp'                        => 218,
+        'current_hp'                    => 218,
+        'ailment'                       => null,
+        'ailment_turns_left'            => 0,
+        'confusion_turns_left'          => 0,
+        'has_entered_field'             => true,
+        'used_once_per_battle_move_ids' => [],
+    ];
+
+    Battle::factory()->for($user)->create([
+        'status' => BattleStatus::ONGOING,
+        'state'  => new BattleState(
+            turn: 1,
+            player_side: new BattleSide(combatants: [new Combatant(...$combatant)], active_index: 0),
+            opponent_side: new BattleSide(combatants: [new Combatant(...[...$combatant, 'pokemon_id' => null])], active_index: 0),
+            is_awaiting_send_out: false,
+            log: ['A wild Pikachu appeared!', 'Go! Pikachu!'],
+        ),
+    ]);
 
     actingAs($user);
 
@@ -86,5 +115,101 @@ it('takes a turn when a move is clicked', function () {
         ->assertSeeIn('@combatant-panel--player__hp-indicator', '172 / 218')
         ->assertSeeIn('@battle-log-card', 'Pikachu used Thunder Shock!')
         ->assertSeeIn('@battle-log-card', 'The wild Pidgey used Tackle!')
+        ->assertNoJavascriptErrors();
+});
+
+it('sends out another pokemon after a faint', function () {
+    $user    = User::factory()->create();
+    $pikachu = Species::factory()->create(['name' => 'Pikachu']);
+    $eevee   = Species::factory()->create(['name' => 'Eevee']);
+    $tackle  = Move::factory()->plainDamage()->create(['name' => 'Tackle']);
+
+    $combatant = [
+        'pokemon_id'                    => 'pokemon-1',
+        'species_id'                    => $pikachu->id,
+        'level'                         => 50,
+        'boost'                         => 0,
+        'is_shiny'                      => false,
+        'gender'                        => PokemonGender::MALE,
+        'types'                         => [PokemonType::NORMAL],
+        'move_ids'                      => [$tackle->id],
+        'max_hp'                        => 218,
+        'current_hp'                    => 218,
+        'ailment'                       => null,
+        'ailment_turns_left'            => 0,
+        'confusion_turns_left'          => 0,
+        'has_entered_field'             => true,
+        'used_once_per_battle_move_ids' => [],
+    ];
+
+    Battle::factory()->for($user)->create([
+        'status' => BattleStatus::ONGOING,
+        'state'  => new BattleState(
+            turn: 4,
+            player_side: new BattleSide(combatants: [
+                new Combatant(...[...$combatant, 'current_hp' => 0]),
+                new Combatant(...[...$combatant, 'pokemon_id' => 'pokemon-2', 'species_id' => $eevee->id, 'has_entered_field' => false]),
+            ], active_index: 0),
+            opponent_side: new BattleSide(combatants: [new Combatant(...[...$combatant, 'pokemon_id' => null])], active_index: 0),
+            is_awaiting_send_out: true,
+            log: ['Pikachu fainted!'],
+        ),
+    ]);
+
+    actingAs($user);
+
+    visit(route('battle.web.show'))
+        ->assertVisible('@send-out-dialog')
+        ->click('@send-out-dialog__pokemon-2-radio')
+        ->click('@send-out-dialog__send-out-button')
+        ->wait(1)
+        ->assertMissing('@send-out-dialog')
+        ->assertSeeIn('@battle-log-card', 'Go! Eevee!')
+        ->assertNoJavascriptErrors();
+});
+
+it('runs from the battle after confirming', function () {
+    $user    = User::factory()->create();
+    $pikachu = Species::factory()->create(['name' => 'Pikachu']);
+    $tackle  = Move::factory()->plainDamage()->create(['name' => 'Tackle']);
+
+    $combatant = [
+        'pokemon_id'                    => 'pokemon-1',
+        'species_id'                    => $pikachu->id,
+        'level'                         => 50,
+        'boost'                         => 0,
+        'is_shiny'                      => false,
+        'gender'                        => PokemonGender::MALE,
+        'types'                         => [PokemonType::NORMAL],
+        'move_ids'                      => [$tackle->id],
+        'max_hp'                        => 218,
+        'current_hp'                    => 218,
+        'ailment'                       => null,
+        'ailment_turns_left'            => 0,
+        'confusion_turns_left'          => 0,
+        'has_entered_field'             => true,
+        'used_once_per_battle_move_ids' => [],
+    ];
+
+    Battle::factory()->for($user)->create([
+        'status' => BattleStatus::ONGOING,
+        'state'  => new BattleState(
+            turn: 1,
+            player_side: new BattleSide(combatants: [new Combatant(...$combatant)], active_index: 0),
+            opponent_side: new BattleSide(combatants: [new Combatant(...[...$combatant, 'pokemon_id' => null])], active_index: 0),
+            is_awaiting_send_out: false,
+            log: ['A wild Pikachu appeared!', 'Go! Pikachu!'],
+        ),
+    ]);
+
+    actingAs($user);
+
+    visit(route('battle.web.show'))
+        ->click('@run-battle-dialog__open-button')
+        ->assertVisible('@run-battle-dialog')
+        ->click('@run-battle-dialog__run-button')
+        ->wait(1)
+        ->assertSeeIn('@battle-result-card', 'You got away safely')
+        ->assertSeeIn('@battle-log-card', 'You ran away!')
         ->assertNoJavascriptErrors();
 });

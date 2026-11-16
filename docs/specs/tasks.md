@@ -453,21 +453,23 @@ Uses `Combatant` from task 1.10.
 
 ### 1.21 Battle page: send out, run and end screen
 
-- [ ] Done
+- [x] Done
 
 **Goal:** finish the battle flow on the page.
 
 **Mock-up:** `docs/mockups/battle.html` (states "Pokémon fainted: send out", "Run confirmation", "Battle won", "Lost: XP kept", "Ran away")
 
 **Build:**
-- Route `POST /battle/send-out` (`battle.web.send-out`) → `SendOutPokemonController`; a dialog lists the remaining team (portrait, level, HP) when a Pokémon faints.
-- Route `POST /battle/forfeit` (`battle.web.forfeit`) → `ForfeitBattleController`; a "Run" button with a confirmation.
-- With no ongoing battle, `GET /battle` shows the end screen of the player's latest battle if it ended less than `game.battle.end_screen_minutes` (10) ago, so it survives a reload; otherwise it still redirects to the Dashboard (task 1.19).
-- End screen for every ending (won, lost, ran; caught comes with task 2.19): the result, and one row per Pokémon that came out with the XP it got, its XP bar and any level-up (from the state saved by task 1.17). With no opponent knocked out, a short "No XP this time" line instead. A button back to the Dashboard.
+- Route `POST /battle/send-out` (`battle.web.send-out`) → `SendOutPokemonController` with `SendOutPokemonRequest` (`combatantIndex`, 0-based); `SendOutDialog` lists the team (portrait, level, HP) when a Pokémon faints, from the `sendOut` prop (null unless awaiting a send-out).
+- Route `POST /battle/forfeit` (`battle.web.forfeit`) → `ForfeitBattleController`; `RunBattleDialog` puts a "Run" button in the page header (a new default slot on `AppPageHeader`) with a confirmation `Dialog`. Both routes play the user's ongoing battle and warn with `BattleAlreadyEndedException` when there is none.
+- With no ongoing battle, `GET /battle` shows the end screen of the player's latest battle if it ended less than `game.battle.end_screen_minutes` (10) ago (`Battle::recentlyEnded()` scope, by `updated_at`), so it survives a reload; otherwise it still redirects to the Dashboard (task 1.19).
+- End screen (`BattleResultCard`, from the `result` prop, null while ongoing) for every ending (won, lost, ran; caught comes with task 2.19): the result, and one row per Pokémon that earned XP with the XP it got, its XP bar (`experienceProgress`, the share of the way to its next level now; none when the Pokémon no longer exists) and any level-up (from the state saved by task 1.17). With no XP earned, a short "No XP this time" line instead. A button back to the Dashboard.
+- `EndBattleAction` adds one log line per Pokémon that earned XP ("Shiny Magikarp gained 340 XP!") and one per level-up ("Shiny Magikarp grew to Lv 55!"); none in the Battle Tower, where XP isn't paid.
+- `HpProgress` draws every HP bar on the page (combatant panels and the send-out dialog).
 
 **UI suggestions** (ideas, not requirements):
 - Send-out: a `Dialog` that can't be closed (no close button, no click outside) listing the team as selectable rows: `SpeciesPortrait`, name, level, HP `Progress`. Fainted Pokémon are greyed out and disabled. One primary button: "Send out".
-- Run: a destructive-outline `Button` that opens a confirmation dialog (shadcn-vue `alert-dialog`, added with the shadcn-vue CLI) with "Keep fighting" (outline) and "Run" (destructive). In a wild battle: "Run from the wild Pidgey? You won't get anything for this battle." (Trainer and Elite Four wording comes with task 6.14.)
+- Run: a destructive `Button` that opens a confirmation `Dialog` (the shadcn-vue CLI could not add `alert-dialog` without upgrading dependencies) with "Keep fighting" (outline) and "Run" (destructive). In a wild battle: "Run from the wild Pidgey? You won't get anything for this battle." (Trainer and Elite Four wording comes with task 6.14.)
 - End screen: the moves area is replaced by a result `Card`: a large title ("You won!", "You lost", "You got away safely"); one row per Pokémon that fought with portrait, "+300 XP", an XP `Progress` bar and a "Level up! 36 → 37" `Badge`; one primary button, "Back to Dashboard" (later tasks point it back where the battle came from).
 - After a loss, a muted line under the XP rows: "XP is kept for the opponents you knocked out."
 - The battle log also gets one line per Pokémon at the end ("Shiny Magikarp gained 340 XP!", "Shiny Magikarp grew to Lv 55!").

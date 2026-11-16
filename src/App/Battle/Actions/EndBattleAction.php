@@ -15,6 +15,7 @@ use Shared\Enums\BattleStatus;
 use Shared\Enums\BattleType;
 use Shared\Models\Battle;
 use Shared\Models\Pokemon;
+use Shared\Models\Species;
 use Shared\ValueObjects\Combatant;
 use Shared\ValueObjects\ExperienceGain;
 
@@ -62,10 +63,50 @@ final class EndBattleAction
     {
         $this->loadPlayerPokemon();
 
+        $gains = $this->payExperience();
+
         $this->battle->update([
             'status' => $this->status,
-            'state'  => $this->battle->state->withExperienceGains($this->payExperience()),
+            'state'  => $this->battle->state
+                ->withExperienceGains($gains)
+                ->withLogLines($this->experienceLogLines($gains)),
         ]);
+    }
+
+    /**
+     * @param  list<ExperienceGain>  $gains
+     * @return list<string>
+     */
+    private function experienceLogLines(array $gains): array
+    {
+        if ($this->battle->type === BattleType::BATTLE_TOWER) {
+            return [];
+        }
+
+        $combatants = $this->battle->state->player_side->combatants;
+        $species    = Species::query()
+            ->whereKey(array_map(fn (Combatant $combatant) => $combatant->species_id, $combatants))
+            ->get()
+            ->keyBy('id');
+
+        $lines = [];
+
+        foreach ($gains as $gain) {
+            if ($gain->earned_experience === 0) {
+                continue;
+            }
+
+            $combatant = $combatants[$gain->combatant_index];
+            $name      = $species->findOrFail($combatant->species_id)->getDisplayName($combatant->is_shiny);
+
+            $lines[] = sprintf('%s gained %s XP!', $name, number_format($gain->earned_experience));
+
+            if ($gain->level_after > $gain->level_before) {
+                $lines[] = "{$name} grew to Lv {$gain->level_after}!";
+            }
+        }
+
+        return $lines;
     }
 
     private function loadPlayerPokemon(): void

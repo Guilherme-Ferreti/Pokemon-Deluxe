@@ -56,6 +56,7 @@ return [
         'critical_hit_chance'     => 6.25, // 6.25% chance (1 in 16) that a hit is critical.
         'damage_random_min'       => 0.85, // Lowest random damage roll per hit (0.85 = a hit can deal down to 85%).
         'keep_ended_days'         => 7,    // Days an ended battle is kept before it is deleted.
+        'end_screen_minutes'      => 10,   // Minutes after a battle ends that the battle page still shows its end screen.
 
         'ailments' => [
             'burn_damage_percentage'      => 6.25, // Share of max HP a burned Pokémon loses at the end of each turn (6.25 = 1/16).

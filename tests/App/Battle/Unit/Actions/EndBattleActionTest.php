@@ -11,6 +11,7 @@ use Shared\Enums\PokemonGender;
 use Shared\Enums\PokemonType;
 use Shared\Models\Battle;
 use Shared\Models\Pokemon;
+use Shared\Models\Species;
 use Shared\ValueObjects\BattleSide;
 use Shared\ValueObjects\BattleState;
 use Shared\ValueObjects\Combatant;
@@ -64,10 +65,11 @@ describe('experience', function () {
         $activePokemon   = Pokemon::factory()->create(['level' => 50]);
         $switchedPokemon = Pokemon::factory()->create(['level' => 25]);
         $benchedPokemon  = Pokemon::factory()->create(['level' => 50]);
+        $pikachu         = Species::factory()->create(['name' => 'Pikachu']);
 
         $combatant = [
             'pokemon_id'                    => null,
-            'species_id'                    => 'species-1',
+            'species_id'                    => $pikachu->id,
             'level'                         => 50,
             'boost'                         => 0,
             'is_shiny'                      => false,
@@ -111,6 +113,11 @@ describe('experience', function () {
             ->and($battle->fresh()?->state->experience_gains)->toEqual([
                 new ExperienceGain(combatant_index: 0, earned_experience: 937, level_before: 50, level_after: 50),
                 new ExperienceGain(combatant_index: 1, earned_experience: 1_875, level_before: 25, level_after: 26),
+            ])
+            ->and($battle->fresh()?->state->log)->toBe([
+                'Pikachu gained 937 XP!',
+                'Pikachu gained 1,875 XP!',
+                'Pikachu grew to Lv 26!',
             ]);
     })->with([
         'won'       => [BattleStatus::WON],
@@ -180,10 +187,11 @@ describe('experience', function () {
 
         $firstPokemon  = Pokemon::factory()->create(['level' => 50]);
         $activePokemon = Pokemon::factory()->create(['level' => 50]);
+        $pikachu       = Species::factory()->create(['name' => 'Pikachu']);
 
         $combatant = [
             'pokemon_id'                    => null,
-            'species_id'                    => 'species-1',
+            'species_id'                    => $pikachu->id,
             'level'                         => 50,
             'boost'                         => 0,
             'is_shiny'                      => false,

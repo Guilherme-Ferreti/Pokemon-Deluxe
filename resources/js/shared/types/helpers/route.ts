@@ -6,6 +6,8 @@ type RouteParameters = {
   'auth.web.logout': never;
   'battle.web.show': never;
   'battle.web.turn': never;
+  'battle.web.send-out': never;
+  'battle.web.forfeit': never;
   'dashboard.web.home': never;
   'dex.web.pokedex.index': never;
   'dex.web.pokedex.show': {
@@ -69,6 +71,8 @@ const routes = {
   'auth.web.logout': 'logout',
   'battle.web.show': 'battle',
   'battle.web.turn': 'battle/turn',
+  'battle.web.send-out': 'battle/send-out',
+  'battle.web.forfeit': 'battle/forfeit',
   'dashboard.web.home': 'dashboard',
   'dex.web.pokedex.index': 'pokedex',
   'dex.web.pokedex.show': 'pokedex/{species}',

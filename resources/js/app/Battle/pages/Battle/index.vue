@@ -3,25 +3,38 @@
   <AppPageHeader
     :title="titles[page.props.battle.type]"
     :description="`A wild ${page.props.opponent.name} appeared.`"
-  />
+  >
+    <RunBattleDialog v-if="page.props.battle.status === BattleStatus.ONGOING" />
+  </AppPageHeader>
   <AppSection>
     <BattleArenaCard />
     <div class="battle-page__bottom">
-      <MovesCard class="battle-page__moves-card" />
+      <MovesCard
+        v-if="page.props.result === null"
+        class="battle-page__moves-card"
+      />
+      <BattleResultCard
+        v-else
+        class="battle-page__moves-card"
+      />
       <BattleLogCard class="battle-page__log-card" />
     </div>
   </AppSection>
+  <SendOutDialog />
 </template>
 
 <script setup lang="ts">
 import { Head, usePage } from '@inertiajs/vue3';
 import AppSection from '@/shared/components/content/AppSection.vue';
 import AppPageHeader from '@/shared/components/layout/AppPageHeader.vue';
-import { BattleType } from '@/shared/types/enums';
+import { BattleStatus, BattleType } from '@/shared/types/enums';
 import type { BattleShowPageProps } from '../../types/page-props/BattleShowPageProps';
 import BattleArenaCard from './BattleArenaCard.vue';
 import BattleLogCard from './BattleLogCard.vue';
+import BattleResultCard from './BattleResultCard.vue';
 import MovesCard from './MovesCard.vue';
+import RunBattleDialog from './RunBattleDialog.vue';
+import SendOutDialog from './SendOutDialog.vue';
 
 const page = usePage<BattleShowPageProps>();
 

@@ -44,6 +44,10 @@ One name per idea, used everywhere: specs, code, database, tests and UI. When yo
 | Turn | `turn` | Both sides acting once. |
 | Battle log | `log` | List of text lines shown under the battle. |
 | Ongoing battle | `Battle::ongoing()` scope | The user's battle with status `ONGOING`. |
+| Recently ended battle | `Battle::recentlyEnded()` scope, `game.battle.end_screen_minutes` | An ended battle last updated within the end-screen window; `GET /battle` shows its end screen. |
+| Sending out from the page | `SendOutPokemonController`, `SendOutPokemonRequest` (`combatantIndex`) | `POST /battle/send-out`; the index is the 0-based position in the player side's `combatants`. |
+| Running from the page | `ForfeitBattleController` | `POST /battle/forfeit`. |
+| End screen | `result` prop (`experienceGains` with `experienceProgress`), `BattleResultCard` | What the battle page shows instead of the moves once the battle has ended. |
 | Taking a turn from the page | `TakeTurnController`, `TakeTurnRequest` (`moveSlot`) | `POST /battle/turn`; the slot is the move's position (1–4) in the active combatant's `move_ids`. |
 | Super-effective hint | `isSuperEffective` on the battle page's moves | A damaging move whose type multiplier against the opponent's active Pokémon is above 1. |
 | Battle sprites | `Species::getDisplayFrontSprite()` (opponent), `getDisplayBackSprite()` (player) | The back sprite falls back to the front one when the species has none. |

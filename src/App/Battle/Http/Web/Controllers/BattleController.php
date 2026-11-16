@@ -13,7 +13,8 @@ final class BattleController extends Controller
 {
     public function show(): Response|RedirectResponse
     {
-        $battle = currentUser()->battles()->ongoing()->first();
+        $battle = currentUser()->battles()->ongoing()->first()
+            ?? currentUser()->battles()->recentlyEnded()->latest('updated_at')->first();
 
         if ($battle === null) {
             return to_route('dashboard.web.home');

@@ -1,4 +1,4 @@
-import type { Ailment, BattleType } from '@/shared/types/enums';
+import type { Ailment, BattleStatus, BattleType } from '@/shared/types/enums';
 import type { Move, Pokemon } from '@/shared/types/response';
 
 export type BattleCombatant = {
@@ -18,6 +18,7 @@ export type BattleCombatant = {
 export type BattleShowPageProps = {
   battle: {
     type: BattleType;
+    status: BattleStatus;
     turn: number;
     log: string[];
   };
@@ -34,4 +35,24 @@ export type BattleShowPageProps = {
   > & {
     isSuperEffective: boolean;
   })[];
+  sendOut: {
+    team: {
+      name: Pokemon['name'];
+      portrait: string | null;
+      level: Pokemon['level'];
+      currentHp: number;
+      maxHp: number;
+      isFainted: boolean;
+    }[];
+  } | null;
+  result: {
+    experienceGains: {
+      name: Pokemon['name'];
+      portrait: string | null;
+      earnedExperience: number;
+      levelBefore: number;
+      levelAfter: number;
+      experienceProgress: number | null;
+    }[];
+  } | null;
 };

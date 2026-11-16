@@ -39,10 +39,9 @@
       >
         HP
       </span>
-      <Progress
-        :class="['combatant-panel__hp-bar', hpBarColor]"
-        :model-value="hpPercentage"
-        :aria-label="`${combatant.name} HP`"
+      <HpProgress
+        :percentage="hpPercentage"
+        :label="`${combatant.name} HP`"
       />
       <span
         class="combatant-panel__hp-value"
@@ -60,7 +59,6 @@ import { usePage } from '@inertiajs/vue3';
 import { computed } from 'vue';
 import PokemonDisplayName from '@/shared/components/game/PokemonDisplayName.vue';
 import { Badge } from '@/shared/components/ui/badge';
-import { Progress } from '@/shared/components/ui/progress';
 import {
   Tooltip,
   TooltipContent,
@@ -72,6 +70,7 @@ import type {
   BattleShowPageProps,
 } from '../../types/page-props/BattleShowPageProps';
 import CombatantTeamDots from './CombatantTeamDots.vue';
+import HpProgress from './HpProgress.vue';
 
 const props = defineProps<{
   side: 'player' | 'opponent';
@@ -100,16 +99,6 @@ const hpText = computed(() =>
     ? `${page.props.player.currentHp} / ${page.props.player.maxHp}`
     : `${page.props.opponent.hpPercentage}%`,
 );
-
-const hpBarColor = computed(() => {
-  if (hpPercentage.value > 50) {
-    return 'combatant-panel__hp-bar--good';
-  }
-
-  return hpPercentage.value >= 20
-    ? 'combatant-panel__hp-bar--warning'
-    : 'combatant-panel__hp-bar--danger';
-});
 </script>
 
 <style scoped>
@@ -141,26 +130,6 @@ const hpBarColor = computed(() => {
 
 .combatant-panel__hp-label {
   @apply text-xs font-bold text-muted-foreground;
-}
-
-.combatant-panel__hp-bar {
-  @apply min-w-0 flex-1;
-}
-
-.combatant-panel__hp-bar :deep([data-slot='progress-indicator']) {
-  @apply duration-500 ease-out motion-reduce:transition-none;
-}
-
-.combatant-panel__hp-bar--good :deep([data-slot='progress-indicator']) {
-  @apply bg-green-600 dark:bg-green-500;
-}
-
-.combatant-panel__hp-bar--warning :deep([data-slot='progress-indicator']) {
-  @apply bg-yellow-500 dark:bg-yellow-400;
-}
-
-.combatant-panel__hp-bar--danger :deep([data-slot='progress-indicator']) {
-  @apply bg-destructive;
 }
 
 .combatant-panel__hp-value {

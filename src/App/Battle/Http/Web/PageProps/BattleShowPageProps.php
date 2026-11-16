@@ -5,15 +5,19 @@ declare(strict_types=1);
 namespace App\Battle\Http\Web\PageProps;
 
 use App\Battle\Mechanics\DamageCalculator;
+use App\Pokemon\Mechanics\ExperienceCalculator;
 use Illuminate\Database\Eloquent\Collection as EloquentCollection;
 use Inertia\ProvidesInertiaProperties;
 use Inertia\RenderContext;
+use Shared\Enums\BattleStatus;
 use Shared\Enums\BattleType;
 use Shared\Models\Battle;
 use Shared\Models\Move;
+use Shared\Models\Pokemon;
 use Shared\Models\Species;
 use Shared\ValueObjects\BattleSide;
 use Shared\ValueObjects\Combatant;
+use Shared\ValueObjects\ExperienceGain;
 
 final class BattleShowPageProps implements ProvidesInertiaProperties
 {
@@ -34,18 +38,21 @@ final class BattleShowPageProps implements ProvidesInertiaProperties
             'player'   => $this->getPlayerProp(...),
             'opponent' => $this->getOpponentProp(...),
             'moves'    => $this->getMovesProp(...),
+            'sendOut'  => $this->getSendOutProp(...),
+            'result'   => $this->getResultProp(...),
         ];
     }
 
     /**
-     * @return array{type: BattleType, turn: int, log: list<string>}
+     * @return array{type: BattleType, status: BattleStatus, turn: int, log: list<string>}
      */
     private function getBattleProp(): array
     {
         return [
-            'type' => $this->battle->type,
-            'turn' => $this->battle->state->turn,
-            'log'  => $this->battle->state->log,
+            'type'   => $this->battle->type,
+            'status' => $this->battle->status,
+            'turn'   => $this->battle->state->turn,
+            'log'    => $this->battle->state->log,
         ];
     }
 
@@ -103,6 +110,87 @@ final class BattleShowPageProps implements ProvidesInertiaProperties
             'isDynamaxMove'    => $move->is_dynamax_move,
             'isSuperEffective' => $move->power !== null && $damageCalculator->typeMultiplier($move->type, ...$opponentTypes) > 1,
         ], array_map($moves->findOrFail(...), $moveIds));
+    }
+
+    /**
+     * @return array{team: list<array{name: string, portrait: ?string, level: int, currentHp: int, maxHp: int, isFainted: bool}>}|null
+     */
+    private function getSendOutProp(): ?array
+    {
+        if ($this->battle->status !== BattleStatus::ONGOING || ! $this->battle->state->is_awaiting_send_out) {
+            return null;
+        }
+
+        return [
+            'team' => array_map(fn (Combatant $combatant) => [
+                'name'      => $this->speciesOf($combatant)->getDisplayName($combatant->is_shiny),
+                'portrait'  => $this->portraitOf($combatant),
+                'level'     => $combatant->level,
+                'currentHp' => $combatant->current_hp,
+                'maxHp'     => $combatant->max_hp,
+                'isFainted' => $combatant->isFainted(),
+            ], $this->battle->state->player_side->combatants),
+        ];
+    }
+
+    /**
+     * @return array{experienceGains: list<array{name: string, portrait: ?string, earnedExperience: int, levelBefore: int, levelAfter: int, experienceProgress: ?int}>}|null
+     */
+    private function getResultProp(): ?array
+    {
+        if ($this->battle->status === BattleStatus::ONGOING) {
+            return null;
+        }
+
+        $combatants = $this->battle->state->player_side->combatants;
+        $gains      = array_values(array_filter(
+            $this->battle->state->experience_gains,
+            fn (ExperienceGain $gain) => $gain->earned_experience > 0,
+        ));
+
+        $pokemon = Pokemon::query()
+            ->whereKey(array_map(fn (ExperienceGain $gain) => $combatants[$gain->combatant_index]->pokemon_id, $gains))
+            ->get()
+            ->keyBy('id');
+
+        return [
+            'experienceGains' => array_map(function (ExperienceGain $gain) use ($combatants, $pokemon) {
+                $combatant = $combatants[$gain->combatant_index];
+
+                return [
+                    'name'               => $this->speciesOf($combatant)->getDisplayName($combatant->is_shiny),
+                    'portrait'           => $this->portraitOf($combatant),
+                    'earnedExperience'   => $gain->earned_experience,
+                    'levelBefore'        => $gain->level_before,
+                    'levelAfter'         => $gain->level_after,
+                    'experienceProgress' => $this->experienceProgress($combatant->pokemon_id === null ? null : $pokemon->get($combatant->pokemon_id)),
+                ];
+            }, $gains),
+        ];
+    }
+
+    private function experienceProgress(?Pokemon $pokemon): ?int
+    {
+        if ($pokemon === null) {
+            return null;
+        }
+
+        if ($pokemon->level >= (int) config('game.pokemon.max_level')) {
+            return 100;
+        }
+
+        $experienceCalculator = new ExperienceCalculator;
+        $levelStart           = $experienceCalculator->experienceForLevel($pokemon->level);
+        $nextLevelStart       = $experienceCalculator->experienceForLevel($pokemon->level + 1);
+
+        return (int) floor(($pokemon->experience - $levelStart) / ($nextLevelStart - $levelStart) * 100);
+    }
+
+    private function portraitOf(Combatant $combatant): ?string
+    {
+        $portraits = $this->speciesOf($combatant)->portraits;
+
+        return $combatant->is_shiny ? $portraits->shiny : $portraits->regular;
     }
 
     /**
