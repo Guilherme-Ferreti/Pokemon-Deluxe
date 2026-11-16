@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
+use App\Pokemon\ValueObjects\NewPokemon;
 use Shared\Enums\PokemonGender;
 use Shared\Enums\PokemonGenderRate;
 use Shared\Models\Incubation;
 use Shared\Models\Species;
 use Shared\ValueObjects\IncubatorIndex;
-use Shared\ValueObjects\NewPokemon;
 
 describe('level', function () {
     it('accepts a level within the allowed range', function () {

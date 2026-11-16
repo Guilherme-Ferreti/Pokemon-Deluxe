@@ -4,12 +4,12 @@ declare(strict_types=1);
 
 namespace App\Dex\Queries;
 
+use App\Dex\Enums\MoveTrait;
 use App\Dex\Enums\SearchAttackdexSortBy;
 use App\Dex\Filters\SearchAttackdexFilters;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Arr;
 use Shared\Enums\Ailment;
-use Shared\Enums\MoveTrait;
 use Shared\Enums\PokemonType;
 use Shared\Enums\SortDirection;
 use Shared\Models\Move;

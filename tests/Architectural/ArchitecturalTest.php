@@ -210,7 +210,10 @@ arch('Service Providers')
     ->toExtend(ServiceProvider::class);
 
 arch('Value Objects')
-    ->expect('Shared\ValueObjects')
+    ->expect([
+        'App\*\ValueObjects',
+        'Shared\ValueObjects',
+    ])
     ->toBeClasses()
     ->toBeFinal()
     ->toBeReadOnly()

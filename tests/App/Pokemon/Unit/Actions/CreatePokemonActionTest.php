@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 use App\Pokemon\Actions\CreatePokemonAction;
 use App\Pokemon\Exceptions\BoxFullException;
+use App\Pokemon\ValueObjects\NewPokemon;
 use Illuminate\Support\Facades\Exceptions;
 use Shared\Exceptions\GameDataException;
 use Shared\Models\Move;
@@ -11,7 +12,6 @@ use Shared\Models\Pokeball;
 use Shared\Models\Pokemon;
 use Shared\Models\Species;
 use Shared\Models\User;
-use Shared\ValueObjects\NewPokemon;
 
 use function Pest\Laravel\assertDatabaseCount;
 use function Pest\Laravel\assertDatabaseHas;

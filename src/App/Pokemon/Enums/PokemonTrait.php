@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Shared\Enums;
+namespace App\Pokemon\Enums;
 
 enum PokemonTrait: string
 {

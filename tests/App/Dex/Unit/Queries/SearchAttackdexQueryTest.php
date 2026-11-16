@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
+use App\Dex\Enums\MoveTrait;
 use App\Dex\Enums\SearchAttackdexSortBy;
 use App\Dex\Filters\SearchAttackdexFilters;
 use App\Dex\Queries\SearchAttackdexQuery;
 use Shared\Enums\Ailment;
 use Shared\Enums\MoveCategory;
-use Shared\Enums\MoveTrait;
 use Shared\Enums\PokemonType;
 use Shared\Enums\SortDirection;
 use Shared\Models\Move;

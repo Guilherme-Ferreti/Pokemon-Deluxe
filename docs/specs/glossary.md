@@ -113,10 +113,10 @@ One name per idea, used everywhere: specs, code, database, tests and UI. When yo
 | Mechanics: pure math, no randomness | `{Noun}Calculator` in `{Domain}/Mechanics/` | `StatsCalculator`, `DamageCalculator`, `TurnOrderCalculator` |
 | Mechanics: rolls dice through `RandomHelper` | `{Noun}Roller` in `{Domain}/Mechanics/` | `MoveOutcomeRoller`, `StatusEffectRoller` |
 | Mechanics: answers "is this allowed?" | `{Noun}Checker`, usually returns `null` or a reason string (a bool is fine for a plain yes or no) | `EvolutionRequirementChecker` |
-| Result of a mechanic | Value object `{Noun}` or `{Noun}Result` in `Shared/ValueObjects` | `PokemonStats`, `MoveOutcome` |
+| Result of a mechanic | Value object `{Noun}` or `{Noun}Result` in `{Domain}/ValueObjects`, or `Shared/ValueObjects` when it is stored in a database column or used by more than one domain | `MoveOutcome`, `MoveHit` |
 | Exception | `{What went wrong}Exception` | `BattleAlreadyInProgressException`, `MoveNotKnownException` |
 | Event (task 0.4) | Past tense: `{Noun}{Verb in past tense}` | `PokemonCaught`, `BattleEnded` |
-| Enum | Singular noun, cases `UPPER_SNAKE_CASE` | `BattleStatus::ONGOING` |
+| Enum | Singular noun, cases `UPPER_SNAKE_CASE`, in `Shared/Enums` when stored in a database column or used by more than one domain, otherwise in `{Domain}/Enums` | `BattleStatus::ONGOING`, `ActionBlocker::ASLEEP` |
 | Boolean | `is…`, `has…`, `can…` | `isFainted`, `hasEnteredField`, `canEvolve` |
 | Method returning a number | The noun, no `get` prefix | `maxHp()`, `firstMoverChance()` |
 | Method computing something from inputs | `calculate()` on a Calculator, `roll()` on a Roller, `check()` on a Checker, or a name saying what it returns when a class has several | `failureChance()`, `isCheckpoint()` |

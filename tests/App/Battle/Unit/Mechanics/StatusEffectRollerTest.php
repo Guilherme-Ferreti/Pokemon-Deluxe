@@ -2,8 +2,8 @@
 
 declare(strict_types=1);
 
+use App\Battle\Enums\ActionBlocker;
 use App\Battle\Mechanics\StatusEffectRoller;
-use Shared\Enums\ActionBlocker;
 use Shared\Enums\Ailment;
 use Shared\Enums\PokemonGender;
 use Shared\Enums\PokemonType;

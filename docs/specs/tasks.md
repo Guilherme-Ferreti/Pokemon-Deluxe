@@ -211,8 +211,8 @@ There is no production data yet, so a new column (or index, or a dropped column)
 **Goal:** all the dice for one move use, in one place.
 
 **Build:**
-- Value object `Shared\ValueObjects\MoveHit`: `bool $isCriticalHit`, `float $randomFactor` (above 0, at most 1). One per hit.
-- Value object `Shared\ValueObjects\MoveOutcome`: `bool $hasHit`, `list<MoveHit> $hits`, `bool $causesFlinch`, `?Ailment $inflictedAilment`; `hitCount()`; `MoveOutcome::miss()`.
+- Value object `App\Battle\ValueObjects\MoveHit`: `bool $isCriticalHit`, `float $randomFactor` (above 0, at most 1). One per hit.
+- Value object `App\Battle\ValueObjects\MoveOutcome`: `bool $hasHit`, `list<MoveHit> $hits`, `bool $causesFlinch`, `?Ailment $inflictedAilment`; `hitCount()`; `MoveOutcome::miss()`.
 - `App\Battle\Mechanics\MoveOutcomeRoller::roll(Move $move): MoveOutcome`, using `RandomHelper`:
   - hit if a roll is within the move's accuracy;
   - hit count between `min_hits` and `max_hits` (1 when empty; no roll when both are equal);
@@ -261,7 +261,7 @@ Agreed and added to Spec 1 under "Status effects". Task 1.11 adds the config key
 
 **Build** (numbers from Spec 1, "Status effects"; add them to `config/game.php` under `game.battle.ailments`, chances as percentages such as `paralysis_chance` (25)):
 - `App\Battle\Mechanics\StatusEffectRoller` with:
-  - `rollActionBlocker(Combatant $combatant): ?ActionBlocker`: `null` when the Pokémon can act, otherwise why it can't. Checked in this order: freeze (`FROZEN` unless the thaw roll succeeds), sleep (`ASLEEP` while `ailment_turns_left` > 0, no roll), confusion (`HURT_ITSELF_IN_CONFUSION` while `confusion_turns_left` > 0 and the self-hit roll succeeds), paralysis (`PARALYZED`). Enum `Shared\Enums\ActionBlocker`.
+  - `rollActionBlocker(Combatant $combatant): ?ActionBlocker`: `null` when the Pokémon can act, otherwise why it can't. Checked in this order: freeze (`FROZEN` unless the thaw roll succeeds), sleep (`ASLEEP` while `ailment_turns_left` > 0, no roll), confusion (`HURT_ITSELF_IN_CONFUSION` while `confusion_turns_left` > 0 and the self-hit roll succeeds), paralysis (`PARALYZED`). Enum `App\Battle\Enums\ActionBlocker`.
   - `durationFor(Ailment $ailment): int`: sleep (1–3) and confusion (1–4) turn counts; 0 for ailments that last until the battle ends.
 - `App\Battle\Mechanics\StatusEffectCalculator::endOfTurnDamage(Combatant $combatant): int`: burn (6.25% of max HP) and poison (12.5%), at least 1; 0 otherwise or when fainted.
 - Config `game.battle.ailments` also holds `burn_damage_done_multiplier` (0.5) and `confusion_self_hit_power` (40), used by task 1.15.
@@ -678,7 +678,7 @@ Read [02-catching-and-exploration.md](02-catching-and-exploration.md) first. Nee
 **Build:**
 - `pokeballs.json`: `catch_rate` holds the multiplier when no condition applies: Poké 1, Great 1.5, Ultra 2, Safari, Sport and Park 1.5, collectible balls 1, conditional balls 1, Beast Ball 0.1.
 - `App\Battle\Mechanics\BallMultiplierCalculator::multiplier(Pokeball $pokeball, CatchContext $context): float`: returns `catch_rate`; `isGuaranteed(Pokeball $pokeball): bool` is true for the Master Ball.
-- Value object `Shared\ValueObjects\CatchContext`: `int $turn`, `?Area $area`, `bool $isNight`, `Species $wildSpecies`, `int $wildLevel`, `PokemonGender $wildGender`, `Species $activeSpecies`, `int $activeLevel`, `PokemonGender $activeGender`, `bool $playerOwnsSpecies`.
+- Value object `App\Battle\ValueObjects\CatchContext`: `int $turn`, `?Area $area`, `bool $isNight`, `Species $wildSpecies`, `int $wildLevel`, `PokemonGender $wildGender`, `Species $activeSpecies`, `int $activeLevel`, `PokemonGender $activeGender`, `bool $playerOwnsSpecies`.
 
 **Tests:** basic balls return their multiplier; Master Ball is guaranteed.
 
@@ -1199,7 +1199,7 @@ Read [04-pokemon-page.md](04-pokemon-page.md) first. Builds on Spec 1 (`SetActiv
 **Goal:** use one or several boost stones in one go.
 
 **Build:**
-- Value object `Shared\ValueObjects\BoostResult`: `int $stonesUsed`, `int $successes`, `int $failures`, `int $boostBefore`, `int $boostAfter`.
+- Value object `App\Pokemon\ValueObjects\BoostResult`: `int $stonesUsed`, `int $successes`, `int $failures`, `int $boostBefore`, `int $boostAfter`.
 - `App\Pokemon\Actions\UseBoostStonesAction::handle(Pokemon $pokemon, int $maxStones, ?int $targetBoost = null): BoostResult`
   - Uses stones one at a time until `$maxStones` are used, `$targetBoost` is reached, the Pokémon is at +100, or the player runs out.
   - Refuses at +100 (`App\Pokemon\Exceptions\MaxBoostReachedException`) and with no stones (`InsufficientInventoryException`).

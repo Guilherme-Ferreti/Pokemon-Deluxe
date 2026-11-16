@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
+use App\Pokemon\Enums\PokemonTrait;
 use App\Pokemon\Enums\SearchBoxSortBy;
 use App\Pokemon\Filters\SearchBoxFilters;
 use App\Pokemon\Queries\SearchBoxQuery;
 use Shared\Enums\Generation;
-use Shared\Enums\PokemonTrait;
 use Shared\Enums\PokemonType;
 use Shared\Enums\SortDirection;
 use Shared\Models\Pokemon;

@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace App\Dex\Filters;
 
+use App\Dex\Enums\MoveTrait;
 use App\Dex\Enums\SearchAttackdexSortBy;
 use Illuminate\Http\Request;
 use Shared\Enums\Ailment;
-use Shared\Enums\MoveTrait;
 use Shared\Enums\PokemonType;
 use Shared\Enums\SortDirection;
 use Shared\Interfaces\Filter;

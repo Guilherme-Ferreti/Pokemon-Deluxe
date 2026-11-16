@@ -13,7 +13,7 @@ Feature behaviour (game rules, formulas, page designs) lives in `docs/specs/`; r
 | src/Shared/Casts/** | .ai/rules/casts.md |
 | src/App/**/Http/Web/Controllers/** | .ai/rules/controllers.md |
 | src/App/**/Events/**, src/App/**/Listeners/**, src/App/**/Actions/** | .ai/rules/events.md |
-| src/Shared/Enums/** | .ai/rules/enums.md |
+| src/Shared/Enums/**, src/App/**/Enums/** | .ai/rules/enums.md |
 | src/App/**/Exceptions/**, src/Shared/Exceptions/** | .ai/rules/exceptions.md |
 | tests/**/Feature/** | .ai/rules/feature.md |
 | src/App/**/Filters/** | .ai/rules/filters.md |
@@ -31,5 +31,5 @@ Feature behaviour (game rules, formulas, page designs) lives in `docs/specs/`; r
 | src/App/**/Support/** | .ai/rules/support.md |
 | resources/js/**, tests/**/Browser/** | .ai/rules/testids.md |
 | tests/** | .ai/rules/tests.md |
-| src/Shared/ValueObjects/** | .ai/rules/value-objects.md |
+| src/Shared/ValueObjects/**, src/App/**/ValueObjects/** | .ai/rules/value-objects.md |
 | src/App/**/Http/{Web,Api}/routes.php | .ai/rules/web-api.md |

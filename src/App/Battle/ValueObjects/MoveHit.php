@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Shared\ValueObjects;
+namespace App\Battle\ValueObjects;
 
 use InvalidArgumentException;
 use Shared\Interfaces\ValueObject;

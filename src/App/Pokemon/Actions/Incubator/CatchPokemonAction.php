@@ -10,6 +10,7 @@ use App\Pokemon\Events\PokemonCaught;
 use App\Pokemon\Exceptions\IncubatorEggNotReadyToCatchException;
 use App\Pokemon\Exceptions\IncubatorNotActiveException;
 use App\Pokemon\Support\LockKeys;
+use App\Pokemon\ValueObjects\NewPokemon;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\DB;
 use Shared\Enums\IncubationStatus;
@@ -18,7 +19,6 @@ use Shared\Models\Pokeball;
 use Shared\Models\Pokemon;
 use Shared\Models\User;
 use Shared\ValueObjects\IncubatorIndex;
-use Shared\ValueObjects\NewPokemon;
 
 final class CatchPokemonAction
 {

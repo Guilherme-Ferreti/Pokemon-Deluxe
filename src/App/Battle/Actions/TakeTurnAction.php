@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Battle\Actions;
 
+use App\Battle\Enums\TurnActionOutcome;
 use App\Battle\Exceptions\BattleNotReadyForTurnException;
 use App\Battle\Exceptions\DynamaxMoveNotAllowedException;
 use App\Battle\Exceptions\MoveAlreadyUsedException;
@@ -11,6 +12,7 @@ use App\Battle\Mechanics\DamageCalculator;
 use App\Battle\Mechanics\MoveOutcomeRoller;
 use App\Battle\Mechanics\TurnOrderCalculator;
 use App\Battle\Support\LockKeys;
+use App\Battle\ValueObjects\MoveHit;
 use App\Pokemon\Mechanics\StatsCalculator;
 use Illuminate\Database\Eloquent\Collection as EloquentCollection;
 use Illuminate\Support\Facades\Cache;
@@ -18,14 +20,12 @@ use InvalidArgumentException;
 use LogicException;
 use Shared\Enums\BattleStatus;
 use Shared\Enums\BattleType;
-use Shared\Enums\TurnActionOutcome;
 use Shared\Helpers\RandomHelper;
 use Shared\Models\Battle;
 use Shared\Models\Move;
 use Shared\Models\Species;
 use Shared\ValueObjects\BattleState;
 use Shared\ValueObjects\Combatant;
-use Shared\ValueObjects\MoveHit;
 
 final class TakeTurnAction
 {

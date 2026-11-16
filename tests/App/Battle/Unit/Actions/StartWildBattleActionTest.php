@@ -5,6 +5,7 @@ declare(strict_types=1);
 use App\Battle\Actions\StartWildBattleAction;
 use App\Battle\Exceptions\BattleAlreadyInProgressException;
 use App\Battle\Exceptions\EmptyPartyException;
+use App\Pokemon\ValueObjects\NewPokemon;
 use Illuminate\Support\Facades\Exceptions;
 use Shared\Enums\BattleStatus;
 use Shared\Enums\BattleType;
@@ -17,7 +18,6 @@ use Shared\Models\Move;
 use Shared\Models\Pokemon;
 use Shared\Models\Species;
 use Shared\Models\User;
-use Shared\ValueObjects\NewPokemon;
 
 use function Pest\Laravel\assertDatabaseCount;
 

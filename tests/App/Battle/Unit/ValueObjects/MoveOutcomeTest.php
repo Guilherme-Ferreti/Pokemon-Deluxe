@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
+use App\Battle\ValueObjects\MoveHit;
+use App\Battle\ValueObjects\MoveOutcome;
 use Shared\Enums\Ailment;
-use Shared\ValueObjects\MoveHit;
-use Shared\ValueObjects\MoveOutcome;
 
 it('rejects a missed move that still does something', function (bool $hasHits, bool $causesFlinch, ?Ailment $inflictedAilment) {
     expect(fn () => new MoveOutcome(hasHit: false, hits: $hasHits ? [new MoveHit(isCriticalHit: false, randomFactor: 1.0)] : [], causesFlinch: $causesFlinch, inflictedAilment: $inflictedAilment))

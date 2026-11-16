@@ -2,8 +2,8 @@
 
 declare(strict_types=1);
 
+use App\Pokemon\Enums\PokemonTrait;
 use Shared\Enums\Generation;
-use Shared\Enums\PokemonTrait;
 use Shared\Enums\PokemonType;
 use Shared\Models\Pokemon;
 use Shared\Models\Species;

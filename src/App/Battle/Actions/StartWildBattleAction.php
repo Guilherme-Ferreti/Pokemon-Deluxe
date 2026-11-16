@@ -8,6 +8,7 @@ use App\Battle\Exceptions\BattleAlreadyInProgressException;
 use App\Battle\Exceptions\EmptyPartyException;
 use App\Battle\Support\LockKeys;
 use App\Pokemon\Mechanics\StatsCalculator;
+use App\Pokemon\ValueObjects\NewPokemon;
 use Illuminate\Database\Eloquent\Collection as EloquentCollection;
 use Illuminate\Support\Facades\Cache;
 use Shared\Enums\BattleStatus;
@@ -20,7 +21,6 @@ use Shared\Models\User;
 use Shared\ValueObjects\BattleSide;
 use Shared\ValueObjects\BattleState;
 use Shared\ValueObjects\Combatant;
-use Shared\ValueObjects\NewPokemon;
 
 final class StartWildBattleAction
 {

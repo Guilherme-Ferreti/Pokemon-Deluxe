@@ -1,11 +1,7 @@
 import type { FilterOption, PaginatedList } from '@/shared/types';
-import type {
-  Ailment,
-  PokemonType,
-  MoveTrait,
-  SortDirection,
-} from '@/shared/types/enums';
+import type { Ailment, PokemonType, SortDirection } from '@/shared/types/enums';
 import type { Move } from '@/shared/types/response';
+import type { MoveTrait } from '../enums/MoveTrait';
 import type { SearchAttackdexSortBy } from '../enums/SearchAttackdexSortBy';
 
 export type AttackdexIndexPageProps = {

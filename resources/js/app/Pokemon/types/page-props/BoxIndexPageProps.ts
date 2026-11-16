@@ -2,10 +2,10 @@ import type { FilterOption, PaginatedList } from '@/shared/types';
 import type {
   PokemonType,
   Generation,
-  PokemonTrait,
   SortDirection,
 } from '@/shared/types/enums';
 import type { Move, Pokemon, Species } from '@/shared/types/response';
+import type { PokemonTrait } from '../enums/PokemonTrait';
 import type { SearchBoxSortBy } from '../enums/SearchBoxSortBy';
 
 export type BoxIndexPageProps = {

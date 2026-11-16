@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Shared\Enums;
+namespace App\Battle\Enums;
 
 enum ActionBlocker: string
 {

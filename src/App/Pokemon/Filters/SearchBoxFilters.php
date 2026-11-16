@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace App\Pokemon\Filters;
 
+use App\Pokemon\Enums\PokemonTrait;
 use App\Pokemon\Enums\SearchBoxSortBy;
 use Illuminate\Http\Request;
 use Shared\Enums\Generation;
-use Shared\Enums\PokemonTrait;
 use Shared\Enums\PokemonType;
 use Shared\Enums\SortDirection;
 use Shared\Interfaces\Filter;

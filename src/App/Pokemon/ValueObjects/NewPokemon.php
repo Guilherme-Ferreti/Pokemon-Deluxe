@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Shared\ValueObjects;
+namespace App\Pokemon\ValueObjects;
 
 use InvalidArgumentException;
 use Shared\Enums\PokemonGender;

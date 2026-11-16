@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace App\Battle\Mechanics;
 
+use App\Battle\ValueObjects\MoveHit;
+use App\Battle\ValueObjects\MoveOutcome;
 use Shared\Enums\Ailment;
 use Shared\Helpers\RandomHelper;
 use Shared\Models\Move;
-use Shared\ValueObjects\MoveHit;
-use Shared\ValueObjects\MoveOutcome;
 
 final class MoveOutcomeRoller
 {

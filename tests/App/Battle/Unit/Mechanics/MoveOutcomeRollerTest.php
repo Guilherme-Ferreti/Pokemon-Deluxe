@@ -3,12 +3,12 @@
 declare(strict_types=1);
 
 use App\Battle\Mechanics\MoveOutcomeRoller;
+use App\Battle\ValueObjects\MoveHit;
+use App\Battle\ValueObjects\MoveOutcome;
 use Shared\Enums\Ailment;
 use Shared\Enums\MoveCategory;
 use Shared\Helpers\RandomHelper;
 use Shared\Models\Move;
-use Shared\ValueObjects\MoveHit;
-use Shared\ValueObjects\MoveOutcome;
 
 it('misses without rolling anything else', function () {
     $move = Move::factory()->make(['category' => MoveCategory::DAMAGE_AILMENT, 'power' => 80, 'accuracy' => 70, 'min_hits' => 2, 'max_hits' => 5, 'flinch_chance' => 30, 'ailment' => Ailment::BURN, 'ailment_chance' => 10]);

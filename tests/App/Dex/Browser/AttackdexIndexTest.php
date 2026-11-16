@@ -2,8 +2,8 @@
 
 declare(strict_types=1);
 
+use App\Dex\Enums\MoveTrait;
 use Shared\Enums\Ailment;
-use Shared\Enums\MoveTrait;
 use Shared\Enums\PokemonType;
 use Shared\Models\Move;
 use Shared\Models\User;

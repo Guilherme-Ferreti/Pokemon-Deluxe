@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Battle\Mechanics;
 
-use Shared\Enums\ActionBlocker;
+use App\Battle\Enums\ActionBlocker;
 use Shared\Enums\Ailment;
 use Shared\Helpers\RandomHelper;
 use Shared\ValueObjects\Combatant;

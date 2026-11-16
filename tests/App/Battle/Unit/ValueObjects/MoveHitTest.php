@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-use Shared\ValueObjects\MoveHit;
+use App\Battle\ValueObjects\MoveHit;
 
 it('rejects a random factor outside above 0 to 1', function (float $randomFactor) {
     expect(fn () => new MoveHit(isCriticalHit: false, randomFactor: $randomFactor))

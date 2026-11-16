@@ -5,13 +5,13 @@ declare(strict_types=1);
 namespace Shared\Console\Commands;
 
 use App\Battle\Actions\StartWildBattleAction;
+use App\Pokemon\ValueObjects\NewPokemon;
 use Illuminate\Console\Attributes\Description;
 use Illuminate\Console\Attributes\Signature;
 use Illuminate\Console\Command;
 use Shared\Base\DomainException;
 use Shared\Models\Species;
 use Shared\Models\User;
-use Shared\ValueObjects\NewPokemon;
 
 #[Signature('battle:start-wild {email} {species-slug} {level} {--shiny}')]
 #[Description('Start a wild battle for a user (local only, until exploring exists)')]
