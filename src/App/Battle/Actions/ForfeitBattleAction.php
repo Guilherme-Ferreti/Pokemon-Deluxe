@@ -29,7 +29,7 @@ final class ForfeitBattleAction
     {
         $this->battle->refresh();
 
-        throw_if($this->battle->status !== BattleStatus::ONGOING, BattleAlreadyEndedException::class);
+        $this->ensureBattleCanBeForfeited();
 
         DB::transaction(function (): void {
             $this->battle->update(['state' => $this->battle->state->withLogLines(['You ran away!'])]);
@@ -38,5 +38,10 @@ final class ForfeitBattleAction
         });
 
         return $this->battle;
+    }
+
+    private function ensureBattleCanBeForfeited(): void
+    {
+        throw_if($this->battle->status !== BattleStatus::ONGOING, BattleAlreadyEndedException::class);
     }
 }

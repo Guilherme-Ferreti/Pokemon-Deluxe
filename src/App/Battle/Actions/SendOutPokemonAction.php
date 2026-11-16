@@ -12,55 +12,82 @@ use InvalidArgumentException;
 use Shared\Enums\BattleStatus;
 use Shared\Models\Battle;
 use Shared\Models\Species;
+use Shared\ValueObjects\Combatant;
 
 final class SendOutPokemonAction
 {
     private Battle $battle;
 
+    private int $combatantIndex;
+
     public function handle(Battle $battle, int $combatantIndex): Battle
     {
-        $this->battle = $battle;
+        $this->battle         = $battle;
+        $this->combatantIndex = $combatantIndex;
 
         return Cache::withoutOverlapping(
             key: LockKeys::battle($battle->id),
-            callback: fn () => $this->sendOut($combatantIndex),
+            callback: fn () => $this->sendOut(),
         );
     }
 
-    private function sendOut(int $combatantIndex): Battle
+    private function sendOut(): Battle
     {
         $this->battle->refresh();
 
-        $state = $this->battle->state;
+        $this->ensureBattleIsAwaitingSendOut();
+        $this->ensureCombatantIsInTeam();
+        $this->ensureCombatantHasNotFainted();
 
-        throw_unless(
-            $this->battle->status === BattleStatus::ONGOING && $state->is_awaiting_send_out,
-            BattleNotAwaitingSendOutException::class,
-        );
-
-        $combatants = $state->player_side->combatants;
-
-        throw_unless(
-            isset($combatants[$combatantIndex]),
-            InvalidArgumentException::class,
-            sprintf('The combatant index must be between 0 and %d, [%d] given.', count($combatants) - 1, $combatantIndex),
-        );
-
-        $species     = Species::query()->findOrFail($combatants[$combatantIndex]->species_id);
-        $displayName = $species->getDisplayName($combatants[$combatantIndex]->is_shiny);
-
-        throw_if($combatants[$combatantIndex]->isFainted(), new PokemonHasFaintedException($displayName));
-
-        $playerSide = $state->player_side->withActiveIndex($combatantIndex);
+        $playerSide = $this->battle->state->player_side->withActiveIndex($this->combatantIndex);
         $playerSide = $playerSide->withActiveCombatant($playerSide->activeCombatant()->withEnteredField());
 
         $this->battle->update([
-            'state' => $state
+            'state' => $this->battle->state
                 ->withPlayerSide($playerSide)
                 ->withAwaitingSendOut(false)
-                ->withLogLines(["Go! {$displayName}!"]),
+                ->withLogLines(["Go! {$this->chosenDisplayName()}!"]),
         ]);
 
         return $this->battle;
+    }
+
+    private function ensureBattleIsAwaitingSendOut(): void
+    {
+        throw_unless(
+            $this->battle->status === BattleStatus::ONGOING && $this->battle->state->is_awaiting_send_out,
+            BattleNotAwaitingSendOutException::class,
+        );
+    }
+
+    private function ensureCombatantIsInTeam(): void
+    {
+        $combatants = $this->battle->state->player_side->combatants;
+
+        throw_unless(
+            isset($combatants[$this->combatantIndex]),
+            InvalidArgumentException::class,
+            sprintf('The combatant index must be between 0 and %d, [%d] given.', count($combatants) - 1, $this->combatantIndex),
+        );
+    }
+
+    private function ensureCombatantHasNotFainted(): void
+    {
+        throw_if(
+            $this->chosenCombatant()->isFainted(),
+            fn () => new PokemonHasFaintedException($this->chosenDisplayName()),
+        );
+    }
+
+    private function chosenCombatant(): Combatant
+    {
+        return $this->battle->state->player_side->combatants[$this->combatantIndex];
+    }
+
+    private function chosenDisplayName(): string
+    {
+        return Species::query()
+            ->findOrFail($this->chosenCombatant()->species_id)
+            ->getDisplayName($this->chosenCombatant()->is_shiny);
     }
 }
