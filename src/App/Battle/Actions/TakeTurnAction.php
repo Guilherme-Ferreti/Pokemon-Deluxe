@@ -18,6 +18,7 @@ use InvalidArgumentException;
 use LogicException;
 use Shared\Enums\BattleStatus;
 use Shared\Enums\BattleType;
+use Shared\Enums\TurnActionOutcome;
 use Shared\Helpers\RandomHelper;
 use Shared\Models\Battle;
 use Shared\Models\Move;
@@ -74,9 +75,9 @@ final class TakeTurnAction
                 continue;
             }
 
-            $causesFlinch = $this->act($side, $moveIdsBySide[$side]);
+            $actionOutcome = $this->act($side, $moveIdsBySide[$side]);
 
-            if ($position === 0 && $causesFlinch) {
+            if ($position === 0 && $actionOutcome === TurnActionOutcome::CAUSED_FLINCH) {
                 $flinchedSide = $this->otherSide($side);
             }
         }
@@ -173,13 +174,13 @@ final class TakeTurnAction
     /**
      * @param  'player'|'opponent'  $side
      */
-    private function act(string $side, string $moveId): bool
+    private function act(string $side, string $moveId): TurnActionOutcome
     {
         $attacker     = $this->activeCombatant($side);
         $defenderSide = $this->otherSide($side);
 
         if ($attacker->isFainted()) {
-            return false;
+            return TurnActionOutcome::SKIPPED;
         }
 
         $move = $this->moves->findOrFail($moveId);
@@ -195,11 +196,11 @@ final class TakeTurnAction
         if (! $outcome->hasHit) {
             $this->logLines[] = "{$this->displayName($side, $attacker, atStart: true)}'s attack missed!";
 
-            return false;
+            return TurnActionOutcome::MISSED;
         }
 
         if ($move->power === null) {
-            return false;
+            return TurnActionOutcome::USED;
         }
 
         $typeMultiplier = new DamageCalculator()->typeMultiplier($move->type, ...$this->activeCombatant($defenderSide)->types);
@@ -207,7 +208,7 @@ final class TakeTurnAction
         if ($typeMultiplier === 0.0) {
             $this->logLines[] = "It doesn't affect {$this->displayName($defenderSide, $this->activeCombatant($defenderSide), atStart: false)}...";
 
-            return false;
+            return TurnActionOutcome::NO_EFFECT;
         }
 
         $landedHits = 0;
@@ -233,10 +234,10 @@ final class TakeTurnAction
         if ($defender->isFainted()) {
             $this->logLines[] = "{$this->displayName($defenderSide, $defender, atStart: true)} fainted!";
 
-            return false;
+            return TurnActionOutcome::KNOCKED_OUT;
         }
 
-        return $outcome->causesFlinch;
+        return $outcome->causesFlinch ? TurnActionOutcome::CAUSED_FLINCH : TurnActionOutcome::USED;
     }
 
     /**
