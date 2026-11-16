@@ -43,4 +43,20 @@ final class MoveFactory extends Factory
             'tm_code'         => 'TM' . str_pad((string) fake()->unique()->randomNumber(3), 3, '0', STR_PAD_LEFT),
         ];
     }
+
+    public function plainDamage(): static
+    {
+        return $this->state([
+            'category'        => MoveCategory::DAMAGE,
+            'power'           => 40,
+            'accuracy'        => 100,
+            'ailment'         => null,
+            'ailment_chance'  => null,
+            'flinch_chance'   => null,
+            'min_hits'        => null,
+            'max_hits'        => null,
+            'is_z_move'       => false,
+            'is_dynamax_move' => false,
+        ]);
+    }
 }

@@ -5,7 +5,10 @@ declare(strict_types=1);
 namespace App\Battle\Actions;
 
 use App\Battle\Exceptions\BattleNotReadyForTurnException;
+use App\Battle\Exceptions\DynamaxMoveNotAllowedException;
+use App\Battle\Exceptions\MoveAlreadyUsedException;
 use App\Battle\Mechanics\DamageCalculator;
+use App\Battle\Mechanics\MoveOutcomeRoller;
 use App\Battle\Mechanics\TurnOrderCalculator;
 use App\Battle\Support\LockKeys;
 use App\Pokemon\Mechanics\StatsCalculator;
@@ -21,6 +24,7 @@ use Shared\Models\Move;
 use Shared\Models\Species;
 use Shared\ValueObjects\BattleState;
 use Shared\ValueObjects\Combatant;
+use Shared\ValueObjects\MoveHit;
 
 final class TakeTurnAction
 {
@@ -31,8 +35,8 @@ final class TakeTurnAction
     /** @var EloquentCollection<string, Move> */
     private EloquentCollection $moves;
 
-    /** @var array<string, string> */
-    private array $speciesNames;
+    /** @var EloquentCollection<string, Species> */
+    private EloquentCollection $species;
 
     /** @var list<string> */
     private array $logLines = [];
@@ -54,15 +58,27 @@ final class TakeTurnAction
 
         $this->ensureBattleIsReadyForTurn();
 
-        $playerMoveId   = $this->findPlayerMoveId($moveSlot);
-        $opponentMoveId = $this->pickOpponentMoveId();
+        $this->loadMovesAndSpecies();
 
-        $this->loadMovesAndSpeciesNames([$playerMoveId, $opponentMoveId]);
+        $moveIdsBySide = [
+            'player'   => $this->findPlayerMoveId($moveSlot),
+            'opponent' => $this->pickOpponentMoveId(),
+        ];
 
-        $moveIdsBySide = ['player' => $playerMoveId, 'opponent' => $opponentMoveId];
+        $flinchedSide = null;
 
-        foreach ($this->rollTurnOrder() as $side) {
-            $this->act($side, $moveIdsBySide[$side]);
+        foreach ($this->rollTurnOrder() as $position => $side) {
+            if ($side === $flinchedSide) {
+                $this->logFlinch($side);
+
+                continue;
+            }
+
+            $causesFlinch = $this->act($side, $moveIdsBySide[$side]);
+
+            if ($position === 0 && $causesFlinch) {
+                $flinchedSide = $this->otherSide($side);
+            }
         }
 
         $this->battle->update(['state' => $this->state->withNextTurn($this->logLines)]);
@@ -77,6 +93,22 @@ final class TakeTurnAction
         throw_unless($isReady, BattleNotReadyForTurnException::class);
     }
 
+    private function loadMovesAndSpecies(): void
+    {
+        $playerCombatant   = $this->state->player_side->activeCombatant();
+        $opponentCombatant = $this->state->opponent_side->activeCombatant();
+
+        $this->moves = Move::query()
+            ->whereKey([...$playerCombatant->move_ids, ...$opponentCombatant->move_ids])
+            ->get()
+            ->keyBy('id');
+
+        $this->species = Species::query()
+            ->whereKey([$playerCombatant->species_id, $opponentCombatant->species_id])
+            ->get(['id', 'name', 'is_gmax'])
+            ->keyBy('id');
+    }
+
     private function findPlayerMoveId(int $moveSlot): string
     {
         $moveIds = $this->state->player_side->activeCombatant()->move_ids;
@@ -87,33 +119,42 @@ final class TakeTurnAction
             sprintf('The move slot must be between 1 and %d, [%d] given.', count($moveIds), $moveSlot),
         );
 
-        return $moveIds[$moveSlot - 1];
+        $combatant = $this->state->player_side->activeCombatant();
+        $move      = $this->moves->findOrFail($moveIds[$moveSlot - 1]);
+
+        throw_if($this->isOncePerBattleMoveUsed($combatant, $move), new MoveAlreadyUsedException($move));
+
+        throw_if($this->isDynamaxMoveNotAllowed($combatant, $move), new DynamaxMoveNotAllowedException($move));
+
+        return $move->id;
     }
 
     private function pickOpponentMoveId(): string
     {
-        $moveIds = $this->state->opponent_side->activeCombatant()->move_ids;
+        $combatant = $this->state->opponent_side->activeCombatant();
 
-        if ($moveIds === []) {
-            throw new LogicException('The opponent has no moves to use.');
+        $usableMoveIds = array_values(array_filter(
+            $combatant->move_ids,
+            fn (string $moveId) => ! $this->isOncePerBattleMoveUsed($combatant, $this->moves->findOrFail($moveId))
+                && ! $this->isDynamaxMoveNotAllowed($combatant, $this->moves->findOrFail($moveId)),
+        ));
+
+        if ($usableMoveIds === []) {
+            throw new LogicException('The opponent has no move it can use.');
         }
 
-        return RandomHelper::pick($moveIds);
+        return RandomHelper::pick($usableMoveIds);
     }
 
-    /**
-     * @param  list<string>  $moveIds
-     */
-    private function loadMovesAndSpeciesNames(array $moveIds): void
+    private function isOncePerBattleMoveUsed(Combatant $combatant, Move $move): bool
     {
-        $this->moves = Move::query()->whereKey($moveIds)->get()->keyBy('id');
+        return ($move->is_z_move || $move->is_dynamax_move)
+            && in_array($move->id, $combatant->used_once_per_battle_move_ids, true);
+    }
 
-        $speciesIds = [
-            $this->state->player_side->activeCombatant()->species_id,
-            ...array_map(fn (Combatant $combatant) => $combatant->species_id, $this->state->opponent_side->combatants),
-        ];
-
-        $this->speciesNames = Species::query()->whereKey($speciesIds)->pluck('name', 'id')->all();
+    private function isDynamaxMoveNotAllowed(Combatant $combatant, Move $move): bool
+    {
+        return $move->is_dynamax_move && ! $this->species->findOrFail($combatant->species_id)->is_gmax;
     }
 
     /**
@@ -132,22 +173,78 @@ final class TakeTurnAction
     /**
      * @param  'player'|'opponent'  $side
      */
-    private function act(string $side, string $moveId): void
+    private function act(string $side, string $moveId): bool
     {
-        $attacker = $this->activeCombatant($side);
-        $defender = $this->activeCombatant($this->otherSide($side));
+        $attacker     = $this->activeCombatant($side);
+        $defenderSide = $this->otherSide($side);
 
         if ($attacker->isFainted()) {
-            return;
+            return false;
         }
 
         $move = $this->moves->findOrFail($moveId);
 
         $this->logLines[] = "{$this->displayName($side, $attacker, atStart: true)} used {$move->name}!";
 
-        if ($move->power === null) {
-            return;
+        if ($move->is_z_move || $move->is_dynamax_move) {
+            $this->replaceActiveCombatant($side, $attacker->withUsedOncePerBattleMove($move->id));
         }
+
+        $outcome = new MoveOutcomeRoller()->roll($move);
+
+        if (! $outcome->hasHit) {
+            $this->logLines[] = "{$this->displayName($side, $attacker, atStart: true)}'s attack missed!";
+
+            return false;
+        }
+
+        if ($move->power === null) {
+            return false;
+        }
+
+        $typeMultiplier = new DamageCalculator()->typeMultiplier($move->type, ...$this->activeCombatant($defenderSide)->types);
+
+        if ($typeMultiplier === 0.0) {
+            $this->logLines[] = "It doesn't affect {$this->displayName($defenderSide, $this->activeCombatant($defenderSide), atStart: false)}...";
+
+            return false;
+        }
+
+        $landedHits = 0;
+
+        foreach ($outcome->hits as $hit) {
+            if ($this->activeCombatant($defenderSide)->isFainted()) {
+                break;
+            }
+
+            $this->dealHit($attacker, $defenderSide, $move, $hit);
+
+            $landedHits++;
+        }
+
+        $this->logEffectiveness($typeMultiplier);
+
+        if ($outcome->hitCount() > 1) {
+            $this->logLines[] = $landedHits === 1 ? 'It hit once!' : "It hit {$landedHits} times!";
+        }
+
+        $defender = $this->activeCombatant($defenderSide);
+
+        if ($defender->isFainted()) {
+            $this->logLines[] = "{$this->displayName($defenderSide, $defender, atStart: true)} fainted!";
+
+            return false;
+        }
+
+        return $outcome->causesFlinch;
+    }
+
+    /**
+     * @param  'player'|'opponent'  $defenderSide
+     */
+    private function dealHit(Combatant $attacker, string $defenderSide, Move $move, MoveHit $hit): void
+    {
+        $defender = $this->activeCombatant($defenderSide);
 
         $damage = new DamageCalculator()->calculate(
             attackerStats: new StatsCalculator()->calculate($attacker->level, $attacker->boost, $attacker->is_shiny),
@@ -155,29 +252,32 @@ final class TakeTurnAction
             defenderStats: new StatsCalculator()->calculate($defender->level, $defender->boost, $defender->is_shiny),
             defenderTypes: $defender->types,
             move: $move,
-            isCriticalHit: false,
-            randomFactor: 1.0,
+            isCriticalHit: $hit->isCriticalHit,
+            randomFactor: $hit->randomFactor,
         );
 
-        $this->logEffectiveness(new DamageCalculator()->typeMultiplier($move->type, ...$defender->types), $this->otherSide($side), $defender);
+        $this->replaceActiveCombatant($defenderSide, $defender->withCurrentHp(max(0, $defender->current_hp - $damage)));
 
-        $damagedDefender = $defender->withCurrentHp(max(0, $defender->current_hp - $damage));
-
-        $this->replaceActiveCombatant($this->otherSide($side), $damagedDefender);
-
-        if ($damagedDefender->isFainted()) {
-            $this->logLines[] = "{$this->displayName($this->otherSide($side), $damagedDefender, atStart: true)} fainted!";
+        if ($hit->isCriticalHit) {
+            $this->logLines[] = 'A critical hit!';
         }
     }
 
     /**
-     * @param  'player'|'opponent'  $defenderSide
+     * @param  'player'|'opponent'  $side
      */
-    private function logEffectiveness(float $typeMultiplier, string $defenderSide, Combatant $defender): void
+    private function logFlinch(string $side): void
     {
-        if ($typeMultiplier === 0.0) {
-            $this->logLines[] = "It doesn't affect {$this->displayName($defenderSide, $defender, atStart: false)}...";
-        } elseif ($typeMultiplier > 1.0) {
+        $combatant = $this->activeCombatant($side);
+
+        if (! $combatant->isFainted()) {
+            $this->logLines[] = "{$this->displayName($side, $combatant, atStart: true)} flinched and couldn't move!";
+        }
+    }
+
+    private function logEffectiveness(float $typeMultiplier): void
+    {
+        if ($typeMultiplier > 1.0) {
             $this->logLines[] = "It's super effective!";
         } elseif ($typeMultiplier < 1.0) {
             $this->logLines[] = "It's not very effective...";
@@ -218,7 +318,7 @@ final class TakeTurnAction
      */
     private function displayName(string $side, Combatant $combatant, bool $atStart): string
     {
-        $name = $this->speciesNames[$combatant->species_id];
+        $name = $this->species->findOrFail($combatant->species_id)->name;
         $name = $combatant->is_shiny ? "Shiny {$name}" : $name;
 
         if ($side === 'opponent' && $this->battle->type === BattleType::WILD) {

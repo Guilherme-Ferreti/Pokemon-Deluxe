@@ -70,6 +70,11 @@ final readonly class Combatant implements ValueObject
         return new self(...[...get_object_vars($this), 'current_hp' => $currentHp]);
     }
 
+    public function withUsedOncePerBattleMove(string $moveId): self
+    {
+        return new self(...[...get_object_vars($this), 'used_once_per_battle_move_ids' => [...$this->used_once_per_battle_move_ids, $moveId]]);
+    }
+
     /**
      * @param  CombatantArray  $data
      */
