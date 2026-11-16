@@ -28,15 +28,22 @@ final class CreatePokemonAction
         $this->newPokemon = $newPokemon;
         $this->pokeball   = $pokeball;
 
-        $this->ensureOwnersBoxIsNotFull();
-
         return DB::transaction(function () {
+            $this->lockOwner();
+
+            $this->ensureOwnersBoxIsNotFull();
+
             $pokemon = $this->createPokemon();
 
             $this->addBaseMoves($pokemon);
 
             return $pokemon;
         });
+    }
+
+    private function lockOwner(): void
+    {
+        User::query()->whereKey($this->owner->id)->lockForUpdate()->firstOrFail();
     }
 
     private function ensureOwnersBoxIsNotFull(): void

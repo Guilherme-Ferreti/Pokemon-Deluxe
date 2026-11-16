@@ -26,27 +26,16 @@ final class SetActiveMoveAction
         $this->move    = $move;
         $this->slot    = $slot;
 
-        $this->ensureSlotExists();
-
         Cache::withoutOverlapping(
             key: LockKeys::pokemonActiveMoves($pokemon->id),
             callback: fn () => $this->setActiveMove()
         );
     }
 
-    private function ensureSlotExists(): void
-    {
-        $maxActiveMoves = (int) config('game.pokemon.max_active_moves');
-
-        throw_if(
-            $this->slot < 1 || $this->slot > $maxActiveMoves,
-            InvalidArgumentException::class,
-            "The slot must be between 1 and {$maxActiveMoves}, [{$this->slot}] given.",
-        );
-    }
-
     private function setActiveMove(): void
     {
+        $this->ensureSlotExists();
+
         $currentSlot = $this->findCurrentSlotOfMove();
 
         if ($currentSlot === $this->slot) {
@@ -66,6 +55,17 @@ final class SetActiveMoveAction
 
             $this->assignSlot($this->move->id, $this->slot);
         });
+    }
+
+    private function ensureSlotExists(): void
+    {
+        $maxActiveMoves = (int) config('game.pokemon.max_active_moves');
+
+        throw_if(
+            $this->slot < 1 || $this->slot > $maxActiveMoves,
+            InvalidArgumentException::class,
+            "The slot must be between 1 and {$maxActiveMoves}, [{$this->slot}] given.",
+        );
     }
 
     private function findCurrentSlotOfMove(): ?int
