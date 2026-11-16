@@ -496,19 +496,21 @@ Uses `Combatant` from task 1.10.
 
 ### 1.23 Switch Pokémon during a battle
 
-- [ ] Done
+- [x] Done
 
 **Goal:** on their turn, the player can switch the Pokémon in battle for another one of the battle's team; it uses the turn (Spec 1, "Switching").
 
 **Build:**
-- The opponent's half of a turn (its move, status effects, end-of-turn damage on both sides, fainting, ending the battle through `EndBattleAction`) reuses the turn pipes instead of a separate action: the switch sends `TurnData` through `EnsureBattleIsReadyForTurn`, `LoadMovesAndSpecies`, a new switch pipe, `ChooseOpponentMove`, `TakeActions` with only the opponent acting, `ApplyEndOfTurnDamage` (both sides) and `SaveTurn`. The player's `TurnData::$playerAction` stays null. Decide in this task how `TakeActions` learns that only the opponent acts (today it starts an action for every side in `turnOrder`, which also orders the end-of-turn damage). `ThrowBallAction` (task 2.12) reuses the same pipes.
+- The opponent's half of a turn (its move, status effects, end-of-turn damage on both sides, fainting, ending the battle through `EndBattleAction`) reuses the turn pipes instead of a separate action: the switch sends `TurnData` through `EnsureBattleIsReadyForTurn`, `LoadMovesAndSpecies`, `EnsureSwitchIsAllowed`, `SwitchPlayerPokemon`, `ChooseOpponentMove`, `TakeActions`, `ApplyEndOfTurnDamage` (both sides), `CreditOpponentKnockout` (an opponent that faints from its own poison still credits the player's new active Pokémon) and `SaveTurn`. The player's `TurnData::$playerAction` stays null. `ThrowBallAction` (task 2.12) reuses the same pipes.
+- How `TakeActions` learns that only the opponent acts: `TurnData`'s inputs are a nullable `moveSlot` (a move turn) and `switchIndex` (a switch). `TurnData::isUsingMove(Side)` is true for the opponent and for the player only when a move slot was given, and `TakeActions` skips a side that isn't using a move. `SwitchPlayerPokemon` sets `turnOrder` to player then opponent, which also orders the end-of-turn damage.
+- `LoadMovesAndSpecies` loads the species of the player's whole team (not just the active one), so the switch can name the Pokémon coming in.
 - `App\Battle\Actions\SwitchPokemonAction::handle(Battle $battle, int $combatantIndex): Battle`, under the same lock as `TakeTurnAction`:
   - Refuses when the battle is not `ONGOING` or is awaiting a send-out (`BattleNotReadyForTurnException`: a faint uses the free `SendOutPokemonAction` instead).
-  - Refuses an index outside the player's side, the active combatant or a fainted one (`App\Battle\Exceptions\InvalidSwitchException` with the reason).
+  - Refuses an index outside the player's side, the active combatant or a fainted one (`App\Battle\Exceptions\InvalidSwitchException::notInTeam()`, `alreadyInBattle()`, `fainted()`; checked by the `EnsureSwitchIsAllowed` pipe).
   - The leaving combatant loses its confusion; its other ailment stays. The chosen one becomes active with `has_entered_field = true`.
   - Logs "Come back, Shiny Magikarp!" and "Go! Dragonite!", then the opponent acts (always after the switch, with no turn-order roll), and `SaveTurn` increments `turn`.
 - The player's side is the battle's own snapshot (party, chosen gym team or Tower team), so switching never reads the party again.
-- Route `POST /battle/switch` named `battle.web.switch` → `SwitchPokemonController` with `SwitchPokemonRequest` (`combatant_index`).
+- Route `POST /battle/switch` named `battle.web.switch` → `SwitchPokemonController` with `SwitchPokemonRequest` (`combatantIndex`, camelCase like the other battle requests).
 
 **Tests:** the switch makes the chosen Pokémon active and the opponent then attacks it; `has_entered_field` set (it gets XP at the end); confusion cleared, other ailments kept; refused for the active, a fainted or an unknown combatant, while awaiting a send-out and after the battle ended; end-of-turn damage still applies; a switch that ends with the new Pokémon fainting asks for a send-out; feature test for the route.
 
@@ -721,7 +723,7 @@ Read [02-catching-and-exploration.md](02-catching-and-exploration.md) first. Nee
 **Goal:** catching in a wild battle.
 
 **Build:**
-- A failed throw uses the turn like a switch: reuse the opponent's half of the turn from task 1.23 (the turn pipes).
+- A failed throw uses the turn like a switch: reuse the opponent's half of the turn from task 1.23 (the turn pipes, with a `TurnData` that has no `moveSlot`, so `TakeActions` skips the player).
 - `CreatePokemonAction`: add `bool $joinPartyIfRoom = false`; when true, the Pokémon joins the party if it has fewer than `game.user.max_party_size` (new config, 6).
 - `App\Battle\Actions\ThrowBallAction::handle(Battle $battle, Pokeball $pokeball): Battle`:
   - Refuses outside `ONGOING` wild battles or while awaiting a send-out (`App\Battle\Exceptions\NotAWildBattleException`, `BattleNotReadyForTurnException`).

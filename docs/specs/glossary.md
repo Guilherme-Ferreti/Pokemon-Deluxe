@@ -53,8 +53,8 @@ One name per idea, used everywhere: specs, code, database, tests and UI. When yo
 | Battle sprites | `Species::getDisplayFrontSprite()` (opponent), `getDisplayBackSprite()` (player) | The back sprite falls back to the front one when the species has none. |
 | Faint | `isFainted()` | `current_hp` is 0. |
 | Send out | `SendOutPokemonAction` | Picking the next Pokémon after a faint. Free. |
-| Switch | `SwitchPokemonAction` | Changing the Pokémon in battle on the player's turn. Uses the turn. |
-| Opponent's half of a turn | The turn pipes with only the opponent acting | The opponent's move, end-of-turn damage and fainting; shared by moves, switches and ball throws (task 1.23). |
+| Switch | `SwitchPokemonAction`, `SwitchPokemonController` (`POST /battle/switch`, `combatantIndex`), `InvalidSwitchException` | Changing the Pokémon in battle on the player's turn. Uses the turn. Checked by the `EnsureSwitchIsAllowed` pipe, done by `SwitchPlayerPokemon`. |
+| Opponent's half of a turn | The turn pipes with only the opponent acting; `TurnData::isUsingMove()` | The opponent's move, end-of-turn damage and fainting; shared by moves, switches and ball throws. A `TurnData` without a `moveSlot` lets only the opponent act. |
 | Run (forfeit) | `ForfeitBattleAction`, `BattleStatus::FORFEITED` | The UI says "Run". Counts as a loss. |
 | Battle ended | `EndBattleAction`, `BattleEnded` event | The one place a battle ends; `isWin` for won and caught battles. |
 | Earned XP | `ExperienceGain` (`combatant_index`, `earned_experience`, `level_before`, `level_after`) in `BattleState::experience_gains` | Each player combatant's result, saved when the battle ends and shown on the end screen. |

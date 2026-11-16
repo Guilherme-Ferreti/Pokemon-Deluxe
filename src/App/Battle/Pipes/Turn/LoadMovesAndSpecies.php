@@ -8,6 +8,7 @@ use App\Battle\Data\TurnData;
 use Closure;
 use Shared\Models\Move;
 use Shared\Models\Species;
+use Shared\ValueObjects\Combatant;
 
 final class LoadMovesAndSpecies
 {
@@ -25,7 +26,10 @@ final class LoadMovesAndSpecies
             ->keyBy('id');
 
         $turn->species = Species::query()
-            ->whereKey([$playerCombatant->species_id, $opponentCombatant->species_id])
+            ->whereKey([
+                ...array_map(fn (Combatant $combatant) => $combatant->species_id, $turn->state->player_side->combatants),
+                $opponentCombatant->species_id,
+            ])
             ->get(['id', 'name', 'is_gmax'])
             ->keyBy('id');
 

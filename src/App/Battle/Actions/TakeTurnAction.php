@@ -40,7 +40,7 @@ final class TakeTurnAction
     {
         $this->battle->refresh();
 
-        $turn = new TurnData($this->battle, $this->moveSlot);
+        $turn = new TurnData($this->battle, moveSlot: $this->moveSlot);
 
         Pipeline::send($turn)
             ->through([

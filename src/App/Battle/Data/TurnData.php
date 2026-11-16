@@ -38,7 +38,8 @@ final class TurnData
 
     public function __construct(
         public readonly Battle $battle,
-        public readonly int $moveSlot,
+        public readonly ?int $moveSlot = null,
+        public readonly ?int $switchIndex = null,
     ) {
         $this->state = $battle->state;
     }
@@ -50,9 +51,28 @@ final class TurnData
 
     public function playerMove(): Move
     {
+        if ($this->moveSlot === null) {
+            throw new LogicException('The player is not using a move this turn.');
+        }
+
         $moveIds = $this->state->player_side->activeCombatant()->move_ids;
 
         return $this->moves->findOrFail($moveIds[$this->moveSlot - 1] ?? throw new LogicException('The move slot must be checked first.'));
+    }
+
+    public function isUsingMove(Side $side): bool
+    {
+        return $side === Side::OPPONENT || $this->moveSlot !== null;
+    }
+
+    public function chosenSwitchIndex(): int
+    {
+        return $this->switchIndex ?? throw new LogicException('The player is not switching this turn.');
+    }
+
+    public function switchPlayerActiveIndex(int $combatantIndex): void
+    {
+        $this->state = $this->state->withPlayerSide($this->state->player_side->withActiveIndex($combatantIndex));
     }
 
     public function startActionFor(Side $side): TurnActionData

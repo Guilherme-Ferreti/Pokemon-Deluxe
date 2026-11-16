@@ -29,6 +29,10 @@ final class TakeActions
     public function handle(TurnData $turn, Closure $next): TurnData
     {
         foreach ($turn->turnOrder as $side) {
+            if (! $turn->isUsingMove($side)) {
+                continue;
+            }
+
             $action = $turn->startActionFor($side);
 
             Pipeline::send($action)
