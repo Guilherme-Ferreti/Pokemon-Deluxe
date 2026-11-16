@@ -9,10 +9,12 @@ use App\Pokemon\Actions\CreatePokemonAction;
 use App\Pokemon\Events\PokemonCaught;
 use App\Pokemon\Exceptions\IncubatorEggNotReadyToCatchException;
 use App\Pokemon\Exceptions\IncubatorNotActiveException;
+use App\Pokemon\Support\Incubator;
 use App\Pokemon\Support\LockKeys;
 use App\Pokemon\ValueObjects\NewPokemon;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\DB;
+use LogicException;
 use Shared\Enums\IncubationStatus;
 use Shared\Models\Incubation;
 use Shared\Models\Pokeball;
@@ -28,7 +30,7 @@ final class CatchPokemonAction
 
     private Pokeball $pokeball;
 
-    private Incubation $incubation;
+    private ?Incubator $incubator = null;
 
     private Pokemon $pokemon;
 
@@ -48,8 +50,9 @@ final class CatchPokemonAction
 
     private function catchPokemon(): void
     {
-        $this->loadActiveIncubation();
+        $this->loadIncubator();
 
+        $this->ensureIncubatorIsActive();
         $this->ensureEggIsReadyToCatch();
 
         DB::transaction(function (): void {
@@ -57,7 +60,7 @@ final class CatchPokemonAction
 
             $this->pokemon = new CreatePokemonAction()->handle(
                 owner: $this->user,
-                newPokemon: NewPokemon::fromIncubation($this->incubation),
+                newPokemon: NewPokemon::fromIncubation($this->activeIncubation()),
                 pokeball: $this->pokeball
             );
 
@@ -67,29 +70,34 @@ final class CatchPokemonAction
         PokemonCaught::dispatch($this->pokemon->id, $this->user->id);
     }
 
-    private function loadActiveIncubation(): void
+    private function loadIncubator(): void
     {
-        $incubator = new ListIncubatorsAction()->handle($this->user)->get($this->incubatorIndex->value);
+        $this->incubator = new ListIncubatorsAction()->handle($this->user)->get($this->incubatorIndex->value);
+    }
 
-        if (! $incubator?->isActive()) {
-            throw new IncubatorNotActiveException($this->incubatorIndex);
-        }
-
-        $this->incubation = $incubator->incubation;
+    private function ensureIncubatorIsActive(): void
+    {
+        throw_unless($this->incubator?->isActive(), new IncubatorNotActiveException($this->incubatorIndex));
     }
 
     private function ensureEggIsReadyToCatch(): void
     {
-        if ($this->incubation->getStatus() === IncubationStatus::READY_TO_CATCH) {
-            return;
-        }
+        throw_unless(
+            $this->activeIncubation()->getStatus() === IncubationStatus::READY_TO_CATCH,
+            new IncubatorEggNotReadyToCatchException($this->incubatorIndex),
+        );
+    }
 
-        throw new IncubatorEggNotReadyToCatchException($this->incubatorIndex);
+    private function activeIncubation(): Incubation
+    {
+        return $this->incubator->incubation ?? throw new LogicException('The incubator must be checked as active first.');
     }
 
     private function markEggAsCaught(): void
     {
-        $this->incubation->caught_at = now();
-        $this->incubation->save();
+        $incubation = $this->activeIncubation();
+
+        $incubation->caught_at = now();
+        $incubation->save();
     }
 }

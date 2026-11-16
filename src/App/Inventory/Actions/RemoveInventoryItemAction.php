@@ -13,18 +13,38 @@ use Shared\Models\User;
 
 final class RemoveInventoryItemAction
 {
+    private User $user;
+
+    private EvolutionItem|Pokeball $item;
+
+    private int $quantity;
+
     public function handle(User $user, EvolutionItem|Pokeball $item, int $quantity = 1): void
     {
-        throw_if($quantity < 1, InvalidArgumentException::class, 'Quantity must be at least 1.');
+        $this->user     = $user;
+        $this->item     = $item;
+        $this->quantity = $quantity;
 
-        $affected = InventoryItem::query()
-            ->whereBelongsTo($user)
-            ->forItem($item)
-            ->where('quantity', '>=', $quantity)
-            ->decrement('quantity', $quantity);
+        $this->ensureQuantityIsPositive();
 
-        if ($affected === 0) {
-            throw new InsufficientInventoryException($item);
-        }
+        $isRemoved = $this->decrementQuantityIfEnough();
+
+        throw_unless($isRemoved, new InsufficientInventoryException($this->item));
+    }
+
+    private function ensureQuantityIsPositive(): void
+    {
+        throw_if($this->quantity < 1, InvalidArgumentException::class, 'Quantity must be at least 1.');
+    }
+
+    private function decrementQuantityIfEnough(): bool
+    {
+        $affectedRows = InventoryItem::query()
+            ->whereBelongsTo($this->user)
+            ->forItem($this->item)
+            ->where('quantity', '>=', $this->quantity)
+            ->decrement('quantity', $this->quantity);
+
+        return $affectedRows > 0;
     }
 }

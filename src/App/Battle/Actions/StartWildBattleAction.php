@@ -28,6 +28,9 @@ final class StartWildBattleAction
 
     private NewPokemon $wildPokemon;
 
+    /** @var EloquentCollection<int, Pokemon> */
+    private EloquentCollection $partyPokemon;
+
     public function handle(User $user, NewPokemon $wildPokemon): Battle
     {
         $this->user        = $user;
@@ -43,7 +46,9 @@ final class StartWildBattleAction
     {
         $this->ensureNoBattleIsOngoing();
 
-        $partyPokemon = $this->loadPartyPokemon();
+        $this->loadPartyPokemon();
+
+        $this->ensurePartyIsNotEmpty();
 
         return Battle::create([
             'user_id' => $this->user->id,
@@ -51,12 +56,12 @@ final class StartWildBattleAction
             'status'  => BattleStatus::ONGOING,
             'state'   => new BattleState(
                 turn: 1,
-                player_side: new BattleSide(combatants: $this->buildPlayerCombatants($partyPokemon), active_index: 0),
+                player_side: new BattleSide(combatants: $this->buildPlayerCombatants(), active_index: 0),
                 opponent_side: new BattleSide(combatants: [$this->buildWildCombatant()], active_index: 0),
                 is_awaiting_send_out: false,
                 log: [
                     "A wild {$this->wildPokemon->species->getDisplayName($this->wildPokemon->is_shiny)} appeared!",
-                    "Go! {$partyPokemon->firstOrFail()->getDisplayName()}!",
+                    "Go! {$this->partyPokemon->firstOrFail()->getDisplayName()}!",
                 ],
             ),
         ]);
@@ -69,30 +74,27 @@ final class StartWildBattleAction
         throw_if($hasOngoingBattle, BattleAlreadyInProgressException::class);
     }
 
-    /**
-     * @return EloquentCollection<int, Pokemon>
-     */
-    private function loadPartyPokemon(): EloquentCollection
+    private function ensurePartyIsNotEmpty(): void
     {
-        $partyPokemon = $this->user->pokemon()
+        throw_if($this->partyPokemon->isEmpty(), EmptyPartyException::class);
+    }
+
+    private function loadPartyPokemon(): void
+    {
+        $this->partyPokemon = $this->user->pokemon()
             ->inParty()
             ->with('species:id,name,types', 'activeMoves:id')
             ->orderBy('caught_at')
             ->orderBy('id')
             ->get();
-
-        throw_if($partyPokemon->isEmpty(), EmptyPartyException::class);
-
-        return $partyPokemon;
     }
 
     /**
-     * @param  EloquentCollection<int, Pokemon>  $partyPokemon
      * @return list<Combatant>
      */
-    private function buildPlayerCombatants(EloquentCollection $partyPokemon): array
+    private function buildPlayerCombatants(): array
     {
-        return array_values($partyPokemon
+        return array_values($this->partyPokemon
             ->map(fn (Pokemon $pokemon, int $index) => $this->buildPlayerCombatant($pokemon, isFirst: $index === 0))
             ->all());
     }

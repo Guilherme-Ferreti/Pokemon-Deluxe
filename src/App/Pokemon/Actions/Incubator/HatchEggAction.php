@@ -6,8 +6,10 @@ namespace App\Pokemon\Actions\Incubator;
 
 use App\Pokemon\Exceptions\IncubatorEggNotReadyToHatchException;
 use App\Pokemon\Exceptions\IncubatorNotActiveException;
+use App\Pokemon\Support\Incubator;
 use App\Pokemon\Support\LockKeys;
 use Illuminate\Support\Facades\Cache;
+use LogicException;
 use Shared\Enums\IncubationStatus;
 use Shared\Models\Incubation;
 use Shared\Models\User;
@@ -19,7 +21,7 @@ final class HatchEggAction
 
     private IncubatorIndex $incubatorIndex;
 
-    private Incubation $incubation;
+    private ?Incubator $incubator = null;
 
     public function handle(User $user, IncubatorIndex $incubatorIndex): Incubation
     {
@@ -31,41 +33,47 @@ final class HatchEggAction
             callback: fn () => $this->hatchEgg()
         );
 
-        return $this->incubation;
+        return $this->activeIncubation();
     }
 
     private function hatchEgg(): void
     {
-        $this->loadActiveIncubation();
+        $this->loadIncubator();
 
+        $this->ensureIncubatorIsActive();
         $this->ensureEggIsReadyToHatch();
 
         $this->markEggAsHatched();
     }
 
-    private function loadActiveIncubation(): void
+    private function loadIncubator(): void
     {
-        $incubator = new ListIncubatorsAction()->handle($this->user)->get($this->incubatorIndex->value);
+        $this->incubator = new ListIncubatorsAction()->handle($this->user)->get($this->incubatorIndex->value);
+    }
 
-        if (! $incubator?->isActive()) {
-            throw new IncubatorNotActiveException($this->incubatorIndex);
-        }
-
-        $this->incubation = $incubator->incubation;
+    private function ensureIncubatorIsActive(): void
+    {
+        throw_unless($this->incubator?->isActive(), new IncubatorNotActiveException($this->incubatorIndex));
     }
 
     private function ensureEggIsReadyToHatch(): void
     {
-        if ($this->incubation->getStatus() === IncubationStatus::READY_TO_HATCH) {
-            return;
-        }
+        throw_unless(
+            $this->activeIncubation()->getStatus() === IncubationStatus::READY_TO_HATCH,
+            new IncubatorEggNotReadyToHatchException($this->incubatorIndex),
+        );
+    }
 
-        throw new IncubatorEggNotReadyToHatchException($this->incubatorIndex);
+    private function activeIncubation(): Incubation
+    {
+        return $this->incubator->incubation ?? throw new LogicException('The incubator must be checked as active first.');
     }
 
     private function markEggAsHatched(): void
     {
-        $this->incubation->hatched_at = now();
-        $this->incubation->save();
+        $incubation = $this->activeIncubation();
+
+        $incubation->hatched_at = now();
+        $incubation->save();
     }
 }

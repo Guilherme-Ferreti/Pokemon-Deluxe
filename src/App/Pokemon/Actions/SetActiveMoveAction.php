@@ -20,6 +20,8 @@ final class SetActiveMoveAction
 
     private int $slot;
 
+    private ?Move $knownMove = null;
+
     public function handle(Pokemon $pokemon, Move $move, int $slot): void
     {
         $this->pokemon = $pokemon;
@@ -34,9 +36,12 @@ final class SetActiveMoveAction
 
     private function setActiveMove(): void
     {
-        $this->ensureSlotExists();
+        $this->loadKnownMove();
 
-        $currentSlot = $this->findCurrentSlotOfMove();
+        $this->ensureSlotExists();
+        $this->ensureMoveIsKnown();
+
+        $currentSlot = $this->currentSlotOfMove();
 
         if ($currentSlot === $this->slot) {
             return;
@@ -57,6 +62,11 @@ final class SetActiveMoveAction
         });
     }
 
+    private function loadKnownMove(): void
+    {
+        $this->knownMove = $this->pokemon->knownMoves()->whereKey($this->move->id)->first();
+    }
+
     private function ensureSlotExists(): void
     {
         $maxActiveMoves = (int) config('game.pokemon.max_active_moves');
@@ -68,15 +78,14 @@ final class SetActiveMoveAction
         );
     }
 
-    private function findCurrentSlotOfMove(): ?int
+    private function ensureMoveIsKnown(): void
     {
-        $knownMove = $this->pokemon->knownMoves()->whereKey($this->move->id)->first();
+        throw_unless($this->knownMove instanceof Move, new MoveNotKnownException($this->pokemon, $this->move));
+    }
 
-        if (! $knownMove instanceof Move) {
-            throw new MoveNotKnownException($this->pokemon, $this->move);
-        }
-
-        $slot = $knownMove->getRelationValue('pivot')->slot;
+    private function currentSlotOfMove(): ?int
+    {
+        $slot = $this->knownMove?->getRelationValue('pivot')->slot;
 
         return $slot === null ? null : (int) $slot;
     }

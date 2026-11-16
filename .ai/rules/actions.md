@@ -13,3 +13,6 @@ Guard clauses live in private `ensure*()` methods that take no arguments: `handl
 
 ## Lock the owning row when the action can run inside a caller's transaction
 A `Cache::withoutOverlapping` lock is released when its callback returns, which is before an outer `DB::transaction` commits. An action that guards on saved data and may run inside another action's transaction (e.g. `CreatePokemonAction` inside `CatchPokemonAction`) instead locks the row that owns that data with `lockForUpdate()` inside its own `DB::transaction`, before its guards (`User::query()->whereKey($this->owner->id)->lockForUpdate()->firstOrFail()`). The database holds that lock until the outermost transaction commits.
+
+## Keep loading and guarding apart
+A `load*()` method only loads (a missing record becomes `null` on a property); the `ensure*()` method that follows decides whether that is allowed (e.g. `loadIncubator()` then `ensureIncubatorIsActive()`). A getter returns the checked value with its non-null type, throwing a `LogicException` if it is called before the guard (e.g. `activeIncubation()`). The one exception is an atomic conditional write, where the database does the check and the write in one statement (e.g. `decrement()` with `where('quantity', '>=', $quantity)` in `RemoveInventoryItemAction`): it needs no lock, and the action throws right after it when no row changed.
