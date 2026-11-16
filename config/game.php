@@ -34,6 +34,22 @@ return [
         ],
     ],
 
+    'experience' => [
+        'base'                => 250, // XP for defeating a Pokémon of the same level in a wild battle.
+        'min_ratio'           => 0.1, // Lowest opponent level ÷ own level counted (0.1 = a much stronger Pokémon still gets 10%).
+        'max_ratio'           => 3,   // Highest opponent level ÷ own level counted (3 = at most triple XP).
+        'knockout_multiplier' => 1.5, // Extra XP for the Pokémon that knocked the opponent out (1.5 = 50% more).
+        'xp_share_ratio'      => 0.5, // Share of the formula the XP Share gives Pokémon that never came out (0.5 = half).
+
+        'battle_bonuses' => [
+            'wild'         => 1,   // XP multiplier in wild battles.
+            'trainer'      => 1.5, // XP multiplier in trainer battles.
+            'gym'          => 2,   // XP multiplier in gym battles.
+            'elite-four'   => 2,   // XP multiplier in Elite Four and Champion battles.
+            'battle-tower' => 1,   // XP multiplier in Battle Tower battles.
+        ],
+    ],
+
     'battle' => [
         'stab_multiplier'         => 1.5,  // Extra damage when the move's type is one of the attacker's types (1.5 = 50% more).
         'critical_hit_multiplier' => 1.5,  // Extra damage a critical hit deals (1.5 = 50% more).

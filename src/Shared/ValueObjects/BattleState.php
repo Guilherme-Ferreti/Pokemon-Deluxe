@@ -9,13 +9,15 @@ use Shared\Interfaces\ValueObject;
 
 /**
  * @phpstan-import-type BattleSideArray from BattleSide
+ * @phpstan-import-type ExperienceGainArray from ExperienceGain
  *
- * @phpstan-type BattleStateArray array{turn: int, player_side: BattleSideArray, opponent_side: BattleSideArray, is_awaiting_send_out: bool, log: list<string>}
+ * @phpstan-type BattleStateArray array{turn: int, player_side: BattleSideArray, opponent_side: BattleSideArray, is_awaiting_send_out: bool, log: list<string>, experience_gains: list<ExperienceGainArray>}
  */
 final readonly class BattleState implements ValueObject
 {
     /**
      * @param  list<string>  $log
+     * @param  list<ExperienceGain>  $experience_gains
      */
     public function __construct(
         public int $turn,
@@ -23,6 +25,7 @@ final readonly class BattleState implements ValueObject
         public BattleSide $opponent_side,
         public bool $is_awaiting_send_out,
         public array $log,
+        public array $experience_gains = [],
     ) {
         throw_if($turn < 1, InvalidArgumentException::class, "The turn must be at least 1, [{$turn}] given.");
     }
@@ -59,6 +62,14 @@ final readonly class BattleState implements ValueObject
     }
 
     /**
+     * @param  list<ExperienceGain>  $experienceGains
+     */
+    public function withExperienceGains(array $experienceGains): self
+    {
+        return new self(...[...get_object_vars($this), 'experience_gains' => $experienceGains]);
+    }
+
+    /**
      * @param  BattleStateArray  $data
      */
     public static function fromArray(array $data): self
@@ -69,6 +80,7 @@ final readonly class BattleState implements ValueObject
             opponent_side: BattleSide::fromArray($data['opponent_side']),
             is_awaiting_send_out: $data['is_awaiting_send_out'],
             log: $data['log'],
+            experience_gains: array_map(ExperienceGain::fromArray(...), $data['experience_gains']),
         );
     }
 
@@ -83,6 +95,7 @@ final readonly class BattleState implements ValueObject
             'opponent_side'        => $this->opponent_side->toArray(),
             'is_awaiting_send_out' => $this->is_awaiting_send_out,
             'log'                  => $this->log,
+            'experience_gains'     => array_map(fn (ExperienceGain $gain) => $gain->toArray(), $this->experience_gains),
         ];
     }
 

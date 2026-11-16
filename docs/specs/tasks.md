@@ -368,20 +368,20 @@ Uses `Combatant` from task 1.10.
 
 ### 1.17 XP when a battle ends
 
-- [ ] Done
+- [x] Done
 
 **Goal:** Pokémon that fought gain XP and level up, whatever the result.
 
 **Build:**
-- `App\Pokemon\Services\ExperienceCalculator` → move to `App\Pokemon\Mechanics\ExperienceCalculator` (update callers). Add `experienceForDefeating(int $opponentLevel, int $pokemonLevel, BattleType $battleType, bool $isKnockout): int` = 250 × clamp(opponentLevel ÷ pokemonLevel, 0.1, 3) × battle bonus × 1.5 when it knocked the opponent out, rounded down (Spec 1, "XP").
+- `App\Pokemon\Services\ExperienceCalculator` → move to `App\Pokemon\Mechanics\ExperienceCalculator` (update callers; the `Services` folder and its architecture rule are gone, since nothing else lived there). Add `experienceForDefeating(int $opponentLevel, int $pokemonLevel, BattleType $battleType, bool $isKnockout): int` = 250 × clamp(opponentLevel ÷ pokemonLevel, 0.1, 3) × battle bonus × 1.5 when it knocked the opponent out, rounded down (Spec 1, "XP").
 - Config `game.experience`: `base` (250), `min_ratio` (0.1), `max_ratio` (3), `battle_bonuses` (wild 1, trainer 1.5, gym 2, elite four 2, battle tower 1), `knockout_multiplier` (1.5), `xp_share_ratio` (0.5, used by task 5.10).
-- `App\Pokemon\Actions\AwardExperienceAction::handle(Pokemon $pokemon, int $experience): void`: adds XP, updates `level` with `levelForExperience()`, stops at level 100.
-- Track on each opponent `Combatant` which player combatant knocked it out (`knocked_out_by`, an index).
-- In `EndBattleAction`, for every ending (`WON`, `LOST`, `FORFEITED`, `CAUGHT`): every player combatant with `has_entered_field` gets the sum, over each opponent Pokémon knocked out, of `experienceForDefeating()` (with the knockout bonus for the ones it knocked out). A caught Pokémon counts as knocked out by the player's active combatant. Opponents still standing give nothing, so running from a wild battle gives no XP.
-- Save each player combatant's result in the state for the end screen: `earned_experience`, `level_before`, `level_after`.
-- Battle Tower battles are counted the same way but not paid here: task 6.12 saves their XP in the run.
+- `App\Pokemon\Actions\AwardExperienceAction::handle(Pokemon $pokemon, int $experience): Pokemon`: locks the Pokémon's row, refuses negative XP, adds the XP up to the level 100 total (`experienceForLevel(100)`) and updates `level` with `levelForExperience()`.
+- Each opponent `Combatant` has `knocked_out_by` (the player combatant's index, null while standing). The turn pipe `CreditOpponentKnockout` (after `ApplyEndOfTurnDamage`) sets it to the player's active combatant whenever the opponent's active Pokémon faints, whatever knocked it out: a move, its own burn or poison, or hurting itself in confusion.
+- `App\Battle\Mechanics\EarnedExperienceCalculator::earnedByCombatant(BattleState, BattleType, BattleStatus): array<int, int>`: for every player combatant with `has_entered_field`, the sum over each fainted opponent of `experienceForDefeating()` (with the knockout bonus when `knocked_out_by` is its index). On `CAUGHT`, the opponent's active Pokémon counts as knocked out by the player's active combatant. Opponents still standing give nothing, so running from a wild battle gives no XP.
+- `EndBattleAction`, for every ending (`WON`, `LOST`, `FORFEITED`, `CAUGHT`), pays each amount through `AwardExperienceAction` inside its own `DB::transaction` (the exception in `.ai/rules/events.md`), and saves each result in `BattleState::experience_gains`: a list of `Shared\ValueObjects\ExperienceGain` (`combatant_index`, `earned_experience`, `level_before`, `level_after`) for the end screen. `earned_experience` is what was really added (0 at level 100). A combatant whose Pokémon no longer exists gets 0.
+- Battle Tower battles are counted the same way but not paid here: their `ExperienceGain` holds the counted XP with the level unchanged, and task 6.12 saves it in the run.
 
-**Tests:** `ExperienceCalculatorTest` with every row of Spec 1's XP table, the 0.1 and 3 caps and each battle bonus; XP added; level goes up; level 100 gains nothing; only Pokémon that entered the field gain XP; the knockout bonus; several defeated opponents add up; a loss pays for the opponents knocked out before it; running with none knocked out pays nothing; a catch pays like a knockout by the active Pokémon; the state holds each result.
+**Tests:** `ExperienceCalculatorTest` with every row of Spec 1's XP table, the 0.1 and 3 caps and each battle bonus; `AwardExperienceActionTest`: XP added, level goes up, level 100 gains nothing, negative XP refused; `EndBattleActionTest`: only Pokémon that entered the field gain XP, the knockout bonus, several defeated opponents add up, every ending pays for the opponents knocked out before it, running with none knocked out pays nothing, a catch pays like a knockout by the active Pokémon, Battle Tower XP is counted but not paid, the state holds each result; `TakeTurnActionTest`: the knockout is credited to the player's active Pokémon for a move and for a burn.
 
 **Done when:** tests pass.
 

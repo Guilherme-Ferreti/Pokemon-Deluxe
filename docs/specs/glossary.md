@@ -49,7 +49,11 @@ One name per idea, used everywhere: specs, code, database, tests and UI. When yo
 | Opponent's half of a turn | The turn pipes with only the opponent acting | The opponent's move, end-of-turn damage and fainting; shared by moves, switches and ball throws (task 1.23). |
 | Run (forfeit) | `ForfeitBattleAction`, `BattleStatus::FORFEITED` | The UI says "Run". Counts as a loss. |
 | Battle ended | `EndBattleAction`, `BattleEnded` event | The one place a battle ends; `isWin` for won and caught battles. |
-| Earned XP | `earned_experience`, `level_before`, `level_after` | Each player combatant's result, shown on the end screen. |
+| Earned XP | `ExperienceGain` (`combatant_index`, `earned_experience`, `level_before`, `level_after`) in `BattleState::experience_gains` | Each player combatant's result, saved when the battle ends and shown on the end screen. |
+| Earned XP per combatant | `EarnedExperienceCalculator::earnedByCombatant()` | The XP each player combatant that entered the field earned in a battle. |
+| XP for one defeated Pokémon | `ExperienceCalculator::experienceForDefeating()` (`App\Pokemon\Mechanics`) | Spec 1's formula. |
+| Paying XP | `AwardExperienceAction` | Adds XP to a Pokémon and levels it up, up to level 100. |
+| Knocked out by | `Combatant::$knocked_out_by` | The index of the player combatant credited with an opponent's knockout (`CreditOpponentKnockout`). |
 | First mover | `firstMoverChance` | Percentage chance (0–100) to act first this turn. |
 | Area | `Area` enum | The 9 places to explore (`Area::FOREST`). |
 | Explore / Keep exploring | `ExploreAction` | Both roll a new encounter. |

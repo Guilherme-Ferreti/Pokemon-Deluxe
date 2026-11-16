@@ -7,6 +7,7 @@ namespace App\Battle\Actions;
 use App\Battle\Data\TurnData;
 use App\Battle\Pipes\Turn\ApplyEndOfTurnDamage;
 use App\Battle\Pipes\Turn\ChooseOpponentMove;
+use App\Battle\Pipes\Turn\CreditOpponentKnockout;
 use App\Battle\Pipes\Turn\EnsureBattleIsReadyForTurn;
 use App\Battle\Pipes\Turn\EnsurePlayerMoveIsUsable;
 use App\Battle\Pipes\Turn\LoadMovesAndSpecies;
@@ -50,6 +51,7 @@ final class TakeTurnAction
                 RollTurnOrder::class,
                 TakeActions::class,
                 ApplyEndOfTurnDamage::class,
+                CreditOpponentKnockout::class,
                 SaveTurn::class,
             ])
             ->thenReturn();

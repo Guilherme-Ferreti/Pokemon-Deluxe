@@ -6,7 +6,7 @@ paths:
 # App
 
 ## Organize features as domain modules
-Organize features into `src/App/{Domain}/` folders. Each domain contains `Actions/`, `Http/Web/Controllers/`, `Http/Web/PageProps/`, `Http/Web/Requests/`, `Filters/`, `Queries/`, `Enums/`, and `Http/Web/routes.php`. A domain may also have `Http/Api/` (controllers and routes), `Http/Web/Middlewares/`, `Events/`, `Exceptions/`, `Listeners/`, `Mechanics/`, `Support/`, `Services/`, `ValueObjects/`, `Data/`, and `Pipes/`. Every one of these folders is covered by an `arch()` rule in `tests/Architectural/ArchitecturalTest.php`; add a rule when introducing a new kind of folder. Shared code lives in `src/Shared/`.
+Organize features into `src/App/{Domain}/` folders. Each domain contains `Actions/`, `Http/Web/Controllers/`, `Http/Web/PageProps/`, `Http/Web/Requests/`, `Filters/`, `Queries/`, `Enums/`, and `Http/Web/routes.php`. A domain may also have `Http/Api/` (controllers and routes), `Http/Web/Middlewares/`, `Events/`, `Exceptions/`, `Listeners/`, `Mechanics/`, `Support/`, `ValueObjects/`, `Data/`, and `Pipes/`. Every one of these folders is covered by an `arch()` rule in `tests/Architectural/ArchitecturalTest.php`; add a rule when introducing a new kind of folder. Shared code lives in `src/Shared/`.
 
 A cohesive slice of a domain may be grouped further into a feature subfolder that mirrors across layers (e.g. `Actions/Incubator/` and `Http/Web/Controllers/Incubator/`). Mirror the same subfolder in the tests (e.g. `tests/App/{Domain}/Unit/Actions/Incubator/` and `tests/App/{Domain}/Feature/Incubator/`).
 

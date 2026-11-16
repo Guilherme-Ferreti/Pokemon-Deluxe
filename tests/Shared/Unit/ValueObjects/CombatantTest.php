@@ -71,4 +71,5 @@ it('rejects invalid values', function (string $field, mixed $invalidValue) {
     'negative ailment turns left'   => ['ailment_turns_left', -1],
     'negative confusion turns left' => ['confusion_turns_left', -1],
     'used move it does not have'    => ['used_once_per_battle_move_ids', ['move-9']],
+    'negative knocked out by'       => ['knocked_out_by', -1],
 ]);

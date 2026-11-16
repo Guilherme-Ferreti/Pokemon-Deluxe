@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Database\Factories;
 
-use App\Pokemon\Services\ExperienceCalculator;
+use App\Pokemon\Mechanics\ExperienceCalculator;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Shared\Enums\PokemonGender;
 use Shared\Models\Move;

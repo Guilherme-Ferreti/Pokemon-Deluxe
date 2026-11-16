@@ -163,13 +163,6 @@ arch('Mechanics')
         Auth::class,
     ]);
 
-arch('Services')
-    ->expect('App\*\Services')
-    ->toBeClasses()
-    ->toBeFinal()
-    ->toExtendNothing()
-    ->not->toHaveProtectedMethods();
-
 arch('Base')
     ->expect('Shared\Base')
     ->toBeClasses()

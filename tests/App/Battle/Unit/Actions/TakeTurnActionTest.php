@@ -1178,6 +1178,74 @@ describe('fainting and ending', function () {
         Event::assertDispatched(BattleEnded::class, fn (BattleEnded $event) => $event->status === BattleStatus::WON && $event->isWin);
     });
 
+    it('credits the knockout to the player active pokemon, however the opponent fainted', function (?Ailment $opponentAilment, array $rolls) {
+        Event::fake([BattleEnded::class]);
+
+        $pikachu      = Species::factory()->create(['name' => 'Pikachu', 'types' => [PokemonType::ELECTRIC]]);
+        $pidgey       = Species::factory()->create(['name' => 'Pidgey', 'types' => [PokemonType::NORMAL, PokemonType::FLYING]]);
+        $thunderShock = Move::factory()->plainDamage()->create(['name' => 'Thunder Shock', 'type' => PokemonType::ELECTRIC, 'power' => 40]);
+        $tackle       = Move::factory()->plainDamage()->create(['name' => 'Tackle', 'type' => PokemonType::NORMAL, 'power' => 40]);
+
+        $pikachuCombatant = [
+            'pokemon_id'                    => 'pokemon-1',
+            'species_id'                    => $pikachu->id,
+            'level'                         => 50,
+            'boost'                         => 0,
+            'is_shiny'                      => false,
+            'gender'                        => PokemonGender::MALE,
+            'types'                         => [PokemonType::ELECTRIC],
+            'move_ids'                      => [$thunderShock->id],
+            'max_hp'                        => 218,
+            'current_hp'                    => 218,
+            'ailment'                       => null,
+            'ailment_turns_left'            => 0,
+            'confusion_turns_left'          => 0,
+            'has_entered_field'             => true,
+            'used_once_per_battle_move_ids' => [],
+        ];
+
+        $battle = Battle::factory()->create([
+            'type'   => BattleType::WILD,
+            'status' => BattleStatus::ONGOING,
+            'state'  => new BattleState(
+                turn: 1,
+                player_side: new BattleSide(combatants: [
+                    new Combatant(...[...$pikachuCombatant, 'pokemon_id' => 'pokemon-0', 'has_entered_field' => false]),
+                    new Combatant(...$pikachuCombatant),
+                ], active_index: 1),
+                opponent_side: new BattleSide(combatants: [new Combatant(
+                    pokemon_id: null,
+                    species_id: $pidgey->id,
+                    level: 50,
+                    boost: 0,
+                    is_shiny: false,
+                    gender: PokemonGender::FEMALE,
+                    types: [PokemonType::NORMAL, PokemonType::FLYING],
+                    move_ids: [$tackle->id],
+                    max_hp: 218,
+                    current_hp: 10,
+                    ailment: $opponentAilment,
+                    ailment_turns_left: 0,
+                    confusion_turns_left: 0,
+                    has_entered_field: true,
+                    used_once_per_battle_move_ids: [],
+                )], active_index: 0),
+                is_awaiting_send_out: false,
+                log: [],
+            ),
+        ]);
+
+        RandomHelper::fake(array_values([$tackle->id, ...$rolls]));
+
+        $battle = new TakeTurnAction()->handle($battle, moveSlot: 1)->fresh();
+
+        expect($battle?->status)->toBe(BattleStatus::WON)
+            ->and($battle?->state->opponent_side->combatants[0]->knocked_out_by)->toBe(1);
+    })->with([
+        'by a move'                  => [null, [true, true, false, 1.0]],
+        'by its burn after the turn' => [Ailment::BURN, [true, false, true, false, 1.0]],
+    ]);
+
     it('awaits a send-out when the player active pokemon faints, or ends as lost when none are left', function (bool $hasPokemonLeft, BattleStatus $expectedStatus, bool $expectedIsAwaitingSendOut, int $expectedLossEvents) {
         Event::fake([BattleEnded::class]);
 

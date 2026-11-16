@@ -13,6 +13,7 @@ use Shared\Models\User;
 use Shared\ValueObjects\BattleSide;
 use Shared\ValueObjects\BattleState;
 use Shared\ValueObjects\Combatant;
+use Shared\ValueObjects\ExperienceGain;
 
 use function Pest\Laravel\travelTo;
 
@@ -71,18 +72,20 @@ it('saves and reloads the battle state unchanged', function () {
                     types: [PokemonType::GRASS],
                     move_ids: ['move-6', 'move-7'],
                     max_hp: 260,
-                    current_hp: 260,
+                    current_hp: 0,
                     ailment: null,
                     ailment_turns_left: 0,
                     confusion_turns_left: 0,
                     has_entered_field: true,
                     used_once_per_battle_move_ids: [],
+                    knocked_out_by: 1,
                 ),
             ],
             active_index: 0,
         ),
         is_awaiting_send_out: true,
         log: ['Wild Bulbasaur appeared!', 'Squirtle fainted!'],
+        experience_gains: [new ExperienceGain(combatant_index: 1, earned_experience: 1500, level_before: 60, level_after: 61)],
     );
 
     $battle = Battle::factory()->for($user)->create([

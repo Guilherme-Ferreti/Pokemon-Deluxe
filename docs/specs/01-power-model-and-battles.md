@@ -104,7 +104,7 @@ Level factor = level + 10, so a level 100 Pokémon is 10× a level 1, not 100×.
 ```
 
 - Battle bonus: wild ×1, trainer ×1.5, gym, Elite Four and Champion ×2, Battle Tower ×1.
-- The Pokémon that knocked the opponent out, or that was on the field when it was caught, gets ×1.5.
+- The Pokémon that knocked the opponent out, or that was on the field when it was caught, gets ×1.5. An opponent that faints from its own burn, poison or confusion counts as knocked out by the player's Pokémon on the field.
 - Pokémon that never came out get none, unless an XP Share is active: then the rest of the party gets 50% of the formula (with their own level, without the knockout bonus; see Spec 5). The XP Share does nothing in the Battle Tower.
 - Battle Tower battles save their XP in the run and pay it when the run ends (Spec 6).
 - Every number lives in `config/game.php` under `game.experience`.

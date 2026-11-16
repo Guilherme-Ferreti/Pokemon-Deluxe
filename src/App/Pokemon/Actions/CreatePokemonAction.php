@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace App\Pokemon\Actions;
 
 use App\Pokemon\Exceptions\BoxFullException;
-use App\Pokemon\Services\ExperienceCalculator;
+use App\Pokemon\Mechanics\ExperienceCalculator;
 use App\Pokemon\ValueObjects\NewPokemon;
 use Illuminate\Support\Facades\DB;
 use Shared\Exceptions\GameDataException;

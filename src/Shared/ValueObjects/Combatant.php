@@ -11,7 +11,7 @@ use Shared\Enums\PokemonType;
 use Shared\Interfaces\ValueObject;
 
 /**
- * @phpstan-type CombatantArray array{pokemon_id: string|null, species_id: string, level: int, boost: int, is_shiny: bool, gender: string, types: list<string>, move_ids: list<string>, max_hp: int, current_hp: int, ailment: string|null, ailment_turns_left: int, confusion_turns_left: int, has_entered_field: bool, used_once_per_battle_move_ids: list<string>}
+ * @phpstan-type CombatantArray array{pokemon_id: string|null, species_id: string, level: int, boost: int, is_shiny: bool, gender: string, types: list<string>, move_ids: list<string>, max_hp: int, current_hp: int, ailment: string|null, ailment_turns_left: int, confusion_turns_left: int, has_entered_field: bool, used_once_per_battle_move_ids: list<string>, knocked_out_by: int|null}
  */
 final readonly class Combatant implements ValueObject
 {
@@ -36,6 +36,7 @@ final readonly class Combatant implements ValueObject
         public int $confusion_turns_left,
         public bool $has_entered_field,
         public array $used_once_per_battle_move_ids,
+        public ?int $knocked_out_by = null,
     ) {
         $maxLevel       = (int) config('game.pokemon.max_level');
         $maxBoost       = (int) config('game.pokemon.max_boost');
@@ -58,6 +59,8 @@ final readonly class Combatant implements ValueObject
         throw_if($ailment_turns_left < 0 || $confusion_turns_left < 0, InvalidArgumentException::class, 'Turns left cannot be negative.');
 
         throw_if(array_diff($used_once_per_battle_move_ids, $move_ids) !== [], InvalidArgumentException::class, 'A used once-per-battle move must be one of the combatant moves.');
+
+        throw_if($knocked_out_by !== null && $knocked_out_by < 0, InvalidArgumentException::class, "The knocked out by index cannot be negative, [{$knocked_out_by}] given.");
     }
 
     public function isFainted(): bool
@@ -90,6 +93,11 @@ final readonly class Combatant implements ValueObject
         return new self(...[...get_object_vars($this), 'used_once_per_battle_move_ids' => [...$this->used_once_per_battle_move_ids, $moveId]]);
     }
 
+    public function withKnockedOutBy(int $combatantIndex): self
+    {
+        return new self(...[...get_object_vars($this), 'knocked_out_by' => $combatantIndex]);
+    }
+
     /**
      * @param  CombatantArray  $data
      */
@@ -111,6 +119,7 @@ final readonly class Combatant implements ValueObject
             confusion_turns_left: $data['confusion_turns_left'],
             has_entered_field: $data['has_entered_field'],
             used_once_per_battle_move_ids: $data['used_once_per_battle_move_ids'],
+            knocked_out_by: $data['knocked_out_by'],
         );
     }
 
@@ -135,6 +144,7 @@ final readonly class Combatant implements ValueObject
             'confusion_turns_left'          => $this->confusion_turns_left,
             'has_entered_field'             => $this->has_entered_field,
             'used_once_per_battle_move_ids' => $this->used_once_per_battle_move_ids,
+            'knocked_out_by'                => $this->knocked_out_by,
         ];
     }
 

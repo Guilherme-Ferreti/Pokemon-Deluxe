@@ -8,7 +8,7 @@ paths:
 # Events
 
 ## Announce what happened instead of calling other domains
-An Action that finishes something other domains may care about dispatches an event from `src/App/{Domain}/Events/`, named in the past tense (`PokemonCaught`, `BattleEnded`). Other domains react through listeners; the Action never calls their Actions directly.
+An Action that finishes something other domains may care about dispatches an event from `src/App/{Domain}/Events/`, named in the past tense (`PokemonCaught`, `BattleEnded`). Other domains react through listeners; the Action never calls their Actions directly. The one exception is another domain's Action whose result is part of this Action's own work and must commit with it: call it inside this Action's `DB::transaction` (e.g. `EndBattleAction` pays XP through `App\Pokemon\Actions\AwardExperienceAction` and saves the levels it returns).
 
 ## Events are final readonly classes that reach listeners after the commit
 Events are `final readonly` classes carrying only IDs and plain values (`pokemonId`, `userId`), never models. They use the `Dispatchable` trait and implement `ShouldDispatchAfterCommit`. The Action dispatches them with `{Event}::dispatch(...)` after its `DB::transaction`, never inside it; when the Action itself runs inside a caller's transaction, `ShouldDispatchAfterCommit` still holds the event until that transaction commits. Listeners therefore only hear about saved data, and a failing listener never undoes the change that raised the event.
