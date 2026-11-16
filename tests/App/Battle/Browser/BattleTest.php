@@ -168,6 +168,67 @@ it('sends out another pokemon after a faint', function () {
         ->assertNoJavascriptErrors();
 });
 
+it('switches to another pokemon, which the opponent then attacks', function () {
+    $user    = User::factory()->create();
+    $pikachu = Species::factory()->create(['name' => 'Pikachu', 'types' => [PokemonType::ELECTRIC]]);
+    $eevee   = Species::factory()->create(['name' => 'Eevee', 'types' => [PokemonType::NORMAL]]);
+    $pidgey  = Species::factory()->create(['name' => 'Pidgey', 'types' => [PokemonType::NORMAL, PokemonType::FLYING]]);
+    $tackle  = Move::factory()->plainDamage()->create(['name' => 'Tackle', 'type' => PokemonType::NORMAL, 'power' => 40]);
+    $bite    = Move::factory()->plainDamage()->create(['name' => 'Bite', 'type' => PokemonType::DARK, 'power' => 60]);
+
+    $combatant = [
+        'pokemon_id'                    => 'pokemon-1',
+        'species_id'                    => $pikachu->id,
+        'level'                         => 50,
+        'boost'                         => 0,
+        'is_shiny'                      => false,
+        'gender'                        => PokemonGender::MALE,
+        'types'                         => [PokemonType::ELECTRIC],
+        'move_ids'                      => [$tackle->id],
+        'max_hp'                        => 218,
+        'current_hp'                    => 218,
+        'ailment'                       => null,
+        'ailment_turns_left'            => 0,
+        'confusion_turns_left'          => 0,
+        'has_entered_field'             => true,
+        'used_once_per_battle_move_ids' => [],
+    ];
+
+    Battle::factory()->for($user)->create([
+        'status' => BattleStatus::ONGOING,
+        'state'  => new BattleState(
+            turn: 1,
+            player_side: new BattleSide(combatants: [
+                new Combatant(...$combatant),
+                new Combatant(...[...$combatant, 'pokemon_id' => 'pokemon-2', 'species_id' => $eevee->id, 'types' => [PokemonType::NORMAL], 'move_ids' => [$bite->id], 'max_hp' => 180, 'current_hp' => 180, 'has_entered_field' => false]),
+            ], active_index: 0),
+            opponent_side: new BattleSide(combatants: [
+                new Combatant(...[...$combatant, 'pokemon_id' => null, 'species_id' => $pidgey->id, 'types' => [PokemonType::NORMAL, PokemonType::FLYING]]),
+            ], active_index: 0),
+            is_awaiting_send_out: false,
+            log: ['A wild Pidgey appeared!', 'Go! Pikachu!'],
+        ),
+    ]);
+
+    RandomHelper::fake([$tackle->id, true, false, 1.0]);
+
+    actingAs($user);
+
+    visit(route('battle.web.show'))
+        ->click('@switch-pokemon-dialog__open-button')
+        ->assertVisible('@switch-pokemon-dialog')
+        ->click('@switch-pokemon-dialog__pokemon-2-radio')
+        ->click('@switch-pokemon-dialog__switch-button')
+        ->wait(1)
+        ->assertMissing('@switch-pokemon-dialog')
+        ->assertSeeIn('@battle-log-card', 'Come back, Pikachu!')
+        ->assertSeeIn('@battle-log-card', 'Go! Eevee!')
+        ->assertSeeIn('@battle-log-card', 'The wild Pidgey used Tackle!')
+        ->assertSeeIn('@combatant-panel--player__hp-indicator', '134 / 180')
+        ->assertSeeIn('@moves-card', 'Bite')
+        ->assertNoJavascriptErrors();
+});
+
 it('runs from the battle after confirming', function () {
     $user    = User::factory()->create();
     $pikachu = Species::factory()->create(['name' => 'Pikachu']);

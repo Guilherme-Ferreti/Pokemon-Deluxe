@@ -85,12 +85,12 @@ it('loads the battle page with expected structure', function () {
         ->assertInertia(fn (Assert $page) => $page
             ->component('Battle/pages/Battle/index')
             ->where('battle', [
-                'type'   => BattleType::WILD->value,
-                'status' => BattleStatus::ONGOING->value,
-                'turn'   => 3,
-                'log'    => ['A wild Pidgey appeared!', 'Go! Shiny Pikachu!'],
+                'type'              => BattleType::WILD->value,
+                'status'            => BattleStatus::ONGOING->value,
+                'turn'              => 3,
+                'log'               => ['A wild Pidgey appeared!', 'Go! Shiny Pikachu!'],
+                'isAwaitingSendOut' => false,
             ])
-            ->where('sendOut', null)
             ->where('result', null)
             ->where('player', [
                 'name'      => 'Shiny Pikachu',
@@ -103,8 +103,8 @@ it('loads the battle page with expected structure', function () {
                 'currentHp' => 150,
                 'maxHp'     => 218,
                 'team'      => [
-                    ['name' => 'Eevee', 'isFainted' => true],
-                    ['name' => 'Shiny Pikachu', 'isFainted' => false],
+                    ['name' => 'Eevee', 'portrait' => $eevee->portraits->regular, 'level' => 50, 'currentHp' => 0, 'maxHp' => 218, 'ailment' => null, 'isFainted' => true, 'isActive' => false],
+                    ['name' => 'Shiny Pikachu', 'portrait' => $pikachu->portraits->shiny, 'level' => 50, 'currentHp' => 150, 'maxHp' => 218, 'ailment' => Ailment::BURN->value, 'isFainted' => false, 'isActive' => true],
                 ],
             ])
             ->where('opponent', [
@@ -230,7 +230,7 @@ it('flags damaging moves that are super effective against the opponent', functio
     'status move'           => [PokemonType::ELECTRIC, null, [PokemonType::WATER], false],
 ]);
 
-it('lists the team to send out after a faint', function () {
+it('asks for a send-out after a faint', function () {
     $user    = User::factory()->create();
     $pikachu = Species::factory()->create(['name' => 'Pikachu']);
     $eevee   = Species::factory()->create(['name' => 'Eevee']);
@@ -271,10 +271,7 @@ it('lists the team to send out after a faint', function () {
     actingAs($user)
         ->get(route('battle.web.show'))
         ->assertInertia(fn (Assert $page) => $page
-            ->where('sendOut.team', [
-                ['name' => 'Pikachu', 'portrait' => $pikachu->portraits->regular, 'level' => 50, 'currentHp' => 0, 'maxHp' => 218, 'isFainted' => true],
-                ['name' => 'Shiny Eevee', 'portrait' => $eevee->portraits->shiny, 'level' => 40, 'currentHp' => 90, 'maxHp' => 180, 'isFainted' => false],
-            ])
+            ->where('battle.isAwaitingSendOut', true)
         );
 });
 
@@ -331,7 +328,7 @@ it('shows the end screen with the XP each pokemon earned', function (BattleStatu
                 ['name' => 'Pikachu', 'portrait' => $pikachu->portraits->regular, 'earnedExperience' => 1_875, 'levelBefore' => 25, 'levelAfter' => 26, 'experienceProgress' => 87],
                 ['name' => 'Eevee', 'portrait' => $eevee->portraits->regular, 'earnedExperience' => 937, 'levelBefore' => 25, 'levelAfter' => 25, 'experienceProgress' => null],
             ])
-            ->where('sendOut', null)
+            ->where('battle.isAwaitingSendOut', false)
         );
 })->with([
     'won'       => [BattleStatus::WON],

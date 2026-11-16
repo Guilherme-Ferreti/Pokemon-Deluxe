@@ -43,7 +43,7 @@ it('gives a new Ditto four active moves', function () {
 it('fails the seed when a species has no base moves', function () {
     seed([EvolutionItemSeeder::class, MoveSeeder::class, SpeciesSeeder::class]);
 
-    Species::factory()->create(['slug' => 'missingno']);
+    Species::factory()->create(['slug' => 'missingno', 'pokedex_number' => 9_999, 'pokedex_order' => 99_990]);
 
     seed(SpeciesBaseMovesSeeder::class);
 })->throws(RuntimeException::class, 'Species [missingno] must have exactly 4 different base moves, [0] given: [].');

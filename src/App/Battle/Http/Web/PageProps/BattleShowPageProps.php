@@ -9,6 +9,7 @@ use App\Pokemon\Mechanics\ExperienceCalculator;
 use Illuminate\Database\Eloquent\Collection as EloquentCollection;
 use Inertia\ProvidesInertiaProperties;
 use Inertia\RenderContext;
+use Shared\Enums\Ailment;
 use Shared\Enums\BattleStatus;
 use Shared\Enums\BattleType;
 use Shared\Models\Battle;
@@ -38,21 +39,21 @@ final class BattleShowPageProps implements ProvidesInertiaProperties
             'player'   => $this->getPlayerProp(...),
             'opponent' => $this->getOpponentProp(...),
             'moves'    => $this->getMovesProp(...),
-            'sendOut'  => $this->getSendOutProp(...),
             'result'   => $this->getResultProp(...),
         ];
     }
 
     /**
-     * @return array{type: BattleType, status: BattleStatus, turn: int, log: list<string>}
+     * @return array{type: BattleType, status: BattleStatus, turn: int, log: list<string>, isAwaitingSendOut: bool}
      */
     private function getBattleProp(): array
     {
         return [
-            'type'   => $this->battle->type,
-            'status' => $this->battle->status,
-            'turn'   => $this->battle->state->turn,
-            'log'    => $this->battle->state->log,
+            'type'              => $this->battle->type,
+            'status'            => $this->battle->status,
+            'turn'              => $this->battle->state->turn,
+            'log'               => $this->battle->state->log,
+            'isAwaitingSendOut' => $this->battle->status === BattleStatus::ONGOING && $this->battle->state->is_awaiting_send_out,
         ];
     }
 
@@ -70,7 +71,7 @@ final class BattleShowPageProps implements ProvidesInertiaProperties
             'sprite'    => $species->getDisplayBackSprite($combatant->gender, $combatant->is_shiny),
             'currentHp' => $combatant->current_hp,
             'maxHp'     => $combatant->max_hp,
-            'team'      => $this->team($side),
+            'team'      => $this->playerTeam($side),
         ];
     }
 
@@ -110,27 +111,6 @@ final class BattleShowPageProps implements ProvidesInertiaProperties
             'isDynamaxMove'    => $move->is_dynamax_move,
             'isSuperEffective' => $move->power !== null && $damageCalculator->typeMultiplier($move->type, ...$opponentTypes) > 1,
         ], array_map($moves->findOrFail(...), $moveIds));
-    }
-
-    /**
-     * @return array{team: list<array{name: string, portrait: ?string, level: int, currentHp: int, maxHp: int, isFainted: bool}>}|null
-     */
-    private function getSendOutProp(): ?array
-    {
-        if ($this->battle->status !== BattleStatus::ONGOING || ! $this->battle->state->is_awaiting_send_out) {
-            return null;
-        }
-
-        return [
-            'team' => array_map(fn (Combatant $combatant) => [
-                'name'      => $this->speciesOf($combatant)->getDisplayName($combatant->is_shiny),
-                'portrait'  => $this->portraitOf($combatant),
-                'level'     => $combatant->level,
-                'currentHp' => $combatant->current_hp,
-                'maxHp'     => $combatant->max_hp,
-                'isFainted' => $combatant->isFainted(),
-            ], $this->battle->state->player_side->combatants),
-        ];
     }
 
     /**
@@ -217,6 +197,23 @@ final class BattleShowPageProps implements ProvidesInertiaProperties
             'name'      => $this->speciesOf($combatant)->getDisplayName($combatant->is_shiny),
             'isFainted' => $combatant->isFainted(),
         ], $side->combatants);
+    }
+
+    /**
+     * @return list<array{name: string, portrait: ?string, level: int, currentHp: int, maxHp: int, ailment: ?Ailment, isFainted: bool, isActive: bool}>
+     */
+    private function playerTeam(BattleSide $side): array
+    {
+        return array_map(fn (Combatant $combatant, int $index) => [
+            'name'      => $this->speciesOf($combatant)->getDisplayName($combatant->is_shiny),
+            'portrait'  => $this->portraitOf($combatant),
+            'level'     => $combatant->level,
+            'currentHp' => $combatant->current_hp,
+            'maxHp'     => $combatant->max_hp,
+            'ailment'   => $combatant->ailment,
+            'isFainted' => $combatant->isFainted(),
+            'isActive'  => $index === $side->active_index,
+        ], $side->combatants, array_keys($side->combatants));
     }
 
     private function speciesOf(Combatant $combatant): Species

@@ -460,7 +460,7 @@ Uses `Combatant` from task 1.10.
 **Mock-up:** `docs/mockups/battle.html` (states "Pokémon fainted: send out", "Run confirmation", "Battle won", "Lost: XP kept", "Ran away")
 
 **Build:**
-- Route `POST /battle/send-out` (`battle.web.send-out`) → `SendOutPokemonController` with `SendOutPokemonRequest` (`combatantIndex`, 0-based); `SendOutDialog` lists the team (portrait, level, HP) when a Pokémon faints, from the `sendOut` prop (null unless awaiting a send-out).
+- Route `POST /battle/send-out` (`battle.web.send-out`) → `SendOutPokemonController` with `SendOutPokemonRequest` (`combatantIndex`, 0-based); `SendOutDialog` lists the team (portrait, level, HP) when a Pokémon faints, from the `sendOut` prop (null unless awaiting a send-out). Task 1.24 replaced that prop with `battle.isAwaitingSendOut` and the rows of `player.team`.
 - Route `POST /battle/forfeit` (`battle.web.forfeit`) → `ForfeitBattleController`; `RunBattleDialog` puts a "Run" button in the page header (a new default slot on `AppPageHeader`) with a confirmation `Dialog`. Both routes play the user's ongoing battle and warn with `BattleAlreadyEndedException` when there is none.
 - With no ongoing battle, `GET /battle` shows the end screen of the player's latest battle if it ended less than `game.battle.end_screen_minutes` (10) ago (`Battle::recentlyEnded()` scope, by `updated_at`), so it survives a reload; otherwise it still redirects to the Dashboard (task 1.19).
 - End screen (`BattleResultCard`, from the `result` prop, null while ongoing) for every ending (won, lost, ran; caught comes with task 2.19): the result, and one row per Pokémon that earned XP with the XP it got, its XP bar (`experienceProgress`, the share of the way to its next level now; none when the Pokémon no longer exists) and any level-up (from the state saved by task 1.17). With no XP earned, a short "No XP this time" line instead. A button back to the Dashboard.
@@ -518,15 +518,16 @@ Uses `Combatant` from task 1.10.
 
 ### 1.24 Battle page: switch Pokémon
 
-- [ ] Done
+- [x] Done
 
 **Goal:** switch from the battle page.
 
 **Mock-up:** `docs/mockups/battle.html` (states "Switch Pokémon", "Switched: the opponent attacks")
 
 **Build:**
-- `BattleShowPageProps`: the player's whole team for the dialog (portrait, display name, level, HP, ailment, fainted, active).
-- A "Switch Pokémon" button under the moves in every battle (next to "Throw ball" in wild battles). It opens a dialog listing the team; the active and fainted Pokémon are disabled; picking one and pressing "Switch" sends task 1.23's route.
+- `BattleShowPageProps`: `player.team` lists the player's whole team for the dialogs (portrait, display name, level, current and max HP, ailment, `isFainted`, `isActive`); the opponent's team keeps only name and fainted for the team dots. The `sendOut` prop is replaced by `battle.isAwaitingSendOut` (only while ongoing), since both dialogs now read `player.team`.
+- `BattleTeamRadioGroup` draws the team rows for both dialogs (`SpeciesPortrait`, name, level, `AilmentBadge`, "In battle" badge, `HpProgress`); the active and fainted Pokémon are disabled. The consuming dialog passes its block for the test IDs (`send-out-dialog__pokemon-2-radio`, `switch-pokemon-dialog__pokemon-2-radio`). `AilmentBadge` is shared with `CombatantPanel`.
+- `SwitchPokemonDialog`: a full-width outline "Switch Pokémon" button (swap icon) in the moves card's footer, in every battle, disabled while a move is being sent or when no other Pokémon can fight. Its dialog can be cancelled, says that switching uses the turn, and posts the choice to `battle.web.switch`; the choice is cleared each time the dialog opens or closes.
 - After the switch, the player card, HP and move buttons show the new Pokémon.
 
 **UI suggestions** (ideas, not requirements):
@@ -535,7 +536,7 @@ Uses `Combatant` from task 1.10.
 - One line under the title: "Switching uses your turn: your new Pokémon comes out first, then the opponent attacks it."
 - Disable "Switch Pokémon" while a turn is being sent, like the move buttons, and when no other Pokémon can fight.
 
-**Tests:** feature test for the team props; browser test: switch to another Pokémon and see it in battle with a new log line.
+**Tests:** feature test for the team props and `isAwaitingSendOut`; browser test: switch to another Pokémon and see it in battle (HP and moves) with the new log lines.
 
 **Done when:** a player can switch Pokémon from the battle page in any battle.
 

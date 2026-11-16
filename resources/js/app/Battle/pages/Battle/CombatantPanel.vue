@@ -18,19 +18,10 @@
       >
         +{{ combatant.boost }}
       </Badge>
-      <Tooltip v-if="combatant.ailment">
-        <TooltipTrigger as-child>
-          <Badge
-            class="combatant-panel__ailment-badge"
-            :aria-label="$page.props.labels.ailment[combatant.ailment]"
-          >
-            {{ ailmentCodes[combatant.ailment] }}
-          </Badge>
-        </TooltipTrigger>
-        <TooltipContent>
-          {{ $page.props.labels.ailment[combatant.ailment] }}
-        </TooltipContent>
-      </Tooltip>
+      <AilmentBadge
+        v-if="combatant.ailment"
+        :ailment="combatant.ailment"
+      />
     </div>
     <div class="combatant-panel__hp">
       <span
@@ -59,16 +50,11 @@ import { usePage } from '@inertiajs/vue3';
 import { computed } from 'vue';
 import PokemonDisplayName from '@/shared/components/game/PokemonDisplayName.vue';
 import { Badge } from '@/shared/components/ui/badge';
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipTrigger,
-} from '@/shared/components/ui/tooltip';
-import { Ailment } from '@/shared/types/enums';
 import type {
   BattleCombatant,
   BattleShowPageProps,
 } from '../../types/page-props/BattleShowPageProps';
+import AilmentBadge from './AilmentBadge.vue';
 import CombatantTeamDots from './CombatantTeamDots.vue';
 import HpProgress from './HpProgress.vue';
 
@@ -78,15 +64,9 @@ const props = defineProps<{
 
 const page = usePage<BattleShowPageProps>();
 
-const ailmentCodes: Record<NonNullable<BattleCombatant['ailment']>, string> = {
-  [Ailment.BURN]: 'BRN',
-  [Ailment.FREEZE]: 'FRZ',
-  [Ailment.PARALYSIS]: 'PAR',
-  [Ailment.POISON]: 'PSN',
-  [Ailment.SLEEP]: 'SLP',
-};
-
-const combatant = computed<BattleCombatant>(() => page.props[props.side]);
+const combatant = computed<Omit<BattleCombatant, 'team'>>(
+  () => page.props[props.side],
+);
 
 const hpPercentage = computed(() =>
   props.side === 'player'
@@ -118,10 +98,6 @@ const hpText = computed(() =>
 
 .combatant-panel__name {
   @apply mr-1 font-semibold;
-}
-
-.combatant-panel__ailment-badge {
-  @apply border-yellow-300 bg-yellow-100 text-yellow-800 dark:border-yellow-700 dark:bg-yellow-950 dark:text-yellow-300;
 }
 
 .combatant-panel__hp {

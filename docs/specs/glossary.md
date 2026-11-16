@@ -45,7 +45,9 @@ One name per idea, used everywhere: specs, code, database, tests and UI. When yo
 | Battle log | `log` | List of text lines shown under the battle. |
 | Ongoing battle | `Battle::ongoing()` scope | The user's battle with status `ONGOING`. |
 | Recently ended battle | `Battle::recentlyEnded()` scope, `game.battle.end_screen_minutes` | An ended battle last updated within the end-screen window; `GET /battle` shows its end screen. |
-| Sending out from the page | `SendOutPokemonController`, `SendOutPokemonRequest` (`combatantIndex`) | `POST /battle/send-out`; the index is the 0-based position in the player side's `combatants`. |
+| Sending out from the page | `SendOutPokemonController`, `SendOutPokemonRequest` (`combatantIndex`), `battle.isAwaitingSendOut` prop, `SendOutDialog` | `POST /battle/send-out`; the index is the 0-based position in the player side's `combatants`. |
+| Battle team rows | `player.team` prop (`BattleTeamMember`), `BattleTeamRadioGroup` | The player's team as listed by the send-out and switch dialogs; the active and fainted Pokémon can't be picked. |
+| Switching from the page | `SwitchPokemonDialog` | The "Switch Pokémon" button under the moves and its cancellable dialog. |
 | Running from the page | `ForfeitBattleController` | `POST /battle/forfeit`. |
 | End screen | `result` prop (`experienceGains` with `experienceProgress`), `BattleResultCard` | What the battle page shows instead of the moves once the battle has ended. |
 | Taking a turn from the page | `TakeTurnController`, `TakeTurnRequest` (`moveSlot`) | `POST /battle/turn`; the slot is the move's position (1–4) in the active combatant's `move_ids`. |

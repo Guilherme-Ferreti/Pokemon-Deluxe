@@ -15,16 +15,29 @@ export type BattleCombatant = {
   }[];
 };
 
+export type BattleTeamMember = {
+  name: Pokemon['name'];
+  portrait: string | null;
+  level: Pokemon['level'];
+  currentHp: number;
+  maxHp: number;
+  ailment: BattleCombatant['ailment'];
+  isFainted: boolean;
+  isActive: boolean;
+};
+
 export type BattleShowPageProps = {
   battle: {
     type: BattleType;
     status: BattleStatus;
     turn: number;
     log: string[];
+    isAwaitingSendOut: boolean;
   };
-  player: BattleCombatant & {
+  player: Omit<BattleCombatant, 'team'> & {
     currentHp: number;
     maxHp: number;
+    team: BattleTeamMember[];
   };
   opponent: BattleCombatant & {
     hpPercentage: number;
@@ -35,16 +48,6 @@ export type BattleShowPageProps = {
   > & {
     isSuperEffective: boolean;
   })[];
-  sendOut: {
-    team: {
-      name: Pokemon['name'];
-      portrait: string | null;
-      level: Pokemon['level'];
-      currentHp: number;
-      maxHp: number;
-      isFainted: boolean;
-    }[];
-  } | null;
   result: {
     experienceGains: {
       name: Pokemon['name'];
