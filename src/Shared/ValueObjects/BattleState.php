@@ -37,6 +37,19 @@ final readonly class BattleState implements ValueObject
         return new self(...[...get_object_vars($this), 'opponent_side' => $opponentSide]);
     }
 
+    public function withAwaitingSendOut(bool $isAwaitingSendOut): self
+    {
+        return new self(...[...get_object_vars($this), 'is_awaiting_send_out' => $isAwaitingSendOut]);
+    }
+
+    /**
+     * @param  list<string>  $logLines
+     */
+    public function withLogLines(array $logLines): self
+    {
+        return new self(...[...get_object_vars($this), 'log' => [...$this->log, ...$logLines]]);
+    }
+
     /**
      * @param  list<string>  $logLines
      */

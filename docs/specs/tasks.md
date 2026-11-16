@@ -350,15 +350,16 @@ Uses `Combatant` from task 1.10.
 
 ### 1.16 Fainting, sending out, winning, losing and running
 
-- [ ] Done
+- [x] Done
 
 **Goal:** the battle can end, always through one place.
 
 **Build:**
-- `App\Battle\Actions\EndBattleAction::handle(Battle $battle, BattleStatus $status): Battle`: the only place a battle ends. Sets the status, pays XP (task 1.17) and dispatches `App\Battle\Events\BattleEnded` (`battleId`, `userId`, `type`, `status`, `isWin` for `WON` and `CAUGHT`, `trainerId` when there is one). Other domains (missions, trainers, the Elite Four, the Battle Tower) react to this event; they never end battles or check statuses themselves.
+- `App\Battle\Actions\EndBattleAction::handle(Battle $battle, BattleStatus $status): Battle`: the only place a battle ends. Sets the status, pays XP (task 1.17) and dispatches `App\Battle\Events\BattleEnded` (`battleId`, `userId`, `type`, `status`, `isWin` for `WON` and `CAUGHT`; `trainerId` comes with task 6.4). Throws a `LogicException` for a battle that has already ended. It takes no lock: its callers already hold `App\Battle\Support\LockKeys::battle()` (renamed from `battleTurn()`, as every action that changes a battle uses it) and call it inside their `DB::transaction`, so the event reaches listeners after the commit. Other domains (missions, trainers, the Elite Four, the Battle Tower) react to this event; they never end battles or check statuses themselves.
 - In `TakeTurnAction`: when the player's active Pokémon faints and others are left, set `is_awaiting_send_out`. When none are left, end as `LOST`. When the opponent has none left, end as `WON`. This covers every knockout: from a move, from a confusion self-hit and from end-of-turn damage (task 1.15 already stops end-of-turn damage once a side has no Pokémon left).
-- `App\Battle\Actions\SendOutPokemonAction::handle(Battle $battle, int $combatantIndex): Battle`: only while awaiting a send-out; the chosen combatant must not be fainted; sets `has_entered_field = true`.
-- `App\Battle\Actions\ForfeitBattleAction::handle(Battle $battle): Battle`: the **Run** button; ends as `FORFEITED`, which counts as a loss everywhere.
+- `App\Battle\Actions\SendOutPokemonAction::handle(Battle $battle, int $combatantIndex): Battle`: only while awaiting a send-out (`App\Battle\Exceptions\BattleNotAwaitingSendOutException`); the chosen combatant must not be fainted (`PokemonHasFaintedException`); sets `has_entered_field = true`, stops awaiting and logs "Go! Eevee!". The turn number doesn't change.
+- `App\Battle\Actions\ForfeitBattleAction::handle(Battle $battle): Battle`: the **Run** button, allowed at any time while ongoing, also while awaiting a send-out (`BattleAlreadyEndedException` otherwise); logs "You ran away!" and ends as `FORFEITED`, which counts as a loss everywhere.
+- Helpers: `BattleState::withAwaitingSendOut()` and `withLogLines()`, `BattleSide::withActiveIndex()`, `Combatant::withEnteredField()`.
 - Nothing is written back to `Pokemon` rows: every battle ends fully healed (Spec 1).
 
 **Tests:** win, loss, awaiting send-out, sending out a fainted Pokémon is refused, forfeit; `BattleEnded` is dispatched once per ending with the right status and `isWin`.
@@ -1715,6 +1716,7 @@ Read [06-trainers-gyms-and-battle-tower.md](06-trainers-gyms-and-battle-tower.md
 
 **Build:**
 - `BattleState`: add nullable `trainer_id`, nullable `trainer_name` and `bool $heals_after` (default true; the Tower sets false).
+- `BattleEnded`: add `?string $trainerId`, filled by `EndBattleAction` from the state's `trainer_id`.
 - `App\Battle\Actions\StartTrainerBattleAction::handle(User $user, BattleType $type, array $opponentTeam, ?Trainer $trainer, ?array $playerPokemonIds = null): Battle`: player side from `$playerPokemonIds` (in that order) or the whole party in party order (task 4.15); opponent side from `$opponentTeam` (a list of `NewPokemon` plus boost and moves, or `TrainerPokemon` rows).
 - Opponent AI: a random active move each turn (as wild battles); after a faint it sends out its next Pokémon automatically and the log says "Hiker Bob sent out Geodude!".
 - `ThrowBallAction` already refuses non-wild battles (task 2.12).

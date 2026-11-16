@@ -36,6 +36,11 @@ final readonly class BattleSide implements ValueObject
         return array_any($this->combatants, fn (Combatant $combatant) => ! $combatant->isFainted());
     }
 
+    public function withActiveIndex(int $activeIndex): self
+    {
+        return new self($this->combatants, $activeIndex);
+    }
+
     public function withActiveCombatant(Combatant $combatant): self
     {
         $combatants = array_map(

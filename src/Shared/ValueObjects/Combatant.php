@@ -70,6 +70,11 @@ final readonly class Combatant implements ValueObject
         return new self(...[...get_object_vars($this), 'current_hp' => $currentHp]);
     }
 
+    public function withEnteredField(): self
+    {
+        return new self(...[...get_object_vars($this), 'has_entered_field' => true]);
+    }
+
     public function withAilment(?Ailment $ailment, int $ailmentTurnsLeft): self
     {
         return new self(...[...get_object_vars($this), 'ailment' => $ailment, 'ailment_turns_left' => $ailmentTurnsLeft]);

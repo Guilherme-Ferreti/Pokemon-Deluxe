@@ -20,6 +20,7 @@ use App\Battle\ValueObjects\MoveHit;
 use App\Pokemon\Mechanics\StatsCalculator;
 use Illuminate\Database\Eloquent\Collection as EloquentCollection;
 use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\DB;
 use InvalidArgumentException;
 use LogicException;
 use Shared\Enums\Ailment;
@@ -52,7 +53,7 @@ final class TakeTurnAction
         $this->battle = $battle;
 
         return Cache::withoutOverlapping(
-            key: LockKeys::battleTurn($battle->id),
+            key: LockKeys::battle($battle->id),
             callback: fn () => $this->takeTurn($moveSlot),
         );
     }
@@ -90,9 +91,32 @@ final class TakeTurnAction
 
         $this->applyEndOfTurnDamage($turnOrder);
 
-        $this->battle->update(['state' => $this->state->withNextTurn($this->logLines)]);
+        $this->saveTurn();
 
         return $this->battle;
+    }
+
+    private function saveTurn(): void
+    {
+        $endStatus = match (true) {
+            ! $this->state->opponent_side->hasCombatantsLeft() => BattleStatus::WON,
+            ! $this->state->player_side->hasCombatantsLeft()   => BattleStatus::LOST,
+            default                                            => null,
+        };
+
+        $state = $this->state->withNextTurn($this->logLines);
+
+        if ($endStatus === null && $state->player_side->activeCombatant()->isFainted()) {
+            $state = $state->withAwaitingSendOut(true);
+        }
+
+        DB::transaction(function () use ($state, $endStatus): void {
+            $this->battle->update(['state' => $state]);
+
+            if ($endStatus instanceof BattleStatus) {
+                new EndBattleAction()->handle($this->battle, $endStatus);
+            }
+        });
     }
 
     private function ensureBattleIsReadyForTurn(): void
