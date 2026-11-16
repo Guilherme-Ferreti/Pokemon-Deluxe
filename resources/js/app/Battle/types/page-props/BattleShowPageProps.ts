@@ -28,8 +28,10 @@ export type BattleShowPageProps = {
   opponent: BattleCombatant & {
     hpPercentage: number;
   };
-  moves: Pick<
+  moves: (Pick<
     Move,
     'id' | 'name' | 'type' | 'power' | 'isZMove' | 'isDynamaxMove'
-  >[];
+  > & {
+    isSuperEffective: boolean;
+  })[];
 };

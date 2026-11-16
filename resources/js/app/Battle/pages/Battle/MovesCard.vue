@@ -6,11 +6,14 @@
     </CardHeader>
     <CardContent class="moves-card__grid">
       <Button
-        v-for="move in page.props.moves"
+        v-for="(move, index) in page.props.moves"
         :key="move.id"
+        type="button"
         variant="outline"
         class="moves-card__move-button"
-        disabled
+        :data-test="`moves-card__move-${index + 1}-button`"
+        :disabled="form.processing"
+        @click="takeTurn(index + 1)"
       >
         <span class="moves-card__move-top">
           <MoveNameLabel
@@ -25,6 +28,16 @@
           >
             Status
           </span>
+          <span
+            v-else-if="move.isSuperEffective"
+            class="moves-card__move-super-effective"
+          >
+            <IconArrowUp
+              class="size-4"
+              aria-hidden="true"
+            />
+            Super effective
+          </span>
         </span>
         <span class="moves-card__move-meta">
           <PokemonTypeBadges :types="[move.type]" />
@@ -36,7 +49,8 @@
 </template>
 
 <script setup lang="ts">
-import { usePage } from '@inertiajs/vue3';
+import { useForm, usePage } from '@inertiajs/vue3';
+import { IconArrowUp } from '@tabler/icons-vue';
 import MoveNameLabel from '@/shared/components/game/MoveNameLabel.vue';
 import PokemonTypeBadges from '@/shared/components/game/PokemonTypeBadges.vue';
 import { Button } from '@/shared/components/ui/button';
@@ -46,9 +60,22 @@ import {
   CardHeader,
   CardTitle,
 } from '@/shared/components/ui/card';
+import { route } from '@/shared/types/helpers/route';
 import type { BattleShowPageProps } from '../../types/page-props/BattleShowPageProps';
 
 const page = usePage<BattleShowPageProps>();
+
+const form = useForm({
+  moveSlot: 0,
+});
+
+function takeTurn(moveSlot: number): void {
+  form.moveSlot = moveSlot;
+
+  form.post(route('battle.web.turn'), {
+    preserveScroll: true,
+  });
+}
 </script>
 
 <style scoped>
@@ -80,6 +107,10 @@ const page = usePage<BattleShowPageProps>();
 
 .moves-card__move-status {
   @apply text-xs text-muted-foreground;
+}
+
+.moves-card__move-super-effective {
+  @apply flex items-center gap-0.5 text-xs font-semibold whitespace-nowrap text-green-700 dark:text-green-400;
 }
 
 .moves-card__move-meta {

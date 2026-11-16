@@ -429,16 +429,16 @@ Uses `Combatant` from task 1.10.
 
 ### 1.20 Battle page: take turns
 
-- [ ] Done
+- [x] Done
 
 **Goal:** the player can fight.
 
 **Mock-up:** `docs/mockups/battle.html` (state "Battle, choosing a move"; click the moves)
 
 **Build:**
-- Route `POST /battle/turn` named `battle.web.turn` → `TakeTurnController` with `TakeTurnRequest` (`move_slot` 1–4).
-- Move buttons submit the turn; super-effective moves show a hint (from `typeMultiplier`).
-- The HP bar slides down (the only animation).
+- Route `POST /battle/turn` named `battle.web.turn` → `App\Battle\Http\Web\Controllers\TakeTurnController` with `TakeTurnRequest` (`moveSlot`, 1 to `game.pokemon.max_active_moves`). It plays the user's ongoing battle (`BattleAlreadyEndedException` as a toast when there is none) and redirects back.
+- Move buttons submit the turn and are all disabled while it is sent. Damaging moves that are super effective against the opponent's active Pokémon show a green "Super effective" hint (`isSuperEffective` on each move in `BattleShowPageProps`, from `DamageCalculator::typeMultiplier()` above 1).
+- The HP bar slides down over 500ms (the only animation; none with reduced motion).
 
 **UI suggestions** (ideas, not requirements):
 - While a turn is being sent, disable all move buttons and show a spinner on the clicked one, so a double click can't send two turns.

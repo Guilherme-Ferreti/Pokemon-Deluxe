@@ -1,5 +1,8 @@
 <template>
-  <Card class="battle-log-card">
+  <Card
+    class="battle-log-card"
+    data-test="battle-log-card"
+  >
     <CardHeader>
       <CardTitle>Battle log</CardTitle>
     </CardHeader>

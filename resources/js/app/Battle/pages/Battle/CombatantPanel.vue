@@ -44,7 +44,10 @@
         :model-value="hpPercentage"
         :aria-label="`${combatant.name} HP`"
       />
-      <span class="combatant-panel__hp-value">
+      <span
+        class="combatant-panel__hp-value"
+        :data-test="`combatant-panel--${side}__hp-indicator`"
+      >
         {{ hpText }}
       </span>
     </div>
@@ -142,6 +145,10 @@ const hpBarColor = computed(() => {
 
 .combatant-panel__hp-bar {
   @apply min-w-0 flex-1;
+}
+
+.combatant-panel__hp-bar :deep([data-slot='progress-indicator']) {
+  @apply duration-500 ease-out motion-reduce:transition-none;
 }
 
 .combatant-panel__hp-bar--good :deep([data-slot='progress-indicator']) {
