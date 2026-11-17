@@ -576,7 +576,7 @@ Uses `Combatant` from task 1.10.
 - Each later task fills one area; until then the existing cards sit in their new places.
 
 **UI suggestions** (ideas, not requirements):
-- Grid: `grid-cols-1 @5xl/main-content:grid-cols-[15rem_minmax(0,1fr)_18rem]`; on phones give each card an `order-*`, on wide screens reset the order.
+- Grid: `grid-cols-1 @5xl/main-content:grid-cols-[18rem_minmax(0,1fr)_18rem]`; on phones give each card an `order-*`, on wide screens reset the order.
 
 **Tests:** browser test: the three columns on a wide screen and the phone order on a 390px screen.
 
