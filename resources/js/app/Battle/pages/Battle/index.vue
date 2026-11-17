@@ -1,7 +1,5 @@
 <template>
-  <BattleHeader>
-    <RunBattleDialog v-if="page.props.battle.status === BattleStatus.ONGOING" />
-  </BattleHeader>
+  <BattleHeader />
   <div
     ref="grid"
     class="battle-page__grid"
@@ -28,6 +26,10 @@
         v-else-if="page.props.result === null"
         class="battle-page__moves"
       />
+      <BattleOptionsCard
+        v-if="page.props.result === null"
+        class="battle-page__options"
+      />
       <BattleResultCard
         v-if="page.props.result !== null && isResultShown"
         class="battle-page__result"
@@ -49,11 +51,11 @@ import type { BattleShowPageProps } from '../../types/page-props/BattleShowPageP
 import BattlefieldCard from './BattlefieldCard.vue';
 import BattleHeader from './BattleHeader.vue';
 import BattleLogCard from './BattleLogCard.vue';
+import BattleOptionsCard from './BattleOptionsCard.vue';
 import BattleResultCard from './BattleResultCard.vue';
 import BattleTeamRail from './BattleTeamRail.vue';
 import MovesCard from './MovesCard.vue';
 import PokemonFaintedCard from './PokemonFaintedCard.vue';
-import RunBattleDialog from './RunBattleDialog.vue';
 import SendOutSheet from './SendOutSheet.vue';
 
 const page = usePage<BattleShowPageProps>();
@@ -132,6 +134,10 @@ onBeforeUnmount(() => clearTimeout(hideBattlefieldTimeout));
 }
 
 .battle-page__moves {
+  @apply order-3 @5xl/main-content:order-0;
+}
+
+.battle-page__options {
   @apply order-3 @5xl/main-content:order-0;
 }
 

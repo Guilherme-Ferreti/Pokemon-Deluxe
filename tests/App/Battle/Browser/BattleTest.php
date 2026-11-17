@@ -187,7 +187,8 @@ it('sends out another pokemon from the team rail after a faint', function () {
     actingAs($user);
 
     visit(route('battle.web.show'))
-        ->resize(1440, 900)
+        ->assertMissing('@moves-card')
+        ->assertVisible('@battle-options-card')
         ->assertMissing('@moves-card')
         ->assertSeeIn('@pokemon-fainted-card__title', 'Pikachu fainted!')
         ->assertMissing('@send-out-sheet')
@@ -370,9 +371,9 @@ it('runs from the battle after confirming', function () {
     actingAs($user);
 
     visit(route('battle.web.show'))
-        ->click('@run-battle-dialog__open-button')
-        ->assertVisible('@run-battle-dialog')
-        ->click('@run-battle-dialog__run-button')
+        ->click('@battle-forfeit-button')
+        ->assertVisible('@battle-forfeit-button__dialog')
+        ->click('@battle-forfeit-button__confirm-button')
         ->assertVisible('@battlefield-card')
         ->wait(2)
         ->assertMissing('@battlefield-card')

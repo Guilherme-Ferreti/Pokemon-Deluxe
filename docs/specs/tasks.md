@@ -697,7 +697,7 @@ Uses `Combatant` from task 1.10.
 
 ### 1.32 Battle page: More options card
 
-- [ ] Done
+- [x] Done
 
 **Goal:** running or forfeiting (and later throwing a ball) sit in their own card.
 
