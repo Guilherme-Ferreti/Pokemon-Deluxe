@@ -4,6 +4,7 @@
     data-test="battlefield-card"
     aria-label="Battlefield"
   >
+    <BattleSceneBackground :scene="page.props.battle.scene" />
     <CardContent class="battlefield-card__content">
       <div class="battlefield-card__side battlefield-card__side--opponent">
         <BattlefieldCombatantCard side="opponent" />
@@ -43,6 +44,7 @@ import SpeciesSprite from '@/shared/components/game/SpeciesSprite.vue';
 import { Card, CardContent } from '@/shared/components/ui/card';
 import type { BattleShowPageProps } from '../../types/page-props/BattleShowPageProps';
 import BattlefieldCombatantCard from './BattlefieldCombatantCard.vue';
+import BattleSceneBackground from './BattleSceneBackground.vue';
 
 const page = usePage<BattleShowPageProps>();
 </script>
@@ -51,11 +53,11 @@ const page = usePage<BattleShowPageProps>();
 @reference '@css/app.css';
 
 .battlefield-card {
-  @apply @container/battlefield overflow-hidden;
+  @apply @container/battlefield relative overflow-hidden;
 }
 
 .battlefield-card__content {
-  @apply flex flex-col gap-1 px-3 @sm/battlefield:px-6;
+  @apply relative flex flex-col gap-1 px-3 @sm/battlefield:px-6;
 }
 
 .battlefield-card__side {

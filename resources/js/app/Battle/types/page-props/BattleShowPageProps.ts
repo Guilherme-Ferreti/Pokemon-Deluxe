@@ -5,6 +5,7 @@ import type {
   BattleType,
 } from '@/shared/types/enums';
 import type { Move, Pokemon } from '@/shared/types/response';
+import type { BattleScene } from '../enums/BattleScene';
 
 export type BattleCombatant = {
   name: Pokemon['name'];
@@ -45,6 +46,7 @@ export type BattleLogTurn = {
 export type BattleShowPageProps = {
   battle: {
     type: BattleType;
+    scene: BattleScene;
     status: BattleStatus;
     turn: number;
     log: BattleLogTurn[];

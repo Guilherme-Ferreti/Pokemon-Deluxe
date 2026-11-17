@@ -56,7 +56,7 @@ One name per idea, used everywhere: specs, code, database, tests and UI. When yo
 | Running from the page | `ForfeitBattleController` | `POST /battle/forfeit`. |
 | End screen | `result` prop (`experienceGains` with `isFromExperienceShare`), `BattleResultCard` | The result card that replaces the battlefield once the battle has ended: title, "Your rewards", "XP gained" rows, buttons. |
 | More options | `BattleOptionsCard` | The card under the moves with Throw ball and Run (wild) or Forfeit (every other battle). |
-| Battle scene | `battle.scene` prop, `BattleSceneBackground` | The SVG background of the battlefield card. |
+| Battle scene | `BattleScene` enum (`fromBattleType()`), `battle.scene` prop, `BattleSceneBackground` | The SVG background of the battlefield card, picked from the battle type for now. |
 | Taking a turn from the page | `TakeTurnController`, `TakeTurnRequest` (`moveSlot`) | `POST /battle/turn`; the slot is the move's position (1–4) in the active combatant's `move_ids`. |
 | Battle sprites | `Species::getDisplayFrontSprite()` (opponent), `getDisplayBackSprite()` (player) | The back sprite falls back to the front one when the species has none. |
 | Faint | `isFainted()` | `current_hp` is 0. |

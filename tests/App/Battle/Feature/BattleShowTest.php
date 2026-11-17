@@ -2,6 +2,7 @@
 
 declare(strict_types=1);
 
+use App\Battle\Enums\BattleScene;
 use Inertia\Testing\AssertableInertia as Assert;
 use Shared\Enums\Ailment;
 use Shared\Enums\BattleLogKind;
@@ -94,6 +95,7 @@ it('loads the battle page with expected structure', function () {
             ->component('Battle/pages/Battle/index')
             ->where('battle', [
                 'type'   => BattleType::WILD->value,
+                'scene'  => BattleScene::GRASS_FIELD->value,
                 'status' => BattleStatus::ONGOING->value,
                 'turn'   => 3,
                 'log'    => [
@@ -200,6 +202,54 @@ it('shows the opponent hp as numbers', function (int $currentHp) {
     'full'    => [218],
     'part'    => [135],
     'fainted' => [0],
+]);
+
+it('picks the scene from the battle type', function (BattleType $type, BattleScene $expectedScene) {
+    $user    = User::factory()->create();
+    $pikachu = Species::factory()->create();
+    $tackle  = Move::factory()->plainDamage()->create();
+
+    $combatant = [
+        'pokemon_id'                    => null,
+        'species_id'                    => $pikachu->id,
+        'level'                         => 50,
+        'boost'                         => 0,
+        'is_shiny'                      => false,
+        'gender'                        => PokemonGender::MALE,
+        'types'                         => [PokemonType::NORMAL],
+        'move_ids'                      => [$tackle->id],
+        'max_hp'                        => 218,
+        'current_hp'                    => 218,
+        'ailment'                       => null,
+        'ailment_turns_left'            => 0,
+        'confusion_turns_left'          => 0,
+        'has_entered_field'             => true,
+        'used_once_per_battle_move_ids' => [],
+    ];
+
+    Battle::factory()->for($user)->create([
+        'type'   => $type,
+        'status' => BattleStatus::ONGOING,
+        'state'  => new BattleState(
+            turn: 1,
+            player_side: new BattleSide(combatants: [new Combatant(...$combatant)], active_index: 0),
+            opponent_side: new BattleSide(combatants: [new Combatant(...$combatant)], active_index: 0),
+            is_awaiting_send_out: false,
+            log: [],
+        ),
+    ]);
+
+    actingAs($user)
+        ->get(route('battle.web.show'))
+        ->assertInertia(fn (Assert $page) => $page
+            ->where('battle.scene', $expectedScene->value)
+        );
+})->with([
+    'wild'         => [BattleType::WILD, BattleScene::GRASS_FIELD],
+    'trainer'      => [BattleType::TRAINER, BattleScene::TRAINER_ARENA],
+    'gym'          => [BattleType::GYM, BattleScene::GYM],
+    'elite four'   => [BattleType::ELITE_FOUR, BattleScene::INDIGO_PLATEAU],
+    'battle tower' => [BattleType::BATTLE_TOWER, BattleScene::BATTLE_TOWER],
 ]);
 
 it('flags damaging moves that are super effective against the opponent', function (PokemonType $moveType, ?int $power, array $opponentTypes, bool $expectedIsSuperEffective) {

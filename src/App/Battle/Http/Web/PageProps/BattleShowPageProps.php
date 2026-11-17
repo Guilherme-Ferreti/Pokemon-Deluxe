@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Battle\Http\Web\PageProps;
 
+use App\Battle\Enums\BattleScene;
 use App\Battle\Mechanics\DamageCalculator;
 use App\Pokemon\Mechanics\ExperienceCalculator;
 use Illuminate\Database\Eloquent\Collection as EloquentCollection;
@@ -45,12 +46,13 @@ final class BattleShowPageProps implements ProvidesInertiaProperties
     }
 
     /**
-     * @return array{type: BattleType, status: BattleStatus, turn: int, log: list<array{turn: int, entries: list<array{kind: BattleLogKind, text: string, moveName: ?string}>}>, isAwaitingSendOut: bool}
+     * @return array{type: BattleType, scene: BattleScene, status: BattleStatus, turn: int, log: list<array{turn: int, entries: list<array{kind: BattleLogKind, text: string, moveName: ?string}>}>, isAwaitingSendOut: bool}
      */
     private function getBattleProp(): array
     {
         return [
             'type'              => $this->battle->type,
+            'scene'             => BattleScene::fromBattleType($this->battle->type),
             'status'            => $this->battle->status,
             'turn'              => $this->battle->state->turn,
             'log'               => $this->logByTurn(),

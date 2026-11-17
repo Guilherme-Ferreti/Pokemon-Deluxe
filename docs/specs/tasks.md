@@ -609,18 +609,19 @@ Uses `Combatant` from task 1.10.
 
 ### 1.28 Battle page: scene backgrounds
 
-- [ ] Done
+- [x] Done
 
 **Goal:** the battlefield has a background that fits where the battle happens.
 
 **Mock-up:** `docs/mockups/battle.html` (the battlefield in each battle type)
 
 **Build:**
-- New `BattleSceneBackground.vue`: inline SVG scenes drawn with theme-friendly colours (sky, ground, a few shapes), filling the battlefield card behind the cards and sprites, with `aria-hidden`.
-- Scenes: grass field (wild), trainer arena (trainers), gym, Indigo Plateau (Elite Four) and Battle Tower. The scene is picked from the battle type through a `scene` prop on `BattleShowPageProps` (`battle.scene`), so Spec 2 can later pick one per area.
-- Dark mode: every colour has a dark variant.
+- New `BattleSceneBackground.vue` (prop `scene`): inline SVG scenes drawn with theme-friendly colours (sky, ground, a few shapes), filling the battlefield card behind the cards and sprites, with `aria-hidden`. One `viewBox="0 0 600 300"` with `preserveAspectRatio="xMidYMid slice"`, so it covers the card at any size; the horizon sits at 58% like the mock-up.
+- Scenes: grass field (wild: clouds, hills, grass tufts), trainer arena (trainers: a back wall and court lines), gym (pillars and floor tiles), Indigo Plateau (Elite Four: mountains and a floor emblem) and Battle Tower (towers with windows and floor tiles). The scene is picked from the battle type through a `scene` prop on `BattleShowPageProps` (`battle.scene`), so Spec 2 can later pick one per area.
+- `App\Battle\Enums\BattleScene` (`GRASS_FIELD`, `TRAINER_ARENA`, `GYM`, `INDIGO_PLATEAU`, `BATTLE_TOWER`, kebab-case values) with `fromBattleType()`; TypeScript copy in `resources/js/app/Battle/types/enums/`. It moves to Shared when Spec 2 picks a scene per area from another domain.
+- Dark mode: every colour has a dark variant. Each scene sets CSS variables (`--scene-sky`, `--scene-ground`, `--scene-far`, `--scene-light`, `--scene-detail`, `--scene-line`) with the mock-up's sky and ground colours, and redefines them under `@variant dark`.
 
-**Tests:** feature test: the scene prop per battle type; browser test: the background renders behind the cards.
+**Tests:** feature test: the scene prop per battle type; browser test: the background fills the card (`battle-scene-background--{scene}`) and the combatant card is on top of it.
 
 **Done when:** each battle type has its scene in light and dark mode.
 

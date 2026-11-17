@@ -67,6 +67,18 @@ it('loads the battle page without errors', function () {
         ->assertSeeIn('@battlefield-combatant-card--player__hp-indicator', '218 / 218')
         ->assertSeeIn('@battlefield-combatant-card--opponent', 'HP:')
         ->assertScript('document.querySelector(\'[data-test="battlefield-combatant-card--player__name"] svg\') !== null')
+        ->assertPresent('@battle-scene-background--grass-field')
+        ->assertScript(<<<'JS'
+            (() => {
+                const field = document.querySelector('[data-test="battlefield-card"]');
+                const scene = document.querySelector('[data-test="battle-scene-background--grass-field"]').getBoundingClientRect();
+                const card = document.querySelector('[data-test="battlefield-combatant-card--player"]');
+                const cardBox = card.getBoundingClientRect();
+                const topElement = document.elementFromPoint(cardBox.left + cardBox.width / 2, cardBox.top + cardBox.height / 2);
+
+                return Math.round(scene.width) === field.clientWidth && Math.round(scene.height) === field.clientHeight && card.contains(topElement);
+            })()
+            JS)
         ->assertNoJavascriptErrors();
 });
 
