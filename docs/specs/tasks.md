@@ -635,7 +635,7 @@ Uses `Combatant` from task 1.10.
 - The checked item looks like "in battle": a muted background, no HP bar and a Poké Ball icon on the right; its portrait stays the same size as the others. Only one item is checked at a time: it starts on the Pokémon in battle, and picking another moves the checked look to it.
 - Fainted Pokémon are disabled items with a "Fainted" tag, faded, with a greyscale portrait. Every item is disabled once the battle has ended.
 - A "Switch" outline button under the rail, sized to its text and aligned right: enabled only when the checked Pokémon isn't the one in battle; it posts task 1.23's route. No confirmation dialog.
-- Phones: the same radio group as a 2-column grid of tiles (portrait, name with gender icon, HP bar; the checked tile shows the Poké Ball instead of the bar).
+- Phones: the same radio group as a 2-column grid of tiles (portrait, name with gender icon, and the same "HP:" row as on desktop with the bar and numbers; the checked tile shows the Poké Ball instead).
 - Tooltip: "The highlighted Pokémon is the one in battle. To switch, pick another one and press Switch. Switching uses your turn. Fainted Pokémon can't be picked." After the battle: "HP as the battle ended."
 - `BattleShowPageProps`: `player.team` items gain `gender`, `boost`, `currentHp` and `maxHp` if missing.
 
