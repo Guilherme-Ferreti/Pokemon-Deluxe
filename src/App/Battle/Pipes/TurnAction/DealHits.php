@@ -11,6 +11,7 @@ use App\Battle\ValueObjects\MoveHit;
 use App\Pokemon\Mechanics\StatsCalculator;
 use Closure;
 use Shared\Enums\Ailment;
+use Shared\Enums\BattleLogKind;
 
 final class DealHits
 {
@@ -24,13 +25,14 @@ final class DealHits
         }
 
         $landedHits = 0;
+        $hpLost     = 0;
 
         foreach ($action->rolledMoveOutcome()->hits as $hit) {
             if ($action->defender()->isFainted()) {
                 break;
             }
 
-            $this->dealHit($action, $hit);
+            $hpLost += $this->dealHit($action, $hit);
 
             $landedHits++;
         }
@@ -38,8 +40,10 @@ final class DealHits
         $this->logEffectiveness($action);
 
         if ($action->rolledMoveOutcome()->hitCount() > 1) {
-            $action->turn->log($landedHits === 1 ? 'It hit once!' : "It hit {$landedHits} times!");
+            $action->turn->log(BattleLogKind::DETAIL, $landedHits === 1 ? 'It hit once!' : "It hit {$landedHits} times!");
         }
+
+        $action->turn->logDamage($action->defendingSide(), $hpLost);
 
         if (! $action->turn->logFaintIfFainted($action->defendingSide())) {
             return $next($action);
@@ -50,7 +54,7 @@ final class DealHits
         return $action;
     }
 
-    private function dealHit(TurnActionData $action, MoveHit $hit): void
+    private function dealHit(TurnActionData $action, MoveHit $hit): int
     {
         $attacker = $action->attacker();
         $defender = $action->defender();
@@ -67,18 +71,18 @@ final class DealHits
         );
 
         if ($hit->isCriticalHit) {
-            $action->turn->log('A critical hit!');
+            $action->turn->log(BattleLogKind::DETAIL, 'A critical hit!');
         }
 
-        $action->turn->damageActiveCombatant($action->defendingSide(), $damage);
+        return $action->turn->damageActiveCombatant($action->defendingSide(), $damage);
     }
 
     private function logEffectiveness(TurnActionData $action): void
     {
         if ($action->typeMultiplier > 1.0) {
-            $action->turn->log("It's super effective!");
+            $action->turn->log(BattleLogKind::DETAIL, "It's super effective!");
         } elseif ($action->typeMultiplier < 1.0) {
-            $action->turn->log("It's not very effective...");
+            $action->turn->log(BattleLogKind::DETAIL, "It's not very effective...");
         }
     }
 }

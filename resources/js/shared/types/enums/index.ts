@@ -1,4 +1,5 @@
 export * from '@/shared/types/enums/Ailment';
+export * from '@/shared/types/enums/BattleLogKind';
 export * from '@/shared/types/enums/BattleStatus';
 export * from '@/shared/types/enums/BattleType';
 export * from '@/shared/types/enums/IncubationStatus';

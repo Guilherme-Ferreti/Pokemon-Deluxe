@@ -8,6 +8,7 @@ use App\Battle\Data\TurnActionData;
 use App\Battle\Enums\TurnActionOutcome;
 use App\Battle\Mechanics\MoveOutcomeRoller;
 use Closure;
+use Shared\Enums\BattleLogKind;
 
 final class RollMoveOutcome
 {
@@ -22,7 +23,7 @@ final class RollMoveOutcome
             return $next($action);
         }
 
-        $action->turn->log("{$action->turn->displayName($action->side, atStart: true)}'s attack missed!");
+        $action->turn->log(BattleLogKind::EVENT, "{$action->turn->displayName($action->side, atStart: true)}'s attack missed!");
 
         $action->outcome = TurnActionOutcome::MISSED;
 

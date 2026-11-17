@@ -8,15 +8,16 @@ use InvalidArgumentException;
 use Shared\Interfaces\ValueObject;
 
 /**
+ * @phpstan-import-type BattleLogEntryArray from BattleLogEntry
  * @phpstan-import-type BattleSideArray from BattleSide
  * @phpstan-import-type ExperienceGainArray from ExperienceGain
  *
- * @phpstan-type BattleStateArray array{turn: int, player_side: BattleSideArray, opponent_side: BattleSideArray, is_awaiting_send_out: bool, log: list<string>, experience_gains: list<ExperienceGainArray>}
+ * @phpstan-type BattleStateArray array{turn: int, player_side: BattleSideArray, opponent_side: BattleSideArray, is_awaiting_send_out: bool, log: list<BattleLogEntryArray>, experience_gains: list<ExperienceGainArray>}
  */
 final readonly class BattleState implements ValueObject
 {
     /**
-     * @param  list<string>  $log
+     * @param  list<BattleLogEntry>  $log
      * @param  list<ExperienceGain>  $experience_gains
      */
     public function __construct(
@@ -45,20 +46,25 @@ final readonly class BattleState implements ValueObject
         return new self(...[...get_object_vars($this), 'is_awaiting_send_out' => $isAwaitingSendOut]);
     }
 
-    /**
-     * @param  list<string>  $logLines
-     */
-    public function withLogLines(array $logLines): self
+    public function lastPlayedTurn(): int
     {
-        return new self(...[...get_object_vars($this), 'log' => [...$this->log, ...$logLines]]);
+        return $this->turn - 1;
     }
 
     /**
-     * @param  list<string>  $logLines
+     * @param  list<BattleLogEntry>  $logEntries
      */
-    public function withNextTurn(array $logLines): self
+    public function withLogEntries(array $logEntries): self
     {
-        return new self(...[...get_object_vars($this), 'turn' => $this->turn + 1, 'log' => [...$this->log, ...$logLines]]);
+        return new self(...[...get_object_vars($this), 'log' => [...$this->log, ...$logEntries]]);
+    }
+
+    /**
+     * @param  list<BattleLogEntry>  $logEntries
+     */
+    public function withNextTurn(array $logEntries): self
+    {
+        return new self(...[...get_object_vars($this), 'turn' => $this->turn + 1, 'log' => [...$this->log, ...$logEntries]]);
     }
 
     /**
@@ -79,7 +85,7 @@ final readonly class BattleState implements ValueObject
             player_side: BattleSide::fromArray($data['player_side']),
             opponent_side: BattleSide::fromArray($data['opponent_side']),
             is_awaiting_send_out: $data['is_awaiting_send_out'],
-            log: $data['log'],
+            log: array_map(BattleLogEntry::fromArray(...), $data['log']),
             experience_gains: array_map(ExperienceGain::fromArray(...), $data['experience_gains']),
         );
     }
@@ -94,7 +100,7 @@ final readonly class BattleState implements ValueObject
             'player_side'          => $this->player_side->toArray(),
             'opponent_side'        => $this->opponent_side->toArray(),
             'is_awaiting_send_out' => $this->is_awaiting_send_out,
-            'log'                  => $this->log,
+            'log'                  => array_map(fn (BattleLogEntry $entry) => $entry->toArray(), $this->log),
             'experience_gains'     => array_map(fn (ExperienceGain $gain) => $gain->toArray(), $this->experience_gains),
         ];
     }

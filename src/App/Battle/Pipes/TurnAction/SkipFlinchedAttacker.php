@@ -7,6 +7,7 @@ namespace App\Battle\Pipes\TurnAction;
 use App\Battle\Data\TurnActionData;
 use App\Battle\Enums\TurnActionOutcome;
 use Closure;
+use Shared\Enums\BattleLogKind;
 
 final class SkipFlinchedAttacker
 {
@@ -19,7 +20,7 @@ final class SkipFlinchedAttacker
             return $next($action);
         }
 
-        $action->turn->log("{$action->turn->displayName($action->side, atStart: true)} flinched and couldn't move!");
+        $action->turn->log(BattleLogKind::EVENT, "{$action->turn->displayName($action->side, atStart: true)} flinched and couldn't move!");
 
         $action->outcome = TurnActionOutcome::BLOCKED;
 

@@ -22,7 +22,7 @@ it('gives every species exactly four different base moves', function () {
     $species = Species::query()->withCount('baseMoves')->get();
 
     expect($species)->not->toBeEmpty()
-        ->and($species->where('base_moves_count', '!=', 4)->pluck('slug')->all())->toBe([])
+        ->and($species->where('base_moves_count', '!=', 4)->pluck('slug')->all())->toBeEmpty()
         ->and(DB::table('species_base_move')->groupBy('species_id', 'move_id')->havingRaw('count(*) > 1')->exists())->toBeFalse();
 });
 

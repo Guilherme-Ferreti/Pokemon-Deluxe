@@ -11,6 +11,7 @@ use App\Battle\Mechanics\StatusEffectCalculator;
 use App\Pokemon\Mechanics\StatsCalculator;
 use Closure;
 use Shared\Enums\Ailment;
+use Shared\Enums\BattleLogKind;
 
 final class ApplyActionBlocker
 {
@@ -26,7 +27,7 @@ final class ApplyActionBlocker
         $attacker = $action->attacker();
         $name     = $action->turn->displayName($action->side, atStart: true);
 
-        $action->turn->log(match ($action->blocker) {
+        $action->turn->log(BattleLogKind::EVENT, match ($action->blocker) {
             ActionBlocker::FROZEN                   => "{$name} is frozen solid!",
             ActionBlocker::ASLEEP                   => "{$name} is fast asleep.",
             ActionBlocker::HURT_ITSELF_IN_CONFUSION => 'It hurt itself in its confusion!',
@@ -42,7 +43,7 @@ final class ApplyActionBlocker
                 new StatsCalculator()->calculate($attacker->level, $attacker->boost, $attacker->is_shiny),
             );
 
-            $action->turn->damageActiveCombatant($action->side, $damage);
+            $action->turn->logDamage($action->side, $action->turn->damageActiveCombatant($action->side, $damage));
 
             $action->turn->logFaintIfFainted($action->side);
         }

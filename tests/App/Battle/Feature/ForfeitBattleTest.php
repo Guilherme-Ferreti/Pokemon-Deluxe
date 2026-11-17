@@ -2,9 +2,11 @@
 
 declare(strict_types=1);
 
+use Shared\Enums\BattleLogKind;
 use Shared\Enums\BattleStatus;
 use Shared\Models\Battle;
 use Shared\Models\User;
+use Shared\ValueObjects\BattleLogEntry;
 
 use function Pest\Laravel\actingAs;
 use function Pest\Laravel\post;
@@ -25,7 +27,7 @@ it('runs from the ongoing battle', function () {
 
     expect($battle->fresh())
         ->status->toBe(BattleStatus::FORFEITED)
-        ->state->log->toBe(['You ran away!']);
+        ->state->log->toEqual([new BattleLogEntry(0, BattleLogKind::INFO, 'You got away safely!')]);
 });
 
 it('warns when there is no battle in progress', function () {

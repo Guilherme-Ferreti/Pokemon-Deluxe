@@ -11,6 +11,7 @@ use App\Battle\Mechanics\StatusEffectRoller;
 use Closure;
 use LogicException;
 use Shared\Enums\Ailment;
+use Shared\Enums\BattleLogKind;
 
 final class InflictAilment
 {
@@ -35,7 +36,7 @@ final class InflictAilment
             return $next($action);
         }
 
-        $action->turn->log('But it failed!');
+        $action->turn->log(BattleLogKind::DETAIL, 'But it failed!');
 
         $action->outcome = TurnActionOutcome::NO_EFFECT;
 
@@ -61,6 +62,6 @@ final class InflictAilment
             Ailment::UNKNOWN   => throw new LogicException('The unknown ailment is never inflicted.'),
         };
 
-        $action->turn->log("{$action->turn->displayName($action->defendingSide(), atStart: true)} {$logLine}");
+        $action->turn->log(BattleLogKind::EVENT, "{$action->turn->displayName($action->defendingSide(), atStart: true)} {$logLine}");
     }
 }

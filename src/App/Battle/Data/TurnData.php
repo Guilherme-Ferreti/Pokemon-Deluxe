@@ -7,10 +7,12 @@ namespace App\Battle\Data;
 use App\Battle\Enums\Side;
 use Illuminate\Database\Eloquent\Collection as EloquentCollection;
 use LogicException;
+use Shared\Enums\BattleLogKind;
 use Shared\Enums\BattleType;
 use Shared\Models\Battle;
 use Shared\Models\Move;
 use Shared\Models\Species;
+use Shared\ValueObjects\BattleLogEntry;
 use Shared\ValueObjects\BattleState;
 use Shared\ValueObjects\Combatant;
 
@@ -33,8 +35,8 @@ final class TurnData
 
     public ?TurnActionData $opponentAction = null;
 
-    /** @var list<string> */
-    public private(set) array $logLines = [];
+    /** @var list<BattleLogEntry> */
+    public private(set) array $logEntries = [];
 
     public function __construct(
         public readonly Battle $battle,
@@ -44,9 +46,14 @@ final class TurnData
         $this->state = $battle->state;
     }
 
-    public function log(string $line): void
+    public function log(BattleLogKind $kind, string $text, ?string $moveName = null): void
     {
-        $this->logLines[] = $line;
+        $this->logEntries[] = new BattleLogEntry($this->state->turn, $kind, $text, $moveName);
+    }
+
+    public function logDamage(Side $side, int $hpLost): void
+    {
+        $this->log(BattleLogKind::DAMAGE, sprintf('%s lost %s HP.', $this->displayName($side, atStart: true), number_format($hpLost)));
     }
 
     public function playerMove(): Move
@@ -103,11 +110,14 @@ final class TurnData
             : $this->state->withOpponentSide($this->state->opponent_side->withActiveCombatant($combatant));
     }
 
-    public function damageActiveCombatant(Side $side, int $damage): void
+    public function damageActiveCombatant(Side $side, int $damage): int
     {
         $combatant = $this->activeCombatant($side);
+        $hpLost    = min($damage, $combatant->current_hp);
 
-        $this->replaceActiveCombatant($side, $combatant->withCurrentHp(max(0, $combatant->current_hp - $damage)));
+        $this->replaceActiveCombatant($side, $combatant->withCurrentHp($combatant->current_hp - $hpLost));
+
+        return $hpLost;
     }
 
     public function logFaintIfFainted(Side $side): bool
@@ -116,7 +126,7 @@ final class TurnData
             return false;
         }
 
-        $this->log("{$this->displayName($side, atStart: true)} fainted!");
+        $this->log(BattleLogKind::EVENT, "{$this->displayName($side, atStart: true)} fainted!");
 
         return true;
     }

@@ -8,6 +8,7 @@ use App\Battle\Data\TurnActionData;
 use App\Battle\Enums\ActionBlocker;
 use Closure;
 use Shared\Enums\Ailment;
+use Shared\Enums\BattleLogKind;
 
 final class WakeUpOrThawOut
 {
@@ -27,7 +28,7 @@ final class WakeUpOrThawOut
         if ($logLine !== null) {
             $action->turn->replaceActiveCombatant($action->side, $attacker->withAilment(null, 0));
 
-            $action->turn->log("{$action->turn->displayName($action->side, atStart: true)} {$logLine}");
+            $action->turn->log(BattleLogKind::EVENT, "{$action->turn->displayName($action->side, atStart: true)} {$logLine}");
         }
 
         return $next($action);

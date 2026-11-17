@@ -10,6 +10,7 @@ use Illuminate\Database\Eloquent\Collection as EloquentCollection;
 use Inertia\ProvidesInertiaProperties;
 use Inertia\RenderContext;
 use Shared\Enums\Ailment;
+use Shared\Enums\BattleLogKind;
 use Shared\Enums\BattleStatus;
 use Shared\Enums\BattleType;
 use Shared\Models\Battle;
@@ -44,7 +45,7 @@ final class BattleShowPageProps implements ProvidesInertiaProperties
     }
 
     /**
-     * @return array{type: BattleType, status: BattleStatus, turn: int, log: list<string>, isAwaitingSendOut: bool}
+     * @return array{type: BattleType, status: BattleStatus, turn: int, log: list<array{turn: int, entries: list<array{kind: BattleLogKind, text: string, moveName: ?string}>}>, isAwaitingSendOut: bool}
      */
     private function getBattleProp(): array
     {
@@ -52,9 +53,33 @@ final class BattleShowPageProps implements ProvidesInertiaProperties
             'type'              => $this->battle->type,
             'status'            => $this->battle->status,
             'turn'              => $this->battle->state->turn,
-            'log'               => $this->battle->state->log,
+            'log'               => $this->logByTurn(),
             'isAwaitingSendOut' => $this->battle->status === BattleStatus::ONGOING && $this->battle->state->is_awaiting_send_out,
         ];
+    }
+
+    /**
+     * @return list<array{turn: int, entries: list<array{kind: BattleLogKind, text: string, moveName: ?string}>}>
+     */
+    private function logByTurn(): array
+    {
+        $entriesByTurn = [];
+
+        foreach ($this->battle->state->log as $entry) {
+            $entriesByTurn[$entry->turn][] = [
+                'kind'     => $entry->kind,
+                'text'     => $entry->text,
+                'moveName' => $entry->move_name,
+            ];
+        }
+
+        krsort($entriesByTurn);
+
+        return array_map(
+            fn (int $turn, array $entries) => ['turn' => $turn, 'entries' => $entries],
+            array_keys($entriesByTurn),
+            $entriesByTurn,
+        );
     }
 
     /**

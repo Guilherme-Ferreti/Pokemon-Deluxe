@@ -8,6 +8,7 @@ use App\Battle\Data\TurnData;
 use App\Battle\Mechanics\StatusEffectCalculator;
 use Closure;
 use Shared\Enums\Ailment;
+use Shared\Enums\BattleLogKind;
 
 final class ApplyEndOfTurnDamage
 {
@@ -28,11 +29,12 @@ final class ApplyEndOfTurnDamage
                 continue;
             }
 
-            $turn->damageActiveCombatant($side, $damage);
+            $hpLost = $turn->damageActiveCombatant($side, $damage);
 
             $cause = $combatant->ailment === Ailment::BURN ? 'its burn' : 'poison';
 
-            $turn->log("{$turn->displayName($side, atStart: true)} is hurt by {$cause}!");
+            $turn->log(BattleLogKind::EVENT, "{$turn->displayName($side, atStart: true)} is hurt by {$cause}!");
+            $turn->logDamage($side, $hpLost);
 
             $turn->logFaintIfFainted($side);
         }

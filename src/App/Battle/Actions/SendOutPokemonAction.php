@@ -9,9 +9,11 @@ use App\Battle\Exceptions\PokemonHasFaintedException;
 use App\Battle\Support\LockKeys;
 use Illuminate\Support\Facades\Cache;
 use InvalidArgumentException;
+use Shared\Enums\BattleLogKind;
 use Shared\Enums\BattleStatus;
 use Shared\Models\Battle;
 use Shared\Models\Species;
+use Shared\ValueObjects\BattleLogEntry;
 use Shared\ValueObjects\Combatant;
 
 final class SendOutPokemonAction
@@ -46,7 +48,9 @@ final class SendOutPokemonAction
             'state' => $this->battle->state
                 ->withPlayerSide($playerSide)
                 ->withAwaitingSendOut(false)
-                ->withLogLines(["Go! {$this->chosenDisplayName()}!"]),
+                ->withLogEntries([
+                    new BattleLogEntry($this->battle->state->lastPlayedTurn(), BattleLogKind::EVENT, "Go! {$this->chosenDisplayName()}!"),
+                ]),
         ]);
 
         return $this->battle;

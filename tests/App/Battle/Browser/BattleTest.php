@@ -2,6 +2,7 @@
 
 declare(strict_types=1);
 
+use Shared\Enums\BattleLogKind;
 use Shared\Enums\BattleStatus;
 use Shared\Enums\PokemonGender;
 use Shared\Enums\PokemonType;
@@ -10,6 +11,7 @@ use Shared\Models\Battle;
 use Shared\Models\Move;
 use Shared\Models\Species;
 use Shared\Models\User;
+use Shared\ValueObjects\BattleLogEntry;
 use Shared\ValueObjects\BattleSide;
 use Shared\ValueObjects\BattleState;
 use Shared\ValueObjects\Combatant;
@@ -46,7 +48,10 @@ it('loads the battle page without errors', function () {
             player_side: new BattleSide(combatants: [new Combatant(...$combatant)], active_index: 0),
             opponent_side: new BattleSide(combatants: [new Combatant(...[...$combatant, 'pokemon_id' => null])], active_index: 0),
             is_awaiting_send_out: false,
-            log: ['A wild Pikachu appeared!', 'Go! Pikachu!'],
+            log: [
+                new BattleLogEntry(0, BattleLogKind::INFO, 'A wild Pikachu appeared!'),
+                new BattleLogEntry(0, BattleLogKind::EVENT, 'Go! Pikachu!'),
+            ],
         ),
     ]);
 
@@ -98,7 +103,10 @@ it('takes a turn when a move is clicked', function () {
             ])], active_index: 0),
             opponent_side: new BattleSide(combatants: [new Combatant(...$combatant)], active_index: 0),
             is_awaiting_send_out: false,
-            log: ['A wild Pidgey appeared!', 'Go! Pikachu!'],
+            log: [
+                new BattleLogEntry(0, BattleLogKind::INFO, 'A wild Pidgey appeared!'),
+                new BattleLogEntry(0, BattleLogKind::EVENT, 'Go! Pikachu!'),
+            ],
         ),
     ]);
 
@@ -152,7 +160,7 @@ it('sends out another pokemon after a faint', function () {
             ], active_index: 0),
             opponent_side: new BattleSide(combatants: [new Combatant(...[...$combatant, 'pokemon_id' => null])], active_index: 0),
             is_awaiting_send_out: true,
-            log: ['Pikachu fainted!'],
+            log: [new BattleLogEntry(3, BattleLogKind::EVENT, 'Pikachu fainted!')],
         ),
     ]);
 
@@ -206,7 +214,10 @@ it('switches to another pokemon, which the opponent then attacks', function () {
                 new Combatant(...[...$combatant, 'pokemon_id' => null, 'species_id' => $pidgey->id, 'types' => [PokemonType::NORMAL, PokemonType::FLYING]]),
             ], active_index: 0),
             is_awaiting_send_out: false,
-            log: ['A wild Pidgey appeared!', 'Go! Pikachu!'],
+            log: [
+                new BattleLogEntry(0, BattleLogKind::INFO, 'A wild Pidgey appeared!'),
+                new BattleLogEntry(0, BattleLogKind::EVENT, 'Go! Pikachu!'),
+            ],
         ),
     ]);
 
@@ -259,7 +270,10 @@ it('runs from the battle after confirming', function () {
             player_side: new BattleSide(combatants: [new Combatant(...$combatant)], active_index: 0),
             opponent_side: new BattleSide(combatants: [new Combatant(...[...$combatant, 'pokemon_id' => null])], active_index: 0),
             is_awaiting_send_out: false,
-            log: ['A wild Pikachu appeared!', 'Go! Pikachu!'],
+            log: [
+                new BattleLogEntry(0, BattleLogKind::INFO, 'A wild Pikachu appeared!'),
+                new BattleLogEntry(0, BattleLogKind::EVENT, 'Go! Pikachu!'),
+            ],
         ),
     ]);
 

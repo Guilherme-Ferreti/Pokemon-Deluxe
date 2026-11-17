@@ -11,12 +11,14 @@ use App\Pokemon\Mechanics\StatsCalculator;
 use App\Pokemon\ValueObjects\NewPokemon;
 use Illuminate\Database\Eloquent\Collection as EloquentCollection;
 use Illuminate\Support\Facades\Cache;
+use Shared\Enums\BattleLogKind;
 use Shared\Enums\BattleStatus;
 use Shared\Enums\BattleType;
 use Shared\Models\Battle;
 use Shared\Models\Move;
 use Shared\Models\Pokemon;
 use Shared\Models\User;
+use Shared\ValueObjects\BattleLogEntry;
 use Shared\ValueObjects\BattleSide;
 use Shared\ValueObjects\BattleState;
 use Shared\ValueObjects\Combatant;
@@ -59,8 +61,8 @@ final class StartWildBattleAction
                 opponent_side: new BattleSide(combatants: [$this->buildWildCombatant()], active_index: 0),
                 is_awaiting_send_out: false,
                 log: [
-                    "A wild {$this->wildPokemon->species->getDisplayName($this->wildPokemon->is_shiny)} appeared!",
-                    "Go! {$this->partyPokemon->firstOrFail()->getDisplayName()}!",
+                    new BattleLogEntry(0, BattleLogKind::INFO, "A wild {$this->wildPokemon->species->getDisplayName($this->wildPokemon->is_shiny)} appeared!"),
+                    new BattleLogEntry(0, BattleLogKind::EVENT, "Go! {$this->partyPokemon->firstOrFail()->getDisplayName()}!"),
                 ],
             ),
         ]);

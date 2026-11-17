@@ -2,12 +2,14 @@
 
 declare(strict_types=1);
 
+use Shared\Enums\BattleLogKind;
 use Shared\Enums\BattleStatus;
 use Shared\Enums\PokemonGender;
 use Shared\Enums\PokemonType;
 use Shared\Models\Battle;
 use Shared\Models\Species;
 use Shared\Models\User;
+use Shared\ValueObjects\BattleLogEntry;
 use Shared\ValueObjects\BattleSide;
 use Shared\ValueObjects\BattleState;
 use Shared\ValueObjects\Combatant;
@@ -67,7 +69,7 @@ it('sends out the chosen pokemon', function () {
 
     expect($state?->player_side->active_index)->toBe(1)
         ->and($state?->is_awaiting_send_out)->toBeFalse()
-        ->and($state?->log)->toBe(['Go! Eevee!']);
+        ->and($state?->log)->toEqual([new BattleLogEntry(3, BattleLogKind::EVENT, 'Go! Eevee!')]);
 });
 
 it('refuses to send out a fainted pokemon', function () {

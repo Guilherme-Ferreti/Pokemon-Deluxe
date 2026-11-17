@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 use Inertia\Testing\AssertableInertia as Assert;
 use Shared\Enums\Ailment;
+use Shared\Enums\BattleLogKind;
 use Shared\Enums\BattleStatus;
 use Shared\Enums\BattleType;
 use Shared\Enums\PokemonGender;
@@ -13,6 +14,7 @@ use Shared\Models\Move;
 use Shared\Models\Pokemon;
 use Shared\Models\Species;
 use Shared\Models\User;
+use Shared\ValueObjects\BattleLogEntry;
 use Shared\ValueObjects\BattleSide;
 use Shared\ValueObjects\BattleState;
 use Shared\ValueObjects\Combatant;
@@ -75,7 +77,13 @@ it('loads the battle page with expected structure', function () {
                 new Combatant(...[...$combatant, 'species_id' => $pidgey->id, 'level' => 34, 'current_hp' => 135]),
             ], active_index: 0),
             is_awaiting_send_out: false,
-            log: ['A wild Pidgey appeared!', 'Go! Shiny Pikachu!'],
+            log: [
+                new BattleLogEntry(0, BattleLogKind::INFO, 'A wild Pidgey appeared!'),
+                new BattleLogEntry(0, BattleLogKind::EVENT, 'Go! Shiny Pikachu!'),
+                new BattleLogEntry(1, BattleLogKind::MOVE, 'Shiny Pikachu used Tackle!', 'Tackle'),
+                new BattleLogEntry(1, BattleLogKind::DAMAGE, 'The wild Pidgey lost 46 HP.'),
+                new BattleLogEntry(2, BattleLogKind::MOVE, 'The wild Pidgey used Growl!', 'Growl'),
+            ],
         ),
     ]);
 
@@ -85,10 +93,22 @@ it('loads the battle page with expected structure', function () {
         ->assertInertia(fn (Assert $page) => $page
             ->component('Battle/pages/Battle/index')
             ->where('battle', [
-                'type'              => BattleType::WILD->value,
-                'status'            => BattleStatus::ONGOING->value,
-                'turn'              => 3,
-                'log'               => ['A wild Pidgey appeared!', 'Go! Shiny Pikachu!'],
+                'type'   => BattleType::WILD->value,
+                'status' => BattleStatus::ONGOING->value,
+                'turn'   => 3,
+                'log'    => [
+                    ['turn' => 2, 'entries' => [
+                        ['kind' => BattleLogKind::MOVE->value, 'text' => 'The wild Pidgey used Growl!', 'moveName' => 'Growl'],
+                    ]],
+                    ['turn' => 1, 'entries' => [
+                        ['kind' => BattleLogKind::MOVE->value, 'text' => 'Shiny Pikachu used Tackle!', 'moveName' => 'Tackle'],
+                        ['kind' => BattleLogKind::DAMAGE->value, 'text' => 'The wild Pidgey lost 46 HP.', 'moveName' => null],
+                    ]],
+                    ['turn' => 0, 'entries' => [
+                        ['kind' => BattleLogKind::INFO->value, 'text' => 'A wild Pidgey appeared!', 'moveName' => null],
+                        ['kind' => BattleLogKind::EVENT->value, 'text' => 'Go! Shiny Pikachu!', 'moveName' => null],
+                    ]],
+                ],
                 'isAwaitingSendOut' => false,
             ])
             ->where('result', null)

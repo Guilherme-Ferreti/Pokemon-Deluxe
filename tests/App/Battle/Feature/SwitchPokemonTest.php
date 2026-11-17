@@ -2,6 +2,7 @@
 
 declare(strict_types=1);
 
+use Shared\Enums\BattleLogKind;
 use Shared\Enums\BattleStatus;
 use Shared\Enums\BattleType;
 use Shared\Enums\PokemonGender;
@@ -11,6 +12,7 @@ use Shared\Models\Battle;
 use Shared\Models\Move;
 use Shared\Models\Species;
 use Shared\Models\User;
+use Shared\ValueObjects\BattleLogEntry;
 use Shared\ValueObjects\BattleSide;
 use Shared\ValueObjects\BattleState;
 use Shared\ValueObjects\Combatant;
@@ -77,7 +79,12 @@ it('switches to the chosen pokemon', function () {
 
     expect($state?->turn)->toBe(3)
         ->and($state?->player_side->active_index)->toBe(1)
-        ->and($state?->log)->toBe(['Come back, Pikachu!', 'Go! Eevee!', 'The wild Pidgey used Tackle!']);
+        ->and($state?->log)->toEqual([
+            new BattleLogEntry(2, BattleLogKind::EVENT, 'Come back, Pikachu!'),
+            new BattleLogEntry(2, BattleLogKind::EVENT, 'Go! Eevee!'),
+            new BattleLogEntry(2, BattleLogKind::MOVE, 'The wild Pidgey used Tackle!', 'Tackle'),
+            new BattleLogEntry(2, BattleLogKind::DAMAGE, 'Eevee lost 46 HP.'),
+        ]);
 });
 
 it('rejects an invalid combatant index', function (mixed $combatantIndex) {

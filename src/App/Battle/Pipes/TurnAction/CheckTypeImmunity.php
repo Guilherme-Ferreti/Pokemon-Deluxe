@@ -8,6 +8,7 @@ use App\Battle\Data\TurnActionData;
 use App\Battle\Enums\TurnActionOutcome;
 use App\Battle\Mechanics\DamageCalculator;
 use Closure;
+use Shared\Enums\BattleLogKind;
 
 final class CheckTypeImmunity
 {
@@ -22,7 +23,7 @@ final class CheckTypeImmunity
             return $next($action);
         }
 
-        $action->turn->log("It doesn't affect {$action->turn->displayName($action->defendingSide(), atStart: false)}...");
+        $action->turn->log(BattleLogKind::DETAIL, "It doesn't affect {$action->turn->displayName($action->defendingSide(), atStart: false)}...");
 
         $action->outcome = TurnActionOutcome::NO_EFFECT;
 

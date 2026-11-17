@@ -5,11 +5,13 @@ declare(strict_types=1);
 use App\Battle\Actions\SendOutPokemonAction;
 use App\Battle\Exceptions\BattleNotAwaitingSendOutException;
 use App\Battle\Exceptions\PokemonHasFaintedException;
+use Shared\Enums\BattleLogKind;
 use Shared\Enums\BattleStatus;
 use Shared\Enums\PokemonGender;
 use Shared\Enums\PokemonType;
 use Shared\Models\Battle;
 use Shared\Models\Species;
+use Shared\ValueObjects\BattleLogEntry;
 use Shared\ValueObjects\BattleSide;
 use Shared\ValueObjects\BattleState;
 use Shared\ValueObjects\Combatant;
@@ -59,7 +61,7 @@ it('sends out the chosen pokemon and stops awaiting a send-out', function () {
         ], active_index: 0),
         opponent_side: $battle->state->opponent_side,
         is_awaiting_send_out: true,
-        log: ['Pikachu fainted!'],
+        log: [new BattleLogEntry(2, BattleLogKind::EVENT, 'Pikachu fainted!')],
     )]);
 
     $state = new SendOutPokemonAction()->handle($battle, combatantIndex: 1)->fresh()?->state;
@@ -68,7 +70,10 @@ it('sends out the chosen pokemon and stops awaiting a send-out', function () {
         ->and($state?->player_side->activeCombatant()->has_entered_field)->toBeTrue()
         ->and($state?->is_awaiting_send_out)->toBeFalse()
         ->and($state?->turn)->toBe(3)
-        ->and($state?->log)->toBe(['Pikachu fainted!', 'Go! Shiny Eevee!']);
+        ->and($state?->log)->toEqual([
+            new BattleLogEntry(2, BattleLogKind::EVENT, 'Pikachu fainted!'),
+            new BattleLogEntry(2, BattleLogKind::EVENT, 'Go! Shiny Eevee!'),
+        ]);
 });
 
 it('refuses a send-out when the battle is not awaiting one', function (BattleStatus $status, bool $isAwaitingSendOut) {

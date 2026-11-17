@@ -2,6 +2,7 @@
 
 declare(strict_types=1);
 
+use Shared\Enums\BattleLogKind;
 use Shared\Enums\BattleStatus;
 use Shared\Enums\PokemonGender;
 use Shared\Enums\PokemonType;
@@ -10,6 +11,7 @@ use Shared\Models\Battle;
 use Shared\Models\Move;
 use Shared\Models\Species;
 use Shared\Models\User;
+use Shared\ValueObjects\BattleLogEntry;
 use Shared\ValueObjects\BattleSide;
 use Shared\ValueObjects\BattleState;
 use Shared\ValueObjects\Combatant;
@@ -61,7 +63,10 @@ it('takes a turn with the chosen move', function () {
             ])], active_index: 0),
             opponent_side: new BattleSide(combatants: [new Combatant(...$combatant)], active_index: 0),
             is_awaiting_send_out: false,
-            log: ['A wild Pidgey appeared!', 'Go! Pikachu!'],
+            log: [
+                new BattleLogEntry(0, BattleLogKind::INFO, 'A wild Pidgey appeared!'),
+                new BattleLogEntry(0, BattleLogKind::EVENT, 'Go! Pikachu!'),
+            ],
         ),
     ]);
 
@@ -78,12 +83,14 @@ it('takes a turn with the chosen move', function () {
     expect($state?->turn)->toBe(2)
         ->and($state?->opponent_side->activeCombatant()->current_hp)->toBe(218 - 93)
         ->and($state?->player_side->activeCombatant()->current_hp)->toBe(218 - 46)
-        ->and($state?->log)->toBe([
-            'A wild Pidgey appeared!',
-            'Go! Pikachu!',
-            'Pikachu used Thunder Shock!',
-            "It's super effective!",
-            'The wild Pidgey used Tackle!',
+        ->and($state?->log)->toEqual([
+            new BattleLogEntry(0, BattleLogKind::INFO, 'A wild Pidgey appeared!'),
+            new BattleLogEntry(0, BattleLogKind::EVENT, 'Go! Pikachu!'),
+            new BattleLogEntry(1, BattleLogKind::MOVE, 'Pikachu used Thunder Shock!', 'Thunder Shock'),
+            new BattleLogEntry(1, BattleLogKind::DETAIL, "It's super effective!"),
+            new BattleLogEntry(1, BattleLogKind::DAMAGE, 'The wild Pidgey lost 93 HP.'),
+            new BattleLogEntry(1, BattleLogKind::MOVE, 'The wild Pidgey used Tackle!', 'Tackle'),
+            new BattleLogEntry(1, BattleLogKind::DAMAGE, 'Pikachu lost 46 HP.'),
         ]);
 });
 

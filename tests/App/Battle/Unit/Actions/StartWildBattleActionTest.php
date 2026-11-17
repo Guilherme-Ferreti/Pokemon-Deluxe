@@ -6,6 +6,7 @@ use App\Battle\Actions\StartWildBattleAction;
 use App\Battle\Exceptions\BattleAlreadyInProgressException;
 use App\Battle\Exceptions\EmptyPartyException;
 use App\Pokemon\ValueObjects\NewPokemon;
+use Shared\Enums\BattleLogKind;
 use Shared\Enums\BattleStatus;
 use Shared\Enums\BattleType;
 use Shared\Enums\PokemonGender;
@@ -15,6 +16,7 @@ use Shared\Models\Battle;
 use Shared\Models\Pokemon;
 use Shared\Models\Species;
 use Shared\Models\User;
+use Shared\ValueObjects\BattleLogEntry;
 
 use function Pest\Laravel\assertDatabaseCount;
 
@@ -44,7 +46,10 @@ it('starts a wild battle with the party against the wild pokemon', function () {
         ->and($battle->status)->toBe(BattleStatus::ONGOING)
         ->and($state?->turn)->toBe(1)
         ->and($state?->is_awaiting_send_out)->toBeFalse()
-        ->and($state?->log)->toBe(['A wild Pidgey appeared!', 'Go! Shiny Pikachu!'])
+        ->and($state?->log)->toEqual([
+            new BattleLogEntry(0, BattleLogKind::INFO, 'A wild Pidgey appeared!'),
+            new BattleLogEntry(0, BattleLogKind::EVENT, 'Go! Shiny Pikachu!'),
+        ])
         ->and(array_map(fn ($combatant) => $combatant->pokemon_id, $playerSide->combatants ?? []))->toBe([$firstPartyPokemon->id, $secondPartyPokemon->id])
         ->and($playerSide?->active_index)->toBe(0)
         ->and($firstCombatant?->level)->toBe(50)

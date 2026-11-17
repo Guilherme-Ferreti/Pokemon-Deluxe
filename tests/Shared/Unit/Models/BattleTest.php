@@ -4,12 +4,14 @@ declare(strict_types=1);
 
 use Illuminate\Support\Facades\Artisan;
 use Shared\Enums\Ailment;
+use Shared\Enums\BattleLogKind;
 use Shared\Enums\BattleStatus;
 use Shared\Enums\BattleType;
 use Shared\Enums\PokemonGender;
 use Shared\Enums\PokemonType;
 use Shared\Models\Battle;
 use Shared\Models\User;
+use Shared\ValueObjects\BattleLogEntry;
 use Shared\ValueObjects\BattleSide;
 use Shared\ValueObjects\BattleState;
 use Shared\ValueObjects\Combatant;
@@ -84,7 +86,10 @@ it('saves and reloads the battle state unchanged', function () {
             active_index: 0,
         ),
         is_awaiting_send_out: true,
-        log: ['Wild Bulbasaur appeared!', 'Squirtle fainted!'],
+        log: [
+            new BattleLogEntry(turn: 0, kind: BattleLogKind::INFO, text: 'A wild Bulbasaur appeared!'),
+            new BattleLogEntry(turn: 6, kind: BattleLogKind::MOVE, text: 'Squirtle used Water Gun!', move_name: 'Water Gun'),
+        ],
         experience_gains: [new ExperienceGain(combatant_index: 1, earned_experience: 1500, level_before: 60, level_after: 61)],
     );
 

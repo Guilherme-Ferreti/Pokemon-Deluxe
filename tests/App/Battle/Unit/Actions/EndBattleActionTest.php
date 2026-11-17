@@ -5,6 +5,7 @@ declare(strict_types=1);
 use App\Battle\Actions\EndBattleAction;
 use App\Battle\Events\BattleEnded;
 use Illuminate\Support\Facades\Event;
+use Shared\Enums\BattleLogKind;
 use Shared\Enums\BattleStatus;
 use Shared\Enums\BattleType;
 use Shared\Enums\PokemonGender;
@@ -12,6 +13,7 @@ use Shared\Enums\PokemonType;
 use Shared\Models\Battle;
 use Shared\Models\Pokemon;
 use Shared\Models\Species;
+use Shared\ValueObjects\BattleLogEntry;
 use Shared\ValueObjects\BattleSide;
 use Shared\ValueObjects\BattleState;
 use Shared\ValueObjects\Combatant;
@@ -114,10 +116,10 @@ describe('experience', function () {
                 new ExperienceGain(combatant_index: 0, earned_experience: 937, level_before: 50, level_after: 50),
                 new ExperienceGain(combatant_index: 1, earned_experience: 1_875, level_before: 25, level_after: 26),
             ])
-            ->and($battle->fresh()?->state->log)->toBe([
-                'Pikachu gained 937 XP!',
-                'Pikachu gained 1,875 XP!',
-                'Pikachu grew to Lv 26!',
+            ->and($battle->fresh()?->state->log)->toEqual([
+                new BattleLogEntry(4, BattleLogKind::EVENT, 'Pikachu gained 937 XP!'),
+                new BattleLogEntry(4, BattleLogKind::EVENT, 'Pikachu gained 1,875 XP!'),
+                new BattleLogEntry(4, BattleLogKind::EVENT, 'Pikachu grew to Lv 26!'),
             ]);
     })->with([
         'won'       => [BattleStatus::WON],

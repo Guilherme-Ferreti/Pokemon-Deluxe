@@ -11,11 +11,13 @@ use Illuminate\Database\Eloquent\Collection as EloquentCollection;
 use Illuminate\Support\Facades\DB;
 use InvalidArgumentException;
 use LogicException;
+use Shared\Enums\BattleLogKind;
 use Shared\Enums\BattleStatus;
 use Shared\Enums\BattleType;
 use Shared\Models\Battle;
 use Shared\Models\Pokemon;
 use Shared\Models\Species;
+use Shared\ValueObjects\BattleLogEntry;
 use Shared\ValueObjects\Combatant;
 use Shared\ValueObjects\ExperienceGain;
 
@@ -69,15 +71,15 @@ final class EndBattleAction
             'status' => $this->status,
             'state'  => $this->battle->state
                 ->withExperienceGains($gains)
-                ->withLogLines($this->experienceLogLines($gains)),
+                ->withLogEntries($this->experienceLogEntries($gains)),
         ]);
     }
 
     /**
      * @param  list<ExperienceGain>  $gains
-     * @return list<string>
+     * @return list<BattleLogEntry>
      */
-    private function experienceLogLines(array $gains): array
+    private function experienceLogEntries(array $gains): array
     {
         if ($this->battle->type === BattleType::BATTLE_TOWER) {
             return [];
@@ -89,7 +91,8 @@ final class EndBattleAction
             ->get()
             ->keyBy('id');
 
-        $lines = [];
+        $turn    = $this->battle->state->lastPlayedTurn();
+        $entries = [];
 
         foreach ($gains as $gain) {
             if ($gain->earned_experience === 0) {
@@ -99,14 +102,14 @@ final class EndBattleAction
             $combatant = $combatants[$gain->combatant_index];
             $name      = $species->findOrFail($combatant->species_id)->getDisplayName($combatant->is_shiny);
 
-            $lines[] = sprintf('%s gained %s XP!', $name, number_format($gain->earned_experience));
+            $entries[] = new BattleLogEntry($turn, BattleLogKind::EVENT, sprintf('%s gained %s XP!', $name, number_format($gain->earned_experience)));
 
             if ($gain->level_after > $gain->level_before) {
-                $lines[] = "{$name} grew to Lv {$gain->level_after}!";
+                $entries[] = new BattleLogEntry($turn, BattleLogKind::EVENT, "{$name} grew to Lv {$gain->level_after}!");
             }
         }
 
-        return $lines;
+        return $entries;
     }
 
     private function loadPlayerPokemon(): void

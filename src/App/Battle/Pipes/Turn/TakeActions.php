@@ -20,6 +20,7 @@ use App\Battle\Pipes\TurnAction\SkipFlinchedAttacker;
 use App\Battle\Pipes\TurnAction\WakeUpOrThawOut;
 use Closure;
 use Illuminate\Support\Facades\Pipeline;
+use Shared\Enums\BattleLogKind;
 
 final class TakeActions
 {
@@ -69,7 +70,7 @@ final class TakeActions
         $attacker = $action->attacker();
 
         if ($action->isConfusionChecked && $attacker->confusion_turns_left === 0 && ! $attacker->isFainted()) {
-            $action->turn->log("{$action->turn->displayName($action->side, atStart: true)} snapped out of its confusion!");
+            $action->turn->log(BattleLogKind::EVENT, "{$action->turn->displayName($action->side, atStart: true)} snapped out of its confusion!");
         }
     }
 }

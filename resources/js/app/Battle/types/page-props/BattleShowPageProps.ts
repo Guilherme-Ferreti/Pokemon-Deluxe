@@ -1,4 +1,9 @@
-import type { Ailment, BattleStatus, BattleType } from '@/shared/types/enums';
+import type {
+  Ailment,
+  BattleLogKind,
+  BattleStatus,
+  BattleType,
+} from '@/shared/types/enums';
 import type { Move, Pokemon } from '@/shared/types/response';
 
 export type BattleCombatant = {
@@ -26,12 +31,21 @@ export type BattleTeamMember = {
   isActive: boolean;
 };
 
+export type BattleLogTurn = {
+  turn: number;
+  entries: {
+    kind: BattleLogKind;
+    text: string;
+    moveName: string | null;
+  }[];
+};
+
 export type BattleShowPageProps = {
   battle: {
     type: BattleType;
     status: BattleStatus;
     turn: number;
-    log: string[];
+    log: BattleLogTurn[];
     isAwaitingSendOut: boolean;
   };
   player: Omit<BattleCombatant, 'team'> & {

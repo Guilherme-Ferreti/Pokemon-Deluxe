@@ -13,11 +13,11 @@
         aria-live="polite"
       >
         <li
-          v-for="(line, index) in page.props.battle.log"
+          v-for="(entry, index) in entries"
           :key="index"
           class="battle-log-card__line"
         >
-          {{ line }}
+          {{ entry.text }}
         </li>
       </ol>
     </CardContent>
@@ -26,7 +26,7 @@
 
 <script setup lang="ts">
 import { usePage } from '@inertiajs/vue3';
-import { nextTick, onMounted, useTemplateRef, watch } from 'vue';
+import { computed, nextTick, onMounted, useTemplateRef, watch } from 'vue';
 import {
   Card,
   CardContent,
@@ -36,6 +36,10 @@ import {
 import type { BattleShowPageProps } from '../../types/page-props/BattleShowPageProps';
 
 const page = usePage<BattleShowPageProps>();
+
+const entries = computed(() =>
+  page.props.battle.log.toReversed().flatMap((turn) => turn.entries),
+);
 
 const logList = useTemplateRef('logList');
 
@@ -48,7 +52,7 @@ function scrollToNewestLine(): void {
 onMounted(scrollToNewestLine);
 
 watch(
-  () => page.props.battle.log.length,
+  () => entries.value.length,
   async () => {
     await nextTick();
     scrollToNewestLine();

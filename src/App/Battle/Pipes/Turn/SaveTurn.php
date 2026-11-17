@@ -23,7 +23,7 @@ final class SaveTurn
             default                                            => null,
         };
 
-        $state = $turn->state->withNextTurn($turn->logLines);
+        $state = $turn->state->withNextTurn($turn->logEntries);
 
         if ($endStatus === null && $state->player_side->activeCombatant()->isFainted()) {
             $state = $state->withAwaitingSendOut(true);

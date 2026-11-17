@@ -31,7 +31,7 @@ One name per idea, used everywhere: specs, code, database, tests and UI. When yo
 | Move usability | `MoveUsabilityChecker` | Whether a combatant can still use a move: `isOncePerBattleMoveAlreadyUsed()` (Z-Moves and Dynamax moves, once per battle), `isDynamaxMoveAllowed()` (only G-Max species), `isUsable()` for both. |
 | Turn order roll | `TurnOrderRoller::rollIsPlayerFirst()` | Rolls `TurnOrderCalculator::firstMoverChance()`. |
 | Opponent move roll | `OpponentMoveRoller::rollMoveId()` | Picks one of the opponent's usable moves. |
-| Turn data | `TurnData` (`App\Battle\Data`) | What the turn pipeline carries: the battle, the move slot (`playerMove()` reads the move in it), the state, the opponent's chosen move (`opponentMove`), the turn order, each side's action (`playerAction`, `opponentAction`, null until that side acts) and the log lines. |
+| Turn data | `TurnData` (`App\Battle\Data`) | What the turn pipeline carries: the battle, the move slot (`playerMove()` reads the move in it), the state, the opponent's chosen move (`opponentMove`), the turn order, each side's action (`playerAction`, `opponentAction`, null until that side acts) and the log entries (`logEntries`, written by `log()` and `logDamage()`). |
 | Turn action data | `TurnActionData` (`App\Battle\Data`) | One side's action in a turn, sent through the turn action pipeline: its `side`, `move`, `blocker`, `isConfusionChecked`, `moveOutcome`, `typeMultiplier` and `outcome`. |
 | Battle side | `Side` (`App\Battle\Enums`): `PLAYER`, `OPPONENT`; `other()` | Which side of a battle acts, defends or flinches. Not to be confused with the `BattleSide` value object, which holds one side's team. |
 | Turn pipeline | `App\Battle\Pipes\Turn\*` | The steps of `TakeTurnAction`: ready check, loading, the player's move check (`EnsurePlayerMoveIsUsable`), the opponent's move choice, turn order, actions, end-of-turn damage, saving. |
@@ -43,8 +43,8 @@ One name per idea, used everywhere: specs, code, database, tests and UI. When yo
 | Active combatant | `active_index` on `BattleSide` | The one currently on the field. |
 | Turn | `turn` | Both sides acting once. |
 | Battle log | `log` (`list<BattleLogEntry>`), `BattleLogCard` | What happened, turn by turn; the page shows the newest turn first. |
-| Battle log entry | `BattleLogEntry` (`turn`, `kind`, `text`, `move_name`) | One message. `turn` 0 is before the first turn. |
-| Battle log kind | `BattleLogKind` enum: `MOVE`, `DAMAGE`, `DETAIL`, `INFO`, `EVENT` | How the page styles an entry: move names in bold, damage and details small and muted. |
+| Battle log entry | `BattleLogEntry` (`turn`, `kind`, `text`, `move_name`), `BattleState::withLogEntries()` | One message. `turn` 0 is before the first turn; lines logged between turns use `BattleState::lastPlayedTurn()`. Only `MOVE` entries have a `move_name`. |
+| Battle log kind | `BattleLogKind` enum (`Shared\Enums`): `MOVE`, `DAMAGE`, `DETAIL`, `INFO`, `EVENT` | How the page styles an entry: move names in bold, damage and details small and muted. |
 | Ongoing battle | `Battle::ongoing()` scope | The user's battle with status `ONGOING`. |
 | Recently ended battle | `Battle::recentlyEnded()` scope, `game.battle.end_screen_minutes` | An ended battle last updated within the end-screen window; `GET /battle` shows its end screen. |
 | Sending out from the page | `SendOutPokemonController`, `SendOutPokemonRequest` (`combatantIndex`), `battle.isAwaitingSendOut` prop, `PokemonFaintedCard` | `POST /battle/send-out` from the team rail's "Send out" button (a bottom sheet on phones); the index is the 0-based position in the player side's `combatants`. |
