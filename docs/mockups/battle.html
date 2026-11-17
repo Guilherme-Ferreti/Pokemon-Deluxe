@@ -431,13 +431,13 @@
     var canAct = !ended && pickIdx !== -1 && pickIdx !== fieldIdx && raw[pickIdx] && raw[pickIdx][3] > 0;
 
     function memberHtml(m, i, opts) {
-      var pct = Math.round(m[3] / m[4] * 100), fainted = m[3] === 0, checked = i === pickIdx && !ended;
+      var pct = Math.round(m[3] / m[4] * 100), fainted = m[3] === 0, checked = i === pickIdx && !ended, onField = i === fieldIdx;
       return '<button type="button" role="radio" class="member' + (fainted ? ' fainted' : '') + '" aria-checked="' + checked + '" data-pick="' + i + '"' + (fainted || ended ? ' disabled' : '') + '>' +
         '<span class="sprite" aria-hidden="true">' + esc(m[0]) + '</span>' +
         '<span class="member-body"><span class="member-name"><span class="name">' + nameHtml(m[0]) + '</span>' + (fainted ? '<span class="tag">Fainted</span>' : '') + '</span>' +
         '<span class="member-meta">Lv ' + m[1] + (m[2] ? ' · +' + m[2] : '') + (m[5] ? '<span class="ail">' + m[5] + '</span>' : '') + '</span>' +
-        (checked && !(opts && opts.alwaysHp) ? '' : '<span class="hp-row"><span class="hp-label">HP:</span>' + bar(pct, m[0] + ' HP') + '<span class="hp-text num">' + m[3] + ' / ' + m[4] + '</span></span>') +
-        '</span>' + (checked ? BALL : '') + '</button>';
+        (onField && !(opts && opts.alwaysHp) ? '' : '<span class="hp-row"><span class="hp-label">HP:</span>' + bar(pct, m[0] + ' HP') + '<span class="hp-text num">' + m[3] + ' / ' + m[4] + '</span></span>') +
+        '</span>' + (onField ? BALL : '') + '</button>';
     }
     $('team-rail').innerHTML = raw.map(function (m, i) { return memberHtml(m, i); }).join('');
     $('send-out-rail').innerHTML = raw.map(function (m, i) { return memberHtml(m, i, { alwaysHp: true }); }).join('');
