@@ -135,7 +135,7 @@ it('takes a turn when a move is clicked', function () {
     visit(route('battle.web.show'))
         ->assertSeeIn('@battlefield-combatant-card--opponent__hp-indicator', '218 / 218')
         ->assertSeeIn('@moves-card', 'Choose a move')
-        ->assertAttribute('@moves-card__move-1-radio', 'aria-checked', 'true')
+        ->assertAttribute('@moves-card__move-1-radio', 'data-state', 'checked')
         ->click('@moves-card__move-2-radio')
         ->click('@moves-card__attack-button')
         ->wait(1)

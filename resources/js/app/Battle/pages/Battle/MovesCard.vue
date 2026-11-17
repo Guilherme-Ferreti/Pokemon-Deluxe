@@ -18,7 +18,6 @@
           :key="move.id"
           class="moves-card__move"
           :for="`${idPrefix}-${index}`"
-          :data-test="`moves-card__move-${index + 1}-radio`"
         >
           <span class="moves-card__move-body">
             <MoveNameLabel
