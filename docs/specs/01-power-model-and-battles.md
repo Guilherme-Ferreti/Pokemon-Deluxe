@@ -57,7 +57,7 @@ Level factor = level + 10, so a level 100 Pokémon is 10× a level 1, not 100×.
 4. Moves can miss (accuracy), land a critical hit (1 in 16, ×1.5), flinch, or hit several times. Each hit of a multi-hit move rolls its own critical hit and random factor. Type effectiveness and STAB (×1.5) apply. Tri Attack's ailment is burn, paralysis or freeze, picked at random.
 5. Status effects (burn, poison, paralysis, sleep, freeze, confusion) are in from the first version and last only for that battle. Status-only moves such as Thunder Wave are kept.
 6. When a Pokémon faints, **the player picks which Pokémon comes out next**, like the main games. Free send-outs happen only after a faint; any other switch uses a turn. No items in battle.
-7. The player can run at any time with the **Run** button. Running counts as a loss. Losing has no penalty: trainers pay nothing, but XP already earned is kept (see XP).
+7. The player can leave at any time: **Run** in wild battles, **Forfeit** in every other battle. Either counts as a loss. Losing has no penalty: trainers pay nothing, but XP already earned is kept (see XP).
 8. After every battle all Pokémon are fully healed, except in the Battle Tower, where damage carries over between floors until a checkpoint (Spec 6).
 9. An ended battle is kept for 7 days (for the end screen and the reactions to it), then deleted. An ongoing battle is never deleted. There is no battle history yet.
 
@@ -134,33 +134,34 @@ Taking one Pokémon from level 1 to 100 takes about 300 fair fights, fewer when 
 ## Battle page
 
 ```
-┌──────────────────────────────────────────────────────────┐
-│  Wild Pokémon battle                              [Run]  │
-├──────────────────────────────────────────────────────────┤
-│                     OPPONENT  Pidgey ♂  Lv 34  +5         │
-│                     HP ████████░░░░  62%   [PAR]          │
-│                            (sprite)                       │
-│   (your sprite)                                           │
-│  YOU  Shiny Magikarp ♀  Lv 100  +72                       │
-│  HP ██████████░░  410 / 520                               │
-│  Team: ● ● ● ○ ○ ○                                         │
-├──────────────────────────────────────────────────────────┤
-│  [ Surf      WATER  90 ]   [ Thunder Wave  ELEC  — ]      │
-│  [ Ice Beam  ICE    90 ]   [ Tackle        NORM  40 ]     │
-│  [ Throw ball ] (wild battles only)  [ Switch Pokémon ]   │
-├──────────────────────────────────────────────────────────┤
-│  Battle log                                               │
-│  Magikarp used Surf! It's super effective!                │
-│  Pidgey is paralyzed! It can't move!                      │
-└──────────────────────────────────────────────────────────┘
+Wild battle                                        (Elite Four steps)
+A wild Pidgey appeared in the Forest · Turn 3
+┌─────────────┬──────────────────────────────────┬──────────────────┐
+│ YOUR TEAM ⓘ │  ┌ Pidgey ♀ PAR       Lv 34 ┐     │ HIKER BOB'S TEAM │
+│ (●) Shiny   │  │ HP: ████░░  115 / 185    │ (o) │ (trainers only)  │
+│ Magikarp ♀ ◓│  └──────────────────────────┘     ├──────────────────┤
+│ ( ) Lapras  │ (p) ┌ Shiny Magikarp ♀  Lv 54 ┐   │ BATTLE LOG ⓘ     │
+│  HP: ██ 91  │     │ HP: █████░  472 / 550   │   │ ⌄ TURN 2         │
+│ ( ) Gible   │     └─────────────────────────┘   │ ▌Shiny Magikarp  │
+│  Fainted    ├──────────────────────────────────┤ ▌ used **Surf**! │
+│    [Switch] │ CHOOSE A MOVE                    │ ▌The wild Pidgey │
+│             │ (●) Surf  WATER  ( ) Thunder Wave│ ▌ lost 70 HP.    │
+│             │ ( ) Ice Beam ICE ( ) Tackle      │ › TURN 1         │
+│             │                         [Attack] │ › START          │
+│             ├──────────────────────────────────┤                  │
+│             │ MORE OPTIONS [Throw ball] [Run]  │                  │
+└─────────────┴──────────────────────────────────┴──────────────────┘
 ```
 
-- Opponent at the top right, the player at the bottom left, as in the main games. On a phone the parts stack: opponent, player, moves, log.
-- The player's HP shows exact numbers; the opponent's shows only a percentage.
-- Move buttons show type and power, with a hint on super-effective moves.
-- Team dots show who is left on each side. A battle log lists what happened, oldest line first, and scrolls to the newest line.
-- When a Pokémon faints, a dialog lists the remaining team (portrait, level, HP) to pick the next one.
-- **Switch Pokémon** (every battle) opens a similar dialog that can be cancelled: the Pokémon in battle and fainted ones are disabled, and it says that switching uses the turn.
-- The only animation is the HP bar sliding down.
-- **Run** asks for confirmation. Against trainers it says that running counts as a loss; in an Elite Four run, that it also ends the run.
-- When the battle ends, the moves area becomes a result card for every ending (won, lost, ran, caught): the result, the money earned against trainers, and one row per Pokémon that came out with the XP it got, an XP bar and any level-up. With the XP Share on, one more line sums up what the rest of the party got. The battle log also gets one line per Pokémon that earned XP ("Shiny Magikarp gained 340 XP!") and one per level-up ("Shiny Magikarp grew to Lv 55!"). A loss with no opponent knocked out says "No XP this time". Tower battles show the XP saved in the run instead.
+- Three columns on wide screens: **Your team** on the left; the battlefield, **Choose a move** and **More options** in the middle; the opponent's team (battles against trainers) and the **Battle log** on the right. On a phone the parts stack: result, battlefield, log, moves, Your team, More options.
+- The header names the battle and the turn: "Wild battle" with "A wild Pidgey appeared in the Forest · Turn 3"; against trainers, the trainer's sprite and name with "Trainer battle · Turn 3", "Pewter City Gym · Rock · Turn 3", "Kanto Elite Four · battle 2 of 5 · Turn 3" (with the five Elite Four steps) or "Tower Trainer Lena · Turn 3".
+- **Battlefield:** the opponent at the top right, the player at the bottom left, as in the main games, over a background that fits the place (wild, trainer arena, gym, Indigo Plateau, Battle Tower). Each card shows the name with its gender icon, the ailment, the level on the right ("Lv 34") and "HP:" with a bar and **both sides' HP as numbers** ("115 / 185"). On a phone, the opponent's card of a trainer battle also has team dots.
+- **Choose a move:** the four moves as radio choice cards (name and type, no power and no effectiveness hint); the first is selected; **Attack** uses the selected move.
+- **Your team:** the battle's team as a radio group. The checked item is the Pokémon in battle: a larger portrait, a Poké Ball icon and no HP bar. The others show level, boost, ailment and "HP:" with bar and numbers; fainted ones are faded, greyscale and can't be picked. Picking another Pokémon moves the checked look to it and enables **Switch**, which switches with no confirmation (see Switching). Long names wrap; the gender icon stays right after the name. On a phone it is a 2-column grid of tiles.
+- **Fainting:** a card replaces the moves ("Shiny Magikarp fainted!"); nothing is checked in Your team until the player picks who to send out and presses **Send out** (free). On a phone this is a bottom sheet that can't be closed.
+- **More options:** **Throw ball** (wild battles, Spec 2; disabled while waiting for a send-out) and **Run** in wild battles; **Forfeit** in every other battle. Both ask for confirmation: running from a wild battle gives nothing; forfeiting counts as a loss (no money, XP kept), and also ends an Elite Four or Tower run.
+- **Opponent's team** (battles against trainers): the trainer's team, read-only, with the Pokémon in battle marked like the player's. Gym leaders and the Elite Four reveal their Pokémon only as they are sent out ("Not sent out yet"); other trainers show the whole team from the start.
+- **Battle log:** one collapsible section per turn ("Start", "Turn 1", …), newest first; only the newest is open. Each message is a plain line with a blue bar for the player's side, grey for the opponent's and none for neutral messages. Move names are bold; damage ("Gengar lost 96 HP.") and details (critical hits, effectiveness, multi-hit) are smaller and muted. No coloured or bold success or failure messages.
+- **Result:** when the battle ends, the opponent's HP drains, the battlefield fades out and a result card slides in for every ending (won, lost, ran, caught): the title (with a badge on the right such as "New best floor!" or "Kanto Champion ✓"), **Your rewards** (money, a gym badge), and **XP gained**: one row per Pokémon that got XP with its gender icon, "+340 XP" and a "Level up! 54 → 55" pill on the right. With the XP Share on, each party Pokémon that got XP through it has its own row marked "via XP Share". No XP bars. A loss with no opponent knocked out says "No XP this time". Tower battles show the XP saved in the run instead. Buttons fit their text and sit on the right, the main one last.
+- The battle log also gets one line per Pokémon that earned XP ("Shiny Magikarp gained 340 XP!") and one per level-up ("Shiny Magikarp grew to Lv 55!").
+- **Motion:** nothing changes abruptly: HP bars slide, new log lines and dialogs fade in, bottom sheets slide up, and the end of a battle plays in order (HP drains, battlefield fades, result slides up). Reduced motion turns these off.

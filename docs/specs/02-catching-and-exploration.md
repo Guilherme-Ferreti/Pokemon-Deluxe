@@ -145,5 +145,5 @@ Balls have conditions, as in the main games. The game has no weight, speed, fish
 
 ## Catching in the battle page
 
-- In wild battles a **Throw ball** button sits under the moves. It opens a ball picker: each owned ball with its sprite, quantity and multiplier right now; balls whose condition applies get a "Boosted" tag.
-- On a catch, a dialog shows the Pokémon, where it went (Party or Box), the XP each of the player's Pokémon got (with level-ups), and buttons **View Pokémon** and **Keep exploring**.
+- In wild battles a **Throw ball** button sits in the **More options** card, next to **Run** (Spec 1). It opens a ball picker (a bottom sheet on phones): each owned ball with its sprite, quantity and multiplier right now; balls whose condition applies get a "Boosted" tag. It is disabled while the player has to send out a Pokémon after a faint.
+- A catch ends the battle with the result card (Spec 1): "Gotcha! Pidgey was caught", where it went (Party or Box), the XP each of the player's Pokémon got (with level-ups), and the buttons **View Pidgey** and **Keep exploring**.

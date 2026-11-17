@@ -42,24 +42,28 @@ One name per idea, used everywhere: specs, code, database, tests and UI. When yo
 | Combatant | `Combatant` | One Pokémon inside a battle (a snapshot, not the `Pokemon` model). |
 | Active combatant | `active_index` on `BattleSide` | The one currently on the field. |
 | Turn | `turn` | Both sides acting once. |
-| Battle log | `log` | List of text lines shown under the battle. |
+| Battle log | `log` (`list<BattleLogEntry>`), `BattleLogCard` | What happened, turn by turn; the page shows the newest turn first. |
+| Battle log entry | `BattleLogEntry` (`turn`, `side`, `kind`, `text`, `move_name`) | One message. `turn` 0 is before the first turn; `side` is the side that caused it, or null. |
+| Battle log kind | `BattleLogKind` enum: `MOVE`, `DAMAGE`, `DETAIL`, `INFO`, `EVENT` | How the page styles an entry: move names in bold, damage and details small and muted. |
 | Ongoing battle | `Battle::ongoing()` scope | The user's battle with status `ONGOING`. |
 | Recently ended battle | `Battle::recentlyEnded()` scope, `game.battle.end_screen_minutes` | An ended battle last updated within the end-screen window; `GET /battle` shows its end screen. |
-| Sending out from the page | `SendOutPokemonController`, `SendOutPokemonRequest` (`combatantIndex`), `battle.isAwaitingSendOut` prop, `SendOutDialog` | `POST /battle/send-out`; the index is the 0-based position in the player side's `combatants`. |
-| Battle team rows | `player.team` prop (`BattleTeamMember`), `BattleTeamRadioGroup` | The player's team as listed by the send-out and switch dialogs; the active and fainted Pokémon can't be picked. |
-| Switching from the page | `SwitchPokemonDialog` | The "Switch Pokémon" button under the moves and its cancellable dialog. |
+| Sending out from the page | `SendOutPokemonController`, `SendOutPokemonRequest` (`combatantIndex`), `battle.isAwaitingSendOut` prop, `PokemonFaintedCard` | `POST /battle/send-out` from the team rail's "Send out" button (a bottom sheet on phones); the index is the 0-based position in the player side's `combatants`. |
+| Team rail | `player.team` prop (`BattleTeamMember`), `BattleTeamRail` | The "Your team" card: a radio group whose checked item is the Pokémon in battle (or the one picked to switch to or send out); fainted ones are disabled. A 2-column grid on phones. |
+| Opponent's team rail | `opponent.team` prop (`isRevealed`), `OpponentTeamRail` | The trainer's team, read-only; gym leaders and the Elite Four show Pokémon not sent out yet as "Not sent out yet". |
+| Switching from the page | The team rail's "Switch" button | Enabled when the checked Pokémon isn't the one in battle; no confirmation. |
 | Running from the page | `ForfeitBattleController` | `POST /battle/forfeit`. |
-| End screen | `result` prop (`experienceGains` with `experienceProgress`), `BattleResultCard` | What the battle page shows instead of the moves once the battle has ended. |
+| End screen | `result` prop (`experienceGains` with `isFromExperienceShare`), `BattleResultCard` | The result card that replaces the battlefield once the battle has ended: title, "Your rewards", "XP gained" rows, buttons. |
+| More options | `BattleOptionsCard` | The card under the moves with Throw ball and Run (wild) or Forfeit (every other battle). |
+| Battle scene | `battle.scene` prop, `BattleSceneBackground` | The SVG background of the battlefield card. |
 | Taking a turn from the page | `TakeTurnController`, `TakeTurnRequest` (`moveSlot`) | `POST /battle/turn`; the slot is the move's position (1–4) in the active combatant's `move_ids`. |
-| Super-effective hint | `isSuperEffective` on the battle page's moves | A damaging move whose type multiplier against the opponent's active Pokémon is above 1. |
 | Battle sprites | `Species::getDisplayFrontSprite()` (opponent), `getDisplayBackSprite()` (player) | The back sprite falls back to the front one when the species has none. |
 | Faint | `isFainted()` | `current_hp` is 0. |
 | Send out | `SendOutPokemonAction` | Picking the next Pokémon after a faint. Free. |
 | Switch | `SwitchPokemonAction`, `SwitchPokemonController` (`POST /battle/switch`, `combatantIndex`), `InvalidSwitchException` | Changing the Pokémon in battle on the player's turn. Uses the turn. Checked by the `EnsureSwitchIsAllowed` pipe, done by `SwitchPlayerPokemon`. |
 | Opponent's half of a turn | The turn pipes with only the opponent acting; `TurnData::isUsingMove()` | The opponent's move, end-of-turn damage and fainting; shared by moves, switches and ball throws. A `TurnData` without a `moveSlot` lets only the opponent act. |
-| Run (forfeit) | `ForfeitBattleAction`, `BattleStatus::FORFEITED` | The UI says "Run". Counts as a loss. |
+| Run / Forfeit | `ForfeitBattleAction`, `BattleStatus::FORFEITED` | The UI says "Run" in wild battles and "Forfeit" in every other battle. Counts as a loss. |
 | Battle ended | `EndBattleAction`, `BattleEnded` event | The one place a battle ends; `isWin` for won and caught battles. |
-| Earned XP | `ExperienceGain` (`combatant_index`, `earned_experience`, `level_before`, `level_after`) in `BattleState::experience_gains` | Each player combatant's result, saved when the battle ends and shown on the end screen. |
+| Earned XP | `ExperienceGain` (`combatant_index`, `earned_experience`, `level_before`, `level_after`, `is_from_experience_share`) in `BattleState::experience_gains` | Each player combatant's result, saved when the battle ends and shown on the end screen. |
 | Earned XP per combatant | `EarnedExperienceCalculator::earnedByCombatant()` | The XP each player combatant that entered the field earned in a battle. |
 | XP for one defeated Pokémon | `ExperienceCalculator::experienceForDefeating()` (`App\Pokemon\Mechanics`) | Spec 1's formula. |
 | Paying XP | `AwardExperienceAction` | Adds XP to a Pokémon and levels it up, up to level 100. |

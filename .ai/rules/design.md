@@ -67,12 +67,12 @@ How pages look and behave. Follow it for every new page or component; tasks in `
 ## Dialogs
 
 - `Dialog` for focused tasks and confirmations; `Popover` for small pickers next to their button; `Sheet` for long side panels.
-- A dialog that must be answered (sending out after a faint) cannot be closed by clicking outside or pressing Escape, and has no close button.
+- A dialog or sheet that must be answered (sending out after a faint, on phones) cannot be closed by clicking outside or pressing Escape, and has no close button.
 - Long dialog content scrolls inside the dialog (`DialogScrollContent`); on phones, long dialogs may be full screen.
 
 ## Phones
 
-- Design for 360px wide first. Columns stack in reading order; button pairs stack full width.
+- Design for 360px wide first. Columns stack in reading order. Buttons fit their text and wrap onto the next line when they don't fit side by side; they don't stretch to full width.
 - Touch targets are at least 40px tall.
 - No horizontal page scrolling; wide tables scroll inside their own container.
 

@@ -86,7 +86,7 @@ Tasks with a **Mock-up** link have an interactive mock-up in `docs/mockups/` (op
 
 ## 1. Spec 1 — Power model and battle system
 
-Read [01-power-model-and-battles.md](01-power-model-and-battles.md) first. Tasks 1.1–1.18 are backend only; the battle page comes next (1.19–1.21); task 1.22 is seed data; tasks 1.23–1.24 add switching Pokémon.
+Read [01-power-model-and-battles.md](01-power-model-and-battles.md) first. Tasks 1.1–1.18 are backend only; the battle page comes next (1.19–1.21); task 1.22 is seed data; tasks 1.23–1.24 add switching Pokémon; tasks 1.25–1.35 rebuild the battle page with the new layout, one component per task (task 1.25 changes how the backend logs messages).
 
 There is no production data yet, so a new column (or index, or a dropped column) goes into the table's existing `create_…` migration, and only a new table gets a new migration file. Local databases are rebuilt with `php artisan migrate:fresh --seed`. No data migrations.
 
@@ -540,6 +540,236 @@ Uses `Combatant` from task 1.10.
 
 **Done when:** a player can switch Pokémon from the battle page in any battle.
 
+### 1.25 Battle log entries (backend)
+
+- [ ] Done
+
+**Goal:** the log knows which turn, side and kind each message belongs to, so the page can group turns and style lines (Spec 1, "Battle log"). The log is a flat list of strings today; this task changes how messages are logged in the backend.
+
+**Mock-up:** `docs/mockups/battle.html` (state "Battle log: every kind of message": every message, its side and its kind)
+
+**Build:**
+- `App\Battle\Enums\BattleLogKind`: `MOVE` (a "used Move!" line; the move name is shown in bold), `DAMAGE` ("Gengar lost 96 HP."), `DETAIL` (critical hit, effectiveness, no effect, multi-hit, "But it failed!"), `INFO` (battle start, ran away, forfeit) and `EVENT` (everything else: status, send-outs, switches, faints, rewards, XP).
+- Value object `Shared\ValueObjects\BattleLogEntry` (`turn`, nullable `side` (`Side`), `kind`, `text`, nullable `move_name`), with `fromArray()` / `toArray()` like the other battle value objects. `turn` is 0 for the lines before the first turn.
+- `BattleState::$log` becomes `list<BattleLogEntry>`; `withLogLines()` and `withNextTurn()` take entries. `TurnData::log()` takes the side and kind (and the move name for `MOVE`) and stamps the current turn.
+- Side of each entry: the side whose Pokémon or trainer caused it. A move, its hits, its effectiveness and the ailment it inflicts belong to the attacker ("Shiny Magikarp was burned!" after Gengar's Will-O-Wisp is the opponent's); a Pokémon's own status messages and end-of-turn damage belong to that Pokémon's side ("Shiny Magikarp was hurt by its burn!" is the player's); send-outs and switches belong to the side sending out. Faints, the result, money and XP have no side.
+- New `DAMAGE` lines, one after each damaging action, with the total HP lost: after a move's hits (after "It hit 4 times!" for multi-hit moves), after confusion self-damage and after burn and poison damage.
+- Endings: running from a wild battle logs "You got away safely!"; forfeiting any other battle logs "You forfeited the battle." (both `INFO`, no side).
+- No production data exists: the `battles` table keeps its JSON column; old local battles are dropped with `migrate:fresh --seed`.
+- `BattleShowPageProps`: `battle.log` becomes a list of turns, newest first: `{ turn: int, entries: list<{ side: 'player'|'opponent'|null, kind: BattleLogKind, text: string, moveName: ?string }> }`.
+
+**Tests:** every pipe that logs writes the right side and kind (one case per message in the mock-up's reference state); damage lines carry the HP actually lost (multi-hit totals, end-of-turn damage); entries survive the JSON round trip; the page prop groups by turn, newest first; running and forfeiting log their messages.
+
+**Done when:** tests pass and a played battle stores structured entries.
+
+### 1.26 Battle page: layout and header
+
+- [ ] Done
+
+**Goal:** the battle page uses the new three-column layout (Spec 1, "Battle page").
+
+**Mock-up:** `docs/mockups/battle.html` (any state; narrow the window for the phone order)
+
+**Build:**
+- `pages/Battle/index.vue`: a grid with three columns on wide screens (Your team | battlefield, moves, More options or the result | the opponent's team and the Battle log) and one column on phones in this order: result, battlefield, log, moves, Your team, More options. Use container queries on `@container/main-content` so the sidebar's width is respected.
+- New `BattleHeader.vue` (replaces the `AppPageHeader` use on this page): the title and a one-line description with the turn: wild "Wild battle" / "A wild Pidgey appeared in the Forest · Turn 3" (the area name comes with Spec 2; until then "A wild Pidgey appeared · Turn 3"). A slot on the left for the trainer's sprite and one on the right for the Elite Four steps (both filled by task 6.14). The Run button moves out of the header (task 1.32).
+- Each later task fills one area; until then the existing cards sit in their new places.
+
+**UI suggestions** (ideas, not requirements):
+- Grid: `grid-cols-1 @5xl/main-content:grid-cols-[15rem_minmax(0,1fr)_18rem]`; on phones give each card an `order-*`, on wide screens reset the order.
+
+**Tests:** browser test: the three columns on a wide screen and the phone order on a 390px screen.
+
+**Done when:** the page uses the new layout in both sizes.
+
+### 1.27 Battle page: battlefield card
+
+- [ ] Done
+
+**Goal:** the battlefield shows both Pokémon with their HP as numbers.
+
+**Mock-up:** `docs/mockups/battle.html` (states "Wild: choosing a move", "Trainer: choosing a move")
+
+**Build:**
+- New `BattlefieldCard.vue` replaces `BattleArenaCard` and `CombatantPanel`: the opponent's card and sprite at the top right, the player's sprite and card at the bottom left, over the scene background (task 1.28).
+- Each combatant card: `PokemonDisplayName` with `PokemonGenderIcon` right after the name, the ailment badge, the level as plain muted text aligned right ("Lv 34", no pill and no boost), and an "HP:" label before the HP `Progress` bar and "115 / 185".
+- `BattleShowPageProps`: the opponent's `currentHp` and `maxHp` replace `hpPercentage` (Spec 1 now shows the opponent's HP as numbers).
+- Phones: smaller sprites and cards side by side with their sprite; in trainer battles the opponent's card adds team dots (`CombatantTeamDots`), since the opponent's team rail (task 1.34) is not shown on phones.
+- When the battle ends: the opponent's HP drains to 0 if it was knocked out, then the card fades out (`opacity` over 450ms) and the result card takes its place (task 1.35).
+
+**UI suggestions** (ideas, not requirements):
+- Cards on the scene: `bg-card/95 border rounded-lg`, 15rem wide on desktop.
+- HP colours from the existing `HpProgress`.
+
+**Tests:** feature test: the opponent's HP props are numbers; browser test: the gender icon and "HP:" label show; the card fades out when the battle ends.
+
+**Done when:** both combatants show as in the mock-up on desktop and phones.
+
+### 1.28 Battle page: scene backgrounds
+
+- [ ] Done
+
+**Goal:** the battlefield has a background that fits where the battle happens.
+
+**Mock-up:** `docs/mockups/battle.html` (the battlefield in each battle type)
+
+**Build:**
+- New `BattleSceneBackground.vue`: inline SVG scenes drawn with theme-friendly colours (sky, ground, a few shapes), filling the battlefield card behind the cards and sprites, with `aria-hidden`.
+- Scenes: grass field (wild), trainer arena (trainers), gym, Indigo Plateau (Elite Four) and Battle Tower. The scene is picked from the battle type through a `scene` prop on `BattleShowPageProps` (`battle.scene`), so Spec 2 can later pick one per area.
+- Dark mode: every colour has a dark variant.
+
+**Tests:** feature test: the scene prop per battle type; browser test: the background renders behind the cards.
+
+**Done when:** each battle type has its scene in light and dark mode.
+
+### 1.29 Battle page: Your team rail and switching
+
+- [ ] Done
+
+**Goal:** the player's team is always visible and switching happens from it (Spec 1, "Switching").
+
+**Mock-up:** `docs/mockups/battle.html` (states "Wild: choosing a move", "Wild: switch Pokémon (Dragonite picked)")
+
+**Build:**
+- New `BattleTeamRail.vue` (replaces the switch dialog, `SwitchPokemonDialog`, and the "Switch Pokémon" button under the moves): a card titled "Your team" with an info tooltip, and the team as a radio group (shadcn-vue `RadioGroup`).
+- One item per Pokémon in battle order: `SpeciesPortrait`, `PokemonDisplayName` with `PokemonGenderIcon` right after the name (on the same line as the last word when the name wraps), "Lv 54 · +72", the ailment badge, and "HP:" with the HP bar and numbers. Long names wrap; they are never cut off.
+- The checked item looks like "in battle": a larger portrait, a muted background, no HP bar and a Poké Ball icon on the right. Only one item is checked at a time: it starts on the Pokémon in battle, and picking another moves the checked look to it.
+- Fainted Pokémon are disabled items with a "Fainted" tag, faded, with a greyscale portrait. Every item is disabled once the battle has ended.
+- A "Switch" outline button under the rail, sized to its text and aligned right: enabled only when the checked Pokémon isn't the one in battle; it posts task 1.23's route. No confirmation dialog.
+- Phones: the same radio group as a 2-column grid of tiles (portrait, name with gender icon, HP bar; the checked tile shows the Poké Ball instead of the bar).
+- Tooltip: "The highlighted Pokémon is the one in battle. To switch, pick another one and press Switch. Switching uses your turn. Fainted Pokémon can't be picked." After the battle: "HP as the battle ended."
+- `BattleShowPageProps`: `player.team` items gain `gender`, `boost`, `currentHp` and `maxHp` if missing.
+
+**UI suggestions** (ideas, not requirements):
+- Reuse `BattleTeamRadioGroup`'s item markup where it fits, then delete what is no longer used.
+- Disable the rail and the Switch button while a turn is being sent.
+
+**Tests:** browser tests: picking a benched Pokémon enables Switch and switching shows it on the battlefield; the Pokémon in battle and fainted ones can't trigger a switch; the phone grid.
+
+**Done when:** the player can see their team and switch from the rail on desktop and phones.
+
+### 1.30 Battle page: send out from the team rail
+
+- [ ] Done
+
+**Goal:** after a faint, the player sends out the next Pokémon from the team rail instead of a dialog.
+
+**Mock-up:** `docs/mockups/battle.html` (state "Wild: Pokémon fainted, send out"; on a phone it opens as a bottom sheet)
+
+**Build:**
+- New `PokemonFaintedCard.vue` in place of the moves while `battle.isAwaitingSendOut`: "Shiny Magikarp fainted!" and "Pick who to send out in Your team, then press Send out. This doesn't use a turn."
+- `BattleTeamRail` in send-out mode: no item is checked at first, the button reads "Send out" and is the primary button, enabled once a Pokémon that can fight is picked; it posts task 1.21's route. Tooltip: "Pick who to send out, then press Send out. This does not use a turn."
+- Phones: a bottom `Sheet` that can't be closed (no close button, no click outside), titled "Shiny Magikarp fainted!", with the same radio items (with HP bars) and a "Send out" button.
+- Remove `SendOutDialog`.
+
+**Tests:** browser tests: after a faint the moves are replaced by the card, the button enables after picking, and sending out shows the new Pokémon; the sheet on a phone can't be dismissed.
+
+**Done when:** a faint is handled from the rail on desktop and from the sheet on phones.
+
+### 1.31 Battle page: Choose a move card
+
+- [ ] Done
+
+**Goal:** the player picks a move, then attacks.
+
+**Mock-up:** `docs/mockups/battle.html` (state "Wild: choosing a move"; click the moves)
+
+**Build:**
+- `MovesCard.vue` rewritten as a card titled "Choose a move" (no "What will X do?" line) with the four moves as shadcn-vue choice cards (`RadioGroup` items inside `FieldLabel`s, like a questionnaire choice): the move name and its type badge on the left, the radio circle on the right. The first move is selected when the page loads and after every turn.
+- An "Attack" primary button under the grid, sized to its text and aligned right: it posts task 1.20's route with the selected slot.
+- No power and no effectiveness hint on the moves: drop `isSuperEffective` (and `power` if nothing else uses it) from `BattleShowPageProps`.
+
+**UI suggestions** (ideas, not requirements):
+- Checked card: `border-primary bg-muted`; the dot fades and scales in (200ms).
+- While a turn is being sent, disable the cards and the Attack button and show a spinner on the button.
+
+**Tests:** feature test: the move props no longer have the hint; browser test: picking a move and pressing Attack takes the turn with that move; the first move is preselected.
+
+**Done when:** the player attacks with the selected move.
+
+### 1.32 Battle page: More options card
+
+- [ ] Done
+
+**Goal:** running or forfeiting (and later throwing a ball) sit in their own card.
+
+**Mock-up:** `docs/mockups/battle.html` (states "Wild: run confirmation", "Trainer: forfeit confirmation", "Wild: Pokémon fainted, send out")
+
+**Build:**
+- New `BattleOptionsCard.vue` under the moves, titled "More options", with buttons sized to their text:
+  - Wild battles: "Run" (destructive outline); task 2.19 adds "Throw ball" before it.
+  - Every other battle: "Forfeit" (destructive outline).
+- Both open a confirmation (`alert-dialog`, replacing `RunBattleDialog`) with "Keep fighting" (outline) and the destructive "Run" or "Forfeit":
+  - Wild: "Run from the wild Pidgey?" / "You won't get anything for this battle. Your Pokémon are healed either way."
+  - Trainer: "Forfeit against Hiker Bob?" / "Forfeiting counts as a loss: no money, but your Pokémon keep the XP for opponents they knocked out." (gym, Elite Four and Tower wording comes with task 6.14).
+- The card also shows while waiting for a send-out; there "Throw ball" (task 2.19) is disabled.
+
+**Tests:** browser tests: Run in a wild battle and Forfeit in a trainer battle open their dialogs; confirming ends the battle; the card shows during a send-out.
+
+**Done when:** the player can run or forfeit from the card.
+
+### 1.33 Battle page: Battle log card
+
+- [ ] Done
+
+**Goal:** the log reads turn by turn, newest first.
+
+**Mock-up:** `docs/mockups/battle.html` (any state; open and close the turns; the reference state "Battle log: every kind of message")
+
+**Build:**
+- `BattleLogCard.vue` rewritten on task 1.25's entries: a card titled "Battle log" with an info tooltip ("The newest turn is at the top and open; older turns are collapsed. Click a turn to open or close it. Blue bar: your Pokémon. Grey bar: the opponent.").
+- One collapsible section per turn ("Start", "Turn 1", …), newest first; only the newest is open. The open/closed choice is kept until the page reloads; a new turn opens itself.
+- Each entry is a plain line with a 3px left bar: blue for the player's side, grey for the opponent's, none without a side. `MOVE` entries show the move name in bold; `DAMAGE` and `DETAIL` entries are smaller and muted; `INFO` entries are muted. Success and failure messages have no colour and no bold.
+- New lines fade in one after another (about 140ms apart) when a turn comes in.
+- The list scrolls inside the card (about 470px tall on desktop, 300px on phones).
+
+**UI suggestions** (ideas, not requirements):
+- shadcn-vue `Collapsible` for the turns, with a chevron that rotates.
+
+**Tests:** browser tests: the newest turn is open and on top; older turns toggle; a new turn's lines appear on top after taking a turn; the move name is bold.
+
+**Done when:** the log matches the mock-up on desktop and phones.
+
+### 1.34 Battle page: opponent's team rail
+
+- [ ] Done
+
+**Goal:** in battles against a trainer, the player sees the trainer's team.
+
+**Mock-up:** `docs/mockups/battle.html` (states "Trainer: choosing a move", "Gym: choosing a move", "Elite Four: choosing a move")
+
+**Build:**
+- New `OpponentTeamRail.vue` above the Battle log on wide screens, in every battle but wild ones: a card titled "Hiker Bob's team" with an info tooltip, built like the player's rail (task 1.29) but read-only (not a radio group).
+- The Pokémon in battle has the "in battle" look with a Poké Ball icon and no HP bar; the others show "Lv 35", "HP:" with the bar and "180 / 180", or "Fainted" with a greyscale portrait.
+- Gym leaders and the Elite Four keep their team secret: Pokémon that haven't come out yet show as dashed "Not sent out yet" rows with no portrait, level or HP bar; tooltip "Pokémon are revealed as they're sent out." Other trainers show the whole team; tooltip "The whole team is shown from the start."
+- Phones don't show the rail; the opponent's battlefield card has team dots instead (task 1.27).
+- `BattleShowPageProps`: `opponent.team` items gain `portrait`, `gender`, `level`, `boost` (only for the one in battle), `currentHp`, `maxHp`, `isActive` and `isRevealed` (a combatant that has entered the field, or every combatant when the battle type isn't `GYM` or `ELITE_FOUR`). Unrevealed items carry no species data.
+
+**Tests:** feature tests: the team props for a trainer battle and for a gym battle (unrevealed combatants send no name); browser test: the rail in a trainer battle and its absence in a wild one.
+
+**Done when:** the rail shows in non-wild battles, ready for Spec 6.
+
+### 1.35 Battle page: result card
+
+- [ ] Done
+
+**Goal:** the end of a battle reads clearly and appears smoothly.
+
+**Mock-up:** `docs/mockups/battle.html` (states "Wild: won", "Wild: ran away", "Wild: lost", "Trainer: won (money and XP)", "Trainer: lost (XP kept)")
+
+**Build:**
+- `BattleResultCard.vue` rewritten in place of the battlefield once the battle ends: the title ("You won!", "You got away safely", "You lost to the wild Pidgey") with an optional badge on the same line, aligned right; an optional muted subtitle.
+- "Your rewards": a section for money and badges, empty in wild battles (filled by Spec 3 and task 6.14).
+- "XP gained": one row per Pokémon that got XP (`ExperienceGain` gains `is_from_experience_share`, false until task 5.10): `SpeciesPortrait`, `PokemonDisplayName` with `PokemonGenderIcon`, "+340 XP", and a "Level up! 54 → 55" pill aligned right (white background, border). All text in the row is the same size as the team rail's names. No XP bars: drop `experienceProgress` from the `result` prop.
+- Rows for Pokémon that got XP only through the XP Share say "via XP Share" after the XP (`isFromExperienceShare` on each gain; always false until task 5.10). With the XP Share there is no summary line.
+- "No XP this time: the wild Pidgey wasn't knocked out or caught." when nobody got XP.
+- Buttons sized to their text, aligned right, the primary one last ("Keep exploring" / "Back to Dashboard" in wild battles).
+- The ending plays in order: the opponent's HP drains, the battlefield fades out (task 1.27), then the card slides up and fades in (about 450ms).
+
+**Tests:** feature test: the `result` prop without `experienceProgress` and with `isFromExperienceShare`; browser tests: the won, ran and lost cards; the battlefield is gone once the card shows.
+
+**Done when:** every ending of a wild battle shows the new card.
+
 ---
 
 ## 2. Spec 2 — Catching and exploration
@@ -867,22 +1097,21 @@ Read [02-catching-and-exploration.md](02-catching-and-exploration.md) first. Nee
 
 **Goal:** catching from the battle page.
 
-**Mock-up:** `docs/mockups/battle.html` (states "Ball picker open" and "Pokémon caught")
+**Mock-up:** `docs/mockups/battle.html` (states "Wild: ball picker open", "Wild: caught" and "Wild: Pokémon fainted, send out")
 
 **Build:**
 - Route `POST /battle/throw-ball` named `battle.web.throw-ball` → `ThrowBallController` with `ThrowBallRequest` (`pokeball` slug, owned by the player).
 - `BattleShowPageProps`: in wild battles, the player's balls (sprite, name, quantity, current multiplier from `BallMultiplierCalculator`, `isBoosted` when above its `catch_rate`).
-- "Throw ball" button under the moves (wild battles only) opens the ball picker; boosted balls show a "Boosted" tag.
-- Catch dialog: the Pokémon, where it went (Party or Box), the XP each of the player's Pokémon got (the same rows as task 1.21's end screen), buttons "View Pokémon" (to the Box until the Pokémon page exists) and "Keep exploring" (back to the area page).
+- "Throw ball" outline button in the More options card (task 1.32), before "Run", wild battles only; it opens the ball picker; boosted balls show a "Boosted" tag. Disabled while waiting for a send-out.
+- A catch ends the battle with task 1.35's result card: "Gotcha! Pidgey was caught", where it went (Party or Box), the XP rows, a muted "A catch counts as winning: the same XP as knocking Pidgey out.", and the buttons "View Pidgey" (outline; to the Box until the Pokémon page exists) and "Keep exploring" (primary, back to the area page).
 
 **UI suggestions** (ideas, not requirements):
-- An outline "Throw ball" `Button` with a ball icon, full width under the move grid (wild battles only).
-- Ball picker: a `Popover` on desktop (a `Dialog` on phones) listing one row per ball: `ItemSprite`, name, "×42" owned, and the current multiplier ("×3.5"). Boosted balls get a green "Boosted" `Badge` and are sorted first.
+- An outline "Throw ball" `Button` with a ball icon, sized to its text.
+- Ball picker: a list that opens under the buttons on desktop (a bottom `Sheet` on phones) listing one row per ball: `ItemSprite`, name, "×42" owned, and the current multiplier ("×3.5"). Boosted balls get a green "Boosted" `Badge` and are sorted first.
 - Clicking a row throws right away, with a processing state on the row.
-- Catch dialog: the Pokémon's sprite, "Gotcha! Shiny Caterpie was caught!", a `Badge` saying "Sent to Party" or "Sent to Box", compact XP rows ("Shiny Magikarp +340 XP · Level up! 54 → 55"), then a primary "Keep exploring" and an outline "View Pokémon".
 - A ball that fails only adds a log line; no extra popup.
 
-**Tests:** feature tests for the route and props; browser test: throw a ball and see the catch dialog.
+**Tests:** feature tests for the route and props; browser test: throw a ball and see the caught result card; Throw ball is disabled during a send-out.
 
 **Done when:** a player can explore, battle, throw balls and catch a Pokémon entirely from the pages.
 
@@ -1574,7 +1803,7 @@ Read [05-missions.md](05-missions.md) first, including its "Starting content" an
 
 **Build:**
 - `App\Inventory\Actions\SetXpShareAction::handle(User $user, bool $isEnabled): void`: needs the `xp-share` item (`InsufficientInventoryException`).
-- Task 1.17's XP award: when `is_xp_share_enabled`, party Pokémon that did not enter the field get `game.experience.xp_share_ratio` (0.5) × the XP they would get for the opponents knocked out (the formula with their own level, without the knockout bonus). Never in Battle Tower battles. The state keeps what each got, for the end screen's summary line.
+- Task 1.17's XP award: when `is_xp_share_enabled`, party Pokémon that did not enter the field get `game.experience.xp_share_ratio` (0.5) × the XP they would get for the opponents knocked out (the formula with their own level, without the knockout bonus). Never in Battle Tower battles. The state keeps what each got (`ExperienceGain::is_from_experience_share`), so the end screen lists each of them with "via XP Share" (task 1.35).
 - Route `POST /inventory/xp-share` named `inventory.web.xp-share` → `SetXpShareController` (`is_enabled`).
 
 **Mock-up:** `docs/mockups/inventory.html` (states "Key items tab", "XP Share settings")
@@ -1847,11 +2076,11 @@ Read [06-trainers-gyms-and-battle-tower.md](06-trainers-gyms-and-battle-tower.md
 - Routes: `POST /gyms/{region}/elite-four` (`trainers.web.elite-four.start`), `POST /gyms/elite-four/continue` (`trainers.web.elite-four.continue`, redirects to the battle) and `DELETE /gyms/elite-four` (`trainers.web.elite-four.quit`, back to the Gyms page with a toast).
 - Gyms page (task 6.9) during a run: the five steps with the beaten ones ticked, a primary "Continue: battle Agatha" and a destructive-outline "Quit the Elite Four" that asks for confirmation. The battle end screen after a member is beaten shows "Next: Agatha" and the same quit button (task 6.14).
 
-**Mock-up:** `docs/mockups/gyms.html` (states "Elite Four run in progress", "Quit the Elite Four", "Champion beaten") and `docs/mockups/battle.html` (states "Elite Four battle won", "Quit the Elite Four")
+**Mock-up:** `docs/mockups/gyms.html` (states "Elite Four run in progress", "Quit the Elite Four", "Champion beaten") and `docs/mockups/battle.html` (states "Elite Four: member beaten", "Elite Four: quit confirmation", "Elite Four: Champion beaten")
 
 **UI suggestions** (ideas, not requirements):
 - Quit confirmation (`alert-dialog`): "Quit the Kanto Elite Four?" / "Your run ends here. Next time you start again from Lorelei." with "Keep going" (outline) and "Quit" (destructive).
-- Champion beaten: a gold "Champion ✓" badge on the card and, the first time only, "+ ₽ 30,000 Champion prize" on the battle's end screen.
+- Champion beaten: a gold "Kanto Champion ✓" badge next to the result title and, the first time only, "+ ₽ 30,000" under "Your rewards" with "Champion prize, paid for your first win only."
 
 **Tests:** refused without 8 badges; stages advance; a loss or a run ends the run; quit sets `QUIT` and is refused during the run's battle; the next run starts at stage 1; members pay nothing; beating the Champion records it and fires the event, and pays the prize only the first time; feature tests for the three routes.
 
@@ -1930,16 +2159,19 @@ Read [06-trainers-gyms-and-battle-tower.md](06-trainers-gyms-and-battle-tower.md
 
 **Goal:** the battle page shows trainer battles properly.
 
-**Mock-up:** `docs/mockups/battle.html` (states "Trainer battle", "Run confirmation: trainer", "Trainer battle won", "Lost: XP kept", "Elite Four battle won", "Quit the Elite Four")
+**Mock-up:** `docs/mockups/battle.html` (every Trainer, Gym, Elite Four and Tower state)
 
-**Build:** the header names the trainer ("Hiker Bob" / "Gym Leader Brock"); the opponent's team dots show all its Pokémon; no Throw ball button; the end screen shows the money earned (with the reduced-payout note when it applies) and the XP rows of task 1.21 for wins and losses; "Next: …" and "Quit the Elite Four" for Elite Four runs, with the Champion's prize after the first win against the Champion; and "Back to the Tower" with the HP left and the XP saved in the run for Tower battles.
-- The Run confirmation says what running costs: against a trainer, "Running counts as a loss: no money, but you keep the XP for opponents you knocked out."; in an Elite Four run, "…and it ends your Elite Four run."; in the Tower, "…and it ends your Tower run."
+**Build:** fill task 1.26–1.35's components for trainer battles:
+- Header (`BattleHeader`): the trainer's sprite, the trainer's name as the title and a description with the turn: "Trainer battle · Turn 3", "Pewter City Gym · Rock · Turn 3", "Kanto Elite Four · battle 2 of 5 · Turn 3" (with the five steps on the right: Lorelei ✓ › Bruno › Agatha › Lance › Blue), "Tower Trainer Lena · Turn 3" (title "Battle Tower · Floor 38").
+- Opponent's team rail (task 1.34) with the trainer's name; gym leaders and the Elite Four keep unrevealed Pokémon hidden.
+- More options (task 1.32): "Forfeit" only. The confirmation says what forfeiting costs: gym "Forfeit against Brock?" / "Forfeiting counts as a loss: no money and no badge, but your Pokémon keep the XP they earned."; Elite Four "Forfeit against Bruno?" / "Forfeiting counts as a loss and ends your Elite Four run. Next time you start again from Lorelei."; Tower "Forfeit floor 38?" / "Forfeiting counts as a loss and ends your Tower run. Your saved XP and Battle Points are paid out."
+- Result card (task 1.35): money under "Your rewards" ("+ ₽ 1,440" with "Reduced from ₽ 1,800: your team outlevels Hiker Bob." when it applies); a gym's badge as its own reward row ("Boulder Badge", "Kanto badges 1 / 8. The badge only comes the first time.") above the money; "Next: Agatha" (primary) and "Quit the Elite Four" (destructive outline) after an Elite Four member; the Champion's prize and a "Kanto Champion ✓" badge by the title; Tower floors: "+ 1 Battle Point", "XP saved for the end of the run" rows, "Next floor" and "Back to the Tower"; a lost Tower run: "Run over at floor 38", a "New best floor!" badge by the title when it is one, and "XP from this run, paid now" with a row per team member.
+- Lost: "You lost to Hiker Bob" / "No money this time." with the XP rows.
 
 **UI suggestions** (ideas, not requirements):
-- Header: the trainer's sprite next to "Gym Leader Brock" and "Pewter City Gym · Rock".
-- End screen money line: "+ ₽ 1,440" with a muted note "Reduced: your team outlevels Hiker Bob".
+- Elite Four steps: small pills joined by chevrons; done ones muted with a ✓, the current one with a dark border.
 
-**Tests:** feature test: trainer battle props (no balls, trainer name, team size); browser tests: the win screen shows the money and XP; quitting the Elite Four from the end screen.
+**Tests:** feature test: trainer battle props (no balls, trainer name, team); browser tests: the win screen shows the money and XP; the forfeit wording per battle type; quitting the Elite Four from the end screen.
 
 **Done when:** trainer, gym, Elite Four and Tower battles all look right on the page.
 
