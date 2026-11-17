@@ -627,7 +627,7 @@ Uses `Combatant` from task 1.10.
 
 ### 1.29 Battle page: Your team rail and switching
 
-- [ ] Done
+- [x] Done
 
 **Goal:** the player's team is always visible and switching happens from it (Spec 1, "Switching").
 
@@ -641,13 +641,15 @@ Uses `Combatant` from task 1.10.
 - A "Switch" outline button under the rail, sized to its text and aligned right: enabled only when the checked Pokémon isn't the one in battle; it posts task 1.23's route. No confirmation dialog.
 - Phones: the same radio group as a 2-column grid of tiles (portrait, name with gender icon, and the same "HP:" row as on desktop with the bar and numbers; the checked tile shows the Poké Ball instead).
 - Tooltip: "The highlighted Pokémon is the one in battle. To switch, pick another one and press Switch. Switching uses your turn. Fainted Pokémon can't be picked." After the battle: "HP as the battle ended."
-- `BattleShowPageProps`: `player.team` items gain `gender`, `boost`, `currentHp` and `maxHp` if missing.
+- `BattleShowPageProps`: `player.team` items gain `gender`, `boost`, `currentHp` and `maxHp` if missing (only `gender` and `boost` were missing).
+- As built: `BattleTeamRadioGroup` was rewritten into the rail's items (props `testIdBlock`, `disabled`, `isTiledOnPhones`, `marksPokemonInBattle`) and is shared with `SendOutDialog` until task 1.30; `SwitchPokemonDialog` is deleted. Each item is a `FieldLabel` wrapping a visually hidden `RadioGroupItem` (test ID `battle-team-rail__pokemon-2-radio`), so the whole row is the choice and keeps the keyboard focus ring. The Poké Ball is Tabler's `IconPokeball` with an "In battle" screen-reader label. The rail and Switch are disabled while any Inertia request runs (`router.on('start' | 'finish')`) and while waiting for a send-out; the Switch button is hidden once the battle has ended, and no item is checked then. After a switch the checked item follows the new Pokémon in battle.
+- `PokemonDisplayName` (shared) now keeps the gender icon on the same line as the last word (the last word and the icon sit in a `whitespace-nowrap` span), and `PokemonGenderIcon` sits on the text baseline (`align-[-0.15em]`), so it works inline in wrapping text everywhere.
 
 **UI suggestions** (ideas, not requirements):
 - Reuse `BattleTeamRadioGroup`'s item markup where it fits, then delete what is no longer used.
 - Disable the rail and the Switch button while a turn is being sent.
 
-**Tests:** browser tests: picking a benched Pokémon enables Switch and switching shows it on the battlefield; the Pokémon in battle and fainted ones can't trigger a switch; the phone grid.
+**Tests:** feature test: the team props with `gender` and `boost`; browser tests: Switch is disabled until a benched Pokémon is picked, and switching shows it on the battlefield (the old switch-dialog test now uses the rail); the Pokémon in battle and a fainted one can't enable Switch; the 2-column phone grid.
 
 **Done when:** the player can see their team and switch from the rail on desktop and phones.
 
@@ -661,7 +663,7 @@ Uses `Combatant` from task 1.10.
 
 **Build:**
 - New `PokemonFaintedCard.vue` in place of the moves while `battle.isAwaitingSendOut`: "Shiny Magikarp fainted!" and "Pick who to send out in Your team, then press Send out. This doesn't use a turn."
-- `BattleTeamRail` in send-out mode: no item is checked at first, the button reads "Send out" and is the primary button, enabled once a Pokémon that can fight is picked; it posts task 1.21's route. Tooltip: "Pick who to send out, then press Send out. This does not use a turn."
+- `BattleTeamRail` in send-out mode (`BattleTeamRadioGroup` already has the items; it disables every item while waiting for a send-out until this task): no item is checked at first, the button reads "Send out" and is the primary button, enabled once a Pokémon that can fight is picked; it posts task 1.21's route. Tooltip: "Pick who to send out, then press Send out. This does not use a turn."
 - Phones: a bottom `Sheet` that can't be closed (no close button, no click outside), titled "Shiny Magikarp fainted!", with the same radio items (with HP bars) and a "Send out" button.
 - Remove `SendOutDialog`.
 

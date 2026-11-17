@@ -3,6 +3,9 @@
     <RunBattleDialog v-if="page.props.battle.status === BattleStatus.ONGOING" />
   </BattleHeader>
   <div class="battle-page__grid">
+    <div class="battle-page__column battle-page__column--left">
+      <BattleTeamRail class="battle-page__team" />
+    </div>
     <div class="battle-page__column battle-page__column--middle">
       <Transition
         leave-active-class="battle-page__battlefield--leaving"
@@ -39,6 +42,7 @@ import BattlefieldCard from './BattlefieldCard.vue';
 import BattleHeader from './BattleHeader.vue';
 import BattleLogCard from './BattleLogCard.vue';
 import BattleResultCard from './BattleResultCard.vue';
+import BattleTeamRail from './BattleTeamRail.vue';
 import MovesCard from './MovesCard.vue';
 import RunBattleDialog from './RunBattleDialog.vue';
 import SendOutDialog from './SendOutDialog.vue';
@@ -78,6 +82,10 @@ onBeforeUnmount(() => clearTimeout(hideBattlefieldTimeout));
   @apply contents @5xl/main-content:flex @5xl/main-content:min-w-0 @5xl/main-content:flex-col @5xl/main-content:gap-4;
 }
 
+.battle-page__column--left {
+  @apply @5xl/main-content:col-start-1;
+}
+
 .battle-page__column--middle {
   @apply @5xl/main-content:col-start-2;
 }
@@ -104,6 +112,10 @@ onBeforeUnmount(() => clearTimeout(hideBattlefieldTimeout));
 
 .battle-page__moves {
   @apply order-3 @5xl/main-content:order-0;
+}
+
+.battle-page__team {
+  @apply order-4 @5xl/main-content:order-0;
 }
 
 .battle-page__log {

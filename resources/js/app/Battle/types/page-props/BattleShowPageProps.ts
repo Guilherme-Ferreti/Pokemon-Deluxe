@@ -26,7 +26,9 @@ export type BattleCombatant = {
 export type BattleTeamMember = {
   name: Pokemon['name'];
   portrait: string | null;
+  gender: Pokemon['gender'];
   level: Pokemon['level'];
+  boost: number;
   currentHp: number;
   maxHp: number;
   ailment: BattleCombatant['ailment'];

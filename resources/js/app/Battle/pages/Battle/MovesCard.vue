@@ -48,9 +48,6 @@
         </span>
       </Button>
     </CardContent>
-    <CardFooter>
-      <SwitchPokemonDialog :disabled="form.processing" />
-    </CardFooter>
   </Card>
 </template>
 
@@ -63,13 +60,11 @@ import { Button } from '@/shared/components/ui/button';
 import {
   Card,
   CardContent,
-  CardFooter,
   CardHeader,
   CardTitle,
 } from '@/shared/components/ui/card';
 import { route } from '@/shared/types/helpers/route';
 import type { BattleShowPageProps } from '../../types/page-props/BattleShowPageProps';
-import SwitchPokemonDialog from './SwitchPokemonDialog.vue';
 
 const page = usePage<BattleShowPageProps>();
 

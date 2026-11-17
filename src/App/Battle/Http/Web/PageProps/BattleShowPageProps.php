@@ -14,6 +14,7 @@ use Shared\Enums\Ailment;
 use Shared\Enums\BattleLogKind;
 use Shared\Enums\BattleStatus;
 use Shared\Enums\BattleType;
+use Shared\Enums\PokemonGender;
 use Shared\Models\Battle;
 use Shared\Models\Move;
 use Shared\Models\Pokemon;
@@ -228,14 +229,16 @@ final class BattleShowPageProps implements ProvidesInertiaProperties
     }
 
     /**
-     * @return list<array{name: string, portrait: ?string, level: int, currentHp: int, maxHp: int, ailment: ?Ailment, isFainted: bool, isActive: bool}>
+     * @return list<array{name: string, portrait: ?string, gender: PokemonGender, level: int, boost: int, currentHp: int, maxHp: int, ailment: ?Ailment, isFainted: bool, isActive: bool}>
      */
     private function playerTeam(BattleSide $side): array
     {
         return array_map(fn (Combatant $combatant, int $index) => [
             'name'      => $this->speciesOf($combatant)->getDisplayName($combatant->is_shiny),
             'portrait'  => $this->portraitOf($combatant),
+            'gender'    => $combatant->gender,
             'level'     => $combatant->level,
+            'boost'     => $combatant->boost,
             'currentHp' => $combatant->current_hp,
             'maxHp'     => $combatant->max_hp,
             'ailment'   => $combatant->ailment,

@@ -125,8 +125,8 @@ it('loads the battle page with expected structure', function () {
                 'currentHp' => 150,
                 'maxHp'     => 218,
                 'team'      => [
-                    ['name' => 'Eevee', 'portrait' => $eevee->portraits->regular, 'level' => 50, 'currentHp' => 0, 'maxHp' => 218, 'ailment' => null, 'isFainted' => true, 'isActive' => false],
-                    ['name' => 'Shiny Pikachu', 'portrait' => $pikachu->portraits->shiny, 'level' => 50, 'currentHp' => 150, 'maxHp' => 218, 'ailment' => Ailment::BURN->value, 'isFainted' => false, 'isActive' => true],
+                    ['name' => 'Eevee', 'portrait' => $eevee->portraits->regular, 'gender' => PokemonGender::MALE->value, 'level' => 50, 'boost' => 0, 'currentHp' => 0, 'maxHp' => 218, 'ailment' => null, 'isFainted' => true, 'isActive' => false],
+                    ['name' => 'Shiny Pikachu', 'portrait' => $pikachu->portraits->shiny, 'gender' => PokemonGender::FEMALE->value, 'level' => 50, 'boost' => 12, 'currentHp' => 150, 'maxHp' => 218, 'ailment' => Ailment::BURN->value, 'isFainted' => false, 'isActive' => true],
                 ],
             ])
             ->where('opponent', [

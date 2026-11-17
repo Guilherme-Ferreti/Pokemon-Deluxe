@@ -34,6 +34,6 @@ defineProps<{
 @reference '@css/app.css';
 
 .app-pokemon-gender-icon {
-  @apply inline-block size-[1em] min-h-4 min-w-4;
+  @apply inline-block size-[1em] min-h-4 min-w-4 align-[-0.15em];
 }
 </style>

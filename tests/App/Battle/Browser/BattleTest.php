@@ -194,7 +194,7 @@ it('sends out another pokemon after a faint', function () {
         ->assertNoJavascriptErrors();
 });
 
-it('switches to another pokemon, which the opponent then attacks', function () {
+it('switches from the team rail to another pokemon, which the opponent then attacks', function () {
     $user    = User::factory()->create();
     $pikachu = Species::factory()->create(['name' => 'Pikachu', 'types' => [PokemonType::ELECTRIC]]);
     $eevee   = Species::factory()->create(['name' => 'Eevee', 'types' => [PokemonType::NORMAL]]);
@@ -244,12 +244,13 @@ it('switches to another pokemon, which the opponent then attacks', function () {
     actingAs($user);
 
     visit(route('battle.web.show'))
-        ->click('@switch-pokemon-dialog__open-button')
-        ->assertVisible('@switch-pokemon-dialog')
-        ->click('@switch-pokemon-dialog__pokemon-2-radio')
-        ->click('@switch-pokemon-dialog__switch-button')
+        ->assertButtonDisabled('@battle-team-rail__switch-button')
+        ->click('@battle-team-rail__pokemon-2-radio')
+        ->assertButtonEnabled('@battle-team-rail__switch-button')
+        ->click('@battle-team-rail__switch-button')
         ->wait(1)
-        ->assertMissing('@switch-pokemon-dialog')
+        ->assertSeeIn('@battlefield-combatant-card--player', 'Eevee')
+        ->assertButtonDisabled('@battle-team-rail__switch-button')
         ->assertSeeIn('@battle-log-card', 'Come back, Pikachu!')
         ->assertSeeIn('@battle-log-card', 'Go! Eevee!')
         ->assertSeeIn('@battle-log-card', 'The wild Pidgey used Tackle!')
@@ -415,6 +416,108 @@ it('shows the result in place of the battlefield, first on a phone, once the bat
                 const log = document.querySelector('[data-test="battle-log-card"]').getBoundingClientRect();
 
                 return log.top >= result.bottom;
+            })()
+            JS)
+        ->assertNoJavascriptErrors();
+});
+
+it('does not switch to the pokemon in battle or a fainted one', function () {
+    $user    = User::factory()->create();
+    $pikachu = Species::factory()->create(['name' => 'Pikachu']);
+    $eevee   = Species::factory()->create(['name' => 'Eevee']);
+    $tackle  = Move::factory()->plainDamage()->create(['name' => 'Tackle']);
+
+    $combatant = [
+        'pokemon_id'                    => 'pokemon-1',
+        'species_id'                    => $pikachu->id,
+        'level'                         => 50,
+        'boost'                         => 0,
+        'is_shiny'                      => false,
+        'gender'                        => PokemonGender::MALE,
+        'types'                         => [PokemonType::NORMAL],
+        'move_ids'                      => [$tackle->id],
+        'max_hp'                        => 218,
+        'current_hp'                    => 218,
+        'ailment'                       => null,
+        'ailment_turns_left'            => 0,
+        'confusion_turns_left'          => 0,
+        'has_entered_field'             => true,
+        'used_once_per_battle_move_ids' => [],
+    ];
+
+    Battle::factory()->for($user)->create([
+        'status' => BattleStatus::ONGOING,
+        'state'  => new BattleState(
+            turn: 2,
+            player_side: new BattleSide(combatants: [
+                new Combatant(...$combatant),
+                new Combatant(...[...$combatant, 'pokemon_id' => 'pokemon-2', 'species_id' => $eevee->id, 'current_hp' => 0]),
+            ], active_index: 0),
+            opponent_side: new BattleSide(combatants: [new Combatant(...[...$combatant, 'pokemon_id' => null])], active_index: 0),
+            is_awaiting_send_out: false,
+            log: [new BattleLogEntry(0, BattleLogKind::INFO, 'A wild Pikachu appeared!')],
+        ),
+    ]);
+
+    actingAs($user);
+
+    visit(route('battle.web.show'))
+        ->assertSeeIn('@battle-team-rail__pokemon-2-radio', 'Fainted')
+        ->click('@battle-team-rail__pokemon-2-radio')
+        ->assertButtonDisabled('@battle-team-rail__switch-button')
+        ->click('@battle-team-rail__pokemon-1-radio')
+        ->assertButtonDisabled('@battle-team-rail__switch-button')
+        ->assertNoJavascriptErrors();
+});
+
+it('shows the team as a grid of two columns on a phone', function () {
+    $user    = User::factory()->create();
+    $pikachu = Species::factory()->create(['name' => 'Pikachu']);
+    $eevee   = Species::factory()->create(['name' => 'Eevee']);
+    $tackle  = Move::factory()->plainDamage()->create(['name' => 'Tackle']);
+
+    $combatant = [
+        'pokemon_id'                    => 'pokemon-1',
+        'species_id'                    => $pikachu->id,
+        'level'                         => 50,
+        'boost'                         => 0,
+        'is_shiny'                      => false,
+        'gender'                        => PokemonGender::MALE,
+        'types'                         => [PokemonType::NORMAL],
+        'move_ids'                      => [$tackle->id],
+        'max_hp'                        => 218,
+        'current_hp'                    => 218,
+        'ailment'                       => null,
+        'ailment_turns_left'            => 0,
+        'confusion_turns_left'          => 0,
+        'has_entered_field'             => true,
+        'used_once_per_battle_move_ids' => [],
+    ];
+
+    Battle::factory()->for($user)->create([
+        'status' => BattleStatus::ONGOING,
+        'state'  => new BattleState(
+            turn: 2,
+            player_side: new BattleSide(combatants: [
+                new Combatant(...$combatant),
+                new Combatant(...[...$combatant, 'pokemon_id' => 'pokemon-2', 'species_id' => $eevee->id, 'current_hp' => 218]),
+            ], active_index: 0),
+            opponent_side: new BattleSide(combatants: [new Combatant(...[...$combatant, 'pokemon_id' => null])], active_index: 0),
+            is_awaiting_send_out: false,
+            log: [new BattleLogEntry(0, BattleLogKind::INFO, 'A wild Pikachu appeared!')],
+        ),
+    ]);
+
+    actingAs($user);
+
+    visit(route('battle.web.show'))
+        ->resize(390, 844)
+        ->assertScript(<<<'JS'
+            (() => {
+                const first = document.querySelector('[data-test="battle-team-rail__pokemon-1-radio"]').getBoundingClientRect();
+                const second = document.querySelector('[data-test="battle-team-rail__pokemon-2-radio"]').getBoundingClientRect();
+
+                return first.top === second.top && second.left >= first.right;
             })()
             JS)
         ->assertNoJavascriptErrors();
