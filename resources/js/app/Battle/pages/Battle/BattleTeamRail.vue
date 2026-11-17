@@ -128,7 +128,6 @@ function switchPokemon(): void {
   form
     .transform((data) => ({ combatantIndex: Number(data.combatantIndex) }))
     .post(route('battle.web.switch'), {
-      preserveScroll: true,
       onError: () => {
         form.combatantIndex = pickableIndex.value;
       },
