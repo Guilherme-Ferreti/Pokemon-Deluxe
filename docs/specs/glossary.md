@@ -43,7 +43,7 @@ One name per idea, used everywhere: specs, code, database, tests and UI. When yo
 | Active combatant | `active_index` on `BattleSide` | The one currently on the field. |
 | Turn | `turn` | Both sides acting once. |
 | Battle log | `log` (`list<BattleLogEntry>`), `BattleLogCard` | What happened, turn by turn; the page shows the newest turn first. |
-| Battle log entry | `BattleLogEntry` (`turn`, `side`, `kind`, `text`, `move_name`) | One message. `turn` 0 is before the first turn; `side` is the side that caused it, or null. |
+| Battle log entry | `BattleLogEntry` (`turn`, `kind`, `text`, `move_name`) | One message. `turn` 0 is before the first turn. |
 | Battle log kind | `BattleLogKind` enum: `MOVE`, `DAMAGE`, `DETAIL`, `INFO`, `EVENT` | How the page styles an entry: move names in bold, damage and details small and muted. |
 | Ongoing battle | `Battle::ongoing()` scope | The user's battle with status `ONGOING`. |
 | Recently ended battle | `Battle::recentlyEnded()` scope, `game.battle.end_screen_minutes` | An ended battle last updated within the end-screen window; `GET /battle` shows its end screen. |

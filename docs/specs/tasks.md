@@ -544,21 +544,20 @@ Uses `Combatant` from task 1.10.
 
 - [ ] Done
 
-**Goal:** the log knows which turn, side and kind each message belongs to, so the page can group turns and style lines (Spec 1, "Battle log"). The log is a flat list of strings today; this task changes how messages are logged in the backend.
+**Goal:** the log knows which turn and kind each message belongs to, so the page can group turns and style lines (Spec 1, "Battle log"). The log is a flat list of strings today; this task changes how messages are logged in the backend.
 
-**Mock-up:** `docs/mockups/battle.html` (state "Battle log: every kind of message": every message, its side and its kind)
+**Mock-up:** `docs/mockups/battle.html` (state "Battle log: every kind of message": every message and its kind)
 
 **Build:**
 - `App\Battle\Enums\BattleLogKind`: `MOVE` (a "used Move!" line; the move name is shown in bold), `DAMAGE` ("Gengar lost 96 HP."), `DETAIL` (critical hit, effectiveness, no effect, multi-hit, "But it failed!"), `INFO` (battle start, ran away, forfeit) and `EVENT` (everything else: status, send-outs, switches, faints, rewards, XP).
-- Value object `Shared\ValueObjects\BattleLogEntry` (`turn`, nullable `side` (`Side`), `kind`, `text`, nullable `move_name`), with `fromArray()` / `toArray()` like the other battle value objects. `turn` is 0 for the lines before the first turn.
-- `BattleState::$log` becomes `list<BattleLogEntry>`; `withLogLines()` and `withNextTurn()` take entries. `TurnData::log()` takes the side and kind (and the move name for `MOVE`) and stamps the current turn.
-- Side of each entry: the side whose Pokémon or trainer caused it. A move, its hits, its effectiveness and the ailment it inflicts belong to the attacker ("Shiny Magikarp was burned!" after Gengar's Will-O-Wisp is the opponent's); a Pokémon's own status messages and end-of-turn damage belong to that Pokémon's side ("Shiny Magikarp was hurt by its burn!" is the player's); send-outs and switches belong to the side sending out. Faints, the result, money and XP have no side.
+- Value object `Shared\ValueObjects\BattleLogEntry` (`turn`, `kind`, `text`, nullable `move_name`), with `fromArray()` / `toArray()` like the other battle value objects. `turn` is 0 for the lines before the first turn.
+- `BattleState::$log` becomes `list<BattleLogEntry>`; `withLogLines()` and `withNextTurn()` take entries. `TurnData::log()` takes the kind (and the move name for `MOVE`) and stamps the current turn.
 - New `DAMAGE` lines, one after each damaging action, with the total HP lost: after a move's hits (after "It hit 4 times!" for multi-hit moves), after confusion self-damage and after burn and poison damage.
-- Endings: running from a wild battle logs "You got away safely!"; forfeiting any other battle logs "You forfeited the battle." (both `INFO`, no side).
+- Endings: running from a wild battle logs "You got away safely!"; forfeiting any other battle logs "You forfeited the battle." (both `INFO`).
 - No production data exists: the `battles` table keeps its JSON column; old local battles are dropped with `migrate:fresh --seed`.
-- `BattleShowPageProps`: `battle.log` becomes a list of turns, newest first: `{ turn: int, entries: list<{ side: 'player'|'opponent'|null, kind: BattleLogKind, text: string, moveName: ?string }> }`.
+- `BattleShowPageProps`: `battle.log` becomes a list of turns, newest first: `{ turn: int, entries: list<{ kind: BattleLogKind, text: string, moveName: ?string }> }`.
 
-**Tests:** every pipe that logs writes the right side and kind (one case per message in the mock-up's reference state); damage lines carry the HP actually lost (multi-hit totals, end-of-turn damage); entries survive the JSON round trip; the page prop groups by turn, newest first; running and forfeiting log their messages.
+**Tests:** every pipe that logs writes the right kind (one case per message in the mock-up's reference state); damage lines carry the HP actually lost (multi-hit totals, end-of-turn damage); entries survive the JSON round trip; the page prop groups by turn, newest first; running and forfeiting log their messages.
 
 **Done when:** tests pass and a played battle stores structured entries.
 
@@ -717,9 +716,9 @@ Uses `Combatant` from task 1.10.
 **Mock-up:** `docs/mockups/battle.html` (any state; open and close the turns; the reference state "Battle log: every kind of message")
 
 **Build:**
-- `BattleLogCard.vue` rewritten on task 1.25's entries: a card titled "Battle log" with an info tooltip ("The newest turn is at the top and open; older turns are collapsed. Click a turn to open or close it. Blue bar: your Pokémon. Grey bar: the opponent.").
+- `BattleLogCard.vue` rewritten on task 1.25's entries: a card titled "Battle log" with an info tooltip ("The newest turn is at the top and open; older turns are collapsed. Click a turn to open or close it.").
 - One collapsible section per turn ("Start", "Turn 1", …), newest first; only the newest is open. The open/closed choice is kept until the page reloads; a new turn opens itself.
-- Each entry is a plain line with a 3px left bar: blue for the player's side, grey for the opponent's, none without a side. `MOVE` entries show the move name in bold; `DAMAGE` and `DETAIL` entries are smaller and muted; `INFO` entries are muted. Success and failure messages have no colour and no bold.
+- Each entry is a plain line with no coloured bar. `MOVE` entries show the move name in bold; `DAMAGE` and `DETAIL` entries are smaller and muted; `INFO` entries are muted. Success and failure messages have no colour and no bold.
 - New lines fade in one after another (about 140ms apart) when a turn comes in.
 - The list scrolls inside the card (about 470px tall on desktop, 300px on phones).
 
