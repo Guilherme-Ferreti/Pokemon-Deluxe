@@ -22,6 +22,7 @@
       <BattleTeamRadioGroup
         v-model="form.combatantIndex"
         test-id-block="send-out-sheet"
+        is-grid-below-wide-layout
         :disabled="form.processing"
       />
       <Button
@@ -75,7 +76,7 @@ function sendOut(): void {
 @reference '@css/app.css';
 
 :global(.send-out-sheet) {
-  @apply max-h-[85vh] gap-2.5 overflow-y-auto rounded-t-2xl px-4 pt-2.5 pb-[max(1.25rem,env(safe-area-inset-bottom))];
+  @apply @container max-h-[85vh] gap-2.5 overflow-y-auto rounded-t-2xl px-4 pt-2.5 pb-[max(1.25rem,env(safe-area-inset-bottom))];
 }
 
 .send-out-sheet__handle {

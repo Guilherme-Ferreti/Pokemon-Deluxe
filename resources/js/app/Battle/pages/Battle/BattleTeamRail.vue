@@ -26,7 +26,7 @@
       <BattleTeamRadioGroup
         v-model="form.combatantIndex"
         test-id-block="battle-team-rail"
-        is-tiled-on-phones
+        is-grid-below-wide-layout
         :marks-pokemon-in-battle="isOngoing"
         :disabled="!isOngoing || isRequestRunning"
       />

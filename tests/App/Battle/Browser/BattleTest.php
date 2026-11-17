@@ -539,7 +539,7 @@ it('does not switch to the pokemon in battle or a fainted one', function () {
         ->assertNoJavascriptErrors();
 });
 
-it('shows the team as a grid of two columns on a phone', function () {
+it('shows the team in as many columns as fit below the wide layout', function (int $width, int $columns) {
     $user    = User::factory()->create();
     $pikachu = Species::factory()->create(['name' => 'Pikachu']);
     $eevee   = Species::factory()->create(['name' => 'Eevee']);
@@ -570,6 +570,8 @@ it('shows the team as a grid of two columns on a phone', function () {
             player_side: new BattleSide(combatants: [
                 new Combatant(...$combatant),
                 new Combatant(...[...$combatant, 'pokemon_id' => 'pokemon-2', 'species_id' => $eevee->id, 'current_hp' => 218]),
+                new Combatant(...[...$combatant, 'pokemon_id' => 'pokemon-3', 'species_id' => $eevee->id]),
+                new Combatant(...[...$combatant, 'pokemon_id' => 'pokemon-4', 'species_id' => $eevee->id]),
             ], active_index: 0),
             opponent_side: new BattleSide(combatants: [new Combatant(...[...$combatant, 'pokemon_id' => null])], active_index: 0),
             is_awaiting_send_out: false,
@@ -580,14 +582,18 @@ it('shows the team as a grid of two columns on a phone', function () {
     actingAs($user);
 
     visit(route('battle.web.show'))
-        ->resize(390, 844)
+        ->resize($width, 900)
         ->assertScript(<<<'JS'
             (() => {
-                const first = document.querySelector('[data-test="battle-team-rail__pokemon-1-radio"]').getBoundingClientRect();
-                const second = document.querySelector('[data-test="battle-team-rail__pokemon-2-radio"]').getBoundingClientRect();
+                const members = [...document.querySelectorAll('[data-test^="battle-team-rail__pokemon-"]')].map((member) => member.getBoundingClientRect());
 
-                return first.top === second.top && second.left >= first.right;
+                return members.filter((member) => member.top === members[0].top).length;
             })()
-            JS)
+            JS, $columns)
         ->assertNoJavascriptErrors();
-});
+})->with([
+    'a phone'         => [390, 1],
+    'a small tablet'  => [600, 2],
+    'a large tablet'  => [1100, 3],
+    'the wide layout' => [1440, 1],
+]);
