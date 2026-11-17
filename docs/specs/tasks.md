@@ -565,7 +565,7 @@ Uses `Combatant` from task 1.10.
 
 ### 1.26 Battle page: layout and header
 
-- [ ] Done
+- [x] Done
 
 **Goal:** the battle page uses the new three-column layout (Spec 1, "Battle page").
 
@@ -573,13 +573,14 @@ Uses `Combatant` from task 1.10.
 
 **Build:**
 - `pages/Battle/index.vue`: a grid with three columns on wide screens (Your team | battlefield, moves, More options or the result | the opponent's team and the Battle log) and one column on phones in this order: result, battlefield, moves (or the fainted card), Your team, log, More options. Use container queries on `@container/main-content` so the sidebar's width is respected.
-- New `BattleHeader.vue` (replaces the `AppPageHeader` use on this page): the title and a one-line description with the turn: wild "Wild battle" / "A wild Pidgey appeared in the Forest · Turn 3" (the area name comes with Spec 2; until then "A wild Pidgey appeared · Turn 3"). A slot on the left for the trainer's sprite and one on the right for the Elite Four steps (both filled by task 6.14). The Run button moves out of the header (task 1.32).
-- Each later task fills one area; until then the existing cards sit in their new places.
+- New `BattleHeader.vue` (replaces the `AppPageHeader` use on this page, and sets the browser tab title with `Head`): the title and a one-line description with the turn: wild "Wild battle" / "A wild Pidgey appeared in the Forest · Turn 3" (the area name comes with Spec 2; until then "A wild Pidgey appeared · Turn 3"); other battle types show only "Turn 3" until task 6.14. Once the battle has ended the description shows the last turn played. A `sprite` slot on the left for the trainer's sprite and the default slot on the right for the Elite Four steps (both filled by task 6.14). The Run button (`RunBattleDialog`) sits in the right slot until task 1.32 moves it into the More options card.
+- Each later task fills one area; until then the existing cards sit in their new places: the battlefield (`BattleArenaCard`), the moves or the result in the middle column, the log in the right one. The left column stays empty until task 1.29 adds the team rail.
+- Each card has an `order-*` for the phone order and `@5xl/main-content:order-none` on wide screens; the columns are `display: contents` on phones so their cards join one grid, and flex columns (`col-start-2`, `col-start-3`) on wide screens.
 
 **UI suggestions** (ideas, not requirements):
 - Grid: `grid-cols-1 @5xl/main-content:grid-cols-[18rem_minmax(0,1fr)_18rem]`; on phones give each card an `order-*`, on wide screens reset the order.
 
-**Tests:** browser test: the three columns on a wide screen and the phone order on a 390px screen.
+**Tests:** browser tests: the header's title and description; the columns on a 1440px screen and the phone order on a 390px screen (compared with `getBoundingClientRect()` in `assertScript`); the result first on a phone once the battle has ended.
 
 **Done when:** the page uses the new layout in both sizes.
 
@@ -700,7 +701,7 @@ Uses `Combatant` from task 1.10.
 - New `BattleOptionsCard.vue` under the moves, titled "More options", with buttons sized to their text:
   - Wild battles: "Run" (destructive outline); task 2.19 adds "Throw ball" before it.
   - Every other battle: "Forfeit" (destructive outline).
-- Both open a confirmation (`alert-dialog`, replacing `RunBattleDialog`) with "Keep fighting" (outline) and the destructive "Run" or "Forfeit":
+- Both open a confirmation (`alert-dialog`, replacing `RunBattleDialog`, which task 1.26 left in `BattleHeader`'s right slot) with "Keep fighting" (outline) and the destructive "Run" or "Forfeit":
   - Wild: "Run from the wild Pidgey?" / "You won't get anything for this battle. Your Pokémon are healed either way."
   - Trainer: "Forfeit against Hiker Bob?" / "Forfeiting counts as a loss: no money, but your Pokémon keep the XP for opponents they knocked out." (gym, Elite Four and Tower wording comes with task 6.14).
 - The card also shows while waiting for a send-out; there "Throw ball" (task 2.19) is disabled.

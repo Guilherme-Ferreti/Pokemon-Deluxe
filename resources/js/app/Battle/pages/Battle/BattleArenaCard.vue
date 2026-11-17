@@ -1,5 +1,8 @@
 <template>
-  <Card class="battle-arena-card">
+  <Card
+    class="battle-arena-card"
+    data-test="battle-arena-card"
+  >
     <CardContent class="battle-arena-card__content">
       <div class="battle-arena-card__side battle-arena-card__side--opponent">
         <CombatantPanel side="opponent" />

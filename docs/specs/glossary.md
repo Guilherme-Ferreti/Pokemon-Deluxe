@@ -51,6 +51,7 @@ One name per idea, used everywhere: specs, code, database, tests and UI. When yo
 | Team rail | `player.team` prop (`BattleTeamMember`), `BattleTeamRail` | The "Your team" card: a radio group whose checked item is the Pokémon in battle (or the one picked to switch to or send out); fainted ones are disabled. A 2-column grid on phones. |
 | Opponent's team rail | `opponent.team` prop (`isRevealed`), `OpponentTeamRail` | The trainer's team, read-only; gym leaders and the Elite Four show Pokémon not sent out yet as "Not sent out yet". |
 | Switching from the page | The team rail's "Switch" button | Enabled when the checked Pokémon isn't the one in battle; no confirmation. |
+| Battle header | `BattleHeader` | The battle page's title and description with the turn; a `sprite` slot for the trainer and a default slot for the Elite Four steps. |
 | Running from the page | `ForfeitBattleController` | `POST /battle/forfeit`. |
 | End screen | `result` prop (`experienceGains` with `isFromExperienceShare`), `BattleResultCard` | The result card that replaces the battlefield once the battle has ended: title, "Your rewards", "XP gained" rows, buttons. |
 | More options | `BattleOptionsCard` | The card under the moves with Throw ball and Run (wild) or Forfeit (every other battle). |

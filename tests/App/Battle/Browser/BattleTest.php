@@ -60,7 +60,8 @@ it('loads the battle page without errors', function () {
     visit(route('battle.web.show'))
         ->assertNoSmoke()
         ->assertNoAccessibilityIssues()
-        ->assertSeeIn('@page-header__title', 'Wild battle')
+        ->assertSeeIn('@battle-header__title', 'Wild battle')
+        ->assertSeeIn('@battle-header', 'A wild Pikachu appeared · Turn 1')
         ->assertNoJavascriptErrors();
 });
 
@@ -285,6 +286,116 @@ it('runs from the battle after confirming', function () {
         ->click('@run-battle-dialog__run-button')
         ->wait(1)
         ->assertSeeIn('@battle-result-card', 'You got away safely')
-        ->assertSeeIn('@battle-log-card', 'You ran away!')
+        ->assertSeeIn('@battle-log-card', 'You got away safely!')
+        ->assertNoJavascriptErrors();
+});
+
+it('shows three columns on a wide screen and stacks the cards in reading order on a phone', function () {
+    $user    = User::factory()->create();
+    $pikachu = Species::factory()->create(['name' => 'Pikachu']);
+    $tackle  = Move::factory()->plainDamage()->create(['name' => 'Tackle']);
+
+    $combatant = [
+        'pokemon_id'                    => 'pokemon-1',
+        'species_id'                    => $pikachu->id,
+        'level'                         => 50,
+        'boost'                         => 0,
+        'is_shiny'                      => false,
+        'gender'                        => PokemonGender::MALE,
+        'types'                         => [PokemonType::NORMAL],
+        'move_ids'                      => [$tackle->id],
+        'max_hp'                        => 218,
+        'current_hp'                    => 218,
+        'ailment'                       => null,
+        'ailment_turns_left'            => 0,
+        'confusion_turns_left'          => 0,
+        'has_entered_field'             => true,
+        'used_once_per_battle_move_ids' => [],
+    ];
+
+    Battle::factory()->for($user)->create([
+        'status' => BattleStatus::ONGOING,
+        'state'  => new BattleState(
+            turn: 2,
+            player_side: new BattleSide(combatants: [new Combatant(...$combatant)], active_index: 0),
+            opponent_side: new BattleSide(combatants: [new Combatant(...[...$combatant, 'pokemon_id' => null])], active_index: 0),
+            is_awaiting_send_out: false,
+            log: [new BattleLogEntry(0, BattleLogKind::INFO, 'A wild Pikachu appeared!')],
+        ),
+    ]);
+
+    actingAs($user);
+
+    visit(route('battle.web.show'))
+        ->resize(1440, 900)
+        ->assertScript(<<<'JS'
+            (() => {
+                const field = document.querySelector('[data-test="battle-arena-card"]').getBoundingClientRect();
+                const moves = document.querySelector('[data-test="moves-card"]').getBoundingClientRect();
+                const log = document.querySelector('[data-test="battle-log-card"]').getBoundingClientRect();
+
+                return field.right <= log.left && field.top === log.top && moves.top >= field.bottom && moves.left === field.left;
+            })()
+            JS)
+        ->resize(390, 844)
+        ->assertScript(<<<'JS'
+            (() => {
+                const field = document.querySelector('[data-test="battle-arena-card"]').getBoundingClientRect();
+                const moves = document.querySelector('[data-test="moves-card"]').getBoundingClientRect();
+                const log = document.querySelector('[data-test="battle-log-card"]').getBoundingClientRect();
+
+                return moves.top >= field.bottom && log.top >= moves.bottom && field.left === moves.left && moves.left === log.left;
+            })()
+            JS)
+        ->assertNoJavascriptErrors();
+});
+
+it('shows the result first on a phone once the battle has ended', function () {
+    $user    = User::factory()->create();
+    $pikachu = Species::factory()->create(['name' => 'Pikachu']);
+    $tackle  = Move::factory()->plainDamage()->create(['name' => 'Tackle']);
+
+    $combatant = [
+        'pokemon_id'                    => 'pokemon-1',
+        'species_id'                    => $pikachu->id,
+        'level'                         => 50,
+        'boost'                         => 0,
+        'is_shiny'                      => false,
+        'gender'                        => PokemonGender::MALE,
+        'types'                         => [PokemonType::NORMAL],
+        'move_ids'                      => [$tackle->id],
+        'max_hp'                        => 218,
+        'current_hp'                    => 218,
+        'ailment'                       => null,
+        'ailment_turns_left'            => 0,
+        'confusion_turns_left'          => 0,
+        'has_entered_field'             => true,
+        'used_once_per_battle_move_ids' => [],
+    ];
+
+    Battle::factory()->for($user)->create([
+        'status' => BattleStatus::FORFEITED,
+        'state'  => new BattleState(
+            turn: 2,
+            player_side: new BattleSide(combatants: [new Combatant(...$combatant)], active_index: 0),
+            opponent_side: new BattleSide(combatants: [new Combatant(...[...$combatant, 'pokemon_id' => null])], active_index: 0),
+            is_awaiting_send_out: false,
+            log: [new BattleLogEntry(0, BattleLogKind::INFO, 'A wild Pikachu appeared!')],
+        ),
+    ]);
+
+    actingAs($user);
+
+    visit(route('battle.web.show'))
+        ->resize(390, 844)
+        ->assertSeeIn('@battle-header', 'A wild Pikachu appeared · Turn 1')
+        ->assertScript(<<<'JS'
+            (() => {
+                const result = document.querySelector('[data-test="battle-result-card"]').getBoundingClientRect();
+                const field = document.querySelector('[data-test="battle-arena-card"]').getBoundingClientRect();
+
+                return field.top >= result.bottom;
+            })()
+            JS)
         ->assertNoJavascriptErrors();
 });
