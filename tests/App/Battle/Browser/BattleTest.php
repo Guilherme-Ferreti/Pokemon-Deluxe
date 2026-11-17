@@ -62,6 +62,11 @@ it('loads the battle page without errors', function () {
         ->assertNoAccessibilityIssues()
         ->assertSeeIn('@battle-header__title', 'Wild battle')
         ->assertSeeIn('@battle-header', 'A wild Pikachu appeared · Turn 1')
+        ->assertSeeIn('@battlefield-combatant-card--player', 'HP:')
+        ->assertSeeIn('@battlefield-combatant-card--player', 'Lv 50')
+        ->assertSeeIn('@battlefield-combatant-card--player__hp-indicator', '218 / 218')
+        ->assertSeeIn('@battlefield-combatant-card--opponent', 'HP:')
+        ->assertScript('document.querySelector(\'[data-test="battlefield-combatant-card--player__name"] svg\') !== null')
         ->assertNoJavascriptErrors();
 });
 
@@ -116,12 +121,12 @@ it('takes a turn when a move is clicked', function () {
     actingAs($user);
 
     visit(route('battle.web.show'))
-        ->assertSeeIn('@combatant-panel--opponent__hp-indicator', '100%')
+        ->assertSeeIn('@battlefield-combatant-card--opponent__hp-indicator', '218 / 218')
         ->assertSeeIn('@moves-card__move-2-button', 'Super effective')
         ->click('@moves-card__move-2-button')
         ->wait(1)
-        ->assertSeeIn('@combatant-panel--opponent__hp-indicator', '58%')
-        ->assertSeeIn('@combatant-panel--player__hp-indicator', '172 / 218')
+        ->assertSeeIn('@battlefield-combatant-card--opponent__hp-indicator', '125 / 218')
+        ->assertSeeIn('@battlefield-combatant-card--player__hp-indicator', '172 / 218')
         ->assertSeeIn('@battle-log-card', 'Pikachu used Thunder Shock!')
         ->assertSeeIn('@battle-log-card', 'The wild Pidgey used Tackle!')
         ->assertNoJavascriptErrors();
@@ -236,7 +241,7 @@ it('switches to another pokemon, which the opponent then attacks', function () {
         ->assertSeeIn('@battle-log-card', 'Come back, Pikachu!')
         ->assertSeeIn('@battle-log-card', 'Go! Eevee!')
         ->assertSeeIn('@battle-log-card', 'The wild Pidgey used Tackle!')
-        ->assertSeeIn('@combatant-panel--player__hp-indicator', '134 / 180')
+        ->assertSeeIn('@battlefield-combatant-card--player__hp-indicator', '134 / 180')
         ->assertSeeIn('@moves-card', 'Bite')
         ->assertNoJavascriptErrors();
 });
@@ -284,7 +289,9 @@ it('runs from the battle after confirming', function () {
         ->click('@run-battle-dialog__open-button')
         ->assertVisible('@run-battle-dialog')
         ->click('@run-battle-dialog__run-button')
-        ->wait(1)
+        ->assertVisible('@battlefield-card')
+        ->wait(2)
+        ->assertMissing('@battlefield-card')
         ->assertSeeIn('@battle-result-card', 'You got away safely')
         ->assertSeeIn('@battle-log-card', 'You got away safely!')
         ->assertNoJavascriptErrors();
@@ -330,7 +337,7 @@ it('shows three columns on a wide screen and stacks the cards in reading order o
         ->resize(1440, 900)
         ->assertScript(<<<'JS'
             (() => {
-                const field = document.querySelector('[data-test="battle-arena-card"]').getBoundingClientRect();
+                const field = document.querySelector('[data-test="battlefield-card"]').getBoundingClientRect();
                 const moves = document.querySelector('[data-test="moves-card"]').getBoundingClientRect();
                 const log = document.querySelector('[data-test="battle-log-card"]').getBoundingClientRect();
 
@@ -340,7 +347,7 @@ it('shows three columns on a wide screen and stacks the cards in reading order o
         ->resize(390, 844)
         ->assertScript(<<<'JS'
             (() => {
-                const field = document.querySelector('[data-test="battle-arena-card"]').getBoundingClientRect();
+                const field = document.querySelector('[data-test="battlefield-card"]').getBoundingClientRect();
                 const moves = document.querySelector('[data-test="moves-card"]').getBoundingClientRect();
                 const log = document.querySelector('[data-test="battle-log-card"]').getBoundingClientRect();
 
@@ -350,7 +357,7 @@ it('shows three columns on a wide screen and stacks the cards in reading order o
         ->assertNoJavascriptErrors();
 });
 
-it('shows the result first on a phone once the battle has ended', function () {
+it('shows the result in place of the battlefield, first on a phone, once the battle has ended', function () {
     $user    = User::factory()->create();
     $pikachu = Species::factory()->create(['name' => 'Pikachu']);
     $tackle  = Move::factory()->plainDamage()->create(['name' => 'Tackle']);
@@ -389,12 +396,13 @@ it('shows the result first on a phone once the battle has ended', function () {
     visit(route('battle.web.show'))
         ->resize(390, 844)
         ->assertSeeIn('@battle-header', 'A wild Pikachu appeared · Turn 1')
+        ->assertMissing('@battlefield-card')
         ->assertScript(<<<'JS'
             (() => {
                 const result = document.querySelector('[data-test="battle-result-card"]').getBoundingClientRect();
-                const field = document.querySelector('[data-test="battle-arena-card"]').getBoundingClientRect();
+                const log = document.querySelector('[data-test="battle-log-card"]').getBoundingClientRect();
 
-                return field.top >= result.bottom;
+                return log.top >= result.bottom;
             })()
             JS)
         ->assertNoJavascriptErrors();

@@ -128,15 +128,16 @@ it('loads the battle page with expected structure', function () {
                 ],
             ])
             ->where('opponent', [
-                'name'         => 'Pidgey',
-                'gender'       => PokemonGender::MALE->value,
-                'level'        => 34,
-                'boost'        => 0,
-                'isShiny'      => false,
-                'ailment'      => null,
-                'sprite'       => $pidgey->getDisplayFrontSprite(PokemonGender::MALE, shiny: false),
-                'hpPercentage' => 62,
-                'team'         => [
+                'name'      => 'Pidgey',
+                'gender'    => PokemonGender::MALE->value,
+                'level'     => 34,
+                'boost'     => 0,
+                'isShiny'   => false,
+                'ailment'   => null,
+                'sprite'    => $pidgey->getDisplayFrontSprite(PokemonGender::MALE, shiny: false),
+                'currentHp' => 135,
+                'maxHp'     => 218,
+                'team'      => [
                     ['name' => 'Pidgey', 'isFainted' => false],
                 ],
             ])
@@ -154,7 +155,7 @@ it('loads the battle page with expected structure', function () {
         );
 });
 
-it('shows the opponent hp only as a percentage, rounded up', function (int $currentHp, int $expectedPercentage) {
+it('shows the opponent hp as numbers', function (int $currentHp) {
     $user    = User::factory()->create();
     $pikachu = Species::factory()->create();
     $tackle  = Move::factory()->plainDamage()->create();
@@ -191,15 +192,14 @@ it('shows the opponent hp only as a percentage, rounded up', function (int $curr
     actingAs($user)
         ->get(route('battle.web.show'))
         ->assertInertia(fn (Assert $page) => $page
-            ->where('opponent.hpPercentage', $expectedPercentage)
-            ->missing('opponent.currentHp')
-            ->missing('opponent.maxHp')
+            ->where('opponent.currentHp', $currentHp)
+            ->where('opponent.maxHp', 218)
+            ->missing('opponent.hpPercentage')
         );
 })->with([
-    'full'     => [218, 100],
-    'part'     => [135, 62],
-    'a sliver' => [1, 1],
-    'fainted'  => [0, 0],
+    'full'    => [218],
+    'part'    => [135],
+    'fainted' => [0],
 ]);
 
 it('flags damaging moves that are super effective against the opponent', function (PokemonType $moveType, ?int $power, array $opponentTypes, bool $expectedIsSuperEffective) {

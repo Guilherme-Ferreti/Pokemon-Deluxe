@@ -14,6 +14,8 @@ export type BattleCombatant = {
   isShiny: boolean;
   ailment: Exclude<Ailment, Ailment.CONFUSION | Ailment.UNKNOWN> | null;
   sprite: Pokemon['frontSprite'];
+  currentHp: number;
+  maxHp: number;
   team: {
     name: Pokemon['name'];
     isFainted: boolean;
@@ -49,13 +51,9 @@ export type BattleShowPageProps = {
     isAwaitingSendOut: boolean;
   };
   player: Omit<BattleCombatant, 'team'> & {
-    currentHp: number;
-    maxHp: number;
     team: BattleTeamMember[];
   };
-  opponent: BattleCombatant & {
-    hpPercentage: number;
-  };
+  opponent: BattleCombatant;
   moves: (Pick<
     Move,
     'id' | 'name' | 'type' | 'power' | 'isZMove' | 'isDynamaxMove'

@@ -37,13 +37,9 @@ import type {
   BattleShowPageProps,
 } from '../../types/page-props/BattleShowPageProps';
 
-const props = defineProps<{
-  side: 'player' | 'opponent';
-}>();
-
 const page = usePage<BattleShowPageProps>();
 
-const team = computed(() => page.props[props.side].team);
+const team = computed(() => page.props.opponent.team);
 
 const summary = computed(() => {
   const standing = team.value.filter((member) => !member.isFainted).length;

@@ -526,7 +526,7 @@ Uses `Combatant` from task 1.10.
 
 **Build:**
 - `BattleShowPageProps`: `player.team` lists the player's whole team for the dialogs (portrait, display name, level, current and max HP, ailment, `isFainted`, `isActive`); the opponent's team keeps only name and fainted for the team dots. The `sendOut` prop is replaced by `battle.isAwaitingSendOut` (only while ongoing), since both dialogs now read `player.team`.
-- `BattleTeamRadioGroup` draws the team rows for both dialogs (`SpeciesPortrait`, name, level, `AilmentBadge`, "In battle" badge, `HpProgress`); the active and fainted Pokémon are disabled. The consuming dialog passes its block for the test IDs (`send-out-dialog__pokemon-2-radio`, `switch-pokemon-dialog__pokemon-2-radio`). `AilmentBadge` is shared with `CombatantPanel`.
+- `BattleTeamRadioGroup` draws the team rows for both dialogs (`SpeciesPortrait`, name, level, `AilmentBadge`, "In battle" badge, `HpProgress`); the active and fainted Pokémon are disabled. The consuming dialog passes its block for the test IDs (`send-out-dialog__pokemon-2-radio`, `switch-pokemon-dialog__pokemon-2-radio`). `AilmentBadge` is shared with `CombatantPanel` (`BattlefieldCombatantCard` since task 1.27).
 - `SwitchPokemonDialog`: a full-width outline "Switch Pokémon" button (swap icon) in the moves card's footer, in every battle, disabled while a move is being sent or when no other Pokémon can fight. Its dialog can be cancelled, says that switching uses the turn, and posts the choice to `battle.web.switch`; the choice is cleared each time the dialog opens or closes.
 - After the switch, the player card, HP and move buttons show the new Pokémon.
 
@@ -574,7 +574,7 @@ Uses `Combatant` from task 1.10.
 **Build:**
 - `pages/Battle/index.vue`: a grid with three columns on wide screens (Your team | battlefield, moves, More options or the result | the opponent's team and the Battle log) and one column on phones in this order: result, battlefield, moves (or the fainted card), Your team, log, More options. Use container queries on `@container/main-content` so the sidebar's width is respected.
 - New `BattleHeader.vue` (replaces the `AppPageHeader` use on this page, and sets the browser tab title with `Head`): the title and a one-line description with the turn: wild "Wild battle" / "A wild Pidgey appeared in the Forest · Turn 3" (the area name comes with Spec 2; until then "A wild Pidgey appeared · Turn 3"); other battle types show only "Turn 3" until task 6.14. Once the battle has ended the description shows the last turn played. A `sprite` slot on the left for the trainer's sprite and the default slot on the right for the Elite Four steps (both filled by task 6.14). The Run button (`RunBattleDialog`) sits in the right slot until task 1.32 moves it into the More options card.
-- Each later task fills one area; until then the existing cards sit in their new places: the battlefield (`BattleArenaCard`), the moves or the result in the middle column, the log in the right one. The left column stays empty until task 1.29 adds the team rail.
+- Each later task fills one area; until then the existing cards sit in their new places: the battlefield (`BattleArenaCard`, `BattlefieldCard` since task 1.27), the moves or the result in the middle column, the log in the right one. The left column stays empty until task 1.29 adds the team rail.
 - Each card has an `order-*` for the phone order and `@5xl/main-content:order-none` on wide screens; the columns are `display: contents` on phones so their cards join one grid, and flex columns (`col-start-2`, `col-start-3`) on wide screens.
 
 **UI suggestions** (ideas, not requirements):
@@ -586,24 +586,24 @@ Uses `Combatant` from task 1.10.
 
 ### 1.27 Battle page: battlefield card
 
-- [ ] Done
+- [x] Done
 
 **Goal:** the battlefield shows both Pokémon with their HP as numbers.
 
 **Mock-up:** `docs/mockups/battle.html` (states "Wild: choosing a move", "Trainer: choosing a move")
 
 **Build:**
-- New `BattlefieldCard.vue` replaces `BattleArenaCard` and `CombatantPanel`: the opponent's card and sprite at the top right, the player's sprite and card at the bottom left, over the scene background (task 1.28).
-- Each combatant card: `PokemonDisplayName` with `PokemonGenderIcon` right after the name, the ailment badge, the level as plain muted text aligned right ("Lv 34", no pill and no boost), and an "HP:" label before the HP `Progress` bar and "115 / 185".
+- New `BattlefieldCard.vue` replaces `BattleArenaCard` and `CombatantPanel`: the opponent's card and sprite at the top right, the player's sprite and card at the bottom left, over the scene background (task 1.28). A fainted Pokémon's sprite fades to 35%.
+- Each combatant card (`BattlefieldCombatantCard.vue`, renamed from `CombatantPanel`; test IDs `battlefield-combatant-card--{side}`, `…__name`, `…__hp-indicator`): `PokemonDisplayName` (which already draws `PokemonGenderIcon` right after the name), the ailment badge, the level as plain muted text aligned right ("Lv 34", no pill and no boost), and an "HP:" label before the HP `Progress` bar and "115 / 185". The shiny gold border is gone, as in the mock-up: "Shiny" in the name says it.
 - `BattleShowPageProps`: the opponent's `currentHp` and `maxHp` replace `hpPercentage` (Spec 1 now shows the opponent's HP as numbers).
-- Phones: smaller sprites and cards side by side with their sprite; in trainer battles the opponent's card adds team dots (`CombatantTeamDots`), since the opponent's team rail (task 1.34) is not shown on phones.
-- When the battle ends: the opponent's HP drains to 0 if it was knocked out, then the card fades out (`opacity` over 450ms) and the result card takes its place (task 1.35).
+- Phones: smaller sprites and cards side by side with their sprite, through a `@container/battlefield` query on the card (the desktop look from 24rem wide); in every battle but wild ones the opponent's card adds team dots (`CombatantTeamDots`, now opponent-only), hidden at the page's three-column width, since the opponent's team rail (task 1.34) is not shown on phones. The player's card has no dots.
+- When the battle ends: the moves card goes, the opponent's HP drains to 0 if it was knocked out (700ms, `index.vue`'s `HP_DRAIN_MILLISECONDS`), then the card fades out (`opacity` over 450ms, a `Transition`) and the result card shows in its place once the fade is over (task 1.35 adds its entrance). A battle that had already ended when the page loaded shows the result with no battlefield.
 
 **UI suggestions** (ideas, not requirements):
 - Cards on the scene: `bg-card/95 border rounded-lg`, 15rem wide on desktop.
 - HP colours from the existing `HpProgress`.
 
-**Tests:** feature test: the opponent's HP props are numbers; browser test: the gender icon and "HP:" label show; the card fades out when the battle ends.
+**Tests:** feature test: the opponent's HP props are numbers (the old "percentage, rounded up" test now checks the numbers; its "a sliver" case went with the rounding); browser tests: the gender icon, level and "HP:" label show; the opponent's HP reads "125 / 218" after a turn; running fades the battlefield out and the result takes its place; an already-ended battle shows no battlefield.
 
 **Done when:** both combatants show as in the mock-up on desktop and phones.
 

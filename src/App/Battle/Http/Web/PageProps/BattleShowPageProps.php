@@ -111,9 +111,10 @@ final class BattleShowPageProps implements ProvidesInertiaProperties
 
         return [
             ...$this->combatantDetails($combatant, $species),
-            'sprite'       => $species->getDisplayFrontSprite($combatant->gender, $combatant->is_shiny),
-            'hpPercentage' => (int) ceil($combatant->current_hp / $combatant->max_hp * 100),
-            'team'         => $this->team($side),
+            'sprite'    => $species->getDisplayFrontSprite($combatant->gender, $combatant->is_shiny),
+            'currentHp' => $combatant->current_hp,
+            'maxHp'     => $combatant->max_hp,
+            'team'      => $this->team($side),
         ];
     }
 
