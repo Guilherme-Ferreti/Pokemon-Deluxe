@@ -8,7 +8,7 @@
     </CardHeader>
     <CardContent class="moves-card__content">
       <RadioGroup
-        v-model="selectedMoveSlot"
+        v-model="form.moveSlot"
         class="moves-card__grid"
         aria-label="Choose a move"
         :disabled="form.processing"
@@ -51,7 +51,7 @@
 
 <script setup lang="ts">
 import { useForm, usePage } from '@inertiajs/vue3';
-import { ref, useId } from 'vue';
+import { useId } from 'vue';
 import MoveNameLabel from '@/shared/components/game/MoveNameLabel.vue';
 import PokemonTypeBadges from '@/shared/components/game/PokemonTypeBadges.vue';
 import { Button } from '@/shared/components/ui/button';
@@ -70,20 +70,15 @@ const page = usePage<BattleShowPageProps>();
 
 const idPrefix = useId();
 
-const selectedMoveSlot = ref('1');
-
 const form = useForm({
-  moveSlot: 1,
+  moveSlot: '1',
 });
 
 function attack(): void {
   form
-    .transform(() => ({ moveSlot: Number(selectedMoveSlot.value) }))
+    .transform((data) => ({ moveSlot: Number(data.moveSlot) }))
     .post(route('battle.web.turn'), {
       preserveScroll: true,
-      onSuccess: () => {
-        selectedMoveSlot.value = '1';
-      },
     });
 }
 </script>
