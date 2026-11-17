@@ -138,6 +138,15 @@ function isInBattle(member: BattleTeamMember): boolean {
   @apply border-muted-foreground/40 bg-muted;
 }
 
+.battle-team-radio-group__member:has([data-state='checked'])
+  :is(
+    .battle-team-radio-group__meta,
+    .battle-team-radio-group__hp-label,
+    .battle-team-radio-group__hp-value
+  ) {
+  @apply text-foreground/75;
+}
+
 .battle-team-radio-group__member--fainted {
   @apply opacity-50;
 }

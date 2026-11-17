@@ -532,9 +532,12 @@ it('does not switch to the pokemon in battle or a fainted one', function () {
 
     actingAs($user);
 
-    visit(route('battle.web.show'))
-        ->assertSeeIn('@battle-team-rail__pokemon-2-radio', 'Fainted')
-        ->click('@battle-team-rail__pokemon-2-radio')
+    $page = visit(route('battle.web.show'))
+        ->assertSeeIn('@battle-team-rail__pokemon-2-radio', 'Fainted');
+
+    $page->script('document.querySelector(\'[data-test="battle-team-rail__pokemon-2-radio"]\').click()');
+
+    $page
         ->assertButtonDisabled('@battle-team-rail__switch-button')
         ->click('@battle-team-rail__pokemon-1-radio')
         ->assertButtonDisabled('@battle-team-rail__switch-button')
