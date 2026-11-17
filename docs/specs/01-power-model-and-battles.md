@@ -153,7 +153,7 @@ A wild Pidgey appeared in the Forest · Turn 3
 └─────────────┴──────────────────────────────────┴──────────────────┘
 ```
 
-- Three columns on wide screens: **Your team** on the left; the battlefield, **Choose a move** and **More options** in the middle; the opponent's team (battles against trainers) and the **Battle log** on the right. On a phone the parts stack: result, battlefield, log, moves, Your team, More options.
+- Three columns on wide screens: **Your team** on the left; the battlefield, **Choose a move** and **More options** in the middle; the opponent's team (battles against trainers) and the **Battle log** on the right. On a phone the parts stack: result, battlefield, moves, log, Your team, More options.
 - The header names the battle and the turn: "Wild battle" with "A wild Pidgey appeared in the Forest · Turn 3"; against trainers, the trainer's sprite and name with "Trainer battle · Turn 3", "Pewter City Gym · Rock · Turn 3", "Kanto Elite Four · battle 2 of 5 · Turn 3" (with the five Elite Four steps) or "Tower Trainer Lena · Turn 3".
 - **Battlefield:** the opponent at the top right, the player at the bottom left, as in the main games, over a background that fits the place (wild, trainer arena, gym, Indigo Plateau, Battle Tower). Each card shows the name with its gender icon, the ailment, the level on the right ("Lv 34") and "HP:" with a bar and **both sides' HP as numbers** ("115 / 185"). On a phone, the opponent's card of a trainer battle also has team dots.
 - **Choose a move:** the four moves as radio choice cards (name and type, no power and no effectiveness hint); the first is selected; **Attack** uses the selected move.

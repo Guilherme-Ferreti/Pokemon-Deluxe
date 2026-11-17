@@ -570,7 +570,7 @@ Uses `Combatant` from task 1.10.
 **Mock-up:** `docs/mockups/battle.html` (any state; narrow the window for the phone order)
 
 **Build:**
-- `pages/Battle/index.vue`: a grid with three columns on wide screens (Your team | battlefield, moves, More options or the result | the opponent's team and the Battle log) and one column on phones in this order: result, battlefield, log, moves, Your team, More options. Use container queries on `@container/main-content` so the sidebar's width is respected.
+- `pages/Battle/index.vue`: a grid with three columns on wide screens (Your team | battlefield, moves, More options or the result | the opponent's team and the Battle log) and one column on phones in this order: result, battlefield, moves (or the fainted card), log, Your team, More options. Use container queries on `@container/main-content` so the sidebar's width is respected.
 - New `BattleHeader.vue` (replaces the `AppPageHeader` use on this page): the title and a one-line description with the turn: wild "Wild battle" / "A wild Pidgey appeared in the Forest · Turn 3" (the area name comes with Spec 2; until then "A wild Pidgey appeared · Turn 3"). A slot on the left for the trainer's sprite and one on the right for the Elite Four steps (both filled by task 6.14). The Run button moves out of the header (task 1.32).
 - Each later task fills one area; until then the existing cards sit in their new places.
 
