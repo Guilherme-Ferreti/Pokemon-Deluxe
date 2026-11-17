@@ -56,8 +56,8 @@
   .field .side-opp { justify-content: flex-end; align-items: flex-start; }
   .combatant { display: flex; flex-direction: column; gap: 6px; width: 260px; max-width: 100%; padding: 10px 12px; border-radius: 10px; background: var(--field-card); border: 1px solid var(--border); }
   .combatant .top { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; }
-  .combatant .lv { margin-left: auto; font-size: 13px; font-weight: 500; color: var(--muted-fg); white-space: nowrap; }
-  .combatant .hp-label, .combatant .hp-text { font-size: 13px; font-weight: 600; }
+  .combatant .lv { margin-left: auto; font-size: 12px; font-weight: 500; color: var(--muted-fg); white-space: nowrap; }
+  .combatant .hp-label, .combatant .hp-text { font-size: 12px; font-weight: 600; }
   .combatant .hp-text { color: var(--fg); }
   .combatant .bar { height: 8px; flex: 1; }
   .field .sprite { background: var(--card); }
@@ -74,22 +74,22 @@
     .combatant { flex: 1; width: auto; padding: 8px 10px; }
     .field-sprite { width: 76px; height: 76px; }
     .field-sprite.player { width: 84px; height: 84px; }
-    .combatant .hp-label, .combatant .hp-text, .combatant .lv { font-size: 12px; }
   }
 
   /* Team rails: one list of rows on wide screens; below that the same rows in 1 to 3 columns, as many as fit. */
   .rail { display: flex; flex-direction: column; gap: 6px; }
-  .member { display: flex; align-items: center; gap: 10px; width: 100%; min-height: 58px; padding: 8px 10px; border-radius: 10px; border: 1px solid var(--border); background: var(--card); text-align: left; transition: background-color 250ms ease, border-color 250ms ease, opacity 250ms ease; }
-  .member[aria-checked="true"], .member.on-field { min-height: 64px; background: var(--muted); border-color: var(--placeholder); }
+  .member { display: flex; align-items: center; gap: 10px; width: 100%; min-height: 74px; padding: 8px 10px; border-radius: 10px; border: 1px solid var(--border); background: var(--card); text-align: left; transition: background-color 250ms ease, border-color 250ms ease, opacity 250ms ease; }
+  .member[aria-checked="true"], .member.on-field { background: var(--muted); border-color: var(--placeholder); }
   .member:disabled { cursor: default; }
   .member.fainted { opacity: .5; }
   .member.fainted .sprite { filter: grayscale(1); }
   .member.unrevealed { border-style: dashed; background: var(--muted); }
   .member .sprite { width: 36px; height: 36px; border-radius: 8px; font-size: 9px; padding: 2px; }
   .member-body { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 3px; }
-  .member-name { display: flex; align-items: flex-start; gap: 6px; font-size: 13px; }
+  .member-name { display: flex; align-items: flex-start; gap: 6px; font-size: 14px; }
   .member-name .name { flex: 1; min-width: 0; line-height: 1.3; overflow-wrap: anywhere; }
-  .member-meta { display: flex; align-items: center; gap: 6px; font-size: 11px; color: var(--muted-fg); }
+  .member-meta { display: flex; align-items: center; gap: 6px; font-size: 12px; color: var(--muted-fg); }
+  .member .hp-label, .member .hp-text { font-size: 12px; }
   .member .bar { flex: 1; }
   .tag { font-size: 11px; font-weight: 600; padding: 1px 7px; border-radius: 6px; background: var(--muted); color: var(--muted-fg); white-space: nowrap; }
   .team-action { align-self: flex-end; }
@@ -149,7 +149,7 @@
   .sheet-overlay { position: fixed; inset: 0; z-index: 30; background: var(--overlay); display: flex; align-items: flex-end; }
   .sheet { width: 100%; max-height: 85vh; overflow-y: auto; background: var(--card); border-radius: 18px 18px 0 0; padding: 10px 16px max(20px, env(safe-area-inset-bottom, 0px)); display: flex; flex-direction: column; gap: 10px; }
   .sheet-handle { align-self: center; width: 40px; height: 4px; border-radius: 999px; background: var(--placeholder); }
-  .sheet h2 { font-size: 17px; font-weight: 600; }
+  .sheet h2 { font-size: 16px; font-weight: 600; }
   .sheet .member .sprite { width: 36px; height: 36px; }
   .phone-only { display: none; }
   @media (max-width: 1099px) { .phone-only { display: flex; } .wide-only { display: none !important; } }
@@ -240,7 +240,7 @@
   <div class="battle-grid">
     <div class="col">
       <aside class="card" data-area="team" aria-labelledby="team-title">
-        <div class="card-title"><h2 id="team-title">Your team</h2><button type="button" class="info-btn" id="team-info"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 8h.01"/></svg></button></div>
+        <h2 id="team-title">Your team</h2>
         <div class="rail grid" role="radiogroup" aria-label="Pokémon in battle" id="team-rail"></div>
         <button type="button" class="btn btn-lg team-action" id="team-action"></button>
       </aside>
@@ -348,7 +348,7 @@
   <div class="sheet" role="dialog" aria-labelledby="send-out-sheet-title">
     <span class="sheet-handle" aria-hidden="true"></span>
     <h2 id="send-out-sheet-title">Shiny Magikarp fainted!</h2>
-    <p class="small muted">Pick who to send out, then press Send out. This doesn't use a turn.</p>
+    <p class="muted">Pick who to send out, then press Send out. This doesn't use a turn.</p>
     <div class="rail grid" role="radiogroup" aria-label="Pokémon to send out" id="send-out-rail"></div>
     <button type="button" class="btn btn-primary btn-lg" style="align-self: flex-end;" id="send-out-sheet-button" disabled>Send out</button>
   </div>
@@ -445,11 +445,6 @@
     action.className = 'btn btn-lg team-action ' + (view === 'sendout' ? 'btn-primary' : 'btn-outline');
     action.disabled = !canAct;
     $('send-out-sheet-button').disabled = !canAct;
-    var teamNote = view === 'sendout' ? 'Pick who to send out, then press Send out. This does not use a turn.'
-      : (ended ? (type === 'tower' ? 'HP as the battle ended. It carries over to the next floor.' : 'HP as the battle ended.')
-      : 'The highlighted Pokémon is the one in battle. To switch, pick another one and press Switch. Switching uses your turn. Fainted Pokémon can\'t be picked.');
-    $('team-info').title = teamNote;
-    $('team-info').setAttribute('aria-label', 'About Your team: ' + teamNote);
 
     /* Opponent HP and team. */
     var oppBoost = t.oppBoost, oppMax = maxHp(t.oppLv, oppBoost);

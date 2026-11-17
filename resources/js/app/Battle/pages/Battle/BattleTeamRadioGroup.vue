@@ -135,7 +135,7 @@ function isInBattle(member: BattleTeamMember): boolean {
 }
 
 .battle-team-radio-group__member:has([data-state='checked']) {
-  @apply min-h-18.5 border-muted-foreground/40 bg-muted;
+  @apply border-muted-foreground/40 bg-muted;
 }
 
 .battle-team-radio-group__member--fainted {

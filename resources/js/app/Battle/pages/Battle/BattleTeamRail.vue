@@ -3,24 +3,8 @@
     class="battle-team-rail"
     data-test="battle-team-rail"
   >
-    <CardHeader class="battle-team-rail__header">
+    <CardHeader>
       <CardTitle>Your team</CardTitle>
-      <Tooltip>
-        <TooltipTrigger as-child>
-          <Button
-            type="button"
-            variant="ghost"
-            size="icon"
-            class="battle-team-rail__info-button"
-            :aria-label="`About Your team: ${note}`"
-          >
-            <IconInfoCircle aria-hidden="true" />
-          </Button>
-        </TooltipTrigger>
-        <TooltipContent class="battle-team-rail__note">
-          {{ note }}
-        </TooltipContent>
-      </Tooltip>
     </CardHeader>
     <CardContent class="battle-team-rail__content">
       <BattleTeamRadioGroup
@@ -59,7 +43,6 @@
 
 <script setup lang="ts">
 import { router, useForm, usePage } from '@inertiajs/vue3';
-import { IconInfoCircle } from '@tabler/icons-vue';
 import { computed, onBeforeUnmount, ref, watch } from 'vue';
 import { Button } from '@/shared/components/ui/button';
 import {
@@ -68,11 +51,6 @@ import {
   CardHeader,
   CardTitle,
 } from '@/shared/components/ui/card';
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipTrigger,
-} from '@/shared/components/ui/tooltip';
 import { BattleStatus } from '@/shared/types/enums';
 import { route } from '@/shared/types/helpers/route';
 import type { BattleShowPageProps } from '../../types/page-props/BattleShowPageProps';
@@ -132,16 +110,6 @@ const canSwitch = computed(
     form.combatantIndex !== pickableIndex.value,
 );
 
-const note = computed(() => {
-  if (!isOngoing.value) {
-    return 'HP as the battle ended.';
-  }
-
-  return isAwaitingSendOut.value
-    ? 'Pick who to send out, then press Send out. This does not use a turn.'
-    : "The highlighted Pokémon is the one in battle. To switch, pick another one and press Switch. Switching uses your turn. Fainted Pokémon can't be picked.";
-});
-
 function sendOut(): void {
   form
     .transform((data) => ({ combatantIndex: Number(data.combatantIndex) }))
@@ -161,18 +129,6 @@ function switchPokemon(): void {
 
 <style scoped>
 @reference '@css/app.css';
-
-.battle-team-rail__header {
-  @apply flex items-center gap-0.5;
-}
-
-.battle-team-rail__info-button {
-  @apply -my-2 size-8 text-muted-foreground;
-}
-
-.battle-team-rail__note {
-  @apply max-w-64;
-}
 
 .battle-team-rail__content {
   @apply flex flex-col gap-3;
