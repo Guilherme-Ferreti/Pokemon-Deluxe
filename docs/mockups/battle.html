@@ -127,9 +127,7 @@
   .turn-toggle { display: flex; align-items: center; gap: 6px; width: 100%; min-height: 32px; margin-top: 4px; padding: 0; border: 0; border-top: 1px solid var(--border); background: transparent; font-size: 11px; font-weight: 700; letter-spacing: .05em; text-transform: uppercase; color: var(--muted-fg); text-align: left; }
   .turn-toggle svg { transition: transform 200ms ease; }
   .turn-toggle[aria-expanded="true"] svg { transform: rotate(90deg); }
-  .line { padding: 1px 0 1px 10px; border-left: 3px solid transparent; font-size: 13px; line-height: 1.5; }
-  .line.you { border-left-color: var(--log-you); }
-  .line.opp { border-left-color: var(--log-opp); }
+  .line { padding: 1px 0; font-size: 13px; line-height: 1.5; }
   .line.minor { font-size: 12px; color: var(--muted-fg); }
   .line.info { color: var(--muted-fg); }
   @media (max-width: 1099px) { .log { max-height: 300px; } }
@@ -306,7 +304,7 @@
         <div class="rail" id="opp-rail"></div>
       </section>
       <section class="card" data-area="log" aria-labelledby="log-title" style="gap: 8px;">
-        <div class="card-title"><h2 id="log-title">Battle log</h2><button type="button" class="info-btn" aria-label="About the Battle log: the newest turn is at the top" title="The newest turn is at the top and open; older turns are collapsed. Click a turn to open or close it. Blue bar: your Pokémon. Grey bar: the opponent."><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 8h.01"/></svg></button></div>
+        <div class="card-title"><h2 id="log-title">Battle log</h2><button type="button" class="info-btn" aria-label="About the Battle log: the newest turn is at the top" title="The newest turn is at the top and open; older turns are collapsed. Click a turn to open or close it."><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 8h.01"/></svg></button></div>
         <div class="log" id="log" aria-live="polite"></div>
       </section>
     </div>
@@ -321,7 +319,6 @@
       <h1>Battle log: every kind of message</h1>
       <p>One trainer battle that prints every message the log can show. The grey labels on the right name each kind for this reference only; the real log doesn't show them.</p>
     </div>
-    <div class="legend"><span style="padding-left: 8px; border-left: 3px solid var(--log-you);">Your Pokémon</span><span style="padding-left: 8px; border-left: 3px solid var(--log-opp);">Opponent</span><span>No bar: neutral</span></div>
   </div>
   <div class="log-all" id="log-all"></div>
 </main>
