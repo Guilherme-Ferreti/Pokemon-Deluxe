@@ -28,14 +28,25 @@
         test-id-block="battle-team-rail"
         is-tiled-on-phones
         :marks-pokemon-in-battle="isOngoing"
-        :disabled="!isOngoing || isAwaitingSendOut || isRequestRunning"
+        :disabled="!isOngoing || isRequestRunning"
       />
       <Button
-        v-if="isOngoing"
+        v-if="isOngoing && isAwaitingSendOut"
+        type="button"
+        size="lg"
+        class="battle-team-rail__action-button"
+        data-test="battle-team-rail__send-out-button"
+        :disabled="!canSendOut"
+        @click="sendOut"
+      >
+        Send out
+      </Button>
+      <Button
+        v-else-if="isOngoing"
         type="button"
         variant="outline"
         size="lg"
-        class="battle-team-rail__switch-button"
+        class="battle-team-rail__action-button"
         data-test="battle-team-rail__switch-button"
         :disabled="!canSwitch"
         @click="switchPokemon"
@@ -110,19 +121,32 @@ onBeforeUnmount(() => {
   stopListeningToFinish();
 });
 
+const canSendOut = computed(
+  () => !isRequestRunning.value && form.combatantIndex !== null,
+);
+
 const canSwitch = computed(
   () =>
-    !isAwaitingSendOut.value &&
     !isRequestRunning.value &&
     form.combatantIndex !== null &&
     form.combatantIndex !== pickableIndex.value,
 );
 
-const note = computed(() =>
-  isOngoing.value
-    ? "The highlighted Pokémon is the one in battle. To switch, pick another one and press Switch. Switching uses your turn. Fainted Pokémon can't be picked."
-    : 'HP as the battle ended.',
-);
+const note = computed(() => {
+  if (!isOngoing.value) {
+    return 'HP as the battle ended.';
+  }
+
+  return isAwaitingSendOut.value
+    ? 'Pick who to send out, then press Send out. This does not use a turn.'
+    : "The highlighted Pokémon is the one in battle. To switch, pick another one and press Switch. Switching uses your turn. Fainted Pokémon can't be picked.";
+});
+
+function sendOut(): void {
+  form
+    .transform((data) => ({ combatantIndex: Number(data.combatantIndex) }))
+    .post(route('battle.web.send-out'));
+}
 
 function switchPokemon(): void {
   form
@@ -154,7 +178,7 @@ function switchPokemon(): void {
   @apply flex flex-col gap-3;
 }
 
-.battle-team-rail__switch-button {
+.battle-team-rail__action-button {
   @apply self-end;
 }
 </style>

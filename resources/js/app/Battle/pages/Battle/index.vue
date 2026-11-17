@@ -2,7 +2,10 @@
   <BattleHeader>
     <RunBattleDialog v-if="page.props.battle.status === BattleStatus.ONGOING" />
   </BattleHeader>
-  <div class="battle-page__grid">
+  <div
+    ref="grid"
+    class="battle-page__grid"
+  >
     <div class="battle-page__column battle-page__column--left">
       <BattleTeamRail class="battle-page__team" />
     </div>
@@ -17,8 +20,12 @@
           class="battle-page__battlefield"
         />
       </Transition>
+      <PokemonFaintedCard
+        v-if="page.props.battle.isAwaitingSendOut"
+        class="battle-page__moves"
+      />
       <MovesCard
-        v-if="page.props.result === null"
+        v-else-if="page.props.result === null"
         class="battle-page__moves"
       />
       <BattleResultCard
@@ -30,12 +37,13 @@
       <BattleLogCard class="battle-page__log" />
     </div>
   </div>
-  <SendOutDialog />
+  <SendOutSheet :open="page.props.battle.isAwaitingSendOut && isPhoneLayout" />
 </template>
 
 <script setup lang="ts">
 import { usePage } from '@inertiajs/vue3';
-import { onBeforeUnmount, ref, watch } from 'vue';
+import { useElementSize } from '@vueuse/core';
+import { computed, onBeforeUnmount, ref, useTemplateRef, watch } from 'vue';
 import { BattleStatus } from '@/shared/types/enums';
 import type { BattleShowPageProps } from '../../types/page-props/BattleShowPageProps';
 import BattlefieldCard from './BattlefieldCard.vue';
@@ -44,12 +52,25 @@ import BattleLogCard from './BattleLogCard.vue';
 import BattleResultCard from './BattleResultCard.vue';
 import BattleTeamRail from './BattleTeamRail.vue';
 import MovesCard from './MovesCard.vue';
+import PokemonFaintedCard from './PokemonFaintedCard.vue';
 import RunBattleDialog from './RunBattleDialog.vue';
-import SendOutDialog from './SendOutDialog.vue';
+import SendOutSheet from './SendOutSheet.vue';
 
 const page = usePage<BattleShowPageProps>();
 
 const HP_DRAIN_MILLISECONDS = 700;
+
+const WIDE_LAYOUT_MIN_WIDTH_IN_REM = 64;
+
+const { width: gridWidth } = useElementSize(useTemplateRef('grid'));
+
+const isPhoneLayout = computed(
+  () =>
+    gridWidth.value > 0 &&
+    gridWidth.value <
+      WIDE_LAYOUT_MIN_WIDTH_IN_REM *
+        parseFloat(getComputedStyle(document.documentElement).fontSize),
+);
 
 const isOngoing = page.props.battle.status === BattleStatus.ONGOING;
 const isBattlefieldShown = ref(isOngoing);

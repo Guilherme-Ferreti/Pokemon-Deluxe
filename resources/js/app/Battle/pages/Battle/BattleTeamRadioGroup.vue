@@ -146,7 +146,7 @@ function isInBattle(member: BattleTeamMember): boolean {
   @apply grayscale;
 }
 
-.battle-team-radio-group__radio {
+.battle-team-radio-group__member :deep(.battle-team-radio-group__radio) {
   @apply sr-only;
 }
 
@@ -191,7 +191,7 @@ function isInBattle(member: BattleTeamMember): boolean {
 }
 
 .battle-team-radio-group--tiled {
-  @apply grid grid-cols-2 @5xl/main-content:flex;
+  @apply grid grid-cols-1 @md/main-content:grid-cols-2 @2xl/main-content:grid-cols-3 @5xl/main-content:flex;
 }
 
 .battle-team-radio-group--tiled .battle-team-radio-group__member {
@@ -212,11 +212,6 @@ function isInBattle(member: BattleTeamMember): boolean {
 
 .battle-team-radio-group--tiled .battle-team-radio-group__name {
   @apply flex-none @5xl/main-content:flex-1;
-}
-
-.battle-team-radio-group--tiled .battle-team-radio-group__meta,
-.battle-team-radio-group--tiled .battle-team-radio-group__fainted-tag {
-  @apply hidden @5xl/main-content:flex;
 }
 
 .battle-team-radio-group--tiled .battle-team-radio-group__hp {

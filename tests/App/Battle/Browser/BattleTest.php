@@ -144,7 +144,7 @@ it('takes a turn when a move is clicked', function () {
         ->assertNoJavascriptErrors();
 });
 
-it('sends out another pokemon after a faint', function () {
+it('sends out another pokemon from the team rail after a faint', function () {
     $user    = User::factory()->create();
     $pikachu = Species::factory()->create(['name' => 'Pikachu']);
     $eevee   = Species::factory()->create(['name' => 'Eevee']);
@@ -185,12 +185,81 @@ it('sends out another pokemon after a faint', function () {
     actingAs($user);
 
     visit(route('battle.web.show'))
-        ->assertVisible('@send-out-dialog')
-        ->click('@send-out-dialog__pokemon-2-radio')
-        ->click('@send-out-dialog__send-out-button')
+        ->resize(1440, 900)
+        ->assertMissing('@moves-card')
+        ->assertSeeIn('@pokemon-fainted-card__title', 'Pikachu fainted!')
+        ->assertMissing('@send-out-sheet')
+        ->assertButtonDisabled('@battle-team-rail__send-out-button')
+        ->click('@battle-team-rail__pokemon-2-radio')
+        ->assertButtonEnabled('@battle-team-rail__send-out-button')
+        ->click('@battle-team-rail__send-out-button')
         ->wait(1)
-        ->assertMissing('@send-out-dialog')
+        ->assertMissing('@pokemon-fainted-card')
+        ->assertVisible('@moves-card')
+        ->assertSeeIn('@battlefield-combatant-card--player', 'Eevee')
         ->assertSeeIn('@battle-log-card', 'Go! Eevee!')
+        ->assertNoJavascriptErrors();
+});
+
+it('sends out another pokemon from a sheet that cannot be dismissed on a phone', function () {
+    $user    = User::factory()->create();
+    $pikachu = Species::factory()->create(['name' => 'Pikachu']);
+    $eevee   = Species::factory()->create(['name' => 'Eevee']);
+    $tackle  = Move::factory()->plainDamage()->create(['name' => 'Tackle']);
+
+    $combatant = [
+        'pokemon_id'                    => 'pokemon-1',
+        'species_id'                    => $pikachu->id,
+        'level'                         => 50,
+        'boost'                         => 0,
+        'is_shiny'                      => false,
+        'gender'                        => PokemonGender::MALE,
+        'types'                         => [PokemonType::NORMAL],
+        'move_ids'                      => [$tackle->id],
+        'max_hp'                        => 218,
+        'current_hp'                    => 218,
+        'ailment'                       => null,
+        'ailment_turns_left'            => 0,
+        'confusion_turns_left'          => 0,
+        'has_entered_field'             => true,
+        'used_once_per_battle_move_ids' => [],
+    ];
+
+    Battle::factory()->for($user)->create([
+        'status' => BattleStatus::ONGOING,
+        'state'  => new BattleState(
+            turn: 4,
+            player_side: new BattleSide(combatants: [
+                new Combatant(...[...$combatant, 'current_hp' => 0]),
+                new Combatant(...[...$combatant, 'pokemon_id' => 'pokemon-2', 'species_id' => $eevee->id, 'has_entered_field' => false]),
+            ], active_index: 0),
+            opponent_side: new BattleSide(combatants: [new Combatant(...[...$combatant, 'pokemon_id' => null])], active_index: 0),
+            is_awaiting_send_out: true,
+            log: [new BattleLogEntry(3, BattleLogKind::EVENT, 'Pikachu fainted!')],
+        ),
+    ]);
+
+    actingAs($user);
+
+    visit(route('battle.web.show'))
+        ->resize(390, 844)
+        ->assertVisible('@send-out-sheet')
+        ->keys('@send-out-sheet', 'Escape')
+        ->assertScript(<<<'JS'
+            (() => {
+                document.querySelector('[data-slot="sheet-overlay"]').dispatchEvent(new PointerEvent('pointerdown', { bubbles: true }));
+
+                return true;
+            })()
+            JS)
+        ->wait(0.5)
+        ->assertVisible('@send-out-sheet')
+        ->assertButtonDisabled('@send-out-sheet__send-out-button')
+        ->click('@send-out-sheet__pokemon-2-radio')
+        ->click('@send-out-sheet__send-out-button')
+        ->wait(1)
+        ->assertMissing('@send-out-sheet')
+        ->assertSeeIn('@battlefield-combatant-card--player', 'Eevee')
         ->assertNoJavascriptErrors();
 });
 
