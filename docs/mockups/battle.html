@@ -77,7 +77,7 @@
     .combatant .hp-label, .combatant .hp-text, .combatant .lv { font-size: 12px; }
   }
 
-  /* Team rails: rows on wide screens, a 2-column grid of tiles on phones. */
+  /* Team rails: one list of rows on wide screens; below that the same rows in 1 to 3 columns, as many as fit. */
   .rail { display: flex; flex-direction: column; gap: 6px; }
   .member { display: flex; align-items: center; gap: 10px; width: 100%; min-height: 58px; padding: 8px 10px; border-radius: 10px; border: 1px solid var(--border); background: var(--card); text-align: left; transition: background-color 250ms ease, border-color 250ms ease, opacity 250ms ease; }
   .member[aria-checked="true"], .member.on-field { min-height: 64px; background: var(--muted); border-color: var(--placeholder); }
@@ -94,15 +94,13 @@
   .tag { font-size: 11px; font-weight: 600; padding: 1px 7px; border-radius: 6px; background: var(--muted); color: var(--muted-fg); white-space: nowrap; }
   .team-action { align-self: flex-end; }
   @media (max-width: 1099px) {
-    .rail.tiles { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); }
-    .rail.tiles .member { flex-direction: column; justify-content: center; text-align: center; min-height: 96px; gap: 4px; padding: 8px 6px; }
-    .rail.tiles .member .sprite, .rail.tiles .member[aria-checked="true"] .sprite { width: 40px; height: 40px; }
-    .rail.tiles .member-body { align-items: center; width: 100%; }
-    .rail.tiles .member-name { font-size: 11px; font-weight: 600; justify-content: center; }
-    .rail.tiles .member-name .name { flex: none; }
-    .rail.tiles .member-meta, .rail.tiles .tag { display: none; }
-    .rail.tiles .bar { min-width: 24px; }
-    .rail.tiles .hp-row { width: 100%; }
+    .rail.grid { display: grid; grid-template-columns: minmax(0, 1fr); }
+  }
+  @media (min-width: 480px) and (max-width: 1099px) {
+    .rail.grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  }
+  @media (min-width: 720px) and (max-width: 1099px) {
+    .rail.grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
   }
 
   /* Moves: shadcn-vue choice cards. */
@@ -243,7 +241,7 @@
     <div class="col">
       <aside class="card" data-area="team" aria-labelledby="team-title">
         <div class="card-title"><h2 id="team-title">Your team</h2><button type="button" class="info-btn" id="team-info"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 8h.01"/></svg></button></div>
-        <div class="rail tiles" role="radiogroup" aria-label="Pokémon in battle" id="team-rail"></div>
+        <div class="rail grid" role="radiogroup" aria-label="Pokémon in battle" id="team-rail"></div>
         <button type="button" class="btn btn-lg team-action" id="team-action"></button>
       </aside>
     </div>
@@ -311,7 +309,7 @@
     </div>
   </div>
 
-  <p class="note">Desktop: Your team on the left, the battlefield with Choose a move and More options in the middle, the opponent's team (trainer battles) and the Battle log on the right. Phones stack: result, battlefield, moves, Your team (2-column grid), log, More options; the opponent's team shows as dots on its battlefield card instead. Fainted portraits are greyscale. Long names wrap instead of being cut off; the gender icon stays next to the last word.</p>
+  <p class="note">Desktop: Your team on the left, the battlefield with Choose a move and More options in the middle, the opponent's team (trainer battles) and the Battle log on the right. Phones stack: result, battlefield, moves, Your team (the same rows in 1 to 3 columns, as many as fit), log, More options; the opponent's team shows as dots on its battlefield card instead. Fainted portraits are greyscale. Long names wrap instead of being cut off; the gender icon stays next to the last word.</p>
 </main>
 
 <main class="page" id="log-all-page" data-show="log-all">
@@ -351,7 +349,7 @@
     <span class="sheet-handle" aria-hidden="true"></span>
     <h2 id="send-out-sheet-title">Shiny Magikarp fainted!</h2>
     <p class="small muted">Pick who to send out, then press Send out. This doesn't use a turn.</p>
-    <div class="rail" role="radiogroup" aria-label="Pokémon to send out" id="send-out-rail"></div>
+    <div class="rail grid" role="radiogroup" aria-label="Pokémon to send out" id="send-out-rail"></div>
     <button type="button" class="btn btn-primary btn-lg" style="align-self: flex-end;" id="send-out-sheet-button" disabled>Send out</button>
   </div>
 </div>
@@ -361,7 +359,7 @@
 (function () {
   var BALL = '<svg class="ball-icon-svg" width="18" height="18" viewBox="0 0 24 24" aria-label="In battle" role="img"><path d="M2 12a10 10 0 0 1 20 0z" fill="#ef4444"/><path d="M2 12a10 10 0 0 0 20 0z" fill="#ffffff"/><circle cx="12" cy="12" r="10" fill="none" stroke="#171717" stroke-width="2"/><path d="M2 12h20" stroke="#171717" stroke-width="2"/><circle cx="12" cy="12" r="3.5" fill="#ffffff" stroke="#171717" stroke-width="2"/></svg>';
   var CHEVRON = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg>';
-  var GENDER = { 'Shiny Magikarp': 'f', Dragonite: 'm', Lapras: 'f', Gible: 'm', Pikachu: 'f', Gengar: 'm', Scizor: 'm', Pidgey: 'f', Graveler: 'm', Geodude: 'm', Onix: 'm', Rhyhorn: 'f', Hitmonlee: 'm', Hitmonchan: 'm', Machamp: 'm', Arcanine: 'f' };
+  var GENDER = { 'Shiny Magikarp': 'f', Dragonite: 'm', Lapras: 'f', Gible: 'm', Gengar: 'm', Scizor: 'm', Pidgey: 'f', Graveler: 'm', Geodude: 'm', Onix: 'm', Rhyhorn: 'f', Hitmonlee: 'm', Hitmonchan: 'm', Machamp: 'm', Arcanine: 'f' };
   var TYPE_LABEL = { water: 'Water', electric: 'Electric', ice: 'Ice', normal: 'Normal', dragon: 'Dragon', ground: 'Ground' };
 
   function esc(s) { return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;'); }
@@ -374,7 +372,7 @@
   function bar(p, label) { return '<div class="bar ' + barClass(p) + '" role="progressbar" aria-label="' + label + '" aria-valuemin="0" aria-valuemax="100" aria-valuenow="' + p + '"><span style="width: ' + p + '%;"></span></div>'; }
   function maxHp(lv, boost) { return Math.round(4 * (lv + 10) * (1 + (boost || 0) / 100)); }
 
-  var PARTY = [['Shiny Magikarp', 54, 72, 472, 550, ''], ['Dragonite', 61, 20, 568, 568, ''], ['Lapras', 50, 8, 91, 240, 'PAR'], ['Gible', 48, 0, 0, 232, ''], ['Pikachu', 30, 0, 0, 140, ''], ['Gengar', 57, 15, 0, 268, '']];
+  var PARTY = [['Shiny Magikarp', 54, 72, 472, 550, ''], ['Dragonite', 61, 20, 568, 568, ''], ['Lapras', 50, 8, 91, 240, 'PAR'], ['Gible', 48, 0, 0, 232, ''], ['Calyrex (Shadow Rider)', 30, 0, 0, 140, ''], ['Gengar', 57, 15, 0, 268, '']];
   var TOWER = [['Dragonite', 61, 20, 412, 568, ''], ['Scizor', 64, 30, 300, 520, ''], ['Shiny Magikarp', 54, 72, 120, 550, ''], ['Gengar', 57, 15, 0, 268, ''], ['Lapras', 50, 8, 240, 240, ''], ['Gible', 48, 0, 0, 232, '']];
   var TYPES = {
     wild: { title: 'Wild battle', sub: 'A wild Pidgey appeared in the Forest · Turn 3', area: 'Forest', sky: 'oklch(0.94 0.03 145)', ground: 'oklch(0.79 0.07 145)', opp: 'Pidgey', oppLv: 34, oppBoost: 5, oppPct: 62, oppAil: 'PAR', oppMove: 'Gust', team: [] },
