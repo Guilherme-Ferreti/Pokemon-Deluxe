@@ -459,7 +459,7 @@ describe('move outcomes', function () {
     })->with([
         'miss' => [[false], 218, [
             new BattleLogEntry(1, BattleLogKind::MOVE, 'Pikachu used Tackle!', 'Tackle'),
-            new BattleLogEntry(1, BattleLogKind::EVENT, "Pikachu's attack missed!"),
+            new BattleLogEntry(1, BattleLogKind::DETAIL, 'It missed...'),
         ]],
         'normal hit' => [[true, false, 1.0], 218 - 31, [
             new BattleLogEntry(1, BattleLogKind::MOVE, 'Pikachu used Tackle!', 'Tackle'),

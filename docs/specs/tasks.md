@@ -320,7 +320,7 @@ Uses `Combatant` from task 1.10.
 **Goal:** plug `MoveOutcomeRoller` into the turn.
 
 **Build:** `TakeTurnAction` uses `MoveOutcomeRoller::roll()` for each move (status moves too, so they can miss):
-- Misses log "Pikachu's attack missed!" ("The wild Pidgey's attack missed!").
+- Misses log "It missed..." as a `DETAIL` entry.
 - Each `MoveHit` deals damage with its own critical hit and random factor; criticals log "A critical hit!" after that hit. A multi-hit move stops once the defender faints and logs "It hit 3 times!" (or "It hit once!"). Against an immune defender only "It doesn't affect …" is logged.
 - Flinch only works when the attacker acted first and the defender is still standing: the defender logs "… flinched and couldn't move!" instead of acting.
 - Z-Moves and Dynamax moves (`is_z_move`, `is_dynamax_move`) can be used once per battle, tracked in `used_once_per_battle_move_ids` (`Combatant::withUsedOncePerBattleMove()`); Dynamax moves only by G-Max species. The player gets `App\Battle\Exceptions\OncePerBattleMoveAlreadyUsedException` or `DynamaxMoveNotAllowedException`; the opponent only picks among moves it can still use.

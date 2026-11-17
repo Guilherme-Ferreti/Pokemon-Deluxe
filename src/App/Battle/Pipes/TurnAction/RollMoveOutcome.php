@@ -23,7 +23,7 @@ final class RollMoveOutcome
             return $next($action);
         }
 
-        $action->turn->log(BattleLogKind::EVENT, "{$action->turn->displayName($action->side, atStart: true)}'s attack missed!");
+        $action->turn->log(BattleLogKind::DETAIL, 'It missed...');
 
         $action->outcome = TurnActionOutcome::MISSED;
 
