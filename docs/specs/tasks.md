@@ -718,7 +718,7 @@ Uses `Combatant` from task 1.10.
 
 ### 1.33 Battle page: Battle log card
 
-- [ ] Done
+- [x] Done
 
 **Goal:** the log reads turn by turn, newest first.
 

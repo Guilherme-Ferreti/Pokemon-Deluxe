@@ -143,6 +143,15 @@ it('takes a turn when a move is clicked', function () {
         ->assertSeeIn('@battlefield-combatant-card--player__hp-indicator', '172 / 218')
         ->assertSeeIn('@battle-log-card', 'Pikachu used Thunder Shock!')
         ->assertSeeIn('@battle-log-card', 'The wild Pidgey used Tackle!')
+        ->assertScript("document.querySelector('[data-test=\"battle-log-card\"] [data-slot=\"collapsible\"]').dataset.test", 'battle-log-card__turn-1-section')
+        ->assertScript("document.querySelector('[data-test=\"battle-log-card__turn-1-line-1\"] strong').textContent", 'Thunder Shock')
+        ->assertMissing('@battle-log-card__turn-0-line-1')
+        ->click('@battle-log-card__turn-0-button')
+        ->assertSeeIn('@battle-log-card__turn-0-line-1', 'A wild Pidgey appeared!')
+        ->click('@battle-log-card__turn-1-button')
+        ->assertMissing('@battle-log-card__turn-1-line-1')
+        ->click('@battle-log-card__turn-0-button')
+        ->assertMissing('@battle-log-card__turn-0-line-1')
         ->assertNoJavascriptErrors();
 });
 

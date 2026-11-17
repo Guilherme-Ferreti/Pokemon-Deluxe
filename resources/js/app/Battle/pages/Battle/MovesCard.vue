@@ -79,6 +79,7 @@ function attack(): void {
     .transform((data) => ({ moveSlot: Number(data.moveSlot) }))
     .post(route('battle.web.turn'), {
       preserveScroll: true,
+      preserveState: true,
     });
 }
 </script>
