@@ -84,11 +84,11 @@ const hpPercentage = computed(() =>
 }
 
 .battlefield-combatant-card__name {
-  @apply font-semibold;
+  @apply text-sm font-semibold;
 }
 
 .battlefield-combatant-card__level {
-  @apply ml-auto text-xs font-medium whitespace-nowrap text-muted-foreground tabular-nums @sm/battlefield:text-sm;
+  @apply ml-auto text-xs font-medium whitespace-nowrap text-muted-foreground tabular-nums;
 }
 
 .battlefield-combatant-card__hp {
@@ -96,7 +96,7 @@ const hpPercentage = computed(() =>
 }
 
 .battlefield-combatant-card__hp-label {
-  @apply text-xs font-semibold text-muted-foreground @sm/battlefield:text-sm;
+  @apply text-xs font-semibold text-muted-foreground;
 }
 
 .battlefield-combatant-card__hp-bar {
@@ -104,7 +104,7 @@ const hpPercentage = computed(() =>
 }
 
 .battlefield-combatant-card__hp-value {
-  @apply text-xs font-semibold whitespace-nowrap tabular-nums @sm/battlefield:text-sm;
+  @apply text-xs font-semibold whitespace-nowrap tabular-nums;
 }
 
 .battlefield-combatant-card__team-dots {
