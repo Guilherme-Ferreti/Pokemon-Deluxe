@@ -633,7 +633,7 @@ Uses `Combatant` from task 1.10.
 **Build:**
 - New `BattleTeamRail.vue` (replaces the switch dialog, `SwitchPokemonDialog`, and the "Switch Pokémon" button under the moves): a card titled "Your team" with an info tooltip, and the team as a radio group (shadcn-vue `RadioGroup`).
 - One item per Pokémon in battle order: `SpeciesPortrait`, `PokemonDisplayName` with `PokemonGenderIcon` right after the name (on the same line as the last word when the name wraps), "Lv 54 · +72", the ailment badge, and "HP:" with the HP bar and numbers. Long names wrap; they are never cut off.
-- The checked item looks like "in battle": a larger portrait, a muted background, no HP bar and a Poké Ball icon on the right. Only one item is checked at a time: it starts on the Pokémon in battle, and picking another moves the checked look to it.
+- The checked item looks like "in battle": a muted background, no HP bar and a Poké Ball icon on the right; its portrait stays the same size as the others. Only one item is checked at a time: it starts on the Pokémon in battle, and picking another moves the checked look to it.
 - Fainted Pokémon are disabled items with a "Fainted" tag, faded, with a greyscale portrait. Every item is disabled once the battle has ended.
 - A "Switch" outline button under the rail, sized to its text and aligned right: enabled only when the checked Pokémon isn't the one in battle; it posts task 1.23's route. No confirmation dialog.
 - Phones: the same radio group as a 2-column grid of tiles (portrait, name with gender icon, HP bar; the checked tile shows the Poké Ball instead of the bar).
