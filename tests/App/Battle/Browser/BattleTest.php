@@ -134,8 +134,10 @@ it('takes a turn when a move is clicked', function () {
 
     visit(route('battle.web.show'))
         ->assertSeeIn('@battlefield-combatant-card--opponent__hp-indicator', '218 / 218')
-        ->assertSeeIn('@moves-card__move-2-button', 'Super effective')
-        ->click('@moves-card__move-2-button')
+        ->assertSeeIn('@moves-card', 'Choose a move')
+        ->assertAttribute('@moves-card__move-1-radio', 'aria-checked', 'true')
+        ->click('@moves-card__move-2-radio')
+        ->click('@moves-card__attack-button')
         ->wait(1)
         ->assertSeeIn('@battlefield-combatant-card--opponent__hp-indicator', '125 / 218')
         ->assertSeeIn('@battlefield-combatant-card--player__hp-indicator', '172 / 218')

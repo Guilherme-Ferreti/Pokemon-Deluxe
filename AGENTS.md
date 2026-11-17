@@ -199,3 +199,4 @@ Vue components must have a single root element.
 # Git
 
 - Commit messages are a single line in the existing conventional style (for example `docs(specs): add feature specs`). No body, no explanation paragraph and no attribution or `Co-Authored-By` lines.
+- When an AI agent finishes a feature or task, its final message proposes a commit message that follows the rule above, covering everything the change touched (code, tests, specs). The agent only proposes it: it never commits unless the user asks.

@@ -145,13 +145,11 @@ it('loads the battle page with expected structure', function () {
             ])
             ->has('moves', 2)
             ->where('moves.0', [
-                'id'               => $growl->id,
-                'name'             => 'Growl',
-                'type'             => PokemonType::NORMAL->value,
-                'power'            => null,
-                'isZMove'          => false,
-                'isDynamaxMove'    => false,
-                'isSuperEffective' => false,
+                'id'            => $growl->id,
+                'name'          => 'Growl',
+                'type'          => PokemonType::NORMAL->value,
+                'isZMove'       => false,
+                'isDynamaxMove' => false,
             ])
             ->where('moves.1.id', $tackle->id)
         );
@@ -250,54 +248,6 @@ it('picks the scene from the battle type', function (BattleType $type, BattleSce
     'gym'          => [BattleType::GYM, BattleScene::GYM],
     'elite four'   => [BattleType::ELITE_FOUR, BattleScene::INDIGO_PLATEAU],
     'battle tower' => [BattleType::BATTLE_TOWER, BattleScene::BATTLE_TOWER],
-]);
-
-it('flags damaging moves that are super effective against the opponent', function (PokemonType $moveType, ?int $power, array $opponentTypes, bool $expectedIsSuperEffective) {
-    $user    = User::factory()->create();
-    $species = Species::factory()->create();
-    $move    = Move::factory()->plainDamage()->create(['type' => $moveType, 'power' => $power]);
-
-    $combatant = [
-        'pokemon_id'                    => null,
-        'species_id'                    => $species->id,
-        'level'                         => 50,
-        'boost'                         => 0,
-        'is_shiny'                      => false,
-        'gender'                        => PokemonGender::MALE,
-        'types'                         => [PokemonType::NORMAL],
-        'move_ids'                      => [$move->id],
-        'max_hp'                        => 218,
-        'current_hp'                    => 218,
-        'ailment'                       => null,
-        'ailment_turns_left'            => 0,
-        'confusion_turns_left'          => 0,
-        'has_entered_field'             => true,
-        'used_once_per_battle_move_ids' => [],
-    ];
-
-    Battle::factory()->for($user)->create([
-        'status' => BattleStatus::ONGOING,
-        'state'  => new BattleState(
-            turn: 1,
-            player_side: new BattleSide(combatants: [new Combatant(...$combatant)], active_index: 0),
-            opponent_side: new BattleSide(combatants: [new Combatant(...[...$combatant, 'types' => array_values($opponentTypes)])], active_index: 0),
-            is_awaiting_send_out: false,
-            log: [],
-        ),
-    ]);
-
-    actingAs($user)
-        ->get(route('battle.web.show'))
-        ->assertInertia(fn (Assert $page) => $page
-            ->where('moves.0.isSuperEffective', $expectedIsSuperEffective)
-        );
-})->with([
-    'super effective'       => [PokemonType::ELECTRIC, 40, [PokemonType::WATER], true],
-    'super effective twice' => [PokemonType::ELECTRIC, 40, [PokemonType::WATER, PokemonType::FLYING], true],
-    'neutral'               => [PokemonType::NORMAL, 40, [PokemonType::WATER], false],
-    'cancelled out'         => [PokemonType::ELECTRIC, 40, [PokemonType::WATER, PokemonType::GRASS], false],
-    'no effect'             => [PokemonType::ELECTRIC, 40, [PokemonType::WATER, PokemonType::GROUND], false],
-    'status move'           => [PokemonType::ELECTRIC, null, [PokemonType::WATER], false],
 ]);
 
 it('asks for a send-out after a faint', function () {

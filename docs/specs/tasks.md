@@ -676,7 +676,7 @@ Uses `Combatant` from task 1.10.
 
 ### 1.31 Battle page: Choose a move card
 
-- [ ] Done
+- [x] Done
 
 **Goal:** the player picks a move, then attacks.
 

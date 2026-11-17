@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace App\Battle\Http\Web\PageProps;
 
 use App\Battle\Enums\BattleScene;
-use App\Battle\Mechanics\DamageCalculator;
 use App\Pokemon\Mechanics\ExperienceCalculator;
 use Illuminate\Database\Eloquent\Collection as EloquentCollection;
 use Inertia\ProvidesInertiaProperties;
@@ -126,19 +125,15 @@ final class BattleShowPageProps implements ProvidesInertiaProperties
      */
     private function getMovesProp(): array
     {
-        $moveIds          = $this->battle->state->player_side->activeCombatant()->move_ids;
-        $moves            = Move::query()->whereKey($moveIds)->get()->keyBy('id');
-        $opponentTypes    = $this->battle->state->opponent_side->activeCombatant()->types;
-        $damageCalculator = new DamageCalculator;
+        $moveIds = $this->battle->state->player_side->activeCombatant()->move_ids;
+        $moves   = Move::query()->whereKey($moveIds)->get()->keyBy('id');
 
         return array_map(fn (Move $move) => [
-            'id'               => $move->id,
-            'name'             => $move->name,
-            'type'             => $move->type,
-            'power'            => $move->power,
-            'isZMove'          => $move->is_z_move,
-            'isDynamaxMove'    => $move->is_dynamax_move,
-            'isSuperEffective' => $move->power !== null && $damageCalculator->typeMultiplier($move->type, ...$opponentTypes) > 1,
+            'id'            => $move->id,
+            'name'          => $move->name,
+            'type'          => $move->type,
+            'isZMove'       => $move->is_z_move,
+            'isDynamaxMove' => $move->is_dynamax_move,
         ], array_map($moves->findOrFail(...), $moveIds));
     }
 

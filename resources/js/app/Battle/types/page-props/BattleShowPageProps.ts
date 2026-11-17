@@ -58,12 +58,7 @@ export type BattleShowPageProps = {
     team: BattleTeamMember[];
   };
   opponent: BattleCombatant;
-  moves: (Pick<
-    Move,
-    'id' | 'name' | 'type' | 'power' | 'isZMove' | 'isDynamaxMove'
-  > & {
-    isSuperEffective: boolean;
-  })[];
+  moves: Pick<Move, 'id' | 'name' | 'type' | 'isZMove' | 'isDynamaxMove'>[];
   result: {
     experienceGains: {
       name: Pokemon['name'];
