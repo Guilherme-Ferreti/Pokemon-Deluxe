@@ -387,8 +387,8 @@ it('runs from the battle after confirming', function () {
         ->assertVisible('@battle-forfeit-button__dialog')
         ->click('@battle-forfeit-button__confirm-button')
         ->assertVisible('@battlefield-card')
-        ->wait(2)
-        ->assertMissing('@battlefield-card')
+        ->wait(1)
+        ->assertVisible('@battlefield-card')
         ->assertSeeIn('@battle-result-card', 'You got away safely')
         ->assertSeeIn('@battle-log-card', 'You got away safely!')
         ->assertNoJavascriptErrors();
@@ -454,7 +454,7 @@ it('shows three columns on a wide screen and stacks the cards in reading order o
         ->assertNoJavascriptErrors();
 });
 
-it('shows the result in place of the battlefield, first on a phone, once the battle has ended', function () {
+it('shows the result above the battlefield on a phone, once the battle has ended', function () {
     $user    = User::factory()->create();
     $pikachu = Species::factory()->create(['name' => 'Pikachu']);
     $tackle  = Move::factory()->plainDamage()->create(['name' => 'Tackle']);
@@ -493,7 +493,7 @@ it('shows the result in place of the battlefield, first on a phone, once the bat
     visit(route('battle.web.show'))
         ->resize(390, 844)
         ->assertSeeIn('@battle-header', 'A wild Pikachu appeared · Turn 1')
-        ->assertMissing('@battlefield-card')
+        ->assertVisible('@battlefield-card')
         ->assertScript(<<<'JS'
             (() => {
                 const result = document.querySelector('[data-test="battle-result-card"]').getBoundingClientRect();

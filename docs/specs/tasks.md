@@ -597,13 +597,13 @@ Uses `Combatant` from task 1.10.
 - Each combatant card (`BattlefieldCombatantCard.vue`, renamed from `CombatantPanel`; test IDs `battlefield-combatant-card--{side}`, `…__name`, `…__hp-indicator`): `PokemonDisplayName` (which already draws `PokemonGenderIcon` right after the name), the ailment badge, the level as plain muted text aligned right ("Lv 34", no pill and no boost), and an "HP:" label before the HP `Progress` bar and "115 / 185". The shiny gold border is gone, as in the mock-up: "Shiny" in the name says it.
 - `BattleShowPageProps`: the opponent's `currentHp` and `maxHp` replace `hpPercentage` (Spec 1 now shows the opponent's HP as numbers).
 - Phones: smaller sprites and cards side by side with their sprite, through a `@container/battlefield` query on the card (the desktop look from 24rem wide); in every battle but wild ones the opponent's card adds team dots (`CombatantTeamDots`, now opponent-only), hidden at the page's three-column width, since the opponent's team rail (task 1.34) is not shown on phones. The player's card has no dots.
-- When the battle ends: the moves card goes, the opponent's HP drains to 0 if it was knocked out (700ms, `index.vue`'s `HP_DRAIN_MILLISECONDS`), then the card fades out (`opacity` over 450ms, a `Transition`) and the result card shows in its place once the fade is over (task 1.35 adds its entrance). A battle that had already ended when the page loaded shows the result with no battlefield.
+- When the battle ends: the moves card goes and the opponent's HP drains to 0 if it was knocked out. The battlefield stays on screen, with the opponent's sprite faded to 35% like a fainted Pokémon's (the player's only if it was knocked out), and the result card shows at once (task 1.35 adds its entrance). A battle that had already ended when the page loads shows the same faded battlefield and the result.
 
 **UI suggestions** (ideas, not requirements):
 - Cards on the scene: `bg-card/95 border rounded-lg`, 15rem wide on desktop.
 - HP colours from the existing `HpProgress`.
 
-**Tests:** feature test: the opponent's HP props are numbers (the old "percentage, rounded up" test now checks the numbers; its "a sliver" case went with the rounding); browser tests: the gender icon, level and "HP:" label show; the opponent's HP reads "125 / 218" after a turn; running fades the battlefield out and the result takes its place; an already-ended battle shows no battlefield.
+**Tests:** feature test: the opponent's HP props are numbers (the old "percentage, rounded up" test now checks the numbers; its "a sliver" case went with the rounding); browser tests: the gender icon, level and "HP:" label show; the opponent's HP reads "125 / 218" after a turn; running keeps the battlefield on screen and the result shows; an already-ended battle shows the battlefield with the result.
 
 **Done when:** both combatants show as in the mock-up on desktop and phones.
 
@@ -772,9 +772,9 @@ Uses `Combatant` from task 1.10.
 - Rows for Pokémon that got XP only through the XP Share say "via XP Share" after the XP (`isFromExperienceShare` on each gain; always false until task 5.10). With the XP Share there is no summary line.
 - "No XP this time: the wild Pidgey wasn't knocked out or caught." when nobody got XP.
 - Buttons sized to their text, aligned right, the primary one last ("Keep exploring" / "Back to Dashboard" in wild battles).
-- The ending plays in order: the opponent's HP drains, the battlefield fades out (task 1.27), then the card slides up and fades in (about 450ms).
+- The ending plays in order: the opponent's HP drains while the battlefield stays, with the opponent's sprite faded (task 1.27), and the card slides up and fades in (about 450ms).
 
-**Tests:** feature test: the `result` prop without `experienceProgress` and with `isFromExperienceShare`; browser tests: the won, ran and lost cards; the battlefield is gone once the card shows.
+**Tests:** feature test: the `result` prop without `experienceProgress` and with `isFromExperienceShare`; browser tests: the won, ran and lost cards; the battlefield stays visible once the card shows.
 
 **Done when:** every ending of a wild battle shows the new card.
 

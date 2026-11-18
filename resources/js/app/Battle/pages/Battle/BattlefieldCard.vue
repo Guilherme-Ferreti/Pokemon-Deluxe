@@ -13,7 +13,7 @@
             'battlefield-card__sprite',
             {
               'battlefield-card__sprite--fainted':
-                page.props.opponent.currentHp === 0,
+                isOver || page.props.opponent.currentHp === 0,
             },
           ]"
           :url="page.props.opponent.sprite"
@@ -40,13 +40,19 @@
 
 <script setup lang="ts">
 import { usePage } from '@inertiajs/vue3';
+import { computed } from 'vue';
 import SpeciesSprite from '@/shared/components/game/SpeciesSprite.vue';
 import { Card, CardContent } from '@/shared/components/ui/card';
+import { BattleStatus } from '@/shared/types/enums';
 import type { BattleShowPageProps } from '../../types/page-props/BattleShowPageProps';
 import BattlefieldCombatantCard from './BattlefieldCombatantCard.vue';
 import BattleSceneBackground from './BattleSceneBackground.vue';
 
 const page = usePage<BattleShowPageProps>();
+
+const isOver = computed(
+  () => page.props.battle.status !== BattleStatus.ONGOING,
+);
 </script>
 
 <style scoped>

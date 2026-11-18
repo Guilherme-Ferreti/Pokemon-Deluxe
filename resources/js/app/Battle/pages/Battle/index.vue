@@ -8,16 +8,7 @@
       <BattleTeamRail class="battle-page__team" />
     </div>
     <div class="battle-page__column battle-page__column--middle">
-      <Transition
-        leave-active-class="battle-page__battlefield--leaving"
-        leave-to-class="battle-page__battlefield--gone"
-        @after-leave="isResultShown = true"
-      >
-        <BattlefieldCard
-          v-if="isBattlefieldShown"
-          class="battle-page__battlefield"
-        />
-      </Transition>
+      <BattlefieldCard class="battle-page__battlefield" />
       <PokemonFaintedCard
         v-if="page.props.battle.isAwaitingSendOut"
         class="battle-page__moves"
@@ -31,7 +22,7 @@
         class="battle-page__options"
       />
       <BattleResultCard
-        v-if="page.props.result !== null && isResultShown"
+        v-if="page.props.result !== null"
         class="battle-page__result"
       />
     </div>
@@ -45,8 +36,7 @@
 <script setup lang="ts">
 import { usePage } from '@inertiajs/vue3';
 import { useElementSize } from '@vueuse/core';
-import { computed, onBeforeUnmount, ref, useTemplateRef, watch } from 'vue';
-import { BattleStatus } from '@/shared/types/enums';
+import { computed, useTemplateRef } from 'vue';
 import type { BattleShowPageProps } from '../../types/page-props/BattleShowPageProps';
 import BattlefieldCard from './BattlefieldCard.vue';
 import BattleHeader from './BattleHeader.vue';
@@ -60,8 +50,6 @@ import SendOutSheet from './SendOutSheet.vue';
 
 const page = usePage<BattleShowPageProps>();
 
-const HP_DRAIN_MILLISECONDS = 700;
-
 const WIDE_LAYOUT_MIN_WIDTH_IN_REM = 64;
 
 const { width: gridWidth } = useElementSize(useTemplateRef('grid'));
@@ -73,25 +61,6 @@ const isPhoneLayout = computed(
       WIDE_LAYOUT_MIN_WIDTH_IN_REM *
         parseFloat(getComputedStyle(document.documentElement).fontSize),
 );
-
-const isOngoing = page.props.battle.status === BattleStatus.ONGOING;
-const isBattlefieldShown = ref(isOngoing);
-const isResultShown = ref(!isOngoing);
-
-let hideBattlefieldTimeout: ReturnType<typeof setTimeout> | undefined;
-
-watch(
-  () => page.props.battle.status,
-  (status) => {
-    if (status !== BattleStatus.ONGOING && isBattlefieldShown.value) {
-      hideBattlefieldTimeout = setTimeout(() => {
-        isBattlefieldShown.value = false;
-      }, HP_DRAIN_MILLISECONDS);
-    }
-  },
-);
-
-onBeforeUnmount(() => clearTimeout(hideBattlefieldTimeout));
 </script>
 
 <style scoped>
@@ -123,14 +92,6 @@ onBeforeUnmount(() => clearTimeout(hideBattlefieldTimeout));
 
 .battle-page__battlefield {
   @apply order-2 @5xl/main-content:order-0;
-}
-
-.battle-page__battlefield--leaving {
-  @apply transition-opacity duration-450 ease-out motion-reduce:transition-none;
-}
-
-.battle-page__battlefield--gone {
-  @apply opacity-0;
 }
 
 .battle-page__moves {
