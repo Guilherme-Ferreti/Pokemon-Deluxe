@@ -28,14 +28,13 @@
   .battle-grid [data-area="field"] { order: 2; }
   .battle-grid [data-area="moves"], .battle-grid [data-area="fainted"] { order: 3; }
   .battle-grid [data-area="team"] { order: 4; }
-  .battle-grid [data-area="log"] { order: 5; }
-  .battle-grid [data-area="actions"] { order: 6; }
-  .battle-grid [data-area="opp-team"] { display: none; }
+  .battle-grid [data-area="opp-team"] { order: 5; }
+  .battle-grid [data-area="log"] { order: 6; }
+  .battle-grid [data-area="actions"] { order: 7; }
   @media (min-width: 1100px) {
     .battle-grid { grid-template-columns: 290px minmax(0, 1fr) 290px; align-items: start; }
     .col { display: flex; flex-direction: column; gap: 16px; min-width: 0; }
     .battle-grid [data-area] { order: 0; }
-    .battle-grid [data-area="opp-team"] { display: flex; }
   }
 
   .card-title { display: flex; align-items: center; gap: 2px; }
@@ -48,7 +47,6 @@
   .hp-text { font-size: 11px; color: var(--muted-fg); white-space: nowrap; }
   .bar { height: 6px; min-width: 40px; }
   .bar > span { transition: width 700ms ease, background-color 700ms ease; }
-  .ball-icon-svg { flex-shrink: 0; }
 
   /* Battlefield. */
   .field { position: relative; overflow: hidden; padding: 14px 20px 18px; gap: 2px; transition: opacity 450ms ease; }
@@ -63,11 +61,6 @@
   .field .sprite { background: var(--card); }
   .field-sprite { width: 130px; height: 130px; transition: opacity 400ms ease; }
   .field-sprite.player { width: 150px; height: 150px; }
-  .opp-dots { display: flex; gap: 4px; }
-  .opp-dots .dot { width: 10px; height: 10px; border-radius: 999px; border: 2px solid var(--good); background: var(--good); }
-  .opp-dots .dot.fainted { border-color: var(--placeholder); background: transparent; }
-  .opp-dots .dot.hidden-mon { border: 2px dashed var(--placeholder); background: transparent; }
-  @media (min-width: 1100px) { .opp-dots { display: none; } }
   @media (max-width: 640px) {
     .field { padding: 10px; }
     .field .side-opp { flex-direction: row; }
@@ -76,23 +69,50 @@
     .field-sprite.player { width: 84px; height: 84px; }
   }
 
-  /* Team rails: one list of rows on wide screens; below that the same rows in 1 to 3 columns, as many as fit. */
+  /* Team rails: an "In battle" group and a "Bench" ("Rest of the team") group; one list of rows on wide screens, below that the same rows in 1 to 3 columns, as many as fit. */
+  .rail-groups { display: flex; flex-direction: column; gap: 10px; }
+  .rail-group { display: flex; flex-direction: column; gap: 6px; }
+  .rail-heading { font-size: 11px; font-weight: 700; letter-spacing: .05em; text-transform: uppercase; color: var(--muted-fg); }
   .rail { display: flex; flex-direction: column; gap: 6px; }
-  .member { display: flex; align-items: center; gap: 10px; width: 100%; min-height: 74px; padding: 8px 10px; border-radius: 10px; border: 1px solid var(--border); background: var(--card); text-align: left; transition: background-color 250ms ease, border-color 250ms ease, opacity 250ms ease; }
-  .member[aria-checked="true"], .member.on-field { background: var(--muted); border-color: var(--placeholder); }
-  .member:disabled { cursor: default; }
-  .member.fainted { opacity: .5; }
+  .member { display: flex; align-items: center; gap: 8px; width: 100%; min-height: 74px; padding: 8px 10px 8px 8px; border-radius: 10px; border: 1px solid var(--border); background: var(--card); text-align: left; transition: background-color 250ms ease, border-color 250ms ease, opacity 250ms ease; }
+  .member.checked { background: var(--muted); border-color: var(--placeholder); }
+  .member.in-battle { min-height: 0; padding-block: 2px; border-color: transparent; background: transparent; }
+  .member-pick { flex: 1; min-width: 0; align-self: stretch; display: flex; align-items: center; padding: 0; border: 0; background: transparent; color: inherit; text-align: left; }
+  .member-pick:disabled { cursor: default; }
+  .member.fainted .member-body { opacity: .5; }
+  .member.fainted .portrait-btn { opacity: .5; }
+  .portrait-btn { flex-shrink: 0; display: flex; align-items: center; justify-content: center; width: 40px; height: 40px; padding: 2px; border: 0; border-radius: 10px; background: transparent; transition: box-shadow 150ms ease; }
+  .portrait-btn:hover, .portrait-btn[aria-expanded="true"] { box-shadow: 0 0 0 2px var(--muted-fg); }
+  .member-lv { font-size: 12px; line-height: 1.5; color: var(--muted-fg); white-space: nowrap; }
   .member.fainted .sprite { filter: grayscale(1); }
-  .member.unrevealed { border-style: dashed; background: var(--muted); }
+  .member.unrevealed { min-height: 58px; border-style: dashed; background: var(--muted); }
   .member .sprite { width: 36px; height: 36px; border-radius: 8px; font-size: 9px; padding: 2px; }
+  .member.unrevealed .sprite { margin: 2px; }
   .member-body { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 3px; }
   .member-name { display: flex; align-items: flex-start; gap: 6px; font-size: 14px; }
   .member-name .name { flex: 1; min-width: 0; line-height: 1.3; overflow-wrap: anywhere; }
-  .member-meta { display: flex; align-items: center; gap: 6px; font-size: 12px; color: var(--muted-fg); }
   .member .hp-label, .member .hp-text { font-size: 12px; }
   .member .bar { flex: 1; }
   .tag { font-size: 11px; font-weight: 600; padding: 1px 7px; border-radius: 6px; background: var(--muted); color: var(--muted-fg); white-space: nowrap; }
   .team-action { align-self: flex-end; }
+
+  /* Pokémon details: a hover card from the portrait on wide screens, a bottom sheet below the three-column layout. */
+  .details-card { position: absolute; z-index: 20; width: 280px; padding: 14px; border-radius: 12px; border: 1px solid var(--border); background: var(--card); box-shadow: 0 10px 30px oklch(0 0 0 / 14%); display: flex; flex-direction: column; gap: 10px; animation: fade 150ms ease both; }
+  .details-title { display: flex; align-items: center; gap: 6px; font-size: 14px; }
+  .details-title .member-lv { margin-left: auto; }
+  .details-types { display: flex; flex-wrap: wrap; gap: 4px; }
+  .details-effect { font-size: 12px; line-height: 1.4; color: var(--muted-fg); }
+  .details-effect strong { font-weight: 600; color: var(--fg); }
+  .details-moves { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 6px 10px; padding-top: 10px; border-top: 1px solid var(--border); }
+  .details-move { display: flex; flex-direction: column; min-width: 0; }
+  .details-move .mv { font-size: 12px; font-weight: 500; }
+  .details-move .mv-detail { font-size: 11px; color: var(--muted-fg); }
+  .details-sheet-head { display: flex; align-items: center; gap: 12px; }
+  .details-sheet-head .sprite { width: 56px; height: 56px; border-radius: 10px; font-size: 9px; }
+  .details-sheet-head .icon-close { margin-left: auto; display: flex; align-items: center; justify-content: center; width: 40px; height: 40px; border: 0; border-radius: 8px; background: transparent; color: var(--muted-fg); }
+  #details-sheet .details-effect { font-size: 13px; }
+  #details-sheet .details-move .mv { font-size: 14px; }
+  #details-sheet .details-move .mv-detail { font-size: 12px; }
   @media (max-width: 1099px) {
     .rail.grid { display: grid; grid-template-columns: minmax(0, 1fr); }
   }
@@ -165,7 +185,7 @@
   .sheet { animation: slide-up 320ms ease both; }
   .line.new { animation: fade-up 300ms ease both; }
   .result-enter { animation: fade-up 450ms ease both; }
-  @media (prefers-reduced-motion: reduce) { .enter, .overlay, .sheet-overlay, .dialog, .sheet, .line.new, .result-enter { animation: none; } .field, .bar > span, .member, .move, .radio::after { transition: none; } }
+  @media (prefers-reduced-motion: reduce) { .enter, .overlay, .sheet-overlay, .dialog, .sheet, .line.new, .result-enter, .details-card { animation: none; } .field, .bar > span, .member, .move, .radio::after, .portrait-btn { transition: none; } }
 
   /* "Every kind of message" state. */
   .log-all { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 420px), 1fr)); gap: 16px; align-items: start; }
@@ -177,7 +197,7 @@
 <body>
 <div class="mock-bar">
   <a href="index.html">← All mock-ups</a>
-  <span><strong>Battle page</strong> · tasks 1.25–1.35, 2.19, 6.10, 6.14</span>
+  <span><strong>Battle page</strong> · tasks 1.25–1.38, 2.19, 6.10, 6.14</span>
   <label for="mockup-state">State
     <select id="mockup-state">
       <optgroup label="Wild battle">
@@ -217,6 +237,10 @@
         <option value="tower-won">Tower: floor cleared</option>
         <option value="tower-lost">Tower: run over</option>
       </optgroup>
+      <optgroup label="Pokémon details">
+        <option value="details">Wild: Dragonite's details (hover card; sheet on phones)</option>
+        <option value="gym-details">Gym: Onix's details (Brock's team)</option>
+      </optgroup>
       <optgroup label="Reference">
         <option value="log-all">Battle log: every kind of message</option>
       </optgroup>
@@ -241,7 +265,7 @@
     <div class="col">
       <aside class="card" data-area="team" aria-labelledby="team-title">
         <h2 id="team-title">Your team</h2>
-        <div class="rail grid" role="radiogroup" aria-label="Pokémon in battle" id="team-rail"></div>
+        <div class="rail-groups" id="team-rail"></div>
         <button type="button" class="btn btn-lg team-action" id="team-action"></button>
       </aside>
     </div>
@@ -252,7 +276,6 @@
           <div class="combatant">
             <div class="top"><strong id="opp-name"></strong><span class="ail" id="opp-ail"></span><span class="lv num" id="opp-lv"></span></div>
             <div class="hp-row"><span class="hp-label">HP:</span><div class="bar bar-good" id="opp-bar" role="progressbar" aria-label="Opponent HP"><span></span></div><span class="hp-text num" id="opp-hp"></span></div>
-            <div class="opp-dots" id="opp-dots"></div>
           </div>
           <div class="sprite field-sprite" id="opp-sprite" aria-hidden="true"></div>
         </div>
@@ -300,7 +323,7 @@
     <div class="col">
       <section class="card" data-area="opp-team" id="opp-team" style="gap: 6px;">
         <div class="card-title"><h2 id="opp-team-title">Hiker Bob's team</h2><button type="button" class="info-btn" id="opp-team-info"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 8h.01"/></svg></button></div>
-        <div class="rail" id="opp-rail"></div>
+        <div class="rail-groups" id="opp-rail"></div>
       </section>
       <section class="card" data-area="log" aria-labelledby="log-title" style="gap: 8px;">
         <div class="card-title"><h2 id="log-title">Battle log</h2><button type="button" class="info-btn" aria-label="About the Battle log: the newest turn is at the top" title="The newest turn is at the top and open; older turns are collapsed. Click a turn to open or close it."><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 8h.01"/></svg></button></div>
@@ -309,7 +332,8 @@
     </div>
   </div>
 
-  <p class="note">Desktop: Your team on the left, the battlefield with Choose a move and More options in the middle, the opponent's team (trainer battles) and the Battle log on the right. Phones stack: result, battlefield, moves, Your team (the same rows in 1 to 3 columns, as many as fit), log, More options; the opponent's team shows as dots on its battlefield card instead. Fainted portraits are greyscale. Long names wrap instead of being cut off; the gender icon stays next to the last word.</p>
+  <p class="note">Desktop: Your team on the left, the battlefield with Choose a move and More options in the middle, the opponent's team (trainer battles) and the Battle log on the right. Phones stack: result, battlefield, moves, Your team, the opponent's team (trainer battles), log, More options; both rails keep the same rows in 1 to 3 columns, as many as fit. Each rail has an "In battle" group (the Pokémon on the field: no background, no border, not selectable, no HP bar since the battlefield shows it) and a "Bench" group ("Rest of the team" for the opponent) in team order. Fainted portraits are greyscale. Long names wrap instead of being cut off; the gender icon stays next to the last word, and the level stays on the name's first line.</p>
+  <p class="note">Pokémon details: the portrait (36px, inside a 40px button) opens the Pokémon's types, what its boost (and shine) does and its four moves. Wide screens: a hover card next to the rail, on hover or keyboard focus (click pins it here). Below the three-column layout: a bottom sheet on tap, closed by swiping down, tapping outside or the close button. Works for every Pokémon in your team, fainted or not, and for the opponent's Pokémon that have been sent out; "Not sent out yet" rows have no portrait button.</p>
 </main>
 
 <main class="page" id="log-all-page" data-show="log-all">
@@ -335,6 +359,12 @@
   </div>
 </div>
 
+<div class="details-card" id="details-card" role="dialog" aria-labelledby="details-card-title" hidden></div>
+
+<div class="sheet-overlay phone-only" id="details-sheet" hidden>
+  <div class="sheet" role="dialog" aria-labelledby="details-sheet-title" id="details-sheet-body"></div>
+</div>
+
 <div class="sheet-overlay phone-only" id="ball-sheet" hidden>
   <div class="sheet" role="dialog" aria-labelledby="ball-sheet-title">
     <span class="sheet-handle" aria-hidden="true"></span>
@@ -357,10 +387,27 @@
 <script src="assets/mockup.js"></script>
 <script>
 (function () {
-  var BALL = '<svg class="ball-icon-svg" width="18" height="18" viewBox="0 0 24 24" aria-label="In battle" role="img"><path d="M2 12a10 10 0 0 1 20 0z" fill="#ef4444"/><path d="M2 12a10 10 0 0 0 20 0z" fill="#ffffff"/><circle cx="12" cy="12" r="10" fill="none" stroke="#171717" stroke-width="2"/><path d="M2 12h20" stroke="#171717" stroke-width="2"/><circle cx="12" cy="12" r="3.5" fill="#ffffff" stroke="#171717" stroke-width="2"/></svg>';
   var CHEVRON = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg>';
   var GENDER = { 'Shiny Magikarp': 'f', Dragonite: 'm', Lapras: 'f', Gible: 'm', Gengar: 'm', Scizor: 'm', Pidgey: 'f', Graveler: 'm', Geodude: 'm', Onix: 'm', Rhyhorn: 'f', Hitmonlee: 'm', Hitmonchan: 'm', Machamp: 'm', Arcanine: 'f' };
-  var TYPE_LABEL = { water: 'Water', electric: 'Electric', ice: 'Ice', normal: 'Normal', dragon: 'Dragon', ground: 'Ground' };
+  var TYPE_LABEL = { water: 'Water', electric: 'Electric', ice: 'Ice', normal: 'Normal', dragon: 'Dragon', ground: 'Ground', flying: 'Flying', psychic: 'Psychic', ghost: 'Ghost', dark: 'Dark', poison: 'Poison', bug: 'Bug', steel: 'Steel', rock: 'Rock', fighting: 'Fighting', fire: 'Fire' };
+  /* Types and the four moves of each species (demo data for the details card); power 0 = a status move. */
+  var SPECIES = {
+    'Magikarp': ['water', [['Surf', 'water', 90], ['Thunder Wave', 'electric', 0], ['Ice Beam', 'ice', 90], ['Tackle', 'normal', 40]]],
+    'Dragonite': ['dragon flying', [['Dragon Claw', 'dragon', 80], ['Earthquake', 'ground', 100], ['Thunder Punch', 'electric', 75], ['Extreme Speed', 'normal', 80]]],
+    'Lapras': ['water ice', [['Surf', 'water', 90], ['Ice Beam', 'ice', 90], ['Body Slam', 'normal', 85], ['Sing', 'normal', 0]]],
+    'Gible': ['dragon ground', [['Dragon Claw', 'dragon', 80], ['Dig', 'ground', 80], ['Sand Attack', 'ground', 0], ['Tackle', 'normal', 40]]],
+    'Calyrex (Shadow Rider)': ['psychic ghost', [['Astral Barrage', 'ghost', 120], ['Psychic', 'psychic', 90], ['Shadow Ball', 'ghost', 80], ['Nasty Plot', 'dark', 0]]],
+    'Gengar': ['ghost poison', [['Shadow Ball', 'ghost', 80], ['Sludge Bomb', 'poison', 90], ['Confuse Ray', 'ghost', 0], ['Hypnosis', 'psychic', 0]]],
+    'Scizor': ['bug steel', [['Bullet Punch', 'steel', 40], ['X-Scissor', 'bug', 80], ['Iron Head', 'steel', 80], ['Swords Dance', 'normal', 0]]],
+    'Geodude': ['rock ground', [['Rock Throw', 'rock', 50], ['Magnitude', 'ground', 70], ['Defense Curl', 'normal', 0], ['Tackle', 'normal', 40]]],
+    'Graveler': ['rock ground', [['Rock Throw', 'rock', 50], ['Earthquake', 'ground', 100], ['Rollout', 'rock', 30], ['Defense Curl', 'normal', 0]]],
+    'Onix': ['rock ground', [['Rock Tomb', 'rock', 60], ['Bind', 'normal', 15], ['Rock Throw', 'rock', 50], ['Screech', 'normal', 0]]],
+    'Rhyhorn': ['ground rock', [['Horn Attack', 'normal', 65], ['Stomp', 'normal', 65], ['Rock Blast', 'rock', 25], ['Scary Face', 'normal', 0]]],
+    'Hitmonlee': ['fighting', [['High Jump Kick', 'fighting', 130], ['Mega Kick', 'normal', 120], ['Blaze Kick', 'fire', 85], ['Meditate', 'psychic', 0]]],
+    'Hitmonchan': ['fighting', [['Mach Punch', 'fighting', 40], ['Fire Punch', 'fire', 75], ['Ice Punch', 'ice', 75], ['Agility', 'psychic', 0]]],
+    'Machamp': ['fighting', [['Cross Chop', 'fighting', 100], ['Stone Edge', 'rock', 100], ['Knock Off', 'dark', 65], ['Bulk Up', 'fighting', 0]]],
+    'Arcanine': ['fire', [['Flamethrower', 'fire', 90], ['Extreme Speed', 'normal', 80], ['Crunch', 'dark', 80], ['Roar', 'normal', 0]]]
+  };
 
   function esc(s) { return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;'); }
   function gender(name) {
@@ -376,7 +423,7 @@
   var TOWER = [['Dragonite', 61, 20, 412, 568, ''], ['Scizor', 64, 30, 300, 520, ''], ['Shiny Magikarp', 54, 72, 120, 550, ''], ['Gengar', 57, 15, 0, 268, ''], ['Lapras', 50, 8, 240, 240, ''], ['Gible', 48, 0, 0, 232, '']];
   var TYPES = {
     wild: { title: 'Wild battle', sub: 'A wild Pidgey appeared in the Forest · Turn 3', area: 'Forest', sky: 'oklch(0.94 0.03 145)', ground: 'oklch(0.79 0.07 145)', opp: 'Pidgey', oppLv: 34, oppBoost: 5, oppPct: 62, oppAil: 'PAR', oppMove: 'Gust', team: [] },
-    trainer: { title: 'Hiker Bob', sub: 'Trainer battle · Turn 3', area: 'Trainer arena', sky: 'oklch(0.96 0 0)', ground: 'oklch(0.87 0 0)', trainer: 'Hiker Bob', short: 'Hiker Bob', opp: 'Graveler', oppLv: 34, oppBoost: 5, oppPct: 62, oppAil: '', oppMove: 'Rock Throw', first: 'Geodude', team: [['Geodude', 32, 0], ['Graveler', 34, 62, 1], ['Onix', 35, 100]] },
+    trainer: { title: 'Hiker Bob', sub: 'Trainer battle · Turn 3', area: 'Trainer arena', sky: 'oklch(0.96 0 0)', ground: 'oklch(0.87 0 0)', trainer: 'Hiker Bob', short: 'Hiker Bob', opp: 'Graveler', oppLv: 34, oppBoost: 5, oppPct: 62, oppAil: '', oppMove: 'Rock Throw', first: 'Geodude', team: [['Geodude', 32, 0, 0, 3], ['Graveler', 34, 62, 1], ['Onix', 35, 100, 0, 12]] },
     gym: { title: 'Gym Leader Brock', sub: 'Pewter City Gym · Rock · Turn 3', area: 'Pewter City Gym', sky: 'oklch(0.94 0.004 75)', ground: 'oklch(0.72 0.01 60)', trainer: 'Gym Leader Brock', short: 'Brock', opp: 'Onix', oppLv: 15, oppBoost: 0, oppPct: 58, oppAil: '', oppMove: 'Rock Tomb', first: 'Geodude', hides: true, team: [['Geodude', 12, 0], ['Onix', 15, 58, 1], ['Rhyhorn', 15, 100]] },
     elite4: { title: 'Elite Four Bruno', sub: 'Kanto Elite Four · battle 2 of 5 · Turn 3', area: 'Indigo Plateau', sky: 'oklch(0.93 0.02 300)', ground: 'oklch(0.72 0.05 300)', trainer: 'Elite Four Bruno', short: 'Bruno', opp: 'Hitmonlee', oppLv: 64, oppBoost: 10, oppPct: 40, oppAil: '', oppMove: 'High Jump Kick', first: 'Onix', hides: true, team: [['Onix', 62, 0], ['Hitmonchan', 64, 0], ['Hitmonlee', 64, 40, 1], ['Machamp', 68, 100]] },
     tower: { title: 'Battle Tower · Floor 38', sub: 'Tower Trainer Lena · Turn 3', area: 'Battle Tower', sky: 'oklch(0.94 0.02 250)', ground: 'oklch(0.8 0.04 250)', trainer: 'Tower Trainer Lena', short: 'Lena', opp: 'Arcanine', oppLv: 38, oppBoost: 0, oppPct: 55, oppAil: '', oppMove: 'Flamethrower', first: 'Lapras', team: [['Lapras', 38, 0], ['Arcanine', 38, 55, 1], ['Gengar', 38, 100]] }
@@ -388,11 +435,12 @@
     'gym-battle': ['gym', 'choose'], 'gym-forfeit': ['gym', 'forfeit'], 'gym-won': ['gym', 'won'], 'gym-lost': ['gym', 'lost'],
     'e4-battle': ['elite4', 'choose'], 'e4-forfeit': ['elite4', 'forfeit'], 'e4-won': ['elite4', 'won'], 'e4-quit': ['elite4', 'quit'], 'e4-champion': ['elite4', 'champion'], 'e4-lost': ['elite4', 'lost'],
     'tower-battle': ['tower', 'choose'], 'tower-forfeit': ['tower', 'forfeit'], 'tower-won': ['tower', 'won'], 'tower-lost': ['tower', 'lost'],
+    'details': ['wild', 'choose', 'you:1'], 'gym-details': ['gym', 'choose', 'opp:1'],
     'log-all': ['trainer', 'log-all']
   };
   var BATTLE_STATE = { wild: 'battle', trainer: 'trainer-battle', gym: 'gym-battle', elite4: 'e4-battle', tower: 'tower-battle' };
 
-  var ui = { pick: null, fieldAt: 0, movePick: 0, openTurns: {}, timers: [] };
+  var ui = { pick: null, fieldAt: 0, movePick: 0, openTurns: {}, timers: [], details: null, detailsPinned: false, ctx: null };
   var current = null;
 
   function $(id) { return document.getElementById(id); }
@@ -424,21 +472,34 @@
     if (view === 'sendout') { raw[0][3] = 0; }
     if (view === 'lost') { raw.forEach(function (m) { m[3] = 0; m[5] = ''; }); }
     var lead = raw[ui.fieldAt] || raw[0];
+    var activeIdx = ui.fieldAt;
     var fieldIdx = (!ended && lead[3] > 0) ? ui.fieldAt : -1;
-    var pickIdx = ui.pick !== null ? ui.pick : (view === 'switch' ? 1 : fieldIdx);
-    var canAct = !ended && pickIdx !== -1 && pickIdx !== fieldIdx && raw[pickIdx] && raw[pickIdx][3] > 0;
+    var pickIdx = ui.pick !== null ? ui.pick : (view === 'switch' ? 1 : -1);
+    var canAct = !ended && pickIdx !== -1 && pickIdx !== activeIdx && raw[pickIdx] && raw[pickIdx][3] > 0;
 
-    function memberHtml(m, i, opts) {
-      var pct = Math.round(m[3] / m[4] * 100), fainted = m[3] === 0, checked = i === pickIdx && !ended, onField = i === fieldIdx;
-      return '<button type="button" role="radio" class="member' + (fainted ? ' fainted' : '') + '" aria-checked="' + checked + '" data-pick="' + i + '"' + (fainted || ended ? ' disabled' : '') + '>' +
-        '<span class="sprite" aria-hidden="true">' + esc(m[0]) + '</span>' +
-        '<span class="member-body"><span class="member-name"><span class="name">' + nameHtml(m[0]) + '</span>' + (fainted ? '<span class="tag">Fainted</span>' : '') + '</span>' +
-        '<span class="member-meta">Lv ' + m[1] + (m[2] ? ' · +' + m[2] : '') + (m[5] ? '<span class="ail">' + m[5] + '</span>' : '') + '</span>' +
-        (onField && !(opts && opts.alwaysHp) ? '' : '<span class="hp-row"><span class="hp-label">HP:</span>' + bar(pct, m[0] + ' HP') + '<span class="hp-text num">' + m[3] + ' / ' + m[4] + '</span></span>') +
-        '</span>' + (onField ? BALL : '') + '</button>';
+    function portraitButton(side, i, name) {
+      return '<button type="button" class="portrait-btn" data-details="' + side + ':' + i + '" aria-label="' + esc(name) + '’s types, boost and moves" aria-haspopup="dialog" aria-expanded="false"><span class="sprite" aria-hidden="true">' + esc(name) + '</span></button>';
     }
-    $('team-rail').innerHTML = raw.map(function (m, i) { return memberHtml(m, i); }).join('');
-    $('send-out-rail').innerHTML = raw.map(function (m, i) { return memberHtml(m, i, { alwaysHp: true }); }).join('');
+    function hpRow(pct, name, text) {
+      return '<span class="hp-row"><span class="hp-label">HP:</span>' + bar(pct, name + ' HP') + '<span class="hp-text num">' + text + '</span></span>';
+    }
+    function bodyHtml(name, lv, ail, faintedTag, hp) {
+      return '<span class="member-body"><span class="member-name"><span class="name">' + nameHtml(name) + (ail ? ' <span class="ail">' + ail + '</span>' : '') + '</span><span class="member-lv num">Lv ' + lv + '</span>' + (faintedTag ? '<span class="tag">Fainted</span>' : '') + '</span>' + (hp || '') + '</span>';
+    }
+    function group(label, rows, attrs) {
+      return '<div class="rail-group"><h3 class="rail-heading">' + label + '</h3><div class="rail grid"' + (attrs || '') + '>' + rows + '</div></div>';
+    }
+    function memberHtml(m, i) {
+      var pct = Math.round(m[3] / m[4] * 100), fainted = m[3] === 0, checked = i === pickIdx && !ended;
+      var body = bodyHtml(m[0], m[1], m[5], fainted, hpRow(pct, m[0], m[3] + ' / ' + m[4]));
+      return '<div class="member' + (checked ? ' checked' : '') + (fainted ? ' fainted' : '') + '">' + portraitButton('you', i, m[0]) +
+        '<button type="button" role="radio" class="member-pick" aria-checked="' + checked + '" data-pick="' + i + '"' + (fainted || ended ? ' disabled' : '') + '>' + body + '</button></div>';
+    }
+    var inBattle = raw[activeIdx];
+    var inBattleHtml = '<div class="member in-battle' + (inBattle[3] === 0 ? ' fainted' : '') + '">' + portraitButton('you', activeIdx, inBattle[0]) + bodyHtml(inBattle[0], inBattle[1], inBattle[5], inBattle[3] === 0) + '</div>';
+    var benchHtml = raw.map(function (m, i) { return i === activeIdx ? '' : memberHtml(m, i); }).join('');
+    $('team-rail').innerHTML = group('In battle', inBattleHtml) + group('Bench', benchHtml, ' role="radiogroup" aria-label="Bench"');
+    $('send-out-rail').innerHTML = benchHtml;
     var action = $('team-action');
     show(action, !ended);
     action.textContent = view === 'sendout' ? 'Send out' : 'Switch';
@@ -453,25 +514,22 @@
     var oppTeam = t.team.map(function (m, i) {
       var pct = oppDown ? 0 : m[2];
       if (t.hides && i > activeAt && !oppDown) { return { hidden: true }; }
-      var max = maxHp(m[1], m[3] ? oppBoost : 0);
-      return { name: m[0], lv: m[1], pct: pct, fainted: pct === 0, field: !!m[3] && pct > 0, hp: Math.round(max * pct / 100), max: max, boost: m[3] ? oppBoost : 0 };
+      var boost = m[3] ? oppBoost : (m[4] || 0), max = maxHp(m[1], boost);
+      return { name: m[0], lv: m[1], pct: pct, fainted: pct === 0, active: !!m[3], hp: Math.round(max * pct / 100), max: max, boost: boost };
     });
     $('opp-team-title').textContent = (t.short || '') + '\'s team';
     var oppHint = t.hides ? 'Pokémon are revealed as they\'re sent out.' : 'The whole team is shown from the start.';
     $('opp-team-info').title = oppHint;
     $('opp-team-info').setAttribute('aria-label', 'About ' + (t.short || '') + '\'s team: ' + oppHint);
     show($('opp-team'), !isWild);
-    $('opp-rail').innerHTML = oppTeam.map(function (o) {
+    function oppRow(o, i) {
       if (o.hidden) { return '<div class="member unrevealed"><span class="sprite" aria-hidden="true"></span><span class="member-body"><span class="member-name"><span class="name"><strong>Not sent out yet</strong></span></span></span></div>'; }
-      return '<div class="member' + (o.field ? ' on-field' : '') + (o.fainted ? ' fainted' : '') + '">' +
-        '<span class="sprite" aria-hidden="true">' + esc(o.name) + '</span>' +
-        '<span class="member-body"><span class="member-name"><span class="name">' + nameHtml(o.name) + '</span></span>' +
-        '<span class="member-meta">Lv ' + o.lv + (o.boost ? ' · +' + o.boost : '') + '</span>' +
-        (o.field ? '' : '<span class="hp-row"><span class="hp-label">HP:</span>' + bar(o.pct, o.name + ' HP') + '<span class="hp-text num">' + (o.fainted ? 'Fainted' : o.hp + ' / ' + o.max) + '</span></span>') +
-        '</span>' + (o.field ? BALL : '') + '</div>';
-    }).join('');
-    $('opp-dots').innerHTML = oppTeam.map(function (o) { return '<span class="dot' + (o.hidden ? ' hidden-mon' : (o.fainted ? ' fainted' : '')) + '" title="' + (o.hidden ? 'Not sent out yet' : esc(o.name) + (o.fainted ? ' (fainted)' : '')) + '"></span>'; }).join('');
-    show($('opp-dots'), !isWild);
+      var hp = o.active ? '' : hpRow(o.pct, o.name, o.fainted ? 'Fainted' : o.hp + ' / ' + o.max);
+      return '<div class="member' + (o.active ? ' in-battle' : '') + (o.fainted ? ' fainted' : '') + '">' + portraitButton('opp', i, o.name) + bodyHtml(o.name, o.lv, '', false, hp) + '</div>';
+    }
+    $('opp-rail').innerHTML = isWild ? '' : group('In battle', oppRow(oppTeam[activeAt], activeAt)) +
+      group('Rest of the team', oppTeam.map(function (o, i) { return i === activeAt ? '' : oppRow(o, i); }).join(''));
+    ui.ctx = { type: type, t: t, raw: raw, oppTeam: oppTeam };
 
     /* Battlefield. */
     var field = $('field');
@@ -547,6 +605,8 @@
     $('modal-cancel').textContent = view === 'quit' ? 'Keep going' : 'Keep fighting';
     $('modal-cancel').setAttribute('data-go', view === 'quit' ? 'e4-won' : BATTLE_STATE[type]);
 
+    renderDetails();
+
     /* Ending: the opponent's HP drains, the field fades, then the result slides up. */
     ui.timers.forEach(clearTimeout);
     ui.timers = [];
@@ -559,6 +619,65 @@
       at(start + 500, function () { show(field, false); show($('result'), true); });
     }
   }
+
+  /* Pokémon details: what the hover card and the bottom sheet show. */
+  function isWide() { return window.matchMedia('(min-width: 1100px)').matches; }
+  function detailsFor(key) {
+    var parts = key.split(':'), side = parts[0], i = Number(parts[1]), c = ui.ctx;
+    var name, lv, boost, hpText;
+    if (side === 'you') { var m = c.raw[i]; name = m[0]; lv = m[1]; boost = m[2]; hpText = m[3] + ' / ' + m[4]; }
+    else { var o = c.oppTeam[i]; if (!o || o.hidden) { return null; } name = o.name; lv = o.lv; boost = o.boost; hpText = o.hp + ' / ' + o.max; }
+    var shiny = name.indexOf('Shiny ') === 0, species = SPECIES[name.replace('Shiny ', '')];
+    var effects = [];
+    if (boost) { effects.push('<strong>Boost +' + boost + '</strong> +' + boost + '% HP and damage'); }
+    if (shiny) { effects.push('<strong>Shiny</strong> +25% HP and damage, takes 25% less damage'); }
+    return {
+      name: name, lv: lv, hpText: hpText,
+      body: '<div class="details-types">' + species[0].split(' ').map(function (ty) { return '<span class="type type-' + ty + '">' + TYPE_LABEL[ty] + '</span>'; }).join('') + '</div>' +
+        effects.map(function (e) { return '<p class="details-effect">' + e + '</p>'; }).join('') +
+        '<div class="details-moves">' + species[1].map(function (mv) { return '<span class="details-move"><span class="mv">' + mv[0] + '</span><span class="mv-detail">' + TYPE_LABEL[mv[1]] + ' · ' + (mv[2] || 'Status') + '</span></span>'; }).join('') + '</div>'
+    };
+  }
+  function renderDetails() {
+    var card = $('details-card'), sheet = $('details-sheet');
+    document.querySelectorAll('.portrait-btn[aria-expanded="true"]').forEach(function (b) { b.setAttribute('aria-expanded', 'false'); });
+    var d = ui.details && ui.ctx ? detailsFor(ui.details) : null;
+    var button = d ? document.querySelector('[data-details="' + ui.details + '"]') : null;
+    if (!d || !button || button.offsetParent === null) { show(card, false); show(sheet, false); return; }
+    button.setAttribute('aria-expanded', 'true');
+    if (isWide()) {
+      show(sheet, false);
+      card.innerHTML = '<p class="details-title" id="details-card-title">' + nameHtml(d.name) + '<span class="member-lv num">Lv ' + d.lv + '</span></p>' + d.body;
+      show(card, true);
+      var rect = button.getBoundingClientRect(), rail = button.closest('.card').getBoundingClientRect();
+      card.style.top = (rect.top + window.scrollY - 10) + 'px';
+      card.style.left = (ui.details.indexOf('you') === 0 ? rail.right + 12 : rail.left - 12 - 280) + window.scrollX + 'px';
+    } else {
+      show(card, false);
+      $('details-sheet-body').innerHTML = '<span class="sheet-handle" aria-hidden="true"></span>' +
+        '<div class="details-sheet-head"><span class="sprite" aria-hidden="true">' + esc(d.name) + '</span><div class="stack" style="gap: 2px; min-width: 0;"><h2 id="details-sheet-title">' + nameHtml(d.name) + '</h2><span class="small muted num">Lv ' + d.lv + ' · HP ' + d.hpText + '</span></div>' +
+        '<button type="button" class="icon-close" id="details-close" aria-label="Close"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button></div>' + d.body;
+      show(sheet, true);
+    }
+  }
+  function openDetails(key, pinned) { ui.details = key; ui.detailsPinned = !!pinned; renderDetails(); }
+  function closeDetails() {
+    var base = (STATES[current] || [])[2] ? BATTLE_STATE[STATES[current][0]] : null;
+    ui.details = null; ui.detailsPinned = false;
+    if (base) { var keep = ui.fieldAt; window.mockup.go(base); ui.fieldAt = keep; render(base); } else { renderDetails(); }
+  }
+  document.addEventListener('mouseover', function (event) {
+    if (!isWide()) { return; }
+    var b = event.target.closest('[data-details]');
+    if (b) { if (ui.details !== b.getAttribute('data-details')) { openDetails(b.getAttribute('data-details'), false); } return; }
+    if (ui.details && !ui.detailsPinned && !event.target.closest('#details-card')) { ui.details = null; renderDetails(); }
+  });
+  document.addEventListener('focusin', function (event) {
+    var b = event.target.closest('[data-details]');
+    if (b && isWide()) { openDetails(b.getAttribute('data-details'), false); }
+  });
+  document.addEventListener('keydown', function (event) { if (event.key === 'Escape' && ui.details) { closeDetails(); } });
+  window.addEventListener('resize', function () { if (ui.details) { renderDetails(); } });
 
   function setHp(who, pct, text) {
     var b = $(who + '-bar');
@@ -700,10 +819,20 @@
 
   document.addEventListener('mockup:state', function (e) {
     if (e.detail !== current) { ui.pick = null; ui.fieldAt = 0; ui.movePick = 0; ui.openTurns = {}; }
+    ui.details = (STATES[e.detail] || [])[2] || null;
+    ui.detailsPinned = !!ui.details;
     current = e.detail;
     render(e.detail);
   });
   document.addEventListener('click', function (event) {
+    var detailsButton = event.target.closest('[data-details]');
+    if (detailsButton) {
+      var key = detailsButton.getAttribute('data-details');
+      if (ui.details === key && ui.detailsPinned) { closeDetails(); } else { openDetails(key, true); }
+      return;
+    }
+    if (event.target.closest('#details-close') || event.target === $('details-sheet')) { closeDetails(); return; }
+    if (ui.detailsPinned && !event.target.closest('#details-card')) { closeDetails(); }
     var pick = event.target.closest('[data-pick]');
     if (pick && !pick.disabled) { ui.pick = Number(pick.getAttribute('data-pick')); render(current); return; }
     var move = event.target.closest('[data-move]');
@@ -720,6 +849,8 @@
     }
   });
   renderLogAll();
+  ui.details = (STATES[document.documentElement.getAttribute('data-state')] || [])[2] || null;
+  ui.detailsPinned = !!ui.details;
   render(document.documentElement.getAttribute('data-state') || 'battle');
   current = document.documentElement.getAttribute('data-state') || 'battle';
 })();
