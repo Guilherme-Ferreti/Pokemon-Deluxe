@@ -64,7 +64,8 @@ final class SearchPokedexQuery
             ->when(in_array(SpeciesTrait::LEGENDARY, $traits, true), fn (Builder $query) => $query->where('is_legendary', true))
             ->when(in_array(SpeciesTrait::MYTHICAL, $traits, true), fn (Builder $query) => $query->where('is_mythical', true))
             ->when(in_array(SpeciesTrait::MEGA, $traits, true), fn (Builder $query) => $query->where('is_mega', true))
-            ->when(in_array(SpeciesTrait::GMAX, $traits, true), fn (Builder $query) => $query->where('is_gmax', true));
+            ->when(in_array(SpeciesTrait::GMAX, $traits, true), fn (Builder $query) => $query->where('is_gmax', true))
+            ->when(in_array(SpeciesTrait::ULTRA_BEAST, $traits, true), fn (Builder $query) => $query->where('is_ultra_beast', true));
     }
 
     /**

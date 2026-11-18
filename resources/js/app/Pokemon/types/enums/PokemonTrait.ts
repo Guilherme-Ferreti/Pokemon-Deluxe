@@ -5,4 +5,5 @@ export enum PokemonTrait {
   MYTHICAL = 'mythical',
   MEGA = 'mega',
   GMAX = 'gmax',
+  ULTRA_BEAST = 'ultra-beast',
 }

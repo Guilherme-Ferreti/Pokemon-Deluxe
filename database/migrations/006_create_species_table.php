@@ -33,6 +33,7 @@ return new class extends Migration
             $table->boolean('is_mythical')->default(false);
             $table->boolean('is_mega')->default(false);
             $table->boolean('is_gmax')->default(false);
+            $table->boolean('is_ultra_beast')->default(false);
 
             $table->unsignedTinyInteger('generation');
             $table->unsignedTinyInteger('catch_rate')->nullable();

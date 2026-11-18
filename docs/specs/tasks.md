@@ -786,14 +786,14 @@ Read [02-catching-and-exploration.md](02-catching-and-exploration.md) first. Nee
 
 ### 2.1 Mark Ultra Beasts
 
-- [ ] Done
+- [x] Done
 
 **Goal:** the Beast Ball can tell Ultra Beasts apart.
 
 **Build:**
 - In `006_create_species_table.php`: `boolean('is_ultra_beast')->default(false)` after `is_gmax`.
 - Seed files: `"is_ultra_beast": true` on Nihilego, Buzzwole, Pheromosa, Xurkitree, Celesteela, Kartana, Guzzlord, Poipole, Naganadel, Stakataka and Blacephalon; `false` on every other species. `SpeciesSeeder` reads it.
-- `Species` model: cast to boolean. `SpeciesTrait::ULTRA_BEAST` with label "Ultra Beast", wherever the other traits are listed (Pokédex filters).
+- `Species` model: cast to boolean. `SpeciesTrait::ULTRA_BEAST` (`ultra-beast`) with label "Ultra Beast", wherever the other traits are listed: the Pokédex filters, the Pokédex page's Traits row (`isUltraBeast`) and the Box filters (`PokemonTrait::ULTRA_BEAST`). In the filters it can't be combined with Baby, Legendary, Mythical, Mega or G-Max, since no Ultra Beast is any of those.
 
 **Tests:** seeder test: exactly 11 Ultra Beasts.
 

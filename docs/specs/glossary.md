@@ -83,7 +83,7 @@ One name per idea, used everywhere: specs, code, database, tests and UI. When yo
 | Ball multiplier | `BallMultiplierCalculator`, `catch_rate` (Poké Ball column) | The column holds the multiplier when no condition applies. |
 | Throw ball | `ThrowBallAction` | |
 | Starter | `starter` | The Pokémon chosen at registration. |
-| Ultra Beast | `is_ultra_beast` | |
+| Ultra Beast | `is_ultra_beast`, `SpeciesTrait::ULTRA_BEAST` / `PokemonTrait::ULTRA_BEAST` (`ultra-beast`) | |
 | Money / Pokédollars (₽) | `money` (users column), `MoneyAmount` (Vue) | Never "coins", "cash" or "balance". |
 | Price | `price` | Null means earned only: never sold. |
 | Sell back | `SellItemAction`, `sell_back_ratio` | Half the price. |

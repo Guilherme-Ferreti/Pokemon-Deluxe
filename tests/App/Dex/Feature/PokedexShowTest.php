@@ -55,6 +55,7 @@ it('loads the species show page with expected structure', function () {
             ->where('overview.traits.isMythical', $species->is_mythical)
             ->where('overview.traits.isMega', $species->is_mega)
             ->where('overview.traits.isGmax', $species->is_gmax)
+            ->where('overview.traits.isUltraBeast', $species->is_ultra_beast)
             ->where('overview.generation', $species->generation)
             ->where('overview.catchRatePercentage', $species->getCatchRatePercentage())
             ->where('overview.isGenderless', $species->isGenderless())

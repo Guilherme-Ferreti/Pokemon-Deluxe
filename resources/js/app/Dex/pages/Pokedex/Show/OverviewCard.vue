@@ -79,6 +79,13 @@
         >
           G-Max
         </Badge>
+        <Badge
+          v-if="page.props.overview.traits.isUltraBeast"
+          variant="outline"
+          class="text-xs font-medium"
+        >
+          Ultra Beast
+        </Badge>
       </div>
     </AppInfoCardRow>
     <AppInfoCardRow

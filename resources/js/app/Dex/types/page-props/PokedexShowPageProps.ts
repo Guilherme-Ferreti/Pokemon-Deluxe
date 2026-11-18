@@ -53,6 +53,7 @@ type Overview = {
     isMythical: Species['isMythical'];
     isMega: Species['isMega'];
     isGmax: Species['isGmax'];
+    isUltraBeast: Species['isUltraBeast'];
   };
   generation: Species['generation'];
   catchRatePercentage: number;

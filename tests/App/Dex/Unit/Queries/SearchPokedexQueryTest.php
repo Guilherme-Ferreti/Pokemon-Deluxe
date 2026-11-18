@@ -128,11 +128,12 @@ it('filters species by traits', function (SpeciesTrait $trait, ?string $column) 
     expect($result)->toHaveCount(1)
         ->and($result->first()->id)->toBe($species->id);
 })->with([
-    'baby'      => [SpeciesTrait::BABY, 'is_baby'],
-    'legendary' => [SpeciesTrait::LEGENDARY, 'is_legendary'],
-    'mythical'  => [SpeciesTrait::MYTHICAL, 'is_mythical'],
-    'mega'      => [SpeciesTrait::MEGA, 'is_mega'],
-    'gmax'      => [SpeciesTrait::GMAX, 'is_gmax'],
+    'baby'        => [SpeciesTrait::BABY, 'is_baby'],
+    'legendary'   => [SpeciesTrait::LEGENDARY, 'is_legendary'],
+    'mythical'    => [SpeciesTrait::MYTHICAL, 'is_mythical'],
+    'mega'        => [SpeciesTrait::MEGA, 'is_mega'],
+    'gmax'        => [SpeciesTrait::GMAX, 'is_gmax'],
+    'ultra beast' => [SpeciesTrait::ULTRA_BEAST, 'is_ultra_beast'],
 ]);
 
 it('requires all selected traits to match', function () {

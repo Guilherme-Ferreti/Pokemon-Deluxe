@@ -185,12 +185,13 @@ it('filters box pokemon by traits', function (PokemonTrait $trait, ?string $colu
     expect($result)->toHaveCount(1)
         ->and($result->first()->id)->toBe($pokemon->id);
 })->with([
-    'shiny'     => [PokemonTrait::SHINY, null],
-    'baby'      => [PokemonTrait::BABY, 'is_baby'],
-    'legendary' => [PokemonTrait::LEGENDARY, 'is_legendary'],
-    'mythical'  => [PokemonTrait::MYTHICAL, 'is_mythical'],
-    'mega'      => [PokemonTrait::MEGA, 'is_mega'],
-    'gmax'      => [PokemonTrait::GMAX, 'is_gmax'],
+    'shiny'       => [PokemonTrait::SHINY, null],
+    'baby'        => [PokemonTrait::BABY, 'is_baby'],
+    'legendary'   => [PokemonTrait::LEGENDARY, 'is_legendary'],
+    'mythical'    => [PokemonTrait::MYTHICAL, 'is_mythical'],
+    'mega'        => [PokemonTrait::MEGA, 'is_mega'],
+    'gmax'        => [PokemonTrait::GMAX, 'is_gmax'],
+    'ultra beast' => [PokemonTrait::ULTRA_BEAST, 'is_ultra_beast'],
 ]);
 
 it('requires all selected traits to match', function () {

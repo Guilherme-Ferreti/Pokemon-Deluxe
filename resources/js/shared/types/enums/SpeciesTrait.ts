@@ -4,4 +4,5 @@ export enum SpeciesTrait {
   MYTHICAL = 'mythical',
   MEGA = 'mega',
   GMAX = 'gmax',
+  ULTRA_BEAST = 'ultra-beast',
 }

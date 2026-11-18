@@ -53,6 +53,7 @@ final class SpeciesFactory extends Factory
             'is_mythical'    => fake()->boolean(2),
             'is_mega'        => fake()->boolean(5),
             'is_gmax'        => fake()->boolean(5),
+            'is_ultra_beast' => fake()->boolean(2),
             'generation'     => fake()->randomElement(Generation::cases()),
             'catch_rate'     => fake()->numberBetween(3, 255),
             'gender_rate'    => fake()->randomElement(PokemonGenderRate::cases()),

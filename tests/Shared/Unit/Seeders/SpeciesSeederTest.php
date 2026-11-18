@@ -26,3 +26,11 @@ it('orders species by pokedex number, with regular forms before mega forms befor
 
     expect($slugs->all())->toBe(['charmeleon', 'charizard', 'mega-charizard-x', 'mega-charizard-y', 'gmax-charizard', 'squirtle']);
 });
+
+it('marks exactly the eleven ultra beasts', function () {
+    seed([EvolutionItemSeeder::class, SpeciesSeeder::class]);
+
+    $slugs = Species::query()->where('is_ultra_beast', true)->orderBy('pokedex_order')->pluck('slug');
+
+    expect($slugs->all())->toBe(['nihilego', 'buzzwole', 'pheromosa', 'xurkitree', 'celesteela', 'kartana', 'guzzlord', 'poipole', 'naganadel', 'stakataka', 'blacephalon']);
+});

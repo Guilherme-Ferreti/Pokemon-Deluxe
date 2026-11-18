@@ -24,5 +24,6 @@ export type Species = {
   isMythical: boolean;
   isMega: boolean;
   isGmax: boolean;
+  isUltraBeast: boolean;
   generation: Generation;
 };

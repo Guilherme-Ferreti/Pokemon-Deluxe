@@ -42,6 +42,7 @@ use Shared\ValueObjects\SpeciesSprites;
  * @property bool $is_mythical
  * @property bool $is_mega
  * @property bool $is_gmax
+ * @property bool $is_ultra_beast
  * @property Generation $generation
  * @property int|null $catch_rate
  * @property PokemonGenderRate $gender_rate
@@ -74,6 +75,7 @@ final class Species extends Model
             'is_mythical'    => 'boolean',
             'is_mega'        => 'boolean',
             'is_gmax'        => 'boolean',
+            'is_ultra_beast' => 'boolean',
             'catch_rate'     => 'integer',
             'gender_rate'    => PokemonGenderRate::class,
             'egg_obtainable' => 'boolean',

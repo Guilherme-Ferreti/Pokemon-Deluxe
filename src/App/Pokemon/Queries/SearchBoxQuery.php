@@ -94,7 +94,8 @@ final class SearchBoxQuery
             ->when(in_array(PokemonTrait::LEGENDARY, $traits, true), fn (Builder $query) => $query->where('species.is_legendary', true))
             ->when(in_array(PokemonTrait::MYTHICAL, $traits, true), fn (Builder $query) => $query->where('species.is_mythical', true))
             ->when(in_array(PokemonTrait::MEGA, $traits, true), fn (Builder $query) => $query->where('species.is_mega', true))
-            ->when(in_array(PokemonTrait::GMAX, $traits, true), fn (Builder $query) => $query->where('species.is_gmax', true));
+            ->when(in_array(PokemonTrait::GMAX, $traits, true), fn (Builder $query) => $query->where('species.is_gmax', true))
+            ->when(in_array(PokemonTrait::ULTRA_BEAST, $traits, true), fn (Builder $query) => $query->where('species.is_ultra_beast', true));
     }
 
     /**
