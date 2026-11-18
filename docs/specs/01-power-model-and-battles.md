@@ -141,7 +141,7 @@ A wild Pidgey appeared in the Forest · Turn 3
 │ YOUR TEAM ⓘ │  ┌ Pidgey ♀ PAR       Lv 34 ┐     │ HIKER BOB'S TEAM │
 │ (●) Shiny   │  │ HP: ████░░  115 / 185    │ (o) │ (trainers only)  │
 │ Magikarp ♀ ◓│  └──────────────────────────┘     ├──────────────────┤
-│ ( ) Lapras  │ (p) ┌ Shiny Magikarp ♀  Lv 54 ┐   │ BATTLE LOG ⓘ     │
+│ ( ) Lapras  │ (p) ┌ Shiny Magikarp ♀  Lv 54 ┐   │ BATTLE LOG       │
 │  HP: ██ 91  │     │ HP: █████░  472 / 550   │   │ ⌄ TURN 2         │
 │ ( ) Gible   │     └─────────────────────────┘   │ ▌Shiny Magikarp  │
 │  Fainted    ├──────────────────────────────────┤ ▌ used **Surf**! │

@@ -4,29 +4,7 @@
     data-test="battle-log-card"
   >
     <CardHeader>
-      <CardTitle class="battle-log-card__title">
-        Battle log
-        <Tooltip>
-          <TooltipTrigger as-child>
-            <button
-              type="button"
-              class="battle-log-card__info-button"
-              aria-label="About the Battle log"
-              data-test="battle-log-card__info-button"
-            >
-              <IconInfoCircle
-                class="size-4"
-                aria-hidden="true"
-              />
-            </button>
-          </TooltipTrigger>
-          <TooltipContent class="battle-log-card__tooltip">
-            The newest section is at the top and open; older ones are collapsed.
-            Once the battle ends, its last turn stays open under End. Click a
-            turn to open or close it.
-          </TooltipContent>
-        </Tooltip>
-      </CardTitle>
+      <CardTitle>Battle log</CardTitle>
     </CardHeader>
     <CardContent class="battle-log-card__content">
       <Collapsible
@@ -77,7 +55,7 @@
 
 <script setup lang="ts">
 import { usePage } from '@inertiajs/vue3';
-import { IconChevronRight, IconInfoCircle } from '@tabler/icons-vue';
+import { IconChevronRight } from '@tabler/icons-vue';
 import { reactive, watch } from 'vue';
 import {
   Card,
@@ -90,11 +68,6 @@ import {
   CollapsibleContent,
   CollapsibleTrigger,
 } from '@/shared/components/ui/collapsible';
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipTrigger,
-} from '@/shared/components/ui/tooltip';
 import { BattleLogKind } from '@/shared/types/enums';
 import type {
   BattleLogTurn,
@@ -182,18 +155,6 @@ function splitMove(
 
 <style scoped>
 @reference '@css/app.css';
-
-.battle-log-card__title {
-  @apply flex items-center gap-2;
-}
-
-.battle-log-card__info-button {
-  @apply rounded-full text-muted-foreground outline-none hover:text-foreground focus-visible:ring-[3px] focus-visible:ring-ring/50;
-}
-
-.battle-log-card__tooltip {
-  @apply max-w-64;
-}
 
 .battle-log-card__content {
   @apply flex max-h-75 flex-col gap-1 overflow-y-auto md:max-h-117.5;
