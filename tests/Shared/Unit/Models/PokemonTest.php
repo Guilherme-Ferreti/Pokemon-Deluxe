@@ -101,6 +101,6 @@ describe('stats', function () {
     it('calculates the stats from its level, boost and shine', function () {
         $pokemon = Pokemon::factory()->boosted(100)->shiny()->create(['level' => 100]);
 
-        expect($pokemon->getStats())->toEqual(new PokemonStats(hp: 1000, attack: 110 / 77 * 2 * 1.25, defense: 0.75));
+        expect($pokemon->getStats())->toEqual(new PokemonStats(hp: 1000, attack: 110 / 77 * 2 * 1.25, defense: 0.75 / 2));
     });
 });

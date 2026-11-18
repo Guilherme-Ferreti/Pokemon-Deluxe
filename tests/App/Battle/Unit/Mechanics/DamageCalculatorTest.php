@@ -64,7 +64,7 @@ describe('spec 1 matchups with a neutral 80-power move and no boost', function (
         $level100Damage = new DamageCalculator()->calculate($level100Stats, [PokemonType::GRASS], $boostedLevel50Stats, [PokemonType::FIRE], $tackle, isCriticalHit: false, randomFactor: 1.0, isAttackerBurned: false);
 
         expect((int) ceil($level100Stats->hp / $level50Damage))->toBe(2)
-            ->and((int) ceil($boostedLevel50Stats->hp / $level100Damage))->toBe(4);
+            ->and((int) ceil($boostedLevel50Stats->hp / $level100Damage))->toBe(8);
     });
 
     it('lets level 100 KO level 1 in one hit', function () {

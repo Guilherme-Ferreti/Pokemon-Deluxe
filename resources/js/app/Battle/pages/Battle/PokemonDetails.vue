@@ -1,23 +1,21 @@
 <template>
   <div :class="['pokemon-details', { 'pokemon-details--large': isLarge }]">
     <PokemonTypeBadges :types="pokemon.types" />
-    <p
-      v-if="pokemon.boost > 0"
-      class="pokemon-details__effect"
-    >
-      In
-      <strong class="pokemon-details__effect-name">
-        Boost +{{ pokemon.boost }}
-      </strong>
-      · +{{ pokemon.boost }}% HP and damage
-    </p>
-    <p
-      v-if="pokemon.isShiny"
-      class="pokemon-details__effect"
-    >
-      <strong class="pokemon-details__effect-name">Shiny</strong>
-      · +25% HP and damage, takes 25% less damage
-    </p>
+    <div class="pokemon-details__stats">
+      <p class="pokemon-details__stats-title">Stat bonuses</p>
+      <ul class="pokemon-details__stats-list">
+        <li
+          v-for="stat in statBonuses"
+          :key="stat.name"
+          class="pokemon-details__stat"
+        >
+          {{ stat.name }}:
+          <strong class="pokemon-details__stat-value">
+            +{{ stat.percentage }}%
+          </strong>
+        </li>
+      </ul>
+    </div>
     <ul class="pokemon-details__moves">
       <li
         v-for="(move, index) in pokemon.moves"
@@ -35,10 +33,13 @@
 </template>
 
 <script setup lang="ts">
+import { computed } from 'vue';
 import PokemonTypeBadges from '@/shared/components/game/PokemonTypeBadges.vue';
 import type { BattlePokemonDetails } from '../../types/page-props/BattleShowPageProps';
 
-withDefaults(
+const SHINY_STAT_BONUS_PERCENTAGE = 25;
+
+const props = withDefaults(
   defineProps<{
     pokemon: BattlePokemonDetails;
     isLarge?: boolean;
@@ -47,6 +48,14 @@ withDefaults(
     isLarge: false,
   },
 );
+
+const statBonuses = computed(() => {
+  const percentage =
+    props.pokemon.boost +
+    (props.pokemon.isShiny ? SHINY_STAT_BONUS_PERCENTAGE : 0);
+
+  return ['HP', 'Attack', 'Defense'].map((name) => ({ name, percentage }));
+});
 </script>
 
 <style scoped>
@@ -56,15 +65,27 @@ withDefaults(
   @apply flex flex-col gap-2.5;
 }
 
-.pokemon-details__effect {
-  @apply text-xs leading-snug text-muted-foreground;
+.pokemon-details__stats {
+  @apply flex flex-col gap-1;
 }
 
-.pokemon-details--large .pokemon-details__effect {
+.pokemon-details__stats-title {
+  @apply text-xs font-semibold;
+}
+
+.pokemon-details--large .pokemon-details__stats-title {
   @apply text-sm;
 }
 
-.pokemon-details__effect-name {
+.pokemon-details__stats-list {
+  @apply ml-4 flex list-disc flex-col gap-0.5 text-xs text-muted-foreground;
+}
+
+.pokemon-details--large .pokemon-details__stats-list {
+  @apply text-sm;
+}
+
+.pokemon-details__stat-value {
   @apply font-semibold text-foreground;
 }
 

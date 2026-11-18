@@ -348,7 +348,7 @@ it('switches from the team rail to another pokemon, which the opponent then atta
         ->assertButtonDisabled('@battle-team-rail__switch-button')
         ->assertSeeIn('@battle-log-card', 'You switched Pokémon to Eevee.')
         ->assertSeeIn('@battle-log-card', 'The wild Pidgey used Tackle!')
-        ->assertSeeIn('@battlefield-combatant-card--player__hp-indicator', '134 / 180')
+        ->assertSeeIn('@battlefield-combatant-card--player__hp-indicator', '153 / 180')
         ->assertSeeIn('@moves-card', 'Bite')
         ->assertNoJavascriptErrors();
 });
@@ -952,8 +952,10 @@ it('shows a pokemon details in a hover card above its portrait on a wide screen'
         ->assertSeeIn('@pokemon-details-hover-card', 'Shiny Pikachu')
         ->assertSeeIn('@pokemon-details-hover-card', 'Lv 61')
         ->assertSeeIn('@pokemon-details-hover-card', 'Steel')
-        ->assertSeeIn('@pokemon-details-hover-card', 'Boost +20 · +20% HP and damage')
-        ->assertSeeIn('@pokemon-details-hover-card', 'Shiny · +25% HP and damage, takes 25% less damage')
+        ->assertSeeIn('@pokemon-details-hover-card', 'Stat bonuses')
+        ->assertSeeIn('@pokemon-details-hover-card', 'HP: +45%')
+        ->assertSeeIn('@pokemon-details-hover-card', 'Attack: +45%')
+        ->assertSeeIn('@pokemon-details-hover-card', 'Defense: +45%')
         ->assertSeeIn('@pokemon-details-hover-card', 'Thunder Shock')
         ->assertSeeIn('@pokemon-details-hover-card', 'Electric · 40')
         ->assertSeeIn('@pokemon-details-hover-card', 'Normal · Status')

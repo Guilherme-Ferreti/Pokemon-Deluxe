@@ -11,7 +11,7 @@ Species decides only base moves and types. Legendaries get no bonus.
 | Source | HP | Damage dealt | Damage taken |
 | --- | --- | --- | --- |
 | Level 1–100 | grows with level | grows with level | — |
-| Boost +0 to +100 | +1% per boost level | +1% per boost level | — |
+| Boost +0 to +100 | +1% per boost level | +1% per boost level | ÷ (1 + boost ÷ 100), +1% defense per boost level |
 | Shiny | +25% | +25% | −25% |
 | Mega / G-Max | — | — | — |
 
@@ -24,14 +24,14 @@ Level factor = level + 10, so a level 100 Pokémon is 10× a level 1, not 100×.
 ```
 
 ```math
-\text{Damage} = \text{power} \times \frac{\text{level} + 10}{77} \times \left(1 + \frac{\text{boost}}{100}\right) \times \text{shiny}_{1.25} \times \text{STAB}_{1.5} \times \text{type} \times \text{crit}_{1.5} \times \text{random}_{0.85\text{–}1} \times \text{defender shiny}_{0.75}
+\text{Damage} = \text{power} \times \frac{\text{level} + 10}{77} \times \left(1 + \frac{\text{boost}}{100}\right) \times \text{shiny}_{1.25} \times \text{STAB}_{1.5} \times \text{type} \times \text{crit}_{1.5} \times \text{random}_{0.85\text{–}1} \times \text{defender shiny}_{0.75} \div \left(1 + \frac{\text{defender boost}}{100}\right)
 ```
 
 | Matchup (neutral 80-power move, no boost) | Expected result |
 | --- | --- |
 | Lv 100 vs Lv 100 | about 4 hits to KO each other; each moves first 50% of turns |
 | Lv 100 vs Lv 50 | Lv 100 wins in about 2 hits; Lv 50 needs about 6 |
-| Lv 50 (STAB, super effective, +100 boost) vs Lv 100 (no boost) | Lv 50 needs about 2 hits and survives about 4: a real chance |
+| Lv 50 (STAB, super effective, +100 boost) vs Lv 100 (no boost) | Lv 50 needs about 2 hits and survives about 8: a real chance |
 | Lv 100 vs Lv 1 | one hit; Lv 1 moves first about 1% of turns |
 
 ## Boost stones
@@ -159,7 +159,7 @@ A wild Pidgey appeared in the Forest · Turn 3
 - **Battlefield:** the opponent at the top right, the player at the bottom left, as in the main games, over a background that fits the place (wild, trainer arena, gym, Indigo Plateau, Battle Tower). Each card shows the name with its gender icon, the ailment, the level on the right ("Lv 34") and "HP:" with a bar and **both sides' HP as numbers** ("115 / 185").
 - **Choose a move:** the four moves as radio choice cards (name and type, no power and no effectiveness hint); the first is selected, and the others get a soft muted background on hover; **Attack** uses the selected move.
 - **Your team:** the battle's team in two groups. **In battle** holds the Pokémon on the field: a bordered row like the others, with no level and no HP bar (the battlefield shows them), that can't be picked. **Bench** holds the others in team order, as a radio group; nothing is checked at first. Each row shows the portrait, the name with its gender icon and ailment, and the level on the name's line, on the right ("Lv 54", no boost); bench rows also show "HP:" with bar and numbers. The In battle row has no level. Bench rows that can be picked get a soft muted background on hover. Fainted ones are faded, greyscale and can't be picked. Picking a benched Pokémon gives it the checked look (muted background) and enables **Switch**, which switches with no confirmation (see Switching); the Pokémon switched out goes back to its place on the bench. Long names wrap; the gender icon stays right after the name. Below the three-column layout the rows keep the same look, in as many columns as fit: one on a phone, two on a small tablet, three on a large one.
-- **Pokémon details:** the portrait in either team's rows opens what the rails don't show: the types, what the boost does ("Boost +72: +72% HP and damage"; shiny ones also "Shiny: +25% HP and damage, takes 25% less damage") and the four moves, each with its type and power ("Surf · Water · 90", "Status" for status moves). On wide screens it is a hover card above the portrait (below it when there is no room above), opened by hovering, focusing or tapping the portrait (so tablets wide enough for three columns can open it too); below the three-column layout, tapping the portrait opens a bottom sheet with the portrait, name, "Lv 61 · HP 568 / 568", then the same details, closed by swiping down, tapping outside or its close button. Fainting doesn't hide anything. The portrait stays 36px; its button is 40px so it can be tapped.
+- **Pokémon details:** the portrait in either team's rows opens what the rails don't show: the types, a "Stat bonuses" title over a bulleted list of HP, Attack and Defense, each with the boost level plus 25 for shiny ones as a percentage ("Attack: +97%" for a shiny at Boost +72, "+0%" with neither) and the four moves, each with its type and power ("Surf · Water · 90", "Status" for status moves). On wide screens it is a hover card above the portrait (below it when there is no room above), opened by hovering, focusing or tapping the portrait (so tablets wide enough for three columns can open it too); below the three-column layout, tapping the portrait opens a bottom sheet with the portrait, name, "Lv 61 · HP 568 / 568", then the same details, closed by swiping down, tapping outside or its close button. Fainting doesn't hide anything. The portrait stays 36px; its button is 40px so it can be tapped.
 - **Fainting:** a card replaces the moves ("Shiny Magikarp fainted!"); the fainted Pokémon stays under In battle until the player picks who to send out from the bench and presses **Send out** (free). On a phone this is a bottom sheet that can't be closed, with the bench rows in as many columns as fit.
 - **More options:** **Throw ball** (wild battles, Spec 2; disabled while waiting for a send-out) and **Run** in wild battles; **Forfeit** in every other battle. Both ask for confirmation: running from a wild battle gives nothing; forfeiting counts as a loss (no money, XP kept), and also ends an Elite Four or Tower run.
 - **Opponent's team** (battles against trainers): the trainer's team, read-only, in the same two groups: **In battle** and **Rest of the team**. Gym leaders and the Elite Four reveal their Pokémon only as they are sent out ("Not sent out yet", with no portrait to open); other trainers show the whole team from the start. Every Pokémon that has been sent out at least once has the same details as the player's. Shown on phones too, under Your team, in the same 1 to 3 columns.

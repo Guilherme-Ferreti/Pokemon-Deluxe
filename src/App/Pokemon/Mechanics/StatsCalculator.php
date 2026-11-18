@@ -19,7 +19,7 @@ final class StatsCalculator
 
         $attack = $levelFactor / (int) config('game.pokemon.stats.damage_scale') * $boostFactor;
 
-        $defense = 1.0;
+        $defense = 1 / $boostFactor;
 
         if ($isShiny) {
             $hp *= (float) config('game.pokemon.stats.shiny_hp_multiplier');
