@@ -61,7 +61,7 @@ it('refuses to end a battle as ongoing', function () {
 });
 
 describe('experience', function () {
-    it('pays every pokemon that entered the field for each defeated opponent, whatever the ending', function (BattleStatus $status) {
+    it('pays every pokemon that entered the field for each defeated opponent, whatever the ending', function (BattleStatus $status, ?string $resultText) {
         Event::fake([BattleEnded::class]);
 
         $activePokemon   = Pokemon::factory()->create(['level' => 50]);
@@ -117,14 +117,15 @@ describe('experience', function () {
                 new ExperienceGain(combatant_index: 1, earned_experience: 1_875, level_before: 25, level_after: 26),
             ])
             ->and($battle->fresh()?->state->log)->toEqual([
-                new BattleLogEntry(4, BattleLogKind::EVENT, 'Pikachu gained 937 XP!'),
-                new BattleLogEntry(4, BattleLogKind::EVENT, 'Pikachu gained 1,875 XP!'),
-                new BattleLogEntry(4, BattleLogKind::EVENT, 'Pikachu grew to Lv 26!'),
+                ...($resultText === null ? [] : [new BattleLogEntry(5, BattleLogKind::INFO, $resultText)]),
+                new BattleLogEntry(5, BattleLogKind::EVENT, 'Pikachu gained 937 XP!'),
+                new BattleLogEntry(5, BattleLogKind::EVENT, 'Pikachu gained 1,875 XP!'),
+                new BattleLogEntry(5, BattleLogKind::EVENT, 'Pikachu grew to Lv 26!'),
             ]);
     })->with([
-        'won'       => [BattleStatus::WON],
-        'lost'      => [BattleStatus::LOST],
-        'forfeited' => [BattleStatus::FORFEITED],
+        'won'       => [BattleStatus::WON, 'You won!'],
+        'lost'      => [BattleStatus::LOST, 'You lost...'],
+        'forfeited' => [BattleStatus::FORFEITED, null],
     ]);
 
     it('pays nothing for running when no opponent was knocked out', function () {

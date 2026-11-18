@@ -38,6 +38,7 @@ export type BattleTeamMember = {
 
 export type BattleLogTurn = {
   turn: number;
+  isEnd: boolean;
   entries: {
     kind: BattleLogKind;
     text: string;

@@ -156,6 +156,7 @@ it('lets the opponent move first when the turn order roll fails, and a fainted p
             new BattleLogEntry(3, BattleLogKind::MOVE, 'The wild Pidgey used Tackle!', 'Tackle'),
             new BattleLogEntry(3, BattleLogKind::DAMAGE, 'Shiny Pikachu lost 30 HP.'),
             new BattleLogEntry(3, BattleLogKind::EVENT, 'Shiny Pikachu fainted!'),
+            new BattleLogEntry(4, BattleLogKind::INFO, 'You lost...'),
         ]);
 });
 
@@ -220,6 +221,7 @@ it('does not let a fainted opponent act', function () {
             new BattleLogEntry(1, BattleLogKind::DETAIL, "It's super effective!"),
             new BattleLogEntry(1, BattleLogKind::DAMAGE, 'The wild Pidgey lost 10 HP.'),
             new BattleLogEntry(1, BattleLogKind::EVENT, 'The wild Pidgey fainted!'),
+            new BattleLogEntry(2, BattleLogKind::INFO, 'You won!'),
         ]);
 });
 
@@ -554,6 +556,7 @@ describe('move outcomes', function () {
                 new BattleLogEntry(1, BattleLogKind::DETAIL, 'It hit once!'),
                 new BattleLogEntry(1, BattleLogKind::DAMAGE, 'The wild Pidgey lost 5 HP.'),
                 new BattleLogEntry(1, BattleLogKind::EVENT, 'The wild Pidgey fainted!'),
+                new BattleLogEntry(2, BattleLogKind::INFO, 'You won!'),
             ],
         ],
     ]);
@@ -1254,6 +1257,7 @@ describe('status effects', function () {
                 new BattleLogEntry(1, BattleLogKind::EVENT, 'Pikachu is hurt by its burn!'),
                 new BattleLogEntry(1, BattleLogKind::DAMAGE, 'Pikachu lost 5 HP.'),
                 new BattleLogEntry(1, BattleLogKind::EVENT, 'Pikachu fainted!'),
+                new BattleLogEntry(2, BattleLogKind::INFO, 'You lost...'),
             ],
         ],
         'the opponent moved first and faints, so the player is not hurt' => [
@@ -1264,6 +1268,7 @@ describe('status effects', function () {
                 new BattleLogEntry(1, BattleLogKind::EVENT, 'The wild Pidgey is hurt by poison!'),
                 new BattleLogEntry(1, BattleLogKind::DAMAGE, 'The wild Pidgey lost 5 HP.'),
                 new BattleLogEntry(1, BattleLogKind::EVENT, 'The wild Pidgey fainted!'),
+                new BattleLogEntry(2, BattleLogKind::INFO, 'You won!'),
             ],
         ],
     ]);

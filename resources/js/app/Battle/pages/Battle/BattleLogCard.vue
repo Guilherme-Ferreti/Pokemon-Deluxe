@@ -21,7 +21,7 @@
             </button>
           </TooltipTrigger>
           <TooltipContent class="battle-log-card__tooltip">
-            The newest turn is at the top and open; older turns are collapsed.
+            The newest section is at the top and open; older ones are collapsed.
             Click a turn to open or close it.
           </TooltipContent>
         </Tooltip>
@@ -43,7 +43,7 @@
             class="battle-log-card__chevron"
             aria-hidden="true"
           />
-          {{ turn.turn === 0 ? 'Start' : `Turn ${turn.turn}` }}
+          {{ turnLabel(turn) }}
         </CollapsibleTrigger>
         <CollapsibleContent>
           <ol class="battle-log-card__list">
@@ -127,6 +127,14 @@ watch(
     });
   },
 );
+
+function turnLabel(turn: BattleLogTurn): string {
+  if (turn.isEnd) {
+    return 'End';
+  }
+
+  return turn.turn === 0 ? 'Start' : `Turn ${turn.turn}`;
+}
 
 function isTurnOpen(turn: number): boolean {
   return chosenOpenStates[turn] ?? turn === page.props.battle.log[0]?.turn;

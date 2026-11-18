@@ -51,6 +51,11 @@ final readonly class BattleState implements ValueObject
         return $this->turn - 1;
     }
 
+    public function endTurn(): int
+    {
+        return $this->turn;
+    }
+
     /**
      * @param  list<BattleLogEntry>  $logEntries
      */

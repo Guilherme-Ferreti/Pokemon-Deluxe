@@ -71,8 +71,22 @@ final class EndBattleAction
             'status' => $this->status,
             'state'  => $this->battle->state
                 ->withExperienceGains($gains)
-                ->withLogEntries($this->experienceLogEntries($gains)),
+                ->withLogEntries([...$this->resultLogEntries(), ...$this->experienceLogEntries($gains)]),
         ]);
+    }
+
+    /**
+     * @return list<BattleLogEntry>
+     */
+    private function resultLogEntries(): array
+    {
+        $text = match ($this->status) {
+            BattleStatus::WON  => 'You won!',
+            BattleStatus::LOST => 'You lost...',
+            default            => null,
+        };
+
+        return $text === null ? [] : [new BattleLogEntry($this->battle->state->endTurn(), BattleLogKind::INFO, $text)];
     }
 
     /**
@@ -91,7 +105,7 @@ final class EndBattleAction
             ->get()
             ->keyBy('id');
 
-        $turn    = $this->battle->state->lastPlayedTurn();
+        $turn    = $this->battle->state->endTurn();
         $entries = [];
 
         foreach ($gains as $gain) {

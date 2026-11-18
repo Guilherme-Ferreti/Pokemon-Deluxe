@@ -99,14 +99,14 @@ it('loads the battle page with expected structure', function () {
                 'status' => BattleStatus::ONGOING->value,
                 'turn'   => 3,
                 'log'    => [
-                    ['turn' => 2, 'entries' => [
+                    ['turn' => 2, 'isEnd' => false, 'entries' => [
                         ['kind' => BattleLogKind::MOVE->value, 'text' => 'The wild Pidgey used Growl!', 'moveName' => 'Growl'],
                     ]],
-                    ['turn' => 1, 'entries' => [
+                    ['turn' => 1, 'isEnd' => false, 'entries' => [
                         ['kind' => BattleLogKind::MOVE->value, 'text' => 'Shiny Pikachu used Tackle!', 'moveName' => 'Tackle'],
                         ['kind' => BattleLogKind::DAMAGE->value, 'text' => 'The wild Pidgey lost 46 HP.', 'moveName' => null],
                     ]],
-                    ['turn' => 0, 'entries' => [
+                    ['turn' => 0, 'isEnd' => false, 'entries' => [
                         ['kind' => BattleLogKind::INFO->value, 'text' => 'A wild Pidgey appeared!', 'moveName' => null],
                         ['kind' => BattleLogKind::EVENT->value, 'text' => 'Go! Shiny Pikachu!', 'moveName' => null],
                     ]],
@@ -331,7 +331,10 @@ it('shows the end screen with the XP each pokemon earned', function (BattleStatu
             ], active_index: 0),
             opponent_side: new BattleSide(combatants: [new Combatant(...[...$combatant, 'pokemon_id' => null])], active_index: 0),
             is_awaiting_send_out: false,
-            log: [],
+            log: [
+                new BattleLogEntry(5, BattleLogKind::MOVE, 'Pikachu used Tackle!', 'Tackle'),
+                new BattleLogEntry(6, BattleLogKind::EVENT, 'Pikachu gained 1,875 XP!'),
+            ],
             experience_gains: [
                 new ExperienceGain(combatant_index: 0, earned_experience: 1_875, level_before: 25, level_after: 26),
                 new ExperienceGain(combatant_index: 1, earned_experience: 937, level_before: 25, level_after: 25),
@@ -349,6 +352,8 @@ it('shows the end screen with the XP each pokemon earned', function (BattleStatu
                 ['name' => 'Eevee', 'portrait' => $eevee->portraits->regular, 'earnedExperience' => 937, 'levelBefore' => 25, 'levelAfter' => 25, 'experienceProgress' => null],
             ])
             ->where('battle.isAwaitingSendOut', false)
+            ->where('battle.log.0.isEnd', true)
+            ->where('battle.log.1.isEnd', false)
         );
 })->with([
     'won'       => [BattleStatus::WON],

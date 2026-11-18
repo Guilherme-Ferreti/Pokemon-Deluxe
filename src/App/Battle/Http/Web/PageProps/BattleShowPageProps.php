@@ -46,7 +46,7 @@ final class BattleShowPageProps implements ProvidesInertiaProperties
     }
 
     /**
-     * @return array{type: BattleType, scene: BattleScene, status: BattleStatus, turn: int, log: list<array{turn: int, entries: list<array{kind: BattleLogKind, text: string, moveName: ?string}>}>, isAwaitingSendOut: bool}
+     * @return array{type: BattleType, scene: BattleScene, status: BattleStatus, turn: int, log: list<array{turn: int, isEnd: bool, entries: list<array{kind: BattleLogKind, text: string, moveName: ?string}>}>, isAwaitingSendOut: bool}
      */
     private function getBattleProp(): array
     {
@@ -61,7 +61,7 @@ final class BattleShowPageProps implements ProvidesInertiaProperties
     }
 
     /**
-     * @return list<array{turn: int, entries: list<array{kind: BattleLogKind, text: string, moveName: ?string}>}>
+     * @return list<array{turn: int, isEnd: bool, entries: list<array{kind: BattleLogKind, text: string, moveName: ?string}>}>
      */
     private function logByTurn(): array
     {
@@ -78,7 +78,11 @@ final class BattleShowPageProps implements ProvidesInertiaProperties
         krsort($entriesByTurn);
 
         return array_map(
-            fn (int $turn, array $entries) => ['turn' => $turn, 'entries' => $entries],
+            fn (int $turn, array $entries) => [
+                'turn'    => $turn,
+                'isEnd'   => $this->battle->status !== BattleStatus::ONGOING && $turn === $this->battle->state->endTurn(),
+                'entries' => $entries,
+            ],
             array_keys($entriesByTurn),
             $entriesByTurn,
         );
