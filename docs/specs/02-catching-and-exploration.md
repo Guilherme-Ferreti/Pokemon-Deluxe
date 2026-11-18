@@ -44,6 +44,8 @@ There are 9 areas, two types each, covering all 18 types. A dual-type species ap
 | Evolved another way (item, gender, other) | 18–22, never below the previous stage's minimum | Raichu: 18–22 |
 | Legendary or mythical | 50–70 | — |
 
+No wild Pokémon is above level 100.
+
 ## Catching
 
 - **Throw ball** is available on any turn of a wild battle. A throw uses the player's turn, so the wild Pokémon still attacks.

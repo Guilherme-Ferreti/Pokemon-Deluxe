@@ -40,6 +40,10 @@ return new class extends Migration
             $table->enum('gender_rate', Arr::pluck(PokemonGenderRate::cases(), 'value'));
             $table->boolean('egg_obtainable')->default(false);
 
+            $table->unsignedTinyInteger('evolution_stage')->default(1);
+            $table->unsignedTinyInteger('wild_min_level')->nullable();
+            $table->unsignedTinyInteger('wild_max_level')->nullable();
+
             $table->index('name');
             $table->index('pokedex_order');
         });

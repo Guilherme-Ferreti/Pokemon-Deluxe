@@ -77,8 +77,8 @@ One name per idea, used everywhere: specs, code, database, tests and UI. When yo
 | Area | `Area` enum | The 9 places to explore (`Area::FOREST`). |
 | Explore / Keep exploring | `ExploreAction` | Both roll a new encounter. |
 | Encounter | `Encounter` model | The one wild Pokémon waiting for the player. |
-| Wild level range | `wild_min_level`, `wild_max_level` | Null when a species never appears in the wild. |
-| Evolution stage | `evolution_stage` | 1 = unevolved, 2, 3. Babies don't count. |
+| Wild level range | `wild_min_level`, `wild_max_level`, `WildSpawnCalculator::levelRange()` | Null when a species never appears in the wild. Saved by `SpeciesWildDataSeeder`. |
+| Evolution stage | `evolution_stage`, `WildSpawnCalculator::evolutionStage()` | 1 = unevolved, 2, 3. Babies don't count. |
 | Catch chance | `CatchChanceCalculator` | Percentage, 0–100. |
 | Ball multiplier | `BallMultiplierCalculator`, `catch_rate` (Poké Ball column) | The column holds the multiplier when no condition applies. |
 | Throw ball | `ThrowBallAction` | |

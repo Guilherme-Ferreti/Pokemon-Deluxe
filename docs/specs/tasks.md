@@ -801,7 +801,7 @@ Read [02-catching-and-exploration.md](02-catching-and-exploration.md) first. Nee
 
 ### 2.2 Wild data on species
 
-- [ ] Done
+- [x] Done
 
 **Goal:** every species knows whether it can appear in the wild, at which evolution stage, and at which levels. Calculated once while seeding.
 
@@ -816,10 +816,11 @@ Read [02-catching-and-exploration.md](02-catching-and-exploration.md) first. Nee
     - Evolved by level → `min_level` to `min_level` + 4.
     - Evolved another way → min = the larger of 18 and the previous stage's `wild_min_level`; max = min + 4.
     - With several ways to evolve into a species, use the lowest result.
+    - The max never goes above `game.pokemon.max_level` (Eternal Floette evolves at 100: 100–100).
 - Config `game.exploration`: `unevolved_levels` ([2, 12]), `legendary_levels` ([50, 70]), `other_evolution_min_level` (18), `evolved_level_spread` (4).
 - Seeder `SpeciesWildDataSeeder`, run after species and evolutions, saves the three columns using the calculator.
 
-**Tests:** `tests/App/Exploration/Unit/Mechanics/WildSpawnCalculatorTest.php`: Charmander 2–12 stage 1; Charizard 36–40 stage 3; Raichu 18–22; Vileplume never below Gloom's minimum; Pikachu stage 1; Mewtwo 50–70; Pichu, Mega Charizard X and G-Max Pikachu → `null`.
+**Tests:** `tests/App/Exploration/Unit/Mechanics/WildSpawnCalculatorTest.php`: Charmander 2–12 stage 1; Charizard 36–40 stage 3; Raichu 18–22; Vileplume never below Gloom's minimum; Pikachu stage 1; Mewtwo 50–70; Pichu, Mega Charizard X and G-Max Pikachu → `null`; never above the max level. Seeder test: the saved columns for a few real species.
 
 **Done when:** columns are filled after `migrate:fresh --seed`; tests pass.
 

@@ -49,6 +49,13 @@ return [
         ],
     ],
 
+    'exploration' => [
+        'unevolved_levels'          => [2, 12],  // Lowest and highest level of unevolved wild Pokémon.
+        'legendary_levels'          => [50, 70], // Lowest and highest level of wild legendary and mythical Pokémon.
+        'other_evolution_min_level' => 18,       // Lowest level of a wild Pokémon that evolves by item, gender or another way.
+        'evolved_level_spread'      => 4,        // Levels above its lowest level an evolved wild Pokémon can appear at.
+    ],
+
     'battle' => [
         'stab_multiplier'         => 1.5,  // Extra damage when the move's type is one of the attacker's types (1.5 = 50% more).
         'critical_hit_multiplier' => 1.5,  // Extra damage a critical hit deals (1.5 = 50% more).

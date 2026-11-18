@@ -32,7 +32,7 @@ use Shared\ValueObjects\SpeciesSprites;
  * @property string $name
  * @property Collection<int, PokemonType> $types
  * @property int $pokedex_number
- * @property int $pokedex_order Position in the pokedex: by number, with regular forms before mega forms before gmax forms
+ * @property int $pokedex_order
  * @property string $genus
  * @property string $text_entry
  * @property SpeciesSprites $sprites
@@ -47,6 +47,9 @@ use Shared\ValueObjects\SpeciesSprites;
  * @property int|null $catch_rate
  * @property PokemonGenderRate $gender_rate
  * @property bool $egg_obtainable
+ * @property int $evolution_stage
+ * @property int|null $wild_min_level
+ * @property int|null $wild_max_level
  * @property-read EloquentCollection<int, SpeciesEvolution> $evolutions
  * @property-read EloquentCollection<int, SpeciesEvolution> $previousEvolutions
  * @property-read EloquentCollection<int, Move> $baseMoves
@@ -66,21 +69,24 @@ final class Species extends Model
     protected function casts(): array
     {
         return [
-            'types'          => AsEnumCollection::of(PokemonType::class),
-            'pokedex_number' => 'integer',
-            'pokedex_order'  => 'integer',
-            'generation'     => Generation::class,
-            'is_baby'        => 'boolean',
-            'is_legendary'   => 'boolean',
-            'is_mythical'    => 'boolean',
-            'is_mega'        => 'boolean',
-            'is_gmax'        => 'boolean',
-            'is_ultra_beast' => 'boolean',
-            'catch_rate'     => 'integer',
-            'gender_rate'    => PokemonGenderRate::class,
-            'egg_obtainable' => 'boolean',
-            'sprites'        => AsSpeciesSprites::class,
-            'portraits'      => AsSpeciesPortraits::class,
+            'types'           => AsEnumCollection::of(PokemonType::class),
+            'pokedex_number'  => 'integer',
+            'pokedex_order'   => 'integer',
+            'generation'      => Generation::class,
+            'is_baby'         => 'boolean',
+            'is_legendary'    => 'boolean',
+            'is_mythical'     => 'boolean',
+            'is_mega'         => 'boolean',
+            'is_gmax'         => 'boolean',
+            'is_ultra_beast'  => 'boolean',
+            'catch_rate'      => 'integer',
+            'gender_rate'     => PokemonGenderRate::class,
+            'egg_obtainable'  => 'boolean',
+            'evolution_stage' => 'integer',
+            'wild_min_level'  => 'integer',
+            'wild_max_level'  => 'integer',
+            'sprites'         => AsSpeciesSprites::class,
+            'portraits'       => AsSpeciesPortraits::class,
         ];
     }
 
