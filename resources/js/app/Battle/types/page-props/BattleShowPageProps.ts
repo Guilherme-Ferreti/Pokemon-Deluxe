@@ -4,7 +4,7 @@ import type {
   BattleStatus,
   BattleType,
 } from '@/shared/types/enums';
-import type { Move, Pokemon } from '@/shared/types/response';
+import type { Move, Pokemon, Species } from '@/shared/types/response';
 import type { BattleScene } from '../enums/BattleScene';
 
 export type BattleCombatant = {
@@ -19,27 +19,43 @@ export type BattleCombatant = {
   maxHp: number;
 };
 
-export type BattleOpponentTeamMember = {
-  name: Pokemon['name'] | null;
-  portrait: string | null;
-  gender: Pokemon['gender'] | null;
-  level: Pokemon['level'] | null;
-  boost: number | null;
-  currentHp: number | null;
-  maxHp: number | null;
-  isFainted: boolean;
-  isActive: boolean;
-  isRevealed: boolean;
+export type BattleTeamMemberMove = {
+  name: Move['name'];
+  type: Move['type'];
+  power: number | null;
 };
 
-export type BattleTeamMember = {
+export type BattlePokemonDetails = {
   name: Pokemon['name'];
   portrait: string | null;
   gender: Pokemon['gender'];
   level: Pokemon['level'];
   boost: number;
+  isShiny: boolean;
+  types: Species['types'];
+  moves: BattleTeamMemberMove[];
   currentHp: number;
   maxHp: number;
+};
+
+/**
+ * Gym leaders and the Elite Four keep the Pokémon they haven't sent out yet secret: those carry no species data.
+ */
+export type BattleOpponentTeamMember =
+  | (BattlePokemonDetails & {
+      isFainted: boolean;
+      isActive: boolean;
+      isRevealed: true;
+    })
+  | ({
+      [Key in keyof BattlePokemonDetails]: null;
+    } & {
+      isFainted: false;
+      isActive: false;
+      isRevealed: false;
+    });
+
+export type BattleTeamMember = BattlePokemonDetails & {
   ailment: BattleCombatant['ailment'];
   isFainted: boolean;
   isActive: boolean;

@@ -7,20 +7,60 @@
       <CardTitle>Your team</CardTitle>
     </CardHeader>
     <CardContent class="battle-team-rail__content">
-      <BattleTeamRadioGroup
-        v-model="form.combatantIndex"
-        test-id-block="battle-team-rail"
-        is-grid-below-wide-layout
-        :marks-pokemon-in-battle="isOngoing"
-        :disabled="!isOngoing || isRequestRunning"
-      />
+      <TeamRailGroup
+        v-if="pokemonInBattle"
+        heading="In battle"
+        data-test="battle-team-rail__in-battle-list"
+      >
+        <li
+          :class="[
+            'battle-team-rail__in-battle',
+            {
+              'battle-team-rail__in-battle--fainted':
+                pokemonInBattle.member.isFainted,
+            },
+          ]"
+          :data-test="`battle-team-rail__pokemon-${pokemonInBattle.index + 1}-item`"
+        >
+          <PokemonDetailsButton
+            :pokemon="pokemonInBattle.member"
+            :is-fainted="pokemonInBattle.member.isFainted"
+            :test-id="`battle-team-rail__pokemon-${pokemonInBattle.index + 1}-details-button`"
+          />
+          <TeamRailMemberBody
+            class="battle-team-rail__in-battle-body"
+            :name="pokemonInBattle.member.name"
+            :gender="pokemonInBattle.member.gender"
+            :ailment="
+              pokemonInBattle.member.isFainted
+                ? null
+                : pokemonInBattle.member.ailment
+            "
+            :has-fainted-tag="pokemonInBattle.member.isFainted"
+          />
+        </li>
+      </TeamRailGroup>
+      <TeamRailGroup
+        v-if="hasBench"
+        heading="Bench"
+        data-test="battle-team-rail__bench-list"
+        :is-list="false"
+      >
+        <BattleTeamRadioGroup
+          v-model="form.combatantIndex"
+          test-id-block="battle-team-rail"
+          is-grid-below-wide-layout
+          has-details-buttons
+          :disabled="!isOngoing || isRequestRunning"
+        />
+      </TeamRailGroup>
       <Button
         v-if="isOngoing && isAwaitingSendOut"
         type="button"
         size="lg"
         class="battle-team-rail__action-button"
         data-test="battle-team-rail__send-out-button"
-        :disabled="!canSendOut"
+        :disabled="!canAct"
         @click="sendOut"
       >
         Send out
@@ -32,7 +72,7 @@
         size="lg"
         class="battle-team-rail__action-button"
         data-test="battle-team-rail__switch-button"
-        :disabled="!canSwitch"
+        :disabled="!canAct"
         @click="switchPokemon"
       >
         Switch
@@ -55,6 +95,9 @@ import { BattleStatus } from '@/shared/types/enums';
 import { route } from '@/shared/types/helpers/route';
 import type { BattleShowPageProps } from '../../types/page-props/BattleShowPageProps';
 import BattleTeamRadioGroup from './BattleTeamRadioGroup.vue';
+import PokemonDetailsButton from './PokemonDetailsButton.vue';
+import TeamRailGroup from './TeamRailGroup.vue';
+import TeamRailMemberBody from './TeamRailMemberBody.vue';
 
 const page = usePage<BattleShowPageProps>();
 
@@ -65,23 +108,29 @@ const isOngoing = computed(
 const isAwaitingSendOut = computed(() => page.props.battle.isAwaitingSendOut);
 
 const activeIndex = computed(() =>
-  page.props.player.team.findIndex(
-    (member) => member.isActive && !member.isFainted,
-  ),
+  page.props.player.team.findIndex((member) => member.isActive),
 );
 
-const pickableIndex = computed(() =>
-  isOngoing.value && activeIndex.value !== -1
-    ? String(activeIndex.value)
-    : null,
+const pokemonInBattle = computed(() =>
+  activeIndex.value === -1
+    ? null
+    : {
+        member: page.props.player.team[activeIndex.value],
+        index: activeIndex.value,
+      },
 );
+
+const hasBench = computed(() => page.props.player.team.length > 1);
 
 const form = useForm<{ combatantIndex: string | null }>({
-  combatantIndex: pickableIndex.value,
+  combatantIndex: null,
 });
 
-watch(pickableIndex, (index) => {
-  form.combatantIndex = index;
+/**
+ * A pick never outlives the moment it was made for: switching, a faint (which asks for a send-out) and the end of the battle all clear it.
+ */
+watch([activeIndex, isAwaitingSendOut, isOngoing], () => {
+  form.combatantIndex = null;
 });
 
 const isRequestRunning = ref(false);
@@ -99,15 +148,8 @@ onBeforeUnmount(() => {
   stopListeningToFinish();
 });
 
-const canSendOut = computed(
+const canAct = computed(
   () => !isRequestRunning.value && form.combatantIndex !== null,
-);
-
-const canSwitch = computed(
-  () =>
-    !isRequestRunning.value &&
-    form.combatantIndex !== null &&
-    form.combatantIndex !== pickableIndex.value,
 );
 
 function sendOut(): void {
@@ -121,7 +163,7 @@ function switchPokemon(): void {
     .transform((data) => ({ combatantIndex: Number(data.combatantIndex) }))
     .post(route('battle.web.switch'), {
       onError: () => {
-        form.combatantIndex = pickableIndex.value;
+        form.combatantIndex = null;
       },
     });
 }
@@ -132,6 +174,14 @@ function switchPokemon(): void {
 
 .battle-team-rail__content {
   @apply flex flex-col gap-3;
+}
+
+.battle-team-rail__in-battle {
+  @apply flex items-center gap-2 rounded-lg border border-border bg-card py-2 pr-2.5 pl-2;
+}
+
+.battle-team-rail__in-battle--fainted .battle-team-rail__in-battle-body {
+  @apply opacity-50;
 }
 
 .battle-team-rail__action-button {

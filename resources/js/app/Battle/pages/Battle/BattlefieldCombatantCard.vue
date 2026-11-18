@@ -37,10 +37,6 @@
         {{ combatant.currentHp }} / {{ combatant.maxHp }}
       </span>
     </div>
-    <CombatantTeamDots
-      v-if="side === 'opponent' && page.props.battle.type !== BattleType.WILD"
-      class="battlefield-combatant-card__team-dots"
-    />
   </div>
 </template>
 
@@ -48,13 +44,11 @@
 import { usePage } from '@inertiajs/vue3';
 import { computed } from 'vue';
 import PokemonDisplayName from '@/shared/components/game/PokemonDisplayName.vue';
-import { BattleType } from '@/shared/types/enums';
 import type {
   BattleCombatant,
   BattleShowPageProps,
 } from '../../types/page-props/BattleShowPageProps';
 import AilmentBadge from './AilmentBadge.vue';
-import CombatantTeamDots from './CombatantTeamDots.vue';
 import HpProgress from './HpProgress.vue';
 
 const props = defineProps<{
@@ -105,9 +99,5 @@ const hpPercentage = computed(() =>
 
 .battlefield-combatant-card__hp-value {
   @apply text-xs font-semibold whitespace-nowrap tabular-nums;
-}
-
-.battlefield-combatant-card__team-dots {
-  @apply @5xl/main-content:hidden;
 }
 </style>

@@ -780,7 +780,7 @@ Uses `Combatant` from task 1.10.
 
 ### 1.36 Battle page: level beside the name in the team rail
 
-- [ ] Done
+- [x] Done
 
 **Goal:** the team rail's rows are shorter and match the battlefield cards.
 
@@ -791,6 +791,7 @@ Uses `Combatant` from task 1.10.
 - Long names still wrap; the level stays on the first line, aligned right.
 - Applies to the rail and to the send-out sheet, which share the items.
 - `BattleShowPageProps`: keep `boost` on `player.team`; the Pokémon details (task 1.38) show it.
+- As built: the row's name line, ailment, level and HP row live in the new `TeamRailMemberBody`, shared by both rails. The ailment badge sits inline after the name, so it wraps with it.
 
 **Tests:** browser test: an item shows "Lv 54" in its name row and no boost.
 
@@ -798,7 +799,7 @@ Uses `Combatant` from task 1.10.
 
 ### 1.37 Battle page: In battle and Bench groups in the team rails
 
-- [ ] Done
+- [x] Done
 
 **Goal:** the rails say plainly which Pokémon is on the field, and the opponent's team is visible on phones too.
 
@@ -810,6 +811,8 @@ Uses `Combatant` from task 1.10.
 - `OpponentTeamRail`: the same two groups, **In battle** and **Rest of the team** (the latter keeps the "Not sent out yet" rows in team order). Still read-only.
 - Phones: the opponent's rail shows below the three-column layout too, right after Your team (before the Battle log), with its rows in the same 1–3 column grid as Your team. The group headings span the whole row; the In battle row takes one cell.
 - Remove `CombatantTeamDots` from the opponent's battlefield card (and delete the component): the rail now shows the same on phones.
+- Changed after it was built: the In battle row has no level (the battlefield shows it). The mock-up had dropped its border and background by accident: it keeps the same bordered box as the other rows, only more compact. Bench rows that can be picked get a soft muted background on hover, so it is clearer they can be picked.
+- As built: `BattleTeamRadioGroup` draws only the bench (every Pokémon but `isActive`), keeping each one's team index as its radio value and test ID (`battle-team-rail__pokemon-2-radio`). The groups have test IDs `battle-team-rail__in-battle-list`, `battle-team-rail__bench-list`, `opponent-team-rail__in-battle-list` and `opponent-team-rail__rest-of-the-team-list`. The checked Pokémon resets after every switch, faint (when the send-out starts) and the end of the battle. A fainted opponent shows the "Fainted" tag and no HP row, like a fainted Pokémon in battle. `TeamRailGroup` draws a group's heading and list for both rails; on phones the opponent's rail has its own `order` step between Your team and the Battle log.
 
 **Tests:** browser tests: the in-battle Pokémon is under In battle and is not a radio; nothing is checked at first and Switch is disabled; after switching, the new Pokémon moves to In battle and the old one back to its bench place; the opponent's rail shows on a 390px screen after Your team; the battlefield card has no team dots.
 
@@ -817,7 +820,7 @@ Uses `Combatant` from task 1.10.
 
 ### 1.38 Battle page: Pokémon details from the portrait
 
-- [ ] Done
+- [x] Done
 
 **Goal:** the player can check any Pokémon's types, boost and moves without leaving the battle and without cluttering the rails.
 
@@ -832,6 +835,15 @@ Uses `Combatant` from task 1.10.
 
 **UI suggestions** (ideas, not requirements):
 - One `PokemonDetails` content component shared by the hover card and the sheet.
+
+**As built:**
+- Changed after it was built: the hover card opens above the portrait instead of beside the rail (below it when there is no room above).
+- `PokemonDetailsButton` is the portrait button (test ID `battle-team-rail__pokemon-2-details-button`, `opponent-team-rail__pokemon-1-details-button`); it holds the `HoverCard` and its own `PokemonDetailsSheet` (test IDs `pokemon-details-hover-card`, `pokemon-details-sheet`, `pokemon-details-sheet__close-button`). The page shares whether it is below the three-column layout through `useBattleLayout` (provide/inject), so the hover card only opens on wide screens and a tap only opens the sheet below them. Swiping down uses VueUse's `useSwipe` on the sheet's head.
+- The send-out sheet keeps plain portraits: it already is a sheet that must be answered.
+- On wide screens a tap (or Enter) on the portrait also opens the hover card, so a tablet in landscape can open the details; `aria-haspopup="dialog"` is set only below the three-column layout, where the portrait opens the sheet, and `aria-expanded` follows whichever is open.
+- The page only loads the moves of the player's team and of revealed opponents; a move that no longer exists is left out of the details instead of failing the page.
+- `hover-card` was added with the shadcn-vue CLI; the CLI's dependency bumps, its stray `cn` package and its base CSS were reverted, and its `cn` import points at `@/shared/lib/utils`.
+- Unrevealed opponents send `isShiny`, `types` and `moves` as null.
 
 **Tests:** feature tests: the new team props for the player and for a gym battle (unrevealed opponents send no types or moves); browser tests: hovering a portrait on a 1440px screen shows its types and moves; tapping one on a 390px screen opens the sheet and its close button closes it; tapping a bench row's name still picks it for Switch.
 

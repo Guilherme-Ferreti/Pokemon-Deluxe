@@ -13,6 +13,7 @@ use Shared\Enums\BattleLogKind;
 use Shared\Enums\BattleStatus;
 use Shared\Enums\BattleType;
 use Shared\Enums\PokemonGender;
+use Shared\Enums\PokemonType;
 use Shared\Models\Battle;
 use Shared\Models\Move;
 use Shared\Models\Species;
@@ -24,6 +25,9 @@ final class BattleShowPageProps implements ProvidesInertiaProperties
 {
     /** @var EloquentCollection<string, Species>|null */
     private ?EloquentCollection $species = null;
+
+    /** @var EloquentCollection<string, Move>|null */
+    private ?EloquentCollection $moves = null;
 
     public function __construct(
         private readonly Battle $battle,
@@ -127,16 +131,16 @@ final class BattleShowPageProps implements ProvidesInertiaProperties
      */
     private function getMovesProp(): array
     {
-        $moveIds = $this->battle->state->player_side->activeCombatant()->move_ids;
-        $moves   = Move::query()->whereKey($moveIds)->get()->keyBy('id');
-
         return array_map(fn (Move $move) => [
             'id'            => $move->id,
             'name'          => $move->name,
             'type'          => $move->type,
             'isZMove'       => $move->is_z_move,
             'isDynamaxMove' => $move->is_dynamax_move,
-        ], array_map($moves->findOrFail(...), $moveIds));
+        ], array_map(
+            $this->shownMoves()->findOrFail(...),
+            $this->battle->state->player_side->activeCombatant()->move_ids,
+        ));
     }
 
     /**
@@ -194,24 +198,25 @@ final class BattleShowPageProps implements ProvidesInertiaProperties
     }
 
     /**
-     * Unrevealed combatants (gym leaders and the Elite Four keep their team secret) carry no species data.
+     * Unrevealed combatants (gym leaders and the Elite Four keep their team secret) carry no species data, types or moves.
      *
-     * @return list<array{name: ?string, portrait: ?string, gender: ?PokemonGender, level: ?int, boost: ?int, currentHp: ?int, maxHp: ?int, isFainted: bool, isActive: bool, isRevealed: bool}>
+     * @return list<array{name: ?string, portrait: ?string, gender: ?PokemonGender, level: ?int, boost: ?int, isShiny: ?bool, types: ?list<PokemonType>, moves: ?list<array{name: string, type: PokemonType, power: ?int}>, currentHp: ?int, maxHp: ?int, isFainted: bool, isActive: bool, isRevealed: bool}>
      */
     private function opponentTeam(BattleSide $side): array
     {
-        $keepsTeamSecret = in_array($this->battle->type, [BattleType::GYM, BattleType::ELITE_FOUR], true);
-
-        return array_map(function (Combatant $combatant, int $index) use ($side, $keepsTeamSecret) {
+        return array_map(function (Combatant $combatant, int $index) use ($side) {
             $isActive = $index === $side->active_index;
 
-            if ($keepsTeamSecret && ! $combatant->has_entered_field && ! $isActive) {
+            if (! $this->isRevealedOpponent($combatant, $index)) {
                 return [
                     'name'       => null,
                     'portrait'   => null,
                     'gender'     => null,
                     'level'      => null,
                     'boost'      => null,
+                    'isShiny'    => null,
+                    'types'      => null,
+                    'moves'      => null,
                     'currentHp'  => null,
                     'maxHp'      => null,
                     'isFainted'  => false,
@@ -225,7 +230,10 @@ final class BattleShowPageProps implements ProvidesInertiaProperties
                 'portrait'   => $this->portraitOf($combatant),
                 'gender'     => $combatant->gender,
                 'level'      => $combatant->level,
-                'boost'      => $isActive ? $combatant->boost : 0,
+                'boost'      => $combatant->boost,
+                'isShiny'    => $combatant->is_shiny,
+                'types'      => $combatant->types,
+                'moves'      => $this->moveDetailsOf($combatant),
                 'currentHp'  => $combatant->current_hp,
                 'maxHp'      => $combatant->max_hp,
                 'isFainted'  => $combatant->isFainted(),
@@ -236,7 +244,7 @@ final class BattleShowPageProps implements ProvidesInertiaProperties
     }
 
     /**
-     * @return list<array{name: string, portrait: ?string, gender: PokemonGender, level: int, boost: int, currentHp: int, maxHp: int, ailment: ?Ailment, isFainted: bool, isActive: bool}>
+     * @return list<array{name: string, portrait: ?string, gender: PokemonGender, level: int, boost: int, isShiny: bool, types: list<PokemonType>, moves: list<array{name: string, type: PokemonType, power: ?int}>, currentHp: int, maxHp: int, ailment: ?Ailment, isFainted: bool, isActive: bool}>
      */
     private function playerTeam(BattleSide $side): array
     {
@@ -246,6 +254,9 @@ final class BattleShowPageProps implements ProvidesInertiaProperties
             'gender'    => $combatant->gender,
             'level'     => $combatant->level,
             'boost'     => $combatant->boost,
+            'isShiny'   => $combatant->is_shiny,
+            'types'     => $combatant->types,
+            'moves'     => $this->moveDetailsOf($combatant),
             'currentHp' => $combatant->current_hp,
             'maxHp'     => $combatant->max_hp,
             'ailment'   => $combatant->ailment,
@@ -265,5 +276,55 @@ final class BattleShowPageProps implements ProvidesInertiaProperties
             ->keyBy('id');
 
         return $this->species->findOrFail($combatant->species_id);
+    }
+
+    /**
+     * Gym leaders and the Elite Four keep the Pokémon they haven't sent out yet secret.
+     */
+    private function isRevealedOpponent(Combatant $combatant, int $index): bool
+    {
+        $keepsTeamSecret = in_array($this->battle->type, [BattleType::GYM, BattleType::ELITE_FOUR], true);
+
+        return ! $keepsTeamSecret
+            || $combatant->has_entered_field
+            || $index === $this->battle->state->opponent_side->active_index;
+    }
+
+    /**
+     * The details only list the moves that still exist, so a move removed mid-battle doesn't break the page.
+     *
+     * @return list<array{name: string, type: PokemonType, power: ?int}>
+     */
+    private function moveDetailsOf(Combatant $combatant): array
+    {
+        $moves = array_filter(array_map($this->shownMoves()->get(...), $combatant->move_ids));
+
+        return array_values(array_map(fn (Move $move) => [
+            'name'  => $move->name,
+            'type'  => $move->type,
+            'power' => $move->power,
+        ], $moves));
+    }
+
+    /**
+     * The moves of the player's team and of the opponents that have been revealed: the only ones the page shows.
+     *
+     * @return EloquentCollection<string, Move>
+     */
+    private function shownMoves(): EloquentCollection
+    {
+        $revealedOpponents = array_filter(
+            $this->battle->state->opponent_side->combatants,
+            $this->isRevealedOpponent(...),
+            ARRAY_FILTER_USE_BOTH,
+        );
+
+        return $this->moves ??= Move::query()
+            ->whereKey(array_merge(...array_map(
+                fn (Combatant $combatant) => $combatant->move_ids,
+                [...$this->battle->state->player_side->combatants, ...array_values($revealedOpponents)],
+            )))
+            ->get()
+            ->keyBy('id');
     }
 }

@@ -53,6 +53,7 @@ import MovesCard from './MovesCard.vue';
 import OpponentTeamRail from './OpponentTeamRail.vue';
 import PokemonFaintedCard from './PokemonFaintedCard.vue';
 import SendOutSheet from './SendOutSheet.vue';
+import { provideBattleLayout } from './useBattleLayout';
 
 const page = usePage<BattleShowPageProps>();
 
@@ -67,6 +68,8 @@ const isPhoneLayout = computed(
       WIDE_LAYOUT_MIN_WIDTH_IN_REM *
         parseFloat(getComputedStyle(document.documentElement).fontSize),
 );
+
+provideBattleLayout(isPhoneLayout);
 </script>
 
 <style scoped>
@@ -113,10 +116,10 @@ const isPhoneLayout = computed(
 }
 
 .battle-page__opponent-team {
-  @apply hidden @5xl/main-content:flex;
+  @apply order-5 @5xl/main-content:order-0;
 }
 
 .battle-page__log {
-  @apply order-5 @5xl/main-content:order-0;
+  @apply order-6 @5xl/main-content:order-0;
 }
 </style>

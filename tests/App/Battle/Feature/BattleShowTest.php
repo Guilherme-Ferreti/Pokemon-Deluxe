@@ -124,8 +124,39 @@ it('loads the battle page with expected structure', function () {
                 'currentHp' => 150,
                 'maxHp'     => 218,
                 'team'      => [
-                    ['name' => 'Eevee', 'portrait' => $eevee->portraits->regular, 'gender' => PokemonGender::MALE->value, 'level' => 50, 'boost' => 0, 'currentHp' => 0, 'maxHp' => 218, 'ailment' => null, 'isFainted' => true, 'isActive' => false],
-                    ['name' => 'Shiny Pikachu', 'portrait' => $pikachu->portraits->shiny, 'gender' => PokemonGender::FEMALE->value, 'level' => 50, 'boost' => 12, 'currentHp' => 150, 'maxHp' => 218, 'ailment' => Ailment::BURN->value, 'isFainted' => false, 'isActive' => true],
+                    [
+                        'name'      => 'Eevee',
+                        'portrait'  => $eevee->portraits->regular,
+                        'gender'    => PokemonGender::MALE->value,
+                        'level'     => 50,
+                        'boost'     => 0,
+                        'isShiny'   => false,
+                        'types'     => [PokemonType::NORMAL->value],
+                        'moves'     => [['name' => 'Tackle', 'type' => PokemonType::NORMAL->value, 'power' => 40]],
+                        'currentHp' => 0,
+                        'maxHp'     => 218,
+                        'ailment'   => null,
+                        'isFainted' => true,
+                        'isActive'  => false,
+                    ],
+                    [
+                        'name'     => 'Shiny Pikachu',
+                        'portrait' => $pikachu->portraits->shiny,
+                        'gender'   => PokemonGender::FEMALE->value,
+                        'level'    => 50,
+                        'boost'    => 12,
+                        'isShiny'  => true,
+                        'types'    => [PokemonType::NORMAL->value],
+                        'moves'    => [
+                            ['name' => 'Growl', 'type' => PokemonType::NORMAL->value, 'power' => null],
+                            ['name' => 'Tackle', 'type' => PokemonType::NORMAL->value, 'power' => 40],
+                        ],
+                        'currentHp' => 150,
+                        'maxHp'     => 218,
+                        'ailment'   => Ailment::BURN->value,
+                        'isFainted' => false,
+                        'isActive'  => true,
+                    ],
                 ],
             ])
             ->where('opponent', [
@@ -139,7 +170,21 @@ it('loads the battle page with expected structure', function () {
                 'currentHp' => 135,
                 'maxHp'     => 218,
                 'team'      => [
-                    ['name' => 'Pidgey', 'portrait' => $pidgey->portraits->regular, 'gender' => PokemonGender::MALE->value, 'level' => 34, 'boost' => 0, 'currentHp' => 135, 'maxHp' => 218, 'isFainted' => false, 'isActive' => true, 'isRevealed' => true],
+                    [
+                        'name'       => 'Pidgey',
+                        'portrait'   => $pidgey->portraits->regular,
+                        'gender'     => PokemonGender::MALE->value,
+                        'level'      => 34,
+                        'boost'      => 0,
+                        'isShiny'    => false,
+                        'types'      => [PokemonType::NORMAL->value],
+                        'moves'      => [['name' => 'Tackle', 'type' => PokemonType::NORMAL->value, 'power' => 40]],
+                        'currentHp'  => 135,
+                        'maxHp'      => 218,
+                        'isFainted'  => false,
+                        'isActive'   => true,
+                        'isRevealed' => true,
+                    ],
                 ],
             ])
             ->has('moves', 2)
@@ -421,7 +466,7 @@ it('redirects to the dashboard without a battle in progress or recently ended', 
         ->assertRedirectToRoute('dashboard.web.home');
 });
 
-it('shows the whole opponent team in a trainer battle, with the boost only on the one in battle', function () {
+it('shows the whole opponent team in a trainer battle, with the boost of each pokemon', function () {
     $user    = User::factory()->create();
     $pikachu = Species::factory()->create();
     $geodude = Species::factory()->create(['name' => 'Geodude']);
@@ -468,19 +513,21 @@ it('shows the whole opponent team in a trainer battle, with the boost only on th
             ->has('opponent.team', 3)
             ->where('opponent.team.0.name', 'Geodude')
             ->where('opponent.team.0.isFainted', true)
-            ->where('opponent.team.0.boost', 0)
+            ->where('opponent.team.0.boost', 5)
             ->where('opponent.team.1.isActive', true)
             ->where('opponent.team.1.boost', 5)
             ->where('opponent.team.2.name', 'Onix')
+            ->where('opponent.team.2.boost', 5)
             ->where('opponent.team.2.isRevealed', true)
         );
 });
 
-it('hides the opponent pokemon that have not been sent out yet in a gym battle', function (BattleType $type) {
+it('hides the opponent pokemon that have not been sent out yet in a gym battle, with no types or moves', function (BattleType $type) {
     $user    = User::factory()->create();
     $pikachu = Species::factory()->create();
     $onix    = Species::factory()->create(['name' => 'Onix']);
-    $tackle  = Move::factory()->plainDamage()->create();
+    $tackle  = Move::factory()->plainDamage()->create(['name' => 'Tackle', 'type' => PokemonType::NORMAL, 'power' => 40]);
+    $ember   = Move::factory()->plainDamage()->create(['name' => 'Ember', 'type' => PokemonType::FIRE, 'power' => 40]);
 
     $combatant = [
         'pokemon_id'                    => null,
@@ -507,7 +554,7 @@ it('hides the opponent pokemon that have not been sent out yet in a gym battle',
             turn: 1,
             player_side: new BattleSide(combatants: [new Combatant(...$combatant)], active_index: 0),
             opponent_side: new BattleSide(combatants: [
-                new Combatant(...$combatant),
+                new Combatant(...[...$combatant, 'is_shiny' => true, 'boost' => 7, 'types' => [PokemonType::FIRE], 'move_ids' => [$ember->id]]),
                 new Combatant(...[...$combatant, 'species_id' => $onix->id, 'has_entered_field' => false]),
             ], active_index: 0),
             is_awaiting_send_out: false,
@@ -519,12 +566,19 @@ it('hides the opponent pokemon that have not been sent out yet in a gym battle',
         ->get(route('battle.web.show'))
         ->assertInertia(fn (Assert $page) => $page
             ->where('opponent.team.0.isRevealed', true)
+            ->where('opponent.team.0.boost', 7)
+            ->where('opponent.team.0.isShiny', true)
+            ->where('opponent.team.0.types', [PokemonType::FIRE->value])
+            ->where('opponent.team.0.moves', [['name' => 'Ember', 'type' => PokemonType::FIRE->value, 'power' => 40]])
             ->where('opponent.team.1', [
                 'name'       => null,
                 'portrait'   => null,
                 'gender'     => null,
                 'level'      => null,
                 'boost'      => null,
+                'isShiny'    => null,
+                'types'      => null,
+                'moves'      => null,
                 'currentHp'  => null,
                 'maxHp'      => null,
                 'isFainted'  => false,
@@ -536,3 +590,51 @@ it('hides the opponent pokemon that have not been sent out yet in a gym battle',
     'gym'        => [BattleType::GYM],
     'elite four' => [BattleType::ELITE_FOUR],
 ]);
+
+it('leaves a move that no longer exists out of a pokemon details', function () {
+    $user    = User::factory()->create();
+    $pikachu = Species::factory()->create();
+    $tackle  = Move::factory()->plainDamage()->create(['name' => 'Tackle', 'type' => PokemonType::NORMAL, 'power' => 40]);
+    $removed = Move::factory()->plainDamage()->create();
+
+    $combatant = [
+        'pokemon_id'                    => 'pokemon-1',
+        'species_id'                    => $pikachu->id,
+        'level'                         => 50,
+        'boost'                         => 0,
+        'is_shiny'                      => false,
+        'gender'                        => PokemonGender::MALE,
+        'types'                         => [PokemonType::NORMAL],
+        'move_ids'                      => [$tackle->id],
+        'max_hp'                        => 218,
+        'current_hp'                    => 218,
+        'ailment'                       => null,
+        'ailment_turns_left'            => 0,
+        'confusion_turns_left'          => 0,
+        'has_entered_field'             => true,
+        'used_once_per_battle_move_ids' => [],
+    ];
+
+    Battle::factory()->for($user)->create([
+        'status' => BattleStatus::ONGOING,
+        'state'  => new BattleState(
+            turn: 1,
+            player_side: new BattleSide(combatants: [
+                new Combatant(...$combatant),
+                new Combatant(...[...$combatant, 'pokemon_id' => 'pokemon-2', 'move_ids' => [$removed->id, $tackle->id]]),
+            ], active_index: 0),
+            opponent_side: new BattleSide(combatants: [new Combatant(...[...$combatant, 'pokemon_id' => null])], active_index: 0),
+            is_awaiting_send_out: false,
+            log: [],
+        ),
+    ]);
+
+    $removed->delete();
+
+    actingAs($user)
+        ->get(route('battle.web.show'))
+        ->assertSuccessful()
+        ->assertInertia(fn (Assert $page) => $page
+            ->where('player.team.1.moves', [['name' => 'Tackle', 'type' => PokemonType::NORMAL->value, 'power' => 40]])
+        );
+});

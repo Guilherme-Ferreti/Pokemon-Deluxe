@@ -76,7 +76,8 @@
   .rail { display: flex; flex-direction: column; gap: 6px; }
   .member { display: flex; align-items: center; gap: 8px; width: 100%; min-height: 74px; padding: 8px 10px 8px 8px; border-radius: 10px; border: 1px solid var(--border); background: var(--card); text-align: left; transition: background-color 250ms ease, border-color 250ms ease, opacity 250ms ease; }
   .member.checked { background: var(--muted); border-color: var(--placeholder); }
-  .member.in-battle { min-height: 0; padding-block: 2px; border-color: transparent; background: transparent; }
+  .member.in-battle { min-height: 0; }
+  .rail[role="radiogroup"] .member:not(.checked):has(.member-pick:not(:disabled)):hover { background: color-mix(in oklch, var(--muted) 50%, var(--card)); }
   .member-pick { flex: 1; min-width: 0; align-self: stretch; display: flex; align-items: center; padding: 0; border: 0; background: transparent; color: inherit; text-align: left; }
   .member-pick:disabled { cursor: default; }
   .member.fainted .member-body { opacity: .5; }
@@ -127,6 +128,7 @@
   .moves { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
   .move { display: flex; align-items: flex-start; gap: 12px; min-height: 72px; padding: 12px 14px; border-radius: 10px; border: 1px solid var(--border); background: var(--card); text-align: left; transition: border-color 200ms ease, background-color 200ms ease; }
   .move[aria-checked="true"] { border-color: var(--fg); background: var(--muted); }
+  .move:not([aria-checked="true"]):not(:disabled):hover { background: color-mix(in oklch, var(--muted) 50%, var(--card)); }
   .move-body { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 8px; align-items: flex-start; }
   .move-name { font-weight: 600; font-size: 14px; }
   .radio { flex-shrink: 0; width: 16px; height: 16px; border-radius: 999px; border: 1px solid var(--placeholder); background: var(--card); display: flex; align-items: center; justify-content: center; transition: border-color 200ms ease; }
@@ -332,7 +334,7 @@
     </div>
   </div>
 
-  <p class="note">Desktop: Your team on the left, the battlefield with Choose a move and More options in the middle, the opponent's team (trainer battles) and the Battle log on the right. Phones stack: result, battlefield, moves, Your team, the opponent's team (trainer battles), log, More options; both rails keep the same rows in 1 to 3 columns, as many as fit. Each rail has an "In battle" group (the Pokémon on the field: no background, no border, not selectable, no HP bar since the battlefield shows it) and a "Bench" group ("Rest of the team" for the opponent) in team order. Fainted portraits are greyscale. Long names wrap instead of being cut off; the gender icon stays next to the last word, and the level stays on the name's first line.</p>
+  <p class="note">Desktop: Your team on the left, the battlefield with Choose a move and More options in the middle, the opponent's team (trainer battles) and the Battle log on the right. Phones stack: result, battlefield, moves, Your team, the opponent's team (trainer battles), log, More options; both rails keep the same rows in 1 to 3 columns, as many as fit. Each rail has an "In battle" group (the Pokémon on the field: a bordered row like the others, not selectable, with no level and no HP bar since the battlefield shows them) and a "Bench" group ("Rest of the team" for the opponent) in team order; bench rows that can be picked get a soft background on hover. Fainted portraits are greyscale. Long names wrap instead of being cut off; the gender icon stays next to the last word, and the level stays on the name's first line.</p>
   <p class="note">Pokémon details: the portrait (36px, inside a 40px button) opens the Pokémon's types, what its boost (and shine) does and its four moves. Wide screens: a hover card next to the rail, on hover or keyboard focus (click pins it here). Below the three-column layout: a bottom sheet on tap, closed by swiping down, tapping outside or the close button. Works for every Pokémon in your team, fainted or not, and for the opponent's Pokémon that have been sent out; "Not sent out yet" rows have no portrait button.</p>
 </main>
 
@@ -484,7 +486,7 @@
       return '<span class="hp-row"><span class="hp-label">HP:</span>' + bar(pct, name + ' HP') + '<span class="hp-text num">' + text + '</span></span>';
     }
     function bodyHtml(name, lv, ail, faintedTag, hp) {
-      return '<span class="member-body"><span class="member-name"><span class="name">' + nameHtml(name) + (ail ? ' <span class="ail">' + ail + '</span>' : '') + '</span><span class="member-lv num">Lv ' + lv + '</span>' + (faintedTag ? '<span class="tag">Fainted</span>' : '') + '</span>' + (hp || '') + '</span>';
+      return '<span class="member-body"><span class="member-name"><span class="name">' + nameHtml(name) + (ail ? ' <span class="ail">' + ail + '</span>' : '') + '</span>' + (lv ? '<span class="member-lv num">Lv ' + lv + '</span>' : '') + (faintedTag ? '<span class="tag">Fainted</span>' : '') + '</span>' + (hp || '') + '</span>';
     }
     function group(label, rows, attrs) {
       return '<div class="rail-group"><h3 class="rail-heading">' + label + '</h3><div class="rail grid"' + (attrs || '') + '>' + rows + '</div></div>';
@@ -496,7 +498,7 @@
         '<button type="button" role="radio" class="member-pick" aria-checked="' + checked + '" data-pick="' + i + '"' + (fainted || ended ? ' disabled' : '') + '>' + body + '</button></div>';
     }
     var inBattle = raw[activeIdx];
-    var inBattleHtml = '<div class="member in-battle' + (inBattle[3] === 0 ? ' fainted' : '') + '">' + portraitButton('you', activeIdx, inBattle[0]) + bodyHtml(inBattle[0], inBattle[1], inBattle[5], inBattle[3] === 0) + '</div>';
+    var inBattleHtml = '<div class="member in-battle' + (inBattle[3] === 0 ? ' fainted' : '') + '">' + portraitButton('you', activeIdx, inBattle[0]) + bodyHtml(inBattle[0], null, inBattle[5], inBattle[3] === 0) + '</div>';
     var benchHtml = raw.map(function (m, i) { return i === activeIdx ? '' : memberHtml(m, i); }).join('');
     $('team-rail').innerHTML = group('In battle', inBattleHtml) + group('Bench', benchHtml, ' role="radiogroup" aria-label="Bench"');
     $('send-out-rail').innerHTML = benchHtml;
@@ -524,8 +526,8 @@
     show($('opp-team'), !isWild);
     function oppRow(o, i) {
       if (o.hidden) { return '<div class="member unrevealed"><span class="sprite" aria-hidden="true"></span><span class="member-body"><span class="member-name"><span class="name"><strong>Not sent out yet</strong></span></span></span></div>'; }
-      var hp = o.active ? '' : hpRow(o.pct, o.name, o.fainted ? 'Fainted' : o.hp + ' / ' + o.max);
-      return '<div class="member' + (o.active ? ' in-battle' : '') + (o.fainted ? ' fainted' : '') + '">' + portraitButton('opp', i, o.name) + bodyHtml(o.name, o.lv, '', false, hp) + '</div>';
+      var hp = o.active || o.fainted ? '' : hpRow(o.pct, o.name, o.hp + ' / ' + o.max);
+      return '<div class="member' + (o.active ? ' in-battle' : '') + (o.fainted ? ' fainted' : '') + '">' + portraitButton('opp', i, o.name) + bodyHtml(o.name, o.active ? null : o.lv, '', o.fainted, hp) + '</div>';
     }
     $('opp-rail').innerHTML = isWild ? '' : group('In battle', oppRow(oppTeam[activeAt], activeAt)) +
       group('Rest of the team', oppTeam.map(function (o, i) { return i === activeAt ? '' : oppRow(o, i); }).join(''));

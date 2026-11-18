@@ -312,7 +312,7 @@ it('switches from the team rail to another pokemon, which the opponent then atta
             turn: 1,
             player_side: new BattleSide(combatants: [
                 new Combatant(...$combatant),
-                new Combatant(...[...$combatant, 'pokemon_id' => 'pokemon-2', 'species_id' => $eevee->id, 'types' => [PokemonType::NORMAL], 'move_ids' => [$bite->id], 'max_hp' => 180, 'current_hp' => 180, 'has_entered_field' => false]),
+                new Combatant(...[...$combatant, 'pokemon_id' => 'pokemon-2', 'species_id' => $eevee->id, 'level' => 54, 'boost' => 72, 'types' => [PokemonType::NORMAL], 'move_ids' => [$bite->id], 'max_hp' => 180, 'current_hp' => 180, 'has_entered_field' => false]),
             ], active_index: 0),
             opponent_side: new BattleSide(combatants: [
                 new Combatant(...[...$combatant, 'pokemon_id' => null, 'species_id' => $pidgey->id, 'types' => [PokemonType::NORMAL, PokemonType::FLYING]]),
@@ -330,12 +330,21 @@ it('switches from the team rail to another pokemon, which the opponent then atta
     actingAs($user);
 
     visit(route('battle.web.show'))
+        ->assertSeeIn('@battle-team-rail__in-battle-list', 'Pikachu')
+        ->assertNotPresent('@battle-team-rail__pokemon-1-radio')
+        ->assertSeeIn('@battle-team-rail__bench-list', 'Eevee')
+        ->assertSeeIn('@battle-team-rail__pokemon-2-radio', 'Lv 54')
+        ->assertDontSeeIn('@battle-team-rail__pokemon-2-radio', '+72')
+        ->assertScript('document.querySelectorAll(\'[data-test="battle-team-rail"] [data-state="checked"]\').length', 0)
         ->assertButtonDisabled('@battle-team-rail__switch-button')
         ->click('@battle-team-rail__pokemon-2-radio')
         ->assertButtonEnabled('@battle-team-rail__switch-button')
         ->click('@battle-team-rail__switch-button')
         ->wait(1)
         ->assertSeeIn('@battlefield-combatant-card--player', 'Eevee')
+        ->assertSeeIn('@battle-team-rail__in-battle-list', 'Eevee')
+        ->assertNotPresent('@battle-team-rail__pokemon-2-radio')
+        ->assertSeeIn('@battle-team-rail__pokemon-1-radio', 'Pikachu')
         ->assertButtonDisabled('@battle-team-rail__switch-button')
         ->assertSeeIn('@battle-log-card', 'You switched Pokémon to Eevee.')
         ->assertSeeIn('@battle-log-card', 'The wild Pidgey used Tackle!')
@@ -665,8 +674,7 @@ it('does not switch to the pokemon in battle or a fainted one', function () {
 
     $page
         ->assertButtonDisabled('@battle-team-rail__switch-button')
-        ->click('@battle-team-rail__pokemon-1-radio')
-        ->assertButtonDisabled('@battle-team-rail__switch-button')
+        ->assertNotPresent('@battle-team-rail__pokemon-1-radio')
         ->assertNoJavascriptErrors();
 });
 
@@ -703,6 +711,7 @@ it('shows the team in as many columns as fit below the wide layout', function (i
                 new Combatant(...[...$combatant, 'pokemon_id' => 'pokemon-2', 'species_id' => $eevee->id, 'current_hp' => 218]),
                 new Combatant(...[...$combatant, 'pokemon_id' => 'pokemon-3', 'species_id' => $eevee->id]),
                 new Combatant(...[...$combatant, 'pokemon_id' => 'pokemon-4', 'species_id' => $eevee->id]),
+                new Combatant(...[...$combatant, 'pokemon_id' => 'pokemon-5', 'species_id' => $eevee->id]),
             ], active_index: 0),
             opponent_side: new BattleSide(combatants: [new Combatant(...[...$combatant, 'pokemon_id' => null])], active_index: 0),
             is_awaiting_send_out: false,
@@ -716,7 +725,7 @@ it('shows the team in as many columns as fit below the wide layout', function (i
         ->resize($width, 900)
         ->assertScript(<<<'JS'
             (() => {
-                const members = [...document.querySelectorAll('[data-test^="battle-team-rail__pokemon-"]')].map((member) => member.getBoundingClientRect());
+                const members = [...document.querySelectorAll('[data-test="battle-team-rail__bench-list"] [data-test$="-radio"]')].map((member) => member.getBoundingClientRect());
 
                 return members.filter((member) => member.top === members[0].top).length;
             })()
@@ -729,7 +738,7 @@ it('shows the team in as many columns as fit below the wide layout', function (i
     'the wide layout' => [1440, 1],
 ]);
 
-it('shows the opponent team rail in a trainer battle only on a wide screen', function () {
+it('shows the opponent team rail in a trainer battle, after your team on a phone', function () {
     $user    = User::factory()->create();
     $pikachu = Species::factory()->create(['name' => 'Pikachu']);
     $geodude = Species::factory()->create(['name' => 'Geodude']);
@@ -762,6 +771,7 @@ it('shows the opponent team rail in a trainer battle only on a wide screen', fun
             opponent_side: new BattleSide(combatants: [
                 new Combatant(...[...$combatant, 'pokemon_id' => null, 'species_id' => $geodude->id]),
                 new Combatant(...[...$combatant, 'pokemon_id' => null, 'has_entered_field' => false]),
+                new Combatant(...[...$combatant, 'pokemon_id' => null, 'current_hp' => 0]),
             ], active_index: 0),
             is_awaiting_send_out: false,
             log: [new BattleLogEntry(0, BattleLogKind::INFO, 'The gym leader wants to battle!')],
@@ -773,10 +783,23 @@ it('shows the opponent team rail in a trainer battle only on a wide screen', fun
     visit(route('battle.web.show'))
         ->resize(1440, 900)
         ->assertVisible('@opponent-team-rail')
-        ->assertSeeIn('@opponent-team-rail__pokemon-1-item', 'Geodude')
-        ->assertSeeIn('@opponent-team-rail__pokemon-2-item', 'Not sent out yet')
+        ->assertSeeIn('@opponent-team-rail__in-battle-list', 'Geodude')
+        ->assertSeeIn('@opponent-team-rail__rest-of-the-team-list', 'Not sent out yet')
+        ->assertNotPresent('@opponent-team-rail__pokemon-2-details-button')
+        ->assertSeeIn('@opponent-team-rail__pokemon-3-item', 'Fainted')
+        ->assertDontSeeIn('@opponent-team-rail__pokemon-3-item', 'HP:')
         ->resize(390, 844)
-        ->assertMissing('@opponent-team-rail')
+        ->assertVisible('@opponent-team-rail')
+        ->assertScript(<<<'JS'
+            (() => {
+                const team = document.querySelector('[data-test="battle-team-rail"]').getBoundingClientRect();
+                const opponentTeam = document.querySelector('[data-test="opponent-team-rail"]').getBoundingClientRect();
+                const log = document.querySelector('[data-test="battle-log-card"]').getBoundingClientRect();
+
+                return opponentTeam.top >= team.bottom && log.top >= opponentTeam.bottom;
+            })()
+            JS)
+        ->assertScript('document.querySelector(\'[data-test="battlefield-combatant-card--opponent"] ul\') === null')
         ->assertNoJavascriptErrors();
 });
 
@@ -872,5 +895,246 @@ it('opens the end section and the last played turn once the battle has ended', f
         ->assertSeeIn('@battle-log-card__turn-2-line-2', 'The wild Pikachu fainted!')
         ->assertMissing('@battle-log-card__turn-1-line-1')
         ->assertMissing('@battle-log-card__turn-0-line-1')
+        ->assertNoJavascriptErrors();
+});
+
+it('shows a pokemon details in a hover card above its portrait on a wide screen', function () {
+    $user         = User::factory()->create();
+    $pikachu      = Species::factory()->create(['name' => 'Pikachu']);
+    $eevee        = Species::factory()->create(['name' => 'Eevee']);
+    $thunderShock = Move::factory()->plainDamage()->create(['name' => 'Thunder Shock', 'type' => PokemonType::ELECTRIC, 'power' => 40]);
+    $growl        = Move::factory()->plainDamage()->create(['name' => 'Growl', 'type' => PokemonType::NORMAL, 'power' => null]);
+
+    $combatant = [
+        'pokemon_id'                    => 'pokemon-1',
+        'species_id'                    => $pikachu->id,
+        'level'                         => 61,
+        'boost'                         => 20,
+        'is_shiny'                      => true,
+        'gender'                        => PokemonGender::MALE,
+        'types'                         => [PokemonType::ELECTRIC, PokemonType::STEEL],
+        'move_ids'                      => [$thunderShock->id, $growl->id],
+        'max_hp'                        => 218,
+        'current_hp'                    => 218,
+        'ailment'                       => null,
+        'ailment_turns_left'            => 0,
+        'confusion_turns_left'          => 0,
+        'has_entered_field'             => true,
+        'used_once_per_battle_move_ids' => [],
+    ];
+
+    Battle::factory()->for($user)->create([
+        'status' => BattleStatus::ONGOING,
+        'state'  => new BattleState(
+            turn: 2,
+            player_side: new BattleSide(combatants: [
+                new Combatant(...$combatant),
+                new Combatant(...[...$combatant, 'pokemon_id' => 'pokemon-2', 'species_id' => $eevee->id, 'is_shiny' => false, 'boost' => 0, 'types' => [PokemonType::NORMAL], 'move_ids' => [$growl->id]]),
+            ], active_index: 1),
+            opponent_side: new BattleSide(combatants: [new Combatant(...[...$combatant, 'pokemon_id' => null, 'species_id' => $eevee->id])], active_index: 0),
+            is_awaiting_send_out: false,
+            log: [new BattleLogEntry(0, BattleLogKind::INFO, 'A wild Eevee appeared!')],
+        ),
+    ]);
+
+    actingAs($user);
+
+    visit(route('battle.web.show'))
+        ->resize(1440, 900)
+        ->assertMissing('@pokemon-details-hover-card')
+        ->assertAttributeMissing('@battle-team-rail__pokemon-1-details-button', 'aria-haspopup')
+        ->hover('@battle-team-rail__pokemon-1-details-button')
+        ->wait(0.5)
+        ->assertVisible('@pokemon-details-hover-card')
+        ->assertSeeIn('@pokemon-details-hover-card', 'Shiny Pikachu')
+        ->assertSeeIn('@pokemon-details-hover-card', 'Lv 61')
+        ->assertSeeIn('@pokemon-details-hover-card', 'Steel')
+        ->assertSeeIn('@pokemon-details-hover-card', 'Boost +20 · +20% HP and damage')
+        ->assertSeeIn('@pokemon-details-hover-card', 'Shiny · +25% HP and damage, takes 25% less damage')
+        ->assertSeeIn('@pokemon-details-hover-card', 'Thunder Shock')
+        ->assertSeeIn('@pokemon-details-hover-card', 'Electric · 40')
+        ->assertSeeIn('@pokemon-details-hover-card', 'Normal · Status')
+        ->assertScript(<<<'JS'
+            (() => {
+                const portrait = document.querySelector('[data-test="battle-team-rail__pokemon-1-details-button"]').getBoundingClientRect();
+                const card = document.querySelector('[data-test="pokemon-details-hover-card"]').getBoundingClientRect();
+
+                return card.bottom <= portrait.top;
+            })()
+            JS)
+        ->assertNoJavascriptErrors();
+});
+
+it('shows a pokemon details in a sheet from its portrait on a phone, without picking it', function () {
+    $user    = User::factory()->create();
+    $pikachu = Species::factory()->create(['name' => 'Pikachu']);
+    $eevee   = Species::factory()->create(['name' => 'Eevee']);
+    $tackle  = Move::factory()->plainDamage()->create(['name' => 'Tackle', 'type' => PokemonType::NORMAL, 'power' => 40]);
+    $bite    = Move::factory()->plainDamage()->create(['name' => 'Bite', 'type' => PokemonType::DARK, 'power' => 60]);
+
+    $combatant = [
+        'pokemon_id'                    => 'pokemon-1',
+        'species_id'                    => $pikachu->id,
+        'level'                         => 50,
+        'boost'                         => 0,
+        'is_shiny'                      => false,
+        'gender'                        => PokemonGender::MALE,
+        'types'                         => [PokemonType::ELECTRIC],
+        'move_ids'                      => [$tackle->id],
+        'max_hp'                        => 218,
+        'current_hp'                    => 218,
+        'ailment'                       => null,
+        'ailment_turns_left'            => 0,
+        'confusion_turns_left'          => 0,
+        'has_entered_field'             => true,
+        'used_once_per_battle_move_ids' => [],
+    ];
+
+    Battle::factory()->for($user)->create([
+        'status' => BattleStatus::ONGOING,
+        'state'  => new BattleState(
+            turn: 2,
+            player_side: new BattleSide(combatants: [
+                new Combatant(...$combatant),
+                new Combatant(...[...$combatant, 'pokemon_id' => 'pokemon-2', 'species_id' => $eevee->id, 'level' => 40, 'types' => [PokemonType::NORMAL], 'move_ids' => [$bite->id], 'max_hp' => 180, 'current_hp' => 90]),
+            ], active_index: 0),
+            opponent_side: new BattleSide(combatants: [new Combatant(...[...$combatant, 'pokemon_id' => null])], active_index: 0),
+            is_awaiting_send_out: false,
+            log: [new BattleLogEntry(0, BattleLogKind::INFO, 'A wild Pikachu appeared!')],
+        ),
+    ]);
+
+    actingAs($user);
+
+    visit(route('battle.web.show'))
+        ->resize(390, 844)
+        ->assertAttribute('@battle-team-rail__pokemon-2-details-button', 'aria-haspopup', 'dialog')
+        ->click('@battle-team-rail__pokemon-2-details-button')
+        ->assertAttribute('@battle-team-rail__pokemon-2-details-button', 'aria-expanded', 'true')
+        ->assertVisible('@pokemon-details-sheet')
+        ->assertSeeIn('@pokemon-details-sheet', 'Lv 40 · HP 90 / 180')
+        ->assertSeeIn('@pokemon-details-sheet', 'Normal')
+        ->assertSeeIn('@pokemon-details-sheet', 'Bite')
+        ->assertSeeIn('@pokemon-details-sheet', 'Dark · 60')
+        ->assertMissing('@pokemon-details-hover-card')
+        ->click('@pokemon-details-sheet__close-button')
+        ->wait(0.5)
+        ->assertMissing('@pokemon-details-sheet')
+        ->assertButtonDisabled('@battle-team-rail__switch-button')
+        ->click('@battle-team-rail__pokemon-2-radio')
+        ->assertButtonEnabled('@battle-team-rail__switch-button')
+        ->assertNoJavascriptErrors();
+});
+
+it('clears the bench pick when the pokemon in battle faints or the battle ends', function (int $playerHp, int $opponentHp, string $nextCard) {
+    $user    = User::factory()->create();
+    $pikachu = Species::factory()->create(['name' => 'Pikachu', 'types' => [PokemonType::ELECTRIC]]);
+    $eevee   = Species::factory()->create(['name' => 'Eevee', 'types' => [PokemonType::NORMAL]]);
+    $pidgey  = Species::factory()->create(['name' => 'Pidgey', 'types' => [PokemonType::NORMAL, PokemonType::FLYING]]);
+    $tackle  = Move::factory()->plainDamage()->create(['name' => 'Tackle', 'type' => PokemonType::NORMAL, 'power' => 40]);
+
+    $combatant = [
+        'pokemon_id'                    => 'pokemon-1',
+        'species_id'                    => $pikachu->id,
+        'level'                         => 50,
+        'boost'                         => 0,
+        'is_shiny'                      => false,
+        'gender'                        => PokemonGender::MALE,
+        'types'                         => [PokemonType::ELECTRIC],
+        'move_ids'                      => [$tackle->id],
+        'max_hp'                        => 218,
+        'current_hp'                    => $playerHp,
+        'ailment'                       => null,
+        'ailment_turns_left'            => 0,
+        'confusion_turns_left'          => 0,
+        'has_entered_field'             => true,
+        'used_once_per_battle_move_ids' => [],
+    ];
+
+    Battle::factory()->for($user)->create([
+        'status' => BattleStatus::ONGOING,
+        'state'  => new BattleState(
+            turn: 1,
+            player_side: new BattleSide(combatants: [
+                new Combatant(...$combatant),
+                new Combatant(...[...$combatant, 'pokemon_id' => 'pokemon-2', 'species_id' => $eevee->id, 'types' => [PokemonType::NORMAL], 'current_hp' => 218, 'has_entered_field' => false]),
+            ], active_index: 0),
+            opponent_side: new BattleSide(combatants: [
+                new Combatant(...[...$combatant, 'pokemon_id' => null, 'species_id' => $pidgey->id, 'types' => [PokemonType::NORMAL, PokemonType::FLYING], 'current_hp' => $opponentHp]),
+            ], active_index: 0),
+            is_awaiting_send_out: false,
+            log: [new BattleLogEntry(0, BattleLogKind::INFO, 'A wild Pidgey appeared!')],
+        ),
+    ]);
+
+    RandomHelper::fake([$tackle->id, true, true, false, 1.0, true, false, 1.0]);
+
+    actingAs($user);
+
+    visit(route('battle.web.show'))
+        ->resize(1440, 900)
+        ->click('@battle-team-rail__pokemon-2-radio')
+        ->assertButtonEnabled('@battle-team-rail__switch-button')
+        ->click('@moves-card__attack-button')
+        ->wait(1)
+        ->assertVisible("@{$nextCard}")
+        ->assertScript('document.querySelectorAll(\'[data-test="battle-team-rail"] [data-state="checked"]\').length', 0)
+        ->assertNoJavascriptErrors();
+})->with([
+    'a faint'           => [1, 218, 'pokemon-fainted-card'],
+    'the end of battle' => [218, 1, 'battle-result-card'],
+]);
+
+it('opens a pokemon details from a tap on its portrait on a wide screen', function () {
+    $user    = User::factory()->create();
+    $pikachu = Species::factory()->create(['name' => 'Pikachu']);
+    $tackle  = Move::factory()->plainDamage()->create(['name' => 'Tackle', 'type' => PokemonType::NORMAL, 'power' => 40]);
+
+    $combatant = [
+        'pokemon_id'                    => 'pokemon-1',
+        'species_id'                    => $pikachu->id,
+        'level'                         => 50,
+        'boost'                         => 0,
+        'is_shiny'                      => false,
+        'gender'                        => PokemonGender::MALE,
+        'types'                         => [PokemonType::ELECTRIC],
+        'move_ids'                      => [$tackle->id],
+        'max_hp'                        => 218,
+        'current_hp'                    => 218,
+        'ailment'                       => null,
+        'ailment_turns_left'            => 0,
+        'confusion_turns_left'          => 0,
+        'has_entered_field'             => true,
+        'used_once_per_battle_move_ids' => [],
+    ];
+
+    Battle::factory()->for($user)->create([
+        'status' => BattleStatus::ONGOING,
+        'state'  => new BattleState(
+            turn: 1,
+            player_side: new BattleSide(combatants: [
+                new Combatant(...$combatant),
+                new Combatant(...[...$combatant, 'pokemon_id' => 'pokemon-2']),
+            ], active_index: 0),
+            opponent_side: new BattleSide(combatants: [new Combatant(...[...$combatant, 'pokemon_id' => null])], active_index: 0),
+            is_awaiting_send_out: false,
+            log: [new BattleLogEntry(0, BattleLogKind::INFO, 'A wild Pikachu appeared!')],
+        ),
+    ]);
+
+    actingAs($user);
+
+    $page = visit(route('battle.web.show'))
+        ->resize(1440, 900)
+        ->assertMissing('@pokemon-details-hover-card');
+
+    $page->script('document.querySelector(\'[data-test="battle-team-rail__pokemon-2-details-button"]\').click()');
+
+    $page
+        ->wait(0.5)
+        ->assertVisible('@pokemon-details-hover-card')
+        ->assertSeeIn('@pokemon-details-hover-card', 'Tackle')
+        ->assertAttribute('@battle-team-rail__pokemon-2-details-button', 'aria-expanded', 'true')
+        ->assertMissing('@pokemon-details-sheet')
         ->assertNoJavascriptErrors();
 });

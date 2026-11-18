@@ -99,6 +99,10 @@ function attack(): void {
   @apply flex min-h-16 w-full cursor-pointer items-start gap-3 rounded-lg border border-border bg-card px-3.5 py-3 font-normal transition-colors duration-200 has-focus-visible:ring-[3px] has-focus-visible:ring-ring/50 has-data-disabled:cursor-default motion-reduce:transition-none;
 }
 
+.moves-card__move:not(:has([data-state='checked'], [data-disabled])):hover {
+  @apply bg-muted/50;
+}
+
 .moves-card__move:has([data-state='checked']) {
   @apply border-primary bg-muted;
 }

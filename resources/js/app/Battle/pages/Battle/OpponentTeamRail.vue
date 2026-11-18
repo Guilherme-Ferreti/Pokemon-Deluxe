@@ -24,14 +24,20 @@
         </Tooltip>
       </CardTitle>
     </CardHeader>
-    <CardContent>
-      <ul class="opponent-team-rail__list">
+    <CardContent class="opponent-team-rail__content">
+      <TeamRailGroup
+        v-for="group in groups"
+        :key="group.heading"
+        :heading="group.heading"
+        :data-test="`opponent-team-rail__${group.testId}-list`"
+      >
         <li
-          v-for="(member, index) in page.props.opponent.team"
+          v-for="{ member, index } in group.members"
           :key="index"
           :class="[
             'opponent-team-rail__member',
             {
+              'opponent-team-rail__member--in-battle': member.isActive,
               'opponent-team-rail__member--unrevealed': !member.isRevealed,
               'opponent-team-rail__member--fainted': member.isFainted,
             },
@@ -39,76 +45,40 @@
           :data-test="`opponent-team-rail__pokemon-${index + 1}-item`"
         >
           <template v-if="member.isRevealed">
-            <SpeciesPortrait
-              class="opponent-team-rail__portrait"
-              :url="member.portrait"
-              :name="member.name ?? ''"
+            <PokemonDetailsButton
+              :pokemon="member"
+              :is-fainted="member.isFainted"
+              :test-id="`opponent-team-rail__pokemon-${index + 1}-details-button`"
             />
-            <span class="opponent-team-rail__body">
-              <PokemonDisplayName
-                class="opponent-team-rail__name"
-                :name="member.name ?? ''"
-                :gender="member.gender ?? PokemonGender.GENDERLESS"
-              />
-              <span class="opponent-team-rail__meta">
-                Lv {{ member.level
-                }}{{ member.boost ? ` · +${member.boost}` : '' }}
-              </span>
-              <span
-                v-if="!member.isActive || member.isFainted"
-                class="opponent-team-rail__hp"
-              >
-                <template v-if="member.isFainted">
-                  <span class="opponent-team-rail__hp-value">Fainted</span>
-                </template>
-                <template v-else>
-                  <span
-                    class="opponent-team-rail__hp-label"
-                    aria-hidden="true"
-                  >
-                    HP:
-                  </span>
-                  <HpProgress
-                    class="opponent-team-rail__hp-bar"
-                    :percentage="
-                      Math.ceil(
-                        ((member.currentHp ?? 0) / (member.maxHp ?? 1)) * 100,
-                      )
-                    "
-                    :label="`${member.name} HP`"
-                  />
-                  <span class="opponent-team-rail__hp-value">
-                    {{ member.currentHp }} / {{ member.maxHp }}
-                  </span>
-                </template>
-              </span>
-            </span>
-            <template v-if="member.isActive && !member.isFainted">
-              <IconPokeball
-                class="opponent-team-rail__in-battle-icon"
-                aria-hidden="true"
-              />
-              <span class="sr-only">In battle</span>
-            </template>
+            <TeamRailMemberBody
+              class="opponent-team-rail__body"
+              :name="member.name"
+              :gender="member.gender"
+              :level="member.isActive ? null : member.level"
+              :has-fainted-tag="member.isFainted"
+              :current-hp="hasHpRow(member) ? member.currentHp : null"
+              :max-hp="hasHpRow(member) ? member.maxHp : null"
+            />
           </template>
-          <span
-            v-else
-            class="opponent-team-rail__unrevealed-label"
-          >
-            Not sent out yet
-          </span>
+          <template v-else>
+            <span
+              class="opponent-team-rail__unrevealed-portrait"
+              aria-hidden="true"
+            />
+            <span class="opponent-team-rail__unrevealed-label">
+              Not sent out yet
+            </span>
+          </template>
         </li>
-      </ul>
+      </TeamRailGroup>
     </CardContent>
   </Card>
 </template>
 
 <script setup lang="ts">
 import { usePage } from '@inertiajs/vue3';
-import { IconInfoCircle, IconPokeball } from '@tabler/icons-vue';
+import { IconInfoCircle } from '@tabler/icons-vue';
 import { computed } from 'vue';
-import PokemonDisplayName from '@/shared/components/game/PokemonDisplayName.vue';
-import SpeciesPortrait from '@/shared/components/game/SpeciesPortrait.vue';
 import {
   Card,
   CardContent,
@@ -120,9 +90,14 @@ import {
   TooltipContent,
   TooltipTrigger,
 } from '@/shared/components/ui/tooltip';
-import { BattleType, PokemonGender } from '@/shared/types/enums';
-import type { BattleShowPageProps } from '../../types/page-props/BattleShowPageProps';
-import HpProgress from './HpProgress.vue';
+import { BattleType } from '@/shared/types/enums';
+import type {
+  BattleOpponentTeamMember,
+  BattleShowPageProps,
+} from '../../types/page-props/BattleShowPageProps';
+import PokemonDetailsButton from './PokemonDetailsButton.vue';
+import TeamRailGroup from './TeamRailGroup.vue';
+import TeamRailMemberBody from './TeamRailMemberBody.vue';
 
 const page = usePage<BattleShowPageProps>();
 
@@ -131,6 +106,33 @@ const hint = computed(() =>
     ? "Pokémon are revealed as they're sent out."
     : 'The whole team is shown from the start.',
 );
+
+const groups = computed(() => {
+  const team = page.props.opponent.team.map((member, index) => ({
+    member,
+    index,
+  }));
+
+  return [
+    {
+      heading: 'In battle',
+      testId: 'in-battle',
+      members: team.filter(({ member }) => member.isActive),
+    },
+    {
+      heading: 'Rest of the team',
+      testId: 'rest-of-the-team',
+      members: team.filter(({ member }) => !member.isActive),
+    },
+  ].filter((group) => group.members.length > 0);
+});
+
+/**
+ * The battlefield shows the HP of the one in battle, and a fainted one only needs its "Fainted" tag.
+ */
+function hasHpRow(member: BattleOpponentTeamMember): boolean {
+  return !member.isActive && !member.isFainted;
+}
 </script>
 
 <style scoped>
@@ -144,60 +146,28 @@ const hint = computed(() =>
   @apply rounded-full text-muted-foreground transition-colors hover:text-foreground focus-visible:ring-[3px] focus-visible:ring-ring/50 focus-visible:outline-none motion-reduce:transition-none;
 }
 
-.opponent-team-rail__list {
-  @apply flex flex-col gap-1.5;
+.opponent-team-rail__content {
+  @apply flex flex-col gap-3;
 }
 
 .opponent-team-rail__member {
-  @apply flex min-h-18.5 items-center gap-2.5 rounded-lg border border-border bg-card px-2.5 py-2;
+  @apply flex min-h-16 items-center gap-2 rounded-lg border border-border bg-card py-2 pr-2.5 pl-2;
+}
+
+.opponent-team-rail__member--in-battle {
+  @apply min-h-0;
 }
 
 .opponent-team-rail__member--unrevealed {
-  @apply border-dashed bg-muted;
+  @apply min-h-14.5 border-dashed bg-muted;
 }
 
-.opponent-team-rail__member--fainted {
+.opponent-team-rail__member--fainted .opponent-team-rail__body {
   @apply opacity-50;
 }
 
-.opponent-team-rail__member--fainted .opponent-team-rail__portrait {
-  @apply grayscale;
-}
-
-.opponent-team-rail__portrait {
-  @apply size-9 shrink-0;
-}
-
-.opponent-team-rail__body {
-  @apply flex min-w-0 flex-1 flex-col gap-0.5;
-}
-
-.opponent-team-rail__name {
-  @apply text-sm leading-snug font-semibold wrap-anywhere;
-}
-
-.opponent-team-rail__meta {
-  @apply text-xs text-muted-foreground;
-}
-
-.opponent-team-rail__hp {
-  @apply flex items-center gap-1.5;
-}
-
-.opponent-team-rail__hp-label {
-  @apply text-xs font-semibold text-muted-foreground;
-}
-
-.opponent-team-rail__hp-bar {
-  @apply h-1.5 min-w-10;
-}
-
-.opponent-team-rail__hp-value {
-  @apply text-xs whitespace-nowrap text-muted-foreground tabular-nums;
-}
-
-.opponent-team-rail__in-battle-icon {
-  @apply size-5 shrink-0;
+.opponent-team-rail__unrevealed-portrait {
+  @apply m-0.5 size-9 shrink-0;
 }
 
 .opponent-team-rail__unrevealed-label {
