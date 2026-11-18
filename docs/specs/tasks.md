@@ -826,7 +826,7 @@ Read [02-catching-and-exploration.md](02-catching-and-exploration.md) first. Nee
 
 ### 2.3 Areas
 
-- [ ] Done
+- [x] Done
 
 **Goal:** the 9 areas exist in code.
 
