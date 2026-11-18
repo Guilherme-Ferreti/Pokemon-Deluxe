@@ -22,7 +22,8 @@
           </TooltipTrigger>
           <TooltipContent class="battle-log-card__tooltip">
             The newest section is at the top and open; older ones are collapsed.
-            Click a turn to open or close it.
+            Once the battle ends, its last turn stays open under End. Click a
+            turn to open or close it.
           </TooltipContent>
         </Tooltip>
       </CardTitle>
@@ -137,7 +138,17 @@ function turnLabel(turn: BattleLogTurn): string {
 }
 
 function isTurnOpen(turn: number): boolean {
-  return chosenOpenStates[turn] ?? turn === page.props.battle.log[0]?.turn;
+  return chosenOpenStates[turn] ?? isOpenByDefault(turn);
+}
+
+function isOpenByDefault(turn: number): boolean {
+  const [newest, previous] = page.props.battle.log;
+
+  if (turn === newest?.turn) {
+    return true;
+  }
+
+  return newest?.isEnd === true && turn === previous?.turn;
 }
 
 function setTurnOpen(turn: number, isOpen: boolean): void {

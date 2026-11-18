@@ -822,3 +822,55 @@ it('does not show the opponent team rail in a wild battle', function () {
         ->assertMissing('@opponent-team-rail')
         ->assertNoJavascriptErrors();
 });
+
+it('opens the end section and the last played turn once the battle has ended', function () {
+    $user    = User::factory()->create();
+    $pikachu = Species::factory()->create(['name' => 'Pikachu']);
+    $tackle  = Move::factory()->plainDamage()->create(['name' => 'Tackle']);
+
+    $combatant = [
+        'pokemon_id'                    => 'pokemon-1',
+        'species_id'                    => $pikachu->id,
+        'level'                         => 50,
+        'boost'                         => 0,
+        'is_shiny'                      => false,
+        'gender'                        => PokemonGender::MALE,
+        'types'                         => [PokemonType::NORMAL],
+        'move_ids'                      => [$tackle->id],
+        'max_hp'                        => 218,
+        'current_hp'                    => 218,
+        'ailment'                       => null,
+        'ailment_turns_left'            => 0,
+        'confusion_turns_left'          => 0,
+        'has_entered_field'             => true,
+        'used_once_per_battle_move_ids' => [],
+    ];
+
+    Battle::factory()->for($user)->create([
+        'status' => BattleStatus::WON,
+        'state'  => new BattleState(
+            turn: 3,
+            player_side: new BattleSide(combatants: [new Combatant(...$combatant)], active_index: 0),
+            opponent_side: new BattleSide(combatants: [new Combatant(...[...$combatant, 'pokemon_id' => null, 'current_hp' => 0])], active_index: 0),
+            is_awaiting_send_out: false,
+            log: [
+                new BattleLogEntry(0, BattleLogKind::INFO, 'A wild Pikachu appeared!'),
+                new BattleLogEntry(1, BattleLogKind::MOVE, 'Pikachu used Tackle!', 'Tackle'),
+                new BattleLogEntry(2, BattleLogKind::MOVE, 'Pikachu used Tackle!', 'Tackle'),
+                new BattleLogEntry(2, BattleLogKind::EVENT, 'The wild Pikachu fainted!'),
+                new BattleLogEntry(3, BattleLogKind::INFO, 'You won!'),
+            ],
+            experience_gains: [new ExperienceGain(combatant_index: 0, earned_experience: 0, level_before: 50, level_after: 50, is_from_experience_share: false)],
+        ),
+    ]);
+
+    actingAs($user);
+
+    visit(route('battle.web.show'))
+        ->assertSeeIn('@battle-log-card__turn-3-button', 'End')
+        ->assertSeeIn('@battle-log-card__turn-3-line-1', 'You won!')
+        ->assertSeeIn('@battle-log-card__turn-2-line-2', 'The wild Pikachu fainted!')
+        ->assertMissing('@battle-log-card__turn-1-line-1')
+        ->assertMissing('@battle-log-card__turn-0-line-1')
+        ->assertNoJavascriptErrors();
+});
