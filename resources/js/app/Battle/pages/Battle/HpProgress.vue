@@ -32,7 +32,7 @@ const level = computed(() => {
 }
 
 .hp-progress :deep([data-slot='progress-indicator']) {
-  @apply duration-500 ease-out motion-reduce:transition-none;
+  @apply duration-1000 ease-out motion-reduce:transition-none;
 }
 
 .hp-progress--good :deep([data-slot='progress-indicator']) {

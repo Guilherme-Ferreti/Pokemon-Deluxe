@@ -74,7 +74,7 @@ import type {
   BattleShowPageProps,
 } from '../../types/page-props/BattleShowPageProps';
 
-const LINE_DELAY_MILLISECONDS = 140;
+const LINE_DELAY_MILLISECONDS = 500;
 
 const page = usePage<BattleShowPageProps>();
 
