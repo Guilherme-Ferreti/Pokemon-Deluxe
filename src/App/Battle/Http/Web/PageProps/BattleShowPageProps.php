@@ -137,10 +137,7 @@ final class BattleShowPageProps implements ProvidesInertiaProperties
             'type'          => $move->type,
             'isZMove'       => $move->is_z_move,
             'isDynamaxMove' => $move->is_dynamax_move,
-        ], array_map(
-            $this->shownMoves()->findOrFail(...),
-            $this->battle->state->player_side->activeCombatant()->move_ids,
-        ));
+        ], $this->existingMovesOf($this->battle->state->player_side->activeCombatant()));
     }
 
     /**
@@ -198,8 +195,6 @@ final class BattleShowPageProps implements ProvidesInertiaProperties
     }
 
     /**
-     * Unrevealed combatants (gym leaders and the Elite Four keep their team secret) carry no species data, types or moves.
-     *
      * @return list<array{name: ?string, portrait: ?string, gender: ?PokemonGender, level: ?int, boost: ?int, isShiny: ?bool, types: ?list<PokemonType>, moves: ?list<array{name: string, type: PokemonType, power: ?int}>, currentHp: ?int, maxHp: ?int, isFainted: bool, isActive: bool, isRevealed: bool}>
      */
     private function opponentTeam(BattleSide $side): array
@@ -278,9 +273,6 @@ final class BattleShowPageProps implements ProvidesInertiaProperties
         return $this->species->findOrFail($combatant->species_id);
     }
 
-    /**
-     * Gym leaders and the Elite Four keep the Pokémon they haven't sent out yet secret.
-     */
     private function isRevealedOpponent(Combatant $combatant, int $index): bool
     {
         $keepsTeamSecret = in_array($this->battle->type, [BattleType::GYM, BattleType::ELITE_FOUR], true);
@@ -291,35 +283,41 @@ final class BattleShowPageProps implements ProvidesInertiaProperties
     }
 
     /**
-     * The details only list the moves that still exist, so a move removed mid-battle doesn't break the page.
-     *
      * @return list<array{name: string, type: PokemonType, power: ?int}>
      */
     private function moveDetailsOf(Combatant $combatant): array
     {
-        $moves = array_filter(array_map($this->shownMoves()->get(...), $combatant->move_ids));
-
-        return array_values(array_map(fn (Move $move) => [
+        return array_map(fn (Move $move) => [
             'name'  => $move->name,
             'type'  => $move->type,
             'power' => $move->power,
-        ], $moves));
+        ], $this->existingMovesOf($combatant));
     }
 
     /**
-     * The moves of the player's team and of the opponents that have been revealed: the only ones the page shows.
-     *
+     * @return list<Move>
+     */
+    private function existingMovesOf(Combatant $combatant): array
+    {
+        return array_values(array_filter(array_map($this->shownMoves()->get(...), $combatant->move_ids)));
+    }
+
+    /**
      * @return EloquentCollection<string, Move>
      */
     private function shownMoves(): EloquentCollection
     {
+        if ($this->moves !== null) {
+            return $this->moves;
+        }
+
         $revealedOpponents = array_filter(
             $this->battle->state->opponent_side->combatants,
             $this->isRevealedOpponent(...),
             ARRAY_FILTER_USE_BOTH,
         );
 
-        return $this->moves ??= Move::query()
+        return $this->moves = Move::query()
             ->whereKey(array_merge(...array_map(
                 fn (Combatant $combatant) => $combatant->move_ids,
                 [...$this->battle->state->player_side->combatants, ...array_values($revealedOpponents)],

@@ -638,3 +638,50 @@ it('leaves a move that no longer exists out of a pokemon details', function () {
             ->where('player.team.1.moves', [['name' => 'Tackle', 'type' => PokemonType::NORMAL->value, 'power' => 40]])
         );
 });
+
+it('leaves a move that no longer exists out of the active pokemon moves', function () {
+    $user    = User::factory()->create();
+    $pikachu = Species::factory()->create();
+    $tackle  = Move::factory()->plainDamage()->create(['name' => 'Tackle', 'type' => PokemonType::NORMAL, 'power' => 40]);
+    $removed = Move::factory()->plainDamage()->create();
+
+    $combatant = [
+        'pokemon_id'                    => 'pokemon-1',
+        'species_id'                    => $pikachu->id,
+        'level'                         => 50,
+        'boost'                         => 0,
+        'is_shiny'                      => false,
+        'gender'                        => PokemonGender::MALE,
+        'types'                         => [PokemonType::NORMAL],
+        'move_ids'                      => [$removed->id, $tackle->id],
+        'max_hp'                        => 218,
+        'current_hp'                    => 218,
+        'ailment'                       => null,
+        'ailment_turns_left'            => 0,
+        'confusion_turns_left'          => 0,
+        'has_entered_field'             => true,
+        'used_once_per_battle_move_ids' => [],
+    ];
+
+    Battle::factory()->for($user)->create([
+        'status' => BattleStatus::ONGOING,
+        'state'  => new BattleState(
+            turn: 1,
+            player_side: new BattleSide(combatants: [new Combatant(...$combatant)], active_index: 0),
+            opponent_side: new BattleSide(combatants: [new Combatant(...[...$combatant, 'pokemon_id' => null])], active_index: 0),
+            is_awaiting_send_out: false,
+            log: [],
+        ),
+    ]);
+
+    $removed->delete();
+
+    actingAs($user)
+        ->get(route('battle.web.show'))
+        ->assertSuccessful()
+        ->assertInertia(fn (Assert $page) => $page
+            ->has('moves', 1)
+            ->where('moves.0.id', $tackle->id)
+            ->where('player.team.0.moves', [['name' => 'Tackle', 'type' => PokemonType::NORMAL->value, 'power' => 40]])
+        );
+});
