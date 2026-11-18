@@ -140,7 +140,7 @@ it('loads the battle page with expected structure', function () {
                 'currentHp' => 135,
                 'maxHp'     => 218,
                 'team'      => [
-                    ['name' => 'Pidgey', 'isFainted' => false],
+                    ['name' => 'Pidgey', 'portrait' => $pidgey->portraits->regular, 'gender' => PokemonGender::MALE->value, 'level' => 34, 'boost' => 0, 'currentHp' => 135, 'maxHp' => 218, 'isFainted' => false, 'isActive' => true, 'isRevealed' => true],
                 ],
             ])
             ->has('moves', 2)
@@ -423,3 +423,119 @@ it('redirects to the dashboard without a battle in progress or recently ended', 
         ->get(route('battle.web.show'))
         ->assertRedirectToRoute('dashboard.web.home');
 });
+
+it('shows the whole opponent team in a trainer battle, with the boost only on the one in battle', function () {
+    $user    = User::factory()->create();
+    $pikachu = Species::factory()->create();
+    $geodude = Species::factory()->create(['name' => 'Geodude']);
+    $onix    = Species::factory()->create(['name' => 'Onix']);
+    $tackle  = Move::factory()->plainDamage()->create();
+
+    $combatant = [
+        'pokemon_id'                    => null,
+        'species_id'                    => $pikachu->id,
+        'level'                         => 50,
+        'boost'                         => 5,
+        'is_shiny'                      => false,
+        'gender'                        => PokemonGender::MALE,
+        'types'                         => [PokemonType::NORMAL],
+        'move_ids'                      => [$tackle->id],
+        'max_hp'                        => 218,
+        'current_hp'                    => 218,
+        'ailment'                       => null,
+        'ailment_turns_left'            => 0,
+        'confusion_turns_left'          => 0,
+        'has_entered_field'             => false,
+        'used_once_per_battle_move_ids' => [],
+    ];
+
+    Battle::factory()->for($user)->create([
+        'type'   => BattleType::TRAINER,
+        'status' => BattleStatus::ONGOING,
+        'state'  => new BattleState(
+            turn: 2,
+            player_side: new BattleSide(combatants: [new Combatant(...[...$combatant, 'has_entered_field' => true])], active_index: 0),
+            opponent_side: new BattleSide(combatants: [
+                new Combatant(...[...$combatant, 'species_id' => $geodude->id, 'has_entered_field' => true, 'current_hp' => 0]),
+                new Combatant(...[...$combatant, 'has_entered_field' => true]),
+                new Combatant(...[...$combatant, 'species_id' => $onix->id]),
+            ], active_index: 1),
+            is_awaiting_send_out: false,
+            log: [],
+        ),
+    ]);
+
+    actingAs($user)
+        ->get(route('battle.web.show'))
+        ->assertInertia(fn (Assert $page) => $page
+            ->has('opponent.team', 3)
+            ->where('opponent.team.0.name', 'Geodude')
+            ->where('opponent.team.0.isFainted', true)
+            ->where('opponent.team.0.boost', 0)
+            ->where('opponent.team.1.isActive', true)
+            ->where('opponent.team.1.boost', 5)
+            ->where('opponent.team.2.name', 'Onix')
+            ->where('opponent.team.2.isRevealed', true)
+        );
+});
+
+it('hides the opponent pokemon that have not been sent out yet in a gym battle', function (BattleType $type) {
+    $user    = User::factory()->create();
+    $pikachu = Species::factory()->create();
+    $onix    = Species::factory()->create(['name' => 'Onix']);
+    $tackle  = Move::factory()->plainDamage()->create();
+
+    $combatant = [
+        'pokemon_id'                    => null,
+        'species_id'                    => $pikachu->id,
+        'level'                         => 50,
+        'boost'                         => 0,
+        'is_shiny'                      => false,
+        'gender'                        => PokemonGender::MALE,
+        'types'                         => [PokemonType::NORMAL],
+        'move_ids'                      => [$tackle->id],
+        'max_hp'                        => 218,
+        'current_hp'                    => 218,
+        'ailment'                       => null,
+        'ailment_turns_left'            => 0,
+        'confusion_turns_left'          => 0,
+        'has_entered_field'             => true,
+        'used_once_per_battle_move_ids' => [],
+    ];
+
+    Battle::factory()->for($user)->create([
+        'type'   => $type,
+        'status' => BattleStatus::ONGOING,
+        'state'  => new BattleState(
+            turn: 1,
+            player_side: new BattleSide(combatants: [new Combatant(...$combatant)], active_index: 0),
+            opponent_side: new BattleSide(combatants: [
+                new Combatant(...$combatant),
+                new Combatant(...[...$combatant, 'species_id' => $onix->id, 'has_entered_field' => false]),
+            ], active_index: 0),
+            is_awaiting_send_out: false,
+            log: [],
+        ),
+    ]);
+
+    actingAs($user)
+        ->get(route('battle.web.show'))
+        ->assertInertia(fn (Assert $page) => $page
+            ->where('opponent.team.0.isRevealed', true)
+            ->where('opponent.team.1', [
+                'name'       => null,
+                'portrait'   => null,
+                'gender'     => null,
+                'level'      => null,
+                'boost'      => null,
+                'currentHp'  => null,
+                'maxHp'      => null,
+                'isFainted'  => false,
+                'isActive'   => false,
+                'isRevealed' => false,
+            ])
+        );
+})->with([
+    'gym'        => [BattleType::GYM],
+    'elite four' => [BattleType::ELITE_FOUR],
+]);

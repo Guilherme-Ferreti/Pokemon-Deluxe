@@ -740,14 +740,14 @@ Uses `Combatant` from task 1.10.
 
 ### 1.34 Battle page: opponent's team rail
 
-- [ ] Done
+- [x] Done
 
 **Goal:** in battles against a trainer, the player sees the trainer's team.
 
 **Mock-up:** `docs/mockups/battle.html` (states "Trainer: choosing a move", "Gym: choosing a move", "Elite Four: choosing a move")
 
 **Build:**
-- New `OpponentTeamRail.vue` above the Battle log on wide screens, in every battle but wild ones: a card titled "Hiker Bob's team" with an info tooltip, built like the player's rail (task 1.29) but read-only (not a radio group).
+- New `OpponentTeamRail.vue` above the Battle log on wide screens, in every battle but wild ones: a card titled "Hiker Bob's team" with an info tooltip ("Opponent's team" until task 6.4 adds the trainer's name to the battle), built like the player's rail (task 1.29) but read-only (not a radio group).
 - The Pokémon in battle has the "in battle" look with a Poké Ball icon and no HP bar; the others show "Lv 35", "HP:" with the bar and "180 / 180", or "Fainted" with a greyscale portrait.
 - Gym leaders and the Elite Four keep their team secret: Pokémon that haven't come out yet show as dashed "Not sent out yet" rows with no portrait, level or HP bar; tooltip "Pokémon are revealed as they're sent out." Other trainers show the whole team; tooltip "The whole team is shown from the start."
 - Phones don't show the rail; the opponent's battlefield card has team dots instead (task 1.27).

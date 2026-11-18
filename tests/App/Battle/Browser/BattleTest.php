@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 use Shared\Enums\BattleLogKind;
 use Shared\Enums\BattleStatus;
+use Shared\Enums\BattleType;
 use Shared\Enums\PokemonGender;
 use Shared\Enums\PokemonType;
 use Shared\Helpers\RandomHelper;
@@ -615,3 +616,96 @@ it('shows the team in as many columns as fit below the wide layout', function (i
     'a large tablet'  => [1100, 3],
     'the wide layout' => [1440, 1],
 ]);
+
+it('shows the opponent team rail in a trainer battle only on a wide screen', function () {
+    $user    = User::factory()->create();
+    $pikachu = Species::factory()->create(['name' => 'Pikachu']);
+    $geodude = Species::factory()->create(['name' => 'Geodude']);
+    $tackle  = Move::factory()->plainDamage()->create(['name' => 'Tackle']);
+
+    $combatant = [
+        'pokemon_id'                    => 'pokemon-1',
+        'species_id'                    => $pikachu->id,
+        'level'                         => 50,
+        'boost'                         => 0,
+        'is_shiny'                      => false,
+        'gender'                        => PokemonGender::MALE,
+        'types'                         => [PokemonType::NORMAL],
+        'move_ids'                      => [$tackle->id],
+        'max_hp'                        => 218,
+        'current_hp'                    => 218,
+        'ailment'                       => null,
+        'ailment_turns_left'            => 0,
+        'confusion_turns_left'          => 0,
+        'has_entered_field'             => true,
+        'used_once_per_battle_move_ids' => [],
+    ];
+
+    Battle::factory()->for($user)->create([
+        'type'   => BattleType::GYM,
+        'status' => BattleStatus::ONGOING,
+        'state'  => new BattleState(
+            turn: 2,
+            player_side: new BattleSide(combatants: [new Combatant(...$combatant)], active_index: 0),
+            opponent_side: new BattleSide(combatants: [
+                new Combatant(...[...$combatant, 'pokemon_id' => null, 'species_id' => $geodude->id]),
+                new Combatant(...[...$combatant, 'pokemon_id' => null, 'has_entered_field' => false]),
+            ], active_index: 0),
+            is_awaiting_send_out: false,
+            log: [new BattleLogEntry(0, BattleLogKind::INFO, 'The gym leader wants to battle!')],
+        ),
+    ]);
+
+    actingAs($user);
+
+    visit(route('battle.web.show'))
+        ->resize(1440, 900)
+        ->assertVisible('@opponent-team-rail')
+        ->assertSeeIn('@opponent-team-rail__pokemon-1-item', 'Geodude')
+        ->assertSeeIn('@opponent-team-rail__pokemon-2-item', 'Not sent out yet')
+        ->resize(390, 844)
+        ->assertMissing('@opponent-team-rail')
+        ->assertNoJavascriptErrors();
+});
+
+it('does not show the opponent team rail in a wild battle', function () {
+    $user    = User::factory()->create();
+    $pikachu = Species::factory()->create(['name' => 'Pikachu']);
+    $tackle  = Move::factory()->plainDamage()->create(['name' => 'Tackle']);
+
+    $combatant = [
+        'pokemon_id'                    => 'pokemon-1',
+        'species_id'                    => $pikachu->id,
+        'level'                         => 50,
+        'boost'                         => 0,
+        'is_shiny'                      => false,
+        'gender'                        => PokemonGender::MALE,
+        'types'                         => [PokemonType::NORMAL],
+        'move_ids'                      => [$tackle->id],
+        'max_hp'                        => 218,
+        'current_hp'                    => 218,
+        'ailment'                       => null,
+        'ailment_turns_left'            => 0,
+        'confusion_turns_left'          => 0,
+        'has_entered_field'             => true,
+        'used_once_per_battle_move_ids' => [],
+    ];
+
+    Battle::factory()->for($user)->create([
+        'status' => BattleStatus::ONGOING,
+        'state'  => new BattleState(
+            turn: 2,
+            player_side: new BattleSide(combatants: [new Combatant(...$combatant)], active_index: 0),
+            opponent_side: new BattleSide(combatants: [new Combatant(...[...$combatant, 'pokemon_id' => null])], active_index: 0),
+            is_awaiting_send_out: false,
+            log: [new BattleLogEntry(0, BattleLogKind::INFO, 'A wild Pikachu appeared!')],
+        ),
+    ]);
+
+    actingAs($user);
+
+    visit(route('battle.web.show'))
+        ->resize(1440, 900)
+        ->assertMissing('@opponent-team-rail')
+        ->assertNoJavascriptErrors();
+});

@@ -27,6 +27,10 @@
       />
     </div>
     <div class="battle-page__column battle-page__column--right">
+      <OpponentTeamRail
+        v-if="page.props.battle.type !== BattleType.WILD"
+        class="battle-page__opponent-team"
+      />
       <BattleLogCard class="battle-page__log" />
     </div>
   </div>
@@ -37,6 +41,7 @@
 import { usePage } from '@inertiajs/vue3';
 import { useElementSize } from '@vueuse/core';
 import { computed, useTemplateRef } from 'vue';
+import { BattleType } from '@/shared/types/enums';
 import type { BattleShowPageProps } from '../../types/page-props/BattleShowPageProps';
 import BattlefieldCard from './BattlefieldCard.vue';
 import BattleHeader from './BattleHeader.vue';
@@ -45,6 +50,7 @@ import BattleOptionsCard from './BattleOptionsCard.vue';
 import BattleResultCard from './BattleResultCard.vue';
 import BattleTeamRail from './BattleTeamRail.vue';
 import MovesCard from './MovesCard.vue';
+import OpponentTeamRail from './OpponentTeamRail.vue';
 import PokemonFaintedCard from './PokemonFaintedCard.vue';
 import SendOutSheet from './SendOutSheet.vue';
 
@@ -104,6 +110,10 @@ const isPhoneLayout = computed(
 
 .battle-page__team {
   @apply order-4 @5xl/main-content:order-0;
+}
+
+.battle-page__opponent-team {
+  @apply hidden @5xl/main-content:flex;
 }
 
 .battle-page__log {

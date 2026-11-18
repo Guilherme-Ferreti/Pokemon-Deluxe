@@ -33,7 +33,7 @@ import {
   TooltipTrigger,
 } from '@/shared/components/ui/tooltip';
 import type {
-  BattleCombatant,
+  BattleOpponentTeamMember,
   BattleShowPageProps,
 } from '../../types/page-props/BattleShowPageProps';
 
@@ -47,8 +47,14 @@ const summary = computed(() => {
   return `${standing} of ${team.value.length} Pokémon can still fight`;
 });
 
-function label(member: BattleCombatant['team'][number]): string {
-  return member.isFainted ? `${member.name} (fainted)` : member.name;
+function label(member: BattleOpponentTeamMember): string {
+  if (!member.isRevealed) {
+    return 'Not sent out yet';
+  }
+
+  const name = member.name ?? '';
+
+  return member.isFainted ? `${name} (fainted)` : name;
 }
 </script>
 

@@ -17,10 +17,19 @@ export type BattleCombatant = {
   sprite: Pokemon['frontSprite'];
   currentHp: number;
   maxHp: number;
-  team: {
-    name: Pokemon['name'];
-    isFainted: boolean;
-  }[];
+};
+
+export type BattleOpponentTeamMember = {
+  name: Pokemon['name'] | null;
+  portrait: string | null;
+  gender: Pokemon['gender'] | null;
+  level: Pokemon['level'] | null;
+  boost: number | null;
+  currentHp: number | null;
+  maxHp: number | null;
+  isFainted: boolean;
+  isActive: boolean;
+  isRevealed: boolean;
 };
 
 export type BattleTeamMember = {
@@ -55,10 +64,12 @@ export type BattleShowPageProps = {
     log: BattleLogTurn[];
     isAwaitingSendOut: boolean;
   };
-  player: Omit<BattleCombatant, 'team'> & {
+  player: BattleCombatant & {
     team: BattleTeamMember[];
   };
-  opponent: BattleCombatant;
+  opponent: BattleCombatant & {
+    team: BattleOpponentTeamMember[];
+  };
   moves: Pick<Move, 'id' | 'name' | 'type' | 'isZMove' | 'isDynamaxMove'>[];
   result: {
     experienceGains: {

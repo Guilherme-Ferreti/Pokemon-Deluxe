@@ -120,7 +120,7 @@ final class BattleShowPageProps implements ProvidesInertiaProperties
             'sprite'    => $species->getDisplayFrontSprite($combatant->gender, $combatant->is_shiny),
             'currentHp' => $combatant->current_hp,
             'maxHp'     => $combatant->max_hp,
-            'team'      => $this->team($side),
+            'team'      => $this->opponentTeam($side),
         ];
     }
 
@@ -217,14 +217,45 @@ final class BattleShowPageProps implements ProvidesInertiaProperties
     }
 
     /**
-     * @return list<array{name: string, isFainted: bool}>
+     * Unrevealed combatants (gym leaders and the Elite Four keep their team secret) carry no species data.
+     *
+     * @return list<array{name: ?string, portrait: ?string, gender: ?PokemonGender, level: ?int, boost: ?int, currentHp: ?int, maxHp: ?int, isFainted: bool, isActive: bool, isRevealed: bool}>
      */
-    private function team(BattleSide $side): array
+    private function opponentTeam(BattleSide $side): array
     {
-        return array_map(fn (Combatant $combatant) => [
-            'name'      => $this->speciesOf($combatant)->getDisplayName($combatant->is_shiny),
-            'isFainted' => $combatant->isFainted(),
-        ], $side->combatants);
+        $keepsTeamSecret = in_array($this->battle->type, [BattleType::GYM, BattleType::ELITE_FOUR], true);
+
+        return array_map(function (Combatant $combatant, int $index) use ($side, $keepsTeamSecret) {
+            $isActive = $index === $side->active_index;
+
+            if ($keepsTeamSecret && ! $combatant->has_entered_field && ! $isActive) {
+                return [
+                    'name'       => null,
+                    'portrait'   => null,
+                    'gender'     => null,
+                    'level'      => null,
+                    'boost'      => null,
+                    'currentHp'  => null,
+                    'maxHp'      => null,
+                    'isFainted'  => false,
+                    'isActive'   => false,
+                    'isRevealed' => false,
+                ];
+            }
+
+            return [
+                'name'       => $this->speciesOf($combatant)->getDisplayName($combatant->is_shiny),
+                'portrait'   => $this->portraitOf($combatant),
+                'gender'     => $combatant->gender,
+                'level'      => $combatant->level,
+                'boost'      => $isActive ? $combatant->boost : 0,
+                'currentHp'  => $combatant->current_hp,
+                'maxHp'      => $combatant->max_hp,
+                'isFainted'  => $combatant->isFainted(),
+                'isActive'   => $isActive,
+                'isRevealed' => true,
+            ];
+        }, $side->combatants, array_keys($side->combatants));
     }
 
     /**
