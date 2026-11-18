@@ -62,6 +62,6 @@ final class InflictAilment
             Ailment::UNKNOWN   => throw new LogicException('The unknown ailment is never inflicted.'),
         };
 
-        $action->turn->log(BattleLogKind::EVENT, "{$action->turn->displayName($action->defendingSide(), atStart: true)} {$logLine}");
+        $action->turn->log(BattleLogKind::DETAIL, "{$action->turn->displayName($action->defendingSide(), atStart: true)} {$logLine}");
     }
 }

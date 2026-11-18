@@ -173,7 +173,7 @@ function splitMove(
 }
 
 .battle-log-card__list {
-  @apply flex flex-col gap-0.5 pb-1;
+  @apply flex flex-col gap-0.5 pb-1 pl-6;
 }
 
 .battle-log-card__line {

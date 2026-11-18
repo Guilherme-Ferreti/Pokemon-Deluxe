@@ -95,19 +95,15 @@ provideBattleLayout(isPhoneLayout);
   @apply @5xl/main-content:col-start-3;
 }
 
-.battle-page__result {
+.battle-page__battlefield {
   @apply order-1 @5xl/main-content:order-0;
 }
 
-.battle-page__battlefield {
+.battle-page__result {
   @apply order-2 @5xl/main-content:order-0;
 }
 
 .battle-page__moves {
-  @apply order-3 @5xl/main-content:order-0;
-}
-
-.battle-page__options {
   @apply order-3 @5xl/main-content:order-0;
 }
 
@@ -119,7 +115,11 @@ provideBattleLayout(isPhoneLayout);
   @apply order-5 @5xl/main-content:order-0;
 }
 
-.battle-page__log {
+.battle-page__options {
   @apply order-6 @5xl/main-content:order-0;
+}
+
+.battle-page__log {
+  @apply order-7 @5xl/main-content:order-0;
 }
 </style>

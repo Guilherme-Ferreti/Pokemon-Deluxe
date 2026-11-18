@@ -568,15 +568,17 @@ it('shows three columns on a wide screen and stacks the cards in reading order o
             (() => {
                 const field = document.querySelector('[data-test="battlefield-card"]').getBoundingClientRect();
                 const moves = document.querySelector('[data-test="moves-card"]').getBoundingClientRect();
+                const team = document.querySelector('[data-test="battle-team-rail"]').getBoundingClientRect();
+                const options = document.querySelector('[data-test="battle-options-card"]').getBoundingClientRect();
                 const log = document.querySelector('[data-test="battle-log-card"]').getBoundingClientRect();
 
-                return moves.top >= field.bottom && log.top >= moves.bottom && field.left === moves.left && moves.left === log.left;
+                return moves.top >= field.bottom && team.top >= moves.bottom && options.top >= team.bottom && log.top >= options.bottom && field.left === moves.left && moves.left === log.left;
             })()
             JS)
         ->assertNoJavascriptErrors();
 });
 
-it('shows the result above the battlefield on a phone, once the battle has ended', function () {
+it('shows the result below the battlefield on a phone, once the battle has ended', function () {
     $user    = User::factory()->create();
     $pikachu = Species::factory()->create(['name' => 'Pikachu']);
     $tackle  = Move::factory()->plainDamage()->create(['name' => 'Tackle']);
@@ -618,10 +620,11 @@ it('shows the result above the battlefield on a phone, once the battle has ended
         ->assertVisible('@battlefield-card')
         ->assertScript(<<<'JS'
             (() => {
+                const field = document.querySelector('[data-test="battlefield-card"]').getBoundingClientRect();
                 const result = document.querySelector('[data-test="battle-result-card"]').getBoundingClientRect();
                 const log = document.querySelector('[data-test="battle-log-card"]').getBoundingClientRect();
 
-                return log.top >= result.bottom;
+                return result.top >= field.bottom && log.top >= result.bottom;
             })()
             JS)
         ->assertNoJavascriptErrors();

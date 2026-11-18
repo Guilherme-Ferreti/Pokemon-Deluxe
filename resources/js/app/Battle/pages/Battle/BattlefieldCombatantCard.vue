@@ -70,11 +70,11 @@ const hpPercentage = computed(() =>
 @reference '@css/app.css';
 
 .battlefield-combatant-card {
-  @apply flex min-w-0 flex-1 flex-col gap-1.5 rounded-lg border border-border bg-card/95 px-3 py-2.5 @sm/battlefield:w-60 @sm/battlefield:flex-none;
+  @apply flex w-full min-w-0 flex-1 flex-col gap-1.5 rounded-lg border border-border bg-card/95 px-3 py-2.5 @sm/battlefield:max-w-60 @sm/battlefield:flex-none;
 }
 
 .battlefield-combatant-card__details {
-  @apply flex flex-wrap items-center gap-1.5;
+  @apply flex items-start gap-1.5;
 }
 
 .battlefield-combatant-card__name {

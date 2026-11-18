@@ -950,7 +950,7 @@ describe('status effects', function () {
         'thaws out and acts' => [
             Ailment::FREEZE, 0, 0, [true, true, false, 1.0], 218, null, 0, 0, 218 - 31,
             [
-                new BattleLogEntry(1, BattleLogKind::EVENT, 'Pikachu thawed out!'),
+                new BattleLogEntry(1, BattleLogKind::DETAIL, 'Pikachu thawed out!'),
                 new BattleLogEntry(1, BattleLogKind::MOVE, 'Pikachu used Tackle!', 'Tackle'),
                 new BattleLogEntry(1, BattleLogKind::DAMAGE, 'It dealt 31 HP damage.'),
                 new BattleLogEntry(1, BattleLogKind::MOVE, 'The wild Pidgey used Growl!', 'Growl'),
@@ -966,7 +966,7 @@ describe('status effects', function () {
         'wakes up and acts' => [
             Ailment::SLEEP, 0, 0, [true, false, 1.0], 218, null, 0, 0, 218 - 31,
             [
-                new BattleLogEntry(1, BattleLogKind::EVENT, 'Pikachu woke up!'),
+                new BattleLogEntry(1, BattleLogKind::DETAIL, 'Pikachu woke up!'),
                 new BattleLogEntry(1, BattleLogKind::MOVE, 'Pikachu used Tackle!', 'Tackle'),
                 new BattleLogEntry(1, BattleLogKind::DAMAGE, 'It dealt 31 HP damage.'),
                 new BattleLogEntry(1, BattleLogKind::MOVE, 'The wild Pidgey used Growl!', 'Growl'),
@@ -1021,7 +1021,7 @@ describe('status effects', function () {
                 new BattleLogEntry(1, BattleLogKind::MOVE, 'Pikachu used Tackle!', 'Tackle'),
                 new BattleLogEntry(1, BattleLogKind::DAMAGE, 'It dealt 15 HP damage.'),
                 new BattleLogEntry(1, BattleLogKind::MOVE, 'The wild Pidgey used Growl!', 'Growl'),
-                new BattleLogEntry(1, BattleLogKind::EVENT, 'Pikachu is hurt by its burn!'),
+                new BattleLogEntry(1, BattleLogKind::DETAIL, 'Pikachu is hurt by its burn!'),
                 new BattleLogEntry(1, BattleLogKind::DAMAGE, 'It dealt 13 HP damage.'),
             ],
         ],
@@ -1093,7 +1093,7 @@ describe('status effects', function () {
             [PokemonType::NORMAL, PokemonType::FLYING], null, [true, true], 218, Ailment::PARALYSIS, 0, 0,
             [
                 new BattleLogEntry(1, BattleLogKind::MOVE, 'Pikachu used Thunder Wave!', 'Thunder Wave'),
-                new BattleLogEntry(1, BattleLogKind::EVENT, 'The wild Pidgey is paralyzed! It may be unable to move!'),
+                new BattleLogEntry(1, BattleLogKind::DETAIL, 'The wild Pidgey is paralyzed! It may be unable to move!'),
             ],
         ],
         'a status move against a type its move type cannot affect' => [
@@ -1118,7 +1118,7 @@ describe('status effects', function () {
             [
                 new BattleLogEntry(1, BattleLogKind::MOVE, 'Pikachu used Thunder Wave!', 'Thunder Wave'),
                 new BattleLogEntry(1, BattleLogKind::DETAIL, 'But it failed!'),
-                new BattleLogEntry(1, BattleLogKind::EVENT, 'The wild Pidgey is hurt by poison!'),
+                new BattleLogEntry(1, BattleLogKind::DETAIL, 'The wild Pidgey is hurt by poison!'),
                 new BattleLogEntry(1, BattleLogKind::DAMAGE, 'It dealt 27 HP damage.'),
             ],
         ],
@@ -1127,7 +1127,7 @@ describe('status effects', function () {
             [PokemonType::NORMAL], null, [true, true, 2], 218, Ailment::SLEEP, 2, 0,
             [
                 new BattleLogEntry(1, BattleLogKind::MOVE, 'Pikachu used Hypnosis!', 'Hypnosis'),
-                new BattleLogEntry(1, BattleLogKind::EVENT, 'The wild Pidgey fell asleep!'),
+                new BattleLogEntry(1, BattleLogKind::DETAIL, 'The wild Pidgey fell asleep!'),
             ],
         ],
         'confusion for a rolled number of turns' => [
@@ -1135,7 +1135,7 @@ describe('status effects', function () {
             [PokemonType::NORMAL], null, [true, true, 3], 218, null, 0, 3,
             [
                 new BattleLogEntry(1, BattleLogKind::MOVE, 'Pikachu used Supersonic!', 'Supersonic'),
-                new BattleLogEntry(1, BattleLogKind::EVENT, 'The wild Pidgey became confused!'),
+                new BattleLogEntry(1, BattleLogKind::DETAIL, 'The wild Pidgey became confused!'),
             ],
         ],
         'burn from a damaging move' => [
@@ -1144,8 +1144,8 @@ describe('status effects', function () {
             [
                 new BattleLogEntry(1, BattleLogKind::MOVE, 'Pikachu used Ember!', 'Ember'),
                 new BattleLogEntry(1, BattleLogKind::DAMAGE, 'It dealt 31 HP damage.'),
-                new BattleLogEntry(1, BattleLogKind::EVENT, 'The wild Pidgey was burned!'),
-                new BattleLogEntry(1, BattleLogKind::EVENT, 'The wild Pidgey is hurt by its burn!'),
+                new BattleLogEntry(1, BattleLogKind::DETAIL, 'The wild Pidgey was burned!'),
+                new BattleLogEntry(1, BattleLogKind::DETAIL, 'The wild Pidgey is hurt by its burn!'),
                 new BattleLogEntry(1, BattleLogKind::DAMAGE, 'It dealt 13 HP damage.'),
             ],
         ],
@@ -1154,8 +1154,8 @@ describe('status effects', function () {
             [PokemonType::NORMAL], null, [true, true], 218 - 27, Ailment::POISON, 0, 0,
             [
                 new BattleLogEntry(1, BattleLogKind::MOVE, 'Pikachu used Poison Powder!', 'Poison Powder'),
-                new BattleLogEntry(1, BattleLogKind::EVENT, 'The wild Pidgey was poisoned!'),
-                new BattleLogEntry(1, BattleLogKind::EVENT, 'The wild Pidgey is hurt by poison!'),
+                new BattleLogEntry(1, BattleLogKind::DETAIL, 'The wild Pidgey was poisoned!'),
+                new BattleLogEntry(1, BattleLogKind::DETAIL, 'The wild Pidgey is hurt by poison!'),
                 new BattleLogEntry(1, BattleLogKind::DAMAGE, 'It dealt 27 HP damage.'),
             ],
         ],
@@ -1165,7 +1165,7 @@ describe('status effects', function () {
             [
                 new BattleLogEntry(1, BattleLogKind::MOVE, 'Pikachu used Ice Beam!', 'Ice Beam'),
                 new BattleLogEntry(1, BattleLogKind::DAMAGE, 'It dealt 70 HP damage.'),
-                new BattleLogEntry(1, BattleLogKind::EVENT, 'The wild Pidgey was frozen solid!'),
+                new BattleLogEntry(1, BattleLogKind::DETAIL, 'The wild Pidgey was frozen solid!'),
             ],
         ],
         'a damaging move that is not very effective and whose ailment roll fails' => [
@@ -1243,9 +1243,9 @@ describe('status effects', function () {
             [
                 new BattleLogEntry(1, BattleLogKind::MOVE, 'Pikachu used Growl!', 'Growl'),
                 new BattleLogEntry(1, BattleLogKind::MOVE, 'The wild Pidgey used Growl!', 'Growl'),
-                new BattleLogEntry(1, BattleLogKind::EVENT, 'Pikachu is hurt by its burn!'),
+                new BattleLogEntry(1, BattleLogKind::DETAIL, 'Pikachu is hurt by its burn!'),
                 new BattleLogEntry(1, BattleLogKind::DAMAGE, 'It dealt 13 HP damage.'),
-                new BattleLogEntry(1, BattleLogKind::EVENT, 'The wild Pidgey is hurt by poison!'),
+                new BattleLogEntry(1, BattleLogKind::DETAIL, 'The wild Pidgey is hurt by poison!'),
                 new BattleLogEntry(1, BattleLogKind::DAMAGE, 'It dealt 27 HP damage.'),
             ],
         ],
@@ -1254,7 +1254,7 @@ describe('status effects', function () {
             [
                 new BattleLogEntry(1, BattleLogKind::MOVE, 'Pikachu used Growl!', 'Growl'),
                 new BattleLogEntry(1, BattleLogKind::MOVE, 'The wild Pidgey used Growl!', 'Growl'),
-                new BattleLogEntry(1, BattleLogKind::EVENT, 'Pikachu is hurt by its burn!'),
+                new BattleLogEntry(1, BattleLogKind::DETAIL, 'Pikachu is hurt by its burn!'),
                 new BattleLogEntry(1, BattleLogKind::DAMAGE, 'It dealt 5 HP damage.'),
                 new BattleLogEntry(1, BattleLogKind::EVENT, 'Pikachu fainted!'),
                 new BattleLogEntry(2, BattleLogKind::RESULT, 'You lost...'),
@@ -1265,7 +1265,7 @@ describe('status effects', function () {
             [
                 new BattleLogEntry(1, BattleLogKind::MOVE, 'The wild Pidgey used Growl!', 'Growl'),
                 new BattleLogEntry(1, BattleLogKind::MOVE, 'Pikachu used Growl!', 'Growl'),
-                new BattleLogEntry(1, BattleLogKind::EVENT, 'The wild Pidgey is hurt by poison!'),
+                new BattleLogEntry(1, BattleLogKind::DETAIL, 'The wild Pidgey is hurt by poison!'),
                 new BattleLogEntry(1, BattleLogKind::DAMAGE, 'It dealt 5 HP damage.'),
                 new BattleLogEntry(1, BattleLogKind::EVENT, 'The wild Pidgey fainted!'),
                 new BattleLogEntry(2, BattleLogKind::RESULT, 'You won!'),

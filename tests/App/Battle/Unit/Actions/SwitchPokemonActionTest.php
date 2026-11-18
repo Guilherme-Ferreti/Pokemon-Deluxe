@@ -139,9 +139,9 @@ it('still deals end-of-turn damage to both sides after a switch', function () {
         ->and($state?->log)->toEqual([
             new BattleLogEntry(1, BattleLogKind::EVENT, 'You switched Pokémon to Eevee.'),
             new BattleLogEntry(1, BattleLogKind::MOVE, 'The wild Pidgey used Growl!', 'Growl'),
-            new BattleLogEntry(1, BattleLogKind::EVENT, 'Eevee is hurt by its burn!'),
+            new BattleLogEntry(1, BattleLogKind::DETAIL, 'Eevee is hurt by its burn!'),
             new BattleLogEntry(1, BattleLogKind::DAMAGE, 'It dealt 13 HP damage.'),
-            new BattleLogEntry(1, BattleLogKind::EVENT, 'The wild Pidgey is hurt by poison!'),
+            new BattleLogEntry(1, BattleLogKind::DETAIL, 'The wild Pidgey is hurt by poison!'),
             new BattleLogEntry(1, BattleLogKind::DAMAGE, 'It dealt 27 HP damage.'),
         ]);
 });

@@ -67,11 +67,11 @@ const isOver = computed(
 }
 
 .battlefield-card__side {
-  @apply flex items-end gap-2.5;
+  @apply flex flex-col gap-2.5 @sm/battlefield:flex-row @sm/battlefield:items-end @sm/battlefield:justify-start;
 }
 
 .battlefield-card__side--opponent {
-  @apply items-start justify-end;
+  @apply items-end @sm/battlefield:items-start @sm/battlefield:justify-end;
 }
 
 .battlefield-card__sprite {

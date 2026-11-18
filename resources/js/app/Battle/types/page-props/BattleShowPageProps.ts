@@ -38,9 +38,6 @@ export type BattlePokemonDetails = {
   maxHp: number;
 };
 
-/**
- * Gym leaders and the Elite Four keep the Pokémon they haven't sent out yet secret: those carry no species data.
- */
 export type BattleOpponentTeamMember =
   | (BattlePokemonDetails & {
       isFainted: boolean;

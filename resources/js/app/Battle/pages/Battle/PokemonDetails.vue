@@ -5,6 +5,7 @@
       v-if="pokemon.boost > 0"
       class="pokemon-details__effect"
     >
+      In
       <strong class="pokemon-details__effect-name">
         Boost +{{ pokemon.boost }}
       </strong>
