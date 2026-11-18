@@ -113,8 +113,8 @@ describe('experience', function () {
             ->and($switchedPokemon->fresh())->experience->toBe(26_875)->level->toBe(26)
             ->and($benchedPokemon->fresh())->experience->toBe(50_000)->level->toBe(50)
             ->and($battle->fresh()?->state->experience_gains)->toEqual([
-                new ExperienceGain(combatant_index: 0, earned_experience: 937, level_before: 50, level_after: 50),
-                new ExperienceGain(combatant_index: 1, earned_experience: 1_875, level_before: 25, level_after: 26),
+                new ExperienceGain(combatant_index: 0, earned_experience: 937, level_before: 50, level_after: 50, is_from_experience_share: false),
+                new ExperienceGain(combatant_index: 1, earned_experience: 1_875, level_before: 25, level_after: 26, is_from_experience_share: false),
             ])
             ->and($battle->fresh()?->state->log)->toEqual([
                 ...($resultText === null ? [] : [new BattleLogEntry(5, BattleLogKind::INFO, $resultText)]),
@@ -181,7 +181,7 @@ describe('experience', function () {
 
         expect($pokemon->fresh()?->experience)->toBe(50_000)
             ->and($battle->fresh()?->state->experience_gains)->toEqual([
-                new ExperienceGain(combatant_index: 0, earned_experience: 0, level_before: 50, level_after: 50),
+                new ExperienceGain(combatant_index: 0, earned_experience: 0, level_before: 50, level_after: 50, is_from_experience_share: false),
             ]);
     });
 
@@ -228,8 +228,8 @@ describe('experience', function () {
         new EndBattleAction()->handle($battle, BattleStatus::CAUGHT);
 
         expect($battle->fresh()?->state->experience_gains)->toEqual([
-            new ExperienceGain(combatant_index: 0, earned_experience: 250, level_before: 50, level_after: 50),
-            new ExperienceGain(combatant_index: 1, earned_experience: 375, level_before: 50, level_after: 50),
+            new ExperienceGain(combatant_index: 0, earned_experience: 250, level_before: 50, level_after: 50, is_from_experience_share: false),
+            new ExperienceGain(combatant_index: 1, earned_experience: 375, level_before: 50, level_after: 50, is_from_experience_share: false),
         ]);
     });
 
@@ -272,7 +272,7 @@ describe('experience', function () {
 
         expect($pokemon->fresh()?->experience)->toBe(50_000)
             ->and($battle->fresh()?->state->experience_gains)->toEqual([
-                new ExperienceGain(combatant_index: 0, earned_experience: 375, level_before: 50, level_after: 50),
+                new ExperienceGain(combatant_index: 0, earned_experience: 375, level_before: 50, level_after: 50, is_from_experience_share: false),
             ]);
     });
 });

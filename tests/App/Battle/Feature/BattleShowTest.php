@@ -12,7 +12,6 @@ use Shared\Enums\PokemonGender;
 use Shared\Enums\PokemonType;
 use Shared\Models\Battle;
 use Shared\Models\Move;
-use Shared\Models\Pokemon;
 use Shared\Models\Species;
 use Shared\Models\User;
 use Shared\ValueObjects\BattleLogEntry;
@@ -300,10 +299,9 @@ it('shows the end screen with the XP each pokemon earned', function (BattleStatu
     $pikachu = Species::factory()->create(['name' => 'Pikachu']);
     $eevee   = Species::factory()->create(['name' => 'Eevee']);
     $tackle  = Move::factory()->plainDamage()->create();
-    $pokemon = Pokemon::factory()->for($user)->create(['level' => 26, 'experience' => 26_875]);
 
     $combatant = [
-        'pokemon_id'                    => $pokemon->id,
+        'pokemon_id'                    => 'pokemon-1',
         'species_id'                    => $pikachu->id,
         'level'                         => 25,
         'boost'                         => 0,
@@ -326,8 +324,7 @@ it('shows the end screen with the XP each pokemon earned', function (BattleStatu
             turn: 6,
             player_side: new BattleSide(combatants: [
                 new Combatant(...$combatant),
-                new Combatant(...[...$combatant, 'pokemon_id' => 'released-pokemon', 'species_id' => $eevee->id]),
-                new Combatant(...[...$combatant, 'pokemon_id' => 'benched-pokemon', 'species_id' => $eevee->id, 'has_entered_field' => false]),
+                new Combatant(...[...$combatant, 'pokemon_id' => 'benched-pokemon', 'species_id' => $eevee->id, 'gender' => PokemonGender::FEMALE, 'has_entered_field' => false]),
             ], active_index: 0),
             opponent_side: new BattleSide(combatants: [new Combatant(...[...$combatant, 'pokemon_id' => null])], active_index: 0),
             is_awaiting_send_out: false,
@@ -336,8 +333,8 @@ it('shows the end screen with the XP each pokemon earned', function (BattleStatu
                 new BattleLogEntry(6, BattleLogKind::EVENT, 'Pikachu gained 1,875 XP!'),
             ],
             experience_gains: [
-                new ExperienceGain(combatant_index: 0, earned_experience: 1_875, level_before: 25, level_after: 26),
-                new ExperienceGain(combatant_index: 1, earned_experience: 937, level_before: 25, level_after: 25),
+                new ExperienceGain(combatant_index: 0, earned_experience: 1_875, level_before: 25, level_after: 26, is_from_experience_share: false),
+                new ExperienceGain(combatant_index: 1, earned_experience: 937, level_before: 25, level_after: 25, is_from_experience_share: true),
             ],
         ),
     ]);
@@ -348,8 +345,8 @@ it('shows the end screen with the XP each pokemon earned', function (BattleStatu
         ->assertInertia(fn (Assert $page) => $page
             ->where('battle.status', $status->value)
             ->where('result.experienceGains', [
-                ['name' => 'Pikachu', 'portrait' => $pikachu->portraits->regular, 'earnedExperience' => 1_875, 'levelBefore' => 25, 'levelAfter' => 26, 'experienceProgress' => 87],
-                ['name' => 'Eevee', 'portrait' => $eevee->portraits->regular, 'earnedExperience' => 937, 'levelBefore' => 25, 'levelAfter' => 25, 'experienceProgress' => null],
+                ['name' => 'Pikachu', 'portrait' => $pikachu->portraits->regular, 'gender' => PokemonGender::MALE->value, 'earnedExperience' => 1_875, 'levelBefore' => 25, 'levelAfter' => 26, 'isFromExperienceShare' => false],
+                ['name' => 'Eevee', 'portrait' => $eevee->portraits->regular, 'gender' => PokemonGender::FEMALE->value, 'earnedExperience' => 937, 'levelBefore' => 25, 'levelAfter' => 25, 'isFromExperienceShare' => true],
             ])
             ->where('battle.isAwaitingSendOut', false)
             ->where('battle.log.0.isEnd', true)
@@ -392,7 +389,7 @@ it('shows no XP rows when nothing was earned', function () {
             opponent_side: new BattleSide(combatants: [new Combatant(...[...$combatant, 'pokemon_id' => null])], active_index: 0),
             is_awaiting_send_out: false,
             log: [],
-            experience_gains: [new ExperienceGain(combatant_index: 0, earned_experience: 0, level_before: 25, level_after: 25)],
+            experience_gains: [new ExperienceGain(combatant_index: 0, earned_experience: 0, level_before: 25, level_after: 25, is_from_experience_share: false)],
         ),
     ]);
 

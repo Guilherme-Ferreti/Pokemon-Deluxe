@@ -75,10 +75,11 @@ export type BattleShowPageProps = {
     experienceGains: {
       name: Pokemon['name'];
       portrait: string | null;
+      gender: Pokemon['gender'];
       earnedExperience: number;
       levelBefore: number;
       levelAfter: number;
-      experienceProgress: number | null;
+      isFromExperienceShare: boolean;
     }[];
   } | null;
 };

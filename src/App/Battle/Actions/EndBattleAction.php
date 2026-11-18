@@ -162,11 +162,11 @@ final class EndBattleAction
         $pokemon   = $combatant->pokemon_id === null ? null : $this->playerPokemon->get($combatant->pokemon_id);
 
         if ($this->battle->type === BattleType::BATTLE_TOWER) {
-            return new ExperienceGain($combatantIndex, $earned, $combatant->level, $combatant->level);
+            return new ExperienceGain($combatantIndex, $earned, $combatant->level, $combatant->level, is_from_experience_share: false);
         }
 
         if (! $pokemon instanceof Pokemon) {
-            return new ExperienceGain($combatantIndex, 0, $combatant->level, $combatant->level);
+            return new ExperienceGain($combatantIndex, 0, $combatant->level, $combatant->level, is_from_experience_share: false);
         }
 
         $experienceBefore = $pokemon->experience;
@@ -174,6 +174,6 @@ final class EndBattleAction
 
         $pokemon = new AwardExperienceAction()->handle($pokemon, $earned);
 
-        return new ExperienceGain($combatantIndex, $pokemon->experience - $experienceBefore, $levelBefore, $pokemon->level);
+        return new ExperienceGain($combatantIndex, $pokemon->experience - $experienceBefore, $levelBefore, $pokemon->level, is_from_experience_share: false);
     }
 }

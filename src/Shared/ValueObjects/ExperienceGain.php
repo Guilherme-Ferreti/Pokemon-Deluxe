@@ -8,7 +8,7 @@ use InvalidArgumentException;
 use Shared\Interfaces\ValueObject;
 
 /**
- * @phpstan-type ExperienceGainArray array{combatant_index: int, earned_experience: int, level_before: int, level_after: int}
+ * @phpstan-type ExperienceGainArray array{combatant_index: int, earned_experience: int, level_before: int, level_after: int, is_from_experience_share: bool}
  */
 final readonly class ExperienceGain implements ValueObject
 {
@@ -17,6 +17,7 @@ final readonly class ExperienceGain implements ValueObject
         public int $earned_experience,
         public int $level_before,
         public int $level_after,
+        public bool $is_from_experience_share,
     ) {
         $maxLevel = (int) config('game.pokemon.max_level');
 
@@ -39,6 +40,7 @@ final readonly class ExperienceGain implements ValueObject
             earned_experience: $data['earned_experience'],
             level_before: $data['level_before'],
             level_after: $data['level_after'],
+            is_from_experience_share: $data['is_from_experience_share'],
         );
     }
 
@@ -48,10 +50,11 @@ final readonly class ExperienceGain implements ValueObject
     public function toArray(): array
     {
         return [
-            'combatant_index'   => $this->combatant_index,
-            'earned_experience' => $this->earned_experience,
-            'level_before'      => $this->level_before,
-            'level_after'       => $this->level_after,
+            'combatant_index'          => $this->combatant_index,
+            'earned_experience'        => $this->earned_experience,
+            'level_before'             => $this->level_before,
+            'level_after'              => $this->level_after,
+            'is_from_experience_share' => $this->is_from_experience_share,
         ];
     }
 

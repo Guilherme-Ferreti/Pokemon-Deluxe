@@ -4,12 +4,13 @@ declare(strict_types=1);
 
 use Shared\ValueObjects\ExperienceGain;
 
-it('rejects invalid values', function (string $field, int $invalidValue) {
+it('rejects invalid values', function (string $field, mixed $invalidValue) {
     $values = [
-        'combatant_index'   => 0,
-        'earned_experience' => 1500,
-        'level_before'      => 50,
-        'level_after'       => 51,
+        'combatant_index'          => 0,
+        'earned_experience'        => 1500,
+        'level_before'             => 50,
+        'level_after'              => 51,
+        'is_from_experience_share' => false,
     ];
 
     expect(fn () => new ExperienceGain(...[...$values, $field => $invalidValue]))

@@ -759,19 +759,19 @@ Uses `Combatant` from task 1.10.
 
 ### 1.35 Battle page: result card
 
-- [ ] Done
+- [x] Done
 
 **Goal:** the end of a battle reads clearly and appears smoothly.
 
 **Mock-up:** `docs/mockups/battle.html` (states "Wild: won", "Wild: ran away", "Wild: lost", "Trainer: won (money and XP)", "Trainer: lost (XP kept)")
 
 **Build:**
-- `BattleResultCard.vue` rewritten in place of the battlefield once the battle ends: the title ("You won!", "You got away safely", "You lost to the wild Pidgey") with an optional badge on the same line, aligned right; an optional muted subtitle.
-- "Your rewards": a section for money and badges, empty in wild battles (filled by Spec 3 and task 6.14).
+- `BattleResultCard.vue` rewritten in place of the battlefield once the battle ends: the title ("You won!", "You got away safely", "You lost to the wild Pidgey") with an optional badge on the same line, aligned right; an optional muted subtitle. No ending has a badge yet, so the card leaves it out until a task fills one (Spec 6).
+- "Your rewards": a section for money and badges, empty in wild battles, so the card leaves it out until Spec 3 and task 6.14 fill it.
 - "XP gained": one row per Pokémon that got XP (`ExperienceGain` gains `is_from_experience_share`, false until task 5.10): `SpeciesPortrait`, `PokemonDisplayName` with `PokemonGenderIcon`, "+340 XP", and a "Level up! 54 → 55" pill aligned right (white background, border). All text in the row is the same size as the team rail's names. No XP bars: drop `experienceProgress` from the `result` prop.
 - Rows for Pokémon that got XP only through the XP Share say "via XP Share" after the XP (`isFromExperienceShare` on each gain; always false until task 5.10). With the XP Share there is no summary line.
 - "No XP this time: the wild Pidgey wasn't knocked out or caught." when nobody got XP.
-- Buttons sized to their text, aligned right, the primary one last ("Keep exploring" / "Back to Dashboard" in wild battles).
+- Buttons sized to their text, aligned right, the primary one last ("Keep exploring" / "Back to Dashboard" in wild battles). Exploring doesn't exist yet, so the card only has "Back to Dashboard" (primary) until task 2.17 adds "Keep exploring".
 - The ending plays in order: the opponent's HP drains while the battlefield stays, with the opponent's sprite faded (task 1.27), and the card slides up and fades in (about 450ms).
 
 **Tests:** feature test: the `result` prop without `experienceProgress` and with `isFromExperienceShare`; browser tests: the won, ran and lost cards; the battlefield stays visible once the card shows.
@@ -1063,6 +1063,7 @@ Read [02-catching-and-exploration.md](02-catching-and-exploration.md) first. Nee
 **Build:**
 - Route `GET /explore/{area}` named `exploration.web.show` → `ExploreController@show` with `ExploreShowPageProps`: the area, and the player's encounter if it is in this area (sprite, name, gender, level, types, shiny, legendary).
 - Route `POST /explore/{area}` named `exploration.web.explore` → `ExploreAreaController`: calls `ExploreAction`, redirects to the area page. Used by both Explore and Keep exploring.
+- The wild battle's result card (task 1.35) gets "Keep exploring" (primary, exploring the battle's area again); "Back to Dashboard" becomes the outline button before it.
 - Route `POST /explore/battle` named `exploration.web.battle` → `BattleEncounterController`: calls `BattleEncounterAction`, redirects to `battle.web.show`.
 - Encounter card as in the Spec 2 sketch; shiny and legendary encounters get a gold border and badge. While a battle is ongoing, a banner links to it instead.
 

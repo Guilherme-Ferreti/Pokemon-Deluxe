@@ -16,6 +16,7 @@ use Shared\ValueObjects\BattleLogEntry;
 use Shared\ValueObjects\BattleSide;
 use Shared\ValueObjects\BattleState;
 use Shared\ValueObjects\Combatant;
+use Shared\ValueObjects\ExperienceGain;
 
 use function Pest\Laravel\actingAs;
 
@@ -390,8 +391,120 @@ it('runs from the battle after confirming', function () {
         ->assertVisible('@battlefield-card')
         ->wait(1)
         ->assertVisible('@battlefield-card')
-        ->assertSeeIn('@battle-result-card', 'You got away safely')
+        ->assertSeeIn('@battle-result-card__title', 'You got away safely')
+        ->assertSeeIn('@battle-result-card__no-experience-empty-state', "No XP this time: the wild Pikachu wasn't knocked out or caught.")
+        ->assertSeeIn('@battle-result-card', 'Back to Dashboard')
         ->assertSeeIn('@battle-log-card', 'You got away safely!')
+        ->assertNoJavascriptErrors();
+});
+
+it('shows the XP each pokemon gained when the battle is won', function () {
+    $user    = User::factory()->create();
+    $pikachu = Species::factory()->create(['name' => 'Pikachu']);
+    $eevee   = Species::factory()->create(['name' => 'Eevee']);
+    $pidgey  = Species::factory()->create(['name' => 'Pidgey']);
+    $tackle  = Move::factory()->plainDamage()->create(['name' => 'Tackle']);
+
+    $combatant = [
+        'pokemon_id'                    => 'pokemon-1',
+        'species_id'                    => $pikachu->id,
+        'level'                         => 54,
+        'boost'                         => 0,
+        'is_shiny'                      => false,
+        'gender'                        => PokemonGender::MALE,
+        'types'                         => [PokemonType::NORMAL],
+        'move_ids'                      => [$tackle->id],
+        'max_hp'                        => 218,
+        'current_hp'                    => 218,
+        'ailment'                       => null,
+        'ailment_turns_left'            => 0,
+        'confusion_turns_left'          => 0,
+        'has_entered_field'             => true,
+        'used_once_per_battle_move_ids' => [],
+    ];
+
+    Battle::factory()->for($user)->create([
+        'status' => BattleStatus::WON,
+        'state'  => new BattleState(
+            turn: 2,
+            player_side: new BattleSide(combatants: [
+                new Combatant(...$combatant),
+                new Combatant(...[...$combatant, 'pokemon_id' => 'pokemon-2', 'species_id' => $eevee->id, 'has_entered_field' => false]),
+            ], active_index: 0),
+            opponent_side: new BattleSide(combatants: [new Combatant(...[...$combatant, 'pokemon_id' => null, 'species_id' => $pidgey->id, 'current_hp' => 0])], active_index: 0),
+            is_awaiting_send_out: false,
+            log: [new BattleLogEntry(0, BattleLogKind::INFO, 'A wild Pidgey appeared!')],
+            experience_gains: [
+                new ExperienceGain(combatant_index: 0, earned_experience: 1_340, level_before: 54, level_after: 55, is_from_experience_share: false),
+                new ExperienceGain(combatant_index: 1, earned_experience: 125, level_before: 54, level_after: 54, is_from_experience_share: true),
+            ],
+        ),
+    ]);
+
+    actingAs($user);
+
+    visit(route('battle.web.show'))
+        ->assertVisible('@battlefield-card')
+        ->assertSeeIn('@battle-result-card__title', 'You won!')
+        ->assertSeeIn('@battle-result-card', 'The wild Pidgey fainted.')
+        ->assertSeeIn('@battle-result-card', 'XP gained')
+        ->assertSeeIn('@battle-result-card__xp-gain-1-item', 'Pikachu')
+        ->assertSeeIn('@battle-result-card__xp-gain-1-item', '+1,340 XP')
+        ->assertSeeIn('@battle-result-card__xp-gain-1-item', 'Level up! 54 → 55')
+        ->assertDontSeeIn('@battle-result-card__xp-gain-1-item', 'via XP Share')
+        ->assertSeeIn('@battle-result-card__xp-gain-2-item', 'Eevee')
+        ->assertSeeIn('@battle-result-card__xp-gain-2-item', '+125 XP')
+        ->assertSeeIn('@battle-result-card__xp-gain-2-item', 'via XP Share')
+        ->assertDontSeeIn('@battle-result-card__xp-gain-2-item', 'Level up!')
+        ->assertMissing('@battle-result-card__no-experience-empty-state')
+        ->wait(1)
+        ->assertNoAccessibilityIssues()
+        ->assertNoJavascriptErrors();
+});
+
+it('shows that no XP was gained when the battle is lost', function () {
+    $user    = User::factory()->create();
+    $pikachu = Species::factory()->create(['name' => 'Pikachu']);
+    $pidgey  = Species::factory()->create(['name' => 'Pidgey']);
+    $tackle  = Move::factory()->plainDamage()->create(['name' => 'Tackle']);
+
+    $combatant = [
+        'pokemon_id'                    => 'pokemon-1',
+        'species_id'                    => $pikachu->id,
+        'level'                         => 50,
+        'boost'                         => 0,
+        'is_shiny'                      => false,
+        'gender'                        => PokemonGender::MALE,
+        'types'                         => [PokemonType::NORMAL],
+        'move_ids'                      => [$tackle->id],
+        'max_hp'                        => 218,
+        'current_hp'                    => 0,
+        'ailment'                       => null,
+        'ailment_turns_left'            => 0,
+        'confusion_turns_left'          => 0,
+        'has_entered_field'             => true,
+        'used_once_per_battle_move_ids' => [],
+    ];
+
+    Battle::factory()->for($user)->create([
+        'status' => BattleStatus::LOST,
+        'state'  => new BattleState(
+            turn: 2,
+            player_side: new BattleSide(combatants: [new Combatant(...$combatant)], active_index: 0),
+            opponent_side: new BattleSide(combatants: [new Combatant(...[...$combatant, 'pokemon_id' => null, 'species_id' => $pidgey->id, 'current_hp' => 218])], active_index: 0),
+            is_awaiting_send_out: false,
+            log: [new BattleLogEntry(0, BattleLogKind::INFO, 'A wild Pidgey appeared!')],
+            experience_gains: [new ExperienceGain(combatant_index: 0, earned_experience: 0, level_before: 50, level_after: 50, is_from_experience_share: false)],
+        ),
+    ]);
+
+    actingAs($user);
+
+    visit(route('battle.web.show'))
+        ->assertVisible('@battlefield-card')
+        ->assertSeeIn('@battle-result-card__title', 'You lost to the wild Pidgey')
+        ->assertSeeIn('@battle-result-card__no-experience-empty-state', "No XP this time: the wild Pidgey wasn't knocked out.")
+        ->assertMissing('@battle-result-card__xp-gains-list')
         ->assertNoJavascriptErrors();
 });
 
