@@ -111,7 +111,7 @@ function attack(): void {
   @apply text-sm font-semibold;
 }
 
-.moves-card__radio :deep([data-slot='radio-group-indicator']) {
+.moves-card__radio :deep([data-slot='radio-group-indicator'] svg) {
   @apply animate-in duration-200 zoom-in-50 fade-in motion-reduce:animate-none;
 }
 
