@@ -289,8 +289,8 @@ describe('base moves card', function () {
         $user    = User::factory()->create();
         $species = Species::factory()->create();
 
-        $powerlessMove = Move::factory()->create(['category' => MoveCategory::AILMENT]);
-        $powerfulMove  = Move::factory()->create(['category' => MoveCategory::DAMAGE, 'power' => 150]);
+        $powerlessMove = Move::factory()->create(['name' => 'Growl', 'category' => MoveCategory::AILMENT]);
+        $powerfulMove  = Move::factory()->create(['name' => 'Hyper Beam', 'category' => MoveCategory::DAMAGE, 'power' => 150]);
 
         $species->baseMoves()->attach([$powerlessMove->id, $powerfulMove->id]);
 
@@ -299,10 +299,10 @@ describe('base moves card', function () {
         visit(route('dex.web.pokedex.show', $species))
             ->click('@base-moves-card__head-power')
             ->wait(0.5)
-            ->assertSeeIn('@base-moves-card__row-1-name', $powerlessMove->name)
+            ->assertSeeIn('@base-moves-card__row-1-name', 'Growl')
             ->click('@base-moves-card__head-power')
             ->wait(0.5)
-            ->assertDontSeeIn('@base-moves-card__row-1-name', $powerlessMove->name)
+            ->assertSeeIn('@base-moves-card__row-1-name', 'Hyper Beam')
             ->assertNoSmoke();
     });
 });
