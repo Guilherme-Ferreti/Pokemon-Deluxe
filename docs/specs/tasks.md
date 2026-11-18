@@ -778,6 +778,65 @@ Uses `Combatant` from task 1.10.
 
 **Done when:** every ending of a wild battle shows the new card.
 
+### 1.36 Battle page: level beside the name in the team rail
+
+- [ ] Done
+
+**Goal:** the team rail's rows are shorter and match the battlefield cards.
+
+**Mock-up:** `docs/mockups/battle.html` (states "Wild: choosing a move", "Wild: switch Pokémon (Dragonite picked)", "Wild: Pokémon fainted, send out")
+
+**Build:**
+- `BattleTeamRadioGroup`: the level moves onto the name's line, on the right, as plain muted text ("Lv 54"), before the "Fainted" tag; the boost ("· +72") is no longer shown. The ailment badge sits right after the name (and its gender icon). The separate meta line is gone, so each item is the name line plus the "HP:" row (only the name line for the Pokémon in battle).
+- Long names still wrap; the level stays on the first line, aligned right.
+- Applies to the rail and to the send-out sheet, which share the items.
+- `BattleShowPageProps`: keep `boost` on `player.team`; the Pokémon details (task 1.38) show it.
+
+**Tests:** browser test: an item shows "Lv 54" in its name row and no boost.
+
+**Done when:** the rail and the send-out sheet show the level beside the name on desktop and phones.
+
+### 1.37 Battle page: In battle and Bench groups in the team rails
+
+- [ ] Done
+
+**Goal:** the rails say plainly which Pokémon is on the field, and the opponent's team is visible on phones too.
+
+**Mock-up:** `docs/mockups/battle.html` (states "Wild: choosing a move", "Wild: switch Pokémon (Dragonite picked)", "Wild: Pokémon fainted, send out", "Gym: choosing a move"; narrow the window for phones)
+
+**Build:**
+- `BattleTeamRail`: two groups, each with a small uppercase muted heading. **In battle**: the Pokémon on the field as a plain row: no background, no border, no HP bar (the battlefield shows its HP), not selectable and not part of the radio group. **Bench**: every other Pokémon in team order, as the `RadioGroup`; nothing is checked at first (also outside a send-out), and picking one gives it the checked look and enables Switch. After a switch, the Pokémon switched out goes back to its place on the bench. The Poké Ball icon goes.
+- While waiting for a send-out, the fainted Pokémon stays under In battle (faded, "Fainted" tag); `SendOutSheet` shows only the bench rows.
+- `OpponentTeamRail`: the same two groups, **In battle** and **Rest of the team** (the latter keeps the "Not sent out yet" rows in team order). Still read-only.
+- Phones: the opponent's rail shows below the three-column layout too, right after Your team (before the Battle log), with its rows in the same 1–3 column grid as Your team. The group headings span the whole row; the In battle row takes one cell.
+- Remove `CombatantTeamDots` from the opponent's battlefield card (and delete the component): the rail now shows the same on phones.
+
+**Tests:** browser tests: the in-battle Pokémon is under In battle and is not a radio; nothing is checked at first and Switch is disabled; after switching, the new Pokémon moves to In battle and the old one back to its bench place; the opponent's rail shows on a 390px screen after Your team; the battlefield card has no team dots.
+
+**Done when:** both rails show the two groups on desktop and phones.
+
+### 1.38 Battle page: Pokémon details from the portrait
+
+- [ ] Done
+
+**Goal:** the player can check any Pokémon's types, boost and moves without leaving the battle and without cluttering the rails.
+
+**Mock-up:** `docs/mockups/battle.html` (states "Wild: Dragonite's details (hover card; sheet on phones)", "Gym: Onix's details (Brock's team)"; hover the portraits on a wide screen, tap them on a narrow one)
+
+**Build:**
+- In both rails each row's portrait becomes its own button (the radio area is the rest of the row, so tapping the name or HP still picks the Pokémon). The portrait stays 36px; the button around it is 40px with no visible padding, so it meets the touch-target size. No icon on it; hover and focus show a ring. "Not sent out yet" rows have no portrait button.
+- New `PokemonDetailsHoverCard.vue` (wide screens, from `@5xl/main-content`): shadcn-vue `HoverCard` (add it with the CLI) opened by hovering or focusing the portrait, beside the rail (right of Your team, left of the opponent's). Content: name with gender icon and "Lv 61" on the right; the type badges (`PokemonTypeBadges`); "Boost +20 · +20% HP and damage" when boosted, and for shiny Pokémon "Shiny · +25% HP and damage, takes 25% less damage"; the four moves in two columns, each the move name with "Dragon · 80" (or "Status") in small muted text below.
+- New `PokemonDetailsSheet.vue` (below the three-column layout): tapping the portrait opens a bottom `Sheet` (closable: swipe down, tap outside, close button) with a 56px portrait, the name with gender icon, "Lv 61 · HP 568 / 568", then the same content as the hover card in slightly larger text.
+- Works the same for every Pokémon in your team (fainted or not; it shows the battle's max HP, unchanged by fainting) and for the opponent's revealed Pokémon.
+- `BattleShowPageProps`: `player.team` items and revealed `opponent.team` items gain `isShiny`, `types` and `moves` (`name`, `type`, `power`, null for status moves); `opponent.team` items get `boost` for every revealed Pokémon, not only the one in battle. Unrevealed items still carry no species data.
+
+**UI suggestions** (ideas, not requirements):
+- One `PokemonDetails` content component shared by the hover card and the sheet.
+
+**Tests:** feature tests: the new team props for the player and for a gym battle (unrevealed opponents send no types or moves); browser tests: hovering a portrait on a 1440px screen shows its types and moves; tapping one on a 390px screen opens the sheet and its close button closes it; tapping a bench row's name still picks it for Switch.
+
+**Done when:** every revealed Pokémon's details open from its portrait on desktop and phones.
+
 ---
 
 ## 2. Spec 2 — Catching and exploration
