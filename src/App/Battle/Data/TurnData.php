@@ -51,9 +51,9 @@ final class TurnData
         $this->logEntries[] = new BattleLogEntry($this->state->turn, $kind, $text, $moveName);
     }
 
-    public function logDamage(Side $side, int $hpLost): void
+    public function logDamage(int $hpLost): void
     {
-        $this->log(BattleLogKind::DAMAGE, sprintf('%s lost %s HP.', $this->displayName($side, atStart: true), number_format($hpLost)));
+        $this->log(BattleLogKind::DAMAGE, sprintf('It dealt %s HP damage.', number_format($hpLost)));
     }
 
     public function playerMove(): Move

@@ -81,7 +81,7 @@ it('loads the battle page with expected structure', function () {
                 new BattleLogEntry(0, BattleLogKind::INFO, 'A wild Pidgey appeared!'),
                 new BattleLogEntry(0, BattleLogKind::EVENT, 'Go! Shiny Pikachu!'),
                 new BattleLogEntry(1, BattleLogKind::MOVE, 'Shiny Pikachu used Tackle!', 'Tackle'),
-                new BattleLogEntry(1, BattleLogKind::DAMAGE, 'The wild Pidgey lost 46 HP.'),
+                new BattleLogEntry(1, BattleLogKind::DAMAGE, 'It dealt 46 HP damage.'),
                 new BattleLogEntry(2, BattleLogKind::MOVE, 'The wild Pidgey used Growl!', 'Growl'),
             ],
         ),
@@ -103,7 +103,7 @@ it('loads the battle page with expected structure', function () {
                     ]],
                     ['turn' => 1, 'isEnd' => false, 'entries' => [
                         ['kind' => BattleLogKind::MOVE->value, 'text' => 'Shiny Pikachu used Tackle!', 'moveName' => 'Tackle'],
-                        ['kind' => BattleLogKind::DAMAGE->value, 'text' => 'The wild Pidgey lost 46 HP.', 'moveName' => null],
+                        ['kind' => BattleLogKind::DAMAGE->value, 'text' => 'It dealt 46 HP damage.', 'moveName' => null],
                     ]],
                     ['turn' => 0, 'isEnd' => false, 'entries' => [
                         ['kind' => BattleLogKind::INFO->value, 'text' => 'A wild Pidgey appeared!', 'moveName' => null],

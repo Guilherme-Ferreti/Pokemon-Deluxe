@@ -80,10 +80,9 @@ it('switches to the chosen pokemon', function () {
     expect($state?->turn)->toBe(3)
         ->and($state?->player_side->active_index)->toBe(1)
         ->and($state?->log)->toEqual([
-            new BattleLogEntry(2, BattleLogKind::EVENT, 'Come back, Pikachu!'),
-            new BattleLogEntry(2, BattleLogKind::EVENT, 'Go! Eevee!'),
+            new BattleLogEntry(2, BattleLogKind::EVENT, 'You switched Pokémon to Eevee.'),
             new BattleLogEntry(2, BattleLogKind::MOVE, 'The wild Pidgey used Tackle!', 'Tackle'),
-            new BattleLogEntry(2, BattleLogKind::DAMAGE, 'Eevee lost 46 HP.'),
+            new BattleLogEntry(2, BattleLogKind::DAMAGE, 'It dealt 46 HP damage.'),
         ]);
 });
 

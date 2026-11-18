@@ -44,7 +44,7 @@ One name per idea, used everywhere: specs, code, database, tests and UI. When yo
 | Turn | `turn` | Both sides acting once. |
 | Battle log | `log` (`list<BattleLogEntry>`), `BattleLogCard` | What happened, turn by turn; the page shows the newest turn first. |
 | Battle log entry | `BattleLogEntry` (`turn`, `kind`, `text`, `move_name`), `BattleState::withLogEntries()` | One message. `turn` 0 is before the first turn; lines logged between turns use `BattleState::lastPlayedTurn()`. Only `MOVE` entries have a `move_name`. |
-| Battle log kind | `BattleLogKind` enum (`Shared\Enums`): `MOVE`, `DAMAGE`, `DETAIL`, `INFO`, `EVENT` | How the page styles an entry: move names in bold, damage and details small and muted. |
+| Battle log kind | `BattleLogKind` enum (`Shared\Enums`): `MOVE`, `DAMAGE`, `DETAIL`, `INFO`, `EVENT`, `RESULT` | How the page styles an entry: move names in bold, damage and details small and muted, the battle's result ("You won!", "You lost...", "You got away safely!") in bold. |
 | Ongoing battle | `Battle::ongoing()` scope | The user's battle with status `ONGOING`. |
 | Recently ended battle | `Battle::recentlyEnded()` scope, `game.battle.end_screen_minutes` | An ended battle last updated within the end-screen window; `GET /battle` shows its end screen. |
 | Sending out from the page | `SendOutPokemonController`, `SendOutPokemonRequest` (`combatantIndex`), `battle.isAwaitingSendOut` prop, `PokemonFaintedCard`, `SendOutSheet` | `POST /battle/send-out` from the team rail's "Send out" button (`SendOutSheet`, a bottom sheet, on phones); the index is the 0-based position in the player side's `combatants`. |

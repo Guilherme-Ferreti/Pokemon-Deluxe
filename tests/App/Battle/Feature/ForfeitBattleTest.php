@@ -27,7 +27,7 @@ it('runs from the ongoing battle', function () {
 
     expect($battle->fresh())
         ->status->toBe(BattleStatus::FORFEITED)
-        ->state->log->toEqual([new BattleLogEntry(1, BattleLogKind::INFO, 'You got away safely!')]);
+        ->state->log->toEqual([new BattleLogEntry(1, BattleLogKind::RESULT, 'You got away safely!')]);
 });
 
 it('warns when there is no battle in progress', function () {

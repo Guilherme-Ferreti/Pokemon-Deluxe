@@ -34,7 +34,7 @@ final class ApplyEndOfTurnDamage
             $cause = $combatant->ailment === Ailment::BURN ? 'its burn' : 'poison';
 
             $turn->log(BattleLogKind::EVENT, "{$turn->displayName($side, atStart: true)} is hurt by {$cause}!");
-            $turn->logDamage($side, $hpLost);
+            $turn->logDamage($hpLost);
 
             $turn->logFaintIfFainted($side);
         }

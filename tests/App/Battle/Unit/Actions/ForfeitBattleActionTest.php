@@ -21,7 +21,7 @@ it('ends an ongoing battle as forfeited and logs it, even while awaiting a send-
     $battle = new ForfeitBattleAction()->handle($battle)->fresh();
 
     expect($battle?->status)->toBe(BattleStatus::FORFEITED)
-        ->and($battle?->state->log)->toEqual([new BattleLogEntry(1, BattleLogKind::INFO, $expectedText)]);
+        ->and($battle?->state->log)->toEqual([new BattleLogEntry(1, BattleLogKind::RESULT, $expectedText)]);
 
     Event::assertDispatchedTimes(BattleEnded::class, 1);
     Event::assertDispatched(BattleEnded::class, fn (BattleEnded $event) => $event->status === BattleStatus::FORFEITED && ! $event->isWin);

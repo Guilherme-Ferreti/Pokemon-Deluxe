@@ -37,7 +37,7 @@ final class ForfeitBattleAction
         DB::transaction(function (): void {
             $this->battle->update([
                 'state' => $this->battle->state->withLogEntries([
-                    new BattleLogEntry($this->battle->state->endTurn(), BattleLogKind::INFO, $this->endingText()),
+                    new BattleLogEntry($this->battle->state->endTurn(), BattleLogKind::RESULT, $this->endingText()),
                 ]),
             ]);
 

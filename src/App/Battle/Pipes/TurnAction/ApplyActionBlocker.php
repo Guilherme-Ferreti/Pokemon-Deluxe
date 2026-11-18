@@ -43,7 +43,7 @@ final class ApplyActionBlocker
                 new StatsCalculator()->calculate($attacker->level, $attacker->boost, $attacker->is_shiny),
             );
 
-            $action->turn->logDamage($action->side, $action->turn->damageActiveCombatant($action->side, $damage));
+            $action->turn->logDamage($action->turn->damageActiveCombatant($action->side, $damage));
 
             $action->turn->logFaintIfFainted($action->side);
         }

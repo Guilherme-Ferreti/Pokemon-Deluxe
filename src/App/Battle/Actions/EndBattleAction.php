@@ -86,7 +86,7 @@ final class EndBattleAction
             default            => null,
         };
 
-        return $text === null ? [] : [new BattleLogEntry($this->battle->state->endTurn(), BattleLogKind::INFO, $text)];
+        return $text === null ? [] : [new BattleLogEntry($this->battle->state->endTurn(), BattleLogKind::RESULT, $text)];
     }
 
     /**
@@ -116,11 +116,11 @@ final class EndBattleAction
             $combatant = $combatants[$gain->combatant_index];
             $name      = $species->findOrFail($combatant->species_id)->getDisplayName($combatant->is_shiny);
 
-            $entries[] = new BattleLogEntry($turn, BattleLogKind::EVENT, sprintf('%s gained %s XP!', $name, number_format($gain->earned_experience)));
+            $experience = number_format($gain->earned_experience);
 
-            if ($gain->level_after > $gain->level_before) {
-                $entries[] = new BattleLogEntry($turn, BattleLogKind::EVENT, "{$name} grew to Lv {$gain->level_after}!");
-            }
+            $entries[] = new BattleLogEntry($turn, BattleLogKind::EVENT, $gain->level_after > $gain->level_before
+                ? "{$name} gained {$experience} XP and grew to level {$gain->level_after}!"
+                : "{$name} gained {$experience} XP!");
         }
 
         return $entries;

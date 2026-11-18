@@ -83,10 +83,9 @@ it('switches in the chosen pokemon, which the opponent then attacks', function (
         ->and($state?->log)->toEqual([
             new BattleLogEntry(0, BattleLogKind::INFO, 'A wild Pidgey appeared!'),
             new BattleLogEntry(0, BattleLogKind::EVENT, 'Go! Shiny Pikachu!'),
-            new BattleLogEntry(3, BattleLogKind::EVENT, 'Come back, Shiny Pikachu!'),
-            new BattleLogEntry(3, BattleLogKind::EVENT, 'Go! Eevee!'),
+            new BattleLogEntry(3, BattleLogKind::EVENT, 'You switched Pokémon to Eevee.'),
             new BattleLogEntry(3, BattleLogKind::MOVE, 'The wild Pidgey used Tackle!', 'Tackle'),
-            new BattleLogEntry(3, BattleLogKind::DAMAGE, 'Eevee lost 46 HP.'),
+            new BattleLogEntry(3, BattleLogKind::DAMAGE, 'It dealt 46 HP damage.'),
         ]);
 });
 
@@ -138,13 +137,12 @@ it('still deals end-of-turn damage to both sides after a switch', function () {
     expect($state?->player_side->activeCombatant()->current_hp)->toBe(218 - 13)
         ->and($state?->opponent_side->activeCombatant()->current_hp)->toBe(218 - 27)
         ->and($state?->log)->toEqual([
-            new BattleLogEntry(1, BattleLogKind::EVENT, 'Come back, Pikachu!'),
-            new BattleLogEntry(1, BattleLogKind::EVENT, 'Go! Eevee!'),
+            new BattleLogEntry(1, BattleLogKind::EVENT, 'You switched Pokémon to Eevee.'),
             new BattleLogEntry(1, BattleLogKind::MOVE, 'The wild Pidgey used Growl!', 'Growl'),
             new BattleLogEntry(1, BattleLogKind::EVENT, 'Eevee is hurt by its burn!'),
-            new BattleLogEntry(1, BattleLogKind::DAMAGE, 'Eevee lost 13 HP.'),
+            new BattleLogEntry(1, BattleLogKind::DAMAGE, 'It dealt 13 HP damage.'),
             new BattleLogEntry(1, BattleLogKind::EVENT, 'The wild Pidgey is hurt by poison!'),
-            new BattleLogEntry(1, BattleLogKind::DAMAGE, 'The wild Pidgey lost 27 HP.'),
+            new BattleLogEntry(1, BattleLogKind::DAMAGE, 'It dealt 27 HP damage.'),
         ]);
 });
 
@@ -198,10 +196,9 @@ it('asks for a send-out when the switched-in pokemon faints', function () {
         ->and($battle?->state->is_awaiting_send_out)->toBeTrue()
         ->and($battle?->state->player_side->activeCombatant()->current_hp)->toBe(0)
         ->and($battle?->state->log)->toEqual([
-            new BattleLogEntry(1, BattleLogKind::EVENT, 'Come back, Pikachu!'),
-            new BattleLogEntry(1, BattleLogKind::EVENT, 'Go! Eevee!'),
+            new BattleLogEntry(1, BattleLogKind::EVENT, 'You switched Pokémon to Eevee.'),
             new BattleLogEntry(1, BattleLogKind::MOVE, 'The wild Pidgey used Tackle!', 'Tackle'),
-            new BattleLogEntry(1, BattleLogKind::DAMAGE, 'Eevee lost 10 HP.'),
+            new BattleLogEntry(1, BattleLogKind::DAMAGE, 'It dealt 10 HP damage.'),
             new BattleLogEntry(1, BattleLogKind::EVENT, 'Eevee fainted!'),
         ]);
 });

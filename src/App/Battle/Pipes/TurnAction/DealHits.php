@@ -43,7 +43,7 @@ final class DealHits
             $action->turn->log(BattleLogKind::DETAIL, $landedHits === 1 ? 'It hit once!' : "It hit {$landedHits} times!");
         }
 
-        $action->turn->logDamage($action->defendingSide(), $hpLost);
+        $action->turn->logDamage($hpLost);
 
         if (! $action->turn->logFaintIfFainted($action->defendingSide())) {
             return $next($action);

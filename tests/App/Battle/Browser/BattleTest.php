@@ -337,8 +337,7 @@ it('switches from the team rail to another pokemon, which the opponent then atta
         ->wait(1)
         ->assertSeeIn('@battlefield-combatant-card--player', 'Eevee')
         ->assertButtonDisabled('@battle-team-rail__switch-button')
-        ->assertSeeIn('@battle-log-card', 'Come back, Pikachu!')
-        ->assertSeeIn('@battle-log-card', 'Go! Eevee!')
+        ->assertSeeIn('@battle-log-card', 'You switched Pokémon to Eevee.')
         ->assertSeeIn('@battle-log-card', 'The wild Pidgey used Tackle!')
         ->assertSeeIn('@battlefield-combatant-card--player__hp-indicator', '134 / 180')
         ->assertSeeIn('@moves-card', 'Bite')
@@ -858,7 +857,7 @@ it('opens the end section and the last played turn once the battle has ended', f
                 new BattleLogEntry(1, BattleLogKind::MOVE, 'Pikachu used Tackle!', 'Tackle'),
                 new BattleLogEntry(2, BattleLogKind::MOVE, 'Pikachu used Tackle!', 'Tackle'),
                 new BattleLogEntry(2, BattleLogKind::EVENT, 'The wild Pikachu fainted!'),
-                new BattleLogEntry(3, BattleLogKind::INFO, 'You won!'),
+                new BattleLogEntry(3, BattleLogKind::RESULT, 'You won!'),
             ],
             experience_gains: [new ExperienceGain(combatant_index: 0, earned_experience: 0, level_before: 50, level_after: 50, is_from_experience_share: false)],
         ),
@@ -869,6 +868,7 @@ it('opens the end section and the last played turn once the battle has ended', f
     visit(route('battle.web.show'))
         ->assertSeeIn('@battle-log-card__turn-3-button', 'End')
         ->assertSeeIn('@battle-log-card__turn-3-line-1', 'You won!')
+        ->assertScript("getComputedStyle(document.querySelector('[data-test=\"battle-log-card__turn-3-line-1\"]')).fontWeight", '600')
         ->assertSeeIn('@battle-log-card__turn-2-line-2', 'The wild Pikachu fainted!')
         ->assertMissing('@battle-log-card__turn-1-line-1')
         ->assertMissing('@battle-log-card__turn-0-line-1')

@@ -11,4 +11,5 @@ enum BattleLogKind: string
     case DETAIL = 'detail';
     case INFO   = 'info';
     case EVENT  = 'event';
+    case RESULT = 'result';
 }

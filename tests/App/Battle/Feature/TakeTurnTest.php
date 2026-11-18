@@ -88,9 +88,9 @@ it('takes a turn with the chosen move', function () {
             new BattleLogEntry(0, BattleLogKind::EVENT, 'Go! Pikachu!'),
             new BattleLogEntry(1, BattleLogKind::MOVE, 'Pikachu used Thunder Shock!', 'Thunder Shock'),
             new BattleLogEntry(1, BattleLogKind::DETAIL, "It's super effective!"),
-            new BattleLogEntry(1, BattleLogKind::DAMAGE, 'The wild Pidgey lost 93 HP.'),
+            new BattleLogEntry(1, BattleLogKind::DAMAGE, 'It dealt 93 HP damage.'),
             new BattleLogEntry(1, BattleLogKind::MOVE, 'The wild Pidgey used Tackle!', 'Tackle'),
-            new BattleLogEntry(1, BattleLogKind::DAMAGE, 'Pikachu lost 46 HP.'),
+            new BattleLogEntry(1, BattleLogKind::DAMAGE, 'It dealt 46 HP damage.'),
         ]);
 });
 

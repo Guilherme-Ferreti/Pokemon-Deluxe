@@ -4,4 +4,5 @@ export enum BattleLogKind {
   DETAIL = 'detail',
   INFO = 'info',
   EVENT = 'event',
+  RESULT = 'result',
 }

@@ -117,10 +117,9 @@ describe('experience', function () {
                 new ExperienceGain(combatant_index: 1, earned_experience: 1_875, level_before: 25, level_after: 26, is_from_experience_share: false),
             ])
             ->and($battle->fresh()?->state->log)->toEqual([
-                ...($resultText === null ? [] : [new BattleLogEntry(5, BattleLogKind::INFO, $resultText)]),
+                ...($resultText === null ? [] : [new BattleLogEntry(5, BattleLogKind::RESULT, $resultText)]),
                 new BattleLogEntry(5, BattleLogKind::EVENT, 'Pikachu gained 937 XP!'),
-                new BattleLogEntry(5, BattleLogKind::EVENT, 'Pikachu gained 1,875 XP!'),
-                new BattleLogEntry(5, BattleLogKind::EVENT, 'Pikachu grew to Lv 26!'),
+                new BattleLogEntry(5, BattleLogKind::EVENT, 'Pikachu gained 1,875 XP and grew to level 26!'),
             ]);
     })->with([
         'won'       => [BattleStatus::WON, 'You won!'],

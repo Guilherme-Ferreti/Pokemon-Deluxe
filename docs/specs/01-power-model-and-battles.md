@@ -66,6 +66,7 @@ Level factor = level + 10, so a level 100 Pokémon is 10× a level 1, not 100×.
 - On their turn, instead of using a move, the player can **switch** the Pokémon in battle for any other Pokémon of the battle's team that hasn't fainted, like the main games.
 - The battle's team is the snapshot taken when the battle started: the party for most battles, the Pokémon picked for a gym, the run's team in the Battle Tower.
 - Switching uses the player's turn: the new Pokémon always comes out before the opponent acts, then the opponent attacks it. End-of-turn effects (burn, poison) still apply.
+- The log shows a switch as one line: "You switched Pokémon to Lapras."
 - A Pokémon that switches in has come onto the field, so it gets XP (see XP).
 - Burn, poison, paralysis, sleep and freeze stay with a Pokémon when it switches out (sleep turns keep counting only while it is in battle); confusion ends.
 - NPC trainers never switch; they send out their next Pokémon only after a faint.
@@ -144,8 +145,8 @@ A wild Pidgey appeared in the Forest · Turn 3
 │  HP: ██ 91  │     │ HP: █████░  472 / 550   │   │ ⌄ TURN 2         │
 │ ( ) Gible   │     └─────────────────────────┘   │ ▌Shiny Magikarp  │
 │  Fainted    ├──────────────────────────────────┤ ▌ used **Surf**! │
-│    [Switch] │ CHOOSE A MOVE                    │ ▌The wild Pidgey │
-│             │ (●) Surf  WATER  ( ) Thunder Wave│ ▌ lost 70 HP.    │
+│    [Switch] │ CHOOSE A MOVE                    │ ▌It dealt 70 HP  │
+│             │ (●) Surf  WATER  ( ) Thunder Wave│ ▌ damage.        │
 │             │ ( ) Ice Beam ICE ( ) Tackle      │ › TURN 1         │
 │             │                         [Attack] │ › START          │
 │             ├──────────────────────────────────┤                  │
@@ -161,7 +162,7 @@ A wild Pidgey appeared in the Forest · Turn 3
 - **Fainting:** a card replaces the moves ("Shiny Magikarp fainted!"); nothing is checked in Your team until the player picks who to send out and presses **Send out** (free). On a phone this is a bottom sheet that can't be closed, with the same rows in as many columns as fit.
 - **More options:** **Throw ball** (wild battles, Spec 2; disabled while waiting for a send-out) and **Run** in wild battles; **Forfeit** in every other battle. Both ask for confirmation: running from a wild battle gives nothing; forfeiting counts as a loss (no money, XP kept), and also ends an Elite Four or Tower run.
 - **Opponent's team** (battles against trainers): the trainer's team, read-only, with the Pokémon in battle marked like the player's. Gym leaders and the Elite Four reveal their Pokémon only as they are sent out ("Not sent out yet"); other trainers show the whole team from the start.
-- **Battle log:** one collapsible section per turn ("Start", "Turn 1", …), newest first; only the newest is open. Each message is a plain line, with no coloured bar beside it. Move names are bold; damage ("Gengar lost 96 HP.") and details (critical hits, effectiveness, multi-hit) are smaller and muted. No coloured or bold success or failure messages.
+- **Battle log:** one collapsible section per turn ("Start", "Turn 1", …), newest first; only the newest is open. Each message is a plain line, with no coloured bar beside it. Move names are bold; damage ("It dealt 96 HP damage.", after the move, burn, poison or confusion that caused it) and details (critical hits, effectiveness, multi-hit) are smaller and muted. The battle's result ("You won!", "You lost...", "You got away safely!", "You forfeited the battle.") is bold at the regular size; no other line is coloured or bold for success or failure.
 - **Result:** when the battle ends, the opponent's HP drains, the battlefield stays with the fainted Pokémon's sprite faded, and a result card slides in for every ending (won, lost, ran, caught): the title (with a badge on the right such as "New best floor!" or "Kanto Champion ✓"), **Your rewards** (money, a gym badge), and **XP gained**: one row per Pokémon that got XP with its gender icon, "+340 XP" and a "Level up! 54 → 55" pill on the right. With the XP Share on, each party Pokémon that got XP through it has its own row marked "via XP Share". No XP bars. A loss with no opponent knocked out says "No XP this time". Tower battles show the XP saved in the run instead. Buttons fit their text and sit on the right, the main one last.
-- When the battle ends the log gets a last section, "End" (open, at the top, with the last played turn below it also open), with the result ("You won!", "You lost..."; running keeps "You got away safely!"), then one line per Pokémon that earned XP ("Shiny Magikarp gained 340 XP!") and one per level-up ("Shiny Magikarp grew to Lv 55!"). None of these lines belong to the last turn's section.
+- When the battle ends the log gets a last section, "End" (open, at the top, with the last played turn below it also open), with the result in bold ("You won!", "You lost..."; running keeps "You got away safely!", forfeiting "You forfeited the battle."), then one line per Pokémon that earned XP ("Shiny Magikarp gained 340 XP!", or "Shiny Magikarp gained 340 XP and grew to level 55!" when it levelled up). None of these lines belong to the last turn's section.
 - **Motion:** nothing changes abruptly: HP bars slide, new log lines and dialogs fade in, bottom sheets slide up, and the end of a battle plays in order (HP drains and the fainted sprite fades, then the result slides up). Reduced motion turns these off.

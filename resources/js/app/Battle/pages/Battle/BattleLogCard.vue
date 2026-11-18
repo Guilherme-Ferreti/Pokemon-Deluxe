@@ -228,6 +228,10 @@ function splitMove(
   @apply text-muted-foreground;
 }
 
+.battle-log-card__line--result {
+  @apply font-semibold;
+}
+
 .battle-log-card__line--new {
   @apply animate-in duration-300 fill-mode-both fade-in slide-in-from-bottom-1 motion-reduce:animate-none;
 }
