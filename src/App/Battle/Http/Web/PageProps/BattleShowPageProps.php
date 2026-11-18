@@ -141,7 +141,7 @@ final class BattleShowPageProps implements ProvidesInertiaProperties
     }
 
     /**
-     * @return array{experienceGains: list<array{name: string, portrait: ?string, gender: PokemonGender, earnedExperience: int, levelBefore: int, levelAfter: int, isFromExperienceShare: bool}>}|null
+     * @return array{experienceGains: list<array{name: string, portrait: ?string, gender: PokemonGender, earnedExperience: int, levelBefore: int, levelAfter: int, isFromExperienceShare: bool, isAtMaxLevel: bool}>}|null
      */
     private function getResultProp(): ?array
     {
@@ -152,7 +152,7 @@ final class BattleShowPageProps implements ProvidesInertiaProperties
         $combatants = $this->battle->state->player_side->combatants;
         $gains      = array_values(array_filter(
             $this->battle->state->experience_gains,
-            fn (ExperienceGain $gain) => $gain->earned_experience > 0,
+            fn (ExperienceGain $gain) => $gain->earned_experience > 0 || $gain->is_at_max_level,
         ));
 
         return [
@@ -167,6 +167,7 @@ final class BattleShowPageProps implements ProvidesInertiaProperties
                     'levelBefore'           => $gain->level_before,
                     'levelAfter'            => $gain->level_after,
                     'isFromExperienceShare' => $gain->is_from_experience_share,
+                    'isAtMaxLevel'          => $gain->is_at_max_level,
                 ];
             }, $gains),
         ];

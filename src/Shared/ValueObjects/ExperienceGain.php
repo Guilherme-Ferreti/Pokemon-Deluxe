@@ -8,7 +8,7 @@ use InvalidArgumentException;
 use Shared\Interfaces\ValueObject;
 
 /**
- * @phpstan-type ExperienceGainArray array{combatant_index: int, earned_experience: int, level_before: int, level_after: int, is_from_experience_share: bool}
+ * @phpstan-type ExperienceGainArray array{combatant_index: int, earned_experience: int, level_before: int, level_after: int, is_from_experience_share: bool, is_at_max_level: bool}
  */
 final readonly class ExperienceGain implements ValueObject
 {
@@ -18,6 +18,7 @@ final readonly class ExperienceGain implements ValueObject
         public int $level_before,
         public int $level_after,
         public bool $is_from_experience_share,
+        public bool $is_at_max_level,
     ) {
         $maxLevel = (int) config('game.pokemon.max_level');
 
@@ -28,6 +29,8 @@ final readonly class ExperienceGain implements ValueObject
         throw_if($level_before < 1 || $level_before > $maxLevel, InvalidArgumentException::class, "The level before must be between 1 and {$maxLevel}, [{$level_before}] given.");
 
         throw_if($level_after < $level_before || $level_after > $maxLevel, InvalidArgumentException::class, "The level after must be between {$level_before} and {$maxLevel}, [{$level_after}] given.");
+
+        throw_if($is_at_max_level && $level_before !== $maxLevel, InvalidArgumentException::class, "Only a Pokémon at level {$maxLevel} can be at the max level, [{$level_before}] given.");
     }
 
     /**
@@ -41,6 +44,7 @@ final readonly class ExperienceGain implements ValueObject
             level_before: $data['level_before'],
             level_after: $data['level_after'],
             is_from_experience_share: $data['is_from_experience_share'],
+            is_at_max_level: $data['is_at_max_level'],
         );
     }
 
@@ -55,6 +59,7 @@ final readonly class ExperienceGain implements ValueObject
             'level_before'             => $this->level_before,
             'level_after'              => $this->level_after,
             'is_from_experience_share' => $this->is_from_experience_share,
+            'is_at_max_level'          => $this->is_at_max_level,
         ];
     }
 

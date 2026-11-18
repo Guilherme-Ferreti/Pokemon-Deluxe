@@ -410,6 +410,7 @@ it('shows the XP each pokemon gained when the battle is won', function () {
     $user    = User::factory()->create();
     $pikachu = Species::factory()->create(['name' => 'Pikachu']);
     $eevee   = Species::factory()->create(['name' => 'Eevee']);
+    $zoroark = Species::factory()->create(['name' => 'Zoroark']);
     $pidgey  = Species::factory()->create(['name' => 'Pidgey']);
     $tackle  = Move::factory()->plainDamage()->create(['name' => 'Tackle']);
 
@@ -438,13 +439,15 @@ it('shows the XP each pokemon gained when the battle is won', function () {
             player_side: new BattleSide(combatants: [
                 new Combatant(...$combatant),
                 new Combatant(...[...$combatant, 'pokemon_id' => 'pokemon-2', 'species_id' => $eevee->id, 'has_entered_field' => false]),
+                new Combatant(...[...$combatant, 'pokemon_id' => 'pokemon-3', 'species_id' => $zoroark->id, 'level' => 100]),
             ], active_index: 0),
             opponent_side: new BattleSide(combatants: [new Combatant(...[...$combatant, 'pokemon_id' => null, 'species_id' => $pidgey->id, 'current_hp' => 0])], active_index: 0),
             is_awaiting_send_out: false,
             log: [new BattleLogEntry(0, BattleLogKind::INFO, 'A wild Pidgey appeared!')],
             experience_gains: [
-                new ExperienceGain(combatant_index: 0, earned_experience: 1_340, level_before: 54, level_after: 55, is_from_experience_share: false),
-                new ExperienceGain(combatant_index: 1, earned_experience: 125, level_before: 54, level_after: 54, is_from_experience_share: true),
+                new ExperienceGain(combatant_index: 0, earned_experience: 1_340, level_before: 54, level_after: 55, is_from_experience_share: false, is_at_max_level: false),
+                new ExperienceGain(combatant_index: 1, earned_experience: 125, level_before: 54, level_after: 54, is_from_experience_share: true, is_at_max_level: false),
+                new ExperienceGain(combatant_index: 2, earned_experience: 0, level_before: 100, level_after: 100, is_from_experience_share: false, is_at_max_level: true),
             ],
         ),
     ]);
@@ -464,6 +467,9 @@ it('shows the XP each pokemon gained when the battle is won', function () {
         ->assertSeeIn('@battle-result-card__xp-gain-2-item', '+125 XP')
         ->assertSeeIn('@battle-result-card__xp-gain-2-item', 'via XP Share')
         ->assertDontSeeIn('@battle-result-card__xp-gain-2-item', 'Level up!')
+        ->assertSeeIn('@battle-result-card__xp-gain-3-item', 'Zoroark')
+        ->assertSeeIn('@battle-result-card__xp-gain-3-item', 'Max level')
+        ->assertDontSeeIn('@battle-result-card__xp-gain-3-item', '+0 XP')
         ->assertMissing('@battle-result-card__no-experience-empty-state')
         ->wait(1)
         ->assertNoAccessibilityIssues()
@@ -502,7 +508,7 @@ it('shows that no XP was gained when the battle is lost', function () {
             opponent_side: new BattleSide(combatants: [new Combatant(...[...$combatant, 'pokemon_id' => null, 'species_id' => $pidgey->id, 'current_hp' => 218])], active_index: 0),
             is_awaiting_send_out: false,
             log: [new BattleLogEntry(0, BattleLogKind::INFO, 'A wild Pidgey appeared!')],
-            experience_gains: [new ExperienceGain(combatant_index: 0, earned_experience: 0, level_before: 50, level_after: 50, is_from_experience_share: false)],
+            experience_gains: [new ExperienceGain(combatant_index: 0, earned_experience: 0, level_before: 50, level_after: 50, is_from_experience_share: false, is_at_max_level: false)],
         ),
     ]);
 
@@ -885,7 +891,7 @@ it('opens the end section and the last played turn once the battle has ended', f
                 new BattleLogEntry(2, BattleLogKind::EVENT, 'The wild Pikachu fainted!'),
                 new BattleLogEntry(3, BattleLogKind::RESULT, 'You won!'),
             ],
-            experience_gains: [new ExperienceGain(combatant_index: 0, earned_experience: 0, level_before: 50, level_after: 50, is_from_experience_share: false)],
+            experience_gains: [new ExperienceGain(combatant_index: 0, earned_experience: 0, level_before: 50, level_after: 50, is_from_experience_share: false, is_at_max_level: false)],
         ),
     ]);
 

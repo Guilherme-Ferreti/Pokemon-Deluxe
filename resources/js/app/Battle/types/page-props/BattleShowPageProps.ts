@@ -93,6 +93,7 @@ export type BattleShowPageProps = {
       levelBefore: number;
       levelAfter: number;
       isFromExperienceShare: boolean;
+      isAtMaxLevel: boolean;
     }[];
   } | null;
 };

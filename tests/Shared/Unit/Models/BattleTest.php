@@ -90,7 +90,7 @@ it('saves and reloads the battle state unchanged', function () {
             new BattleLogEntry(turn: 0, kind: BattleLogKind::INFO, text: 'A wild Bulbasaur appeared!'),
             new BattleLogEntry(turn: 6, kind: BattleLogKind::MOVE, text: 'Squirtle used Water Gun!', move_name: 'Water Gun'),
         ],
-        experience_gains: [new ExperienceGain(combatant_index: 1, earned_experience: 1500, level_before: 60, level_after: 61, is_from_experience_share: false)],
+        experience_gains: [new ExperienceGain(combatant_index: 1, earned_experience: 1500, level_before: 60, level_after: 61, is_from_experience_share: false, is_at_max_level: false)],
     );
 
     $battle = Battle::factory()->for($user)->create([

@@ -113,8 +113,8 @@ describe('experience', function () {
             ->and($switchedPokemon->fresh())->experience->toBe(26_875)->level->toBe(26)
             ->and($benchedPokemon->fresh())->experience->toBe(50_000)->level->toBe(50)
             ->and($battle->fresh()?->state->experience_gains)->toEqual([
-                new ExperienceGain(combatant_index: 0, earned_experience: 937, level_before: 50, level_after: 50, is_from_experience_share: false),
-                new ExperienceGain(combatant_index: 1, earned_experience: 1_875, level_before: 25, level_after: 26, is_from_experience_share: false),
+                new ExperienceGain(combatant_index: 0, earned_experience: 937, level_before: 50, level_after: 50, is_from_experience_share: false, is_at_max_level: false),
+                new ExperienceGain(combatant_index: 1, earned_experience: 1_875, level_before: 25, level_after: 26, is_from_experience_share: false, is_at_max_level: false),
             ])
             ->and($battle->fresh()?->state->log)->toEqual([
                 ...($resultText === null ? [] : [new BattleLogEntry(5, BattleLogKind::RESULT, $resultText)]),
@@ -180,9 +180,62 @@ describe('experience', function () {
 
         expect($pokemon->fresh()?->experience)->toBe(50_000)
             ->and($battle->fresh()?->state->experience_gains)->toEqual([
-                new ExperienceGain(combatant_index: 0, earned_experience: 0, level_before: 50, level_after: 50, is_from_experience_share: false),
+                new ExperienceGain(combatant_index: 0, earned_experience: 0, level_before: 50, level_after: 50, is_from_experience_share: false, is_at_max_level: false),
             ]);
     });
+
+    it('marks a max level pokemon that earned XP as at the max level and logs it', function (BattleStatus $status, int $opponentHp, bool $isAtMaxLevel, array $experienceLog) {
+        Event::fake([BattleEnded::class]);
+
+        $pokemon = Pokemon::factory()->create(['level' => 100]);
+        $zoroark = Species::factory()->create(['name' => 'Zoroark']);
+
+        $combatant = [
+            'pokemon_id'                    => $pokemon->id,
+            'species_id'                    => $zoroark->id,
+            'level'                         => 100,
+            'boost'                         => 0,
+            'is_shiny'                      => false,
+            'gender'                        => PokemonGender::MALE,
+            'types'                         => [PokemonType::DARK],
+            'move_ids'                      => ['move-1'],
+            'max_hp'                        => 400,
+            'current_hp'                    => 400,
+            'ailment'                       => null,
+            'ailment_turns_left'            => 0,
+            'confusion_turns_left'          => 0,
+            'has_entered_field'             => true,
+            'used_once_per_battle_move_ids' => [],
+        ];
+
+        $battle = Battle::factory()->create([
+            'type'   => BattleType::WILD,
+            'status' => BattleStatus::ONGOING,
+            'state'  => new BattleState(
+                turn: 3,
+                player_side: new BattleSide(combatants: [new Combatant(...$combatant)], active_index: 0),
+                opponent_side: new BattleSide(combatants: [
+                    new Combatant(...[...$combatant, 'pokemon_id' => null, 'current_hp' => $opponentHp, 'knocked_out_by' => $opponentHp === 0 ? 0 : null]),
+                ], active_index: 0),
+                is_awaiting_send_out: false,
+                log: [],
+            ),
+        ]);
+
+        new EndBattleAction()->handle($battle, $status);
+
+        expect($pokemon->fresh())->experience->toBe(100_000)->level->toBe(100)
+            ->and($battle->fresh()?->state->experience_gains)->toEqual([
+                new ExperienceGain(combatant_index: 0, earned_experience: 0, level_before: 100, level_after: 100, is_from_experience_share: false, is_at_max_level: $isAtMaxLevel),
+            ])
+            ->and($battle->fresh()?->state->log)->toEqual(array_map(
+                fn (string $text) => new BattleLogEntry(3, $text === 'You won!' ? BattleLogKind::RESULT : BattleLogKind::EVENT, $text),
+                $experienceLog,
+            ));
+    })->with([
+        'won'                  => [BattleStatus::WON, 0, true, ['You won!', 'Zoroark is at the max level and gained no XP.']],
+        'ran with no knockout' => [BattleStatus::FORFEITED, 400, false, []],
+    ]);
 
     it('pays a catch like a knockout by the active pokemon', function () {
         Event::fake([BattleEnded::class]);
@@ -227,8 +280,8 @@ describe('experience', function () {
         new EndBattleAction()->handle($battle, BattleStatus::CAUGHT);
 
         expect($battle->fresh()?->state->experience_gains)->toEqual([
-            new ExperienceGain(combatant_index: 0, earned_experience: 250, level_before: 50, level_after: 50, is_from_experience_share: false),
-            new ExperienceGain(combatant_index: 1, earned_experience: 375, level_before: 50, level_after: 50, is_from_experience_share: false),
+            new ExperienceGain(combatant_index: 0, earned_experience: 250, level_before: 50, level_after: 50, is_from_experience_share: false, is_at_max_level: false),
+            new ExperienceGain(combatant_index: 1, earned_experience: 375, level_before: 50, level_after: 50, is_from_experience_share: false, is_at_max_level: false),
         ]);
     });
 
@@ -271,7 +324,7 @@ describe('experience', function () {
 
         expect($pokemon->fresh()?->experience)->toBe(50_000)
             ->and($battle->fresh()?->state->experience_gains)->toEqual([
-                new ExperienceGain(combatant_index: 0, earned_experience: 375, level_before: 50, level_after: 50, is_from_experience_share: false),
+                new ExperienceGain(combatant_index: 0, earned_experience: 375, level_before: 50, level_after: 50, is_from_experience_share: false, is_at_max_level: false),
             ]);
     });
 });

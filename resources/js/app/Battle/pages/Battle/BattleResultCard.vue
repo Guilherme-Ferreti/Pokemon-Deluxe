@@ -47,7 +47,16 @@
                 :name="gain.name"
                 :gender="gain.gender"
               />
-              <span class="battle-result-card__experience">
+              <span
+                v-if="gain.isAtMaxLevel"
+                class="battle-result-card__max-level"
+              >
+                Max level
+              </span>
+              <span
+                v-else
+                class="battle-result-card__experience"
+              >
                 +{{ gain.earnedExperience.toLocaleString('en-US') }} XP
               </span>
               <span
@@ -189,6 +198,10 @@ const noExperienceMessage = computed(() =>
 
 .battle-result-card__experience {
   @apply font-semibold text-green-700 tabular-nums dark:text-green-400;
+}
+
+.battle-result-card__max-level {
+  @apply text-muted-foreground;
 }
 
 .battle-result-card__experience-share {

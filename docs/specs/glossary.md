@@ -55,7 +55,7 @@ One name per idea, used everywhere: specs, code, database, tests and UI. When yo
 | Battlefield | `BattlefieldCard`, `BattlefieldCombatantCard` | Both Pokémon in battle with their sprite, level and HP as numbers ("115 / 185"); fades out when the battle ends. |
 | Battle header | `BattleHeader` | The battle page's title and description with the turn; a `sprite` slot for the trainer and a default slot for the Elite Four steps. |
 | Running from the page | `ForfeitBattleController` | `POST /battle/forfeit`. |
-| End screen | `result` prop (`experienceGains` with `isFromExperienceShare`), `BattleResultCard` | The result card that replaces the battlefield once the battle has ended: title, "Your rewards", "XP gained" rows, buttons. |
+| End screen | `result` prop (`experienceGains` with `isFromExperienceShare` and `isAtMaxLevel`), `BattleResultCard` | The result card that replaces the battlefield once the battle has ended: title, "Your rewards", "XP gained" rows, buttons. |
 | More options | `BattleOptionsCard` | The card under the moves with Throw ball and Run (wild) or Forfeit (every other battle). |
 | Battle scene | `BattleScene` enum (`fromBattleType()`), `battle.scene` prop, `BattleSceneBackground` | The SVG background of the battlefield card, picked from the battle type for now. |
 | Taking a turn from the page | `TakeTurnController`, `TakeTurnRequest` (`moveSlot`) | `POST /battle/turn`; the slot is the move's position (1–4) in the active combatant's `move_ids`. |
@@ -66,7 +66,7 @@ One name per idea, used everywhere: specs, code, database, tests and UI. When yo
 | Opponent's half of a turn | The turn pipes with only the opponent acting; `TurnData::isUsingMove()` | The opponent's move, end-of-turn damage and fainting; shared by moves, switches and ball throws. A `TurnData` without a `moveSlot` lets only the opponent act. |
 | Run / Forfeit | `ForfeitBattleAction`, `BattleStatus::FORFEITED` | The UI says "Run" in wild battles and "Forfeit" in every other battle. Counts as a loss. |
 | Battle ended | `EndBattleAction`, `BattleEnded` event | The one place a battle ends; `isWin` for won and caught battles. |
-| Earned XP | `ExperienceGain` (`combatant_index`, `earned_experience`, `level_before`, `level_after`, `is_from_experience_share`) in `BattleState::experience_gains` | Each player combatant's result, saved when the battle ends and shown on the end screen. |
+| Earned XP | `ExperienceGain` (`combatant_index`, `earned_experience`, `level_before`, `level_after`, `is_from_experience_share`, `is_at_max_level`) in `BattleState::experience_gains` | Each player combatant's result, saved when the battle ends and shown on the end screen. |
 | Earned XP per combatant | `EarnedExperienceCalculator::earnedByCombatant()` | The XP each player combatant that entered the field earned in a battle. |
 | XP for one defeated Pokémon | `ExperienceCalculator::experienceForDefeating()` (`App\Pokemon\Mechanics`) | Spec 1's formula. |
 | Paying XP | `AwardExperienceAction` | Adds XP to a Pokémon and levels it up, up to level 100. |
