@@ -134,10 +134,8 @@ final class EndBattleAction
 
     private function loadPlayerPokemon(): void
     {
-        $pokemonIds = array_filter(array_map(
-            fn (Combatant $combatant) => $combatant->pokemon_id,
-            $this->battle->state->player_side->combatants,
-        ));
+        $pokemonIds = array_column($this->battle->state->player_side->combatants, 'pokemon_id')
+            |> array_filter(...);
 
         $this->playerPokemon = Pokemon::query()->whereKey($pokemonIds)->get()->keyBy('id');
     }

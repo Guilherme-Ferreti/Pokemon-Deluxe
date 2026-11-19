@@ -187,7 +187,7 @@ final class Species extends Model
 
     public function getCatchRatePercentage(): int|float
     {
-        return toIntIfWhole(round(($this->catch_rate / 255) * 100, 2));
+        return round(($this->catch_rate / 255) * 100, 2) |> toIntIfWhole(...);
     }
 
     public function getRandomGender(): PokemonGender

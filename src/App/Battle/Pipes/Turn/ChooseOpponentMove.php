@@ -20,10 +20,10 @@ final class ChooseOpponentMove
         $combatant = $turn->state->opponent_side->activeCombatant();
         $species   = $turn->species->findOrFail($combatant->species_id);
 
-        $usableMoveIds = array_values(array_filter(
+        $usableMoveIds = array_filter(
             $combatant->move_ids,
             fn (string $moveId) => new MoveUsabilityChecker()->isUsable($turn->moves->findOrFail($moveId), $combatant, $species),
-        ));
+        ) |> array_values(...);
 
         if ($usableMoveIds === []) {
             throw new LogicException('The opponent has no move it can use.');

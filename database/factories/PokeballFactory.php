@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Override;
 use Shared\Enums\PokeballType;
 use Shared\Models\Pokeball;
 
@@ -13,6 +14,7 @@ use Shared\Models\Pokeball;
  */
 final class PokeballFactory extends Factory
 {
+    #[Override]
     protected $model = Pokeball::class;
 
     public function definition(): array

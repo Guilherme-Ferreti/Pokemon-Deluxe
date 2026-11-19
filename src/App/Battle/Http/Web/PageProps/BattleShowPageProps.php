@@ -150,10 +150,10 @@ final class BattleShowPageProps implements ProvidesInertiaProperties
         }
 
         $combatants = $this->battle->state->player_side->combatants;
-        $gains      = array_values(array_filter(
+        $gains      = array_filter(
             $this->battle->state->experience_gains,
             fn (ExperienceGain $gain) => $gain->earned_experience > 0 || $gain->is_at_max_level,
-        ));
+        ) |> array_values(...);
 
         return [
             'experienceGains' => array_map(function (ExperienceGain $gain) use ($combatants) {
@@ -300,7 +300,9 @@ final class BattleShowPageProps implements ProvidesInertiaProperties
      */
     private function existingMovesOf(Combatant $combatant): array
     {
-        return array_values(array_filter(array_map($this->shownMoves()->get(...), $combatant->move_ids)));
+        return array_map($this->shownMoves()->get(...), $combatant->move_ids)
+            |> array_filter(...)
+            |> array_values(...);
     }
 
     /**

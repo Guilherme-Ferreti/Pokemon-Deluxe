@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Override;
 use Shared\Models\EvolutionItem;
 
 /**
@@ -12,6 +13,7 @@ use Shared\Models\EvolutionItem;
  */
 final class EvolutionItemFactory extends Factory
 {
+    #[Override]
     protected $model = EvolutionItem::class;
 
     public function definition(): array

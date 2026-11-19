@@ -44,12 +44,6 @@ final readonly class MoveOutcome implements ValueObject
             return false;
         }
 
-        foreach ($this->hits as $index => $hit) {
-            if (! $hit->equals($other->hits[$index])) {
-                return false;
-            }
-        }
-
-        return true;
+        return array_all($this->hits, fn (MoveHit $hit, int $index): bool => $hit->equals($other->hits[$index]));
     }
 }

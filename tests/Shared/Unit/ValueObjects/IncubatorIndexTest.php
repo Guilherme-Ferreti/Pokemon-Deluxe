@@ -25,14 +25,14 @@ describe('value', function () {
 
 describe('equality', function () {
     it('equals another index with the same value', function () {
-        expect((new IncubatorIndex(1))->equals(new IncubatorIndex(1)))->toBeTrue();
+        expect(new IncubatorIndex(1)->equals(new IncubatorIndex(1)))->toBeTrue();
     });
 
     it('does not equal an index with a different value', function () {
-        expect((new IncubatorIndex(1))->equals(new IncubatorIndex(2)))->toBeFalse();
+        expect(new IncubatorIndex(1)->equals(new IncubatorIndex(2)))->toBeFalse();
     });
 
     it('does not equal a different value object that shares the same underlying value', function () {
-        expect((new IncubatorIndex(1))->equals(new FilterOption('One', 1)))->toBeFalse();
+        expect(new IncubatorIndex(1)->equals(new FilterOption('One', 1)))->toBeFalse();
     });
 });

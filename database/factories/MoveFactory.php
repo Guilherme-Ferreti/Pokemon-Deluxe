@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Override;
 use Shared\Enums\Ailment;
 use Shared\Enums\Generation;
 use Shared\Enums\MoveCategory;
@@ -16,6 +17,7 @@ use Shared\Models\Move;
  */
 final class MoveFactory extends Factory
 {
+    #[Override]
     protected $model = Move::class;
 
     /**

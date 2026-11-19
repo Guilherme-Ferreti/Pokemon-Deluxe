@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Override;
 use Shared\Enums\Generation;
 use Shared\Enums\PokemonGenderRate;
 use Shared\Enums\PokemonType;
@@ -18,6 +19,7 @@ use Shared\ValueObjects\SpeciesSprites;
  */
 final class SpeciesFactory extends Factory
 {
+    #[Override]
     protected $model = Species::class;
 
     public function definition(): array

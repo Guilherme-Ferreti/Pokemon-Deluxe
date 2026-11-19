@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Override;
 use Shared\Enums\InventoryItemType;
 use Shared\Models\EvolutionItem;
 use Shared\Models\InventoryItem;
@@ -16,6 +17,7 @@ use Shared\Models\User;
  */
 final class InventoryItemFactory extends Factory
 {
+    #[Override]
     protected $model = InventoryItem::class;
 
     public function definition(): array

@@ -25,10 +25,10 @@ final class AsIncubatorIndexes implements CastsAttributes
             return [];
         }
 
-        return array_values(array_map(
+        return array_map(
             fn (int|string $index) => new IncubatorIndex((int) $index),
             $decoded,
-        ));
+        ) |> array_values(...);
     }
 
     public function set(Model $model, string $key, $value, array $attributes): string
@@ -37,8 +37,9 @@ final class AsIncubatorIndexes implements CastsAttributes
 
         throw_if(! array_all($value, fn ($item) => $item instanceof IncubatorIndex), InvalidArgumentException::class, sprintf("All values of [{$key}] must be instances of [%s]", IncubatorIndex::class));
 
-        $indexes = array_values(array_map(fn (IncubatorIndex $index) => $index->value, $value));
-
-        return (string) json_encode($indexes);
+        return array_map(fn (IncubatorIndex $index) => $index->value, $value)
+            |> array_values(...)
+            |> json_encode(...)
+            |> strval(...);
     }
 }
