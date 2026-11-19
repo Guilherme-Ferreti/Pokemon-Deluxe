@@ -76,6 +76,7 @@ One name per idea, used everywhere: specs, code, database, tests and UI. When yo
 | Knocked out by | `Combatant::$knocked_out_by` | The index of the player combatant credited with an opponent's knockout (`CreditOpponentKnockout`). |
 | First mover | `firstMoverChance` | Percentage chance (0–100) to act first this turn. |
 | Area | `Area` enum | The 9 places to explore (`Area::FOREST`). |
+| Area species | `AreaSpeciesQuery` (`App\Exploration\Queries`) | The species that can appear in an area: one of its types and a wild level range. |
 | Explore / Keep exploring | `ExploreAction` | Both roll a new encounter. |
 | Encounter | `Encounter` model | The one wild Pokémon waiting for the player. |
 | Wild level range | `wild_min_level`, `wild_max_level`, `WildSpawnCalculator::levelRange()` | Null when a species never appears in the wild. Saved by `SpeciesWildDataSeeder`. |

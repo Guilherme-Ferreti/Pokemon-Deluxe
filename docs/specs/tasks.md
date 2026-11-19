@@ -911,12 +911,12 @@ Read [02-catching-and-exploration.md](02-catching-and-exploration.md) first. Nee
 
 ### 2.4 Which species live in an area
 
-- [ ] Done
+- [x] Done
 
 **Goal:** list the species that can appear in an area.
 
 **Build:**
-- `App\Exploration\Queries\AreaSpeciesQuery::get(Area $area): Collection`: species with at least one of the area's types and a non-null `wild_min_level`. Ordered by `pokedex_order`.
+- `App\Exploration\Queries\AreaSpeciesQuery::handle(Area $area): Builder` (Query classes return a `Builder`, see `.ai/rules/queries.md`): species with at least one of the area's types and a non-null `wild_min_level`. Ordered by `pokedex_order`.
 
 **Tests:** includes a matching dual-type species; excludes other types, Megas, G-Max and babies.
 
