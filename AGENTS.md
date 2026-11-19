@@ -196,6 +196,12 @@ Vue components must have a single root element.
 - Screen tasks may link a mock-up in `docs/mockups/` (plain HTML; open it in a browser or read its source). Match its layout, content and every state in its State menu, but build the page from the project's components and `.ai/rules/design.md`, never by copying the mock-up's HTML or CSS.
 - Start from the names in `docs/specs/glossary.md` (and in the task) for classes, methods, columns and variables. They are suggestions, not final names: the final name is decided when the task is built. When a name changes or a new one is needed, build it from the glossary's recipes and update the glossary (and later tasks that use it) in the same change.
 
+# Comments
+
+- AI agents do not add comments to functions or methods (PHP, TypeScript or Vue). A function's name, parameters and return type must say what it does.
+- The only exception is PHPDoc that PHPStan needs to type data: `@param`, `@return`, `@var`, `@template`, `@throws` and array shapes. These blocks hold types only, never a description.
+- When a function seems to need a comment, rename it or extract a well-named function instead (`rollIsShiny()`, not `roll()` with "Rolls whether the egg is shiny").
+
 # Git
 
 - Commit messages are a single line in the existing conventional style (for example `docs(specs): add feature specs`). No body, no explanation paragraph and no attribution or `Co-Authored-By` lines.
