@@ -944,7 +944,7 @@ Read [02-catching-and-exploration.md](02-catching-and-exploration.md) first. Nee
 
 ### 2.6 Save the encounter and explore
 
-- [ ] Done
+- [x] Done
 
 **Goal:** pressing Explore (or Keep exploring) stores one wild Pokémon for the player.
 
@@ -952,6 +952,7 @@ Read [02-catching-and-exploration.md](02-catching-and-exploration.md) first. Nee
 - Migration `015_create_encounters_table.php`: `uuid id`, `foreignIdFor(User)` unique, `area` enum, `foreignIdFor(Species)`, `level`, `is_shiny`, `gender` enum, timestamps.
 - Model `Shared\Models\Encounter` (with factory), `User::encounter(): HasOne`, `Encounter::toNewPokemon(): NewPokemon`.
 - `App\Exploration\Actions\ExploreAction::handle(User $user, Area $area): Encounter`: refuses with `BattleAlreadyInProgressException` when a battle is ongoing; replaces any existing encounter with a new roll from `EncounterRoller`.
+- As built: the action runs under a per-user lock (`App\Exploration\Support\LockKeys::explore()`) and rolls from `AreaSpeciesQuery`. Replacing updates the player's existing row (`updateOrCreate` on `user_id`), so the encounter keeps its ID.
 
 **Tests:** creates one encounter; a second explore replaces it (still one row); refused during a battle.
 

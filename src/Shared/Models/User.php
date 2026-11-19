@@ -14,6 +14,7 @@ use Illuminate\Database\Eloquent\Collection as EloquentCollection;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Override;
@@ -33,6 +34,7 @@ use Shared\ValueObjects\IncubatorIndex;
  * @property-read EloquentCollection<int, Pokemon> $pokemon
  * @property-read EloquentCollection<int, Incubation> $incubations
  * @property-read EloquentCollection<int, Battle> $battles
+ * @property-read Encounter|null $encounter
  */
 #[Fillable(['name', 'email', 'password'])]
 #[Hidden(['password', 'remember_token'])]
@@ -84,5 +86,13 @@ final class User extends Authenticatable
     public function battles(): HasMany
     {
         return $this->hasMany(Battle::class);
+    }
+
+    /**
+     * @return HasOne<Encounter, $this>
+     */
+    public function encounter(): HasOne
+    {
+        return $this->hasOne(Encounter::class);
     }
 }
