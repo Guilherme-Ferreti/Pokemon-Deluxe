@@ -39,10 +39,10 @@
 import { ref, watch } from 'vue';
 import SpeciesPortrait from '@/shared/components/game/SpeciesPortrait.vue';
 import { HoverCard, HoverCardTrigger } from '@/shared/components/ui/hover-card';
+import { useBattleLayout } from '../../composables/useBattleLayout';
 import type { BattlePokemonDetails } from '../../types/page-props/BattleShowPageProps';
 import PokemonDetailsHoverCard from './PokemonDetailsHoverCard.vue';
 import PokemonDetailsSheet from './PokemonDetailsSheet.vue';
-import { useBattleLayout } from './useBattleLayout';
 
 defineProps<{
   pokemon: BattlePokemonDetails;
