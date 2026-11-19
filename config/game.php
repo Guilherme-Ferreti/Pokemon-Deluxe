@@ -14,7 +14,6 @@ return [
 
     'incubation' => [
         'hatch_time_in_hours' => 24, // Hours an egg incubates before it is ready to hatch.
-        'shiny_chance'        => 1,  // 1% chance that an egg is shiny.
     ],
 
     'pokemon' => [
@@ -22,6 +21,7 @@ return [
         'max_boost'            => 100,      // Highest boost a Pokémon can reach with boost stones.
         'experience_per_level' => 1000,     // XP needed to go up one level.
         'max_active_moves'     => 4,        // Number of active move slots a Pokémon uses in battle.
+        'shiny_chance'         => 1,        // 1% chance that a hatched egg or a wild Pokémon is shiny.
 
         'stats' => [
             'max_level_hp'                  => 400,  // Max HP of a level 100 Pokémon with no boost and no shine.
@@ -54,6 +54,8 @@ return [
         'legendary_levels'          => [50, 70], // Lowest and highest level of wild legendary and mythical Pokémon.
         'other_evolution_min_level' => 18,       // Lowest level of a wild Pokémon that evolves by item, gender or another way.
         'evolved_level_spread'      => 4,        // Levels above its lowest level an evolved wild Pokémon can appear at.
+        'legendary_chance'          => 0.2,      // 0.2% chance (1 in 500) that an encounter is a legendary or mythical, when the area has any.
+        'stage_weights'             => [1 => 85, 2 => 12, 3 => 3], // Weights of each evolution stage in an encounter (85% unevolved, 12% second, 3% third).
     ],
 
     'battle' => [

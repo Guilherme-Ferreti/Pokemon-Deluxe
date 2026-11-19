@@ -924,7 +924,7 @@ Read [02-catching-and-exploration.md](02-catching-and-exploration.md) first. Nee
 
 ### 2.5 Roll an encounter
 
-- [ ] Done
+- [x] Done
 
 **Goal:** pick the wild Pokémon for one explore.
 
@@ -936,6 +936,7 @@ Read [02-catching-and-exploration.md](02-catching-and-exploration.md) first. Nee
   2. Otherwise a stage from the weights; if the area has no species at that stage, fall back to the next lower stage.
   3. A species picked evenly from that group (legendaries and mythicals excluded in this step).
   4. Level between the species' `wild_min_level` and `wild_max_level`; shiny with `shiny_chance`; gender from `getRandomGender()`.
+- As built: `rollEvolutionStage(): int` is public, so the stage weights are tested on their own. The legendary chance is only rolled when the area has a legendary or mythical; an area with nothing else always gives one. An empty species list throws `InvalidArgumentException`.
 
 **Tests:** with `RandomHelper::fake()`: legendary roll, each stage, fallback to a lower stage, level within range, shiny.
 

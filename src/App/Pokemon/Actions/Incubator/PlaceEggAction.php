@@ -70,6 +70,6 @@ final class PlaceEggAction
 
     private function rollIsShiny(): bool
     {
-        return RandomHelper::chance((float) config('game.incubation.shiny_chance'));
+        return RandomHelper::chance((float) config('game.pokemon.shiny_chance'));
     }
 }

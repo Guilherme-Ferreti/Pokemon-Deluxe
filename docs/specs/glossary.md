@@ -79,6 +79,7 @@ One name per idea, used everywhere: specs, code, database, tests and UI. When yo
 | Area species | `AreaSpeciesQuery` (`App\Exploration\Queries`) | The species that can appear in an area: one of its types and a wild level range. |
 | Explore / Keep exploring | `ExploreAction` | Both roll a new encounter. |
 | Encounter | `Encounter` model | The one wild Pokémon waiting for the player. |
+| Encounter roll | `EncounterRoller::roll()`, `rollEvolutionStage()` | Picks the wild Pokémon for one explore from an area's species. |
 | Wild level range | `wild_min_level`, `wild_max_level`, `WildSpawnCalculator::levelRange()` | Null when a species never appears in the wild. Saved by `SpeciesWildDataSeeder`. |
 | Evolution stage | `evolution_stage`, `WildSpawnCalculator::evolutionStage()` | 1 = unevolved, 2, 3. Babies don't count. |
 | Catch chance | `CatchChanceCalculator` | Percentage, 0–100. |

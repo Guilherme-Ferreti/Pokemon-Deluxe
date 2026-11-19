@@ -64,10 +64,6 @@ watch(isPhoneLayout, (isPhone) => {
   }
 });
 
-/**
- * Below the three-column layout a tap opens the sheet. On wide screens a tap or Enter opens the hover card,
- * so touch screens wide enough for the three columns (a tablet in landscape) can open the details too.
- */
 function openDetails(): void {
   if (isPhoneLayout.value) {
     isSheetOpen.value = true;
