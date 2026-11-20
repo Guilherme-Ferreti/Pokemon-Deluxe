@@ -13,24 +13,56 @@ final class StatsCalculator
         $levelBonus     = (int) config('game.pokemon.stats.level_bonus');
         $levelFactor    = $level + $levelBonus;
         $maxLevelFactor = (int) config('game.pokemon.max_level') + $levelBonus;
-        $boostFactor    = 1 + $boost / 100;
 
-        $hp = (int) config('game.pokemon.stats.max_level_hp') * $levelFactor / $maxLevelFactor * $boostFactor;
+        $hp = (int) config('game.pokemon.stats.max_level_hp') * $levelFactor / $maxLevelFactor * $this->hpMultiplier($boost, $isShiny);
 
-        $attack = $levelFactor / (int) config('game.pokemon.stats.damage_scale') * $boostFactor;
-
-        $defense = 1 / $boostFactor;
-
-        if ($isShiny) {
-            $hp *= (float) config('game.pokemon.stats.shiny_hp_multiplier');
-            $attack *= (float) config('game.pokemon.stats.shiny_damage_done_multiplier');
-            $defense *= (float) config('game.pokemon.stats.shiny_damage_taken_multiplier');
-        }
+        $attack = $levelFactor / (int) config('game.pokemon.stats.damage_scale') * $this->damageDoneMultiplier($boost, $isShiny);
 
         return new PokemonStats(
             hp: (int) round($hp),
             attack: $attack,
-            defense: $defense,
+            defense: $this->damageTakenMultiplier($boost, $isShiny),
         );
+    }
+
+    private function hpMultiplier(int $boost, bool $isShiny): float
+    {
+        $multiplier = $this->boostMultiplier($boost);
+
+        return $isShiny ? $multiplier * (float) config('game.pokemon.stats.shiny_hp_multiplier') : $multiplier;
+    }
+
+    private function damageDoneMultiplier(int $boost, bool $isShiny): float
+    {
+        $multiplier = $this->boostMultiplier($boost);
+
+        return $isShiny ? $multiplier * (float) config('game.pokemon.stats.shiny_damage_done_multiplier') : $multiplier;
+    }
+
+    private function damageTakenMultiplier(int $boost, bool $isShiny): float
+    {
+        $multiplier = 1 / $this->boostMultiplier($boost);
+
+        return $isShiny ? $multiplier * (float) config('game.pokemon.stats.shiny_damage_taken_multiplier') : $multiplier;
+    }
+
+    private function boostMultiplier(int $boost): float
+    {
+        return 1 + $boost / 100;
+    }
+
+    public function hpBonusPercentage(int $boost, bool $isShiny): float
+    {
+        return ($this->hpMultiplier($boost, $isShiny) - 1) * 100;
+    }
+
+    public function damageDoneBonusPercentage(int $boost, bool $isShiny): float
+    {
+        return ($this->damageDoneMultiplier($boost, $isShiny) - 1) * 100;
+    }
+
+    public function damageTakenChangePercentage(int $boost, bool $isShiny): float
+    {
+        return ($this->damageTakenMultiplier($boost, $isShiny) - 1) * 100;
     }
 }

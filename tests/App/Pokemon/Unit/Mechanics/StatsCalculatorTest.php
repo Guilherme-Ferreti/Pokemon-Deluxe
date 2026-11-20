@@ -35,6 +35,20 @@ it('gives a shiny pokemon a quarter more hp and attack and a quarter less damage
     expect($stats)->toEqual(new PokemonStats(hp: 500, attack: 110 / 77 * 1.25, defense: 0.75));
 });
 
+it('gives the stat bonuses as percentages', function (int $boost, bool $isShiny, float $expectedHpBonus, float $expectedDamageDoneBonus, float $expectedDamageTakenChange) {
+    $calculator = new StatsCalculator;
+
+    expect($calculator->hpBonusPercentage($boost, $isShiny))->toEqualWithDelta($expectedHpBonus, 0.000001)
+        ->and($calculator->damageDoneBonusPercentage($boost, $isShiny))->toEqualWithDelta($expectedDamageDoneBonus, 0.000001)
+        ->and($calculator->damageTakenChangePercentage($boost, $isShiny))->toEqualWithDelta($expectedDamageTakenChange, 0.000001);
+})->with([
+    'no boost, not shiny' => [0, false, 0.0, 0.0, 0.0],
+    'boost 100'           => [100, false, 100.0, 100.0, -50.0],
+    'shiny'               => [0, true, 25.0, 25.0, -25.0],
+    'boost 100, shiny'    => [100, true, 150.0, 150.0, -62.5],
+    'boost 20, shiny'     => [20, true, 50.0, 50.0, -37.5],
+]);
+
 it('rounds hp to the nearest whole number', function (int $boost, int $expectedHp) {
     $stats = new StatsCalculator()->calculate(level: 1, boost: $boost, isShiny: false);
 

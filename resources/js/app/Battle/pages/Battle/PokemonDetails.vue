@@ -9,10 +9,10 @@
           :key="stat.name"
           class="pokemon-details__stat"
         >
-          {{ stat.name }}:
           <strong class="pokemon-details__stat-value">
-            +{{ stat.percentage }}%
+            {{ formatSignedPercentage(stat.percentage) }}
           </strong>
+          {{ stat.name }}
         </li>
       </ul>
     </div>
@@ -37,8 +37,6 @@ import { computed } from 'vue';
 import PokemonTypeBadges from '@/shared/components/game/PokemonTypeBadges.vue';
 import type { BattlePokemonDetails } from '../../types/page-props/BattleShowPageProps';
 
-const SHINY_STAT_BONUS_PERCENTAGE = 25;
-
 const props = withDefaults(
   defineProps<{
     pokemon: BattlePokemonDetails;
@@ -49,13 +47,15 @@ const props = withDefaults(
   },
 );
 
-const statBonuses = computed(() => {
-  const percentage =
-    props.pokemon.boost +
-    (props.pokemon.isShiny ? SHINY_STAT_BONUS_PERCENTAGE : 0);
+const statBonuses = computed(() => [
+  { name: 'HP', percentage: props.pokemon.statBonuses.hp },
+  { name: 'attack', percentage: props.pokemon.statBonuses.attack },
+  { name: 'damage taken', percentage: props.pokemon.statBonuses.damageTaken },
+]);
 
-  return ['HP', 'Attack', 'Defense'].map((name) => ({ name, percentage }));
-});
+function formatSignedPercentage(percentage: number): string {
+  return percentage < 0 ? `−${Math.abs(percentage)}%` : `+${percentage}%`;
+}
 </script>
 
 <style scoped>

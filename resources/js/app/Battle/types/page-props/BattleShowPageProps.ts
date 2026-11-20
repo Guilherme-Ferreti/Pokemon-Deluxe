@@ -25,6 +25,12 @@ export type BattleTeamMemberMove = {
   power: number | null;
 };
 
+export type BattleStatBonuses = {
+  hp: number;
+  attack: number;
+  damageTaken: number;
+};
+
 export type BattlePokemonDetails = {
   name: Pokemon['name'];
   portrait: string | null;
@@ -32,6 +38,7 @@ export type BattlePokemonDetails = {
   level: Pokemon['level'];
   boost: number;
   isShiny: boolean;
+  statBonuses: BattleStatBonuses;
   types: Species['types'];
   moves: BattleTeamMemberMove[];
   currentHp: number;

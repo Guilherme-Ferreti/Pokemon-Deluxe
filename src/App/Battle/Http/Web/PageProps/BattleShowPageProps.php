@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Battle\Http\Web\PageProps;
 
 use App\Battle\Enums\BattleScene;
+use App\Pokemon\Mechanics\StatsCalculator;
 use Illuminate\Database\Eloquent\Collection as EloquentCollection;
 use Inertia\ProvidesInertiaProperties;
 use Inertia\RenderContext;
@@ -196,7 +197,7 @@ final class BattleShowPageProps implements ProvidesInertiaProperties
     }
 
     /**
-     * @return list<array{name: ?string, portrait: ?string, gender: ?PokemonGender, level: ?int, boost: ?int, isShiny: ?bool, types: ?list<PokemonType>, moves: ?list<array{name: string, type: PokemonType, power: ?int}>, currentHp: ?int, maxHp: ?int, isFainted: bool, isActive: bool, isRevealed: bool}>
+     * @return list<array{name: ?string, portrait: ?string, gender: ?PokemonGender, level: ?int, boost: ?int, isShiny: ?bool, statBonuses: ?array{hp: int|float, attack: int|float, damageTaken: int|float}, types: ?list<PokemonType>, moves: ?list<array{name: string, type: PokemonType, power: ?int}>, currentHp: ?int, maxHp: ?int, isFainted: bool, isActive: bool, isRevealed: bool}>
      */
     private function opponentTeam(BattleSide $side): array
     {
@@ -205,59 +206,62 @@ final class BattleShowPageProps implements ProvidesInertiaProperties
 
             if (! $this->isRevealedOpponent($combatant, $index)) {
                 return [
-                    'name'       => null,
-                    'portrait'   => null,
-                    'gender'     => null,
-                    'level'      => null,
-                    'boost'      => null,
-                    'isShiny'    => null,
-                    'types'      => null,
-                    'moves'      => null,
-                    'currentHp'  => null,
-                    'maxHp'      => null,
-                    'isFainted'  => false,
-                    'isActive'   => false,
-                    'isRevealed' => false,
+                    'name'        => null,
+                    'portrait'    => null,
+                    'gender'      => null,
+                    'level'       => null,
+                    'boost'       => null,
+                    'isShiny'     => null,
+                    'statBonuses' => null,
+                    'types'       => null,
+                    'moves'       => null,
+                    'currentHp'   => null,
+                    'maxHp'       => null,
+                    'isFainted'   => false,
+                    'isActive'    => false,
+                    'isRevealed'  => false,
                 ];
             }
 
             return [
-                'name'       => $this->speciesOf($combatant)->getDisplayName($combatant->is_shiny),
-                'portrait'   => $this->portraitOf($combatant),
-                'gender'     => $combatant->gender,
-                'level'      => $combatant->level,
-                'boost'      => $combatant->boost,
-                'isShiny'    => $combatant->is_shiny,
-                'types'      => $combatant->types,
-                'moves'      => $this->moveDetailsOf($combatant),
-                'currentHp'  => $combatant->current_hp,
-                'maxHp'      => $combatant->max_hp,
-                'isFainted'  => $combatant->isFainted(),
-                'isActive'   => $isActive,
-                'isRevealed' => true,
+                'name'        => $this->speciesOf($combatant)->getDisplayName($combatant->is_shiny),
+                'portrait'    => $this->portraitOf($combatant),
+                'gender'      => $combatant->gender,
+                'level'       => $combatant->level,
+                'boost'       => $combatant->boost,
+                'isShiny'     => $combatant->is_shiny,
+                'statBonuses' => $this->statBonusesOf($combatant),
+                'types'       => $combatant->types,
+                'moves'       => $this->moveDetailsOf($combatant),
+                'currentHp'   => $combatant->current_hp,
+                'maxHp'       => $combatant->max_hp,
+                'isFainted'   => $combatant->isFainted(),
+                'isActive'    => $isActive,
+                'isRevealed'  => true,
             ];
         }, $side->combatants, array_keys($side->combatants));
     }
 
     /**
-     * @return list<array{name: string, portrait: ?string, gender: PokemonGender, level: int, boost: int, isShiny: bool, types: list<PokemonType>, moves: list<array{name: string, type: PokemonType, power: ?int}>, currentHp: int, maxHp: int, ailment: ?Ailment, isFainted: bool, isActive: bool}>
+     * @return list<array{name: string, portrait: ?string, gender: PokemonGender, level: int, boost: int, isShiny: bool, statBonuses: array{hp: int|float, attack: int|float, damageTaken: int|float}, types: list<PokemonType>, moves: list<array{name: string, type: PokemonType, power: ?int}>, currentHp: int, maxHp: int, ailment: ?Ailment, isFainted: bool, isActive: bool}>
      */
     private function playerTeam(BattleSide $side): array
     {
         return array_map(fn (Combatant $combatant, int $index) => [
-            'name'      => $this->speciesOf($combatant)->getDisplayName($combatant->is_shiny),
-            'portrait'  => $this->portraitOf($combatant),
-            'gender'    => $combatant->gender,
-            'level'     => $combatant->level,
-            'boost'     => $combatant->boost,
-            'isShiny'   => $combatant->is_shiny,
-            'types'     => $combatant->types,
-            'moves'     => $this->moveDetailsOf($combatant),
-            'currentHp' => $combatant->current_hp,
-            'maxHp'     => $combatant->max_hp,
-            'ailment'   => $combatant->ailment,
-            'isFainted' => $combatant->isFainted(),
-            'isActive'  => $index === $side->active_index,
+            'name'        => $this->speciesOf($combatant)->getDisplayName($combatant->is_shiny),
+            'portrait'    => $this->portraitOf($combatant),
+            'gender'      => $combatant->gender,
+            'level'       => $combatant->level,
+            'boost'       => $combatant->boost,
+            'isShiny'     => $combatant->is_shiny,
+            'statBonuses' => $this->statBonusesOf($combatant),
+            'types'       => $combatant->types,
+            'moves'       => $this->moveDetailsOf($combatant),
+            'currentHp'   => $combatant->current_hp,
+            'maxHp'       => $combatant->max_hp,
+            'ailment'     => $combatant->ailment,
+            'isFainted'   => $combatant->isFainted(),
+            'isActive'    => $index === $side->active_index,
         ], $side->combatants, array_keys($side->combatants));
     }
 
@@ -281,6 +285,20 @@ final class BattleShowPageProps implements ProvidesInertiaProperties
         return ! $keepsTeamSecret
             || $combatant->has_entered_field
             || $index === $this->battle->state->opponent_side->active_index;
+    }
+
+    /**
+     * @return array{hp: int|float, attack: int|float, damageTaken: int|float}
+     */
+    private function statBonusesOf(Combatant $combatant): array
+    {
+        $statsCalculator = new StatsCalculator;
+
+        return [
+            'hp'          => round($statsCalculator->hpBonusPercentage($combatant->boost, $combatant->is_shiny), 1) |> toIntIfWhole(...),
+            'attack'      => round($statsCalculator->damageDoneBonusPercentage($combatant->boost, $combatant->is_shiny), 1) |> toIntIfWhole(...),
+            'damageTaken' => round($statsCalculator->damageTakenChangePercentage($combatant->boost, $combatant->is_shiny), 1) |> toIntIfWhole(...),
+        ];
     }
 
     /**
