@@ -1022,12 +1022,13 @@ Read [02-catching-and-exploration.md](02-catching-and-exploration.md) first. Nee
 
 ### 2.11 Add items to the inventory
 
-- [ ] Done
+- [x] Done
 
 **Goal:** a reusable way to give a player items (starter balls now, shop and missions later).
 
 **Build:**
 - `App\Inventory\Actions\AddInventoryItemAction::handle(User $user, EvolutionItem|Pokeball $item, int $quantity = 1): void`: creates or increases the stack; throws `App\Inventory\Exceptions\InventoryStackFullException` above `game.inventory.max_stack`.
+- As built: like `RemoveInventoryItemAction`, it takes no lock. It inserts an empty stack when the player has none (`insertOrIgnore` on the unique user + item key), then grows it with one conditional `increment()` that only matches while the new total fits; no matching row throws `InventoryStackFullException`. A quantity above the limit is refused before any row is created, and a quantity below 1 throws `InvalidArgumentException`.
 
 **Tests:** new stack; existing stack grows (still one row); over the limit is refused; quantity below 1 is refused.
 
