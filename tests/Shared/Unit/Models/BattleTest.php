@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 use Illuminate\Support\Facades\Artisan;
 use Shared\Enums\Ailment;
+use Shared\Enums\Area;
 use Shared\Enums\BattleLogKind;
 use Shared\Enums\BattleStatus;
 use Shared\Enums\BattleType;
@@ -91,6 +92,7 @@ it('saves and reloads the battle state unchanged', function () {
             new BattleLogEntry(turn: 6, kind: BattleLogKind::MOVE, text: 'Squirtle used Water Gun!', move_name: 'Water Gun'),
         ],
         experience_gains: [new ExperienceGain(combatant_index: 1, earned_experience: 1500, level_before: 60, level_after: 61, is_from_experience_share: false, is_at_max_level: false)],
+        area: Area::FOREST,
     );
 
     $battle = Battle::factory()->for($user)->create([

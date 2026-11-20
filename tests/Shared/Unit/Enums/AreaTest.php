@@ -16,3 +16,10 @@ it('gives every area two different types', function (Area $area) {
 
     expect($firstType)->not->toBe($secondType);
 })->with(Area::cases());
+
+it('finds the area of a pokemon type', function (PokemonType $type, Area $expectedArea) {
+    expect(Area::fromType($type))->toBe($expectedArea);
+})->with([
+    'first type of an area'  => [PokemonType::GRASS, Area::FOREST],
+    'second type of an area' => [PokemonType::FLYING, Area::COAST],
+]);

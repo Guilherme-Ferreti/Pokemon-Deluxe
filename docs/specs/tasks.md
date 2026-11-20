@@ -952,7 +952,7 @@ Read [02-catching-and-exploration.md](02-catching-and-exploration.md) first. Nee
 - Migration `015_create_encounters_table.php`: `uuid id`, `foreignIdFor(User)` unique, `area` enum, `foreignIdFor(Species)`, `level`, `is_shiny`, `gender` enum, timestamps.
 - Model `Shared\Models\Encounter` (with factory), `User::encounter(): HasOne`, `Encounter::toNewPokemon(): NewPokemon`.
 - `App\Exploration\Actions\ExploreAction::handle(User $user, Area $area): Encounter`: refuses with `BattleAlreadyInProgressException` when a battle is ongoing; replaces any existing encounter with a new roll from `EncounterRoller`.
-- As built: the action runs under a per-user lock (`App\Exploration\Support\LockKeys::explore()`) and rolls from `AreaSpeciesQuery`. Replacing updates the player's existing row (`updateOrCreate` on `user_id`), so the encounter keeps its ID.
+- As built: the action runs under a per-user lock (`App\Exploration\Support\LockKeys::encounter()`, shared with `BattleEncounterAction`) and rolls from `AreaSpeciesQuery`. Replacing updates the player's existing row (`updateOrCreate` on `user_id`), so the encounter keeps its ID.
 
 **Tests:** creates one encounter; a second explore replaces it (still one row); refused during a battle.
 
@@ -960,14 +960,15 @@ Read [02-catching-and-exploration.md](02-catching-and-exploration.md) first. Nee
 
 ### 2.7 Battle the encounter
 
-- [ ] Done
+- [x] Done
 
 **Goal:** turn the stored encounter into a wild battle.
 
 **Build:**
 - `BattleState`: add `?Area $area` (null outside wild battles), saved by `AsBattleState`.
-- `StartWildBattleAction::handle()`: add an `?Area $area = null` parameter and store it.
+- `StartWildBattleAction::handle()`: add a required `Area $area` parameter and store it. The local `battle:start-wild` command uses `Area::fromType()` with the species' first type.
 - `App\Exploration\Actions\BattleEncounterAction::handle(User $user): Battle`: throws `App\Exploration\Exceptions\NoEncounterException` without an encounter; starts the battle with the encounter's Pokémon and area; deletes the encounter.
+- As built: `BattleState::$area` is the last constructor argument, defaulting to null, and states saved without it load with a null area. `BattleEncounterAction` takes the same per-user lock as `ExploreAction` (`LockKeys::encounter()`), and starts the battle and deletes the encounter in one transaction, so the encounter is kept when the battle can't start (for example with an empty party).
 
 **Tests:** battle created with the encounter's species, level, shiny and area; encounter deleted; refused without an encounter.
 

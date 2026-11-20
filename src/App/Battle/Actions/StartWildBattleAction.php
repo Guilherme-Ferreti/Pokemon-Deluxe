@@ -11,6 +11,7 @@ use App\Pokemon\Mechanics\StatsCalculator;
 use App\Pokemon\ValueObjects\NewPokemon;
 use Illuminate\Database\Eloquent\Collection as EloquentCollection;
 use Illuminate\Support\Facades\Cache;
+use Shared\Enums\Area;
 use Shared\Enums\BattleLogKind;
 use Shared\Enums\BattleStatus;
 use Shared\Enums\BattleType;
@@ -29,13 +30,16 @@ final class StartWildBattleAction
 
     private NewPokemon $wildPokemon;
 
+    private Area $area;
+
     /** @var EloquentCollection<int, Pokemon> */
     private EloquentCollection $partyPokemon;
 
-    public function handle(User $user, NewPokemon $wildPokemon): Battle
+    public function handle(User $user, NewPokemon $wildPokemon, Area $area): Battle
     {
         $this->user        = $user;
         $this->wildPokemon = $wildPokemon;
+        $this->area        = $area;
 
         return Cache::withoutOverlapping(
             key: LockKeys::startBattle($user->id),
@@ -64,6 +68,7 @@ final class StartWildBattleAction
                     new BattleLogEntry(0, BattleLogKind::INFO, "A wild {$this->wildPokemon->species->getDisplayName($this->wildPokemon->is_shiny)} appeared!"),
                     new BattleLogEntry(0, BattleLogKind::EVENT, "Go! {$this->partyPokemon->firstOrFail()->getDisplayName()}!"),
                 ],
+                area: $this->area,
             ),
         ]);
     }

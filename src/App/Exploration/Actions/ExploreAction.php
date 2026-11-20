@@ -25,7 +25,7 @@ final class ExploreAction
         $this->area = $area;
 
         return Cache::withoutOverlapping(
-            key: LockKeys::explore($user->id),
+            key: LockKeys::encounter($user->id),
             callback: fn () => $this->explore(),
         );
     }

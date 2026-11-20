@@ -6,6 +6,7 @@ use App\Battle\Actions\StartWildBattleAction;
 use App\Battle\Exceptions\BattleAlreadyInProgressException;
 use App\Battle\Exceptions\EmptyPartyException;
 use App\Pokemon\ValueObjects\NewPokemon;
+use Shared\Enums\Area;
 use Shared\Enums\BattleLogKind;
 use Shared\Enums\BattleStatus;
 use Shared\Enums\BattleType;
@@ -34,7 +35,7 @@ it('starts a wild battle with the party against the wild pokemon', function () {
         level: 12,
         is_shiny: false,
         gender: PokemonGender::FEMALE,
-    ));
+    ), Area::COAST);
 
     $state          = $battle->fresh()?->state;
     $playerSide     = $state?->player_side;
@@ -46,6 +47,7 @@ it('starts a wild battle with the party against the wild pokemon', function () {
         ->and($battle->status)->toBe(BattleStatus::ONGOING)
         ->and($state?->turn)->toBe(1)
         ->and($state?->is_awaiting_send_out)->toBeFalse()
+        ->and($state?->area)->toBe(Area::COAST)
         ->and($state?->log)->toEqual([
             new BattleLogEntry(0, BattleLogKind::INFO, 'A wild Pidgey appeared!'),
             new BattleLogEntry(0, BattleLogKind::EVENT, 'Go! Shiny Pikachu!'),
@@ -82,7 +84,7 @@ it('refuses to start a battle while another one is ongoing', function () {
         level: 5,
         is_shiny: false,
         gender: PokemonGender::MALE,
-    )))->toThrow(BattleAlreadyInProgressException::class);
+    ), Area::MEADOW))->toThrow(BattleAlreadyInProgressException::class);
 
     assertDatabaseCount(Battle::class, 1);
 });
@@ -97,7 +99,7 @@ it('starts a battle when the previous one has ended', function () {
         level: 5,
         is_shiny: false,
         gender: PokemonGender::MALE,
-    ));
+    ), Area::MEADOW);
 
     assertDatabaseCount(Battle::class, 2);
 });
@@ -111,7 +113,7 @@ it('refuses to start a battle with an empty party', function () {
         level: 5,
         is_shiny: false,
         gender: PokemonGender::MALE,
-    )))->toThrow(EmptyPartyException::class);
+    ), Area::MEADOW))->toThrow(EmptyPartyException::class);
 
     assertDatabaseCount(Battle::class, 0);
 });

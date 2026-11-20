@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Shared\ValueObjects;
 
 use InvalidArgumentException;
+use Shared\Enums\Area;
 use Shared\Interfaces\ValueObject;
 
 /**
@@ -12,7 +13,7 @@ use Shared\Interfaces\ValueObject;
  * @phpstan-import-type BattleSideArray from BattleSide
  * @phpstan-import-type ExperienceGainArray from ExperienceGain
  *
- * @phpstan-type BattleStateArray array{turn: int, player_side: BattleSideArray, opponent_side: BattleSideArray, is_awaiting_send_out: bool, log: list<BattleLogEntryArray>, experience_gains: list<ExperienceGainArray>}
+ * @phpstan-type BattleStateArray array{turn: int, player_side: BattleSideArray, opponent_side: BattleSideArray, is_awaiting_send_out: bool, log: list<BattleLogEntryArray>, experience_gains: list<ExperienceGainArray>, area?: string|null}
  */
 final readonly class BattleState implements ValueObject
 {
@@ -27,6 +28,7 @@ final readonly class BattleState implements ValueObject
         public bool $is_awaiting_send_out,
         public array $log,
         public array $experience_gains = [],
+        public ?Area $area = null,
     ) {
         throw_if($turn < 1, InvalidArgumentException::class, "The turn must be at least 1, [{$turn}] given.");
     }
@@ -92,6 +94,7 @@ final readonly class BattleState implements ValueObject
             is_awaiting_send_out: $data['is_awaiting_send_out'],
             log: array_map(BattleLogEntry::fromArray(...), $data['log']),
             experience_gains: array_map(ExperienceGain::fromArray(...), $data['experience_gains']),
+            area: isset($data['area']) ? Area::from($data['area']) : null,
         );
     }
 
@@ -107,6 +110,7 @@ final readonly class BattleState implements ValueObject
             'is_awaiting_send_out' => $this->is_awaiting_send_out,
             'log'                  => array_map(fn (BattleLogEntry $entry) => $entry->toArray(), $this->log),
             'experience_gains'     => array_map(fn (ExperienceGain $gain) => $gain->toArray(), $this->experience_gains),
+            'area'                 => $this->area?->value,
         ];
     }
 

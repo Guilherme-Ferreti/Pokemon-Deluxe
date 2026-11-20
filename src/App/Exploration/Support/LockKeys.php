@@ -6,8 +6,8 @@ namespace App\Exploration\Support;
 
 final class LockKeys
 {
-    public static function explore(string $userId): string
+    public static function encounter(string $userId): string
     {
-        return "exploration::lock:explore:user-{$userId}";
+        return "exploration::lock:encounter:user-{$userId}";
     }
 }

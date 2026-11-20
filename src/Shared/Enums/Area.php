@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Shared\Enums;
 
+use LogicException;
+
 enum Area: string
 {
     case MEADOW        = 'meadow';
@@ -47,5 +49,11 @@ enum Area: string
             self::HAUNTED_TOWER => [PokemonType::GHOST, PokemonType::DARK],
             self::ANCIENT_RUINS => [PokemonType::PSYCHIC, PokemonType::POISON],
         };
+    }
+
+    public static function fromType(PokemonType $type): self
+    {
+        return array_find(self::cases(), fn (self $area): bool => in_array($type, $area->types(), true))
+            ?? throw new LogicException("No area has the [{$type->value}] type.");
     }
 }

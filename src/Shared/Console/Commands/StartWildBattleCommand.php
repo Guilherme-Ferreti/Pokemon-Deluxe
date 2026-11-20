@@ -10,6 +10,7 @@ use Illuminate\Console\Attributes\Description;
 use Illuminate\Console\Attributes\Signature;
 use Illuminate\Console\Command;
 use Shared\Base\DomainException;
+use Shared\Enums\Area;
 use Shared\Models\Species;
 use Shared\Models\User;
 
@@ -34,7 +35,7 @@ final class StartWildBattleCommand extends Command
                 level: (int) $this->argument('level'),
                 is_shiny: (bool) $this->option('shiny'),
                 gender: $species->getRandomGender(),
-            ));
+            ), Area::fromType($species->types->firstOrFail()));
         } catch (DomainException $exception) {
             $this->components->error($exception->getMessage());
 
