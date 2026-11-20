@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Battle\ValueObjects;
 
 use InvalidArgumentException;
+use Shared\Enums\Ailment;
 use Shared\Enums\Area;
 use Shared\Enums\PokemonGender;
 use Shared\Interfaces\ValueObject;
@@ -19,6 +20,7 @@ final readonly class CatchContext implements ValueObject
         public Species $wildSpecies,
         public int $wildLevel,
         public PokemonGender $wildGender,
+        public ?Ailment $wildAilment,
         public Species $activeSpecies,
         public int $activeLevel,
         public PokemonGender $activeGender,
@@ -38,6 +40,7 @@ final readonly class CatchContext implements ValueObject
             && $this->wildSpecies->is($other->wildSpecies)
             && $this->wildLevel === $other->wildLevel
             && $this->wildGender === $other->wildGender
+            && $this->wildAilment === $other->wildAilment
             && $this->activeSpecies->is($other->activeSpecies)
             && $this->activeLevel === $other->activeLevel
             && $this->activeGender === $other->activeGender

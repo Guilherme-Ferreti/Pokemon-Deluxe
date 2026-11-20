@@ -84,7 +84,7 @@ One name per idea, used everywhere: specs, code, database, tests and UI. When yo
 | Wild level range | `wild_min_level`, `wild_max_level`, `WildSpawnCalculator::levelRange()` | Null when a species never appears in the wild. Saved by `SpeciesWildDataSeeder`. |
 | Evolution stage | `evolution_stage`, `WildSpawnCalculator::evolutionStage()` | 1 = unevolved, 2, 3. Babies don't count. |
 | Catch chance | `CatchChanceCalculator` | Percentage, 0–100. |
-| Ball multiplier | `BallMultiplierCalculator`, `catch_rate` (Poké Ball column) | The column holds the multiplier when no condition applies. |
+| Ball multiplier | `BallMultiplierCalculator`, `catch_rate` (Poké Ball column), `CatchContext` | The column holds the multiplier when no condition applies; `CatchContext` holds what the conditions read (turn, area, night, both Pokémon, the wild ailment). |
 | Throw ball | `ThrowBallAction` | |
 | Starter | `starter` | The Pokémon chosen at registration. |
 | Ultra Beast | `is_ultra_beast`, `SpeciesTrait::ULTRA_BEAST` / `PokemonTrait::ULTRA_BEAST` (`ultra-beast`) | |

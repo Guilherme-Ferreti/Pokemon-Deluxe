@@ -1007,13 +1007,14 @@ Read [02-catching-and-exploration.md](02-catching-and-exploration.md) first. Nee
 
 ### 2.10 Ball multipliers: conditional balls
 
-- [ ] Done
+- [x] Done
 
 **Goal:** the conditions from the Spec 2 ball table.
 
 **Build:** in `BallMultiplierCalculator::multiplier()`, a `match` on the ball's slug for Quick, Timer, Repeat, Nest, Level, Dusk, Dream (needs the wild ailment: add `?Ailment $wildAilment` to `CatchContext`), Love, Moon (species evolves with `moon-stone`), Net, Lure, Dive, Heavy, Fast and Beast. Config `game.catching.night_starts_at` (18) and `night_ends_at` (6).
 - Nest Ball: 1 + (`nest_ball_until_level` − wild level) ÷ 9, kept between 1 and `nest_ball_max`. Config `game.catching.nest_ball_max` (3) and `nest_ball_until_level` (20): level 2 → ×3, level 11 → ×2, level 20 and above → ×1.
 - Level Ball: ×8 when the active Pokémon's level is at least 4 times the wild level, ×4 when at least double, ×2 when higher, ×1 otherwise.
+- As built: a ball whose condition does not apply falls back to its `catch_rate` (1, or 0.1 for the Beast Ball). Timer Ball: 1 + 0.3 × (turn − 1), so turn 1 is ×1 and turn 11 reaches ×4. Love Ball never applies to genderless Pokémon. Moon Ball reads the wild species' `evolutions.evolutionItem`, so the caller eager-loads them. `CatchContext` takes `?Ailment $wildAilment` after `wildGender`. The night config is read by whoever builds the `CatchContext` (task 2.12), which sets `isNight`.
 
 **Tests:** for each ball, one case where the condition applies and one where it does not; Nest Ball at levels 2, 11, 20 and 40; Level Ball at each threshold.
 

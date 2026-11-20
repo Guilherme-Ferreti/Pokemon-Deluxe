@@ -62,6 +62,10 @@ return [
         'base_chance'           => 10,  // 10% chance to catch a normal species at full HP with a Poké Ball.
         'legendary_base_chance' => 1,   // 1% chance to catch a legendary or mythical at full HP with a Poké Ball.
         'low_hp_bonus'          => 1.5, // Extra catch chance as HP falls (1.5 = up to 150% more at 0 HP).
+        'night_starts_at'       => 18,  // Server hour night starts, when the Dusk Ball is boosted.
+        'night_ends_at'         => 6,   // Server hour night ends.
+        'nest_ball_max'         => 3,   // Highest Nest Ball multiplier, against the lowest-level Pokémon.
+        'nest_ball_until_level' => 20,  // Wild level from which the Nest Ball is back to 1×.
         'ailment_multipliers'   => [    // Catch chance multiplier for each status effect; any other is 1.
             'sleep'     => 2,
             'freeze'    => 2,
