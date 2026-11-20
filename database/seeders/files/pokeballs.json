@@ -49,9 +49,9 @@
     "external_id": "park-ball",
     "name": "Park Ball",
     "sprite": "https:\/\/raw.githubusercontent.com\/PokeAPI\/sprites\/master\/sprites\/items\/park-ball.png",
-    "description": "A pokeball used to catch a wild Pokémon using a catch rate of 255x.",
+    "description": "A pokeball used to catch a wild Pokémon using a catch rate of 1.5x.",
     "type": "standard",
-    "catch_rate": 255
+    "catch_rate": 1.5
   },
   {
     "id": "sport-ball",

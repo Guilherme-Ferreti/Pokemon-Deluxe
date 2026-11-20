@@ -991,7 +991,7 @@ Read [02-catching-and-exploration.md](02-catching-and-exploration.md) first. Nee
 
 ### 2.9 Ball multipliers: basic balls
 
-- [ ] Done
+- [x] Done
 
 **Goal:** balls without conditions.
 
@@ -999,6 +999,7 @@ Read [02-catching-and-exploration.md](02-catching-and-exploration.md) first. Nee
 - `pokeballs.json`: `catch_rate` holds the multiplier when no condition applies: Poké 1, Great 1.5, Ultra 2, Safari, Sport and Park 1.5, collectible balls 1, conditional balls 1, Beast Ball 0.1.
 - `App\Battle\Mechanics\BallMultiplierCalculator::multiplier(Pokeball $pokeball, CatchContext $context): float`: returns `catch_rate`; `isGuaranteed(Pokeball $pokeball): bool` is true for the Master Ball.
 - Value object `App\Battle\ValueObjects\CatchContext`: `int $turn`, `?Area $area`, `bool $isNight`, `Species $wildSpecies`, `int $wildLevel`, `PokemonGender $wildGender`, `Species $activeSpecies`, `int $activeLevel`, `PokemonGender $activeGender`, `bool $playerOwnsSpecies`.
+- As built: only the Park Ball's data changed (255 → 1.5); every other ball already held the listed multiplier. The Master Ball keeps 255 in `catch_rate`, but `isGuaranteed()` is what makes it always catch. `CatchContext` refuses a turn or a level below 1.
 
 **Tests:** basic balls return their multiplier; Master Ball is guaranteed.
 
