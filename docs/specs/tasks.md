@@ -976,13 +976,14 @@ Read [02-catching-and-exploration.md](02-catching-and-exploration.md) first. Nee
 
 ### 2.8 Catch chance
 
-- [ ] Done
+- [x] Done
 
 **Goal:** the Spec 2 catch formula.
 
 **Build:**
 - Config `game.catching`: `base_chance` (10), `legendary_base_chance` (1), `low_hp_bonus` (1.5), `ailment_multipliers` (sleep and freeze 2, paralysis, burn and poison 1.5).
 - `App\Battle\Mechanics\CatchChanceCalculator::calculate(Species $species, int $currentHp, int $maxHp, ?Ailment $ailment, float $ballMultiplier): float`: base × ball × (1 + 1.5 × (1 − HP ratio)) × ailment, as a percentage capped at 100.
+- As built: `ailment_multipliers` is keyed by the `Ailment` value; confusion, unknown and no ailment count as ×1. HP below 0, above the max HP or a max HP below 1 throws `InvalidArgumentException`. The result is not rounded: the Spec 2 table shows it rounded to whole percentages (23.5 → 24%).
 
 **Tests:** every row of the Spec 2 example table.
 

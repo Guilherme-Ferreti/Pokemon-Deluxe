@@ -58,6 +58,19 @@ return [
         'stage_weights'             => [1 => 85, 2 => 12, 3 => 3], // Weights of each evolution stage in an encounter (85% unevolved, 12% second, 3% third).
     ],
 
+    'catching' => [
+        'base_chance'           => 10,  // 10% chance to catch a normal species at full HP with a Poké Ball.
+        'legendary_base_chance' => 1,   // 1% chance to catch a legendary or mythical at full HP with a Poké Ball.
+        'low_hp_bonus'          => 1.5, // Extra catch chance as HP falls (1.5 = up to 150% more at 0 HP).
+        'ailment_multipliers'   => [    // Catch chance multiplier for each status effect; any other is 1.
+            'sleep'     => 2,
+            'freeze'    => 2,
+            'paralysis' => 1.5,
+            'burn'      => 1.5,
+            'poison'    => 1.5,
+        ],
+    ],
+
     'battle' => [
         'stab_multiplier'         => 1.5,  // Extra damage when the move's type is one of the attacker's types (1.5 = 50% more).
         'critical_hit_multiplier' => 1.5,  // Extra damage a critical hit deals (1.5 = 50% more).
