@@ -20,11 +20,14 @@ final class CreatePokemonAction
 
     private Pokeball $pokeball;
 
-    public function handle(User $owner, NewPokemon $newPokemon, Pokeball $pokeball): Pokemon
+    private bool $joinPartyIfRoom;
+
+    public function handle(User $owner, NewPokemon $newPokemon, Pokeball $pokeball, bool $joinPartyIfRoom = false): Pokemon
     {
-        $this->owner      = $owner;
-        $this->newPokemon = $newPokemon;
-        $this->pokeball   = $pokeball;
+        $this->owner           = $owner;
+        $this->newPokemon      = $newPokemon;
+        $this->pokeball        = $pokeball;
+        $this->joinPartyIfRoom = $joinPartyIfRoom;
 
         return DB::transaction(function () {
             $this->lockOwner();
@@ -60,12 +63,17 @@ final class CreatePokemonAction
             'level'            => $this->newPokemon->level,
             'experience'       => new ExperienceCalculator()->experienceForLevel($this->newPokemon->level),
             'boost'            => 0,
-            'in_party'         => false,
+            'in_party'         => $this->joinPartyIfRoom && $this->hasRoomInParty(),
             'is_shiny'         => $this->newPokemon->is_shiny,
             'gender'           => $this->newPokemon->gender,
             'pokeball_id'      => $this->pokeball->id,
             'caught_at'        => now(),
         ]);
+    }
+
+    private function hasRoomInParty(): bool
+    {
+        return $this->owner->pokemon()->inParty()->count() < (int) config('game.user.max_party_size');
     }
 
     private function addBaseMoves(Pokemon $pokemon): void

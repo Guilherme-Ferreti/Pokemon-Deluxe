@@ -1036,7 +1036,7 @@ Read [02-catching-and-exploration.md](02-catching-and-exploration.md) first. Nee
 
 ### 2.12 Throw a ball
 
-- [ ] Done
+- [x] Done
 
 **Goal:** catching in a wild battle.
 
@@ -1049,6 +1049,7 @@ Read [02-catching-and-exploration.md](02-catching-and-exploration.md) first. Nee
   - Uses one ball (`RemoveInventoryItemAction`).
   - Caught (guaranteed or `RandomHelper::chance()` with the catch chance): creates the Pokémon (`joinPartyIfRoom: true`, the thrown ball), logs "Gotcha! … was caught!", dispatches `PokemonCaught`, and ends the battle as `CAUGHT` with `EndBattleAction` (XP as for a win, `BattleEnded` with `isWin`).
   - Not caught: logs "Oh no! The Pokémon broke free!", then the opponent acts (the turn pipes, as in task 1.23).
+- As built: both outcomes first log "You threw a {ball}!". The checks run in the battle lock in this order: wild, ready for a turn, Box not full; using the ball, the catch and the opponent's half of the turn then share one transaction, so a missing ball (`InsufficientInventoryException`) changes nothing. The catch chance uses the wild Pokémon's current HP and ailment, and the `CatchContext` reads `isNight` from `game.catching.night_starts_at` and `night_ends_at` (server hour) and `playerOwnsSpecies` from the player's Pokémon before the catch. The caught Pokémon keeps the wild combatant's level, shininess and gender; "Gotcha!" is a `RESULT` log entry, and `PokemonCaught` is dispatched after the lock is released.
 
 **Tests:** catch; break free then the opponent attacks; ball used either way; Master Ball always catches; joins party or Box; a catch pays XP like a win; refused when not wild, Box full or no ball.
 

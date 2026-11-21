@@ -1,0 +1,307 @@
+<?php
+
+declare(strict_types=1);
+
+use App\Battle\Actions\ThrowBallAction;
+use App\Battle\Events\BattleEnded;
+use App\Battle\Exceptions\BattleNotReadyForTurnException;
+use App\Battle\Exceptions\NotAWildBattleException;
+use App\Inventory\Exceptions\InsufficientInventoryException;
+use App\Pokemon\Events\PokemonCaught;
+use App\Pokemon\Exceptions\BoxFullException;
+use Illuminate\Support\Facades\Event;
+use Shared\Enums\BattleLogKind;
+use Shared\Enums\BattleStatus;
+use Shared\Enums\BattleType;
+use Shared\Enums\PokemonGender;
+use Shared\Enums\PokemonGenderRate;
+use Shared\Enums\PokemonType;
+use Shared\Helpers\RandomHelper;
+use Shared\Models\Battle;
+use Shared\Models\InventoryItem;
+use Shared\Models\Move;
+use Shared\Models\Pokeball;
+use Shared\Models\Pokemon;
+use Shared\Models\Species;
+use Shared\Models\User;
+use Shared\ValueObjects\BattleLogEntry;
+use Shared\ValueObjects\BattleSide;
+use Shared\ValueObjects\BattleState;
+use Shared\ValueObjects\Combatant;
+
+use function Pest\Laravel\assertDatabaseCount;
+use function Pest\Laravel\assertDatabaseHas;
+
+it('catches the wild pokemon, which joins the party, and ends the battle as caught', function () {
+    Event::fake([PokemonCaught::class, BattleEnded::class]);
+
+    $user     = User::factory()->create();
+    $pikachu  = Species::factory()->create(['name' => 'Pikachu', 'types' => [PokemonType::ELECTRIC]]);
+    $pidgey   = Species::factory()->withBaseMoves()->create(['name' => 'Pidgey', 'types' => [PokemonType::NORMAL], 'gender_rate' => PokemonGenderRate::EQUAL]);
+    $pokemon  = Pokemon::factory()->for($user)->inParty()->create(['species_id' => $pikachu->id, 'level' => 50, 'experience' => 50_000]);
+    $pokeBall = Pokeball::factory()->create(['slug' => 'poke-ball', 'name' => 'Poké Ball', 'catch_rate' => 1]);
+
+    InventoryItem::factory()->for($user)->pokeball($pokeBall)->create(['quantity' => 3]);
+
+    $combatant = [
+        'pokemon_id'                    => $pokemon->id,
+        'species_id'                    => $pikachu->id,
+        'level'                         => 50,
+        'boost'                         => 0,
+        'is_shiny'                      => false,
+        'gender'                        => PokemonGender::MALE,
+        'types'                         => [PokemonType::ELECTRIC],
+        'move_ids'                      => ['move-1'],
+        'max_hp'                        => 218,
+        'current_hp'                    => 218,
+        'ailment'                       => null,
+        'ailment_turns_left'            => 0,
+        'confusion_turns_left'          => 0,
+        'has_entered_field'             => true,
+        'used_once_per_battle_move_ids' => [],
+    ];
+
+    $battle = Battle::factory()->for($user)->create([
+        'type'   => BattleType::WILD,
+        'status' => BattleStatus::ONGOING,
+        'state'  => new BattleState(
+            turn: 2,
+            player_side: new BattleSide(combatants: [new Combatant(...$combatant)], active_index: 0),
+            opponent_side: new BattleSide(combatants: [
+                new Combatant(...[...$combatant, 'pokemon_id' => null, 'species_id' => $pidgey->id, 'level' => 50, 'is_shiny' => true, 'gender' => PokemonGender::FEMALE, 'types' => [PokemonType::NORMAL]]),
+            ], active_index: 0),
+            is_awaiting_send_out: false,
+            log: [],
+        ),
+    ]);
+
+    RandomHelper::fake([true]);
+
+    $battle = new ThrowBallAction()->handle($battle, $pokeBall)->fresh();
+
+    assertDatabaseCount(Pokemon::class, 2);
+    assertDatabaseHas(Pokemon::class, [
+        'user_id'     => $user->id,
+        'species_id'  => $pidgey->id,
+        'level'       => 50,
+        'is_shiny'    => true,
+        'gender'      => PokemonGender::FEMALE,
+        'in_party'    => true,
+        'pokeball_id' => $pokeBall->id,
+    ]);
+    assertDatabaseHas(InventoryItem::class, ['user_id' => $user->id, 'item_id' => $pokeBall->id, 'quantity' => 2]);
+
+    expect($battle?->status)->toBe(BattleStatus::CAUGHT)
+        ->and($battle?->state->log)->toEqual([
+            new BattleLogEntry(2, BattleLogKind::EVENT, 'You threw a Poké Ball!'),
+            new BattleLogEntry(2, BattleLogKind::RESULT, 'Gotcha! Shiny Pidgey was caught!'),
+            new BattleLogEntry(2, BattleLogKind::EVENT, 'Pikachu gained 375 XP!'),
+        ])
+        ->and($pokemon->fresh()?->experience)->toBe(50_375);
+
+    $caughtPokemon = Pokemon::query()->where('species_id', $pidgey->id)->firstOrFail();
+
+    Event::assertDispatched(PokemonCaught::class, fn (PokemonCaught $event) => $event->pokemonId === $caughtPokemon->id && $event->userId === $user->id);
+    Event::assertDispatched(BattleEnded::class, fn (BattleEnded $event) => $event->status === BattleStatus::CAUGHT && $event->isWin);
+});
+
+it('sends the caught pokemon to the box when the party is full', function () {
+    config()->set('game.user.max_party_size', 1);
+
+    $user       = User::factory()->create();
+    $pikachu    = Species::factory()->create(['name' => 'Pikachu']);
+    $pidgey     = Species::factory()->create(['name' => 'Pidgey', 'gender_rate' => PokemonGenderRate::EQUAL]);
+    $pokemon    = Pokemon::factory()->for($user)->inParty()->create(['species_id' => $pikachu->id, 'level' => 50]);
+    $masterBall = Pokeball::factory()->create(['slug' => 'master-ball', 'name' => 'Master Ball']);
+
+    InventoryItem::factory()->for($user)->pokeball($masterBall)->create(['quantity' => 1]);
+
+    $combatant = [
+        'pokemon_id'                    => $pokemon->id,
+        'species_id'                    => $pikachu->id,
+        'level'                         => 50,
+        'boost'                         => 0,
+        'is_shiny'                      => false,
+        'gender'                        => PokemonGender::MALE,
+        'types'                         => [PokemonType::ELECTRIC],
+        'move_ids'                      => ['move-1'],
+        'max_hp'                        => 218,
+        'current_hp'                    => 218,
+        'ailment'                       => null,
+        'ailment_turns_left'            => 0,
+        'confusion_turns_left'          => 0,
+        'has_entered_field'             => true,
+        'used_once_per_battle_move_ids' => [],
+    ];
+
+    $battle = Battle::factory()->for($user)->create([
+        'state' => new BattleState(
+            turn: 1,
+            player_side: new BattleSide(combatants: [new Combatant(...$combatant)], active_index: 0),
+            opponent_side: new BattleSide(combatants: [
+                new Combatant(...[...$combatant, 'pokemon_id' => null, 'species_id' => $pidgey->id, 'gender' => PokemonGender::FEMALE]),
+            ], active_index: 0),
+            is_awaiting_send_out: false,
+            log: [],
+        ),
+    ]);
+
+    RandomHelper::fake([]);
+
+    new ThrowBallAction()->handle($battle, $masterBall);
+
+    assertDatabaseCount(Pokemon::class, 2);
+    assertDatabaseHas(Pokemon::class, ['species_id' => $pidgey->id, 'in_party' => false]);
+    assertDatabaseHas(InventoryItem::class, ['item_id' => $masterBall->id, 'quantity' => 0]);
+
+    expect($battle->fresh()?->status)->toBe(BattleStatus::CAUGHT);
+});
+
+it('uses the ball and lets the wild pokemon attack when it breaks free', function () {
+    Event::fake([PokemonCaught::class]);
+
+    $user     = User::factory()->create();
+    $pikachu  = Species::factory()->create(['name' => 'Pikachu', 'types' => [PokemonType::ELECTRIC]]);
+    $pidgey   = Species::factory()->create(['name' => 'Pidgey', 'types' => [PokemonType::NORMAL, PokemonType::FLYING]]);
+    $tackle   = Move::factory()->plainDamage()->create(['name' => 'Tackle', 'type' => PokemonType::NORMAL, 'power' => 40]);
+    $pokemon  = Pokemon::factory()->for($user)->inParty()->create(['species_id' => $pikachu->id, 'level' => 50]);
+    $pokeBall = Pokeball::factory()->create(['slug' => 'poke-ball', 'name' => 'Poké Ball', 'catch_rate' => 1]);
+
+    InventoryItem::factory()->for($user)->pokeball($pokeBall)->create(['quantity' => 3]);
+
+    $combatant = [
+        'pokemon_id'                    => $pokemon->id,
+        'species_id'                    => $pikachu->id,
+        'level'                         => 50,
+        'boost'                         => 0,
+        'is_shiny'                      => false,
+        'gender'                        => PokemonGender::MALE,
+        'types'                         => [PokemonType::ELECTRIC],
+        'move_ids'                      => [$tackle->id],
+        'max_hp'                        => 218,
+        'current_hp'                    => 218,
+        'ailment'                       => null,
+        'ailment_turns_left'            => 0,
+        'confusion_turns_left'          => 0,
+        'has_entered_field'             => true,
+        'used_once_per_battle_move_ids' => [],
+    ];
+
+    $battle = Battle::factory()->for($user)->create([
+        'state' => new BattleState(
+            turn: 3,
+            player_side: new BattleSide(combatants: [new Combatant(...$combatant)], active_index: 0),
+            opponent_side: new BattleSide(combatants: [
+                new Combatant(...[...$combatant, 'pokemon_id' => null, 'species_id' => $pidgey->id, 'types' => [PokemonType::NORMAL, PokemonType::FLYING]]),
+            ], active_index: 0),
+            is_awaiting_send_out: false,
+            log: [],
+        ),
+    ]);
+
+    RandomHelper::fake([false, $tackle->id, true, false, 1.0]);
+
+    $battle = new ThrowBallAction()->handle($battle, $pokeBall)->fresh();
+
+    assertDatabaseCount(Pokemon::class, 1);
+    assertDatabaseHas(InventoryItem::class, ['user_id' => $user->id, 'item_id' => $pokeBall->id, 'quantity' => 2]);
+
+    expect($battle?->status)->toBe(BattleStatus::ONGOING)
+        ->and($battle?->state->turn)->toBe(4)
+        ->and($battle?->state->player_side->activeCombatant()->current_hp)->toBe(218 - 46)
+        ->and($battle?->state->log)->toEqual([
+            new BattleLogEntry(3, BattleLogKind::EVENT, 'You threw a Poké Ball!'),
+            new BattleLogEntry(3, BattleLogKind::EVENT, 'Oh no! The Pokémon broke free!'),
+            new BattleLogEntry(3, BattleLogKind::MOVE, 'The wild Pidgey used Tackle!', 'Tackle'),
+            new BattleLogEntry(3, BattleLogKind::DAMAGE, 'It dealt 46 HP damage.'),
+        ]);
+
+    Event::assertNotDispatched(PokemonCaught::class);
+});
+
+it('refuses to throw a ball in a battle that is not wild', function () {
+    $user     = User::factory()->create();
+    $pokeBall = Pokeball::factory()->create();
+    $battle   = Battle::factory()->for($user)->create(['type' => BattleType::TRAINER]);
+
+    InventoryItem::factory()->for($user)->pokeball($pokeBall)->create(['quantity' => 3]);
+
+    expect(fn () => new ThrowBallAction()->handle($battle, $pokeBall))->toThrow(NotAWildBattleException::class);
+
+    assertDatabaseHas(InventoryItem::class, ['item_id' => $pokeBall->id, 'quantity' => 3]);
+});
+
+it('refuses to throw a ball when the battle has ended or awaits a send-out', function (BattleStatus $status, bool $isAwaitingSendOut) {
+    $user     = User::factory()->create();
+    $pokeBall = Pokeball::factory()->create();
+    $battle   = Battle::factory()->for($user)->create(['status' => $status]);
+
+    $battle->update(['state' => $battle->state->withAwaitingSendOut($isAwaitingSendOut)]);
+
+    InventoryItem::factory()->for($user)->pokeball($pokeBall)->create(['quantity' => 3]);
+
+    expect(fn () => new ThrowBallAction()->handle($battle, $pokeBall))->toThrow(BattleNotReadyForTurnException::class);
+
+    assertDatabaseHas(InventoryItem::class, ['item_id' => $pokeBall->id, 'quantity' => 3]);
+})->with([
+    'ended'             => [BattleStatus::WON, false],
+    'awaiting send-out' => [BattleStatus::ONGOING, true],
+]);
+
+it('refuses to throw a ball when the box is full, without using it', function () {
+    config()->set('game.user.max_box_size', 1);
+
+    $user     = User::factory()->create();
+    $pokeBall = Pokeball::factory()->create();
+    $battle   = Battle::factory()->for($user)->create();
+
+    Pokemon::factory()->for($user)->create();
+    InventoryItem::factory()->for($user)->pokeball($pokeBall)->create(['quantity' => 3]);
+
+    expect(fn () => new ThrowBallAction()->handle($battle, $pokeBall))->toThrow(BoxFullException::class);
+
+    assertDatabaseHas(InventoryItem::class, ['item_id' => $pokeBall->id, 'quantity' => 3]);
+});
+
+it('refuses to throw a ball the player does not have', function () {
+    $user       = User::factory()->create();
+    $pikachu    = Species::factory()->create();
+    $pidgey     = Species::factory()->create(['gender_rate' => PokemonGenderRate::EQUAL]);
+    $masterBall = Pokeball::factory()->create(['slug' => 'master-ball']);
+
+    $combatant = [
+        'pokemon_id'                    => 'pokemon-1',
+        'species_id'                    => $pikachu->id,
+        'level'                         => 50,
+        'boost'                         => 0,
+        'is_shiny'                      => false,
+        'gender'                        => PokemonGender::MALE,
+        'types'                         => [PokemonType::ELECTRIC],
+        'move_ids'                      => ['move-1'],
+        'max_hp'                        => 218,
+        'current_hp'                    => 218,
+        'ailment'                       => null,
+        'ailment_turns_left'            => 0,
+        'confusion_turns_left'          => 0,
+        'has_entered_field'             => true,
+        'used_once_per_battle_move_ids' => [],
+    ];
+
+    $battle = Battle::factory()->for($user)->create([
+        'state' => new BattleState(
+            turn: 1,
+            player_side: new BattleSide(combatants: [new Combatant(...$combatant)], active_index: 0),
+            opponent_side: new BattleSide(combatants: [
+                new Combatant(...[...$combatant, 'pokemon_id' => null, 'species_id' => $pidgey->id, 'gender' => PokemonGender::FEMALE]),
+            ], active_index: 0),
+            is_awaiting_send_out: false,
+            log: [],
+        ),
+    ]);
+
+    expect(fn () => new ThrowBallAction()->handle($battle, $masterBall))->toThrow(InsufficientInventoryException::class);
+
+    assertDatabaseCount(Pokemon::class, 0);
+
+    expect($battle->fresh()?->status)->toBe(BattleStatus::ONGOING);
+});

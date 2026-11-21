@@ -6,6 +6,7 @@ return [
     'user' => [
         'max_incubators' => 10,   // Number of incubator slots in the Nursery, bought one at a time.
         'max_box_size'   => 9999, // Most Pokémon a player can own; catching or hatching more is refused.
+        'max_party_size' => 6,    // Most Pokémon in a player's party; a caught Pokémon joins it while there is room.
     ],
 
     'inventory' => [
