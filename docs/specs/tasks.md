@@ -1073,7 +1073,7 @@ Read [02-catching-and-exploration.md](02-catching-and-exploration.md) first. Nee
 
 ### 2.14 Registration page: choose a starter
 
-- [ ] Done
+- [x] Done
 
 **Goal:** the starter picker on the registration form.
 
@@ -1089,6 +1089,8 @@ Read [02-catching-and-exploration.md](02-catching-and-exploration.md) first. Nee
 - Validation error under the group with `FieldError`. "Create account" stays the only primary button.
 
 **Tests:** feature test for the props; browser test: choose a starter and register.
+
+**As built:** chosen over the mock-up's cards: the page shows one "Choose your starter" `Select` (`StarterSelect`), with each region's starters grouped under a `SelectLabel` holding the region name, sent as `starter`. `RegistrationPageProps` sends `starterRegions` (the configured starters in config order, each `{slug, name}`, grouped by their generation's region). The request's messages are "Choose a starter to continue." and "Choose one of the starters shown.". `AppSelect`'s label now points at its trigger, so the select has an accessible name.
 
 **Done when:** a new player can choose a starter and lands on the Dashboard with it in their party.
 

@@ -22,9 +22,11 @@ return [
             'sprigatito', 'fuecoco', 'quaxly',
         ],
         'starter_level'  => 5, // Level of the starter a new player chooses.
-        'starting_items' => [  // Balls a new player starts with, by slug and quantity.
-            'poke-ball'  => 20,
-            'great-ball' => 5,
+        'starting_items' => [
+            'pokeballs' => [ // Balls a new player starts with, by slug and quantity.
+                'poke-ball'  => 20,
+                'great-ball' => 5,
+            ],
         ],
     ],
 

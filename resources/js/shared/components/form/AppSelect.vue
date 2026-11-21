@@ -2,18 +2,19 @@
   <Field :data-invalid="!!errorMessage">
     <FieldLabel
       v-if="label"
-      :for="name"
+      :for="selectId"
     >
       {{ label }}
     </FieldLabel>
     <Select
-      :id="selectId"
       v-model="model"
       :name="name"
-      :aria-invalid="!!errorMessage"
       :default-value="defaultValue"
     >
-      <SelectTrigger>
+      <SelectTrigger
+        :id="selectId"
+        :aria-invalid="!!errorMessage"
+      >
         <SelectValue :placeholder="placeholder" />
       </SelectTrigger>
       <SelectContent>
@@ -54,7 +55,9 @@ const props = defineProps<{
   errorMessage?: string;
 }>();
 
-const selectId = computed(() => props.id ?? useId());
+const generatedId = useId();
+
+const selectId = computed(() => props.id ?? generatedId);
 
 const model = defineModel<string | number>();
 </script>

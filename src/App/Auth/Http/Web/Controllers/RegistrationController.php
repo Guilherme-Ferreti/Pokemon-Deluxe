@@ -6,6 +6,7 @@ namespace App\Auth\Http\Web\Controllers;
 
 use App\Auth\Actions\LoginUserAction;
 use App\Auth\Actions\RegisterUserAction;
+use App\Auth\Http\Web\PageProps\RegistrationPageProps;
 use App\Auth\Http\Web\Requests\StoreRegistrationRequest;
 use Illuminate\Http\RedirectResponse;
 use Inertia\Response;
@@ -16,7 +17,7 @@ final class RegistrationController extends Controller
 {
     public function create(): Response
     {
-        return inertia('Auth::Registration');
+        return inertia('Auth::Registration')->with(new RegistrationPageProps);
     }
 
     public function store(StoreRegistrationRequest $request): RedirectResponse

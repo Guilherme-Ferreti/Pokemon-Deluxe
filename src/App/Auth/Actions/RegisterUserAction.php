@@ -49,11 +49,16 @@ final class RegisterUserAction
 
     private function giveStartingItems(): void
     {
-        /** @var array<string, int> $startingItems */
-        $startingItems = config('game.registration.starting_items');
+        /** @var array<string, int> $startingPokeballs */
+        $startingPokeballs = config('game.registration.starting_items.pokeballs');
 
-        foreach ($startingItems as $slug => $quantity) {
-            new AddInventoryItemAction()->handle($this->user, Pokeball::query()->where('slug', $slug)->firstOrFail(), $quantity);
-        }
+        Pokeball::query()
+            ->whereIn('slug', array_keys($startingPokeballs))
+            ->get()
+            ->each(fn (Pokeball $pokeball) => new AddInventoryItemAction()->handle(
+                user: $this->user,
+                item: $pokeball,
+                quantity: $startingPokeballs[$pokeball->slug]
+            ));
     }
 }

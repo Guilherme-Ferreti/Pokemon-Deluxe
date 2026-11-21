@@ -4,12 +4,14 @@ declare(strict_types=1);
 
 use Illuminate\Validation\Rules\Password;
 use Inertia\Testing\AssertableInertia as Assert;
+use Shared\Enums\Generation;
 use Shared\Enums\InventoryItemType;
 use Shared\Models\InventoryItem;
 use Shared\Models\Pokeball;
 use Shared\Models\Pokemon;
 use Shared\Models\Species;
 use Shared\Models\User;
+use Shared\ValueObjects\SpeciesPortraits;
 use Tests\App\Auth\RequestFactories\StoreRegistrationRequestFactory;
 
 use function Pest\Laravel\actingAs;
@@ -24,11 +26,27 @@ it('redirects authenticated users to dashboard', function () {
         ->assertRedirectToRoute('dashboard.web.home');
 });
 
-it('loads the registration page with expected structure', function () {
+it('loads the registration page with the starters grouped by region', function () {
+    config()->set('game.registration.starters', ['bulbasaur', 'charmander', 'chikorita']);
+
+    Species::factory()->create(['slug' => 'chikorita', 'name' => 'Chikorita', 'pokedex_number' => 152, 'generation' => Generation::II, 'portraits' => new SpeciesPortraits('chikorita.png', null)]);
+    Species::factory()->create(['slug' => 'charmander', 'name' => 'Charmander', 'pokedex_number' => 4, 'generation' => Generation::I, 'portraits' => new SpeciesPortraits('charmander.png', null)]);
+    Species::factory()->create(['slug' => 'bulbasaur', 'name' => 'Bulbasaur', 'pokedex_number' => 1, 'generation' => Generation::I, 'portraits' => new SpeciesPortraits('bulbasaur.png', null)]);
+    Species::factory()->create(['slug' => 'pikachu', 'pokedex_number' => 25, 'generation' => Generation::I]);
+
     get(route('auth.web.registration.create'))
         ->assertSuccessful()
         ->assertInertia(fn (Assert $page) => $page
             ->component('Auth/pages/Registration/index')
+            ->where('starterRegions', [
+                ['name' => 'Kanto', 'starters' => [
+                    ['slug' => 'bulbasaur', 'name' => 'Bulbasaur', 'portrait' => 'bulbasaur.png'],
+                    ['slug' => 'charmander', 'name' => 'Charmander', 'portrait' => 'charmander.png'],
+                ]],
+                ['name' => 'Johto', 'starters' => [
+                    ['slug' => 'chikorita', 'name' => 'Chikorita', 'portrait' => 'chikorita.png'],
+                ]],
+            ])
         );
 });
 

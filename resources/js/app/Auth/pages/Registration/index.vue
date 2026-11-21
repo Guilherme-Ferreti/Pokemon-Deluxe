@@ -44,6 +44,7 @@
         required
         :error-message="errors.passwordConfirmation"
       />
+      <StarterSelect :error-message="errors.starter" />
       <Button
         type="submit"
         data-test="auth-form__register-button"
@@ -66,6 +67,7 @@ import { FieldDescription, FieldGroup } from '@/shared/components/ui/field';
 import { route } from '@/shared/types/helpers/route';
 import AuthFormHeader from '../../components/AuthFormHeader.vue';
 import AuthLayout from '../../layouts/AuthLayout.vue';
+import StarterSelect from './StarterSelect.vue';
 
 defineOptions({
   layout: AuthLayout,

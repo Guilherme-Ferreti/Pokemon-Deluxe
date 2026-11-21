@@ -49,7 +49,7 @@ arch('Form Requests')
     ->toBeFinal()
     ->toExtend(FormRequest::class)
     ->toHaveMethod('rules')
-    ->not->toHavePublicMethodsBesides('rules')
+    ->not->toHavePublicMethodsBesides(['rules', 'messages'])
     ->not->toHaveProtectedMethods()
     ->toHaveMethodsDocumented();
 
