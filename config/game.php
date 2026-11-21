@@ -9,6 +9,25 @@ return [
         'max_party_size' => 6,    // Most Pokémon in a player's party; a caught Pokémon joins it while there is room.
     ],
 
+    'registration' => [
+        'starters' => [ // First-stage starters a new player can choose from, three per region.
+            'bulbasaur', 'charmander', 'squirtle',
+            'chikorita', 'cyndaquil', 'totodile',
+            'treecko', 'torchic', 'mudkip',
+            'turtwig', 'chimchar', 'piplup',
+            'snivy', 'tepig', 'oshawott',
+            'chespin', 'fennekin', 'froakie',
+            'rowlet', 'litten', 'popplio',
+            'grookey', 'scorbunny', 'sobble',
+            'sprigatito', 'fuecoco', 'quaxly',
+        ],
+        'starter_level'  => 5, // Level of the starter a new player chooses.
+        'starting_items' => [  // Balls a new player starts with, by slug and quantity.
+            'poke-ball'  => 20,
+            'great-ball' => 5,
+        ],
+    ],
+
     'inventory' => [
         'max_stack' => 9999, // Most units of one item (ball, evolution item) a player can hold.
     ],

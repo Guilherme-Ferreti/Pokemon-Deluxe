@@ -4,6 +4,11 @@ declare(strict_types=1);
 
 use Illuminate\Validation\Rules\Password;
 use Inertia\Testing\AssertableInertia as Assert;
+use Shared\Enums\InventoryItemType;
+use Shared\Models\InventoryItem;
+use Shared\Models\Pokeball;
+use Shared\Models\Pokemon;
+use Shared\Models\Species;
 use Shared\Models\User;
 use Tests\App\Auth\RequestFactories\StoreRegistrationRequestFactory;
 
@@ -27,19 +32,48 @@ it('loads the registration page with expected structure', function () {
         );
 });
 
-it('registers a new user', function () {
-    $data = StoreRegistrationRequestFactory::new()->create();
+it('registers a new user with the chosen starter and the starting balls', function () {
+    $bulbasaur = Species::factory()->create(['slug' => 'bulbasaur']);
+    $pokeBall  = Pokeball::factory()->create(['slug' => 'poke-ball']);
+    $greatBall = Pokeball::factory()->create(['slug' => 'great-ball']);
+    $data      = StoreRegistrationRequestFactory::new()->withStarter('bulbasaur')->create();
 
     post(route('auth.web.registration.store'), $data)
         ->assertRedirectToRoute('dashboard.web.home');
 
-    assertDatabaseCount(User::class, 1);
+    $user = User::query()->where('email', $data['email'])->firstOrFail();
 
-    assertDatabaseHas(User::class, [
-        'name'  => $data['name'],
-        'email' => $data['email'],
+    assertDatabaseCount(User::class, 1);
+    assertDatabaseHas(User::class, ['name' => $data['name'], 'email' => $data['email']]);
+
+    assertDatabaseCount(Pokemon::class, 1);
+    assertDatabaseHas(Pokemon::class, [
+        'user_id'     => $user->id,
+        'species_id'  => $bulbasaur->id,
+        'level'       => 5,
+        'is_shiny'    => false,
+        'in_party'    => true,
+        'pokeball_id' => $pokeBall->id,
     ]);
+
+    assertDatabaseCount(InventoryItem::class, 2);
+    assertDatabaseHas(InventoryItem::class, ['user_id' => $user->id, 'item_type' => InventoryItemType::POKEBALL, 'item_id' => $pokeBall->id, 'quantity' => 20]);
+    assertDatabaseHas(InventoryItem::class, ['user_id' => $user->id, 'item_type' => InventoryItemType::POKEBALL, 'item_id' => $greatBall->id, 'quantity' => 5]);
 });
+
+it('rejects registration without a starter from the starters list', function (?string $starter) {
+    Species::factory()->create(['slug' => 'pikachu']);
+
+    $data = StoreRegistrationRequestFactory::new()->withStarter($starter)->create();
+
+    post(route('auth.web.registration.store'), $data)
+        ->assertRedirectBackWithErrors('starter');
+
+    assertDatabaseCount(User::class, 0);
+})->with([
+    'missing'       => [null],
+    'not a starter' => ['pikachu'],
+]);
 
 it('rejects registration with an existing email', function () {
     $data = StoreRegistrationRequestFactory::new()->withExistingEmail()->create();

@@ -10,6 +10,7 @@ use App\Auth\Http\Web\Requests\StoreRegistrationRequest;
 use Illuminate\Http\RedirectResponse;
 use Inertia\Response;
 use Shared\Base\Controller;
+use Shared\Models\Species;
 
 final class RegistrationController extends Controller
 {
@@ -24,6 +25,7 @@ final class RegistrationController extends Controller
             name: $request->validated('name'),
             email: $request->validated('email'),
             password: $request->validated('password'),
+            starter: Species::query()->where('slug', $request->validated('starter'))->firstOrFail(),
         );
 
         new LoginUserAction()->handle($user->email, $request->validated('password'));

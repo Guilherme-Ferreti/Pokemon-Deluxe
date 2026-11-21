@@ -1057,7 +1057,7 @@ Read [02-catching-and-exploration.md](02-catching-and-exploration.md) first. Nee
 
 ### 2.13 Starter and free balls at registration
 
-- [ ] Done
+- [x] Done
 
 **Goal:** new players start with a Pokémon and balls.
 
@@ -1065,6 +1065,7 @@ Read [02-catching-and-exploration.md](02-catching-and-exploration.md) first. Nee
 - Config `game.registration`: `starters` (the 27 first-stage starters: Bulbasaur, Charmander, Squirtle … Sprigatito, Fuecoco, Quaxly, as slugs), `starter_level` (5), `starting_items` (`poke-ball` 20, `great-ball` 5).
 - `RegisterUserAction::handle()`: add `Species $starter`; in one transaction creates the user, the starter (in the party, Poké Ball, random gender, not shiny) and the items (`AddInventoryItemAction`).
 - `StoreRegistrationRequest`: required `starter` slug, must be in the starters list.
+- As built: `starting_items` is keyed by ball slug. The starter goes through `CreatePokemonAction` with `joinPartyIfRoom: true` and the items through `AddInventoryItemAction`, all inside the transaction that creates the user. `RegistrationController` finds the starter `Species` by its validated slug. Until task 2.14 adds the picker, the registration form sends no `starter`, so its browser test cannot register.
 
 **Tests:** registration creates the user, one Pokémon in the party at level 5 and the two ball stacks; a starter outside the list is rejected.
 

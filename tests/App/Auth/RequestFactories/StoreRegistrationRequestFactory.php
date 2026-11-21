@@ -19,6 +19,7 @@ final class StoreRegistrationRequestFactory extends RequestFactory
             'email'                => 'john@example.com',
             'password'             => 'password',
             'passwordConfirmation' => 'password',
+            'starter'              => 'bulbasaur',
         ];
     }
 
@@ -26,6 +27,13 @@ final class StoreRegistrationRequestFactory extends RequestFactory
     {
         return $this->state([
             'email' => User::factory()->create()->email,
+        ]);
+    }
+
+    public function withStarter(?string $starter): static
+    {
+        return $this->state([
+            'starter' => $starter,
         ]);
     }
 
