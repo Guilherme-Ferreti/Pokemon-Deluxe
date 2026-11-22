@@ -23,94 +23,96 @@ final class UserSeeder extends Seeder
 {
     public function run(): void
     {
-        $user = User::factory()->create([
-            'name'  => 'Test User',
-            'email' => 'test@example.com',
-        ]);
+        DB::transaction(function (): void {
+            $user = User::factory()->create([
+                'name'  => 'Test User',
+                'email' => 'test@example.com',
+            ]);
 
-        $this->addPokemonToParty($user);
-        $this->addPokemonToBox($user);
-        $this->attachMovesToPokemon($user);
-        $this->addIncubations($user);
-        $this->addItemsToInventory($user);
+            $this->addPokemonToParty($user);
+            $this->addPokemonToBox($user);
+            $this->attachMovesToPokemon($user);
+            $this->addIncubations($user);
+            $this->addItemsToInventory($user);
+        });
     }
 
     private function addPokemonToParty(User $user): void
     {
-        $pokeballs = Pokeball::all();
-
-        Species::query()
+        $species = Species::query()
             ->inRandomOrder()
             ->take(5)
-            ->get()
-            ->each(fn (Species $species) => Pokemon::factory()
-                ->for($user)
-                ->for($user, 'originalUser')
-                ->for($species)
-                ->recycle($pokeballs)
-                ->inParty()
-                ->create()
-            );
+            ->get();
+
+        Pokemon::factory()
+            ->for($user)
+            ->for($user, 'originalUser')
+            ->recycle(Pokeball::all())
+            ->recycle($species)
+            ->inParty()
+            ->count($species->count())
+            ->sequence(fn (Sequence $sequence) => ['species_id' => $species[$sequence->index]->id])
+            ->create();
     }
 
     private function addPokemonToBox(User $user): void
     {
-        $pokeballs = Pokeball::all();
+        $species = Species::all();
 
-        Species::query()
-            ->inRandomOrder()
-            ->get()
-            ->map(fn (Species $species): array => [
-                $this->preparePokemonForInsert(Pokemon::factory()->for($user)->for($user, 'originalUser')->for($species)->recycle($pokeballs)->regular()->inBox()->make()),
-                $this->preparePokemonForInsert(Pokemon::factory()->for($user)->for($user, 'originalUser')->for($species)->recycle($pokeballs)->shiny()->inBox()->make()),
+        $rows = Pokemon::factory()
+            ->for($user)
+            ->for($user, 'originalUser')
+            ->recycle(Pokeball::all())
+            ->inBox()
+            ->count($species->count() * 2)
+            ->sequence(function (Sequence $sequence) use ($species) {
+                $rowSpecies = $species[intdiv($sequence->index, 2)];
+
+                return [
+                    'species_id' => $rowSpecies->id,
+                    'is_shiny'   => $sequence->index % 2 === 1,
+                    'gender'     => $rowSpecies->getRandomGender()->value,
+                ];
+            })
+            ->raw();
+
+        collect($rows)
+            ->map(fn (array $attributes) => [
+                ...$attributes,
+                'id'         => new Pokemon()->newUniqueId(),
+                'created_at' => now(),
+                'updated_at' => now(),
             ])
-            ->flatten(1)
             ->chunk(1000)
-            ->each(fn (Collection $chunk) => Pokemon::insert($chunk->toArray()));
-    }
-
-    /**
-     * @return array<string, mixed>
-     */
-    private function preparePokemonForInsert(Pokemon $pokemon): array
-    {
-        $attributes = $pokemon->toArray();
-
-        $attributes['id']         = $pokemon->newUniqueId();
-        $attributes['caught_at']  = $pokemon->caught_at->format('Y-m-d H:i:s');
-        $attributes['created_at'] = now();
-        $attributes['updated_at'] = now();
-
-        return $attributes;
+            ->each(fn (Collection $chunk) => Pokemon::insert($chunk->all()));
     }
 
     private function attachMovesToPokemon(User $user): void
     {
+        $baseMoveIdsBySpecies = $this->getBaseMoveIdsBySpecies();
+
         $user->pokemon()
-            ->get(['id', 'species_id'])
-            ->flatMap(fn (Pokemon $pokemon) => Arr::map($this->getBaseMoves($pokemon->species_id), fn (string $moveId, int $index) => [
-                'pokemon_id' => $pokemon->id,
+            ->toBase()
+            ->pluck('species_id', 'id')
+            ->flatMap(fn (string $speciesId, string $pokemonId) => Arr::map($baseMoveIdsBySpecies[$speciesId] ?? [], fn (string $moveId, int $index) => [
+                'pokemon_id' => $pokemonId,
                 'move_id'    => $moveId,
                 'slot'       => $index + 1,
             ]))
             ->chunk(3000)
-            ->each(fn (Collection $chunk) => DB::table('pokemon_move')->insert($chunk->toArray()));
+            ->each(fn (Collection $chunk) => DB::table('pokemon_move')->insert($chunk->all()));
     }
 
     /**
-     * @return array<int, string>
+     * @return array<string, array<int, string>>
      */
-    private function getBaseMoves(string $speciesId): array
+    private function getBaseMoveIdsBySpecies(): array
     {
-        /** @var array<string, array<int, string>> */
-        $allMoves = once(fn () => Species::query()
-            ->with('baseMoves:id')
-            ->get()
-            ->mapWithKeys(fn (Species $species) => [$species->id => $species->baseMoves->pluck('id')->toArray()])
-            ->toArray()
-        );
-
-        return array_slice($allMoves[$speciesId] ?? [], 0, 4);
+        return DB::table('species_base_move')
+            ->get(['species_id', 'move_id'])
+            ->groupBy('species_id')
+            ->map(fn (Collection $rows) => $rows->pluck('move_id')->take(4)->values()->all())
+            ->all();
     }
 
     private function addIncubations(User $user): void

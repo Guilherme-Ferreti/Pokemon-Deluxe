@@ -32,7 +32,7 @@ final class PokemonFactory extends Factory
             'boost'            => fake()->numberBetween(0, (int) config('game.pokemon.max_boost')),
             'in_party'         => fake()->boolean(),
             'is_shiny'         => fake()->boolean(10),
-            'gender'           => fn (array $attributes) => Species::findOrFail((string) $attributes['species_id'])->getRandomGender(),
+            'gender'           => fn (array $attributes) => $this->findSpecies((string) $attributes['species_id'])->getRandomGender(),
             'pokeball_id'      => Pokeball::factory(),
             'caught_at'        => fake()->dateTimeBetween('-1 year', 'now'),
         ];
@@ -83,5 +83,13 @@ final class PokemonFactory extends Factory
     public function female(): static
     {
         return $this->state(['gender' => PokemonGender::FEMALE]);
+    }
+
+    private function findSpecies(string $speciesId): Species
+    {
+        /** @var Species|null $recycledSpecies */
+        $recycledSpecies = $this->recycle->get(Species::class)?->firstWhere('id', $speciesId);
+
+        return $recycledSpecies ?? Species::findOrFail($speciesId);
     }
 }
