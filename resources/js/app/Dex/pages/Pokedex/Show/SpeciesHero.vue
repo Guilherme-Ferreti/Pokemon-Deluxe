@@ -5,7 +5,7 @@
         class="flex items-center justify-center bg-muted/40 p-6 @md/hero:w-2/5"
       >
         <img
-          class="size-36 object-contain"
+          class="size-32 object-contain @md/hero:size-36"
           :src="page.props.hero.sprites.frontDefault ?? undefined"
           :alt="`${page.props.hero.name} sprite`"
         />
@@ -32,7 +32,7 @@
           </p>
         </div>
         <p
-          class="text-muted-foreground"
+          class="min-h-[4lh] text-muted-foreground"
           data-test="species-hero__text-entry"
         >
           {{ page.props.hero.textEntry }}

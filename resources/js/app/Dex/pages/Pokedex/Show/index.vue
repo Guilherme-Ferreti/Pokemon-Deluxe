@@ -8,23 +8,31 @@
   </AppSection>
   <div class="space-y-4">
     <div
-      class="grid gap-4 @2xl/main-content:grid-cols-2 @4xl/main-content:grid-cols-3"
+      class="grid items-start gap-4 @2xl/main-content:grid-cols-2 @4xl/main-content:grid-cols-3 @4xl/main-content:grid-rows-[auto_1fr]"
     >
       <section class="@2xl/main-content:col-span-2">
-        <SpeciesHero class="h-full" />
+        <SpeciesHero />
       </section>
-      <section>
-        <OverviewCard class="h-full" />
-      </section>
-      <section class="@4xl/main-content:order-1">
-        <EvolutionChainCard class="h-full @4xl/main-content:h-auto" />
-      </section>
-      <section>
-        <DamageTakenCard />
-      </section>
-      <section>
-        <CatchStatisticsCard />
-      </section>
+      <div
+        class="flex flex-col gap-4 @4xl/main-content:col-start-3 @4xl/main-content:row-span-2 @4xl/main-content:row-start-1"
+      >
+        <section>
+          <OverviewCard />
+        </section>
+        <section>
+          <EvolutionChainCard />
+        </section>
+      </div>
+      <div
+        class="grid items-start gap-4 @4xl/main-content:col-span-2 @4xl/main-content:grid-cols-2"
+      >
+        <section>
+          <DamageTakenCard />
+        </section>
+        <section>
+          <CatchStatisticsCard />
+        </section>
+      </div>
     </div>
     <section>
       <BaseMovesCard />
