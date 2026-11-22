@@ -1119,7 +1119,7 @@ Read [02-catching-and-exploration.md](02-catching-and-exploration.md) first. Nee
 
 ### 2.16 Explore page
 
-- [ ] Done
+- [x] Done
 
 **Goal:** the list of areas.
 
@@ -1136,6 +1136,8 @@ Read [02-catching-and-exploration.md](02-catching-and-exploration.md) first. Nee
 - One `Card` per area, the whole card clickable: a coloured band at the top (the two type colours as a gradient) with the area name on it, `PokemonTypeBadges` in the content, and a full-width outline "Explore" `Button` in the footer (outline because it repeats on every card; the design guide keeps primary for one action per screen).
 - Sidebar: the renamed "Explore" item keeps its current place near the top, since exploring is the main activity.
 
+**As built:** `ExploreIndexPageProps` also sends `isBattleInProgress`, which shows the mock-up's "You're in a battle" notice with a primary "Return to battle" button above the cards. Each card (`AreaCard`) is one link with a non-interactive "Explore" label styled as an outline button; it points to `#` until task 2.17 adds the area page. In dark mode the band is muted, as the type badges are.
+
 **Tests:** feature test for the props.
 
 **Done when:** the page lists the 9 areas.
@@ -1151,6 +1153,7 @@ Read [02-catching-and-exploration.md](02-catching-and-exploration.md) first. Nee
 **Build:**
 - Route `GET /explore/{area}` named `exploration.web.show` → `ExploreController@show` with `ExploreShowPageProps`: the area, and the player's encounter if it is in this area (sprite, name, gender, level, types, shiny, legendary).
 - Route `POST /explore/{area}` named `exploration.web.explore` → `ExploreAreaController`: calls `ExploreAction`, redirects to the area page. Used by both Explore and Keep exploring.
+- The Explore page's `AreaCard` links to `exploration.web.show` (it points to `#` until this task).
 - The wild battle's result card (task 1.35) gets "Keep exploring" (primary, exploring the battle's area again); "Back to Dashboard" becomes the outline button before it.
 - Route `POST /explore/battle` named `exploration.web.battle` → `BattleEncounterController`: calls `BattleEncounterAction`, redirects to `battle.web.show`.
 - Encounter card as in the Spec 2 sketch; shiny and legendary encounters get a gold border and badge. While a battle is ongoing, a banner links to it instead.

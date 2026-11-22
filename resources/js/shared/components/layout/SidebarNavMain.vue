@@ -102,8 +102,8 @@ const items = [
     icon: IconHome,
   },
   {
-    title: 'Wild Areas',
-    url: '#',
+    title: 'Explore',
+    url: route('exploration.web.index'),
     icon: IconTrees,
   },
   {

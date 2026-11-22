@@ -24,6 +24,8 @@ return Application::configure(basePath: dirname(__DIR__))
                 Route::name('dex.web.')->group(base_path('src/App/Dex/Http/Web/routes.php'));
                 Route::name('dex.api.')->group(base_path('src/App/Dex/Http/Api/routes.php'));
 
+                Route::name('exploration.web.')->group(base_path('src/App/Exploration/Http/Web/routes.php'));
+
                 Route::name('pokemon.web.')->group(base_path('src/App/Pokemon/Http/Web/routes.php'));
 
                 Route::name('public.web.')->group(base_path('src/App/Public/Http/Web/routes.php'));
