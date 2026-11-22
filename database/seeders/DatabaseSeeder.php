@@ -18,7 +18,7 @@ final class DatabaseSeeder extends Seeder
             EvolutionItemSeeder::class,
             MoveSeeder::class,
             SpeciesSeeder::class,
-            SpeciesWildDataSeeder::class,
+            SpeciesEvolutionStageSeeder::class,
             SpeciesBaseMovesSeeder::class,
             UserSeeder::class,
         ]);

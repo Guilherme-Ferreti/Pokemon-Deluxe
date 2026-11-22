@@ -81,8 +81,8 @@ One name per idea, used everywhere: specs, code, database, tests and UI. When yo
 | Encounter | `Encounter` model | The one wild Pokémon waiting for the player. |
 | Battle the encounter | `BattleEncounterAction`, `NoEncounterException` | Starts a wild battle against the stored encounter and deletes it. The battle's area is `BattleState::$area`. |
 | Encounter roll | `EncounterRoller::roll()`, `rollEvolutionStage()` | Picks the wild Pokémon for one explore from an area's species. |
-| Wild level range | `wild_min_level`, `wild_max_level`, `WildSpawnCalculator::levelRange()` | Null when a species never appears in the wild. Saved by `SpeciesWildDataSeeder`. |
-| Evolution stage | `evolution_stage`, `WildSpawnCalculator::evolutionStage()` | 1 = unevolved, 2, 3. Babies don't count. |
+| Wild level range | `wild_min_level`, `wild_max_level` | Null when a species never appears in the wild. Stored per species in the species data files and saved by `SpeciesSeeder`. |
+| Evolution stage | `evolution_stage`, `EvolutionStageCalculator::evolutionStage()` | 1 = unevolved, 2, 3. Babies don't count. Saved by `SpeciesEvolutionStageSeeder`. |
 | Catch chance | `CatchChanceCalculator` | Percentage, 0–100. |
 | Catch rate | `catch_rate` (Species column), `getCatchRatePercentage()`, `isFoundInTheWild()` | 3–255, as in the main games; ÷ 255 gives the base catch chance. Null for species never in the wild. |
 | Ball multiplier | `BallMultiplierCalculator`, `catch_rate` (Poké Ball column), `CatchContext` | The column holds the multiplier when no condition applies; `CatchContext` holds what the conditions read (turn, area, night, both Pokémon, the wild ailment). |

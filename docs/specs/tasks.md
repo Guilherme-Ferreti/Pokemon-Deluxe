@@ -891,6 +891,8 @@ Read [02-catching-and-exploration.md](02-catching-and-exploration.md) first. Nee
 - Config `game.exploration`: `unevolved_levels` ([2, 12]), `legendary_levels` ([50, 70]), `other_evolution_min_level` (18), `evolved_level_spread` (4).
 - Seeder `SpeciesWildDataSeeder`, run after species and evolutions, saves the three columns using the calculator.
 
+- Later changed: the wild levels now live in the species data files (`wild_min_level` and `wild_max_level` in `database/seeders/files/species/*.json`, null when never in the wild), saved by `SpeciesSeeder`, so each species can be tuned by hand. The first values came from the rules above. `levelRange()` and the four `game.exploration` level keys were removed, and only the evolution stage is still calculated, renamed `EvolutionStageCalculator` and `SpeciesEvolutionStageSeeder`.
+
 **Tests:** `tests/App/Exploration/Unit/Mechanics/WildSpawnCalculatorTest.php`: Charmander 2–12 stage 1; Charizard 36–40 stage 3; Raichu 18–22; Vileplume never below Gloom's minimum; Pikachu stage 1; Mewtwo 50–70; Pichu, Mega Charizard X and G-Max Pikachu → `null`; never above the max level. Seeder test: the saved columns for a few real species.
 
 **Done when:** columns are filled after `migrate:fresh --seed`; tests pass.

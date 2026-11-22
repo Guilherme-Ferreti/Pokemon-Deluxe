@@ -72,12 +72,8 @@ return [
     ],
 
     'exploration' => [
-        'unevolved_levels'          => [2, 12],  // Lowest and highest level of unevolved wild Pokémon.
-        'legendary_levels'          => [50, 70], // Lowest and highest level of wild legendary and mythical Pokémon.
-        'other_evolution_min_level' => 18,       // Lowest level of a wild Pokémon that evolves by item, gender or another way.
-        'evolved_level_spread'      => 4,        // Levels above its lowest level an evolved wild Pokémon can appear at.
-        'legendary_chance'          => 0.2,      // 0.2% chance (1 in 500) that an encounter is a legendary or mythical, when the area has any.
-        'stage_weights'             => [1 => 85, 2 => 12, 3 => 3], // Weights of each evolution stage in an encounter (85% unevolved, 12% second, 3% third).
+        'legendary_chance' => 0.2,      // 0.2% chance (1 in 500) that an encounter is a legendary or mythical, when the area has any.
+        'stage_weights'    => [1 => 85, 2 => 12, 3 => 3], // Weights of each evolution stage in an encounter (85% unevolved, 12% second, 3% third).
     ],
 
     'catching' => [

@@ -14,7 +14,7 @@ use Shared\Models\SpeciesEvolution;
  * @phpstan-type SeederEvolution array{evolves_into:string, item:?string, min_level:?int, gender:?string}
  * @phpstan-type SeederSprites array{back_default:?string, back_female:?string, back_shiny:?string, back_shiny_female:?string, front_default:?string, front_female:?string, front_shiny:?string, front_shiny_female:?string}
  * @phpstan-type SeederPortraits array{regular:?string, shiny:?string}
- * @phpstan-type SeederSpecies array{id:string, name:string, types:list<string>, pokedex_number:int, genus:string, flavor_text:string, sprites:SeederSprites, portraits:SeederPortraits, is_baby:bool, is_legendary:bool, is_mythical:bool, is_mega:bool, is_gmax:bool, is_ultra_beast:bool, generation:int, catch_rate:?int, gender_rate:int, egg_obtainable:bool, evolutions:list<SeederEvolution>}
+ * @phpstan-type SeederSpecies array{id:string, name:string, types:list<string>, pokedex_number:int, genus:string, flavor_text:string, sprites:SeederSprites, portraits:SeederPortraits, is_baby:bool, is_legendary:bool, is_mythical:bool, is_mega:bool, is_gmax:bool, is_ultra_beast:bool, generation:int, catch_rate:?int, wild_min_level:?int, wild_max_level:?int, gender_rate:int, egg_obtainable:bool, evolutions:list<SeederEvolution>}
  */
 final class SpeciesSeeder extends Seeder
 {
@@ -140,6 +140,8 @@ final class SpeciesSeeder extends Seeder
             'is_ultra_beast' => $species['is_ultra_beast'],
             'generation'     => $species['generation'],
             'catch_rate'     => $species['catch_rate'],
+            'wild_min_level' => $species['wild_min_level'],
+            'wild_max_level' => $species['wild_max_level'],
             'gender_rate'    => $species['gender_rate'],
             'egg_obtainable' => $species['egg_obtainable'],
         ];

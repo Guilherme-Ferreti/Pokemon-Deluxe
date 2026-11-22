@@ -3,8 +3,8 @@
 declare(strict_types=1);
 
 use Database\Seeders\EvolutionItemSeeder;
+use Database\Seeders\SpeciesEvolutionStageSeeder;
 use Database\Seeders\SpeciesSeeder;
-use Database\Seeders\SpeciesWildDataSeeder;
 use Shared\Models\Species;
 
 use function Pest\Laravel\seed;
@@ -36,22 +36,37 @@ it('marks exactly the eleven ultra beasts', function () {
     expect($slugs->all())->toBe(['nihilego', 'buzzwole', 'pheromosa', 'xurkitree', 'celesteela', 'kartana', 'guzzlord', 'poipole', 'naganadel', 'stakataka', 'blacephalon']);
 });
 
-it('saves each species evolution stage and wild levels', function () {
-    seed([EvolutionItemSeeder::class, SpeciesSeeder::class, SpeciesWildDataSeeder::class]);
+it('saves each species wild levels from the data files', function () {
+    seed([EvolutionItemSeeder::class, SpeciesSeeder::class]);
 
     $species = Species::query()
-        ->whereIn('slug', ['charmander', 'charizard', 'pikachu', 'raichu', 'mewtwo', 'pichu', 'mega-charizard-x'])
-        ->get(['slug', 'evolution_stage', 'wild_min_level', 'wild_max_level'])
+        ->whereIn('slug', ['charmander', 'charizard', 'raichu', 'mewtwo', 'pichu', 'mega-charizard-x'])
+        ->get(['slug', 'wild_min_level', 'wild_max_level'])
         ->keyBy('slug')
-        ->map(fn (Species $species) => [$species->evolution_stage, $species->wild_min_level, $species->wild_max_level]);
+        ->map(fn (Species $species) => [$species->wild_min_level, $species->wild_max_level]);
 
     expect($species->all())->toEqual([
-        'charmander'       => [1, 2, 12],
-        'charizard'        => [3, 36, 40],
-        'pikachu'          => [1, 2, 12],
-        'raichu'           => [2, 18, 22],
-        'mewtwo'           => [1, 50, 70],
-        'pichu'            => [1, null, null],
-        'mega-charizard-x' => [4, null, null],
+        'charmander'       => [2, 12],
+        'charizard'        => [36, 40],
+        'raichu'           => [18, 22],
+        'mewtwo'           => [50, 70],
+        'pichu'            => [null, null],
+        'mega-charizard-x' => [null, null],
+    ]);
+});
+
+it('saves each species evolution stage', function () {
+    seed([EvolutionItemSeeder::class, SpeciesSeeder::class, SpeciesEvolutionStageSeeder::class]);
+
+    $species = Species::query()
+        ->whereIn('slug', ['charmander', 'charizard', 'pikachu', 'raichu', 'mega-charizard-x'])
+        ->pluck('evolution_stage', 'slug');
+
+    expect($species->all())->toEqual([
+        'charmander'       => 1,
+        'charizard'        => 3,
+        'pikachu'          => 1,
+        'raichu'           => 2,
+        'mega-charizard-x' => 4,
     ]);
 });

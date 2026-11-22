@@ -31,6 +31,8 @@
         "is_ultra_beast": false,
         "generation": 5,
         "catch_rate": 45,
+        "wild_min_level": 2,
+        "wild_max_level": 12,
         "gender_rate": 1,
         "egg_obtainable": true,
         "evolutions": [
@@ -74,6 +76,8 @@
         "is_ultra_beast": false,
         "generation": 5,
         "catch_rate": 45,
+        "wild_min_level": 17,
+        "wild_max_level": 21,
         "gender_rate": 1,
         "egg_obtainable": false,
         "evolutions": [
@@ -117,6 +121,8 @@
         "is_ultra_beast": false,
         "generation": 5,
         "catch_rate": 45,
+        "wild_min_level": 36,
+        "wild_max_level": 40,
         "gender_rate": 1,
         "egg_obtainable": false,
         "evolutions": []
@@ -153,6 +159,8 @@
         "is_ultra_beast": false,
         "generation": 5,
         "catch_rate": 45,
+        "wild_min_level": 2,
+        "wild_max_level": 12,
         "gender_rate": 1,
         "egg_obtainable": true,
         "evolutions": [
@@ -197,6 +205,8 @@
         "is_ultra_beast": false,
         "generation": 5,
         "catch_rate": 45,
+        "wild_min_level": 17,
+        "wild_max_level": 21,
         "gender_rate": 1,
         "egg_obtainable": false,
         "evolutions": [
@@ -241,6 +251,8 @@
         "is_ultra_beast": false,
         "generation": 5,
         "catch_rate": 45,
+        "wild_min_level": 36,
+        "wild_max_level": 40,
         "gender_rate": 1,
         "egg_obtainable": false,
         "evolutions": [
@@ -285,6 +297,8 @@
         "is_ultra_beast": false,
         "generation": 5,
         "catch_rate": null,
+        "wild_min_level": null,
+        "wild_max_level": null,
         "gender_rate": 1,
         "egg_obtainable": false,
         "evolutions": []
@@ -321,6 +335,8 @@
         "is_ultra_beast": false,
         "generation": 5,
         "catch_rate": 45,
+        "wild_min_level": 2,
+        "wild_max_level": 12,
         "gender_rate": 1,
         "egg_obtainable": true,
         "evolutions": [
@@ -364,6 +380,8 @@
         "is_ultra_beast": false,
         "generation": 5,
         "catch_rate": 45,
+        "wild_min_level": 17,
+        "wild_max_level": 21,
         "gender_rate": 1,
         "egg_obtainable": false,
         "evolutions": [
@@ -413,6 +431,8 @@
         "is_ultra_beast": false,
         "generation": 5,
         "catch_rate": 45,
+        "wild_min_level": 36,
+        "wild_max_level": 40,
         "gender_rate": 1,
         "egg_obtainable": false,
         "evolutions": []
@@ -450,6 +470,8 @@
         "is_ultra_beast": false,
         "generation": 5,
         "catch_rate": 45,
+        "wild_min_level": 36,
+        "wild_max_level": 40,
         "gender_rate": 1,
         "egg_obtainable": false,
         "evolutions": []
@@ -486,6 +508,8 @@
         "is_ultra_beast": false,
         "generation": 5,
         "catch_rate": 255,
+        "wild_min_level": 2,
+        "wild_max_level": 12,
         "gender_rate": 4,
         "egg_obtainable": true,
         "evolutions": [
@@ -529,6 +553,8 @@
         "is_ultra_beast": false,
         "generation": 5,
         "catch_rate": 255,
+        "wild_min_level": 20,
+        "wild_max_level": 24,
         "gender_rate": 4,
         "egg_obtainable": false,
         "evolutions": []
@@ -565,6 +591,8 @@
         "is_ultra_beast": false,
         "generation": 5,
         "catch_rate": 255,
+        "wild_min_level": 2,
+        "wild_max_level": 12,
         "gender_rate": 4,
         "egg_obtainable": true,
         "evolutions": [
@@ -608,6 +636,8 @@
         "is_ultra_beast": false,
         "generation": 5,
         "catch_rate": 120,
+        "wild_min_level": 16,
+        "wild_max_level": 20,
         "gender_rate": 4,
         "egg_obtainable": false,
         "evolutions": [
@@ -651,6 +681,8 @@
         "is_ultra_beast": false,
         "generation": 5,
         "catch_rate": 45,
+        "wild_min_level": 32,
+        "wild_max_level": 36,
         "gender_rate": 4,
         "egg_obtainable": false,
         "evolutions": []
@@ -687,6 +719,8 @@
         "is_ultra_beast": false,
         "generation": 5,
         "catch_rate": 255,
+        "wild_min_level": 2,
+        "wild_max_level": 12,
         "gender_rate": 4,
         "egg_obtainable": true,
         "evolutions": [
@@ -730,6 +764,8 @@
         "is_ultra_beast": false,
         "generation": 5,
         "catch_rate": 90,
+        "wild_min_level": 20,
+        "wild_max_level": 24,
         "gender_rate": 4,
         "egg_obtainable": false,
         "evolutions": []
@@ -766,6 +802,8 @@
         "is_ultra_beast": false,
         "generation": 5,
         "catch_rate": 190,
+        "wild_min_level": 2,
+        "wild_max_level": 12,
         "gender_rate": 1,
         "egg_obtainable": true,
         "evolutions": [
@@ -809,6 +847,8 @@
         "is_ultra_beast": false,
         "generation": 5,
         "catch_rate": 75,
+        "wild_min_level": 18,
+        "wild_max_level": 22,
         "gender_rate": 1,
         "egg_obtainable": false,
         "evolutions": []
@@ -845,6 +885,8 @@
         "is_ultra_beast": false,
         "generation": 5,
         "catch_rate": 190,
+        "wild_min_level": 2,
+        "wild_max_level": 12,
         "gender_rate": 1,
         "egg_obtainable": true,
         "evolutions": [
@@ -888,6 +930,8 @@
         "is_ultra_beast": false,
         "generation": 5,
         "catch_rate": 75,
+        "wild_min_level": 18,
+        "wild_max_level": 22,
         "gender_rate": 1,
         "egg_obtainable": false,
         "evolutions": []
@@ -924,6 +968,8 @@
         "is_ultra_beast": false,
         "generation": 5,
         "catch_rate": 190,
+        "wild_min_level": 2,
+        "wild_max_level": 12,
         "gender_rate": 1,
         "egg_obtainable": true,
         "evolutions": [
@@ -967,6 +1013,8 @@
         "is_ultra_beast": false,
         "generation": 5,
         "catch_rate": 75,
+        "wild_min_level": 18,
+        "wild_max_level": 22,
         "gender_rate": 1,
         "egg_obtainable": false,
         "evolutions": []
@@ -1003,6 +1051,8 @@
         "is_ultra_beast": false,
         "generation": 5,
         "catch_rate": 190,
+        "wild_min_level": 2,
+        "wild_max_level": 12,
         "gender_rate": 4,
         "egg_obtainable": true,
         "evolutions": [
@@ -1046,6 +1096,8 @@
         "is_ultra_beast": false,
         "generation": 5,
         "catch_rate": 75,
+        "wild_min_level": 18,
+        "wild_max_level": 22,
         "gender_rate": 4,
         "egg_obtainable": false,
         "evolutions": []
@@ -1083,6 +1135,8 @@
         "is_ultra_beast": false,
         "generation": 5,
         "catch_rate": 255,
+        "wild_min_level": 2,
+        "wild_max_level": 12,
         "gender_rate": 4,
         "egg_obtainable": true,
         "evolutions": [
@@ -1127,6 +1181,8 @@
         "is_ultra_beast": false,
         "generation": 5,
         "catch_rate": 120,
+        "wild_min_level": 21,
+        "wild_max_level": 25,
         "gender_rate": 4,
         "egg_obtainable": false,
         "evolutions": [
@@ -1171,6 +1227,8 @@
         "is_ultra_beast": false,
         "generation": 5,
         "catch_rate": 45,
+        "wild_min_level": 32,
+        "wild_max_level": 36,
         "gender_rate": 4,
         "egg_obtainable": false,
         "evolutions": []
@@ -1207,6 +1265,8 @@
         "is_ultra_beast": false,
         "generation": 5,
         "catch_rate": 190,
+        "wild_min_level": 2,
+        "wild_max_level": 12,
         "gender_rate": 4,
         "egg_obtainable": true,
         "evolutions": [
@@ -1250,6 +1310,8 @@
         "is_ultra_beast": false,
         "generation": 5,
         "catch_rate": 75,
+        "wild_min_level": 27,
+        "wild_max_level": 31,
         "gender_rate": 4,
         "egg_obtainable": false,
         "evolutions": []
@@ -1286,6 +1348,8 @@
         "is_ultra_beast": false,
         "generation": 5,
         "catch_rate": 255,
+        "wild_min_level": 2,
+        "wild_max_level": 12,
         "gender_rate": 4,
         "egg_obtainable": true,
         "evolutions": [
@@ -1329,6 +1393,8 @@
         "is_ultra_beast": false,
         "generation": 5,
         "catch_rate": 120,
+        "wild_min_level": 25,
+        "wild_max_level": 29,
         "gender_rate": 4,
         "egg_obtainable": false,
         "evolutions": [
@@ -1372,6 +1438,8 @@
         "is_ultra_beast": false,
         "generation": 5,
         "catch_rate": 45,
+        "wild_min_level": 45,
+        "wild_max_level": 49,
         "gender_rate": 4,
         "egg_obtainable": false,
         "evolutions": []
@@ -1409,6 +1477,8 @@
         "is_ultra_beast": false,
         "generation": 5,
         "catch_rate": 190,
+        "wild_min_level": 2,
+        "wild_max_level": 12,
         "gender_rate": 4,
         "egg_obtainable": true,
         "evolutions": [
@@ -1453,6 +1523,8 @@
         "is_ultra_beast": false,
         "generation": 5,
         "catch_rate": 45,
+        "wild_min_level": 25,
+        "wild_max_level": 29,
         "gender_rate": 4,
         "egg_obtainable": false,
         "evolutions": []
@@ -1489,6 +1561,8 @@
         "is_ultra_beast": false,
         "generation": 5,
         "catch_rate": 120,
+        "wild_min_level": 2,
+        "wild_max_level": 12,
         "gender_rate": 4,
         "egg_obtainable": true,
         "evolutions": [
@@ -1533,6 +1607,8 @@
         "is_ultra_beast": false,
         "generation": 5,
         "catch_rate": 60,
+        "wild_min_level": 31,
+        "wild_max_level": 35,
         "gender_rate": 4,
         "egg_obtainable": false,
         "evolutions": [
@@ -1577,6 +1653,8 @@
         "is_ultra_beast": false,
         "generation": 5,
         "catch_rate": null,
+        "wild_min_level": null,
+        "wild_max_level": null,
         "gender_rate": 4,
         "egg_obtainable": false,
         "evolutions": []
@@ -1613,6 +1691,8 @@
         "is_ultra_beast": false,
         "generation": 5,
         "catch_rate": 255,
+        "wild_min_level": 2,
+        "wild_max_level": 12,
         "gender_rate": 4,
         "egg_obtainable": true,
         "evolutions": [
@@ -1657,6 +1737,8 @@
         "is_ultra_beast": false,
         "generation": 5,
         "catch_rate": null,
+        "wild_min_level": null,
+        "wild_max_level": null,
         "gender_rate": 4,
         "egg_obtainable": false,
         "evolutions": []
@@ -1693,6 +1775,8 @@
         "is_ultra_beast": false,
         "generation": 5,
         "catch_rate": 180,
+        "wild_min_level": 2,
+        "wild_max_level": 12,
         "gender_rate": 2,
         "egg_obtainable": true,
         "evolutions": [
@@ -1736,6 +1820,8 @@
         "is_ultra_beast": false,
         "generation": 5,
         "catch_rate": 90,
+        "wild_min_level": 25,
+        "wild_max_level": 29,
         "gender_rate": 2,
         "egg_obtainable": false,
         "evolutions": [
@@ -1779,6 +1865,8 @@
         "is_ultra_beast": false,
         "generation": 5,
         "catch_rate": 45,
+        "wild_min_level": 45,
+        "wild_max_level": 49,
         "gender_rate": 2,
         "egg_obtainable": false,
         "evolutions": []
@@ -1815,6 +1903,8 @@
         "is_ultra_beast": false,
         "generation": 5,
         "catch_rate": 255,
+        "wild_min_level": 2,
+        "wild_max_level": 12,
         "gender_rate": 4,
         "egg_obtainable": true,
         "evolutions": [
@@ -1859,6 +1949,8 @@
         "is_ultra_beast": false,
         "generation": 5,
         "catch_rate": 120,
+        "wild_min_level": 25,
+        "wild_max_level": 29,
         "gender_rate": 4,
         "egg_obtainable": false,
         "evolutions": [
@@ -1903,6 +1995,8 @@
         "is_ultra_beast": false,
         "generation": 5,
         "catch_rate": 45,
+        "wild_min_level": 36,
+        "wild_max_level": 40,
         "gender_rate": 4,
         "egg_obtainable": false,
         "evolutions": []
@@ -1939,6 +2033,8 @@
         "is_ultra_beast": false,
         "generation": 5,
         "catch_rate": 45,
+        "wild_min_level": 2,
+        "wild_max_level": 12,
         "gender_rate": 0,
         "egg_obtainable": true,
         "evolutions": []
@@ -1975,6 +2071,8 @@
         "is_ultra_beast": false,
         "generation": 5,
         "catch_rate": 45,
+        "wild_min_level": 2,
+        "wild_max_level": 12,
         "gender_rate": 0,
         "egg_obtainable": true,
         "evolutions": []
@@ -2012,6 +2110,8 @@
         "is_ultra_beast": false,
         "generation": 5,
         "catch_rate": 255,
+        "wild_min_level": 2,
+        "wild_max_level": 12,
         "gender_rate": 4,
         "egg_obtainable": true,
         "evolutions": [
@@ -2056,6 +2156,8 @@
         "is_ultra_beast": false,
         "generation": 5,
         "catch_rate": 120,
+        "wild_min_level": 20,
+        "wild_max_level": 24,
         "gender_rate": 4,
         "egg_obtainable": false,
         "evolutions": [
@@ -2100,6 +2202,8 @@
         "is_ultra_beast": false,
         "generation": 5,
         "catch_rate": 45,
+        "wild_min_level": 35,
+        "wild_max_level": 39,
         "gender_rate": 4,
         "egg_obtainable": false,
         "evolutions": []
@@ -2137,6 +2241,8 @@
         "is_ultra_beast": false,
         "generation": 5,
         "catch_rate": 255,
+        "wild_min_level": 2,
+        "wild_max_level": 12,
         "gender_rate": 4,
         "egg_obtainable": true,
         "evolutions": [
@@ -2181,6 +2287,8 @@
         "is_ultra_beast": false,
         "generation": 5,
         "catch_rate": 120,
+        "wild_min_level": 22,
+        "wild_max_level": 26,
         "gender_rate": 4,
         "egg_obtainable": false,
         "evolutions": [
@@ -2225,6 +2333,8 @@
         "is_ultra_beast": false,
         "generation": 5,
         "catch_rate": 45,
+        "wild_min_level": 30,
+        "wild_max_level": 34,
         "gender_rate": 4,
         "egg_obtainable": false,
         "evolutions": [
@@ -2269,6 +2379,8 @@
         "is_ultra_beast": false,
         "generation": 5,
         "catch_rate": null,
+        "wild_min_level": null,
+        "wild_max_level": null,
         "gender_rate": 4,
         "egg_obtainable": false,
         "evolutions": []
@@ -2306,6 +2418,8 @@
         "is_ultra_beast": false,
         "generation": 5,
         "catch_rate": 190,
+        "wild_min_level": 2,
+        "wild_max_level": 12,
         "gender_rate": 4,
         "egg_obtainable": true,
         "evolutions": [
@@ -2350,6 +2464,8 @@
         "is_ultra_beast": false,
         "generation": 5,
         "catch_rate": 75,
+        "wild_min_level": 18,
+        "wild_max_level": 22,
         "gender_rate": 4,
         "egg_obtainable": false,
         "evolutions": []
@@ -2386,6 +2502,8 @@
         "is_ultra_beast": false,
         "generation": 5,
         "catch_rate": 190,
+        "wild_min_level": 2,
+        "wild_max_level": 12,
         "gender_rate": 8,
         "egg_obtainable": true,
         "evolutions": [
@@ -2435,6 +2553,8 @@
         "is_ultra_beast": false,
         "generation": 5,
         "catch_rate": 75,
+        "wild_min_level": 18,
+        "wild_max_level": 22,
         "gender_rate": 8,
         "egg_obtainable": false,
         "evolutions": []
@@ -2472,6 +2592,8 @@
         "is_ultra_beast": false,
         "generation": 5,
         "catch_rate": 75,
+        "wild_min_level": 18,
+        "wild_max_level": 22,
         "gender_rate": 8,
         "egg_obtainable": false,
         "evolutions": []
@@ -2508,6 +2630,8 @@
         "is_ultra_beast": false,
         "generation": 5,
         "catch_rate": 25,
+        "wild_min_level": 2,
+        "wild_max_level": 12,
         "gender_rate": 4,
         "egg_obtainable": true,
         "evolutions": []
@@ -2544,6 +2668,8 @@
         "is_ultra_beast": false,
         "generation": 5,
         "catch_rate": 25,
+        "wild_min_level": 2,
+        "wild_max_level": 12,
         "gender_rate": 4,
         "egg_obtainable": true,
         "evolutions": []
@@ -2580,6 +2706,8 @@
         "is_ultra_beast": false,
         "generation": 5,
         "catch_rate": 25,
+        "wild_min_level": 2,
+        "wild_max_level": 12,
         "gender_rate": 4,
         "egg_obtainable": true,
         "evolutions": []
@@ -2617,6 +2745,8 @@
         "is_ultra_beast": false,
         "generation": 5,
         "catch_rate": 180,
+        "wild_min_level": 2,
+        "wild_max_level": 12,
         "gender_rate": 4,
         "egg_obtainable": true,
         "evolutions": [
@@ -2661,6 +2791,8 @@
         "is_ultra_beast": false,
         "generation": 5,
         "catch_rate": 90,
+        "wild_min_level": 29,
+        "wild_max_level": 33,
         "gender_rate": 4,
         "egg_obtainable": false,
         "evolutions": [
@@ -2705,6 +2837,8 @@
         "is_ultra_beast": false,
         "generation": 5,
         "catch_rate": 45,
+        "wild_min_level": 40,
+        "wild_max_level": 44,
         "gender_rate": 4,
         "egg_obtainable": false,
         "evolutions": []
@@ -2741,6 +2875,8 @@
         "is_ultra_beast": false,
         "generation": 5,
         "catch_rate": 120,
+        "wild_min_level": 2,
+        "wild_max_level": 12,
         "gender_rate": 4,
         "egg_obtainable": true,
         "evolutions": [
@@ -2790,6 +2926,8 @@
         "is_ultra_beast": false,
         "generation": 5,
         "catch_rate": 60,
+        "wild_min_level": 35,
+        "wild_max_level": 39,
         "gender_rate": 4,
         "egg_obtainable": false,
         "evolutions": []
@@ -2827,6 +2965,8 @@
         "is_ultra_beast": false,
         "generation": 5,
         "catch_rate": 60,
+        "wild_min_level": 35,
+        "wild_max_level": 39,
         "gender_rate": 4,
         "egg_obtainable": false,
         "evolutions": []
@@ -2863,6 +3003,8 @@
         "is_ultra_beast": false,
         "generation": 5,
         "catch_rate": 255,
+        "wild_min_level": 2,
+        "wild_max_level": 12,
         "gender_rate": 4,
         "egg_obtainable": true,
         "evolutions": []
@@ -2900,6 +3042,8 @@
         "is_ultra_beast": false,
         "generation": 5,
         "catch_rate": 190,
+        "wild_min_level": 2,
+        "wild_max_level": 12,
         "gender_rate": 4,
         "egg_obtainable": true,
         "evolutions": [
@@ -2944,6 +3088,8 @@
         "is_ultra_beast": false,
         "generation": 5,
         "catch_rate": 75,
+        "wild_min_level": 34,
+        "wild_max_level": 38,
         "gender_rate": 4,
         "egg_obtainable": false,
         "evolutions": []
@@ -2981,6 +3127,8 @@
         "is_ultra_beast": false,
         "generation": 5,
         "catch_rate": 180,
+        "wild_min_level": 2,
+        "wild_max_level": 12,
         "gender_rate": 4,
         "egg_obtainable": true,
         "evolutions": [
@@ -3025,6 +3173,8 @@
         "is_ultra_beast": false,
         "generation": 5,
         "catch_rate": 90,
+        "wild_min_level": 39,
+        "wild_max_level": 43,
         "gender_rate": 4,
         "egg_obtainable": false,
         "evolutions": [
@@ -3069,6 +3219,8 @@
         "is_ultra_beast": false,
         "generation": 5,
         "catch_rate": null,
+        "wild_min_level": null,
+        "wild_max_level": null,
         "gender_rate": 4,
         "egg_obtainable": false,
         "evolutions": []
@@ -3106,6 +3258,8 @@
         "is_ultra_beast": false,
         "generation": 5,
         "catch_rate": 45,
+        "wild_min_level": 2,
+        "wild_max_level": 12,
         "gender_rate": 4,
         "egg_obtainable": true,
         "evolutions": []
@@ -3142,6 +3296,8 @@
         "is_ultra_beast": false,
         "generation": 5,
         "catch_rate": 190,
+        "wild_min_level": 2,
+        "wild_max_level": 12,
         "gender_rate": 4,
         "egg_obtainable": true,
         "evolutions": [
@@ -3185,6 +3341,8 @@
         "is_ultra_beast": false,
         "generation": 5,
         "catch_rate": 90,
+        "wild_min_level": 34,
+        "wild_max_level": 38,
         "gender_rate": 4,
         "egg_obtainable": false,
         "evolutions": []
@@ -3222,6 +3380,8 @@
         "is_ultra_beast": false,
         "generation": 5,
         "catch_rate": 45,
+        "wild_min_level": 2,
+        "wild_max_level": 12,
         "gender_rate": 1,
         "egg_obtainable": true,
         "evolutions": [
@@ -3266,6 +3426,8 @@
         "is_ultra_beast": false,
         "generation": 5,
         "catch_rate": 45,
+        "wild_min_level": 37,
+        "wild_max_level": 41,
         "gender_rate": 1,
         "egg_obtainable": false,
         "evolutions": []
@@ -3303,6 +3465,8 @@
         "is_ultra_beast": false,
         "generation": 5,
         "catch_rate": 45,
+        "wild_min_level": 2,
+        "wild_max_level": 12,
         "gender_rate": 1,
         "egg_obtainable": true,
         "evolutions": [
@@ -3347,6 +3511,8 @@
         "is_ultra_beast": false,
         "generation": 5,
         "catch_rate": 45,
+        "wild_min_level": 37,
+        "wild_max_level": 41,
         "gender_rate": 1,
         "egg_obtainable": false,
         "evolutions": []
@@ -3383,6 +3549,8 @@
         "is_ultra_beast": false,
         "generation": 5,
         "catch_rate": 190,
+        "wild_min_level": 2,
+        "wild_max_level": 12,
         "gender_rate": 4,
         "egg_obtainable": true,
         "evolutions": [
@@ -3426,6 +3594,8 @@
         "is_ultra_beast": false,
         "generation": 5,
         "catch_rate": 60,
+        "wild_min_level": 36,
+        "wild_max_level": 40,
         "gender_rate": 4,
         "egg_obtainable": false,
         "evolutions": [
@@ -3469,6 +3639,8 @@
         "is_ultra_beast": false,
         "generation": 5,
         "catch_rate": null,
+        "wild_min_level": null,
+        "wild_max_level": null,
         "gender_rate": 4,
         "egg_obtainable": false,
         "evolutions": []
@@ -3505,6 +3677,8 @@
         "is_ultra_beast": false,
         "generation": 5,
         "catch_rate": 75,
+        "wild_min_level": 2,
+        "wild_max_level": 12,
         "gender_rate": 1,
         "egg_obtainable": true,
         "evolutions": [
@@ -3549,6 +3723,8 @@
         "is_ultra_beast": false,
         "generation": 5,
         "catch_rate": 75,
+        "wild_min_level": 2,
+        "wild_max_level": 12,
         "gender_rate": 1,
         "egg_obtainable": true,
         "evolutions": [
@@ -3592,6 +3768,8 @@
         "is_ultra_beast": false,
         "generation": 5,
         "catch_rate": 45,
+        "wild_min_level": 30,
+        "wild_max_level": 34,
         "gender_rate": 1,
         "egg_obtainable": false,
         "evolutions": []
@@ -3629,6 +3807,8 @@
         "is_ultra_beast": false,
         "generation": 5,
         "catch_rate": 45,
+        "wild_min_level": 30,
+        "wild_max_level": 34,
         "gender_rate": 1,
         "egg_obtainable": false,
         "evolutions": []
@@ -3665,6 +3845,8 @@
         "is_ultra_beast": false,
         "generation": 5,
         "catch_rate": 255,
+        "wild_min_level": 2,
+        "wild_max_level": 12,
         "gender_rate": 6,
         "egg_obtainable": true,
         "evolutions": [
@@ -3708,6 +3890,8 @@
         "is_ultra_beast": false,
         "generation": 5,
         "catch_rate": 60,
+        "wild_min_level": 18,
+        "wild_max_level": 22,
         "gender_rate": 6,
         "egg_obtainable": false,
         "evolutions": []
@@ -3744,6 +3928,8 @@
         "is_ultra_beast": false,
         "generation": 5,
         "catch_rate": 200,
+        "wild_min_level": 2,
+        "wild_max_level": 12,
         "gender_rate": 6,
         "egg_obtainable": true,
         "evolutions": [
@@ -3787,6 +3973,8 @@
         "is_ultra_beast": false,
         "generation": 5,
         "catch_rate": 100,
+        "wild_min_level": 32,
+        "wild_max_level": 36,
         "gender_rate": 6,
         "egg_obtainable": false,
         "evolutions": [
@@ -3830,6 +4018,8 @@
         "is_ultra_beast": false,
         "generation": 5,
         "catch_rate": 50,
+        "wild_min_level": 41,
+        "wild_max_level": 45,
         "gender_rate": 6,
         "egg_obtainable": false,
         "evolutions": []
@@ -3866,6 +4056,8 @@
         "is_ultra_beast": false,
         "generation": 5,
         "catch_rate": 200,
+        "wild_min_level": 2,
+        "wild_max_level": 12,
         "gender_rate": 4,
         "egg_obtainable": true,
         "evolutions": [
@@ -3909,6 +4101,8 @@
         "is_ultra_beast": false,
         "generation": 5,
         "catch_rate": 100,
+        "wild_min_level": 32,
+        "wild_max_level": 36,
         "gender_rate": 4,
         "egg_obtainable": false,
         "evolutions": [
@@ -3952,6 +4146,8 @@
         "is_ultra_beast": false,
         "generation": 5,
         "catch_rate": 50,
+        "wild_min_level": 41,
+        "wild_max_level": 45,
         "gender_rate": 4,
         "egg_obtainable": false,
         "evolutions": []
@@ -3989,6 +4185,8 @@
         "is_ultra_beast": false,
         "generation": 5,
         "catch_rate": 190,
+        "wild_min_level": 2,
+        "wild_max_level": 12,
         "gender_rate": 4,
         "egg_obtainable": true,
         "evolutions": [
@@ -4033,6 +4231,8 @@
         "is_ultra_beast": false,
         "generation": 5,
         "catch_rate": 45,
+        "wild_min_level": 35,
+        "wild_max_level": 39,
         "gender_rate": 4,
         "egg_obtainable": false,
         "evolutions": []
@@ -4069,6 +4269,8 @@
         "is_ultra_beast": false,
         "generation": 5,
         "catch_rate": 255,
+        "wild_min_level": 2,
+        "wild_max_level": 12,
         "gender_rate": 4,
         "egg_obtainable": true,
         "evolutions": [
@@ -4112,6 +4314,8 @@
         "is_ultra_beast": false,
         "generation": 5,
         "catch_rate": 120,
+        "wild_min_level": 35,
+        "wild_max_level": 39,
         "gender_rate": 4,
         "egg_obtainable": false,
         "evolutions": [
@@ -4155,6 +4359,8 @@
         "is_ultra_beast": false,
         "generation": 5,
         "catch_rate": 45,
+        "wild_min_level": 47,
+        "wild_max_level": 51,
         "gender_rate": 4,
         "egg_obtainable": false,
         "evolutions": []
@@ -4192,6 +4398,8 @@
         "is_ultra_beast": false,
         "generation": 5,
         "catch_rate": 190,
+        "wild_min_level": 2,
+        "wild_max_level": 12,
         "gender_rate": 4,
         "egg_obtainable": true,
         "evolutions": [
@@ -4236,6 +4444,8 @@
         "is_ultra_beast": false,
         "generation": 5,
         "catch_rate": 75,
+        "wild_min_level": 34,
+        "wild_max_level": 38,
         "gender_rate": 4,
         "egg_obtainable": false,
         "evolutions": []
@@ -4273,6 +4483,8 @@
         "is_ultra_beast": false,
         "generation": 5,
         "catch_rate": 200,
+        "wild_min_level": 2,
+        "wild_max_level": 12,
         "gender_rate": 4,
         "egg_obtainable": true,
         "evolutions": []
@@ -4309,6 +4521,8 @@
         "is_ultra_beast": false,
         "generation": 5,
         "catch_rate": 200,
+        "wild_min_level": 2,
+        "wild_max_level": 12,
         "gender_rate": 4,
         "egg_obtainable": true,
         "evolutions": [
@@ -4353,6 +4567,8 @@
         "is_ultra_beast": false,
         "generation": 5,
         "catch_rate": 75,
+        "wild_min_level": 30,
+        "wild_max_level": 34,
         "gender_rate": 4,
         "egg_obtainable": false,
         "evolutions": []
@@ -4390,6 +4606,8 @@
         "is_ultra_beast": false,
         "generation": 5,
         "catch_rate": 190,
+        "wild_min_level": 2,
+        "wild_max_level": 12,
         "gender_rate": 4,
         "egg_obtainable": true,
         "evolutions": [
@@ -4434,6 +4652,8 @@
         "is_ultra_beast": false,
         "generation": 5,
         "catch_rate": 75,
+        "wild_min_level": 39,
+        "wild_max_level": 43,
         "gender_rate": 4,
         "egg_obtainable": false,
         "evolutions": []
@@ -4471,6 +4691,8 @@
         "is_ultra_beast": false,
         "generation": 5,
         "catch_rate": 190,
+        "wild_min_level": 2,
+        "wild_max_level": 12,
         "gender_rate": 4,
         "egg_obtainable": true,
         "evolutions": [
@@ -4515,6 +4737,8 @@
         "is_ultra_beast": false,
         "generation": 5,
         "catch_rate": 60,
+        "wild_min_level": 40,
+        "wild_max_level": 44,
         "gender_rate": 4,
         "egg_obtainable": false,
         "evolutions": []
@@ -4551,6 +4775,8 @@
         "is_ultra_beast": false,
         "generation": 5,
         "catch_rate": 75,
+        "wild_min_level": 2,
+        "wild_max_level": 12,
         "gender_rate": 4,
         "egg_obtainable": true,
         "evolutions": []
@@ -4588,6 +4814,8 @@
         "is_ultra_beast": false,
         "generation": 5,
         "catch_rate": 190,
+        "wild_min_level": 2,
+        "wild_max_level": 12,
         "gender_rate": 4,
         "egg_obtainable": true,
         "evolutions": [
@@ -4632,6 +4860,8 @@
         "is_ultra_beast": false,
         "generation": 5,
         "catch_rate": 75,
+        "wild_min_level": 36,
+        "wild_max_level": 40,
         "gender_rate": 4,
         "egg_obtainable": false,
         "evolutions": []
@@ -4669,6 +4899,8 @@
         "is_ultra_beast": false,
         "generation": 5,
         "catch_rate": 255,
+        "wild_min_level": 2,
+        "wild_max_level": 12,
         "gender_rate": 4,
         "egg_obtainable": true,
         "evolutions": [
@@ -4713,6 +4945,8 @@
         "is_ultra_beast": false,
         "generation": 5,
         "catch_rate": 90,
+        "wild_min_level": 40,
+        "wild_max_level": 44,
         "gender_rate": 4,
         "egg_obtainable": false,
         "evolutions": []
@@ -4749,6 +4983,8 @@
         "is_ultra_beast": false,
         "generation": 5,
         "catch_rate": 130,
+        "wild_min_level": 2,
+        "wild_max_level": 12,
         "gender_rate": -1,
         "egg_obtainable": true,
         "evolutions": [
@@ -4792,6 +5028,8 @@
         "is_ultra_beast": false,
         "generation": 5,
         "catch_rate": 60,
+        "wild_min_level": 38,
+        "wild_max_level": 42,
         "gender_rate": -1,
         "egg_obtainable": false,
         "evolutions": [
@@ -4835,6 +5073,8 @@
         "is_ultra_beast": false,
         "generation": 5,
         "catch_rate": 30,
+        "wild_min_level": 49,
+        "wild_max_level": 53,
         "gender_rate": -1,
         "egg_obtainable": false,
         "evolutions": []
@@ -4871,6 +5111,8 @@
         "is_ultra_beast": false,
         "generation": 5,
         "catch_rate": 190,
+        "wild_min_level": 2,
+        "wild_max_level": 12,
         "gender_rate": 4,
         "egg_obtainable": true,
         "evolutions": [
@@ -4914,6 +5156,8 @@
         "is_ultra_beast": false,
         "generation": 5,
         "catch_rate": 60,
+        "wild_min_level": 39,
+        "wild_max_level": 43,
         "gender_rate": 4,
         "egg_obtainable": false,
         "evolutions": [
@@ -4957,6 +5201,8 @@
         "is_ultra_beast": false,
         "generation": 5,
         "catch_rate": 30,
+        "wild_min_level": 39,
+        "wild_max_level": 43,
         "gender_rate": 4,
         "egg_obtainable": false,
         "evolutions": [
@@ -5000,6 +5246,8 @@
         "is_ultra_beast": false,
         "generation": 5,
         "catch_rate": null,
+        "wild_min_level": null,
+        "wild_max_level": null,
         "gender_rate": 4,
         "egg_obtainable": false,
         "evolutions": []
@@ -5036,6 +5284,8 @@
         "is_ultra_beast": false,
         "generation": 5,
         "catch_rate": 255,
+        "wild_min_level": 2,
+        "wild_max_level": 12,
         "gender_rate": 4,
         "egg_obtainable": true,
         "evolutions": [
@@ -5079,6 +5329,8 @@
         "is_ultra_beast": false,
         "generation": 5,
         "catch_rate": 90,
+        "wild_min_level": 42,
+        "wild_max_level": 46,
         "gender_rate": 4,
         "egg_obtainable": false,
         "evolutions": []
@@ -5116,6 +5368,8 @@
         "is_ultra_beast": false,
         "generation": 5,
         "catch_rate": 190,
+        "wild_min_level": 2,
+        "wild_max_level": 12,
         "gender_rate": 4,
         "egg_obtainable": true,
         "evolutions": [
@@ -5160,6 +5414,8 @@
         "is_ultra_beast": false,
         "generation": 5,
         "catch_rate": 90,
+        "wild_min_level": 41,
+        "wild_max_level": 45,
         "gender_rate": 4,
         "egg_obtainable": false,
         "evolutions": [
@@ -5204,6 +5460,8 @@
         "is_ultra_beast": false,
         "generation": 5,
         "catch_rate": 45,
+        "wild_min_level": 41,
+        "wild_max_level": 45,
         "gender_rate": 4,
         "egg_obtainable": false,
         "evolutions": [
@@ -5248,6 +5506,8 @@
         "is_ultra_beast": false,
         "generation": 5,
         "catch_rate": null,
+        "wild_min_level": null,
+        "wild_max_level": null,
         "gender_rate": 4,
         "egg_obtainable": false,
         "evolutions": []
@@ -5284,6 +5544,8 @@
         "is_ultra_beast": false,
         "generation": 5,
         "catch_rate": 75,
+        "wild_min_level": 2,
+        "wild_max_level": 12,
         "gender_rate": 4,
         "egg_obtainable": true,
         "evolutions": [
@@ -5327,6 +5589,8 @@
         "is_ultra_beast": false,
         "generation": 5,
         "catch_rate": 60,
+        "wild_min_level": 38,
+        "wild_max_level": 42,
         "gender_rate": 4,
         "egg_obtainable": false,
         "evolutions": [
@@ -5370,6 +5634,8 @@
         "is_ultra_beast": false,
         "generation": 5,
         "catch_rate": 45,
+        "wild_min_level": 48,
+        "wild_max_level": 52,
         "gender_rate": 4,
         "egg_obtainable": false,
         "evolutions": []
@@ -5406,6 +5672,8 @@
         "is_ultra_beast": false,
         "generation": 5,
         "catch_rate": 120,
+        "wild_min_level": 2,
+        "wild_max_level": 12,
         "gender_rate": 4,
         "egg_obtainable": true,
         "evolutions": [
@@ -5449,6 +5717,8 @@
         "is_ultra_beast": false,
         "generation": 5,
         "catch_rate": 60,
+        "wild_min_level": 37,
+        "wild_max_level": 41,
         "gender_rate": 4,
         "egg_obtainable": false,
         "evolutions": []
@@ -5485,6 +5755,8 @@
         "is_ultra_beast": false,
         "generation": 5,
         "catch_rate": 25,
+        "wild_min_level": 2,
+        "wild_max_level": 12,
         "gender_rate": -1,
         "egg_obtainable": true,
         "evolutions": []
@@ -5521,6 +5793,8 @@
         "is_ultra_beast": false,
         "generation": 5,
         "catch_rate": 200,
+        "wild_min_level": 2,
+        "wild_max_level": 12,
         "gender_rate": 4,
         "egg_obtainable": true,
         "evolutions": [
@@ -5564,6 +5838,8 @@
         "is_ultra_beast": false,
         "generation": 5,
         "catch_rate": 75,
+        "wild_min_level": 30,
+        "wild_max_level": 34,
         "gender_rate": 4,
         "egg_obtainable": false,
         "evolutions": []
@@ -5601,6 +5877,8 @@
         "is_ultra_beast": false,
         "generation": 5,
         "catch_rate": 75,
+        "wild_min_level": 2,
+        "wild_max_level": 12,
         "gender_rate": 4,
         "egg_obtainable": true,
         "evolutions": []
@@ -5637,6 +5915,8 @@
         "is_ultra_beast": false,
         "generation": 5,
         "catch_rate": 180,
+        "wild_min_level": 2,
+        "wild_max_level": 12,
         "gender_rate": 4,
         "egg_obtainable": true,
         "evolutions": [
@@ -5680,6 +5960,8 @@
         "is_ultra_beast": false,
         "generation": 5,
         "catch_rate": 45,
+        "wild_min_level": 50,
+        "wild_max_level": 54,
         "gender_rate": 4,
         "egg_obtainable": false,
         "evolutions": []
@@ -5716,6 +5998,8 @@
         "is_ultra_beast": false,
         "generation": 5,
         "catch_rate": 45,
+        "wild_min_level": 2,
+        "wild_max_level": 12,
         "gender_rate": 4,
         "egg_obtainable": true,
         "evolutions": []
@@ -5753,6 +6037,8 @@
         "is_ultra_beast": false,
         "generation": 5,
         "catch_rate": 190,
+        "wild_min_level": 2,
+        "wild_max_level": 12,
         "gender_rate": -1,
         "egg_obtainable": true,
         "evolutions": [
@@ -5797,6 +6083,8 @@
         "is_ultra_beast": false,
         "generation": 5,
         "catch_rate": 90,
+        "wild_min_level": 43,
+        "wild_max_level": 47,
         "gender_rate": -1,
         "egg_obtainable": false,
         "evolutions": [
@@ -5841,6 +6129,8 @@
         "is_ultra_beast": false,
         "generation": 5,
         "catch_rate": null,
+        "wild_min_level": null,
+        "wild_max_level": null,
         "gender_rate": -1,
         "egg_obtainable": false,
         "evolutions": []
@@ -5878,6 +6168,8 @@
         "is_ultra_beast": false,
         "generation": 5,
         "catch_rate": 120,
+        "wild_min_level": 2,
+        "wild_max_level": 12,
         "gender_rate": 4,
         "egg_obtainable": true,
         "evolutions": [
@@ -5922,6 +6214,8 @@
         "is_ultra_beast": false,
         "generation": 5,
         "catch_rate": 45,
+        "wild_min_level": 52,
+        "wild_max_level": 56,
         "gender_rate": 4,
         "egg_obtainable": false,
         "evolutions": [
@@ -5965,6 +6259,8 @@
         "is_ultra_beast": false,
         "generation": 5,
         "catch_rate": 45,
+        "wild_min_level": 2,
+        "wild_max_level": 12,
         "gender_rate": 4,
         "egg_obtainable": true,
         "evolutions": []
@@ -6002,6 +6298,8 @@
         "is_ultra_beast": false,
         "generation": 5,
         "catch_rate": 190,
+        "wild_min_level": 2,
+        "wild_max_level": 12,
         "gender_rate": 0,
         "egg_obtainable": true,
         "evolutions": [
@@ -6046,6 +6344,8 @@
         "is_ultra_beast": false,
         "generation": 5,
         "catch_rate": 60,
+        "wild_min_level": 54,
+        "wild_max_level": 58,
         "gender_rate": 0,
         "egg_obtainable": false,
         "evolutions": []
@@ -6083,6 +6383,8 @@
         "is_ultra_beast": false,
         "generation": 5,
         "catch_rate": 60,
+        "wild_min_level": 2,
+        "wild_max_level": 12,
         "gender_rate": 0,
         "egg_obtainable": true,
         "evolutions": []
@@ -6120,6 +6422,8 @@
         "is_ultra_beast": false,
         "generation": 5,
         "catch_rate": 190,
+        "wild_min_level": 2,
+        "wild_max_level": 12,
         "gender_rate": 8,
         "egg_obtainable": true,
         "evolutions": [
@@ -6164,6 +6468,8 @@
         "is_ultra_beast": false,
         "generation": 5,
         "catch_rate": 60,
+        "wild_min_level": 54,
+        "wild_max_level": 58,
         "gender_rate": 8,
         "egg_obtainable": false,
         "evolutions": []
@@ -6200,6 +6506,8 @@
         "is_ultra_beast": false,
         "generation": 5,
         "catch_rate": 90,
+        "wild_min_level": 2,
+        "wild_max_level": 12,
         "gender_rate": 4,
         "egg_obtainable": true,
         "evolutions": []
@@ -6237,6 +6545,8 @@
         "is_ultra_beast": false,
         "generation": 5,
         "catch_rate": 90,
+        "wild_min_level": 2,
+        "wild_max_level": 12,
         "gender_rate": 4,
         "egg_obtainable": true,
         "evolutions": []
@@ -6274,6 +6584,8 @@
         "is_ultra_beast": false,
         "generation": 5,
         "catch_rate": 45,
+        "wild_min_level": 2,
+        "wild_max_level": 12,
         "gender_rate": 4,
         "egg_obtainable": true,
         "evolutions": [
@@ -6318,6 +6630,8 @@
         "is_ultra_beast": false,
         "generation": 5,
         "catch_rate": 45,
+        "wild_min_level": 50,
+        "wild_max_level": 54,
         "gender_rate": 4,
         "egg_obtainable": false,
         "evolutions": [
@@ -6362,6 +6676,8 @@
         "is_ultra_beast": false,
         "generation": 5,
         "catch_rate": 45,
+        "wild_min_level": 64,
+        "wild_max_level": 68,
         "gender_rate": 4,
         "egg_obtainable": false,
         "evolutions": []
@@ -6399,6 +6715,8 @@
         "is_ultra_beast": false,
         "generation": 5,
         "catch_rate": 45,
+        "wild_min_level": 2,
+        "wild_max_level": 12,
         "gender_rate": 4,
         "egg_obtainable": true,
         "evolutions": [
@@ -6443,6 +6761,8 @@
         "is_ultra_beast": false,
         "generation": 5,
         "catch_rate": 15,
+        "wild_min_level": 59,
+        "wild_max_level": 63,
         "gender_rate": 4,
         "egg_obtainable": false,
         "evolutions": []
@@ -6480,6 +6800,8 @@
         "is_ultra_beast": false,
         "generation": 5,
         "catch_rate": 3,
+        "wild_min_level": 50,
+        "wild_max_level": 70,
         "gender_rate": -1,
         "egg_obtainable": true,
         "evolutions": []
@@ -6517,6 +6839,8 @@
         "is_ultra_beast": false,
         "generation": 5,
         "catch_rate": 3,
+        "wild_min_level": 50,
+        "wild_max_level": 70,
         "gender_rate": -1,
         "egg_obtainable": true,
         "evolutions": []
@@ -6554,6 +6878,8 @@
         "is_ultra_beast": false,
         "generation": 5,
         "catch_rate": 3,
+        "wild_min_level": 50,
+        "wild_max_level": 70,
         "gender_rate": -1,
         "egg_obtainable": true,
         "evolutions": []
@@ -6590,6 +6916,8 @@
         "is_ultra_beast": false,
         "generation": 5,
         "catch_rate": 3,
+        "wild_min_level": 50,
+        "wild_max_level": 70,
         "gender_rate": 0,
         "egg_obtainable": true,
         "evolutions": []
@@ -6626,6 +6954,8 @@
         "is_ultra_beast": false,
         "generation": 5,
         "catch_rate": 3,
+        "wild_min_level": 50,
+        "wild_max_level": 70,
         "gender_rate": 0,
         "egg_obtainable": true,
         "evolutions": []
@@ -6663,6 +6993,8 @@
         "is_ultra_beast": false,
         "generation": 5,
         "catch_rate": 3,
+        "wild_min_level": 50,
+        "wild_max_level": 70,
         "gender_rate": 0,
         "egg_obtainable": true,
         "evolutions": []
@@ -6700,6 +7032,8 @@
         "is_ultra_beast": false,
         "generation": 5,
         "catch_rate": 3,
+        "wild_min_level": 50,
+        "wild_max_level": 70,
         "gender_rate": 0,
         "egg_obtainable": true,
         "evolutions": []
@@ -6737,6 +7071,8 @@
         "is_ultra_beast": false,
         "generation": 5,
         "catch_rate": 3,
+        "wild_min_level": 50,
+        "wild_max_level": 70,
         "gender_rate": -1,
         "egg_obtainable": true,
         "evolutions": []
@@ -6774,6 +7110,8 @@
         "is_ultra_beast": false,
         "generation": 5,
         "catch_rate": 3,
+        "wild_min_level": 50,
+        "wild_max_level": 70,
         "gender_rate": -1,
         "egg_obtainable": true,
         "evolutions": []
@@ -6811,6 +7149,8 @@
         "is_ultra_beast": false,
         "generation": 5,
         "catch_rate": 3,
+        "wild_min_level": 50,
+        "wild_max_level": 70,
         "gender_rate": 0,
         "egg_obtainable": true,
         "evolutions": []
@@ -6848,6 +7188,8 @@
         "is_ultra_beast": false,
         "generation": 5,
         "catch_rate": 3,
+        "wild_min_level": 50,
+        "wild_max_level": 70,
         "gender_rate": 0,
         "egg_obtainable": true,
         "evolutions": []
@@ -6885,6 +7227,8 @@
         "is_ultra_beast": false,
         "generation": 5,
         "catch_rate": 3,
+        "wild_min_level": 50,
+        "wild_max_level": 70,
         "gender_rate": -1,
         "egg_obtainable": true,
         "evolutions": []
@@ -6922,6 +7266,8 @@
         "is_ultra_beast": false,
         "generation": 5,
         "catch_rate": 3,
+        "wild_min_level": 50,
+        "wild_max_level": 70,
         "gender_rate": -1,
         "egg_obtainable": true,
         "evolutions": []
@@ -6959,6 +7305,8 @@
         "is_ultra_beast": false,
         "generation": 5,
         "catch_rate": 3,
+        "wild_min_level": 50,
+        "wild_max_level": 70,
         "gender_rate": -1,
         "egg_obtainable": true,
         "evolutions": []
@@ -6996,6 +7344,8 @@
         "is_ultra_beast": false,
         "generation": 5,
         "catch_rate": 3,
+        "wild_min_level": 50,
+        "wild_max_level": 70,
         "gender_rate": -1,
         "egg_obtainable": true,
         "evolutions": []
@@ -7033,6 +7383,8 @@
         "is_ultra_beast": false,
         "generation": 5,
         "catch_rate": 3,
+        "wild_min_level": 50,
+        "wild_max_level": 70,
         "gender_rate": -1,
         "egg_obtainable": true,
         "evolutions": []
@@ -7070,6 +7422,8 @@
         "is_ultra_beast": false,
         "generation": 5,
         "catch_rate": 3,
+        "wild_min_level": 50,
+        "wild_max_level": 70,
         "gender_rate": -1,
         "egg_obtainable": true,
         "evolutions": []
@@ -7107,6 +7461,8 @@
         "is_ultra_beast": false,
         "generation": 5,
         "catch_rate": 3,
+        "wild_min_level": 50,
+        "wild_max_level": 70,
         "gender_rate": -1,
         "egg_obtainable": true,
         "evolutions": []
@@ -7144,6 +7500,8 @@
         "is_ultra_beast": false,
         "generation": 5,
         "catch_rate": 3,
+        "wild_min_level": 50,
+        "wild_max_level": 70,
         "gender_rate": -1,
         "egg_obtainable": true,
         "evolutions": []

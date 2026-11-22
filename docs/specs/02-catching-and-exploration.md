@@ -37,6 +37,8 @@ There are 9 areas, two types each, covering all 18 types. A dual-type species ap
 - A caught Pokémon keeps its wild level.
 - Wild battles are always one Pokémon against the player's party. **Run** always works.
 
+Each species stores its own wild level range (`wild_min_level` and `wild_max_level` in the species data files), and a wild Pokémon's level is picked evenly within it. Both are null for species that never appear in the wild. The ranges are tuned per species; these guidelines set the first values and are followed for new species:
+
 | Wild Pokémon | Level | Example |
 | --- | --- | --- |
 | Unevolved | 2–12 | Charmander: 2–12 |
