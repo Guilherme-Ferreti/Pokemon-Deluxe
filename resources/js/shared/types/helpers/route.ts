@@ -17,6 +17,13 @@ type RouteParameters = {
   'dex.web.attackdex.index': never;
   'dex.api.species.autocomplete': never;
   'exploration.web.index': never;
+  'exploration.web.show': {
+    area: string | number;
+  };
+  'exploration.web.battle': never;
+  'exploration.web.explore': {
+    area: string | number;
+  };
   'pokemon.web.party': never;
   'pokemon.web.box.index': never;
   'pokemon.web.nursery': never;
@@ -82,6 +89,9 @@ const routes = {
   'dex.web.attackdex.index': 'attackdex',
   'dex.api.species.autocomplete': 'dex/api/species/autocomplete',
   'exploration.web.index': 'explore',
+  'exploration.web.show': 'explore/{area}',
+  'exploration.web.battle': 'explore/battle',
+  'exploration.web.explore': 'explore/{area}',
   'pokemon.web.party': 'your-pokemon/party',
   'pokemon.web.box.index': 'your-pokemon/box',
   'pokemon.web.nursery': 'your-pokemon/nursery',

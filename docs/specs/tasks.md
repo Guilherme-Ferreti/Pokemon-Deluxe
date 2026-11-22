@@ -1136,7 +1136,7 @@ Read [02-catching-and-exploration.md](02-catching-and-exploration.md) first. Nee
 - One `Card` per area, the whole card clickable: a coloured band at the top (the two type colours as a gradient) with the area name on it, `PokemonTypeBadges` in the content, and a full-width outline "Explore" `Button` in the footer (outline because it repeats on every card; the design guide keeps primary for one action per screen).
 - Sidebar: the renamed "Explore" item keeps its current place near the top, since exploring is the main activity.
 
-**As built:** `ExploreIndexPageProps` also sends `isBattleInProgress`, which shows the mock-up's "You're in a battle" notice with a primary "Return to battle" button above the cards. Each card (`AreaCard`) is one link with a non-interactive "Explore" label styled as an outline button; it points to `#` until task 2.17 adds the area page. In dark mode the band is muted, as the type badges are.
+**As built:** `ExploreIndexPageProps` also sends `isBattleInProgress`, which shows the mock-up's "You're in a battle" notice with a primary "Return to battle" button above the cards. Each card (`AreaCard`) is one link with a non-interactive "Explore" label styled as an outline button; task 2.17 points it at the area page. In dark mode the band is muted, as the type badges are.
 
 **Tests:** feature test for the props.
 
@@ -1144,7 +1144,7 @@ Read [02-catching-and-exploration.md](02-catching-and-exploration.md) first. Nee
 
 ### 2.17 Area page: encounters
 
-- [ ] Done
+- [x] Done
 
 **Goal:** explore an area and see the wild Pokémon.
 
@@ -1166,6 +1166,8 @@ Read [02-catching-and-exploration.md](02-catching-and-exploration.md) first. Nee
 - No encounter yet: `AppEmptyState` ("Nothing here yet") with a primary "Explore" button.
 - Ongoing battle: replace the card with a notice ("You're in a battle") and one primary "Return to battle" button (shadcn-vue `alert` or `AppInfoCard`).
 
+**As built:** `ExploreShowPageProps` sends `area`, `encounter` (`sprite`, `name` with "Shiny", `gender`, `level`, `types`, `isShiny`, `isLegendary`, `isMythical`; `null` when the player's encounter is in another area) and `isBattleInProgress`. The area name sits in `AppPageHeader` with the type badges under it; the "Pokémon found here" button is left to task 2.18, which adds the modal it opens. `EncounterCard` follows the mock-up: a "Shiny" badge with a star and a "Legendary" or "Mythical" badge, plus "Legendary/Mythical Pokémon are much harder to catch. Weaken it and put it to sleep first." for those. The empty and in-battle states are `AppEmptyState`s inside a `Card` (`EncounterEmptyState`, `BattleInProgressEmptyState`). Unknown area slugs return 404. The battle page's `battle` prop gains `area`; the result card shows "Keep exploring" only when it is set, with "Back to Dashboard" as the outline button.
+
 **Tests:** feature tests for the three routes; browser test: explore, keep exploring, battle.
 
 **Done when:** a player can explore an area and start a battle from the page.
@@ -1178,7 +1180,7 @@ Read [02-catching-and-exploration.md](02-catching-and-exploration.md) first. Nee
 
 **Mock-up:** `docs/mockups/area.html` (states "Pokémon found here" open, loading and no matches)
 
-**Build:** `ExploreShowPageProps` gets `areaSpecies` as an `Inertia::optional()` prop (portrait, name, types), loaded when the modal opens. The modal has a search box and type filters (client-side), using species portraits.
+**Build:** an outline "Pokémon found here" button in the area page's `AppPageHeader` opens the modal. `ExploreShowPageProps` gets `areaSpecies` as an `Inertia::optional()` prop (portrait, name, types), loaded when the modal opens. The modal has a search box and type filters (client-side), using species portraits.
 
 **UI suggestions** (ideas, not requirements):
 - A `Dialog` with scrolling content, titled "Pokémon found in Forest" with the species count.

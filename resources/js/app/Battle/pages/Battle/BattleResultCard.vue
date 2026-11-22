@@ -85,15 +85,27 @@
       </p>
     </CardContent>
     <CardFooter class="battle-result-card__actions">
-      <Button as-child>
+      <Button
+        as-child
+        :variant="page.props.battle.area ? 'outline' : 'default'"
+      >
         <Link :href="route('dashboard.web.home')">Back to Dashboard</Link>
+      </Button>
+      <Button
+        v-if="page.props.battle.area"
+        type="button"
+        data-test="battle-result-card__keep-exploring-button"
+        :disabled="keepExploringForm.processing"
+        @click="handleKeepExploring(page.props.battle.area)"
+      >
+        Keep exploring
       </Button>
     </CardFooter>
   </Card>
 </template>
 
 <script setup lang="ts">
-import { Link, usePage } from '@inertiajs/vue3';
+import { Link, useForm, usePage } from '@inertiajs/vue3';
 import { computed } from 'vue';
 import PokemonDisplayName from '@/shared/components/game/PokemonDisplayName.vue';
 import SpeciesPortrait from '@/shared/components/game/SpeciesPortrait.vue';
@@ -108,10 +120,17 @@ import {
   CardTitle,
 } from '@/shared/components/ui/card';
 import { BattleStatus } from '@/shared/types/enums';
+import type { Area } from '@/shared/types/enums';
 import { route } from '@/shared/types/helpers/route';
 import type { BattleShowPageProps } from '../../types/page-props/BattleShowPageProps';
 
 const page = usePage<BattleShowPageProps>();
+
+const keepExploringForm = useForm();
+
+function handleKeepExploring(area: Area) {
+  keepExploringForm.post(route('exploration.web.explore', { area }));
+}
 
 type EndedStatus = Exclude<BattleStatus, BattleStatus.ONGOING>;
 

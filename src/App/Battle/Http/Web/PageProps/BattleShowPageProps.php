@@ -10,6 +10,7 @@ use Illuminate\Database\Eloquent\Collection as EloquentCollection;
 use Inertia\ProvidesInertiaProperties;
 use Inertia\RenderContext;
 use Shared\Enums\Ailment;
+use Shared\Enums\Area;
 use Shared\Enums\BattleLogKind;
 use Shared\Enums\BattleStatus;
 use Shared\Enums\BattleType;
@@ -49,7 +50,7 @@ final class BattleShowPageProps implements ProvidesInertiaProperties
     }
 
     /**
-     * @return array{type: BattleType, scene: BattleScene, status: BattleStatus, turn: int, log: list<array{turn: int, isEnd: bool, entries: list<array{kind: BattleLogKind, text: string, moveName: ?string}>}>, isAwaitingSendOut: bool}
+     * @return array{type: BattleType, scene: BattleScene, status: BattleStatus, area: ?Area, turn: int, log: list<array{turn: int, isEnd: bool, entries: list<array{kind: BattleLogKind, text: string, moveName: ?string}>}>, isAwaitingSendOut: bool}
      */
     private function getBattleProp(): array
     {
@@ -57,6 +58,7 @@ final class BattleShowPageProps implements ProvidesInertiaProperties
             'type'              => $this->battle->type,
             'scene'             => BattleScene::fromBattleType($this->battle->type),
             'status'            => $this->battle->status,
+            'area'              => $this->battle->state->area,
             'turn'              => $this->battle->state->turn,
             'log'               => $this->logByTurn(),
             'isAwaitingSendOut' => $this->battle->status === BattleStatus::ONGOING && $this->battle->state->is_awaiting_send_out,

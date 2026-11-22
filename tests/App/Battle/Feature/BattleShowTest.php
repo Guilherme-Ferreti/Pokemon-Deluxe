@@ -5,6 +5,7 @@ declare(strict_types=1);
 use App\Battle\Enums\BattleScene;
 use Inertia\Testing\AssertableInertia as Assert;
 use Shared\Enums\Ailment;
+use Shared\Enums\Area;
 use Shared\Enums\BattleLogKind;
 use Shared\Enums\BattleStatus;
 use Shared\Enums\BattleType;
@@ -84,6 +85,7 @@ it('loads the battle page with expected structure', function () {
                 new BattleLogEntry(1, BattleLogKind::DAMAGE, 'It dealt 46 HP damage.'),
                 new BattleLogEntry(2, BattleLogKind::MOVE, 'The wild Pidgey used Growl!', 'Growl'),
             ],
+            area: Area::FOREST,
         ),
     ]);
 
@@ -96,6 +98,7 @@ it('loads the battle page with expected structure', function () {
                 'type'   => BattleType::WILD->value,
                 'scene'  => BattleScene::GRASS_FIELD->value,
                 'status' => BattleStatus::ONGOING->value,
+                'area'   => Area::FOREST->value,
                 'turn'   => 3,
                 'log'    => [
                     ['turn' => 2, 'isEnd' => false, 'entries' => [

@@ -1,5 +1,6 @@
 import type {
   Ailment,
+  Area,
   BattleLogKind,
   BattleStatus,
   BattleType,
@@ -80,6 +81,7 @@ export type BattleShowPageProps = {
     type: BattleType;
     scene: BattleScene;
     status: BattleStatus;
+    area: Area | null;
     turn: number;
     log: BattleLogTurn[];
     isAwaitingSendOut: boolean;

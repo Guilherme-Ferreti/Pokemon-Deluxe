@@ -1,7 +1,7 @@
 <template>
-  <a
-    href="#"
+  <Link
     class="group rounded-xl outline-none focus-visible:ring-3 focus-visible:ring-ring/50"
+    :href="route('exploration.web.show', { area: area.slug })"
   >
     <Card
       class="h-full gap-0 overflow-hidden py-0 transition-colors group-hover:border-ring motion-reduce:transition-none"
@@ -19,15 +19,17 @@
         </span>
       </div>
     </Card>
-  </a>
+  </Link>
 </template>
 
 <script setup lang="ts">
+import { Link } from '@inertiajs/vue3';
 import PokemonTypeBadges from '@/shared/components/game/PokemonTypeBadges.vue';
 import { buttonVariants } from '@/shared/components/ui/button';
 import { Card } from '@/shared/components/ui/card';
 import { cn } from '@/shared/lib/utils';
 import { PokemonType } from '@/shared/types/enums';
+import { route } from '@/shared/types/helpers/route';
 import type { ExploreArea } from '../../../types/page-props/ExploreIndexPageProps';
 
 defineProps<{
