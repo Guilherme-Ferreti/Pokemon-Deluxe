@@ -56,7 +56,7 @@ type Overview = {
     isUltraBeast: Species['isUltraBeast'];
   };
   generation: Species['generation'];
-  catchRatePercentage: number;
+  catchRatePercentage: number | null;
   isGenderless: boolean;
   malePercentage: number;
   femalePercentage: number;

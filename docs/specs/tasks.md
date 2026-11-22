@@ -983,7 +983,7 @@ Read [02-catching-and-exploration.md](02-catching-and-exploration.md) first. Nee
 **Build:**
 - Config `game.catching`: `base_chance` (10), `legendary_base_chance` (1), `low_hp_bonus` (1.5), `ailment_multipliers` (sleep and freeze 2, paralysis, burn and poison 1.5).
 - `App\Battle\Mechanics\CatchChanceCalculator::calculate(Species $species, int $currentHp, int $maxHp, ?Ailment $ailment, float $ballMultiplier): float`: base × ball × (1 + 1.5 × (1 − HP ratio)) × ailment, as a percentage capped at 100.
-- As built: `ailment_multipliers` is keyed by the `Ailment` value; confusion, unknown and no ailment count as ×1. HP below 0, above the max HP or a max HP below 1 throws `InvalidArgumentException`. The result is not rounded: the Spec 2 table shows it rounded to whole percentages (23.5 → 24%).
+- As built: `ailment_multipliers` is keyed by the `Ailment` value; confusion, unknown and no ailment count as ×1. HP below 0, above the max HP or a max HP below 1 throws `InvalidArgumentException`. The result is not rounded: the Spec 2 table shows it rounded to whole percentages (23.5 → 24%). Task 2.15 later replaced `base_chance` and `legendary_base_chance` with the species' `catch_rate`.
 
 **Tests:** every row of the Spec 2 example table.
 
@@ -1096,19 +1096,22 @@ Read [02-catching-and-exploration.md](02-catching-and-exploration.md) first. Nee
 
 ### 2.15 Pokédex: game catch rate
 
-- [ ] Done
+- [x] Done
 
-**Goal:** the Pokédex shows this game's catch rate, not the main games'.
+**Goal:** catching and the Pokédex use each species' own catch rate.
 
 **Build:**
-- Pokédex overview shows "10%" (or "1%" for legendaries and mythicals) from `game.catching`, or "Not found in the wild" when `wild_min_level` is null.
-- Remove `catch_rate` from `006_create_species_table.php`, the seeder, model, `isCapturable()` and `getCatchRatePercentage()`.
+- `CatchChanceCalculator`: the base chance is the species' `catch_rate` ÷ 255 as a percentage, replacing `game.catching.base_chance` and `legendary_base_chance` (removed from config). Legendaries and mythicals get no special case: their low catch rates make them hard.
+- Pokédex overview shows the species' catch rate as a percentage, or "Not found in the wild" when `wild_min_level` is null.
+- Keep `catch_rate` in `006_create_species_table.php`, the seeder and the model; remove the unused `isCapturable()`.
 
 **UI suggestions** (ideas, not requirements):
-- Keep the existing `AppInfoCardRow` in the overview card: "Catch rate: 10%".
+- Keep the existing `AppInfoCardRow` in the overview card: "Catch rate: 17.65%".
 - For species never in the wild, show muted text "Not found in the wild", with a `Tooltip` explaining why (Megas and G-Max evolve, babies hatch).
 
-**Tests:** update `PokedexShowTest` for the three cases.
+**As built:** `Species::getCatchRatePercentage()` returns the unrounded percentage the calculator uses; `getDisplayCatchRatePercentage()` rounds it to 2 decimals for the Pokédex. `Species::isFoundInTheWild()` reads `wild_min_level`; the `catchRatePercentage` prop is `null` when it is false. The calculator throws `InvalidArgumentException` for a species without a catch rate (only species never in the wild have none). The row is titled "Catch Rate", like the card's other rows; the tooltip reads "Obtained only by evolving or hatching from an Egg.".
+
+**Tests:** `CatchChanceCalculatorTest` for the new Spec 2 table; `PokedexShowTest` for a wild species' percentage and a species not found in the wild.
 
 **Done when:** tests pass.
 

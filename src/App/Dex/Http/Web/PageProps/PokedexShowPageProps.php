@@ -87,7 +87,7 @@ final readonly class PokedexShowPageProps implements ProvidesInertiaProperties
                 'isUltraBeast' => $this->species->is_ultra_beast,
             ],
             'generation'          => $this->species->generation,
-            'catchRatePercentage' => $this->species->getCatchRatePercentage(),
+            'catchRatePercentage' => $this->species->isFoundInTheWild() ? $this->species->getDisplayCatchRatePercentage() : null,
             'isGenderless'        => $this->species->isGenderless(),
             'malePercentage'      => $this->species->gender_rate->malePercentage(),
             'femalePercentage'    => $this->species->gender_rate->femalePercentage(),

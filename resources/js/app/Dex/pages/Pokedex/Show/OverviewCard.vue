@@ -39,6 +39,24 @@
       :text="$page.props.labels.generation[page.props.overview.generation]"
     />
     <AppInfoCardRow
+      v-if="page.props.overview.catchRatePercentage !== null"
+      title="Catch Rate"
+      :text="`${page.props.overview.catchRatePercentage}%`"
+    />
+    <AppInfoCardRow
+      v-else
+      title="Catch Rate"
+    >
+      <Tooltip>
+        <TooltipTrigger class="text-sm text-muted-foreground">
+          Not found in the wild
+        </TooltipTrigger>
+        <TooltipContent>
+          Obtained only by evolving or hatching from an Egg.
+        </TooltipContent>
+      </Tooltip>
+    </AppInfoCardRow>
+    <AppInfoCardRow
       v-if="Object.values(page.props.overview.traits).some(Boolean)"
       title="Traits"
       data-test="overview-card__traits"
@@ -91,9 +109,10 @@
     <AppInfoCardRow
       v-else
       title="Traits"
-      text="None"
       data-test="overview-card__traits"
-    />
+    >
+      <span class="text-sm text-muted-foreground">None</span>
+    </AppInfoCardRow>
     <AppInfoCardRow
       v-if="page.props.overview.isGenderless"
       title="Gender Rate"

@@ -81,8 +81,6 @@ return [
     ],
 
     'catching' => [
-        'base_chance'           => 10,  // 10% chance to catch a normal species at full HP with a Poké Ball.
-        'legendary_base_chance' => 1,   // 1% chance to catch a legendary or mythical at full HP with a Poké Ball.
         'low_hp_bonus'          => 1.5, // Extra catch chance as HP falls (1.5 = up to 150% more at 0 HP).
         'night_starts_at'       => 18,  // Server hour night starts, when the Dusk Ball is boosted.
         'night_ends_at'         => 6,   // Server hour night ends.

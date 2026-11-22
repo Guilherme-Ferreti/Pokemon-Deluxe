@@ -132,9 +132,9 @@ final class Species extends Model
         return count($this->types) === 2;
     }
 
-    public function isCapturable(): bool
+    public function isFoundInTheWild(): bool
     {
-        return ! is_null($this->catch_rate);
+        return ! is_null($this->wild_min_level);
     }
 
     public function isGenderless(): bool
@@ -185,9 +185,16 @@ final class Species extends Model
         return $sprite ?? $this->getDisplayFrontSprite($gender, $shiny);
     }
 
-    public function getCatchRatePercentage(): int|float
+    public function getCatchRatePercentage(): float
     {
-        return round(($this->catch_rate / 255) * 100, 2) |> toIntIfWhole(...);
+        $maxCatchRate = 255;
+
+        return $this->catch_rate / $maxCatchRate * 100;
+    }
+
+    public function getDisplayCatchRatePercentage(): int|float
+    {
+        return round($this->getCatchRatePercentage(), 2) |> toIntIfWhole(...);
     }
 
     public function getRandomGender(): PokemonGender

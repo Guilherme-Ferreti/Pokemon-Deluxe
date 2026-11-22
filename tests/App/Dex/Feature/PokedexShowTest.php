@@ -57,7 +57,7 @@ it('loads the species show page with expected structure', function () {
             ->where('overview.traits.isGmax', $species->is_gmax)
             ->where('overview.traits.isUltraBeast', $species->is_ultra_beast)
             ->where('overview.generation', $species->generation)
-            ->where('overview.catchRatePercentage', $species->getCatchRatePercentage())
+            ->where('overview.catchRatePercentage', $species->getDisplayCatchRatePercentage())
             ->where('overview.isGenderless', $species->isGenderless())
             ->where('overview.malePercentage', $species->gender_rate->malePercentage())
             ->where('overview.femalePercentage', $species->gender_rate->femalePercentage())
@@ -79,6 +79,34 @@ it('loads the species show page with expected structure', function () {
             ->where('nextSpecies.pokedexNumber', $nextSpecies->pokedex_number)
             ->where('nextSpecies.portrait', $nextSpecies->portraits->regular)
             ->where('nextSpecies.slug', $nextSpecies->slug)
+        );
+});
+
+it('shows the catch rate of species found in the wild', function (int $catchRate, int|float $expectedPercentage) {
+    $species = Species::factory()->create(['catch_rate' => $catchRate, 'wild_min_level' => 2]);
+
+    actingAs(User::factory()->create());
+
+    get(route('dex.web.pokedex.show', $species))
+        ->assertSuccessful()
+        ->assertInertia(fn (Assert $page) => $page
+            ->where('overview.catchRatePercentage', $expectedPercentage)
+        );
+})->with([
+    'common'    => [255, 100],
+    'starter'   => [45, 17.65],
+    'legendary' => [3, 1.18],
+]);
+
+it('shows no catch rate for species not found in the wild', function () {
+    $species = Species::factory()->create(['catch_rate' => 45, 'wild_min_level' => null, 'wild_max_level' => null]);
+
+    actingAs(User::factory()->create());
+
+    get(route('dex.web.pokedex.show', $species))
+        ->assertSuccessful()
+        ->assertInertia(fn (Assert $page) => $page
+            ->where('overview.catchRatePercentage', null)
         );
 });
 

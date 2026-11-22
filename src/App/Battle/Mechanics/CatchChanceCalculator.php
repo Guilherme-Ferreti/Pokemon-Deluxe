@@ -25,11 +25,14 @@ final class CatchChanceCalculator
         return min(100.0, $chance);
     }
 
+    /**
+     * @throws InvalidArgumentException
+     */
     private function baseChance(Species $species): float
     {
-        return $species->is_legendary || $species->is_mythical
-            ? (float) config('game.catching.legendary_base_chance')
-            : (float) config('game.catching.base_chance');
+        throw_if(is_null($species->catch_rate), InvalidArgumentException::class, "The species [{$species->name}] has no catch rate.");
+
+        return $species->getCatchRatePercentage();
     }
 
     private function lowHpMultiplier(float $hpRatio): float

@@ -51,7 +51,7 @@ No wild Pokémon is above level 100.
 - **Throw ball** is available on any turn of a wild battle. A throw uses the player's turn, so the wild Pokémon still attacks.
 - A failed ball is used up. Wild Pokémon never flee.
 - **Catching counts as winning the wild battle:** the player's Pokémon get XP as if they had knocked it out (Spec 1), and the catch counts for "win battles" missions (Spec 5).
-- All species share one catch rate, except legendaries and mythicals, which are harder.
+- Each species has its own catch rate, from 3 (most legendaries and mythicals) to 255 (common species such as Pidgey), as in the main games. The Pokédex shows it as a percentage.
 - Catch chance rises as the wild Pokémon's HP falls and when it has a status effect.
 
 The formula, capped at 100%:
@@ -60,16 +60,16 @@ The formula, capped at 100%:
 \text{chance} = \text{base} \times \text{ball} \times \left(1 + 1.5 \times (1 - \text{HP\%})\right) \times \text{status}
 ```
 
-- Base: 10% for normal species, 1% for legendaries and mythicals.
+- Base: the species' catch rate ÷ 255, as a percentage (255 → 100%, 45 → 17.6%, 3 → 1.2%).
 - Status: sleep or freeze ×2; paralysis, burn or poison ×1.5; none or confusion ×1.
 
-| Situation | Normal species | Legendary |
-| --- | --- | --- |
-| Poké Ball, full HP | 10% | 1% |
-| Poké Ball, 10% HP | 24% | 2% |
-| Poké Ball, 10% HP, asleep | 47% | 5% |
-| Ultra Ball, 10% HP, asleep | 94% | 9% |
-| Master Ball | 100% | 100% |
+| Situation | Catch rate 190 (Pikachu) | Catch rate 45 (Charmander) | Catch rate 3 (Mewtwo) |
+| --- | --- | --- | --- |
+| Poké Ball, full HP | 75% | 18% | 1% |
+| Poké Ball, 10% HP | 100% | 41% | 3% |
+| Poké Ball, 10% HP, asleep | 100% | 83% | 6% |
+| Ultra Ball, 10% HP, asleep | 100% | 100% | 11% |
+| Master Ball | 100% | 100% | 100% |
 
 ## Ball conditions
 
