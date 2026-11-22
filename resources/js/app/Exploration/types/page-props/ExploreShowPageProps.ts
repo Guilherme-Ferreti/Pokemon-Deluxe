@@ -12,8 +12,16 @@ export type ExploreEncounter = {
   isMythical: boolean;
 };
 
+export type AreaSpecies = {
+  slug: string;
+  name: string;
+  portrait: string | null;
+  types: [PokemonType, PokemonType?];
+};
+
 export type ExploreShowPageProps = {
   area: ExploreArea;
   encounter: ExploreEncounter | null;
   isBattleInProgress: boolean;
+  areaSpecies?: AreaSpecies[];
 };

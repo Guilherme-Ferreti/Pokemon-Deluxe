@@ -4,13 +4,16 @@ declare(strict_types=1);
 
 namespace App\Exploration\Http\Web\PageProps;
 
+use App\Exploration\Queries\AreaSpeciesQuery;
 use Illuminate\Support\Collection;
+use Inertia\Inertia;
 use Inertia\ProvidesInertiaProperties;
 use Inertia\RenderContext;
 use Shared\Enums\Area;
 use Shared\Enums\PokemonGender;
 use Shared\Enums\PokemonType;
 use Shared\Models\Encounter;
+use Shared\Models\Species;
 
 final readonly class ExploreShowPageProps implements ProvidesInertiaProperties
 {
@@ -27,6 +30,7 @@ final readonly class ExploreShowPageProps implements ProvidesInertiaProperties
             'area'               => $this->getAreaProp(...),
             'encounter'          => $this->getEncounterProp(...),
             'isBattleInProgress' => fn (): bool => currentUser()->battles()->ongoing()->exists(),
+            'areaSpecies'        => Inertia::optional($this->getAreaSpeciesProp(...))->once(),
         ];
     }
 
@@ -40,6 +44,25 @@ final readonly class ExploreShowPageProps implements ProvidesInertiaProperties
             'label' => $this->area->label(),
             'types' => $this->area->types(),
         ];
+    }
+
+    /**
+     * @return array<int, array{slug: string, name: string, portrait: ?string, types: Collection<int, PokemonType>}>
+     */
+    private function getAreaSpeciesProp(): array
+    {
+        return new AreaSpeciesQuery()
+            ->handle($this->area)
+            ->select('id', 'slug', 'name', 'portraits', 'types')
+            ->get()
+            ->map(fn (Species $species): array => [
+                'slug'     => $species->slug,
+                'name'     => $species->name,
+                'portrait' => $species->portraits->regular,
+                'types'    => $species->types,
+            ])
+            ->values()
+            ->all();
     }
 
     /**

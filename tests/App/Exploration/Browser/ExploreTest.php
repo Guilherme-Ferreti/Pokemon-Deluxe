@@ -114,3 +114,28 @@ it('keeps exploring the battle area from the result card', function () {
         ->assertPathIs('/explore/forest')
         ->assertSeeIn('@encounter-card__title', 'Caterpie appeared!');
 });
+
+it('lists the area species with search and type filters', function () {
+    Species::factory()->create(['name' => 'Caterpie', 'types' => [PokemonType::BUG], 'wild_min_level' => 2, 'wild_max_level' => 12]);
+    Species::factory()->create(['name' => 'Bulbasaur', 'types' => [PokemonType::GRASS, PokemonType::POISON], 'wild_min_level' => 2, 'wild_max_level' => 12]);
+    Species::factory()->create(['name' => 'Charmander', 'types' => [PokemonType::FIRE], 'wild_min_level' => 2, 'wild_max_level' => 12]);
+
+    actingAs(User::factory()->create());
+
+    visit(route('exploration.web.show', Area::FOREST))
+        ->click('@area-species-dialog__open-button')
+        ->assertSeeIn('@area-species-dialog', '2 species')
+        ->assertSeeIn('@area-species-dialog__species-list', 'Caterpie')
+        ->assertSeeIn('@area-species-dialog__species-list', 'Bulbasaur')
+        ->assertDontSeeIn('@area-species-dialog__species-list', 'Charmander')
+        ->assertNoAccessibilityIssues()
+        ->click('@area-species-dialog__type-poison-button')
+        ->assertSeeIn('@area-species-dialog__species-list', 'Bulbasaur')
+        ->assertDontSeeIn('@area-species-dialog__species-list', 'Caterpie')
+        ->fill('@area-species-dialog__search-input', 'Cater')
+        ->assertMissing('@area-species-dialog__species-list')
+        ->assertSeeIn('@area-species-dialog__no-match-empty-state', 'No Pokémon match your search')
+        ->click('@area-species-dialog__type-poison-button')
+        ->assertSeeIn('@area-species-dialog__species-list', 'Caterpie')
+        ->assertDontSeeIn('@area-species-dialog__species-list', 'Bulbasaur');
+});

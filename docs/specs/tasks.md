@@ -1174,7 +1174,7 @@ Read [02-catching-and-exploration.md](02-catching-and-exploration.md) first. Nee
 
 ### 2.18 Area page: Pokémon found here
 
-- [ ] Done
+- [x] Done
 
 **Goal:** the modal listing an area's species.
 
@@ -1188,6 +1188,8 @@ Read [02-catching-and-exploration.md](02-catching-and-exploration.md) first. Nee
 - A grid of `SpeciesPortrait` tiles with the name underneath: 5–6 per row on desktop, 3 on phones.
 - `Skeleton` tiles while the optional prop loads; `AppEmptyState` ("No Pokémon match your search") when filters hide everything.
 - On phones, consider making the dialog full screen.
+
+**As built:** `AreaSpeciesDialog` holds the header button and the dialog (`DialogScrollContent`, full screen on phones). `areaSpecies` is each `AreaSpeciesQuery` species' `slug`, `name`, `portrait` and `types`, in Pokédex order, requested with `router.reload({ only: ['areaSpecies'] })` the first time the dialog opens. The title is "Pokémon found in the Forest" with "N species" under it. Type chips are `Badge` buttons (`aria-pressed`), one per type present in the list; a species shows when its name contains the search and, if any chip is on, it has one of the chosen types. No matches show `AppEmptyState` ("No Pokémon match your search", "Try another name or clear the type filters.").
 
 **Tests:** feature test: the prop is absent by default and returned when requested.
 

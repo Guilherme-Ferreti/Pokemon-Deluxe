@@ -1,7 +1,9 @@
 <template>
   <Head :title="page.props.area.label" />
   <div class="flex flex-col gap-1.5">
-    <AppPageHeader :title="page.props.area.label" />
+    <AppPageHeader :title="page.props.area.label">
+      <AreaSpeciesDialog />
+    </AppPageHeader>
     <PokemonTypeBadges :types="page.props.area.types" />
   </div>
   <BattleInProgressEmptyState v-if="page.props.isBattleInProgress" />
@@ -15,6 +17,7 @@ import PokemonTypeBadges from '@/shared/components/game/PokemonTypeBadges.vue';
 import AppPageHeader from '@/shared/components/layout/AppPageHeader.vue';
 import { route } from '@/shared/types/helpers/route';
 import type { ExploreShowPageProps } from '../../../types/page-props/ExploreShowPageProps';
+import AreaSpeciesDialog from './AreaSpeciesDialog.vue';
 import BattleInProgressEmptyState from './BattleInProgressEmptyState.vue';
 import EncounterCard from './EncounterCard.vue';
 import EncounterEmptyState from './EncounterEmptyState.vue';

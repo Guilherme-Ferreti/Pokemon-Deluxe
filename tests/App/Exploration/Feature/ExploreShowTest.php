@@ -97,6 +97,49 @@ it('tells the player a battle of theirs is in progress', function () {
         ->assertInertia(fn (Assert $page) => $page->where('isBattleInProgress', true));
 });
 
+it('loads the area species only when requested', function () {
+    $user     = User::factory()->create();
+    $caterpie = Species::factory()->create([
+        'name'           => 'Caterpie',
+        'types'          => [PokemonType::BUG],
+        'pokedex_order'  => 10,
+        'wild_min_level' => 2,
+        'wild_max_level' => 12,
+    ]);
+    $bulbasaur = Species::factory()->create([
+        'name'           => 'Bulbasaur',
+        'types'          => [PokemonType::GRASS, PokemonType::POISON],
+        'pokedex_order'  => 1,
+        'wild_min_level' => 2,
+        'wild_max_level' => 12,
+    ]);
+    Species::factory()->create(['types' => [PokemonType::FIRE], 'wild_min_level' => 2, 'wild_max_level' => 12]);
+    Species::factory()->create(['types' => [PokemonType::BUG], 'wild_min_level' => null, 'wild_max_level' => null]);
+
+    actingAs($user);
+
+    get(route('exploration.web.show', Area::FOREST))
+        ->assertInertia(fn (Assert $page) => $page
+            ->missing('areaSpecies')
+            ->reloadOnly('areaSpecies', fn (Assert $reload) => $reload
+                ->where('areaSpecies', [
+                    [
+                        'slug'     => $bulbasaur->slug,
+                        'name'     => 'Bulbasaur',
+                        'portrait' => $bulbasaur->portraits->regular,
+                        'types'    => [PokemonType::GRASS->value, PokemonType::POISON->value],
+                    ],
+                    [
+                        'slug'     => $caterpie->slug,
+                        'name'     => 'Caterpie',
+                        'portrait' => $caterpie->portraits->regular,
+                        'types'    => [PokemonType::BUG->value],
+                    ],
+                ])
+            )
+        );
+});
+
 it('returns not found for an unknown area', function () {
     actingAs(User::factory()->create());
 

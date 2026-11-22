@@ -80,7 +80,7 @@ One name per idea, used everywhere: specs, code, database, tests and UI. When yo
 | Explore / Keep exploring | `ExploreAction` | Both roll a new encounter. |
 | Encounter | `Encounter` model | The one wild Pokémon waiting for the player. |
 | Battle the encounter | `BattleEncounterAction`, `NoEncounterException` | Starts a wild battle against the stored encounter and deletes it. The battle's area is `BattleState::$area`. |
-| Exploring from the page | `ExploreController` (`index`, `show`), `ExploreAreaController`, `BattleEncounterController`, `ExploreIndexPageProps`, `ExploreShowPageProps`, `AreaCard`, `EncounterCard` | `GET /explore`, `GET /explore/{area}`, `POST /explore/{area}` (Explore and Keep exploring), `POST /explore/battle`. `isBattleInProgress` shows the "You're in a battle" state on both pages. |
+| Exploring from the page | `ExploreController` (`index`, `show`), `ExploreAreaController`, `BattleEncounterController`, `ExploreIndexPageProps`, `ExploreShowPageProps`, `AreaCard`, `EncounterCard`, `AreaSpeciesDialog` (`areaSpecies` optional prop) | `GET /explore`, `GET /explore/{area}`, `POST /explore/{area}` (Explore and Keep exploring), `POST /explore/battle`. `isBattleInProgress` shows the "You're in a battle" state on both pages. |
 | Encounter roll | `EncounterRoller::roll()`, `rollEvolutionStage()` | Picks the wild Pokémon for one explore from an area's species. |
 | Wild level range | `wild_min_level`, `wild_max_level` | Null when a species never appears in the wild. Stored per species in the species data files and saved by `SpeciesSeeder`. |
 | Evolution stage | `evolution_stage`, `EvolutionStageCalculator::evolutionStage()` | 1 = unevolved, 2, 3. Babies don't count. Saved by `SpeciesEvolutionStageSeeder`. |
