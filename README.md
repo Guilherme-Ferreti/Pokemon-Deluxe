@@ -353,6 +353,19 @@ Choosing the key: **lock on what the conflicting requests share.**
 
 **Use `lockForUpdate()` instead when the action can run inside a caller's transaction.** A cache lock is released when its callback returns, which is *before* an outer `DB::transaction` commits, so it cannot protect nested work. An action that guards on saved data and may run inside another action's transaction locks the **row that owns the data**, inside its own transaction, before its guards. The database holds that lock until the outermost transaction commits.
 
+How it works in the database:
+
+- `lockForUpdate()` adds `FOR UPDATE` to the `SELECT` (`select * from users where id = ? for update`). The database reads the row and puts an **exclusive row lock** on it, owned by the current transaction.
+- Any other transaction that tries to lock the same row (another `FOR UPDATE`), or to update or delete it, **waits** at that statement until the lock is released. It doesn't fail or skip; it blocks.
+- The lock is released only when the transaction that took it **commits or rolls back**, never when the statement or the PHP method ends. Laravel runs a nested `DB::transaction` as a *savepoint* inside the outer one, so there is a single real transaction and the lock lasts until the **outermost** commit. That is why the lock still protects `CreatePokemonAction` after it returns to `CatchPokemonAction`, while a cache lock would not.
+- Outside a transaction, every statement commits on its own, so the lock would be released immediately and protect nothing. `lockForUpdate()` is only useful inside `DB::transaction`.
+- **Plain `SELECT`s are not blocked.** MySQL (InnoDB) and PostgreSQL let ordinary reads see the last committed version of the row without waiting. The lock only orders transactions that also ask for it, so **every action that guards on the same data must lock the same row**. One that reads without locking can still pass its guard on old data.
+- **Lock the owning row, not the rows being checked.** `CreatePokemonAction` guards on how many Pokémon the user has, but the row that would break the rule (the new Pokémon) doesn't exist yet, so there is nothing to lock in `pokemon`. It locks the user's row instead, as a "one at a time per user" token: a second catch waits on `lockOwner()` until the first one commits, then counts the box with the new Pokémon in it.
+- After the lock is taken, **re-read what the guards check**. A model loaded before the lock may be stale, which is why `AwardExperienceAction` calls `refresh()` right after `lockPokemon()`.
+- Keep locking transactions short, and lock rows in the same order everywhere (owner first, then what it owns). Two transactions that lock the same rows in opposite orders deadlock, and the database aborts one of them.
+
+**On SQLite, `lockForUpdate()` does nothing.** SQLite has no row locks, and Laravel's SQLite grammar compiles the call to a plain `SELECT`. SQLite instead allows only one writing transaction for the whole database at a time, so two conflicting writes don't both succeed, but there is no per-row waiting as described above. This project currently runs on SQLite locally and in tests. The row-lock guarantees above hold on MySQL, MariaDB and PostgreSQL, and tests can't prove the race is closed: they show the code works, not that it's locked.
+
 ```php
 // CreatePokemonAction runs inside CatchPokemonAction's and ThrowBallAction's transactions.
 return DB::transaction(function () {
@@ -440,7 +453,31 @@ A value object is a small immutable value defined by what it contains, not by an
 
 - `final readonly class`, implementing `Shared\Interfaces\ValueObject` with `equals(ValueObject $other): bool`.
 - Public promoted properties, or a validated public `$value` for single values (`IncubatorIndex::$value`).
-- Properties of new value objects use **camelCase**, like any PHP property (`hasHit`, `isNight`). Some older value objects (`Combatant`, `BattleState`, `NewPokemon`) still use snake_case; don't copy that.
+- Properties and constructor parameters use **camelCase**, like any PHP property (`currentHp`, `isShiny`, `hasHit`), even when they hold the same value as a snake_case column (`Combatant::$speciesId`, `Pokemon::$species_id`).
+- The **stored format** keeps snake_case keys, like database columns: the keys `toArray()` writes and `fromArray()` reads (`'current_hp'`), the JSON a cast saves, and the PHPStan array shapes that describe them (`CombatantArray`). Renaming a property never changes what is saved, so saved rows and seed files keep working.
+
+#### Why camelCase in PHP and snake_case in the database
+
+The rule is: **PHP objects use camelCase; the database (and Eloquent models, which are magic access to columns) uses snake_case. A value object's cast, `fromArray()` and `toArray()` are where one becomes the other**, the same way Eloquent attributes sit between columns and code.
+
+Why value object properties are camelCase:
+
+- **It matches every other PHP class.** Action properties (`$incubatorIndex`), Data classes (`TurnData::$moveSlot`), events (`PokemonCaught::$pokemonId`), Support classes (`Incubator::$isPurchased`), local variables and parameters are all camelCase. Models are the only exception, because their attributes are columns, not real properties.
+- **Promoted properties are also constructor parameters and named arguments.** snake_case properties would force calls like `new Combatant(max_hp: …)` next to `new TurnData($battle, moveSlot: …)`. One casing makes every named argument easy to read and guess.
+- **A value object is a domain concept, not a database row.** Many are never stored (`MoveOutcome`, `CatchContext`, `NewPokemon`). Tying casing to "is it stored?" would mean renaming a value object when it starts being stored, and knowing how it's stored before naming it. How it's stored is the cast's job.
+- **One name per value across layers.** The variable is `$currentHp`, the property `currentHp`, the page prop `currentHp` and the TypeScript field `currentHp`. The glossary's recipe (`is_shiny` column, `isShiny` variable) applies to properties too.
+
+Why the stored keys stay snake_case:
+
+- **One style per database.** Columns are snake_case, so JSON keys inside a column (`battles.state`, `species.sprites`) match them. A row read in a SQL client or Telescope follows one convention, and JSON queries read like column queries (`whereNotNull('sprites->front_default')` next to `where('is_shiny', true)`).
+- **External data fits as-is.** The PokeAPI seed files use snake_case sprite keys, so the seeder writes them straight through.
+- **Saved data never depends on PHP names.** Renaming a property is a code-only change; existing rows need no migration.
+
+The trade-offs, and how to handle them:
+
+- **Each stored field has two spellings** (`currentHp` / `current_hp`), mapped by hand in `fromArray()`, `toArray()`, the cast and the PHPStan shape. Keep that mapping in those places only, and give every stored value object a round-trip test (build → `toArray()` → `fromArray()` → `equals()`) so the two lists can't drift apart.
+- **Stored keys appear in some strings:** JSON paths in queries (`'sprites->front_default'`) use the stored key, while `array_column($combatants, 'pokemonId')` and spread arguments (`new Combatant(...[...$values, 'currentHp' => 0])`) use the PHP name. A find-and-replace rename must tell the two apart; PHPStan won't flag a JSON path.
+- **Code that copies a model into a value object mixes casings** (`isShiny: $incubation->is_shiny`). That's expected: it is the boundary between database data and PHP objects.
 - Changes go through `with{Change}()` methods that return a new instance (`$combatant->withCurrentHp(12)`), never through mutation.
 - Conversions are named `from{Source}()` / `to{Target}()`: `Combatant::fromArray()`, `toArray()`, `NewPokemon::fromIncubation()`, `FilterOption::fromEnum()`.
 - Stored in a column through a dedicated `As{ValueObject}` cast in `Shared/Casts` (`AsBattleState`, `AsIncubatorIndex`).
@@ -772,7 +809,7 @@ When building a page, look for components in this order: game components (`share
 ### Forms and requests
 
 - Use Inertia's `useForm`, posting to the typed helper: `form.post(route('pokemon.web.incubators.place-egg', { incubatorIndex }), …)`. The helper is generated from Laravel's named routes, so a renamed route breaks the type check, not production.
-- Reload only what changed with `only: [...]` and keep the scroll with `preserveScroll: true`.
+- Reload only what changed with `only: [...]`.
 - Disable the button and the actions it competes with while `form.processing`, so a double click never sends twice. (The backend's locks protect the data either way; this protects the player from confusing errors.)
 - Field errors show under their field with `FieldError`. Server-side rule violations arrive as a toast.
 - Toasts flashed by the backend (`ToastHelper`, the exception handler) are shown by `TheToaster`, which listens to Inertia's `flash` event.
