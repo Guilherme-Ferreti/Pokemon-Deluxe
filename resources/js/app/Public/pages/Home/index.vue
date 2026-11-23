@@ -1,5 +1,5 @@
 <template>
-  <Head title="Pokémon Deluxe" />
+  <Head />
   <div
     class="flex min-h-screen flex-col items-center justify-center bg-linear-to-b from-background to-muted px-4"
   >
