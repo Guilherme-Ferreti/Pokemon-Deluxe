@@ -70,21 +70,21 @@ describe('experience', function () {
         $pikachu         = Species::factory()->create(['name' => 'Pikachu']);
 
         $combatant = [
-            'pokemon_id'                    => null,
-            'species_id'                    => $pikachu->id,
-            'level'                         => 50,
-            'boost'                         => 0,
-            'is_shiny'                      => false,
-            'gender'                        => PokemonGender::MALE,
-            'types'                         => [PokemonType::NORMAL],
-            'move_ids'                      => ['move-1'],
-            'max_hp'                        => 218,
-            'current_hp'                    => 218,
-            'ailment'                       => null,
-            'ailment_turns_left'            => 0,
-            'confusion_turns_left'          => 0,
-            'has_entered_field'             => true,
-            'used_once_per_battle_move_ids' => [],
+            'pokemonId'                => null,
+            'speciesId'                => $pikachu->id,
+            'level'                    => 50,
+            'boost'                    => 0,
+            'isShiny'                  => false,
+            'gender'                   => PokemonGender::MALE,
+            'types'                    => [PokemonType::NORMAL],
+            'moveIds'                  => ['move-1'],
+            'maxHp'                    => 218,
+            'currentHp'                => 218,
+            'ailment'                  => null,
+            'ailmentTurnsLeft'         => 0,
+            'confusionTurnsLeft'       => 0,
+            'hasEnteredField'          => true,
+            'usedOncePerBattleMoveIds' => [],
         ];
 
         $battle = Battle::factory()->create([
@@ -92,17 +92,17 @@ describe('experience', function () {
             'status' => BattleStatus::ONGOING,
             'state'  => new BattleState(
                 turn: 5,
-                player_side: new BattleSide(combatants: [
-                    new Combatant(...[...$combatant, 'pokemon_id' => $activePokemon->id]),
-                    new Combatant(...[...$combatant, 'pokemon_id' => $switchedPokemon->id, 'level' => 25]),
-                    new Combatant(...[...$combatant, 'pokemon_id' => $benchedPokemon->id, 'has_entered_field' => false]),
-                ], active_index: 0),
-                opponent_side: new BattleSide(combatants: [
-                    new Combatant(...[...$combatant, 'current_hp' => 0, 'knocked_out_by' => 0]),
-                    new Combatant(...[...$combatant, 'current_hp' => 0, 'knocked_out_by' => 1]),
+                playerSide: new BattleSide(combatants: [
+                    new Combatant(...[...$combatant, 'pokemonId' => $activePokemon->id]),
+                    new Combatant(...[...$combatant, 'pokemonId' => $switchedPokemon->id, 'level' => 25]),
+                    new Combatant(...[...$combatant, 'pokemonId' => $benchedPokemon->id, 'hasEnteredField' => false]),
+                ], activeIndex: 0),
+                opponentSide: new BattleSide(combatants: [
+                    new Combatant(...[...$combatant, 'currentHp' => 0, 'knockedOutBy' => 0]),
+                    new Combatant(...[...$combatant, 'currentHp' => 0, 'knockedOutBy' => 1]),
                     new Combatant(...$combatant),
-                ], active_index: 2),
-                is_awaiting_send_out: false,
+                ], activeIndex: 2),
+                isAwaitingSendOut: false,
                 log: [],
             ),
         ]);
@@ -112,9 +112,9 @@ describe('experience', function () {
         expect($activePokemon->fresh())->experience->toBe(50_937)->level->toBe(50)
             ->and($switchedPokemon->fresh())->experience->toBe(26_875)->level->toBe(26)
             ->and($benchedPokemon->fresh())->experience->toBe(50_000)->level->toBe(50)
-            ->and($battle->fresh()?->state->experience_gains)->toEqual([
-                new ExperienceGain(combatant_index: 0, earned_experience: 937, level_before: 50, level_after: 50, is_from_experience_share: false, is_at_max_level: false),
-                new ExperienceGain(combatant_index: 1, earned_experience: 1_875, level_before: 25, level_after: 26, is_from_experience_share: false, is_at_max_level: false),
+            ->and($battle->fresh()?->state->experienceGains)->toEqual([
+                new ExperienceGain(combatantIndex: 0, earnedExperience: 937, levelBefore: 50, levelAfter: 50, isFromExperienceShare: false, isAtMaxLevel: false),
+                new ExperienceGain(combatantIndex: 1, earnedExperience: 1_875, levelBefore: 25, levelAfter: 26, isFromExperienceShare: false, isAtMaxLevel: false),
             ])
             ->and($battle->fresh()?->state->log)->toEqual([
                 ...($resultText === null ? [] : [new BattleLogEntry(5, BattleLogKind::RESULT, $resultText)]),
@@ -137,41 +137,41 @@ describe('experience', function () {
             'status' => BattleStatus::ONGOING,
             'state'  => new BattleState(
                 turn: 2,
-                player_side: new BattleSide(combatants: [new Combatant(
-                    pokemon_id: $pokemon->id,
-                    species_id: 'species-1',
+                playerSide: new BattleSide(combatants: [new Combatant(
+                    pokemonId: $pokemon->id,
+                    speciesId: 'species-1',
                     level: 50,
                     boost: 0,
-                    is_shiny: false,
+                    isShiny: false,
                     gender: PokemonGender::MALE,
                     types: [PokemonType::NORMAL],
-                    move_ids: ['move-1'],
-                    max_hp: 218,
-                    current_hp: 218,
+                    moveIds: ['move-1'],
+                    maxHp: 218,
+                    currentHp: 218,
                     ailment: null,
-                    ailment_turns_left: 0,
-                    confusion_turns_left: 0,
-                    has_entered_field: true,
-                    used_once_per_battle_move_ids: [],
-                )], active_index: 0),
-                opponent_side: new BattleSide(combatants: [new Combatant(
-                    pokemon_id: null,
-                    species_id: 'species-2',
+                    ailmentTurnsLeft: 0,
+                    confusionTurnsLeft: 0,
+                    hasEnteredField: true,
+                    usedOncePerBattleMoveIds: [],
+                )], activeIndex: 0),
+                opponentSide: new BattleSide(combatants: [new Combatant(
+                    pokemonId: null,
+                    speciesId: 'species-2',
                     level: 50,
                     boost: 0,
-                    is_shiny: false,
+                    isShiny: false,
                     gender: PokemonGender::FEMALE,
                     types: [PokemonType::NORMAL],
-                    move_ids: ['move-2'],
-                    max_hp: 218,
-                    current_hp: 100,
+                    moveIds: ['move-2'],
+                    maxHp: 218,
+                    currentHp: 100,
                     ailment: null,
-                    ailment_turns_left: 0,
-                    confusion_turns_left: 0,
-                    has_entered_field: true,
-                    used_once_per_battle_move_ids: [],
-                )], active_index: 0),
-                is_awaiting_send_out: false,
+                    ailmentTurnsLeft: 0,
+                    confusionTurnsLeft: 0,
+                    hasEnteredField: true,
+                    usedOncePerBattleMoveIds: [],
+                )], activeIndex: 0),
+                isAwaitingSendOut: false,
                 log: [],
             ),
         ]);
@@ -179,8 +179,8 @@ describe('experience', function () {
         new EndBattleAction()->handle($battle, BattleStatus::FORFEITED);
 
         expect($pokemon->fresh()?->experience)->toBe(50_000)
-            ->and($battle->fresh()?->state->experience_gains)->toEqual([
-                new ExperienceGain(combatant_index: 0, earned_experience: 0, level_before: 50, level_after: 50, is_from_experience_share: false, is_at_max_level: false),
+            ->and($battle->fresh()?->state->experienceGains)->toEqual([
+                new ExperienceGain(combatantIndex: 0, earnedExperience: 0, levelBefore: 50, levelAfter: 50, isFromExperienceShare: false, isAtMaxLevel: false),
             ]);
     });
 
@@ -191,21 +191,21 @@ describe('experience', function () {
         $zoroark = Species::factory()->create(['name' => 'Zoroark']);
 
         $combatant = [
-            'pokemon_id'                    => $pokemon->id,
-            'species_id'                    => $zoroark->id,
-            'level'                         => 100,
-            'boost'                         => 0,
-            'is_shiny'                      => false,
-            'gender'                        => PokemonGender::MALE,
-            'types'                         => [PokemonType::DARK],
-            'move_ids'                      => ['move-1'],
-            'max_hp'                        => 400,
-            'current_hp'                    => 400,
-            'ailment'                       => null,
-            'ailment_turns_left'            => 0,
-            'confusion_turns_left'          => 0,
-            'has_entered_field'             => true,
-            'used_once_per_battle_move_ids' => [],
+            'pokemonId'                => $pokemon->id,
+            'speciesId'                => $zoroark->id,
+            'level'                    => 100,
+            'boost'                    => 0,
+            'isShiny'                  => false,
+            'gender'                   => PokemonGender::MALE,
+            'types'                    => [PokemonType::DARK],
+            'moveIds'                  => ['move-1'],
+            'maxHp'                    => 400,
+            'currentHp'                => 400,
+            'ailment'                  => null,
+            'ailmentTurnsLeft'         => 0,
+            'confusionTurnsLeft'       => 0,
+            'hasEnteredField'          => true,
+            'usedOncePerBattleMoveIds' => [],
         ];
 
         $battle = Battle::factory()->create([
@@ -213,11 +213,11 @@ describe('experience', function () {
             'status' => BattleStatus::ONGOING,
             'state'  => new BattleState(
                 turn: 3,
-                player_side: new BattleSide(combatants: [new Combatant(...$combatant)], active_index: 0),
-                opponent_side: new BattleSide(combatants: [
-                    new Combatant(...[...$combatant, 'pokemon_id' => null, 'current_hp' => $opponentHp, 'knocked_out_by' => $opponentHp === 0 ? 0 : null]),
-                ], active_index: 0),
-                is_awaiting_send_out: false,
+                playerSide: new BattleSide(combatants: [new Combatant(...$combatant)], activeIndex: 0),
+                opponentSide: new BattleSide(combatants: [
+                    new Combatant(...[...$combatant, 'pokemonId' => null, 'currentHp' => $opponentHp, 'knockedOutBy' => $opponentHp === 0 ? 0 : null]),
+                ], activeIndex: 0),
+                isAwaitingSendOut: false,
                 log: [],
             ),
         ]);
@@ -225,8 +225,8 @@ describe('experience', function () {
         new EndBattleAction()->handle($battle, $status);
 
         expect($pokemon->fresh())->experience->toBe(100_000)->level->toBe(100)
-            ->and($battle->fresh()?->state->experience_gains)->toEqual([
-                new ExperienceGain(combatant_index: 0, earned_experience: 0, level_before: 100, level_after: 100, is_from_experience_share: false, is_at_max_level: $isAtMaxLevel),
+            ->and($battle->fresh()?->state->experienceGains)->toEqual([
+                new ExperienceGain(combatantIndex: 0, earnedExperience: 0, levelBefore: 100, levelAfter: 100, isFromExperienceShare: false, isAtMaxLevel: $isAtMaxLevel),
             ])
             ->and($battle->fresh()?->state->log)->toEqual(array_map(
                 fn (string $text) => new BattleLogEntry(3, $text === 'You won!' ? BattleLogKind::RESULT : BattleLogKind::EVENT, $text),
@@ -245,21 +245,21 @@ describe('experience', function () {
         $pikachu       = Species::factory()->create(['name' => 'Pikachu']);
 
         $combatant = [
-            'pokemon_id'                    => null,
-            'species_id'                    => $pikachu->id,
-            'level'                         => 50,
-            'boost'                         => 0,
-            'is_shiny'                      => false,
-            'gender'                        => PokemonGender::MALE,
-            'types'                         => [PokemonType::NORMAL],
-            'move_ids'                      => ['move-1'],
-            'max_hp'                        => 218,
-            'current_hp'                    => 218,
-            'ailment'                       => null,
-            'ailment_turns_left'            => 0,
-            'confusion_turns_left'          => 0,
-            'has_entered_field'             => true,
-            'used_once_per_battle_move_ids' => [],
+            'pokemonId'                => null,
+            'speciesId'                => $pikachu->id,
+            'level'                    => 50,
+            'boost'                    => 0,
+            'isShiny'                  => false,
+            'gender'                   => PokemonGender::MALE,
+            'types'                    => [PokemonType::NORMAL],
+            'moveIds'                  => ['move-1'],
+            'maxHp'                    => 218,
+            'currentHp'                => 218,
+            'ailment'                  => null,
+            'ailmentTurnsLeft'         => 0,
+            'confusionTurnsLeft'       => 0,
+            'hasEnteredField'          => true,
+            'usedOncePerBattleMoveIds' => [],
         ];
 
         $battle = Battle::factory()->create([
@@ -267,21 +267,21 @@ describe('experience', function () {
             'status' => BattleStatus::ONGOING,
             'state'  => new BattleState(
                 turn: 4,
-                player_side: new BattleSide(combatants: [
-                    new Combatant(...[...$combatant, 'pokemon_id' => $firstPokemon->id]),
-                    new Combatant(...[...$combatant, 'pokemon_id' => $activePokemon->id]),
-                ], active_index: 1),
-                opponent_side: new BattleSide(combatants: [new Combatant(...[...$combatant, 'current_hp' => 50])], active_index: 0),
-                is_awaiting_send_out: false,
+                playerSide: new BattleSide(combatants: [
+                    new Combatant(...[...$combatant, 'pokemonId' => $firstPokemon->id]),
+                    new Combatant(...[...$combatant, 'pokemonId' => $activePokemon->id]),
+                ], activeIndex: 1),
+                opponentSide: new BattleSide(combatants: [new Combatant(...[...$combatant, 'currentHp' => 50])], activeIndex: 0),
+                isAwaitingSendOut: false,
                 log: [],
             ),
         ]);
 
         new EndBattleAction()->handle($battle, BattleStatus::CAUGHT);
 
-        expect($battle->fresh()?->state->experience_gains)->toEqual([
-            new ExperienceGain(combatant_index: 0, earned_experience: 250, level_before: 50, level_after: 50, is_from_experience_share: false, is_at_max_level: false),
-            new ExperienceGain(combatant_index: 1, earned_experience: 375, level_before: 50, level_after: 50, is_from_experience_share: false, is_at_max_level: false),
+        expect($battle->fresh()?->state->experienceGains)->toEqual([
+            new ExperienceGain(combatantIndex: 0, earnedExperience: 250, levelBefore: 50, levelAfter: 50, isFromExperienceShare: false, isAtMaxLevel: false),
+            new ExperienceGain(combatantIndex: 1, earnedExperience: 375, levelBefore: 50, levelAfter: 50, isFromExperienceShare: false, isAtMaxLevel: false),
         ]);
     });
 
@@ -291,21 +291,21 @@ describe('experience', function () {
         $pokemon = Pokemon::factory()->create(['level' => 50]);
 
         $combatant = [
-            'pokemon_id'                    => null,
-            'species_id'                    => 'species-1',
-            'level'                         => 50,
-            'boost'                         => 0,
-            'is_shiny'                      => false,
-            'gender'                        => PokemonGender::MALE,
-            'types'                         => [PokemonType::NORMAL],
-            'move_ids'                      => ['move-1'],
-            'max_hp'                        => 218,
-            'current_hp'                    => 218,
-            'ailment'                       => null,
-            'ailment_turns_left'            => 0,
-            'confusion_turns_left'          => 0,
-            'has_entered_field'             => true,
-            'used_once_per_battle_move_ids' => [],
+            'pokemonId'                => null,
+            'speciesId'                => 'species-1',
+            'level'                    => 50,
+            'boost'                    => 0,
+            'isShiny'                  => false,
+            'gender'                   => PokemonGender::MALE,
+            'types'                    => [PokemonType::NORMAL],
+            'moveIds'                  => ['move-1'],
+            'maxHp'                    => 218,
+            'currentHp'                => 218,
+            'ailment'                  => null,
+            'ailmentTurnsLeft'         => 0,
+            'confusionTurnsLeft'       => 0,
+            'hasEnteredField'          => true,
+            'usedOncePerBattleMoveIds' => [],
         ];
 
         $battle = Battle::factory()->create([
@@ -313,9 +313,9 @@ describe('experience', function () {
             'status' => BattleStatus::ONGOING,
             'state'  => new BattleState(
                 turn: 3,
-                player_side: new BattleSide(combatants: [new Combatant(...[...$combatant, 'pokemon_id' => $pokemon->id])], active_index: 0),
-                opponent_side: new BattleSide(combatants: [new Combatant(...[...$combatant, 'current_hp' => 0, 'knocked_out_by' => 0])], active_index: 0),
-                is_awaiting_send_out: false,
+                playerSide: new BattleSide(combatants: [new Combatant(...[...$combatant, 'pokemonId' => $pokemon->id])], activeIndex: 0),
+                opponentSide: new BattleSide(combatants: [new Combatant(...[...$combatant, 'currentHp' => 0, 'knockedOutBy' => 0])], activeIndex: 0),
+                isAwaitingSendOut: false,
                 log: [],
             ),
         ]);
@@ -323,8 +323,8 @@ describe('experience', function () {
         new EndBattleAction()->handle($battle, BattleStatus::WON);
 
         expect($pokemon->fresh()?->experience)->toBe(50_000)
-            ->and($battle->fresh()?->state->experience_gains)->toEqual([
-                new ExperienceGain(combatant_index: 0, earned_experience: 375, level_before: 50, level_after: 50, is_from_experience_share: false, is_at_max_level: false),
+            ->and($battle->fresh()?->state->experienceGains)->toEqual([
+                new ExperienceGain(combatantIndex: 0, earnedExperience: 375, levelBefore: 50, levelAfter: 50, isFromExperienceShare: false, isAtMaxLevel: false),
             ]);
     });
 });

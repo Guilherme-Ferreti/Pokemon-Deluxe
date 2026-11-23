@@ -16,7 +16,7 @@ final readonly class NewPokemon implements ValueObject
     public function __construct(
         public Species $species,
         public int $level,
-        public bool $is_shiny,
+        public bool $isShiny,
         public PokemonGender $gender,
     ) {
         throw_if($level < 1 || $level > config('game.pokemon.max_level'), InvalidArgumentException::class, sprintf('The level must be between 1 and %d.', config('game.pokemon.max_level')));
@@ -35,7 +35,7 @@ final readonly class NewPokemon implements ValueObject
         return $other instanceof self
             && $this->species->is($other->species)
             && $this->level === $other->level
-            && $this->is_shiny === $other->is_shiny
+            && $this->isShiny === $other->isShiny
             && $this->gender === $other->gender;
     }
 
@@ -44,7 +44,7 @@ final readonly class NewPokemon implements ValueObject
         return new self(
             species: $incubation->species,
             level: 1,
-            is_shiny: $incubation->is_shiny,
+            isShiny: $incubation->is_shiny,
             gender: $incubation->gender
         );
     }

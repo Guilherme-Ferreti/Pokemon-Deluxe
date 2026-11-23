@@ -32,7 +32,7 @@ final class EnsurePlayerMoveIsUsable
 
     private function ensureMoveSlotExists(): void
     {
-        $moveIds = $this->playerCombatant()->move_ids;
+        $moveIds = $this->playerCombatant()->moveIds;
 
         throw_unless(
             isset($moveIds[$this->turn->moveSlot - 1]),
@@ -51,7 +51,7 @@ final class EnsurePlayerMoveIsUsable
 
     private function ensureDynamaxMoveIsAllowed(): void
     {
-        $species = $this->turn->species->findOrFail($this->playerCombatant()->species_id);
+        $species = $this->turn->species->findOrFail($this->playerCombatant()->speciesId);
 
         throw_unless(
             new MoveUsabilityChecker()->isDynamaxMoveAllowed($this->turn->playerMove(), $species),
@@ -61,6 +61,6 @@ final class EnsurePlayerMoveIsUsable
 
     private function playerCombatant(): Combatant
     {
-        return $this->turn->state->player_side->activeCombatant();
+        return $this->turn->state->playerSide->activeCombatant();
     }
 }

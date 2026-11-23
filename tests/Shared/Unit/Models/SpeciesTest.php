@@ -29,14 +29,14 @@ describe('catch rate', function () {
 describe('back sprite', function () {
     it('picks the back sprite for the gender and shine', function (PokemonGender $gender, bool $isShiny, string $expectedSprite) {
         $species = Species::factory()->create(['sprites' => new SpeciesSprites(
-            back_default: 'back-default.png',
-            back_female: 'back-female.png',
-            back_shiny: 'back-shiny.png',
-            back_shiny_female: 'back-shiny-female.png',
-            front_default: 'front-default.png',
-            front_female: 'front-female.png',
-            front_shiny: 'front-shiny.png',
-            front_shiny_female: 'front-shiny-female.png',
+            backDefault: 'back-default.png',
+            backFemale: 'back-female.png',
+            backShiny: 'back-shiny.png',
+            backShinyFemale: 'back-shiny-female.png',
+            frontDefault: 'front-default.png',
+            frontFemale: 'front-female.png',
+            frontShiny: 'front-shiny.png',
+            frontShinyFemale: 'front-shiny-female.png',
         )]);
 
         expect($species->getDisplayBackSprite($gender, $isShiny))->toBe($expectedSprite);
@@ -49,14 +49,14 @@ describe('back sprite', function () {
 
     it('falls back to the front sprite when the species has no back sprite', function () {
         $species = Species::factory()->create(['sprites' => new SpeciesSprites(
-            back_default: null,
-            back_female: null,
-            back_shiny: null,
-            back_shiny_female: null,
-            front_default: 'front-default.png',
-            front_female: null,
-            front_shiny: 'front-shiny.png',
-            front_shiny_female: null,
+            backDefault: null,
+            backFemale: null,
+            backShiny: null,
+            backShinyFemale: null,
+            frontDefault: 'front-default.png',
+            frontFemale: null,
+            frontShiny: 'front-shiny.png',
+            frontShinyFemale: null,
         )]);
 
         expect($species->getDisplayBackSprite(PokemonGender::MALE, shiny: true))->toBe('front-shiny.png');

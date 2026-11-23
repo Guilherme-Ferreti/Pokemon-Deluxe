@@ -39,7 +39,7 @@ final class RegisterUserAction
             newPokemon: new NewPokemon(
                 species: $starter,
                 level: (int) config('game.registration.starter_level'),
-                is_shiny: false,
+                isShiny: false,
                 gender: $starter->getRandomGender(),
             ),
             pokeball: Pokeball::query()->where('slug', 'poke-ball')->firstOrFail(),

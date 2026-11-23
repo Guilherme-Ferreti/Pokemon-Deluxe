@@ -7,25 +7,25 @@ use Shared\ValueObjects\SpeciesSprites;
 describe('equality', function () {
     it('equals another sprites with same values', function () {
         $sprites = new SpeciesSprites(
-            back_default: null,
-            back_female: null,
-            back_shiny: null,
-            back_shiny_female: null,
-            front_default: 'front.png',
-            front_female: null,
-            front_shiny: null,
-            front_shiny_female: null,
+            backDefault: null,
+            backFemale: null,
+            backShiny: null,
+            backShinyFemale: null,
+            frontDefault: 'front.png',
+            frontFemale: null,
+            frontShiny: null,
+            frontShinyFemale: null,
         );
 
         $sameSprites = new SpeciesSprites(
-            back_default: null,
-            back_female: null,
-            back_shiny: null,
-            back_shiny_female: null,
-            front_default: 'front.png',
-            front_female: null,
-            front_shiny: null,
-            front_shiny_female: null,
+            backDefault: null,
+            backFemale: null,
+            backShiny: null,
+            backShinyFemale: null,
+            frontDefault: 'front.png',
+            frontFemale: null,
+            frontShiny: null,
+            frontShinyFemale: null,
         );
 
         expect($sprites->equals($sameSprites))->toBeTrue();
@@ -33,14 +33,14 @@ describe('equality', function () {
 
     it('does not equal sprites when any field differs', function (string $field, string $differentValue) {
         $values = [
-            'back_default'       => null,
-            'back_female'        => null,
-            'back_shiny'         => null,
-            'back_shiny_female'  => null,
-            'front_default'      => 'front.png',
-            'front_female'       => null,
-            'front_shiny'        => null,
-            'front_shiny_female' => null,
+            'backDefault'      => null,
+            'backFemale'       => null,
+            'backShiny'        => null,
+            'backShinyFemale'  => null,
+            'frontDefault'     => 'front.png',
+            'frontFemale'      => null,
+            'frontShiny'       => null,
+            'frontShinyFemale' => null,
         ];
 
         $sprites          = new SpeciesSprites(...$values);
@@ -48,13 +48,13 @@ describe('equality', function () {
 
         expect($sprites->equals($differentSprites))->toBeFalse();
     })->with([
-        'back_default different'       => ['back_default', 'back.png'],
-        'back_female different'        => ['back_female', 'bf.png'],
-        'back_shiny different'         => ['back_shiny', 'bs.png'],
-        'back_shiny_female different'  => ['back_shiny_female', 'bsf.png'],
-        'front_default different'      => ['front_default', 'front2.png'],
-        'front_female different'       => ['front_female', 'ff.png'],
-        'front_shiny different'        => ['front_shiny', 'fs.png'],
-        'front_shiny_female different' => ['front_shiny_female', 'fsf.png'],
+        'backDefault different'      => ['backDefault', 'back.png'],
+        'backFemale different'       => ['backFemale', 'bf.png'],
+        'backShiny different'        => ['backShiny', 'bs.png'],
+        'backShinyFemale different'  => ['backShinyFemale', 'bsf.png'],
+        'frontDefault different'     => ['frontDefault', 'front2.png'],
+        'frontFemale different'      => ['frontFemale', 'ff.png'],
+        'frontShiny different'       => ['frontShiny', 'fs.png'],
+        'frontShinyFemale different' => ['frontShinyFemale', 'fsf.png'],
     ]);
 });

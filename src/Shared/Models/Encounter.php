@@ -67,7 +67,7 @@ final class Encounter extends Model
         return new NewPokemon(
             species: $this->species,
             level: $this->level,
-            is_shiny: $this->is_shiny,
+            isShiny: $this->is_shiny,
             gender: $this->gender,
         );
     }

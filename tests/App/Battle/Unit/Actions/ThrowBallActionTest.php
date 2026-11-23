@@ -44,21 +44,21 @@ it('catches the wild pokemon, which joins the party, and ends the battle as caug
     InventoryItem::factory()->for($user)->pokeball($pokeBall)->create(['quantity' => 3]);
 
     $combatant = [
-        'pokemon_id'                    => $pokemon->id,
-        'species_id'                    => $pikachu->id,
-        'level'                         => 50,
-        'boost'                         => 0,
-        'is_shiny'                      => false,
-        'gender'                        => PokemonGender::MALE,
-        'types'                         => [PokemonType::ELECTRIC],
-        'move_ids'                      => ['move-1'],
-        'max_hp'                        => 218,
-        'current_hp'                    => 218,
-        'ailment'                       => null,
-        'ailment_turns_left'            => 0,
-        'confusion_turns_left'          => 0,
-        'has_entered_field'             => true,
-        'used_once_per_battle_move_ids' => [],
+        'pokemonId'                => $pokemon->id,
+        'speciesId'                => $pikachu->id,
+        'level'                    => 50,
+        'boost'                    => 0,
+        'isShiny'                  => false,
+        'gender'                   => PokemonGender::MALE,
+        'types'                    => [PokemonType::ELECTRIC],
+        'moveIds'                  => ['move-1'],
+        'maxHp'                    => 218,
+        'currentHp'                => 218,
+        'ailment'                  => null,
+        'ailmentTurnsLeft'         => 0,
+        'confusionTurnsLeft'       => 0,
+        'hasEnteredField'          => true,
+        'usedOncePerBattleMoveIds' => [],
     ];
 
     $battle = Battle::factory()->for($user)->create([
@@ -66,11 +66,11 @@ it('catches the wild pokemon, which joins the party, and ends the battle as caug
         'status' => BattleStatus::ONGOING,
         'state'  => new BattleState(
             turn: 2,
-            player_side: new BattleSide(combatants: [new Combatant(...$combatant)], active_index: 0),
-            opponent_side: new BattleSide(combatants: [
-                new Combatant(...[...$combatant, 'pokemon_id' => null, 'species_id' => $pidgey->id, 'level' => 50, 'is_shiny' => true, 'gender' => PokemonGender::FEMALE, 'types' => [PokemonType::NORMAL]]),
-            ], active_index: 0),
-            is_awaiting_send_out: false,
+            playerSide: new BattleSide(combatants: [new Combatant(...$combatant)], activeIndex: 0),
+            opponentSide: new BattleSide(combatants: [
+                new Combatant(...[...$combatant, 'pokemonId' => null, 'speciesId' => $pidgey->id, 'level' => 50, 'isShiny' => true, 'gender' => PokemonGender::FEMALE, 'types' => [PokemonType::NORMAL]]),
+            ], activeIndex: 0),
+            isAwaitingSendOut: false,
             log: [],
         ),
     ]);
@@ -117,31 +117,31 @@ it('sends the caught pokemon to the box when the party is full', function () {
     InventoryItem::factory()->for($user)->pokeball($masterBall)->create(['quantity' => 1]);
 
     $combatant = [
-        'pokemon_id'                    => $pokemon->id,
-        'species_id'                    => $pikachu->id,
-        'level'                         => 50,
-        'boost'                         => 0,
-        'is_shiny'                      => false,
-        'gender'                        => PokemonGender::MALE,
-        'types'                         => [PokemonType::ELECTRIC],
-        'move_ids'                      => ['move-1'],
-        'max_hp'                        => 218,
-        'current_hp'                    => 218,
-        'ailment'                       => null,
-        'ailment_turns_left'            => 0,
-        'confusion_turns_left'          => 0,
-        'has_entered_field'             => true,
-        'used_once_per_battle_move_ids' => [],
+        'pokemonId'                => $pokemon->id,
+        'speciesId'                => $pikachu->id,
+        'level'                    => 50,
+        'boost'                    => 0,
+        'isShiny'                  => false,
+        'gender'                   => PokemonGender::MALE,
+        'types'                    => [PokemonType::ELECTRIC],
+        'moveIds'                  => ['move-1'],
+        'maxHp'                    => 218,
+        'currentHp'                => 218,
+        'ailment'                  => null,
+        'ailmentTurnsLeft'         => 0,
+        'confusionTurnsLeft'       => 0,
+        'hasEnteredField'          => true,
+        'usedOncePerBattleMoveIds' => [],
     ];
 
     $battle = Battle::factory()->for($user)->create([
         'state' => new BattleState(
             turn: 1,
-            player_side: new BattleSide(combatants: [new Combatant(...$combatant)], active_index: 0),
-            opponent_side: new BattleSide(combatants: [
-                new Combatant(...[...$combatant, 'pokemon_id' => null, 'species_id' => $pidgey->id, 'gender' => PokemonGender::FEMALE]),
-            ], active_index: 0),
-            is_awaiting_send_out: false,
+            playerSide: new BattleSide(combatants: [new Combatant(...$combatant)], activeIndex: 0),
+            opponentSide: new BattleSide(combatants: [
+                new Combatant(...[...$combatant, 'pokemonId' => null, 'speciesId' => $pidgey->id, 'gender' => PokemonGender::FEMALE]),
+            ], activeIndex: 0),
+            isAwaitingSendOut: false,
             log: [],
         ),
     ]);
@@ -170,31 +170,31 @@ it('uses the ball and lets the wild pokemon attack when it breaks free', functio
     InventoryItem::factory()->for($user)->pokeball($pokeBall)->create(['quantity' => 3]);
 
     $combatant = [
-        'pokemon_id'                    => $pokemon->id,
-        'species_id'                    => $pikachu->id,
-        'level'                         => 50,
-        'boost'                         => 0,
-        'is_shiny'                      => false,
-        'gender'                        => PokemonGender::MALE,
-        'types'                         => [PokemonType::ELECTRIC],
-        'move_ids'                      => [$tackle->id],
-        'max_hp'                        => 218,
-        'current_hp'                    => 218,
-        'ailment'                       => null,
-        'ailment_turns_left'            => 0,
-        'confusion_turns_left'          => 0,
-        'has_entered_field'             => true,
-        'used_once_per_battle_move_ids' => [],
+        'pokemonId'                => $pokemon->id,
+        'speciesId'                => $pikachu->id,
+        'level'                    => 50,
+        'boost'                    => 0,
+        'isShiny'                  => false,
+        'gender'                   => PokemonGender::MALE,
+        'types'                    => [PokemonType::ELECTRIC],
+        'moveIds'                  => [$tackle->id],
+        'maxHp'                    => 218,
+        'currentHp'                => 218,
+        'ailment'                  => null,
+        'ailmentTurnsLeft'         => 0,
+        'confusionTurnsLeft'       => 0,
+        'hasEnteredField'          => true,
+        'usedOncePerBattleMoveIds' => [],
     ];
 
     $battle = Battle::factory()->for($user)->create([
         'state' => new BattleState(
             turn: 3,
-            player_side: new BattleSide(combatants: [new Combatant(...$combatant)], active_index: 0),
-            opponent_side: new BattleSide(combatants: [
-                new Combatant(...[...$combatant, 'pokemon_id' => null, 'species_id' => $pidgey->id, 'types' => [PokemonType::NORMAL, PokemonType::FLYING]]),
-            ], active_index: 0),
-            is_awaiting_send_out: false,
+            playerSide: new BattleSide(combatants: [new Combatant(...$combatant)], activeIndex: 0),
+            opponentSide: new BattleSide(combatants: [
+                new Combatant(...[...$combatant, 'pokemonId' => null, 'speciesId' => $pidgey->id, 'types' => [PokemonType::NORMAL, PokemonType::FLYING]]),
+            ], activeIndex: 0),
+            isAwaitingSendOut: false,
             log: [],
         ),
     ]);
@@ -208,7 +208,7 @@ it('uses the ball and lets the wild pokemon attack when it breaks free', functio
 
     expect($battle?->status)->toBe(BattleStatus::ONGOING)
         ->and($battle?->state->turn)->toBe(4)
-        ->and($battle?->state->player_side->activeCombatant()->current_hp)->toBe(218 - 46)
+        ->and($battle?->state->playerSide->activeCombatant()->currentHp)->toBe(218 - 46)
         ->and($battle?->state->log)->toEqual([
             new BattleLogEntry(3, BattleLogKind::EVENT, 'You threw a Poké Ball!'),
             new BattleLogEntry(3, BattleLogKind::EVENT, 'Oh no! The Pokémon broke free!'),
@@ -270,31 +270,31 @@ it('refuses to throw a ball the player does not have', function () {
     $masterBall = Pokeball::factory()->create(['slug' => 'master-ball']);
 
     $combatant = [
-        'pokemon_id'                    => 'pokemon-1',
-        'species_id'                    => $pikachu->id,
-        'level'                         => 50,
-        'boost'                         => 0,
-        'is_shiny'                      => false,
-        'gender'                        => PokemonGender::MALE,
-        'types'                         => [PokemonType::ELECTRIC],
-        'move_ids'                      => ['move-1'],
-        'max_hp'                        => 218,
-        'current_hp'                    => 218,
-        'ailment'                       => null,
-        'ailment_turns_left'            => 0,
-        'confusion_turns_left'          => 0,
-        'has_entered_field'             => true,
-        'used_once_per_battle_move_ids' => [],
+        'pokemonId'                => 'pokemon-1',
+        'speciesId'                => $pikachu->id,
+        'level'                    => 50,
+        'boost'                    => 0,
+        'isShiny'                  => false,
+        'gender'                   => PokemonGender::MALE,
+        'types'                    => [PokemonType::ELECTRIC],
+        'moveIds'                  => ['move-1'],
+        'maxHp'                    => 218,
+        'currentHp'                => 218,
+        'ailment'                  => null,
+        'ailmentTurnsLeft'         => 0,
+        'confusionTurnsLeft'       => 0,
+        'hasEnteredField'          => true,
+        'usedOncePerBattleMoveIds' => [],
     ];
 
     $battle = Battle::factory()->for($user)->create([
         'state' => new BattleState(
             turn: 1,
-            player_side: new BattleSide(combatants: [new Combatant(...$combatant)], active_index: 0),
-            opponent_side: new BattleSide(combatants: [
-                new Combatant(...[...$combatant, 'pokemon_id' => null, 'species_id' => $pidgey->id, 'gender' => PokemonGender::FEMALE]),
-            ], active_index: 0),
-            is_awaiting_send_out: false,
+            playerSide: new BattleSide(combatants: [new Combatant(...$combatant)], activeIndex: 0),
+            opponentSide: new BattleSide(combatants: [
+                new Combatant(...[...$combatant, 'pokemonId' => null, 'speciesId' => $pidgey->id, 'gender' => PokemonGender::FEMALE]),
+            ], activeIndex: 0),
+            isAwaitingSendOut: false,
             log: [],
         ),
     ]);

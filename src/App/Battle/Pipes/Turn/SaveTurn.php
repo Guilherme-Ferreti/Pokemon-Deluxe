@@ -18,14 +18,14 @@ final class SaveTurn
     public function handle(TurnData $turn, Closure $next): TurnData
     {
         $endStatus = match (true) {
-            ! $turn->state->opponent_side->hasCombatantsLeft() => BattleStatus::WON,
-            ! $turn->state->player_side->hasCombatantsLeft()   => BattleStatus::LOST,
-            default                                            => null,
+            ! $turn->state->opponentSide->hasCombatantsLeft() => BattleStatus::WON,
+            ! $turn->state->playerSide->hasCombatantsLeft()   => BattleStatus::LOST,
+            default                                           => null,
         };
 
         $state = $turn->state->withNextTurn($turn->logEntries);
 
-        if ($endStatus === null && $state->player_side->activeCombatant()->isFainted()) {
+        if ($endStatus === null && $state->playerSide->activeCombatant()->isFainted()) {
             $state = $state->withAwaitingSendOut(true);
         }
 

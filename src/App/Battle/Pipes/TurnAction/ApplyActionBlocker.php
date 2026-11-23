@@ -35,12 +35,12 @@ final class ApplyActionBlocker
         });
 
         if ($action->blocker === ActionBlocker::ASLEEP) {
-            $action->turn->replaceActiveCombatant($action->side, $attacker->withAilment(Ailment::SLEEP, $attacker->ailment_turns_left - 1));
+            $action->turn->replaceActiveCombatant($action->side, $attacker->withAilment(Ailment::SLEEP, $attacker->ailmentTurnsLeft - 1));
         }
 
         if ($action->blocker === ActionBlocker::HURT_ITSELF_IN_CONFUSION) {
             $damage = new StatusEffectCalculator()->confusionSelfHitDamage(
-                new StatsCalculator()->calculate($attacker->level, $attacker->boost, $attacker->is_shiny),
+                new StatsCalculator()->calculate($attacker->level, $attacker->boost, $attacker->isShiny),
             );
 
             $action->turn->logDamage($action->turn->damageActiveCombatant($action->side, $damage));

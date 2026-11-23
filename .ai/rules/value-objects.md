@@ -11,3 +11,6 @@ paths:
 
 ## Use final readonly value objects implementing Shared\Interfaces\ValueObject
 Value objects are `final readonly` classes implementing `Shared\Interfaces\ValueObject` with `equals(ValueObject $other): bool`. Use promoted public properties, or a validated public `$value` when the constructor enforces constraints. Convert to/from storage with a dedicated cast in `src/Shared/Casts`.
+
+## Name properties in camelCase and keep the stored format in snake_case
+Properties and constructor parameters are camelCase (`currentHp`, `isShiny`, `speciesId`), even when they hold the same value as a snake_case model column. The stored format keeps snake_case keys like database columns: the keys `toArray()` writes and `fromArray()` reads (`'current_hp'`), the JSON a cast saves, and the PHPStan array shapes that describe them (`CombatantArray`). Renaming a property therefore never changes saved data or seed files.

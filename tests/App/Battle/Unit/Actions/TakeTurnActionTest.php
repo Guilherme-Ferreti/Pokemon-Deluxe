@@ -35,41 +35,41 @@ it('lets both sides deal damage, the player first, and logs it', function () {
         'status' => BattleStatus::ONGOING,
         'state'  => new BattleState(
             turn: 1,
-            player_side: new BattleSide(combatants: [new Combatant(
-                pokemon_id: 'pokemon-1',
-                species_id: $pikachu->id,
+            playerSide: new BattleSide(combatants: [new Combatant(
+                pokemonId: 'pokemon-1',
+                speciesId: $pikachu->id,
                 level: 50,
                 boost: 0,
-                is_shiny: false,
+                isShiny: false,
                 gender: PokemonGender::MALE,
                 types: [PokemonType::ELECTRIC],
-                move_ids: [$tackle->id, $thunderShock->id],
-                max_hp: 218,
-                current_hp: 218,
+                moveIds: [$tackle->id, $thunderShock->id],
+                maxHp: 218,
+                currentHp: 218,
                 ailment: null,
-                ailment_turns_left: 0,
-                confusion_turns_left: 0,
-                has_entered_field: true,
-                used_once_per_battle_move_ids: [],
-            )], active_index: 0),
-            opponent_side: new BattleSide(combatants: [new Combatant(
-                pokemon_id: null,
-                species_id: $pidgey->id,
+                ailmentTurnsLeft: 0,
+                confusionTurnsLeft: 0,
+                hasEnteredField: true,
+                usedOncePerBattleMoveIds: [],
+            )], activeIndex: 0),
+            opponentSide: new BattleSide(combatants: [new Combatant(
+                pokemonId: null,
+                speciesId: $pidgey->id,
                 level: 50,
                 boost: 0,
-                is_shiny: false,
+                isShiny: false,
                 gender: PokemonGender::FEMALE,
                 types: [PokemonType::NORMAL, PokemonType::FLYING],
-                move_ids: [$tackle->id],
-                max_hp: 218,
-                current_hp: 218,
+                moveIds: [$tackle->id],
+                maxHp: 218,
+                currentHp: 218,
                 ailment: null,
-                ailment_turns_left: 0,
-                confusion_turns_left: 0,
-                has_entered_field: true,
-                used_once_per_battle_move_ids: [],
-            )], active_index: 0),
-            is_awaiting_send_out: false,
+                ailmentTurnsLeft: 0,
+                confusionTurnsLeft: 0,
+                hasEnteredField: true,
+                usedOncePerBattleMoveIds: [],
+            )], activeIndex: 0),
+            isAwaitingSendOut: false,
             log: [
                 new BattleLogEntry(0, BattleLogKind::INFO, 'A wild Pidgey appeared!'),
                 new BattleLogEntry(0, BattleLogKind::EVENT, 'Go! Pikachu!'),
@@ -82,8 +82,8 @@ it('lets both sides deal damage, the player first, and logs it', function () {
     $state = new TakeTurnAction()->handle($battle, moveSlot: 2)->fresh()?->state;
 
     expect($state?->turn)->toBe(2)
-        ->and($state?->opponent_side->activeCombatant()->current_hp)->toBe(218 - 93)
-        ->and($state?->player_side->activeCombatant()->current_hp)->toBe(218 - 46)
+        ->and($state?->opponentSide->activeCombatant()->currentHp)->toBe(218 - 93)
+        ->and($state?->playerSide->activeCombatant()->currentHp)->toBe(218 - 46)
         ->and($state?->log)->toEqual([
             new BattleLogEntry(0, BattleLogKind::INFO, 'A wild Pidgey appeared!'),
             new BattleLogEntry(0, BattleLogKind::EVENT, 'Go! Pikachu!'),
@@ -106,41 +106,41 @@ it('lets the opponent move first when the turn order roll fails, and a fainted p
         'status' => BattleStatus::ONGOING,
         'state'  => new BattleState(
             turn: 3,
-            player_side: new BattleSide(combatants: [new Combatant(
-                pokemon_id: 'pokemon-1',
-                species_id: $pikachu->id,
+            playerSide: new BattleSide(combatants: [new Combatant(
+                pokemonId: 'pokemon-1',
+                speciesId: $pikachu->id,
                 level: 50,
                 boost: 0,
-                is_shiny: true,
+                isShiny: true,
                 gender: PokemonGender::MALE,
                 types: [PokemonType::ELECTRIC],
-                move_ids: [$thunderShock->id],
-                max_hp: 273,
-                current_hp: 30,
+                moveIds: [$thunderShock->id],
+                maxHp: 273,
+                currentHp: 30,
                 ailment: null,
-                ailment_turns_left: 0,
-                confusion_turns_left: 0,
-                has_entered_field: true,
-                used_once_per_battle_move_ids: [],
-            )], active_index: 0),
-            opponent_side: new BattleSide(combatants: [new Combatant(
-                pokemon_id: null,
-                species_id: $pidgey->id,
+                ailmentTurnsLeft: 0,
+                confusionTurnsLeft: 0,
+                hasEnteredField: true,
+                usedOncePerBattleMoveIds: [],
+            )], activeIndex: 0),
+            opponentSide: new BattleSide(combatants: [new Combatant(
+                pokemonId: null,
+                speciesId: $pidgey->id,
                 level: 50,
                 boost: 0,
-                is_shiny: false,
+                isShiny: false,
                 gender: PokemonGender::FEMALE,
                 types: [PokemonType::NORMAL, PokemonType::FLYING],
-                move_ids: [$tackle->id],
-                max_hp: 218,
-                current_hp: 218,
+                moveIds: [$tackle->id],
+                maxHp: 218,
+                currentHp: 218,
                 ailment: null,
-                ailment_turns_left: 0,
-                confusion_turns_left: 0,
-                has_entered_field: true,
-                used_once_per_battle_move_ids: [],
-            )], active_index: 0),
-            is_awaiting_send_out: false,
+                ailmentTurnsLeft: 0,
+                confusionTurnsLeft: 0,
+                hasEnteredField: true,
+                usedOncePerBattleMoveIds: [],
+            )], activeIndex: 0),
+            isAwaitingSendOut: false,
             log: [],
         ),
     ]);
@@ -149,8 +149,8 @@ it('lets the opponent move first when the turn order roll fails, and a fainted p
 
     $state = new TakeTurnAction()->handle($battle, moveSlot: 1)->fresh()?->state;
 
-    expect($state?->player_side->activeCombatant()->current_hp)->toBe(0)
-        ->and($state?->opponent_side->activeCombatant()->current_hp)->toBe(218)
+    expect($state?->playerSide->activeCombatant()->currentHp)->toBe(0)
+        ->and($state?->opponentSide->activeCombatant()->currentHp)->toBe(218)
         ->and($state?->turn)->toBe(4)
         ->and($state?->log)->toEqual([
             new BattleLogEntry(3, BattleLogKind::MOVE, 'The wild Pidgey used Tackle!', 'Tackle'),
@@ -171,41 +171,41 @@ it('does not let a fainted opponent act', function () {
         'status' => BattleStatus::ONGOING,
         'state'  => new BattleState(
             turn: 1,
-            player_side: new BattleSide(combatants: [new Combatant(
-                pokemon_id: 'pokemon-1',
-                species_id: $pikachu->id,
+            playerSide: new BattleSide(combatants: [new Combatant(
+                pokemonId: 'pokemon-1',
+                speciesId: $pikachu->id,
                 level: 50,
                 boost: 0,
-                is_shiny: false,
+                isShiny: false,
                 gender: PokemonGender::MALE,
                 types: [PokemonType::ELECTRIC],
-                move_ids: [$thunderShock->id],
-                max_hp: 218,
-                current_hp: 218,
+                moveIds: [$thunderShock->id],
+                maxHp: 218,
+                currentHp: 218,
                 ailment: null,
-                ailment_turns_left: 0,
-                confusion_turns_left: 0,
-                has_entered_field: true,
-                used_once_per_battle_move_ids: [],
-            )], active_index: 0),
-            opponent_side: new BattleSide(combatants: [new Combatant(
-                pokemon_id: null,
-                species_id: $pidgey->id,
+                ailmentTurnsLeft: 0,
+                confusionTurnsLeft: 0,
+                hasEnteredField: true,
+                usedOncePerBattleMoveIds: [],
+            )], activeIndex: 0),
+            opponentSide: new BattleSide(combatants: [new Combatant(
+                pokemonId: null,
+                speciesId: $pidgey->id,
                 level: 50,
                 boost: 0,
-                is_shiny: false,
+                isShiny: false,
                 gender: PokemonGender::FEMALE,
                 types: [PokemonType::NORMAL, PokemonType::FLYING],
-                move_ids: [$tackle->id],
-                max_hp: 218,
-                current_hp: 10,
+                moveIds: [$tackle->id],
+                maxHp: 218,
+                currentHp: 10,
                 ailment: null,
-                ailment_turns_left: 0,
-                confusion_turns_left: 0,
-                has_entered_field: true,
-                used_once_per_battle_move_ids: [],
-            )], active_index: 0),
-            is_awaiting_send_out: false,
+                ailmentTurnsLeft: 0,
+                confusionTurnsLeft: 0,
+                hasEnteredField: true,
+                usedOncePerBattleMoveIds: [],
+            )], activeIndex: 0),
+            isAwaitingSendOut: false,
             log: [],
         ),
     ]);
@@ -214,8 +214,8 @@ it('does not let a fainted opponent act', function () {
 
     $state = new TakeTurnAction()->handle($battle, moveSlot: 1)->fresh()?->state;
 
-    expect($state?->opponent_side->activeCombatant()->current_hp)->toBe(0)
-        ->and($state?->player_side->activeCombatant()->current_hp)->toBe(218)
+    expect($state?->opponentSide->activeCombatant()->currentHp)->toBe(0)
+        ->and($state?->playerSide->activeCombatant()->currentHp)->toBe(218)
         ->and($state?->log)->toEqual([
             new BattleLogEntry(1, BattleLogKind::MOVE, 'Pikachu used Thunder Shock!', 'Thunder Shock'),
             new BattleLogEntry(1, BattleLogKind::DETAIL, "It's super effective!"),
@@ -236,41 +236,41 @@ it('logs a move that does not affect the defender and deals no damage', function
         'status' => BattleStatus::ONGOING,
         'state'  => new BattleState(
             turn: 1,
-            player_side: new BattleSide(combatants: [new Combatant(
-                pokemon_id: 'pokemon-1',
-                species_id: $gastly->id,
+            playerSide: new BattleSide(combatants: [new Combatant(
+                pokemonId: 'pokemon-1',
+                speciesId: $gastly->id,
                 level: 50,
                 boost: 0,
-                is_shiny: false,
+                isShiny: false,
                 gender: PokemonGender::MALE,
                 types: [PokemonType::GHOST, PokemonType::POISON],
-                move_ids: [$lick->id],
-                max_hp: 218,
-                current_hp: 218,
+                moveIds: [$lick->id],
+                maxHp: 218,
+                currentHp: 218,
                 ailment: null,
-                ailment_turns_left: 0,
-                confusion_turns_left: 0,
-                has_entered_field: true,
-                used_once_per_battle_move_ids: [],
-            )], active_index: 0),
-            opponent_side: new BattleSide(combatants: [new Combatant(
-                pokemon_id: null,
-                species_id: $pidgey->id,
+                ailmentTurnsLeft: 0,
+                confusionTurnsLeft: 0,
+                hasEnteredField: true,
+                usedOncePerBattleMoveIds: [],
+            )], activeIndex: 0),
+            opponentSide: new BattleSide(combatants: [new Combatant(
+                pokemonId: null,
+                speciesId: $pidgey->id,
                 level: 50,
                 boost: 0,
-                is_shiny: false,
+                isShiny: false,
                 gender: PokemonGender::FEMALE,
                 types: [PokemonType::NORMAL, PokemonType::FLYING],
-                move_ids: [$tackle->id],
-                max_hp: 218,
-                current_hp: 218,
+                moveIds: [$tackle->id],
+                maxHp: 218,
+                currentHp: 218,
                 ailment: null,
-                ailment_turns_left: 0,
-                confusion_turns_left: 0,
-                has_entered_field: true,
-                used_once_per_battle_move_ids: [],
-            )], active_index: 0),
-            is_awaiting_send_out: false,
+                ailmentTurnsLeft: 0,
+                confusionTurnsLeft: 0,
+                hasEnteredField: true,
+                usedOncePerBattleMoveIds: [],
+            )], activeIndex: 0),
+            isAwaitingSendOut: false,
             log: [],
         ),
     ]);
@@ -279,8 +279,8 @@ it('logs a move that does not affect the defender and deals no damage', function
 
     $state = new TakeTurnAction()->handle($battle, moveSlot: 1)->fresh()?->state;
 
-    expect($state?->player_side->activeCombatant()->current_hp)->toBe(218)
-        ->and($state?->opponent_side->activeCombatant()->current_hp)->toBe(218)
+    expect($state?->playerSide->activeCombatant()->currentHp)->toBe(218)
+        ->and($state?->opponentSide->activeCombatant()->currentHp)->toBe(218)
         ->and($state?->log)->toEqual([
             new BattleLogEntry(1, BattleLogKind::MOVE, 'Gastly used Lick!', 'Lick'),
             new BattleLogEntry(1, BattleLogKind::DETAIL, "It doesn't affect the wild Pidgey..."),
@@ -294,41 +294,41 @@ it('refuses a turn when the battle is over or awaiting a send-out', function (Ba
 
     $state = new BattleState(
         turn: 5,
-        player_side: new BattleSide(combatants: [new Combatant(
-            pokemon_id: 'pokemon-1',
-            species_id: 'species-1',
+        playerSide: new BattleSide(combatants: [new Combatant(
+            pokemonId: 'pokemon-1',
+            speciesId: 'species-1',
             level: 50,
             boost: 0,
-            is_shiny: false,
+            isShiny: false,
             gender: PokemonGender::MALE,
             types: [PokemonType::NORMAL],
-            move_ids: [$tackle->id],
-            max_hp: 218,
-            current_hp: 218,
+            moveIds: [$tackle->id],
+            maxHp: 218,
+            currentHp: 218,
             ailment: null,
-            ailment_turns_left: 0,
-            confusion_turns_left: 0,
-            has_entered_field: true,
-            used_once_per_battle_move_ids: [],
-        )], active_index: 0),
-        opponent_side: new BattleSide(combatants: [new Combatant(
-            pokemon_id: null,
-            species_id: 'species-2',
+            ailmentTurnsLeft: 0,
+            confusionTurnsLeft: 0,
+            hasEnteredField: true,
+            usedOncePerBattleMoveIds: [],
+        )], activeIndex: 0),
+        opponentSide: new BattleSide(combatants: [new Combatant(
+            pokemonId: null,
+            speciesId: 'species-2',
             level: 50,
             boost: 0,
-            is_shiny: false,
+            isShiny: false,
             gender: PokemonGender::FEMALE,
             types: [PokemonType::NORMAL],
-            move_ids: [$tackle->id],
-            max_hp: 218,
-            current_hp: 218,
+            moveIds: [$tackle->id],
+            maxHp: 218,
+            currentHp: 218,
             ailment: null,
-            ailment_turns_left: 0,
-            confusion_turns_left: 0,
-            has_entered_field: true,
-            used_once_per_battle_move_ids: [],
-        )], active_index: 0),
-        is_awaiting_send_out: $isAwaitingSendOut,
+            ailmentTurnsLeft: 0,
+            confusionTurnsLeft: 0,
+            hasEnteredField: true,
+            usedOncePerBattleMoveIds: [],
+        )], activeIndex: 0),
+        isAwaitingSendOut: $isAwaitingSendOut,
         log: [],
     );
 
@@ -353,41 +353,41 @@ it('rejects a move slot the active pokemon does not have', function (int $moveSl
         'status' => BattleStatus::ONGOING,
         'state'  => new BattleState(
             turn: 1,
-            player_side: new BattleSide(combatants: [new Combatant(
-                pokemon_id: 'pokemon-1',
-                species_id: 'species-1',
+            playerSide: new BattleSide(combatants: [new Combatant(
+                pokemonId: 'pokemon-1',
+                speciesId: 'species-1',
                 level: 50,
                 boost: 0,
-                is_shiny: false,
+                isShiny: false,
                 gender: PokemonGender::MALE,
                 types: [PokemonType::NORMAL],
-                move_ids: [$tackle->id],
-                max_hp: 218,
-                current_hp: 218,
+                moveIds: [$tackle->id],
+                maxHp: 218,
+                currentHp: 218,
                 ailment: null,
-                ailment_turns_left: 0,
-                confusion_turns_left: 0,
-                has_entered_field: true,
-                used_once_per_battle_move_ids: [],
-            )], active_index: 0),
-            opponent_side: new BattleSide(combatants: [new Combatant(
-                pokemon_id: null,
-                species_id: 'species-2',
+                ailmentTurnsLeft: 0,
+                confusionTurnsLeft: 0,
+                hasEnteredField: true,
+                usedOncePerBattleMoveIds: [],
+            )], activeIndex: 0),
+            opponentSide: new BattleSide(combatants: [new Combatant(
+                pokemonId: null,
+                speciesId: 'species-2',
                 level: 50,
                 boost: 0,
-                is_shiny: false,
+                isShiny: false,
                 gender: PokemonGender::FEMALE,
                 types: [PokemonType::NORMAL],
-                move_ids: [$tackle->id],
-                max_hp: 218,
-                current_hp: 218,
+                moveIds: [$tackle->id],
+                maxHp: 218,
+                currentHp: 218,
                 ailment: null,
-                ailment_turns_left: 0,
-                confusion_turns_left: 0,
-                has_entered_field: true,
-                used_once_per_battle_move_ids: [],
-            )], active_index: 0),
-            is_awaiting_send_out: false,
+                ailmentTurnsLeft: 0,
+                confusionTurnsLeft: 0,
+                hasEnteredField: true,
+                usedOncePerBattleMoveIds: [],
+            )], activeIndex: 0),
+            isAwaitingSendOut: false,
             log: [],
         ),
     ]);
@@ -413,41 +413,41 @@ describe('move outcomes', function () {
             'status' => BattleStatus::ONGOING,
             'state'  => new BattleState(
                 turn: 1,
-                player_side: new BattleSide(combatants: [new Combatant(
-                    pokemon_id: 'pokemon-1',
-                    species_id: $pikachu->id,
+                playerSide: new BattleSide(combatants: [new Combatant(
+                    pokemonId: 'pokemon-1',
+                    speciesId: $pikachu->id,
                     level: 50,
                     boost: 0,
-                    is_shiny: false,
+                    isShiny: false,
                     gender: PokemonGender::MALE,
                     types: [PokemonType::ELECTRIC],
-                    move_ids: [$tackle->id],
-                    max_hp: 218,
-                    current_hp: 218,
+                    moveIds: [$tackle->id],
+                    maxHp: 218,
+                    currentHp: 218,
                     ailment: null,
-                    ailment_turns_left: 0,
-                    confusion_turns_left: 0,
-                    has_entered_field: true,
-                    used_once_per_battle_move_ids: [],
-                )], active_index: 0),
-                opponent_side: new BattleSide(combatants: [new Combatant(
-                    pokemon_id: null,
-                    species_id: $pidgey->id,
+                    ailmentTurnsLeft: 0,
+                    confusionTurnsLeft: 0,
+                    hasEnteredField: true,
+                    usedOncePerBattleMoveIds: [],
+                )], activeIndex: 0),
+                opponentSide: new BattleSide(combatants: [new Combatant(
+                    pokemonId: null,
+                    speciesId: $pidgey->id,
                     level: 50,
                     boost: 0,
-                    is_shiny: false,
+                    isShiny: false,
                     gender: PokemonGender::FEMALE,
                     types: [PokemonType::NORMAL, PokemonType::FLYING],
-                    move_ids: [$growl->id],
-                    max_hp: 218,
-                    current_hp: 218,
+                    moveIds: [$growl->id],
+                    maxHp: 218,
+                    currentHp: 218,
                     ailment: null,
-                    ailment_turns_left: 0,
-                    confusion_turns_left: 0,
-                    has_entered_field: true,
-                    used_once_per_battle_move_ids: [],
-                )], active_index: 0),
-                is_awaiting_send_out: false,
+                    ailmentTurnsLeft: 0,
+                    confusionTurnsLeft: 0,
+                    hasEnteredField: true,
+                    usedOncePerBattleMoveIds: [],
+                )], activeIndex: 0),
+                isAwaitingSendOut: false,
                 log: [],
             ),
         ]);
@@ -456,7 +456,7 @@ describe('move outcomes', function () {
 
         $state = new TakeTurnAction()->handle($battle, moveSlot: 1)->fresh()?->state;
 
-        expect($state?->opponent_side->activeCombatant()->current_hp)->toBe($expectedOpponentHp)
+        expect($state?->opponentSide->activeCombatant()->currentHp)->toBe($expectedOpponentHp)
             ->and($state?->log)->toEqual([...$expectedPlayerLines, new BattleLogEntry(1, BattleLogKind::MOVE, 'The wild Pidgey used Growl!', 'Growl')]);
     })->with([
         'miss' => [[false], 218, [
@@ -489,41 +489,41 @@ describe('move outcomes', function () {
             'status' => BattleStatus::ONGOING,
             'state'  => new BattleState(
                 turn: 1,
-                player_side: new BattleSide(combatants: [new Combatant(
-                    pokemon_id: 'pokemon-1',
-                    species_id: $pikachu->id,
+                playerSide: new BattleSide(combatants: [new Combatant(
+                    pokemonId: 'pokemon-1',
+                    speciesId: $pikachu->id,
                     level: 50,
                     boost: 0,
-                    is_shiny: false,
+                    isShiny: false,
                     gender: PokemonGender::MALE,
                     types: [PokemonType::ELECTRIC],
-                    move_ids: [$furyAttack->id],
-                    max_hp: 218,
-                    current_hp: 218,
+                    moveIds: [$furyAttack->id],
+                    maxHp: 218,
+                    currentHp: 218,
                     ailment: null,
-                    ailment_turns_left: 0,
-                    confusion_turns_left: 0,
-                    has_entered_field: true,
-                    used_once_per_battle_move_ids: [],
-                )], active_index: 0),
-                opponent_side: new BattleSide(combatants: [new Combatant(
-                    pokemon_id: null,
-                    species_id: $pidgey->id,
+                    ailmentTurnsLeft: 0,
+                    confusionTurnsLeft: 0,
+                    hasEnteredField: true,
+                    usedOncePerBattleMoveIds: [],
+                )], activeIndex: 0),
+                opponentSide: new BattleSide(combatants: [new Combatant(
+                    pokemonId: null,
+                    speciesId: $pidgey->id,
                     level: 50,
                     boost: 0,
-                    is_shiny: false,
+                    isShiny: false,
                     gender: PokemonGender::FEMALE,
                     types: [PokemonType::NORMAL, PokemonType::FLYING],
-                    move_ids: [$growl->id],
-                    max_hp: 218,
-                    current_hp: $opponentHp,
+                    moveIds: [$growl->id],
+                    maxHp: 218,
+                    currentHp: $opponentHp,
                     ailment: null,
-                    ailment_turns_left: 0,
-                    confusion_turns_left: 0,
-                    has_entered_field: true,
-                    used_once_per_battle_move_ids: [],
-                )], active_index: 0),
-                is_awaiting_send_out: false,
+                    ailmentTurnsLeft: 0,
+                    confusionTurnsLeft: 0,
+                    hasEnteredField: true,
+                    usedOncePerBattleMoveIds: [],
+                )], activeIndex: 0),
+                isAwaitingSendOut: false,
                 log: [],
             ),
         ]);
@@ -532,7 +532,7 @@ describe('move outcomes', function () {
 
         $state = new TakeTurnAction()->handle($battle, moveSlot: 1)->fresh()?->state;
 
-        expect($state?->opponent_side->activeCombatant()->current_hp)->toBe($expectedOpponentHp)
+        expect($state?->opponentSide->activeCombatant()->currentHp)->toBe($expectedOpponentHp)
             ->and($state?->log)->toEqual($expectedLines);
     })->with([
         'three hits, one critical' => [
@@ -574,41 +574,41 @@ describe('flinch', function () {
             'status' => BattleStatus::ONGOING,
             'state'  => new BattleState(
                 turn: 1,
-                player_side: new BattleSide(combatants: [new Combatant(
-                    pokemon_id: 'pokemon-1',
-                    species_id: $pikachu->id,
+                playerSide: new BattleSide(combatants: [new Combatant(
+                    pokemonId: 'pokemon-1',
+                    speciesId: $pikachu->id,
                     level: 50,
                     boost: 0,
-                    is_shiny: false,
+                    isShiny: false,
                     gender: PokemonGender::MALE,
                     types: [PokemonType::ELECTRIC],
-                    move_ids: [$headbutt->id],
-                    max_hp: 218,
-                    current_hp: 218,
+                    moveIds: [$headbutt->id],
+                    maxHp: 218,
+                    currentHp: 218,
                     ailment: null,
-                    ailment_turns_left: 0,
-                    confusion_turns_left: 0,
-                    has_entered_field: true,
-                    used_once_per_battle_move_ids: [],
-                )], active_index: 0),
-                opponent_side: new BattleSide(combatants: [new Combatant(
-                    pokemon_id: null,
-                    species_id: $pidgey->id,
+                    ailmentTurnsLeft: 0,
+                    confusionTurnsLeft: 0,
+                    hasEnteredField: true,
+                    usedOncePerBattleMoveIds: [],
+                )], activeIndex: 0),
+                opponentSide: new BattleSide(combatants: [new Combatant(
+                    pokemonId: null,
+                    speciesId: $pidgey->id,
                     level: 50,
                     boost: 0,
-                    is_shiny: false,
+                    isShiny: false,
                     gender: PokemonGender::FEMALE,
                     types: [PokemonType::NORMAL, PokemonType::FLYING],
-                    move_ids: [$tackle->id],
-                    max_hp: 218,
-                    current_hp: 218,
+                    moveIds: [$tackle->id],
+                    maxHp: 218,
+                    currentHp: 218,
                     ailment: null,
-                    ailment_turns_left: 0,
-                    confusion_turns_left: 0,
-                    has_entered_field: true,
-                    used_once_per_battle_move_ids: [],
-                )], active_index: 0),
-                is_awaiting_send_out: false,
+                    ailmentTurnsLeft: 0,
+                    confusionTurnsLeft: 0,
+                    hasEnteredField: true,
+                    usedOncePerBattleMoveIds: [],
+                )], activeIndex: 0),
+                isAwaitingSendOut: false,
                 log: [],
             ),
         ]);
@@ -617,7 +617,7 @@ describe('flinch', function () {
 
         $state = new TakeTurnAction()->handle($battle, moveSlot: 1)->fresh()?->state;
 
-        expect($state?->player_side->activeCombatant()->current_hp)->toBe($expectedPlayerHp)
+        expect($state?->playerSide->activeCombatant()->currentHp)->toBe($expectedPlayerHp)
             ->and($state?->log)->toEqual($expectedLines);
     })->with([
         'player first: the opponent flinches' => [
@@ -656,41 +656,41 @@ describe('once-per-battle moves', function () {
             'status' => BattleStatus::ONGOING,
             'state'  => new BattleState(
                 turn: 1,
-                player_side: new BattleSide(combatants: [new Combatant(
-                    pokemon_id: 'pokemon-1',
-                    species_id: $pikachu->id,
+                playerSide: new BattleSide(combatants: [new Combatant(
+                    pokemonId: 'pokemon-1',
+                    speciesId: $pikachu->id,
                     level: 100,
                     boost: 0,
-                    is_shiny: false,
+                    isShiny: false,
                     gender: PokemonGender::MALE,
                     types: [PokemonType::ELECTRIC],
-                    move_ids: [$zMove->id],
-                    max_hp: 400,
-                    current_hp: 400,
+                    moveIds: [$zMove->id],
+                    maxHp: 400,
+                    currentHp: 400,
                     ailment: null,
-                    ailment_turns_left: 0,
-                    confusion_turns_left: 0,
-                    has_entered_field: true,
-                    used_once_per_battle_move_ids: [],
-                )], active_index: 0),
-                opponent_side: new BattleSide(combatants: [new Combatant(
-                    pokemon_id: null,
-                    species_id: $pidgey->id,
+                    ailmentTurnsLeft: 0,
+                    confusionTurnsLeft: 0,
+                    hasEnteredField: true,
+                    usedOncePerBattleMoveIds: [],
+                )], activeIndex: 0),
+                opponentSide: new BattleSide(combatants: [new Combatant(
+                    pokemonId: null,
+                    speciesId: $pidgey->id,
                     level: 100,
                     boost: 0,
-                    is_shiny: false,
+                    isShiny: false,
                     gender: PokemonGender::FEMALE,
                     types: [PokemonType::NORMAL, PokemonType::FLYING],
-                    move_ids: [$growl->id],
-                    max_hp: 400,
-                    current_hp: 400,
+                    moveIds: [$growl->id],
+                    maxHp: 400,
+                    currentHp: 400,
                     ailment: null,
-                    ailment_turns_left: 0,
-                    confusion_turns_left: 0,
-                    has_entered_field: true,
-                    used_once_per_battle_move_ids: [],
-                )], active_index: 0),
-                is_awaiting_send_out: false,
+                    ailmentTurnsLeft: 0,
+                    confusionTurnsLeft: 0,
+                    hasEnteredField: true,
+                    usedOncePerBattleMoveIds: [],
+                )], activeIndex: 0),
+                isAwaitingSendOut: false,
                 log: [],
             ),
         ]);
@@ -699,7 +699,7 @@ describe('once-per-battle moves', function () {
 
         $state = new TakeTurnAction()->handle($battle, moveSlot: 1)->fresh()?->state;
 
-        expect($state?->player_side->activeCombatant()->used_once_per_battle_move_ids)->toBe([$zMove->id]);
+        expect($state?->playerSide->activeCombatant()->usedOncePerBattleMoveIds)->toBe([$zMove->id]);
 
         RandomHelper::fake([]);
 
@@ -718,41 +718,41 @@ describe('once-per-battle moves', function () {
             'status' => BattleStatus::ONGOING,
             'state'  => new BattleState(
                 turn: 1,
-                player_side: new BattleSide(combatants: [new Combatant(
-                    pokemon_id: 'pokemon-1',
-                    species_id: $charizard->id,
+                playerSide: new BattleSide(combatants: [new Combatant(
+                    pokemonId: 'pokemon-1',
+                    speciesId: $charizard->id,
                     level: 100,
                     boost: 0,
-                    is_shiny: false,
+                    isShiny: false,
                     gender: PokemonGender::MALE,
                     types: [PokemonType::FIRE, PokemonType::FLYING],
-                    move_ids: [$dynamaxMove->id],
-                    max_hp: 400,
-                    current_hp: 400,
+                    moveIds: [$dynamaxMove->id],
+                    maxHp: 400,
+                    currentHp: 400,
                     ailment: null,
-                    ailment_turns_left: 0,
-                    confusion_turns_left: 0,
-                    has_entered_field: true,
-                    used_once_per_battle_move_ids: [],
-                )], active_index: 0),
-                opponent_side: new BattleSide(combatants: [new Combatant(
-                    pokemon_id: null,
-                    species_id: $pidgey->id,
+                    ailmentTurnsLeft: 0,
+                    confusionTurnsLeft: 0,
+                    hasEnteredField: true,
+                    usedOncePerBattleMoveIds: [],
+                )], activeIndex: 0),
+                opponentSide: new BattleSide(combatants: [new Combatant(
+                    pokemonId: null,
+                    speciesId: $pidgey->id,
                     level: 100,
                     boost: 0,
-                    is_shiny: false,
+                    isShiny: false,
                     gender: PokemonGender::FEMALE,
                     types: [PokemonType::NORMAL, PokemonType::FLYING],
-                    move_ids: [$growl->id],
-                    max_hp: 400,
-                    current_hp: 400,
+                    moveIds: [$growl->id],
+                    maxHp: 400,
+                    currentHp: 400,
                     ailment: null,
-                    ailment_turns_left: 0,
-                    confusion_turns_left: 0,
-                    has_entered_field: true,
-                    used_once_per_battle_move_ids: [],
-                )], active_index: 0),
-                is_awaiting_send_out: false,
+                    ailmentTurnsLeft: 0,
+                    confusionTurnsLeft: 0,
+                    hasEnteredField: true,
+                    usedOncePerBattleMoveIds: [],
+                )], activeIndex: 0),
+                isAwaitingSendOut: false,
                 log: [],
             ),
         ]);
@@ -761,7 +761,7 @@ describe('once-per-battle moves', function () {
 
         $state = new TakeTurnAction()->handle($battle, moveSlot: 1)->fresh()?->state;
 
-        expect($state?->player_side->activeCombatant()->used_once_per_battle_move_ids)->toBe([$dynamaxMove->id]);
+        expect($state?->playerSide->activeCombatant()->usedOncePerBattleMoveIds)->toBe([$dynamaxMove->id]);
     });
 
     it('refuses a Dynamax move for a pokemon that is not G-Max', function () {
@@ -775,41 +775,41 @@ describe('once-per-battle moves', function () {
             'status' => BattleStatus::ONGOING,
             'state'  => new BattleState(
                 turn: 1,
-                player_side: new BattleSide(combatants: [new Combatant(
-                    pokemon_id: 'pokemon-1',
-                    species_id: $charizard->id,
+                playerSide: new BattleSide(combatants: [new Combatant(
+                    pokemonId: 'pokemon-1',
+                    speciesId: $charizard->id,
                     level: 100,
                     boost: 0,
-                    is_shiny: false,
+                    isShiny: false,
                     gender: PokemonGender::MALE,
                     types: [PokemonType::FIRE, PokemonType::FLYING],
-                    move_ids: [$dynamaxMove->id],
-                    max_hp: 400,
-                    current_hp: 400,
+                    moveIds: [$dynamaxMove->id],
+                    maxHp: 400,
+                    currentHp: 400,
                     ailment: null,
-                    ailment_turns_left: 0,
-                    confusion_turns_left: 0,
-                    has_entered_field: true,
-                    used_once_per_battle_move_ids: [],
-                )], active_index: 0),
-                opponent_side: new BattleSide(combatants: [new Combatant(
-                    pokemon_id: null,
-                    species_id: $pidgey->id,
+                    ailmentTurnsLeft: 0,
+                    confusionTurnsLeft: 0,
+                    hasEnteredField: true,
+                    usedOncePerBattleMoveIds: [],
+                )], activeIndex: 0),
+                opponentSide: new BattleSide(combatants: [new Combatant(
+                    pokemonId: null,
+                    speciesId: $pidgey->id,
                     level: 100,
                     boost: 0,
-                    is_shiny: false,
+                    isShiny: false,
                     gender: PokemonGender::FEMALE,
                     types: [PokemonType::NORMAL, PokemonType::FLYING],
-                    move_ids: [$growl->id],
-                    max_hp: 400,
-                    current_hp: 400,
+                    moveIds: [$growl->id],
+                    maxHp: 400,
+                    currentHp: 400,
                     ailment: null,
-                    ailment_turns_left: 0,
-                    confusion_turns_left: 0,
-                    has_entered_field: true,
-                    used_once_per_battle_move_ids: [],
-                )], active_index: 0),
-                is_awaiting_send_out: false,
+                    ailmentTurnsLeft: 0,
+                    confusionTurnsLeft: 0,
+                    hasEnteredField: true,
+                    usedOncePerBattleMoveIds: [],
+                )], activeIndex: 0),
+                isAwaitingSendOut: false,
                 log: [],
             ),
         ]);
@@ -831,41 +831,41 @@ describe('once-per-battle moves', function () {
             'status' => BattleStatus::ONGOING,
             'state'  => new BattleState(
                 turn: 1,
-                player_side: new BattleSide(combatants: [new Combatant(
-                    pokemon_id: 'pokemon-1',
-                    species_id: $pikachu->id,
+                playerSide: new BattleSide(combatants: [new Combatant(
+                    pokemonId: 'pokemon-1',
+                    speciesId: $pikachu->id,
                     level: 50,
                     boost: 0,
-                    is_shiny: false,
+                    isShiny: false,
                     gender: PokemonGender::MALE,
                     types: [PokemonType::ELECTRIC],
-                    move_ids: [$tackle->id],
-                    max_hp: 218,
-                    current_hp: 218,
+                    moveIds: [$tackle->id],
+                    maxHp: 218,
+                    currentHp: 218,
                     ailment: null,
-                    ailment_turns_left: 0,
-                    confusion_turns_left: 0,
-                    has_entered_field: true,
-                    used_once_per_battle_move_ids: [],
-                )], active_index: 0),
-                opponent_side: new BattleSide(combatants: [new Combatant(
-                    pokemon_id: null,
-                    species_id: $pidgey->id,
+                    ailmentTurnsLeft: 0,
+                    confusionTurnsLeft: 0,
+                    hasEnteredField: true,
+                    usedOncePerBattleMoveIds: [],
+                )], activeIndex: 0),
+                opponentSide: new BattleSide(combatants: [new Combatant(
+                    pokemonId: null,
+                    speciesId: $pidgey->id,
                     level: 50,
                     boost: 0,
-                    is_shiny: false,
+                    isShiny: false,
                     gender: PokemonGender::FEMALE,
                     types: [PokemonType::NORMAL, PokemonType::FLYING],
-                    move_ids: [$zMove->id],
-                    max_hp: 218,
-                    current_hp: 218,
+                    moveIds: [$zMove->id],
+                    maxHp: 218,
+                    currentHp: 218,
                     ailment: null,
-                    ailment_turns_left: 0,
-                    confusion_turns_left: 0,
-                    has_entered_field: true,
-                    used_once_per_battle_move_ids: [$zMove->id],
-                )], active_index: 0),
-                is_awaiting_send_out: false,
+                    ailmentTurnsLeft: 0,
+                    confusionTurnsLeft: 0,
+                    hasEnteredField: true,
+                    usedOncePerBattleMoveIds: [$zMove->id],
+                )], activeIndex: 0),
+                isAwaitingSendOut: false,
                 log: [],
             ),
         ]);
@@ -889,41 +889,41 @@ describe('status effects', function () {
             'status' => BattleStatus::ONGOING,
             'state'  => new BattleState(
                 turn: 1,
-                player_side: new BattleSide(combatants: [new Combatant(
-                    pokemon_id: 'pokemon-1',
-                    species_id: $pikachu->id,
+                playerSide: new BattleSide(combatants: [new Combatant(
+                    pokemonId: 'pokemon-1',
+                    speciesId: $pikachu->id,
                     level: 50,
                     boost: 0,
-                    is_shiny: false,
+                    isShiny: false,
                     gender: PokemonGender::MALE,
                     types: [PokemonType::ELECTRIC],
-                    move_ids: [$tackle->id],
-                    max_hp: 218,
-                    current_hp: 218,
+                    moveIds: [$tackle->id],
+                    maxHp: 218,
+                    currentHp: 218,
                     ailment: $ailment,
-                    ailment_turns_left: $ailmentTurnsLeft,
-                    confusion_turns_left: $confusionTurnsLeft,
-                    has_entered_field: true,
-                    used_once_per_battle_move_ids: [],
-                )], active_index: 0),
-                opponent_side: new BattleSide(combatants: [new Combatant(
-                    pokemon_id: null,
-                    species_id: $pidgey->id,
+                    ailmentTurnsLeft: $ailmentTurnsLeft,
+                    confusionTurnsLeft: $confusionTurnsLeft,
+                    hasEnteredField: true,
+                    usedOncePerBattleMoveIds: [],
+                )], activeIndex: 0),
+                opponentSide: new BattleSide(combatants: [new Combatant(
+                    pokemonId: null,
+                    speciesId: $pidgey->id,
                     level: 50,
                     boost: 0,
-                    is_shiny: false,
+                    isShiny: false,
                     gender: PokemonGender::FEMALE,
                     types: [PokemonType::NORMAL, PokemonType::FLYING],
-                    move_ids: [$growl->id],
-                    max_hp: 218,
-                    current_hp: 218,
+                    moveIds: [$growl->id],
+                    maxHp: 218,
+                    currentHp: 218,
                     ailment: null,
-                    ailment_turns_left: 0,
-                    confusion_turns_left: 0,
-                    has_entered_field: true,
-                    used_once_per_battle_move_ids: [],
-                )], active_index: 0),
-                is_awaiting_send_out: false,
+                    ailmentTurnsLeft: 0,
+                    confusionTurnsLeft: 0,
+                    hasEnteredField: true,
+                    usedOncePerBattleMoveIds: [],
+                )], activeIndex: 0),
+                isAwaitingSendOut: false,
                 log: [],
             ),
         ]);
@@ -931,13 +931,13 @@ describe('status effects', function () {
         RandomHelper::fake([$growl->id, true, ...array_values($playerRolls), true]);
 
         $state  = new TakeTurnAction()->handle($battle, moveSlot: 1)->fresh()?->state;
-        $player = $state?->player_side->activeCombatant();
+        $player = $state?->playerSide->activeCombatant();
 
-        expect($player?->current_hp)->toBe($expectedPlayerHp)
+        expect($player?->currentHp)->toBe($expectedPlayerHp)
             ->and($player?->ailment)->toBe($expectedAilment)
-            ->and($player?->ailment_turns_left)->toBe($expectedAilmentTurnsLeft)
-            ->and($player?->confusion_turns_left)->toBe($expectedConfusionTurnsLeft)
-            ->and($state?->opponent_side->activeCombatant()->current_hp)->toBe($expectedOpponentHp)
+            ->and($player?->ailmentTurnsLeft)->toBe($expectedAilmentTurnsLeft)
+            ->and($player?->confusionTurnsLeft)->toBe($expectedConfusionTurnsLeft)
+            ->and($state?->opponentSide->activeCombatant()->currentHp)->toBe($expectedOpponentHp)
             ->and($state?->log)->toEqual($expectedLog);
     })->with([
         'stays frozen' => [
@@ -1038,41 +1038,41 @@ describe('status effects', function () {
             'status' => BattleStatus::ONGOING,
             'state'  => new BattleState(
                 turn: 1,
-                player_side: new BattleSide(combatants: [new Combatant(
-                    pokemon_id: 'pokemon-1',
-                    species_id: $pikachu->id,
+                playerSide: new BattleSide(combatants: [new Combatant(
+                    pokemonId: 'pokemon-1',
+                    speciesId: $pikachu->id,
                     level: 50,
                     boost: 0,
-                    is_shiny: false,
+                    isShiny: false,
                     gender: PokemonGender::MALE,
                     types: [PokemonType::ELECTRIC],
-                    move_ids: [$move->id],
-                    max_hp: 218,
-                    current_hp: 218,
+                    moveIds: [$move->id],
+                    maxHp: 218,
+                    currentHp: 218,
                     ailment: null,
-                    ailment_turns_left: 0,
-                    confusion_turns_left: 0,
-                    has_entered_field: true,
-                    used_once_per_battle_move_ids: [],
-                )], active_index: 0),
-                opponent_side: new BattleSide(combatants: [new Combatant(
-                    pokemon_id: null,
-                    species_id: $pidgey->id,
+                    ailmentTurnsLeft: 0,
+                    confusionTurnsLeft: 0,
+                    hasEnteredField: true,
+                    usedOncePerBattleMoveIds: [],
+                )], activeIndex: 0),
+                opponentSide: new BattleSide(combatants: [new Combatant(
+                    pokemonId: null,
+                    speciesId: $pidgey->id,
                     level: 50,
                     boost: 0,
-                    is_shiny: false,
+                    isShiny: false,
                     gender: PokemonGender::FEMALE,
                     types: array_values($opponentTypes),
-                    move_ids: [$growl->id],
-                    max_hp: 218,
-                    current_hp: 218,
+                    moveIds: [$growl->id],
+                    maxHp: 218,
+                    currentHp: 218,
                     ailment: $opponentAilment,
-                    ailment_turns_left: 0,
-                    confusion_turns_left: 0,
-                    has_entered_field: true,
-                    used_once_per_battle_move_ids: [],
-                )], active_index: 0),
-                is_awaiting_send_out: false,
+                    ailmentTurnsLeft: 0,
+                    confusionTurnsLeft: 0,
+                    hasEnteredField: true,
+                    usedOncePerBattleMoveIds: [],
+                )], activeIndex: 0),
+                isAwaitingSendOut: false,
                 log: [],
             ),
         ]);
@@ -1080,12 +1080,12 @@ describe('status effects', function () {
         RandomHelper::fake([$growl->id, false, true, ...array_values($playerRolls)]);
 
         $state    = new TakeTurnAction()->handle($battle, moveSlot: 1)->fresh()?->state;
-        $opponent = $state?->opponent_side->activeCombatant();
+        $opponent = $state?->opponentSide->activeCombatant();
 
-        expect($opponent?->current_hp)->toBe($expectedOpponentHp)
+        expect($opponent?->currentHp)->toBe($expectedOpponentHp)
             ->and($opponent?->ailment)->toBe($expectedAilment)
-            ->and($opponent?->ailment_turns_left)->toBe($expectedAilmentTurnsLeft)
-            ->and($opponent?->confusion_turns_left)->toBe($expectedConfusionTurnsLeft)
+            ->and($opponent?->ailmentTurnsLeft)->toBe($expectedAilmentTurnsLeft)
+            ->and($opponent?->confusionTurnsLeft)->toBe($expectedConfusionTurnsLeft)
             ->and($state?->log)->toEqual([new BattleLogEntry(1, BattleLogKind::MOVE, 'The wild Pidgey used Growl!', 'Growl'), ...$expectedPlayerLines]);
     })->with([
         'paralysis from a status move' => [
@@ -1189,41 +1189,41 @@ describe('status effects', function () {
             'status' => BattleStatus::ONGOING,
             'state'  => new BattleState(
                 turn: 1,
-                player_side: new BattleSide(combatants: [new Combatant(
-                    pokemon_id: 'pokemon-1',
-                    species_id: $pikachu->id,
+                playerSide: new BattleSide(combatants: [new Combatant(
+                    pokemonId: 'pokemon-1',
+                    speciesId: $pikachu->id,
                     level: 50,
                     boost: 0,
-                    is_shiny: false,
+                    isShiny: false,
                     gender: PokemonGender::MALE,
                     types: [PokemonType::ELECTRIC],
-                    move_ids: [$growl->id],
-                    max_hp: 218,
-                    current_hp: $currentHp,
+                    moveIds: [$growl->id],
+                    maxHp: 218,
+                    currentHp: $currentHp,
                     ailment: Ailment::BURN,
-                    ailment_turns_left: 0,
-                    confusion_turns_left: 0,
-                    has_entered_field: true,
-                    used_once_per_battle_move_ids: [],
-                )], active_index: 0),
-                opponent_side: new BattleSide(combatants: [new Combatant(
-                    pokemon_id: null,
-                    species_id: $pidgey->id,
+                    ailmentTurnsLeft: 0,
+                    confusionTurnsLeft: 0,
+                    hasEnteredField: true,
+                    usedOncePerBattleMoveIds: [],
+                )], activeIndex: 0),
+                opponentSide: new BattleSide(combatants: [new Combatant(
+                    pokemonId: null,
+                    speciesId: $pidgey->id,
                     level: 50,
                     boost: 0,
-                    is_shiny: false,
+                    isShiny: false,
                     gender: PokemonGender::FEMALE,
                     types: [PokemonType::NORMAL, PokemonType::FLYING],
-                    move_ids: [$growl->id],
-                    max_hp: 218,
-                    current_hp: $currentHp,
+                    moveIds: [$growl->id],
+                    maxHp: 218,
+                    currentHp: $currentHp,
                     ailment: Ailment::POISON,
-                    ailment_turns_left: 0,
-                    confusion_turns_left: 0,
-                    has_entered_field: true,
-                    used_once_per_battle_move_ids: [],
-                )], active_index: 0),
-                is_awaiting_send_out: false,
+                    ailmentTurnsLeft: 0,
+                    confusionTurnsLeft: 0,
+                    hasEnteredField: true,
+                    usedOncePerBattleMoveIds: [],
+                )], activeIndex: 0),
+                isAwaitingSendOut: false,
                 log: [],
             ),
         ]);
@@ -1234,8 +1234,8 @@ describe('status effects', function () {
         $state  = $battle?->state;
 
         expect($battle?->status)->toBe($expectedStatus)
-            ->and($state?->player_side->activeCombatant()->current_hp)->toBe($expectedPlayerHp)
-            ->and($state?->opponent_side->activeCombatant()->current_hp)->toBe($expectedOpponentHp)
+            ->and($state?->playerSide->activeCombatant()->currentHp)->toBe($expectedPlayerHp)
+            ->and($state?->opponentSide->activeCombatant()->currentHp)->toBe($expectedOpponentHp)
             ->and($state?->log)->toEqual($expectedLog);
     })->with([
         'both are hurt, the player first' => [
@@ -1288,41 +1288,41 @@ describe('fainting and ending', function () {
             'status' => BattleStatus::ONGOING,
             'state'  => new BattleState(
                 turn: 1,
-                player_side: new BattleSide(combatants: [new Combatant(
-                    pokemon_id: 'pokemon-1',
-                    species_id: $pikachu->id,
+                playerSide: new BattleSide(combatants: [new Combatant(
+                    pokemonId: 'pokemon-1',
+                    speciesId: $pikachu->id,
                     level: 50,
                     boost: 0,
-                    is_shiny: false,
+                    isShiny: false,
                     gender: PokemonGender::MALE,
                     types: [PokemonType::ELECTRIC],
-                    move_ids: [$thunderShock->id],
-                    max_hp: 218,
-                    current_hp: 218,
+                    moveIds: [$thunderShock->id],
+                    maxHp: 218,
+                    currentHp: 218,
                     ailment: null,
-                    ailment_turns_left: 0,
-                    confusion_turns_left: 0,
-                    has_entered_field: true,
-                    used_once_per_battle_move_ids: [],
-                )], active_index: 0),
-                opponent_side: new BattleSide(combatants: [new Combatant(
-                    pokemon_id: null,
-                    species_id: $pidgey->id,
+                    ailmentTurnsLeft: 0,
+                    confusionTurnsLeft: 0,
+                    hasEnteredField: true,
+                    usedOncePerBattleMoveIds: [],
+                )], activeIndex: 0),
+                opponentSide: new BattleSide(combatants: [new Combatant(
+                    pokemonId: null,
+                    speciesId: $pidgey->id,
                     level: 50,
                     boost: 0,
-                    is_shiny: false,
+                    isShiny: false,
                     gender: PokemonGender::FEMALE,
                     types: [PokemonType::NORMAL, PokemonType::FLYING],
-                    move_ids: [$tackle->id],
-                    max_hp: 218,
-                    current_hp: 10,
+                    moveIds: [$tackle->id],
+                    maxHp: 218,
+                    currentHp: 10,
                     ailment: null,
-                    ailment_turns_left: 0,
-                    confusion_turns_left: 0,
-                    has_entered_field: true,
-                    used_once_per_battle_move_ids: [],
-                )], active_index: 0),
-                is_awaiting_send_out: false,
+                    ailmentTurnsLeft: 0,
+                    confusionTurnsLeft: 0,
+                    hasEnteredField: true,
+                    usedOncePerBattleMoveIds: [],
+                )], activeIndex: 0),
+                isAwaitingSendOut: false,
                 log: [],
             ),
         ]);
@@ -1332,7 +1332,7 @@ describe('fainting and ending', function () {
         $battle = new TakeTurnAction()->handle($battle, moveSlot: 1)->fresh();
 
         expect($battle?->status)->toBe(BattleStatus::WON)
-            ->and($battle?->state->is_awaiting_send_out)->toBeFalse();
+            ->and($battle?->state->isAwaitingSendOut)->toBeFalse();
 
         Event::assertDispatchedTimes(BattleEnded::class, 1);
         Event::assertDispatched(BattleEnded::class, fn (BattleEnded $event) => $event->status === BattleStatus::WON && $event->isWin);
@@ -1347,21 +1347,21 @@ describe('fainting and ending', function () {
         $tackle       = Move::factory()->plainDamage()->create(['name' => 'Tackle', 'type' => PokemonType::NORMAL, 'power' => 40]);
 
         $pikachuCombatant = [
-            'pokemon_id'                    => 'pokemon-1',
-            'species_id'                    => $pikachu->id,
-            'level'                         => 50,
-            'boost'                         => 0,
-            'is_shiny'                      => false,
-            'gender'                        => PokemonGender::MALE,
-            'types'                         => [PokemonType::ELECTRIC],
-            'move_ids'                      => [$thunderShock->id],
-            'max_hp'                        => 218,
-            'current_hp'                    => 218,
-            'ailment'                       => null,
-            'ailment_turns_left'            => 0,
-            'confusion_turns_left'          => 0,
-            'has_entered_field'             => true,
-            'used_once_per_battle_move_ids' => [],
+            'pokemonId'                => 'pokemon-1',
+            'speciesId'                => $pikachu->id,
+            'level'                    => 50,
+            'boost'                    => 0,
+            'isShiny'                  => false,
+            'gender'                   => PokemonGender::MALE,
+            'types'                    => [PokemonType::ELECTRIC],
+            'moveIds'                  => [$thunderShock->id],
+            'maxHp'                    => 218,
+            'currentHp'                => 218,
+            'ailment'                  => null,
+            'ailmentTurnsLeft'         => 0,
+            'confusionTurnsLeft'       => 0,
+            'hasEnteredField'          => true,
+            'usedOncePerBattleMoveIds' => [],
         ];
 
         $battle = Battle::factory()->create([
@@ -1369,28 +1369,28 @@ describe('fainting and ending', function () {
             'status' => BattleStatus::ONGOING,
             'state'  => new BattleState(
                 turn: 1,
-                player_side: new BattleSide(combatants: [
-                    new Combatant(...[...$pikachuCombatant, 'pokemon_id' => 'pokemon-0', 'has_entered_field' => false]),
+                playerSide: new BattleSide(combatants: [
+                    new Combatant(...[...$pikachuCombatant, 'pokemonId' => 'pokemon-0', 'hasEnteredField' => false]),
                     new Combatant(...$pikachuCombatant),
-                ], active_index: 1),
-                opponent_side: new BattleSide(combatants: [new Combatant(
-                    pokemon_id: null,
-                    species_id: $pidgey->id,
+                ], activeIndex: 1),
+                opponentSide: new BattleSide(combatants: [new Combatant(
+                    pokemonId: null,
+                    speciesId: $pidgey->id,
                     level: 50,
                     boost: 0,
-                    is_shiny: false,
+                    isShiny: false,
                     gender: PokemonGender::FEMALE,
                     types: [PokemonType::NORMAL, PokemonType::FLYING],
-                    move_ids: [$tackle->id],
-                    max_hp: 218,
-                    current_hp: 10,
+                    moveIds: [$tackle->id],
+                    maxHp: 218,
+                    currentHp: 10,
                     ailment: $opponentAilment,
-                    ailment_turns_left: 0,
-                    confusion_turns_left: 0,
-                    has_entered_field: true,
-                    used_once_per_battle_move_ids: [],
-                )], active_index: 0),
-                is_awaiting_send_out: false,
+                    ailmentTurnsLeft: 0,
+                    confusionTurnsLeft: 0,
+                    hasEnteredField: true,
+                    usedOncePerBattleMoveIds: [],
+                )], activeIndex: 0),
+                isAwaitingSendOut: false,
                 log: [],
             ),
         ]);
@@ -1400,7 +1400,7 @@ describe('fainting and ending', function () {
         $battle = new TakeTurnAction()->handle($battle, moveSlot: 1)->fresh();
 
         expect($battle?->status)->toBe(BattleStatus::WON)
-            ->and($battle?->state->opponent_side->combatants[0]->knocked_out_by)->toBe(1);
+            ->and($battle?->state->opponentSide->combatants[0]->knockedOutBy)->toBe(1);
     })->with([
         'by a move'                  => [null, [true, true, false, 1.0]],
         'by its burn after the turn' => [Ailment::BURN, [true, false, true, false, 1.0]],
@@ -1414,38 +1414,38 @@ describe('fainting and ending', function () {
         $tackle  = Move::factory()->plainDamage()->create(['name' => 'Tackle', 'type' => PokemonType::NORMAL, 'power' => 40]);
 
         $activePikachu = new Combatant(
-            pokemon_id: 'pokemon-1',
-            species_id: $pikachu->id,
+            pokemonId: 'pokemon-1',
+            speciesId: $pikachu->id,
             level: 50,
             boost: 0,
-            is_shiny: false,
+            isShiny: false,
             gender: PokemonGender::MALE,
             types: [PokemonType::ELECTRIC],
-            move_ids: [$tackle->id],
-            max_hp: 218,
-            current_hp: 10,
+            moveIds: [$tackle->id],
+            maxHp: 218,
+            currentHp: 10,
             ailment: null,
-            ailment_turns_left: 0,
-            confusion_turns_left: 0,
-            has_entered_field: true,
-            used_once_per_battle_move_ids: [],
+            ailmentTurnsLeft: 0,
+            confusionTurnsLeft: 0,
+            hasEnteredField: true,
+            usedOncePerBattleMoveIds: [],
         );
         $benchPikachu = new Combatant(
-            pokemon_id: 'pokemon-2',
-            species_id: $pikachu->id,
+            pokemonId: 'pokemon-2',
+            speciesId: $pikachu->id,
             level: 50,
             boost: 0,
-            is_shiny: false,
+            isShiny: false,
             gender: PokemonGender::FEMALE,
             types: [PokemonType::ELECTRIC],
-            move_ids: [$tackle->id],
-            max_hp: 218,
-            current_hp: 218,
+            moveIds: [$tackle->id],
+            maxHp: 218,
+            currentHp: 218,
             ailment: null,
-            ailment_turns_left: 0,
-            confusion_turns_left: 0,
-            has_entered_field: false,
-            used_once_per_battle_move_ids: [],
+            ailmentTurnsLeft: 0,
+            confusionTurnsLeft: 0,
+            hasEnteredField: false,
+            usedOncePerBattleMoveIds: [],
         );
 
         $battle = Battle::factory()->create([
@@ -1453,25 +1453,25 @@ describe('fainting and ending', function () {
             'status' => BattleStatus::ONGOING,
             'state'  => new BattleState(
                 turn: 1,
-                player_side: new BattleSide(combatants: $hasPokemonLeft ? [$activePikachu, $benchPikachu] : [$activePikachu], active_index: 0),
-                opponent_side: new BattleSide(combatants: [new Combatant(
-                    pokemon_id: null,
-                    species_id: $pidgey->id,
+                playerSide: new BattleSide(combatants: $hasPokemonLeft ? [$activePikachu, $benchPikachu] : [$activePikachu], activeIndex: 0),
+                opponentSide: new BattleSide(combatants: [new Combatant(
+                    pokemonId: null,
+                    speciesId: $pidgey->id,
                     level: 50,
                     boost: 0,
-                    is_shiny: false,
+                    isShiny: false,
                     gender: PokemonGender::FEMALE,
                     types: [PokemonType::NORMAL, PokemonType::FLYING],
-                    move_ids: [$tackle->id],
-                    max_hp: 218,
-                    current_hp: 218,
+                    moveIds: [$tackle->id],
+                    maxHp: 218,
+                    currentHp: 218,
                     ailment: null,
-                    ailment_turns_left: 0,
-                    confusion_turns_left: 0,
-                    has_entered_field: true,
-                    used_once_per_battle_move_ids: [],
-                )], active_index: 0),
-                is_awaiting_send_out: false,
+                    ailmentTurnsLeft: 0,
+                    confusionTurnsLeft: 0,
+                    hasEnteredField: true,
+                    usedOncePerBattleMoveIds: [],
+                )], activeIndex: 0),
+                isAwaitingSendOut: false,
                 log: [],
             ),
         ]);
@@ -1481,7 +1481,7 @@ describe('fainting and ending', function () {
         $battle = new TakeTurnAction()->handle($battle, moveSlot: 1)->fresh();
 
         expect($battle?->status)->toBe($expectedStatus)
-            ->and($battle?->state->is_awaiting_send_out)->toBe($expectedIsAwaitingSendOut)
+            ->and($battle?->state->isAwaitingSendOut)->toBe($expectedIsAwaitingSendOut)
             ->and(Event::dispatched(BattleEnded::class)->count())->toBe($expectedLossEvents)
             ->and(Event::dispatched(BattleEnded::class, fn (BattleEnded $event) => $event->status === BattleStatus::LOST && ! $event->isWin)->count())->toBe($expectedLossEvents);
     })->with([

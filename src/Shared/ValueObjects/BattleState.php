@@ -19,15 +19,15 @@ final readonly class BattleState implements ValueObject
 {
     /**
      * @param  list<BattleLogEntry>  $log
-     * @param  list<ExperienceGain>  $experience_gains
+     * @param  list<ExperienceGain>  $experienceGains
      */
     public function __construct(
         public int $turn,
-        public BattleSide $player_side,
-        public BattleSide $opponent_side,
-        public bool $is_awaiting_send_out,
+        public BattleSide $playerSide,
+        public BattleSide $opponentSide,
+        public bool $isAwaitingSendOut,
         public array $log,
-        public array $experience_gains = [],
+        public array $experienceGains = [],
         public ?Area $area = null,
     ) {
         throw_if($turn < 1, InvalidArgumentException::class, "The turn must be at least 1, [{$turn}] given.");
@@ -35,17 +35,17 @@ final readonly class BattleState implements ValueObject
 
     public function withPlayerSide(BattleSide $playerSide): self
     {
-        return new self(...[...get_object_vars($this), 'player_side' => $playerSide]);
+        return new self(...[...get_object_vars($this), 'playerSide' => $playerSide]);
     }
 
     public function withOpponentSide(BattleSide $opponentSide): self
     {
-        return new self(...[...get_object_vars($this), 'opponent_side' => $opponentSide]);
+        return new self(...[...get_object_vars($this), 'opponentSide' => $opponentSide]);
     }
 
     public function withAwaitingSendOut(bool $isAwaitingSendOut): self
     {
-        return new self(...[...get_object_vars($this), 'is_awaiting_send_out' => $isAwaitingSendOut]);
+        return new self(...[...get_object_vars($this), 'isAwaitingSendOut' => $isAwaitingSendOut]);
     }
 
     public function lastPlayedTurn(): int
@@ -79,7 +79,7 @@ final readonly class BattleState implements ValueObject
      */
     public function withExperienceGains(array $experienceGains): self
     {
-        return new self(...[...get_object_vars($this), 'experience_gains' => $experienceGains]);
+        return new self(...[...get_object_vars($this), 'experienceGains' => $experienceGains]);
     }
 
     /**
@@ -89,11 +89,11 @@ final readonly class BattleState implements ValueObject
     {
         return new self(
             turn: $data['turn'],
-            player_side: BattleSide::fromArray($data['player_side']),
-            opponent_side: BattleSide::fromArray($data['opponent_side']),
-            is_awaiting_send_out: $data['is_awaiting_send_out'],
+            playerSide: BattleSide::fromArray($data['player_side']),
+            opponentSide: BattleSide::fromArray($data['opponent_side']),
+            isAwaitingSendOut: $data['is_awaiting_send_out'],
             log: array_map(BattleLogEntry::fromArray(...), $data['log']),
-            experience_gains: array_map(ExperienceGain::fromArray(...), $data['experience_gains']),
+            experienceGains: array_map(ExperienceGain::fromArray(...), $data['experience_gains']),
             area: isset($data['area']) ? Area::from($data['area']) : null,
         );
     }
@@ -105,11 +105,11 @@ final readonly class BattleState implements ValueObject
     {
         return [
             'turn'                 => $this->turn,
-            'player_side'          => $this->player_side->toArray(),
-            'opponent_side'        => $this->opponent_side->toArray(),
-            'is_awaiting_send_out' => $this->is_awaiting_send_out,
+            'player_side'          => $this->playerSide->toArray(),
+            'opponent_side'        => $this->opponentSide->toArray(),
+            'is_awaiting_send_out' => $this->isAwaitingSendOut,
             'log'                  => array_map(fn (BattleLogEntry $entry) => $entry->toArray(), $this->log),
-            'experience_gains'     => array_map(fn (ExperienceGain $gain) => $gain->toArray(), $this->experience_gains),
+            'experience_gains'     => array_map(fn (ExperienceGain $gain) => $gain->toArray(), $this->experienceGains),
             'area'                 => $this->area?->value,
         ];
     }

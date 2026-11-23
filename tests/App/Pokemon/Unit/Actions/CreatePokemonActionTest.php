@@ -29,7 +29,7 @@ it('creates a pokemon', function () {
         newPokemon: new NewPokemon(
             species: $species,
             level: 50,
-            is_shiny: false,
+            isShiny: false,
             gender: $gender,
         ),
         pokeball: $pokeball,
@@ -63,7 +63,7 @@ it('puts the species base moves in active slots 1 to 4', function () {
         newPokemon: new NewPokemon(
             species: $species,
             level: 1,
-            is_shiny: false,
+            isShiny: false,
             gender: $species->getRandomGender(),
         ),
         pokeball: Pokeball::factory()->create(),
@@ -88,7 +88,7 @@ it('gives only four active moves when the species has more base moves', function
         newPokemon: new NewPokemon(
             species: $species,
             level: 1,
-            is_shiny: false,
+            isShiny: false,
             gender: $species->getRandomGender(),
         ),
         pokeball: Pokeball::factory()->create(),
@@ -110,7 +110,7 @@ it('gives as many active moves as the species has base moves, without repeating 
         newPokemon: new NewPokemon(
             species: $species,
             level: 1,
-            is_shiny: false,
+            isShiny: false,
             gender: $species->getRandomGender(),
         ),
         pokeball: Pokeball::factory()->create(),
@@ -136,7 +136,7 @@ it('does not create a pokemon if the owner\'s box is full', function () {
         newPokemon: new NewPokemon(
             species: $species,
             level: 1,
-            is_shiny: false,
+            isShiny: false,
             gender: $species->getRandomGender(),
         ),
         pokeball: $pokeball,
@@ -158,7 +158,7 @@ it('puts the pokemon in the party only when asked and the party has room', funct
         newPokemon: new NewPokemon(
             species: $species,
             level: 1,
-            is_shiny: false,
+            isShiny: false,
             gender: $species->getRandomGender(),
         ),
         pokeball: Pokeball::factory()->create(),

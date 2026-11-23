@@ -156,13 +156,13 @@ final class Species extends Model
         $sprite = null;
 
         if ($gender === PokemonGender::FEMALE && $shiny) {
-            $sprite = $this->sprites->front_shiny_female ?? $this->sprites->front_shiny;
+            $sprite = $this->sprites->frontShinyFemale ?? $this->sprites->frontShiny;
         } elseif ($gender === PokemonGender::FEMALE) {
-            $sprite = $this->sprites->front_female ?? $this->sprites->front_default;
+            $sprite = $this->sprites->frontFemale ?? $this->sprites->frontDefault;
         } elseif ($shiny) {
-            $sprite = $this->sprites->front_shiny;
+            $sprite = $this->sprites->frontShiny;
         } else {
-            $sprite = $this->sprites->front_default;
+            $sprite = $this->sprites->frontDefault;
         }
 
         return (string) $sprite;
@@ -173,13 +173,13 @@ final class Species extends Model
         $sprite = null;
 
         if ($gender === PokemonGender::FEMALE && $shiny) {
-            $sprite = $this->sprites->back_shiny_female ?? $this->sprites->back_shiny;
+            $sprite = $this->sprites->backShinyFemale ?? $this->sprites->backShiny;
         } elseif ($gender === PokemonGender::FEMALE) {
-            $sprite = $this->sprites->back_female ?? $this->sprites->back_default;
+            $sprite = $this->sprites->backFemale ?? $this->sprites->backDefault;
         } elseif ($shiny) {
-            $sprite = $this->sprites->back_shiny;
+            $sprite = $this->sprites->backShiny;
         } else {
-            $sprite = $this->sprites->back_default;
+            $sprite = $this->sprites->backDefault;
         }
 
         return $sprite ?? $this->getDisplayFrontSprite($gender, $shiny);

@@ -17,11 +17,11 @@ final class StatusEffectRoller
             return ActionBlocker::FROZEN;
         }
 
-        if ($combatant->ailment === Ailment::SLEEP && $combatant->ailment_turns_left > 0) {
+        if ($combatant->ailment === Ailment::SLEEP && $combatant->ailmentTurnsLeft > 0) {
             return ActionBlocker::ASLEEP;
         }
 
-        if ($combatant->confusion_turns_left > 0 && RandomHelper::chance((float) config('game.battle.ailments.confusion_self_hit_chance'))) {
+        if ($combatant->confusionTurnsLeft > 0 && RandomHelper::chance((float) config('game.battle.ailments.confusion_self_hit_chance'))) {
             return ActionBlocker::HURT_ITSELF_IN_CONFUSION;
         }
 

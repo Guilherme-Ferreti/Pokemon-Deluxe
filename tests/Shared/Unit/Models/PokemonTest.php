@@ -25,75 +25,75 @@ describe('display front sprite', function () {
     it('returns the front shiny sprite when a male pokemon is shiny', function () {
         $shinyMale = Pokemon::factory()->shiny()->male()->create();
 
-        expect($shinyMale->getDisplayFrontSprite())->toBe($shinyMale->species->sprites->front_shiny);
+        expect($shinyMale->getDisplayFrontSprite())->toBe($shinyMale->species->sprites->frontShiny);
     });
 
     it('returns the front shiny sprite when a genderless pokemon is shiny', function () {
         $shinyGenderless = Pokemon::factory()->shiny()->genderless()->create();
 
-        expect($shinyGenderless->getDisplayFrontSprite())->toBe($shinyGenderless->species->sprites->front_shiny);
+        expect($shinyGenderless->getDisplayFrontSprite())->toBe($shinyGenderless->species->sprites->frontShiny);
     });
 
     it('returns the front shiny female sprite when a female pokemon is shiny', function () {
         $shinyFemale = Pokemon::factory()->shiny()->female()->create();
 
-        expect($shinyFemale->getDisplayFrontSprite())->toBe($shinyFemale->species->sprites->front_shiny_female);
+        expect($shinyFemale->getDisplayFrontSprite())->toBe($shinyFemale->species->sprites->frontShinyFemale);
     });
 
     it('falls back to the front shiny sprite when a shiny female has no female sprite', function () {
         $species = Species::factory()->create([
             'sprites' => new SpeciesSprites(
-                back_default: fake()->imageUrl(),
-                back_female: fake()->imageUrl(),
-                back_shiny: fake()->imageUrl(),
-                back_shiny_female: fake()->imageUrl(),
-                front_default: fake()->imageUrl(),
-                front_female: fake()->imageUrl(),
-                front_shiny: fake()->imageUrl(),
-                front_shiny_female: null,
+                backDefault: fake()->imageUrl(),
+                backFemale: fake()->imageUrl(),
+                backShiny: fake()->imageUrl(),
+                backShinyFemale: fake()->imageUrl(),
+                frontDefault: fake()->imageUrl(),
+                frontFemale: fake()->imageUrl(),
+                frontShiny: fake()->imageUrl(),
+                frontShinyFemale: null,
             ),
         ]);
 
         $shinyFemale = Pokemon::factory()->for($species)->shiny()->female()->create();
 
-        expect($shinyFemale->getDisplayFrontSprite())->toBe($shinyFemale->species->sprites->front_shiny);
+        expect($shinyFemale->getDisplayFrontSprite())->toBe($shinyFemale->species->sprites->frontShiny);
     });
 
     it('returns the front default sprite when a male pokemon is regular', function () {
         $male = Pokemon::factory()->regular()->male()->create();
 
-        expect($male->getDisplayFrontSprite())->toBe($male->species->sprites->front_default);
+        expect($male->getDisplayFrontSprite())->toBe($male->species->sprites->frontDefault);
     });
 
     it('returns the front default sprite when a genderless pokemon is regular', function () {
         $genderless = Pokemon::factory()->regular()->genderless()->create();
 
-        expect($genderless->getDisplayFrontSprite())->toBe($genderless->species->sprites->front_default);
+        expect($genderless->getDisplayFrontSprite())->toBe($genderless->species->sprites->frontDefault);
     });
 
     it('returns the front female sprite when a female pokemon is regular', function () {
         $female = Pokemon::factory()->regular()->female()->create();
 
-        expect($female->getDisplayFrontSprite())->toBe($female->species->sprites->front_female);
+        expect($female->getDisplayFrontSprite())->toBe($female->species->sprites->frontFemale);
     });
 
     it('falls back to the front default sprite when a regular female has no female sprite', function () {
         $species = Species::factory()->create([
             'sprites' => new SpeciesSprites(
-                back_default: fake()->imageUrl(),
-                back_female: fake()->imageUrl(),
-                back_shiny: fake()->imageUrl(),
-                back_shiny_female: fake()->imageUrl(),
-                front_default: fake()->imageUrl(),
-                front_female: null,
-                front_shiny: fake()->imageUrl(),
-                front_shiny_female: fake()->imageUrl(),
+                backDefault: fake()->imageUrl(),
+                backFemale: fake()->imageUrl(),
+                backShiny: fake()->imageUrl(),
+                backShinyFemale: fake()->imageUrl(),
+                frontDefault: fake()->imageUrl(),
+                frontFemale: null,
+                frontShiny: fake()->imageUrl(),
+                frontShinyFemale: fake()->imageUrl(),
             ),
         ]);
 
         $female = Pokemon::factory()->for($species)->regular()->female()->create();
 
-        expect($female->getDisplayFrontSprite())->toBe($female->species->sprites->front_default);
+        expect($female->getDisplayFrontSprite())->toBe($female->species->sprites->frontDefault);
     });
 });
 

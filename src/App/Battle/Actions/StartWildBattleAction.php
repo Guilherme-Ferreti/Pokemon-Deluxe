@@ -61,11 +61,11 @@ final class StartWildBattleAction
             'status'  => BattleStatus::ONGOING,
             'state'   => new BattleState(
                 turn: 1,
-                player_side: new BattleSide(combatants: $this->buildPlayerCombatants(), active_index: 0),
-                opponent_side: new BattleSide(combatants: [$this->buildWildCombatant()], active_index: 0),
-                is_awaiting_send_out: false,
+                playerSide: new BattleSide(combatants: $this->buildPlayerCombatants(), activeIndex: 0),
+                opponentSide: new BattleSide(combatants: [$this->buildWildCombatant()], activeIndex: 0),
+                isAwaitingSendOut: false,
                 log: [
-                    new BattleLogEntry(0, BattleLogKind::INFO, "A wild {$this->wildPokemon->species->getDisplayName($this->wildPokemon->is_shiny)} appeared!"),
+                    new BattleLogEntry(0, BattleLogKind::INFO, "A wild {$this->wildPokemon->species->getDisplayName($this->wildPokemon->isShiny)} appeared!"),
                     new BattleLogEntry(0, BattleLogKind::EVENT, "Go! {$this->partyPokemon->firstOrFail()->getDisplayName()}!"),
                 ],
                 area: $this->area,
@@ -110,45 +110,45 @@ final class StartWildBattleAction
         $maxHp = $pokemon->getStats()->hp;
 
         return new Combatant(
-            pokemon_id: $pokemon->id,
-            species_id: $pokemon->species_id,
+            pokemonId: $pokemon->id,
+            speciesId: $pokemon->species_id,
             level: $pokemon->level,
             boost: $pokemon->boost,
-            is_shiny: $pokemon->is_shiny,
+            isShiny: $pokemon->is_shiny,
             gender: $pokemon->gender,
             types: array_values($pokemon->species->types->all()),
-            move_ids: array_values($pokemon->activeMoves->map(fn (Move $move) => $move->id)->all()),
-            max_hp: $maxHp,
-            current_hp: $maxHp,
+            moveIds: array_values($pokemon->activeMoves->map(fn (Move $move) => $move->id)->all()),
+            maxHp: $maxHp,
+            currentHp: $maxHp,
             ailment: null,
-            ailment_turns_left: 0,
-            confusion_turns_left: 0,
-            has_entered_field: $isFirst,
-            used_once_per_battle_move_ids: [],
+            ailmentTurnsLeft: 0,
+            confusionTurnsLeft: 0,
+            hasEnteredField: $isFirst,
+            usedOncePerBattleMoveIds: [],
         );
     }
 
     private function buildWildCombatant(): Combatant
     {
         $species = $this->wildPokemon->species;
-        $maxHp   = new StatsCalculator()->calculate($this->wildPokemon->level, boost: 0, isShiny: $this->wildPokemon->is_shiny)->hp;
+        $maxHp   = new StatsCalculator()->calculate($this->wildPokemon->level, boost: 0, isShiny: $this->wildPokemon->isShiny)->hp;
 
         return new Combatant(
-            pokemon_id: null,
-            species_id: $species->id,
+            pokemonId: null,
+            speciesId: $species->id,
             level: $this->wildPokemon->level,
             boost: 0,
-            is_shiny: $this->wildPokemon->is_shiny,
+            isShiny: $this->wildPokemon->isShiny,
             gender: $this->wildPokemon->gender,
             types: array_values($species->types->all()),
-            move_ids: $this->wildMoveIds(),
-            max_hp: $maxHp,
-            current_hp: $maxHp,
+            moveIds: $this->wildMoveIds(),
+            maxHp: $maxHp,
+            currentHp: $maxHp,
             ailment: null,
-            ailment_turns_left: 0,
-            confusion_turns_left: 0,
-            has_entered_field: true,
-            used_once_per_battle_move_ids: [],
+            ailmentTurnsLeft: 0,
+            confusionTurnsLeft: 0,
+            hasEnteredField: true,
+            usedOncePerBattleMoveIds: [],
         );
     }
 

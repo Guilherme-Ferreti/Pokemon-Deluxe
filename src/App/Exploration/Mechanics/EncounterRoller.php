@@ -24,7 +24,7 @@ final class EncounterRoller
         return new NewPokemon(
             species: $species,
             level: RandomHelper::integer((int) $species->wild_min_level, (int) $species->wild_max_level),
-            is_shiny: RandomHelper::chance((float) config('game.pokemon.shiny_chance')),
+            isShiny: RandomHelper::chance((float) config('game.pokemon.shiny_chance')),
             gender: $species->getRandomGender(),
         );
     }

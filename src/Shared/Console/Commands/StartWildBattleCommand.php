@@ -33,7 +33,7 @@ final class StartWildBattleCommand extends Command
             $battle = new StartWildBattleAction()->handle($user, new NewPokemon(
                 species: $species,
                 level: (int) $this->argument('level'),
-                is_shiny: (bool) $this->option('shiny'),
+                isShiny: (bool) $this->option('shiny'),
                 gender: $species->getRandomGender(),
             ), Area::fromType($species->types->firstOrFail()));
         } catch (DomainException $exception) {

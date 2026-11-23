@@ -168,7 +168,7 @@ describe('from incubation', function () {
 
         expect($pokemon->species->is($species))->toBeTrue()
             ->and($pokemon->level)->toBe(1)
-            ->and($pokemon->is_shiny)->toBe($incubation->is_shiny)
+            ->and($pokemon->isShiny)->toBe($incubation->is_shiny)
             ->and($pokemon->gender)->toBe($incubation->gender);
     });
 });

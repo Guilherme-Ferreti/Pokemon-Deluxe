@@ -18,13 +18,13 @@ final class CheckConfusion
     {
         $attacker = $action->attacker();
 
-        $action->isConfusionChecked = $attacker->confusion_turns_left > 0
+        $action->isConfusionChecked = $attacker->confusionTurnsLeft > 0
             && ! in_array($action->blocker, [ActionBlocker::FROZEN, ActionBlocker::ASLEEP], true);
 
         if ($action->isConfusionChecked) {
             $action->turn->log(BattleLogKind::EVENT, "{$action->turn->displayName($action->side, atStart: true)} is confused!");
 
-            $action->turn->replaceActiveCombatant($action->side, $attacker->withConfusionTurnsLeft($attacker->confusion_turns_left - 1));
+            $action->turn->replaceActiveCombatant($action->side, $attacker->withConfusionTurnsLeft($attacker->confusionTurnsLeft - 1));
         }
 
         return $next($action);

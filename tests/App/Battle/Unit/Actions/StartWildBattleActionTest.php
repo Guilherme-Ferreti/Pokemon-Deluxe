@@ -33,45 +33,45 @@ it('starts a wild battle with the party against the wild pokemon', function () {
     $battle = new StartWildBattleAction()->handle($user, new NewPokemon(
         species: $pidgeySpecies,
         level: 12,
-        is_shiny: false,
+        isShiny: false,
         gender: PokemonGender::FEMALE,
     ), Area::COAST);
 
     $state          = $battle->fresh()?->state;
-    $playerSide     = $state?->player_side;
-    $wildCombatant  = $state?->opponent_side->activeCombatant();
+    $playerSide     = $state?->playerSide;
+    $wildCombatant  = $state?->opponentSide->activeCombatant();
     $firstCombatant = $playerSide?->activeCombatant();
 
     expect($battle->user_id)->toBe($user->id)
         ->and($battle->type)->toBe(BattleType::WILD)
         ->and($battle->status)->toBe(BattleStatus::ONGOING)
         ->and($state?->turn)->toBe(1)
-        ->and($state?->is_awaiting_send_out)->toBeFalse()
+        ->and($state?->isAwaitingSendOut)->toBeFalse()
         ->and($state?->area)->toBe(Area::COAST)
         ->and($state?->log)->toEqual([
             new BattleLogEntry(0, BattleLogKind::INFO, 'A wild Pidgey appeared!'),
             new BattleLogEntry(0, BattleLogKind::EVENT, 'Go! Shiny Pikachu!'),
         ])
-        ->and(array_map(fn ($combatant) => $combatant->pokemon_id, $playerSide->combatants ?? []))->toBe([$firstPartyPokemon->id, $secondPartyPokemon->id])
-        ->and($playerSide?->active_index)->toBe(0)
+        ->and(array_map(fn ($combatant) => $combatant->pokemonId, $playerSide->combatants ?? []))->toBe([$firstPartyPokemon->id, $secondPartyPokemon->id])
+        ->and($playerSide?->activeIndex)->toBe(0)
         ->and($firstCombatant?->level)->toBe(50)
         ->and($firstCombatant?->boost)->toBe(20)
-        ->and($firstCombatant?->is_shiny)->toBeTrue()
+        ->and($firstCombatant?->isShiny)->toBeTrue()
         ->and($firstCombatant?->types)->toBe([PokemonType::ELECTRIC])
-        ->and($firstCombatant?->move_ids)->toBe($firstPartyPokemon->activeMoves()->pluck('moves.id')->all())
-        ->and($firstCombatant?->max_hp)->toBe($firstPartyPokemon->getStats()->hp)
-        ->and($firstCombatant?->current_hp)->toBe($firstPartyPokemon->getStats()->hp)
-        ->and($firstCombatant?->has_entered_field)->toBeTrue()
-        ->and($playerSide?->combatants[1]->has_entered_field)->toBeFalse()
-        ->and($wildCombatant?->pokemon_id)->toBeNull()
-        ->and($wildCombatant?->species_id)->toBe($pidgeySpecies->id)
+        ->and($firstCombatant?->moveIds)->toBe($firstPartyPokemon->activeMoves()->pluck('moves.id')->all())
+        ->and($firstCombatant?->maxHp)->toBe($firstPartyPokemon->getStats()->hp)
+        ->and($firstCombatant?->currentHp)->toBe($firstPartyPokemon->getStats()->hp)
+        ->and($firstCombatant?->hasEnteredField)->toBeTrue()
+        ->and($playerSide?->combatants[1]->hasEnteredField)->toBeFalse()
+        ->and($wildCombatant?->pokemonId)->toBeNull()
+        ->and($wildCombatant?->speciesId)->toBe($pidgeySpecies->id)
         ->and($wildCombatant?->level)->toBe(12)
         ->and($wildCombatant?->boost)->toBe(0)
         ->and($wildCombatant?->gender)->toBe(PokemonGender::FEMALE)
         ->and($wildCombatant?->types)->toBe([PokemonType::NORMAL, PokemonType::FLYING])
-        ->and($wildCombatant?->move_ids)->toHaveCount(4)
-        ->and($pidgeySpecies->baseMoves()->pluck('moves.id')->all())->toContain(...$wildCombatant->move_ids ?? [])
-        ->and($wildCombatant?->current_hp)->toBe($wildCombatant?->max_hp);
+        ->and($wildCombatant?->moveIds)->toHaveCount(4)
+        ->and($pidgeySpecies->baseMoves()->pluck('moves.id')->all())->toContain(...$wildCombatant->moveIds ?? [])
+        ->and($wildCombatant?->currentHp)->toBe($wildCombatant?->maxHp);
 });
 
 it('refuses to start a battle while another one is ongoing', function () {
@@ -82,7 +82,7 @@ it('refuses to start a battle while another one is ongoing', function () {
     expect(fn () => new StartWildBattleAction()->handle($user, new NewPokemon(
         species: Species::factory()->withBaseMoves()->create(['gender_rate' => PokemonGenderRate::EQUAL]),
         level: 5,
-        is_shiny: false,
+        isShiny: false,
         gender: PokemonGender::MALE,
     ), Area::MEADOW))->toThrow(BattleAlreadyInProgressException::class);
 
@@ -97,7 +97,7 @@ it('starts a battle when the previous one has ended', function () {
     new StartWildBattleAction()->handle($user, new NewPokemon(
         species: Species::factory()->withBaseMoves()->create(['gender_rate' => PokemonGenderRate::EQUAL]),
         level: 5,
-        is_shiny: false,
+        isShiny: false,
         gender: PokemonGender::MALE,
     ), Area::MEADOW);
 
@@ -111,7 +111,7 @@ it('refuses to start a battle with an empty party', function () {
     expect(fn () => new StartWildBattleAction()->handle($user, new NewPokemon(
         species: Species::factory()->withBaseMoves()->create(['gender_rate' => PokemonGenderRate::EQUAL]),
         level: 5,
-        is_shiny: false,
+        isShiny: false,
         gender: PokemonGender::MALE,
     ), Area::MEADOW))->toThrow(EmptyPartyException::class);
 

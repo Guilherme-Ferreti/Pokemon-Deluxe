@@ -17,7 +17,7 @@ final class AilmentInflictionChecker
         }
 
         if ($ailment === Ailment::CONFUSION) {
-            return $target->confusion_turns_left === 0;
+            return $target->confusionTurnsLeft === 0;
         }
 
         if ($target->ailment instanceof Ailment) {

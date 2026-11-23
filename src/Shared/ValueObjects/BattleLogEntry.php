@@ -17,12 +17,12 @@ final readonly class BattleLogEntry implements ValueObject
         public int $turn,
         public BattleLogKind $kind,
         public string $text,
-        public ?string $move_name = null,
+        public ?string $moveName = null,
     ) {
         throw_if($turn < 0, InvalidArgumentException::class, "The turn cannot be negative, [{$turn}] given.");
 
         throw_if(
-            ($kind === BattleLogKind::MOVE) !== ($move_name !== null),
+            ($kind === BattleLogKind::MOVE) !== ($moveName !== null),
             InvalidArgumentException::class,
             'Only a move entry has a move name, and every move entry has one.',
         );
@@ -37,7 +37,7 @@ final readonly class BattleLogEntry implements ValueObject
             turn: $data['turn'],
             kind: BattleLogKind::from($data['kind']),
             text: $data['text'],
-            move_name: $data['move_name'],
+            moveName: $data['move_name'],
         );
     }
 
@@ -50,7 +50,7 @@ final readonly class BattleLogEntry implements ValueObject
             'turn'      => $this->turn,
             'kind'      => $this->kind->value,
             'text'      => $this->text,
-            'move_name' => $this->move_name,
+            'move_name' => $this->moveName,
         ];
     }
 

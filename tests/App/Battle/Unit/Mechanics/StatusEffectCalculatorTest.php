@@ -11,21 +11,21 @@ use Shared\ValueObjects\Combatant;
 
 it('deals end-of-turn damage from burn and poison', function (?Ailment $ailment, int $maxHp, int $currentHp, int $expectedDamage) {
     $combatant = new Combatant(
-        pokemon_id: null,
-        species_id: 'species-1',
+        pokemonId: null,
+        speciesId: 'species-1',
         level: 50,
         boost: 0,
-        is_shiny: false,
+        isShiny: false,
         gender: PokemonGender::MALE,
         types: [PokemonType::NORMAL],
-        move_ids: ['move-1'],
-        max_hp: $maxHp,
-        current_hp: $currentHp,
+        moveIds: ['move-1'],
+        maxHp: $maxHp,
+        currentHp: $currentHp,
         ailment: $ailment,
-        ailment_turns_left: 0,
-        confusion_turns_left: 0,
-        has_entered_field: true,
-        used_once_per_battle_move_ids: [],
+        ailmentTurnsLeft: 0,
+        confusionTurnsLeft: 0,
+        hasEnteredField: true,
+        usedOncePerBattleMoveIds: [],
     );
 
     expect(new StatusEffectCalculator()->endOfTurnDamage($combatant))->toBe($expectedDamage);

@@ -32,14 +32,14 @@ it('starts a wild battle against the encounter and deletes it', function () {
     $battle = new BattleEncounterAction()->handle($user);
 
     $state         = $battle->fresh()?->state;
-    $wildCombatant = $state?->opponent_side->activeCombatant();
+    $wildCombatant = $state?->opponentSide->activeCombatant();
 
     expect($battle->type)->toBe(BattleType::WILD)
         ->and($battle->status)->toBe(BattleStatus::ONGOING)
         ->and($state?->area)->toBe(Area::FOREST)
-        ->and($wildCombatant?->species_id)->toBe($species->id)
+        ->and($wildCombatant?->speciesId)->toBe($species->id)
         ->and($wildCombatant?->level)->toBe(9)
-        ->and($wildCombatant?->is_shiny)->toBeTrue()
+        ->and($wildCombatant?->isShiny)->toBeTrue()
         ->and($wildCombatant?->gender)->toBe(PokemonGender::FEMALE);
     assertDatabaseCount(Battle::class, 1);
     assertDatabaseCount(Encounter::class, 0);

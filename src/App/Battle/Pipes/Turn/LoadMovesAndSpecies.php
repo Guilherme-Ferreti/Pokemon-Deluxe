@@ -17,18 +17,18 @@ final class LoadMovesAndSpecies
      */
     public function handle(TurnData $turn, Closure $next): TurnData
     {
-        $playerCombatant   = $turn->state->player_side->activeCombatant();
-        $opponentCombatant = $turn->state->opponent_side->activeCombatant();
+        $playerCombatant   = $turn->state->playerSide->activeCombatant();
+        $opponentCombatant = $turn->state->opponentSide->activeCombatant();
 
         $turn->moves = Move::query()
-            ->whereKey([...$playerCombatant->move_ids, ...$opponentCombatant->move_ids])
+            ->whereKey([...$playerCombatant->moveIds, ...$opponentCombatant->moveIds])
             ->get()
             ->keyBy('id');
 
         $turn->species = Species::query()
             ->whereKey([
-                ...array_map(fn (Combatant $combatant) => $combatant->species_id, $turn->state->player_side->combatants),
-                $opponentCombatant->species_id,
+                ...array_map(fn (Combatant $combatant) => $combatant->speciesId, $turn->state->playerSide->combatants),
+                $opponentCombatant->speciesId,
             ])
             ->get(['id', 'name', 'is_gmax'])
             ->keyBy('id');

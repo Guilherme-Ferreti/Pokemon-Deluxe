@@ -33,21 +33,21 @@ it('switches to the chosen pokemon', function () {
     $tackle  = Move::factory()->plainDamage()->create(['name' => 'Tackle', 'type' => PokemonType::NORMAL, 'power' => 40]);
 
     $combatant = [
-        'pokemon_id'                    => 'pokemon-1',
-        'species_id'                    => $pikachu->id,
-        'level'                         => 50,
-        'boost'                         => 0,
-        'is_shiny'                      => false,
-        'gender'                        => PokemonGender::MALE,
-        'types'                         => [PokemonType::ELECTRIC],
-        'move_ids'                      => [$tackle->id],
-        'max_hp'                        => 218,
-        'current_hp'                    => 218,
-        'ailment'                       => null,
-        'ailment_turns_left'            => 0,
-        'confusion_turns_left'          => 0,
-        'has_entered_field'             => true,
-        'used_once_per_battle_move_ids' => [],
+        'pokemonId'                => 'pokemon-1',
+        'speciesId'                => $pikachu->id,
+        'level'                    => 50,
+        'boost'                    => 0,
+        'isShiny'                  => false,
+        'gender'                   => PokemonGender::MALE,
+        'types'                    => [PokemonType::ELECTRIC],
+        'moveIds'                  => [$tackle->id],
+        'maxHp'                    => 218,
+        'currentHp'                => 218,
+        'ailment'                  => null,
+        'ailmentTurnsLeft'         => 0,
+        'confusionTurnsLeft'       => 0,
+        'hasEnteredField'          => true,
+        'usedOncePerBattleMoveIds' => [],
     ];
 
     $battle = Battle::factory()->for($user)->create([
@@ -55,14 +55,14 @@ it('switches to the chosen pokemon', function () {
         'status' => BattleStatus::ONGOING,
         'state'  => new BattleState(
             turn: 2,
-            player_side: new BattleSide(combatants: [
+            playerSide: new BattleSide(combatants: [
                 new Combatant(...$combatant),
-                new Combatant(...[...$combatant, 'pokemon_id' => 'pokemon-2', 'species_id' => $eevee->id, 'types' => [PokemonType::NORMAL], 'has_entered_field' => false]),
-            ], active_index: 0),
-            opponent_side: new BattleSide(combatants: [
-                new Combatant(...[...$combatant, 'pokemon_id' => null, 'species_id' => $pidgey->id, 'types' => [PokemonType::NORMAL, PokemonType::FLYING]]),
-            ], active_index: 0),
-            is_awaiting_send_out: false,
+                new Combatant(...[...$combatant, 'pokemonId' => 'pokemon-2', 'speciesId' => $eevee->id, 'types' => [PokemonType::NORMAL], 'hasEnteredField' => false]),
+            ], activeIndex: 0),
+            opponentSide: new BattleSide(combatants: [
+                new Combatant(...[...$combatant, 'pokemonId' => null, 'speciesId' => $pidgey->id, 'types' => [PokemonType::NORMAL, PokemonType::FLYING]]),
+            ], activeIndex: 0),
+            isAwaitingSendOut: false,
             log: [],
         ),
     ]);
@@ -78,7 +78,7 @@ it('switches to the chosen pokemon', function () {
     $state = $battle->fresh()?->state;
 
     expect($state?->turn)->toBe(3)
-        ->and($state?->player_side->active_index)->toBe(1)
+        ->and($state?->playerSide->activeIndex)->toBe(1)
         ->and($state?->log)->toEqual([
             new BattleLogEntry(2, BattleLogKind::EVENT, 'You switched Pokémon to Eevee.'),
             new BattleLogEntry(2, BattleLogKind::MOVE, 'The wild Pidgey used Tackle!', 'Tackle'),

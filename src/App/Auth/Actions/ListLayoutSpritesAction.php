@@ -35,8 +35,8 @@ final class ListLayoutSpritesAction
             ->limit(49)
             ->pluck('sprites')
             ->map(fn (SpeciesSprites $sprites) => RandomHelper::chance(1)
-                ? $sprites->front_shiny
-                : $sprites->front_default
+                ? $sprites->frontShiny
+                : $sprites->frontDefault
             )
             ->toArray();
     }

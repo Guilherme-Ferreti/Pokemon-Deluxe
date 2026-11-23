@@ -26,7 +26,7 @@ final class StatusEffectCalculator
             return 0;
         }
 
-        return max(1, (int) floor($combatant->max_hp * $maxHpPercentage / 100));
+        return max(1, (int) floor($combatant->maxHp * $maxHpPercentage / 100));
     }
 
     public function confusionSelfHitDamage(PokemonStats $stats): int

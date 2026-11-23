@@ -17,8 +17,8 @@ final class CreditOpponentKnockout
     {
         $opponent = $turn->activeCombatant(Side::OPPONENT);
 
-        if ($opponent->isFainted() && $opponent->knocked_out_by === null) {
-            $turn->replaceActiveCombatant(Side::OPPONENT, $opponent->withKnockedOutBy($turn->state->player_side->active_index));
+        if ($opponent->isFainted() && $opponent->knockedOutBy === null) {
+            $turn->replaceActiveCombatant(Side::OPPONENT, $opponent->withKnockedOutBy($turn->state->playerSide->activeIndex));
         }
 
         return $next($turn);

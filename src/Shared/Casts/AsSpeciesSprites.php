@@ -17,28 +17,28 @@ final class AsSpeciesSprites implements CastsAttributes
     {
         if (! is_string($value) || ! is_array($value = json_decode($value, true))) {
             return new SpeciesSprites(...[
-                'back_default'       => null,
-                'back_female'        => null,
-                'back_shiny'         => null,
-                'back_shiny_female'  => null,
-                'front_default'      => null,
-                'front_female'       => null,
-                'front_shiny'        => null,
-                'front_shiny_female' => null,
+                'backDefault'      => null,
+                'backFemale'       => null,
+                'backShiny'        => null,
+                'backShinyFemale'  => null,
+                'frontDefault'     => null,
+                'frontFemale'      => null,
+                'frontShiny'       => null,
+                'frontShinyFemale' => null,
             ]);
         }
 
         $sprites = array_map(fn ($item) => is_string($item) ? $item : null, $value);
 
         return new SpeciesSprites(...[
-            'back_default'       => $sprites['back_default'] ?? null,
-            'back_female'        => $sprites['back_female'] ?? null,
-            'back_shiny'         => $sprites['back_shiny'] ?? null,
-            'back_shiny_female'  => $sprites['back_shiny_female'] ?? null,
-            'front_default'      => $sprites['front_default'] ?? null,
-            'front_female'       => $sprites['front_female'] ?? null,
-            'front_shiny'        => $sprites['front_shiny'] ?? null,
-            'front_shiny_female' => $sprites['front_shiny_female'] ?? null,
+            'backDefault'      => $sprites['back_default'] ?? null,
+            'backFemale'       => $sprites['back_female'] ?? null,
+            'backShiny'        => $sprites['back_shiny'] ?? null,
+            'backShinyFemale'  => $sprites['back_shiny_female'] ?? null,
+            'frontDefault'     => $sprites['front_default'] ?? null,
+            'frontFemale'      => $sprites['front_female'] ?? null,
+            'frontShiny'       => $sprites['front_shiny'] ?? null,
+            'frontShinyFemale' => $sprites['front_shiny_female'] ?? null,
         ]);
     }
 
@@ -47,14 +47,14 @@ final class AsSpeciesSprites implements CastsAttributes
         throw_if(! $value instanceof SpeciesSprites, InvalidArgumentException::class, sprintf("[{$key}] must be an instance of [%s]", SpeciesSprites::class));
 
         return (string) json_encode([
-            'back_default'       => $value->back_default,
-            'back_female'        => $value->back_female,
-            'back_shiny'         => $value->back_shiny,
-            'back_shiny_female'  => $value->back_shiny_female,
-            'front_default'      => $value->front_default,
-            'front_female'       => $value->front_female,
-            'front_shiny'        => $value->front_shiny,
-            'front_shiny_female' => $value->front_shiny_female,
+            'back_default'       => $value->backDefault,
+            'back_female'        => $value->backFemale,
+            'back_shiny'         => $value->backShiny,
+            'back_shiny_female'  => $value->backShinyFemale,
+            'front_default'      => $value->frontDefault,
+            'front_female'       => $value->frontFemale,
+            'front_shiny'        => $value->frontShiny,
+            'front_shiny_female' => $value->frontShinyFemale,
         ]);
     }
 }

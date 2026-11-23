@@ -98,7 +98,7 @@ final class ThrowBallAction
 
     private function ensureBattleIsReadyForTurn(): void
     {
-        $isReady = $this->battle->status === BattleStatus::ONGOING && ! $this->battle->state->is_awaiting_send_out;
+        $isReady = $this->battle->status === BattleStatus::ONGOING && ! $this->battle->state->isAwaitingSendOut;
 
         throw_unless($isReady, BattleNotReadyForTurnException::class);
     }
@@ -112,12 +112,12 @@ final class ThrowBallAction
 
     private function loadWildSpecies(): void
     {
-        $this->wildSpecies = Species::query()->with('evolutions.evolutionItem')->findOrFail($this->wildCombatant()->species_id);
+        $this->wildSpecies = Species::query()->with('evolutions.evolutionItem')->findOrFail($this->wildCombatant()->speciesId);
     }
 
     private function wildCombatant(): Combatant
     {
-        return $this->battle->state->opponent_side->activeCombatant();
+        return $this->battle->state->opponentSide->activeCombatant();
     }
 
     private function rollIsCaught(): bool
@@ -132,8 +132,8 @@ final class ThrowBallAction
 
         $catchChance = new CatchChanceCalculator()->calculate(
             $this->wildSpecies,
-            $wildCombatant->current_hp,
-            $wildCombatant->max_hp,
+            $wildCombatant->currentHp,
+            $wildCombatant->maxHp,
             $wildCombatant->ailment,
             $ballMultiplierCalculator->multiplier($this->pokeball, $this->catchContext()),
         );
@@ -144,7 +144,7 @@ final class ThrowBallAction
     private function catchContext(): CatchContext
     {
         $wildCombatant   = $this->wildCombatant();
-        $activeCombatant = $this->battle->state->player_side->activeCombatant();
+        $activeCombatant = $this->battle->state->playerSide->activeCombatant();
 
         return new CatchContext(
             turn: $this->battle->state->turn,
@@ -154,10 +154,10 @@ final class ThrowBallAction
             wildLevel: $wildCombatant->level,
             wildGender: $wildCombatant->gender,
             wildAilment: $wildCombatant->ailment,
-            activeSpecies: Species::query()->findOrFail($activeCombatant->species_id),
+            activeSpecies: Species::query()->findOrFail($activeCombatant->speciesId),
             activeLevel: $activeCombatant->level,
             activeGender: $activeCombatant->gender,
-            playerOwnsSpecies: $this->user->pokemon()->where('species_id', $wildCombatant->species_id)->exists(),
+            playerOwnsSpecies: $this->user->pokemon()->where('species_id', $wildCombatant->speciesId)->exists(),
         );
     }
 
@@ -175,7 +175,7 @@ final class ThrowBallAction
 
         $this->caughtPokemon = new CreatePokemonAction()->handle(
             owner: $this->user,
-            newPokemon: new NewPokemon($wildSpecies, $wildCombatant->level, $wildCombatant->is_shiny, $wildCombatant->gender),
+            newPokemon: new NewPokemon($wildSpecies, $wildCombatant->level, $wildCombatant->isShiny, $wildCombatant->gender),
             pokeball: $this->pokeball,
             joinPartyIfRoom: true,
         );
@@ -185,7 +185,7 @@ final class ThrowBallAction
         $this->battle->update([
             'state' => $this->battle->state->withLogEntries([
                 new BattleLogEntry($turn, BattleLogKind::EVENT, $this->thrownBallText()),
-                new BattleLogEntry($turn, BattleLogKind::RESULT, "Gotcha! {$wildSpecies->getDisplayName($wildCombatant->is_shiny)} was caught!"),
+                new BattleLogEntry($turn, BattleLogKind::RESULT, "Gotcha! {$wildSpecies->getDisplayName($wildCombatant->isShiny)} was caught!"),
             ]),
         ]);
 

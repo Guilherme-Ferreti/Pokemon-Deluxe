@@ -10,21 +10,21 @@ use Shared\ValueObjects\Combatant;
 
 it('allows an ailment only when the target can still get it', function (Ailment $ailment, array $targetTypes, ?Ailment $currentAilment, int $confusionTurnsLeft, int $currentHp, bool $canInflict) {
     $target = new Combatant(
-        pokemon_id: null,
-        species_id: 'species-1',
+        pokemonId: null,
+        speciesId: 'species-1',
         level: 50,
         boost: 0,
-        is_shiny: false,
+        isShiny: false,
         gender: PokemonGender::MALE,
         types: array_values($targetTypes),
-        move_ids: ['move-1'],
-        max_hp: 218,
-        current_hp: $currentHp,
+        moveIds: ['move-1'],
+        maxHp: 218,
+        currentHp: $currentHp,
         ailment: $currentAilment,
-        ailment_turns_left: 0,
-        confusion_turns_left: $confusionTurnsLeft,
-        has_entered_field: true,
-        used_once_per_battle_move_ids: [],
+        ailmentTurnsLeft: 0,
+        confusionTurnsLeft: $confusionTurnsLeft,
+        hasEnteredField: true,
+        usedOncePerBattleMoveIds: [],
     );
 
     expect(new AilmentInflictionChecker()->canInflict($ailment, $target))->toBe($canInflict);

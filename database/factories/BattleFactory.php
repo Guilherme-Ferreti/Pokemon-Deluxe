@@ -32,9 +32,9 @@ final class BattleFactory extends Factory
             'status'  => BattleStatus::ONGOING,
             'state'   => fn () => new BattleState(
                 turn: 1,
-                player_side: new BattleSide(combatants: [$this->makeCombatant(pokemonId: fake()->uuid())], active_index: 0),
-                opponent_side: new BattleSide(combatants: [$this->makeCombatant(pokemonId: null)], active_index: 0),
-                is_awaiting_send_out: false,
+                playerSide: new BattleSide(combatants: [$this->makeCombatant(pokemonId: fake()->uuid())], activeIndex: 0),
+                opponentSide: new BattleSide(combatants: [$this->makeCombatant(pokemonId: null)], activeIndex: 0),
+                isAwaitingSendOut: false,
                 log: [],
             ),
         ];
@@ -47,21 +47,21 @@ final class BattleFactory extends Factory
         $maxHp   = new StatsCalculator()->calculate($level, boost: 0, isShiny: $isShiny)->hp;
 
         return new Combatant(
-            pokemon_id: $pokemonId,
-            species_id: fake()->uuid(),
+            pokemonId: $pokemonId,
+            speciesId: fake()->uuid(),
             level: $level,
             boost: 0,
-            is_shiny: $isShiny,
+            isShiny: $isShiny,
             gender: fake()->randomElement([PokemonGender::MALE, PokemonGender::FEMALE]),
             types: [fake()->randomElement(PokemonType::cases())],
-            move_ids: [fake()->uuid(), fake()->uuid()],
-            max_hp: $maxHp,
-            current_hp: $maxHp,
+            moveIds: [fake()->uuid(), fake()->uuid()],
+            maxHp: $maxHp,
+            currentHp: $maxHp,
             ailment: null,
-            ailment_turns_left: 0,
-            confusion_turns_left: 0,
-            has_entered_field: $pokemonId !== null,
-            used_once_per_battle_move_ids: [],
+            ailmentTurnsLeft: 0,
+            confusionTurnsLeft: 0,
+            hasEnteredField: $pokemonId !== null,
+            usedOncePerBattleMoveIds: [],
         );
     }
 }

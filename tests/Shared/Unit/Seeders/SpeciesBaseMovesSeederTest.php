@@ -33,7 +33,7 @@ it('gives a new Ditto four active moves', function () {
 
     $pokemon = new CreatePokemonAction()->handle(
         User::factory()->create(),
-        new NewPokemon(species: $ditto, level: 5, is_shiny: false, gender: PokemonGender::GENDERLESS),
+        new NewPokemon(species: $ditto, level: 5, isShiny: false, gender: PokemonGender::GENDERLESS),
         Pokeball::factory()->create(),
     );
 

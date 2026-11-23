@@ -62,10 +62,10 @@ final readonly class PokedexShowPageProps implements ProvidesInertiaProperties
             'genus'         => $this->species->genus,
             'textEntry'     => $this->species->text_entry,
             'sprites'       => [
-                'frontDefault'     => $this->species->sprites->front_default,
-                'frontFemale'      => $this->species->sprites->front_female,
-                'frontShiny'       => $this->species->sprites->front_shiny,
-                'frontShinyFemale' => $this->species->sprites->front_shiny_female,
+                'frontDefault'     => $this->species->sprites->frontDefault,
+                'frontFemale'      => $this->species->sprites->frontFemale,
+                'frontShiny'       => $this->species->sprites->frontShiny,
+                'frontShinyFemale' => $this->species->sprites->frontShinyFemale,
             ],
         ];
     }

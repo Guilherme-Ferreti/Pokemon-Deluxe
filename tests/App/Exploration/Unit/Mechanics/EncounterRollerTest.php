@@ -144,7 +144,7 @@ it('rolls the level, shininess and gender of the picked species', function (bool
 
     expect($newPokemon->species)->toBe($charmander)
         ->and($newPokemon->level)->toBe(7)
-        ->and($newPokemon->is_shiny)->toBe($isShiny)
+        ->and($newPokemon->isShiny)->toBe($isShiny)
         ->and($newPokemon->gender)->toBe($expectedGender);
 })->with([
     'shiny male'     => [true, true, PokemonGender::MALE],

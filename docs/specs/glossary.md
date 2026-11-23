@@ -12,7 +12,7 @@ One name per idea, used everywhere: specs, code, database, tests and UI. When yo
 | Boost stone | `BoostStone` / `boost_stone` | |
 | Shiny | `is_shiny` (column), `isShiny` (variable) | |
 | Stats | `PokemonStats` | Value object holding `hp`, `attack`, `defense`. |
-| HP | `hp`, `max_hp`, `current_hp` | `max_hp` is the full value; `current_hp` is during battle. |
+| HP | `hp`, `maxHp`, `currentHp` | `maxHp` is the full value; `currentHp` is during battle (`Combatant`, stored as `max_hp` / `current_hp`). |
 | Attack | `attack` | A damage multiplier, not a number shown as "Attack 120". |
 | Defense | `defense` | A damage-taken multiplier: 1 ÷ (1 + boost ÷ 100), × 0.75 when shiny. Shown to players as "Damage taken" (`damageTakenChangePercentage()`). |
 | Known moves (the pool) | `knownMoves()` relation | Every move the Pokémon has learned. |
@@ -40,10 +40,10 @@ One name per idea, used everywhere: specs, code, database, tests and UI. When yo
 | Battle state | `BattleState`, `state` column | Everything that changes during a battle (turn, both sides, log), saved as JSON with `AsBattleState`. |
 | Battle side | `BattleSide` | The player's or the opponent's team in a battle. |
 | Combatant | `Combatant` | One Pokémon inside a battle (a snapshot, not the `Pokemon` model). |
-| Active combatant | `active_index` on `BattleSide` | The one currently on the field. |
+| Active combatant | `activeIndex` on `BattleSide` | The one currently on the field. |
 | Turn | `turn` | Both sides acting once. |
 | Battle log | `log` (`list<BattleLogEntry>`), `BattleLogCard` | What happened, turn by turn; the page shows the newest turn first. |
-| Battle log entry | `BattleLogEntry` (`turn`, `kind`, `text`, `move_name`), `BattleState::withLogEntries()` | One message. `turn` 0 is before the first turn; lines logged between turns use `BattleState::lastPlayedTurn()`. Only `MOVE` entries have a `move_name`. |
+| Battle log entry | `BattleLogEntry` (`turn`, `kind`, `text`, `moveName`), `BattleState::withLogEntries()` | One message. `turn` 0 is before the first turn; lines logged between turns use `BattleState::lastPlayedTurn()`. Only `MOVE` entries have a `moveName`. |
 | Battle log kind | `BattleLogKind` enum (`Shared\Enums`): `MOVE`, `DAMAGE`, `DETAIL`, `INFO`, `EVENT`, `RESULT` | How the page styles an entry: move names in bold, damage and details small and muted, the battle's result ("You won!", "You lost...", "You got away safely!") in bold. |
 | Ongoing battle | `Battle::ongoing()` scope | The user's battle with status `ONGOING`. |
 | Recently ended battle | `Battle::recentlyEnded()` scope, `game.battle.end_screen_minutes` | An ended battle last updated within the end-screen window; `GET /battle` shows its end screen. |
@@ -58,22 +58,22 @@ One name per idea, used everywhere: specs, code, database, tests and UI. When yo
 | End screen | `result` prop (`experienceGains` with `isFromExperienceShare` and `isAtMaxLevel`), `BattleResultCard` | The result card that replaces the battlefield once the battle has ended: title, "Your rewards", "XP gained" rows, buttons. |
 | More options | `BattleOptionsCard` | The card under the moves with Throw ball and Run (wild) or Forfeit (every other battle). |
 | Battle scene | `BattleScene` enum (`fromBattleType()`), `battle.scene` prop, `BattleSceneBackground` | The SVG background of the battlefield card, picked from the battle type for now. |
-| Taking a turn from the page | `TakeTurnController`, `TakeTurnRequest` (`moveSlot`) | `POST /battle/turn`; the slot is the move's position (1–4) in the active combatant's `move_ids`. |
+| Taking a turn from the page | `TakeTurnController`, `TakeTurnRequest` (`moveSlot`) | `POST /battle/turn`; the slot is the move's position (1–4) in the active combatant's `moveIds`. |
 | Battle sprites | `Species::getDisplayFrontSprite()` (opponent), `getDisplayBackSprite()` (player) | The back sprite falls back to the front one when the species has none. |
-| Faint | `isFainted()` | `current_hp` is 0. |
+| Faint | `isFainted()` | `currentHp` is 0. |
 | Send out | `SendOutPokemonAction` | Picking the next Pokémon after a faint. Free. |
 | Switch | `SwitchPokemonAction`, `SwitchPokemonController` (`POST /battle/switch`, `combatantIndex`), `InvalidSwitchException` | Changing the Pokémon in battle on the player's turn. Uses the turn. Checked by the `EnsureSwitchIsAllowed` pipe, done by `SwitchPlayerPokemon`. |
 | Opponent's half of a turn | The turn pipes with only the opponent acting; `TurnData::isUsingMove()` | The opponent's move, end-of-turn damage and fainting; shared by moves, switches and ball throws. A `TurnData` without a `moveSlot` lets only the opponent act. |
 | Run / Forfeit | `ForfeitBattleAction`, `BattleStatus::FORFEITED` | The UI says "Run" in wild battles and "Forfeit" in every other battle. Counts as a loss. |
 | Battle ended | `EndBattleAction`, `BattleEnded` event | The one place a battle ends; `isWin` for won and caught battles. |
-| Earned XP | `ExperienceGain` (`combatant_index`, `earned_experience`, `level_before`, `level_after`, `is_from_experience_share`, `is_at_max_level`) in `BattleState::experience_gains` | Each player combatant's result, saved when the battle ends and shown on the end screen. |
+| Earned XP | `ExperienceGain` (`combatantIndex`, `earnedExperience`, `levelBefore`, `levelAfter`, `isFromExperienceShare`, `isAtMaxLevel`) in `BattleState::$experienceGains` | Each player combatant's result, saved when the battle ends and shown on the end screen. |
 | Earned XP per combatant | `EarnedExperienceCalculator::earnedByCombatant()` | The XP each player combatant that entered the field earned in a battle. |
 | XP for one defeated Pokémon | `ExperienceCalculator::experienceForDefeating()` (`App\Pokemon\Mechanics`) | Spec 1's formula. |
 | Paying XP | `AwardExperienceAction` | Adds XP to a Pokémon and levels it up, up to level 100. |
 | Levelling up | `PokemonLevelledUp` event | Dispatched by `AwardExperienceAction` when the level goes up. |
 | Evolution requirement | `EvolutionRequirement` enum (`GENDER`, `LEVEL`, `ITEM`), `EvolutionRequirementChecker::check()` | The first unmet requirement of a `SpeciesEvolution`, or null. `reason($evolution)` words it ("Needs a Water Stone") for the Evolve dialog and `EvolutionNotAllowedException`. |
 | Evolving | `EvolvePokemonAction`, `PokemonEvolved` event (`isMega`) | Changes the species, uses up the evolution item and adds the new base moves. |
-| Knocked out by | `Combatant::$knocked_out_by` | The index of the player combatant credited with an opponent's knockout (`CreditOpponentKnockout`). |
+| Knocked out by | `Combatant::$knockedOutBy` | The index of the player combatant credited with an opponent's knockout (`CreditOpponentKnockout`). |
 | First mover | `firstMoverChance` | Percentage chance (0–100) to act first this turn. |
 | Area | `Area` enum, `Area::fromType()` | The 9 places to explore (`Area::FOREST`). `fromType()` gives the one area a type belongs to. |
 | Area species | `AreaSpeciesQuery` (`App\Exploration\Queries`) | The species that can appear in an area: one of its types and a wild level range. |

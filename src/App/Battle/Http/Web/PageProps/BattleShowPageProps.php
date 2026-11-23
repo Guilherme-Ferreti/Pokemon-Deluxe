@@ -61,7 +61,7 @@ final class BattleShowPageProps implements ProvidesInertiaProperties
             'area'              => $this->battle->state->area,
             'turn'              => $this->battle->state->turn,
             'log'               => $this->logByTurn(),
-            'isAwaitingSendOut' => $this->battle->status === BattleStatus::ONGOING && $this->battle->state->is_awaiting_send_out,
+            'isAwaitingSendOut' => $this->battle->status === BattleStatus::ONGOING && $this->battle->state->isAwaitingSendOut,
         ];
     }
 
@@ -76,7 +76,7 @@ final class BattleShowPageProps implements ProvidesInertiaProperties
             $entriesByTurn[$entry->turn][] = [
                 'kind'     => $entry->kind,
                 'text'     => $entry->text,
-                'moveName' => $entry->move_name,
+                'moveName' => $entry->moveName,
             ];
         }
 
@@ -98,15 +98,15 @@ final class BattleShowPageProps implements ProvidesInertiaProperties
      */
     private function getPlayerProp(): array
     {
-        $side      = $this->battle->state->player_side;
+        $side      = $this->battle->state->playerSide;
         $combatant = $side->activeCombatant();
         $species   = $this->speciesOf($combatant);
 
         return [
             ...$this->combatantDetails($combatant, $species),
-            'sprite'    => $species->getDisplayBackSprite($combatant->gender, $combatant->is_shiny),
-            'currentHp' => $combatant->current_hp,
-            'maxHp'     => $combatant->max_hp,
+            'sprite'    => $species->getDisplayBackSprite($combatant->gender, $combatant->isShiny),
+            'currentHp' => $combatant->currentHp,
+            'maxHp'     => $combatant->maxHp,
             'team'      => $this->playerTeam($side),
         ];
     }
@@ -116,15 +116,15 @@ final class BattleShowPageProps implements ProvidesInertiaProperties
      */
     private function getOpponentProp(): array
     {
-        $side      = $this->battle->state->opponent_side;
+        $side      = $this->battle->state->opponentSide;
         $combatant = $side->activeCombatant();
         $species   = $this->speciesOf($combatant);
 
         return [
             ...$this->combatantDetails($combatant, $species),
-            'sprite'    => $species->getDisplayFrontSprite($combatant->gender, $combatant->is_shiny),
-            'currentHp' => $combatant->current_hp,
-            'maxHp'     => $combatant->max_hp,
+            'sprite'    => $species->getDisplayFrontSprite($combatant->gender, $combatant->isShiny),
+            'currentHp' => $combatant->currentHp,
+            'maxHp'     => $combatant->maxHp,
             'team'      => $this->opponentTeam($side),
         ];
     }
@@ -140,7 +140,7 @@ final class BattleShowPageProps implements ProvidesInertiaProperties
             'type'          => $move->type,
             'isZMove'       => $move->is_z_move,
             'isDynamaxMove' => $move->is_dynamax_move,
-        ], $this->existingMovesOf($this->battle->state->player_side->activeCombatant()));
+        ], $this->existingMovesOf($this->battle->state->playerSide->activeCombatant()));
     }
 
     /**
@@ -152,25 +152,25 @@ final class BattleShowPageProps implements ProvidesInertiaProperties
             return null;
         }
 
-        $combatants = $this->battle->state->player_side->combatants;
+        $combatants = $this->battle->state->playerSide->combatants;
         $gains      = array_filter(
-            $this->battle->state->experience_gains,
-            fn (ExperienceGain $gain) => $gain->earned_experience > 0 || $gain->is_at_max_level,
+            $this->battle->state->experienceGains,
+            fn (ExperienceGain $gain) => $gain->earnedExperience > 0 || $gain->isAtMaxLevel,
         ) |> array_values(...);
 
         return [
             'experienceGains' => array_map(function (ExperienceGain $gain) use ($combatants) {
-                $combatant = $combatants[$gain->combatant_index];
+                $combatant = $combatants[$gain->combatantIndex];
 
                 return [
-                    'name'                  => $this->speciesOf($combatant)->getDisplayName($combatant->is_shiny),
+                    'name'                  => $this->speciesOf($combatant)->getDisplayName($combatant->isShiny),
                     'portrait'              => $this->portraitOf($combatant),
                     'gender'                => $combatant->gender,
-                    'earnedExperience'      => $gain->earned_experience,
-                    'levelBefore'           => $gain->level_before,
-                    'levelAfter'            => $gain->level_after,
-                    'isFromExperienceShare' => $gain->is_from_experience_share,
-                    'isAtMaxLevel'          => $gain->is_at_max_level,
+                    'earnedExperience'      => $gain->earnedExperience,
+                    'levelBefore'           => $gain->levelBefore,
+                    'levelAfter'            => $gain->levelAfter,
+                    'isFromExperienceShare' => $gain->isFromExperienceShare,
+                    'isAtMaxLevel'          => $gain->isAtMaxLevel,
                 ];
             }, $gains),
         ];
@@ -180,7 +180,7 @@ final class BattleShowPageProps implements ProvidesInertiaProperties
     {
         $portraits = $this->speciesOf($combatant)->portraits;
 
-        return $combatant->is_shiny ? $portraits->shiny : $portraits->regular;
+        return $combatant->isShiny ? $portraits->shiny : $portraits->regular;
     }
 
     /**
@@ -189,11 +189,11 @@ final class BattleShowPageProps implements ProvidesInertiaProperties
     private function combatantDetails(Combatant $combatant, Species $species): array
     {
         return [
-            'name'    => $species->getDisplayName($combatant->is_shiny),
+            'name'    => $species->getDisplayName($combatant->isShiny),
             'gender'  => $combatant->gender,
             'level'   => $combatant->level,
             'boost'   => $combatant->boost,
-            'isShiny' => $combatant->is_shiny,
+            'isShiny' => $combatant->isShiny,
             'ailment' => $combatant->ailment,
         ];
     }
@@ -204,7 +204,7 @@ final class BattleShowPageProps implements ProvidesInertiaProperties
     private function opponentTeam(BattleSide $side): array
     {
         return array_map(function (Combatant $combatant, int $index) use ($side) {
-            $isActive = $index === $side->active_index;
+            $isActive = $index === $side->activeIndex;
 
             if (! $this->isRevealedOpponent($combatant, $index)) {
                 return [
@@ -226,17 +226,17 @@ final class BattleShowPageProps implements ProvidesInertiaProperties
             }
 
             return [
-                'name'        => $this->speciesOf($combatant)->getDisplayName($combatant->is_shiny),
+                'name'        => $this->speciesOf($combatant)->getDisplayName($combatant->isShiny),
                 'portrait'    => $this->portraitOf($combatant),
                 'gender'      => $combatant->gender,
                 'level'       => $combatant->level,
                 'boost'       => $combatant->boost,
-                'isShiny'     => $combatant->is_shiny,
+                'isShiny'     => $combatant->isShiny,
                 'statBonuses' => $this->statBonusesOf($combatant),
                 'types'       => $combatant->types,
                 'moves'       => $this->moveDetailsOf($combatant),
-                'currentHp'   => $combatant->current_hp,
-                'maxHp'       => $combatant->max_hp,
+                'currentHp'   => $combatant->currentHp,
+                'maxHp'       => $combatant->maxHp,
                 'isFainted'   => $combatant->isFainted(),
                 'isActive'    => $isActive,
                 'isRevealed'  => true,
@@ -250,20 +250,20 @@ final class BattleShowPageProps implements ProvidesInertiaProperties
     private function playerTeam(BattleSide $side): array
     {
         return array_map(fn (Combatant $combatant, int $index) => [
-            'name'        => $this->speciesOf($combatant)->getDisplayName($combatant->is_shiny),
+            'name'        => $this->speciesOf($combatant)->getDisplayName($combatant->isShiny),
             'portrait'    => $this->portraitOf($combatant),
             'gender'      => $combatant->gender,
             'level'       => $combatant->level,
             'boost'       => $combatant->boost,
-            'isShiny'     => $combatant->is_shiny,
+            'isShiny'     => $combatant->isShiny,
             'statBonuses' => $this->statBonusesOf($combatant),
             'types'       => $combatant->types,
             'moves'       => $this->moveDetailsOf($combatant),
-            'currentHp'   => $combatant->current_hp,
-            'maxHp'       => $combatant->max_hp,
+            'currentHp'   => $combatant->currentHp,
+            'maxHp'       => $combatant->maxHp,
             'ailment'     => $combatant->ailment,
             'isFainted'   => $combatant->isFainted(),
-            'isActive'    => $index === $side->active_index,
+            'isActive'    => $index === $side->activeIndex,
         ], $side->combatants, array_keys($side->combatants));
     }
 
@@ -271,13 +271,13 @@ final class BattleShowPageProps implements ProvidesInertiaProperties
     {
         $this->species ??= Species::query()
             ->whereKey(array_map(
-                fn (Combatant $combatant) => $combatant->species_id,
-                [...$this->battle->state->player_side->combatants, ...$this->battle->state->opponent_side->combatants],
+                fn (Combatant $combatant) => $combatant->speciesId,
+                [...$this->battle->state->playerSide->combatants, ...$this->battle->state->opponentSide->combatants],
             ))
             ->get()
             ->keyBy('id');
 
-        return $this->species->findOrFail($combatant->species_id);
+        return $this->species->findOrFail($combatant->speciesId);
     }
 
     private function isRevealedOpponent(Combatant $combatant, int $index): bool
@@ -285,8 +285,8 @@ final class BattleShowPageProps implements ProvidesInertiaProperties
         $keepsTeamSecret = in_array($this->battle->type, [BattleType::GYM, BattleType::ELITE_FOUR], true);
 
         return ! $keepsTeamSecret
-            || $combatant->has_entered_field
-            || $index === $this->battle->state->opponent_side->active_index;
+            || $combatant->hasEnteredField
+            || $index === $this->battle->state->opponentSide->activeIndex;
     }
 
     /**
@@ -297,9 +297,9 @@ final class BattleShowPageProps implements ProvidesInertiaProperties
         $statsCalculator = new StatsCalculator;
 
         return [
-            'hp'          => round($statsCalculator->hpBonusPercentage($combatant->boost, $combatant->is_shiny), 1) |> toIntIfWhole(...),
-            'attack'      => round($statsCalculator->damageDoneBonusPercentage($combatant->boost, $combatant->is_shiny), 1) |> toIntIfWhole(...),
-            'damageTaken' => round($statsCalculator->damageTakenChangePercentage($combatant->boost, $combatant->is_shiny), 1) |> toIntIfWhole(...),
+            'hp'          => round($statsCalculator->hpBonusPercentage($combatant->boost, $combatant->isShiny), 1) |> toIntIfWhole(...),
+            'attack'      => round($statsCalculator->damageDoneBonusPercentage($combatant->boost, $combatant->isShiny), 1) |> toIntIfWhole(...),
+            'damageTaken' => round($statsCalculator->damageTakenChangePercentage($combatant->boost, $combatant->isShiny), 1) |> toIntIfWhole(...),
         ];
     }
 
@@ -320,7 +320,7 @@ final class BattleShowPageProps implements ProvidesInertiaProperties
      */
     private function existingMovesOf(Combatant $combatant): array
     {
-        return array_map($this->shownMoves()->get(...), $combatant->move_ids)
+        return array_map($this->shownMoves()->get(...), $combatant->moveIds)
             |> array_filter(...)
             |> array_values(...);
     }
@@ -335,15 +335,15 @@ final class BattleShowPageProps implements ProvidesInertiaProperties
         }
 
         $revealedOpponents = array_filter(
-            $this->battle->state->opponent_side->combatants,
+            $this->battle->state->opponentSide->combatants,
             $this->isRevealedOpponent(...),
             ARRAY_FILTER_USE_BOTH,
         );
 
         return $this->moves = Move::query()
             ->whereKey(array_merge(...array_map(
-                fn (Combatant $combatant) => $combatant->move_ids,
-                [...$this->battle->state->player_side->combatants, ...array_values($revealedOpponents)],
+                fn (Combatant $combatant) => $combatant->moveIds,
+                [...$this->battle->state->playerSide->combatants, ...array_values($revealedOpponents)],
             )))
             ->get()
             ->keyBy('id');

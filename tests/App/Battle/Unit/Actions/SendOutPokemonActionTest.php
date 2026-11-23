@@ -23,52 +23,52 @@ it('sends out the chosen pokemon and stops awaiting a send-out', function () {
     $battle = Battle::factory()->create(['status' => BattleStatus::ONGOING]);
     $battle->update(['state' => new BattleState(
         turn: 3,
-        player_side: new BattleSide(combatants: [
+        playerSide: new BattleSide(combatants: [
             new Combatant(
-                pokemon_id: 'pokemon-1',
-                species_id: $pikachu->id,
+                pokemonId: 'pokemon-1',
+                speciesId: $pikachu->id,
                 level: 50,
                 boost: 0,
-                is_shiny: false,
+                isShiny: false,
                 gender: PokemonGender::MALE,
                 types: [PokemonType::ELECTRIC],
-                move_ids: ['move-1'],
-                max_hp: 218,
-                current_hp: 0,
+                moveIds: ['move-1'],
+                maxHp: 218,
+                currentHp: 0,
                 ailment: null,
-                ailment_turns_left: 0,
-                confusion_turns_left: 0,
-                has_entered_field: true,
-                used_once_per_battle_move_ids: [],
+                ailmentTurnsLeft: 0,
+                confusionTurnsLeft: 0,
+                hasEnteredField: true,
+                usedOncePerBattleMoveIds: [],
             ),
             new Combatant(
-                pokemon_id: 'pokemon-2',
-                species_id: $eevee->id,
+                pokemonId: 'pokemon-2',
+                speciesId: $eevee->id,
                 level: 50,
                 boost: 0,
-                is_shiny: true,
+                isShiny: true,
                 gender: PokemonGender::FEMALE,
                 types: [PokemonType::NORMAL],
-                move_ids: ['move-1'],
-                max_hp: 273,
-                current_hp: 273,
+                moveIds: ['move-1'],
+                maxHp: 273,
+                currentHp: 273,
                 ailment: null,
-                ailment_turns_left: 0,
-                confusion_turns_left: 0,
-                has_entered_field: false,
-                used_once_per_battle_move_ids: [],
+                ailmentTurnsLeft: 0,
+                confusionTurnsLeft: 0,
+                hasEnteredField: false,
+                usedOncePerBattleMoveIds: [],
             ),
-        ], active_index: 0),
-        opponent_side: $battle->state->opponent_side,
-        is_awaiting_send_out: true,
+        ], activeIndex: 0),
+        opponentSide: $battle->state->opponentSide,
+        isAwaitingSendOut: true,
         log: [new BattleLogEntry(2, BattleLogKind::EVENT, 'Pikachu fainted!')],
     )]);
 
     $state = new SendOutPokemonAction()->handle($battle, combatantIndex: 1)->fresh()?->state;
 
-    expect($state?->player_side->active_index)->toBe(1)
-        ->and($state?->player_side->activeCombatant()->has_entered_field)->toBeTrue()
-        ->and($state?->is_awaiting_send_out)->toBeFalse()
+    expect($state?->playerSide->activeIndex)->toBe(1)
+        ->and($state?->playerSide->activeCombatant()->hasEnteredField)->toBeTrue()
+        ->and($state?->isAwaitingSendOut)->toBeFalse()
         ->and($state?->turn)->toBe(3)
         ->and($state?->log)->toEqual([
             new BattleLogEntry(2, BattleLogKind::EVENT, 'Pikachu fainted!'),
@@ -93,50 +93,50 @@ it('refuses to send out a fainted pokemon or one that is not in the team', funct
     $battle = Battle::factory()->create(['status' => BattleStatus::ONGOING]);
     $battle->update(['state' => new BattleState(
         turn: 3,
-        player_side: new BattleSide(combatants: [
+        playerSide: new BattleSide(combatants: [
             new Combatant(
-                pokemon_id: 'pokemon-1',
-                species_id: $pikachu->id,
+                pokemonId: 'pokemon-1',
+                speciesId: $pikachu->id,
                 level: 50,
                 boost: 0,
-                is_shiny: false,
+                isShiny: false,
                 gender: PokemonGender::MALE,
                 types: [PokemonType::ELECTRIC],
-                move_ids: ['move-1'],
-                max_hp: 218,
-                current_hp: 0,
+                moveIds: ['move-1'],
+                maxHp: 218,
+                currentHp: 0,
                 ailment: null,
-                ailment_turns_left: 0,
-                confusion_turns_left: 0,
-                has_entered_field: true,
-                used_once_per_battle_move_ids: [],
+                ailmentTurnsLeft: 0,
+                confusionTurnsLeft: 0,
+                hasEnteredField: true,
+                usedOncePerBattleMoveIds: [],
             ),
             new Combatant(
-                pokemon_id: 'pokemon-2',
-                species_id: $pikachu->id,
+                pokemonId: 'pokemon-2',
+                speciesId: $pikachu->id,
                 level: 50,
                 boost: 0,
-                is_shiny: false,
+                isShiny: false,
                 gender: PokemonGender::FEMALE,
                 types: [PokemonType::ELECTRIC],
-                move_ids: ['move-1'],
-                max_hp: 218,
-                current_hp: 218,
+                moveIds: ['move-1'],
+                maxHp: 218,
+                currentHp: 218,
                 ailment: null,
-                ailment_turns_left: 0,
-                confusion_turns_left: 0,
-                has_entered_field: false,
-                used_once_per_battle_move_ids: [],
+                ailmentTurnsLeft: 0,
+                confusionTurnsLeft: 0,
+                hasEnteredField: false,
+                usedOncePerBattleMoveIds: [],
             ),
-        ], active_index: 0),
-        opponent_side: $battle->state->opponent_side,
-        is_awaiting_send_out: true,
+        ], activeIndex: 0),
+        opponentSide: $battle->state->opponentSide,
+        isAwaitingSendOut: true,
         log: [],
     )]);
 
     expect(fn () => new SendOutPokemonAction()->handle($battle, combatantIndex: $combatantIndex))
         ->toThrow($expectedException)
-        ->and($battle->fresh()?->state->is_awaiting_send_out)->toBeTrue();
+        ->and($battle->fresh()?->state->isAwaitingSendOut)->toBeTrue();
 })->with([
     'fainted'         => [0, PokemonHasFaintedException::class],
     'not in the team' => [2, InvalidArgumentException::class],

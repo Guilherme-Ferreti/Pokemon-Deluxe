@@ -42,7 +42,7 @@ final class ExploreAction
                 'area'       => $this->area,
                 'species_id' => $wildPokemon->species->id,
                 'level'      => $wildPokemon->level,
-                'is_shiny'   => $wildPokemon->is_shiny,
+                'is_shiny'   => $wildPokemon->isShiny,
                 'gender'     => $wildPokemon->gender,
             ],
         );

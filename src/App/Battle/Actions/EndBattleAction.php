@@ -99,9 +99,9 @@ final class EndBattleAction
             return [];
         }
 
-        $combatants = $this->battle->state->player_side->combatants;
+        $combatants = $this->battle->state->playerSide->combatants;
         $species    = Species::query()
-            ->whereKey(array_map(fn (Combatant $combatant) => $combatant->species_id, $combatants))
+            ->whereKey(array_map(fn (Combatant $combatant) => $combatant->speciesId, $combatants))
             ->get()
             ->keyBy('id');
 
@@ -109,23 +109,23 @@ final class EndBattleAction
         $entries = [];
 
         foreach ($gains as $gain) {
-            if ($gain->earned_experience === 0 && ! $gain->is_at_max_level) {
+            if ($gain->earnedExperience === 0 && ! $gain->isAtMaxLevel) {
                 continue;
             }
 
-            $combatant = $combatants[$gain->combatant_index];
-            $name      = $species->findOrFail($combatant->species_id)->getDisplayName($combatant->is_shiny);
+            $combatant = $combatants[$gain->combatantIndex];
+            $name      = $species->findOrFail($combatant->speciesId)->getDisplayName($combatant->isShiny);
 
-            if ($gain->is_at_max_level) {
+            if ($gain->isAtMaxLevel) {
                 $entries[] = new BattleLogEntry($turn, BattleLogKind::EVENT, "{$name} is at the max level and gained no XP.");
 
                 continue;
             }
 
-            $experience = number_format($gain->earned_experience);
+            $experience = number_format($gain->earnedExperience);
 
-            $entries[] = new BattleLogEntry($turn, BattleLogKind::EVENT, $gain->level_after > $gain->level_before
-                ? "{$name} gained {$experience} XP and grew to level {$gain->level_after}!"
+            $entries[] = new BattleLogEntry($turn, BattleLogKind::EVENT, $gain->levelAfter > $gain->levelBefore
+                ? "{$name} gained {$experience} XP and grew to level {$gain->levelAfter}!"
                 : "{$name} gained {$experience} XP!");
         }
 
@@ -134,7 +134,7 @@ final class EndBattleAction
 
     private function loadPlayerPokemon(): void
     {
-        $pokemonIds = array_column($this->battle->state->player_side->combatants, 'pokemon_id')
+        $pokemonIds = array_column($this->battle->state->playerSide->combatants, 'pokemonId')
             |> array_filter(...);
 
         $this->playerPokemon = Pokemon::query()->whereKey($pokemonIds)->get()->keyBy('id');
@@ -162,15 +162,15 @@ final class EndBattleAction
 
     private function payCombatant(int $combatantIndex, int $earned): ExperienceGain
     {
-        $combatant = $this->battle->state->player_side->combatants[$combatantIndex];
-        $pokemon   = $combatant->pokemon_id === null ? null : $this->playerPokemon->get($combatant->pokemon_id);
+        $combatant = $this->battle->state->playerSide->combatants[$combatantIndex];
+        $pokemon   = $combatant->pokemonId === null ? null : $this->playerPokemon->get($combatant->pokemonId);
 
         if ($this->battle->type === BattleType::BATTLE_TOWER) {
-            return new ExperienceGain($combatantIndex, $earned, $combatant->level, $combatant->level, is_from_experience_share: false, is_at_max_level: false);
+            return new ExperienceGain($combatantIndex, $earned, $combatant->level, $combatant->level, isFromExperienceShare: false, isAtMaxLevel: false);
         }
 
         if (! $pokemon instanceof Pokemon) {
-            return new ExperienceGain($combatantIndex, 0, $combatant->level, $combatant->level, is_from_experience_share: false, is_at_max_level: false);
+            return new ExperienceGain($combatantIndex, 0, $combatant->level, $combatant->level, isFromExperienceShare: false, isAtMaxLevel: false);
         }
 
         $experienceBefore = $pokemon->experience;
@@ -183,8 +183,8 @@ final class EndBattleAction
             $pokemon->experience - $experienceBefore,
             $levelBefore,
             $pokemon->level,
-            is_from_experience_share: false,
-            is_at_max_level: $earned > 0 && $levelBefore === (int) config('game.pokemon.max_level'),
+            isFromExperienceShare: false,
+            isAtMaxLevel: $earned > 0 && $levelBefore === (int) config('game.pokemon.max_level'),
         );
     }
 }

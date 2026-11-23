@@ -14,21 +14,21 @@ it('decides whether a combatant can still use a move', function (bool $isZMove, 
     $species = Species::factory()->make(['is_gmax' => $isGmax]);
 
     $combatant = new Combatant(
-        pokemon_id: null,
-        species_id: 'species-1',
+        pokemonId: null,
+        speciesId: 'species-1',
         level: 50,
         boost: 0,
-        is_shiny: false,
+        isShiny: false,
         gender: PokemonGender::MALE,
         types: [PokemonType::NORMAL],
-        move_ids: ['move-1'],
-        max_hp: 218,
-        current_hp: 218,
+        moveIds: ['move-1'],
+        maxHp: 218,
+        currentHp: 218,
         ailment: null,
-        ailment_turns_left: 0,
-        confusion_turns_left: 0,
-        has_entered_field: true,
-        used_once_per_battle_move_ids: $isUsed ? ['move-1'] : [],
+        ailmentTurnsLeft: 0,
+        confusionTurnsLeft: 0,
+        hasEnteredField: true,
+        usedOncePerBattleMoveIds: $isUsed ? ['move-1'] : [],
     );
 
     $checker = new MoveUsabilityChecker;

@@ -60,9 +60,9 @@ final class DealHits
         $defender = $action->defender();
 
         $damage = new DamageCalculator()->calculate(
-            attackerStats: new StatsCalculator()->calculate($attacker->level, $attacker->boost, $attacker->is_shiny),
+            attackerStats: new StatsCalculator()->calculate($attacker->level, $attacker->boost, $attacker->isShiny),
             attackerTypes: $attacker->types,
-            defenderStats: new StatsCalculator()->calculate($defender->level, $defender->boost, $defender->is_shiny),
+            defenderStats: new StatsCalculator()->calculate($defender->level, $defender->boost, $defender->isShiny),
             defenderTypes: $defender->types,
             move: $action->move,
             isCriticalHit: $hit->isCriticalHit,

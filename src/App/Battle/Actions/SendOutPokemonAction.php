@@ -41,7 +41,7 @@ final class SendOutPokemonAction
         $this->ensureCombatantIsInTeam();
         $this->ensureCombatantHasNotFainted();
 
-        $playerSide = $this->battle->state->player_side->withActiveIndex($this->combatantIndex);
+        $playerSide = $this->battle->state->playerSide->withActiveIndex($this->combatantIndex);
         $playerSide = $playerSide->withActiveCombatant($playerSide->activeCombatant()->withEnteredField());
 
         $this->battle->update([
@@ -59,14 +59,14 @@ final class SendOutPokemonAction
     private function ensureBattleIsAwaitingSendOut(): void
     {
         throw_unless(
-            $this->battle->status === BattleStatus::ONGOING && $this->battle->state->is_awaiting_send_out,
+            $this->battle->status === BattleStatus::ONGOING && $this->battle->state->isAwaitingSendOut,
             BattleNotAwaitingSendOutException::class,
         );
     }
 
     private function ensureCombatantIsInTeam(): void
     {
-        $combatants = $this->battle->state->player_side->combatants;
+        $combatants = $this->battle->state->playerSide->combatants;
 
         throw_unless(
             isset($combatants[$this->combatantIndex]),
@@ -85,13 +85,13 @@ final class SendOutPokemonAction
 
     private function chosenCombatant(): Combatant
     {
-        return $this->battle->state->player_side->combatants[$this->combatantIndex];
+        return $this->battle->state->playerSide->combatants[$this->combatantIndex];
     }
 
     private function chosenDisplayName(): string
     {
         return Species::query()
-            ->findOrFail($this->chosenCombatant()->species_id)
-            ->getDisplayName($this->chosenCombatant()->is_shiny);
+            ->findOrFail($this->chosenCombatant()->speciesId)
+            ->getDisplayName($this->chosenCombatant()->isShiny);
     }
 }

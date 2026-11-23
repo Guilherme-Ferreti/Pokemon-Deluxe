@@ -18,7 +18,7 @@ final class ApplyEndOfTurnDamage
     public function handle(TurnData $turn, Closure $next): TurnData
     {
         foreach ($turn->turnOrder as $side) {
-            if (! $turn->state->player_side->hasCombatantsLeft() || ! $turn->state->opponent_side->hasCombatantsLeft()) {
+            if (! $turn->state->playerSide->hasCombatantsLeft() || ! $turn->state->opponentSide->hasCombatantsLeft()) {
                 break;
             }
 

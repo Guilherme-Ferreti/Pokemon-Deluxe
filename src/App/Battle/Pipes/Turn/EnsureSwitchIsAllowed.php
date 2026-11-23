@@ -31,7 +31,7 @@ final class EnsureSwitchIsAllowed
     private function ensureCombatantIsInTeam(): void
     {
         throw_unless(
-            isset($this->turn->state->player_side->combatants[$this->turn->chosenSwitchIndex()]),
+            isset($this->turn->state->playerSide->combatants[$this->turn->chosenSwitchIndex()]),
             fn () => InvalidSwitchException::notInTeam(),
         );
     }
@@ -39,7 +39,7 @@ final class EnsureSwitchIsAllowed
     private function ensureCombatantIsNotInBattle(): void
     {
         throw_if(
-            $this->turn->chosenSwitchIndex() === $this->turn->state->player_side->active_index,
+            $this->turn->chosenSwitchIndex() === $this->turn->state->playerSide->activeIndex,
             fn () => InvalidSwitchException::alreadyInBattle($this->chosenDisplayName()),
         );
     }
@@ -54,14 +54,14 @@ final class EnsureSwitchIsAllowed
 
     private function chosenCombatant(): Combatant
     {
-        return $this->turn->state->player_side->combatants[$this->turn->chosenSwitchIndex()]
+        return $this->turn->state->playerSide->combatants[$this->turn->chosenSwitchIndex()]
             ?? throw new LogicException('The combatant must be checked first.');
     }
 
     private function chosenDisplayName(): string
     {
         return $this->turn->species
-            ->findOrFail($this->chosenCombatant()->species_id)
-            ->getDisplayName($this->chosenCombatant()->is_shiny);
+            ->findOrFail($this->chosenCombatant()->speciesId)
+            ->getDisplayName($this->chosenCombatant()->isShiny);
     }
 }

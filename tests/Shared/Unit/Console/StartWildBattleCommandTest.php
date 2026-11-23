@@ -25,8 +25,8 @@ it('starts a wild battle in the local environment', function () {
     $battle = Battle::query()->sole();
 
     expect($battle->user_id)->toBe($user->id)
-        ->and($battle->state->opponent_side->activeCombatant()->species_id)->toBe($species->id)
-        ->and($battle->state->opponent_side->activeCombatant()->level)->toBe(7)
+        ->and($battle->state->opponentSide->activeCombatant()->speciesId)->toBe($species->id)
+        ->and($battle->state->opponentSide->activeCombatant()->level)->toBe(7)
         ->and($battle->state->area)->toBe(Area::MEADOW);
 });
 

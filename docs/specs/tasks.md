@@ -1907,7 +1907,7 @@ Read [05-missions.md](05-missions.md) first, including its "Starting content" an
 
 **Build:**
 - `App\Inventory\Actions\SetXpShareAction::handle(User $user, bool $isEnabled): void`: needs the `xp-share` item (`InsufficientInventoryException`).
-- Task 1.17's XP award: when `is_xp_share_enabled`, party Pokémon that did not enter the field get `game.experience.xp_share_ratio` (0.5) × the XP they would get for the opponents knocked out (the formula with their own level, without the knockout bonus). Never in Battle Tower battles. The state keeps what each got (`ExperienceGain::is_from_experience_share`), so the end screen lists each of them with "via XP Share" (task 1.35).
+- Task 1.17's XP award: when `is_xp_share_enabled`, party Pokémon that did not enter the field get `game.experience.xp_share_ratio` (0.5) × the XP they would get for the opponents knocked out (the formula with their own level, without the knockout bonus). Never in Battle Tower battles. The state keeps what each got (`ExperienceGain::$isFromExperienceShare`), so the end screen lists each of them with "via XP Share" (task 1.35).
 - Route `POST /inventory/xp-share` named `inventory.web.xp-share` → `SetXpShareController` (`is_enabled`).
 
 **Mock-up:** `docs/mockups/inventory.html` (states "Key items tab", "XP Share settings")

@@ -13,21 +13,21 @@ use Shared\ValueObjects\Combatant;
 describe('action blocker', function () {
     it('lets a pokemon act without rolling when it has no status effect', function () {
         $combatant = new Combatant(
-            pokemon_id: null,
-            species_id: 'species-1',
+            pokemonId: null,
+            speciesId: 'species-1',
             level: 50,
             boost: 0,
-            is_shiny: false,
+            isShiny: false,
             gender: PokemonGender::MALE,
             types: [PokemonType::NORMAL],
-            move_ids: ['move-1'],
-            max_hp: 200,
-            current_hp: 200,
+            moveIds: ['move-1'],
+            maxHp: 200,
+            currentHp: 200,
             ailment: null,
-            ailment_turns_left: 0,
-            confusion_turns_left: 0,
-            has_entered_field: true,
-            used_once_per_battle_move_ids: [],
+            ailmentTurnsLeft: 0,
+            confusionTurnsLeft: 0,
+            hasEnteredField: true,
+            usedOncePerBattleMoveIds: [],
         );
 
         RandomHelper::fake([]);
@@ -37,21 +37,21 @@ describe('action blocker', function () {
 
     it('rolls the blocker of each status effect', function (?Ailment $ailment, int $ailmentTurnsLeft, int $confusionTurnsLeft, array $rolls, ?ActionBlocker $expectedBlocker) {
         $combatant = new Combatant(
-            pokemon_id: null,
-            species_id: 'species-1',
+            pokemonId: null,
+            speciesId: 'species-1',
             level: 50,
             boost: 0,
-            is_shiny: false,
+            isShiny: false,
             gender: PokemonGender::MALE,
             types: [PokemonType::NORMAL],
-            move_ids: ['move-1'],
-            max_hp: 200,
-            current_hp: 200,
+            moveIds: ['move-1'],
+            maxHp: 200,
+            currentHp: 200,
             ailment: $ailment,
-            ailment_turns_left: $ailmentTurnsLeft,
-            confusion_turns_left: $confusionTurnsLeft,
-            has_entered_field: true,
-            used_once_per_battle_move_ids: [],
+            ailmentTurnsLeft: $ailmentTurnsLeft,
+            confusionTurnsLeft: $confusionTurnsLeft,
+            hasEnteredField: true,
+            usedOncePerBattleMoveIds: [],
         );
 
         RandomHelper::fake(array_values($rolls));

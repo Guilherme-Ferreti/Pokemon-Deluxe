@@ -19,8 +19,8 @@ final class EarnedExperienceCalculator
     {
         $earnedByCombatant = [];
 
-        foreach ($state->player_side->combatants as $combatantIndex => $combatant) {
-            if (! $combatant->has_entered_field) {
+        foreach ($state->playerSide->combatants as $combatantIndex => $combatant) {
+            if (! $combatant->hasEnteredField) {
                 continue;
             }
 
@@ -34,14 +34,14 @@ final class EarnedExperienceCalculator
     {
         $earned = 0;
 
-        foreach ($state->opponent_side->combatants as $opponentIndex => $opponent) {
-            $isCaught = $status === BattleStatus::CAUGHT && $opponentIndex === $state->opponent_side->active_index;
+        foreach ($state->opponentSide->combatants as $opponentIndex => $opponent) {
+            $isCaught = $status === BattleStatus::CAUGHT && $opponentIndex === $state->opponentSide->activeIndex;
 
             if (! $opponent->isFainted() && ! $isCaught) {
                 continue;
             }
 
-            $knockedOutBy = $isCaught ? $state->player_side->active_index : $opponent->knocked_out_by;
+            $knockedOutBy = $isCaught ? $state->playerSide->activeIndex : $opponent->knockedOutBy;
 
             $earned += new ExperienceCalculator()->experienceForDefeating(
                 opponentLevel: $opponent->level,

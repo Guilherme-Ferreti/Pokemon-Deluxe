@@ -64,7 +64,7 @@ final class CreatePokemonAction
             'experience'       => new ExperienceCalculator()->experienceForLevel($this->newPokemon->level),
             'boost'            => 0,
             'in_party'         => $this->joinPartyIfRoom && $this->hasRoomInParty(),
-            'is_shiny'         => $this->newPokemon->is_shiny,
+            'is_shiny'         => $this->newPokemon->isShiny,
             'gender'           => $this->newPokemon->gender,
             'pokeball_id'      => $this->pokeball->id,
             'caught_at'        => now(),

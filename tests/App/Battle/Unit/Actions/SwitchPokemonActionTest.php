@@ -29,21 +29,21 @@ it('switches in the chosen pokemon, which the opponent then attacks', function (
     $tackle       = Move::factory()->plainDamage()->create(['name' => 'Tackle', 'type' => PokemonType::NORMAL, 'power' => 40]);
 
     $combatant = [
-        'pokemon_id'                    => 'pokemon-1',
-        'species_id'                    => $pikachu->id,
-        'level'                         => 50,
-        'boost'                         => 0,
-        'is_shiny'                      => true,
-        'gender'                        => PokemonGender::MALE,
-        'types'                         => [PokemonType::ELECTRIC],
-        'move_ids'                      => [$thunderShock->id],
-        'max_hp'                        => 218,
-        'current_hp'                    => 218,
-        'ailment'                       => null,
-        'ailment_turns_left'            => 0,
-        'confusion_turns_left'          => 0,
-        'has_entered_field'             => true,
-        'used_once_per_battle_move_ids' => [],
+        'pokemonId'                => 'pokemon-1',
+        'speciesId'                => $pikachu->id,
+        'level'                    => 50,
+        'boost'                    => 0,
+        'isShiny'                  => true,
+        'gender'                   => PokemonGender::MALE,
+        'types'                    => [PokemonType::ELECTRIC],
+        'moveIds'                  => [$thunderShock->id],
+        'maxHp'                    => 218,
+        'currentHp'                => 218,
+        'ailment'                  => null,
+        'ailmentTurnsLeft'         => 0,
+        'confusionTurnsLeft'       => 0,
+        'hasEnteredField'          => true,
+        'usedOncePerBattleMoveIds' => [],
     ];
 
     $battle = Battle::factory()->create([
@@ -51,14 +51,14 @@ it('switches in the chosen pokemon, which the opponent then attacks', function (
         'status' => BattleStatus::ONGOING,
         'state'  => new BattleState(
             turn: 3,
-            player_side: new BattleSide(combatants: [
-                new Combatant(...[...$combatant, 'ailment' => Ailment::PARALYSIS, 'confusion_turns_left' => 2]),
-                new Combatant(...[...$combatant, 'pokemon_id' => 'pokemon-2', 'species_id' => $eevee->id, 'is_shiny' => false, 'types' => [PokemonType::NORMAL], 'move_ids' => [$tackle->id], 'has_entered_field' => false]),
-            ], active_index: 0),
-            opponent_side: new BattleSide(combatants: [
-                new Combatant(...[...$combatant, 'pokemon_id' => null, 'species_id' => $pidgey->id, 'is_shiny' => false, 'types' => [PokemonType::NORMAL, PokemonType::FLYING], 'move_ids' => [$tackle->id]]),
-            ], active_index: 0),
-            is_awaiting_send_out: false,
+            playerSide: new BattleSide(combatants: [
+                new Combatant(...[...$combatant, 'ailment' => Ailment::PARALYSIS, 'confusionTurnsLeft' => 2]),
+                new Combatant(...[...$combatant, 'pokemonId' => 'pokemon-2', 'speciesId' => $eevee->id, 'isShiny' => false, 'types' => [PokemonType::NORMAL], 'moveIds' => [$tackle->id], 'hasEnteredField' => false]),
+            ], activeIndex: 0),
+            opponentSide: new BattleSide(combatants: [
+                new Combatant(...[...$combatant, 'pokemonId' => null, 'speciesId' => $pidgey->id, 'isShiny' => false, 'types' => [PokemonType::NORMAL, PokemonType::FLYING], 'moveIds' => [$tackle->id]]),
+            ], activeIndex: 0),
+            isAwaitingSendOut: false,
             log: [
                 new BattleLogEntry(0, BattleLogKind::INFO, 'A wild Pidgey appeared!'),
                 new BattleLogEntry(0, BattleLogKind::EVENT, 'Go! Shiny Pikachu!'),
@@ -73,13 +73,13 @@ it('switches in the chosen pokemon, which the opponent then attacks', function (
 
     expect($battle?->status)->toBe(BattleStatus::ONGOING)
         ->and($state?->turn)->toBe(4)
-        ->and($state?->player_side->active_index)->toBe(1)
-        ->and($state?->player_side->activeCombatant()->has_entered_field)->toBeTrue()
-        ->and($state?->player_side->activeCombatant()->current_hp)->toBe(218 - 46)
-        ->and($state?->player_side->combatants[0]->current_hp)->toBe(218)
-        ->and($state?->player_side->combatants[0]->confusion_turns_left)->toBe(0)
-        ->and($state?->player_side->combatants[0]->ailment)->toBe(Ailment::PARALYSIS)
-        ->and($state?->opponent_side->activeCombatant()->current_hp)->toBe(218)
+        ->and($state?->playerSide->activeIndex)->toBe(1)
+        ->and($state?->playerSide->activeCombatant()->hasEnteredField)->toBeTrue()
+        ->and($state?->playerSide->activeCombatant()->currentHp)->toBe(218 - 46)
+        ->and($state?->playerSide->combatants[0]->currentHp)->toBe(218)
+        ->and($state?->playerSide->combatants[0]->confusionTurnsLeft)->toBe(0)
+        ->and($state?->playerSide->combatants[0]->ailment)->toBe(Ailment::PARALYSIS)
+        ->and($state?->opponentSide->activeCombatant()->currentHp)->toBe(218)
         ->and($state?->log)->toEqual([
             new BattleLogEntry(0, BattleLogKind::INFO, 'A wild Pidgey appeared!'),
             new BattleLogEntry(0, BattleLogKind::EVENT, 'Go! Shiny Pikachu!'),
@@ -96,21 +96,21 @@ it('still deals end-of-turn damage to both sides after a switch', function () {
     $growl   = Move::factory()->plainDamage()->create(['name' => 'Growl', 'category' => MoveCategory::AILMENT, 'type' => PokemonType::NORMAL, 'power' => null]);
 
     $combatant = [
-        'pokemon_id'                    => 'pokemon-1',
-        'species_id'                    => $pikachu->id,
-        'level'                         => 50,
-        'boost'                         => 0,
-        'is_shiny'                      => false,
-        'gender'                        => PokemonGender::MALE,
-        'types'                         => [PokemonType::ELECTRIC],
-        'move_ids'                      => [$growl->id],
-        'max_hp'                        => 218,
-        'current_hp'                    => 218,
-        'ailment'                       => null,
-        'ailment_turns_left'            => 0,
-        'confusion_turns_left'          => 0,
-        'has_entered_field'             => true,
-        'used_once_per_battle_move_ids' => [],
+        'pokemonId'                => 'pokemon-1',
+        'speciesId'                => $pikachu->id,
+        'level'                    => 50,
+        'boost'                    => 0,
+        'isShiny'                  => false,
+        'gender'                   => PokemonGender::MALE,
+        'types'                    => [PokemonType::ELECTRIC],
+        'moveIds'                  => [$growl->id],
+        'maxHp'                    => 218,
+        'currentHp'                => 218,
+        'ailment'                  => null,
+        'ailmentTurnsLeft'         => 0,
+        'confusionTurnsLeft'       => 0,
+        'hasEnteredField'          => true,
+        'usedOncePerBattleMoveIds' => [],
     ];
 
     $battle = Battle::factory()->create([
@@ -118,14 +118,14 @@ it('still deals end-of-turn damage to both sides after a switch', function () {
         'status' => BattleStatus::ONGOING,
         'state'  => new BattleState(
             turn: 1,
-            player_side: new BattleSide(combatants: [
+            playerSide: new BattleSide(combatants: [
                 new Combatant(...$combatant),
-                new Combatant(...[...$combatant, 'pokemon_id' => 'pokemon-2', 'species_id' => $eevee->id, 'types' => [PokemonType::NORMAL], 'ailment' => Ailment::BURN, 'has_entered_field' => false]),
-            ], active_index: 0),
-            opponent_side: new BattleSide(combatants: [
-                new Combatant(...[...$combatant, 'pokemon_id' => null, 'species_id' => $pidgey->id, 'types' => [PokemonType::NORMAL, PokemonType::FLYING], 'ailment' => Ailment::POISON]),
-            ], active_index: 0),
-            is_awaiting_send_out: false,
+                new Combatant(...[...$combatant, 'pokemonId' => 'pokemon-2', 'speciesId' => $eevee->id, 'types' => [PokemonType::NORMAL], 'ailment' => Ailment::BURN, 'hasEnteredField' => false]),
+            ], activeIndex: 0),
+            opponentSide: new BattleSide(combatants: [
+                new Combatant(...[...$combatant, 'pokemonId' => null, 'speciesId' => $pidgey->id, 'types' => [PokemonType::NORMAL, PokemonType::FLYING], 'ailment' => Ailment::POISON]),
+            ], activeIndex: 0),
+            isAwaitingSendOut: false,
             log: [],
         ),
     ]);
@@ -134,8 +134,8 @@ it('still deals end-of-turn damage to both sides after a switch', function () {
 
     $state = new SwitchPokemonAction()->handle($battle, combatantIndex: 1)->fresh()?->state;
 
-    expect($state?->player_side->activeCombatant()->current_hp)->toBe(218 - 13)
-        ->and($state?->opponent_side->activeCombatant()->current_hp)->toBe(218 - 27)
+    expect($state?->playerSide->activeCombatant()->currentHp)->toBe(218 - 13)
+        ->and($state?->opponentSide->activeCombatant()->currentHp)->toBe(218 - 27)
         ->and($state?->log)->toEqual([
             new BattleLogEntry(1, BattleLogKind::EVENT, 'You switched Pokémon to Eevee.'),
             new BattleLogEntry(1, BattleLogKind::MOVE, 'The wild Pidgey used Growl!', 'Growl'),
@@ -154,21 +154,21 @@ it('asks for a send-out when the switched-in pokemon faints', function () {
     $tackle       = Move::factory()->plainDamage()->create(['name' => 'Tackle', 'type' => PokemonType::NORMAL, 'power' => 40]);
 
     $combatant = [
-        'pokemon_id'                    => 'pokemon-1',
-        'species_id'                    => $pikachu->id,
-        'level'                         => 50,
-        'boost'                         => 0,
-        'is_shiny'                      => false,
-        'gender'                        => PokemonGender::MALE,
-        'types'                         => [PokemonType::ELECTRIC],
-        'move_ids'                      => [$thunderShock->id],
-        'max_hp'                        => 218,
-        'current_hp'                    => 218,
-        'ailment'                       => null,
-        'ailment_turns_left'            => 0,
-        'confusion_turns_left'          => 0,
-        'has_entered_field'             => true,
-        'used_once_per_battle_move_ids' => [],
+        'pokemonId'                => 'pokemon-1',
+        'speciesId'                => $pikachu->id,
+        'level'                    => 50,
+        'boost'                    => 0,
+        'isShiny'                  => false,
+        'gender'                   => PokemonGender::MALE,
+        'types'                    => [PokemonType::ELECTRIC],
+        'moveIds'                  => [$thunderShock->id],
+        'maxHp'                    => 218,
+        'currentHp'                => 218,
+        'ailment'                  => null,
+        'ailmentTurnsLeft'         => 0,
+        'confusionTurnsLeft'       => 0,
+        'hasEnteredField'          => true,
+        'usedOncePerBattleMoveIds' => [],
     ];
 
     $battle = Battle::factory()->create([
@@ -176,14 +176,14 @@ it('asks for a send-out when the switched-in pokemon faints', function () {
         'status' => BattleStatus::ONGOING,
         'state'  => new BattleState(
             turn: 1,
-            player_side: new BattleSide(combatants: [
+            playerSide: new BattleSide(combatants: [
                 new Combatant(...$combatant),
-                new Combatant(...[...$combatant, 'pokemon_id' => 'pokemon-2', 'species_id' => $eevee->id, 'types' => [PokemonType::NORMAL], 'current_hp' => 10, 'has_entered_field' => false]),
-            ], active_index: 0),
-            opponent_side: new BattleSide(combatants: [
-                new Combatant(...[...$combatant, 'pokemon_id' => null, 'species_id' => $pidgey->id, 'types' => [PokemonType::NORMAL, PokemonType::FLYING], 'move_ids' => [$tackle->id]]),
-            ], active_index: 0),
-            is_awaiting_send_out: false,
+                new Combatant(...[...$combatant, 'pokemonId' => 'pokemon-2', 'speciesId' => $eevee->id, 'types' => [PokemonType::NORMAL], 'currentHp' => 10, 'hasEnteredField' => false]),
+            ], activeIndex: 0),
+            opponentSide: new BattleSide(combatants: [
+                new Combatant(...[...$combatant, 'pokemonId' => null, 'speciesId' => $pidgey->id, 'types' => [PokemonType::NORMAL, PokemonType::FLYING], 'moveIds' => [$tackle->id]]),
+            ], activeIndex: 0),
+            isAwaitingSendOut: false,
             log: [],
         ),
     ]);
@@ -193,8 +193,8 @@ it('asks for a send-out when the switched-in pokemon faints', function () {
     $battle = new SwitchPokemonAction()->handle($battle, combatantIndex: 1)->fresh();
 
     expect($battle?->status)->toBe(BattleStatus::ONGOING)
-        ->and($battle?->state->is_awaiting_send_out)->toBeTrue()
-        ->and($battle?->state->player_side->activeCombatant()->current_hp)->toBe(0)
+        ->and($battle?->state->isAwaitingSendOut)->toBeTrue()
+        ->and($battle?->state->playerSide->activeCombatant()->currentHp)->toBe(0)
         ->and($battle?->state->log)->toEqual([
             new BattleLogEntry(1, BattleLogKind::EVENT, 'You switched Pokémon to Eevee.'),
             new BattleLogEntry(1, BattleLogKind::MOVE, 'The wild Pidgey used Tackle!', 'Tackle'),
@@ -208,32 +208,32 @@ it('refuses to switch to the pokemon in battle, a fainted one or one not in the 
     $eevee   = Species::factory()->create(['name' => 'Eevee', 'types' => [PokemonType::NORMAL]]);
 
     $combatant = [
-        'pokemon_id'                    => 'pokemon-1',
-        'species_id'                    => $pikachu->id,
-        'level'                         => 50,
-        'boost'                         => 0,
-        'is_shiny'                      => false,
-        'gender'                        => PokemonGender::MALE,
-        'types'                         => [PokemonType::ELECTRIC],
-        'move_ids'                      => ['move-1'],
-        'max_hp'                        => 218,
-        'current_hp'                    => 218,
-        'ailment'                       => null,
-        'ailment_turns_left'            => 0,
-        'confusion_turns_left'          => 0,
-        'has_entered_field'             => true,
-        'used_once_per_battle_move_ids' => [],
+        'pokemonId'                => 'pokemon-1',
+        'speciesId'                => $pikachu->id,
+        'level'                    => 50,
+        'boost'                    => 0,
+        'isShiny'                  => false,
+        'gender'                   => PokemonGender::MALE,
+        'types'                    => [PokemonType::ELECTRIC],
+        'moveIds'                  => ['move-1'],
+        'maxHp'                    => 218,
+        'currentHp'                => 218,
+        'ailment'                  => null,
+        'ailmentTurnsLeft'         => 0,
+        'confusionTurnsLeft'       => 0,
+        'hasEnteredField'          => true,
+        'usedOncePerBattleMoveIds' => [],
     ];
 
     $battle = Battle::factory()->create(['status' => BattleStatus::ONGOING]);
     $battle->update(['state' => new BattleState(
         turn: 3,
-        player_side: new BattleSide(combatants: [
+        playerSide: new BattleSide(combatants: [
             new Combatant(...$combatant),
-            new Combatant(...[...$combatant, 'pokemon_id' => 'pokemon-2', 'species_id' => $eevee->id, 'is_shiny' => true, 'current_hp' => 0]),
-        ], active_index: 0),
-        opponent_side: $battle->state->opponent_side,
-        is_awaiting_send_out: false,
+            new Combatant(...[...$combatant, 'pokemonId' => 'pokemon-2', 'speciesId' => $eevee->id, 'isShiny' => true, 'currentHp' => 0]),
+        ], activeIndex: 0),
+        opponentSide: $battle->state->opponentSide,
+        isAwaitingSendOut: false,
         log: [],
     )]);
 
@@ -242,7 +242,7 @@ it('refuses to switch to the pokemon in battle, a fainted one or one not in the 
     expect(fn () => new SwitchPokemonAction()->handle($battle, combatantIndex: $combatantIndex))
         ->toThrow(InvalidSwitchException::class, $expectedMessage)
         ->and($battle->fresh()?->state->turn)->toBe(3)
-        ->and($battle->fresh()?->state->player_side->active_index)->toBe(0);
+        ->and($battle->fresh()?->state->playerSide->activeIndex)->toBe(0);
 })->with([
     'in battle'       => [0, 'Pikachu is already in battle.'],
     'fainted'         => [1, "Shiny Eevee has fainted and can't battle."],

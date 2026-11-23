@@ -16,7 +16,7 @@ final class EnsureBattleIsReadyForTurn
      */
     public function handle(TurnData $turn, Closure $next): TurnData
     {
-        $isReady = $turn->battle->status === BattleStatus::ONGOING && ! $turn->state->is_awaiting_send_out;
+        $isReady = $turn->battle->status === BattleStatus::ONGOING && ! $turn->state->isAwaitingSendOut;
 
         throw_unless($isReady, BattleNotReadyForTurnException::class);
 

@@ -22,7 +22,7 @@ final class MoveUsabilityChecker
 
     public function isOncePerBattleMoveAlreadyUsed(Move $move, Combatant $combatant): bool
     {
-        return $this->isOncePerBattle($move) && in_array($move->id, $combatant->used_once_per_battle_move_ids, true);
+        return $this->isOncePerBattle($move) && in_array($move->id, $combatant->usedOncePerBattleMoveIds, true);
     }
 
     public function isDynamaxMoveAllowed(Move $move, Species $species): bool

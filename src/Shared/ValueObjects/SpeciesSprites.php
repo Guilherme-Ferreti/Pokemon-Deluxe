@@ -9,14 +9,14 @@ use Shared\Interfaces\ValueObject;
 final readonly class SpeciesSprites implements ValueObject
 {
     public function __construct(
-        public ?string $back_default,
-        public ?string $back_female,
-        public ?string $back_shiny,
-        public ?string $back_shiny_female,
-        public ?string $front_default,
-        public ?string $front_female,
-        public ?string $front_shiny,
-        public ?string $front_shiny_female,
+        public ?string $backDefault,
+        public ?string $backFemale,
+        public ?string $backShiny,
+        public ?string $backShinyFemale,
+        public ?string $frontDefault,
+        public ?string $frontFemale,
+        public ?string $frontShiny,
+        public ?string $frontShinyFemale,
     ) {}
 
     public function equals(ValueObject $other): bool
@@ -25,13 +25,13 @@ final readonly class SpeciesSprites implements ValueObject
             return false;
         }
 
-        return $this->back_default === $other->back_default
-            && $this->back_female === $other->back_female
-            && $this->back_shiny === $other->back_shiny
-            && $this->back_shiny_female === $other->back_shiny_female
-            && $this->front_default === $other->front_default
-            && $this->front_female === $other->front_female
-            && $this->front_shiny === $other->front_shiny
-            && $this->front_shiny_female === $other->front_shiny_female;
+        return $this->backDefault === $other->backDefault
+            && $this->backFemale === $other->backFemale
+            && $this->backShiny === $other->backShiny
+            && $this->backShinyFemale === $other->backShinyFemale
+            && $this->frontDefault === $other->frontDefault
+            && $this->frontFemale === $other->frontFemale
+            && $this->frontShiny === $other->frontShiny
+            && $this->frontShinyFemale === $other->frontShinyFemale;
     }
 }

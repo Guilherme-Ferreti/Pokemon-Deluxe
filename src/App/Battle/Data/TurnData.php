@@ -62,7 +62,7 @@ final class TurnData
             throw new LogicException('The player is not using a move this turn.');
         }
 
-        $moveIds = $this->state->player_side->activeCombatant()->move_ids;
+        $moveIds = $this->state->playerSide->activeCombatant()->moveIds;
 
         return $this->moves->findOrFail($moveIds[$this->moveSlot - 1] ?? throw new LogicException('The move slot must be checked first.'));
     }
@@ -79,7 +79,7 @@ final class TurnData
 
     public function switchPlayerActiveIndex(int $combatantIndex): void
     {
-        $this->state = $this->state->withPlayerSide($this->state->player_side->withActiveIndex($combatantIndex));
+        $this->state = $this->state->withPlayerSide($this->state->playerSide->withActiveIndex($combatantIndex));
     }
 
     public function startActionFor(Side $side): TurnActionData
@@ -99,23 +99,23 @@ final class TurnData
     public function activeCombatant(Side $side): Combatant
     {
         return $side === Side::PLAYER
-            ? $this->state->player_side->activeCombatant()
-            : $this->state->opponent_side->activeCombatant();
+            ? $this->state->playerSide->activeCombatant()
+            : $this->state->opponentSide->activeCombatant();
     }
 
     public function replaceActiveCombatant(Side $side, Combatant $combatant): void
     {
         $this->state = $side === Side::PLAYER
-            ? $this->state->withPlayerSide($this->state->player_side->withActiveCombatant($combatant))
-            : $this->state->withOpponentSide($this->state->opponent_side->withActiveCombatant($combatant));
+            ? $this->state->withPlayerSide($this->state->playerSide->withActiveCombatant($combatant))
+            : $this->state->withOpponentSide($this->state->opponentSide->withActiveCombatant($combatant));
     }
 
     public function damageActiveCombatant(Side $side, int $damage): int
     {
         $combatant = $this->activeCombatant($side);
-        $hpLost    = min($damage, $combatant->current_hp);
+        $hpLost    = min($damage, $combatant->currentHp);
 
-        $this->replaceActiveCombatant($side, $combatant->withCurrentHp($combatant->current_hp - $hpLost));
+        $this->replaceActiveCombatant($side, $combatant->withCurrentHp($combatant->currentHp - $hpLost));
 
         return $hpLost;
     }
@@ -135,8 +135,8 @@ final class TurnData
     {
         $combatant = $this->activeCombatant($side);
 
-        $name = $this->species->findOrFail($combatant->species_id)->name;
-        $name = $combatant->is_shiny ? "Shiny {$name}" : $name;
+        $name = $this->species->findOrFail($combatant->speciesId)->name;
+        $name = $combatant->isShiny ? "Shiny {$name}" : $name;
 
         if ($side === Side::OPPONENT && $this->battle->type === BattleType::WILD) {
             return ($atStart ? 'The wild ' : 'the wild ') . $name;

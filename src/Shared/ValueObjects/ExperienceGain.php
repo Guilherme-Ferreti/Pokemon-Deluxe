@@ -13,24 +13,24 @@ use Shared\Interfaces\ValueObject;
 final readonly class ExperienceGain implements ValueObject
 {
     public function __construct(
-        public int $combatant_index,
-        public int $earned_experience,
-        public int $level_before,
-        public int $level_after,
-        public bool $is_from_experience_share,
-        public bool $is_at_max_level,
+        public int $combatantIndex,
+        public int $earnedExperience,
+        public int $levelBefore,
+        public int $levelAfter,
+        public bool $isFromExperienceShare,
+        public bool $isAtMaxLevel,
     ) {
         $maxLevel = (int) config('game.pokemon.max_level');
 
-        throw_if($combatant_index < 0, InvalidArgumentException::class, "The combatant index cannot be negative, [{$combatant_index}] given.");
+        throw_if($combatantIndex < 0, InvalidArgumentException::class, "The combatant index cannot be negative, [{$combatantIndex}] given.");
 
-        throw_if($earned_experience < 0, InvalidArgumentException::class, "The earned experience cannot be negative, [{$earned_experience}] given.");
+        throw_if($earnedExperience < 0, InvalidArgumentException::class, "The earned experience cannot be negative, [{$earnedExperience}] given.");
 
-        throw_if($level_before < 1 || $level_before > $maxLevel, InvalidArgumentException::class, "The level before must be between 1 and {$maxLevel}, [{$level_before}] given.");
+        throw_if($levelBefore < 1 || $levelBefore > $maxLevel, InvalidArgumentException::class, "The level before must be between 1 and {$maxLevel}, [{$levelBefore}] given.");
 
-        throw_if($level_after < $level_before || $level_after > $maxLevel, InvalidArgumentException::class, "The level after must be between {$level_before} and {$maxLevel}, [{$level_after}] given.");
+        throw_if($levelAfter < $levelBefore || $levelAfter > $maxLevel, InvalidArgumentException::class, "The level after must be between {$levelBefore} and {$maxLevel}, [{$levelAfter}] given.");
 
-        throw_if($is_at_max_level && $level_before !== $maxLevel, InvalidArgumentException::class, "Only a Pokémon at level {$maxLevel} can be at the max level, [{$level_before}] given.");
+        throw_if($isAtMaxLevel && $levelBefore !== $maxLevel, InvalidArgumentException::class, "Only a Pokémon at level {$maxLevel} can be at the max level, [{$levelBefore}] given.");
     }
 
     /**
@@ -39,12 +39,12 @@ final readonly class ExperienceGain implements ValueObject
     public static function fromArray(array $data): self
     {
         return new self(
-            combatant_index: $data['combatant_index'],
-            earned_experience: $data['earned_experience'],
-            level_before: $data['level_before'],
-            level_after: $data['level_after'],
-            is_from_experience_share: $data['is_from_experience_share'],
-            is_at_max_level: $data['is_at_max_level'],
+            combatantIndex: $data['combatant_index'],
+            earnedExperience: $data['earned_experience'],
+            levelBefore: $data['level_before'],
+            levelAfter: $data['level_after'],
+            isFromExperienceShare: $data['is_from_experience_share'],
+            isAtMaxLevel: $data['is_at_max_level'],
         );
     }
 
@@ -54,12 +54,12 @@ final readonly class ExperienceGain implements ValueObject
     public function toArray(): array
     {
         return [
-            'combatant_index'          => $this->combatant_index,
-            'earned_experience'        => $this->earned_experience,
-            'level_before'             => $this->level_before,
-            'level_after'              => $this->level_after,
-            'is_from_experience_share' => $this->is_from_experience_share,
-            'is_at_max_level'          => $this->is_at_max_level,
+            'combatant_index'          => $this->combatantIndex,
+            'earned_experience'        => $this->earnedExperience,
+            'level_before'             => $this->levelBefore,
+            'level_after'              => $this->levelAfter,
+            'is_from_experience_share' => $this->isFromExperienceShare,
+            'is_at_max_level'          => $this->isAtMaxLevel,
         ];
     }
 

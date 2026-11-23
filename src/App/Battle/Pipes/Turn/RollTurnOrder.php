@@ -17,8 +17,8 @@ final class RollTurnOrder
     public function handle(TurnData $turn, Closure $next): TurnData
     {
         $isPlayerFirst = new TurnOrderRoller()->rollIsPlayerFirst(
-            $turn->state->player_side->activeCombatant()->level,
-            $turn->state->opponent_side->activeCombatant()->level,
+            $turn->state->playerSide->activeCombatant()->level,
+            $turn->state->opponentSide->activeCombatant()->level,
         );
 
         $turn->turnOrder = $isPlayerFirst ? [Side::PLAYER, Side::OPPONENT] : [Side::OPPONENT, Side::PLAYER];
