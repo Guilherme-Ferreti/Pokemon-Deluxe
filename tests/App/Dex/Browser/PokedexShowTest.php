@@ -173,11 +173,12 @@ describe('overview card', function () {
     it('displays an empty state message if species has no traits', function () {
         $user    = User::factory()->create();
         $species = Species::factory()->create([
-            'is_baby'      => false,
-            'is_legendary' => false,
-            'is_mythical'  => false,
-            'is_mega'      => false,
-            'is_gmax'      => false,
+            'is_baby'        => false,
+            'is_legendary'   => false,
+            'is_mythical'    => false,
+            'is_mega'        => false,
+            'is_gmax'        => false,
+            'is_ultra_beast' => false,
         ]);
 
         actingAs($user);
