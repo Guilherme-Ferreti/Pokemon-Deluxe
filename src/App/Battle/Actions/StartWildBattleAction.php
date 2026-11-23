@@ -117,7 +117,7 @@ final class StartWildBattleAction
             is_shiny: $pokemon->is_shiny,
             gender: $pokemon->gender,
             types: array_values($pokemon->species->types->all()),
-            move_ids: array_values($pokemon->activeMoves->map(fn (Move $move): string => $move->id)->all()),
+            move_ids: array_values($pokemon->activeMoves->map(fn (Move $move) => $move->id)->all()),
             max_hp: $maxHp,
             current_hp: $maxHp,
             ailment: null,
@@ -160,7 +160,7 @@ final class StartWildBattleAction
         $moveIds = $this->wildPokemon->species->baseMoves()
             ->take((int) config('game.pokemon.max_active_moves'))
             ->get(['moves.id'])
-            ->map(fn (Move $move): string => $move->id);
+            ->map(fn (Move $move) => $move->id);
 
         return array_values($moveIds->all());
     }

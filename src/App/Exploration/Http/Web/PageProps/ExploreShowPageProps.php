@@ -29,7 +29,7 @@ final readonly class ExploreShowPageProps implements ProvidesInertiaProperties
         return [
             'area'               => $this->getAreaProp(...),
             'encounter'          => $this->getEncounterProp(...),
-            'isBattleInProgress' => fn (): bool => currentUser()->battles()->ongoing()->exists(),
+            'isBattleInProgress' => fn () => currentUser()->battles()->ongoing()->exists(),
             'areaSpecies'        => Inertia::optional($this->getAreaSpeciesProp(...))->once(),
         ];
     }
@@ -55,7 +55,7 @@ final readonly class ExploreShowPageProps implements ProvidesInertiaProperties
             ->handle($this->area)
             ->select('id', 'slug', 'name', 'portraits', 'types')
             ->get()
-            ->map(fn (Species $species): array => [
+            ->map(fn (Species $species) => [
                 'slug'     => $species->slug,
                 'name'     => $species->name,
                 'portrait' => $species->portraits->regular,

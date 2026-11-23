@@ -86,7 +86,7 @@ final class BallMultiplierCalculator
     private function evolvesWithMoonStone(Species $species): bool
     {
         return $species->evolutions->contains(
-            fn (SpeciesEvolution $evolution): bool => $evolution->evolutionItem?->slug === self::MOON_BALL_EVOLUTION_ITEM_SLUG,
+            fn (SpeciesEvolution $evolution) => $evolution->evolutionItem?->slug === self::MOON_BALL_EVOLUTION_ITEM_SLUG,
         );
     }
 
@@ -95,6 +95,6 @@ final class BallMultiplierCalculator
      */
     private function hasAnyType(Species $species, array $types): bool
     {
-        return $species->types->contains(fn (PokemonType $type): bool => in_array($type, $types, true));
+        return $species->types->contains(fn (PokemonType $type) => in_array($type, $types, true));
     }
 }

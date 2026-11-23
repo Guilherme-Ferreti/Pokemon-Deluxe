@@ -47,10 +47,10 @@ final class SpeciesSeeder extends Seeder
         collect($records)
             ->sortBy([
                 ['pokedex_number', 'asc'],
-                fn (array $a, array $b): int => $this->getFormRank($a) <=> $this->getFormRank($b),
+                fn (array $a, array $b) => $this->getFormRank($a) <=> $this->getFormRank($b),
             ])
             ->values()
-            ->map(fn (array $record, int $index): array => [...$record, 'pokedex_order' => $index + 1])
+            ->map(fn (array $record, int $index) => [...$record, 'pokedex_order' => $index + 1])
             ->chunk(1000)
             ->each(fn (Collection $chunk) => Species::insert($chunk->toArray()));
     }

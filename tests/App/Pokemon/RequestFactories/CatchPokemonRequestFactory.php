@@ -20,7 +20,7 @@ final class CatchPokemonRequestFactory extends RequestFactory
     public function definition(): array
     {
         return [
-            'pokeballId' => fn (): string => Pokeball::factory()->create()->id,
+            'pokeballId' => fn () => Pokeball::factory()->create()->id,
         ];
     }
 

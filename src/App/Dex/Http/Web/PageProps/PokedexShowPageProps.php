@@ -181,7 +181,7 @@ final readonly class PokedexShowPageProps implements ProvidesInertiaProperties
     {
         return Cache::rememberForever(
             key: CacheKeys::speciesEvolutionChain($this->species->id),
-            callback: fn (): array => [
+            callback: fn () => [
                 'previous' => $this->species
                     ->previousEvolutions()
                     ->with('from:id,slug,name,portraits', 'evolutionItem:id,name,sprite')
@@ -225,7 +225,7 @@ final readonly class PokedexShowPageProps implements ProvidesInertiaProperties
     {
         return Cache::rememberForever(
             key: CacheKeys::speciesBaseMoves($this->species->id),
-            callback: fn (): array => $this->species
+            callback: fn () => $this->species
                 ->baseMoves
                 ->sortBy('name')
                 ->map(fn (Move $move) => [

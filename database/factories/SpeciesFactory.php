@@ -29,7 +29,7 @@ final class SpeciesFactory extends Factory
             'name'           => fake()->unique()->word(),
             'types'          => fake()->randomElements(PokemonType::cases(), random_int(1, 2)),
             'pokedex_number' => fake()->unique()->numberBetween(1, 1000),
-            'pokedex_order'  => fn (array $attributes): int => $attributes['pokedex_number'] * 10 + match (true) {
+            'pokedex_order'  => fn (array $attributes) => $attributes['pokedex_number'] * 10 + match (true) {
                 (bool) $attributes['is_gmax'] => 2,
                 (bool) $attributes['is_mega'] => 1,
                 default                       => 0,

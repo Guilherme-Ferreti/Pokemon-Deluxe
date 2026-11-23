@@ -27,7 +27,7 @@ final class ListIncubatorsAction
             ->keyBy(fn (Incubation $incubation) => $incubation->incubator_index->value);
 
         return collect(AppHelper::allIncubatorIndexes())
-            ->mapWithKeys(fn (IncubatorIndex $index): array => [
+            ->mapWithKeys(fn (IncubatorIndex $index) => [
                 $index->value => new Incubator(
                     index: $index,
                     isPurchased: value_object_array_contains($purchasedIndexes, $index),

@@ -18,7 +18,7 @@ final class ExploreIndexPageProps implements ProvidesInertiaProperties
     {
         return [
             'areas'              => $this->getAreasProp(...),
-            'isBattleInProgress' => fn (): bool => currentUser()->battles()->ongoing()->exists(),
+            'isBattleInProgress' => fn () => currentUser()->battles()->ongoing()->exists(),
         ];
     }
 
@@ -27,7 +27,7 @@ final class ExploreIndexPageProps implements ProvidesInertiaProperties
      */
     private function getAreasProp(): array
     {
-        return array_map(fn (Area $area): array => [
+        return array_map(fn (Area $area) => [
             'slug'  => $area->value,
             'label' => $area->label(),
             'types' => $area->types(),

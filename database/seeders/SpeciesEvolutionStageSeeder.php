@@ -23,8 +23,8 @@ final class SpeciesEvolutionStageSeeder extends Seeder
         $calculator = new EvolutionStageCalculator;
 
         $species
-            ->map(fn (Species $current): int => $calculator->evolutionStage($current))
-            ->groupBy(fn (int $evolutionStage): int => $evolutionStage, preserveKeys: true)
+            ->map(fn (Species $current) => $calculator->evolutionStage($current))
+            ->groupBy(fn (int $evolutionStage) => $evolutionStage, preserveKeys: true)
             ->each(fn (Collection $group, int $evolutionStage) => Species::query()->whereKey($group->keys())->update(['evolution_stage' => $evolutionStage]));
     }
 }

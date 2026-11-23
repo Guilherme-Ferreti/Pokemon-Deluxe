@@ -53,7 +53,7 @@ enum Area: string
 
     public static function fromType(PokemonType $type): self
     {
-        return array_find(self::cases(), fn (self $area): bool => in_array($type, $area->types(), true))
+        return array_find(self::cases(), fn (self $area) => in_array($type, $area->types(), true))
             ?? throw new LogicException("No area has the [{$type->value}] type.");
     }
 }

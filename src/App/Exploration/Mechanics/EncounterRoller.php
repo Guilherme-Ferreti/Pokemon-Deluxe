@@ -53,7 +53,7 @@ final class EncounterRoller
     private function rollSpecies(Collection $areaSpecies): Species
     {
         [$legendarySpecies, $regularSpecies] = $areaSpecies->partition(
-            fn (Species $species): bool => $species->is_legendary || $species->is_mythical,
+            fn (Species $species) => $species->is_legendary || $species->is_mythical,
         );
 
         if ($legendarySpecies->isNotEmpty() && ($regularSpecies->isEmpty() || RandomHelper::chance((float) config('game.exploration.legendary_chance')))) {

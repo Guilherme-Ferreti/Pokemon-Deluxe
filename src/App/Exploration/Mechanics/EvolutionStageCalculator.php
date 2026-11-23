@@ -13,7 +13,7 @@ final class EvolutionStageCalculator
     public function evolutionStage(Species $species): int
     {
         $previousStages = $this->nonBabyPreviousEvolutions($species)
-            ->map(fn (SpeciesEvolution $evolution): int => $this->evolutionStage($evolution->from));
+            ->map(fn (SpeciesEvolution $evolution) => $this->evolutionStage($evolution->from));
 
         return $previousStages->isEmpty() ? 1 : 1 + (int) $previousStages->min();
     }
@@ -25,7 +25,7 @@ final class EvolutionStageCalculator
     {
         return $species->previousEvolutions
             ->toBase()
-            ->reject(fn (SpeciesEvolution $evolution): bool => $evolution->from->is_baby)
+            ->reject(fn (SpeciesEvolution $evolution) => $evolution->from->is_baby)
             ->values();
     }
 }
