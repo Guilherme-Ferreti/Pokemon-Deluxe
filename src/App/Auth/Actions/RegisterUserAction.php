@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Auth\Actions;
 
+use App\Economy\Actions\AddMoneyAction;
 use App\Inventory\Actions\AddInventoryItemAction;
 use App\Pokemon\Actions\CreatePokemonAction;
 use App\Pokemon\ValueObjects\NewPokemon;
@@ -27,6 +28,7 @@ final class RegisterUserAction
 
             $this->giveStarter($starter);
             $this->giveStartingItems();
+            $this->giveStartingMoney();
 
             return $this->user;
         });
@@ -60,5 +62,10 @@ final class RegisterUserAction
                 item: $pokeball,
                 quantity: $startingPokeballs[$pokeball->slug]
             ));
+    }
+
+    private function giveStartingMoney(): void
+    {
+        new AddMoneyAction()->handle($this->user, (int) config('game.economy.starting_money'));
     }
 }

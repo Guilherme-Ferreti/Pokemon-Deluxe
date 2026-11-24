@@ -29,6 +29,7 @@ use Shared\ValueObjects\IncubatorIndex;
  * @property string $password
  * @property string|null $remember_token
  * @property list<IncubatorIndex> $purchased_incubator_indexes
+ * @property int $money
  * @property CarbonImmutable|null $created_at
  * @property CarbonImmutable|null $updated_at
  * @property-read EloquentCollection<int, Pokemon> $pokemon
@@ -53,6 +54,7 @@ final class User extends Authenticatable
             'email_verified_at'           => 'datetime',
             'password'                    => 'hashed',
             'purchased_incubator_indexes' => AsIncubatorIndexes::class,
+            'money'                       => 'integer',
         ];
     }
 

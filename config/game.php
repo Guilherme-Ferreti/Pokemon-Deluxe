@@ -30,6 +30,10 @@ return [
         ],
     ],
 
+    'economy' => [
+        'starting_money' => 2000, // Pokédollars a new player starts with, enough for 10 Poké Balls.
+    ],
+
     'inventory' => [
         'max_stack' => 9999, // Most units of one item (ball, evolution item) a player can hold.
     ],

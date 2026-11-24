@@ -33,7 +33,15 @@ final class UserFactory extends Factory
             'password'                    => self::$password ??= Hash::make('password'),
             'remember_token'              => Str::random(10),
             'purchased_incubator_indexes' => Arr::take(AppHelper::allIncubatorIndexes(), fake()->numberBetween(1, config('game.user.max_incubators'))),
+            'money'                       => 0,
         ];
+    }
+
+    public function withMoney(int $money): static
+    {
+        return $this->state(fn () => [
+            'money' => $money,
+        ]);
     }
 
     public function unverified(): static

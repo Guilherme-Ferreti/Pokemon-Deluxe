@@ -1229,14 +1229,14 @@ Read [03-money-inventory-and-shop.md](03-money-inventory-and-shop.md) first. Mon
 
 ### 3.1 Money
 
-- [ ] Done
+- [x] Done
 
 **Goal:** players have Pokédollars.
 
 **Build:**
 - In `009_create_users_table.php`: `unsignedInteger('money')->default(0)`.
 - `User` model cast; `UserFactory` state `withMoney(int $money)`.
-- `App\Economy\Actions\AddMoneyAction::handle(User $user, int $amount): void` and `SpendMoneyAction::handle(User $user, int $amount): void`. Spending more than the player has throws `App\Economy\Exceptions\NotEnoughMoneyException`. Amounts below 1 throw `InvalidArgumentException`. Both lock with a `LockKeys` method and refresh the user first.
+- `App\Economy\Actions\AddMoneyAction::handle(User $user, int $amount): void` and `SpendMoneyAction::handle(User $user, int $amount): void`. Spending more than the player has throws `App\Economy\Exceptions\NotEnoughMoneyException`. Amounts below 1 throw `InvalidArgumentException`. Both change `money` with one atomic update (spending only `where money >= amount`), so they need no lock and stay safe inside a caller's transaction (e.g. `BuyItemAction`). They do not refresh the given user; callers that need the new amount read it again.
 - Config `game.economy.starting_money` (2000); `RegisterUserAction` (task 2.13) gives it.
 
 **Tests:** add; spend; spending too much is refused and changes nothing; new players start with ₽ 2,000.

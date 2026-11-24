@@ -50,7 +50,7 @@ it('loads the registration page with the starters grouped by region', function (
         );
 });
 
-it('registers a new user with the chosen starter and the starting balls', function () {
+it('registers a new user with the chosen starter, the starting balls and the starting money', function () {
     $bulbasaur = Species::factory()->create(['slug' => 'bulbasaur']);
     $pokeBall  = Pokeball::factory()->create(['slug' => 'poke-ball']);
     $greatBall = Pokeball::factory()->create(['slug' => 'great-ball']);
@@ -62,7 +62,7 @@ it('registers a new user with the chosen starter and the starting balls', functi
     $user = User::query()->where('email', $data['email'])->firstOrFail();
 
     assertDatabaseCount(User::class, 1);
-    assertDatabaseHas(User::class, ['name' => $data['name'], 'email' => $data['email']]);
+    assertDatabaseHas(User::class, ['name' => $data['name'], 'email' => $data['email'], 'money' => 2000]);
 
     assertDatabaseCount(Pokemon::class, 1);
     assertDatabaseHas(Pokemon::class, [

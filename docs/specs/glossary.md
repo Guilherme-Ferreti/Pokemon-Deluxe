@@ -91,6 +91,7 @@ One name per idea, used everywhere: specs, code, database, tests and UI. When yo
 | Starter | `starter` | The Pokémon chosen at registration. |
 | Ultra Beast | `is_ultra_beast`, `SpeciesTrait::ULTRA_BEAST` / `PokemonTrait::ULTRA_BEAST` (`ultra-beast`) | |
 | Money / Pokédollars (₽) | `money` (users column), `MoneyAmount` (Vue) | Never "coins", "cash" or "balance". |
+| Add and spend money | `AddMoneyAction`, `SpendMoneyAction`, `NotEnoughMoneyException`, `game.economy.starting_money` | Both are one atomic update on the user's row. Spending more than the player has is refused. New players start with ₽ 2,000. |
 | Add items to the inventory | `AddInventoryItemAction`, `InventoryStackFullException`, `game.inventory.max_stack` | Creates or grows the player's stack of an item, up to 9,999. `RemoveInventoryItemAction` takes items away. |
 | Price | `price` | Null means earned only: never sold. |
 | Sell back | `SellItemAction`, `sell_back_ratio` | Half the price. |
