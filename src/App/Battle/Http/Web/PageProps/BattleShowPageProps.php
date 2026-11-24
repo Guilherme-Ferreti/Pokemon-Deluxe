@@ -5,6 +5,8 @@ declare(strict_types=1);
 namespace App\Battle\Http\Web\PageProps;
 
 use App\Battle\Enums\BattleScene;
+use App\Battle\Mechanics\BallMultiplierCalculator;
+use App\Battle\Support\CatchContextBuilder;
 use App\Pokemon\Mechanics\StatsCalculator;
 use Illuminate\Database\Eloquent\Collection as EloquentCollection;
 use Inertia\ProvidesInertiaProperties;
@@ -17,7 +19,10 @@ use Shared\Enums\BattleType;
 use Shared\Enums\PokemonGender;
 use Shared\Enums\PokemonType;
 use Shared\Models\Battle;
+use Shared\Models\InventoryItem;
 use Shared\Models\Move;
+use Shared\Models\Pokeball;
+use Shared\Models\Pokemon;
 use Shared\Models\Species;
 use Shared\ValueObjects\BattleSide;
 use Shared\ValueObjects\Combatant;
@@ -41,11 +46,12 @@ final class BattleShowPageProps implements ProvidesInertiaProperties
     public function toInertiaProperties(RenderContext $context): array
     {
         return [
-            'battle'   => $this->getBattleProp(...),
-            'player'   => $this->getPlayerProp(...),
-            'opponent' => $this->getOpponentProp(...),
-            'moves'    => $this->getMovesProp(...),
-            'result'   => $this->getResultProp(...),
+            'battle'    => $this->getBattleProp(...),
+            'player'    => $this->getPlayerProp(...),
+            'opponent'  => $this->getOpponentProp(...),
+            'moves'     => $this->getMovesProp(...),
+            'pokeballs' => $this->getPokeballsProp(...),
+            'result'    => $this->getResultProp(...),
         ];
     }
 
@@ -144,7 +150,43 @@ final class BattleShowPageProps implements ProvidesInertiaProperties
     }
 
     /**
-     * @return array{experienceGains: list<array{name: string, portrait: ?string, gender: PokemonGender, earnedExperience: int, levelBefore: int, levelAfter: int, isFromExperienceShare: bool, isAtMaxLevel: bool}>}|null
+     * @return list<array{slug: string, name: string, sprite: ?string, quantity: int, multiplier: int|float, isBoosted: bool}>
+     */
+    private function getPokeballsProp(): array
+    {
+        if ($this->battle->type !== BattleType::WILD || $this->battle->status !== BattleStatus::ONGOING) {
+            return [];
+        }
+
+        $catchContext             = new CatchContextBuilder()->build($this->battle);
+        $ballMultiplierCalculator = new BallMultiplierCalculator;
+
+        return $this->battle->user
+            ->inventoryItems()
+            ->pokeballs()
+            ->owned()
+            ->with('item')
+            ->get()
+            ->map(function (InventoryItem $inventoryItem) use ($catchContext, $ballMultiplierCalculator) {
+                /** @var Pokeball $pokeball */
+                $pokeball   = $inventoryItem->item;
+                $multiplier = $ballMultiplierCalculator->multiplier($pokeball, $catchContext);
+
+                return [
+                    'slug'       => $pokeball->slug,
+                    'name'       => $pokeball->name,
+                    'sprite'     => $pokeball->sprite,
+                    'quantity'   => $inventoryItem->quantity,
+                    'multiplier' => round($multiplier, 1) |> toIntIfWhole(...),
+                    'isBoosted'  => $multiplier > $pokeball->catch_rate,
+                ];
+            })
+            ->sortBy([['isBoosted', 'desc'], ['multiplier', 'desc'], ['name', 'asc']])
+            ->all() |> array_values(...);
+    }
+
+    /**
+     * @return array{experienceGains: list<array{name: string, portrait: ?string, gender: PokemonGender, earnedExperience: int, levelBefore: int, levelAfter: int, isFromExperienceShare: bool, isAtMaxLevel: bool}>, caughtPokemon: array{name: string, pokeballName: string, isInParty: bool}|null}|null
      */
     private function getResultProp(): ?array
     {
@@ -173,6 +215,32 @@ final class BattleShowPageProps implements ProvidesInertiaProperties
                     'isAtMaxLevel'          => $gain->isAtMaxLevel,
                 ];
             }, $gains),
+            'caughtPokemon' => $this->caughtPokemonDetails(),
+        ];
+    }
+
+    /**
+     * @return array{name: string, pokeballName: string, isInParty: bool}|null
+     */
+    private function caughtPokemonDetails(): ?array
+    {
+        if ($this->battle->state->caughtPokemonId === null) {
+            return null;
+        }
+
+        $pokemon = Pokemon::query()
+            ->with(['species', 'pokeball'])
+            ->whereBelongsTo($this->battle->user)
+            ->find($this->battle->state->caughtPokemonId);
+
+        if ($pokemon === null) {
+            return null;
+        }
+
+        return [
+            'name'         => $pokemon->getDisplayName(),
+            'pokeballName' => $pokemon->pokeball->name,
+            'isInParty'    => $pokemon->in_party,
         ];
     }
 

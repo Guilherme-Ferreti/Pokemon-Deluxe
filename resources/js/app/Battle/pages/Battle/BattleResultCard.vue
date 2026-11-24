@@ -86,6 +86,19 @@
     </CardContent>
     <CardFooter class="battle-result-card__actions">
       <Button
+        v-if="caughtPokemon"
+        as-child
+        :variant="page.props.battle.area ? 'outline' : 'default'"
+      >
+        <Link
+          data-test="battle-result-card__view-pokemon-link"
+          :href="route('pokemon.web.box.index')"
+        >
+          View {{ caughtPokemon.name }}
+        </Link>
+      </Button>
+      <Button
+        v-else
         as-child
         :variant="page.props.battle.area ? 'outline' : 'default'"
       >
@@ -138,6 +151,22 @@ const gains = computed(() => page.props.result?.experienceGains ?? []);
 
 const opponentName = computed(() => page.props.opponent.name);
 
+const caughtPokemon = computed(() => page.props.result?.caughtPokemon ?? null);
+
+const caughtDescription = computed(() => {
+  if (!caughtPokemon.value) {
+    return null;
+  }
+
+  const { pokeballName, isInParty } = caughtPokemon.value;
+  const article = /^[aeiou]/i.test(pokeballName) ? 'an' : 'a';
+  const destination = isInParty
+    ? 'added to your party'
+    : 'sent to your Box (your party is full)';
+
+  return `Caught with ${article} ${pokeballName} · ${destination}.`;
+});
+
 const headings = computed<
   Record<EndedStatus, { title: string; description: string | null }>
 >(() => ({
@@ -155,7 +184,7 @@ const headings = computed<
   },
   [BattleStatus.CAUGHT]: {
     title: `Gotcha! ${opponentName.value} was caught`,
-    description: null,
+    description: caughtDescription.value,
   },
 }));
 

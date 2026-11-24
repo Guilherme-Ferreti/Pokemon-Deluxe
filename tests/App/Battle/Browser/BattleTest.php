@@ -9,7 +9,10 @@ use Shared\Enums\PokemonGender;
 use Shared\Enums\PokemonType;
 use Shared\Helpers\RandomHelper;
 use Shared\Models\Battle;
+use Shared\Models\InventoryItem;
 use Shared\Models\Move;
+use Shared\Models\Pokeball;
+use Shared\Models\Pokemon;
 use Shared\Models\Species;
 use Shared\Models\User;
 use Shared\ValueObjects\BattleLogEntry;
@@ -206,6 +209,7 @@ it('sends out another pokemon from the team rail after a faint', function () {
         ->assertMissing('@moves-card')
         ->assertSeeIn('@pokemon-fainted-card__title', 'Pikachu fainted!')
         ->assertMissing('@send-out-sheet')
+        ->assertButtonDisabled('@battle-throw-ball-button')
         ->assertButtonDisabled('@battle-team-rail__send-out-button')
         ->click('@battle-team-rail__pokemon-2-radio')
         ->assertButtonEnabled('@battle-team-rail__send-out-button')
@@ -403,6 +407,75 @@ it('runs from the battle after confirming', function () {
         ->assertSeeIn('@battle-result-card__no-experience-empty-state', "No XP this time: the wild Pikachu wasn't knocked out or caught.")
         ->assertSeeIn('@battle-result-card', 'Back to Dashboard')
         ->assertSeeIn('@battle-log-card', 'You got away safely!')
+        ->assertNoJavascriptErrors();
+});
+
+it('throws a ball from the throw ball dialog and shows the caught result card', function () {
+    $user      = User::factory()->create();
+    $pikachu   = Species::factory()->create(['name' => 'Pikachu', 'types' => [PokemonType::ELECTRIC]]);
+    $pidgey    = Species::factory()->withBaseMoves()->create(['name' => 'Pidgey', 'types' => [PokemonType::NORMAL, PokemonType::FLYING]]);
+    $pokemon   = Pokemon::factory()->for($user)->inParty()->create(['species_id' => $pikachu->id, 'level' => 50, 'experience' => 50_000]);
+    $tackle    = Move::factory()->plainDamage()->create(['name' => 'Tackle']);
+    $pokeBall  = Pokeball::factory()->create(['slug' => 'poke-ball', 'name' => 'Poké Ball', 'catch_rate' => 1]);
+    $fastBall  = Pokeball::factory()->create(['slug' => 'fast-ball', 'name' => 'Fast Ball', 'catch_rate' => 1]);
+    $ultraBall = Pokeball::factory()->create(['slug' => 'ultra-ball', 'name' => 'Ultra Ball', 'catch_rate' => 2]);
+
+    InventoryItem::factory()->for($user)->pokeball($pokeBall)->create(['quantity' => 18]);
+    InventoryItem::factory()->for($user)->pokeball($fastBall)->create(['quantity' => 4]);
+    InventoryItem::factory()->for($user)->pokeball($ultraBall)->create(['quantity' => 12]);
+
+    $combatant = [
+        'pokemonId'                => $pokemon->id,
+        'speciesId'                => $pikachu->id,
+        'level'                    => 50,
+        'boost'                    => 0,
+        'isShiny'                  => false,
+        'gender'                   => PokemonGender::MALE,
+        'types'                    => [PokemonType::ELECTRIC],
+        'moveIds'                  => [$tackle->id],
+        'maxHp'                    => 218,
+        'currentHp'                => 218,
+        'ailment'                  => null,
+        'ailmentTurnsLeft'         => 0,
+        'confusionTurnsLeft'       => 0,
+        'hasEnteredField'          => true,
+        'usedOncePerBattleMoveIds' => [],
+    ];
+
+    Battle::factory()->for($user)->create([
+        'type'   => BattleType::WILD,
+        'status' => BattleStatus::ONGOING,
+        'state'  => new BattleState(
+            turn: 2,
+            playerSide: new BattleSide(combatants: [new Combatant(...$combatant)], activeIndex: 0),
+            opponentSide: new BattleSide(combatants: [
+                new Combatant(...[...$combatant, 'pokemonId' => null, 'speciesId' => $pidgey->id, 'types' => [PokemonType::NORMAL, PokemonType::FLYING]]),
+            ], activeIndex: 0),
+            isAwaitingSendOut: false,
+            log: [new BattleLogEntry(0, BattleLogKind::INFO, 'A wild Pidgey appeared!')],
+        ),
+    ]);
+
+    RandomHelper::fake([true]);
+
+    actingAs($user);
+
+    visit(route('battle.web.show'))
+        ->assertMissing('@battle-throw-ball-button__dialog')
+        ->click('@battle-throw-ball-button')
+        ->assertVisible('@battle-throw-ball-button__dialog')
+        ->assertSeeIn('@ball-picker-list__ball-fast-ball-button', 'Boosted')
+        ->assertSeeIn('@ball-picker-list__ball-fast-ball-button', '×3.5')
+        ->assertSeeIn('@ball-picker-list__ball-ultra-ball-button', '×12')
+        ->click('@ball-picker-list__ball-ultra-ball-button')
+        ->wait(1)
+        ->assertMissing('@battle-throw-ball-button__dialog')
+        ->assertSeeIn('@battle-result-card__title', 'Gotcha! Pidgey was caught')
+        ->assertSeeIn('@battle-result-card', 'Caught with an Ultra Ball · added to your party.')
+        ->assertSeeIn('@battle-result-card', 'A catch counts as winning: the same XP as knocking Pidgey out.')
+        ->assertSeeIn('@battle-result-card__xp-gain-1-item', 'Pikachu')
+        ->assertSeeIn('@battle-result-card__view-pokemon-link', 'View Pidgey')
+        ->assertSeeIn('@battle-log-card', 'You threw an Ultra Ball!')
         ->assertNoJavascriptErrors();
 });
 

@@ -13,7 +13,7 @@ use Shared\Interfaces\ValueObject;
  * @phpstan-import-type BattleSideArray from BattleSide
  * @phpstan-import-type ExperienceGainArray from ExperienceGain
  *
- * @phpstan-type BattleStateArray array{turn: int, player_side: BattleSideArray, opponent_side: BattleSideArray, is_awaiting_send_out: bool, log: list<BattleLogEntryArray>, experience_gains: list<ExperienceGainArray>, area?: string|null}
+ * @phpstan-type BattleStateArray array{turn: int, player_side: BattleSideArray, opponent_side: BattleSideArray, is_awaiting_send_out: bool, log: list<BattleLogEntryArray>, experience_gains: list<ExperienceGainArray>, area?: string|null, caught_pokemon_id?: string|null}
  */
 final readonly class BattleState implements ValueObject
 {
@@ -29,6 +29,7 @@ final readonly class BattleState implements ValueObject
         public array $log,
         public array $experienceGains = [],
         public ?Area $area = null,
+        public ?string $caughtPokemonId = null,
     ) {
         throw_if($turn < 1, InvalidArgumentException::class, "The turn must be at least 1, [{$turn}] given.");
     }
@@ -82,6 +83,11 @@ final readonly class BattleState implements ValueObject
         return new self(...[...get_object_vars($this), 'experienceGains' => $experienceGains]);
     }
 
+    public function withCaughtPokemonId(string $caughtPokemonId): self
+    {
+        return new self(...[...get_object_vars($this), 'caughtPokemonId' => $caughtPokemonId]);
+    }
+
     /**
      * @param  BattleStateArray  $data
      */
@@ -95,6 +101,7 @@ final readonly class BattleState implements ValueObject
             log: array_map(BattleLogEntry::fromArray(...), $data['log']),
             experienceGains: array_map(ExperienceGain::fromArray(...), $data['experience_gains']),
             area: isset($data['area']) ? Area::from($data['area']) : null,
+            caughtPokemonId: $data['caught_pokemon_id'] ?? null,
         );
     }
 
@@ -111,6 +118,7 @@ final readonly class BattleState implements ValueObject
             'log'                  => array_map(fn (BattleLogEntry $entry) => $entry->toArray(), $this->log),
             'experience_gains'     => array_map(fn (ExperienceGain $gain) => $gain->toArray(), $this->experienceGains),
             'area'                 => $this->area?->value,
+            'caught_pokemon_id'    => $this->caughtPokemonId,
         ];
     }
 

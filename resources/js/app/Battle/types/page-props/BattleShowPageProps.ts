@@ -76,6 +76,15 @@ export type BattleLogTurn = {
   }[];
 };
 
+export type BattlePokeball = {
+  slug: string;
+  name: string;
+  sprite: string | null;
+  quantity: number;
+  multiplier: number;
+  isBoosted: boolean;
+};
+
 export type BattleShowPageProps = {
   battle: {
     type: BattleType;
@@ -93,6 +102,7 @@ export type BattleShowPageProps = {
     team: BattleOpponentTeamMember[];
   };
   moves: Pick<Move, 'id' | 'name' | 'type' | 'isZMove' | 'isDynamaxMove'>[];
+  pokeballs: BattlePokeball[];
   result: {
     experienceGains: {
       name: Pokemon['name'];
@@ -104,5 +114,10 @@ export type BattleShowPageProps = {
       isFromExperienceShare: boolean;
       isAtMaxLevel: boolean;
     }[];
+    caughtPokemon: {
+      name: Pokemon['name'];
+      pokeballName: string;
+      isInParty: boolean;
+    } | null;
   } | null;
 };

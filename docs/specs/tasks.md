@@ -1197,7 +1197,7 @@ Read [02-catching-and-exploration.md](02-catching-and-exploration.md) first. Nee
 
 ### 2.19 Battle page: throw a ball
 
-- [ ] Done
+- [x] Done
 
 **Goal:** catching from the battle page.
 
@@ -1214,6 +1214,8 @@ Read [02-catching-and-exploration.md](02-catching-and-exploration.md) first. Nee
 - Ball picker: a list that opens under the buttons on desktop (a bottom `Sheet` on phones) listing one row per ball: `ItemSprite`, name, "×42" owned, and the current multiplier ("×3.5"). Boosted balls get a green "Boosted" `Badge` and are sorted first.
 - Clicking a row throws right away, with a processing state on the row.
 - A ball that fails only adds a log line; no extra popup.
+
+**As built:** `ThrowBallRequest` only checks that the `pokeball` slug exists; owning one is checked by `ThrowBallAction` (through `RemoveInventoryItemAction`), which warns with a toast. `CatchContextBuilder` (`App\Battle\Support`) builds the `CatchContext` for both the action and `BattleShowPageProps`. The `pokeballs` prop (`slug`, `name`, `sprite`, `quantity`, `multiplier`, `isBoosted`) is empty outside an ongoing wild battle and is sorted boosted first, then by multiplier. A catch stores `BattleState::$caughtPokemonId`; `result.caughtPokemon` sends its `name`, `pokeballName` and `isInParty` for the description "Caught with an Ultra Ball · added to your party." (or "sent to your Box (your party is full)."). "Throw ball" (`BattleThrowBallButton`) opens a `Dialog` instead of an inline picker or bottom sheet; its `BallPickerList` rows throw on click and close the dialog. "View Pidgey" links to the Box. The thrown-ball log line now uses "an" before a vowel ("You threw an Ultra Ball!").
 
 **Tests:** feature tests for the route and props; browser test: throw a ball and see the caught result card; Throw ball is disabled during a send-out.
 

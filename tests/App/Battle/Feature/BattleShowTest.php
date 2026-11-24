@@ -12,7 +12,10 @@ use Shared\Enums\BattleType;
 use Shared\Enums\PokemonGender;
 use Shared\Enums\PokemonType;
 use Shared\Models\Battle;
+use Shared\Models\InventoryItem;
 use Shared\Models\Move;
+use Shared\Models\Pokeball;
+use Shared\Models\Pokemon;
 use Shared\Models\Species;
 use Shared\Models\User;
 use Shared\ValueObjects\BattleLogEntry;
@@ -450,7 +453,10 @@ it('shows no XP rows when nothing was earned', function () {
 
     actingAs($user)
         ->get(route('battle.web.show'))
-        ->assertInertia(fn (Assert $page) => $page->where('result.experienceGains', []));
+        ->assertInertia(fn (Assert $page) => $page
+            ->where('result.experienceGains', [])
+            ->where('result.caughtPokemon', null)
+        );
 });
 
 it('redirects to the dashboard once the end screen has expired', function () {
@@ -697,3 +703,156 @@ it('leaves a move that no longer exists out of the active pokemon moves', functi
             ->where('player.team.0.moves', [['name' => 'Tackle', 'type' => PokemonType::NORMAL->value, 'power' => 40]])
         );
 });
+
+it('lists the owned balls with their multiplier right now, boosted balls first', function () {
+    $user      = User::factory()->create();
+    $pikachu   = Species::factory()->create();
+    $pidgey    = Species::factory()->create(['types' => [PokemonType::NORMAL, PokemonType::FLYING]]);
+    $tackle    = Move::factory()->plainDamage()->create();
+    $pokeBall  = Pokeball::factory()->create(['slug' => 'poke-ball', 'name' => 'Poké Ball', 'catch_rate' => 1]);
+    $greatBall = Pokeball::factory()->create(['slug' => 'great-ball', 'name' => 'Great Ball', 'catch_rate' => 1.5]);
+    $fastBall  = Pokeball::factory()->create(['slug' => 'fast-ball', 'name' => 'Fast Ball', 'catch_rate' => 1]);
+    $netBall   = Pokeball::factory()->create(['slug' => 'net-ball', 'name' => 'Net Ball', 'catch_rate' => 1]);
+    $ultraBall = Pokeball::factory()->create(['slug' => 'ultra-ball', 'name' => 'Ultra Ball', 'catch_rate' => 2]);
+
+    InventoryItem::factory()->for($user)->pokeball($pokeBall)->create(['quantity' => 18]);
+    InventoryItem::factory()->for($user)->pokeball($greatBall)->create(['quantity' => 5]);
+    InventoryItem::factory()->for($user)->pokeball($fastBall)->create(['quantity' => 4]);
+    InventoryItem::factory()->for($user)->pokeball($netBall)->create(['quantity' => 2]);
+    InventoryItem::factory()->for($user)->pokeball($ultraBall)->create(['quantity' => 0]);
+    InventoryItem::factory()->pokeball($ultraBall)->create(['quantity' => 9]);
+
+    $combatant = [
+        'pokemonId'                => 'pokemon-1',
+        'speciesId'                => $pikachu->id,
+        'level'                    => 25,
+        'boost'                    => 0,
+        'isShiny'                  => false,
+        'gender'                   => PokemonGender::MALE,
+        'types'                    => [PokemonType::NORMAL],
+        'moveIds'                  => [$tackle->id],
+        'maxHp'                    => 218,
+        'currentHp'                => 218,
+        'ailment'                  => null,
+        'ailmentTurnsLeft'         => 0,
+        'confusionTurnsLeft'       => 0,
+        'hasEnteredField'          => true,
+        'usedOncePerBattleMoveIds' => [],
+    ];
+
+    Battle::factory()->for($user)->create([
+        'type'   => BattleType::WILD,
+        'status' => BattleStatus::ONGOING,
+        'state'  => new BattleState(
+            turn: 2,
+            playerSide: new BattleSide(combatants: [new Combatant(...$combatant)], activeIndex: 0),
+            opponentSide: new BattleSide(combatants: [new Combatant(...[...$combatant, 'pokemonId' => null, 'speciesId' => $pidgey->id])], activeIndex: 0),
+            isAwaitingSendOut: false,
+            log: [],
+        ),
+    ]);
+
+    actingAs($user)
+        ->get(route('battle.web.show'))
+        ->assertInertia(fn (Assert $page) => $page->where('pokeballs', [
+            ['slug' => 'fast-ball', 'name' => 'Fast Ball', 'sprite' => $fastBall->sprite, 'quantity' => 4, 'multiplier' => 3.5, 'isBoosted' => true],
+            ['slug' => 'great-ball', 'name' => 'Great Ball', 'sprite' => $greatBall->sprite, 'quantity' => 5, 'multiplier' => 1.5, 'isBoosted' => false],
+            ['slug' => 'net-ball', 'name' => 'Net Ball', 'sprite' => $netBall->sprite, 'quantity' => 2, 'multiplier' => 1, 'isBoosted' => false],
+            ['slug' => 'poke-ball', 'name' => 'Poké Ball', 'sprite' => $pokeBall->sprite, 'quantity' => 18, 'multiplier' => 1, 'isBoosted' => false],
+        ]));
+});
+
+it('lists no balls outside an ongoing wild battle', function (BattleType $type, BattleStatus $status) {
+    $user     = User::factory()->create();
+    $pikachu  = Species::factory()->create();
+    $tackle   = Move::factory()->plainDamage()->create();
+    $pokeBall = Pokeball::factory()->create();
+
+    InventoryItem::factory()->for($user)->pokeball($pokeBall)->create(['quantity' => 5]);
+
+    $combatant = new Combatant(
+        pokemonId: null,
+        speciesId: $pikachu->id,
+        level: 25,
+        boost: 0,
+        isShiny: false,
+        gender: PokemonGender::MALE,
+        types: [PokemonType::NORMAL],
+        moveIds: [$tackle->id],
+        maxHp: 218,
+        currentHp: 218,
+        ailment: null,
+        ailmentTurnsLeft: 0,
+        confusionTurnsLeft: 0,
+        hasEnteredField: true,
+        usedOncePerBattleMoveIds: [],
+    );
+
+    Battle::factory()->for($user)->create([
+        'type'   => $type,
+        'status' => $status,
+        'state'  => new BattleState(
+            turn: 2,
+            playerSide: new BattleSide(combatants: [$combatant], activeIndex: 0),
+            opponentSide: new BattleSide(combatants: [$combatant], activeIndex: 0),
+            isAwaitingSendOut: false,
+            log: [],
+        ),
+    ]);
+
+    actingAs($user)
+        ->get(route('battle.web.show'))
+        ->assertInertia(fn (Assert $page) => $page->where('pokeballs', []));
+})->with([
+    'trainer battle'    => [BattleType::TRAINER, BattleStatus::ONGOING],
+    'ended wild battle' => [BattleType::WILD, BattleStatus::FORFEITED],
+]);
+
+it('shows the caught pokemon and the ball it was caught with on the end screen', function (bool $isInParty) {
+    $user      = User::factory()->create();
+    $pidgey    = Species::factory()->create(['name' => 'Pidgey']);
+    $ultraBall = Pokeball::factory()->create(['name' => 'Ultra Ball']);
+    $tackle    = Move::factory()->plainDamage()->create();
+    $caught    = Pokemon::factory()->for($user)->shiny()->create(['species_id' => $pidgey->id, 'pokeball_id' => $ultraBall->id, 'in_party' => $isInParty]);
+
+    $combatant = [
+        'pokemonId'                => 'pokemon-1',
+        'speciesId'                => $pidgey->id,
+        'level'                    => 25,
+        'boost'                    => 0,
+        'isShiny'                  => true,
+        'gender'                   => PokemonGender::MALE,
+        'types'                    => [PokemonType::NORMAL],
+        'moveIds'                  => [$tackle->id],
+        'maxHp'                    => 218,
+        'currentHp'                => 218,
+        'ailment'                  => null,
+        'ailmentTurnsLeft'         => 0,
+        'confusionTurnsLeft'       => 0,
+        'hasEnteredField'          => true,
+        'usedOncePerBattleMoveIds' => [],
+    ];
+
+    Battle::factory()->for($user)->create([
+        'status' => BattleStatus::CAUGHT,
+        'state'  => new BattleState(
+            turn: 2,
+            playerSide: new BattleSide(combatants: [new Combatant(...$combatant)], activeIndex: 0),
+            opponentSide: new BattleSide(combatants: [new Combatant(...[...$combatant, 'pokemonId' => null])], activeIndex: 0),
+            isAwaitingSendOut: false,
+            log: [],
+            caughtPokemonId: $caught->id,
+        ),
+    ]);
+
+    actingAs($user)
+        ->get(route('battle.web.show'))
+        ->assertInertia(fn (Assert $page) => $page->where('result.caughtPokemon', [
+            'name'         => 'Shiny Pidgey',
+            'pokeballName' => 'Ultra Ball',
+            'isInParty'    => $isInParty,
+        ]));
+})->with([
+    'in the party' => [true],
+    'in the box'   => [false],
+]);

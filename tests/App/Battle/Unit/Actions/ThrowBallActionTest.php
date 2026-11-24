@@ -91,15 +91,16 @@ it('catches the wild pokemon, which joins the party, and ends the battle as caug
     ]);
     assertDatabaseHas(InventoryItem::class, ['user_id' => $user->id, 'item_id' => $pokeBall->id, 'quantity' => 2]);
 
+    $caughtPokemon = Pokemon::query()->where('species_id', $pidgey->id)->firstOrFail();
+
     expect($battle?->status)->toBe(BattleStatus::CAUGHT)
+        ->and($battle?->state->caughtPokemonId)->toBe($caughtPokemon->id)
         ->and($battle?->state->log)->toEqual([
             new BattleLogEntry(2, BattleLogKind::EVENT, 'You threw a Poké Ball!'),
             new BattleLogEntry(2, BattleLogKind::RESULT, 'Gotcha! Shiny Pidgey was caught!'),
             new BattleLogEntry(2, BattleLogKind::EVENT, 'Pikachu gained 375 XP!'),
         ])
         ->and($pokemon->fresh()?->experience)->toBe(50_375);
-
-    $caughtPokemon = Pokemon::query()->where('species_id', $pidgey->id)->firstOrFail();
 
     Event::assertDispatched(PokemonCaught::class, fn (PokemonCaught $event) => $event->pokemonId === $caughtPokemon->id && $event->userId === $user->id);
     Event::assertDispatched(BattleEnded::class, fn (BattleEnded $event) => $event->status === BattleStatus::CAUGHT && $event->isWin);
@@ -160,14 +161,14 @@ it('sends the caught pokemon to the box when the party is full', function () {
 it('uses the ball and lets the wild pokemon attack when it breaks free', function () {
     Event::fake([PokemonCaught::class]);
 
-    $user     = User::factory()->create();
-    $pikachu  = Species::factory()->create(['name' => 'Pikachu', 'types' => [PokemonType::ELECTRIC]]);
-    $pidgey   = Species::factory()->create(['name' => 'Pidgey', 'types' => [PokemonType::NORMAL, PokemonType::FLYING]]);
-    $tackle   = Move::factory()->plainDamage()->create(['name' => 'Tackle', 'type' => PokemonType::NORMAL, 'power' => 40]);
-    $pokemon  = Pokemon::factory()->for($user)->inParty()->create(['species_id' => $pikachu->id, 'level' => 50]);
-    $pokeBall = Pokeball::factory()->create(['slug' => 'poke-ball', 'name' => 'Poké Ball', 'catch_rate' => 1]);
+    $user      = User::factory()->create();
+    $pikachu   = Species::factory()->create(['name' => 'Pikachu', 'types' => [PokemonType::ELECTRIC]]);
+    $pidgey    = Species::factory()->create(['name' => 'Pidgey', 'types' => [PokemonType::NORMAL, PokemonType::FLYING]]);
+    $tackle    = Move::factory()->plainDamage()->create(['name' => 'Tackle', 'type' => PokemonType::NORMAL, 'power' => 40]);
+    $pokemon   = Pokemon::factory()->for($user)->inParty()->create(['species_id' => $pikachu->id, 'level' => 50]);
+    $ultraBall = Pokeball::factory()->create(['slug' => 'ultra-ball', 'name' => 'Ultra Ball', 'catch_rate' => 1]);
 
-    InventoryItem::factory()->for($user)->pokeball($pokeBall)->create(['quantity' => 3]);
+    InventoryItem::factory()->for($user)->pokeball($ultraBall)->create(['quantity' => 3]);
 
     $combatant = [
         'pokemonId'                => $pokemon->id,
@@ -201,16 +202,16 @@ it('uses the ball and lets the wild pokemon attack when it breaks free', functio
 
     RandomHelper::fake([false, $tackle->id, true, false, 1.0]);
 
-    $battle = new ThrowBallAction()->handle($battle, $pokeBall)->fresh();
+    $battle = new ThrowBallAction()->handle($battle, $ultraBall)->fresh();
 
     assertDatabaseCount(Pokemon::class, 1);
-    assertDatabaseHas(InventoryItem::class, ['user_id' => $user->id, 'item_id' => $pokeBall->id, 'quantity' => 2]);
+    assertDatabaseHas(InventoryItem::class, ['user_id' => $user->id, 'item_id' => $ultraBall->id, 'quantity' => 2]);
 
     expect($battle?->status)->toBe(BattleStatus::ONGOING)
         ->and($battle?->state->turn)->toBe(4)
         ->and($battle?->state->playerSide->activeCombatant()->currentHp)->toBe(218 - 46)
         ->and($battle?->state->log)->toEqual([
-            new BattleLogEntry(3, BattleLogKind::EVENT, 'You threw a Poké Ball!'),
+            new BattleLogEntry(3, BattleLogKind::EVENT, 'You threw an Ultra Ball!'),
             new BattleLogEntry(3, BattleLogKind::EVENT, 'Oh no! The Pokémon broke free!'),
             new BattleLogEntry(3, BattleLogKind::MOVE, 'The wild Pidgey used Tackle!', 'Tackle'),
             new BattleLogEntry(3, BattleLogKind::DAMAGE, 'It dealt 46 HP damage.'),

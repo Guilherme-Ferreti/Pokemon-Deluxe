@@ -86,8 +86,8 @@ One name per idea, used everywhere: specs, code, database, tests and UI. When yo
 | Evolution stage | `evolution_stage`, `EvolutionStageCalculator::evolutionStage()` | 1 = unevolved, 2, 3. Babies don't count. Saved by `SpeciesEvolutionStageSeeder`. |
 | Catch chance | `CatchChanceCalculator` | Percentage, 0–100. |
 | Catch rate | `catch_rate` (Species column), `getCatchRatePercentage()`, `isFoundInTheWild()` | 3–255, as in the main games; ÷ 255 gives the base catch chance. Null for species never in the wild. |
-| Ball multiplier | `BallMultiplierCalculator`, `catch_rate` (Poké Ball column), `CatchContext` | The column holds the multiplier when no condition applies; `CatchContext` holds what the conditions read (turn, area, night, both Pokémon, the wild ailment). |
-| Throw ball | `ThrowBallAction` | |
+| Ball multiplier | `BallMultiplierCalculator`, `catch_rate` (Poké Ball column), `CatchContext`, `CatchContextBuilder` | The column holds the multiplier when no condition applies; `CatchContext` holds what the conditions read (turn, area, night, both Pokémon, the wild ailment). `CatchContextBuilder::build()` loads it from a battle for `ThrowBallAction` and the battle page's ball picker. A ball is boosted when its multiplier right now is above its `catch_rate`. |
+| Throw ball | `ThrowBallAction`, `ThrowBallController` (`battle.web.throw-ball`), `BattleState::$caughtPokemonId` (stored as `caught_pokemon_id`) | A catch saves the new Pokémon's id in the battle state, so the end screen can say which ball caught it and whether it went to the party or the Box. |
 | Starter | `starter` | The Pokémon chosen at registration. |
 | Ultra Beast | `is_ultra_beast`, `SpeciesTrait::ULTRA_BEAST` / `PokemonTrait::ULTRA_BEAST` (`ultra-beast`) | |
 | Money / Pokédollars (₽) | `money` (users column), `MoneyAmount` (Vue) | Never "coins", "cash" or "balance". |
