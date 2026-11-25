@@ -1332,7 +1332,7 @@ Read [03-money-inventory-and-shop.md](03-money-inventory-and-shop.md) first. Mon
 
 ### 3.7 Sell items
 
-- [ ] Done
+- [x] Done
 
 **Goal:** sell shop items back for half their price.
 
@@ -1341,6 +1341,7 @@ Read [03-money-inventory-and-shop.md](03-money-inventory-and-shop.md) first. Mon
   - Earned-only items (no price) throw `App\Shop\Exceptions\ItemNotSellableException`.
   - Earns floor(price × `game.shop.sell_back_ratio` (0.5) × quantity). TMs use `TmPriceCalculator`, whether or not they are in today's rotation.
   - In one transaction: `RemoveInventoryItemAction`, then `AddMoneyAction`.
+- As built: `App\Shop\Mechanics\ItemPriceCalculator` gives an item's shop price (`price()`: `TmPriceCalculator` for TMs, the `price` column otherwise) and the sell-back money (`sellBackPrice()`); `BuyItemAction` uses it too. Z-Move and Dynamax TMs have no price, so they are refused like other earned-only items: "Master Ball can't be sold to the Shop, only traded." A quantity below 1 throws `InvalidArgumentException`.
 
 **Tests:** sell one and many; earned-only refused; selling more than owned refused (`InsufficientInventoryException`); money and inventory both change.
 

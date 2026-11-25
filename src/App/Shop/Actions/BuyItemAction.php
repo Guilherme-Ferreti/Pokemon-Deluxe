@@ -9,7 +9,7 @@ use App\Economy\Exceptions\NotEnoughMoneyException;
 use App\Inventory\Actions\AddInventoryItemAction;
 use App\Inventory\Exceptions\InventoryStackFullException;
 use App\Shop\Exceptions\ItemNotForSaleException;
-use App\Shop\Mechanics\TmPriceCalculator;
+use App\Shop\Mechanics\ItemPriceCalculator;
 use Illuminate\Support\Facades\DB;
 use InvalidArgumentException;
 use LogicException;
@@ -57,9 +57,7 @@ final class BuyItemAction
 
     private function loadUnitPrice(): void
     {
-        $this->unitPrice = $this->item instanceof Move
-            ? new TmPriceCalculator()->price($this->item)
-            : $this->item->price;
+        $this->unitPrice = new ItemPriceCalculator()->price($this->item);
     }
 
     private function ensureItemIsSold(): void
