@@ -1315,7 +1315,7 @@ Read [03-money-inventory-and-shop.md](03-money-inventory-and-shop.md) first. Mon
 
 ### 3.6 Buy items
 
-- [ ] Done
+- [x] Done
 
 **Goal:** spend money on shop items.
 
@@ -1324,6 +1324,7 @@ Read [03-money-inventory-and-shop.md](03-money-inventory-and-shop.md) first. Mon
   - The item must be for sale: a price, and for TMs, in today's rotation. Otherwise `App\Shop\Exceptions\ItemNotForSaleException`.
   - The stack must have room (`InventoryStackFullException`) and the player enough money (`NotEnoughMoneyException`), both checked before anything changes.
   - In one transaction: `SpendMoneyAction`, then `AddInventoryItemAction`.
+- As built: a TM's price comes from `TmPriceCalculator`, other items' from `price`. `ItemNotForSaleException::earnedOnly()` ("Master Ball isn't sold in the Shop.") covers items with no price, Z-Move and Dynamax TMs included; `::notInTodaysTms()` ("TM 395 Ice Beam isn't for sale today.") a TM outside today's rotation. A quantity below 1 throws `InvalidArgumentException`. The checks run without a lock: the atomic money and stack updates inside the transaction still refuse a request that loses a race, and roll back the purchase.
 
 **Tests:** buy one and many; not for sale; TM not in today's rotation; not enough money; stack full; nothing changes when refused.
 

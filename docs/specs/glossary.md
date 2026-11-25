@@ -95,6 +95,7 @@ One name per idea, used everywhere: specs, code, database, tests and UI. When yo
 | Add items to the inventory | `AddInventoryItemAction`, `InventoryStackFullException`, `game.inventory.max_stack` | Creates or grows the player's stack of an item, up to 9,999. `RemoveInventoryItemAction` takes items away. |
 | Price | `price` | Null means earned only: never sold. |
 | TM price | `TmPriceCalculator`, `game.shop.tm_prices` | By the move's power; null for Z-Move and Dynamax TMs. |
+| Buy | `BuyItemAction`, `ItemNotForSaleException` | Spends the money and adds the items in one transaction. |
 | Sell back | `SellItemAction`, `sell_back_ratio` | Half the price. |
 | Today's TMs | `TmRotation`, `GetTodaysTmRotationAction`, `game.shop.daily_tm_count` | The 10 TMs for sale today. |
 | TM | `InventoryItemType::TM`, `tm_code`, `Move::tmName()` | An inventory item whose item is a `Move`. Shown as "TM 395 Ice Beam". |
