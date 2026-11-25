@@ -24,7 +24,7 @@ declare module '@inertiajs/core' {
     sharedPageProps: {
       name: string;
       auth: {
-        user: Pick<User, 'id' | 'name' | 'email'> | null;
+        user: Pick<User, 'id' | 'name' | 'email' | 'money'> | null;
       };
       labels: {
         pokemonType: Record<PokemonType, string>;

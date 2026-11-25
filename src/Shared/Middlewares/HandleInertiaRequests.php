@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Shared\Middlewares;
 
 use Illuminate\Http\Request;
-use Inertia\Inertia;
 use Inertia\Middleware;
 use Override;
 use Shared\Enums\Ailment;
@@ -50,7 +49,7 @@ final class HandleInertiaRequests extends Middleware
             ...parent::share($request),
             'name' => config('app.name'),
             'auth' => [
-                'user' => $request->user() ? Inertia::once(fn () => $request->user()->only('id', 'name', 'email')) : null,
+                'user' => $request->user()?->only('id', 'name', 'email', 'money'),
             ],
         ];
     }

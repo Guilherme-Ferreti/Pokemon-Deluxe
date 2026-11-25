@@ -1245,7 +1245,7 @@ Read [03-money-inventory-and-shop.md](03-money-inventory-and-shop.md) first. Mon
 
 ### 3.2 Show money in the layout
 
-- [ ] Done
+- [x] Done
 
 **Goal:** the player always sees their money.
 
@@ -1257,6 +1257,8 @@ Read [03-money-inventory-and-shop.md](03-money-inventory-and-shop.md) first. Mon
 - A small row in the sidebar footer, above the user menu, linking to the Shop: a coin icon and "₽ 12,450" in `font-medium`, formatted with thousands separators (`Intl.NumberFormat`). With the sidebar collapsed, only the coin, with the amount in a tooltip.
 - On phones, where the sidebar collapses, show it in the top bar next to the menu button.
 - A shared component `MoneyAmount` (`shared/components/game/`) used everywhere money appears, so the format stays the same.
+
+**As built:** `auth.user` is no longer an `Inertia::once` prop, so the money is fresh after every visit. `MoneyAmount` formats through `formatMoney()` (`shared/lib/utils.ts`, "₽ 12,450"). `SidebarNavMoney` is the footer row (coin and amount; the tooltip "Your money: ₽ 12,450" shows when collapsed). It is not a link yet because the Shop route doesn't exist: task 3.9 turns it into one. `TopBarMoney` shows the coin and amount on the right of a top row in the page content while the sidebar is in its phone sheet, since the sidebar trigger sits in its own column beside the content.
 
 **Tests:** feature test: the shared prop holds the user's money.
 
@@ -1372,6 +1374,7 @@ Read [03-money-inventory-and-shop.md](03-money-inventory-and-shop.md) first. Mon
 **Build:**
 - Route `GET /shop` named `shop.web.index` → `App\Shop\Http\Web\Controllers\ShopController@index` with `ShopIndexPageProps`: three groups (balls, evolution items, today's TMs), each item with name, sprite, short effect, price and how many the player owns; for TMs also type, power and when the rotation ends.
 - Page `resources/js/app/Shop/pages/Shop/Index/index.vue`; "Shop" link in the navigation.
+- The money row in the sidebar footer (`SidebarNavMoney`, task 3.2) becomes a link to the Shop, with a muted "Shop" hint on its right as in `docs/mockups/layout.html`.
 
 **UI suggestions** (ideas, not requirements):
 - `AppPageHeader` ("Shop") with the player's money on the right.

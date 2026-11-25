@@ -8,6 +8,7 @@
       <SidebarNavMain />
     </SidebarContent>
     <SidebarFooter>
+      <SidebarNavMoney />
       <SidebarNavUser />
     </SidebarFooter>
   </Sidebar>
@@ -21,6 +22,7 @@
 <script setup lang="ts">
 import SidebarHeaderLogo from '@/shared/components/layout/SidebarHeaderLogo.vue';
 import SidebarNavMain from '@/shared/components/layout/SidebarNavMain.vue';
+import SidebarNavMoney from '@/shared/components/layout/SidebarNavMoney.vue';
 import SidebarNavUser from '@/shared/components/layout/SidebarNavUser.vue';
 import { Separator } from '@/shared/components/ui/separator';
 import {

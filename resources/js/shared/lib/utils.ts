@@ -89,3 +89,9 @@ export function sortBy<T extends object>(
     return direction === SortDirection.ASC ? result : -result;
   });
 }
+
+const moneyFormatter = new Intl.NumberFormat('en-US');
+
+export function formatMoney(amount: number): string {
+  return `₽ ${moneyFormatter.format(amount)}`;
+}
