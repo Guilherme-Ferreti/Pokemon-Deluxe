@@ -100,7 +100,9 @@ One name per idea, used everywhere: specs, code, database, tests and UI. When yo
 | Shop price | `ItemPriceCalculator` | A TM's price from `TmPriceCalculator`, any other item's `price`. |
 | Incubator price | `IncubatorPriceCalculator`, `game.incubation.price_step`, `nextIncubatorPrice` | ₽ 5,000 × incubators already bought; the first is free. |
 | Today's TMs | `TmRotation`, `GetTodaysTmRotationAction`, `game.shop.daily_tm_count` | The 10 TMs for sale today. |
-| TM | `InventoryItemType::TM`, `tm_code`, `Move::tmName()` | An inventory item whose item is a `Move`. Shown as "TM 395 Ice Beam". |
+| Shop page | `ShopController`, `ShopIndexPageProps`, `pokeballs`, `evolutionItems`, `tmRotation`, `ownedQuantity`, `ShopTabs`, `ShopItemRow` | Lists what the Shop sells, with how many of each the player owns. |
+| Player money (page header) | `PlayerMoney` | The player's money on the right of a page header; hidden on phones, where the top bar shows it. |
+| TM | `InventoryItemType::TM`, `tm_code`, `Move::tmName()`, `Move::tmSprite()` | An inventory item whose item is a `Move`. Shown as "TM 395 Ice Beam" with a disc in the move's type colour. |
 | Special item | `SpecialItem`, `SpecialItemCategory` | Boost stones and key items. |
 | Boost stone | `boost-stone` (special item slug) | |
 | Key item | `SpecialItemCategory::KEY_ITEM` | Items that are switched on, like the XP Share (`xp-share`). |

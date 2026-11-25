@@ -772,7 +772,7 @@
     var html = '<div class="stack" style="gap: 4px;"><div class="result-title"><h2 id="result-title">' + esc(R.title) + '</h2>' + (R.badge ? '<span class="result-badge">' + esc(R.badge) + '</span>' : '') + '</div>' + (R.sub ? '<p class="muted">' + esc(R.sub) + '</p>' : '') + '</div>';
     if (R.rewards.length) {
       html += '<div class="stack"><strong class="small">Your rewards</strong>' + R.rewards.map(function (r) {
-        var icon = r[0] === 'coin' ? '<span class="coin" aria-hidden="true"></span>' : '<span class="sprite" style="width: 28px; height: 28px; border-radius: 999px; padding: 0;" aria-hidden="true"></span>';
+        var icon = r[0] === 'coin' ? '' : '<span class="sprite" style="width: 28px; height: 28px; border-radius: 999px; padding: 0;" aria-hidden="true"></span>';
         return '<div class="reward">' + icon + '<span class="stack" style="gap: 2px;"><strong class="num" style="font-size: 18px;">' + esc(r[1]) + '</strong><span class="xs muted">' + esc(r[2]) + '</span></span></div>';
       }).join('') + '</div>';
     }

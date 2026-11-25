@@ -11,7 +11,7 @@ Players earn Pokédollars (₽) from trainers, gyms, missions and selling items,
 - **Not earned from:** wild battles, Elite Four members (only the Champion pays), or selling or releasing Pokémon (this would let players farm money by catching and selling).
 - **Spent on:** the shop, unlocking incubators, and a trade listing fee (Spec 7). The fee comes back if the listing expires.
 - New players start with ₽ 2,000, enough for 10 Poké Balls.
-- The player's money shows on every page: in the sidebar footer, above the user menu, linking to the Shop (a coin icon with the amount in a tooltip when the sidebar is collapsed); on phones, in the top bar.
+- The player's money shows on every page: in the sidebar footer, above the user menu (only "₽", with the amount in a tooltip, when the sidebar is collapsed). Money never has a coin icon; on phones, in the top bar.
 
 ## Shop catalog
 

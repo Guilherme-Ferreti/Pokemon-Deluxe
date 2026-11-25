@@ -74,6 +74,11 @@ final class Move extends Model
         return sprintf('TM %s %s', Str::after($this->tm_code, 'TM'), $this->name);
     }
 
+    public function tmSprite(): string
+    {
+        return sprintf('https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-%s.png', $this->type->value);
+    }
+
     /**
      * @return BelongsToMany<Pokemon, $this>
      */

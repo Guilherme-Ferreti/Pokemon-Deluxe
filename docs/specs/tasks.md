@@ -1254,11 +1254,11 @@ Read [03-money-inventory-and-shop.md](03-money-inventory-and-shop.md) first. Mon
 **Build:** `HandleInertiaRequests` shares `auth.user.money`. The sidebar shows it.
 
 **UI suggestions** (ideas, not requirements):
-- A small row in the sidebar footer, above the user menu, linking to the Shop: a coin icon and "₽ 12,450" in `font-medium`, formatted with thousands separators (`Intl.NumberFormat`). With the sidebar collapsed, only the coin, with the amount in a tooltip.
+- A small row in the sidebar footer, above the user menu: "₽ 12,450" in `font-medium`, formatted with thousands separators (`Intl.NumberFormat`). With the sidebar collapsed, only "₽", with the amount in a tooltip.
 - On phones, where the sidebar collapses, show it in the top bar next to the menu button.
 - A shared component `MoneyAmount` (`shared/components/game/`) used everywhere money appears, so the format stays the same.
 
-**As built:** `auth.user` is no longer an `Inertia::once` prop, so the money is fresh after every visit. `MoneyAmount` formats through `formatMoney()` (`shared/lib/utils.ts`, "₽ 12,450"). `SidebarNavMoney` is the footer row (coin and amount; the tooltip "Your money: ₽ 12,450" shows when collapsed). It is not a link yet because the Shop route doesn't exist: task 3.9 turns it into one. `TopBarMoney` shows the coin and amount on the right of a top row in the page content while the sidebar is in its phone sheet, since the sidebar trigger sits in its own column beside the content.
+**As built:** `auth.user` is no longer an `Inertia::once` prop, so the money is fresh after every visit. `MoneyAmount` formats through `formatMoney()` (`shared/lib/utils.ts`, "₽ 12,450"). `SidebarNavMoney` is the footer row (the amount, with no coin icon; the tooltip "Your money: ₽ 12,450" shows when collapsed). It is not a link. `TopBarMoney` shows the amount on the right of a top row in the page content while the sidebar is in its phone sheet, since the sidebar trigger sits in its own column beside the content.
 
 **Tests:** feature test: the shared prop holds the user's money.
 
@@ -1371,7 +1371,7 @@ Read [03-money-inventory-and-shop.md](03-money-inventory-and-shop.md) first. Mon
 
 ### 3.9 Shop page: browse
 
-- [ ] Done
+- [x] Done
 
 **Goal:** see what the shop sells.
 
@@ -1380,7 +1380,6 @@ Read [03-money-inventory-and-shop.md](03-money-inventory-and-shop.md) first. Mon
 **Build:**
 - Route `GET /shop` named `shop.web.index` → `App\Shop\Http\Web\Controllers\ShopController@index` with `ShopIndexPageProps`: three groups (balls, evolution items, today's TMs), each item with name, sprite, short effect, price and how many the player owns; for TMs also type, power and when the rotation ends.
 - Page `resources/js/app/Shop/pages/Shop/Index/index.vue`; "Shop" link in the navigation.
-- The money row in the sidebar footer (`SidebarNavMoney`, task 3.2) becomes a link to the Shop, with a muted "Shop" hint on its right as in `docs/mockups/layout.html`.
 
 **UI suggestions** (ideas, not requirements):
 - `AppPageHeader` ("Shop") with the player's money on the right.
@@ -1393,6 +1392,8 @@ Read [03-money-inventory-and-shop.md](03-money-inventory-and-shop.md) first. Mon
 
 **Done when:** the page lists the shop's items.
 
+- As built: the props are `pokeballs` and `evolutionItems` (each `{id, name, sprite, effect, price, ownedQuantity}`, sorted by price then name) and `tmRotation` (`{startsAt, endsAt, tms}`, TMs sorted by code, each with `type` and `power` instead of an effect). The effect is the item's `description`, which is still generic in the seed data ("An item used to evolve certain Pokémon."), not the mock-up's specific effects. TMs use PokeAPI's per-type disc sprite from the new `Move::tmSprite()`. The page is `ShopTabs` (shadcn-vue `tabs`, chosen tab kept in `?tab=balls|evolution-items|tms` with `router.replace`), `ShopItemsList` and `ShopItemRow`; the TMs tab opens with `TmRotationNotice` and `AppCountdown`, which reloads `tmRotation` when it ends. Money never has a coin icon (prices, `PlayerMoney`, `TopBarMoney`, `SidebarNavMoney`); the collapsed sidebar shows "₽" instead. Item sprites are `size-8`. The TMs notice reads "Today's TMs" and the countdown. The sidebar money row stays plain text, not a link to the Shop. The header money is the new shared `PlayerMoney`, also used by the Nursery; it hides on phones, where `TopBarMoney` shows it.
+
 ### 3.10 Shop page: buy
 
 - [ ] Done
@@ -1403,7 +1404,7 @@ Read [03-money-inventory-and-shop.md](03-money-inventory-and-shop.md) first. Mon
 
 **Build:**
 - Route `POST /shop/buy` named `shop.web.buy` → `BuyItemController` with `BuyItemRequest` (`item_type`, `item_id`, `quantity` 1–9,999).
-- Each row gets a quantity picker and a Buy button; purchases over ₽ 10,000 ask for confirmation first; success shows a toast.
+- Each row (`ShopItemRow`) gets a quantity picker and a Buy button; purchases over ₽ 10,000 ask for confirmation first; success shows a toast.
 
 **UI suggestions** (ideas, not requirements):
 - Quantity: an `InputGroup` with − and + buttons around a number input, default 1.

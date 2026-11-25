@@ -46,7 +46,7 @@
       <h1>Shop</h1>
       <p>Buy balls, evolution items and today's TMs.</p>
     </div>
-    <span class="money" title="Your money"><span class="coin" aria-hidden="true"></span><span id="wallet">₽ 12,450</span></span>
+    <span class="money" title="Your money"><span id="wallet">₽ 12,450</span></span>
   </div>
 
   <div class="tabs" role="tablist" aria-label="Shop sections">
@@ -125,7 +125,7 @@
         '<div class="item-main">' + spriteHtml + '<div class="item-text"><span class="item-name">' + name + '</span><span class="small muted">' + effectHtml + '</span></div></div>' +
         '<div class="item-buy">' +
           '<span class="owned num">You own: ' + owned + '</span>' +
-          '<span class="price-col money"><span class="coin" aria-hidden="true"></span>' + fmt(price) + '</span>' +
+          '<span class="price-col money">' + fmt(price) + '</span>' +
           '<span class="qty"><button type="button" aria-label="Fewer">−</button><input type="number" min="1" max="9999" value="1" aria-label="Quantity of ' + name + '"><button type="button" aria-label="More">+</button></span>' +
           '<span class="buy-col"><button type="button" class="btn btn-outline buy"></button><span class="reason"></span></span>' +
         '</div>';
@@ -160,7 +160,7 @@
       if (tab === 'tms') {
         var bar = document.createElement('div');
         bar.className = 'rotation';
-        bar.innerHTML = '<span><strong>Today\'s TMs</strong> <span class="muted">· the same 10 for every player</span></span><span class="num">New TMs in <strong>07:42:10</strong></span>';
+        bar.innerHTML = '<strong>Today\'s TMs</strong><span class="num">New TMs in <strong>07:42:10</strong></span>';
         list.appendChild(bar);
         catalog.tms.forEach(function (t) {
           list.appendChild(row('TM ' + t[0], '<span class="type type-' + t[1] + '">' + t[2] + '</span> &nbsp;Power ' + t[3], t[4], t[5],

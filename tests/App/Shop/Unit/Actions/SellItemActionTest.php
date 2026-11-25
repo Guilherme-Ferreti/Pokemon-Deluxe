@@ -57,9 +57,8 @@ it('refuses an earned-only item', function (Closure $makeItem, Closure $makeStac
     $stack = $makeStack($user, $item);
 
     expect(fn () => new SellItemAction()->handle($user, $item, 1))
-        ->toThrow(ItemNotSellableException::class, $message);
-
-    expect($user->fresh()->money)->toBe(100)
+        ->toThrow(ItemNotSellableException::class, $message)
+        ->and($user->fresh()->money)->toBe(100)
         ->and($stack->fresh()->quantity)->toBe(1);
 })->with([
     'master ball' => [
@@ -80,9 +79,8 @@ it('refuses to sell more than the player owns', function () {
     $stack    = InventoryItem::factory()->for($user)->pokeball($pokeball)->create(['quantity' => 2]);
 
     expect(fn () => new SellItemAction()->handle($user, $pokeball, 3))
-        ->toThrow(InsufficientInventoryException::class);
-
-    expect($user->fresh()->money)->toBe(100)
+        ->toThrow(InsufficientInventoryException::class)
+        ->and($user->fresh()->money)->toBe(100)
         ->and($stack->fresh()->quantity)->toBe(2);
 });
 
@@ -92,8 +90,7 @@ it('refuses a quantity below one', function (int $quantity) {
     $stack    = InventoryItem::factory()->for($user)->pokeball($pokeball)->create(['quantity' => 2]);
 
     expect(fn () => new SellItemAction()->handle($user, $pokeball, $quantity))
-        ->toThrow(InvalidArgumentException::class);
-
-    expect($user->fresh()->money)->toBe(100)
+        ->toThrow(InvalidArgumentException::class)
+        ->and($user->fresh()->money)->toBe(100)
         ->and($stack->fresh()->quantity)->toBe(2);
 })->with([0, -1]);

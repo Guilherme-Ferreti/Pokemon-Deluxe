@@ -41,6 +41,7 @@ type RouteParameters = {
     incubatorIndex: string | number;
   };
   'public.web.home': never;
+  'shop.web.index': never;
   'storage.local.upload': {
     path: string | number;
   };
@@ -106,5 +107,6 @@ const routes = {
   'pokemon.web.incubators.catch-pokemon':
     'your-pokemon/incubator/{incubatorIndex}/catch-pokemon',
   'public.web.home': '',
+  'shop.web.index': 'shop',
   'storage.local.upload': 'storage/{path}',
 };

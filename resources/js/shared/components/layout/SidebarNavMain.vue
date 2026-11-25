@@ -69,6 +69,7 @@
 import {
   IconArchive,
   IconBook,
+  IconBuildingStore,
   IconChevronRight,
   IconHome,
   IconNurse,
@@ -132,6 +133,11 @@ const items = [
     title: 'Battle',
     url: '#',
     icon: IconSwords,
+  },
+  {
+    title: 'Shop',
+    url: route('shop.web.index'),
+    icon: IconBuildingStore,
   },
   {
     title: 'Pokédex',

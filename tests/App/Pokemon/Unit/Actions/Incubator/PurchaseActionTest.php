@@ -87,8 +87,7 @@ it('refuses an incubator the player cannot afford and changes nothing', function
     $user = User::factory()->withMoney(4999)->create(['purchased_incubator_indexes' => [new IncubatorIndex(1)]]);
 
     expect(fn () => new PurchaseAction()->handle($user, new IncubatorIndex(2)))
-        ->toThrow(NotEnoughMoneyException::class, 'You need ₽ 5,000 but only have ₽ 4,999.');
-
-    expect($user->fresh()->money)->toBe(4999)
+        ->toThrow(NotEnoughMoneyException::class, 'You need ₽ 5,000 but only have ₽ 4,999.')
+        ->and($user->fresh()->money)->toBe(4999)
         ->and($user->fresh()->purchased_incubator_indexes)->toHaveCount(1);
 });

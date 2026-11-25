@@ -33,9 +33,8 @@ it('throws for an amount of zero or below', function (int $amount) {
     $user = User::factory()->withMoney(500)->create();
 
     expect(fn () => new AddMoneyAction()->handle($user, $amount))
-        ->toThrow(InvalidArgumentException::class);
-
-    expect($user->fresh()->money)->toBe(500);
+        ->toThrow(InvalidArgumentException::class)
+        ->and($user->fresh()->money)->toBe(500);
 })->with([
     'zero'     => [0],
     'negative' => [-1],

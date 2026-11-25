@@ -33,9 +33,8 @@ it('throws when spending more than the user has and leaves the money unchanged',
     $user = User::factory()->withMoney(500)->create();
 
     expect(fn () => new SpendMoneyAction()->handle($user, 501))
-        ->toThrow(NotEnoughMoneyException::class, 'You need ₽ 501 but only have ₽ 500.');
-
-    expect($user->fresh()->money)->toBe(500);
+        ->toThrow(NotEnoughMoneyException::class, 'You need ₽ 501 but only have ₽ 500.')
+        ->and($user->fresh()->money)->toBe(500);
 });
 
 it('checks the saved money when the given user is stale', function () {
@@ -45,18 +44,16 @@ it('checks the saved money when the given user is stale', function () {
     new SpendMoneyAction()->handle($user, 400);
 
     expect(fn () => new SpendMoneyAction()->handle($staleUser, 400))
-        ->toThrow(NotEnoughMoneyException::class);
-
-    expect($user->fresh()->money)->toBe(100);
+        ->toThrow(NotEnoughMoneyException::class)
+        ->and($user->fresh()->money)->toBe(100);
 });
 
 it('throws for an amount of zero or below', function (int $amount) {
     $user = User::factory()->withMoney(500)->create();
 
     expect(fn () => new SpendMoneyAction()->handle($user, $amount))
-        ->toThrow(InvalidArgumentException::class);
-
-    expect($user->fresh()->money)->toBe(500);
+        ->toThrow(InvalidArgumentException::class)
+        ->and($user->fresh()->money)->toBe(500);
 })->with([
     'zero'     => [0],
     'negative' => [-1],
@@ -69,7 +66,6 @@ it('leaves the money unchanged when the transaction is rolled back', function ()
         new SpendMoneyAction()->handle($user, 200);
 
         throw new RuntimeException('Rolling back the transaction.');
-    }))->toThrow(RuntimeException::class);
-
-    expect($user->fresh()->money)->toBe(500);
+    }))->toThrow(RuntimeException::class)
+        ->and($user->fresh()->money)->toBe(500);
 });

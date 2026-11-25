@@ -6,9 +6,15 @@
         class="cursor-default hover:bg-transparent active:bg-transparent"
         :tooltip="`Your money: ${formatMoney(money)}`"
       >
-        <IconCoin aria-hidden="true" />
+        <span
+          class="hidden w-4 text-center font-medium group-data-[collapsible=icon]:inline"
+          aria-hidden="true"
+        >
+          ₽
+        </span>
+        <span class="sr-only">Your money:</span>
         <MoneyAmount
-          class="font-medium"
+          class="font-medium group-data-[collapsible=icon]:hidden"
           :amount="money"
         />
       </SidebarMenuButton>
@@ -18,7 +24,6 @@
 
 <script setup lang="ts">
 import { usePage } from '@inertiajs/vue3';
-import { IconCoin } from '@tabler/icons-vue';
 import { computed } from 'vue';
 import MoneyAmount from '@/shared/components/game/MoneyAmount.vue';
 import {
