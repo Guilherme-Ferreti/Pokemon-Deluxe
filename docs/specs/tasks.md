@@ -115,8 +115,8 @@ There is no production data yet, so a new column (or index, or a dropped column)
 **Build:**
 - Value object `Shared\ValueObjects\PokemonStats` (`final readonly`, implements `ValueObject`): `int $hp`, `float $attack`, `float $defense`.
 - `App\Pokemon\Mechanics\StatsCalculator::calculate(int $level, int $boost, bool $isShiny): PokemonStats`:
-  - `hp` = round(400 × (level + 10) / (100 + 10) × (1 + boost / 100) × (1.25 if shiny))
-  - `attack` = (level + 10) / 77 × (1 + boost / 100) × (1.25 if shiny)
+  - `hp` = round(400 x (level + 10) / (100 + 10) x (1 + boost / 100) x (1.25 if shiny))
+  - `attack` = (level + 10) / 77 x (1 + boost / 100) x (1.25 if shiny)
   - `defense` = 0.75 if shiny, else 1.0 (multiplier on damage taken)
 - New config keys under `game.pokemon.stats`: `max_level_hp` (400), `level_bonus` (10), `damage_scale` (77), `shiny_hp_multiplier` (1.25), `shiny_damage_done_multiplier` (1.25), `shiny_damage_taken_multiplier` (0.75).
 - `Pokemon::getStats(): PokemonStats` calls the calculator.
@@ -182,7 +182,7 @@ There is no production data yet, so a new column (or index, or a dropped column)
 - `App\Battle\Mechanics\DamageCalculator`:
   - Rename the existing `calculateDamageMultiplier()` to `typeMultiplier(PokemonType $attackType, PokemonType ...$defenderTypes)` (update `PokedexShowPageProps`).
   - Add `calculate(PokemonStats $attackerStats, array $attackerTypes, PokemonStats $defenderStats, array $defenderTypes, Move $move, bool $isCriticalHit, float $randomFactor): int`:
-    - damage = move power × attacker attack × STAB (1.5 if the move's type is one of the attacker's types) × type multiplier × critical (1.5) × randomFactor × defender defense
+    - damage = move power x attacker attack x STAB (1.5 if the move's type is one of the attacker's types) x type multiplier x critical (1.5) x randomFactor x defender defense
     - Rounded down. At least 1 when the type multiplier is above 0. 0 when the move has no power.
 - Config keys under `game.battle`: `stab_multiplier` (1.5), `critical_hit_multiplier` (1.5).
 - The caller rolls `isCriticalHit` and `randomFactor` (task 1.8); the calculator has no randomness.
@@ -198,7 +198,7 @@ There is no production data yet, so a new column (or index, or a dropped column)
 **Goal:** decide who acts first each turn.
 
 **Build:**
-- `App\Battle\Mechanics\TurnOrderCalculator::firstMoverChance(int $level, int $opponentLevel): float` = 100 × level ÷ (level + opponentLevel), a percentage. Throws `InvalidArgumentException` when either level is below 1.
+- `App\Battle\Mechanics\TurnOrderCalculator::firstMoverChance(int $level, int $opponentLevel): float` = 100 x level ÷ (level + opponentLevel), a percentage. Throws `InvalidArgumentException` when either level is below 1.
 
 **Tests:** 100 vs 100 → 50; 1 vs 100 → about 0.99.
 
@@ -373,7 +373,7 @@ Uses `Combatant` from task 1.10.
 **Goal:** Pokémon that fought gain XP and level up, whatever the result.
 
 **Build:**
-- `App\Pokemon\Services\ExperienceCalculator` → move to `App\Pokemon\Mechanics\ExperienceCalculator` (update callers; the `Services` folder and its architecture rule are gone, since nothing else lived there). Add `experienceForDefeating(int $opponentLevel, int $pokemonLevel, BattleType $battleType, bool $isKnockout): int` = 250 × clamp(opponentLevel ÷ pokemonLevel, 0.1, 3) × battle bonus × 1.5 when it knocked the opponent out, rounded down (Spec 1, "XP").
+- `App\Pokemon\Services\ExperienceCalculator` → move to `App\Pokemon\Mechanics\ExperienceCalculator` (update callers; the `Services` folder and its architecture rule are gone, since nothing else lived there). Add `experienceForDefeating(int $opponentLevel, int $pokemonLevel, BattleType $battleType, bool $isKnockout): int` = 250 x clamp(opponentLevel ÷ pokemonLevel, 0.1, 3) x battle bonus x 1.5 when it knocked the opponent out, rounded down (Spec 1, "XP").
 - Config `game.experience`: `base` (250), `min_ratio` (0.1), `max_ratio` (3), `battle_bonuses` (wild 1, trainer 1.5, gym 2, elite four 2, battle tower 1), `knockout_multiplier` (1.5), `xp_share_ratio` (0.5, used by task 5.10).
 - `App\Pokemon\Actions\AwardExperienceAction::handle(Pokemon $pokemon, int $experience): Pokemon`: locks the Pokémon's row, refuses negative XP, adds the XP up to the level 100 total (`experienceForLevel(100)`) and updates `level` with `levelForExperience()`. When the level goes up, it dispatches `App\Pokemon\Events\PokemonLevelledUp` (`pokemonId`, `userId`, `levelBefore`, `levelAfter`) for the missions (task 5.x; added with task 1.18).
 - Each opponent `Combatant` has `knocked_out_by` (the player combatant's index, null while standing). The turn pipe `CreditOpponentKnockout` (after `ApplyEndOfTurnDamage`) sets it to the player's active combatant whenever the opponent's active Pokémon faints, whatever knocked it out: a move, its own burn or poison, or hurting itself in confusion.
@@ -984,7 +984,7 @@ Read [02-catching-and-exploration.md](02-catching-and-exploration.md) first. Nee
 
 **Build:**
 - Config `game.catching`: `base_chance` (10), `legendary_base_chance` (1), `low_hp_bonus` (1.5), `ailment_multipliers` (sleep and freeze 2, paralysis, burn and poison 1.5).
-- `App\Battle\Mechanics\CatchChanceCalculator::calculate(Species $species, int $currentHp, int $maxHp, ?Ailment $ailment, float $ballMultiplier): float`: base × ball × (1 + 1.5 × (1 − HP ratio)) × ailment, as a percentage capped at 100.
+- `App\Battle\Mechanics\CatchChanceCalculator::calculate(Species $species, int $currentHp, int $maxHp, ?Ailment $ailment, float $ballMultiplier): float`: base x ball x (1 + 1.5 x (1 − HP ratio)) x ailment, as a percentage capped at 100.
 - As built: `ailment_multipliers` is keyed by the `Ailment` value; confusion, unknown and no ailment count as ×1. HP below 0, above the max HP or a max HP below 1 throws `InvalidArgumentException`. The result is not rounded: the Spec 2 table shows it rounded to whole percentages (23.5 → 24%). Task 2.15 later replaced `base_chance` and `legendary_base_chance` with the species' `catch_rate`.
 
 **Tests:** every row of the Spec 2 example table.
@@ -1016,7 +1016,7 @@ Read [02-catching-and-exploration.md](02-catching-and-exploration.md) first. Nee
 **Build:** in `BallMultiplierCalculator::multiplier()`, a `match` on the ball's slug for Quick, Timer, Repeat, Nest, Level, Dusk, Dream (needs the wild ailment: add `?Ailment $wildAilment` to `CatchContext`), Love, Moon (species evolves with `moon-stone`), Net, Lure, Dive, Heavy, Fast and Beast. Config `game.catching.night_starts_at` (18) and `night_ends_at` (6).
 - Nest Ball: 1 + (`nest_ball_until_level` − wild level) ÷ 9, kept between 1 and `nest_ball_max`. Config `game.catching.nest_ball_max` (3) and `nest_ball_until_level` (20): level 2 → ×3, level 11 → ×2, level 20 and above → ×1.
 - Level Ball: ×8 when the active Pokémon's level is at least 4 times the wild level, ×4 when at least double, ×2 when higher, ×1 otherwise.
-- As built: a ball whose condition does not apply falls back to its `catch_rate` (1, or 0.1 for the Beast Ball). Timer Ball: 1 + 0.3 × (turn − 1), so turn 1 is ×1 and turn 11 reaches ×4. Love Ball never applies to genderless Pokémon. Moon Ball reads the wild species' `evolutions.evolutionItem`, so the caller eager-loads them. `CatchContext` takes `?Ailment $wildAilment` after `wildGender`. The night config is read by whoever builds the `CatchContext` (task 2.12), which sets `isNight`.
+- As built: a ball whose condition does not apply falls back to its `catch_rate` (1, or 0.1 for the Beast Ball). Timer Ball: 1 + 0.3 x (turn − 1), so turn 1 is ×1 and turn 11 reaches ×4. Love Ball never applies to genderless Pokémon. Moon Ball reads the wild species' `evolutions.evolutionItem`, so the caller eager-loads them. `CatchContext` takes `?Ailment $wildAilment` after `wildGender`. The night config is read by whoever builds the `CatchContext` (task 2.12), which sets `isNight`.
 
 **Tests:** for each ball, one case where the condition applies and one where it does not; Nest Ball at levels 2, 11, 20 and 40; Level Ball at each threshold.
 
@@ -1339,7 +1339,7 @@ Read [03-money-inventory-and-shop.md](03-money-inventory-and-shop.md) first. Mon
 **Build:**
 - `App\Shop\Actions\SellItemAction::handle(User $user, Pokeball|EvolutionItem|Move $item, int $quantity): int` returns the money earned.
   - Earned-only items (no price) throw `App\Shop\Exceptions\ItemNotSellableException`.
-  - Earns floor(price × `game.shop.sell_back_ratio` (0.5) × quantity). TMs use `TmPriceCalculator`, whether or not they are in today's rotation.
+  - Earns floor(price x `game.shop.sell_back_ratio` (0.5) x quantity). TMs use `TmPriceCalculator`, whether or not they are in today's rotation.
   - In one transaction: `RemoveInventoryItemAction`, then `AddMoneyAction`.
 - As built: `App\Shop\Mechanics\ItemPriceCalculator` gives an item's shop price (`price()`: `TmPriceCalculator` for TMs, the `price` column otherwise) and the sell-back money (`sellBackPrice()`); `BuyItemAction` uses it too. Z-Move and Dynamax TMs have no price, so they are refused like other earned-only items: "Master Ball can't be sold to the Shop, only traded." A quantity below 1 throws `InvalidArgumentException`.
 
@@ -1356,7 +1356,7 @@ Read [03-money-inventory-and-shop.md](03-money-inventory-and-shop.md) first. Mon
 **Mock-up:** `docs/mockups/nursery.html` (all states)
 
 **Build:**
-- `App\Pokemon\Mechanics\IncubatorPriceCalculator::price(int $purchasedCount): int` = purchasedCount × `game.incubation.price_step` (5,000).
+- `App\Pokemon\Mechanics\IncubatorPriceCalculator::price(int $purchasedCount): int` = purchasedCount x `game.incubation.price_step` (5,000).
 - `PurchaseAction` (incubator) spends the price with `SpendMoneyAction` inside its lock, before marking it purchased.
 - `NurseryPageProps` includes the price of the next incubator.
 - As built: the prop is `nextIncubatorPrice`. Spending and marking the incubator purchased share one transaction inside the lock; a free incubator spends nothing. `IncubatorNotPurchasedCard` shows "Free" or the price (`MoneyAmount`, no coin) above Purchase, and disables Purchase when the player can't afford it (no "You need … more" line: the price alone says it). Purchasing reloads `incubators`, `nextIncubatorPrice` and `auth`, so every card's price and the sidebar money update. The Nursery header shows the player's money on the right, as in the mock-up.
@@ -1392,7 +1392,7 @@ Read [03-money-inventory-and-shop.md](03-money-inventory-and-shop.md) first. Mon
 
 **Done when:** the page lists the shop's items.
 
-- As built: the props are `pokeballs` and `evolutionItems` (each `{id, name, sprite, effect, price, ownedQuantity}`, sorted by price then name) and `tms` (sorted by code, each with `type` and `power` instead of an effect). The effect is the item's `description`, which is still generic in the seed data ("An item used to evolve certain Pokémon."), not the mock-up's specific effects. TMs use PokeAPI's per-type disc sprite from the new `Move::tmSprite()`. The page is `ShopTabs` (shadcn-vue `tabs`, chosen tab kept in `?tab=balls|evolution-items|tms` with `router.replace`), `ShopItemsList` and `ShopItemRow`; the TMs tab is titled "Today's TMs", with no heading or countdown above the list. Money never has a coin icon (prices, `PlayerMoney`, `TopBarMoney`, `SidebarNavMoney`); the collapsed sidebar shows "₽" instead. Item sprites are `size-8`. The sidebar money row stays plain text, not a link to the Shop. The header money is the new shared `PlayerMoney`, also used by the Nursery; it hides on phones, where `TopBarMoney` shows it.
+- As built: the props are `pokeballs` and `evolutionItems` (each `{id, name, sprite, effect, price, ownedQuantity}`, sorted by price then name) and `tms` (sorted by code, each with `type` and `power` instead of an effect). The effect is the item's `description`. Ball descriptions say what each ball does here, from Spec 2's ball conditions ("3.5× on Bug and Grass Pokémon, 1× otherwise."); evolution item descriptions name what each item evolves, from the species data ("Evolves Scyther into Scizor.", "Mega Evolves Gengar into Mega Gengar at level 100."). TMs use PokeAPI's per-type disc sprite from the new `Move::tmSprite()`. The page is `ShopTabs` (shadcn-vue `tabs`, chosen tab kept in `?tab=balls|evolution-items|tms` with `router.replace`), `ShopItemsList` and `ShopItemRow`; the TMs tab is titled "Today's TMs", with no heading or countdown above the list. Money never has a coin icon (prices, `PlayerMoney`, `TopBarMoney`, `SidebarNavMoney`); the collapsed sidebar shows "₽" instead. Item sprites are `size-8`. The sidebar money row stays plain text, not a link to the Shop. The header money is the new shared `PlayerMoney`, also used by the Nursery; it hides on phones, where `TopBarMoney` shows it.
 
 ### 3.10 Shop page: buy
 
@@ -1538,7 +1538,7 @@ Read [04-pokemon-page.md](04-pokemon-page.md) first. Builds on Spec 1 (`SetActiv
 **Goal:** the chance a boost stone fails, and the roll.
 
 **Build:**
-- `App\Pokemon\Mechanics\BoostStoneCalculator::failureChance(int $currentBoost): float`: a percentage; 0 below +20; from +20, (currentBoost − 19) × `failure_step`, so +20 → +21 fails 1% and +99 → +100 fails 80%. Config `game.boost.safe_until` (20), `game.boost.failure_step` (1).
+- `App\Pokemon\Mechanics\BoostStoneCalculator::failureChance(int $currentBoost): float`: a percentage; 0 below +20; from +20, (currentBoost − 19) x `failure_step`, so +20 → +21 fails 1% and +99 → +100 fails 80%. Config `game.boost.safe_until` (20), `game.boost.failure_step` (1).
 - `App\Pokemon\Mechanics\BoostStoneRoller::roll(int $currentBoost): bool` (true = success), with `RandomHelper`.
 
 **Tests:** chances at +0, +19, +20, +60, +99; roller with `RandomHelper::fake()`.
@@ -1921,7 +1921,7 @@ Read [05-missions.md](05-missions.md) first, including its "Starting content" an
 
 **Build:**
 - `App\Inventory\Actions\SetXpShareAction::handle(User $user, bool $isEnabled): void`: needs the `xp-share` item (`InsufficientInventoryException`).
-- Task 1.17's XP award: when `is_xp_share_enabled`, party Pokémon that did not enter the field get `game.experience.xp_share_ratio` (0.5) × the XP they would get for the opponents knocked out (the formula with their own level, without the knockout bonus). Never in Battle Tower battles. The state keeps what each got (`ExperienceGain::$isFromExperienceShare`), so the end screen lists each of them with "via XP Share" (task 1.35).
+- Task 1.17's XP award: when `is_xp_share_enabled`, party Pokémon that did not enter the field get `game.experience.xp_share_ratio` (0.5) x the XP they would get for the opponents knocked out (the formula with their own level, without the knockout bonus). Never in Battle Tower battles. The state keeps what each got (`ExperienceGain::$isFromExperienceShare`), so the end screen lists each of them with "via XP Share" (task 1.35).
 - Route `POST /inventory/xp-share` named `inventory.web.xp-share` → `SetXpShareController` (`is_enabled`).
 
 **Mock-up:** `docs/mockups/inventory.html` (states "Key items tab", "XP Share settings")
@@ -2052,7 +2052,7 @@ Read [06-trainers-gyms-and-battle-tower.md](06-trainers-gyms-and-battle-tower.md
 
 **Goal:** the money formula.
 
-**Build:** `App\Trainers\Mechanics\TrainerPayoutCalculator::payout(int $fullPayout, float $trainerAverageLevel, float $fieldAverageLevel): int` = full payout × (trainer average ÷ field average), capped between 10% and 100%, rounded down. Config `game.trainers.min_payout_ratio` (0.1).
+**Build:** `App\Trainers\Mechanics\TrainerPayoutCalculator::payout(int $fullPayout, float $trainerAverageLevel, float $fieldAverageLevel): int` = full payout x (trainer average ÷ field average), capped between 10% and 100%, rounded down. Config `game.trainers.min_payout_ratio` (0.1).
 
 **Tests:** every row of the Spec 6 table, plus the 10% floor.
 
@@ -2129,7 +2129,7 @@ Read [06-trainers-gyms-and-battle-tower.md](06-trainers-gyms-and-battle-tower.md
 - `App\Trainers\Mechanics\TrainerTeamRoller::roll(Collection $species, int $size, int $minLevel, int $maxLevel, int $boost = 0): array` (used by the Battle Tower, task 6.12): random species, levels, genders, shiny at the normal odds, base moves. Trainers met while exploring use `EncounterRoller` instead (below).
 - A small list of names and classes for generated trainers in `config/trainers.php`.
 - In `015_create_encounters_table.php`: `kind` enum (`POKEMON`, `TRAINER`), nullable `trainer_name`, `trainer_class`, `json trainer_team`, `payout`.
-- `ExploreAction` (task 2.6): `game.exploration.trainer_chance` (5, 1 in 20) rolls a trainer of 1–3 Pokémon, each picked with `EncounterRoller` (task 2.5) from the area's species: the same stage weights, 1 in 500 legendary or mythical, its own wild levels. Full payout = `game.trainers.explore_payout_per_level` (100) × the team's average level, reduced like any trainer.
+- `ExploreAction` (task 2.6): `game.exploration.trainer_chance` (5, 1 in 20) rolls a trainer of 1–3 Pokémon, each picked with `EncounterRoller` (task 2.5) from the area's species: the same stage weights, 1 in 500 legendary or mythical, its own wild levels. Full payout = `game.trainers.explore_payout_per_level` (100) x the team's average level, reduced like any trainer.
 - `BattleEncounterAction` starts a `TRAINER` battle for trainer encounters (paid like any trainer).
 
 **UI suggestions** (ideas, not requirements):
@@ -2215,7 +2215,7 @@ Read [06-trainers-gyms-and-battle-tower.md](06-trainers-gyms-and-battle-tower.md
   - `isCheckpoint(int $floor): bool` and `nextCheckpoint(int $floor): int`: checkpoints at 10, 25, 45, 70, 100… (each gap 5 floors longer).
   - `opponentLevel(int $floor): int` = min(floor, 100); `opponentBoost(int $floor): int` = 0 up to floor 100, then round((floor − 100) ÷ 9), max 100.
   - `teamSize(int $floor): int`: 3, or 6 on checkpoints.
-  - `battlePoints(int $floor): int`: 1, plus 5 × the checkpoint's number on checkpoints.
+  - `battlePoints(int $floor): int`: 1, plus 5 x the checkpoint's number on checkpoints.
   - `allowsLegendaries(int $floor): bool`: true after `legendaries_after_floor`.
 - Config `game.battle_tower`: `top_floor` (1000), `first_checkpoint` (10), `checkpoint_gap_step` (5), `team_size` (3), `checkpoint_team_size` (6), `points_per_floor` (1), `points_per_checkpoint_number` (5), `legendaries_after_floor` (50).
 

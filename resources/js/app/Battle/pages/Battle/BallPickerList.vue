@@ -38,9 +38,9 @@
         class="size-4 animate-spin text-muted-foreground"
         aria-label="Throwing"
       />
-      <strong class="tabular-nums"> ×{{ pokeball.multiplier }} </strong>
+      <strong class="tabular-nums"> x{{ pokeball.multiplier }} </strong>
       <span class="w-12 text-right text-xs text-muted-foreground tabular-nums">
-        ×{{ pokeball.quantity.toLocaleString('en-US') }}
+        x{{ pokeball.quantity.toLocaleString('en-US') }}
       </span>
     </button>
     <p

@@ -16,7 +16,7 @@ Box › Shiny Charmeleon
 ├────────────────────────────┬─────────────────────────────────┤
 │ STATS                      │ ACTIVE MOVES       [Teach TM]   │
 │ HP       262               │ 1 Flamethrower FIRE 90  ↑↓ Swap │
-│ Attack   ×0.94             │ 2 Dragon Claw  DRGN 80  ↑↓ Swap │
+│ Attack   x0.94             │ 2 Dragon Claw  DRGN 80  ↑↓ Swap │
 │ Defense  −25% dmg taken    │ 3 Slash        NORM 70  ↑↓ Swap │
 │                            │ 4 Will-O-Wisp  FIRE  —  ↑↓ Swap │
 │                            │ KNOWN MOVES (9)                 │

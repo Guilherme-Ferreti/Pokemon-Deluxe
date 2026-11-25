@@ -154,13 +154,13 @@
     <section class="card stats-card">
       <h2>Stats</h2>
       <div>
-        <div class="stat" title="Level 36 · Boost +14: ×1.14 · Shiny: ×1.25">
+        <div class="stat" title="Level 36 · Boost +14: x1.14 · Shiny: x1.25">
           <span class="stat-name">HP</span>
           <span class="stack" style="gap: 0;"><span class="stat-value num">262</span><span class="stat-parts">Level 36 · +14% boost · +25% shiny</span></span>
         </div>
-        <div class="stat" title="Level 36: ×0.66 · Boost +14: ×1.14 · Shiny: ×1.25">
+        <div class="stat" title="Level 36: x0.66 · Boost +14: x1.14 · Shiny: x1.25">
           <span class="stat-name">Attack</span>
-          <span class="stack" style="gap: 0;"><span class="stat-value num">×0.94</span><span class="stat-parts">Damage multiplier</span></span>
+          <span class="stack" style="gap: 0;"><span class="stat-value num">x0.94</span><span class="stat-parts">Damage multiplier</span></span>
         </div>
         <div class="stat" title="Shiny: takes 25% less damage">
           <span class="stat-name">Defense</span>
@@ -184,7 +184,7 @@
         <span class="xs muted">Drag one onto a slot to use it</span>
       </div>
       <div class="pool" id="pool"></div>
-      <p class="note">Desktop: drag a slot by its handle to reorder, or drag a known move onto a slot to replace it (the replaced move goes back to the known moves). Keyboard and touch: the up and down arrows reorder, and Swap opens the picker. "STAB" marks damaging moves of the Pokémon's own type (×1.5 damage).</p>
+      <p class="note">Desktop: drag a slot by its handle to reorder, or drag a known move onto a slot to replace it (the replaced move goes back to the known moves). Keyboard and touch: the up and down arrows reorder, and Swap opens the picker. "STAB" marks damaging moves of the Pokémon's own type (x1.5 damage).</p>
     </section>
   </div>
 </main>
@@ -444,7 +444,7 @@
 
     function meta(id) {
       var m = all[id];
-      return '<span class="type type-' + m[1] + '">' + types[m[1]] + '</span><span>' + m[2] + '</span>' + (m[3] ? '<span class="stab" title="Same type as the Pokémon: ×1.5 damage">STAB</span>' : '');
+      return '<span class="type type-' + m[1] + '">' + types[m[1]] + '</span><span>' + m[2] + '</span>' + (m[3] ? '<span class="stab" title="Same type as the Pokémon: x1.5 damage">STAB</span>' : '');
     }
     function arrow(dir) {
       return '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="' + (dir === 'up' ? 'M6 15l6-6 6 6' : 'M6 9l6 6 6-6') + '"/></svg>';

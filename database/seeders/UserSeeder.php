@@ -27,6 +27,7 @@ final class UserSeeder extends Seeder
             $user = User::factory()->create([
                 'name'  => 'Test User',
                 'email' => 'test@example.com',
+                'money' => 1_000_000,
             ]);
 
             $this->addPokemonToParty($user);

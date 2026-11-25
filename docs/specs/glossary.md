@@ -14,7 +14,7 @@ One name per idea, used everywhere: specs, code, database, tests and UI. When yo
 | Stats | `PokemonStats` | Value object holding `hp`, `attack`, `defense`. |
 | HP | `hp`, `maxHp`, `currentHp` | `maxHp` is the full value; `currentHp` is during battle (`Combatant`, stored as `max_hp` / `current_hp`). |
 | Attack | `attack` | A damage multiplier, not a number shown as "Attack 120". |
-| Defense | `defense` | A damage-taken multiplier: 1 ÷ (1 + boost ÷ 100), × 0.75 when shiny. Shown to players as "Damage taken" (`damageTakenChangePercentage()`). |
+| Defense | `defense` | A damage-taken multiplier: 1 ÷ (1 + boost ÷ 100), x 0.75 when shiny. Shown to players as "Damage taken" (`damageTakenChangePercentage()`). |
 | Known moves (the pool) | `knownMoves()` relation | Every move the Pokémon has learned. |
 | Active moves (the 4 slots) | `activeMoves()` relation, `slot` (1–4) | Known moves with a slot. |
 | Base moves | `baseMoves()` (species) | Already in the code. |
@@ -23,7 +23,7 @@ One name per idea, used everywhere: specs, code, database, tests and UI. When yo
 | Random factor | `randomFactor` | 0.85–1.0 damage spread, rolled by the caller and passed to `DamageCalculator`. |
 | Move hit | `MoveHit` | One hit of a move use, with its own `isCriticalHit` and `randomFactor`. A multi-hit move has several. |
 | Move outcome | `MoveOutcome` | Everything the dice decided for one move use: `hasHit`, `hits`, `causesFlinch`, `inflictedAilment`. |
-| Type effectiveness | `typeMultiplier` | ×0, ×0.25, ×0.5, ×1, ×2, ×4. |
+| Type effectiveness | `typeMultiplier` | x0, x0.25, x0.5, x1, x2, x4. |
 | Ailment / status effect | `Ailment` enum (existing) | Burn, poison, paralysis, sleep, freeze, confusion. |
 | Action blocker | `ActionBlocker` enum | Why a Pokémon can't act this turn: `FROZEN`, `ASLEEP`, `HURT_ITSELF_IN_CONFUSION`, `PARALYZED`. |
 | Turn action outcome | `TurnActionOutcome` enum | What happened when one side acted in a turn: `SKIPPED` (already fainted), `BLOCKED` (by an action blocker or a flinch), `MISSED`, `NO_EFFECT` (immune defender), `USED`, `CAUSED_FLINCH`, `KNOCKED_OUT`. |
@@ -100,7 +100,7 @@ One name per idea, used everywhere: specs, code, database, tests and UI. When yo
 | Item name for a quantity | `ItemHelper::name($item, $quantity)`, `pluralName` | "10 Ultra Balls"; a TM keeps its name ("TM 395 Ice Beam"). |
 | Sell back | `SellItemAction`, `ItemNotSellableException`, `sell_back_ratio` | Half the price. |
 | Shop price | `ItemPriceCalculator` | A TM's price from `TmPriceCalculator`, any other item's `price`. |
-| Incubator price | `IncubatorPriceCalculator`, `game.incubation.price_step`, `nextIncubatorPrice` | ₽ 5,000 × incubators already bought; the first is free. |
+| Incubator price | `IncubatorPriceCalculator`, `game.incubation.price_step`, `nextIncubatorPrice` | ₽ 5,000 x incubators already bought; the first is free. |
 | Today's TMs | `TmRotation`, `GetTodaysTmRotationAction`, `game.shop.daily_tm_count` | The 10 TMs for sale today. |
 | Shop page | `ShopController`, `ShopIndexPageProps`, `pokeballs`, `evolutionItems`, `tms`, `ownedQuantity`, `ShopTabs`, `ShopItemRow` | Lists what the Shop sells, with how many of each the player owns. |
 | Player money (page header) | `PlayerMoney` | The player's money on the right of a page header; hidden on phones, where the top bar shows it. |

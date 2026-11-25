@@ -83,7 +83,7 @@
       <span class="item-sprite item-sprite-lg" aria-hidden="true">Ultra Ball</span>
       <div class="stack" style="gap: 4px; min-width: 0;">
         <h2 id="item-title">Ultra Ball</h2>
-        <p class="small muted">A high-performance ball. 2× catch rate.</p>
+        <p class="small muted">A high-performance ball. 2x catch rate.</p>
         <p class="small num">You own <strong>4</strong> · sells for ₽ 600 each</p>
       </div>
     </div>
@@ -195,7 +195,7 @@
         var picture = g[3]
           ? '<span class="tm-disc" style="background: var(--t-' + g[3] + '-fg);" aria-hidden="true"></span>'
           : '<span class="item-sprite item-sprite-lg" aria-hidden="true">' + g[0] + '</span>';
-        tile.innerHTML = (g[2] === 'xp-share' ? '<span class="badge badge-good">On</span>' : '<span class="badge num">×' + g[1] + '</span>') + picture + '<span class="tile-name">' + g[0] + '</span>';
+        tile.innerHTML = (g[2] === 'xp-share' ? '<span class="badge badge-good">On</span>' : '<span class="badge num">x' + g[1] + '</span>') + picture + '<span class="tile-name">' + g[0] + '</span>';
         tiles.appendChild(tile);
       });
     }

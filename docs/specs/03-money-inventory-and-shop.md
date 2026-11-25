@@ -41,7 +41,7 @@ INVENTORY                                       ₽ 12,450
 │ (icon) │ │ (icon) │ │ (icon) │ │ (icon) │
 │ Ultra  │ │ Net    │ │ Quick  │ │ Master │
 │ Ball   │ │ Ball   │ │ Ball   │ │ Ball   │
-│ × 42   │ │ × 7    │ │ × 3    │ │ × 1    │
+│ x 42   │ │ x 7    │ │ x 3    │ │ x 1    │
 └────────┘ └────────┘ └────────┘ └────────┘
 ```
 
@@ -57,7 +57,7 @@ INVENTORY                                       ₽ 12,450
 SHOP                                            ₽ 12,450
 [Balls] [Evolution items] [Today's TMs]
 ┌──────────────────────────────────────────────┐
-│ (icon) Ultra Ball   2× catch rate   ₽ 1,200  │
+│ (icon) Ultra Ball   2x catch rate   ₽ 1,200  │
 │        You own: 42      [ − 1 + ]  [ Buy ]   │
 └──────────────────────────────────────────────┘
 ```

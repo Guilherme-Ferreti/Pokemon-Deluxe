@@ -54,7 +54,7 @@ How pages look and behave. Follow it for every new page or component; tasks in `
 - No star or other icon before or inside a shiny Pokémon's name: "Shiny" in the name says it. Shiny is shown with the gold border or a "Shiny" badge where a card needs extra emphasis; the badge itself may carry a star icon.
 - Sentence case everywhere: "Keep exploring", not "Keep Exploring".
 - A TM is always named by its code and move: "TM 395 Ice Beam" (the move's `tm_code`, with a space after "TM"), in lists, dialogs, toasts and the inventory. Lists of TMs are sorted by code.
-- Numbers players compare use thousands separators (₽ 12,450) and units (Lv 36, +14, ×3.5).
+- Numbers players compare use thousands separators (₽ 12,450) and units (Lv 36, +14, x3.5).
 - Secondary information uses `text-sm text-muted-foreground`.
 
 ## States every screen must handle

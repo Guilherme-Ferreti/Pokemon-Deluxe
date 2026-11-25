@@ -4,7 +4,7 @@
     "external_id": "master-ball",
     "name": "Master Ball",
     "sprite": "https:\/\/raw.githubusercontent.com\/PokeAPI\/sprites\/master\/sprites\/items\/master-ball.png",
-    "description": "A pokeball used to catch a wild Pokémon using a catch rate of 255x.",
+    "description": "Always catches the wild Pokémon.",
     "type": "standard",
     "catch_rate": 255,
     "price": null
@@ -14,7 +14,7 @@
     "external_id": "ultra-ball",
     "name": "Ultra Ball",
     "sprite": "https:\/\/raw.githubusercontent.com\/PokeAPI\/sprites\/master\/sprites\/items\/ultra-ball.png",
-    "description": "A pokeball used to catch a wild Pokémon using a catch rate of 2x.",
+    "description": "Catches wild Pokémon with a 2x catch rate.",
     "type": "standard",
     "catch_rate": 2,
     "price": 1200
@@ -24,7 +24,7 @@
     "external_id": "great-ball",
     "name": "Great Ball",
     "sprite": "https:\/\/raw.githubusercontent.com\/PokeAPI\/sprites\/master\/sprites\/items\/great-ball.png",
-    "description": "A pokeball used to catch a wild Pokémon using a catch rate of 1.5x.",
+    "description": "Catches wild Pokémon with a 1.5x catch rate.",
     "type": "standard",
     "catch_rate": 1.5,
     "price": 600
@@ -34,7 +34,7 @@
     "external_id": "poke-ball",
     "name": "Poké Ball",
     "sprite": "https:\/\/raw.githubusercontent.com\/PokeAPI\/sprites\/master\/sprites\/items\/poke-ball.png",
-    "description": "A pokeball used to catch a wild Pokémon using a catch rate of 1x.",
+    "description": "Catches wild Pokémon with a 1x catch rate.",
     "type": "standard",
     "catch_rate": 1,
     "price": 200
@@ -44,7 +44,7 @@
     "external_id": "safari-ball",
     "name": "Safari Ball",
     "sprite": "https:\/\/raw.githubusercontent.com\/PokeAPI\/sprites\/master\/sprites\/items\/safari-ball.png",
-    "description": "A pokeball used to catch a wild Pokémon using a catch rate of 1.5x.",
+    "description": "An event-only collectible with a 1.5x catch rate.",
     "type": "standard",
     "catch_rate": 1.5,
     "price": null
@@ -54,7 +54,7 @@
     "external_id": "park-ball",
     "name": "Park Ball",
     "sprite": "https:\/\/raw.githubusercontent.com\/PokeAPI\/sprites\/master\/sprites\/items\/park-ball.png",
-    "description": "A pokeball used to catch a wild Pokémon using a catch rate of 1.5x.",
+    "description": "An event-only collectible with a 1.5x catch rate.",
     "type": "standard",
     "catch_rate": 1.5,
     "price": null
@@ -64,7 +64,7 @@
     "external_id": "sport-ball",
     "name": "Sport Ball",
     "sprite": "https:\/\/raw.githubusercontent.com\/PokeAPI\/sprites\/master\/sprites\/items\/sport-ball.png",
-    "description": "A pokeball used to catch a wild Pokémon using a catch rate of 1.5x.",
+    "description": "An event-only collectible with a 1.5x catch rate.",
     "type": "standard",
     "catch_rate": 1.5,
     "price": null
@@ -74,7 +74,7 @@
     "external_id": "net-ball",
     "name": "Net Ball",
     "sprite": "https:\/\/raw.githubusercontent.com\/PokeAPI\/sprites\/master\/sprites\/items\/net-ball.png",
-    "description": "A pokeball used to catch a wild Pokémon using a catch rate of 1x.",
+    "description": "3.5x on Bug and Grass Pokémon, 1x otherwise.",
     "type": "special",
     "catch_rate": 1,
     "price": 1000
@@ -84,7 +84,7 @@
     "external_id": "dive-ball",
     "name": "Dive Ball",
     "sprite": "https:\/\/raw.githubusercontent.com\/PokeAPI\/sprites\/master\/sprites\/items\/dive-ball.png",
-    "description": "A pokeball used to catch a wild Pokémon using a catch rate of 1x.",
+    "description": "3.5x in the Coast, 1x elsewhere.",
     "type": "special",
     "catch_rate": 1,
     "price": 1000
@@ -94,7 +94,7 @@
     "external_id": "nest-ball",
     "name": "Nest Ball",
     "sprite": "https:\/\/raw.githubusercontent.com\/PokeAPI\/sprites\/master\/sprites\/items\/nest-ball.png",
-    "description": "A pokeball used to catch a wild Pokémon using a catch rate of 1x.",
+    "description": "Up to 3x on low-level Pokémon, falling to 1x from level 20.",
     "type": "special",
     "catch_rate": 1,
     "price": 1000
@@ -104,7 +104,7 @@
     "external_id": "repeat-ball",
     "name": "Repeat Ball",
     "sprite": "https:\/\/raw.githubusercontent.com\/PokeAPI\/sprites\/master\/sprites\/items\/repeat-ball.png",
-    "description": "A pokeball used to catch a wild Pokémon using a catch rate of 1x.",
+    "description": "3.5x on species you already own, 1x otherwise.",
     "type": "special",
     "catch_rate": 1,
     "price": 1000
@@ -114,7 +114,7 @@
     "external_id": "timer-ball",
     "name": "Timer Ball",
     "sprite": "https:\/\/raw.githubusercontent.com\/PokeAPI\/sprites\/master\/sprites\/items\/timer-ball.png",
-    "description": "A pokeball used to catch a wild Pokémon using a catch rate of 1x.",
+    "description": "Starts at 1x and gains 0.3x each turn, up to 4x.",
     "type": "special",
     "catch_rate": 1,
     "price": 1000
@@ -124,7 +124,7 @@
     "external_id": "luxury-ball",
     "name": "Luxury Ball",
     "sprite": "https:\/\/raw.githubusercontent.com\/PokeAPI\/sprites\/master\/sprites\/items\/luxury-ball.png",
-    "description": "A pokeball used to catch a wild Pokémon using a catch rate of 1x.",
+    "description": "A collectible ball with a 1x catch rate.",
     "type": "special",
     "catch_rate": 1,
     "price": null
@@ -134,7 +134,7 @@
     "external_id": "premier-ball",
     "name": "Premier Ball",
     "sprite": "https:\/\/raw.githubusercontent.com\/PokeAPI\/sprites\/master\/sprites\/items\/premier-ball.png",
-    "description": "A pokeball used to catch a wild Pokémon using a catch rate of 1x.",
+    "description": "A collectible ball with a 1x catch rate.",
     "type": "special",
     "catch_rate": 1,
     "price": null
@@ -144,7 +144,7 @@
     "external_id": "dusk-ball",
     "name": "Dusk Ball",
     "sprite": "https:\/\/raw.githubusercontent.com\/PokeAPI\/sprites\/master\/sprites\/items\/dusk-ball.png",
-    "description": "A pokeball used to catch a wild Pokémon using a catch rate of 1x.",
+    "description": "3x at night or in the Cave, 1x otherwise.",
     "type": "special",
     "catch_rate": 1,
     "price": 1000
@@ -154,7 +154,7 @@
     "external_id": "heal-ball",
     "name": "Heal Ball",
     "sprite": "https:\/\/raw.githubusercontent.com\/PokeAPI\/sprites\/master\/sprites\/items\/heal-ball.png",
-    "description": "A pokeball used to catch a wild Pokémon using a catch rate of 1x.",
+    "description": "A collectible ball with a 1x catch rate.",
     "type": "special",
     "catch_rate": 1,
     "price": null
@@ -164,7 +164,7 @@
     "external_id": "quick-ball",
     "name": "Quick Ball",
     "sprite": "https:\/\/raw.githubusercontent.com\/PokeAPI\/sprites\/master\/sprites\/items\/quick-ball.png",
-    "description": "A pokeball used to catch a wild Pokémon using a catch rate of 1x.",
+    "description": "5x on the first turn of a battle, 1x after.",
     "type": "special",
     "catch_rate": 1,
     "price": 1000
@@ -174,7 +174,7 @@
     "external_id": "cherish-ball",
     "name": "Cherish Ball",
     "sprite": "https:\/\/raw.githubusercontent.com\/PokeAPI\/sprites\/master\/sprites\/items\/cherish-ball.png",
-    "description": "A pokeball used to catch a wild Pokémon using a catch rate of 1x.",
+    "description": "A collectible ball with a 1x catch rate.",
     "type": "special",
     "catch_rate": 1,
     "price": null
@@ -184,7 +184,7 @@
     "external_id": "dream-ball",
     "name": "Dream Ball",
     "sprite": "https:\/\/raw.githubusercontent.com\/PokeAPI\/sprites\/master\/sprites\/items\/dream-ball.png",
-    "description": "A pokeball used to catch a wild Pokémon using a catch rate of 1x.",
+    "description": "4x on sleeping Pokémon, 1x otherwise.",
     "type": "special",
     "catch_rate": 1,
     "price": 1000
@@ -194,7 +194,7 @@
     "external_id": "beast-ball",
     "name": "Beast Ball",
     "sprite": "https:\/\/raw.githubusercontent.com\/PokeAPI\/sprites\/master\/sprites\/items\/beast-ball.png",
-    "description": "A pokeball used to catch a wild Pokémon using a catch rate of 0.1x.",
+    "description": "5x on Ultra Beasts, 0.1x on everything else.",
     "type": "special",
     "catch_rate": 0.1,
     "price": 1000
@@ -204,7 +204,7 @@
     "external_id": "lure-ball",
     "name": "Lure Ball",
     "sprite": "https:\/\/raw.githubusercontent.com\/PokeAPI\/sprites\/master\/sprites\/items\/lure-ball.png",
-    "description": "A pokeball used to catch a wild Pokémon using a catch rate of 1x.",
+    "description": "3.5x on Water Pokémon, 1x otherwise.",
     "type": "apricorn",
     "catch_rate": 1,
     "price": 1000
@@ -214,7 +214,7 @@
     "external_id": "level-ball",
     "name": "Level Ball",
     "sprite": "https:\/\/raw.githubusercontent.com\/PokeAPI\/sprites\/master\/sprites\/items\/level-ball.png",
-    "description": "A pokeball used to catch a wild Pokémon using a catch rate of 1x.",
+    "description": "2x when your active Pokémon has a higher level, 4x at double and 8x at four times the wild one's level.",
     "type": "apricorn",
     "catch_rate": 1,
     "price": 1000
@@ -224,7 +224,7 @@
     "external_id": "moon-ball",
     "name": "Moon Ball",
     "sprite": "https:\/\/raw.githubusercontent.com\/PokeAPI\/sprites\/master\/sprites\/items\/moon-ball.png",
-    "description": "A pokeball used to catch a wild Pokémon using a catch rate of 1x.",
+    "description": "4x on species that evolve with a Moon Stone, 1x otherwise.",
     "type": "apricorn",
     "catch_rate": 1,
     "price": 1000
@@ -234,7 +234,7 @@
     "external_id": "heavy-ball",
     "name": "Heavy Ball",
     "sprite": "https:\/\/raw.githubusercontent.com\/PokeAPI\/sprites\/master\/sprites\/items\/heavy-ball.png",
-    "description": "A pokeball used to catch a wild Pokémon using a catch rate of 1x.",
+    "description": "3.5x on Rock, Steel and Ground Pokémon, 1x otherwise.",
     "type": "apricorn",
     "catch_rate": 1,
     "price": 1000
@@ -244,7 +244,7 @@
     "external_id": "fast-ball",
     "name": "Fast Ball",
     "sprite": "https:\/\/raw.githubusercontent.com\/PokeAPI\/sprites\/master\/sprites\/items\/fast-ball.png",
-    "description": "A pokeball used to catch a wild Pokémon using a catch rate of 1x.",
+    "description": "3.5x on Electric and Flying Pokémon, 1x otherwise.",
     "type": "apricorn",
     "catch_rate": 1,
     "price": 1000
@@ -254,7 +254,7 @@
     "external_id": "friend-ball",
     "name": "Friend Ball",
     "sprite": "https:\/\/raw.githubusercontent.com\/PokeAPI\/sprites\/master\/sprites\/items\/friend-ball.png",
-    "description": "A pokeball used to catch a wild Pokémon using a catch rate of 1x.",
+    "description": "A collectible ball with a 1x catch rate.",
     "type": "apricorn",
     "catch_rate": 1,
     "price": null
@@ -264,7 +264,7 @@
     "external_id": "love-ball",
     "name": "Love Ball",
     "sprite": "https:\/\/raw.githubusercontent.com\/PokeAPI\/sprites\/master\/sprites\/items\/love-ball.png",
-    "description": "A pokeball used to catch a wild Pokémon using a catch rate of 1x.",
+    "description": "8x on your active Pokémon's species with the opposite gender, 1x otherwise.",
     "type": "apricorn",
     "catch_rate": 1,
     "price": 1000

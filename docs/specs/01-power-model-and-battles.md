@@ -17,7 +17,7 @@ Species decides only base moves and types. Legendaries get no bonus.
 
 ## Formulas
 
-Level factor = level + 10, so a level 100 Pokémon is 10× a level 1, not 100×. A level 100 Pokémon with no boost and no shine has 400 HP; a level 1 has 40.
+Level factor = level + 10, so a level 100 Pokémon is 10x a level 1, not 100x. A level 100 Pokémon with no boost and no shine has 400 HP; a level 1 has 40.
 
 ```math
 \text{HP} = 400 \times \frac{\text{level} + 10}{110} \times \left(1 + \frac{\text{boost}}{100}\right) \times \text{shiny}_{1.25}
@@ -54,7 +54,7 @@ Level factor = level + 10, so a level 100 Pokémon is 10× a level 1, not 100×.
 1. The battle is saved on the server: refreshing or closing the page resumes the same turn. One active battle per player. A battle that uses the party starts with its first Pokémon, in the order set on the Party page (Spec 4).
 2. Each turn the player picks one of the 4 active moves, switches to another Pokémon (see Switching), or throws a ball in a wild battle (Spec 2).
 3. Turn order is rolled every turn: chance to move first = my level ÷ (my level + their level).
-4. Moves can miss (accuracy), land a critical hit (1 in 16, ×1.5), flinch, or hit several times. Each hit of a multi-hit move rolls its own critical hit and random factor. Type effectiveness and STAB (×1.5) apply. Tri Attack's ailment is burn, paralysis or freeze, picked at random.
+4. Moves can miss (accuracy), land a critical hit (1 in 16, x1.5), flinch, or hit several times. Each hit of a multi-hit move rolls its own critical hit and random factor. Type effectiveness and STAB (x1.5) apply. Tri Attack's ailment is burn, paralysis or freeze, picked at random.
 5. Status effects (burn, poison, paralysis, sleep, freeze, confusion) are in from the first version and last only for that battle. Status-only moves such as Thunder Wave are kept.
 6. When a Pokémon faints, **the player picks which Pokémon comes out next**, like the main games. Free send-outs happen only after a faint; any other switch uses a turn. No items in battle.
 7. The player can leave at any time: **Run** in wild battles, **Forfeit** in every other battle. Either counts as a loss. Losing has no penalty: trainers pay nothing, but XP already earned is kept (see XP).
@@ -104,8 +104,8 @@ Level factor = level + 10, so a level 100 Pokémon is 10× a level 1, not 100×.
 \text{XP} = 250 \times \text{clamp}\left(\frac{\text{opponent level}}{\text{your Pokémon's level}}, 0.1, 3\right) \times \text{battle bonus}
 ```
 
-- Battle bonus: wild ×1, trainer ×1.5, gym, Elite Four and Champion ×2, Battle Tower ×1.
-- The Pokémon that knocked the opponent out, or that was on the field when it was caught, gets ×1.5. An opponent that faints from its own burn, poison or confusion counts as knocked out by the player's Pokémon on the field.
+- Battle bonus: wild x1, trainer x1.5, gym, Elite Four and Champion x2, Battle Tower x1.
+- The Pokémon that knocked the opponent out, or that was on the field when it was caught, gets x1.5. An opponent that faints from its own burn, poison or confusion counts as knocked out by the player's Pokémon on the field.
 - Pokémon that never came out get none, unless an XP Share is active: then the rest of the party gets 50% of the formula (with their own level, without the knockout bonus; see Spec 5). The XP Share does nothing in the Battle Tower.
 - Battle Tower battles save their XP in the run and pay it when the run ends (Spec 6).
 - Every number lives in `config/game.php` under `game.experience`.

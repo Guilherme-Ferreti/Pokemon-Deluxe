@@ -10,7 +10,7 @@ All three reuse the Spec 1 battle engine: trainers are the main source of money,
 - Trainers on the Trainers page are hand-made characters with fixed teams. Only the hardest ones have shinies.
 - Trainers met while exploring are randomly generated, at levels similar to the area's wild Pokémon.
 - Rematches are unlimited. Money shrinks when the player's team outlevels the trainer.
-- Money = full payout × (trainer's average level ÷ average level of the player's Pokémon that came onto the field), never more than the full payout and never less than 10%. Only level counts, not boost. The same formula applies to trainers met while exploring.
+- Money = full payout x (trainer's average level ÷ average level of the player's Pokémon that came onto the field), never more than the full payout and never less than 10%. Only level counts, not boost. The same formula applies to trainers met while exploring.
 
 | Player's field average vs trainer's average (Lv 40) | Money |
 | --- | --- |
@@ -91,7 +91,7 @@ Gaps found while splitting this spec into tasks, agreed on 13 Nov 2026.
 - **Trainers met while exploring:** 1 to 3 Pokémon, each picked like a wild encounter in that area (85% unevolved, 12% second stage, 3% third stage, a legendary or mythical 1 in 500) at its wild levels. Full payout ₽ 100 per level of the team's average level (`game.trainers.explore_payout_per_level`), reduced like any trainer.
 - **Hand-made trainers:** about 30 to start, spread from Lv 5 to Lv 100, payouts from ₽ 500 to ₽ 20,000.
 - **Opponent behaviour:** NPCs pick a random active move each turn and send out their next Pokémon in team order.
-- **Battle Points:** 1 per floor won, plus 5 × the checkpoint's number at each checkpoint (10 at the 2nd checkpoint, 25 at the 5th).
+- **Battle Points:** 1 per floor won, plus 5 x the checkpoint's number at each checkpoint (10 at the 2nd checkpoint, 25 at the 5th).
 - **Tower XP:** Battle Tower battles give XP with Spec 1's formula, saved up in the run and paid to each team member when the run ends (lost, quit or floor 1,000). XP from the floor that was lost counts too. The XP Share does nothing in the Tower. The run summary shows each Pokémon's XP.
 - **Legendaries in the Tower:** opponent teams include legendaries and mythicals only after floor 50 (`game.battle_tower.legendaries_after_floor`, 50), to be fine-tuned during play-testing.
 - **Tower team order:** set when picking the team and changeable in the lobby and between floors (not during a Tower battle). A fainted Pokémon can sit anywhere in the order; it is skipped until a checkpoint heals it.

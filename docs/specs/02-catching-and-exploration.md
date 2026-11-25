@@ -63,7 +63,7 @@ The formula, capped at 100%:
 ```
 
 - Base: the species' catch rate ÷ 255, as a percentage (255 → 100%, 45 → 17.6%, 3 → 1.2%).
-- Status: sleep or freeze ×2; paralysis, burn or poison ×1.5; none or confusion ×1.
+- Status: sleep or freeze x2; paralysis, burn or poison x1.5; none or confusion x1.
 
 | Situation | Catch rate 190 (Pikachu) | Catch rate 45 (Charmander) | Catch rate 3 (Mewtwo) |
 | --- | --- | --- | --- |
@@ -79,27 +79,27 @@ Balls have conditions, as in the main games. The game has no weight, speed, fish
 
 | Ball | Multiplier |
 | --- | --- |
-| Poké Ball | 1× |
-| Great Ball | 1.5× |
-| Ultra Ball | 2× |
+| Poké Ball | 1x |
+| Great Ball | 1.5x |
+| Ultra Ball | 2x |
 | Master Ball | always catches; only from difficult missions |
-| Quick Ball | 5× on the first turn, 1× after |
-| Timer Ball | 1×, +0.3× per turn, up to 4× |
-| Repeat Ball | 3.5× if the player already owns that species |
-| Nest Ball | 3× against level 2 Pokémon, falling evenly to 1× at level 20 and above: 1 + (20 − level) ÷ 9, kept between 1× and 3× (level 11: 2×) |
-| Level Ball | compares the player's active Pokémon with the wild one: 2× when its level is higher, 4× when it is at least double, 8× when it is at least four times; 1× otherwise |
-| Dusk Ball | 3× at night (server time 18:00–06:00) or in the Cave |
-| Dream Ball | 4× if the wild Pokémon is asleep |
-| Love Ball | 8× if same species and opposite gender to the active Pokémon |
-| Moon Ball | 4× on species that evolve with a Moon Stone |
-| Net Ball | 3.5× on Bug and Grass types |
-| Lure Ball | 3.5× on Water types |
-| Dive Ball | 3.5× in the Coast |
-| Heavy Ball | 3.5× on Rock, Steel and Ground types |
-| Fast Ball | 3.5× on Electric and Flying types |
-| Beast Ball | 5× on Ultra Beasts, 0.1× on everything else (needs a new Ultra Beast mark on species) |
-| Luxury, Premier, Heal, Friend, Cherish | 1×; collectible looks |
-| Safari, Sport, Park | 1.5×; event-only collectibles |
+| Quick Ball | 5x on the first turn, 1x after |
+| Timer Ball | 1x, +0.3x per turn, up to 4x |
+| Repeat Ball | 3.5x if the player already owns that species |
+| Nest Ball | 3x against level 2 Pokémon, falling evenly to 1x at level 20 and above: 1 + (20 − level) ÷ 9, kept between 1x and 3x (level 11: 2x) |
+| Level Ball | compares the player's active Pokémon with the wild one: 2x when its level is higher, 4x when it is at least double, 8x when it is at least four times; 1x otherwise |
+| Dusk Ball | 3x at night (server time 18:00–06:00) or in the Cave |
+| Dream Ball | 4x if the wild Pokémon is asleep |
+| Love Ball | 8x if same species and opposite gender to the active Pokémon |
+| Moon Ball | 4x on species that evolve with a Moon Stone |
+| Net Ball | 3.5x on Bug and Grass types |
+| Lure Ball | 3.5x on Water types |
+| Dive Ball | 3.5x in the Coast |
+| Heavy Ball | 3.5x on Rock, Steel and Ground types |
+| Fast Ball | 3.5x on Electric and Flying types |
+| Beast Ball | 5x on Ultra Beasts, 0.1x on everything else (needs a new Ultra Beast mark on species) |
+| Luxury, Premier, Heal, Friend, Cherish | 1x; collectible looks |
+| Safari, Sport, Park | 1.5x; event-only collectibles |
 
 ## After a catch
 

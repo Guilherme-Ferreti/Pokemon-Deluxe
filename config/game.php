@@ -101,7 +101,7 @@ return [
         'night_starts_at'       => 18,  // Server hour night starts, when the Dusk Ball is boosted.
         'night_ends_at'         => 6,   // Server hour night ends.
         'nest_ball_max'         => 3,   // Highest Nest Ball multiplier, against the lowest-level Pokémon.
-        'nest_ball_until_level' => 20,  // Wild level from which the Nest Ball is back to 1×.
+        'nest_ball_until_level' => 20,  // Wild level from which the Nest Ball is back to 1x.
         'ailment_multipliers'   => [    // Catch chance multiplier for each status effect; any other is 1.
             'sleep'     => 2,
             'freeze'    => 2,
