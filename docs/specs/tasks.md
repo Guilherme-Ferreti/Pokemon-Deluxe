@@ -1561,7 +1561,7 @@ Read [04-pokemon-page.md](04-pokemon-page.md) first. Builds on Spec 1 (`SetActiv
 
 ### 4.6 Use boost stones
 
-- [ ] Done
+- [x] Done
 
 **Goal:** use one or several boost stones in one go.
 
@@ -1575,6 +1575,8 @@ Read [04-pokemon-page.md](04-pokemon-page.md) first. Builds on Spec 1 (`SetActiv
 **Tests:** one stone; stops at target; stops at max stones; stops at +100; runs out of stones; failures still use stones (faked rolls).
 
 **Done when:** tests pass.
+
+- As built: `UseBoostStonesAction` takes a per-Pokémon `LockKeys::pokemonBoost()` lock around one transaction, refreshes the Pokémon, finds the stone by its `boost-stone` slug and reads how many the owner has before its guards ("Pikachu is already at +100.", `MaxBoostReachedException`, `boost` key; `InsufficientInventoryException` with no stones). It rolls each stone with `BoostStoneRoller`, then removes all used stones with one `RemoveInventoryItemAction` call and saves the new boost. `$maxStones` below 1 and a `$targetBoost` outside 1–100 are `InvalidArgumentException`s; a target the Pokémon has already reached uses no stones.
 
 ### 4.7 Pokémon page: route and props
 

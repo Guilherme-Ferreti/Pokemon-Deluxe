@@ -37,4 +37,9 @@ final class LockKeys
     {
         return "pokemon::lock:active-moves:pokemon-{$pokemonId}";
     }
+
+    public static function pokemonBoost(string $pokemonId): string
+    {
+        return "pokemon::lock:boost:pokemon-{$pokemonId}";
+    }
 }
