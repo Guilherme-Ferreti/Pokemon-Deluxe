@@ -14,15 +14,7 @@
           :url="item.sprite"
         />
         <div class="flex min-w-0 flex-col gap-1">
-          <div class="flex flex-wrap items-center gap-2">
-            <DialogTitle>{{ item.name }}</DialogTitle>
-            <Badge
-              v-if="item.sellPrice === null"
-              class="border-amber-200 bg-amber-100 text-amber-800 dark:border-amber-800 dark:bg-amber-950 dark:text-amber-300"
-            >
-              Earned only
-            </Badge>
-          </div>
+          <DialogTitle>{{ item.name }}</DialogTitle>
           <DialogDescription>{{ item.description }}</DialogDescription>
           <p class="text-sm tabular-nums">
             You own
@@ -32,12 +24,6 @@
           </p>
         </div>
       </DialogHeader>
-      <p
-        v-if="item.sellPrice === null"
-        class="border-t pt-4 text-sm text-muted-foreground"
-      >
-        Can't be sold to the shop. Trade it instead.
-      </p>
       <DialogFooter>
         <DialogClose as-child>
           <Button variant="ghost">Close</Button>
@@ -49,7 +35,6 @@
 
 <script setup lang="ts">
 import ItemSprite from '@/shared/components/game/ItemSprite.vue';
-import { Badge } from '@/shared/components/ui/badge';
 import { Button } from '@/shared/components/ui/button';
 import {
   Dialog,
