@@ -55,7 +55,7 @@ INVENTORY                                       ₽ 12,450
 
 ```
 SHOP                                            ₽ 12,450
-[Balls] [Evolution items] [TMs (today's 10)]
+[Balls] [Evolution items] [Today's TMs]
 ┌──────────────────────────────────────────────┐
 │ (icon) Ultra Ball   2× catch rate   ₽ 1,200  │
 │        You own: 42      [ − 1 + ]  [ Buy ]   │
@@ -63,7 +63,7 @@ SHOP                                            ₽ 12,450
 ```
 
 - A list, one row per item: icon, name, short effect, price, "You own: X", a quantity picker and Buy.
-- The TMs tab shows a countdown to the next rotation and each TM's type and power.
-- Buy is disabled with a short reason when the player can't afford it or the stack is full.
+- The "Today's TMs" tab shows each TM's type and power, with no countdown to the next rotation.
+- Buy is disabled when the player can't afford it or the stack is full; only a full stack shows a short reason ("Your stack is full").
 - Purchases over ₽ 10,000 ask for confirmation.
 - Selling happens from the inventory page, not the shop.

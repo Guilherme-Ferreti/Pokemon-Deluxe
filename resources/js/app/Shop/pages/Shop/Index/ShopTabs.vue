@@ -21,7 +21,7 @@
         value="tms"
         data-test="shop-tabs__tms-button"
       >
-        TMs
+        Today's TMs
       </TabsTrigger>
     </TabsList>
     <TabsContent value="balls">
@@ -29,10 +29,7 @@
         <ShopItemRow
           v-for="pokeball in page.props.pokeballs"
           :key="pokeball.id"
-          :name="pokeball.name"
-          :sprite="pokeball.sprite"
-          :price="pokeball.price"
-          :owned-quantity="pokeball.ownedQuantity"
+          :item="pokeball"
         >
           {{ pokeball.effect }}
         </ShopItemRow>
@@ -43,10 +40,7 @@
         <ShopItemRow
           v-for="evolutionItem in page.props.evolutionItems"
           :key="evolutionItem.id"
-          :name="evolutionItem.name"
-          :sprite="evolutionItem.sprite"
-          :price="evolutionItem.price"
-          :owned-quantity="evolutionItem.ownedQuantity"
+          :item="evolutionItem"
         >
           {{ evolutionItem.effect }}
         </ShopItemRow>
@@ -54,17 +48,10 @@
     </TabsContent>
     <TabsContent value="tms">
       <ShopItemsList>
-        <TmRotationNotice
-          :starts-at="page.props.tmRotation.startsAt"
-          :ends-at="page.props.tmRotation.endsAt"
-        />
         <ShopItemRow
-          v-for="tm in page.props.tmRotation.tms"
+          v-for="tm in page.props.tms"
           :key="tm.id"
-          :name="tm.name"
-          :sprite="tm.sprite"
-          :price="tm.price"
-          :owned-quantity="tm.ownedQuantity"
+          :item="tm"
         >
           <span class="flex items-center gap-2">
             <PokemonTypeBadges :types="[tm.type]" />
@@ -90,7 +77,6 @@ import { route } from '@/shared/types/helpers/route';
 import type { ShopIndexPageProps } from '../../../types/page-props/ShopIndexPageProps';
 import ShopItemRow from './ShopItemRow.vue';
 import ShopItemsList from './ShopItemsList.vue';
-import TmRotationNotice from './TmRotationNotice.vue';
 
 const shopTabs = ['balls', 'evolution-items', 'tms'] as const;
 

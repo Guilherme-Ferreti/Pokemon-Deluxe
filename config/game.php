@@ -35,8 +35,9 @@ return [
     ],
 
     'shop' => [
-        'daily_tm_count'  => 10,  // TMs for sale each day, the same for every player.
-        'sell_back_ratio' => 0.5, // Share of an item's price paid when the player sells it back.
+        'daily_tm_count'        => 10,  // TMs for sale each day, the same for every player.
+        'sell_back_ratio'       => 0.5, // Share of an item's price paid when the player sells it back.
+        'confirm_purchase_over' => 10000, // Purchases costing more than this ask the player to confirm first.
 
         'tm_prices' => [
             'status_move'  => 3000,  // Cost for a TM of a move with no power.

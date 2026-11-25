@@ -19,7 +19,6 @@
   .price-col { min-width: 84px; text-align: right; }
   .buy-col { display: flex; flex-direction: column; align-items: flex-end; gap: 2px; }
   .reason { font-size: 11px; color: var(--destructive); }
-  .rotation { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px; padding: 10px 16px; border-bottom: 1px solid var(--border); background: var(--muted); font-size: 13px; }
   .tm-disc { width: 40px; height: 40px; border-radius: 999px; flex-shrink: 0; border: 3px solid var(--card); box-shadow: 0 0 0 1px var(--border); }
 </style>
 </head>
@@ -52,7 +51,7 @@
   <div class="tabs" role="tablist" aria-label="Shop sections">
     <button type="button" class="tab" role="tab" data-tab="balls" data-go="balls">Balls</button>
     <button type="button" class="tab" role="tab" data-tab="evolution" data-go="evolution">Evolution items</button>
-    <button type="button" class="tab" role="tab" data-tab="tms" data-go="tms">TMs</button>
+    <button type="button" class="tab" role="tab" data-tab="tms" data-go="tms">Today's TMs</button>
   </div>
 
   <section class="card list" id="list" aria-live="polite"></section>
@@ -138,7 +137,7 @@
         var total = q * price;
         buy.textContent = 'Buy · ' + fmt(total);
         buy.disabled = total > money;
-        reason.textContent = total > money ? 'You need ' + fmt(total - money) + ' more' : '';
+        reason.textContent = '';
       }
       el.querySelectorAll('.qty button')[0].addEventListener('click', function () { input.value = (parseInt(input.value, 10) || 1) - 1; update(); });
       el.querySelectorAll('.qty button')[1].addEventListener('click', function () { input.value = (parseInt(input.value, 10) || 1) + 1; update(); });
@@ -158,10 +157,6 @@
       document.querySelectorAll('[data-tab]').forEach(function (t) { t.setAttribute('aria-selected', String(t.getAttribute('data-tab') === tab)); });
       list.innerHTML = '';
       if (tab === 'tms') {
-        var bar = document.createElement('div');
-        bar.className = 'rotation';
-        bar.innerHTML = '<strong>Today\'s TMs</strong><span class="num">New TMs in <strong>07:42:10</strong></span>';
-        list.appendChild(bar);
         catalog.tms.forEach(function (t) {
           list.appendChild(row('TM ' + t[0], '<span class="type type-' + t[1] + '">' + t[2] + '</span> &nbsp;Power ' + t[3], t[4], t[5],
             '<span class="tm-disc" style="background: var(--t-' + t[1] + '-fg);" aria-hidden="true"></span>'));

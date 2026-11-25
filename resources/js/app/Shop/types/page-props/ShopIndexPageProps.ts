@@ -1,32 +1,31 @@
 import type { Move } from '@/shared/types/response';
 
-export type ShopItem = {
+export type ShopItemType = 'pokeball' | 'evolution-item' | 'tm';
+
+export type BuyableItem = {
   id: string;
+  itemType: ShopItemType;
   name: string;
+  pluralName: string;
   sprite: string | null;
-  effect: string;
   price: number;
   ownedQuantity: number;
 };
 
-export type ShopTm = {
-  id: Move['id'];
-  name: string;
+export type ShopItem = BuyableItem & {
+  effect: string;
+};
+
+export type ShopTm = BuyableItem & {
   sprite: string;
   type: Move['type'];
   power: Move['power'];
-  price: number;
-  ownedQuantity: number;
-};
-
-export type TmRotation = {
-  startsAt: string;
-  endsAt: string;
-  tms: ShopTm[];
 };
 
 export type ShopIndexPageProps = {
   pokeballs: ShopItem[];
   evolutionItems: ShopItem[];
-  tmRotation: TmRotation;
+  tms: ShopTm[];
+  maxStack: number;
+  confirmPurchaseOver: number;
 };

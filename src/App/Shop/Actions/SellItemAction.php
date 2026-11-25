@@ -11,6 +11,7 @@ use App\Shop\Mechanics\ItemPriceCalculator;
 use Illuminate\Support\Facades\DB;
 use InvalidArgumentException;
 use LogicException;
+use Shared\Helpers\ItemHelper;
 use Shared\Models\EvolutionItem;
 use Shared\Models\Move;
 use Shared\Models\Pokeball;
@@ -61,7 +62,7 @@ final class SellItemAction
 
     private function ensureItemIsSellable(): void
     {
-        throw_if($this->earnedMoney === null, fn () => new ItemNotSellableException($this->itemName()));
+        throw_if($this->earnedMoney === null, fn () => new ItemNotSellableException(ItemHelper::name($this->item)));
     }
 
     private function earnedMoney(): int
@@ -71,10 +72,5 @@ final class SellItemAction
         }
 
         return $this->earnedMoney;
-    }
-
-    private function itemName(): string
-    {
-        return $this->item instanceof Move ? $this->item->tmName() : $this->item->name;
     }
 }

@@ -20,8 +20,6 @@ it('redirects guests to login', function () {
 });
 
 it('loads the shop page with expected structure', function () {
-    $this->freezeTime();
-
     $user          = User::factory()->create();
     $pokeball      = Pokeball::factory()->create(['name' => 'Ultra Ball', 'description' => 'Catches with 2x.', 'sprite' => 'https://example.com/ultra-ball.png', 'price' => 1200]);
     $evolutionItem = EvolutionItem::factory()->create(['name' => 'Fire Stone', 'description' => 'Evolves Vulpix.', 'sprite' => 'https://example.com/fire-stone.png', 'price' => 3000]);
@@ -39,7 +37,9 @@ it('loads the shop page with expected structure', function () {
             ->component('Shop/pages/Shop/Index/index')
             ->where('pokeballs', [[
                 'id'            => $pokeball->id,
+                'itemType'      => 'pokeball',
                 'name'          => 'Ultra Ball',
+                'pluralName'    => 'Ultra Balls',
                 'sprite'        => 'https://example.com/ultra-ball.png',
                 'effect'        => 'Catches with 2x.',
                 'price'         => 1200,
@@ -47,23 +47,27 @@ it('loads the shop page with expected structure', function () {
             ]])
             ->where('evolutionItems', [[
                 'id'            => $evolutionItem->id,
+                'itemType'      => 'evolution-item',
                 'name'          => 'Fire Stone',
+                'pluralName'    => 'Fire Stones',
                 'sprite'        => 'https://example.com/fire-stone.png',
                 'effect'        => 'Evolves Vulpix.',
                 'price'         => 3000,
                 'ownedQuantity' => 0,
             ]])
-            ->where('tmRotation.startsAt', today()->toIso8601String())
-            ->where('tmRotation.endsAt', today()->addDay()->toIso8601String())
-            ->where('tmRotation.tms', [[
+            ->where('tms', [[
                 'id'            => $tm->id,
+                'itemType'      => 'tm',
                 'name'          => 'TM 395 Ice Beam',
+                'pluralName'    => 'TM 395 Ice Beam',
                 'sprite'        => 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-ice.png',
                 'type'          => 'ice',
                 'power'         => 90,
                 'price'         => 10000,
                 'ownedQuantity' => 1,
             ]])
+            ->where('maxStack', 9999)
+            ->where('confirmPurchaseOver', 10000)
         );
 });
 
@@ -93,9 +97,9 @@ it('lists only today\'s tms, sorted by code', function () {
 
     get(route('shop.web.index'))
         ->assertInertia(fn (Assert $page) => $page
-            ->has('tmRotation.tms', 2)
-            ->where('tmRotation.tms.0.id', $todaysFirstTm->id)
-            ->where('tmRotation.tms.1.id', $todaysLastTm->id)
+            ->has('tms', 2)
+            ->where('tms.0.id', $todaysFirstTm->id)
+            ->where('tms.1.id', $todaysLastTm->id)
         );
 });
 

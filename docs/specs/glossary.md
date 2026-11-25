@@ -95,12 +95,14 @@ One name per idea, used everywhere: specs, code, database, tests and UI. When yo
 | Add items to the inventory | `AddInventoryItemAction`, `InventoryStackFullException`, `game.inventory.max_stack` | Creates or grows the player's stack of an item, up to 9,999. `RemoveInventoryItemAction` takes items away. |
 | Price | `price` | Null means earned only: never sold. |
 | TM price | `TmPriceCalculator`, `game.shop.tm_prices` | By the move's power; null for Z-Move and Dynamax TMs. |
-| Buy | `BuyItemAction`, `ItemNotForSaleException` | Spends the money and adds the items in one transaction. |
+| Buy | `BuyItemAction`, `ItemNotForSaleException`, `BuyItemController`, `BuyItemRequest`, `ShopItemBuyForm` | Spends the money and adds the items in one transaction. |
+| Confirm a big purchase | `game.shop.confirm_purchase_over`, `confirmPurchaseOver` | Purchases over ₽ 10,000 ask first. |
+| Item name for a quantity | `ItemHelper::name($item, $quantity)`, `pluralName` | "10 Ultra Balls"; a TM keeps its name ("TM 395 Ice Beam"). |
 | Sell back | `SellItemAction`, `ItemNotSellableException`, `sell_back_ratio` | Half the price. |
 | Shop price | `ItemPriceCalculator` | A TM's price from `TmPriceCalculator`, any other item's `price`. |
 | Incubator price | `IncubatorPriceCalculator`, `game.incubation.price_step`, `nextIncubatorPrice` | ₽ 5,000 × incubators already bought; the first is free. |
 | Today's TMs | `TmRotation`, `GetTodaysTmRotationAction`, `game.shop.daily_tm_count` | The 10 TMs for sale today. |
-| Shop page | `ShopController`, `ShopIndexPageProps`, `pokeballs`, `evolutionItems`, `tmRotation`, `ownedQuantity`, `ShopTabs`, `ShopItemRow` | Lists what the Shop sells, with how many of each the player owns. |
+| Shop page | `ShopController`, `ShopIndexPageProps`, `pokeballs`, `evolutionItems`, `tms`, `ownedQuantity`, `ShopTabs`, `ShopItemRow` | Lists what the Shop sells, with how many of each the player owns. |
 | Player money (page header) | `PlayerMoney` | The player's money on the right of a page header; hidden on phones, where the top bar shows it. |
 | TM | `InventoryItemType::TM`, `tm_code`, `Move::tmName()`, `Move::tmSprite()` | An inventory item whose item is a `Move`. Shown as "TM 395 Ice Beam" with a disc in the move's type colour. |
 | Special item | `SpecialItem`, `SpecialItemCategory` | Boost stones and key items. |

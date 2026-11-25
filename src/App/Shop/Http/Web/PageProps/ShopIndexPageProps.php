@@ -9,6 +9,7 @@ use App\Shop\Mechanics\ItemPriceCalculator;
 use Inertia\ProvidesInertiaProperties;
 use Inertia\RenderContext;
 use Shared\Enums\InventoryItemType;
+use Shared\Helpers\ItemHelper;
 use Shared\Models\EvolutionItem;
 use Shared\Models\InventoryItem;
 use Shared\Models\Move;
@@ -22,14 +23,16 @@ final class ShopIndexPageProps implements ProvidesInertiaProperties
     public function toInertiaProperties(RenderContext $context): array
     {
         return [
-            'pokeballs'      => $this->getPokeballsProp(...),
-            'evolutionItems' => $this->getEvolutionItemsProp(...),
-            'tmRotation'     => $this->getTmRotationProp(...),
+            'pokeballs'           => $this->getPokeballsProp(...),
+            'evolutionItems'      => $this->getEvolutionItemsProp(...),
+            'tms'                 => $this->getTmsProp(...),
+            'maxStack'            => (int) config('game.inventory.max_stack'),
+            'confirmPurchaseOver' => (int) config('game.shop.confirm_purchase_over'),
         ];
     }
 
     /**
-     * @return array<int, array{id: string, name: string, sprite: string|null, effect: string, price: int|null, ownedQuantity: int}>
+     * @return array<int, array{id: string, itemType: string, name: string, pluralName: string, sprite: string|null, effect: string, price: int|null, ownedQuantity: int}>
      */
     private function getPokeballsProp(): array
     {
@@ -40,7 +43,9 @@ final class ShopIndexPageProps implements ProvidesInertiaProperties
             ->get()
             ->map(fn (Pokeball $pokeball) => [
                 'id'            => $pokeball->id,
+                'itemType'      => InventoryItemType::POKEBALL->value,
                 'name'          => $pokeball->name,
+                'pluralName'    => ItemHelper::name($pokeball, 2),
                 'sprite'        => $pokeball->sprite,
                 'effect'        => $pokeball->description,
                 'price'         => $pokeball->price,
@@ -51,7 +56,7 @@ final class ShopIndexPageProps implements ProvidesInertiaProperties
     }
 
     /**
-     * @return array<int, array{id: string, name: string, sprite: string|null, effect: string, price: int|null, ownedQuantity: int}>
+     * @return array<int, array{id: string, itemType: string, name: string, pluralName: string, sprite: string|null, effect: string, price: int|null, ownedQuantity: int}>
      */
     private function getEvolutionItemsProp(): array
     {
@@ -62,7 +67,9 @@ final class ShopIndexPageProps implements ProvidesInertiaProperties
             ->get()
             ->map(fn (EvolutionItem $evolutionItem) => [
                 'id'            => $evolutionItem->id,
+                'itemType'      => InventoryItemType::EVOLUTION_ITEM->value,
                 'name'          => $evolutionItem->name,
+                'pluralName'    => ItemHelper::name($evolutionItem, 2),
                 'sprite'        => $evolutionItem->sprite,
                 'effect'        => $evolutionItem->description,
                 'price'         => $evolutionItem->price,
@@ -73,32 +80,30 @@ final class ShopIndexPageProps implements ProvidesInertiaProperties
     }
 
     /**
-     * @return array{startsAt: string, endsAt: string, tms: array<int, array{id: string, name: string, sprite: string, type: string, power: int|null, price: int|null, ownedQuantity: int}>}
+     * @return array<int, array{id: string, itemType: string, name: string, pluralName: string, sprite: string, type: string, power: int|null, price: int|null, ownedQuantity: int}>
      */
-    private function getTmRotationProp(): array
+    private function getTmsProp(): array
     {
         $tmRotation          = new GetTodaysTmRotationAction()->handle();
         $itemPriceCalculator = new ItemPriceCalculator;
 
-        return [
-            'startsAt' => $tmRotation->date->startOfDay()->toIso8601String(),
-            'endsAt'   => $tmRotation->date->addDay()->startOfDay()->toIso8601String(),
-            'tms'      => Move::query()
-                ->whereKey($tmRotation->move_ids)
-                ->orderBy('tm_code')
-                ->get()
-                ->map(fn (Move $move) => [
-                    'id'            => $move->id,
-                    'name'          => $move->tmName(),
-                    'sprite'        => $move->tmSprite(),
-                    'type'          => $move->type->value,
-                    'power'         => $move->power,
-                    'price'         => $itemPriceCalculator->price($move),
-                    'ownedQuantity' => $this->ownedQuantity($move),
-                ])
-                ->values()
-                ->all(),
-        ];
+        return Move::query()
+            ->whereKey($tmRotation->move_ids)
+            ->orderBy('tm_code')
+            ->get()
+            ->map(fn (Move $move) => [
+                'id'            => $move->id,
+                'itemType'      => InventoryItemType::TM->value,
+                'name'          => $move->tmName(),
+                'pluralName'    => ItemHelper::name($move, 2),
+                'sprite'        => $move->tmSprite(),
+                'type'          => $move->type->value,
+                'power'         => $move->power,
+                'price'         => $itemPriceCalculator->price($move),
+                'ownedQuantity' => $this->ownedQuantity($move),
+            ])
+            ->values()
+            ->all();
     }
 
     private function ownedQuantity(EvolutionItem|Pokeball|Move $item): int

@@ -1378,25 +1378,25 @@ Read [03-money-inventory-and-shop.md](03-money-inventory-and-shop.md) first. Mon
 **Mock-up:** `docs/mockups/shop.html` (states "Balls tab", "Evolution items tab", "TMs tab (today's 10)")
 
 **Build:**
-- Route `GET /shop` named `shop.web.index` → `App\Shop\Http\Web\Controllers\ShopController@index` with `ShopIndexPageProps`: three groups (balls, evolution items, today's TMs), each item with name, sprite, short effect, price and how many the player owns; for TMs also type, power and when the rotation ends.
+- Route `GET /shop` named `shop.web.index` → `App\Shop\Http\Web\Controllers\ShopController@index` with `ShopIndexPageProps`: three groups (balls, evolution items, today's TMs), each item with name, sprite, short effect, price and how many the player owns; for TMs also type and power.
 - Page `resources/js/app/Shop/pages/Shop/Index/index.vue`; "Shop" link in the navigation.
 
 **UI suggestions** (ideas, not requirements):
 - `AppPageHeader` ("Shop") with the player's money on the right.
 - Tabs for Balls, Evolution items and TMs (shadcn-vue `tabs`, added with the CLI); the chosen tab in the URL (`?tab=tms`) so it survives a reload.
 - A list, not a grid: one row per item with `ItemSprite`, name, a one-line effect in muted text, price with `MoneyAmount`, and "You own: 42".
-- TMs tab: a line on top with `AppCountdown` ("New TMs in 07:42:10"); each row shows the move's type badge and power.
+- The TMs tab is titled "Today's TMs"; each row shows the move's type badge and power.
 - On phones, each row stacks: name and effect on top, price and buy controls below.
 
 **Tests:** feature test for the props, including that only today's TMs appear and earned-only items do not.
 
 **Done when:** the page lists the shop's items.
 
-- As built: the props are `pokeballs` and `evolutionItems` (each `{id, name, sprite, effect, price, ownedQuantity}`, sorted by price then name) and `tmRotation` (`{startsAt, endsAt, tms}`, TMs sorted by code, each with `type` and `power` instead of an effect). The effect is the item's `description`, which is still generic in the seed data ("An item used to evolve certain Pokémon."), not the mock-up's specific effects. TMs use PokeAPI's per-type disc sprite from the new `Move::tmSprite()`. The page is `ShopTabs` (shadcn-vue `tabs`, chosen tab kept in `?tab=balls|evolution-items|tms` with `router.replace`), `ShopItemsList` and `ShopItemRow`; the TMs tab opens with `TmRotationNotice` and `AppCountdown`, which reloads `tmRotation` when it ends. Money never has a coin icon (prices, `PlayerMoney`, `TopBarMoney`, `SidebarNavMoney`); the collapsed sidebar shows "₽" instead. Item sprites are `size-8`. The TMs notice reads "Today's TMs" and the countdown. The sidebar money row stays plain text, not a link to the Shop. The header money is the new shared `PlayerMoney`, also used by the Nursery; it hides on phones, where `TopBarMoney` shows it.
+- As built: the props are `pokeballs` and `evolutionItems` (each `{id, name, sprite, effect, price, ownedQuantity}`, sorted by price then name) and `tms` (sorted by code, each with `type` and `power` instead of an effect). The effect is the item's `description`, which is still generic in the seed data ("An item used to evolve certain Pokémon."), not the mock-up's specific effects. TMs use PokeAPI's per-type disc sprite from the new `Move::tmSprite()`. The page is `ShopTabs` (shadcn-vue `tabs`, chosen tab kept in `?tab=balls|evolution-items|tms` with `router.replace`), `ShopItemsList` and `ShopItemRow`; the TMs tab is titled "Today's TMs", with no heading or countdown above the list. Money never has a coin icon (prices, `PlayerMoney`, `TopBarMoney`, `SidebarNavMoney`); the collapsed sidebar shows "₽" instead. Item sprites are `size-8`. The sidebar money row stays plain text, not a link to the Shop. The header money is the new shared `PlayerMoney`, also used by the Nursery; it hides on phones, where `TopBarMoney` shows it.
 
 ### 3.10 Shop page: buy
 
-- [ ] Done
+- [x] Done
 
 **Goal:** buy from the shop page.
 
@@ -1409,13 +1409,15 @@ Read [03-money-inventory-and-shop.md](03-money-inventory-and-shop.md) first. Mon
 **UI suggestions** (ideas, not requirements):
 - Quantity: an `InputGroup` with − and + buttons around a number input, default 1.
 - "Buy" is an outline `Button` on each row (many rows, so not primary); its label shows the total ("Buy · ₽ 2,400").
-- When the player can't afford the total or the stack would overflow, disable Buy and show the reason in a `Tooltip` or small text under it.
+- When the player can't afford the total or the stack would overflow, disable Buy; only a full stack shows a reason, as small text under it.
 - Confirmation over ₽ 10,000: a `Dialog` "Buy 10 Ultra Balls for ₽ 12,000?" with "Buy" (primary) and "Not now" (outline).
 - Success toast: "Purchase complete" / "You bought 10 Ultra Balls."
 
 **Tests:** feature tests: buy succeeds; validation errors; not enough money shows an error; browser test: buy with confirmation.
 
 **Done when:** a player can buy items from the page.
+
+- As built: `BuyItemRequest` accepts `item_type` `pokeball`, `evolution-item` or `tm` (not special items) and checks `item_id` exists in that type's table; `quantity` is 1 to `game.inventory.max_stack`. `BuyItemController` finds the item and calls `BuyItemAction`, whose refusals (money, full stack, not today's TM) come back as the usual warning toast. The toast names the items with the new `ItemHelper::name($item, $quantity)` ("You bought 10 Ultra Balls.", "You bought 1 TM 395 Ice Beam."; TMs are never pluralised). `ShopIndexPageProps` adds `itemType` and `pluralName` to every item, plus `maxStack` and `confirmPurchaseOver` (new config `game.shop.confirm_purchase_over`, 10,000). Each `ShopItemRow` holds a `ShopItemBuyForm`: an `InputGroup` quantity picker (1 to the room left in the stack), an outline "Buy · ₽ 2,400" button with a fixed width (`w-44`, wide enough for the largest total, "₽ 99,990,000") so it doesn't resize as the quantity changes, disabled when the player can't afford the total (no "You need … more" line) and, with "Your stack is full" under it, when the stack is full, and an `AlertDialog` for totals over 10,000.
 
 ### 3.11 Inventory page: browse
 

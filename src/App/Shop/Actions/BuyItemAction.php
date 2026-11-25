@@ -13,6 +13,7 @@ use App\Shop\Mechanics\ItemPriceCalculator;
 use Illuminate\Support\Facades\DB;
 use InvalidArgumentException;
 use LogicException;
+use Shared\Helpers\ItemHelper;
 use Shared\Models\EvolutionItem;
 use Shared\Models\InventoryItem;
 use Shared\Models\Move;
@@ -62,7 +63,7 @@ final class BuyItemAction
 
     private function ensureItemIsSold(): void
     {
-        throw_if($this->unitPrice === null, fn () => ItemNotForSaleException::earnedOnly($this->itemName()));
+        throw_if($this->unitPrice === null, fn () => ItemNotForSaleException::earnedOnly(ItemHelper::name($this->item)));
     }
 
     private function ensureTmIsForSaleToday(): void
@@ -73,7 +74,7 @@ final class BuyItemAction
 
         $todaysTmIds = new GetTodaysTmRotationAction()->handle()->move_ids;
 
-        throw_unless(in_array($this->item->id, $todaysTmIds, true), fn () => ItemNotForSaleException::notInTodaysTms($this->itemName()));
+        throw_unless(in_array($this->item->id, $todaysTmIds, true), fn () => ItemNotForSaleException::notInTodaysTms(ItemHelper::name($this->item)));
     }
 
     private function ensureStackHasRoom(): void
@@ -102,10 +103,5 @@ final class BuyItemAction
         }
 
         return $this->unitPrice * $this->quantity;
-    }
-
-    private function itemName(): string
-    {
-        return $this->item instanceof Move ? $this->item->tmName() : $this->item->name;
     }
 }
