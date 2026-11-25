@@ -26,6 +26,8 @@ return Application::configure(basePath: dirname(__DIR__))
 
                 Route::name('exploration.web.')->group(base_path('src/App/Exploration/Http/Web/routes.php'));
 
+                Route::name('inventory.web.')->group(base_path('src/App/Inventory/Http/Web/routes.php'));
+
                 Route::name('pokemon.web.')->group(base_path('src/App/Pokemon/Http/Web/routes.php'));
 
                 Route::name('public.web.')->group(base_path('src/App/Public/Http/Web/routes.php'));

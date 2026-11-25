@@ -74,6 +74,16 @@ final class Move extends Model
         return sprintf('TM %s %s', Str::after($this->tm_code, 'TM'), $this->name);
     }
 
+    public function tmDescription(): string
+    {
+        $type    = $this->type->label();
+        $article = in_array($type[0], ['A', 'E', 'I', 'O', 'U'], true) ? 'an' : 'a';
+
+        return $this->power === null
+            ? sprintf('Teaches %s, %s %s-type status move.', $this->name, $article, $type)
+            : sprintf('Teaches %s, %s %s-type move with %d power.', $this->name, $article, $type, $this->power);
+    }
+
     public function tmSprite(): string
     {
         return sprintf('https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-%s.png', $this->type->value);

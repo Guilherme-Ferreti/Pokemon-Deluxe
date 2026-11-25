@@ -1392,7 +1392,7 @@ Read [03-money-inventory-and-shop.md](03-money-inventory-and-shop.md) first. Mon
 
 **Done when:** the page lists the shop's items.
 
-- As built: the props are `pokeballs` and `evolutionItems` (each `{id, name, sprite, effect, price, ownedQuantity}`, sorted by price then name) and `tms` (sorted by code, each with `type` and `power` instead of an effect). The effect is the item's `description`. Ball descriptions say what each ball does here, from Spec 2's ball conditions ("3.5× on Bug and Grass Pokémon, 1× otherwise."); evolution item descriptions name what each item evolves, from the species data ("Evolves Scyther into Scizor.", "Mega Evolves Gengar into Mega Gengar at level 100."). TMs use PokeAPI's per-type disc sprite from the new `Move::tmSprite()`. The page is `ShopTabs` (shadcn-vue `tabs`, chosen tab kept in `?tab=balls|evolution-items|tms` with `router.replace`), `ShopItemsList` and `ShopItemRow`; the TMs tab is titled "Today's TMs", with no heading or countdown above the list. Money never has a coin icon (prices, `PlayerMoney`, `TopBarMoney`, `SidebarNavMoney`); the collapsed sidebar shows "₽" instead. Item sprites are `size-8`. The sidebar money row stays plain text, not a link to the Shop. The header money is the new shared `PlayerMoney`, also used by the Nursery; it hides on phones, where `TopBarMoney` shows it.
+- As built: the props are `pokeballs` and `evolutionItems` (each `{id, name, sprite, effect, price, ownedQuantity}`, sorted by price then name) and `tms` (sorted by code, each with `type` and `power` instead of an effect). The effect is the item's `description`. Ball descriptions say what each ball does here, from Spec 2's ball conditions ("3.5x on Bug and Grass Pokémon, 1x otherwise."); evolution item descriptions name what each item evolves, from the species data ("Evolves Scyther into Scizor.", "Mega Evolves Gengar into Mega Gengar at level 100."). TMs use PokeAPI's per-type disc sprite from the new `Move::tmSprite()`. The page is `ShopTabs` (shadcn-vue `tabs`, chosen tab kept in `?tab=balls|evolution-items|tms` with `router.replace`), `ShopItemsList` and `ShopItemRow`; the TMs tab is titled "Today's TMs", with no heading or countdown above the list. Money never has a coin icon (prices, `PlayerMoney`, `TopBarMoney`, `SidebarNavMoney`); the collapsed sidebar shows "₽" instead. Item sprites are `size-8`. The sidebar money row stays plain text, not a link to the Shop. The header money is the new shared `PlayerMoney`, also used by the Nursery; it hides on phones, where `TopBarMoney` shows it.
 
 ### 3.10 Shop page: buy
 
@@ -1421,7 +1421,7 @@ Read [03-money-inventory-and-shop.md](03-money-inventory-and-shop.md) first. Mon
 
 ### 3.11 Inventory page: browse
 
-- [ ] Done
+- [x] Done
 
 **Goal:** see everything the player owns.
 
@@ -1440,6 +1440,8 @@ Read [03-money-inventory-and-shop.md](03-money-inventory-and-shop.md) first. Mon
 **Tests:** feature test for the props per group; empty groups.
 
 **Done when:** the page lists the player's items.
+
+- As built: `InventoryIndexPageProps` has `pokeballs`, `evolutionItems` (Mega Stones included), `tms`, `boostStones` and `keyItems`, each a list of `{id, name, sprite, description, quantity, sellPrice}` from one eager-loaded query of the player's stacks that still hold items; TMs are sorted by code, the rest by name. `sellPrice` is `ItemPriceCalculator::sellBackPrice()` for one unit, null for earned-only items and special items. TMs use `Move::tmSprite()` and the new `Move::tmDescription()` ("Teaches Ice Beam, an Ice-type move with 90 power."); `ItemHelper::name()` now also takes special items. The page is `InventoryTabs` (tab in the URL through the new shared `useTabInUrl()` composable, which `ShopTabs` now uses too; the tabs wrap onto two rows on phones), `InventoryItemsGrid`, `InventoryItemTile` (a `size-10` sprite or an empty placeholder, a "x42" `Badge`) and `InventoryItemDialog` (a `Dialog` on every screen size, with "You own 4 · sells for ₽ 600 each", or an amber "Earned only" badge and "Can't be sold to the shop. Trade it instead."). Empty tabs use `AppEmptyState` with a "Go to the Shop" link to the matching Shop tab for balls, evolution items and TMs. `ItemSprite` now merges its size class with `cn()`, so a caller's size wins over its default `size-7`.
 
 ### 3.12 Inventory page: sell
 

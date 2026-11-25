@@ -68,6 +68,7 @@
 <script setup lang="ts">
 import {
   IconArchive,
+  IconBackpack,
   IconBook,
   IconBuildingStore,
   IconChevronRight,
@@ -138,6 +139,11 @@ const items = [
     title: 'Shop',
     url: route('shop.web.index'),
     icon: IconBuildingStore,
+  },
+  {
+    title: 'Inventory',
+    url: route('inventory.web.index'),
+    icon: IconBackpack,
   },
   {
     title: 'Pokédex',

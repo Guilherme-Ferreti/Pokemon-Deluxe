@@ -64,8 +64,7 @@
 </template>
 
 <script setup lang="ts">
-import { router, usePage } from '@inertiajs/vue3';
-import { ref, watch } from 'vue';
+import { usePage } from '@inertiajs/vue3';
 import PokemonTypeBadges from '@/shared/components/game/PokemonTypeBadges.vue';
 import {
   Tabs,
@@ -73,29 +72,12 @@ import {
   TabsList,
   TabsTrigger,
 } from '@/shared/components/ui/tabs';
-import { route } from '@/shared/types/helpers/route';
+import { useTabInUrl } from '@/shared/composables/useTabInUrl';
 import type { ShopIndexPageProps } from '../../../types/page-props/ShopIndexPageProps';
 import ShopItemRow from './ShopItemRow.vue';
 import ShopItemsList from './ShopItemsList.vue';
 
-const shopTabs = ['balls', 'evolution-items', 'tms'] as const;
-
-type ShopTab = (typeof shopTabs)[number];
-
 const page = usePage<ShopIndexPageProps>();
 
-const isShopTab = (value: unknown): value is ShopTab =>
-  shopTabs.includes(value as ShopTab);
-
-const tabInUrl = new URLSearchParams(page.url.split('?')[1] ?? '').get('tab');
-
-const selectedTab = ref<ShopTab>(isShopTab(tabInUrl) ? tabInUrl : 'balls');
-
-watch(selectedTab, (tab) => {
-  router.replace({
-    url: `${route('shop.web.index')}?tab=${tab}`,
-    preserveScroll: true,
-    preserveState: true,
-  });
-});
+const selectedTab = useTabInUrl(['balls', 'evolution-items', 'tms'], 'balls');
 </script>

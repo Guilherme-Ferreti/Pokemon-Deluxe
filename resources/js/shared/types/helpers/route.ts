@@ -25,6 +25,7 @@ type RouteParameters = {
   'exploration.web.explore': {
     area: string | number;
   };
+  'inventory.web.index': never;
   'pokemon.web.party': never;
   'pokemon.web.box.index': never;
   'pokemon.web.nursery': never;
@@ -96,6 +97,7 @@ const routes = {
   'exploration.web.show': 'explore/{area}',
   'exploration.web.battle': 'explore/battle',
   'exploration.web.explore': 'explore/{area}',
+  'inventory.web.index': 'inventory',
   'pokemon.web.party': 'your-pokemon/party',
   'pokemon.web.box.index': 'your-pokemon/box',
   'pokemon.web.nursery': 'your-pokemon/nursery',
