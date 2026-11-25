@@ -1,0 +1,16 @@
+[
+  {
+    "id": "boost-stone",
+    "name": "Boost Stone",
+    "sprite": null,
+    "description": "A stone that may raise a Pokémon's boost by 1. The higher the boost, the more likely it is to fail.",
+    "category": "boost-stone"
+  },
+  {
+    "id": "xp-share",
+    "name": "XP Share",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/exp-share.png",
+    "description": "While switched on, party Pokémon that didn't battle get half of the XP.",
+    "category": "key-item"
+  }
+]

@@ -97,7 +97,7 @@ One name per idea, used everywhere: specs, code, database, tests and UI. When yo
 | TM price | `TmPriceCalculator`, `game.shop.tm_prices` | By the move's power; null for Z-Move and Dynamax TMs. |
 | Sell back | `SellItemAction`, `sell_back_ratio` | Half the price. |
 | Today's TMs | `TmRotation` | The 10 TMs for sale today. |
-| TM | `InventoryItemType::TM`, `tm_code` | An inventory item whose item is a `Move`. Shown as "TM 395 Ice Beam". |
+| TM | `InventoryItemType::TM`, `tm_code`, `Move::tmName()` | An inventory item whose item is a `Move`. Shown as "TM 395 Ice Beam". |
 | Special item | `SpecialItem`, `SpecialItemCategory` | Boost stones and key items. |
 | Boost stone | `boost-stone` (special item slug) | |
 | Key item | `SpecialItemCategory::KEY_ITEM` | Items that are switched on, like the XP Share (`xp-share`). |

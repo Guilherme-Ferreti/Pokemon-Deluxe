@@ -10,6 +10,7 @@ use App\Pokemon\Support\Incubator;
 use Inertia\ProvidesInertiaProperties;
 use Inertia\RenderContext;
 use Shared\Models\InventoryItem;
+use Shared\Models\Pokeball;
 
 final class NurseryPageProps implements ProvidesInertiaProperties
 {
@@ -61,12 +62,17 @@ final class NurseryPageProps implements ProvidesInertiaProperties
             ->owned()
             ->with('item:id,name,sprite')
             ->get(['id', 'item_id', 'item_type', 'quantity'])
-            ->map(fn (InventoryItem $inventoryItem) => [
-                'id'       => $inventoryItem->item->id,
-                'name'     => $inventoryItem->item->name,
-                'sprite'   => $inventoryItem->item->sprite,
-                'quantity' => $inventoryItem->quantity,
-            ])
+            ->map(function (InventoryItem $inventoryItem) {
+                /** @var Pokeball $pokeball */
+                $pokeball = $inventoryItem->item;
+
+                return [
+                    'id'       => $pokeball->id,
+                    'name'     => $pokeball->name,
+                    'sprite'   => $pokeball->sprite,
+                    'quantity' => $inventoryItem->quantity,
+                ];
+            })
             ->toArray();
     }
 }

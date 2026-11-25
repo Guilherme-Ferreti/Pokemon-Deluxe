@@ -1282,7 +1282,7 @@ Read [03-money-inventory-and-shop.md](03-money-inventory-and-shop.md) first. Mon
 
 ### 3.4 TMs and special items in the inventory
 
-- [ ] Done
+- [x] Done
 
 **Goal:** the inventory can hold TMs, boost stones and key items.
 
@@ -1291,6 +1291,7 @@ Read [03-money-inventory-and-shop.md](03-money-inventory-and-shop.md) first. Mon
 - Enum `Shared\Enums\SpecialItemCategory`: `BOOST_STONE`, `KEY_ITEM`. Model `Shared\Models\SpecialItem` (with factory); `SpecialItemSeeder` seeds `boost-stone` and `xp-share`.
 - `InventoryItemType`: add `TM` (item is a `Move`) and `SPECIAL_ITEM`; extend `fromModel()` and the morph map.
 - `AddInventoryItemAction` and `RemoveInventoryItemAction` accept `EvolutionItem|Pokeball|Move|SpecialItem`.
+- As built: the item type values are `tm` and `special-item`; `SpecialItemCategory` values are `boost-stone` and `key-item`. `SpecialItemSeeder` reads `database/seeders/files/special-items.json`; the boost stone has no sprite yet (the XP Share uses PokéAPI's Exp. Share sprite). `Move::tmName()` gives "TM 395 Ice Beam" (`tm_code` is stored as `TM395`), and the inventory exceptions use it for TMs. `InventoryItemFactory` gained `tm()` and `specialItem()` states; `SpecialItemFactory` has `boostStone()` and `xpShare()`.
 
 **Tests:** add and remove a TM and a boost stone; `fromModel()` for each model.
 

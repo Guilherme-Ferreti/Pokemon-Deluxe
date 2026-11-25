@@ -34,7 +34,9 @@ use Shared\Base\DomainException;
 use Shared\Enums\InventoryItemType;
 use Shared\Helpers\ToastHelper;
 use Shared\Models\EvolutionItem;
+use Shared\Models\Move;
 use Shared\Models\Pokeball;
+use Shared\Models\SpecialItem;
 use Shared\ValueObjects\IncubatorIndex;
 use SplFileInfo;
 
@@ -177,6 +179,8 @@ final class AppServiceProvider extends ServiceProvider
         Relation::morphMap([
             InventoryItemType::POKEBALL->value       => Pokeball::class,
             InventoryItemType::EVOLUTION_ITEM->value => EvolutionItem::class,
+            InventoryItemType::TM->value             => Move::class,
+            InventoryItemType::SPECIAL_ITEM->value   => SpecialItem::class,
         ]);
     }
 

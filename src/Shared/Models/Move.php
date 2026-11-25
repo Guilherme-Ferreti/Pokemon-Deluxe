@@ -12,6 +12,7 @@ use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Support\Str;
 use Override;
 use Shared\Enums\Ailment;
 use Shared\Enums\Generation;
@@ -66,6 +67,11 @@ final class Move extends Model
             'is_dynamax_move' => 'boolean',
             'generation'      => Generation::class,
         ];
+    }
+
+    public function tmName(): string
+    {
+        return sprintf('TM %s %s', Str::after($this->tm_code, 'TM'), $this->name);
     }
 
     /**

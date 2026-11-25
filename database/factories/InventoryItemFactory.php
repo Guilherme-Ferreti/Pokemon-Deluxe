@@ -9,7 +9,9 @@ use Override;
 use Shared\Enums\InventoryItemType;
 use Shared\Models\EvolutionItem;
 use Shared\Models\InventoryItem;
+use Shared\Models\Move;
 use Shared\Models\Pokeball;
+use Shared\Models\SpecialItem;
 use Shared\Models\User;
 
 /**
@@ -35,6 +37,22 @@ final class InventoryItemFactory extends Factory
         return $this->state([
             'item_type' => InventoryItemType::POKEBALL,
             'item_id'   => $pokeball->id,
+        ]);
+    }
+
+    public function tm(Move $move): static
+    {
+        return $this->state([
+            'item_type' => InventoryItemType::TM,
+            'item_id'   => $move->id,
+        ]);
+    }
+
+    public function specialItem(SpecialItem $specialItem): static
+    {
+        return $this->state([
+            'item_type' => InventoryItemType::SPECIAL_ITEM,
+            'item_id'   => $specialItem->id,
         ]);
     }
 

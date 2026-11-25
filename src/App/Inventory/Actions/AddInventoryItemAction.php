@@ -9,18 +9,20 @@ use InvalidArgumentException;
 use Shared\Enums\InventoryItemType;
 use Shared\Models\EvolutionItem;
 use Shared\Models\InventoryItem;
+use Shared\Models\Move;
 use Shared\Models\Pokeball;
+use Shared\Models\SpecialItem;
 use Shared\Models\User;
 
 final class AddInventoryItemAction
 {
     private User $user;
 
-    private EvolutionItem|Pokeball $item;
+    private EvolutionItem|Pokeball|Move|SpecialItem $item;
 
     private int $quantity;
 
-    public function handle(User $user, EvolutionItem|Pokeball $item, int $quantity = 1): void
+    public function handle(User $user, EvolutionItem|Pokeball|Move|SpecialItem $item, int $quantity = 1): void
     {
         $this->user     = $user;
         $this->item     = $item;

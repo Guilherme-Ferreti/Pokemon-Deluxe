@@ -26,7 +26,7 @@ use Shared\Enums\InventoryItemType;
  * @property CarbonImmutable|null $created_at
  * @property CarbonImmutable|null $updated_at
  * @property-read User $user
- * @property-read EvolutionItem|Pokeball $item
+ * @property-read EvolutionItem|Pokeball|Move|SpecialItem $item
  */
 #[Unguarded]
 final class InventoryItem extends Model
@@ -63,7 +63,7 @@ final class InventoryItem extends Model
      * @param  Builder<$this>  $query
      */
     #[Scope]
-    protected function forItem(Builder $query, EvolutionItem|Pokeball $item): void
+    protected function forItem(Builder $query, EvolutionItem|Pokeball|Move|SpecialItem $item): void
     {
         $query
             ->where('item_id', $item->getKey())

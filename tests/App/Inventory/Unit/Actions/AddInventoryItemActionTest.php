@@ -7,7 +7,9 @@ use App\Inventory\Exceptions\InventoryStackFullException;
 use Shared\Enums\InventoryItemType;
 use Shared\Models\EvolutionItem;
 use Shared\Models\InventoryItem;
+use Shared\Models\Move;
 use Shared\Models\Pokeball;
+use Shared\Models\SpecialItem;
 use Shared\Models\User;
 
 use function Pest\Laravel\assertDatabaseCount;
@@ -29,6 +31,8 @@ it('creates a new stack', function (string $itemClass, InventoryItemType $expect
 })->with([
     'pokeball'       => [Pokeball::class, InventoryItemType::POKEBALL],
     'evolution item' => [EvolutionItem::class, InventoryItemType::EVOLUTION_ITEM],
+    'tm'             => [Move::class, InventoryItemType::TM],
+    'special item'   => [SpecialItem::class, InventoryItemType::SPECIAL_ITEM],
 ]);
 
 it('adds one item by default', function () {

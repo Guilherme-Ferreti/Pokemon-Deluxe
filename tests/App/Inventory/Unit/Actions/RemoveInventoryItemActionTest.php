@@ -7,7 +7,9 @@ use App\Inventory\Exceptions\InsufficientInventoryException;
 use Illuminate\Support\Facades\DB;
 use Shared\Models\EvolutionItem;
 use Shared\Models\InventoryItem;
+use Shared\Models\Move;
 use Shared\Models\Pokeball;
+use Shared\Models\SpecialItem;
 use Shared\Models\User;
 
 use function Pest\Laravel\assertDatabaseCount;
@@ -105,3 +107,27 @@ it('leaves the quantity unchanged when the transaction is rolled back', function
 
     expect($item->fresh()->quantity)->toBe(10);
 });
+
+it('removes a tm and a boost stone', function () {
+    $user       = User::factory()->create();
+    $tm         = Move::factory()->create();
+    $boostStone = SpecialItem::factory()->boostStone()->create();
+
+    $tmItem         = InventoryItem::factory()->for($user)->tm($tm)->create(['quantity' => 2]);
+    $boostStoneItem = InventoryItem::factory()->for($user)->specialItem($boostStone)->create(['quantity' => 5]);
+
+    new RemoveInventoryItemAction()->handle($user, $tm);
+    new RemoveInventoryItemAction()->handle($user, $boostStone, 3);
+
+    assertDatabaseCount(InventoryItem::class, 2);
+
+    expect($tmItem->fresh()->quantity)->toBe(1)
+        ->and($boostStoneItem->fresh()->quantity)->toBe(2);
+});
+
+it('names a tm by its code and move when there are not enough', function () {
+    $user = User::factory()->create();
+    $tm   = Move::factory()->create(['tm_code' => 'TM395', 'name' => 'Ice Beam']);
+
+    new RemoveInventoryItemAction()->handle($user, $tm);
+})->throws(InsufficientInventoryException::class, 'Not enough TM 395 Ice Beam in inventory to perform this action.');
