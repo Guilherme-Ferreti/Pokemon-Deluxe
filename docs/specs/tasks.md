@@ -1492,7 +1492,7 @@ Read [04-pokemon-page.md](04-pokemon-page.md) first. Builds on Spec 1 (`SetActiv
 
 ### 4.2 Add to and remove from the party
 
-- [ ] Done
+- [x] Done
 
 **Goal:** party changes from the Pokémon page.
 
@@ -1505,6 +1505,8 @@ Read [04-pokemon-page.md](04-pokemon-page.md) first. Builds on Spec 1 (`SetActiv
 **Tests:** add; party full; remove; last one refused; swap (party size unchanged); swap with a Pokémon outside the party refused; refused during a battle.
 
 **Done when:** tests pass.
+
+- As built: all three actions (not only add and remove) refuse during an ongoing battle. Each runs in a transaction that first locks the owner's `users` row (as `CreatePokemonAction` does, so a catch joining the party can't race them), then refreshes the Pokémon before its guards. Two more `DomainException`s cover stale pages: `PokemonAlreadyInPartyException` ("Pikachu is already in your party.", adding or swapping in a party Pokémon) and `PokemonNotInPartyException` ("Pikachu is not in your party.", removing or swapping out a Box Pokémon); all four party exceptions use the `party` key. `SwapPartyPokemonAction` throws `InvalidArgumentException` for Pokémon of two different owners, since the controller only passes the player's own. Party order (`party_position`) waits for task 4.15, so a swap only flips `in_party` for now.
 
 ### 4.3 Release a Pokémon
 
