@@ -27,7 +27,19 @@ it('loads the nursery page with expected structure', function () {
             ->has('incubators', config('game.user.max_incubators'))
             ->where('incubators.0.index', 1)
             ->where('incubators.0.status', IncubatorStatus::NOT_PURCHASED->value)
+            ->where('nextIncubatorPrice', 0)
             ->has('pokeballs')
+        );
+});
+
+it('includes the price of the next incubator', function () {
+    $user = User::factory()->create(['purchased_incubator_indexes' => [new IncubatorIndex(1), new IncubatorIndex(2)]]);
+
+    actingAs($user)
+        ->get(route('pokemon.web.nursery'))
+        ->assertSuccessful()
+        ->assertInertia(fn (Assert $page) => $page
+            ->where('nextIncubatorPrice', 10000)
         );
 });
 

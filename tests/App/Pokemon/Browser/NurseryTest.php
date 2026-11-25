@@ -37,6 +37,31 @@ it('allows purchasing a not purchased incubator', function () {
         ->assertNoJavascriptErrors();
 });
 
+it('shows the next incubator price and updates it after a purchase', function () {
+    $user = User::factory()->withMoney(6000)->create(['purchased_incubator_indexes' => []]);
+
+    actingAs($user);
+
+    visit(route('pokemon.web.nursery'))
+        ->assertSeeIn('@incubator-1-card--not-purchased__price-indicator', 'Free')
+        ->click('@incubator-1-card--not-purchased__purchase-button')
+        ->waitForText('₽ 5,000')
+        ->assertSeeIn('@incubator-2-card--not-purchased__price-indicator', '₽ 5,000')
+        ->assertEnabled('@incubator-2-card--not-purchased__purchase-button')
+        ->assertNoJavascriptErrors();
+});
+
+it('disables purchasing an incubator the player cannot afford', function () {
+    $user = User::factory()->withMoney(1000)->create(['purchased_incubator_indexes' => [new IncubatorIndex(1), new IncubatorIndex(2)]]);
+
+    actingAs($user);
+
+    visit(route('pokemon.web.nursery'))
+        ->assertSeeIn('@incubator-3-card--not-purchased__price-indicator', '₽ 10,000')
+        ->assertDisabled('@incubator-3-card--not-purchased__purchase-button')
+        ->assertNoJavascriptErrors();
+});
+
 it('allows placing an egg in an idle incubator', function () {
     $user    = User::factory()->create(['purchased_incubator_indexes' => [new IncubatorIndex(1)]]);
     $species = Species::factory()->create(['egg_obtainable' => true]);

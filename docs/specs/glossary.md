@@ -98,6 +98,7 @@ One name per idea, used everywhere: specs, code, database, tests and UI. When yo
 | Buy | `BuyItemAction`, `ItemNotForSaleException` | Spends the money and adds the items in one transaction. |
 | Sell back | `SellItemAction`, `ItemNotSellableException`, `sell_back_ratio` | Half the price. |
 | Shop price | `ItemPriceCalculator` | A TM's price from `TmPriceCalculator`, any other item's `price`. |
+| Incubator price | `IncubatorPriceCalculator`, `game.incubation.price_step`, `nextIncubatorPrice` | ₽ 5,000 × incubators already bought; the first is free. |
 | Today's TMs | `TmRotation`, `GetTodaysTmRotationAction`, `game.shop.daily_tm_count` | The 10 TMs for sale today. |
 | TM | `InventoryItemType::TM`, `tm_code`, `Move::tmName()` | An inventory item whose item is a `Move`. Shown as "TM 395 Ice Beam". |
 | Special item | `SpecialItem`, `SpecialItemCategory` | Boost stones and key items. |

@@ -6,6 +6,7 @@ namespace App\Pokemon\Http\Web\PageProps;
 
 use App\Pokemon\Actions\Incubator\ListIncubatorsAction;
 use App\Pokemon\Enums\IncubatorStatus;
+use App\Pokemon\Mechanics\IncubatorPriceCalculator;
 use App\Pokemon\Support\Incubator;
 use Inertia\ProvidesInertiaProperties;
 use Inertia\RenderContext;
@@ -20,8 +21,9 @@ final class NurseryPageProps implements ProvidesInertiaProperties
     public function toInertiaProperties(RenderContext $context): array
     {
         return [
-            'incubators' => $this->getIncubatorsProp(...),
-            'pokeballs'  => $this->getPokeballsProp(...),
+            'incubators'         => $this->getIncubatorsProp(...),
+            'nextIncubatorPrice' => $this->getNextIncubatorPriceProp(...),
+            'pokeballs'          => $this->getPokeballsProp(...),
         ];
     }
 
@@ -49,6 +51,11 @@ final class NurseryPageProps implements ProvidesInertiaProperties
             })
             ->values()
             ->toArray();
+    }
+
+    private function getNextIncubatorPriceProp(): int
+    {
+        return new IncubatorPriceCalculator()->price(count(currentUser()->purchased_incubator_indexes));
     }
 
     /**

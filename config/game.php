@@ -53,7 +53,8 @@ return [
     ],
 
     'incubation' => [
-        'hatch_time_in_hours' => 24, // Hours an egg incubates before it is ready to hatch.
+        'hatch_time_in_hours' => 24,   // Hours an egg incubates before it is ready to hatch.
+        'price_step'          => 5000, // Money each next incubator costs more than the last; the first is free.
     ],
 
     'pokemon' => [

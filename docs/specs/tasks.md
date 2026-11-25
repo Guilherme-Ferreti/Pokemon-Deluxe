@@ -1349,7 +1349,7 @@ Read [03-money-inventory-and-shop.md](03-money-inventory-and-shop.md) first. Mon
 
 ### 3.8 Incubators cost money
 
-- [ ] Done
+- [x] Done
 
 **Goal:** the first incubator is free, each next one costs ₽ 5,000 more.
 
@@ -1359,10 +1359,11 @@ Read [03-money-inventory-and-shop.md](03-money-inventory-and-shop.md) first. Mon
 - `App\Pokemon\Mechanics\IncubatorPriceCalculator::price(int $purchasedCount): int` = purchasedCount × `game.incubation.price_step` (5,000).
 - `PurchaseAction` (incubator) spends the price with `SpendMoneyAction` inside its lock, before marking it purchased.
 - `NurseryPageProps` includes the price of the next incubator.
+- As built: the prop is `nextIncubatorPrice`. Spending and marking the incubator purchased share one transaction inside the lock; a free incubator spends nothing. `IncubatorNotPurchasedCard` shows "Free" or the price (`MoneyAmount`, no coin) above Purchase, and disables Purchase when the player can't afford it (no "You need … more" line: the price alone says it). Purchasing reloads `incubators`, `nextIncubatorPrice` and `auth`, so every card's price and the sidebar money update. The Nursery header shows the player's money on the right, as in the mock-up.
 
 **UI suggestions** (ideas, not requirements):
-- On `IncubatorNotPurchasedCard`, show the price under the button ("₽ 15,000") with `MoneyAmount`; the first one says "Free".
-- When the player can't afford it, disable the button and say why ("You need ₽ 2,550 more").
+- On `IncubatorNotPurchasedCard`, show the price above the button ("₽ 15,000") with `MoneyAmount`; the first one says "Free".
+- When the player can't afford it, disable the button.
 
 **Tests:** first is free; second costs 5,000; third costs 10,000; not enough money refused; Nursery props include the price.
 

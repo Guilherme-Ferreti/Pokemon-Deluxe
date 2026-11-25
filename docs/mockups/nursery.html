@@ -14,8 +14,7 @@
   .index { font-size: 12px; font-weight: 700; color: var(--muted-fg); }
   .lock { width: 48px; height: 48px; margin: 0 auto; border-radius: 999px; border: 2px dashed var(--placeholder); display: flex; align-items: center; justify-content: center; color: var(--muted-fg); }
   .footer { display: flex; flex-direction: column; align-items: center; gap: 6px; }
-  .price { font-size: 13px; }
-  .reason { font-size: 12px; color: var(--destructive); text-align: center; }
+  .price { font-size: 13px; margin-bottom: 8px; }
 </style>
 </head>
 <body>
@@ -72,12 +71,11 @@
             : card(i, 'Idle', '<div class="lock" aria-hidden="true">○</div>', 'This incubator is empty', '<button type="button" class="btn btn-outline">Place egg</button>');
         } else {
           var afford = money >= price;
-          var priceText = price === 0 ? '<span class="price muted">Free</span>' : '<span class="price money"><span class="coin" aria-hidden="true"></span>₽ ' + price.toLocaleString('en-US') + '</span>';
-          var reason = afford ? '' : '<span class="reason">You need ₽ ' + (price - money).toLocaleString('en-US') + ' more</span>';
+          var priceText = price === 0 ? '<span class="price muted">Free</span>' : '<span class="price money">₽ ' + price.toLocaleString('en-US') + '</span>';
           html += card(i, 'Not purchased',
             '<div class="lock" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg></div>',
             'This incubator has not been purchased yet',
-            '<button type="button" class="btn btn-outline"' + (afford ? '' : ' disabled') + '>Purchase</button>' + priceText + reason);
+            priceText + '<button type="button" class="btn btn-outline"' + (afford ? '' : ' disabled') + '>Purchase</button>');
         }
       }
       grid.innerHTML = html;

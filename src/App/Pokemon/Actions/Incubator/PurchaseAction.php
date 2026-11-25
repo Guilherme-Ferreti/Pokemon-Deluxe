@@ -4,9 +4,12 @@ declare(strict_types=1);
 
 namespace App\Pokemon\Actions\Incubator;
 
+use App\Economy\Actions\SpendMoneyAction;
 use App\Pokemon\Exceptions\IncubatorAlreadyPurchasedException;
+use App\Pokemon\Mechanics\IncubatorPriceCalculator;
 use App\Pokemon\Support\LockKeys;
 use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\DB;
 use Shared\Models\User;
 use Shared\ValueObjects\IncubatorIndex;
 
@@ -33,7 +36,10 @@ final class PurchaseAction
 
         $this->ensureIncubatorHasNotBeenPurchased();
 
-        $this->markIncubatorAsPurchased();
+        DB::transaction(function (): void {
+            $this->spendPrice();
+            $this->markIncubatorAsPurchased();
+        });
     }
 
     private function ensureIncubatorHasNotBeenPurchased(): void
@@ -42,6 +48,15 @@ final class PurchaseAction
 
         if (value_object_array_contains($purchasedIndexes, $this->incubatorIndex)) {
             throw new IncubatorAlreadyPurchasedException($this->incubatorIndex);
+        }
+    }
+
+    private function spendPrice(): void
+    {
+        $price = new IncubatorPriceCalculator()->price(count($this->user->purchased_incubator_indexes));
+
+        if ($price > 0) {
+            new SpendMoneyAction()->handle($this->user, $price);
         }
     }
 

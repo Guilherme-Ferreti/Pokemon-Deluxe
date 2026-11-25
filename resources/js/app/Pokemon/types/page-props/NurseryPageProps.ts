@@ -12,6 +12,7 @@ export type Incubator = {
 
 export type NurseryPageProps = {
   incubators: Incubator[];
+  nextIncubatorPrice: number;
   pokeballs: {
     id: Pokeball['id'];
     name: Pokeball['name'];
