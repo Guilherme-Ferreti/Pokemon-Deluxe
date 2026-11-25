@@ -75,6 +75,11 @@ return [
         ],
     ],
 
+    'boost' => [
+        'safe_until'   => 20, // Boost below which a boost stone always works (from +20 → +21 it can fail).
+        'failure_step' => 1,  // Failure chance in % each boost level adds from safe_until (1 = +20 → +21 fails 1%, +99 → +100 fails 80%).
+    ],
+
     'experience' => [
         'base'                => 250, // XP for defeating a Pokémon of the same level in a wild battle.
         'min_ratio'           => 0.1, // Lowest opponent level ÷ own level counted (0.1 = a much stronger Pokémon still gets 10%).

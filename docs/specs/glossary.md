@@ -116,6 +116,7 @@ One name per idea, used everywhere: specs, code, database, tests and UI. When yo
 | Release | `ReleasePokemonAction`, `PokemonLockedException` | Permanent; gives nothing back. |
 | Teach a TM | `TeachTmAction`, `MoveAlreadyKnownException`, `TmRequirementNotMetException` | Adds a move to the known moves; the TM is used up. |
 | Boost failure chance | `BoostStoneCalculator::failureChance()` | Percentage (0–100) for the next stone. |
+| Boost stone roll | `BoostStoneRoller::roll()` | Whether the next stone works (`true` = success). |
 | Boost result | `BoostResult` | Stones used, successes, failures, boost before and after. |
 | Evolution option | a `SpeciesEvolution` plus its unmet `EvolutionRequirement` | Shown in the Evolve dialog with the reason. |
 | Party size limit | `game.user.max_party_size` | 6. |

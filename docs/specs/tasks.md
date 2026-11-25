@@ -1545,7 +1545,7 @@ Read [04-pokemon-page.md](04-pokemon-page.md) first. Builds on Spec 1 (`SetActiv
 
 ### 4.5 Boost stone odds
 
-- [ ] Done
+- [x] Done
 
 **Goal:** the chance a boost stone fails, and the roll.
 
@@ -1556,6 +1556,8 @@ Read [04-pokemon-page.md](04-pokemon-page.md) first. Builds on Spec 1 (`SetActiv
 **Tests:** chances at +0, +19, +20, +60, +99; roller with `RandomHelper::fake()`.
 
 **Done when:** tests pass.
+
+- As built: `failureChance()` is `(currentBoost − safe_until + 1) × failure_step` from `safe_until` on, so +60 → +61 fails 41% (Spec 4's dialog example said 40% and now says 41%). It throws `InvalidArgumentException` for a boost below 0 or at `game.pokemon.max_boost`, which has no next level. `BoostStoneRoller::roll()` returns `RandomHelper::chance(100 − failureChance)`, so a faked `true` is a success.
 
 ### 4.6 Use boost stones
 

@@ -52,7 +52,7 @@ Box › Shiny Charmeleon
 
 ## Boost stones
 
-- Before using, the dialog shows the current failure chance ("+14 → +15: always succeeds", "+60 → +61: 40% chance to fail").
+- Before using, the dialog shows the current failure chance ("+14 → +15: always succeeds", "+60 → +61: 41% chance to fail").
 - Players can use several at once: "use until +30" or "use up to 20 stones". The result shows stones used, successes and failures, and the new boost.
 
 ## Layout and access
