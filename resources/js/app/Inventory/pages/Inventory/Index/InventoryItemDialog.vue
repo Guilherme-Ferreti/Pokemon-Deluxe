@@ -29,9 +29,6 @@
             <span class="font-semibold">
               {{ item.quantity.toLocaleString('en-US') }}
             </span>
-            <template v-if="item.sellPrice !== null">
-              · sells for <MoneyAmount :amount="item.sellPrice" /> each
-            </template>
           </p>
         </div>
       </DialogHeader>
@@ -52,7 +49,6 @@
 
 <script setup lang="ts">
 import ItemSprite from '@/shared/components/game/ItemSprite.vue';
-import MoneyAmount from '@/shared/components/game/MoneyAmount.vue';
 import { Badge } from '@/shared/components/ui/badge';
 import { Button } from '@/shared/components/ui/button';
 import {

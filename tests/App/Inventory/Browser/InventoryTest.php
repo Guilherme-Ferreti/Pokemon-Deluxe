@@ -34,7 +34,7 @@ it('shows an item\'s details with its sell price', function () {
         ->assertSeeIn("@inventory-item-{$stack->id}-tile", 'x42')
         ->click("@inventory-item-{$stack->id}-tile")
         ->assertSeeIn('@inventory-item-dialog', 'Catches with 2x.')
-        ->assertSeeIn('@inventory-item-dialog', 'sells for ₽ 600 each')
+        ->assertSeeIn('@inventory-item-dialog', 'You own 42')
         ->assertDontSeeIn('@inventory-item-dialog', 'Earned only')
         ->assertNoJavascriptErrors();
 });
