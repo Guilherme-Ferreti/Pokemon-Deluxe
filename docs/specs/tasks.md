@@ -1510,7 +1510,7 @@ Read [04-pokemon-page.md](04-pokemon-page.md) first. Builds on Spec 1 (`SetActiv
 
 ### 4.3 Release a Pokémon
 
-- [ ] Done
+- [x] Done
 
 **Goal:** release is permanent and gives nothing back.
 
@@ -1521,6 +1521,8 @@ Read [04-pokemon-page.md](04-pokemon-page.md) first. Builds on Spec 1 (`SetActiv
 **Tests:** released (row gone, moves gone); locked refused; last party Pokémon refused; refused during a battle.
 
 **Done when:** tests pass.
+
+- As built: like the party actions, `ReleasePokemonAction` locks the owner's `users` row in a transaction and refreshes the Pokémon before its guards (battle, then lock, then last party Pokémon). Known moves go through the `pokemon_move` foreign key's `cascadeOnDelete()`. `PokemonLockedException` says "Pikachu is locked. Unlock it first." under the `pokemon` key. Battle Tower runs and trade holds add their own guards in Specs 6 and 7.
 
 ### 4.4 Teach a TM
 
