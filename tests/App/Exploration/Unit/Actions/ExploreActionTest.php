@@ -47,7 +47,7 @@ it('saves a rolled wild pokemon of the area as the player encounter', function (
 
 it('replaces the encounter the player already had', function () {
     $user     = User::factory()->create();
-    $previous = Encounter::factory()->for($user)->create(['area' => Area::COAST]);
+    $previous = Encounter::factory()->for($user)->create(['area' => Area::COAST, 'species_id' => Species::factory()->create(['types' => [PokemonType::WATER]])]);
     $caterpie = Species::factory()->create([
         'types'           => [PokemonType::BUG],
         'evolution_stage' => 1,

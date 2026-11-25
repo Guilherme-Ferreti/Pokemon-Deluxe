@@ -23,7 +23,7 @@ it('redirects guests to login', function () {
 
 it('rolls a new encounter in the area and shows the area page', function () {
     $user = User::factory()->create();
-    Encounter::factory()->for($user)->create(['area' => Area::COAST]);
+    Encounter::factory()->for($user)->create(['area' => Area::COAST, 'species_id' => Species::factory()->create(['types' => [PokemonType::WATER]])]);
     $caterpie = Species::factory()->create([
         'types'           => [PokemonType::BUG],
         'evolution_stage' => 1,
