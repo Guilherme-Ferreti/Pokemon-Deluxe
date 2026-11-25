@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace App\Inventory\Http\Web\PageProps;
 
-use App\Shop\Mechanics\ItemPriceCalculator;
 use Illuminate\Database\Eloquent\Collection;
 use Inertia\ProvidesInertiaProperties;
 use Inertia\RenderContext;
@@ -32,7 +31,7 @@ final class InventoryIndexPageProps implements ProvidesInertiaProperties
     }
 
     /**
-     * @return array<int, array{id: string, name: string, sprite: string|null, description: string, quantity: int, sellPrice: int|null}>
+     * @return array<int, array{id: string, name: string, sprite: string|null, description: string, quantity: int}>
      */
     private function getItemsProp(InventoryItemType $itemType): array
     {
@@ -42,7 +41,7 @@ final class InventoryIndexPageProps implements ProvidesInertiaProperties
     }
 
     /**
-     * @return array<int, array{id: string, name: string, sprite: string|null, description: string, quantity: int, sellPrice: int|null}>
+     * @return array<int, array{id: string, name: string, sprite: string|null, description: string, quantity: int}>
      */
     private function getSpecialItemsProp(SpecialItemCategory $category): array
     {
@@ -53,12 +52,10 @@ final class InventoryIndexPageProps implements ProvidesInertiaProperties
 
     /**
      * @param  Collection<int, InventoryItem>  $inventoryItems
-     * @return array<int, array{id: string, name: string, sprite: string|null, description: string, quantity: int, sellPrice: int|null}>
+     * @return array<int, array{id: string, name: string, sprite: string|null, description: string, quantity: int}>
      */
     private function toItemsProp(Collection $inventoryItems): array
     {
-        $itemPriceCalculator = new ItemPriceCalculator;
-
         return $inventoryItems
             ->sortBy(fn (InventoryItem $inventoryItem) => $inventoryItem->item instanceof Move ? $inventoryItem->item->tm_code : $inventoryItem->item->name)
             ->map(fn (InventoryItem $inventoryItem) => [
@@ -67,7 +64,6 @@ final class InventoryIndexPageProps implements ProvidesInertiaProperties
                 'sprite'      => $inventoryItem->item instanceof Move ? $inventoryItem->item->tmSprite() : $inventoryItem->item->sprite,
                 'description' => $inventoryItem->item instanceof Move ? $inventoryItem->item->tmDescription() : $inventoryItem->item->description,
                 'quantity'    => $inventoryItem->quantity,
-                'sellPrice'   => $inventoryItem->item instanceof SpecialItem ? null : $itemPriceCalculator->sellBackPrice($inventoryItem->item, 1),
             ])
             ->values()
             ->all();

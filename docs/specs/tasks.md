@@ -1434,18 +1434,20 @@ Read [03-money-inventory-and-shop.md](03-money-inventory-and-shop.md) first. Mon
 **UI suggestions** (ideas, not requirements):
 - `AppPageHeader` ("Inventory") with money on the right; tabs for the five groups, the tab in the URL.
 - A grid of item tiles (auto-fill, about 8rem wide): `ItemSprite`, name, and a quantity `Badge` ("×42") in the corner. TMs without a sprite show a disc icon coloured by the move's type.
-- Clicking a tile opens a `Dialog` (a `Sheet` on phones) with the sprite, name, description, quantity and the actions (Sell now; Use comes with Spec 4).
+- Clicking a tile opens a `Dialog` (a `Sheet` on phones) with the sprite, name, description, quantity and the actions (Use comes with Spec 4; where to sell items will be decided later, see 3.12).
 - Empty tab: `AppEmptyState` saying where to get that kind of item, with a link to the Shop where it applies ("No TMs yet. Buy them in the Shop or earn them from missions.").
 
 **Tests:** feature test for the props per group; empty groups.
 
 **Done when:** the page lists the player's items.
 
-- As built: `InventoryIndexPageProps` has `pokeballs`, `evolutionItems` (Mega Stones included), `tms`, `boostStones` and `keyItems`, each a list of `{id, name, sprite, description, quantity, sellPrice}` from one eager-loaded query of the player's stacks that still hold items; TMs are sorted by code, the rest by name. `sellPrice` is `ItemPriceCalculator::sellBackPrice()` for one unit, null for earned-only items and special items. TMs use `Move::tmSprite()` and the new `Move::tmDescription()` ("Teaches Ice Beam, an Ice-type move with 90 power."); `ItemHelper::name()` now also takes special items. The page is `InventoryTabs` (tab in the URL through the new shared `useTabInUrl()` composable, which `ShopTabs` now uses too; the tabs wrap onto two rows on phones), `InventoryItemsGrid`, `InventoryItemTile` (a `size-10` sprite, a "x42" `Badge`) and `InventoryItemDialog` (a `Dialog` on every screen size, with "You own 4"; no sell price and no "Earned only" badge). Empty tabs use `AppEmptyState` with a "Go to the Shop" link to the matching Shop tab for balls, evolution items and TMs. `ItemSprite` merges its size class with `cn()`, so a caller's size wins over its default `size-8`, and shows an empty box of that size when `url` is missing, so callers need no fallback of their own (the Pokédex evolution chain keeps its `v-if` and passes `size-7`, since its sprite sits inside a sentence).
+- As built: `InventoryIndexPageProps` has `pokeballs`, `evolutionItems` (Mega Stones included), `tms`, `boostStones` and `keyItems`, each a list of `{id, name, sprite, description, quantity}` from one eager-loaded query of the player's stacks that still hold items; TMs are sorted by code, the rest by name. TMs use `Move::tmSprite()` and the new `Move::tmDescription()` ("Teaches Ice Beam, an Ice-type move with 90 power."); `ItemHelper::name()` now also takes special items. The page is `InventoryTabs` (tab in the URL through the new shared `useTabInUrl()` composable, which `ShopTabs` now uses too; the tabs wrap onto two rows on phones), `InventoryItemsGrid`, `InventoryItemTile` (a `size-10` sprite, a "x42" `Badge`) and `InventoryItemDialog` (a `Dialog` on every screen size, with "You own 4"; no sell price, no "Earned only" badge and no Sell button). Empty tabs use `AppEmptyState` with a "Go to the Shop" link to the matching Shop tab for balls, evolution items and TMs. `ItemSprite` merges its size class with `cn()`, so a caller's size wins over its default `size-8`, and shows an empty box of that size when `url` is missing, so callers need no fallback of their own (the Pokédex evolution chain keeps its `v-if` and passes `size-7`, since its sprite sits inside a sentence).
 
 ### 3.12 Inventory page: sell
 
-- [ ] Done
+- [x] Skipped
+
+> **Skipped:** selling was built here and then taken out. Where players sell items (the inventory page, the shop or somewhere else) will be decided later; `App\Shop\Actions\SellItemAction` (3.7) is ready for whichever page gets it. The plan below is kept for reference.
 
 **Goal:** sell items from the inventory.
 

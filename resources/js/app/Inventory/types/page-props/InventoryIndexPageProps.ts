@@ -4,7 +4,6 @@ export type OwnedItem = {
   sprite: string | null;
   description: string;
   quantity: number;
-  sellPrice: number | null;
 };
 
 export type InventoryIndexPageProps = {

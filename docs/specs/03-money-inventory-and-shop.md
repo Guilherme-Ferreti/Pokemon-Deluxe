@@ -46,7 +46,7 @@ INVENTORY                                       ₽ 12,450
 ```
 
 - Tabs: Balls, Evolution items, TMs, Boost stones, Key items (such as the XP Share).
-- A grid of item icons with quantities. Clicking one opens its details with **Use** (TMs, boost stones, evolution items and Mega Stones) and **Sell** (items with a price) buttons. Earned-only items have no Sell button and no badge.
+- A grid of item icons with quantities. Clicking one opens its details with a **Use** button (TMs, boost stones, evolution items and Mega Stones). Earned-only items have no badge.
 - **Use** opens a "Choose a Pokémon" dialog; Pokémon the item does nothing for are disabled with the reason. Picking one opens that Pokémon's page with the matching dialog: Teach TM, Boost or Evolve (Spec 4). The Pokémon page has no general "Use item" button.
 - The XP Share (Key items) has an on/off switch in its details instead of Use (Spec 5).
 - Empty tabs say what the tab holds and where to get it ("No TMs yet. Buy them in the Shop or earn them from missions.").
@@ -66,4 +66,4 @@ SHOP                                            ₽ 12,450
 - The "Today's TMs" tab shows each TM's type and power, with no countdown to the next rotation.
 - Buy is disabled when the player can't afford it or the stack is full; only a full stack shows a short reason ("Your stack is full").
 - Purchases over ₽ 10,000 ask for confirmation.
-- Selling happens from the inventory page, not the shop.
+- Where players sell items will be decided later. The sell-back rule (50% of the price, earned-only items can't be sold) and `SellItemAction` already exist; no page offers selling yet.

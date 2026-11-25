@@ -45,7 +45,6 @@ it('loads the inventory page with expected structure', function () {
                 'sprite'      => 'https://example.com/ultra-ball.png',
                 'description' => 'Catches with 2x.',
                 'quantity'    => 42,
-                'sellPrice'   => 600,
             ]])
             ->where('evolutionItems', [[
                 'id'          => $evolutionItemStack->id,
@@ -53,7 +52,6 @@ it('loads the inventory page with expected structure', function () {
                 'sprite'      => 'https://example.com/fire-stone.png',
                 'description' => 'Evolves Vulpix.',
                 'quantity'    => 2,
-                'sellPrice'   => 1500,
             ]])
             ->where('tms', [[
                 'id'          => $tmStack->id,
@@ -61,7 +59,6 @@ it('loads the inventory page with expected structure', function () {
                 'sprite'      => 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-ice.png',
                 'description' => 'Teaches Ice Beam, an Ice-type move with 90 power.',
                 'quantity'    => 1,
-                'sellPrice'   => 5000,
             ]])
             ->where('boostStones', [[
                 'id'          => $boostStoneStack->id,
@@ -69,7 +66,6 @@ it('loads the inventory page with expected structure', function () {
                 'sprite'      => null,
                 'description' => 'May raise a boost.',
                 'quantity'    => 37,
-                'sellPrice'   => null,
             ]])
             ->where('keyItems', [[
                 'id'          => $xpShareStack->id,
@@ -77,7 +73,6 @@ it('loads the inventory page with expected structure', function () {
                 'sprite'      => 'https://example.com/exp-share.png',
                 'description' => 'Shares XP.',
                 'quantity'    => 1,
-                'sellPrice'   => null,
             ]])
         );
 });
@@ -92,23 +87,6 @@ it('has empty groups for a player without items', function () {
             ->where('tms', [])
             ->where('boostStones', [])
             ->where('keyItems', [])
-        );
-});
-
-it('has no sell price for earned-only items', function () {
-    $user = User::factory()->create();
-
-    InventoryItem::factory()->for($user)->pokeball(Pokeball::factory()->create(['price' => null]))->create();
-    InventoryItem::factory()->for($user)->evolutionItem(EvolutionItem::factory()->create(['price' => null]))->create();
-    InventoryItem::factory()->for($user)->tm(Move::factory()->plainDamage()->create(['is_z_move' => true]))->create();
-
-    actingAs($user);
-
-    get(route('inventory.web.index'))
-        ->assertInertia(fn (Assert $page) => $page
-            ->where('pokeballs.0.sellPrice', null)
-            ->where('evolutionItems.0.sellPrice', null)
-            ->where('tms.0.sellPrice', null)
         );
 });
 

@@ -103,7 +103,7 @@ One name per idea, used everywhere: specs, code, database, tests and UI. When yo
 | Incubator price | `IncubatorPriceCalculator`, `game.incubation.price_step`, `nextIncubatorPrice` | ₽ 5,000 x incubators already bought; the first is free. |
 | Today's TMs | `TmRotation`, `GetTodaysTmRotationAction`, `game.shop.daily_tm_count` | The 10 TMs for sale today. |
 | Shop page | `ShopController`, `ShopIndexPageProps`, `pokeballs`, `evolutionItems`, `tms`, `ownedQuantity`, `ShopTabs`, `ShopItemRow` | Lists what the Shop sells, with how many of each the player owns. |
-| Inventory page | `InventoryController`, `InventoryIndexPageProps`, `boostStones`, `keyItems`, `sellPrice`, `InventoryItemTile`, `InventoryItemDialog`, `Move::tmDescription()` | Lists everything the player owns, by group. |
+| Inventory page | `InventoryController`, `InventoryIndexPageProps`, `boostStones`, `keyItems`, `InventoryItemTile`, `InventoryItemDialog`, `Move::tmDescription()` | Lists everything the player owns, by group. |
 | Tab in the URL | `useTabInUrl()` | Keeps a page's chosen tab in `?tab=` so it survives a reload. |
 | Player money (page header) | `PlayerMoney` | The player's money on the right of a page header; hidden on phones, where the top bar shows it. |
 | TM | `InventoryItemType::TM`, `tm_code`, `Move::tmName()`, `Move::tmSprite()` | An inventory item whose item is a `Move`. Shown as "TM 395 Ice Beam" with a disc in the move's type colour. |
