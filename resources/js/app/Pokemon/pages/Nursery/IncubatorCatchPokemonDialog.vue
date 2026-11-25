@@ -48,7 +48,6 @@
                 :for="`pokeball-${pokeball.id}`"
               >
                 <ItemSprite
-                  v-if="pokeball.sprite"
                   :name="pokeball.name"
                   :url="pokeball.sprite"
                 />

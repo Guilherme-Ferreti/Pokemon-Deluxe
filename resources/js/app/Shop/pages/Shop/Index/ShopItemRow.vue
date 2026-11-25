@@ -5,15 +5,9 @@
   >
     <div class="flex min-w-0 flex-[1_1_16rem] items-center gap-3">
       <ItemSprite
-        v-if="item.sprite"
-        class="size-8 shrink-0"
+        class="shrink-0"
         :name="item.name"
         :url="item.sprite"
-      />
-      <div
-        v-else
-        class="size-8 shrink-0"
-        aria-hidden="true"
       />
       <div class="flex min-w-0 flex-col gap-0.5">
         <span class="font-semibold">{{ item.name }}</span>

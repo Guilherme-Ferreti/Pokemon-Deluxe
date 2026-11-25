@@ -16,7 +16,6 @@
       @click="throwBall(pokeball.slug)"
     >
       <ItemSprite
-        v-if="pokeball.sprite"
         class="shrink-0"
         :name="pokeball.name"
         :url="pokeball.sprite"

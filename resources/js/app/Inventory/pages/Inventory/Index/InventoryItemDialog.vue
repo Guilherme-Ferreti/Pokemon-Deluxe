@@ -9,15 +9,9 @@
     >
       <DialogHeader class="flex-row items-start gap-4 text-left">
         <ItemSprite
-          v-if="item.sprite"
           class="size-16 shrink-0"
           :name="item.name"
           :url="item.sprite"
-        />
-        <div
-          v-else
-          class="size-16 shrink-0"
-          aria-hidden="true"
         />
         <div class="flex min-w-0 flex-col gap-1">
           <div class="flex flex-wrap items-center gap-2">

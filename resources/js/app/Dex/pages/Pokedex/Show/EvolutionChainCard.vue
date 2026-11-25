@@ -44,6 +44,7 @@
               >
                 <ItemSprite
                   v-if="evolution.evolutionItem?.sprite"
+                  class="size-7"
                   :name="evolution.evolutionItem.name"
                   :url="evolution.evolutionItem?.sprite"
                 />

@@ -11,15 +11,9 @@
       x{{ item.quantity.toLocaleString('en-US') }}
     </Badge>
     <ItemSprite
-      v-if="item.sprite"
       class="size-10"
       :name="item.name"
       :url="item.sprite"
-    />
-    <div
-      v-else
-      class="size-10"
-      aria-hidden="true"
     />
     <span class="text-sm font-medium">{{ item.name }}</span>
   </button>

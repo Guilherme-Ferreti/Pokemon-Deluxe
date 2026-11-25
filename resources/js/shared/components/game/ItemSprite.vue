@@ -1,8 +1,14 @@
 <template>
   <img
-    :class="cn('inline-block size-7', props.class)"
+    v-if="url"
+    :class="cn('inline-block size-8', props.class)"
     :alt="`${name} sprite`"
     :src="url"
+  />
+  <div
+    v-else
+    aria-hidden="true"
+    :class="cn('inline-block size-8', props.class)"
   />
 </template>
 
@@ -12,7 +18,7 @@ import { cn } from '@/shared/lib/utils';
 
 const props = defineProps<{
   name: string;
-  url: string;
+  url?: string | null;
   class?: HTMLAttributes['class'];
 }>();
 </script>
