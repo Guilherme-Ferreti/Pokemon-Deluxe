@@ -752,7 +752,7 @@
     function shareRows(xps) { return PARTY.slice(1).map(function (m, k) { return row(m[0], '+' + xps[k] + ' XP', '', true); }); }
     var R = { title: '', sub: '', badge: '', rewards: [], xpTitle: 'XP gained', rows: [], noXp: '', note: '', primary: 'Back to Dashboard', secondary: '', danger: false };
     if (view === 'won' && isWild) { R.title = 'You won!'; R.sub = 'The wild Pidgey fainted.'; R.rows = [row('Shiny Magikarp', '+340 XP', 'Level up! 54 → 55')].concat(shareRows([125, 110, 105, 95, 118])); R.primary = 'Keep exploring'; R.secondary = 'Back to Dashboard'; }
-    if (view === 'caught') { R.title = 'Gotcha! Pidgey was caught'; R.sub = 'Caught with an Ultra Ball · sent to your Box (your party is full).'; R.rows = [row('Shiny Magikarp', '+340 XP', 'Level up! 54 → 55')]; R.note = 'A catch counts as winning: the same XP as knocking Pidgey out.'; R.primary = 'Keep exploring'; R.secondary = 'View Pidgey'; }
+    if (view === 'caught') { R.title = 'Gotcha! Pidgey was caught'; R.sub = 'Caught with an Ultra Ball · sent to your Box (your party is full).'; R.rows = [row('Shiny Magikarp', '+340 XP', 'Level up! 54 → 55')]; R.primary = 'Keep exploring'; R.secondary = 'View Pidgey'; }
     if (view === 'ran') { R.title = 'You got away safely'; R.noXp = 'No XP this time: the wild Pidgey wasn\'t knocked out or caught.'; R.primary = 'Keep exploring'; R.secondary = 'Back to Dashboard'; }
     if (view === 'lost') {
       R.title = 'You lost to ' + (isWild ? 'the wild Pidgey' : t.trainer); R.sub = isWild ? '' : 'No money this time.';

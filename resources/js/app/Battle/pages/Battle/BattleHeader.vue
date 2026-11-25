@@ -1,19 +1,19 @@
 <template>
   <header
-    class="battle-header"
+    class="flex flex-wrap items-center justify-between gap-3"
     data-test="battle-header"
   >
     <Head :title="titles[page.props.battle.type]" />
-    <div class="battle-header__heading">
+    <div class="flex items-center gap-3">
       <slot name="sprite" />
-      <div class="battle-header__text">
+      <div class="flex flex-col gap-0.5">
         <h1
-          class="battle-header__title"
+          class="text-2xl font-bold text-foreground"
           data-test="battle-header__title"
         >
           {{ titles[page.props.battle.type] }}
         </h1>
-        <p class="battle-header__description">
+        <p class="text-sm text-muted-foreground">
           {{ description }}
         </p>
       </div>
@@ -50,27 +50,3 @@ const description = computed(() =>
     : `Turn ${shownTurn.value}`,
 );
 </script>
-
-<style scoped>
-@reference '@css/app.css';
-
-.battle-header {
-  @apply flex flex-wrap items-center justify-between gap-3;
-}
-
-.battle-header__heading {
-  @apply flex items-center gap-3;
-}
-
-.battle-header__text {
-  @apply flex flex-col gap-0.5;
-}
-
-.battle-header__title {
-  @apply text-2xl font-bold text-foreground;
-}
-
-.battle-header__description {
-  @apply text-sm text-muted-foreground;
-}
-</style>

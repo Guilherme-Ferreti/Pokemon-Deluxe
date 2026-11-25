@@ -1,12 +1,9 @@
 <template>
-  <Card
-    class="battle-options-card"
-    data-test="battle-options-card"
-  >
+  <Card data-test="battle-options-card">
     <CardHeader>
       <CardTitle>More options</CardTitle>
     </CardHeader>
-    <CardContent class="battle-options-card__content">
+    <CardContent class="flex flex-wrap gap-2">
       <BattleThrowBallButton
         v-if="page.props.battle.type === BattleType.WILD"
       />
@@ -30,11 +27,3 @@ import BattleThrowBallButton from './BattleThrowBallButton.vue';
 
 const page = usePage<BattleShowPageProps>();
 </script>
-
-<style scoped>
-@reference '@css/app.css';
-
-.battle-options-card__content {
-  @apply flex flex-wrap gap-2;
-}
-</style>

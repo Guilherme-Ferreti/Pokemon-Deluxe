@@ -4,7 +4,10 @@
     preserveAspectRatio="xMidYMid slice"
     aria-hidden="true"
     focusable="false"
-    :class="['battle-scene-background', `battle-scene-background--${scene}`]"
+    :class="[
+      'pointer-events-none absolute inset-0 size-full',
+      sceneColors[scene],
+    ]"
     :data-test="`battle-scene-background--${scene}`"
   >
     <rect
@@ -158,6 +161,19 @@ defineProps<{
   scene: BattleScene;
 }>();
 
+const sceneColors: Record<BattleScene, string> = {
+  [BattleScene.GRASS_FIELD]:
+    '[--scene-sky:oklch(0.94_0.03_145)] [--scene-ground:oklch(0.79_0.07_145)] [--scene-far:oklch(0.86_0.06_145)] [--scene-light:oklch(0.98_0.01_145)] [--scene-detail:oklch(0.7_0.09_145)] dark:[--scene-sky:oklch(0.27_0.03_145)] dark:[--scene-ground:oklch(0.33_0.05_145)] dark:[--scene-far:oklch(0.3_0.04_145)] dark:[--scene-light:oklch(0.34_0.02_145)] dark:[--scene-detail:oklch(0.4_0.06_145)]',
+  [BattleScene.TRAINER_ARENA]:
+    '[--scene-sky:oklch(0.96_0_0)] [--scene-ground:oklch(0.87_0_0)] [--scene-far:oklch(0.91_0_0)] [--scene-line:oklch(0.97_0_0)] dark:[--scene-sky:oklch(0.25_0_0)] dark:[--scene-ground:oklch(0.31_0_0)] dark:[--scene-far:oklch(0.28_0_0)] dark:[--scene-line:oklch(0.38_0_0)]',
+  [BattleScene.GYM]:
+    '[--scene-sky:oklch(0.94_0.004_75)] [--scene-ground:oklch(0.72_0.01_60)] [--scene-far:oklch(0.88_0.008_75)] [--scene-line:oklch(0.66_0.01_60)] dark:[--scene-sky:oklch(0.26_0.004_75)] dark:[--scene-ground:oklch(0.33_0.01_60)] dark:[--scene-far:oklch(0.3_0.008_75)] dark:[--scene-line:oklch(0.28_0.01_60)]',
+  [BattleScene.INDIGO_PLATEAU]:
+    '[--scene-sky:oklch(0.93_0.02_300)] [--scene-ground:oklch(0.72_0.05_300)] [--scene-far:oklch(0.84_0.04_300)] [--scene-light:oklch(0.97_0.01_300)] [--scene-detail:oklch(0.66_0.06_300)] [--scene-line:oklch(0.8_0.05_300)] dark:[--scene-sky:oklch(0.25_0.03_300)] dark:[--scene-ground:oklch(0.32_0.05_300)] dark:[--scene-far:oklch(0.3_0.04_300)] dark:[--scene-light:oklch(0.4_0.03_300)] dark:[--scene-detail:oklch(0.36_0.06_300)] dark:[--scene-line:oklch(0.44_0.06_300)]',
+  [BattleScene.BATTLE_TOWER]:
+    '[--scene-sky:oklch(0.94_0.02_250)] [--scene-ground:oklch(0.8_0.04_250)] [--scene-far:oklch(0.87_0.03_250)] [--scene-light:oklch(0.96_0.01_250)] [--scene-line:oklch(0.86_0.03_250)] dark:[--scene-sky:oklch(0.25_0.03_250)] dark:[--scene-ground:oklch(0.32_0.04_250)] dark:[--scene-far:oklch(0.3_0.03_250)] dark:[--scene-light:oklch(0.38_0.03_250)] dark:[--scene-line:oklch(0.37_0.04_250)]',
+};
+
 const towers = [
   { x: 30, width: 70, height: 96 },
   { x: 130, width: 54, height: 140 },
@@ -175,10 +191,6 @@ const towerWindows = towers.flatMap((tower) =>
 
 <style scoped>
 @reference '@css/app.css';
-
-.battle-scene-background {
-  @apply pointer-events-none absolute inset-0 size-full;
-}
 
 .battle-scene-background__sky {
   fill: var(--scene-sky);
@@ -204,83 +216,5 @@ const towerWindows = towers.flatMap((tower) =>
   fill: none;
   stroke: var(--scene-line);
   stroke-width: 3;
-}
-
-.battle-scene-background--grass-field {
-  --scene-sky: oklch(0.94 0.03 145);
-  --scene-ground: oklch(0.79 0.07 145);
-  --scene-far: oklch(0.86 0.06 145);
-  --scene-light: oklch(0.98 0.01 145);
-  --scene-detail: oklch(0.7 0.09 145);
-
-  @variant dark {
-    --scene-sky: oklch(0.27 0.03 145);
-    --scene-ground: oklch(0.33 0.05 145);
-    --scene-far: oklch(0.3 0.04 145);
-    --scene-light: oklch(0.34 0.02 145);
-    --scene-detail: oklch(0.4 0.06 145);
-  }
-}
-
-.battle-scene-background--trainer-arena {
-  --scene-sky: oklch(0.96 0 0);
-  --scene-ground: oklch(0.87 0 0);
-  --scene-far: oklch(0.91 0 0);
-  --scene-line: oklch(0.97 0 0);
-
-  @variant dark {
-    --scene-sky: oklch(0.25 0 0);
-    --scene-ground: oklch(0.31 0 0);
-    --scene-far: oklch(0.28 0 0);
-    --scene-line: oklch(0.38 0 0);
-  }
-}
-
-.battle-scene-background--gym {
-  --scene-sky: oklch(0.94 0.004 75);
-  --scene-ground: oklch(0.72 0.01 60);
-  --scene-far: oklch(0.88 0.008 75);
-  --scene-line: oklch(0.66 0.01 60);
-
-  @variant dark {
-    --scene-sky: oklch(0.26 0.004 75);
-    --scene-ground: oklch(0.33 0.01 60);
-    --scene-far: oklch(0.3 0.008 75);
-    --scene-line: oklch(0.28 0.01 60);
-  }
-}
-
-.battle-scene-background--indigo-plateau {
-  --scene-sky: oklch(0.93 0.02 300);
-  --scene-ground: oklch(0.72 0.05 300);
-  --scene-far: oklch(0.84 0.04 300);
-  --scene-light: oklch(0.97 0.01 300);
-  --scene-detail: oklch(0.66 0.06 300);
-  --scene-line: oklch(0.8 0.05 300);
-
-  @variant dark {
-    --scene-sky: oklch(0.25 0.03 300);
-    --scene-ground: oklch(0.32 0.05 300);
-    --scene-far: oklch(0.3 0.04 300);
-    --scene-light: oklch(0.4 0.03 300);
-    --scene-detail: oklch(0.36 0.06 300);
-    --scene-line: oklch(0.44 0.06 300);
-  }
-}
-
-.battle-scene-background--battle-tower {
-  --scene-sky: oklch(0.94 0.02 250);
-  --scene-ground: oklch(0.8 0.04 250);
-  --scene-far: oklch(0.87 0.03 250);
-  --scene-light: oklch(0.96 0.01 250);
-  --scene-line: oklch(0.86 0.03 250);
-
-  @variant dark {
-    --scene-sky: oklch(0.25 0.03 250);
-    --scene-ground: oklch(0.32 0.04 250);
-    --scene-far: oklch(0.3 0.03 250);
-    --scene-light: oklch(0.38 0.03 250);
-    --scene-line: oklch(0.37 0.04 250);
-  }
 }
 </style>

@@ -2,7 +2,7 @@
   <Sheet :open="open">
     <SheetContent
       side="bottom"
-      class="send-out-sheet"
+      class="@container max-h-[85vh] gap-2.5 overflow-y-auto rounded-t-2xl px-4 pt-2.5 pb-[max(1.25rem,env(safe-area-inset-bottom))]"
       data-test="send-out-sheet"
       :show-close-button="false"
       @escape-key-down.prevent
@@ -10,10 +10,10 @@
       @interact-outside.prevent
     >
       <span
-        class="send-out-sheet__handle"
+        class="h-1 w-10 shrink-0 self-center rounded-full bg-muted-foreground/40"
         aria-hidden="true"
       />
-      <SheetHeader class="send-out-sheet__header">
+      <SheetHeader class="p-0">
         <SheetTitle>{{ page.props.player.name }} fainted!</SheetTitle>
         <SheetDescription>
           Pick who to send out, then press Send out. This doesn't use a turn.
@@ -28,7 +28,7 @@
       <Button
         type="button"
         size="lg"
-        class="send-out-sheet__send-out-button"
+        class="self-end"
         data-test="send-out-sheet__send-out-button"
         :disabled="form.combatantIndex === null || form.processing"
         @click="sendOut"
@@ -71,23 +71,3 @@ function sendOut(): void {
     });
 }
 </script>
-
-<style scoped>
-@reference '@css/app.css';
-
-:global(.send-out-sheet) {
-  @apply @container max-h-[85vh] gap-2.5 overflow-y-auto rounded-t-2xl px-4 pt-2.5 pb-[max(1.25rem,env(safe-area-inset-bottom))];
-}
-
-.send-out-sheet__handle {
-  @apply h-1 w-10 shrink-0 self-center rounded-full bg-muted-foreground/40;
-}
-
-.send-out-sheet__header {
-  @apply p-0;
-}
-
-.send-out-sheet__send-out-button {
-  @apply self-end;
-}
-</style>

@@ -2,13 +2,13 @@
   <BattleHeader />
   <div
     ref="grid"
-    class="battle-page__grid"
+    class="grid grid-cols-1 gap-4 @5xl/main-content:grid-cols-[18rem_minmax(0,1fr)_18rem] @5xl/main-content:items-start"
   >
-    <div class="battle-page__column battle-page__column--left">
-      <BattleTeamRail class="battle-page__team" />
+    <div class="battle-page__column @5xl/main-content:col-start-1">
+      <BattleTeamRail class="order-4 @5xl/main-content:order-0" />
     </div>
-    <div class="battle-page__column battle-page__column--middle">
-      <BattlefieldCard class="battle-page__battlefield" />
+    <div class="battle-page__column @5xl/main-content:col-start-2">
+      <BattlefieldCard class="order-1 @5xl/main-content:order-0" />
       <PokemonFaintedCard
         v-if="page.props.battle.isAwaitingSendOut"
         class="battle-page__moves"
@@ -19,19 +19,19 @@
       />
       <BattleOptionsCard
         v-if="page.props.result === null"
-        class="battle-page__options"
+        class="order-6 @5xl/main-content:order-0"
       />
       <BattleResultCard
         v-if="page.props.result !== null"
-        class="battle-page__result"
+        class="order-2 @5xl/main-content:order-0"
       />
     </div>
-    <div class="battle-page__column battle-page__column--right">
+    <div class="battle-page__column @5xl/main-content:col-start-3">
       <OpponentTeamRail
         v-if="page.props.battle.type !== BattleType.WILD"
-        class="battle-page__opponent-team"
+        class="order-5 @5xl/main-content:order-0"
       />
-      <BattleLogCard class="battle-page__log" />
+      <BattleLogCard class="order-7 @5xl/main-content:order-0" />
     </div>
   </div>
   <SendOutSheet :open="page.props.battle.isAwaitingSendOut && isPhoneLayout" />
@@ -75,51 +75,11 @@ provideBattleLayout(isPhoneLayout);
 <style scoped>
 @reference '@css/app.css';
 
-.battle-page__grid {
-  @apply grid grid-cols-1 gap-4 @5xl/main-content:grid-cols-[18rem_minmax(0,1fr)_18rem] @5xl/main-content:items-start;
-}
-
 .battle-page__column {
   @apply contents @5xl/main-content:flex @5xl/main-content:min-w-0 @5xl/main-content:flex-col @5xl/main-content:gap-4;
 }
 
-.battle-page__column--left {
-  @apply @5xl/main-content:col-start-1;
-}
-
-.battle-page__column--middle {
-  @apply @5xl/main-content:col-start-2;
-}
-
-.battle-page__column--right {
-  @apply @5xl/main-content:col-start-3;
-}
-
-.battle-page__battlefield {
-  @apply order-1 @5xl/main-content:order-0;
-}
-
-.battle-page__result {
-  @apply order-2 @5xl/main-content:order-0;
-}
-
 .battle-page__moves {
   @apply order-3 @5xl/main-content:order-0;
-}
-
-.battle-page__team {
-  @apply order-4 @5xl/main-content:order-0;
-}
-
-.battle-page__opponent-team {
-  @apply order-5 @5xl/main-content:order-0;
-}
-
-.battle-page__options {
-  @apply order-6 @5xl/main-content:order-0;
-}
-
-.battle-page__log {
-  @apply order-7 @5xl/main-content:order-0;
 }
 </style>

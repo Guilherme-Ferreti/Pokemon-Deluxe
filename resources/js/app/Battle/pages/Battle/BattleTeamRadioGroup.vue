@@ -2,19 +2,17 @@
   <RadioGroup
     v-model="combatantIndex"
     aria-label="Bench"
-    :class="[
-      'battle-team-radio-group',
-      { 'battle-team-radio-group--grid': isGridBelowWideLayout },
-    ]"
+    :class="
+      isGridBelowWideLayout
+        ? 'grid grid-cols-1 gap-1.5 @md:grid-cols-2 @2xl:grid-cols-3 @5xl:flex @5xl:flex-col'
+        : 'flex flex-col gap-1.5'
+    "
     :disabled="disabled"
   >
     <div
       v-for="{ member, index } in bench"
       :key="index"
-      :class="[
-        'battle-team-radio-group__member',
-        { 'battle-team-radio-group__member--fainted': member.isFainted },
-      ]"
+      class="flex min-h-16 w-full items-center gap-2 rounded-lg border border-border bg-card py-2 pr-2.5 pl-2 transition-colors duration-250 not-has-data-[state=checked]:not-has-data-disabled:hover:bg-muted/50 has-data-[state=checked]:border-muted-foreground/40 has-data-[state=checked]:bg-muted has-[[role=radio]:focus-visible]:ring-[3px] has-[[role=radio]:focus-visible]:ring-ring/50 motion-reduce:transition-none"
     >
       <PokemonDetailsButton
         v-if="hasDetailsButtons"
@@ -24,25 +22,25 @@
       />
       <SpeciesPortrait
         v-else
-        class="battle-team-radio-group__portrait"
+        class="m-0.5 size-9 shrink-0"
+        :class="{ 'opacity-50 grayscale': member.isFainted }"
         :url="member.portrait"
         :name="member.name"
       />
       <FieldLabel
-        class="battle-team-radio-group__pick has-data-[state=checked]:border-transparent has-data-[state=checked]:bg-transparent dark:has-data-[state=checked]:bg-transparent"
+        class="flex min-w-0 flex-1 cursor-pointer items-center self-stretch font-normal has-data-disabled:cursor-default has-data-[state=checked]:border-transparent has-data-[state=checked]:bg-transparent dark:has-data-[state=checked]:bg-transparent"
         :for="`${idPrefix}-${index}`"
         :data-test="`${testIdBlock}__pokemon-${index + 1}-radio`"
       >
         <RadioGroupItem
           :id="`${idPrefix}-${index}`"
-          class="battle-team-radio-group__radio"
+          class="sr-only"
           :value="String(index)"
           :disabled="disabled || member.isFainted"
         />
         <TeamRailMemberBody
-          :class="{
-            'battle-team-radio-group__body--fainted': member.isFainted,
-          }"
+          :class="{ 'opacity-50': member.isFainted }"
+          :is-highlighted="combatantIndex === String(index)"
           :name="member.name"
           :gender="member.gender"
           :level="member.level"
@@ -92,60 +90,3 @@ const bench = computed(() =>
     .filter(({ member }) => !member.isActive),
 );
 </script>
-
-<style scoped>
-@reference '@css/app.css';
-
-.battle-team-radio-group {
-  @apply flex flex-col gap-1.5;
-}
-
-.battle-team-radio-group__member {
-  @apply flex min-h-16 w-full items-center gap-2 rounded-lg border border-border bg-card py-2 pr-2.5 pl-2 transition-colors duration-250 has-[[role=radio]:focus-visible]:ring-[3px] has-[[role=radio]:focus-visible]:ring-ring/50 motion-reduce:transition-none;
-}
-
-.battle-team-radio-group__member:not(
-    :has([data-state='checked'], [data-disabled])
-  ):hover {
-  @apply bg-muted/50;
-}
-
-.battle-team-radio-group__member:has([data-state='checked']) {
-  @apply border-muted-foreground/40 bg-muted;
-}
-
-.battle-team-radio-group__member:has([data-state='checked'])
-  :deep(
-    :is(
-      .team-rail-member-body__level,
-      .team-rail-member-body__hp-label,
-      .team-rail-member-body__hp-value
-    )
-  ) {
-  @apply text-foreground/75;
-}
-
-.battle-team-radio-group__pick {
-  @apply flex min-w-0 flex-1 cursor-pointer items-center self-stretch font-normal has-data-disabled:cursor-default;
-}
-
-.battle-team-radio-group__body--fainted {
-  @apply opacity-50;
-}
-
-.battle-team-radio-group__portrait {
-  @apply m-0.5 size-9 shrink-0;
-}
-
-.battle-team-radio-group__member--fainted .battle-team-radio-group__portrait {
-  @apply opacity-50 grayscale;
-}
-
-.battle-team-radio-group__pick :deep(.battle-team-radio-group__radio) {
-  @apply sr-only;
-}
-
-.battle-team-radio-group--grid {
-  @apply grid grid-cols-1 @md:grid-cols-2 @2xl:grid-cols-3 @5xl:flex;
-}
-</style>

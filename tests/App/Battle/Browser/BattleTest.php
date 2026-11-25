@@ -6,6 +6,7 @@ use Shared\Enums\BattleLogKind;
 use Shared\Enums\BattleStatus;
 use Shared\Enums\BattleType;
 use Shared\Enums\PokemonGender;
+use Shared\Enums\PokemonGenderRate;
 use Shared\Enums\PokemonType;
 use Shared\Helpers\RandomHelper;
 use Shared\Models\Battle;
@@ -413,7 +414,7 @@ it('runs from the battle after confirming', function () {
 it('throws a ball from the throw ball dialog and shows the caught result card', function () {
     $user      = User::factory()->create();
     $pikachu   = Species::factory()->create(['name' => 'Pikachu', 'types' => [PokemonType::ELECTRIC]]);
-    $pidgey    = Species::factory()->withBaseMoves()->create(['name' => 'Pidgey', 'types' => [PokemonType::NORMAL, PokemonType::FLYING]]);
+    $pidgey    = Species::factory()->withBaseMoves()->create(['name' => 'Pidgey', 'gender_rate' => PokemonGenderRate::EQUAL, 'types' => [PokemonType::NORMAL, PokemonType::FLYING]]);
     $pokemon   = Pokemon::factory()->for($user)->inParty()->create(['species_id' => $pikachu->id, 'level' => 50, 'experience' => 50_000]);
     $tackle    = Move::factory()->plainDamage()->create(['name' => 'Tackle']);
     $pokeBall  = Pokeball::factory()->create(['slug' => 'poke-ball', 'name' => 'Poké Ball', 'catch_rate' => 1]);
@@ -468,11 +469,10 @@ it('throws a ball from the throw ball dialog and shows the caught result card', 
         ->assertSeeIn('@ball-picker-list__ball-fast-ball-button', '×3.5')
         ->assertSeeIn('@ball-picker-list__ball-ultra-ball-button', '×12')
         ->click('@ball-picker-list__ball-ultra-ball-button')
-        ->wait(1)
+        ->waitForText('Gotcha! Pidgey was caught')
         ->assertMissing('@battle-throw-ball-button__dialog')
         ->assertSeeIn('@battle-result-card__title', 'Gotcha! Pidgey was caught')
         ->assertSeeIn('@battle-result-card', 'Caught with an Ultra Ball · added to your party.')
-        ->assertSeeIn('@battle-result-card', 'A catch counts as winning: the same XP as knocking Pidgey out.')
         ->assertSeeIn('@battle-result-card__xp-gain-1-item', 'Pikachu')
         ->assertSeeIn('@battle-result-card__view-pokemon-link', 'View Pidgey')
         ->assertSeeIn('@battle-log-card', 'You threw an Ultra Ball!')

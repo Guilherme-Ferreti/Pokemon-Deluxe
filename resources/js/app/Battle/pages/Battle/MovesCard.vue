@@ -1,27 +1,24 @@
 <template>
-  <Card
-    class="moves-card"
-    data-test="moves-card"
-  >
+  <Card data-test="moves-card">
     <CardHeader>
       <CardTitle>Choose a move</CardTitle>
     </CardHeader>
-    <CardContent class="moves-card__content">
+    <CardContent class="flex flex-col gap-4">
       <RadioGroup
         v-model="form.moveSlot"
-        class="moves-card__grid"
+        class="grid grid-cols-1 gap-2 @md:grid-cols-2"
         aria-label="Choose a move"
         :disabled="form.processing"
       >
         <FieldLabel
           v-for="(move, index) in page.props.moves"
           :key="move.id"
-          class="moves-card__move"
+          class="flex min-h-16 w-full cursor-pointer items-start gap-3 rounded-lg border border-border bg-card px-3.5 py-3 font-normal transition-colors duration-200 not-has-data-[state=checked]:not-has-data-disabled:hover:bg-muted/50 has-focus-visible:ring-[3px] has-focus-visible:ring-ring/50 has-data-disabled:cursor-default has-data-[state=checked]:border-primary has-data-[state=checked]:bg-muted motion-reduce:transition-none"
           :for="`${idPrefix}-${index}`"
         >
-          <span class="moves-card__move-body">
+          <span class="flex min-w-0 flex-1 flex-col items-start gap-2">
             <MoveNameLabel
-              class="moves-card__move-name"
+              class="text-sm font-semibold"
               :name="move.name"
               :is-z-move="move.isZMove"
               :is-dynamax-move="move.isDynamaxMove"
@@ -30,7 +27,7 @@
           </span>
           <RadioGroupItem
             :id="`${idPrefix}-${index}`"
-            class="moves-card__radio"
+            class="[&_[data-slot=radio-group-indicator]_svg]:animate-in [&_[data-slot=radio-group-indicator]_svg]:duration-200 [&_[data-slot=radio-group-indicator]_svg]:zoom-in-50 [&_[data-slot=radio-group-indicator]_svg]:fade-in motion-reduce:[&_[data-slot=radio-group-indicator]_svg]:animate-none"
             :data-test="`moves-card__move-${index + 1}-radio`"
             :value="String(index + 1)"
           />
@@ -38,7 +35,7 @@
       </RadioGroup>
       <Button
         type="button"
-        class="moves-card__attack-button"
+        class="self-end"
         data-test="moves-card__attack-button"
         :disabled="form.processing"
         @click="attack"
@@ -83,43 +80,3 @@ function attack(): void {
     });
 }
 </script>
-
-<style scoped>
-@reference '@css/app.css';
-
-.moves-card__content {
-  @apply flex flex-col gap-4;
-}
-
-.moves-card__grid {
-  @apply grid grid-cols-1 gap-2 @md:grid-cols-2;
-}
-
-.moves-card__move {
-  @apply flex min-h-16 w-full cursor-pointer items-start gap-3 rounded-lg border border-border bg-card px-3.5 py-3 font-normal transition-colors duration-200 has-focus-visible:ring-[3px] has-focus-visible:ring-ring/50 has-data-disabled:cursor-default motion-reduce:transition-none;
-}
-
-.moves-card__move:not(:has([data-state='checked'], [data-disabled])):hover {
-  @apply bg-muted/50;
-}
-
-.moves-card__move:has([data-state='checked']) {
-  @apply border-primary bg-muted;
-}
-
-.moves-card__move-body {
-  @apply flex min-w-0 flex-1 flex-col items-start gap-2;
-}
-
-.moves-card__move-name {
-  @apply text-sm font-semibold;
-}
-
-.moves-card__radio :deep([data-slot='radio-group-indicator'] svg) {
-  @apply animate-in duration-200 zoom-in-50 fade-in motion-reduce:animate-none;
-}
-
-.moves-card__attack-button {
-  @apply self-end;
-}
-</style>

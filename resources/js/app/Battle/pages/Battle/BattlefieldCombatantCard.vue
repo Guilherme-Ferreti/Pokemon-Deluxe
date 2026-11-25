@@ -1,11 +1,11 @@
 <template>
   <div
-    class="battlefield-combatant-card"
+    class="flex w-full min-w-0 flex-1 flex-col gap-1.5 rounded-lg border border-border bg-card/95 px-3 py-2.5 @sm/battlefield:max-w-60 @sm/battlefield:flex-none"
     :data-test="`battlefield-combatant-card--${side}`"
   >
-    <div class="battlefield-combatant-card__details">
+    <div class="flex items-start gap-1.5">
       <PokemonDisplayName
-        class="battlefield-combatant-card__name"
+        class="text-sm font-semibold"
         :data-test="`battlefield-combatant-card--${side}__name`"
         :name="combatant.name"
         :gender="combatant.gender"
@@ -14,24 +14,26 @@
         v-if="combatant.ailment"
         :ailment="combatant.ailment"
       />
-      <span class="battlefield-combatant-card__level">
+      <span
+        class="ml-auto text-xs font-medium whitespace-nowrap text-muted-foreground tabular-nums"
+      >
         Lv {{ combatant.level }}
       </span>
     </div>
-    <div class="battlefield-combatant-card__hp">
+    <div class="flex items-center gap-1.5">
       <span
-        class="battlefield-combatant-card__hp-label"
+        class="text-xs font-semibold text-muted-foreground"
         aria-hidden="true"
       >
         HP:
       </span>
       <HpProgress
-        class="battlefield-combatant-card__hp-bar"
+        class="h-2"
         :percentage="hpPercentage"
         :label="`${combatant.name} HP`"
       />
       <span
-        class="battlefield-combatant-card__hp-value"
+        class="text-xs font-semibold whitespace-nowrap tabular-nums"
         :data-test="`battlefield-combatant-card--${side}__hp-indicator`"
       >
         {{ combatant.currentHp }} / {{ combatant.maxHp }}
@@ -65,39 +67,3 @@ const hpPercentage = computed(() =>
   Math.ceil((combatant.value.currentHp / combatant.value.maxHp) * 100),
 );
 </script>
-
-<style scoped>
-@reference '@css/app.css';
-
-.battlefield-combatant-card {
-  @apply flex w-full min-w-0 flex-1 flex-col gap-1.5 rounded-lg border border-border bg-card/95 px-3 py-2.5 @sm/battlefield:max-w-60 @sm/battlefield:flex-none;
-}
-
-.battlefield-combatant-card__details {
-  @apply flex items-start gap-1.5;
-}
-
-.battlefield-combatant-card__name {
-  @apply text-sm font-semibold;
-}
-
-.battlefield-combatant-card__level {
-  @apply ml-auto text-xs font-medium whitespace-nowrap text-muted-foreground tabular-nums;
-}
-
-.battlefield-combatant-card__hp {
-  @apply flex items-center gap-1.5;
-}
-
-.battlefield-combatant-card__hp-label {
-  @apply text-xs font-semibold text-muted-foreground;
-}
-
-.battlefield-combatant-card__hp-bar {
-  @apply h-2;
-}
-
-.battlefield-combatant-card__hp-value {
-  @apply text-xs font-semibold whitespace-nowrap tabular-nums;
-}
-</style>

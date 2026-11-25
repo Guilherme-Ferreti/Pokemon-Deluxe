@@ -1,12 +1,11 @@
 <template>
-  <Card
-    class="battle-log-card"
-    data-test="battle-log-card"
-  >
+  <Card data-test="battle-log-card">
     <CardHeader>
       <CardTitle>Battle log</CardTitle>
     </CardHeader>
-    <CardContent class="battle-log-card__content">
+    <CardContent
+      class="flex max-h-75 flex-col gap-1 overflow-y-auto md:max-h-117.5"
+    >
       <Collapsible
         v-for="turn in page.props.battle.log"
         :key="turn.turn"
@@ -15,24 +14,27 @@
         @update:open="setTurnOpen(turn.turn, $event)"
       >
         <CollapsibleTrigger
-          class="battle-log-card__turn-button"
+          class="group/turn flex min-h-8 w-full items-center gap-1.5 border-t border-border text-left text-[11px] font-bold tracking-wider text-muted-foreground uppercase"
           :data-test="`battle-log-card__turn-${turn.turn}-button`"
         >
           <IconChevronRight
-            class="battle-log-card__chevron"
+            class="size-4 transition-transform duration-200 group-data-[state=open]/turn:rotate-90 motion-reduce:transition-none"
             aria-hidden="true"
           />
           {{ turnLabel(turn) }}
         </CollapsibleTrigger>
         <CollapsibleContent>
-          <ol class="battle-log-card__list">
+          <ol class="flex flex-col gap-0.5 pb-1 pl-6">
             <li
               v-for="(entry, index) in turn.entries"
               :key="index"
               :class="[
-                'battle-log-card__line',
-                `battle-log-card__line--${entry.kind}`,
-                { 'battle-log-card__line--new': isNewLine(turn.turn, index) },
+                'text-[13px] leading-normal',
+                lineKindClasses[entry.kind],
+                {
+                  'animate-in duration-300 fill-mode-both fade-in slide-in-from-bottom-1 motion-reduce:animate-none':
+                    isNewLine(turn.turn, index),
+                },
               ]"
               :style="{
                 animationDelay: `${(index - (firstNewLine[turn.turn] ?? 0)) * LINE_DELAY_MILLISECONDS}ms`,
@@ -75,6 +77,15 @@ import type {
 } from '../../types/page-props/BattleShowPageProps';
 
 const LINE_DELAY_MILLISECONDS = 500;
+
+const lineKindClasses: Record<BattleLogKind, string> = {
+  [BattleLogKind.MOVE]: '',
+  [BattleLogKind.DAMAGE]: 'text-xs text-muted-foreground',
+  [BattleLogKind.DETAIL]: 'text-xs text-muted-foreground',
+  [BattleLogKind.INFO]: 'text-muted-foreground',
+  [BattleLogKind.EVENT]: '',
+  [BattleLogKind.RESULT]: 'font-semibold',
+};
 
 const page = usePage<BattleShowPageProps>();
 
@@ -152,48 +163,3 @@ function splitMove(
   };
 }
 </script>
-
-<style scoped>
-@reference '@css/app.css';
-
-.battle-log-card__content {
-  @apply flex max-h-75 flex-col gap-1 overflow-y-auto md:max-h-117.5;
-}
-
-.battle-log-card__turn-button {
-  @apply flex min-h-8 w-full items-center gap-1.5 border-t border-border text-left text-[11px] font-bold tracking-wider text-muted-foreground uppercase;
-}
-
-.battle-log-card__chevron {
-  @apply size-4 transition-transform duration-200 motion-reduce:transition-none;
-}
-
-.battle-log-card__turn-button[data-state='open'] .battle-log-card__chevron {
-  @apply rotate-90;
-}
-
-.battle-log-card__list {
-  @apply flex flex-col gap-0.5 pb-1 pl-6;
-}
-
-.battle-log-card__line {
-  @apply text-[13px] leading-normal;
-}
-
-.battle-log-card__line--damage,
-.battle-log-card__line--detail {
-  @apply text-xs text-muted-foreground;
-}
-
-.battle-log-card__line--info {
-  @apply text-muted-foreground;
-}
-
-.battle-log-card__line--result {
-  @apply font-semibold;
-}
-
-.battle-log-card__line--new {
-  @apply animate-in duration-300 fill-mode-both fade-in slide-in-from-bottom-1 motion-reduce:animate-none;
-}
-</style>

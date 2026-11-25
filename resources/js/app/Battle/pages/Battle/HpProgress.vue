@@ -1,6 +1,9 @@
 <template>
   <Progress
-    :class="['hp-progress', `hp-progress--${level}`]"
+    :class="[
+      'min-w-0 flex-1 *:data-[slot=progress-indicator]:duration-1000 *:data-[slot=progress-indicator]:ease-out motion-reduce:*:data-[slot=progress-indicator]:transition-none',
+      indicatorColors[level],
+    ]"
     :model-value="percentage"
     :aria-label="label"
   />
@@ -15,7 +18,14 @@ const props = defineProps<{
   label: string;
 }>();
 
-const level = computed(() => {
+const indicatorColors = {
+  good: '*:data-[slot=progress-indicator]:bg-green-600 dark:*:data-[slot=progress-indicator]:bg-green-500',
+  warning:
+    '*:data-[slot=progress-indicator]:bg-yellow-500 dark:*:data-[slot=progress-indicator]:bg-yellow-400',
+  danger: '*:data-[slot=progress-indicator]:bg-destructive',
+};
+
+const level = computed<keyof typeof indicatorColors>(() => {
   if (props.percentage > 50) {
     return 'good';
   }
@@ -23,27 +33,3 @@ const level = computed(() => {
   return props.percentage >= 20 ? 'warning' : 'danger';
 });
 </script>
-
-<style scoped>
-@reference '@css/app.css';
-
-.hp-progress {
-  @apply min-w-0 flex-1;
-}
-
-.hp-progress :deep([data-slot='progress-indicator']) {
-  @apply duration-1000 ease-out motion-reduce:transition-none;
-}
-
-.hp-progress--good :deep([data-slot='progress-indicator']) {
-  @apply bg-green-600 dark:bg-green-500;
-}
-
-.hp-progress--warning :deep([data-slot='progress-indicator']) {
-  @apply bg-yellow-500 dark:bg-yellow-400;
-}
-
-.hp-progress--danger :deep([data-slot='progress-indicator']) {
-  @apply bg-destructive;
-}
-</style>

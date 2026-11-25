@@ -12,7 +12,7 @@
       </Button>
     </DialogTrigger>
     <DialogScrollContent
-      class="battle-throw-ball-button__dialog"
+      class="sm:max-w-md"
       data-test="battle-throw-ball-button__dialog"
     >
       <DialogHeader>
@@ -56,11 +56,3 @@ watch(
   },
 );
 </script>
-
-<style scoped>
-@reference '@css/app.css';
-
-:global(.battle-throw-ball-button__dialog) {
-  @apply sm:max-w-md;
-}
-</style>

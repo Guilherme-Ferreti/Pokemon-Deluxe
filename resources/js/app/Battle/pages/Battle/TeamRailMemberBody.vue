@@ -1,48 +1,52 @@
 <template>
-  <span class="team-rail-member-body">
-    <span class="team-rail-member-body__name-row">
-      <span class="team-rail-member-body__name">
+  <span class="flex min-w-0 flex-1 flex-col gap-0.5">
+    <span class="flex items-start gap-1.5 text-sm">
+      <span class="min-w-0 flex-1 leading-snug font-semibold wrap-anywhere">
         <PokemonDisplayName
           :name="name"
           :gender="gender"
         />
         <span
           v-if="ailment"
-          class="team-rail-member-body__ailment"
+          class="ml-1 inline-flex align-middle"
         >
           <AilmentBadge :ailment="ailment" />
         </span>
       </span>
       <span
         v-if="level !== null"
-        class="team-rail-member-body__level"
+        class="text-xs leading-5 whitespace-nowrap tabular-nums"
+        :class="secondaryTextClass"
       >
         Lv {{ level }}
       </span>
       <Badge
         v-if="hasFaintedTag"
         variant="secondary"
-        class="team-rail-member-body__fainted-tag"
       >
         Fainted
       </Badge>
     </span>
     <span
       v-if="currentHp !== null && maxHp !== null"
-      class="team-rail-member-body__hp"
+      class="flex items-center gap-1.5"
     >
       <span
-        class="team-rail-member-body__hp-label"
+        class="text-xs font-semibold"
         aria-hidden="true"
+        :class="secondaryTextClass"
       >
         HP:
       </span>
       <HpProgress
-        class="team-rail-member-body__hp-bar"
+        class="h-1.5 min-w-10"
         :percentage="Math.ceil((currentHp / maxHp) * 100)"
         :label="`${name} HP`"
       />
-      <span class="team-rail-member-body__hp-value">
+      <span
+        class="text-xs whitespace-nowrap tabular-nums"
+        :class="secondaryTextClass"
+      >
         {{ currentHp }} / {{ maxHp }}
       </span>
     </span>
@@ -50,6 +54,7 @@
 </template>
 
 <script setup lang="ts">
+import { computed } from 'vue';
 import PokemonDisplayName from '@/shared/components/game/PokemonDisplayName.vue';
 import { Badge } from '@/shared/components/ui/badge';
 import type {
@@ -59,7 +64,7 @@ import type {
 import AilmentBadge from './AilmentBadge.vue';
 import HpProgress from './HpProgress.vue';
 
-withDefaults(
+const props = withDefaults(
   defineProps<{
     name: BattleTeamMember['name'];
     gender: BattleTeamMember['gender'];
@@ -68,6 +73,7 @@ withDefaults(
     hasFaintedTag?: boolean;
     currentHp?: number | null;
     maxHp?: number | null;
+    isHighlighted?: boolean;
   }>(),
   {
     level: null,
@@ -75,46 +81,11 @@ withDefaults(
     hasFaintedTag: false,
     currentHp: null,
     maxHp: null,
+    isHighlighted: false,
   },
 );
+
+const secondaryTextClass = computed(() =>
+  props.isHighlighted ? 'text-foreground/75' : 'text-muted-foreground',
+);
 </script>
-
-<style scoped>
-@reference '@css/app.css';
-
-.team-rail-member-body {
-  @apply flex min-w-0 flex-1 flex-col gap-0.5;
-}
-
-.team-rail-member-body__name-row {
-  @apply flex items-start gap-1.5 text-sm;
-}
-
-.team-rail-member-body__name {
-  @apply min-w-0 flex-1 leading-snug font-semibold wrap-anywhere;
-}
-
-.team-rail-member-body__ailment {
-  @apply ml-1 inline-flex align-middle;
-}
-
-.team-rail-member-body__level {
-  @apply text-xs leading-5 whitespace-nowrap text-muted-foreground tabular-nums;
-}
-
-.team-rail-member-body__hp {
-  @apply flex items-center gap-1.5;
-}
-
-.team-rail-member-body__hp-label {
-  @apply text-xs font-semibold text-muted-foreground;
-}
-
-.team-rail-member-body__hp-bar {
-  @apply h-1.5 min-w-10;
-}
-
-.team-rail-member-body__hp-value {
-  @apply text-xs whitespace-nowrap text-muted-foreground tabular-nums;
-}
-</style>

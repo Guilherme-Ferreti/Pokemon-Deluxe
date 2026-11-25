@@ -4,7 +4,7 @@
       <Button
         type="button"
         variant="outline"
-        class="battle-forfeit-button"
+        class="border-destructive/40 text-destructive hover:bg-destructive/10 hover:text-destructive"
         data-test="battle-forfeit-button"
       >
         {{ label }}
@@ -80,11 +80,3 @@ function forfeit(): void {
   });
 }
 </script>
-
-<style scoped>
-@reference '@css/app.css';
-
-.battle-forfeit-button {
-  @apply border-destructive/40 text-destructive hover:bg-destructive/10 hover:text-destructive;
-}
-</style>

@@ -1,16 +1,13 @@
 <template>
-  <Card
-    class="opponent-team-rail"
-    data-test="opponent-team-rail"
-  >
+  <Card data-test="opponent-team-rail">
     <CardHeader>
-      <CardTitle class="opponent-team-rail__title">
+      <CardTitle class="flex items-center gap-1.5">
         Opponent's team
         <Tooltip>
           <TooltipTrigger as-child>
             <button
               type="button"
-              class="opponent-team-rail__info-button"
+              class="rounded-full text-muted-foreground transition-colors hover:text-foreground focus-visible:ring-[3px] focus-visible:ring-ring/50 focus-visible:outline-none motion-reduce:transition-none"
               aria-label="About the opponent's team"
               data-test="opponent-team-rail__info-button"
             >
@@ -24,7 +21,7 @@
         </Tooltip>
       </CardTitle>
     </CardHeader>
-    <CardContent class="opponent-team-rail__content">
+    <CardContent class="flex flex-col gap-3">
       <TeamRailGroup
         v-for="group in groups"
         :key="group.heading"
@@ -35,11 +32,11 @@
           v-for="{ member, index } in group.members"
           :key="index"
           :class="[
-            'opponent-team-rail__member',
+            'flex items-center gap-2 rounded-lg border border-border py-2 pr-2.5 pl-2',
+            member.isRevealed ? 'bg-card' : 'min-h-14.5 border-dashed bg-muted',
             {
-              'opponent-team-rail__member--in-battle': member.isActive,
-              'opponent-team-rail__member--unrevealed': !member.isRevealed,
-              'opponent-team-rail__member--fainted': member.isFainted,
+              'min-h-0': member.isRevealed && member.isActive,
+              'min-h-16': member.isRevealed && !member.isActive,
             },
           ]"
           :data-test="`opponent-team-rail__pokemon-${index + 1}-item`"
@@ -51,7 +48,7 @@
               :test-id="`opponent-team-rail__pokemon-${index + 1}-details-button`"
             />
             <TeamRailMemberBody
-              class="opponent-team-rail__body"
+              :class="{ 'opacity-50': member.isFainted }"
               :name="member.name"
               :gender="member.gender"
               :level="member.isActive ? null : member.level"
@@ -62,10 +59,10 @@
           </template>
           <template v-else>
             <span
-              class="opponent-team-rail__unrevealed-portrait"
+              class="m-0.5 size-9 shrink-0"
               aria-hidden="true"
             />
-            <span class="opponent-team-rail__unrevealed-label">
+            <span class="text-sm font-semibold text-muted-foreground">
               Not sent out yet
             </span>
           </template>
@@ -134,43 +131,3 @@ function hasHpRow(member: BattleOpponentTeamMember): boolean {
   return !member.isActive && !member.isFainted;
 }
 </script>
-
-<style scoped>
-@reference '@css/app.css';
-
-.opponent-team-rail__title {
-  @apply flex items-center gap-1.5;
-}
-
-.opponent-team-rail__info-button {
-  @apply rounded-full text-muted-foreground transition-colors hover:text-foreground focus-visible:ring-[3px] focus-visible:ring-ring/50 focus-visible:outline-none motion-reduce:transition-none;
-}
-
-.opponent-team-rail__content {
-  @apply flex flex-col gap-3;
-}
-
-.opponent-team-rail__member {
-  @apply flex min-h-16 items-center gap-2 rounded-lg border border-border bg-card py-2 pr-2.5 pl-2;
-}
-
-.opponent-team-rail__member--in-battle {
-  @apply min-h-0;
-}
-
-.opponent-team-rail__member--unrevealed {
-  @apply min-h-14.5 border-dashed bg-muted;
-}
-
-.opponent-team-rail__member--fainted .opponent-team-rail__body {
-  @apply opacity-50;
-}
-
-.opponent-team-rail__unrevealed-portrait {
-  @apply m-0.5 size-9 shrink-0;
-}
-
-.opponent-team-rail__unrevealed-label {
-  @apply text-sm font-semibold text-muted-foreground;
-}
-</style>

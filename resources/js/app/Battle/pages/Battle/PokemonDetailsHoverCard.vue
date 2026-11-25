@@ -1,18 +1,20 @@
 <template>
   <HoverCardContent
-    class="pokemon-details-hover-card"
+    class="flex w-70 flex-col gap-2.5 rounded-xl p-3.5"
     data-test="pokemon-details-hover-card"
     side="top"
     align="start"
     :side-offset="8"
   >
-    <p class="pokemon-details-hover-card__title">
+    <p class="flex items-start gap-1.5 text-sm">
       <PokemonDisplayName
-        class="pokemon-details-hover-card__name"
+        class="min-w-0 flex-1 leading-snug font-semibold wrap-anywhere"
         :name="pokemon.name"
         :gender="pokemon.gender"
       />
-      <span class="pokemon-details-hover-card__level">
+      <span
+        class="text-xs leading-5 whitespace-nowrap text-muted-foreground tabular-nums"
+      >
         Lv {{ pokemon.level }}
       </span>
     </p>
@@ -30,23 +32,3 @@ defineProps<{
   pokemon: BattlePokemonDetails;
 }>();
 </script>
-
-<style scoped>
-@reference '@css/app.css';
-
-:global(.pokemon-details-hover-card) {
-  @apply flex w-70 flex-col gap-2.5 rounded-xl p-3.5;
-}
-
-.pokemon-details-hover-card__title {
-  @apply flex items-start gap-1.5 text-sm;
-}
-
-.pokemon-details-hover-card__name {
-  @apply min-w-0 flex-1 leading-snug font-semibold wrap-anywhere;
-}
-
-.pokemon-details-hover-card__level {
-  @apply text-xs leading-5 whitespace-nowrap text-muted-foreground tabular-nums;
-}
-</style>

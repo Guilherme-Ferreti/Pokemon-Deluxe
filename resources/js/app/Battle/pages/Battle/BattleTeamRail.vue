@@ -1,25 +1,16 @@
 <template>
-  <Card
-    class="battle-team-rail"
-    data-test="battle-team-rail"
-  >
+  <Card data-test="battle-team-rail">
     <CardHeader>
       <CardTitle>Your team</CardTitle>
     </CardHeader>
-    <CardContent class="battle-team-rail__content">
+    <CardContent class="flex flex-col gap-3">
       <TeamRailGroup
         v-if="pokemonInBattle"
         heading="In battle"
         data-test="battle-team-rail__in-battle-list"
       >
         <li
-          :class="[
-            'battle-team-rail__in-battle',
-            {
-              'battle-team-rail__in-battle--fainted':
-                pokemonInBattle.member.isFainted,
-            },
-          ]"
+          class="flex items-center gap-2 rounded-lg border border-border bg-card py-2 pr-2.5 pl-2"
           :data-test="`battle-team-rail__pokemon-${pokemonInBattle.index + 1}-item`"
         >
           <PokemonDetailsButton
@@ -28,7 +19,7 @@
             :test-id="`battle-team-rail__pokemon-${pokemonInBattle.index + 1}-details-button`"
           />
           <TeamRailMemberBody
-            class="battle-team-rail__in-battle-body"
+            :class="{ 'opacity-50': pokemonInBattle.member.isFainted }"
             :name="pokemonInBattle.member.name"
             :gender="pokemonInBattle.member.gender"
             :ailment="
@@ -171,18 +162,6 @@ function switchPokemon(): void {
 
 <style scoped>
 @reference '@css/app.css';
-
-.battle-team-rail__content {
-  @apply flex flex-col gap-3;
-}
-
-.battle-team-rail__in-battle {
-  @apply flex items-center gap-2 rounded-lg border border-border bg-card py-2 pr-2.5 pl-2;
-}
-
-.battle-team-rail__in-battle--fainted .battle-team-rail__in-battle-body {
-  @apply opacity-50;
-}
 
 .battle-team-rail__action-button {
   @apply self-end;

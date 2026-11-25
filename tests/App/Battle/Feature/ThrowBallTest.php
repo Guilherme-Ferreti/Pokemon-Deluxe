@@ -5,6 +5,7 @@ declare(strict_types=1);
 use Shared\Enums\BattleStatus;
 use Shared\Enums\BattleType;
 use Shared\Enums\PokemonGender;
+use Shared\Enums\PokemonGenderRate;
 use Shared\Enums\PokemonType;
 use Shared\Helpers\RandomHelper;
 use Shared\Models\Battle;
@@ -31,7 +32,7 @@ it('catches the wild pokemon with the chosen ball', function () {
     $user = User::factory()->create();
 
     $pikachu = Species::factory()->create(['name' => 'Pikachu', 'types' => [PokemonType::ELECTRIC]]);
-    $pidgey  = Species::factory()->withBaseMoves()->create(['name' => 'Pidgey', 'types' => [PokemonType::NORMAL]]);
+    $pidgey  = Species::factory()->withBaseMoves()->create(['name' => 'Pidgey', 'gender_rate' => PokemonGenderRate::EQUAL, 'types' => [PokemonType::NORMAL]]);
     $pokemon = Pokemon::factory()->for($user)->inParty()->create(['species_id' => $pikachu->id, 'level' => 50]);
     $tackle  = Move::factory()->plainDamage()->create(['name' => 'Tackle', 'type' => PokemonType::NORMAL, 'power' => 40]);
 
@@ -91,7 +92,7 @@ it('uses up the ball and keeps the battle going when the wild pokemon breaks fre
     $user = User::factory()->create();
 
     $pikachu = Species::factory()->create(['name' => 'Pikachu', 'types' => [PokemonType::ELECTRIC]]);
-    $pidgey  = Species::factory()->withBaseMoves()->create(['name' => 'Pidgey', 'types' => [PokemonType::NORMAL]]);
+    $pidgey  = Species::factory()->withBaseMoves()->create(['name' => 'Pidgey', 'gender_rate' => PokemonGenderRate::EQUAL, 'types' => [PokemonType::NORMAL]]);
     $pokemon = Pokemon::factory()->for($user)->inParty()->create(['species_id' => $pikachu->id, 'level' => 50]);
     $tackle  = Move::factory()->plainDamage()->create(['name' => 'Tackle', 'type' => PokemonType::NORMAL, 'power' => 40]);
 
@@ -166,7 +167,7 @@ it('warns when the player has none of the chosen ball', function () {
     $user = User::factory()->create();
 
     $pikachu = Species::factory()->create(['name' => 'Pikachu', 'types' => [PokemonType::ELECTRIC]]);
-    $pidgey  = Species::factory()->withBaseMoves()->create(['name' => 'Pidgey', 'types' => [PokemonType::NORMAL]]);
+    $pidgey  = Species::factory()->withBaseMoves()->create(['name' => 'Pidgey', 'gender_rate' => PokemonGenderRate::EQUAL, 'types' => [PokemonType::NORMAL]]);
     $pokemon = Pokemon::factory()->for($user)->inParty()->create(['species_id' => $pikachu->id, 'level' => 50]);
     $tackle  = Move::factory()->plainDamage()->create(['name' => 'Tackle', 'type' => PokemonType::NORMAL, 'power' => 40]);
 

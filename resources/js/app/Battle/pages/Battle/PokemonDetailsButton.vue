@@ -1,5 +1,5 @@
 <template>
-  <div class="pokemon-details-button">
+  <div class="flex shrink-0">
     <HoverCard
       :open="isHoverCardOpen"
       :open-delay="200"
@@ -9,18 +9,16 @@
       <HoverCardTrigger as-child>
         <button
           type="button"
+          class="flex size-10 cursor-pointer items-center justify-center rounded-lg transition-shadow duration-150 outline-none hover:ring-2 hover:ring-muted-foreground focus-visible:ring-[3px] focus-visible:ring-ring/50 data-[state=open]:ring-2 data-[state=open]:ring-muted-foreground motion-reduce:transition-none"
           :aria-haspopup="isPhoneLayout ? 'dialog' : undefined"
           :aria-expanded="isPhoneLayout ? isSheetOpen : isHoverCardOpen"
-          :class="[
-            'pokemon-details-button__button',
-            { 'pokemon-details-button__button--fainted': isFainted },
-          ]"
           :data-test="testId"
           :aria-label="`${pokemon.name}'s types, boost and moves`"
           @click="openDetails"
         >
           <SpeciesPortrait
-            class="pokemon-details-button__portrait"
+            class="size-9"
+            :class="{ 'opacity-50 grayscale': isFainted }"
             :url="pokemon.portrait"
             :name="pokemon.name"
           />
@@ -72,23 +70,3 @@ function openDetails(): void {
   }
 }
 </script>
-
-<style scoped>
-@reference '@css/app.css';
-
-.pokemon-details-button {
-  @apply flex shrink-0;
-}
-
-.pokemon-details-button__button {
-  @apply flex size-10 cursor-pointer items-center justify-center rounded-lg transition-shadow duration-150 outline-none hover:ring-2 hover:ring-muted-foreground focus-visible:ring-[3px] focus-visible:ring-ring/50 data-[state=open]:ring-2 data-[state=open]:ring-muted-foreground motion-reduce:transition-none;
-}
-
-.pokemon-details-button__portrait {
-  @apply size-9;
-}
-
-.pokemon-details-button__button--fainted .pokemon-details-button__portrait {
-  @apply opacity-50 grayscale;
-}
-</style>

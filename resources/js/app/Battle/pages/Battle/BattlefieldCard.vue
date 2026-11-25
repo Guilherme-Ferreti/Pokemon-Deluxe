@@ -1,16 +1,18 @@
 <template>
   <Card
-    class="battlefield-card"
+    class="@container/battlefield relative overflow-hidden"
     data-test="battlefield-card"
     aria-label="Battlefield"
   >
     <BattleSceneBackground :scene="page.props.battle.scene" />
-    <CardContent class="battlefield-card__content">
-      <div class="battlefield-card__side battlefield-card__side--opponent">
+    <CardContent class="relative flex flex-col gap-1 px-3 @sm/battlefield:px-6">
+      <div
+        class="battlefield-card__side items-end @sm/battlefield:items-start @sm/battlefield:justify-end"
+      >
         <BattlefieldCombatantCard side="opponent" />
         <SpeciesSprite
           :class="[
-            'battlefield-card__sprite',
+            'battlefield-card__sprite size-20 @sm/battlefield:size-28',
             {
               'battlefield-card__sprite--fainted':
                 isOver || page.props.opponent.currentHp === 0,
@@ -20,10 +22,10 @@
           :name="page.props.opponent.name"
         />
       </div>
-      <div class="battlefield-card__side battlefield-card__side--player">
+      <div class="battlefield-card__side">
         <SpeciesSprite
           :class="[
-            'battlefield-card__sprite battlefield-card__sprite--player',
+            'battlefield-card__sprite size-22 @sm/battlefield:size-32',
             {
               'battlefield-card__sprite--fainted':
                 page.props.player.currentHp === 0,
@@ -58,28 +60,12 @@ const isOver = computed(
 <style scoped>
 @reference '@css/app.css';
 
-.battlefield-card {
-  @apply @container/battlefield relative overflow-hidden;
-}
-
-.battlefield-card__content {
-  @apply relative flex flex-col gap-1 px-3 @sm/battlefield:px-6;
-}
-
 .battlefield-card__side {
   @apply flex flex-col gap-2.5 @sm/battlefield:flex-row @sm/battlefield:items-end @sm/battlefield:justify-start;
 }
 
-.battlefield-card__side--opponent {
-  @apply items-end @sm/battlefield:items-start @sm/battlefield:justify-end;
-}
-
 .battlefield-card__sprite {
-  @apply size-20 transition-opacity duration-400 motion-reduce:transition-none @sm/battlefield:size-28;
-}
-
-.battlefield-card__sprite--player {
-  @apply size-22 @sm/battlefield:size-32;
+  @apply transition-opacity duration-400 motion-reduce:transition-none;
 }
 
 .battlefield-card__sprite--fainted {

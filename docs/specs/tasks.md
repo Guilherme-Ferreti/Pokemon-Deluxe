@@ -1207,7 +1207,7 @@ Read [02-catching-and-exploration.md](02-catching-and-exploration.md) first. Nee
 - Route `POST /battle/throw-ball` named `battle.web.throw-ball` → `ThrowBallController` with `ThrowBallRequest` (`pokeball` slug, owned by the player).
 - `BattleShowPageProps`: in wild battles, the player's balls (sprite, name, quantity, current multiplier from `BallMultiplierCalculator`, `isBoosted` when above its `catch_rate`).
 - "Throw ball" outline button in the More options card (task 1.32), before "Run", wild battles only; it opens the ball picker; boosted balls show a "Boosted" tag. Disabled while waiting for a send-out.
-- A catch ends the battle with task 1.35's result card: "Gotcha! Pidgey was caught", where it went (Party or Box), the XP rows, a muted "A catch counts as winning: the same XP as knocking Pidgey out.", and the buttons "View Pidgey" (outline; to the Box until the Pokémon page exists) and "Keep exploring" (primary, back to the area page).
+- A catch ends the battle with task 1.35's result card: "Gotcha! Pidgey was caught", where it went (Party or Box), the XP rows and the buttons "View Pidgey" (outline; to the Box until the Pokémon page exists) and "Keep exploring" (primary, back to the area page).
 
 **UI suggestions** (ideas, not requirements):
 - An outline "Throw ball" `Button` with a ball icon, sized to its text.
