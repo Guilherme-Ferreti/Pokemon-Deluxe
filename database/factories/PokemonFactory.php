@@ -70,6 +70,11 @@ final class PokemonFactory extends Factory
         return $this->state(['is_shiny' => false]);
     }
 
+    public function locked(): static
+    {
+        return $this->state(['is_locked' => true]);
+    }
+
     public function genderless(): static
     {
         return $this->state(['gender' => PokemonGender::GENDERLESS]);

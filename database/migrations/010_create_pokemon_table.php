@@ -28,6 +28,7 @@ return new class extends Migration
 
             $table->boolean('in_party')->default(false);
             $table->boolean('is_shiny')->default(false);
+            $table->boolean('is_locked')->default(false);
 
             $table->enum('gender', Arr::pluck(PokemonGender::cases(), 'value'));
 

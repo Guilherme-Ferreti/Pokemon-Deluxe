@@ -31,6 +31,7 @@ use Shared\ValueObjects\PokemonStats;
  * @property int $boost
  * @property bool $in_party
  * @property bool $is_shiny
+ * @property bool $is_locked
  * @property PokemonGender $gender
  * @property string $pokeball_id
  * @property Carbon $caught_at
@@ -58,6 +59,7 @@ final class Pokemon extends Model
             'boost'      => 'integer',
             'in_party'   => 'boolean',
             'is_shiny'   => 'boolean',
+            'is_locked'  => 'boolean',
             'gender'     => PokemonGender::class,
             'caught_at'  => 'datetime',
         ];

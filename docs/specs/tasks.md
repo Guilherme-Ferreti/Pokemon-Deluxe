@@ -1475,7 +1475,7 @@ Read [04-pokemon-page.md](04-pokemon-page.md) first. Builds on Spec 1 (`SetActiv
 
 ### 4.1 Lock a Pokémon
 
-- [ ] Done
+- [x] Done
 
 **Goal:** a locked Pokémon can't be released (or traded, Spec 7) by accident.
 
@@ -1487,6 +1487,8 @@ Read [04-pokemon-page.md](04-pokemon-page.md) first. Builds on Spec 1 (`SetActiv
 **Tests:** lock and unlock.
 
 **Done when:** tests pass.
+
+- As built: `is_locked` sits next to `is_shiny` in the pokemon table, cast to `boolean`; `PokemonFactory::locked()` sets it. `SetPokemonLockAction` only saves the flag: it has no guards, since locking and unlocking are always allowed (release and trade check the flag in their own tasks).
 
 ### 4.2 Add to and remove from the party
 
