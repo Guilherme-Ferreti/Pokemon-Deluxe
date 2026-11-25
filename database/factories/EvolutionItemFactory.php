@@ -23,6 +23,7 @@ final class EvolutionItemFactory extends Factory
             'name'        => fake()->unique()->word(),
             'description' => fake()->sentence(),
             'sprite'      => fake()->optional()->imageUrl(),
+            'price'       => fake()->numberBetween(1, 50) * 100,
         ];
     }
 }

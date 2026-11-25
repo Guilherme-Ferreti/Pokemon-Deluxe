@@ -26,6 +26,7 @@ final class PokeballFactory extends Factory
             'sprite'      => fake()->optional()->imageUrl(),
             'type'        => fake()->randomElement(PokeballType::cases()),
             'catch_rate'  => fake()->randomFloat(2, 0, 100),
+            'price'       => fake()->numberBetween(1, 50) * 100,
         ];
     }
 }

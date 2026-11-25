@@ -34,6 +34,17 @@ return [
         'starting_money' => 2000, // Pokédollars a new player starts with, enough for 10 Poké Balls.
     ],
 
+    'shop' => [
+        'tm_prices' => [
+            'status_move'  => 3000,  // Cost for a TM of a move with no power.
+            'by_min_power' => [      // Cost for a TM by the lowest power it needs, checked from the top.
+                90 => 10000,
+                60 => 5000,
+                0  => 2000,
+            ],
+        ],
+    ],
+
     'inventory' => [
         'max_stack' => 9999, // Most units of one item (ball, evolution item) a player can hold.
     ],

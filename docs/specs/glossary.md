@@ -94,6 +94,7 @@ One name per idea, used everywhere: specs, code, database, tests and UI. When yo
 | Add and spend money | `AddMoneyAction`, `SpendMoneyAction`, `NotEnoughMoneyException`, `game.economy.starting_money` | Both are one atomic update on the user's row. Spending more than the player has is refused. New players start with ₽ 2,000. |
 | Add items to the inventory | `AddInventoryItemAction`, `InventoryStackFullException`, `game.inventory.max_stack` | Creates or grows the player's stack of an item, up to 9,999. `RemoveInventoryItemAction` takes items away. |
 | Price | `price` | Null means earned only: never sold. |
+| TM price | `TmPriceCalculator`, `game.shop.tm_prices` | By the move's power; null for Z-Move and Dynamax TMs. |
 | Sell back | `SellItemAction`, `sell_back_ratio` | Half the price. |
 | Today's TMs | `TmRotation` | The 10 TMs for sale today. |
 | TM | `InventoryItemType::TM`, `tm_code` | An inventory item whose item is a `Move`. Shown as "TM 395 Ice Beam". |

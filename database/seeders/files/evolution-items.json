@@ -4,916 +4,1047 @@
     "external_id": "sun-stone",
     "name": "Sun Stone",
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/sun-stone.png",
-    "description": "An item used to evolve certain Pokémon."
+    "description": "An item used to evolve certain Pokémon.",
+    "price": 3000
   },
   {
     "id": "moon-stone",
     "external_id": "moon-stone",
     "name": "Moon Stone",
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/moon-stone.png",
-    "description": "An item used to evolve certain Pokémon."
+    "description": "An item used to evolve certain Pokémon.",
+    "price": 3000
   },
   {
     "id": "fire-stone",
     "external_id": "fire-stone",
     "name": "Fire Stone",
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/fire-stone.png",
-    "description": "An item used to evolve certain Pokémon."
+    "description": "An item used to evolve certain Pokémon.",
+    "price": 3000
   },
   {
     "id": "thunder-stone",
     "external_id": "thunder-stone",
     "name": "Thunder Stone",
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/thunder-stone.png",
-    "description": "An item used to evolve certain Pokémon."
+    "description": "An item used to evolve certain Pokémon.",
+    "price": 3000
   },
   {
     "id": "water-stone",
     "external_id": "water-stone",
     "name": "Water Stone",
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/water-stone.png",
-    "description": "An item used to evolve certain Pokémon."
+    "description": "An item used to evolve certain Pokémon.",
+    "price": 3000
   },
   {
     "id": "leaf-stone",
     "external_id": "leaf-stone",
     "name": "Leaf Stone",
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/leaf-stone.png",
-    "description": "An item used to evolve certain Pokémon."
+    "description": "An item used to evolve certain Pokémon.",
+    "price": 3000
   },
   {
     "id": "shiny-stone",
     "external_id": "shiny-stone",
     "name": "Shiny Stone",
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/shiny-stone.png",
-    "description": "An item used to evolve certain Pokémon."
+    "description": "An item used to evolve certain Pokémon.",
+    "price": 3000
   },
   {
     "id": "dusk-stone",
     "external_id": "dusk-stone",
     "name": "Dusk Stone",
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/dusk-stone.png",
-    "description": "An item used to evolve certain Pokémon."
+    "description": "An item used to evolve certain Pokémon.",
+    "price": 3000
   },
   {
     "id": "dawn-stone",
     "external_id": "dawn-stone",
     "name": "Dawn Stone",
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/dawn-stone.png",
-    "description": "An item used to evolve certain Pokémon."
+    "description": "An item used to evolve certain Pokémon.",
+    "price": 3000
   },
   {
     "id": "oval-stone",
     "external_id": "oval-stone",
     "name": "Oval Stone",
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/oval-stone.png",
-    "description": "An item used to evolve certain Pokémon."
+    "description": "An item used to evolve certain Pokémon.",
+    "price": 3000
   },
   {
     "id": "ice-stone",
     "external_id": "ice-stone",
     "name": "Ice Stone",
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/ice-stone.png",
-    "description": "An item used to evolve certain Pokémon."
+    "description": "An item used to evolve certain Pokémon.",
+    "price": 3000
   },
   {
     "id": "kings-rock",
     "external_id": "kings-rock",
     "name": "King’s Rock",
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/kings-rock.png",
-    "description": "An item used to evolve certain Pokémon."
+    "description": "An item used to evolve certain Pokémon.",
+    "price": 3000
   },
   {
     "id": "deep-sea-tooth",
     "external_id": "deep-sea-tooth",
     "name": "Deep Sea Tooth",
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/deep-sea-tooth.png",
-    "description": "An item used to evolve certain Pokémon."
+    "description": "An item used to evolve certain Pokémon.",
+    "price": 3000
   },
   {
     "id": "deep-sea-scale",
     "external_id": "deep-sea-scale",
     "name": "Deep Sea Scale",
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/deep-sea-scale.png",
-    "description": "An item used to evolve certain Pokémon."
+    "description": "An item used to evolve certain Pokémon.",
+    "price": 3000
   },
   {
     "id": "metal-coat",
     "external_id": "metal-coat",
     "name": "Metal Coat",
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/metal-coat.png",
-    "description": "An item used to evolve certain Pokémon."
+    "description": "An item used to evolve certain Pokémon.",
+    "price": 3000
   },
   {
     "id": "dragon-scale",
     "external_id": "dragon-scale",
     "name": "Dragon Scale",
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/dragon-scale.png",
-    "description": "An item used to evolve certain Pokémon."
+    "description": "An item used to evolve certain Pokémon.",
+    "price": 3000
   },
   {
     "id": "up-grade",
     "external_id": "up-grade",
     "name": "Upgrade",
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/up-grade.png",
-    "description": "An item used to evolve certain Pokémon."
+    "description": "An item used to evolve certain Pokémon.",
+    "price": 3000
   },
   {
     "id": "protector",
     "external_id": "protector",
     "name": "Protector",
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/protector.png",
-    "description": "An item used to evolve certain Pokémon."
+    "description": "An item used to evolve certain Pokémon.",
+    "price": 3000
   },
   {
     "id": "electirizer",
     "external_id": "electirizer",
     "name": "Electirizer",
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/electirizer.png",
-    "description": "An item used to evolve certain Pokémon."
+    "description": "An item used to evolve certain Pokémon.",
+    "price": 3000
   },
   {
     "id": "magmarizer",
     "external_id": "magmarizer",
     "name": "Magmarizer",
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/magmarizer.png",
-    "description": "An item used to evolve certain Pokémon."
+    "description": "An item used to evolve certain Pokémon.",
+    "price": 3000
   },
   {
     "id": "dubious-disc",
     "external_id": "dubious-disc",
     "name": "Dubious Disc",
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/dubious-disc.png",
-    "description": "An item used to evolve certain Pokémon."
+    "description": "An item used to evolve certain Pokémon.",
+    "price": 3000
   },
   {
     "id": "reaper-cloth",
     "external_id": "reaper-cloth",
     "name": "Reaper Cloth",
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/reaper-cloth.png",
-    "description": "An item used to evolve certain Pokémon."
+    "description": "An item used to evolve certain Pokémon.",
+    "price": 3000
   },
   {
     "id": "razor-claw",
     "external_id": "razor-claw",
     "name": "Razor Claw",
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/razor-claw.png",
-    "description": "An item used to evolve certain Pokémon."
+    "description": "An item used to evolve certain Pokémon.",
+    "price": 3000
   },
   {
     "id": "razor-fang",
     "external_id": "razor-fang",
     "name": "Razor Fang",
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/razor-fang.png",
-    "description": "An item used to evolve certain Pokémon."
+    "description": "An item used to evolve certain Pokémon.",
+    "price": 3000
   },
   {
     "id": "prism-scale",
     "external_id": "prism-scale",
     "name": "Prism Scale",
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/prism-scale.png",
-    "description": "An item used to evolve certain Pokémon."
+    "description": "An item used to evolve certain Pokémon.",
+    "price": 3000
   },
   {
     "id": "whipped-dream",
     "external_id": "whipped-dream",
     "name": "Whipped Dream",
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/whipped-dream.png",
-    "description": "An item used to evolve certain Pokémon."
+    "description": "An item used to evolve certain Pokémon.",
+    "price": 3000
   },
   {
     "id": "sachet",
     "external_id": "sachet",
     "name": "Sachet",
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/sachet.png",
-    "description": "An item used to evolve certain Pokémon."
+    "description": "An item used to evolve certain Pokémon.",
+    "price": 3000
   },
   {
     "id": "sweet-apple",
     "external_id": "sweet-apple",
     "name": "Sweet Apple",
     "sprite": null,
-    "description": "An item used to evolve certain Pokémon."
+    "description": "An item used to evolve certain Pokémon.",
+    "price": 3000
   },
   {
     "id": "tart-apple",
     "external_id": "tart-apple",
     "name": "Tart Apple",
     "sprite": null,
-    "description": "An item used to evolve certain Pokémon."
+    "description": "An item used to evolve certain Pokémon.",
+    "price": 3000
   },
   {
     "id": "cracked-pot",
     "external_id": "cracked-pot",
     "name": "Cracked Pot",
     "sprite": null,
-    "description": "An item used to evolve certain Pokémon."
+    "description": "An item used to evolve certain Pokémon.",
+    "price": 3000
   },
   {
     "id": "scroll-of-darkness",
     "external_id": "scroll-of-darkness",
     "name": "Scroll of Darkness",
     "sprite": null,
-    "description": "An item used to evolve certain Pokémon."
+    "description": "An item used to evolve certain Pokémon.",
+    "price": 3000
   },
   {
     "id": "scroll-of-waters",
     "external_id": "scroll-of-waters",
     "name": "Scroll of Waters",
     "sprite": null,
-    "description": "An item used to evolve certain Pokémon."
+    "description": "An item used to evolve certain Pokémon.",
+    "price": 3000
   },
   {
     "id": "malicious-armor",
     "external_id": "malicious-armor",
     "name": "Malicious Armor",
     "sprite": null,
-    "description": "An item used to evolve certain Pokémon."
+    "description": "An item used to evolve certain Pokémon.",
+    "price": 3000
   },
   {
     "id": "auspicious-armor",
     "external_id": "auspicious-armor",
     "name": "Auspicious Armor",
     "sprite": null,
-    "description": "An item used to evolve certain Pokémon."
+    "description": "An item used to evolve certain Pokémon.",
+    "price": 3000
   },
   {
     "id": "syrupy-apple",
     "external_id": "syrupy-apple",
     "name": "Syrupy Apple",
     "sprite": null,
-    "description": "An item used to evolve certain Pokémon."
+    "description": "An item used to evolve certain Pokémon.",
+    "price": 3000
   },
   {
     "id": "unremarkable-teacup",
     "external_id": "unremarkable-teacup",
     "name": "Unremarkable Teacup",
     "sprite": null,
-    "description": "An item used to evolve certain Pokémon."
+    "description": "An item used to evolve certain Pokémon.",
+    "price": 3000
   },
   {
     "id": "black-augurite",
     "external_id": "black-augurite",
     "name": "Black Augurite",
     "sprite": null,
-    "description": "An item used to evolve certain Pokémon."
+    "description": "An item used to evolve certain Pokémon.",
+    "price": 3000
   },
   {
     "id": "peat-block",
     "external_id": "peat-block",
     "name": "Peat Block",
     "sprite": null,
-    "description": "An item used to evolve certain Pokémon."
+    "description": "An item used to evolve certain Pokémon.",
+    "price": 3000
   },
   {
     "id": "metal-alloy",
     "external_id": "metal-alloy",
     "name": "Metal Alloy",
     "sprite": null,
-    "description": "An item used to evolve certain Pokémon."
+    "description": "An item used to evolve certain Pokémon.",
+    "price": 3000
   },
   {
     "id": "gengarite",
     "external_id": "gengarite",
     "name": "Gengarite",
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/gengarite.png",
-    "description": "An item used to Mega Evolve certain Pokémon."
+    "description": "An item used to Mega Evolve certain Pokémon.",
+    "price": null
   },
   {
     "id": "gardevoirite",
     "external_id": "gardevoirite",
     "name": "Gardevoirite",
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/gardevoirite.png",
-    "description": "An item used to Mega Evolve certain Pokémon."
+    "description": "An item used to Mega Evolve certain Pokémon.",
+    "price": null
   },
   {
     "id": "ampharosite",
     "external_id": "ampharosite",
     "name": "Ampharosite",
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/ampharosite.png",
-    "description": "An item used to Mega Evolve certain Pokémon."
+    "description": "An item used to Mega Evolve certain Pokémon.",
+    "price": null
   },
   {
     "id": "venusaurite",
     "external_id": "venusaurite",
     "name": "Venusaurite",
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/venusaurite.png",
-    "description": "An item used to Mega Evolve certain Pokémon."
+    "description": "An item used to Mega Evolve certain Pokémon.",
+    "price": null
   },
   {
     "id": "charizardite-x",
     "external_id": "charizardite-x",
     "name": "Charizardite X",
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/charizardite-x.png",
-    "description": "An item used to Mega Evolve certain Pokémon."
+    "description": "An item used to Mega Evolve certain Pokémon.",
+    "price": null
   },
   {
     "id": "blastoisinite",
     "external_id": "blastoisinite",
     "name": "Blastoisinite",
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/blastoisinite.png",
-    "description": "An item used to Mega Evolve certain Pokémon."
+    "description": "An item used to Mega Evolve certain Pokémon.",
+    "price": null
   },
   {
     "id": "mewtwonite-x",
     "external_id": "mewtwonite-x",
     "name": "Mewtwonite X",
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/mewtwonite-x.png",
-    "description": "An item used to Mega Evolve certain Pokémon."
+    "description": "An item used to Mega Evolve certain Pokémon.",
+    "price": null
   },
   {
     "id": "mewtwonite-y",
     "external_id": "mewtwonite-y",
     "name": "Mewtwonite Y",
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/mewtwonite-y.png",
-    "description": "An item used to Mega Evolve certain Pokémon."
+    "description": "An item used to Mega Evolve certain Pokémon.",
+    "price": null
   },
   {
     "id": "blazikenite",
     "external_id": "blazikenite",
     "name": "Blazikenite",
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/blazikenite.png",
-    "description": "An item used to Mega Evolve certain Pokémon."
+    "description": "An item used to Mega Evolve certain Pokémon.",
+    "price": null
   },
   {
     "id": "medichamite",
     "external_id": "medichamite",
     "name": "Medichamite",
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/medichamite.png",
-    "description": "An item used to Mega Evolve certain Pokémon."
+    "description": "An item used to Mega Evolve certain Pokémon.",
+    "price": null
   },
   {
     "id": "houndoominite",
     "external_id": "houndoominite",
     "name": "Houndoominite",
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/houndoominite.png",
-    "description": "An item used to Mega Evolve certain Pokémon."
+    "description": "An item used to Mega Evolve certain Pokémon.",
+    "price": null
   },
   {
     "id": "aggronite",
     "external_id": "aggronite",
     "name": "Aggronite",
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/aggronite.png",
-    "description": "An item used to Mega Evolve certain Pokémon."
+    "description": "An item used to Mega Evolve certain Pokémon.",
+    "price": null
   },
   {
     "id": "banettite",
     "external_id": "banettite",
     "name": "Banettite",
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/banettite.png",
-    "description": "An item used to Mega Evolve certain Pokémon."
+    "description": "An item used to Mega Evolve certain Pokémon.",
+    "price": null
   },
   {
     "id": "tyranitarite",
     "external_id": "tyranitarite",
     "name": "Tyranitarite",
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tyranitarite.png",
-    "description": "An item used to Mega Evolve certain Pokémon."
+    "description": "An item used to Mega Evolve certain Pokémon.",
+    "price": null
   },
   {
     "id": "scizorite",
     "external_id": "scizorite",
     "name": "Scizorite",
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/scizorite.png",
-    "description": "An item used to Mega Evolve certain Pokémon."
+    "description": "An item used to Mega Evolve certain Pokémon.",
+    "price": null
   },
   {
     "id": "pinsirite",
     "external_id": "pinsirite",
     "name": "Pinsirite",
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/pinsirite.png",
-    "description": "An item used to Mega Evolve certain Pokémon."
+    "description": "An item used to Mega Evolve certain Pokémon.",
+    "price": null
   },
   {
     "id": "aerodactylite",
     "external_id": "aerodactylite",
     "name": "Aerodactylite",
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/aerodactylite.png",
-    "description": "An item used to Mega Evolve certain Pokémon."
+    "description": "An item used to Mega Evolve certain Pokémon.",
+    "price": null
   },
   {
     "id": "lucarionite",
     "external_id": "lucarionite",
     "name": "Lucarionite",
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/lucarionite.png",
-    "description": "An item used to Mega Evolve certain Pokémon."
+    "description": "An item used to Mega Evolve certain Pokémon.",
+    "price": null
   },
   {
     "id": "abomasite",
     "external_id": "abomasite",
     "name": "Abomasite",
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/abomasite.png",
-    "description": "An item used to Mega Evolve certain Pokémon."
+    "description": "An item used to Mega Evolve certain Pokémon.",
+    "price": null
   },
   {
     "id": "kangaskhanite",
     "external_id": "kangaskhanite",
     "name": "Kangaskhanite",
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/kangaskhanite.png",
-    "description": "An item used to Mega Evolve certain Pokémon."
+    "description": "An item used to Mega Evolve certain Pokémon.",
+    "price": null
   },
   {
     "id": "gyaradosite",
     "external_id": "gyaradosite",
     "name": "Gyaradosite",
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/gyaradosite.png",
-    "description": "An item used to Mega Evolve certain Pokémon."
+    "description": "An item used to Mega Evolve certain Pokémon.",
+    "price": null
   },
   {
     "id": "absolite",
     "external_id": "absolite",
     "name": "Absolite",
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/absolite.png",
-    "description": "An item used to Mega Evolve certain Pokémon."
+    "description": "An item used to Mega Evolve certain Pokémon.",
+    "price": null
   },
   {
     "id": "charizardite-y",
     "external_id": "charizardite-y",
     "name": "Charizardite Y",
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/charizardite-y.png",
-    "description": "An item used to Mega Evolve certain Pokémon."
+    "description": "An item used to Mega Evolve certain Pokémon.",
+    "price": null
   },
   {
     "id": "alakazite",
     "external_id": "alakazite",
     "name": "Alakazite",
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/alakazite.png",
-    "description": "An item used to Mega Evolve certain Pokémon."
+    "description": "An item used to Mega Evolve certain Pokémon.",
+    "price": null
   },
   {
     "id": "heracronite",
     "external_id": "heracronite",
     "name": "Heracronite",
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/heracronite.png",
-    "description": "An item used to Mega Evolve certain Pokémon."
+    "description": "An item used to Mega Evolve certain Pokémon.",
+    "price": null
   },
   {
     "id": "mawilite",
     "external_id": "mawilite",
     "name": "Mawilite",
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/mawilite.png",
-    "description": "An item used to Mega Evolve certain Pokémon."
+    "description": "An item used to Mega Evolve certain Pokémon.",
+    "price": null
   },
   {
     "id": "manectite",
     "external_id": "manectite",
     "name": "Manectite",
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/manectite.png",
-    "description": "An item used to Mega Evolve certain Pokémon."
+    "description": "An item used to Mega Evolve certain Pokémon.",
+    "price": null
   },
   {
     "id": "garchompite",
     "external_id": "garchompite",
     "name": "Garchompite",
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/garchompite.png",
-    "description": "An item used to Mega Evolve certain Pokémon."
+    "description": "An item used to Mega Evolve certain Pokémon.",
+    "price": null
   },
   {
     "id": "latiasite",
     "external_id": "latiasite",
     "name": "Latiasite",
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/latiasite.png",
-    "description": "An item used to Mega Evolve certain Pokémon."
+    "description": "An item used to Mega Evolve certain Pokémon.",
+    "price": null
   },
   {
     "id": "latiosite",
     "external_id": "latiosite",
     "name": "Latiosite",
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/latiosite.png",
-    "description": "An item used to Mega Evolve certain Pokémon."
+    "description": "An item used to Mega Evolve certain Pokémon.",
+    "price": null
   },
   {
     "id": "swampertite",
     "external_id": "swampertite",
     "name": "Swampertite",
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/swampertite.png",
-    "description": "An item used to Mega Evolve certain Pokémon."
+    "description": "An item used to Mega Evolve certain Pokémon.",
+    "price": null
   },
   {
     "id": "sceptilite",
     "external_id": "sceptilite",
     "name": "Sceptilite",
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/sceptilite.png",
-    "description": "An item used to Mega Evolve certain Pokémon."
+    "description": "An item used to Mega Evolve certain Pokémon.",
+    "price": null
   },
   {
     "id": "sablenite",
     "external_id": "sablenite",
     "name": "Sablenite",
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/sablenite.png",
-    "description": "An item used to Mega Evolve certain Pokémon."
+    "description": "An item used to Mega Evolve certain Pokémon.",
+    "price": null
   },
   {
     "id": "altarianite",
     "external_id": "altarianite",
     "name": "Altarianite",
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/altarianite.png",
-    "description": "An item used to Mega Evolve certain Pokémon."
+    "description": "An item used to Mega Evolve certain Pokémon.",
+    "price": null
   },
   {
     "id": "galladite",
     "external_id": "galladite",
     "name": "Galladite",
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/galladite.png",
-    "description": "An item used to Mega Evolve certain Pokémon."
+    "description": "An item used to Mega Evolve certain Pokémon.",
+    "price": null
   },
   {
     "id": "audinite",
     "external_id": "audinite",
     "name": "Audinite",
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/audinite.png",
-    "description": "An item used to Mega Evolve certain Pokémon."
+    "description": "An item used to Mega Evolve certain Pokémon.",
+    "price": null
   },
   {
     "id": "metagrossite",
     "external_id": "metagrossite",
     "name": "Metagrossite",
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/metagrossite.png",
-    "description": "An item used to Mega Evolve certain Pokémon."
+    "description": "An item used to Mega Evolve certain Pokémon.",
+    "price": null
   },
   {
     "id": "sharpedonite",
     "external_id": "sharpedonite",
     "name": "Sharpedonite",
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/sharpedonite.png",
-    "description": "An item used to Mega Evolve certain Pokémon."
+    "description": "An item used to Mega Evolve certain Pokémon.",
+    "price": null
   },
   {
     "id": "slowbronite",
     "external_id": "slowbronite",
     "name": "Slowbronite",
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/slowbronite.png",
-    "description": "An item used to Mega Evolve certain Pokémon."
+    "description": "An item used to Mega Evolve certain Pokémon.",
+    "price": null
   },
   {
     "id": "steelixite",
     "external_id": "steelixite",
     "name": "Steelixite",
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/steelixite.png",
-    "description": "An item used to Mega Evolve certain Pokémon."
+    "description": "An item used to Mega Evolve certain Pokémon.",
+    "price": null
   },
   {
     "id": "pidgeotite",
     "external_id": "pidgeotite",
     "name": "Pidgeotite",
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/pidgeotite.png",
-    "description": "An item used to Mega Evolve certain Pokémon."
+    "description": "An item used to Mega Evolve certain Pokémon.",
+    "price": null
   },
   {
     "id": "glalitite",
     "external_id": "glalitite",
     "name": "Glalitite",
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/glalitite.png",
-    "description": "An item used to Mega Evolve certain Pokémon."
+    "description": "An item used to Mega Evolve certain Pokémon.",
+    "price": null
   },
   {
     "id": "diancite",
     "external_id": "diancite",
     "name": "Diancite",
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/diancite.png",
-    "description": "An item used to Mega Evolve certain Pokémon."
+    "description": "An item used to Mega Evolve certain Pokémon.",
+    "price": null
   },
   {
     "id": "cameruptite",
     "external_id": "cameruptite",
     "name": "Cameruptite",
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/cameruptite.png",
-    "description": "An item used to Mega Evolve certain Pokémon."
+    "description": "An item used to Mega Evolve certain Pokémon.",
+    "price": null
   },
   {
     "id": "lopunnite",
     "external_id": "lopunnite",
     "name": "Lopunnite",
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/lopunnite.png",
-    "description": "An item used to Mega Evolve certain Pokémon."
+    "description": "An item used to Mega Evolve certain Pokémon.",
+    "price": null
   },
   {
     "id": "salamencite",
     "external_id": "salamencite",
     "name": "Salamencite",
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/salamencite.png",
-    "description": "An item used to Mega Evolve certain Pokémon."
+    "description": "An item used to Mega Evolve certain Pokémon.",
+    "price": null
   },
   {
     "id": "beedrillite",
     "external_id": "beedrillite",
     "name": "Beedrillite",
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/beedrillite.png",
-    "description": "An item used to Mega Evolve certain Pokémon."
+    "description": "An item used to Mega Evolve certain Pokémon.",
+    "price": null
   },
   {
     "id": "clefablite",
     "external_id": "clefablite",
     "name": "Clefablite",
     "sprite": null,
-    "description": "An item used to Mega Evolve certain Pokémon."
+    "description": "An item used to Mega Evolve certain Pokémon.",
+    "price": null
   },
   {
     "id": "victreebelite",
     "external_id": "victreebelite",
     "name": "Victreebelite",
     "sprite": null,
-    "description": "An item used to Mega Evolve certain Pokémon."
+    "description": "An item used to Mega Evolve certain Pokémon.",
+    "price": null
   },
   {
     "id": "starminite",
     "external_id": "starminite",
     "name": "Starminite",
     "sprite": null,
-    "description": "An item used to Mega Evolve certain Pokémon."
+    "description": "An item used to Mega Evolve certain Pokémon.",
+    "price": null
   },
   {
     "id": "dragoninite",
     "external_id": "dragoninite",
     "name": "Dragoninite",
     "sprite": null,
-    "description": "An item used to Mega Evolve certain Pokémon."
+    "description": "An item used to Mega Evolve certain Pokémon.",
+    "price": null
   },
   {
     "id": "meganiumite",
     "external_id": "meganiumite",
     "name": "Meganiumite",
     "sprite": null,
-    "description": "An item used to Mega Evolve certain Pokémon."
+    "description": "An item used to Mega Evolve certain Pokémon.",
+    "price": null
   },
   {
     "id": "feraligite",
     "external_id": "feraligite",
     "name": "Feraligite",
     "sprite": null,
-    "description": "An item used to Mega Evolve certain Pokémon."
+    "description": "An item used to Mega Evolve certain Pokémon.",
+    "price": null
   },
   {
     "id": "skarmorite",
     "external_id": "skarmorite",
     "name": "Skarmorite",
     "sprite": null,
-    "description": "An item used to Mega Evolve certain Pokémon."
+    "description": "An item used to Mega Evolve certain Pokémon.",
+    "price": null
   },
   {
     "id": "froslassite",
     "external_id": "froslassite",
     "name": "Froslassite",
     "sprite": null,
-    "description": "An item used to Mega Evolve certain Pokémon."
+    "description": "An item used to Mega Evolve certain Pokémon.",
+    "price": null
   },
   {
     "id": "heatranite",
     "external_id": "heatranite",
     "name": "Heatranite",
     "sprite": null,
-    "description": "An item used to Mega Evolve certain Pokémon."
+    "description": "An item used to Mega Evolve certain Pokémon.",
+    "price": null
   },
   {
     "id": "darkranite",
     "external_id": "darkranite",
     "name": "Darkranite",
     "sprite": null,
-    "description": "An item used to Mega Evolve certain Pokémon."
+    "description": "An item used to Mega Evolve certain Pokémon.",
+    "price": null
   },
   {
     "id": "emboarite",
     "external_id": "emboarite",
     "name": "Emboarite",
     "sprite": null,
-    "description": "An item used to Mega Evolve certain Pokémon."
+    "description": "An item used to Mega Evolve certain Pokémon.",
+    "price": null
   },
   {
     "id": "excadrite",
     "external_id": "excadrite",
     "name": "Excadrite",
     "sprite": null,
-    "description": "An item used to Mega Evolve certain Pokémon."
+    "description": "An item used to Mega Evolve certain Pokémon.",
+    "price": null
   },
   {
     "id": "scolipite",
     "external_id": "scolipite",
     "name": "Scolipite",
     "sprite": null,
-    "description": "An item used to Mega Evolve certain Pokémon."
+    "description": "An item used to Mega Evolve certain Pokémon.",
+    "price": null
   },
   {
     "id": "scraftinite",
     "external_id": "scraftinite",
     "name": "Scraftinite",
     "sprite": null,
-    "description": "An item used to Mega Evolve certain Pokémon."
+    "description": "An item used to Mega Evolve certain Pokémon.",
+    "price": null
   },
   {
     "id": "eelektrossite",
     "external_id": "eelektrossite",
     "name": "Eelektrossite",
     "sprite": null,
-    "description": "An item used to Mega Evolve certain Pokémon."
+    "description": "An item used to Mega Evolve certain Pokémon.",
+    "price": null
   },
   {
     "id": "chandelurite",
     "external_id": "chandelurite",
     "name": "Chandelurite",
     "sprite": null,
-    "description": "An item used to Mega Evolve certain Pokémon."
+    "description": "An item used to Mega Evolve certain Pokémon.",
+    "price": null
   },
   {
     "id": "chesnaughtite",
     "external_id": "chesnaughtite",
     "name": "Chesnaughtite",
     "sprite": null,
-    "description": "An item used to Mega Evolve certain Pokémon."
+    "description": "An item used to Mega Evolve certain Pokémon.",
+    "price": null
   },
   {
     "id": "delphoxite",
     "external_id": "delphoxite",
     "name": "Delphoxite",
     "sprite": null,
-    "description": "An item used to Mega Evolve certain Pokémon."
+    "description": "An item used to Mega Evolve certain Pokémon.",
+    "price": null
   },
   {
     "id": "greninjite",
     "external_id": "greninjite",
     "name": "Greninjite",
     "sprite": null,
-    "description": "An item used to Mega Evolve certain Pokémon."
+    "description": "An item used to Mega Evolve certain Pokémon.",
+    "price": null
   },
   {
     "id": "pyroarite",
     "external_id": "pyroarite",
     "name": "Pyroarite",
     "sprite": null,
-    "description": "An item used to Mega Evolve certain Pokémon."
+    "description": "An item used to Mega Evolve certain Pokémon.",
+    "price": null
   },
   {
     "id": "floettite",
     "external_id": "floettite",
     "name": "Floettite",
     "sprite": null,
-    "description": "An item used to Mega Evolve certain Pokémon."
+    "description": "An item used to Mega Evolve certain Pokémon.",
+    "price": null
   },
   {
     "id": "malamarite",
     "external_id": "malamarite",
     "name": "Malamarite",
     "sprite": null,
-    "description": "An item used to Mega Evolve certain Pokémon."
+    "description": "An item used to Mega Evolve certain Pokémon.",
+    "price": null
   },
   {
     "id": "barbaracite",
     "external_id": "barbaracite",
     "name": "Barbaracite",
     "sprite": null,
-    "description": "An item used to Mega Evolve certain Pokémon."
+    "description": "An item used to Mega Evolve certain Pokémon.",
+    "price": null
   },
   {
     "id": "dragalgite",
     "external_id": "dragalgite",
     "name": "Dragalgite",
     "sprite": null,
-    "description": "An item used to Mega Evolve certain Pokémon."
+    "description": "An item used to Mega Evolve certain Pokémon.",
+    "price": null
   },
   {
     "id": "hawluchanite",
     "external_id": "hawluchanite",
     "name": "Hawluchanite",
     "sprite": null,
-    "description": "An item used to Mega Evolve certain Pokémon."
+    "description": "An item used to Mega Evolve certain Pokémon.",
+    "price": null
   },
   {
     "id": "zygardite",
     "external_id": "zygardite",
     "name": "Zygardite",
     "sprite": null,
-    "description": "An item used to Mega Evolve certain Pokémon."
+    "description": "An item used to Mega Evolve certain Pokémon.",
+    "price": null
   },
   {
     "id": "drampanite",
     "external_id": "drampanite",
     "name": "Drampanite",
     "sprite": null,
-    "description": "An item used to Mega Evolve certain Pokémon."
+    "description": "An item used to Mega Evolve certain Pokémon.",
+    "price": null
   },
   {
     "id": "zeraorite",
     "external_id": "zeraorite",
     "name": "Zeraorite",
     "sprite": null,
-    "description": "An item used to Mega Evolve certain Pokémon."
+    "description": "An item used to Mega Evolve certain Pokémon.",
+    "price": null
   },
   {
     "id": "falinksite",
     "external_id": "falinksite",
     "name": "Falinksite",
     "sprite": null,
-    "description": "An item used to Mega Evolve certain Pokémon."
+    "description": "An item used to Mega Evolve certain Pokémon.",
+    "price": null
   },
   {
     "id": "raichunite-x",
     "external_id": "raichunite-x",
     "name": "Raichunite X",
     "sprite": null,
-    "description": "An item used to Mega Evolve certain Pokémon."
+    "description": "An item used to Mega Evolve certain Pokémon.",
+    "price": null
   },
   {
     "id": "raichunite-y",
     "external_id": "raichunite-y",
     "name": "Raichunite Y",
     "sprite": null,
-    "description": "An item used to Mega Evolve certain Pokémon."
+    "description": "An item used to Mega Evolve certain Pokémon.",
+    "price": null
   },
   {
     "id": "chimechite",
     "external_id": "chimechite",
     "name": "Chimechite",
     "sprite": null,
-    "description": "An item used to Mega Evolve certain Pokémon."
+    "description": "An item used to Mega Evolve certain Pokémon.",
+    "price": null
   },
   {
     "id": "absolite-z",
     "external_id": "absolite-z",
     "name": "Absolite Z",
     "sprite": null,
-    "description": "An item used to Mega Evolve certain Pokémon."
+    "description": "An item used to Mega Evolve certain Pokémon.",
+    "price": null
   },
   {
     "id": "staraptite",
     "external_id": "staraptite",
     "name": "Staraptite",
     "sprite": null,
-    "description": "An item used to Mega Evolve certain Pokémon."
+    "description": "An item used to Mega Evolve certain Pokémon.",
+    "price": null
   },
   {
     "id": "garchompite-z",
     "external_id": "garchompite-z",
     "name": "Garchompite Z",
     "sprite": null,
-    "description": "An item used to Mega Evolve certain Pokémon."
+    "description": "An item used to Mega Evolve certain Pokémon.",
+    "price": null
   },
   {
     "id": "lucarionite-z",
     "external_id": "lucarionite-z",
     "name": "Lucarionite Z",
     "sprite": null,
-    "description": "An item used to Mega Evolve certain Pokémon."
+    "description": "An item used to Mega Evolve certain Pokémon.",
+    "price": null
   },
   {
     "id": "golurkite",
     "external_id": "golurkite",
     "name": "Golurkite",
     "sprite": null,
-    "description": "An item used to Mega Evolve certain Pokémon."
+    "description": "An item used to Mega Evolve certain Pokémon.",
+    "price": null
   },
   {
     "id": "meowsticite",
     "external_id": "meowsticite",
     "name": "Meowsticite",
     "sprite": null,
-    "description": "An item used to Mega Evolve certain Pokémon."
+    "description": "An item used to Mega Evolve certain Pokémon.",
+    "price": null
   },
   {
     "id": "crabominite",
     "external_id": "crabominite",
     "name": "Crabominite",
     "sprite": null,
-    "description": "An item used to Mega Evolve certain Pokémon."
+    "description": "An item used to Mega Evolve certain Pokémon.",
+    "price": null
   },
   {
     "id": "golisopite",
     "external_id": "golisopite",
     "name": "Golisopite",
     "sprite": null,
-    "description": "An item used to Mega Evolve certain Pokémon."
+    "description": "An item used to Mega Evolve certain Pokémon.",
+    "price": null
   },
   {
     "id": "magearnite",
     "external_id": "magearnite",
     "name": "Magearnite",
     "sprite": null,
-    "description": "An item used to Mega Evolve certain Pokémon."
+    "description": "An item used to Mega Evolve certain Pokémon.",
+    "price": null
   },
   {
     "id": "scovillainite",
     "external_id": "scovillainite",
     "name": "Scovillainite",
     "sprite": null,
-    "description": "An item used to Mega Evolve certain Pokémon."
+    "description": "An item used to Mega Evolve certain Pokémon.",
+    "price": null
   },
   {
     "id": "baxcalibrite",
     "external_id": "baxcalibrite",
     "name": "Baxcalibrite",
     "sprite": null,
-    "description": "An item used to Mega Evolve certain Pokémon."
+    "description": "An item used to Mega Evolve certain Pokémon.",
+    "price": null
   },
   {
     "id": "tatsugirinite",
     "external_id": "tatsugirinite",
     "name": "Tatsugirinite",
     "sprite": null,
-    "description": "An item used to Mega Evolve certain Pokémon."
+    "description": "An item used to Mega Evolve certain Pokémon.",
+    "price": null
   },
   {
     "id": "glimmoranite",
     "external_id": "glimmoranite",
     "name": "Glimmoranite",
     "sprite": null,
-    "description": "An item used to Mega Evolve certain Pokémon."
+    "description": "An item used to Mega Evolve certain Pokémon.",
+    "price": null
   }
 ]

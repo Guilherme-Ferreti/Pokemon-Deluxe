@@ -24,6 +24,7 @@ final class EvolutionItemSeeder extends Seeder
                 'name'        => $item['name'],
                 'sprite'      => $item['sprite'],
                 'description' => $item['description'],
+                'price'       => $item['price'],
             ];
         }
 

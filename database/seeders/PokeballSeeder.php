@@ -26,6 +26,7 @@ final class PokeballSeeder extends Seeder
                 'description' => $pokeball['description'],
                 'type'        => $pokeball['type'],
                 'catch_rate'  => $pokeball['catch_rate'],
+                'price'       => $pokeball['price'],
             ];
         }
 

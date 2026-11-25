@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('sprite')->nullable();
             $table->string('type');
             $table->decimal('catch_rate', 5, 2)->unsigned();
+            $table->unsignedInteger('price')->nullable();
         });
     }
 
