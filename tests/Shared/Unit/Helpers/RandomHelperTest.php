@@ -45,6 +45,20 @@ describe('real randomness', function () {
 
         expect($picks->diff($items)->all())->toBeEmpty();
     });
+
+    it('picks the given number of different items', function () {
+        $items = ['Bulbasaur', 'Charmander', 'Squirtle', 'Pikachu', 'Eevee'];
+
+        $picks = RandomHelper::pickMany($items, 3);
+
+        expect($picks)->toHaveCount(3)
+            ->and(array_unique($picks))->toHaveCount(3)
+            ->and(array_diff($picks, $items))->toBeEmpty();
+    });
+
+    it('refuses to pick more items than it was given', function () {
+        RandomHelper::pickMany(['Bulbasaur', 'Charmander'], 3);
+    })->throws(InvalidArgumentException::class, 'Cannot pick 3 of 2 items.');
 });
 
 describe('fake', function () {

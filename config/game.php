@@ -35,6 +35,8 @@ return [
     ],
 
     'shop' => [
+        'daily_tm_count' => 10, // TMs for sale each day, the same for every player.
+
         'tm_prices' => [
             'status_move'  => 3000,  // Cost for a TM of a move with no power.
             'by_min_power' => [      // Cost for a TM by the lowest power it needs, checked from the top.

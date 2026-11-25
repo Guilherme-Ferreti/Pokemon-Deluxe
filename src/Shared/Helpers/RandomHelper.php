@@ -67,6 +67,32 @@ final class RandomHelper
     }
 
     /**
+     * @template TItem
+     *
+     * @param  non-empty-array<array-key, TItem>  $items
+     * @return list<TItem>
+     *
+     * @throws InvalidArgumentException
+     */
+    public static function pickMany(array $items, int $count): array
+    {
+        if ($count < 1 || $count > count($items)) {
+            throw new InvalidArgumentException(sprintf('Cannot pick %d of %d items.', $count, count($items)));
+        }
+
+        if (self::$nextFakedValue instanceof Closure) {
+            return (self::$nextFakedValue)();
+        }
+
+        $randomizer = new Randomizer;
+
+        return array_map(
+            fn (int|string $key) => $items[$key],
+            $randomizer->shuffleArray($randomizer->pickArrayKeys($items, $count)),
+        );
+    }
+
+    /**
      * Makes every following call return the next of the given values, in order, whatever method is called.
      * A call after the values run out throws, so a test that rolls more often than expected fails loudly.
      *

@@ -1299,7 +1299,7 @@ Read [03-money-inventory-and-shop.md](03-money-inventory-and-shop.md) first. Mon
 
 ### 3.5 Today's TMs
 
-- [ ] Done
+- [x] Done
 
 **Goal:** 10 TMs for sale each day, the same for every player.
 
@@ -1307,6 +1307,7 @@ Read [03-money-inventory-and-shop.md](03-money-inventory-and-shop.md) first. Mon
 - Migration `017_create_tm_rotations_table.php`: `uuid id`, `date` unique, `json move_ids`. Model `Shared\Models\TmRotation`.
 - `App\Shop\Actions\GetTodaysTmRotationAction::handle(): TmRotation`: returns today's rotation (server date), creating it on the first request of the day with 10 random TMs that have a price (`RandomHelper`), under a lock so two requests can't create two.
 - Config `game.shop.daily_tm_count` (10).
+- As built: TMs with a price are the moves `TmPriceCalculator` prices. The new `RandomHelper::pickMany(items, count)` picks them (distinct items; throws when asked for more than it has). Today's rotation is read without a lock and only created under `App\Shop\Support\LockKeys::tmRotation()`, looking again inside the lock. Lookups use `whereDate`, since SQLite stores the date with a time. `TmRotation` has a factory.
 
 **Tests:** creates one rotation per day (second call returns the same one); 10 distinct moves; no Z-Moves or Dynamax moves; a new day gives a new rotation.
 
