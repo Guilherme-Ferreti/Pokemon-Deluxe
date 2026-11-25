@@ -1526,7 +1526,7 @@ Read [04-pokemon-page.md](04-pokemon-page.md) first. Builds on Spec 1 (`SetActiv
 
 ### 4.4 Teach a TM
 
-- [ ] Done
+- [x] Done
 
 **Goal:** a TM adds a move to the known-moves pool and is used up.
 
@@ -1540,6 +1540,8 @@ Read [04-pokemon-page.md](04-pokemon-page.md) first. Builds on Spec 1 (`SetActiv
 **Tests:** taught and TM used up; fills an empty slot; goes to the pool when slots are full; already known; Z-Move below level 100; TM not owned. Nothing changes when refused.
 
 **Done when:** tests pass.
+
+- As built: `TeachTmAction` takes the same `LockKeys::pokemonActiveMoves()` lock as `SetActiveMoveAction`, so teaching and rearranging moves can't overlap. It refreshes the Pokémon, checks "Pikachu already knows Ice Beam." (`MoveAlreadyKnownException`, `move` key) and "Only level 100 Pokémon can learn TM 900 Breakneck Blitz." (`TmRequirementNotMetException`, `move` key, the level from `game.pokemon.max_level`) before touching anything, then removes one TM and attaches the move in one transaction, so a TM the owner doesn't have rolls everything back. It doesn't check whether the species can learn the move or whether a battle is ongoing: any TM can be taught at any time.
 
 ### 4.5 Boost stone odds
 
