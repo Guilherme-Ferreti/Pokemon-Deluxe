@@ -17,16 +17,11 @@
       </div>
     </div>
     <div
-      class="ml-auto flex flex-wrap items-center justify-end gap-x-4 gap-y-2"
+      class="ml-auto flex flex-wrap items-center justify-center gap-x-4 gap-y-2"
     >
       <span class="text-xs text-muted-foreground">
         You own: {{ item.ownedQuantity.toLocaleString('en-US') }}
       </span>
-      <MoneyAmount
-        class="font-medium"
-        :amount="item.price"
-        :data-test="`shop-item-${item.id}-row__price-indicator`"
-      />
       <ShopItemBuyForm :item="item" />
     </div>
   </div>
@@ -34,7 +29,6 @@
 
 <script setup lang="ts">
 import ItemSprite from '@/shared/components/game/ItemSprite.vue';
-import MoneyAmount from '@/shared/components/game/MoneyAmount.vue';
 import type { BuyableItem } from '../../../types/page-props/ShopIndexPageProps';
 import ShopItemBuyForm from './ShopItemBuyForm.vue';
 

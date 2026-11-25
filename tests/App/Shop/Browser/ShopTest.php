@@ -35,7 +35,7 @@ it('lists the balls with their price and how many the player owns', function () 
 
     visit(route('shop.web.index'))
         ->assertSeeIn('@shop-items-list', 'Ultra Ball')
-        ->assertSeeIn("@shop-item-{$pokeball->id}-row__price-indicator", '₽ 1,200')
+        ->assertSeeIn("@shop-item-{$pokeball->id}-buy-form__buy-button", '₽ 1,200')
         ->assertSeeIn('@shop-items-list', 'You own: 42');
 });
 

@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-wrap items-center justify-end gap-2">
+  <div class="flex flex-wrap items-center justify-center gap-2">
     <InputGroup class="w-32">
       <InputGroupAddon align="inline-start">
         <InputGroupButton

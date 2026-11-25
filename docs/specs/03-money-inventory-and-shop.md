@@ -62,7 +62,7 @@ SHOP                                            ₽ 12,450
 └──────────────────────────────────────────────┘
 ```
 
-- A list, one row per item: icon, name, short effect, price, "You own: X", a quantity picker and Buy.
+- A list, one row per item: icon, name, short effect, "You own: X", a quantity picker and Buy. The Buy button shows the total price, which is the only price on the row.
 - The "Today's TMs" tab shows each TM's type and power, with no countdown to the next rotation.
 - Buy is disabled when the player can't afford it or the stack is full; only a full stack shows a short reason ("Your stack is full").
 - Purchases over ₽ 10,000 ask for confirmation.

@@ -16,7 +16,6 @@
   .item-name { font-weight: 600; }
   .item-buy { display: flex; flex-wrap: wrap; align-items: center; justify-content: flex-end; gap: 8px 12px; margin-left: auto; }
   .owned { font-size: 12px; color: var(--muted-fg); min-width: 72px; }
-  .price-col { min-width: 84px; text-align: right; }
   .buy-col { display: flex; flex-direction: column; align-items: flex-end; gap: 2px; }
   .reason { font-size: 11px; color: var(--destructive); }
   .tm-disc { width: 40px; height: 40px; border-radius: 999px; flex-shrink: 0; border: 3px solid var(--card); box-shadow: 0 0 0 1px var(--border); }
@@ -124,7 +123,6 @@
         '<div class="item-main">' + spriteHtml + '<div class="item-text"><span class="item-name">' + name + '</span><span class="small muted">' + effectHtml + '</span></div></div>' +
         '<div class="item-buy">' +
           '<span class="owned num">You own: ' + owned + '</span>' +
-          '<span class="price-col money">' + fmt(price) + '</span>' +
           '<span class="qty"><button type="button" aria-label="Fewer">−</button><input type="number" min="1" max="9999" value="1" aria-label="Quantity of ' + name + '"><button type="button" aria-label="More">+</button></span>' +
           '<span class="buy-col"><button type="button" class="btn btn-outline buy"></button><span class="reason"></span></span>' +
         '</div>';
