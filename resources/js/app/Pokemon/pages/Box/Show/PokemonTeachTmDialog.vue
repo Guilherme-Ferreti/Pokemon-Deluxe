@@ -132,7 +132,8 @@ import {
   InputGroupAddon,
   InputGroupInput,
 } from '@/shared/components/ui/input-group';
-import { PokemonType } from '@/shared/types/enums';
+import { toPokemonTypeOptions } from '@/shared/lib/utils';
+import type { PokemonType } from '@/shared/types/enums';
 import { route } from '@/shared/types/helpers/route';
 import type { BoxShowPageProps } from '../../../types/page-props/BoxShowPageProps';
 
@@ -150,16 +151,9 @@ const selectedType = ref<PokemonType | null>(null);
 
 const selectedTm = ref<OwnedTm | null>(null);
 
-const ownedTypeOptions = computed(() => {
-  const types = new Set(page.props.tms.map((tm) => tm.type));
-
-  return Object.values(PokemonType)
-    .filter((type) => types.has(type))
-    .map((type) => ({
-      value: type,
-      label: page.props.labels.pokemonType[type],
-    }));
-});
+const ownedTypeOptions = computed(() =>
+  toPokemonTypeOptions(page.props.tms.map((tm) => tm.type)),
+);
 
 const visibleTms = computed(() => {
   const searchTerm = search.value.trim().toLowerCase();

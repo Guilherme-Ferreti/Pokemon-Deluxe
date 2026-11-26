@@ -19,15 +19,13 @@
 </template>
 
 <script setup lang="ts">
-import { usePage } from '@inertiajs/vue3';
-import { computed } from 'vue';
 import AppFilterChipGroup from '@/shared/components/list/AppFilterChipGroup.vue';
+import type { FilterOption } from '@/shared/types';
 import type { PokemonType } from '@/shared/types/enums';
 import type { MoveSortOrder } from '../../../composables/useMoveFilters';
-import type { BoxShowPageProps } from '../../../types/page-props/BoxShowPageProps';
 
-const props = defineProps<{
-  types: PokemonType[];
+defineProps<{
+  typeOptions: FilterOption<PokemonType>[];
   testIdBlock: string;
 }>();
 
@@ -37,17 +35,8 @@ const selectedType = defineModel<PokemonType | null>('selectedType', {
   required: true,
 });
 
-const page = usePage<BoxShowPageProps>();
-
-const sortOptions: { value: MoveSortOrder; label: string }[] = [
+const sortOptions: FilterOption<MoveSortOrder>[] = [
   { value: 'name', label: 'Name' },
   { value: 'power', label: 'Power' },
 ];
-
-const typeOptions = computed(() =>
-  props.types.map((type) => ({
-    value: type,
-    label: page.props.labels.pokemonType[type],
-  })),
-);
 </script>

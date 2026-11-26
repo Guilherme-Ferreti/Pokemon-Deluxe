@@ -2,8 +2,8 @@ import { usePage } from '@inertiajs/vue3';
 import { clsx } from 'clsx';
 import type { ClassValue } from 'clsx';
 import { twMerge } from 'tailwind-merge';
-import type { Paths } from '@/shared/types';
-import { SortDirection } from '@/shared/types/enums';
+import type { FilterOption, Paths } from '@/shared/types';
+import { PokemonType, SortDirection } from '@/shared/types/enums';
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
@@ -94,4 +94,15 @@ const moneyFormatter = new Intl.NumberFormat('en-US');
 
 export function formatMoney(amount: number): string {
   return `₽ ${moneyFormatter.format(amount)}`;
+}
+
+export function toPokemonTypeOptions(
+  types: Iterable<PokemonType>,
+): FilterOption<PokemonType>[] {
+  const presentTypes = new Set(types);
+  const typeLabels = usePage().props.labels.pokemonType;
+
+  return Object.values(PokemonType)
+    .filter((type) => presentTypes.has(type))
+    .map((type) => ({ value: type, label: typeLabels[type] }));
 }

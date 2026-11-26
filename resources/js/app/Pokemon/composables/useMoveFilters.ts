@@ -1,6 +1,7 @@
 import type { Ref } from 'vue';
 import { computed, ref } from 'vue';
-import { PokemonType } from '@/shared/types/enums';
+import { toPokemonTypeOptions } from '@/shared/lib/utils';
+import type { PokemonType } from '@/shared/types/enums';
 import type { PokemonKnownMove } from '../types/page-props/BoxShowPageProps';
 
 export type MoveSortOrder = 'name' | 'power';
@@ -27,11 +28,9 @@ export function useMoveFilters(moves: Ref<PokemonKnownMove[]>) {
 
   const selectedType = ref<PokemonType | null>(null);
 
-  const presentTypes = computed(() => {
-    const types = new Set(moves.value.map((move) => move.type));
-
-    return Object.values(PokemonType).filter((type) => types.has(type));
-  });
+  const typeOptions = computed(() =>
+    toPokemonTypeOptions(moves.value.map((move) => move.type)),
+  );
 
   const visibleMoves = computed(() =>
     moves.value
@@ -49,5 +48,5 @@ export function useMoveFilters(moves: Ref<PokemonKnownMove[]>) {
     selectedType.value = null;
   };
 
-  return { sortOrder, selectedType, presentTypes, visibleMoves, resetFilters };
+  return { sortOrder, selectedType, typeOptions, visibleMoves, resetFilters };
 }

@@ -40,7 +40,7 @@
         v-model:sort-order="sortOrder"
         v-model:selected-type="selectedType"
         test-id-block="pokemon-moves-card"
-        :types="presentTypes"
+        :type-options="typeOptions"
       />
       <ul
         class="grid grid-cols-[repeat(auto-fill,minmax(11rem,1fr))] gap-1.5"
@@ -92,7 +92,7 @@ const page = usePage<BoxShowPageProps>();
 
 const { slots, setActiveMove, moveToPlaceOf } = useActiveMoves();
 
-const { sortOrder, selectedType, presentTypes, visibleMoves } = useMoveFilters(
+const { sortOrder, selectedType, typeOptions, visibleMoves } = useMoveFilters(
   computed(() => page.props.knownMoves),
 );
 

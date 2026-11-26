@@ -40,9 +40,10 @@
 
 <script setup lang="ts" generic="T extends string">
 import { Badge } from '@/shared/components/ui/badge';
+import type { FilterOption } from '@/shared/types';
 
 defineProps<{
-  options: { value: T; label: string }[];
+  options: FilterOption<T>[];
   label: string;
   allLabel?: string;
   visibleLabel?: string;

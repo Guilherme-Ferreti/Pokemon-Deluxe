@@ -25,7 +25,7 @@
         v-model:sort-order="sortOrder"
         v-model:selected-type="selectedType"
         test-id-block="pokemon-swap-move-dialog"
-        :types="presentTypes"
+        :type-options="typeOptions"
       />
       <ul
         class="-mx-1 flex min-h-0 flex-1 scrollbar-thin flex-col gap-1 overflow-y-auto px-1 py-1"
@@ -115,7 +115,7 @@ const candidates = computed(() =>
   page.props.knownMoves.filter((move) => move.slot !== props.slotNumber),
 );
 
-const { sortOrder, selectedType, presentTypes, visibleMoves, resetFilters } =
+const { sortOrder, selectedType, typeOptions, visibleMoves, resetFilters } =
   useMoveFilters(candidates);
 
 watch(

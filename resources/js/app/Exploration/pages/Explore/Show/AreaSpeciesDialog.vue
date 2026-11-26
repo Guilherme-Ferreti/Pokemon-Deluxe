@@ -112,7 +112,8 @@ import {
   InputGroupInput,
 } from '@/shared/components/ui/input-group';
 import { Skeleton } from '@/shared/components/ui/skeleton';
-import { PokemonType } from '@/shared/types/enums';
+import { toPokemonTypeOptions } from '@/shared/lib/utils';
+import type { PokemonType } from '@/shared/types/enums';
 import type { ExploreShowPageProps } from '../../../types/page-props/ExploreShowPageProps';
 
 const page = usePage<ExploreShowPageProps>();
@@ -123,18 +124,13 @@ const selectedType = ref<PokemonType | null>(null);
 
 const areaSpecies = computed(() => page.props.areaSpecies);
 
-const presentTypeOptions = computed(() => {
-  const types = new Set(
-    (areaSpecies.value ?? []).flatMap((species) => species.types),
-  );
-
-  return Object.values(PokemonType)
-    .filter((type) => types.has(type))
-    .map((type) => ({
-      value: type,
-      label: page.props.labels.pokemonType[type],
-    }));
-});
+const presentTypeOptions = computed(() =>
+  toPokemonTypeOptions(
+    (areaSpecies.value ?? []).flatMap((species) =>
+      species.types.filter((type) => type !== undefined),
+    ),
+  ),
+);
 
 const visibleSpecies = computed(() => {
   const searchTerm = search.value.trim().toLowerCase();
