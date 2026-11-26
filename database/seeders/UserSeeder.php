@@ -15,6 +15,7 @@ use Shared\Models\Incubation;
 use Shared\Models\InventoryItem;
 use Shared\Models\Pokeball;
 use Shared\Models\Pokemon;
+use Shared\Models\SpecialItem;
 use Shared\Models\Species;
 use Shared\Models\User;
 use Shared\ValueObjects\IncubatorIndex;
@@ -184,6 +185,12 @@ final class UserSeeder extends Seeder
             ])
             ->toArray();
 
+        $boostStones = [
+            'item_type' => InventoryItemType::SPECIAL_ITEM->value,
+            'item_id'   => SpecialItem::query()->where('slug', 'boost-stone')->firstOrFail()->id,
+            'quantity'  => 1000,
+        ];
+
         $addDefaultAttributes = fn (array $attributes) => [
             ...$attributes,
             'id'         => new InventoryItem()->newUniqueId(),
@@ -194,7 +201,8 @@ final class UserSeeder extends Seeder
 
         $pokeballs      = array_map($addDefaultAttributes, $pokeballs);
         $evolutionItems = array_map($addDefaultAttributes, $evolutionItems);
+        $boostStones    = $addDefaultAttributes($boostStones);
 
-        InventoryItem::insert([...$pokeballs, ...$evolutionItems]);
+        InventoryItem::insert([...$pokeballs, ...$evolutionItems, $boostStones]);
     }
 }
