@@ -14,9 +14,9 @@
       data-test="area-species-dialog"
     >
       <DialogHeader>
-        <DialogTitle
-          >Pokémon found in the {{ page.props.area.label }}</DialogTitle
-        >
+        <DialogTitle>
+          Pokémon found in the {{ page.props.area.label }}
+        </DialogTitle>
         <DialogDescription class="tabular-nums">
           <template v-if="areaSpecies">
             {{ areaSpecies.length.toLocaleString() }} species
@@ -49,7 +49,7 @@
       />
       <ul
         v-if="!areaSpecies"
-        class="grid grid-cols-[repeat(auto-fill,minmax(4.5rem,1fr))] gap-3"
+        class="grid grid-cols-[repeat(auto-fill,minmax(4rem,1fr))] gap-3"
         aria-busy="true"
       >
         <li
@@ -63,7 +63,7 @@
       </ul>
       <ul
         v-else-if="visibleSpecies.length > 0"
-        class="grid grid-cols-[repeat(auto-fill,minmax(4.5rem,1fr))] gap-3"
+        class="grid grid-cols-[repeat(auto-fill,minmax(4rem,1fr))] gap-3"
         data-test="area-species-dialog__species-list"
       >
         <li
