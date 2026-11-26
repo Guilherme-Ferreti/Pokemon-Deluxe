@@ -57,7 +57,9 @@ const props = withDefaults(defineProps<AppInputProps>(), {
   required: false,
 });
 
-const inputId = computed(() => props.id ?? useId());
+const generatedId = useId();
+
+const inputId = computed(() => props.id ?? generatedId);
 
 const model = defineModel<string>();
 

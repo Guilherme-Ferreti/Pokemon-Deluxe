@@ -39,7 +39,9 @@ const props = withDefaults(defineProps<AppCheckboxProps>(), {
   disabled: false,
 });
 
-const inputId = computed(() => props.id ?? useId());
+const generatedId = useId();
+
+const inputId = computed(() => props.id ?? generatedId);
 
 const model = defineModel<boolean | (string | number)[]>({
   default: false,
