@@ -11,14 +11,7 @@
       <IconSparkles />
       Evolve
     </Button>
-    <Button
-      type="button"
-      variant="outline"
-      data-test="pokemon-actions__boost-button"
-    >
-      <IconArrowUp />
-      Boost
-    </Button>
+    <PokemonBoostDialog />
     <Tooltip v-if="pokemon.inParty">
       <TooltipTrigger as-child>
         <span tabindex="-1">
@@ -77,12 +70,7 @@
 
 <script setup lang="ts">
 import { usePage } from '@inertiajs/vue3';
-import {
-  IconArrowUp,
-  IconLock,
-  IconLockOpen,
-  IconSparkles,
-} from '@tabler/icons-vue';
+import { IconLock, IconLockOpen, IconSparkles } from '@tabler/icons-vue';
 import { computed } from 'vue';
 import { Button } from '@/shared/components/ui/button';
 import {
@@ -91,6 +79,7 @@ import {
   TooltipTrigger,
 } from '@/shared/components/ui/tooltip';
 import type { PokemonShowPageProps } from '../../../types/page-props/PokemonShowPageProps';
+import PokemonBoostDialog from './PokemonBoostDialog.vue';
 
 const page = usePage<PokemonShowPageProps>();
 

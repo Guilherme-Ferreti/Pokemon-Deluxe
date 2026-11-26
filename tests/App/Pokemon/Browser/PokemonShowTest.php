@@ -6,6 +6,7 @@ use Shared\Enums\PokemonType;
 use Shared\Models\InventoryItem;
 use Shared\Models\Move;
 use Shared\Models\Pokemon;
+use Shared\Models\SpecialItem;
 use Shared\Models\Species;
 use Shared\Models\User;
 
@@ -126,4 +127,27 @@ it('teaches a tm after confirming', function () {
         ->assertNoJavascriptErrors();
 
     assertDatabaseHas('pokemon_move', ['pokemon_id' => $pokemon->id, 'move_id' => $iceBeam->id]);
+});
+
+it('uses boost stones and shows the result', function () {
+    $user    = User::factory()->create();
+    $pokemon = Pokemon::factory()->for($user)->inBox()->boosted(10)->create();
+
+    InventoryItem::factory()->for($user)->specialItem(SpecialItem::factory()->boostStone()->create())->create(['quantity' => 5]);
+
+    actingAs($user);
+
+    visit(route('pokemon.web.show', $pokemon))
+        ->click('@pokemon-boost-dialog__open-button')
+        ->assertSeeIn('@pokemon-boost-dialog__next-stone-text', '+10 → +11, always works')
+        ->clear('@pokemon-boost-dialog__stone-count-input')
+        ->type('@pokemon-boost-dialog__stone-count-input', '3')
+        ->click('@pokemon-boost-dialog__submit-button')
+        ->assertSeeIn('@pokemon-boost-dialog__new-boost-indicator', '+13')
+        ->assertSeeIn('@pokemon-boost-dialog__summary-text', 'Used 3 stones: 3 worked, 0 failed. 2 stones left.')
+        ->click('@pokemon-boost-dialog__done-button')
+        ->assertSeeIn('@pokemon-hero__boost-indicator', 'Boost +13')
+        ->assertNoJavascriptErrors();
+
+    expect($pokemon->fresh()->boost)->toBe(13);
 });

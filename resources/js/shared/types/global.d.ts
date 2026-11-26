@@ -48,6 +48,13 @@ declare module '@inertiajs/core' {
         title: string;
         message: string;
       };
+      boostResult?: {
+        stonesUsed: number;
+        successes: number;
+        failures: number;
+        boostBefore: number;
+        boostAfter: number;
+      };
     };
   }
 }

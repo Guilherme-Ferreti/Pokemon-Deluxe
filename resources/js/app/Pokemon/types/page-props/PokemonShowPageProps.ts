@@ -80,5 +80,10 @@ export type PokemonShowPageProps = {
     isKnown: boolean;
     needsMaxLevel: boolean;
   })[];
-  boostStones: { quantity: number; failureChance: number | null };
+  boostStones: {
+    quantity: number;
+    failureChance: number | null;
+    maxBoost: number;
+    safeUntil: number;
+  };
 };
