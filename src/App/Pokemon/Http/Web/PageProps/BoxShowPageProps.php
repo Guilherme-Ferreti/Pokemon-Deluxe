@@ -18,7 +18,7 @@ use Shared\Models\Pokemon;
 use Shared\Models\SpecialItem;
 use Shared\Models\SpeciesEvolution;
 
-final readonly class PokemonShowPageProps implements ProvidesInertiaProperties
+final readonly class BoxShowPageProps implements ProvidesInertiaProperties
 {
     public function __construct(private Pokemon $pokemon) {}
 

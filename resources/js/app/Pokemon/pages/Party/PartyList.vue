@@ -9,7 +9,7 @@
         :key="pokemon.id"
         class="party-card__pokemon-slot"
         :data-test="`party-list__pokemon-${pokemon.id}-link`"
-        :href="route('pokemon.web.show', { pokemon: pokemon.id })"
+        :href="route('pokemon.web.box.show', { pokemon: pokemon.id })"
       >
         <img
           loading="lazy"

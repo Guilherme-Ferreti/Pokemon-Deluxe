@@ -30,14 +30,14 @@ import {
 } from '@/shared/components/ui/tooltip';
 import type {
   PokemonMove,
-  PokemonShowPageProps,
-} from '../../../types/page-props/PokemonShowPageProps';
+  BoxShowPageProps,
+} from '../../../types/page-props/BoxShowPageProps';
 
 const props = defineProps<{
   move: PokemonMove;
 }>();
 
-const page = usePage<PokemonShowPageProps>();
+const page = usePage<BoxShowPageProps>();
 
 const hasStab = computed(
   () =>

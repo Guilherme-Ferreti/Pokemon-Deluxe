@@ -125,10 +125,10 @@ import {
   TooltipContent,
   TooltipTrigger,
 } from '@/shared/components/ui/tooltip';
-import type { PokemonShowPageProps } from '../../../types/page-props/PokemonShowPageProps';
+import type { BoxShowPageProps } from '../../../types/page-props/BoxShowPageProps';
 import PokemonActions from './PokemonActions.vue';
 
-const page = usePage<PokemonShowPageProps>();
+const page = usePage<BoxShowPageProps>();
 
 const pokemon = computed(() => page.props.pokemon);
 

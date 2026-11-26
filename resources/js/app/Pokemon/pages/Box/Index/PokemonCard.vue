@@ -33,7 +33,7 @@
                 <AppNavLink
                   title="View"
                   data-test="pokemon-card__view-pokemon-link"
-                  :url="route('pokemon.web.show', { pokemon: pokemon.id })"
+                  :url="route('pokemon.web.box.show', { pokemon: pokemon.id })"
                   :icon="IconEye"
                 />
               </DropdownMenuItem>

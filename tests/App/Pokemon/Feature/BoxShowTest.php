@@ -20,7 +20,7 @@ use function Pest\Laravel\actingAs;
 use function Pest\Laravel\get;
 
 it('redirects guests to login', function () {
-    get(route('pokemon.web.show', Pokemon::factory()->create()))
+    get(route('pokemon.web.box.show', Pokemon::factory()->create()))
         ->assertRedirectToRoute('auth.web.login.create');
 });
 
@@ -37,10 +37,10 @@ it('loads the pokemon page with expected structure', function () {
     ]);
 
     actingAs($user)
-        ->get(route('pokemon.web.show', $pokemon))
+        ->get(route('pokemon.web.box.show', $pokemon))
         ->assertSuccessful()
         ->assertInertia(fn (Assert $page) => $page
-            ->component('Pokemon/pages/Pokemon/Show/index')
+            ->component('Pokemon/pages/Box/Show/index')
             ->where('pokemon.id', $pokemon->id)
             ->where('pokemon.name', 'Shiny Charmeleon')
             ->where('pokemon.frontSprite', $pokemon->getDisplayFrontSprite())
@@ -74,7 +74,7 @@ it('has the active moves by slot and every known move', function () {
     $pokemon->knownMoves()->attach([$slash->id => ['slot' => 2], $ember->id => ['slot' => 1], $growl->id => ['slot' => null]]);
 
     actingAs($user)
-        ->get(route('pokemon.web.show', $pokemon))
+        ->get(route('pokemon.web.box.show', $pokemon))
         ->assertInertia(fn (Assert $page) => $page
             ->where('activeMoves', [
                 ['slot' => 1, 'move' => ['id' => $ember->id, 'name' => 'Ember', 'type' => 'fire', 'power' => 40, 'category' => 'damage', 'isZMove' => false, 'isDynamaxMove' => false]],
@@ -98,7 +98,7 @@ it('has each evolution option with its unmet requirement', function () {
     InventoryItem::factory()->for($user)->evolutionItem($waterStone)->create();
 
     actingAs($user)
-        ->get(route('pokemon.web.show', $pokemon))
+        ->get(route('pokemon.web.box.show', $pokemon))
         ->assertInertia(fn (Assert $page) => $page
             ->has('evolutionOptions', 2)
             ->where('evolutionOptions.0.id', $politoed->id)
@@ -129,7 +129,7 @@ it('has the owned tms and boost stones', function () {
     InventoryItem::factory()->for($user)->specialItem(SpecialItem::factory()->boostStone()->create())->create(['quantity' => 37]);
 
     actingAs($user)
-        ->get(route('pokemon.web.show', $pokemon))
+        ->get(route('pokemon.web.box.show', $pokemon))
         ->assertInertia(fn (Assert $page) => $page
             ->has('tms', 3)
             ->where('tms.0.tmName', 'TM 047 Earthquake')
@@ -147,7 +147,7 @@ it('has no next level or next boost at the max', function () {
     $pokemon = Pokemon::factory()->for($user)->boosted(100)->create(['level' => 100]);
 
     actingAs($user)
-        ->get(route('pokemon.web.show', $pokemon))
+        ->get(route('pokemon.web.box.show', $pokemon))
         ->assertInertia(fn (Assert $page) => $page
             ->where('pokemon.experience', null)
             ->where('boostStones', ['quantity' => 0, 'failureChance' => null, 'maxBoost' => 100, 'safeUntil' => 20])
@@ -156,6 +156,6 @@ it('has no next level or next boost at the max', function () {
 
 it("gives 404 for another player's pokemon", function () {
     actingAs(User::factory()->create())
-        ->get(route('pokemon.web.show', Pokemon::factory()->create()))
+        ->get(route('pokemon.web.box.show', Pokemon::factory()->create()))
         ->assertNotFound();
 });

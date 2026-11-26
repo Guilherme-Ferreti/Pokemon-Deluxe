@@ -112,7 +112,7 @@ One name per idea, used everywhere: specs, code, database, tests and UI. When yo
 | Key item | `SpecialItemCategory::KEY_ITEM` | Items that are switched on, like the XP Share (`xp-share`). |
 | Earned only | price is `null` | Cannot be bought or sold to the shop; can be traded. |
 | Lock | `is_locked`, `SetPokemonLockAction` | Locked Pokémon can't be released or traded. |
-| Pokémon page | `pokemon.web.show`, `PokemonController@show`, `PokemonShowPageProps`, `evolutionOptions`, `unmetRequirement`, `boostStones.failureChance` | One owned Pokémon's page, at `/your-pokemon/{pokemon}`; owner only. |
+| Pokémon page | `pokemon.web.box.show`, `BoxController@show`, `BoxShowPageProps` (page `Pokemon::Box/Show`), `evolutionOptions`, `unmetRequirement`, `boostStones.failureChance` | One owned Pokémon's page, at `/your-pokemon/{pokemon}`; owner only. |
 | Pokémon page parts | `PokemonHero`, `PokemonActions`, `PokemonStatsCard`, `PokemonMovesCard`, `PokemonMoveMeta`, `PokemonSwapMoveDialog`, `PokemonTeachTmDialog`, `PokemonBoostDialog` | The Pokémon page's header, action buttons, stats card, moves card and their dialogs. |
 | Party changes | `AddToPartyAction`, `RemoveFromPartyAction`, `SwapPartyPokemonAction`, `PartyFullException`, `PartyCannotBeEmptyException`, `PokemonAlreadyInPartyException`, `PokemonNotInPartyException` | Move a Pokémon between the party and the Box; refused during a battle. |
 | Release | `ReleasePokemonAction`, `PokemonLockedException` | Permanent; gives nothing back. |

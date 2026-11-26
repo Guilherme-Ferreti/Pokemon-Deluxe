@@ -30,9 +30,9 @@ it('uses boost stones and flashes the result', function () {
     RandomHelper::fake([true, false, true]);
 
     actingAs($user)
-        ->from(route('pokemon.web.show', $pokemon))
+        ->from(route('pokemon.web.box.show', $pokemon))
         ->post(route('pokemon.web.boost', $pokemon), ['max_stones' => 3])
-        ->assertRedirect(route('pokemon.web.show', $pokemon))
+        ->assertRedirect(route('pokemon.web.box.show', $pokemon))
         ->assertInertiaFlash('boostResult', [
             'stonesUsed'  => 3,
             'successes'   => 2,
@@ -54,7 +54,7 @@ it('stops at the target boost', function () {
     RandomHelper::fake([true, true]);
 
     actingAs($user)
-        ->from(route('pokemon.web.show', $pokemon))
+        ->from(route('pokemon.web.box.show', $pokemon))
         ->post(route('pokemon.web.boost', $pokemon), ['max_stones' => 50, 'target_boost' => 12])
         ->assertInertiaFlash('boostResult.stonesUsed', 2)
         ->assertInertiaFlash('boostResult.boostAfter', 12);
@@ -67,9 +67,9 @@ it('warns when the player owns no boost stones', function () {
     SpecialItem::factory()->boostStone()->create();
 
     actingAs($user)
-        ->from(route('pokemon.web.show', $pokemon))
+        ->from(route('pokemon.web.box.show', $pokemon))
         ->post(route('pokemon.web.boost', $pokemon), ['max_stones' => 1])
-        ->assertRedirect(route('pokemon.web.show', $pokemon))
+        ->assertRedirect(route('pokemon.web.box.show', $pokemon))
         ->assertInertiaFlash('toast.type', 'warning')
         ->assertInertiaFlashMissing('boostResult');
 });
@@ -81,7 +81,7 @@ it('warns when the pokemon is at the max boost', function () {
     InventoryItem::factory()->for($user)->specialItem(SpecialItem::factory()->boostStone()->create())->create(['quantity' => 5]);
 
     actingAs($user)
-        ->from(route('pokemon.web.show', $pokemon))
+        ->from(route('pokemon.web.box.show', $pokemon))
         ->post(route('pokemon.web.boost', $pokemon), ['max_stones' => 1])
         ->assertInertiaFlash('toast.type', 'warning');
 });
@@ -91,7 +91,7 @@ it('validates the request', function (array $data, array $invalidFields) {
     $pokemon = Pokemon::factory()->for($user)->create();
 
     actingAs($user)
-        ->from(route('pokemon.web.show', $pokemon))
+        ->from(route('pokemon.web.box.show', $pokemon))
         ->post(route('pokemon.web.boost', $pokemon), $data)
         ->assertSessionHasErrors($invalidFields);
 })->with([

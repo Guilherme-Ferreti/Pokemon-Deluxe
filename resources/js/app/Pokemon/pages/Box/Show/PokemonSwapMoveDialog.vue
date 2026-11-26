@@ -81,7 +81,7 @@ import {
   DialogContent,
   DialogTitle,
 } from '@/shared/components/ui/dialog';
-import type { PokemonShowPageProps } from '../../../types/page-props/PokemonShowPageProps';
+import type { BoxShowPageProps } from '../../../types/page-props/BoxShowPageProps';
 import PokemonMoveMeta from './PokemonMoveMeta.vue';
 
 const props = defineProps<{
@@ -93,7 +93,7 @@ const emit = defineEmits<{
   close: [];
 }>();
 
-const page = usePage<PokemonShowPageProps>();
+const page = usePage<BoxShowPageProps>();
 
 const currentMove = computed(
   () =>

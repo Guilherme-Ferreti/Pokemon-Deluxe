@@ -235,13 +235,13 @@ import {
 import { Input } from '@/shared/components/ui/input';
 import { RadioGroup, RadioGroupItem } from '@/shared/components/ui/radio-group';
 import { route } from '@/shared/types/helpers/route';
-import type { PokemonShowPageProps } from '../../../types/page-props/PokemonShowPageProps';
+import type { BoxShowPageProps } from '../../../types/page-props/BoxShowPageProps';
 
 const DEFAULT_STONE_COUNT = 20;
 
 const DEFAULT_BOOST_STEP = 10;
 
-const page = usePage<PokemonShowPageProps>();
+const page = usePage<BoxShowPageProps>();
 
 const pokemon = computed(() => page.props.pokemon);
 

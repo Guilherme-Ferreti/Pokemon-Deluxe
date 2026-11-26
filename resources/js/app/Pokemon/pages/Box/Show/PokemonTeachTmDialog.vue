@@ -172,13 +172,13 @@ import {
 } from '@/shared/components/ui/input-group';
 import { PokemonType } from '@/shared/types/enums';
 import { route } from '@/shared/types/helpers/route';
-import type { PokemonShowPageProps } from '../../../types/page-props/PokemonShowPageProps';
+import type { BoxShowPageProps } from '../../../types/page-props/BoxShowPageProps';
 
-type OwnedTm = PokemonShowPageProps['tms'][number];
+type OwnedTm = BoxShowPageProps['tms'][number];
 
 const MAX_ACTIVE_MOVES = 4;
 
-const page = usePage<PokemonShowPageProps>();
+const page = usePage<BoxShowPageProps>();
 
 const isOpen = ref(false);
 

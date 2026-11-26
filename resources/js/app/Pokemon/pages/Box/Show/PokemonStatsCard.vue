@@ -42,11 +42,11 @@ import {
   TooltipTrigger,
 } from '@/shared/components/ui/tooltip';
 import type {
-  PokemonShowPageProps,
+  BoxShowPageProps,
   PokemonStat,
-} from '../../../types/page-props/PokemonShowPageProps';
+} from '../../../types/page-props/BoxShowPageProps';
 
-const page = usePage<PokemonShowPageProps>();
+const page = usePage<BoxShowPageProps>();
 
 const formatMultiplier = (multiplier: number) =>
   `x${multiplier.toLocaleString('en-US', { maximumFractionDigits: 2 })}`;

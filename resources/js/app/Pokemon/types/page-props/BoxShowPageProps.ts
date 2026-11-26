@@ -43,7 +43,7 @@ export type PokemonEvolutionOption = {
   unmetRequirement: string | null;
 };
 
-export type PokemonShowPageProps = {
+export type BoxShowPageProps = {
   pokemon: {
     id: string;
     name: string;

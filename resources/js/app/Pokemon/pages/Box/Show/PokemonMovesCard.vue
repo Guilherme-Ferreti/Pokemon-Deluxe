@@ -163,14 +163,14 @@ import {
   CardTitle,
 } from '@/shared/components/ui/card';
 import { route } from '@/shared/types/helpers/route';
-import type { PokemonShowPageProps } from '../../../types/page-props/PokemonShowPageProps';
+import type { BoxShowPageProps } from '../../../types/page-props/BoxShowPageProps';
 import PokemonMoveMeta from './PokemonMoveMeta.vue';
 import PokemonSwapMoveDialog from './PokemonSwapMoveDialog.vue';
 import PokemonTeachTmDialog from './PokemonTeachTmDialog.vue';
 
 const MAX_ACTIVE_MOVES = 4;
 
-const page = usePage<PokemonShowPageProps>();
+const page = usePage<BoxShowPageProps>();
 
 const isSaving = ref(false);
 

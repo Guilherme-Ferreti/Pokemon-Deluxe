@@ -19,7 +19,7 @@ it('loads the pokemon page without errors', function () {
 
     actingAs($user);
 
-    visit(route('pokemon.web.show', $pokemon))
+    visit(route('pokemon.web.box.show', $pokemon))
         ->assertNoSmoke()
         ->assertNoAccessibilityIssues();
 });
@@ -31,7 +31,7 @@ it("shows the pokemon's name, level, boost and stats", function () {
 
     actingAs($user);
 
-    visit(route('pokemon.web.show', $pokemon))
+    visit(route('pokemon.web.box.show', $pokemon))
         ->assertSeeIn('@pokemon-hero__name', 'Shiny Charmeleon')
         ->assertSeeIn('@pokemon-hero__level-indicator', 'Lv 36')
         ->assertSeeIn('@pokemon-hero__boost-indicator', 'Boost +14')
@@ -50,7 +50,7 @@ it('says a level 100 pokemon is at the max level', function () {
 
     actingAs($user);
 
-    visit(route('pokemon.web.show', $pokemon))
+    visit(route('pokemon.web.box.show', $pokemon))
         ->assertSeeIn('@pokemon-hero__experience-indicator', 'Max level');
 });
 
@@ -60,7 +60,7 @@ it('blocks releasing a locked pokemon and removing the last party pokemon', func
 
     actingAs($user);
 
-    visit(route('pokemon.web.show', $pokemon))
+    visit(route('pokemon.web.box.show', $pokemon))
         ->assertVisible('@pokemon-hero__locked-indicator')
         ->assertButtonDisabled('@pokemon-actions__release-button')
         ->assertButtonDisabled('@pokemon-actions__remove-from-party-button');
@@ -76,7 +76,7 @@ it('swaps a known move into a slot', function () {
 
     actingAs($user);
 
-    visit(route('pokemon.web.show', $pokemon))
+    visit(route('pokemon.web.box.show', $pokemon))
         ->assertSeeIn('@pokemon-moves-card__slot-1-item', 'Tackle')
         ->click('@pokemon-moves-card__slot-1-swap-button')
         ->assertSeeIn('@pokemon-swap-move-dialog', 'Replace Tackle')
@@ -98,7 +98,7 @@ it('reorders the active moves with the arrows', function () {
 
     actingAs($user);
 
-    visit(route('pokemon.web.show', $pokemon))
+    visit(route('pokemon.web.box.show', $pokemon))
         ->assertButtonDisabled('@pokemon-moves-card__slot-1-up-button')
         ->click('@pokemon-moves-card__slot-2-up-button')
         ->wait(1)
@@ -118,7 +118,7 @@ it('teaches a tm after confirming', function () {
 
     actingAs($user);
 
-    visit(route('pokemon.web.show', $pokemon))
+    visit(route('pokemon.web.box.show', $pokemon))
         ->click('@pokemon-teach-tm-dialog__open-button')
         ->fill('@pokemon-teach-tm-dialog__search-input', '395')
         ->click("@pokemon-teach-tm-dialog__tm-{$iceBeam->id}-button")
@@ -140,7 +140,7 @@ it('uses boost stones and shows the result', function () {
 
     actingAs($user);
 
-    visit(route('pokemon.web.show', $pokemon))
+    visit(route('pokemon.web.box.show', $pokemon))
         ->click('@pokemon-boost-dialog__open-button')
         ->assertSeeIn('@pokemon-boost-dialog__next-stone-text', '+10 → +11, always works')
         ->clear('@pokemon-boost-dialog__stone-count-input')

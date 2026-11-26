@@ -41,7 +41,7 @@ it('navigates to the pokemon page from a party slot', function () {
 
     visit(route('pokemon.web.party'))
         ->click("@party-list__pokemon-{$pokemon->id}-link")
-        ->assertPathIs(route('pokemon.web.show', $pokemon, absolute: false))
+        ->assertPathIs(route('pokemon.web.box.show', $pokemon, absolute: false))
         ->assertSeeIn('@pokemon-hero__name', $pokemon->getDisplayName())
         ->assertNoSmoke();
 });

@@ -28,10 +28,10 @@ type RouteParameters = {
   'inventory.web.index': never;
   'pokemon.web.party': never;
   'pokemon.web.box.index': never;
-  'pokemon.web.nursery': never;
-  'pokemon.web.show': {
+  'pokemon.web.box.show': {
     pokemon: string | number;
   };
+  'pokemon.web.nursery': never;
   'pokemon.web.set-active-move': {
     pokemon: string | number;
   };
@@ -115,8 +115,8 @@ const routes = {
   'inventory.web.index': 'inventory',
   'pokemon.web.party': 'your-pokemon/party',
   'pokemon.web.box.index': 'your-pokemon/box',
+  'pokemon.web.box.show': 'your-pokemon/box/{pokemon}',
   'pokemon.web.nursery': 'your-pokemon/nursery',
-  'pokemon.web.show': 'your-pokemon/{pokemon}',
   'pokemon.web.set-active-move': 'your-pokemon/{pokemon}/active-moves',
   'pokemon.web.reorder-active-moves':
     'your-pokemon/{pokemon}/active-moves/order',

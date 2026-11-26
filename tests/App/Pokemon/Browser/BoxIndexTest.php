@@ -284,7 +284,7 @@ it('navigates to the pokemon page from the pokemon dropdown', function () {
     visit(route('pokemon.web.box.index'))
         ->click('@pokemon-card__open-dropdown-menu-button')
         ->click('@pokemon-card__view-pokemon-link')
-        ->assertPathIs(route('pokemon.web.show', $pokemon, absolute: false))
+        ->assertPathIs(route('pokemon.web.box.show', $pokemon, absolute: false))
         ->assertSeeIn('@pokemon-hero__name', $pokemon->getDisplayName())
         ->assertNoSmoke();
 });

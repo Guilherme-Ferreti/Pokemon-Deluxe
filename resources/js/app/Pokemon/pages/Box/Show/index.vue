@@ -12,18 +12,16 @@
 <script setup lang="ts">
 import { Head, setLayoutProps, usePage } from '@inertiajs/vue3';
 import { route } from '@/shared/types/helpers/route';
-import type { PokemonShowPageProps } from '../../../types/page-props/PokemonShowPageProps';
+import type { BoxShowPageProps } from '../../../types/page-props/BoxShowPageProps';
 import PokemonHero from './PokemonHero.vue';
 import PokemonMovesCard from './PokemonMovesCard.vue';
 import PokemonStatsCard from './PokemonStatsCard.vue';
 
-const page = usePage<PokemonShowPageProps>();
+const page = usePage<BoxShowPageProps>();
 
 setLayoutProps({
   breadcrumbs: [
-    page.props.pokemon.inParty
-      ? { name: 'Party', href: route('pokemon.web.party') }
-      : { name: 'Box', href: route('pokemon.web.box.index') },
+    { name: 'Box', href: route('pokemon.web.box.index') },
     { name: page.props.pokemon.name },
   ],
 });

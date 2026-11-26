@@ -32,9 +32,9 @@ it('puts a known move in an active slot', function () {
     $pokemon->knownMoves()->attach([$tackle->id => ['slot' => 1], $growl->id => ['slot' => null]]);
 
     actingAs($user)
-        ->from(route('pokemon.web.show', $pokemon))
+        ->from(route('pokemon.web.box.show', $pokemon))
         ->post(route('pokemon.web.set-active-move', $pokemon), ['move_id' => $growl->id, 'slot' => 1])
-        ->assertRedirect(route('pokemon.web.show', $pokemon));
+        ->assertRedirect(route('pokemon.web.box.show', $pokemon));
 
     assertDatabaseHas('pokemon_move', ['pokemon_id' => $pokemon->id, 'move_id' => $growl->id, 'slot' => 1]);
     assertDatabaseHas('pokemon_move', ['pokemon_id' => $pokemon->id, 'move_id' => $tackle->id, 'slot' => null]);
@@ -45,9 +45,9 @@ it('warns when the move is not known', function () {
     $pokemon = Pokemon::factory()->for($user)->create();
 
     actingAs($user)
-        ->from(route('pokemon.web.show', $pokemon))
+        ->from(route('pokemon.web.box.show', $pokemon))
         ->post(route('pokemon.web.set-active-move', $pokemon), ['move_id' => Move::factory()->create()->id, 'slot' => 1])
-        ->assertRedirect(route('pokemon.web.show', $pokemon))
+        ->assertRedirect(route('pokemon.web.box.show', $pokemon))
         ->assertInertiaFlash('toast.type', 'warning');
 });
 
@@ -56,7 +56,7 @@ it('validates the active move', function (Closure $makeData, array $invalidField
     $pokemon = Pokemon::factory()->for($user)->create();
 
     actingAs($user)
-        ->from(route('pokemon.web.show', $pokemon))
+        ->from(route('pokemon.web.box.show', $pokemon))
         ->post(route('pokemon.web.set-active-move', $pokemon), $makeData())
         ->assertSessionHasErrors($invalidFields);
 })->with([
@@ -75,9 +75,9 @@ it('reorders the active moves', function () {
     $pokemon->knownMoves()->attach([$tackle->id => ['slot' => 1], $ember->id => ['slot' => 2]]);
 
     actingAs($user)
-        ->from(route('pokemon.web.show', $pokemon))
+        ->from(route('pokemon.web.box.show', $pokemon))
         ->post(route('pokemon.web.reorder-active-moves', $pokemon), ['move_ids' => [$ember->id, $tackle->id]])
-        ->assertRedirect(route('pokemon.web.show', $pokemon));
+        ->assertRedirect(route('pokemon.web.box.show', $pokemon));
 
     assertDatabaseHas('pokemon_move', ['pokemon_id' => $pokemon->id, 'move_id' => $ember->id, 'slot' => 1]);
     assertDatabaseHas('pokemon_move', ['pokemon_id' => $pokemon->id, 'move_id' => $tackle->id, 'slot' => 2]);
@@ -88,7 +88,7 @@ it('validates the new order', function (Closure $makeData) {
     $pokemon = Pokemon::factory()->for($user)->create();
 
     actingAs($user)
-        ->from(route('pokemon.web.show', $pokemon))
+        ->from(route('pokemon.web.box.show', $pokemon))
         ->post(route('pokemon.web.reorder-active-moves', $pokemon), $makeData())
         ->assertSessionHasErrors();
 })->with([
@@ -106,9 +106,9 @@ it('teaches a tm and says what was learned', function () {
     $stack      = InventoryItem::factory()->for($user)->tm($iceBeam)->create(['quantity' => 1]);
 
     actingAs($user)
-        ->from(route('pokemon.web.show', $pokemon))
+        ->from(route('pokemon.web.box.show', $pokemon))
         ->post(route('pokemon.web.teach-tm', $pokemon), ['move_id' => $iceBeam->id])
-        ->assertRedirect(route('pokemon.web.show', $pokemon))
+        ->assertRedirect(route('pokemon.web.box.show', $pokemon))
         ->assertInertiaFlash('toast.type', 'success')
         ->assertInertiaFlash('toast.title', 'Move learned')
         ->assertInertiaFlash('toast.message', 'Charmeleon learned Ice Beam.');
@@ -126,9 +126,9 @@ it('warns when the tm cannot be taught', function () {
     InventoryItem::factory()->for($user)->tm($zMove)->create(['quantity' => 1]);
 
     actingAs($user)
-        ->from(route('pokemon.web.show', $pokemon))
+        ->from(route('pokemon.web.box.show', $pokemon))
         ->post(route('pokemon.web.teach-tm', $pokemon), ['move_id' => $zMove->id])
-        ->assertRedirect(route('pokemon.web.show', $pokemon))
+        ->assertRedirect(route('pokemon.web.box.show', $pokemon))
         ->assertInertiaFlash('toast.type', 'warning');
 });
 
@@ -137,7 +137,7 @@ it('validates the tm', function () {
     $pokemon = Pokemon::factory()->for($user)->create();
 
     actingAs($user)
-        ->from(route('pokemon.web.show', $pokemon))
+        ->from(route('pokemon.web.box.show', $pokemon))
         ->post(route('pokemon.web.teach-tm', $pokemon), ['move_id' => fake()->uuid()])
         ->assertSessionHasErrors(['move_id']);
 });

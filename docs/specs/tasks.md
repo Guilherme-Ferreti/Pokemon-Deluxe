@@ -1585,8 +1585,8 @@ Read [04-pokemon-page.md](04-pokemon-page.md) first. Builds on Spec 1 (`SetActiv
 **Goal:** the data for the page.
 
 **Build:**
-- Route `GET /your-pokemon/{pokemon}` named `pokemon.web.show` → `App\Pokemon\Http\Web\Controllers\PokemonController@show`. Only the owner may open it (404 for anyone else).
-- `App\Pokemon\Http\Web\PageProps\PokemonShowPageProps`:
+- Route `GET /your-pokemon/box/{pokemon}` named `pokemon.web.box.show` → `App\Pokemon\Http\Web\Controllers\BoxController@show`. Only the owner may open it (404 for anyone else).
+- `App\Pokemon\Http\Web\PageProps\BoxShowPageProps`:
   - Header: species, types, gender, shiny, level, boost, XP progress to the next level, ball, catch date, `is_locked`, `in_party`, party size.
   - Stats: HP, Attack and Defense from `getStats()`, each with its parts (level, boost, shiny) for the hover breakdown.
   - Moves: active moves by slot and the known-moves pool (name, type, power, category).
@@ -1598,14 +1598,14 @@ Read [04-pokemon-page.md](04-pokemon-page.md) first. Builds on Spec 1 (`SetActiv
 
 **Done when:** the page loads with all props.
 
-- As built: the route takes a UUID (`whereUuid`) and `PokemonController@show` loads it through `currentUser()->pokemon()->findOrFail()`, so another player's Pokémon is a 404. `PokemonShowPageProps` has:
+- As built: the route takes a UUID (`whereUuid`) and `BoxController@show` (renders `Pokemon::Box/Show`, so the Box has `Index` and `Show` pages) loads it through `currentUser()->pokemon()->findOrFail()`, so another player's Pokémon is a 404. `BoxShowPageProps` has:
   - `pokemon`: id, display `name`, `frontSprite`, `species` (id, slug, name, types), `gender`, `isShiny`, `level`, `boost`, `experience` (`{current, needed}` toward the next level, null at level 100), `pokeball` (name, sprite), `caughtAt` (ISO 8601), `isLocked`, `inParty`, `partySize`.
   - `stats`: `hp`, `attack` and `damageTaken`, each `{value, base, boostMultiplier, shinyMultiplier}`: `base` is the stat at that level with no boost or shine, and `shinyMultiplier` is null for a regular Pokémon. `StatsCalculator`'s `hpMultiplier()`, `damageDoneMultiplier()` and `damageTakenMultiplier()` are now public for this.
   - `activeMoves` (`{slot, move}` by slot) and `knownMoves` (every known move by name, each with its `slot` or null); a move is `{id, name, type, power, category}`.
   - `evolutionOptions`, sorted by target name: target `species` (id, slug, name, portrait, types), `minLevel`, `gender`, `evolutionItem` (id, name, sprite, `isOwned`) or null, `isAllowed` and `unmetRequirement` (the `EvolutionRequirement::reason()` text or null).
   - `tms`: the owned TMs by code, each a move plus `tmName`, `quantity`, `isKnown` and `needsMaxLevel` (Z-Move and Dynamax).
   - `boostStones`: `{quantity, failureChance}`, the chance null at +100.
-- The page `resources/js/app/Pokemon/pages/Pokemon/Show/index.vue` is a placeholder (the title and level) until task 4.8. The Box card's "View" (`pokemon-card__view-pokemon-link`) and each Party slot (now a `Link`, `party-list__pokemon-{id}-link`) open it.
+- The page `resources/js/app/Pokemon/pages/Box/Show/index.vue` is a placeholder (the title and level) until task 4.8. The Box card's "View" (`pokemon-card__view-pokemon-link`) and each Party slot (now a `Link`, `party-list__pokemon-{id}-link`) open it.
 
 ### 4.8 Pokémon page: header and stats
 
@@ -1615,7 +1615,7 @@ Read [04-pokemon-page.md](04-pokemon-page.md) first. Builds on Spec 1 (`SetActiv
 
 **Mock-up:** `docs/mockups/pokemon.html` (state "Overview")
 
-**Build:** page `resources/js/app/Pokemon/pages/Pokemon/Show/index.vue` with the header (portrait, name, badges, XP bar, catch details), the action buttons (wired in later tasks) and the stats card.
+**Build:** page `resources/js/app/Pokemon/pages/Box/Show/index.vue` with the header (portrait, name, badges, XP bar, catch details), the action buttons (wired in later tasks) and the stats card.
 
 **UI suggestions** (ideas, not requirements):
 - `AppBreadcrumbs` (Box › Shiny Charmeleon), then a header `Card`: large `SpeciesSprite` on the left, details on the right; stacked on phones.
@@ -1629,7 +1629,7 @@ Read [04-pokemon-page.md](04-pokemon-page.md) first. Builds on Spec 1 (`SetActiv
 
 **Done when:** the page matches the mock-up's overview.
 
-- As built: `index.vue` sets the breadcrumbs (Party or Box, by `inParty`, then the Pokémon's name) and stacks `PokemonHero` and `PokemonStatsCard` (the stats card takes the left column of a `2fr 3fr` grid from `@3xl/main-content`, leaving the right for the moves in 4.9). Like the Pokédex's `SpeciesHero`, the hero holds the page's `h1` instead of an `AppPageHeader`, as the mock-up shows.
+- As built: `Box/Show/index.vue` sets the breadcrumbs (Box, then the Pokémon's name, for party Pokémon too) and stacks `PokemonHero` and `PokemonStatsCard` (the stats card takes the left column of a `2fr 3fr` grid from `@3xl/main-content`, leaving the right for the moves in 4.9). Like the Pokédex's `SpeciesHero`, the hero holds the page's `h1` instead of an `AppPageHeader`, as the mock-up shows.
 - `PokemonHero`: `SpeciesSprite`, `PokemonDisplayName` (with the gender icon), `PokemonTypeBadges`, "Lv 36" and "Boost +14" badges, a gold "Shiny" badge with a star for shinies (no gold border on the card), a "Locked" badge with a tooltip ("Can't be released or traded until it's unlocked."), a thin `Progress` with "720 / 1,000 XP to Lv 37" ("Max level" at 100), and "Caught in a [ItemSprite] Ultra Ball · 3 Nov 2026" (the date in UTC so the server and browser render the same text).
 - `PokemonActions` (not wired yet): "Evolve" (primary, only when an evolution option is allowed), "Boost" (outline), "Remove from party" (outline, disabled with "Your party needs at least one Pokémon" for the last one) or "Add to party", a ghost lock toggle ("Locked" / "Unlocked"), and "Release" (outline in destructive colours, pushed to the end, disabled with "Unlock it first" when locked). There is no Trade button until Spec 7 adds trading.
 - `PokemonStatsCard`: an `AppInfoCard` with HP ("238", "Max HP"), Attack ("x0.85", "Damage multiplier") and Defense ("−34%", "Damage taken"); hovering or focusing a value shows its parts ("Level 36: 167 · Boost +14: x1.14 · Shiny: x1.25").
