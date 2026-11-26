@@ -1,46 +1,65 @@
 <template>
-  <AppInfoCard
-    title="Stats"
-    data-test="pokemon-stats-card"
-  >
-    <div
-      v-for="row in rows"
-      :key="row.key"
-      class="flex items-baseline justify-between gap-3"
-    >
-      <span class="text-sm font-medium text-muted-foreground">
-        {{ row.title }}
-      </span>
-      <Tooltip>
-        <TooltipTrigger as-child>
-          <span
-            class="flex cursor-default flex-col items-end"
-            tabindex="0"
-          >
+  <Dialog>
+    <DialogTrigger as-child>
+      <Button
+        type="button"
+        variant="outline"
+        data-test="pokemon-stats-dialog__open-button"
+      >
+        <IconChartBar />
+        Stats
+      </Button>
+    </DialogTrigger>
+    <DialogContent data-test="pokemon-stats-dialog">
+      <DialogHeader>
+        <DialogTitle>{{ page.props.pokemon.name }}'s stats</DialogTitle>
+        <DialogDescription>
+          What each stat is made of: level, boost and shine.
+        </DialogDescription>
+      </DialogHeader>
+      <dl class="flex flex-col divide-y">
+        <div
+          v-for="row in rows"
+          :key="row.key"
+          class="flex items-baseline justify-between gap-3 py-3 first:pt-0 last:pb-0"
+        >
+          <dt class="flex flex-col gap-0.5">
+            <span class="text-sm font-medium">{{ row.title }}</span>
+            <span
+              class="text-xs text-muted-foreground"
+              :data-test="`pokemon-stats-dialog__${row.key}-parts-text`"
+            >
+              {{ row.parts }}
+            </span>
+          </dt>
+          <dd class="flex shrink-0 flex-col items-end">
             <span
               class="text-base font-semibold tabular-nums"
-              :data-test="`pokemon-stats-card__${row.key}-indicator`"
+              :data-test="`pokemon-stats-dialog__${row.key}-indicator`"
             >
               {{ row.value }}
             </span>
             <span class="text-xs text-muted-foreground">{{ row.caption }}</span>
-          </span>
-        </TooltipTrigger>
-        <TooltipContent>{{ row.parts }}</TooltipContent>
-      </Tooltip>
-    </div>
-  </AppInfoCard>
+          </dd>
+        </div>
+      </dl>
+    </DialogContent>
+  </Dialog>
 </template>
 
 <script setup lang="ts">
 import { usePage } from '@inertiajs/vue3';
+import { IconChartBar } from '@tabler/icons-vue';
 import { computed } from 'vue';
-import AppInfoCard from '@/shared/components/content/AppInfoCard.vue';
+import { Button } from '@/shared/components/ui/button';
 import {
-  Tooltip,
-  TooltipContent,
-  TooltipTrigger,
-} from '@/shared/components/ui/tooltip';
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from '@/shared/components/ui/dialog';
 import type {
   BoxShowPageProps,
   PokemonStat,

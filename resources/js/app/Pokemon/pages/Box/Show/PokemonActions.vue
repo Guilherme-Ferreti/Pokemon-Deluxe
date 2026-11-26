@@ -12,6 +12,7 @@
       Evolve
     </Button>
     <PokemonBoostDialog />
+    <PokemonStatsDialog />
     <Tooltip v-if="pokemon.inParty">
       <TooltipTrigger as-child>
         <span tabindex="-1">
@@ -80,6 +81,7 @@ import {
 } from '@/shared/components/ui/tooltip';
 import type { BoxShowPageProps } from '../../../types/page-props/BoxShowPageProps';
 import PokemonBoostDialog from './PokemonBoostDialog.vue';
+import PokemonStatsDialog from './PokemonStatsDialog.vue';
 
 const page = usePage<BoxShowPageProps>();
 

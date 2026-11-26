@@ -36,11 +36,12 @@ it("shows the pokemon's name, level, boost and stats", function () {
         ->assertSeeIn('@pokemon-hero__level-indicator', 'Lv 36')
         ->assertSeeIn('@pokemon-hero__boost-indicator', 'Boost +14')
         ->assertSeeIn('@pokemon-hero__experience-indicator', '720 / 1,000 XP to Lv 37')
-        ->assertSeeIn('@pokemon-stats-card__hp-indicator', '238')
-        ->assertSeeIn('@pokemon-stats-card__attack-indicator', 'x0.85')
-        ->assertSeeIn('@pokemon-stats-card__defense-indicator', '−34%')
-        ->hover('@pokemon-stats-card__hp-indicator')
-        ->assertSee('Level 36: 167 · Boost +14: x1.14 · Shiny: x1.25')
+        ->click('@pokemon-stats-dialog__open-button')
+        ->wait(0.5)
+        ->assertSeeIn('@pokemon-stats-dialog__hp-indicator', '238')
+        ->assertSeeIn('@pokemon-stats-dialog__attack-indicator', 'x0.85')
+        ->assertSeeIn('@pokemon-stats-dialog__defense-indicator', '−34%')
+        ->assertSeeIn('@pokemon-stats-dialog__hp-parts-text', 'Level 36: 167 · Boost +14: x1.14 · Shiny: x1.25')
         ->assertNoJavascriptErrors();
 });
 

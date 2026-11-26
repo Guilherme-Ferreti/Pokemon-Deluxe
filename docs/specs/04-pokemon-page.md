@@ -11,16 +11,17 @@ Box › Shiny Charmeleon
 │                  [FIRE] [Lv 36] [Boost +14] [Shiny]          │
 │                  XP ███████░░░  720 / 1,000 XP to Lv 37      │
 │                  Caught in a (ball) Ultra Ball · 3 Nov 2026  │
-│ [Evolve] [Boost] [Trade] [Remove from party] [Lock] [Release]│
-├────────────────────────────┬─────────────────────────────────┤
-│ STATS                      │ ACTIVE MOVES       [Teach TM]   │
-│ HP       262               │ 1 Flamethrower FIRE 90  ↑↓ Swap │
-│ Attack   x0.94             │ 2 Dragon Claw  DRGN 80  ↑↓ Swap │
-│ Defense  −25% dmg taken    │ 3 Slash        NORM 70  ↑↓ Swap │
-│                            │ 4 Will-O-Wisp  FIRE  —  ↑↓ Swap │
-│                            │ KNOWN MOVES (9)                 │
-│                            │ Ember · Scratch · Growl · ...   │
-└────────────────────────────┴─────────────────────────────────┘
+│ [Evolve] [Boost] [Stats] [Trade] [Remove from party] [Lock]  │
+│ [Release]                                                    │
+├──────────────────────────────────────────────────────────────┤
+│ ACTIVE MOVES                                     [Teach TM]  │
+│ 1 Flamethrower FIRE 90                            ↑↓ Swap    │
+│ 2 Dragon Claw  DRGN 80                            ↑↓ Swap    │
+│ 3 Slash        NORM 70                            ↑↓ Swap    │
+│ 4 Will-O-Wisp  FIRE  —                            ↑↓ Swap    │
+│ KNOWN MOVES (9)                                              │
+│ Ember · Scratch · Growl · ...                                │
+└──────────────────────────────────────────────────────────────┘
 ```
 
 ## Header
@@ -41,7 +42,7 @@ Box › Shiny Charmeleon
 
 ## Stats
 
-- HP, Attack and Defense with their current values. Hovering a value shows what makes it up: level, boost, shiny.
+- A "Stats" button in the header opens a dialog with HP, Attack and Defense and their current values. Under each one, the dialog lists what makes it up: level, boost, shiny.
 
 ## Moves
 
@@ -56,7 +57,7 @@ Box › Shiny Charmeleon
 
 ## Layout and access
 
-- Desktop: header across the top, stats on the left, moves on the right. Phone: everything stacks, header first.
+- Header across the top, then the moves card at full width. Phone: everything stacks, header first.
 - Only the owner can open the page. Other players see a Pokémon through the read-only details dialog of trading (Spec 7), not this page.
 - Actions a hold blocks (trade hold: everything that changes the Pokémon; Battle Tower run: release, evolve and trade) are disabled with the reason.
 

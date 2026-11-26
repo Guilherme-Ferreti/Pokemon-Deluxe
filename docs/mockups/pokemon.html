@@ -14,14 +14,12 @@
   .facts { display: flex; flex-wrap: wrap; gap: 4px 16px; font-size: 13px; color: var(--muted-fg); }
   .actions { display: flex; flex-wrap: wrap; gap: 8px; padding-top: 4px; }
   .actions .push { margin-left: auto; }
-  .columns { display: flex; flex-wrap: wrap; gap: 16px; align-items: flex-start; }
-  .stats-card { flex: 1 1 280px; }
-  .moves-card { flex: 999 1 420px; }
-  .stat { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; padding: 10px 0; border-top: 1px solid var(--border); }
-  .stat:first-of-type { border-top: 0; }
+  .stat { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; padding: 12px 0; border-top: 1px solid var(--border); }
+  .stat:first-of-type { border-top: 0; padding-top: 0; }
   .stat-name { font-weight: 500; }
   .stat-value { font-weight: 600; font-size: 16px; text-align: right; }
-  .stat-parts { font-size: 12px; color: var(--muted-fg); text-align: right; }
+  .stat-parts { font-size: 12px; color: var(--muted-fg); }
+  .stat-caption { font-size: 12px; color: var(--muted-fg); text-align: right; }
   .slots { display: flex; flex-direction: column; gap: 6px; padding: 0; margin: 0; list-style: none; }
   .slot { display: flex; align-items: center; gap: 10px; border: 1px solid var(--border); border-radius: 10px; padding: 8px 10px; min-width: 0; background: var(--card); }
   .slot.drag-over { border-color: var(--primary); box-shadow: 0 0 0 1px var(--primary); }
@@ -70,6 +68,7 @@
   <label for="mockup-state">State
     <select id="mockup-state">
       <option value="overview">Overview</option>
+      <option value="stats">Stats</option>
       <option value="swap">Swap a move</option>
       <option value="teach-tm">Teach a TM</option>
       <option value="boost">Use boost stones</option>
@@ -93,7 +92,7 @@
 <main class="page">
   <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="#">Box</a><span aria-hidden="true">›</span><span>Shiny Charmeleon</span></nav>
 
-  <section class="card hero shiny-ring">
+  <section class="card hero">
     <div class="sprite sprite-xl sprite-shiny" aria-hidden="true">Shiny Charmeleon<br>sprite</div>
     <div class="hero-info">
       <h1>
@@ -125,7 +124,11 @@
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
           Boost
         </button>
-        <a class="btn btn-outline" href="trade-market.html#new-details" data-show="overview swap teach-tm boost boost-result evolve evolve-confirm party-full release release-warning lock-confirm not-in-party added party-swap remove-party">
+        <button type="button" class="btn btn-outline" data-go="stats">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 20h16M7 16v-4M12 16V8M17 16v-7"/></svg>
+          Stats
+        </button>
+        <a class="btn btn-outline" href="trade-market.html#new-details" data-show="overview swap teach-tm boost boost-result evolve evolve-confirm party-full release release-warning lock-confirm not-in-party added party-swap remove-party stats">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M7 7h11l-3-3M17 17H6l3 3"/></svg>
           Trade
         </a>
@@ -133,60 +136,65 @@
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M7 7h11l-3-3M17 17H6l3 3"/></svg>
           Trade
         </button>
-        <button type="button" class="btn btn-outline" data-go="remove-party" data-show="overview swap teach-tm boost boost-result evolve evolve-confirm locked release release-warning lock-confirm remove-party">Remove from party</button>
+        <button type="button" class="btn btn-outline" data-go="remove-party" data-show="overview swap teach-tm boost boost-result evolve evolve-confirm locked release release-warning lock-confirm remove-party stats">Remove from party</button>
         <button type="button" class="btn btn-outline" data-go="added" data-show="not-in-party">Add to party</button>
         <button type="button" class="btn btn-outline" data-go="party-swap" data-show="party-full party-swap">Add to party</button>
         <button type="button" class="btn btn-outline" data-go="remove-party" data-show="added">Remove from party</button>
-        <button type="button" class="btn btn-ghost" data-go="lock-confirm" data-show="overview swap teach-tm boost boost-result evolve evolve-confirm party-full release release-warning lock-confirm not-in-party added party-swap remove-party">
+        <button type="button" class="btn btn-ghost" data-go="lock-confirm" data-show="overview swap teach-tm boost boost-result evolve evolve-confirm party-full release release-warning lock-confirm not-in-party added party-swap remove-party stats">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 7.5-2"/></svg>Unlocked
         </button>
         <button type="button" class="btn btn-ghost" data-go="overview" data-show="locked">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>Locked
         </button>
-        <button type="button" class="btn btn-destructive-outline push" data-go="release-warning" data-show="overview swap teach-tm boost boost-result evolve evolve-confirm party-full release release-warning lock-confirm not-in-party added party-swap remove-party">Release</button>
+        <button type="button" class="btn btn-destructive-outline push" data-go="release-warning" data-show="overview swap teach-tm boost boost-result evolve evolve-confirm party-full release release-warning lock-confirm not-in-party added party-swap remove-party stats">Release</button>
         <button type="button" class="btn btn-destructive-outline push" disabled title="Unlock it first" data-show="locked">Release</button>
       </div>
     </div>
   </section>
 
-  <div class="columns">
-    <section class="card stats-card">
-      <h2>Stats</h2>
-      <div>
-        <div class="stat" title="Level 36 · Boost +14: x1.14 · Shiny: x1.25">
-          <span class="stat-name">HP</span>
-          <span class="stack" style="gap: 0;"><span class="stat-value num">262</span><span class="stat-parts">Level 36 · +14% boost · +25% shiny</span></span>
-        </div>
-        <div class="stat" title="Level 36: x0.66 · Boost +14: x1.14 · Shiny: x1.25">
-          <span class="stat-name">Attack</span>
-          <span class="stack" style="gap: 0;"><span class="stat-value num">x0.94</span><span class="stat-parts">Damage multiplier</span></span>
-        </div>
-        <div class="stat" title="Shiny: takes 25% less damage">
-          <span class="stat-name">Defense</span>
-          <span class="stack" style="gap: 0;"><span class="stat-value num">−25%</span><span class="stat-parts">Damage taken (shiny)</span></span>
-        </div>
+  <section class="card moves-card">
+    <div class="row" style="justify-content: space-between;">
+      <div class="stack" style="gap: 2px;">
+        <h2>Active moves</h2>
+        <span class="xs muted">Drag to reorder. The order is the order of the move buttons in battle.</span>
       </div>
-      <p class="note">Hovering a value shows its parts (Tooltip in the real page).</p>
-    </section>
-
-    <section class="card moves-card">
-      <div class="row" style="justify-content: space-between;">
-        <div class="stack" style="gap: 2px;">
-          <h2>Active moves</h2>
-          <span class="xs muted">Drag to reorder. The order is the order of the move buttons in battle.</span>
-        </div>
-        <button type="button" class="btn btn-outline" data-go="teach-tm">Teach TM</button>
-      </div>
-      <ol class="slots" id="slots"></ol>
-      <div class="row" style="justify-content: space-between; padding-top: 4px;">
-        <h2>Known moves <span class="muted" style="font-weight: 400;">· 9</span></h2>
-        <span class="xs muted">Drag one onto a slot to use it</span>
-      </div>
-      <div class="pool" id="pool"></div>
-      <p class="note">Desktop: drag a slot by its handle to reorder, or drag a known move onto a slot to replace it (the replaced move goes back to the known moves). Keyboard and touch: the up and down arrows reorder, and Swap opens the picker. "STAB" marks damaging moves of the Pokémon's own type (x1.5 damage).</p>
-    </section>
-  </div>
+      <button type="button" class="btn btn-outline" data-go="teach-tm">Teach TM</button>
+    </div>
+    <ol class="slots" id="slots"></ol>
+    <div class="row" style="justify-content: space-between; padding-top: 4px;">
+      <h2>Known moves <span class="muted" style="font-weight: 400;">· 9</span></h2>
+      <span class="xs muted">Drag one onto a slot to use it</span>
+    </div>
+    <div class="pool" id="pool"></div>
+    <p class="note">Desktop: drag a slot by its handle to reorder, or drag a known move onto a slot to replace it (the replaced move goes back to the known moves). Keyboard and touch: the up and down arrows reorder, and Swap opens the picker. "STAB" marks damaging moves of the Pokémon's own type (x1.5 damage).</p>
+  </section>
 </main>
+
+<!-- Stats -->
+<div class="overlay" data-show="stats">
+  <div class="dialog" role="dialog" aria-labelledby="stats-title">
+    <div class="stack" style="gap: 4px;">
+      <h2 id="stats-title">Shiny Charmeleon's stats</h2>
+      <p class="small muted">What each stat is made of: level, boost and shine.</p>
+    </div>
+    <div>
+      <div class="stat">
+        <span class="stack" style="gap: 2px;"><span class="stat-name">HP</span><span class="stat-parts">Level 36: 184 · Boost +14: x1.14 · Shiny: x1.25</span></span>
+        <span class="stack" style="gap: 0;"><span class="stat-value num">262</span><span class="stat-caption">Max HP</span></span>
+      </div>
+      <div class="stat">
+        <span class="stack" style="gap: 2px;"><span class="stat-name">Attack</span><span class="stat-parts">Level 36: x0.66 · Boost +14: x1.14 · Shiny: x1.25</span></span>
+        <span class="stack" style="gap: 0;"><span class="stat-value num">x0.94</span><span class="stat-caption">Damage multiplier</span></span>
+      </div>
+      <div class="stat">
+        <span class="stack" style="gap: 2px;"><span class="stat-name">Defense</span><span class="stat-parts">Level 36: x1 · Boost +14: x0.88 · Shiny: x0.75</span></span>
+        <span class="stack" style="gap: 0;"><span class="stat-value num">−34%</span><span class="stat-caption">Damage taken</span></span>
+      </div>
+    </div>
+    <p class="note">Opened by the "Stats" button in the header. Each stat lists its parts as text under its name (no tooltip), so it reads the same on phones.</p>
+    <div class="dialog-actions"><button type="button" class="btn btn-outline" data-go="overview">Close</button></div>
+  </div>
+</div>
 
 <!-- Swap -->
 <div class="overlay" data-show="swap">
