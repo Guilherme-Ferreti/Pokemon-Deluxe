@@ -6,9 +6,7 @@
   >
     <BattleSceneBackground :scene="page.props.battle.scene" />
     <CardContent class="relative flex flex-col gap-1 px-3 @sm/battlefield:px-6">
-      <div
-        class="battlefield-card__side items-end @sm/battlefield:items-start @sm/battlefield:justify-end"
-      >
+      <div class="battlefield-card__side battlefield-card__side--opponent">
         <BattlefieldCombatantCard side="opponent" />
         <SpeciesSprite
           :class="[
@@ -62,6 +60,10 @@ const isOver = computed(
 
 .battlefield-card__side {
   @apply flex flex-col gap-2.5 @sm/battlefield:flex-row @sm/battlefield:items-end @sm/battlefield:justify-start;
+}
+
+.battlefield-card__side--opponent {
+  @apply items-end @sm/battlefield:items-start @sm/battlefield:justify-end;
 }
 
 .battlefield-card__sprite {
