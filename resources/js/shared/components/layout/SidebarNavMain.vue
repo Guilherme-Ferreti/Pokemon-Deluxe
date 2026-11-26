@@ -47,6 +47,7 @@
                 >
                   <SidebarMenuSubButton
                     as-child
+                    class="[&>svg]:text-current"
                     :data-active="isCurrentPage(subItem.url)"
                   >
                     <AppNavLink

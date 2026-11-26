@@ -40,7 +40,8 @@ How pages look and behave. Follow it for every new page or component; tasks in `
 
 ## Colour
 
-- The theme is neutral (black, white, greys) and supports dark mode. Every colour added must have a `dark:` variant, as `PokemonTypeBadges` does.
+- The theme is Dusk: an indigo `primary` over indigo-tinted greys, in light and dark mode. Indigo marks the main action and what is selected, never a game meaning. Use the theme tokens (`primary`, `muted`, `border`…), never raw `indigo-*` classes.
+- The theme supports dark mode. Every colour added must have a `dark:` variant, as `PokemonTypeBadges` does.
 - Colour carries meaning, never decoration:
   - Type colours: only from `PokemonTypeBadges`' palette.
   - Gold (`amber`/`yellow` ring or badge): shiny and rare things (shiny, legendary, mythical).
