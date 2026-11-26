@@ -58,13 +58,18 @@ it('warns when a requirement is not met', function () {
     expect($pokemon->fresh()->species_id)->toBe($poliwhirl->id);
 });
 
-it('gives 404 for an evolution of another species', function () {
+it('warns when the evolution is of another species', function () {
     $user      = User::factory()->create();
     $evolution = SpeciesEvolution::factory()->create();
+    $pokemon   = Pokemon::factory()->for($user)->create();
 
     actingAs($user)
-        ->post(route('pokemon.web.evolve', Pokemon::factory()->for($user)->create()), ['species_evolution_id' => $evolution->id])
-        ->assertNotFound();
+        ->from(route('pokemon.web.box.show', $pokemon))
+        ->post(route('pokemon.web.evolve', $pokemon), ['species_evolution_id' => $evolution->id])
+        ->assertRedirect(route('pokemon.web.box.show', $pokemon))
+        ->assertInertiaFlash('toast.type', 'warning');
+
+    expect($pokemon->fresh()->species_id)->not->toBe($evolution->into_species_id);
 });
 
 it('validates the evolution', function () {

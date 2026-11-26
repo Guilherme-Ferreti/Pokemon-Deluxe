@@ -72,7 +72,7 @@ One name per idea, used everywhere: specs, code, database, tests and UI. When yo
 | Paying XP | `AwardExperienceAction` | Adds XP to a Pokémon and levels it up, up to level 100. |
 | Levelling up | `PokemonLevelledUp` event | Dispatched by `AwardExperienceAction` when the level goes up. |
 | Evolution requirement | `EvolutionRequirement` enum (`GENDER`, `LEVEL`, `ITEM`), `EvolutionRequirementChecker::check()` | The first unmet requirement of a `SpeciesEvolution`, or null. `reason($evolution)` words it ("Needs a Water Stone") for the Evolve dialog and `EvolutionNotAllowedException`. |
-| Evolving | `EvolvePokemonAction`, `PokemonEvolved` event (`isMega`) | Changes the species, uses up the evolution item and adds the new base moves. |
+| Evolving | `EvolvePokemonAction`, `EvolutionNotOfSpeciesException`, `PokemonEvolved` event (`isMega`) | Changes the species, uses up the evolution item and adds the new base moves. |
 | Knocked out by | `Combatant::$knockedOutBy` | The index of the player combatant credited with an opponent's knockout (`CreditOpponentKnockout`). |
 | First mover | `firstMoverChance` | Percentage chance (0–100) to act first this turn. |
 | Area | `Area` enum, `Area::fromType()` | The 9 places to explore (`Area::FOREST`). `fromType()` gives the one area a type belongs to. |

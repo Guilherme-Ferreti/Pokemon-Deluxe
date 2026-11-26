@@ -8,11 +8,11 @@ use App\Inventory\Actions\RemoveInventoryItemAction;
 use App\Pokemon\Enums\EvolutionRequirement;
 use App\Pokemon\Events\PokemonEvolved;
 use App\Pokemon\Exceptions\EvolutionNotAllowedException;
+use App\Pokemon\Exceptions\EvolutionNotOfSpeciesException;
 use App\Pokemon\Mechanics\EvolutionRequirementChecker;
 use App\Pokemon\Support\LockKeys;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\DB;
-use InvalidArgumentException;
 use Shared\Enums\InventoryItemType;
 use Shared\Models\EvolutionItem;
 use Shared\Models\InventoryItem;
@@ -83,11 +83,9 @@ final class EvolvePokemonAction
 
     private function ensureEvolutionIsOfSpecies(): void
     {
-        throw_if(
-            $this->evolution->from_species_id !== $this->pokemon->species_id,
-            InvalidArgumentException::class,
-            "The evolution [{$this->evolution->id}] does not start from the Pokémon's species.",
-        );
+        if ($this->evolution->from_species_id !== $this->pokemon->species_id) {
+            throw new EvolutionNotOfSpeciesException($this->pokemon, $this->evolution);
+        }
     }
 
     private function ensureRequirementsAreMet(): void

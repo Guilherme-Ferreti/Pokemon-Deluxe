@@ -5,6 +5,7 @@ declare(strict_types=1);
 use App\Pokemon\Actions\EvolvePokemonAction;
 use App\Pokemon\Events\PokemonEvolved;
 use App\Pokemon\Exceptions\EvolutionNotAllowedException;
+use App\Pokemon\Exceptions\EvolutionNotOfSpeciesException;
 use Illuminate\Support\Facades\Event;
 use Shared\Models\EvolutionItem;
 use Shared\Models\InventoryItem;
@@ -116,5 +117,5 @@ it('refuses an evolution of another species', function () {
     $evolution = SpeciesEvolution::factory()->create(['evolution_item_id' => null, 'min_level' => null, 'gender' => null]);
 
     expect(fn () => new EvolvePokemonAction()->handle($pokemon, $evolution))
-        ->toThrow(InvalidArgumentException::class);
+        ->toThrow(EvolutionNotOfSpeciesException::class);
 });
