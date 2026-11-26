@@ -53,7 +53,7 @@ Box › Shiny Charmeleon
 
 ## Boost stones
 
-- Before using, the dialog shows three numbers: the boost now, the stones owned, and the chance the next stone fails ("0%" at +14, "41%" at +60). At the max boost the chance is hidden and the dialog says the Pokémon is at the max boost.
+- Before using, the dialog shows three numbers: the boost now, the stones owned, and the chance the next stone fails ("0%" at +14, "41%" at +60). At the max boost the Boost button is disabled with the tooltip "This Pokémon is at maximum boost level" and no dialog opens.
 - Players can use several at once: "use until +30" or "use up to 20 stones". The result shows stones used, successes and failures, and the new boost.
 
 ## Layout and access

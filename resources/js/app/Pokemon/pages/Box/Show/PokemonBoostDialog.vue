@@ -1,5 +1,22 @@
 <template>
+  <Tooltip v-if="isAtMaxBoost && !isOpen">
+    <TooltipTrigger as-child>
+      <span tabindex="-1">
+        <Button
+          type="button"
+          variant="outline"
+          data-test="pokemon-boost-dialog__open-button"
+          disabled
+        >
+          <IconArrowUp />
+          Boost
+        </Button>
+      </span>
+    </TooltipTrigger>
+    <TooltipContent>This Pokémon is at maximum boost level</TooltipContent>
+  </Tooltip>
   <Dialog
+    v-else
     v-model:open="isOpen"
     @update:open="(open) => open && resetDialog()"
   >
@@ -102,12 +119,6 @@
           </span>
         </span>
       </div>
-      <p
-        v-if="boostStones.failureChance === null"
-        class="text-sm"
-      >
-        {{ pokemon.name }} is at the max boost (+{{ maxBoost }}).
-      </p>
       <p
         v-if="boostStones.quantity === 0"
         class="text-sm text-muted-foreground"
@@ -227,6 +238,11 @@ import {
 } from '@/shared/components/ui/field';
 import { Input } from '@/shared/components/ui/input';
 import { RadioGroup, RadioGroupItem } from '@/shared/components/ui/radio-group';
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipTrigger,
+} from '@/shared/components/ui/tooltip';
 import { route } from '@/shared/types/helpers/route';
 import type { BoxShowPageProps } from '../../../types/page-props/BoxShowPageProps';
 
@@ -256,6 +272,8 @@ const form = useForm({
   max_stones: 1,
   target_boost: null as number | null,
 });
+
+const isAtMaxBoost = computed(() => pokemon.value.boost >= maxBoost.value);
 
 const canUseStones = computed(
   () =>

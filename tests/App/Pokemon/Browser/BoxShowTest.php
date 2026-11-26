@@ -3,6 +3,7 @@
 declare(strict_types=1);
 
 use Shared\Enums\PokemonType;
+use Shared\Helpers\RandomHelper;
 use Shared\Models\EvolutionItem;
 use Shared\Models\InventoryItem;
 use Shared\Models\Move;
@@ -272,6 +273,44 @@ it('explains why the pokemon cannot evolve', function () {
         ->assertMissing('@pokemon-evolve-dialog__continue-button')
         ->navigate(route('pokemon.web.box.show', $final))
         ->assertAttribute('@pokemon-evolve-dialog__open-button', 'disabled', '')
+        ->assertNoJavascriptErrors();
+});
+
+it('disables the boost button at the max boost', function () {
+    $user    = User::factory()->create();
+    $pokemon = Pokemon::factory()->for($user)->inBox()->boosted(100)->create();
+
+    InventoryItem::factory()->for($user)->specialItem(SpecialItem::factory()->boostStone()->create())->create(['quantity' => 5]);
+
+    actingAs($user);
+
+    visit(route('pokemon.web.box.show', $pokemon))
+        ->assertAttribute('@pokemon-boost-dialog__open-button', 'disabled', '')
+        ->assertNoJavascriptErrors();
+});
+
+it('keeps the boost result open when the pokemon reaches the max boost', function () {
+    $user    = User::factory()->create();
+    $pokemon = Pokemon::factory()->for($user)->inBox()->boosted(99)->create();
+
+    InventoryItem::factory()->for($user)->specialItem(SpecialItem::factory()->boostStone()->create())->create(['quantity' => 5]);
+
+    RandomHelper::fake([true]);
+
+    actingAs($user);
+
+    visit(route('pokemon.web.box.show', $pokemon))
+        ->click('@pokemon-boost-dialog__open-button')
+        ->wait(0.5)
+        ->clear('@pokemon-boost-dialog__stone-count-input')
+        ->type('@pokemon-boost-dialog__stone-count-input', '1')
+        ->click('@pokemon-boost-dialog__submit-button')
+        ->wait(1)
+        ->assertSeeIn('@pokemon-boost-dialog__new-boost-indicator', '+100')
+        ->assertMissing('@pokemon-boost-dialog__use-more-button')
+        ->click('@pokemon-boost-dialog__done-button')
+        ->wait(0.5)
+        ->assertAttribute('@pokemon-boost-dialog__open-button', 'disabled', '')
         ->assertNoJavascriptErrors();
 });
 
