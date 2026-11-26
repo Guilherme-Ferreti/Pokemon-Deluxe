@@ -10,11 +10,11 @@
         aria-label="Choose a move"
         :disabled="form.processing"
       >
-        <FieldLabel
+        <AppChoiceCard
           v-for="(move, index) in page.props.moves"
           :key="move.id"
-          class="flex min-h-16 w-full cursor-pointer items-start gap-3 rounded-lg border border-border bg-card px-3.5 py-3 font-normal transition-colors duration-200 not-has-data-[state=checked]:not-has-data-disabled:hover:bg-muted/50 has-focus-visible:ring-[3px] has-focus-visible:ring-ring/50 has-data-disabled:cursor-default has-data-[state=checked]:border-primary has-data-[state=checked]:bg-muted motion-reduce:transition-none"
-          :for="`${idPrefix}-${index}`"
+          :data-test="`moves-card__move-${index + 1}-radio`"
+          :value="String(index + 1)"
         >
           <span class="flex min-w-0 flex-1 flex-col items-start gap-2">
             <MoveNameLabel
@@ -25,13 +25,7 @@
             />
             <PokemonTypeBadges :types="[move.type]" />
           </span>
-          <RadioGroupItem
-            :id="`${idPrefix}-${index}`"
-            class="[&_[data-slot=radio-group-indicator]_svg]:animate-in [&_[data-slot=radio-group-indicator]_svg]:duration-200 [&_[data-slot=radio-group-indicator]_svg]:zoom-in-50 [&_[data-slot=radio-group-indicator]_svg]:fade-in motion-reduce:[&_[data-slot=radio-group-indicator]_svg]:animate-none"
-            :data-test="`moves-card__move-${index + 1}-radio`"
-            :value="String(index + 1)"
-          />
-        </FieldLabel>
+        </AppChoiceCard>
       </RadioGroup>
       <Button
         type="button"
@@ -48,7 +42,7 @@
 
 <script setup lang="ts">
 import { useForm, usePage } from '@inertiajs/vue3';
-import { useId } from 'vue';
+import AppChoiceCard from '@/shared/components/form/AppChoiceCard.vue';
 import MoveNameLabel from '@/shared/components/game/MoveNameLabel.vue';
 import PokemonTypeBadges from '@/shared/components/game/PokemonTypeBadges.vue';
 import { Button } from '@/shared/components/ui/button';
@@ -58,14 +52,11 @@ import {
   CardHeader,
   CardTitle,
 } from '@/shared/components/ui/card';
-import { FieldLabel } from '@/shared/components/ui/field';
-import { RadioGroup, RadioGroupItem } from '@/shared/components/ui/radio-group';
+import { RadioGroup } from '@/shared/components/ui/radio-group';
 import { route } from '@/shared/types/helpers/route';
 import type { BattleShowPageProps } from '../../types/page-props/BattleShowPageProps';
 
 const page = usePage<BattleShowPageProps>();
-
-const idPrefix = useId();
 
 const form = useForm({
   moveSlot: '1',

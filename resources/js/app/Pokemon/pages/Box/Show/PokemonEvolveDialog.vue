@@ -54,49 +54,39 @@
         </DialogHeader>
         <RadioGroup
           v-model="selectedOptionId"
-          class="-mx-1 min-h-0 flex-1 scrollbar-thin gap-1.5 overflow-y-auto px-1 py-1"
+          class="-mx-1 min-h-0 flex-1 scrollbar-thin gap-2 overflow-y-auto px-1 py-1"
           aria-label="Evolutions"
           data-test="pokemon-evolve-dialog__option-list"
         >
-          <Field
+          <AppChoiceCard
             v-for="option in page.props.evolutionOptions"
             :key="option.id"
-            orientation="horizontal"
-            class="items-center rounded-lg border p-2 has-data-[state=checked]:border-primary"
             :data-test="`pokemon-evolve-dialog__option-${option.id}-radio`"
+            :value="option.id"
+            :disabled="!option.isAllowed"
           >
-            <RadioGroupItem
-              :id="`evolution-option-${option.id}`"
-              :value="option.id"
-              :disabled="!option.isAllowed"
+            <SpeciesPortrait
+              class="size-10"
+              :url="option.species.portrait"
+              :name="option.species.displayName"
             />
-            <FieldLabel
-              class="flex flex-1 items-center gap-3 font-normal"
-              :for="`evolution-option-${option.id}`"
-            >
-              <SpeciesPortrait
-                class="size-10"
-                :url="option.species.portrait"
-                :name="option.species.displayName"
-              />
-              <span class="flex min-w-0 flex-col gap-1">
-                <span class="text-sm font-medium">
-                  {{ option.species.displayName }}
-                </span>
-                <span
-                  class="text-xs text-muted-foreground"
-                  :data-test="`pokemon-evolve-dialog__option-${option.id}-requirement-text`"
-                >
-                  Evolves
-                  <EvolutionRequirementText
-                    :min-level="option.minLevel"
-                    :evolution-item="option.evolutionItem"
-                    :gender="option.gender"
-                  />
-                </span>
+            <span class="flex min-w-0 flex-col gap-1">
+              <span class="text-sm font-medium">
+                {{ option.species.displayName }}
               </span>
-            </FieldLabel>
-          </Field>
+              <span
+                class="text-xs text-muted-foreground"
+                :data-test="`pokemon-evolve-dialog__option-${option.id}-requirement-text`"
+              >
+                Evolves
+                <EvolutionRequirementText
+                  :min-level="option.minLevel"
+                  :evolution-item="option.evolutionItem"
+                  :gender="option.gender"
+                />
+              </span>
+            </span>
+          </AppChoiceCard>
         </RadioGroup>
         <DialogFooter>
           <DialogClose as-child>
@@ -126,6 +116,7 @@
 import { router, usePage } from '@inertiajs/vue3';
 import { IconSparkles } from '@tabler/icons-vue';
 import { computed, ref } from 'vue';
+import AppChoiceCard from '@/shared/components/form/AppChoiceCard.vue';
 import EvolutionRequirementText from '@/shared/components/game/EvolutionRequirementText.vue';
 import SpeciesPortrait from '@/shared/components/game/SpeciesPortrait.vue';
 import { Button } from '@/shared/components/ui/button';
@@ -139,8 +130,7 @@ import {
   DialogTitle,
   DialogTrigger,
 } from '@/shared/components/ui/dialog';
-import { Field, FieldLabel } from '@/shared/components/ui/field';
-import { RadioGroup, RadioGroupItem } from '@/shared/components/ui/radio-group';
+import { RadioGroup } from '@/shared/components/ui/radio-group';
 import {
   Tooltip,
   TooltipContent,

@@ -18,7 +18,9 @@
         >
           <SpeciesPortrait
             class="size-9"
-            :class="{ 'opacity-50 grayscale': isFainted }"
+            :class="{
+              'opacity-50 grayscale in-data-disabled:opacity-100': isFainted,
+            }"
             :url="pokemon.portrait"
             :name="pokemon.name"
           />

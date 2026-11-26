@@ -51,23 +51,21 @@
           test-id-prefix="pokemon-teach-tm-dialog__type"
           :options="ownedTypeOptions"
         />
-        <ul
+        <RadioGroup
           v-if="visibleTms.length > 0"
-          class="grid gap-1.5 sm:grid-cols-2"
+          v-model="selectedTmId"
+          class="gap-2 sm:grid-cols-2"
+          aria-label="TMs"
           data-test="pokemon-teach-tm-dialog__tm-list"
         >
-          <li
+          <AppChoiceCard
             v-for="tm in visibleTms"
             :key="tm.id"
+            :data-test="`pokemon-teach-tm-dialog__tm-${tm.id}-radio`"
+            :value="tm.id"
+            :disabled="tm.isKnown || tm.needsMaxLevel"
           >
-            <button
-              type="button"
-              class="flex w-full flex-col gap-1 rounded-lg border p-2 text-left transition-colors hover:bg-muted focus-visible:ring-3 focus-visible:ring-ring/50 focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-50 disabled:hover:bg-transparent aria-pressed:border-primary aria-pressed:ring-1 aria-pressed:ring-primary"
-              :aria-pressed="selectedTm?.id === tm.id"
-              :disabled="tm.isKnown || tm.needsMaxLevel"
-              :data-test="`pokemon-teach-tm-dialog__tm-${tm.id}-button`"
-              @click="selectedTm = tm"
-            >
+            <span class="flex min-w-0 flex-col gap-1">
               <span class="text-sm font-medium">{{ tm.tmName }}</span>
               <span class="flex flex-wrap items-center gap-1.5">
                 <PokemonTypeBadges :types="[tm.type]" />
@@ -75,9 +73,9 @@
                   {{ describeTm(tm) }}
                 </span>
               </span>
-            </button>
-          </li>
-        </ul>
+            </span>
+          </AppChoiceCard>
+        </RadioGroup>
         <AppEmptyState
           v-else
           title="No TMs match your search"
@@ -114,6 +112,7 @@ import { router, usePage } from '@inertiajs/vue3';
 import { IconDisc, IconSearch } from '@tabler/icons-vue';
 import { computed, ref } from 'vue';
 import AppEmptyState from '@/shared/components/content/AppEmptyState.vue';
+import AppChoiceCard from '@/shared/components/form/AppChoiceCard.vue';
 import PokemonTypeBadges from '@/shared/components/game/PokemonTypeBadges.vue';
 import AppFilterChipGroup from '@/shared/components/list/AppFilterChipGroup.vue';
 import { Button } from '@/shared/components/ui/button';
@@ -132,6 +131,7 @@ import {
   InputGroupAddon,
   InputGroupInput,
 } from '@/shared/components/ui/input-group';
+import { RadioGroup } from '@/shared/components/ui/radio-group';
 import { toPokemonTypeOptions } from '@/shared/lib/utils';
 import type { PokemonType } from '@/shared/types/enums';
 import { route } from '@/shared/types/helpers/route';
@@ -149,7 +149,11 @@ const search = ref('');
 
 const selectedType = ref<PokemonType | null>(null);
 
-const selectedTm = ref<OwnedTm | null>(null);
+const selectedTmId = ref<string | null>(null);
+
+const selectedTm = computed(
+  () => page.props.tms.find((tm) => tm.id === selectedTmId.value) ?? null,
+);
 
 const ownedTypeOptions = computed(() =>
   toPokemonTypeOptions(page.props.tms.map((tm) => tm.type)),
@@ -182,7 +186,7 @@ const describeTm = (tm: OwnedTm) => {
 const resetDialog = () => {
   search.value = '';
   selectedType.value = null;
-  selectedTm.value = null;
+  selectedTmId.value = null;
 };
 
 const teachSelectedTm = () => {

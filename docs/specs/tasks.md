@@ -689,6 +689,7 @@ Uses `Combatant` from task 1.10.
 
 **UI suggestions** (ideas, not requirements):
 - Checked card: `border-primary bg-muted`; the dot fades and scales in (200ms).
+- Later change: the moves are drawn by the shared `AppChoiceCard` (as are the team rail, the Evolve, Teach TM and Boost dialogs and the Nursery's Poké Ball choice), which hides the radio circle; the checked card has a thicker primary border (`border-primary` plus `inset-ring-1 inset-ring-primary`, so colour is not the only cue) and a light primary tint (`bg-primary/5`, `/10` in dark mode).
 - While a turn is being sent, disable the cards and the Attack button and show a spinner on the button.
 
 **Tests:** feature test: the move props no longer have the hint; browser test: picking a move and pressing Attack takes the turn with that move; the first move is preselected.

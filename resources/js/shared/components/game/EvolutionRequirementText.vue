@@ -9,7 +9,7 @@
       >
         <ItemSprite
           v-if="evolutionItem.sprite"
-          class="size-7"
+          class="size-6"
           :name="evolutionItem.name"
           :url="evolutionItem.sprite"
         />

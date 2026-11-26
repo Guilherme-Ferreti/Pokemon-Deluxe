@@ -215,7 +215,7 @@ it('teaches a tm after confirming', function () {
         ->wait(0.5)
         ->fill('@pokemon-teach-tm-dialog__search-input', '395')
         ->wait(0.5)
-        ->click("@pokemon-teach-tm-dialog__tm-{$iceBeam->id}-button")
+        ->click("@pokemon-teach-tm-dialog__tm-{$iceBeam->id}-radio")
         ->wait(0.5)
         ->assertSeeIn('@pokemon-teach-tm-dialog__teach-button', 'Teach Ice Beam')
         ->click('@pokemon-teach-tm-dialog__teach-button')

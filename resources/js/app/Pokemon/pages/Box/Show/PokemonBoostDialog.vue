@@ -92,19 +92,11 @@
             v-model="mode"
             class="gap-2"
           >
-            <Field
-              orientation="horizontal"
-              class="rounded-md border p-3 has-data-[state=checked]:border-primary"
+            <AppChoiceCard
               data-test="pokemon-boost-dialog__count-mode-radio"
+              value="count"
             >
-              <RadioGroupItem
-                id="boost-mode-count"
-                value="count"
-              />
-              <FieldLabel
-                class="flex flex-wrap items-center gap-2 font-normal"
-                for="boost-mode-count"
-              >
+              <span class="flex flex-wrap items-center gap-2">
                 Use up to
                 <Input
                   v-model.number="stoneCount"
@@ -117,21 +109,13 @@
                   @focus="mode = 'count'"
                 />
                 stones
-              </FieldLabel>
-            </Field>
-            <Field
-              orientation="horizontal"
-              class="rounded-md border p-3 has-data-[state=checked]:border-primary"
+              </span>
+            </AppChoiceCard>
+            <AppChoiceCard
               data-test="pokemon-boost-dialog__target-mode-radio"
+              value="target"
             >
-              <RadioGroupItem
-                id="boost-mode-target"
-                value="target"
-              />
-              <FieldLabel
-                class="flex flex-wrap items-center gap-2 font-normal"
-                for="boost-mode-target"
-              >
+              <span class="flex flex-wrap items-center gap-2">
                 Use until +
                 <Input
                   v-model.number="targetBoost"
@@ -144,8 +128,8 @@
                   @focus="mode = 'target'"
                 />
                 boost
-              </FieldLabel>
-            </Field>
+              </span>
+            </AppChoiceCard>
           </RadioGroup>
           <FieldError v-if="form.errors.max_stones || form.errors.target_boost">
             {{ form.errors.max_stones ?? form.errors.target_boost }}
@@ -179,6 +163,7 @@ import type { FlashData } from '@inertiajs/core';
 import { useForm, usePage } from '@inertiajs/vue3';
 import { IconArrowUp } from '@tabler/icons-vue';
 import { computed, ref } from 'vue';
+import AppChoiceCard from '@/shared/components/form/AppChoiceCard.vue';
 import { Button } from '@/shared/components/ui/button';
 import {
   Dialog,
@@ -191,14 +176,12 @@ import {
   DialogTrigger,
 } from '@/shared/components/ui/dialog';
 import {
-  Field,
   FieldError,
-  FieldLabel,
   FieldLegend,
   FieldSet,
 } from '@/shared/components/ui/field';
 import { Input } from '@/shared/components/ui/input';
-import { RadioGroup, RadioGroupItem } from '@/shared/components/ui/radio-group';
+import { RadioGroup } from '@/shared/components/ui/radio-group';
 import {
   Tooltip,
   TooltipContent,

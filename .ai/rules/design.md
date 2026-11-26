@@ -19,6 +19,7 @@ How pages look and behave. Follow it for every new page or component; tasks in `
 - Use, in this order: game components (`shared/components/game/`), app wrappers (`shared/components/{layout,content,form,list}/`), then shadcn-vue primitives (`shared/components/ui/`). Write a new component only when none of them fits.
 - A missing shadcn-vue primitive (tabs, alert, alert-dialog, toggle-group, scroll-area…) is added with the shadcn-vue CLI, never written by hand.
 - Icons come from `@tabler/icons-vue` only. Sizes: `size-4` inline with text, `size-5` in buttons and badges, `size-12` for empty states.
+- A single choice among several options (moves, team members, evolutions, TMs, Poké Balls) is a `RadioGroup` of `AppChoiceCard`s, never hand-styled radios or `aria-pressed` buttons, so the hover, checked and disabled looks stay the same everywhere.
 - Pokémon are shown with `SpeciesSprite` (full body, battles and encounters) or `SpeciesPortrait` (lists, grids, dialogs); names with `PokemonDisplayName`; types with `PokemonTypeBadges`; items with `ItemSprite`.
 
 ## Page structure

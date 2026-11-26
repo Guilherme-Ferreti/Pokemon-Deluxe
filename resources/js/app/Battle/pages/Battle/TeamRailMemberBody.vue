@@ -15,8 +15,7 @@
       </span>
       <span
         v-if="level !== null"
-        class="text-xs leading-5 whitespace-nowrap tabular-nums"
-        :class="secondaryTextClass"
+        class="text-xs leading-5 whitespace-nowrap text-muted-foreground tabular-nums"
       >
         Lv {{ level }}
       </span>
@@ -32,9 +31,8 @@
       class="flex items-center gap-1.5"
     >
       <span
-        class="text-xs font-semibold"
+        class="text-xs font-semibold text-muted-foreground"
         aria-hidden="true"
-        :class="secondaryTextClass"
       >
         HP:
       </span>
@@ -44,8 +42,7 @@
         :label="`${name} HP`"
       />
       <span
-        class="text-xs whitespace-nowrap tabular-nums"
-        :class="secondaryTextClass"
+        class="text-xs whitespace-nowrap text-muted-foreground tabular-nums"
       >
         {{ currentHp }} / {{ maxHp }}
       </span>
@@ -54,7 +51,6 @@
 </template>
 
 <script setup lang="ts">
-import { computed } from 'vue';
 import PokemonDisplayName from '@/shared/components/game/PokemonDisplayName.vue';
 import { Badge } from '@/shared/components/ui/badge';
 import type {
@@ -64,7 +60,7 @@ import type {
 import AilmentBadge from './AilmentBadge.vue';
 import HpProgress from './HpProgress.vue';
 
-const props = withDefaults(
+withDefaults(
   defineProps<{
     name: BattleTeamMember['name'];
     gender: BattleTeamMember['gender'];
@@ -73,7 +69,6 @@ const props = withDefaults(
     hasFaintedTag?: boolean;
     currentHp?: number | null;
     maxHp?: number | null;
-    isHighlighted?: boolean;
   }>(),
   {
     level: null,
@@ -81,11 +76,6 @@ const props = withDefaults(
     hasFaintedTag: false,
     currentHp: null,
     maxHp: null,
-    isHighlighted: false,
   },
-);
-
-const secondaryTextClass = computed(() =>
-  props.isHighlighted ? 'text-foreground/75' : 'text-muted-foreground',
 );
 </script>

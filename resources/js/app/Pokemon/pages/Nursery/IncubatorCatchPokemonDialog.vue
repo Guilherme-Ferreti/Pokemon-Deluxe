@@ -30,33 +30,22 @@
             v-model="form.pokeballId"
             class="max-h-80 scrollbar-thin grid-cols-2 gap-2 overflow-y-auto"
           >
-            <Field
+            <AppChoiceCard
               v-for="pokeball in page.props.pokeballs"
               :key="pokeball.id"
-              orientation="horizontal"
-              class="cursor-pointer rounded-md border p-3 has-data-[state=checked]:border-primary"
               :data-test="`incubator-catch-pokemon-dialog__pokeball-${pokeball.id}-radio`"
-              :data-invalid="!!form.errors.pokeballId"
-              @click="form.pokeballId = pokeball.id"
+              :value="pokeball.id"
+              :invalid="!!form.errors.pokeballId"
             >
-              <RadioGroupItem
-                :id="`pokeball-${pokeball.id}`"
-                :value="pokeball.id"
+              <ItemSprite
+                :name="pokeball.name"
+                :url="pokeball.sprite"
               />
-              <FieldLabel
-                class="flex cursor-pointer items-center gap-2 font-normal"
-                :for="`pokeball-${pokeball.id}`"
-              >
-                <ItemSprite
-                  :name="pokeball.name"
-                  :url="pokeball.sprite"
-                />
-                <span>{{ pokeball.name }}</span>
-                <span class="text-sm text-muted-foreground">
-                  x{{ pokeball.quantity }}
-                </span>
-              </FieldLabel>
-            </Field>
+              <span>{{ pokeball.name }}</span>
+              <span class="text-sm text-muted-foreground">
+                x{{ pokeball.quantity }}
+              </span>
+            </AppChoiceCard>
           </RadioGroup>
           <FieldError v-if="form.errors.pokeballId">
             {{ form.errors.pokeballId }}
@@ -87,6 +76,7 @@
 
 <script setup lang="ts">
 import { useForm, usePage } from '@inertiajs/vue3';
+import AppChoiceCard from '@/shared/components/form/AppChoiceCard.vue';
 import ItemSprite from '@/shared/components/game/ItemSprite.vue';
 import PokemonDisplayName from '@/shared/components/game/PokemonDisplayName.vue';
 import SpeciesSprite from '@/shared/components/game/SpeciesSprite.vue';
@@ -101,13 +91,11 @@ import {
   DialogTitle,
 } from '@/shared/components/ui/dialog';
 import {
-  Field,
   FieldError,
-  FieldLabel,
   FieldLegend,
   FieldSet,
 } from '@/shared/components/ui/field';
-import { RadioGroup, RadioGroupItem } from '@/shared/components/ui/radio-group';
+import { RadioGroup } from '@/shared/components/ui/radio-group';
 import { route } from '@/shared/types/helpers/route';
 import type {
   Incubator,
