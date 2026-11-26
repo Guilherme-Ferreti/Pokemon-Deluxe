@@ -32,7 +32,8 @@
               <DropdownMenuItem as-child>
                 <AppNavLink
                   title="View"
-                  url="#"
+                  data-test="pokemon-card__view-pokemon-link"
+                  :url="route('pokemon.web.show', { pokemon: pokemon.id })"
                   :icon="IconEye"
                 />
               </DropdownMenuItem>

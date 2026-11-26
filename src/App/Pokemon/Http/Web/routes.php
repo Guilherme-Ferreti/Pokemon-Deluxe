@@ -9,6 +9,7 @@ use App\Pokemon\Http\Web\Controllers\Incubator\PlaceEggController;
 use App\Pokemon\Http\Web\Controllers\Incubator\PurchaseController;
 use App\Pokemon\Http\Web\Controllers\NurseryController;
 use App\Pokemon\Http\Web\Controllers\PartyController;
+use App\Pokemon\Http\Web\Controllers\PokemonController;
 use Illuminate\Support\Facades\Route;
 
 Route::middleware('auth')->prefix('/your-pokemon')->group(function (): void {
@@ -17,6 +18,8 @@ Route::middleware('auth')->prefix('/your-pokemon')->group(function (): void {
     Route::get('/box', [BoxController::class, 'index'])->name('box.index');
 
     Route::get('/nursery', NurseryController::class)->name('nursery');
+
+    Route::get('/{pokemon}', [PokemonController::class, 'show'])->whereUuid('pokemon')->name('show');
 
     Route::prefix('/incubator/{incubatorIndex}')
         ->name('incubators.')

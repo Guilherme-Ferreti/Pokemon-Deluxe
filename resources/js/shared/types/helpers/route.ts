@@ -29,6 +29,9 @@ type RouteParameters = {
   'pokemon.web.party': never;
   'pokemon.web.box.index': never;
   'pokemon.web.nursery': never;
+  'pokemon.web.show': {
+    pokemon: string | number;
+  };
   'pokemon.web.incubators.purchase': {
     incubatorIndex: string | number;
   };
@@ -101,6 +104,7 @@ const routes = {
   'pokemon.web.party': 'your-pokemon/party',
   'pokemon.web.box.index': 'your-pokemon/box',
   'pokemon.web.nursery': 'your-pokemon/nursery',
+  'pokemon.web.show': 'your-pokemon/{pokemon}',
   'pokemon.web.incubators.purchase':
     'your-pokemon/incubator/{incubatorIndex}/purchase',
   'pokemon.web.incubators.place-egg':

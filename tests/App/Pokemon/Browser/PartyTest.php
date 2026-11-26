@@ -32,3 +32,16 @@ it('shows party pokemon', function () {
         ->assertSee('Lv. ' . $pokemon->level)
     );
 });
+
+it('navigates to the pokemon page from a party slot', function () {
+    $user    = User::factory()->create();
+    $pokemon = Pokemon::factory()->for($user)->inParty()->create();
+
+    actingAs($user);
+
+    visit(route('pokemon.web.party'))
+        ->click("@party-list__pokemon-{$pokemon->id}-link")
+        ->assertPathIs(route('pokemon.web.show', $pokemon, absolute: false))
+        ->assertSeeIn('@page-header__title', $pokemon->getDisplayName())
+        ->assertNoSmoke();
+});

@@ -1580,7 +1580,7 @@ Read [04-pokemon-page.md](04-pokemon-page.md) first. Builds on Spec 1 (`SetActiv
 
 ### 4.7 Pokémon page: route and props
 
-- [ ] Done
+- [x] Done
 
 **Goal:** the data for the page.
 
@@ -1597,6 +1597,15 @@ Read [04-pokemon-page.md](04-pokemon-page.md) first. Builds on Spec 1 (`SetActiv
 **Tests:** feature test for the props; another user's Pokémon gives 404; guest redirected to login.
 
 **Done when:** the page loads with all props.
+
+- As built: the route takes a UUID (`whereUuid`) and `PokemonController@show` loads it through `currentUser()->pokemon()->findOrFail()`, so another player's Pokémon is a 404. `PokemonShowPageProps` has:
+  - `pokemon`: id, display `name`, `frontSprite`, `species` (id, slug, name, types), `gender`, `isShiny`, `level`, `boost`, `experience` (`{current, needed}` toward the next level, null at level 100), `pokeball` (name, sprite), `caughtAt` (ISO 8601), `originalTrainer` (name or null), `isLocked`, `inParty`, `partySize`.
+  - `stats`: `hp`, `attack` and `damageTaken`, each `{value, base, boostMultiplier, shinyMultiplier}`: `base` is the stat at that level with no boost or shine, and `shinyMultiplier` is null for a regular Pokémon. `StatsCalculator`'s `hpMultiplier()`, `damageDoneMultiplier()` and `damageTakenMultiplier()` are now public for this.
+  - `activeMoves` (`{slot, move}` by slot) and `knownMoves` (every known move by name, each with its `slot` or null); a move is `{id, name, type, power, category}`.
+  - `evolutionOptions`, sorted by target name: target `species` (id, slug, name, portrait, types), `minLevel`, `gender`, `evolutionItem` (id, name, sprite, `isOwned`) or null, `isAllowed` and `unmetRequirement` (the `EvolutionRequirement::reason()` text or null).
+  - `tms`: the owned TMs by code, each a move plus `tmName`, `quantity`, `isKnown` and `needsMaxLevel` (Z-Move and Dynamax).
+  - `boostStones`: `{quantity, failureChance}`, the chance null at +100.
+- The page `resources/js/app/Pokemon/pages/Pokemon/Show/index.vue` is a placeholder (the title and level) until task 4.8. The Box card's "View" (`pokemon-card__view-pokemon-link`) and each Party slot (now a `Link`, `party-list__pokemon-{id}-link`) open it.
 
 ### 4.8 Pokémon page: header and stats
 

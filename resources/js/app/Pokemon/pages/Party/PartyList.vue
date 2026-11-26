@@ -4,10 +4,12 @@
       <CardTitle>Party</CardTitle>
     </CardHeader>
     <CardContent class="party-card__slots-wrapper">
-      <div
+      <Link
         v-for="pokemon in page.props.party"
         :key="pokemon.id"
         class="party-card__pokemon-slot"
+        :data-test="`party-list__pokemon-${pokemon.id}-link`"
+        :href="route('pokemon.web.show', { pokemon: pokemon.id })"
       >
         <img
           loading="lazy"
@@ -18,7 +20,7 @@
           {{ pokemon.name }}
         </p>
         <p class="party-card__pokemon-level">Lv. {{ pokemon.level }}</p>
-      </div>
+      </Link>
       <div
         v-for="i in 6 - page.props.party.length"
         :key="i"
@@ -31,7 +33,7 @@
 </template>
 
 <script setup lang="ts">
-import { usePage } from '@inertiajs/vue3';
+import { Link, usePage } from '@inertiajs/vue3';
 import { IconPlus } from '@tabler/icons-vue';
 import {
   Card,
@@ -39,6 +41,7 @@ import {
   CardHeader,
   CardTitle,
 } from '@/shared/components/ui/card';
+import { route } from '@/shared/types/helpers/route';
 import type { PartyPageProps } from '../../types/page-props/PartyPageProps';
 
 const page = usePage<PartyPageProps>();

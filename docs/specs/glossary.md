@@ -112,6 +112,7 @@ One name per idea, used everywhere: specs, code, database, tests and UI. When yo
 | Key item | `SpecialItemCategory::KEY_ITEM` | Items that are switched on, like the XP Share (`xp-share`). |
 | Earned only | price is `null` | Cannot be bought or sold to the shop; can be traded. |
 | Lock | `is_locked`, `SetPokemonLockAction` | Locked Pokémon can't be released or traded. |
+| Pokémon page | `pokemon.web.show`, `PokemonController@show`, `PokemonShowPageProps`, `evolutionOptions`, `unmetRequirement`, `boostStones.failureChance` | One owned Pokémon's page, at `/your-pokemon/{pokemon}`; owner only. |
 | Party changes | `AddToPartyAction`, `RemoveFromPartyAction`, `SwapPartyPokemonAction`, `PartyFullException`, `PartyCannotBeEmptyException`, `PokemonAlreadyInPartyException`, `PokemonNotInPartyException` | Move a Pokémon between the party and the Box; refused during a battle. |
 | Release | `ReleasePokemonAction`, `PokemonLockedException` | Permanent; gives nothing back. |
 | Teach a TM | `TeachTmAction`, `MoveAlreadyKnownException`, `TmRequirementNotMetException` | Adds a move to the known moves; the TM is used up. |

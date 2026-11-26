@@ -25,21 +25,21 @@ final class StatsCalculator
         );
     }
 
-    private function hpMultiplier(int $boost, bool $isShiny): float
+    public function hpMultiplier(int $boost, bool $isShiny): float
     {
         $multiplier = $this->boostMultiplier($boost);
 
         return $isShiny ? $multiplier * (float) config('game.pokemon.stats.shiny_hp_multiplier') : $multiplier;
     }
 
-    private function damageDoneMultiplier(int $boost, bool $isShiny): float
+    public function damageDoneMultiplier(int $boost, bool $isShiny): float
     {
         $multiplier = $this->boostMultiplier($boost);
 
         return $isShiny ? $multiplier * (float) config('game.pokemon.stats.shiny_damage_done_multiplier') : $multiplier;
     }
 
-    private function damageTakenMultiplier(int $boost, bool $isShiny): float
+    public function damageTakenMultiplier(int $boost, bool $isShiny): float
     {
         $multiplier = 1 / $this->boostMultiplier($boost);
 

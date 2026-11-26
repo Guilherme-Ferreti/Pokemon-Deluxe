@@ -274,3 +274,17 @@ it('navigates to the pokedex show page from the pokemon dropdown', function () {
         ->assertPathIs(route('dex.web.pokedex.show', $pokemon->species, absolute: false))
         ->assertNoSmoke();
 });
+
+it('navigates to the pokemon page from the pokemon dropdown', function () {
+    $user    = User::factory()->create();
+    $pokemon = Pokemon::factory()->for($user)->inBox()->create();
+
+    actingAs($user);
+
+    visit(route('pokemon.web.box.index'))
+        ->click('@pokemon-card__open-dropdown-menu-button')
+        ->click('@pokemon-card__view-pokemon-link')
+        ->assertPathIs(route('pokemon.web.show', $pokemon, absolute: false))
+        ->assertSeeIn('@page-header__title', $pokemon->getDisplayName())
+        ->assertNoSmoke();
+});
