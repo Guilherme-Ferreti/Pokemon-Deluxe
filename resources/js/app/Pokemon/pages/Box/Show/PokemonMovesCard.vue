@@ -23,7 +23,7 @@
             dragOverSlot === slot.number &&
               'border-primary ring-1 ring-primary',
           ]"
-          :draggable="slot.move !== null && !isSaving"
+          :draggable="slot.move !== null"
           :data-test="`pokemon-moves-card__slot-${slot.number}-item`"
           @dragstart="startDraggingSlot(slot.number)"
           @dragover.prevent="dragOverSlot = slot.number"
@@ -58,7 +58,7 @@
                 size="icon-sm"
                 :aria-label="`Move ${slot.move.name} up`"
                 :data-test="`pokemon-moves-card__slot-${slot.number}-up-button`"
-                :disabled="isSaving || slot.position === 0"
+                :disabled="slot.position === 0"
                 @click="moveActiveMove(slot.position, -1)"
               >
                 <IconChevronUp />
@@ -69,10 +69,7 @@
                 size="icon-sm"
                 :aria-label="`Move ${slot.move.name} down`"
                 :data-test="`pokemon-moves-card__slot-${slot.number}-down-button`"
-                :disabled="
-                  isSaving ||
-                  slot.position === page.props.activeMoves.length - 1
-                "
+                :disabled="slot.position === page.props.activeMoves.length - 1"
                 @click="moveActiveMove(slot.position, 1)"
               >
                 <IconChevronDown />
@@ -90,7 +87,6 @@
             variant="ghost"
             size="sm"
             :data-test="`pokemon-moves-card__slot-${slot.number}-swap-button`"
-            :disabled="isSaving"
             @click="slotToSwap = slot.number"
           >
             {{ slot.move ? 'Swap' : 'Choose' }}
@@ -117,7 +113,7 @@
           :key="move.id"
           class="flex min-w-0 flex-col gap-0.5 rounded-lg border border-dashed p-2"
           :class="move.slot === null ? 'cursor-grab' : 'opacity-50'"
-          :draggable="move.slot === null && !isSaving"
+          :draggable="move.slot === null"
           @dragstart="startDraggingKnownMove(move.id)"
           @dragend="stopDragging"
         >
@@ -146,6 +142,7 @@
 </template>
 
 <script setup lang="ts">
+import type { OptimisticCallback } from '@inertiajs/core';
 import { router, usePage } from '@inertiajs/vue3';
 import {
   IconChevronDown,
@@ -172,8 +169,6 @@ const MAX_ACTIVE_MOVES = 4;
 
 const page = usePage<BoxShowPageProps>();
 
-const isSaving = ref(false);
-
 const slotToSwap = ref<number | null>(null);
 
 const draggedSlot = ref<number | null>(null);
@@ -197,29 +192,69 @@ const slots = computed(() =>
   }),
 );
 
-const post = (url: string, data: Parameters<typeof router.post>[1]) => {
-  router.post(url, data, {
+const buildMoveProps = (
+  knownMoves: BoxShowPageProps['knownMoves'],
+  slotOf: (moveId: string, currentSlot: number | null) => number | null,
+): Pick<BoxShowPageProps, 'activeMoves' | 'knownMoves'> => {
+  const updatedKnownMoves = knownMoves.map((knownMove) => ({
+    ...knownMove,
+    slot: slotOf(knownMove.id, knownMove.slot),
+  }));
+
+  return {
+    knownMoves: updatedKnownMoves,
+    activeMoves: updatedKnownMoves
+      .filter((knownMove) => knownMove.slot !== null)
+      .sort((first, second) => (first.slot ?? 0) - (second.slot ?? 0))
+      .map(({ slot, ...move }) => ({ slot: slot ?? 0, move })),
+  };
+};
+
+const postMoveChange = (
+  url: string,
+  data: Parameters<typeof router.post>[1],
+  optimistic: OptimisticCallback<BoxShowPageProps>,
+) => {
+  router.optimistic<BoxShowPageProps>(optimistic).post(url, data, {
     preserveScroll: true,
-    onStart: () => (isSaving.value = true),
-    onFinish: () => (isSaving.value = false),
+    only: ['activeMoves', 'knownMoves'],
   });
 };
 
 const setActiveMove = (moveId: string, slot: number) => {
   slotToSwap.value = null;
 
-  post(
+  postMoveChange(
     route('pokemon.web.set-active-move', { pokemon: page.props.pokemon.id }),
     { move_id: moveId, slot },
+    (props) => {
+      const movedFromSlot =
+        props.knownMoves.find((knownMove) => knownMove.id === moveId)?.slot ??
+        null;
+
+      return buildMoveProps(props.knownMoves, (knownMoveId, currentSlot) => {
+        if (knownMoveId === moveId) {
+          return slot;
+        }
+
+        return currentSlot === slot ? movedFromSlot : currentSlot;
+      });
+    },
   );
 };
 
 const reorderActiveMoves = (moveIds: string[]) => {
-  post(
+  postMoveChange(
     route('pokemon.web.reorder-active-moves', {
       pokemon: page.props.pokemon.id,
     }),
     { move_ids: moveIds },
+    (props) =>
+      buildMoveProps(props.knownMoves, (knownMoveId, currentSlot) => {
+        const position = moveIds.indexOf(knownMoveId);
+
+        return position === -1 ? currentSlot : position + 1;
+      }),
   );
 };
 
