@@ -16,6 +16,7 @@ use Shared\Models\InventoryItem;
 use Shared\Models\Move;
 use Shared\Models\Pokemon;
 use Shared\Models\SpecialItem;
+use Shared\Models\Species;
 use Shared\Models\SpeciesEvolution;
 
 final readonly class BoxShowPageProps implements ProvidesInertiaProperties
@@ -48,6 +49,7 @@ final readonly class BoxShowPageProps implements ProvidesInertiaProperties
             'id'          => $this->pokemon->id,
             'name'        => $this->pokemon->getDisplayName(),
             'frontSprite' => $this->pokemon->getDisplayFrontSprite(),
+            'portrait'    => $this->displayPortraitOf($this->pokemon->species),
             'species'     => [
                 'id'    => $this->pokemon->species->id,
                 'slug'  => $this->pokemon->species->slug,
@@ -145,30 +147,24 @@ final readonly class BoxShowPageProps implements ProvidesInertiaProperties
 
         return $this->pokemon->species->evolutions
             ->sortBy(fn (SpeciesEvolution $evolution) => $evolution->into->name)
-            ->map(function (SpeciesEvolution $evolution) use ($checker, $ownedEvolutionItemIds) {
-                $unmetRequirement = $checker->check($this->pokemon, $evolution, $ownedEvolutionItemIds);
-
-                return [
-                    'id'      => $evolution->id,
-                    'species' => [
-                        'id'       => $evolution->into->id,
-                        'slug'     => $evolution->into->slug,
-                        'name'     => $evolution->into->name,
-                        'portrait' => $evolution->into->portraits->regular,
-                        'types'    => $evolution->into->types,
-                    ],
-                    'minLevel'      => $evolution->min_level,
-                    'gender'        => $evolution->gender,
-                    'evolutionItem' => $evolution->evolutionItem === null ? null : [
-                        'id'      => $evolution->evolutionItem->id,
-                        'name'    => $evolution->evolutionItem->name,
-                        'sprite'  => $evolution->evolutionItem->sprite,
-                        'isOwned' => in_array($evolution->evolutionItem->id, $ownedEvolutionItemIds, true),
-                    ],
-                    'isAllowed'        => $unmetRequirement === null,
-                    'unmetRequirement' => $unmetRequirement?->reason($evolution),
-                ];
-            })
+            ->map(fn (SpeciesEvolution $evolution) => [
+                'id'      => $evolution->id,
+                'species' => [
+                    'id'          => $evolution->into->id,
+                    'slug'        => $evolution->into->slug,
+                    'name'        => $evolution->into->name,
+                    'displayName' => $evolution->into->getDisplayName($this->pokemon->is_shiny),
+                    'portrait'    => $this->displayPortraitOf($evolution->into),
+                ],
+                'minLevel'      => $evolution->min_level,
+                'gender'        => $evolution->gender,
+                'evolutionItem' => $evolution->evolutionItem === null ? null : [
+                    'id'     => $evolution->evolutionItem->id,
+                    'name'   => $evolution->evolutionItem->name,
+                    'sprite' => $evolution->evolutionItem->sprite,
+                ],
+                'isAllowed' => $checker->check($this->pokemon, $evolution, $ownedEvolutionItemIds) === null,
+            ])
             ->values()
             ->all();
     }
@@ -231,6 +227,15 @@ final readonly class BoxShowPageProps implements ProvidesInertiaProperties
             'isZMove'       => $move->is_z_move,
             'isDynamaxMove' => $move->is_dynamax_move,
         ];
+    }
+
+    private function displayPortraitOf(Species $species): ?string
+    {
+        if ($this->pokemon->is_shiny) {
+            return $species->portraits->shiny ?? $species->portraits->regular;
+        }
+
+        return $species->portraits->regular;
     }
 
     private function slotOf(Move $move): ?int

@@ -3,14 +3,7 @@
     class="flex flex-wrap items-center gap-2"
     data-test="pokemon-actions"
   >
-    <Button
-      v-if="canEvolve"
-      type="button"
-      data-test="pokemon-actions__evolve-button"
-    >
-      <IconSparkles />
-      Evolve
-    </Button>
+    <PokemonEvolveDialog />
     <PokemonBoostDialog />
     <PokemonStatsDialog />
     <Tooltip v-if="pokemon.inParty">
@@ -71,7 +64,7 @@
 
 <script setup lang="ts">
 import { usePage } from '@inertiajs/vue3';
-import { IconLock, IconLockOpen, IconSparkles } from '@tabler/icons-vue';
+import { IconLock, IconLockOpen } from '@tabler/icons-vue';
 import { computed } from 'vue';
 import { Button } from '@/shared/components/ui/button';
 import {
@@ -81,15 +74,12 @@ import {
 } from '@/shared/components/ui/tooltip';
 import type { BoxShowPageProps } from '../../../types/page-props/BoxShowPageProps';
 import PokemonBoostDialog from './PokemonBoostDialog.vue';
+import PokemonEvolveDialog from './PokemonEvolveDialog.vue';
 import PokemonStatsDialog from './PokemonStatsDialog.vue';
 
 const page = usePage<BoxShowPageProps>();
 
 const pokemon = computed(() => page.props.pokemon);
-
-const canEvolve = computed(() =>
-  page.props.evolutionOptions.some((option) => option.isAllowed),
-);
 
 const isLastInParty = computed(
   () => pokemon.value.inParty && pokemon.value.partySize <= 1,

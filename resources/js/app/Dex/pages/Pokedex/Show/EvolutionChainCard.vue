@@ -32,31 +32,13 @@
                 })
               "
               :title="evolution.species.name"
+            />&nbsp;
+            <EvolutionRequirementText
+              :min-level="evolution.minLevel"
+              :evolution-item="evolution.evolutionItem"
+              :gender="evolution.gender"
+              :item-test-id="`evolution-chain-card__evolution-${index + 1}-item`"
             />
-            <template v-if="evolution.minLevel">
-              at level {{ evolution.minLevel }}
-            </template>
-            <template v-if="evolution.evolutionItem">
-              using
-              <span
-                class="inline-block"
-                :data-test="`evolution-chain-card__evolution-${index + 1}-item`"
-              >
-                <ItemSprite
-                  v-if="evolution.evolutionItem?.sprite"
-                  class="size-7"
-                  :name="evolution.evolutionItem.name"
-                  :url="evolution.evolutionItem?.sprite"
-                />
-                {{ evolution.evolutionItem.name }}
-              </span>
-            </template>
-            <span
-              v-if="evolution.gender"
-              class="inline-block"
-            >
-              &nbsp;(<PokemonGenderIcon :gender="evolution.gender" /> only)
-            </span>
           </span>
         </li>
       </ul>
@@ -75,8 +57,7 @@
 import { usePage } from '@inertiajs/vue3';
 import AppInfoCard from '@/shared/components/content/AppInfoCard.vue';
 import AppInfoCardSectionTitle from '@/shared/components/content/AppInfoCardSectionTitle.vue';
-import ItemSprite from '@/shared/components/game/ItemSprite.vue';
-import PokemonGenderIcon from '@/shared/components/game/PokemonGenderIcon.vue';
+import EvolutionRequirementText from '@/shared/components/game/EvolutionRequirementText.vue';
 import SpeciesPortrait from '@/shared/components/game/SpeciesPortrait.vue';
 import AppNavLink from '@/shared/components/layout/AppNavLink.vue';
 import Separator from '@/shared/components/ui/separator/Separator.vue';

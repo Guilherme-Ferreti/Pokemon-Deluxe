@@ -44,6 +44,9 @@ type RouteParameters = {
   'pokemon.web.boost': {
     pokemon: string | number;
   };
+  'pokemon.web.evolve': {
+    pokemon: string | number;
+  };
   'pokemon.web.incubators.purchase': {
     incubatorIndex: string | number;
   };
@@ -122,6 +125,7 @@ const routes = {
     'your-pokemon/{pokemon}/active-moves/order',
   'pokemon.web.teach-tm': 'your-pokemon/{pokemon}/teach-tm',
   'pokemon.web.boost': 'your-pokemon/{pokemon}/boost',
+  'pokemon.web.evolve': 'your-pokemon/{pokemon}/evolve',
   'pokemon.web.incubators.purchase':
     'your-pokemon/incubator/{incubatorIndex}/purchase',
   'pokemon.web.incubators.place-egg':

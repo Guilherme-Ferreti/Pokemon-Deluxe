@@ -30,8 +30,8 @@ export type PokemonEvolutionOption = {
     id: string;
     slug: string;
     name: string;
+    displayName: string;
     portrait: string | null;
-    types: Species['types'];
   };
   minLevel: number | null;
   gender: PokemonGender | null;
@@ -39,10 +39,8 @@ export type PokemonEvolutionOption = {
     id: string;
     name: string;
     sprite: string | null;
-    isOwned: boolean;
   } | null;
   isAllowed: boolean;
-  unmetRequirement: string | null;
 };
 
 export type BoxShowPageProps = {
@@ -50,6 +48,7 @@ export type BoxShowPageProps = {
     id: string;
     name: string;
     frontSprite: string;
+    portrait: string | null;
     species: {
       id: string;
       slug: string;

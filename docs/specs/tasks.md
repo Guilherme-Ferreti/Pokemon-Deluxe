@@ -1697,7 +1697,7 @@ Read [04-pokemon-page.md](04-pokemon-page.md) first. Builds on Spec 1 (`SetActiv
 
 ### 4.11 Pokémon page: evolve
 
-- [ ] Done
+- [x] Done
 
 **Goal:** evolve from the page.
 
@@ -1716,6 +1716,10 @@ Read [04-pokemon-page.md](04-pokemon-page.md) first. Builds on Spec 1 (`SetActiv
 **Tests:** feature test for the route; browser test: evolve and see the new species.
 
 **Done when:** a player can evolve from the page.
+
+- As built: `EvolvePokemonRequest` (`species_evolution_id` exists). `EvolvePokemonController` finds the evolution among the Pokémon's species' own evolutions (404 otherwise), runs `EvolvePokemonAction` and toasts "Evolved!" / "Your Shiny Charmeleon evolved into Shiny Charizard."; an unmet requirement is a warning toast (`EvolutionNotAllowedException`).
+- `evolutionOptions[].species` gains `displayName` ("Shiny Charizard" for a shiny Pokémon), and `portrait` is the shiny portrait for a shiny Pokémon.
+- `PokemonEvolveDialog` is the Evolve button, always shown: primary when an option is allowed, outline otherwise (later change; the task first hid it). With no allowed option the description says "Charmeleon can't evolve yet. Each evolution says what it needs."; with no evolutions at all, the button is disabled with the tooltip "This Pokémon cannot evolve any further" and opens nothing. Step 1, "Evolve Shiny Charmeleon": one row per option with the portrait, display name and, below it, the requirement worded like the Pokédex evolution card ("Evolves at level 36 using [sprite] Water Stone (♂ only)", the shared `EvolutionRequirementText`). Later change: the rows are a `RadioGroup` (`pokemon-evolve-dialog__option-{id}-radio`), the first allowed option preselected, disabled radios for the rest and no "Needs x" line (`unmetRequirement`, `evolutionItem.isOwned` and `species.types` were dropped from `evolutionOptions`; `isAllowed` stays); a "Continue" button (shown when an option is allowed) opens step 2. Step 2: "Evolve Shiny Charmeleon into Shiny Charizard?" above the current portrait → the new portrait (default `SpeciesPortrait` size; `pokemon.portrait` was added for it, shiny-aware like the options), "This can't be undone.", with "Back" and "Evolve".
 
 ### 4.12 Pokémon page: party, lock and release
 

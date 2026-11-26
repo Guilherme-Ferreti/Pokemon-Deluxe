@@ -112,7 +112,7 @@ One name per idea, used everywhere: specs, code, database, tests and UI. When yo
 | Key item | `SpecialItemCategory::KEY_ITEM` | Items that are switched on, like the XP Share (`xp-share`). |
 | Earned only | price is `null` | Cannot be bought or sold to the shop; can be traded. |
 | Lock | `is_locked`, `SetPokemonLockAction` | Locked Pokémon can't be released or traded. |
-| Pokémon page | `pokemon.web.box.show`, `BoxController@show`, `BoxShowPageProps` (page `Pokemon::Box/Show`), `evolutionOptions`, `unmetRequirement`, `boostStones.failureChance` | One owned Pokémon's page, at `/your-pokemon/{pokemon}`; owner only. |
+| Pokémon page | `pokemon.web.box.show`, `BoxController@show`, `BoxShowPageProps` (page `Pokemon::Box/Show`), `evolutionOptions`, `boostStones.failureChance` | One owned Pokémon's page, at `/your-pokemon/{pokemon}`; owner only. |
 | Pokémon page parts | `PokemonHero`, `PokemonActions`, `PokemonStatsDialog`, `PokemonMovesCard`, `PokemonMoveSlot`, `PokemonKnownMoveTile`, `PokemonMoveMeta`, `PokemonSwapMoveDialog`, `PokemonTeachTmDialog`, `PokemonBoostDialog` | The Pokémon page's header, action buttons, stats dialog, moves card and their dialogs. |
 | Active move slots (client) | `useActiveMoves()`, `withMoveInSlot`, `withActiveMovesInOrder`, `toActiveMoves`, `ActiveMoveSlot` | Client copy of the slot rules, used for optimistic updates on the Pokémon page. |
 | Move list filters | `useMoveFilters()`, `PokemonMoveFilters`, `MoveSortOrder` (`name` / `power`), `compareMovesByPower` | Sort and type filter shared by the known moves and the Swap dialog. |
@@ -125,7 +125,9 @@ One name per idea, used everywhere: specs, code, database, tests and UI. When yo
 | Boost stone roll | `BoostStoneRoller::roll()` | Whether the next stone works (`true` = success). |
 | Use boost stones | `UseBoostStonesAction`, `MaxBoostReachedException`, `UseBoostStonesController`, `UseBoostStonesRequest`, `boostResult` (flash) | Uses stones one at a time until a limit, a target boost or +100. |
 | Boost result | `BoostResult` | Stones used, successes, failures, boost before and after. |
-| Evolution option | a `SpeciesEvolution` plus its unmet `EvolutionRequirement` | Shown in the Evolve dialog with the reason. |
+| Evolution option | a `SpeciesEvolution` plus `isAllowed` (no unmet `EvolutionRequirement`); `evolutionOptions[].species.displayName` | Shown in the Evolve dialog with its requirement; disabled when not allowed. |
+| Evolve from the page | `pokemon.web.evolve`, `EvolvePokemonController`, `EvolvePokemonRequest` (`species_evolution_id`), `PokemonEvolveDialog` | Options step, then a confirmation step; a toast after evolving. |
+| Evolution requirement text | `EvolutionRequirementText` (`resources/js/shared/components/game/`) | "at level 36 using [sprite] Water Stone (♂ only)"; used by the Pokédex `EvolutionChainCard` and `PokemonEvolveDialog`. |
 | Party size limit | `game.user.max_party_size` | 6. |
 | Daily mission / achievement | `UserMission` with `MissionKind::DAILY` / `ACHIEVEMENT` | One row per player per mission. |
 | Mission goal | `MissionGoal` | What a mission counts (`CATCH_POKEMON_OF_TYPE`). |

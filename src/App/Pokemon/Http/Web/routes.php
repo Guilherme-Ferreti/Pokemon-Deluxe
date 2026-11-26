@@ -3,6 +3,7 @@
 declare(strict_types=1);
 
 use App\Pokemon\Http\Web\Controllers\BoxController;
+use App\Pokemon\Http\Web\Controllers\EvolvePokemonController;
 use App\Pokemon\Http\Web\Controllers\Incubator\CatchPokemonController;
 use App\Pokemon\Http\Web\Controllers\Incubator\HatchEggController;
 use App\Pokemon\Http\Web\Controllers\Incubator\PlaceEggController;
@@ -28,6 +29,7 @@ Route::middleware('auth')->prefix('/your-pokemon')->group(function (): void {
         Route::post('/active-moves/order', ReorderActiveMovesController::class)->name('reorder-active-moves');
         Route::post('/teach-tm', TeachTmController::class)->name('teach-tm');
         Route::post('/boost', UseBoostStonesController::class)->name('boost');
+        Route::post('/evolve', EvolvePokemonController::class)->name('evolve');
     });
 
     Route::prefix('/incubator/{incubatorIndex}')

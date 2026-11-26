@@ -3,11 +3,13 @@
 declare(strict_types=1);
 
 use Shared\Enums\PokemonType;
+use Shared\Models\EvolutionItem;
 use Shared\Models\InventoryItem;
 use Shared\Models\Move;
 use Shared\Models\Pokemon;
 use Shared\Models\SpecialItem;
 use Shared\Models\Species;
+use Shared\Models\SpeciesEvolution;
 use Shared\Models\User;
 
 use function Pest\Laravel\actingAs;
@@ -222,6 +224,55 @@ it('teaches a tm after confirming', function () {
         ->assertNoJavascriptErrors();
 
     assertDatabaseHas('pokemon_move', ['pokemon_id' => $pokemon->id, 'move_id' => $iceBeam->id]);
+});
+
+it('evolves the pokemon after confirming', function () {
+    $user       = User::factory()->create();
+    $charmeleon = Species::factory()->create(['name' => 'Charmeleon']);
+    $charizard  = Species::factory()->create(['name' => 'Charizard']);
+    $waterStone = EvolutionItem::factory()->create(['name' => 'Water Stone']);
+    $evolution  = SpeciesEvolution::factory()->create(['from_species_id' => $charmeleon->id, 'into_species_id' => $charizard->id, 'evolution_item_id' => null, 'min_level' => 36, 'gender' => null]);
+    $blocked    = SpeciesEvolution::factory()->create(['from_species_id' => $charmeleon->id, 'into_species_id' => Species::factory()->create(['name' => 'Wartortle']), 'evolution_item_id' => $waterStone->id, 'min_level' => null, 'gender' => null]);
+    $pokemon    = Pokemon::factory()->for($user)->for($charmeleon)->inBox()->regular()->create(['level' => 36]);
+
+    actingAs($user);
+
+    visit(route('pokemon.web.box.show', $pokemon))
+        ->click('@pokemon-evolve-dialog__open-button')
+        ->wait(0.5)
+        ->assertSeeIn("@pokemon-evolve-dialog__option-{$evolution->id}-requirement-text", 'at level 36')
+        ->assertSeeIn("@pokemon-evolve-dialog__option-{$blocked->id}-requirement-text", 'using Water Stone')
+        ->click("@pokemon-evolve-dialog__option-{$evolution->id}-radio")
+        ->click('@pokemon-evolve-dialog__continue-button')
+        ->wait(0.5)
+        ->assertSeeIn('@pokemon-evolve-dialog__confirmation', 'Evolve Charmeleon into Charizard?')
+        ->click('@pokemon-evolve-dialog__evolve-button')
+        ->wait(1)
+        ->assertSeeIn('@pokemon-hero__name', 'Charizard')
+        ->assertSee('Your Charmeleon evolved into Charizard.')
+        ->assertNoJavascriptErrors();
+
+    expect($pokemon->fresh()->species_id)->toBe($charizard->id);
+});
+
+it('explains why the pokemon cannot evolve', function () {
+    $user       = User::factory()->create();
+    $charmeleon = Species::factory()->create(['name' => 'Charmeleon']);
+    $evolution  = SpeciesEvolution::factory()->create(['from_species_id' => $charmeleon->id, 'into_species_id' => Species::factory()->create(['name' => 'Charizard']), 'evolution_item_id' => null, 'min_level' => 36, 'gender' => null]);
+    $young      = Pokemon::factory()->for($user)->for($charmeleon)->inBox()->regular()->create(['level' => 20]);
+    $final      = Pokemon::factory()->for($user)->for(Species::factory()->create(['name' => 'Tauros']))->inBox()->regular()->create();
+
+    actingAs($user);
+
+    visit(route('pokemon.web.box.show', $young))
+        ->click('@pokemon-evolve-dialog__open-button')
+        ->wait(0.5)
+        ->assertSeeIn('@pokemon-evolve-dialog', "Charmeleon can't evolve yet.")
+        ->assertSeeIn("@pokemon-evolve-dialog__option-{$evolution->id}-requirement-text", 'at level 36')
+        ->assertMissing('@pokemon-evolve-dialog__continue-button')
+        ->navigate(route('pokemon.web.box.show', $final))
+        ->assertAttribute('@pokemon-evolve-dialog__open-button', 'disabled', '')
+        ->assertNoJavascriptErrors();
 });
 
 it('uses boost stones and shows the result', function () {

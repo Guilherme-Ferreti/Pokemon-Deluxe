@@ -44,6 +44,7 @@ it('loads the pokemon page with expected structure', function () {
             ->where('pokemon.id', $pokemon->id)
             ->where('pokemon.name', 'Shiny Charmeleon')
             ->where('pokemon.frontSprite', $pokemon->getDisplayFrontSprite())
+            ->where('pokemon.portrait', $pokemon->species->portraits->shiny)
             ->where('pokemon.species.name', 'Charmeleon')
             ->where('pokemon.species.types', [PokemonType::FIRE->value])
             ->where('pokemon.gender', PokemonGender::MALE->value)
@@ -85,14 +86,14 @@ it('has every known move with its slot', function () {
         );
 });
 
-it('has each evolution option with its unmet requirement', function () {
+it('has each evolution option and whether it is allowed', function () {
     $user       = User::factory()->create();
     $poliwhirl  = Species::factory()->create(['name' => 'Poliwhirl']);
     $waterStone = EvolutionItem::factory()->create(['name' => 'Water Stone']);
     $kingsRock  = EvolutionItem::factory()->create(['name' => "King's Rock"]);
     $poliwrath  = SpeciesEvolution::factory()->create(['from_species_id' => $poliwhirl->id, 'into_species_id' => Species::factory()->create(['name' => 'Poliwrath']), 'evolution_item_id' => $waterStone->id, 'min_level' => null, 'gender' => null]);
     $politoed   = SpeciesEvolution::factory()->create(['from_species_id' => $poliwhirl->id, 'into_species_id' => Species::factory()->create(['name' => 'Politoed']), 'evolution_item_id' => $kingsRock->id, 'min_level' => null, 'gender' => null]);
-    $pokemon    = Pokemon::factory()->for($user)->for($poliwhirl)->create(['level' => 30]);
+    $pokemon    = Pokemon::factory()->for($user)->for($poliwhirl)->shiny()->create(['level' => 30]);
 
     InventoryItem::factory()->for($user)->evolutionItem($waterStone)->create();
 
@@ -103,13 +104,10 @@ it('has each evolution option with its unmet requirement', function () {
             ->where('evolutionOptions.0.id', $politoed->id)
             ->where('evolutionOptions.0.species.name', 'Politoed')
             ->where('evolutionOptions.0.isAllowed', false)
-            ->where('evolutionOptions.0.unmetRequirement', "Needs a King's Rock")
-            ->where('evolutionOptions.0.evolutionItem.isOwned', false)
             ->where('evolutionOptions.1.id', $poliwrath->id)
             ->where('evolutionOptions.1.species.name', 'Poliwrath')
+            ->where('evolutionOptions.1.species.displayName', 'Shiny Poliwrath')
             ->where('evolutionOptions.1.isAllowed', true)
-            ->where('evolutionOptions.1.unmetRequirement', null)
-            ->where('evolutionOptions.1.evolutionItem.isOwned', true)
         );
 });
 
