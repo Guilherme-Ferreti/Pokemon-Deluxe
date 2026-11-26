@@ -18,7 +18,11 @@ const page = usePage<BoxShowPageProps>();
 setLayoutProps({
   breadcrumbs: [
     { name: 'Box', href: route('pokemon.web.box.index') },
-    { name: page.props.pokemon.name },
+    {
+      name: page.props.pokemon.name,
+      href: route('pokemon.web.box.show', { pokemon: page.props.pokemon.id }),
+    },
+    { name: 'View' },
   ],
 });
 </script>

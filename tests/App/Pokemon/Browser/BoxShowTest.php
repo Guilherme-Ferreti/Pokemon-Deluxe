@@ -234,7 +234,10 @@ it('uses boost stones and shows the result', function () {
 
     visit(route('pokemon.web.box.show', $pokemon))
         ->click('@pokemon-boost-dialog__open-button')
-        ->assertSeeIn('@pokemon-boost-dialog__next-stone-text', '+10 → +11, always works')
+        ->wait(0.5)
+        ->assertSeeIn('@pokemon-boost-dialog__boost-indicator', '+10')
+        ->assertSeeIn('@pokemon-boost-dialog__owned-indicator', '5')
+        ->assertSeeIn('@pokemon-boost-dialog__failure-indicator', '0%')
         ->clear('@pokemon-boost-dialog__stone-count-input')
         ->type('@pokemon-boost-dialog__stone-count-input', '3')
         ->click('@pokemon-boost-dialog__submit-button')

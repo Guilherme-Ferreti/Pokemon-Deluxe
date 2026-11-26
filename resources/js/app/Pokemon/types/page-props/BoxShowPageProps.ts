@@ -84,6 +84,5 @@ export type BoxShowPageProps = {
     quantity: number;
     failureChance: number | null;
     maxBoost: number;
-    safeUntil: number;
   };
 };

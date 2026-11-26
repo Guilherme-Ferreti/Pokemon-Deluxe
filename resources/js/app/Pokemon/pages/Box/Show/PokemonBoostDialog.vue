@@ -19,18 +19,18 @@
       data-test="pokemon-boost-dialog__result"
     >
       <DialogHeader class="items-center text-center sm:text-center">
-        <DialogTitle class="tabular-nums">
-          Boost +{{ boostResult.boostBefore }} → +{{ boostResult.boostAfter }}
-        </DialogTitle>
+        <DialogTitle class="tabular-nums">Boost Results</DialogTitle>
         <DialogDescription class="sr-only">
           The result of using boost stones.
         </DialogDescription>
       </DialogHeader>
       <span
-        class="text-5xl font-bold tabular-nums"
+        class="flex items-center justify-center gap-6 text-xl font-bold tabular-nums"
         data-test="pokemon-boost-dialog__new-boost-indicator"
       >
-        +{{ boostResult.boostAfter }}
+        <span>+{{ boostResult.boostBefore }}</span>
+        <IconArrowNarrowRight />
+        <span>+{{ boostResult.boostAfter }}</span>
       </span>
       <p
         class="text-sm text-muted-foreground"
@@ -67,27 +67,38 @@
       <DialogHeader>
         <DialogTitle>Use boost stones</DialogTitle>
         <DialogDescription>
-          Each stone that works adds +1 boost (+1% HP and damage). Failed stones
-          are used up. Above +{{ safeUntil }}, stones can fail.
+          Each stone that works adds +1 boost. Failed stones are used up.
         </DialogDescription>
       </DialogHeader>
-      <div class="flex gap-6">
-        <span class="flex flex-col">
-          <span class="text-xs text-muted-foreground">Boost now</span>
+      <div class="flex items-center justify-center gap-6">
+        <span class="pokemon-boost-dialog__stat">
+          <span class="pokemon-boost-dialog__stat-title">Boost now</span>
           <span
-            class="text-2xl font-bold tabular-nums"
+            class="pokemon-boost-dialog__stat-indicator"
             data-test="pokemon-boost-dialog__boost-indicator"
           >
             +{{ pokemon.boost }}
           </span>
         </span>
-        <span class="flex flex-col">
-          <span class="text-xs text-muted-foreground">You own</span>
+        <span class="pokemon-boost-dialog__stat">
+          <span class="pokemon-boost-dialog__stat-title">You own</span>
           <span
-            class="text-2xl font-bold tabular-nums"
+            class="pokemon-boost-dialog__stat-indicator"
             data-test="pokemon-boost-dialog__owned-indicator"
           >
             {{ boostStones.quantity.toLocaleString('en-US') }}
+          </span>
+        </span>
+        <span
+          v-if="boostStones.failureChance !== null"
+          class="pokemon-boost-dialog__stat"
+        >
+          <span class="pokemon-boost-dialog__stat-title">Failure chance</span>
+          <span
+            class="pokemon-boost-dialog__stat-indicator"
+            data-test="pokemon-boost-dialog__failure-indicator"
+          >
+            {{ formatPercentage(boostStones.failureChance) }}
           </span>
         </span>
       </div>
@@ -96,24 +107,6 @@
         class="text-sm"
       >
         {{ pokemon.name }} is at the max boost (+{{ maxBoost }}).
-      </p>
-      <p
-        v-else
-        class="text-sm"
-        data-test="pokemon-boost-dialog__next-stone-text"
-      >
-        Next stone:
-        <span class="tabular-nums">{{ `${nextBoostStep}, ` }}</span>
-        <span
-          class="font-medium"
-          :class="failureChanceClass"
-        >
-          {{
-            boostStones.failureChance === 0
-              ? 'always works'
-              : `${formatPercentage(boostStones.failureChance)} chance to fail`
-          }}
-        </span>
       </p>
       <p
         v-if="boostStones.quantity === 0"
@@ -212,7 +205,7 @@
 <script setup lang="ts">
 import type { FlashData } from '@inertiajs/core';
 import { useForm, usePage } from '@inertiajs/vue3';
-import { IconArrowUp } from '@tabler/icons-vue';
+import { IconArrowNarrowRight, IconArrowUp } from '@tabler/icons-vue';
 import { computed, ref } from 'vue';
 import { Button } from '@/shared/components/ui/button';
 import {
@@ -249,8 +242,6 @@ const boostStones = computed(() => page.props.boostStones);
 
 const maxBoost = computed(() => page.props.boostStones.maxBoost);
 
-const safeUntil = computed(() => page.props.boostStones.safeUntil);
-
 const isOpen = ref(false);
 
 const mode = ref<'count' | 'target'>('count');
@@ -270,22 +261,6 @@ const canUseStones = computed(
   () =>
     boostStones.value.quantity > 0 && boostStones.value.failureChance !== null,
 );
-
-const nextBoostStep = computed(
-  () => `+${pokemon.value.boost} → +${pokemon.value.boost + 1}`,
-);
-
-const failureChanceClass = computed(() => {
-  const failureChance = boostStones.value.failureChance ?? 0;
-
-  if (failureChance === 0) {
-    return 'text-emerald-700 dark:text-emerald-400';
-  }
-
-  return failureChance < 40
-    ? 'text-amber-700 dark:text-amber-400'
-    : 'text-destructive';
-});
 
 const formatPercentage = (percentage: number) =>
   `${percentage.toLocaleString('en-US', { maximumFractionDigits: 2 })}%`;
@@ -327,3 +302,19 @@ const useStones = () => {
     });
 };
 </script>
+
+<style scoped>
+@reference '@css/app.css';
+
+.pokemon-boost-dialog__stat {
+  @apply flex flex-col;
+}
+
+.pokemon-boost-dialog__stat-title {
+  @apply text-xs text-muted-foreground;
+}
+
+.pokemon-boost-dialog__stat-indicator {
+  @apply text-center text-2xl font-bold tabular-nums;
+}
+</style>

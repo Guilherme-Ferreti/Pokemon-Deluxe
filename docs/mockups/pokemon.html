@@ -46,7 +46,6 @@
   .pick[aria-pressed="true"] { border: 2px solid var(--primary); padding: 9px 11px; }
   .pick-main { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 2px; }
   .group-title { font-size: 12px; font-weight: 600; color: var(--muted-fg); text-transform: uppercase; letter-spacing: .04em; padding-top: 6px; }
-  .chance-good { color: var(--good); font-weight: 600; }
   .warn-box { border: 1px solid color-mix(in oklch, var(--destructive) 35%, transparent); background: color-mix(in oklch, var(--destructive) 8%, var(--card)); border-radius: 10px; padding: 12px; font-size: 13px; }
   .input { height: 38px; border: 1px solid var(--border); border-radius: 8px; padding: 0 12px; background: var(--card); width: 100%; }
   .mode { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; padding: 10px 12px; border: 1px solid var(--border); border-radius: 10px; }
@@ -257,19 +256,18 @@
   <div class="dialog" role="dialog" aria-labelledby="boost-title">
     <div class="stack" style="gap: 4px;">
       <h2 id="boost-title">Use boost stones</h2>
-      <p class="small muted">Shiny Charmeleon · Each stone that works adds +1 boost (+1% HP and damage). Failed stones are used up. Above +20, stones can fail.</p>
+      <p class="small muted">Each stone that works adds +1 boost. Failed stones are used up.</p>
     </div>
-    <div class="row" style="gap: 24px;">
-      <span class="stack" style="gap: 0;"><span class="xs muted">Boost now</span><span class="big num">+14</span></span>
-      <span class="stack" style="gap: 0;"><span class="xs muted">You own</span><span class="big num">37</span></span>
+    <div class="row" style="gap: 24px; justify-content: center;">
+      <span class="stack" style="gap: 0; text-align: center;"><span class="xs muted">Boost now</span><span class="big num">+14</span></span>
+      <span class="stack" style="gap: 0; text-align: center;"><span class="xs muted">You own</span><span class="big num">37</span></span>
+      <span class="stack" style="gap: 0; text-align: center;"><span class="xs muted">Failure chance</span><span class="big num">0%</span></span>
     </div>
-    <p class="small">Next stone: <span class="num">+14 → +15</span>, <span class="chance-good">always works</span></p>
     <fieldset class="stack" style="border: 0; padding: 0; margin: 0; gap: 8px;">
       <legend class="small" style="font-weight: 500; padding: 0 0 6px;">How many</legend>
       <label class="mode"><input type="radio" name="mode" checked> Use up to <input type="number" value="20" min="1" max="37" aria-label="Stones"> stones</label>
       <label class="mode"><input type="radio" name="mode"> Use until <input type="number" value="30" min="15" max="100" aria-label="Target boost"> boost</label>
     </fieldset>
-    <p class="xs muted">Chance to fail grows by 1% per level above +20: +60 → +61 fails 40% of the time, +99 → +100 fails 80%. Shown in yellow from 1%, red from 40%.</p>
     <div class="dialog-actions">
       <button type="button" class="btn btn-outline" data-go="overview">Cancel</button>
       <button type="button" class="btn btn-primary" data-go="boost-result">Use stones</button>
@@ -279,8 +277,8 @@
 
 <div class="overlay" data-show="boost-result">
   <div class="dialog" role="dialog" aria-labelledby="boost-result-title" style="text-align: center; align-items: center;">
-    <h2 id="boost-result-title">Boost +14 → +33</h2>
-    <span class="big num">+33</span>
+    <h2 id="boost-result-title">Boost Results</h2>
+    <span class="row big num" style="gap: 24px; justify-content: center;"><span>+14</span><span aria-hidden="true">→</span><span>+33</span></span>
     <p class="muted">Used 20 stones: 19 worked, 1 failed. 17 stones left.</p>
     <div class="dialog-actions" style="justify-content: center; width: 100%;">
       <button type="button" class="btn btn-outline" data-go="boost">Use more</button>

@@ -200,7 +200,7 @@ final readonly class BoxShowPageProps implements ProvidesInertiaProperties
     }
 
     /**
-     * @return array{quantity: int, failureChance: float|null, maxBoost: int, safeUntil: int}
+     * @return array{quantity: int, failureChance: float|null, maxBoost: int}
      */
     private function getBoostStonesProp(): array
     {
@@ -213,8 +213,7 @@ final readonly class BoxShowPageProps implements ProvidesInertiaProperties
             'failureChance' => $this->pokemon->boost >= (int) config('game.pokemon.max_boost')
                 ? null
                 : new BoostStoneCalculator()->failureChance($this->pokemon->boost),
-            'maxBoost'  => (int) config('game.pokemon.max_boost'),
-            'safeUntil' => (int) config('game.boost.safe_until'),
+            'maxBoost' => (int) config('game.pokemon.max_boost'),
         ];
     }
 

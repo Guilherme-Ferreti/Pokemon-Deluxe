@@ -137,7 +137,7 @@ it('has the owned tms and boost stones', function () {
             ->where('tms.1.quantity', 2)
             ->where('tms.1.isKnown', true)
             ->where('tms.2.needsMaxLevel', true)
-            ->where('boostStones', ['quantity' => 37, 'failureChance' => 41, 'maxBoost' => 100, 'safeUntil' => 20])
+            ->where('boostStones', ['quantity' => 37, 'failureChance' => 41, 'maxBoost' => 100])
         );
 });
 
@@ -149,7 +149,7 @@ it('has no next level or next boost at the max', function () {
         ->get(route('pokemon.web.box.show', $pokemon))
         ->assertInertia(fn (Assert $page) => $page
             ->where('pokemon.experience', null)
-            ->where('boostStones', ['quantity' => 0, 'failureChance' => null, 'maxBoost' => 100, 'safeUntil' => 20])
+            ->where('boostStones', ['quantity' => 0, 'failureChance' => null, 'maxBoost' => 100])
         );
 });
 
