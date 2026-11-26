@@ -6,12 +6,12 @@
     </span>
     <Tooltip v-if="hasStab">
       <TooltipTrigger as-child>
-        <Badge
-          variant="secondary"
+        <span
+          class="cursor-help underline decoration-dotted underline-offset-2"
           tabindex="0"
         >
           STAB
-        </Badge>
+        </span>
       </TooltipTrigger>
       <TooltipContent>Same type as the Pokémon: x1.5 damage</TooltipContent>
     </Tooltip>
@@ -22,7 +22,6 @@
 import { usePage } from '@inertiajs/vue3';
 import { computed } from 'vue';
 import PokemonTypeBadges from '@/shared/components/game/PokemonTypeBadges.vue';
-import { Badge } from '@/shared/components/ui/badge';
 import {
   Tooltip,
   TooltipContent,
