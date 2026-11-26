@@ -31,132 +31,100 @@
       </Button>
     </DialogTrigger>
     <DialogContent
-      v-if="isConfirming && selectedOption"
-      data-test="pokemon-evolve-dialog__confirmation"
-    >
-      <DialogHeader>
-        <DialogTitle>
-          Evolve {{ pokemon.name }} into
-          {{ selectedOption.species.displayName }}?
-        </DialogTitle>
-        <DialogDescription>This can't be undone.</DialogDescription>
-      </DialogHeader>
-      <div class="flex items-center justify-center gap-4">
-        <SpeciesPortrait
-          class="size-11"
-          :url="pokemon.portrait"
-          :name="pokemon.name"
-        />
-        <IconArrowNarrowRight class="text-muted-foreground" />
-        <SpeciesPortrait
-          class="size-11"
-          :url="selectedOption.species.portrait"
-          :name="selectedOption.species.displayName"
-        />
-      </div>
-      <DialogFooter>
-        <Button
-          type="button"
-          variant="outline"
-          data-test="pokemon-evolve-dialog__back-button"
-          @click="isConfirming = false"
-        >
-          Back
-        </Button>
-        <Button
-          type="button"
-          data-test="pokemon-evolve-dialog__evolve-button"
-          :disabled="isEvolving"
-          @click="evolve(selectedOption)"
-        >
-          Evolve
-        </Button>
-      </DialogFooter>
-    </DialogContent>
-    <DialogContent
-      v-else
-      class="flex max-h-[85dvh] flex-col gap-4"
+      class="flex max-h-[85dvh] flex-col"
       data-test="pokemon-evolve-dialog"
     >
-      <DialogHeader>
-        <DialogTitle>Evolve {{ pokemon.name }}</DialogTitle>
-        <DialogDescription>
-          <template v-if="canEvolve">Choose an evolution.</template>
-          <template v-else>{{ pokemon.name }} can't evolve yet.</template>
-        </DialogDescription>
-      </DialogHeader>
-      <RadioGroup
-        v-model="selectedOptionId"
-        class="-mx-1 min-h-0 flex-1 scrollbar-thin gap-1.5 overflow-y-auto px-1 py-1"
-        aria-label="Evolutions"
-        data-test="pokemon-evolve-dialog__option-list"
+      <PokemonEvolveConfirmation
+        v-if="isConfirming && selectedOption"
+        :option="selectedOption"
+        :is-evolving="isEvolving"
+        @back="isConfirming = false"
+        @evolve="evolve(selectedOption)"
+      />
+      <div
+        v-else
+        class="flex min-h-0 flex-1 flex-col gap-4"
       >
-        <Field
-          v-for="option in page.props.evolutionOptions"
-          :key="option.id"
-          orientation="horizontal"
-          class="items-center rounded-lg border p-2 has-data-[state=checked]:border-primary"
-          :data-test="`pokemon-evolve-dialog__option-${option.id}-radio`"
+        <DialogHeader>
+          <DialogTitle>Evolve {{ pokemon.name }}</DialogTitle>
+          <DialogDescription>
+            <template v-if="canEvolve">Choose an evolution.</template>
+            <template v-else>{{ pokemon.name }} can't evolve yet.</template>
+          </DialogDescription>
+        </DialogHeader>
+        <RadioGroup
+          v-model="selectedOptionId"
+          class="-mx-1 min-h-0 flex-1 scrollbar-thin gap-1.5 overflow-y-auto px-1 py-1"
+          aria-label="Evolutions"
+          data-test="pokemon-evolve-dialog__option-list"
         >
-          <RadioGroupItem
-            :id="`evolution-option-${option.id}`"
-            :value="option.id"
-            :disabled="!option.isAllowed"
-          />
-          <FieldLabel
-            class="flex flex-1 items-center gap-3 font-normal"
-            :for="`evolution-option-${option.id}`"
+          <Field
+            v-for="option in page.props.evolutionOptions"
+            :key="option.id"
+            orientation="horizontal"
+            class="items-center rounded-lg border p-2 has-data-[state=checked]:border-primary"
+            :data-test="`pokemon-evolve-dialog__option-${option.id}-radio`"
           >
-            <SpeciesPortrait
-              class="size-10"
-              :url="option.species.portrait"
-              :name="option.species.displayName"
+            <RadioGroupItem
+              :id="`evolution-option-${option.id}`"
+              :value="option.id"
+              :disabled="!option.isAllowed"
             />
-            <span class="flex min-w-0 flex-col gap-1">
-              <span class="text-sm font-medium">
-                {{ option.species.displayName }}
+            <FieldLabel
+              class="flex flex-1 items-center gap-3 font-normal"
+              :for="`evolution-option-${option.id}`"
+            >
+              <SpeciesPortrait
+                class="size-10"
+                :url="option.species.portrait"
+                :name="option.species.displayName"
+              />
+              <span class="flex min-w-0 flex-col gap-1">
+                <span class="text-sm font-medium">
+                  {{ option.species.displayName }}
+                </span>
+                <span
+                  class="text-xs text-muted-foreground"
+                  :data-test="`pokemon-evolve-dialog__option-${option.id}-requirement-text`"
+                >
+                  Evolves
+                  <EvolutionRequirementText
+                    :min-level="option.minLevel"
+                    :evolution-item="option.evolutionItem"
+                    :gender="option.gender"
+                  />
+                </span>
               </span>
-              <span
-                class="text-xs text-muted-foreground"
-                :data-test="`pokemon-evolve-dialog__option-${option.id}-requirement-text`"
-              >
-                Evolves
-                <EvolutionRequirementText
-                  :min-level="option.minLevel"
-                  :evolution-item="option.evolutionItem"
-                  :gender="option.gender"
-                />
-              </span>
-            </span>
-          </FieldLabel>
-        </Field>
-      </RadioGroup>
-      <DialogFooter>
-        <DialogClose as-child>
+            </FieldLabel>
+          </Field>
+        </RadioGroup>
+        <DialogFooter>
+          <DialogClose as-child>
+            <Button
+              type="button"
+              variant="outline"
+            >
+              Cancel
+            </Button>
+          </DialogClose>
           <Button
+            v-if="canEvolve"
             type="button"
-            variant="outline"
+            data-test="pokemon-evolve-dialog__continue-button"
+            :disabled="!selectedOption"
+            @click="isConfirming = true"
           >
-            Cancel
+            Continue
           </Button>
-        </DialogClose>
-        <Button
-          v-if="canEvolve"
-          type="button"
-          data-test="pokemon-evolve-dialog__continue-button"
-          :disabled="!selectedOption"
-          @click="isConfirming = true"
-        >
-          Continue
-        </Button>
-      </DialogFooter>
+        </DialogFooter>
+      </div>
     </DialogContent>
   </Dialog>
 </template>
 
 <script setup lang="ts">
 import { router, usePage } from '@inertiajs/vue3';
-import { IconArrowNarrowRight, IconSparkles } from '@tabler/icons-vue';
+import { IconSparkles } from '@tabler/icons-vue';
 import { computed, ref } from 'vue';
 import EvolutionRequirementText from '@/shared/components/game/EvolutionRequirementText.vue';
 import SpeciesPortrait from '@/shared/components/game/SpeciesPortrait.vue';
@@ -183,6 +151,7 @@ import type {
   BoxShowPageProps,
   PokemonEvolutionOption,
 } from '../../../types/page-props/BoxShowPageProps';
+import PokemonEvolveConfirmation from './PokemonEvolveConfirmation.vue';
 
 const page = usePage<BoxShowPageProps>();
 
