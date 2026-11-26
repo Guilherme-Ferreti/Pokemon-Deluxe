@@ -64,7 +64,7 @@ it('loads the pokemon page with expected structure', function () {
         );
 });
 
-it('has the active moves by slot and every known move', function () {
+it('has every known move with its slot', function () {
     $user    = User::factory()->create();
     $pokemon = Pokemon::factory()->for($user)->create();
     $ember   = Move::factory()->plainDamage()->create(['name' => 'Ember', 'type' => PokemonType::FIRE, 'power' => 40]);
@@ -76,13 +76,12 @@ it('has the active moves by slot and every known move', function () {
     actingAs($user)
         ->get(route('pokemon.web.box.show', $pokemon))
         ->assertInertia(fn (Assert $page) => $page
-            ->where('activeMoves', [
-                ['slot' => 1, 'move' => ['id' => $ember->id, 'name' => 'Ember', 'type' => 'fire', 'power' => 40, 'category' => 'damage', 'isZMove' => false, 'isDynamaxMove' => false]],
-                ['slot' => 2, 'move' => ['id' => $slash->id, 'name' => 'Slash', 'type' => 'normal', 'power' => 70, 'category' => 'damage', 'isZMove' => false, 'isDynamaxMove' => false]],
+            ->missing('activeMoves')
+            ->where('knownMoves', [
+                ['id' => $ember->id, 'name' => 'Ember', 'type' => 'fire', 'power' => 40, 'category' => 'damage', 'isZMove' => false, 'isDynamaxMove' => false, 'slot' => 1],
+                ['id' => $growl->id, 'name' => 'Growl', 'type' => 'normal', 'power' => null, 'category' => MoveCategory::AILMENT->value, 'isZMove' => false, 'isDynamaxMove' => false, 'slot' => null],
+                ['id' => $slash->id, 'name' => 'Slash', 'type' => 'normal', 'power' => 70, 'category' => 'damage', 'isZMove' => false, 'isDynamaxMove' => false, 'slot' => 2],
             ])
-            ->has('knownMoves', 3)
-            ->where('knownMoves.0.name', 'Ember')
-            ->where('knownMoves.1', ['id' => $growl->id, 'name' => 'Growl', 'type' => 'normal', 'power' => null, 'category' => MoveCategory::AILMENT->value, 'isZMove' => false, 'isDynamaxMove' => false, 'slot' => null])
         );
 });
 

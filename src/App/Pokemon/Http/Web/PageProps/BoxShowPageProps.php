@@ -30,7 +30,6 @@ final readonly class BoxShowPageProps implements ProvidesInertiaProperties
         return [
             'pokemon'          => $this->getPokemonProp(...),
             'stats'            => $this->getStatsProp(...),
-            'activeMoves'      => $this->getActiveMovesProp(...),
             'knownMoves'       => $this->getKnownMovesProp(...),
             'evolutionOptions' => $this->getEvolutionOptionsProp(...),
             'tms'              => $this->getTmsProp(...),
@@ -120,22 +119,6 @@ final readonly class BoxShowPageProps implements ProvidesInertiaProperties
                 'shinyMultiplier' => $isShiny ? round($statsCalculator->damageTakenMultiplier(0, true), 2) : null,
             ],
         ];
-    }
-
-    /**
-     * @return array<int, array{slot: int, move: array<string, mixed>}>
-     */
-    private function getActiveMovesProp(): array
-    {
-        return $this->knownMoves()
-            ->filter(fn (Move $move) => $this->slotOf($move) !== null)
-            ->sortBy(fn (Move $move) => $this->slotOf($move))
-            ->map(fn (Move $move) => [
-                'slot' => (int) $this->slotOf($move),
-                'move' => $this->toMoveProp($move),
-            ])
-            ->values()
-            ->all();
     }
 
     /**

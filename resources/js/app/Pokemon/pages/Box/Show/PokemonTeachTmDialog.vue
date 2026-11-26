@@ -172,11 +172,10 @@ import {
 } from '@/shared/components/ui/input-group';
 import { PokemonType } from '@/shared/types/enums';
 import { route } from '@/shared/types/helpers/route';
+import { useActiveMoves } from '../../../composables/useActiveMoves';
 import type { BoxShowPageProps } from '../../../types/page-props/BoxShowPageProps';
 
 type OwnedTm = BoxShowPageProps['tms'][number];
-
-const MAX_ACTIVE_MOVES = 4;
 
 const page = usePage<BoxShowPageProps>();
 
@@ -190,9 +189,7 @@ const selectedType = ref<PokemonType | null>(null);
 
 const selectedTm = ref<OwnedTm | null>(null);
 
-const hasEmptySlot = computed(
-  () => page.props.activeMoves.length < MAX_ACTIVE_MOVES,
-);
+const { hasEmptySlot } = useActiveMoves();
 
 const ownedTypes = computed(() => {
   const types = new Set(page.props.tms.map((tm) => tm.type));

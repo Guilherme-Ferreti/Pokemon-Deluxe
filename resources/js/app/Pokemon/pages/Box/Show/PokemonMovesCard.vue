@@ -14,84 +14,15 @@
         class="flex flex-col gap-1.5"
         data-test="pokemon-moves-card__slot-list"
       >
-        <li
+        <PokemonMoveSlot
           v-for="slot in slots"
           :key="slot.number"
-          class="flex items-center gap-2 rounded-lg border p-2 transition-colors"
-          :class="[
-            slot.move ? 'bg-card' : 'border-dashed',
-            dragOverSlot === slot.number &&
-              'border-primary ring-1 ring-primary',
-          ]"
-          :draggable="slot.move !== null"
-          :data-test="`pokemon-moves-card__slot-${slot.number}-item`"
-          @dragstart="startDraggingSlot(slot.number)"
-          @dragover.prevent="dragOverSlot = slot.number"
-          @dragleave="dragOverSlot = null"
-          @drop.prevent="dropOnSlot(slot.number)"
-          @dragend="stopDragging"
-        >
-          <IconGripVertical
-            v-if="slot.move"
-            class="hidden size-4 shrink-0 cursor-grab text-muted-foreground sm:block"
-            aria-hidden="true"
-          />
-          <span
-            class="w-4 shrink-0 text-center text-sm font-semibold text-muted-foreground tabular-nums"
-          >
-            {{ slot.number }}
-          </span>
-          <template v-if="slot.move">
-            <span class="flex min-w-0 flex-1 flex-col gap-0.5">
-              <MoveNameLabel
-                class="truncate text-sm font-medium"
-                :name="slot.move.name"
-                :is-z-move="slot.move.isZMove"
-                :is-dynamax-move="slot.move.isDynamaxMove"
-              />
-              <PokemonMoveMeta :move="slot.move" />
-            </span>
-            <span class="flex shrink-0 items-center gap-0.5">
-              <Button
-                type="button"
-                variant="ghost"
-                size="icon-sm"
-                :aria-label="`Move ${slot.move.name} up`"
-                :data-test="`pokemon-moves-card__slot-${slot.number}-up-button`"
-                :disabled="slot.position === 0"
-                @click="moveActiveMove(slot.position, -1)"
-              >
-                <IconChevronUp />
-              </Button>
-              <Button
-                type="button"
-                variant="ghost"
-                size="icon-sm"
-                :aria-label="`Move ${slot.move.name} down`"
-                :data-test="`pokemon-moves-card__slot-${slot.number}-down-button`"
-                :disabled="slot.position === page.props.activeMoves.length - 1"
-                @click="moveActiveMove(slot.position, 1)"
-              >
-                <IconChevronDown />
-              </Button>
-            </span>
-          </template>
-          <span
-            v-else
-            class="flex-1 text-sm text-muted-foreground"
-          >
-            Empty slot
-          </span>
-          <Button
-            type="button"
-            variant="ghost"
-            size="sm"
-            :data-test="`pokemon-moves-card__slot-${slot.number}-swap-button`"
-            @click="slotToSwap = slot.number"
-          >
-            {{ slot.move ? 'Swap' : 'Choose' }}
-          </Button>
-        </li>
+          :move-slot="slot"
+          @swap="slotToSwap = slot.number"
+          @drag-start="(moveId) => startDragging('slot', moveId)"
+          @drag-end="draggedMove = null"
+          @drop="dropOnSlot(slot)"
+        />
       </ol>
       <div class="flex flex-wrap items-baseline justify-between gap-2">
         <h3 class="text-sm font-semibold">
@@ -108,50 +39,26 @@
         class="grid grid-cols-[repeat(auto-fill,minmax(11rem,1fr))] gap-1.5"
         data-test="pokemon-moves-card__known-move-list"
       >
-        <li
+        <PokemonKnownMoveTile
           v-for="move in page.props.knownMoves"
           :key="move.id"
-          class="flex min-w-0 flex-col gap-0.5 rounded-lg border border-dashed p-2"
-          :class="move.slot === null ? 'cursor-grab' : 'opacity-50'"
-          :draggable="move.slot === null"
-          @dragstart="startDraggingKnownMove(move.id)"
-          @dragend="stopDragging"
-        >
-          <MoveNameLabel
-            class="truncate text-sm font-medium"
-            :name="move.name"
-            :is-z-move="move.isZMove"
-            :is-dynamax-move="move.isDynamaxMove"
-          />
-          <PokemonMoveMeta :move="move" />
-          <span
-            v-if="move.slot !== null"
-            class="text-xs text-muted-foreground"
-          >
-            In slot {{ move.slot }}
-          </span>
-        </li>
+          :move="move"
+          @drag-start="(moveId) => startDragging('known-moves', moveId)"
+          @drag-end="draggedMove = null"
+        />
       </ul>
     </CardContent>
     <PokemonSwapMoveDialog
       :slot-number="slotToSwap"
-      @pick="setActiveMove"
+      @pick="pickMoveForSlot"
       @close="slotToSwap = null"
     />
   </Card>
 </template>
 
 <script setup lang="ts">
-import type { OptimisticCallback } from '@inertiajs/core';
-import { router, usePage } from '@inertiajs/vue3';
-import {
-  IconChevronDown,
-  IconChevronUp,
-  IconGripVertical,
-} from '@tabler/icons-vue';
-import { computed, ref } from 'vue';
-import MoveNameLabel from '@/shared/components/game/MoveNameLabel.vue';
-import { Button } from '@/shared/components/ui/button';
+import { usePage } from '@inertiajs/vue3';
+import { ref } from 'vue';
 import {
   Card,
   CardContent,
@@ -159,149 +66,52 @@ import {
   CardHeader,
   CardTitle,
 } from '@/shared/components/ui/card';
-import { route } from '@/shared/types/helpers/route';
+import type { ActiveMoveSlot } from '../../../composables/useActiveMoves';
+import { useActiveMoves } from '../../../composables/useActiveMoves';
 import type { BoxShowPageProps } from '../../../types/page-props/BoxShowPageProps';
-import PokemonMoveMeta from './PokemonMoveMeta.vue';
+import PokemonKnownMoveTile from './PokemonKnownMoveTile.vue';
+import PokemonMoveSlot from './PokemonMoveSlot.vue';
 import PokemonSwapMoveDialog from './PokemonSwapMoveDialog.vue';
 import PokemonTeachTmDialog from './PokemonTeachTmDialog.vue';
 
-const MAX_ACTIVE_MOVES = 4;
+type DraggedMove = {
+  source: 'slot' | 'known-moves';
+  moveId: string;
+};
 
 const page = usePage<BoxShowPageProps>();
 
+const { slots, setActiveMove, moveToPlaceOf } = useActiveMoves();
+
 const slotToSwap = ref<number | null>(null);
 
-const draggedSlot = ref<number | null>(null);
+const draggedMove = ref<DraggedMove | null>(null);
 
-const draggedKnownMoveId = ref<string | null>(null);
-
-const dragOverSlot = ref<number | null>(null);
-
-const slots = computed(() =>
-  Array.from({ length: MAX_ACTIVE_MOVES }, (_, index) => {
-    const number = index + 1;
-    const position = page.props.activeMoves.findIndex(
-      (activeMove) => activeMove.slot === number,
-    );
-
-    return {
-      number,
-      position,
-      move: position === -1 ? null : page.props.activeMoves[position].move,
-    };
-  }),
-);
-
-const buildMoveProps = (
-  knownMoves: BoxShowPageProps['knownMoves'],
-  slotOf: (moveId: string, currentSlot: number | null) => number | null,
-): Pick<BoxShowPageProps, 'activeMoves' | 'knownMoves'> => {
-  const updatedKnownMoves = knownMoves.map((knownMove) => ({
-    ...knownMove,
-    slot: slotOf(knownMove.id, knownMove.slot),
-  }));
-
-  return {
-    knownMoves: updatedKnownMoves,
-    activeMoves: updatedKnownMoves
-      .filter((knownMove) => knownMove.slot !== null)
-      .sort((first, second) => (first.slot ?? 0) - (second.slot ?? 0))
-      .map(({ slot, ...move }) => ({ slot: slot ?? 0, move })),
-  };
+const startDragging = (source: DraggedMove['source'], moveId: string) => {
+  draggedMove.value = { source, moveId };
 };
 
-const postMoveChange = (
-  url: string,
-  data: Parameters<typeof router.post>[1],
-  optimistic: OptimisticCallback<BoxShowPageProps>,
-) => {
-  router.optimistic<BoxShowPageProps>(optimistic).post(url, data, {
-    preserveScroll: true,
-    only: ['activeMoves', 'knownMoves'],
-  });
-};
-
-const setActiveMove = (moveId: string, slot: number) => {
+const pickMoveForSlot = (moveId: string, slot: number) => {
   slotToSwap.value = null;
 
-  postMoveChange(
-    route('pokemon.web.set-active-move', { pokemon: page.props.pokemon.id }),
-    { move_id: moveId, slot },
-    (props) => {
-      const movedFromSlot =
-        props.knownMoves.find((knownMove) => knownMove.id === moveId)?.slot ??
-        null;
-
-      return buildMoveProps(props.knownMoves, (knownMoveId, currentSlot) => {
-        if (knownMoveId === moveId) {
-          return slot;
-        }
-
-        return currentSlot === slot ? movedFromSlot : currentSlot;
-      });
-    },
-  );
+  setActiveMove(moveId, slot);
 };
 
-const reorderActiveMoves = (moveIds: string[]) => {
-  postMoveChange(
-    route('pokemon.web.reorder-active-moves', {
-      pokemon: page.props.pokemon.id,
-    }),
-    { move_ids: moveIds },
-    (props) =>
-      buildMoveProps(props.knownMoves, (knownMoveId, currentSlot) => {
-        const position = moveIds.indexOf(knownMoveId);
+const dropOnSlot = (slot: ActiveMoveSlot) => {
+  const droppedMove = draggedMove.value;
 
-        return position === -1 ? currentSlot : position + 1;
-      }),
-  );
-};
+  draggedMove.value = null;
 
-const moveActiveMove = (position: number, offset: number) => {
-  const moveIds = page.props.activeMoves.map(
-    (activeMove) => activeMove.move.id,
-  );
-  const [movedId] = moveIds.splice(position, 1);
+  if (!droppedMove || droppedMove.moveId === slot.move?.id) {
+    return;
+  }
 
-  moveIds.splice(position + offset, 0, movedId);
-
-  reorderActiveMoves(moveIds);
-};
-
-const startDraggingSlot = (number: number) => {
-  draggedSlot.value = number;
-};
-
-const startDraggingKnownMove = (moveId: string) => {
-  draggedKnownMoveId.value = moveId;
-};
-
-const stopDragging = () => {
-  draggedSlot.value = null;
-  draggedKnownMoveId.value = null;
-  dragOverSlot.value = null;
-};
-
-const dropOnSlot = (number: number) => {
-  const fromSlot = draggedSlot.value;
-  const knownMoveId = draggedKnownMoveId.value;
-
-  stopDragging();
-
-  if (knownMoveId !== null) {
-    setActiveMove(knownMoveId, number);
+  if (droppedMove.source === 'slot' && slot.move) {
+    moveToPlaceOf(droppedMove.moveId, slot.move.id);
 
     return;
   }
 
-  const from = slots.value.find((slot) => slot.number === fromSlot);
-  const to = slots.value.find((slot) => slot.number === number);
-
-  if (!from?.move || !to?.move || from.number === to.number) {
-    return;
-  }
-
-  moveActiveMove(from.position, to.position - from.position);
+  setActiveMove(droppedMove.moveId, slot.number);
 };
 </script>

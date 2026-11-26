@@ -15,6 +15,8 @@ export type PokemonMove = {
   isDynamaxMove: boolean;
 };
 
+export type PokemonKnownMove = PokemonMove & { slot: number | null };
+
 export type PokemonStat = {
   value: number;
   base: number;
@@ -70,8 +72,7 @@ export type BoxShowPageProps = {
     attack: PokemonStat;
     damageTaken: PokemonStat;
   };
-  activeMoves: { slot: number; move: PokemonMove }[];
-  knownMoves: (PokemonMove & { slot: number | null })[];
+  knownMoves: PokemonKnownMove[];
   evolutionOptions: PokemonEvolutionOption[];
   tms: (PokemonMove & {
     tmName: string;

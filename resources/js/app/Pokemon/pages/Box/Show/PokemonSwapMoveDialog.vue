@@ -97,9 +97,9 @@ const page = usePage<BoxShowPageProps>();
 
 const currentMove = computed(
   () =>
-    page.props.activeMoves.find(
-      (activeMove) => activeMove.slot === props.slotNumber,
-    )?.move ?? null,
+    page.props.knownMoves.find(
+      (knownMove) => knownMove.slot === props.slotNumber,
+    ) ?? null,
 );
 
 const candidates = computed(() =>

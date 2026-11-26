@@ -113,7 +113,8 @@ One name per idea, used everywhere: specs, code, database, tests and UI. When yo
 | Earned only | price is `null` | Cannot be bought or sold to the shop; can be traded. |
 | Lock | `is_locked`, `SetPokemonLockAction` | Locked Pokémon can't be released or traded. |
 | Pokémon page | `pokemon.web.box.show`, `BoxController@show`, `BoxShowPageProps` (page `Pokemon::Box/Show`), `evolutionOptions`, `unmetRequirement`, `boostStones.failureChance` | One owned Pokémon's page, at `/your-pokemon/{pokemon}`; owner only. |
-| Pokémon page parts | `PokemonHero`, `PokemonActions`, `PokemonStatsDialog`, `PokemonMovesCard`, `PokemonMoveMeta`, `PokemonSwapMoveDialog`, `PokemonTeachTmDialog`, `PokemonBoostDialog` | The Pokémon page's header, action buttons, stats dialog, moves card and their dialogs. |
+| Pokémon page parts | `PokemonHero`, `PokemonActions`, `PokemonStatsDialog`, `PokemonMovesCard`, `PokemonMoveSlot`, `PokemonKnownMoveTile`, `PokemonMoveMeta`, `PokemonSwapMoveDialog`, `PokemonTeachTmDialog`, `PokemonBoostDialog` | The Pokémon page's header, action buttons, stats dialog, moves card and their dialogs. |
+| Active move slots (client) | `useActiveMoves()`, `withMoveInSlot`, `withActiveMovesInOrder`, `toActiveMoves`, `ActiveMoveSlot` | Client copy of the slot rules, used for optimistic updates on the Pokémon page. |
 | Party changes | `AddToPartyAction`, `RemoveFromPartyAction`, `SwapPartyPokemonAction`, `PartyFullException`, `PartyCannotBeEmptyException`, `PokemonAlreadyInPartyException`, `PokemonNotInPartyException` | Move a Pokémon between the party and the Box; refused during a battle. |
 | Release | `ReleasePokemonAction`, `PokemonLockedException` | Permanent; gives nothing back. |
 | Teach a TM | `TeachTmAction`, `MoveAlreadyKnownException`, `TmRequirementNotMetException`, `TeachTmController`, `TeachTmRequest` | Adds a move to the known moves; the TM is used up. |

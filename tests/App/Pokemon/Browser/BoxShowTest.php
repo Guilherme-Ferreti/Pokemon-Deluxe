@@ -78,12 +78,12 @@ it('swaps a known move into a slot', function () {
     actingAs($user);
 
     visit(route('pokemon.web.box.show', $pokemon))
-        ->assertSeeIn('@pokemon-moves-card__slot-1-item', 'Tackle')
-        ->click('@pokemon-moves-card__slot-1-swap-button')
+        ->assertSeeIn('@pokemon-move-1-slot', 'Tackle')
+        ->click('@pokemon-move-1-slot__swap-button')
         ->assertSeeIn('@pokemon-swap-move-dialog', 'Replace Tackle')
         ->click("@pokemon-swap-move-dialog__move-{$iceBeam->id}-button")
         ->wait(1)
-        ->assertSeeIn('@pokemon-moves-card__slot-1-item', 'Ice Beam')
+        ->assertSeeIn('@pokemon-move-1-slot', 'Ice Beam')
         ->assertNoJavascriptErrors();
 
     assertDatabaseHas('pokemon_move', ['pokemon_id' => $pokemon->id, 'move_id' => $iceBeam->id, 'slot' => 1]);
@@ -100,14 +100,40 @@ it('reorders the active moves with the arrows', function () {
     actingAs($user);
 
     visit(route('pokemon.web.box.show', $pokemon))
-        ->assertButtonDisabled('@pokemon-moves-card__slot-1-up-button')
-        ->click('@pokemon-moves-card__slot-2-up-button')
+        ->assertButtonDisabled('@pokemon-move-1-slot__up-button')
+        ->click('@pokemon-move-2-slot__up-button')
         ->wait(1)
-        ->assertSeeIn('@pokemon-moves-card__slot-1-item', 'Ember')
-        ->assertSeeIn('@pokemon-moves-card__slot-2-item', 'Tackle')
+        ->assertSeeIn('@pokemon-move-1-slot', 'Ember')
+        ->assertSeeIn('@pokemon-move-2-slot', 'Tackle')
         ->assertNoJavascriptErrors();
 
     assertDatabaseHas('pokemon_move', ['pokemon_id' => $pokemon->id, 'move_id' => $ember->id, 'slot' => 1]);
+});
+
+it('drags a known move onto a slot and a slot onto another', function () {
+    $user    = User::factory()->create();
+    $pokemon = Pokemon::factory()->for($user)->inBox()->create();
+    $tackle  = Move::factory()->plainDamage()->create(['name' => 'Tackle']);
+    $ember   = Move::factory()->plainDamage()->create(['name' => 'Ember']);
+    $iceBeam = Move::factory()->plainDamage()->create(['name' => 'Ice Beam']);
+
+    $pokemon->knownMoves()->attach([$tackle->id => ['slot' => 1], $ember->id => ['slot' => 2], $iceBeam->id => ['slot' => null]]);
+
+    actingAs($user);
+
+    visit(route('pokemon.web.box.show', $pokemon))
+        ->drag("@pokemon-known-move-{$iceBeam->id}-tile", '@pokemon-move-2-slot')
+        ->wait(1)
+        ->assertSeeIn('@pokemon-move-2-slot', 'Ice Beam')
+        ->drag('@pokemon-move-1-slot', '@pokemon-move-2-slot')
+        ->wait(1)
+        ->assertSeeIn('@pokemon-move-1-slot', 'Ice Beam')
+        ->assertSeeIn('@pokemon-move-2-slot', 'Tackle')
+        ->assertNoJavascriptErrors();
+
+    assertDatabaseHas('pokemon_move', ['pokemon_id' => $pokemon->id, 'move_id' => $iceBeam->id, 'slot' => 1]);
+    assertDatabaseHas('pokemon_move', ['pokemon_id' => $pokemon->id, 'move_id' => $tackle->id, 'slot' => 2]);
+    assertDatabaseHas('pokemon_move', ['pokemon_id' => $pokemon->id, 'move_id' => $ember->id, 'slot' => null]);
 });
 
 it('teaches a tm after confirming', function () {
