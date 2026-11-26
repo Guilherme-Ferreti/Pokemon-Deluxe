@@ -1587,7 +1587,7 @@ Read [04-pokemon-page.md](04-pokemon-page.md) first. Builds on Spec 1 (`SetActiv
 **Build:**
 - Route `GET /your-pokemon/{pokemon}` named `pokemon.web.show` → `App\Pokemon\Http\Web\Controllers\PokemonController@show`. Only the owner may open it (404 for anyone else).
 - `App\Pokemon\Http\Web\PageProps\PokemonShowPageProps`:
-  - Header: species, types, gender, shiny, level, boost, XP progress to the next level, ball, catch date, original trainer, `is_locked`, `in_party`, party size.
+  - Header: species, types, gender, shiny, level, boost, XP progress to the next level, ball, catch date, `is_locked`, `in_party`, party size.
   - Stats: HP, Attack and Defense from `getStats()`, each with its parts (level, boost, shiny) for the hover breakdown.
   - Moves: active moves by slot and the known-moves pool (name, type, power, category).
   - Evolution options: each `SpeciesEvolution` of the species with the target species and `EvolutionRequirementChecker::check()`'s unmet `EvolutionRequirement` (null = allowed). The disabled rows show `EvolutionRequirement::reason($evolution)` ("Needs a Water Stone"), the same wording `EvolutionNotAllowedException` uses.
@@ -1599,7 +1599,7 @@ Read [04-pokemon-page.md](04-pokemon-page.md) first. Builds on Spec 1 (`SetActiv
 **Done when:** the page loads with all props.
 
 - As built: the route takes a UUID (`whereUuid`) and `PokemonController@show` loads it through `currentUser()->pokemon()->findOrFail()`, so another player's Pokémon is a 404. `PokemonShowPageProps` has:
-  - `pokemon`: id, display `name`, `frontSprite`, `species` (id, slug, name, types), `gender`, `isShiny`, `level`, `boost`, `experience` (`{current, needed}` toward the next level, null at level 100), `pokeball` (name, sprite), `caughtAt` (ISO 8601), `originalTrainer` (name or null), `isLocked`, `inParty`, `partySize`.
+  - `pokemon`: id, display `name`, `frontSprite`, `species` (id, slug, name, types), `gender`, `isShiny`, `level`, `boost`, `experience` (`{current, needed}` toward the next level, null at level 100), `pokeball` (name, sprite), `caughtAt` (ISO 8601), `isLocked`, `inParty`, `partySize`.
   - `stats`: `hp`, `attack` and `damageTaken`, each `{value, base, boostMultiplier, shinyMultiplier}`: `base` is the stat at that level with no boost or shine, and `shinyMultiplier` is null for a regular Pokémon. `StatsCalculator`'s `hpMultiplier()`, `damageDoneMultiplier()` and `damageTakenMultiplier()` are now public for this.
   - `activeMoves` (`{slot, move}` by slot) and `knownMoves` (every known move by name, each with its `slot` or null); a move is `{id, name, type, power, category}`.
   - `evolutionOptions`, sorted by target name: target `species` (id, slug, name, portrait, types), `minLevel`, `gender`, `evolutionItem` (id, name, sprite, `isOwned`) or null, `isAllowed` and `unmetRequirement` (the `EvolutionRequirement::reason()` text or null).
@@ -1630,7 +1630,7 @@ Read [04-pokemon-page.md](04-pokemon-page.md) first. Builds on Spec 1 (`SetActiv
 **Done when:** the page matches the mock-up's overview.
 
 - As built: `index.vue` sets the breadcrumbs (Party or Box, by `inParty`, then the Pokémon's name) and stacks `PokemonHero` and `PokemonStatsCard` (the stats card takes the left column of a `2fr 3fr` grid from `@3xl/main-content`, leaving the right for the moves in 4.9). Like the Pokédex's `SpeciesHero`, the hero holds the page's `h1` instead of an `AppPageHeader`, as the mock-up shows.
-- `PokemonHero`: `SpeciesSprite`, `PokemonDisplayName` (with the gender icon), `PokemonTypeBadges`, "Lv 36" and "Boost +14" badges, a gold "Shiny" badge with a star for shinies (no gold border on the card), a "Locked" badge with a tooltip ("Can't be released or traded until it's unlocked."), a thin `Progress` with "720 / 1,000 XP to Lv 37" ("Max level" at 100), and "Caught in a [ItemSprite] Ultra Ball · 3 Nov 2026" (the date in UTC so the server and browser render the same text) and "Original trainer: Ash".
+- `PokemonHero`: `SpeciesSprite`, `PokemonDisplayName` (with the gender icon), `PokemonTypeBadges`, "Lv 36" and "Boost +14" badges, a gold "Shiny" badge with a star for shinies (no gold border on the card), a "Locked" badge with a tooltip ("Can't be released or traded until it's unlocked."), a thin `Progress` with "720 / 1,000 XP to Lv 37" ("Max level" at 100), and "Caught in a [ItemSprite] Ultra Ball · 3 Nov 2026" (the date in UTC so the server and browser render the same text).
 - `PokemonActions` (not wired yet): "Evolve" (primary, only when an evolution option is allowed), "Boost" (outline), "Remove from party" (outline, disabled with "Your party needs at least one Pokémon" for the last one) or "Add to party", a ghost lock toggle ("Locked" / "Unlocked"), and "Release" (outline in destructive colours, pushed to the end, disabled with "Unlock it first" when locked). There is no Trade button until Spec 7 adds trading.
 - `PokemonStatsCard`: an `AppInfoCard` with HP ("238", "Max HP"), Attack ("x0.85", "Damage multiplier") and Defense ("−34%", "Damage taken"); hovering or focusing a value shows its parts ("Level 36: 167 · Boost +14: x1.14 · Shiny: x1.25").
 

@@ -43,7 +43,7 @@ final readonly class PokemonShowPageProps implements ProvidesInertiaProperties
      */
     private function getPokemonProp(): array
     {
-        $this->pokemon->loadMissing(['species', 'pokeball', 'originalUser']);
+        $this->pokemon->loadMissing(['species', 'pokeball']);
 
         return [
             'id'          => $this->pokemon->id,
@@ -64,11 +64,10 @@ final readonly class PokemonShowPageProps implements ProvidesInertiaProperties
                 'name'   => $this->pokemon->pokeball->name,
                 'sprite' => $this->pokemon->pokeball->sprite,
             ],
-            'caughtAt'        => $this->pokemon->caught_at->toIso8601String(),
-            'originalTrainer' => $this->pokemon->originalUser?->name,
-            'isLocked'        => $this->pokemon->is_locked,
-            'inParty'         => $this->pokemon->in_party,
-            'partySize'       => currentUser()->pokemon()->inParty()->count(),
+            'caughtAt'  => $this->pokemon->caught_at->toIso8601String(),
+            'isLocked'  => $this->pokemon->is_locked,
+            'inParty'   => $this->pokemon->in_party,
+            'partySize' => currentUser()->pokemon()->inParty()->count(),
         ];
     }
 

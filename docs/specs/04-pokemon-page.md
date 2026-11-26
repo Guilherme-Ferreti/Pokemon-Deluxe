@@ -11,7 +11,6 @@ Box › Shiny Charmeleon
 │                  [FIRE] [Lv 36] [Boost +14] [Shiny]          │
 │                  XP ███████░░░  720 / 1,000 XP to Lv 37      │
 │                  Caught in a (ball) Ultra Ball · 3 Nov 2026  │
-│                  Original trainer: Ash                       │
 │ [Evolve] [Boost] [Trade] [Remove from party] [Lock] [Release]│
 ├────────────────────────────┬─────────────────────────────────┤
 │ STATS                      │ ACTIVE MOVES       [Teach TM]   │
@@ -28,7 +27,7 @@ Box › Shiny Charmeleon
 
 - Sprite, display name ("Shiny Charmeleon": no star or icon in the name), gender, types, and badges for level, boost and shiny (the "Shiny" badge may carry a star icon). An XP bar to the next level ("Max level" at level 100).
 - Status badges when they apply: "Locked", "On trade" (in a listing or offer, Spec 7) and "In a Battle Tower run" (Spec 6), each with a tooltip saying what it blocks.
-- Ball it was caught in, catch date and original trainer.
+- Ball it was caught in and catch date. The original trainer isn't shown on this page.
 - No nicknames.
 
 ## Actions

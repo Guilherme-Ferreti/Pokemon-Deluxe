@@ -102,9 +102,6 @@
             </span>
             · {{ caughtOn }}
           </span>
-          <span v-if="pokemon.originalTrainer">
-            Original trainer: {{ pokemon.originalTrainer }}
-          </span>
         </div>
         <PokemonActions />
       </div>

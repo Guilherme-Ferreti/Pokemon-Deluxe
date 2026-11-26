@@ -53,7 +53,6 @@ it('loads the pokemon page with expected structure', function () {
             ->where('pokemon.experience', ['current' => 720, 'needed' => 1000])
             ->where('pokemon.pokeball', ['name' => 'Ultra Ball', 'sprite' => 'https://example.com/ultra-ball.png'])
             ->where('pokemon.caughtAt', $pokemon->caught_at->toIso8601String())
-            ->where('pokemon.originalTrainer', 'Ash')
             ->where('pokemon.isLocked', false)
             ->where('pokemon.inParty', true)
             ->where('pokemon.partySize', 1)

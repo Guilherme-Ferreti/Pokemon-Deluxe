@@ -61,7 +61,6 @@ export type PokemonShowPageProps = {
     experience: { current: number; needed: number } | null;
     pokeball: { name: string; sprite: string | null };
     caughtAt: string;
-    originalTrainer: string | null;
     isLocked: boolean;
     inParty: boolean;
     partySize: number;
