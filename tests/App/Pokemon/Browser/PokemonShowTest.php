@@ -81,6 +81,7 @@ it('swaps a known move into a slot', function () {
         ->click('@pokemon-moves-card__slot-1-swap-button')
         ->assertSeeIn('@pokemon-swap-move-dialog', 'Replace Tackle')
         ->click("@pokemon-swap-move-dialog__move-{$iceBeam->id}-button")
+        ->wait(1)
         ->assertSeeIn('@pokemon-moves-card__slot-1-item', 'Ice Beam')
         ->assertNoJavascriptErrors();
 
@@ -100,6 +101,7 @@ it('reorders the active moves with the arrows', function () {
     visit(route('pokemon.web.show', $pokemon))
         ->assertButtonDisabled('@pokemon-moves-card__slot-1-up-button')
         ->click('@pokemon-moves-card__slot-2-up-button')
+        ->wait(1)
         ->assertSeeIn('@pokemon-moves-card__slot-1-item', 'Ember')
         ->assertSeeIn('@pokemon-moves-card__slot-2-item', 'Tackle')
         ->assertNoJavascriptErrors();
@@ -122,6 +124,7 @@ it('teaches a tm after confirming', function () {
         ->click("@pokemon-teach-tm-dialog__tm-{$iceBeam->id}-button")
         ->assertSeeIn('@pokemon-teach-tm-dialog__confirmation-text', 'Teach Ice Beam to')
         ->click('@pokemon-teach-tm-dialog__teach-button')
+        ->wait(1)
         ->assertSee('Move learned')
         ->assertSeeIn('@pokemon-moves-card__known-move-list', 'Ice Beam')
         ->assertNoJavascriptErrors();
@@ -143,9 +146,11 @@ it('uses boost stones and shows the result', function () {
         ->clear('@pokemon-boost-dialog__stone-count-input')
         ->type('@pokemon-boost-dialog__stone-count-input', '3')
         ->click('@pokemon-boost-dialog__submit-button')
+        ->wait(1)
         ->assertSeeIn('@pokemon-boost-dialog__new-boost-indicator', '+13')
         ->assertSeeIn('@pokemon-boost-dialog__summary-text', 'Used 3 stones: 3 worked, 0 failed. 2 stones left.')
         ->click('@pokemon-boost-dialog__done-button')
+        ->wait(0.5)
         ->assertSeeIn('@pokemon-hero__boost-indicator', 'Boost +13')
         ->assertNoJavascriptErrors();
 

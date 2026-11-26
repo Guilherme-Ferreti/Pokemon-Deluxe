@@ -41,11 +41,14 @@ it('explores an area, keeps exploring and starts a battle', function () {
         ->assertPathIs('/explore/forest')
         ->assertSeeIn('@encounter-empty-state', 'Nothing here yet')
         ->click('@encounter-empty-state__explore-button')
+        ->wait(1)
         ->assertSeeIn('@encounter-card__title', 'Caterpie appeared!')
         ->assertNoAccessibilityIssues()
         ->click('@encounter-card__keep-exploring-button')
+        ->wait(1)
         ->assertSeeIn('@encounter-card__title', 'Caterpie appeared!')
         ->click('@encounter-card__battle-button')
+        ->wait(1)
         ->assertPathIs('/battle')
         ->assertSeeIn('@battle-header__title', 'Wild battle');
 });
@@ -111,6 +114,7 @@ it('keeps exploring the battle area from the result card', function () {
     visit(route('battle.web.show'))
         ->assertSeeIn('@battle-result-card', 'Back to Dashboard')
         ->click('@battle-result-card__keep-exploring-button')
+        ->wait(1)
         ->assertPathIs('/explore/forest')
         ->assertSeeIn('@encounter-card__title', 'Caterpie appeared!');
 });

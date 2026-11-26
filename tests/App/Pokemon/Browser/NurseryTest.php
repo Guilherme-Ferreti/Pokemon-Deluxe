@@ -45,7 +45,7 @@ it('shows the next incubator price and updates it after a purchase', function ()
     visit(route('pokemon.web.nursery'))
         ->assertSeeIn('@incubator-1-card--not-purchased__price-indicator', 'Free')
         ->click('@incubator-1-card--not-purchased__purchase-button')
-        ->waitForText('₽ 5,000')
+        ->wait(1)
         ->assertSeeIn('@incubator-2-card--not-purchased__price-indicator', '₽ 5,000')
         ->assertEnabled('@incubator-2-card--not-purchased__purchase-button')
         ->assertNoJavascriptErrors();

@@ -77,6 +77,7 @@ it('buys an item without asking first', function () {
 
     visit(route('shop.web.index'))
         ->click("@shop-item-{$pokeball->id}-buy-form__buy-button")
+        ->wait(1)
         ->waitForText('You bought 1 Ultra Ball.')
         ->assertSeeIn("@shop-item-{$pokeball->id}-row", 'You own: 1')
         ->assertNoJavascriptErrors();
@@ -99,6 +100,7 @@ it('asks before a purchase over 10,000', function () {
         ->assertSeeIn("@shop-item-{$pokeball->id}-buy-form__confirm-dialog", 'Buy 10 Ultra Balls for ₽ 12,000?')
         ->assertSeeIn("@shop-item-{$pokeball->id}-buy-form__confirm-dialog", "You'll have ₽ 450 left.")
         ->click("@shop-item-{$pokeball->id}-buy-form__confirm-button")
+        ->wait(1)
         ->waitForText('You bought 10 Ultra Balls.')
         ->assertSeeIn("@shop-item-{$pokeball->id}-row", 'You own: 10')
         ->assertNoJavascriptErrors();

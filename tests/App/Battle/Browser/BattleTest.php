@@ -156,10 +156,13 @@ it('takes a turn when a move is clicked', function () {
         ->assertScript("document.querySelector('[data-test=\"battle-log-card__turn-1-line-1\"] strong').textContent", 'Thunder Shock')
         ->assertMissing('@battle-log-card__turn-0-line-1')
         ->click('@battle-log-card__turn-0-button')
+        ->wait(0.5)
         ->assertSeeIn('@battle-log-card__turn-0-line-1', 'A wild Pidgey appeared!')
         ->click('@battle-log-card__turn-1-button')
+        ->wait(0.5)
         ->assertMissing('@battle-log-card__turn-1-line-1')
         ->click('@battle-log-card__turn-0-button')
+        ->wait(0.5)
         ->assertMissing('@battle-log-card__turn-0-line-1')
         ->assertNoJavascriptErrors();
 });
@@ -469,6 +472,7 @@ it('throws a ball from the throw ball dialog and shows the caught result card', 
         ->assertSeeIn('@ball-picker-list__ball-fast-ball-button', 'x3.5')
         ->assertSeeIn('@ball-picker-list__ball-ultra-ball-button', 'x12')
         ->click('@ball-picker-list__ball-ultra-ball-button')
+        ->wait(1)
         ->waitForText('Gotcha! Pidgey was caught')
         ->assertMissing('@battle-throw-ball-button__dialog')
         ->assertSeeIn('@battle-result-card__title', 'Gotcha! Pidgey was caught')
