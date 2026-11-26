@@ -1,62 +1,73 @@
 <template>
   <div
-    class="-mr-2 flex max-h-80 flex-col gap-0.5 overflow-y-auto overscroll-contain pr-2"
-    role="list"
-    aria-label="Choose a ball"
+    class="flex flex-col gap-4"
     data-test="ball-picker-list"
   >
-    <button
-      v-for="pokeball in page.props.pokeballs"
-      :key="pokeball.slug"
-      type="button"
-      role="listitem"
-      class="flex min-h-11 shrink-0 items-center gap-2 rounded-lg px-2 text-left text-sm transition-colors hover:bg-muted disabled:pointer-events-none disabled:opacity-60"
-      :data-test="`ball-picker-list__ball-${pokeball.slug}-button`"
+    <RadioGroup
+      v-if="page.props.pokeballs.length > 0"
+      v-model="form.pokeball"
+      class="-m-1 max-h-80 scrollbar-thin gap-2 overflow-y-auto overscroll-contain p-1"
+      aria-label="Choose a ball"
       :disabled="form.processing"
-      @click="throwBall(pokeball.slug)"
     >
-      <ItemSprite
-        class="shrink-0"
-        :name="pokeball.name"
-        :url="pokeball.sprite"
-      />
-      <span
-        class="flex min-w-0 flex-1 flex-wrap items-center gap-1.5 font-medium"
+      <AppChoiceCard
+        v-for="pokeball in page.props.pokeballs"
+        :key="pokeball.slug"
+        :data-test="`ball-picker-list__ball-${pokeball.slug}-radio`"
+        :value="pokeball.slug"
       >
-        {{ pokeball.name }}
-        <Badge
-          v-if="pokeball.isBoosted"
-          variant="outline"
-          class="border-green-600/40 bg-green-50 text-green-700 dark:border-green-400/40 dark:bg-green-950 dark:text-green-400"
+        <ItemSprite
+          class="shrink-0"
+          :name="pokeball.name"
+          :url="pokeball.sprite"
+        />
+        <span
+          class="flex min-w-0 flex-1 flex-wrap items-center gap-1.5 text-sm font-medium"
         >
-          Boosted
-        </Badge>
-      </span>
-      <IconLoader2
-        v-if="form.processing && form.pokeball === pokeball.slug"
-        class="size-4 animate-spin text-muted-foreground"
-        aria-label="Throwing"
-      />
-      <strong class="tabular-nums"> x{{ pokeball.multiplier }} </strong>
-      <span class="w-12 text-right text-xs text-muted-foreground tabular-nums">
-        x{{ pokeball.quantity.toLocaleString('en-US') }}
-      </span>
-    </button>
+          {{ pokeball.name }}
+          <Badge
+            v-if="pokeball.isBoosted"
+            variant="outline"
+            class="border-green-600/40 bg-green-50 text-green-700 dark:border-green-400/40 dark:bg-green-950 dark:text-green-400"
+          >
+            Boosted
+          </Badge>
+        </span>
+        <strong class="text-sm tabular-nums">x{{ pokeball.multiplier }}</strong>
+        <span
+          class="w-12 text-right text-xs text-muted-foreground tabular-nums"
+        >
+          x{{ pokeball.quantity.toLocaleString('en-US') }}
+        </span>
+      </AppChoiceCard>
+    </RadioGroup>
     <p
-      v-if="page.props.pokeballs.length === 0"
+      v-else
       class="rounded-lg bg-muted p-3 text-sm text-muted-foreground"
       data-test="ball-picker-list__empty-state"
     >
       You have no balls left.
     </p>
+    <Button
+      v-if="page.props.pokeballs.length > 0"
+      type="button"
+      class="self-end"
+      data-test="ball-picker-list__throw-button"
+      :disabled="form.processing || !form.pokeball"
+      @click="throwBall"
+    >
+      Throw ball
+    </Button>
   </div>
 </template>
 
 <script setup lang="ts">
 import { useForm, usePage } from '@inertiajs/vue3';
-import { IconLoader2 } from '@tabler/icons-vue';
+import AppChoiceCard from '@/shared/components/form/AppChoiceCard.vue';
 import ItemSprite from '@/shared/components/game/ItemSprite.vue';
 import { Badge } from '@/shared/components/ui/badge';
+import { Button } from '@/shared/components/ui/button';
+import { RadioGroup } from '@/shared/components/ui/radio-group';
 import { route } from '@/shared/types/helpers/route';
 import type { BattleShowPageProps } from '../../types/page-props/BattleShowPageProps';
 
@@ -66,15 +77,14 @@ const emit = defineEmits<{
 
 const page = usePage<BattleShowPageProps>();
 
-const form = useForm<{ pokeball: string | null }>({ pokeball: null });
+const form = useForm({
+  pokeball: page.props.pokeballs[0]?.slug ?? '',
+});
 
-function throwBall(slug: string): void {
-  form.pokeball = slug;
-
+function throwBall(): void {
   form.post(route('battle.web.throw-ball'), {
     preserveScroll: true,
     onSuccess: () => emit('thrown'),
-    onFinish: () => form.reset(),
   });
 }
 </script>
