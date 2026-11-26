@@ -70,7 +70,7 @@ it('has the active moves by slot and every known move', function () {
     $pokemon = Pokemon::factory()->for($user)->create();
     $ember   = Move::factory()->plainDamage()->create(['name' => 'Ember', 'type' => PokemonType::FIRE, 'power' => 40]);
     $slash   = Move::factory()->plainDamage()->create(['name' => 'Slash', 'type' => PokemonType::NORMAL, 'power' => 70]);
-    $growl   = Move::factory()->create(['name' => 'Growl', 'type' => PokemonType::NORMAL, 'power' => null, 'category' => MoveCategory::AILMENT]);
+    $growl   = Move::factory()->create(['is_z_move' => false, 'is_dynamax_move' => false, 'name' => 'Growl', 'type' => PokemonType::NORMAL, 'power' => null, 'category' => MoveCategory::AILMENT]);
 
     $pokemon->knownMoves()->attach([$slash->id => ['slot' => 2], $ember->id => ['slot' => 1], $growl->id => ['slot' => null]]);
 
@@ -78,12 +78,12 @@ it('has the active moves by slot and every known move', function () {
         ->get(route('pokemon.web.show', $pokemon))
         ->assertInertia(fn (Assert $page) => $page
             ->where('activeMoves', [
-                ['slot' => 1, 'move' => ['id' => $ember->id, 'name' => 'Ember', 'type' => 'fire', 'power' => 40, 'category' => 'damage']],
-                ['slot' => 2, 'move' => ['id' => $slash->id, 'name' => 'Slash', 'type' => 'normal', 'power' => 70, 'category' => 'damage']],
+                ['slot' => 1, 'move' => ['id' => $ember->id, 'name' => 'Ember', 'type' => 'fire', 'power' => 40, 'category' => 'damage', 'isZMove' => false, 'isDynamaxMove' => false]],
+                ['slot' => 2, 'move' => ['id' => $slash->id, 'name' => 'Slash', 'type' => 'normal', 'power' => 70, 'category' => 'damage', 'isZMove' => false, 'isDynamaxMove' => false]],
             ])
             ->has('knownMoves', 3)
             ->where('knownMoves.0.name', 'Ember')
-            ->where('knownMoves.1', ['id' => $growl->id, 'name' => 'Growl', 'type' => 'normal', 'power' => null, 'category' => MoveCategory::AILMENT->value, 'slot' => null])
+            ->where('knownMoves.1', ['id' => $growl->id, 'name' => 'Growl', 'type' => 'normal', 'power' => null, 'category' => MoveCategory::AILMENT->value, 'isZMove' => false, 'isDynamaxMove' => false, 'slot' => null])
         );
 });
 

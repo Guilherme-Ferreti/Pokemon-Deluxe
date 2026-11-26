@@ -29,9 +29,8 @@ it('refuses a leaving pokemon that is not in the party', function () {
     $joining = Pokemon::factory()->for($user)->inBox()->create();
     $leaving = Pokemon::factory()->for($user)->inBox()->create();
 
-    expect(fn () => new SwapPartyPokemonAction()->handle($joining, $leaving))->toThrow(PokemonNotInPartyException::class);
-
-    expect($joining->fresh()->in_party)->toBeFalse();
+    expect(fn () => new SwapPartyPokemonAction()->handle($joining, $leaving))->toThrow(PokemonNotInPartyException::class)
+        ->and($joining->fresh()->in_party)->toBeFalse();
 });
 
 it('refuses a joining pokemon that is already in the party', function () {
@@ -39,9 +38,8 @@ it('refuses a joining pokemon that is already in the party', function () {
     $joining = Pokemon::factory()->for($user)->inParty()->create();
     $leaving = Pokemon::factory()->for($user)->inParty()->create();
 
-    expect(fn () => new SwapPartyPokemonAction()->handle($joining, $leaving))->toThrow(PokemonAlreadyInPartyException::class);
-
-    expect($leaving->fresh()->in_party)->toBeTrue();
+    expect(fn () => new SwapPartyPokemonAction()->handle($joining, $leaving))->toThrow(PokemonAlreadyInPartyException::class)
+        ->and($leaving->fresh()->in_party)->toBeTrue();
 });
 
 it('refuses pokemon of different owners', function () {
@@ -58,8 +56,7 @@ it('refuses during a battle', function () {
 
     Battle::factory()->for($user)->create();
 
-    expect(fn () => new SwapPartyPokemonAction()->handle($joining, $leaving))->toThrow(BattleAlreadyInProgressException::class);
-
-    expect($joining->fresh()->in_party)->toBeFalse()
+    expect(fn () => new SwapPartyPokemonAction()->handle($joining, $leaving))->toThrow(BattleAlreadyInProgressException::class)
+        ->and($joining->fresh()->in_party)->toBeFalse()
         ->and($leaving->fresh()->in_party)->toBeTrue();
 });

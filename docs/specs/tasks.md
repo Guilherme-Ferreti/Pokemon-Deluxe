@@ -1636,7 +1636,7 @@ Read [04-pokemon-page.md](04-pokemon-page.md) first. Builds on Spec 1 (`SetActiv
 
 ### 4.9 Pokémon page: moves
 
-- [ ] Done
+- [x] Done
 
 **Goal:** swap active moves and teach TMs from the page.
 
@@ -1660,6 +1660,12 @@ Read [04-pokemon-page.md](04-pokemon-page.md) first. Builds on Spec 1 (`SetActiv
 **Tests:** `ReorderActiveMovesActionTest` (new order saved; a list that is not exactly the active moves is refused); feature tests for the three routes and their errors; browser test: swap a move and reorder with the arrows.
 
 **Done when:** a player can swap moves and teach TMs from the page.
+
+- As built: the three routes sit in a `/{pokemon}` group (`whereUuid`) next to `show`; each controller finds the Pokémon through `currentUser()->pokemon()` (another player's Pokémon gives 404). `SetActiveMoveRequest` (`move_id` exists, `slot` 1–`max_active_moves`), `ReorderActiveMovesRequest` (`move_ids` array of 1–4 distinct strings) and `TeachTmRequest` (`move_id` exists). Teaching flashes "Move learned" / "Charmeleon learned Ice Beam."; swaps and reorders are silent. `ReorderActiveMovesAction` runs under the `pokemonActiveMoves` lock, clears the active slots and writes 1, 2, 3… in the given order inside one transaction.
+- The page's moves now carry `isZMove` and `isDynamaxMove` for `MoveNameLabel`.
+- `PokemonMovesCard` (right column): four numbered slots with a grip handle (desktop), `MoveNameLabel`, `PokemonMoveMeta` (type badge, "Power 90" or "Status", a "STAB" badge with a tooltip for damaging moves of the Pokémon's type), up and down arrow buttons and a ghost "Swap" button ("Choose" on an empty, dashed slot); then "Known moves · 5" as a grid of small dashed cards sorted by name, active ones dimmed with "In slot 2". Native HTML drag and drop on desktop (slot onto slot reorders; known move onto slot sets it); no drag library was added. The known-moves search and type chips are left for when pools grow past about 12.
+- `PokemonSwapMoveDialog`: "Replace Flamethrower" (or "Fill slot 4"), listing every known move except the slot's own, with "In slot 2" badges; the dialog is capped at 85% of the screen height and the list scrolls inside it.
+- `PokemonTeachTmDialog`: a wide dialog (full screen on phones) with a search input (code or name), "All types" plus a chip per owned TM type, and the TMs in two columns ("TM 395 Ice Beam", type badge, "Power 90 · you own 2", or disabled with "Already known" / "Needs level 100"). Picking one shows the confirmation line and a "Teach Ice Beam" primary button; an empty state shows when the player owns no TMs.
 
 ### 4.10 Pokémon page: boost stones
 

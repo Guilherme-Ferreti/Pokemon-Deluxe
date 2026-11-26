@@ -113,10 +113,11 @@ One name per idea, used everywhere: specs, code, database, tests and UI. When yo
 | Earned only | price is `null` | Cannot be bought or sold to the shop; can be traded. |
 | Lock | `is_locked`, `SetPokemonLockAction` | Locked Pokémon can't be released or traded. |
 | Pokémon page | `pokemon.web.show`, `PokemonController@show`, `PokemonShowPageProps`, `evolutionOptions`, `unmetRequirement`, `boostStones.failureChance` | One owned Pokémon's page, at `/your-pokemon/{pokemon}`; owner only. |
-| Pokémon page parts | `PokemonHero`, `PokemonActions`, `PokemonStatsCard` | The Pokémon page's header, action buttons and stats card. |
+| Pokémon page parts | `PokemonHero`, `PokemonActions`, `PokemonStatsCard`, `PokemonMovesCard`, `PokemonMoveMeta`, `PokemonSwapMoveDialog`, `PokemonTeachTmDialog` | The Pokémon page's header, action buttons, stats card and moves card with its dialogs. |
 | Party changes | `AddToPartyAction`, `RemoveFromPartyAction`, `SwapPartyPokemonAction`, `PartyFullException`, `PartyCannotBeEmptyException`, `PokemonAlreadyInPartyException`, `PokemonNotInPartyException` | Move a Pokémon between the party and the Box; refused during a battle. |
 | Release | `ReleasePokemonAction`, `PokemonLockedException` | Permanent; gives nothing back. |
-| Teach a TM | `TeachTmAction`, `MoveAlreadyKnownException`, `TmRequirementNotMetException` | Adds a move to the known moves; the TM is used up. |
+| Teach a TM | `TeachTmAction`, `MoveAlreadyKnownException`, `TmRequirementNotMetException`, `TeachTmController`, `TeachTmRequest` | Adds a move to the known moves; the TM is used up. |
+| Active move changes | `SetActiveMoveController`, `SetActiveMoveRequest`, `ReorderActiveMovesAction`, `ReorderActiveMovesController`, `ReorderActiveMovesRequest` | Put a known move in a slot, or save the active moves in a new order. |
 | Boost failure chance | `BoostStoneCalculator::failureChance()` | Percentage (0–100) for the next stone. |
 | Boost stone roll | `BoostStoneRoller::roll()` | Whether the next stone works (`true` = success). |
 | Use boost stones | `UseBoostStonesAction`, `MaxBoostReachedException` | Uses stones one at a time until a limit, a target boost or +100. |

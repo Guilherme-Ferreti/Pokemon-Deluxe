@@ -23,7 +23,7 @@ final class UseBoostStonesAction
 
     private int $maxStones;
 
-    private ?int $targetBoost;
+    private ?int $targetBoost = null;
 
     private SpecialItem $boostStone;
 

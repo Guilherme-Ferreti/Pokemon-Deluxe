@@ -32,6 +32,15 @@ type RouteParameters = {
   'pokemon.web.show': {
     pokemon: string | number;
   };
+  'pokemon.web.set-active-move': {
+    pokemon: string | number;
+  };
+  'pokemon.web.reorder-active-moves': {
+    pokemon: string | number;
+  };
+  'pokemon.web.teach-tm': {
+    pokemon: string | number;
+  };
   'pokemon.web.incubators.purchase': {
     incubatorIndex: string | number;
   };
@@ -105,6 +114,10 @@ const routes = {
   'pokemon.web.box.index': 'your-pokemon/box',
   'pokemon.web.nursery': 'your-pokemon/nursery',
   'pokemon.web.show': 'your-pokemon/{pokemon}',
+  'pokemon.web.set-active-move': 'your-pokemon/{pokemon}/active-moves',
+  'pokemon.web.reorder-active-moves':
+    'your-pokemon/{pokemon}/active-moves/order',
+  'pokemon.web.teach-tm': 'your-pokemon/{pokemon}/teach-tm',
   'pokemon.web.incubators.purchase':
     'your-pokemon/incubator/{incubatorIndex}/purchase',
   'pokemon.web.incubators.place-egg':

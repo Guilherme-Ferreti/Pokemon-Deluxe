@@ -25,9 +25,8 @@ it('refuses when the party is full', function () {
 
     Pokemon::factory()->for($user)->inParty()->count(6)->create();
 
-    expect(fn () => new AddToPartyAction()->handle($pokemon))->toThrow(PartyFullException::class);
-
-    expect($pokemon->fresh()->in_party)->toBeFalse();
+    expect(fn () => new AddToPartyAction()->handle($pokemon))->toThrow(PartyFullException::class)
+        ->and($pokemon->fresh()->in_party)->toBeFalse();
 });
 
 it('refuses a pokemon already in the party', function () {
@@ -42,7 +41,6 @@ it('refuses during a battle', function () {
 
     Battle::factory()->for($user)->create();
 
-    expect(fn () => new AddToPartyAction()->handle($pokemon))->toThrow(BattleAlreadyInProgressException::class);
-
-    expect($pokemon->fresh()->in_party)->toBeFalse();
+    expect(fn () => new AddToPartyAction()->handle($pokemon))->toThrow(BattleAlreadyInProgressException::class)
+        ->and($pokemon->fresh()->in_party)->toBeFalse();
 });

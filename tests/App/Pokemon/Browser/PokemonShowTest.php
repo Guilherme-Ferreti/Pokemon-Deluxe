@@ -3,11 +3,14 @@
 declare(strict_types=1);
 
 use Shared\Enums\PokemonType;
+use Shared\Models\InventoryItem;
+use Shared\Models\Move;
 use Shared\Models\Pokemon;
 use Shared\Models\Species;
 use Shared\Models\User;
 
 use function Pest\Laravel\actingAs;
+use function Pest\Laravel\assertDatabaseHas;
 
 it('loads the pokemon page without errors', function () {
     $user    = User::factory()->create();
@@ -60,4 +63,67 @@ it('blocks releasing a locked pokemon and removing the last party pokemon', func
         ->assertVisible('@pokemon-hero__locked-indicator')
         ->assertButtonDisabled('@pokemon-actions__release-button')
         ->assertButtonDisabled('@pokemon-actions__remove-from-party-button');
+});
+
+it('swaps a known move into a slot', function () {
+    $user    = User::factory()->create();
+    $pokemon = Pokemon::factory()->for($user)->inBox()->create();
+    $tackle  = Move::factory()->plainDamage()->create(['name' => 'Tackle']);
+    $iceBeam = Move::factory()->plainDamage()->create(['name' => 'Ice Beam']);
+
+    $pokemon->knownMoves()->attach([$tackle->id => ['slot' => 1], $iceBeam->id => ['slot' => null]]);
+
+    actingAs($user);
+
+    visit(route('pokemon.web.show', $pokemon))
+        ->assertSeeIn('@pokemon-moves-card__slot-1-item', 'Tackle')
+        ->click('@pokemon-moves-card__slot-1-swap-button')
+        ->assertSeeIn('@pokemon-swap-move-dialog', 'Replace Tackle')
+        ->click("@pokemon-swap-move-dialog__move-{$iceBeam->id}-button")
+        ->assertSeeIn('@pokemon-moves-card__slot-1-item', 'Ice Beam')
+        ->assertNoJavascriptErrors();
+
+    assertDatabaseHas('pokemon_move', ['pokemon_id' => $pokemon->id, 'move_id' => $iceBeam->id, 'slot' => 1]);
+});
+
+it('reorders the active moves with the arrows', function () {
+    $user    = User::factory()->create();
+    $pokemon = Pokemon::factory()->for($user)->inBox()->create();
+    $tackle  = Move::factory()->plainDamage()->create(['name' => 'Tackle']);
+    $ember   = Move::factory()->plainDamage()->create(['name' => 'Ember']);
+
+    $pokemon->knownMoves()->attach([$tackle->id => ['slot' => 1], $ember->id => ['slot' => 2]]);
+
+    actingAs($user);
+
+    visit(route('pokemon.web.show', $pokemon))
+        ->assertButtonDisabled('@pokemon-moves-card__slot-1-up-button')
+        ->click('@pokemon-moves-card__slot-2-up-button')
+        ->assertSeeIn('@pokemon-moves-card__slot-1-item', 'Ember')
+        ->assertSeeIn('@pokemon-moves-card__slot-2-item', 'Tackle')
+        ->assertNoJavascriptErrors();
+
+    assertDatabaseHas('pokemon_move', ['pokemon_id' => $pokemon->id, 'move_id' => $ember->id, 'slot' => 1]);
+});
+
+it('teaches a tm after confirming', function () {
+    $user    = User::factory()->create();
+    $pokemon = Pokemon::factory()->for($user)->inBox()->regular()->create(['level' => 36]);
+    $iceBeam = Move::factory()->plainDamage()->create(['name' => 'Ice Beam', 'tm_code' => 'TM395']);
+
+    InventoryItem::factory()->for($user)->tm($iceBeam)->create(['quantity' => 1]);
+
+    actingAs($user);
+
+    visit(route('pokemon.web.show', $pokemon))
+        ->click('@pokemon-teach-tm-dialog__open-button')
+        ->fill('@pokemon-teach-tm-dialog__search-input', '395')
+        ->click("@pokemon-teach-tm-dialog__tm-{$iceBeam->id}-button")
+        ->assertSeeIn('@pokemon-teach-tm-dialog__confirmation-text', 'Teach Ice Beam to')
+        ->click('@pokemon-teach-tm-dialog__teach-button')
+        ->assertSee('Move learned')
+        ->assertSeeIn('@pokemon-moves-card__known-move-list', 'Ice Beam')
+        ->assertNoJavascriptErrors();
+
+    assertDatabaseHas('pokemon_move', ['pokemon_id' => $pokemon->id, 'move_id' => $iceBeam->id]);
 });

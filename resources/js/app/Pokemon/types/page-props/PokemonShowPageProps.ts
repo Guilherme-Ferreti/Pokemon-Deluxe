@@ -11,6 +11,8 @@ export type PokemonMove = {
   type: PokemonType;
   power: number | null;
   category: MoveCategory;
+  isZMove: boolean;
+  isDynamaxMove: boolean;
 };
 
 export type PokemonStat = {

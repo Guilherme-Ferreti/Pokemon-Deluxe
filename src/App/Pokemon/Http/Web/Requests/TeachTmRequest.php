@@ -1,0 +1,22 @@
+<?php
+
+declare(strict_types=1);
+
+namespace App\Pokemon\Http\Web\Requests;
+
+use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
+use Shared\Models\Move;
+
+final class TeachTmRequest extends FormRequest
+{
+    /**
+     * @return array<string, mixed>
+     */
+    public function rules(): array
+    {
+        return [
+            'move_id' => ['required', 'string', Rule::exists(Move::class, 'id')],
+        ];
+    }
+}

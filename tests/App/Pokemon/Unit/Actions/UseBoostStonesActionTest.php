@@ -110,9 +110,8 @@ it('refuses a pokemon at the max boost', function () {
     $pokemon = Pokemon::factory()->for($user)->boosted(100)->create();
     $stack   = InventoryItem::factory()->for($user)->specialItem(SpecialItem::factory()->boostStone()->create())->create(['quantity' => 10]);
 
-    expect(fn () => new UseBoostStonesAction()->handle($pokemon, 1))->toThrow(MaxBoostReachedException::class);
-
-    expect($stack->fresh()->quantity)->toBe(10);
+    expect(fn () => new UseBoostStonesAction()->handle($pokemon, 1))->toThrow(MaxBoostReachedException::class)
+        ->and($stack->fresh()->quantity)->toBe(10);
 });
 
 it('refuses without boost stones', function () {
@@ -121,7 +120,6 @@ it('refuses without boost stones', function () {
 
     SpecialItem::factory()->boostStone()->create();
 
-    expect(fn () => new UseBoostStonesAction()->handle($pokemon, 1))->toThrow(InsufficientInventoryException::class);
-
-    expect($pokemon->fresh()->boost)->toBe(10);
+    expect(fn () => new UseBoostStonesAction()->handle($pokemon, 1))->toThrow(InsufficientInventoryException::class)
+        ->and($pokemon->fresh()->boost)->toBe(10);
 });

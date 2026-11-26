@@ -27,9 +27,8 @@ it('refuses to remove the last party pokemon', function () {
 
     Pokemon::factory()->for($user)->inBox()->create();
 
-    expect(fn () => new RemoveFromPartyAction()->handle($pokemon))->toThrow(PartyCannotBeEmptyException::class);
-
-    expect($pokemon->fresh()->in_party)->toBeTrue();
+    expect(fn () => new RemoveFromPartyAction()->handle($pokemon))->toThrow(PartyCannotBeEmptyException::class)
+        ->and($pokemon->fresh()->in_party)->toBeTrue();
 });
 
 it('refuses a pokemon that is not in the party', function () {
@@ -45,7 +44,6 @@ it('refuses during a battle', function () {
     Pokemon::factory()->for($user)->inParty()->create();
     Battle::factory()->for($user)->create();
 
-    expect(fn () => new RemoveFromPartyAction()->handle($pokemon))->toThrow(BattleAlreadyInProgressException::class);
-
-    expect($pokemon->fresh()->in_party)->toBeTrue();
+    expect(fn () => new RemoveFromPartyAction()->handle($pokemon))->toThrow(BattleAlreadyInProgressException::class)
+        ->and($pokemon->fresh()->in_party)->toBeTrue();
 });

@@ -18,9 +18,9 @@ use Shared\Models\Pokemon;
 use Shared\Models\SpecialItem;
 use Shared\Models\SpeciesEvolution;
 
-final class PokemonShowPageProps implements ProvidesInertiaProperties
+final readonly class PokemonShowPageProps implements ProvidesInertiaProperties
 {
-    public function __construct(private readonly Pokemon $pokemon) {}
+    public function __construct(private Pokemon $pokemon) {}
 
     /**
      * @return array<string, mixed>
@@ -235,16 +235,18 @@ final class PokemonShowPageProps implements ProvidesInertiaProperties
     }
 
     /**
-     * @return array{id: string, name: string, type: string, power: int|null, category: string}
+     * @return array{id: string, name: string, type: string, power: int|null, category: string, isZMove: bool, isDynamaxMove: bool}
      */
     private function toMoveProp(Move $move): array
     {
         return [
-            'id'       => $move->id,
-            'name'     => $move->name,
-            'type'     => $move->type->value,
-            'power'    => $move->power,
-            'category' => $move->category->value,
+            'id'            => $move->id,
+            'name'          => $move->name,
+            'type'          => $move->type->value,
+            'power'         => $move->power,
+            'category'      => $move->category->value,
+            'isZMove'       => $move->is_z_move,
+            'isDynamaxMove' => $move->is_dynamax_move,
         ];
     }
 

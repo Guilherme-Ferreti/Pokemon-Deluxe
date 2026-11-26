@@ -10,6 +10,9 @@ use App\Pokemon\Http\Web\Controllers\Incubator\PurchaseController;
 use App\Pokemon\Http\Web\Controllers\NurseryController;
 use App\Pokemon\Http\Web\Controllers\PartyController;
 use App\Pokemon\Http\Web\Controllers\PokemonController;
+use App\Pokemon\Http\Web\Controllers\ReorderActiveMovesController;
+use App\Pokemon\Http\Web\Controllers\SetActiveMoveController;
+use App\Pokemon\Http\Web\Controllers\TeachTmController;
 use Illuminate\Support\Facades\Route;
 
 Route::middleware('auth')->prefix('/your-pokemon')->group(function (): void {
@@ -19,7 +22,12 @@ Route::middleware('auth')->prefix('/your-pokemon')->group(function (): void {
 
     Route::get('/nursery', NurseryController::class)->name('nursery');
 
-    Route::get('/{pokemon}', [PokemonController::class, 'show'])->whereUuid('pokemon')->name('show');
+    Route::prefix('/{pokemon}')->whereUuid('pokemon')->group(function (): void {
+        Route::get('/', [PokemonController::class, 'show'])->name('show');
+        Route::post('/active-moves', SetActiveMoveController::class)->name('set-active-move');
+        Route::post('/active-moves/order', ReorderActiveMovesController::class)->name('reorder-active-moves');
+        Route::post('/teach-tm', TeachTmController::class)->name('teach-tm');
+    });
 
     Route::prefix('/incubator/{incubatorIndex}')
         ->name('incubators.')
