@@ -136,6 +136,68 @@ it('drags a known move onto a slot and a slot onto another', function () {
     assertDatabaseHas('pokemon_move', ['pokemon_id' => $pokemon->id, 'move_id' => $ember->id, 'slot' => null]);
 });
 
+it('sorts the known moves by power and filters them by type', function () {
+    $user    = User::factory()->create();
+    $pokemon = Pokemon::factory()->for($user)->inBox()->create();
+    $ember   = Move::factory()->plainDamage()->create(['name' => 'Ember', 'type' => PokemonType::FIRE, 'power' => 40]);
+    $iceBeam = Move::factory()->plainDamage()->create(['name' => 'Ice Beam', 'type' => PokemonType::ICE, 'power' => 90]);
+    $slash   = Move::factory()->plainDamage()->create(['name' => 'Slash', 'type' => PokemonType::NORMAL, 'power' => 70]);
+
+    $pokemon->knownMoves()->attach([$ember->id => ['slot' => 1], $iceBeam->id => ['slot' => null], $slash->id => ['slot' => null]]);
+
+    actingAs($user);
+
+    $firstKnownMoveTestId = "document.querySelector('[data-test=\"pokemon-moves-card__known-move-list\"] li').dataset.test";
+
+    visit(route('pokemon.web.box.show', $pokemon))
+        ->assertScript($firstKnownMoveTestId, "pokemon-known-move-{$ember->id}-tile")
+        ->click('@pokemon-moves-card__sort-power-button')
+        ->wait(0.5)
+        ->assertScript($firstKnownMoveTestId, "pokemon-known-move-{$iceBeam->id}-tile")
+        ->click('@pokemon-moves-card__type-normal-button')
+        ->wait(0.5)
+        ->assertVisible("@pokemon-known-move-{$slash->id}-tile")
+        ->assertMissing("@pokemon-known-move-{$ember->id}-tile")
+        ->assertMissing("@pokemon-known-move-{$iceBeam->id}-tile")
+        ->click('@pokemon-moves-card__all-types-button')
+        ->wait(0.5)
+        ->assertVisible("@pokemon-known-move-{$ember->id}-tile")
+        ->hover("@pokemon-known-move-{$ember->id}-tile")
+        ->wait(0.5)
+        ->assertSee('Already in slot 1')
+        ->assertNoJavascriptErrors();
+});
+
+it('sorts and filters the moves in the swap dialog', function () {
+    $user         = User::factory()->create();
+    $pokemon      = Pokemon::factory()->for($user)->inBox()->create();
+    $ember        = Move::factory()->plainDamage()->create(['name' => 'Ember', 'type' => PokemonType::FIRE, 'power' => 40]);
+    $iceBeam      = Move::factory()->plainDamage()->create(['name' => 'Ice Beam', 'type' => PokemonType::ICE, 'power' => 90]);
+    $flamethrower = Move::factory()->plainDamage()->create(['name' => 'Flamethrower', 'type' => PokemonType::FIRE, 'power' => 90]);
+    $tackle       = Move::factory()->plainDamage()->create(['name' => 'Tackle', 'type' => PokemonType::NORMAL, 'power' => 40]);
+
+    $pokemon->knownMoves()->attach([$tackle->id => ['slot' => 1], $ember->id => ['slot' => null], $iceBeam->id => ['slot' => null], $flamethrower->id => ['slot' => null]]);
+
+    actingAs($user);
+
+    $firstMoveTestId = "document.querySelector('[data-test=\"pokemon-swap-move-dialog__move-list\"] button').dataset.test";
+
+    visit(route('pokemon.web.box.show', $pokemon))
+        ->click('@pokemon-move-1-slot__swap-button')
+        ->wait(0.5)
+        ->assertScript($firstMoveTestId, "pokemon-swap-move-dialog__move-{$ember->id}-button")
+        ->click('@pokemon-swap-move-dialog__type-fire-button')
+        ->wait(0.5)
+        ->assertMissing("@pokemon-swap-move-dialog__move-{$iceBeam->id}-button")
+        ->click('@pokemon-swap-move-dialog__sort-power-button')
+        ->wait(0.5)
+        ->assertScript($firstMoveTestId, "pokemon-swap-move-dialog__move-{$flamethrower->id}-button")
+        ->click("@pokemon-swap-move-dialog__move-{$flamethrower->id}-button")
+        ->wait(1)
+        ->assertSeeIn('@pokemon-move-1-slot', 'Flamethrower')
+        ->assertNoJavascriptErrors();
+});
+
 it('teaches a tm after confirming', function () {
     $user    = User::factory()->create();
     $pokemon = Pokemon::factory()->for($user)->inBox()->regular()->create(['level' => 36]);
@@ -147,9 +209,12 @@ it('teaches a tm after confirming', function () {
 
     visit(route('pokemon.web.box.show', $pokemon))
         ->click('@pokemon-teach-tm-dialog__open-button')
+        ->wait(0.5)
         ->fill('@pokemon-teach-tm-dialog__search-input', '395')
+        ->wait(0.5)
         ->click("@pokemon-teach-tm-dialog__tm-{$iceBeam->id}-button")
-        ->assertSeeIn('@pokemon-teach-tm-dialog__confirmation-text', 'Teach Ice Beam to')
+        ->wait(0.5)
+        ->assertSeeIn('@pokemon-teach-tm-dialog__teach-button', 'Teach Ice Beam')
         ->click('@pokemon-teach-tm-dialog__teach-button')
         ->wait(1)
         ->assertSee('Move learned')

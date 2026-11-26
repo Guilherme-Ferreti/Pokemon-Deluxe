@@ -20,12 +20,19 @@
           slot swaps places.
         </DialogDescription>
       </DialogHeader>
+      <PokemonMoveFilters
+        v-if="candidates.length > 0"
+        v-model:sort-order="sortOrder"
+        v-model:selected-type="selectedType"
+        test-id-block="pokemon-swap-move-dialog"
+        :types="presentTypes"
+      />
       <ul
         class="-mx-1 flex min-h-0 flex-1 scrollbar-thin flex-col gap-1 overflow-y-auto px-1 py-1"
         data-test="pokemon-swap-move-dialog__move-list"
       >
         <li
-          v-for="move in candidates"
+          v-for="move in visibleMoves"
           :key="move.id"
         >
           <button
@@ -68,7 +75,7 @@
 
 <script setup lang="ts">
 import { usePage } from '@inertiajs/vue3';
-import { computed } from 'vue';
+import { computed, watch } from 'vue';
 import MoveNameLabel from '@/shared/components/game/MoveNameLabel.vue';
 import { Badge } from '@/shared/components/ui/badge';
 import { Button } from '@/shared/components/ui/button';
@@ -81,7 +88,9 @@ import {
   DialogContent,
   DialogTitle,
 } from '@/shared/components/ui/dialog';
+import { useMoveFilters } from '../../../composables/useMoveFilters';
 import type { BoxShowPageProps } from '../../../types/page-props/BoxShowPageProps';
+import PokemonMoveFilters from './PokemonMoveFilters.vue';
 import PokemonMoveMeta from './PokemonMoveMeta.vue';
 
 const props = defineProps<{
@@ -104,5 +113,13 @@ const currentMove = computed(
 
 const candidates = computed(() =>
   page.props.knownMoves.filter((move) => move.slot !== props.slotNumber),
+);
+
+const { sortOrder, selectedType, presentTypes, visibleMoves, resetFilters } =
+  useMoveFilters(candidates);
+
+watch(
+  () => props.slotNumber,
+  (slotNumber) => slotNumber !== null && resetFilters(),
 );
 </script>

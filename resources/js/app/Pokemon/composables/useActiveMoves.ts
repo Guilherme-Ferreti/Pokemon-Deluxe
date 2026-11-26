@@ -70,10 +70,6 @@ export function useActiveMoves() {
     })),
   );
 
-  const hasEmptySlot = computed(
-    () => activeMoves.value.length < MAX_ACTIVE_MOVES,
-  );
-
   const updateKnownMoves = (
     url: string,
     data: Parameters<typeof router.post>[1],
@@ -135,7 +131,6 @@ export function useActiveMoves() {
   return {
     activeMoves,
     slots,
-    hasEmptySlot,
     setActiveMove,
     moveUp,
     moveDown,

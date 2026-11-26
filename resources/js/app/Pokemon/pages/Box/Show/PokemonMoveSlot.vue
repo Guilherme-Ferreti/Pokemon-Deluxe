@@ -24,7 +24,7 @@
       {{ moveSlot.number }}
     </span>
     <template v-if="moveSlot.move">
-      <span class="flex min-w-0 flex-1 flex-col gap-0.5">
+      <span class="flex min-w-0 flex-1 flex-col gap-1">
         <MoveNameLabel
           class="truncate text-sm font-medium"
           :name="moveSlot.move.name"

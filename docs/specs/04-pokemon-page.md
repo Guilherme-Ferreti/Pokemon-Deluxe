@@ -49,6 +49,7 @@ Box › Shiny Charmeleon
 - Four active slots. **Swap** on a slot opens the known-moves pool to pick a replacement.
 - The active moves can be **reordered** (drag and drop, or up and down arrows). Their order is the order of the move buttons in battle.
 - The known-moves pool lists every move learned, with type and power. **Teach TM** opens the TMs the player owns.
+- The known-moves pool and the Swap picker can be sorted by name or by power (strongest first) and filtered by type. Moves already in a slot are dimmed and say which slot in a tooltip.
 
 ## Boost stones
 

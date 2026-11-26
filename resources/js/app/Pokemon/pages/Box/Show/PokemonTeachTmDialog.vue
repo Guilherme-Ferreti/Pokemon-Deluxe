@@ -107,22 +107,6 @@
           data-test="pokemon-teach-tm-dialog__no-match-empty-state"
           :icon="IconSearch"
         />
-        <p
-          v-if="selectedTm"
-          class="text-sm"
-          data-test="pokemon-teach-tm-dialog__confirmation-text"
-        >
-          <strong>
-            Teach {{ selectedTm.name }} to {{ page.props.pokemon.name }}?
-          </strong>
-          <span class="text-muted-foreground">
-            {{
-              hasEmptySlot
-                ? ' It goes into the first empty slot.'
-                : ' All 4 slots are full, so it goes to the known moves; swap it in when you want it.'
-            }}
-          </span>
-        </p>
       </template>
       <DialogFooter>
         <DialogClose as-child>
@@ -172,7 +156,6 @@ import {
 } from '@/shared/components/ui/input-group';
 import { PokemonType } from '@/shared/types/enums';
 import { route } from '@/shared/types/helpers/route';
-import { useActiveMoves } from '../../../composables/useActiveMoves';
 import type { BoxShowPageProps } from '../../../types/page-props/BoxShowPageProps';
 
 type OwnedTm = BoxShowPageProps['tms'][number];
@@ -188,8 +171,6 @@ const search = ref('');
 const selectedType = ref<PokemonType | null>(null);
 
 const selectedTm = ref<OwnedTm | null>(null);
-
-const { hasEmptySlot } = useActiveMoves();
 
 const ownedTypes = computed(() => {
   const types = new Set(page.props.tms.map((tm) => tm.type));

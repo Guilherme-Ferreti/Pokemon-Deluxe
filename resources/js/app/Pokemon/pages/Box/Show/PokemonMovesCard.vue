@@ -35,12 +35,19 @@
           Drag one onto a slot to use it
         </span>
       </div>
+      <PokemonMoveFilters
+        v-if="page.props.knownMoves.length > 0"
+        v-model:sort-order="sortOrder"
+        v-model:selected-type="selectedType"
+        test-id-block="pokemon-moves-card"
+        :types="presentTypes"
+      />
       <ul
         class="grid grid-cols-[repeat(auto-fill,minmax(11rem,1fr))] gap-1.5"
         data-test="pokemon-moves-card__known-move-list"
       >
         <PokemonKnownMoveTile
-          v-for="move in page.props.knownMoves"
+          v-for="move in visibleMoves"
           :key="move.id"
           :move="move"
           @drag-start="(moveId) => startDragging('known-moves', moveId)"
@@ -58,7 +65,7 @@
 
 <script setup lang="ts">
 import { usePage } from '@inertiajs/vue3';
-import { ref } from 'vue';
+import { computed, ref } from 'vue';
 import {
   Card,
   CardContent,
@@ -68,8 +75,10 @@ import {
 } from '@/shared/components/ui/card';
 import type { ActiveMoveSlot } from '../../../composables/useActiveMoves';
 import { useActiveMoves } from '../../../composables/useActiveMoves';
+import { useMoveFilters } from '../../../composables/useMoveFilters';
 import type { BoxShowPageProps } from '../../../types/page-props/BoxShowPageProps';
 import PokemonKnownMoveTile from './PokemonKnownMoveTile.vue';
+import PokemonMoveFilters from './PokemonMoveFilters.vue';
 import PokemonMoveSlot from './PokemonMoveSlot.vue';
 import PokemonSwapMoveDialog from './PokemonSwapMoveDialog.vue';
 import PokemonTeachTmDialog from './PokemonTeachTmDialog.vue';
@@ -82,6 +91,10 @@ type DraggedMove = {
 const page = usePage<BoxShowPageProps>();
 
 const { slots, setActiveMove, moveToPlaceOf } = useActiveMoves();
+
+const { sortOrder, selectedType, presentTypes, visibleMoves } = useMoveFilters(
+  computed(() => page.props.knownMoves),
+);
 
 const slotToSwap = ref<number | null>(null);
 
