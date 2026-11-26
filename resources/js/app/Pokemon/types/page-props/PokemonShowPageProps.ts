@@ -3,6 +3,7 @@ import type {
   PokemonGender,
   PokemonType,
 } from '@/shared/types/enums';
+import type { Species } from '@/shared/types/response';
 
 export type PokemonMove = {
   id: string;
@@ -26,7 +27,7 @@ export type PokemonEvolutionOption = {
     slug: string;
     name: string;
     portrait: string | null;
-    types: PokemonType[];
+    types: Species['types'];
   };
   minLevel: number | null;
   gender: PokemonGender | null;
@@ -49,7 +50,7 @@ export type PokemonShowPageProps = {
       id: string;
       slug: string;
       name: string;
-      types: PokemonType[];
+      types: Species['types'];
     };
     gender: PokemonGender;
     isShiny: boolean;
