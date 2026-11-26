@@ -60,7 +60,7 @@ final class RegisterUserAction
             ->each(fn (Pokeball $pokeball) => new AddInventoryItemAction()->handle(
                 user: $this->user,
                 item: $pokeball,
-                quantity: $startingPokeballs[$pokeball->slug]
+                quantity: $startingPokeballs[$pokeball->slug],
             ));
     }
 

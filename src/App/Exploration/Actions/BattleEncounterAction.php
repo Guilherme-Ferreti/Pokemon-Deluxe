@@ -38,9 +38,9 @@ final class BattleEncounterAction
 
         return DB::transaction(function (): Battle {
             $battle = new StartWildBattleAction()->handle(
-                $this->user,
-                $this->existingEncounter()->toNewPokemon(),
-                $this->existingEncounter()->area,
+                user: $this->user,
+                wildPokemon: $this->existingEncounter()->toNewPokemon(),
+                area: $this->existingEncounter()->area,
             );
 
             $this->existingEncounter()->delete();

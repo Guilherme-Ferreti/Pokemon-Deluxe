@@ -32,9 +32,9 @@ it('gives a new Ditto four active moves', function () {
     $ditto = Species::query()->where('slug', 'ditto')->firstOrFail();
 
     $pokemon = new CreatePokemonAction()->handle(
-        User::factory()->create(),
-        new NewPokemon(species: $ditto, level: 5, isShiny: false, gender: PokemonGender::GENDERLESS),
-        Pokeball::factory()->create(),
+        owner: User::factory()->create(),
+        newPokemon: new NewPokemon(species: $ditto, level: 5, isShiny: false, gender: PokemonGender::GENDERLESS),
+        pokeball: Pokeball::factory()->create(),
     );
 
     expect($pokemon->knownMoves()->wherePivotNotNull('slot')->count())->toBe(4);

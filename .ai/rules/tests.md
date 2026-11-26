@@ -5,6 +5,9 @@ paths:
 
 # Tests
 
+## Name the arguments of a multi-line handle() call
+A `handle()` call split over several lines names each argument, one per line, as in `src.md` ("Name the arguments of a multi-line handle() call").
+
 ## Assert the record count after creating or updating records
 A test that creates or updates records must assert the expected number of rows with `assertDatabaseCount()` (e.g. `assertDatabaseCount(Incubation::class, 1)`). A single `assertDatabaseHas()` does not prove that no duplicate or extra rows were written, so the count assertion is required to catch unintended inserts.
 

@@ -61,7 +61,7 @@ final class CatchPokemonAction
             $this->pokemon = new CreatePokemonAction()->handle(
                 owner: $this->user,
                 newPokemon: NewPokemon::fromIncubation($this->activeIncubation()),
-                pokeball: $this->pokeball
+                pokeball: $this->pokeball,
             );
 
             $this->markEggAsCaught();

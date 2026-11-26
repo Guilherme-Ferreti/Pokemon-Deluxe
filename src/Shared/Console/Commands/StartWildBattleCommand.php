@@ -30,12 +30,16 @@ final class StartWildBattleCommand extends Command
         $species = Species::query()->where('slug', $this->argument('species-slug'))->firstOrFail();
 
         try {
-            $battle = new StartWildBattleAction()->handle($user, new NewPokemon(
-                species: $species,
-                level: (int) $this->argument('level'),
-                isShiny: (bool) $this->option('shiny'),
-                gender: $species->getRandomGender(),
-            ), Area::fromType($species->types->firstOrFail()));
+            $battle = new StartWildBattleAction()->handle(
+                user: $user,
+                wildPokemon: new NewPokemon(
+                    species: $species,
+                    level: (int) $this->argument('level'),
+                    isShiny: (bool) $this->option('shiny'),
+                    gender: $species->getRandomGender(),
+                ),
+                area: Area::fromType($species->types->firstOrFail()),
+            );
         } catch (DomainException $exception) {
             $this->components->error($exception->getMessage());
 
