@@ -40,25 +40,13 @@
           <IconSearch />
         </InputGroupAddon>
       </InputGroup>
-      <div
-        class="flex flex-wrap gap-1.5"
-        role="group"
-        aria-label="Filter by type"
-      >
-        <Badge
-          v-for="type in presentTypes"
-          :key="type"
-          as="button"
-          type="button"
-          class="cursor-pointer px-2.5 py-1"
-          :variant="selectedTypes.includes(type) ? 'default' : 'outline'"
-          :aria-pressed="selectedTypes.includes(type)"
-          :data-test="`area-species-dialog__type-${type}-button`"
-          @click="toggleType(type)"
-        >
-          {{ page.props.labels.pokemonType[type] }}
-        </Badge>
-      </div>
+      <AppFilterChipGroup
+        v-model="selectedType"
+        label="Filter by type"
+        all-label="All types"
+        test-id-prefix="area-species-dialog__type"
+        :options="presentTypeOptions"
+      />
       <ul
         v-if="!areaSpecies"
         class="grid grid-cols-[repeat(auto-fill,minmax(4.5rem,1fr))] gap-3"
@@ -94,7 +82,7 @@
       <AppEmptyState
         v-else
         title="No Pokémon match your search"
-        description="Try another name or clear the type filters."
+        description="Try another name or pick All types."
         data-test="area-species-dialog__no-match-empty-state"
         :icon="IconSearch"
       />
@@ -108,7 +96,7 @@ import { IconSearch } from '@tabler/icons-vue';
 import { computed, ref } from 'vue';
 import AppEmptyState from '@/shared/components/content/AppEmptyState.vue';
 import SpeciesPortrait from '@/shared/components/game/SpeciesPortrait.vue';
-import { Badge } from '@/shared/components/ui/badge';
+import AppFilterChipGroup from '@/shared/components/list/AppFilterChipGroup.vue';
 import { Button } from '@/shared/components/ui/button';
 import {
   Dialog,
@@ -131,16 +119,21 @@ const page = usePage<ExploreShowPageProps>();
 
 const search = ref('');
 
-const selectedTypes = ref<PokemonType[]>([]);
+const selectedType = ref<PokemonType | null>(null);
 
 const areaSpecies = computed(() => page.props.areaSpecies);
 
-const presentTypes = computed(() => {
+const presentTypeOptions = computed(() => {
   const types = new Set(
     (areaSpecies.value ?? []).flatMap((species) => species.types),
   );
 
-  return Object.values(PokemonType).filter((type) => types.has(type));
+  return Object.values(PokemonType)
+    .filter((type) => types.has(type))
+    .map((type) => ({
+      value: type,
+      label: page.props.labels.pokemonType[type],
+    }));
 });
 
 const visibleSpecies = computed(() => {
@@ -149,18 +142,10 @@ const visibleSpecies = computed(() => {
   return (areaSpecies.value ?? []).filter(
     (species) =>
       species.name.toLowerCase().includes(searchTerm) &&
-      (selectedTypes.value.length === 0 ||
-        species.types.some(
-          (type) => type !== undefined && selectedTypes.value.includes(type),
-        )),
+      (selectedType.value === null ||
+        species.types.includes(selectedType.value)),
   );
 });
-
-function toggleType(type: PokemonType) {
-  selectedTypes.value = selectedTypes.value.includes(type)
-    ? selectedTypes.value.filter((selectedType) => selectedType !== type)
-    : [...selectedTypes.value, type];
-}
 
 function handleOpenChange(isOpen: boolean) {
   if (isOpen && !areaSpecies.value) {

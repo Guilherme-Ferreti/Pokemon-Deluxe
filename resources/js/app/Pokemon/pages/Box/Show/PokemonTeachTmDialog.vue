@@ -44,35 +44,13 @@
             <IconSearch />
           </InputGroupAddon>
         </InputGroup>
-        <div
-          class="flex flex-wrap gap-1.5"
-          role="group"
-          aria-label="Filter by type"
-        >
-          <Badge
-            as="button"
-            type="button"
-            class="cursor-pointer px-2.5 py-1"
-            :variant="selectedType === null ? 'default' : 'outline'"
-            :aria-pressed="selectedType === null"
-            @click="selectedType = null"
-          >
-            All types
-          </Badge>
-          <Badge
-            v-for="type in ownedTypes"
-            :key="type"
-            as="button"
-            type="button"
-            class="cursor-pointer px-2.5 py-1"
-            :variant="selectedType === type ? 'default' : 'outline'"
-            :aria-pressed="selectedType === type"
-            :data-test="`pokemon-teach-tm-dialog__type-${type}-button`"
-            @click="selectedType = type"
-          >
-            {{ page.props.labels.pokemonType[type] }}
-          </Badge>
-        </div>
+        <AppFilterChipGroup
+          v-model="selectedType"
+          label="Filter by type"
+          all-label="All types"
+          test-id-prefix="pokemon-teach-tm-dialog__type"
+          :options="ownedTypeOptions"
+        />
         <ul
           v-if="visibleTms.length > 0"
           class="grid gap-1.5 sm:grid-cols-2"
@@ -137,7 +115,7 @@ import { IconDisc, IconSearch } from '@tabler/icons-vue';
 import { computed, ref } from 'vue';
 import AppEmptyState from '@/shared/components/content/AppEmptyState.vue';
 import PokemonTypeBadges from '@/shared/components/game/PokemonTypeBadges.vue';
-import { Badge } from '@/shared/components/ui/badge';
+import AppFilterChipGroup from '@/shared/components/list/AppFilterChipGroup.vue';
 import { Button } from '@/shared/components/ui/button';
 import {
   Dialog,
@@ -172,10 +150,15 @@ const selectedType = ref<PokemonType | null>(null);
 
 const selectedTm = ref<OwnedTm | null>(null);
 
-const ownedTypes = computed(() => {
+const ownedTypeOptions = computed(() => {
   const types = new Set(page.props.tms.map((tm) => tm.type));
 
-  return Object.values(PokemonType).filter((type) => types.has(type));
+  return Object.values(PokemonType)
+    .filter((type) => types.has(type))
+    .map((type) => ({
+      value: type,
+      label: page.props.labels.pokemonType[type],
+    }));
 });
 
 const visibleTms = computed(() => {

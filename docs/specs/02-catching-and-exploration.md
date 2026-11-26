@@ -144,7 +144,7 @@ Balls have conditions, as in the main games. The game has no weight, speed, fish
 ```
 
 - The encounter card is the centre of the page. Shiny and legendary encounters get a gold border and badge so they stand out before the fight.
-- **Pokémon found here** opens a modal: a grid of species portraits with names, a search box, and type filters. No caught counts.
+- **Pokémon found here** opens a modal: a grid of species portraits with names, a search box, and a type filter ("All types" or one type). No caught counts.
 - On a phone the card fills the width and the two buttons stack.
 
 ## Catching in the battle page

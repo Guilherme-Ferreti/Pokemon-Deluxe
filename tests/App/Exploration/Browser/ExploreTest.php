@@ -134,12 +134,15 @@ it('lists the area species with search and type filters', function () {
         ->assertDontSeeIn('@area-species-dialog__species-list', 'Charmander')
         ->assertNoAccessibilityIssues()
         ->click('@area-species-dialog__type-poison-button')
+        ->wait(0.5)
         ->assertSeeIn('@area-species-dialog__species-list', 'Bulbasaur')
         ->assertDontSeeIn('@area-species-dialog__species-list', 'Caterpie')
         ->fill('@area-species-dialog__search-input', 'Cater')
+        ->wait(0.5)
         ->assertMissing('@area-species-dialog__species-list')
         ->assertSeeIn('@area-species-dialog__no-match-empty-state', 'No Pokémon match your search')
-        ->click('@area-species-dialog__type-poison-button')
+        ->click('@area-species-dialog__type-all-button')
+        ->wait(0.5)
         ->assertSeeIn('@area-species-dialog__species-list', 'Caterpie')
         ->assertDontSeeIn('@area-species-dialog__species-list', 'Bulbasaur');
 });

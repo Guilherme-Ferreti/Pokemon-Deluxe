@@ -159,7 +159,7 @@ it('sorts the known moves by power and filters them by type', function () {
         ->assertVisible("@pokemon-known-move-{$slash->id}-tile")
         ->assertMissing("@pokemon-known-move-{$ember->id}-tile")
         ->assertMissing("@pokemon-known-move-{$iceBeam->id}-tile")
-        ->click('@pokemon-moves-card__all-types-button')
+        ->click('@pokemon-moves-card__type-all-button')
         ->wait(0.5)
         ->assertVisible("@pokemon-known-move-{$ember->id}-tile")
         ->hover("@pokemon-known-move-{$ember->id}-tile")
