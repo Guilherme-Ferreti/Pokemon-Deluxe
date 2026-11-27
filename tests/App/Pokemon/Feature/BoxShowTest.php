@@ -56,7 +56,14 @@ it('loads the pokemon page with expected structure', function () {
             ->where('pokemon.caughtAt', $pokemon->caught_at->toIso8601String())
             ->where('pokemon.isLocked', false)
             ->where('pokemon.inParty', true)
-            ->where('pokemon.partySize', 1)
+            ->where('party', [[
+                'id'       => $pokemon->id,
+                'name'     => 'Shiny Charmeleon',
+                'portrait' => $pokemon->species->portraits->shiny,
+                'level'    => 36,
+                'boost'    => 14,
+            ]])
+            ->where('maxPartySize', 6)
             ->where('stats.hp', ['value' => $pokemon->getStats()->hp, 'base' => 167, 'boostMultiplier' => 1.14, 'shinyMultiplier' => 1.25])
             ->where('stats.attack.boostMultiplier', 1.14)
             ->where('stats.attack.shinyMultiplier', 1.25)

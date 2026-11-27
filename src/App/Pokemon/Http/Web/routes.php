@@ -2,6 +2,7 @@
 
 declare(strict_types=1);
 
+use App\Pokemon\Http\Web\Controllers\AddToPartyController;
 use App\Pokemon\Http\Web\Controllers\BoxController;
 use App\Pokemon\Http\Web\Controllers\EvolvePokemonController;
 use App\Pokemon\Http\Web\Controllers\Incubator\CatchPokemonController;
@@ -10,8 +11,12 @@ use App\Pokemon\Http\Web\Controllers\Incubator\PlaceEggController;
 use App\Pokemon\Http\Web\Controllers\Incubator\PurchaseController;
 use App\Pokemon\Http\Web\Controllers\NurseryController;
 use App\Pokemon\Http\Web\Controllers\PartyController;
+use App\Pokemon\Http\Web\Controllers\ReleasePokemonController;
+use App\Pokemon\Http\Web\Controllers\RemoveFromPartyController;
 use App\Pokemon\Http\Web\Controllers\ReorderActiveMovesController;
 use App\Pokemon\Http\Web\Controllers\SetActiveMoveController;
+use App\Pokemon\Http\Web\Controllers\SetPokemonLockController;
+use App\Pokemon\Http\Web\Controllers\SwapPartyPokemonController;
 use App\Pokemon\Http\Web\Controllers\TeachTmController;
 use App\Pokemon\Http\Web\Controllers\UseBoostStonesController;
 use Illuminate\Support\Facades\Route;
@@ -30,6 +35,11 @@ Route::middleware('auth')->prefix('/your-pokemon')->group(function (): void {
         Route::post('/teach-tm', TeachTmController::class)->name('teach-tm');
         Route::post('/boost', UseBoostStonesController::class)->name('boost');
         Route::post('/evolve', EvolvePokemonController::class)->name('evolve');
+        Route::post('/party', AddToPartyController::class)->name('party.add');
+        Route::delete('/party', RemoveFromPartyController::class)->name('party.remove');
+        Route::post('/party/swap', SwapPartyPokemonController::class)->name('party.swap');
+        Route::post('/lock', SetPokemonLockController::class)->name('lock');
+        Route::delete('/', ReleasePokemonController::class)->name('release');
     });
 
     Route::prefix('/incubator/{incubatorIndex}')

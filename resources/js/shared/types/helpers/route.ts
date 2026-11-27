@@ -47,6 +47,21 @@ type RouteParameters = {
   'pokemon.web.evolve': {
     pokemon: string | number;
   };
+  'pokemon.web.party.add': {
+    pokemon: string | number;
+  };
+  'pokemon.web.party.remove': {
+    pokemon: string | number;
+  };
+  'pokemon.web.party.swap': {
+    pokemon: string | number;
+  };
+  'pokemon.web.lock': {
+    pokemon: string | number;
+  };
+  'pokemon.web.release': {
+    pokemon: string | number;
+  };
   'pokemon.web.incubators.purchase': {
     incubatorIndex: string | number;
   };
@@ -126,6 +141,11 @@ const routes = {
   'pokemon.web.teach-tm': 'your-pokemon/{pokemon}/teach-tm',
   'pokemon.web.boost': 'your-pokemon/{pokemon}/boost',
   'pokemon.web.evolve': 'your-pokemon/{pokemon}/evolve',
+  'pokemon.web.party.add': 'your-pokemon/{pokemon}/party',
+  'pokemon.web.party.remove': 'your-pokemon/{pokemon}/party',
+  'pokemon.web.party.swap': 'your-pokemon/{pokemon}/party/swap',
+  'pokemon.web.lock': 'your-pokemon/{pokemon}/lock',
+  'pokemon.web.release': 'your-pokemon/{pokemon}',
   'pokemon.web.incubators.purchase':
     'your-pokemon/incubator/{incubatorIndex}/purchase',
   'pokemon.web.incubators.place-egg':

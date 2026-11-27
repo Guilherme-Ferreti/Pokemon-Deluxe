@@ -15,6 +15,7 @@ use Shared\Models\User;
 
 use function Pest\Laravel\actingAs;
 use function Pest\Laravel\assertDatabaseHas;
+use function Pest\Laravel\assertModelMissing;
 
 it('loads the pokemon page without errors', function () {
     $user    = User::factory()->create();
@@ -66,8 +67,78 @@ it('blocks releasing a locked pokemon and removing the last party pokemon', func
 
     visit(route('pokemon.web.box.show', $pokemon))
         ->assertVisible('@pokemon-hero__locked-indicator')
-        ->assertButtonDisabled('@pokemon-actions__release-button')
-        ->assertButtonDisabled('@pokemon-actions__remove-from-party-button');
+        ->assertButtonDisabled('@pokemon-release-dialog__open-button')
+        ->assertButtonDisabled('@pokemon-remove-from-party-dialog__open-button');
+});
+
+it('releases the pokemon after typing its name', function () {
+    $user    = User::factory()->create();
+    $pokemon = Pokemon::factory()->for($user)->for(Species::factory()->create(['name' => 'Charmeleon']))->inBox()->shiny()->boosted(14)->create();
+
+    actingAs($user);
+
+    visit(route('pokemon.web.box.show', $pokemon))
+        ->click('@pokemon-release-dialog__open-button')
+        ->wait(0.5)
+        ->assertSeeIn('@pokemon-release-dialog', 'Release Shiny Charmeleon?')
+        ->assertSeeIn('@pokemon-release-dialog__warning-text', 'This Pokémon is shiny and has +14 boost.')
+        ->assertButtonDisabled('@pokemon-release-dialog__release-button')
+        ->type('@pokemon-release-dialog__confirm-name-input', 'Charmeleon')
+        ->assertButtonDisabled('@pokemon-release-dialog__release-button')
+        ->clear('@pokemon-release-dialog__confirm-name-input')
+        ->type('@pokemon-release-dialog__confirm-name-input', 'Shiny Charmeleon')
+        ->click('@pokemon-release-dialog__release-button')
+        ->wait(1)
+        ->assertSee('Shiny Charmeleon was released.')
+        ->assertPathIs('/your-pokemon/box')
+        ->assertNoJavascriptErrors();
+
+    assertModelMissing($pokemon);
+});
+
+it('locks the pokemon after confirming and unlocks it right away', function () {
+    $user    = User::factory()->create();
+    $pokemon = Pokemon::factory()->for($user)->inBox()->create();
+
+    actingAs($user);
+
+    visit(route('pokemon.web.box.show', $pokemon))
+        ->click('@pokemon-lock-dialog__open-button')
+        ->wait(0.5)
+        ->click('@pokemon-lock-dialog__lock-button')
+        ->wait(1)
+        ->assertVisible('@pokemon-hero__locked-indicator')
+        ->assertButtonDisabled('@pokemon-release-dialog__open-button')
+        ->click('@pokemon-lock-dialog__unlock-button')
+        ->wait(1)
+        ->assertMissing('@pokemon-hero__locked-indicator')
+        ->assertNoJavascriptErrors();
+
+    expect($pokemon->fresh()->is_locked)->toBeFalse();
+});
+
+it('swaps the pokemon into a full party', function () {
+    $user    = User::factory()->create();
+    $pokemon = Pokemon::factory()->for($user)->inBox()->create();
+    $party   = Pokemon::factory()->for($user)->inParty()->count(6)->create();
+    $leaving = $party->first();
+
+    actingAs($user);
+
+    visit(route('pokemon.web.box.show', $pokemon))
+        ->click('@pokemon-add-to-party-button')
+        ->wait(0.5)
+        ->assertSeeIn('@party-swap-dialog', 'Your party is full')
+        ->assertButtonDisabled('@party-swap-dialog__swap-button')
+        ->click("@party-swap-dialog__pokemon-{$leaving->id}-radio")
+        ->assertSeeIn('@party-swap-dialog__swap-button', "Swap with {$leaving->getDisplayName()}")
+        ->click('@party-swap-dialog__swap-button')
+        ->wait(1)
+        ->assertVisible('@pokemon-remove-from-party-dialog__open-button')
+        ->assertNoJavascriptErrors();
+
+    expect($pokemon->fresh()->in_party)->toBeTrue()
+        ->and($leaving->fresh()->in_party)->toBeFalse();
 });
 
 it('swaps a known move into a slot', function () {

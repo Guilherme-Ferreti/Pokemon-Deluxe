@@ -1724,7 +1724,7 @@ Read [04-pokemon-page.md](04-pokemon-page.md) first. Builds on Spec 1 (`SetActiv
 
 ### 4.12 Pokémon page: party, lock and release
 
-- [ ] Done
+- [x] Done
 
 **Goal:** the remaining actions.
 
@@ -1745,6 +1745,10 @@ Read [04-pokemon-page.md](04-pokemon-page.md) first. Builds on Spec 1 (`SetActiv
 **Tests:** feature tests for each route and its errors; browser test: release with the typed confirmation.
 
 **Done when:** every Spec 4 action works from the page.
+
+- As built: invokable `AddToPartyController`, `RemoveFromPartyController`, `SwapPartyPokemonController` (`SwapPartyPokemonRequest`: `leaving_pokemon_id` uuid, looked up among the player's own Pokémon, so another player's is a 404), `SetPokemonLockController` (`SetPokemonLockRequest`: `is_locked` boolean) and `ReleasePokemonController`. Toasts: "Added to party" / "Shiny Charmeleon joined your party." (a swap adds "and Dragonite went to your Box."), "Removed from party" / "Shiny Charmeleon went to your Box.", "Locked" / "Unlocked", and "Released" / "Shiny Charmeleon was released." on the Box. Refusals are the actions' `DomainException`s as warning toasts.
+- `BoxShowPageProps` drops `pokemon.partySize` for `party` (the party's `id`, `name`, `portrait`, `level`, `boost`; typed `PartyMember` in `resources/js/app/Pokemon/types/PartyMember.ts`) and `maxPartySize`.
+- `PokemonActions` renders `PokemonRemoveFromPartyDialog` or `PokemonAddToPartyButton` (opens `PartySwapDialog` when the party is full), `PokemonLockDialog` (unlocked: opens the confirmation; locked: the "Locked" button unlocks at once) and `PokemonReleaseDialog`. `PartySwapDialog` (`resources/js/app/Pokemon/components/`, props `pokemon` and `party`, `v-model:open`) lists the party as a `RadioGroup` of `AppChoiceCard`s with "Lv 61 · +40" and a "Swap with Dragonite" button. The release warning is a destructive `Alert` (shadcn-vue `alert`, added for it): "This Pokémon is shiny and has +14 boost. The boost stones used on it are lost too.", or only its shiny or boost part.
 
 ### 4.13 Use items from the inventory
 

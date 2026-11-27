@@ -35,6 +35,8 @@ final readonly class BoxShowPageProps implements ProvidesInertiaProperties
             'evolutionOptions' => $this->getEvolutionOptionsProp(...),
             'tms'              => $this->getTmsProp(...),
             'boostStones'      => $this->getBoostStonesProp(...),
+            'party'            => $this->getPartyProp(...),
+            'maxPartySize'     => (int) config('game.user.max_party_size'),
         ];
     }
 
@@ -49,7 +51,7 @@ final readonly class BoxShowPageProps implements ProvidesInertiaProperties
             'id'          => $this->pokemon->id,
             'name'        => $this->pokemon->getDisplayName(),
             'frontSprite' => $this->pokemon->getDisplayFrontSprite(),
-            'portrait'    => $this->displayPortraitOf($this->pokemon->species),
+            'portrait'    => $this->displayPortraitOf($this->pokemon->species, $this->pokemon->is_shiny),
             'species'     => [
                 'id'    => $this->pokemon->species->id,
                 'slug'  => $this->pokemon->species->slug,
@@ -65,10 +67,9 @@ final readonly class BoxShowPageProps implements ProvidesInertiaProperties
                 'name'   => $this->pokemon->pokeball->name,
                 'sprite' => $this->pokemon->pokeball->sprite,
             ],
-            'caughtAt'  => $this->pokemon->caught_at->toIso8601String(),
-            'isLocked'  => $this->pokemon->is_locked,
-            'inParty'   => $this->pokemon->in_party,
-            'partySize' => currentUser()->pokemon()->inParty()->count(),
+            'caughtAt' => $this->pokemon->caught_at->toIso8601String(),
+            'isLocked' => $this->pokemon->is_locked,
+            'inParty'  => $this->pokemon->in_party,
         ];
     }
 
@@ -154,7 +155,7 @@ final readonly class BoxShowPageProps implements ProvidesInertiaProperties
                     'slug'        => $evolution->into->slug,
                     'name'        => $evolution->into->name,
                     'displayName' => $evolution->into->getDisplayName($this->pokemon->is_shiny),
-                    'portrait'    => $this->displayPortraitOf($evolution->into),
+                    'portrait'    => $this->displayPortraitOf($evolution->into, $this->pokemon->is_shiny),
                 ],
                 'minLevel'      => $evolution->min_level,
                 'gender'        => $evolution->gender,
@@ -214,6 +215,26 @@ final readonly class BoxShowPageProps implements ProvidesInertiaProperties
     }
 
     /**
+     * @return list<array{id: string, name: string, portrait: string|null, level: int, boost: int}>
+     */
+    private function getPartyProp(): array
+    {
+        return array_values(currentUser()
+            ->pokemon()
+            ->inParty()
+            ->with('species')
+            ->get()
+            ->map(fn (Pokemon $partyPokemon) => [
+                'id'       => $partyPokemon->id,
+                'name'     => $partyPokemon->getDisplayName(),
+                'portrait' => $this->displayPortraitOf($partyPokemon->species, $partyPokemon->is_shiny),
+                'level'    => $partyPokemon->level,
+                'boost'    => $partyPokemon->boost,
+            ])
+            ->all());
+    }
+
+    /**
      * @return array{id: string, name: string, type: string, power: int|null, category: string, isZMove: bool, isDynamaxMove: bool}
      */
     private function toMoveProp(Move $move): array
@@ -229,9 +250,9 @@ final readonly class BoxShowPageProps implements ProvidesInertiaProperties
         ];
     }
 
-    private function displayPortraitOf(Species $species): ?string
+    private function displayPortraitOf(Species $species, bool $isShiny): ?string
     {
-        if ($this->pokemon->is_shiny) {
+        if ($isShiny) {
             return $species->portraits->shiny ?? $species->portraits->regular;
         }
 

@@ -4,6 +4,7 @@ import type {
   PokemonType,
 } from '@/shared/types/enums';
 import type { Species } from '@/shared/types/response';
+import type { PartyMember } from '../PartyMember';
 
 export type PokemonMove = {
   id: string;
@@ -64,7 +65,6 @@ export type BoxShowPageProps = {
     caughtAt: string;
     isLocked: boolean;
     inParty: boolean;
-    partySize: number;
   };
   stats: {
     hp: PokemonStat;
@@ -84,4 +84,6 @@ export type BoxShowPageProps = {
     failureChance: number | null;
     maxBoost: number;
   };
+  party: PartyMember[];
+  maxPartySize: number;
 };
