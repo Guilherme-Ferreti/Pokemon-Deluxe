@@ -30,12 +30,17 @@ use Shared\ValueObjects\IncubatorIndex;
  * @property string|null $remember_token
  * @property list<IncubatorIndex> $purchased_incubator_indexes
  * @property int $money
+ * @property int $mission_streak
+ * @property CarbonImmutable|null $streak_last_completed_on
+ * @property CarbonImmutable|null $last_reroll_on
+ * @property bool $is_xp_share_enabled
  * @property CarbonImmutable|null $created_at
  * @property CarbonImmutable|null $updated_at
  * @property-read EloquentCollection<int, Pokemon> $pokemon
  * @property-read EloquentCollection<int, Incubation> $incubations
  * @property-read EloquentCollection<int, Battle> $battles
  * @property-read Encounter|null $encounter
+ * @property-read EloquentCollection<int, UserMission> $missions
  */
 #[Fillable(['name', 'email', 'password'])]
 #[Hidden(['password', 'remember_token'])]
@@ -55,6 +60,10 @@ final class User extends Authenticatable
             'password'                    => 'hashed',
             'purchased_incubator_indexes' => AsIncubatorIndexes::class,
             'money'                       => 'integer',
+            'mission_streak'              => 'integer',
+            'streak_last_completed_on'    => 'immutable_date',
+            'last_reroll_on'              => 'immutable_date',
+            'is_xp_share_enabled'         => 'boolean',
         ];
     }
 
@@ -96,5 +105,13 @@ final class User extends Authenticatable
     public function encounter(): HasOne
     {
         return $this->hasOne(Encounter::class);
+    }
+
+    /**
+     * @return HasMany<UserMission, $this>
+     */
+    public function missions(): HasMany
+    {
+        return $this->hasMany(UserMission::class);
     }
 }

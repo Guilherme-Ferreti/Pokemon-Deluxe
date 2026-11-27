@@ -137,7 +137,9 @@ One name per idea, used everywhere: specs, code, database, tests and UI. When yo
 | Claim | `ClaimMissionAction`, `claimed_at` | Pressing Claim gives the reward. |
 | Reroll | `RerollDailyMissionAction`, `last_reroll_on` | One per day. |
 | Streak | `mission_streak`, `streak_last_completed_on` | Days in a row with all 3 dailies done. |
+| Achievement (definition) | `Achievement`, `AchievementSeeder`, `achievements.json` | The hand-written list; each player's progress is a `UserMission` row pointing at it. |
 | Reward | `MissionReward`, `GrantRewardAction` | Money plus items. |
+| Reward item | `MissionRewardItem` (`itemType` + `slug`, or `randomPool`), `RewardItemPool` | One item of a reward, or a random pick from a pool (`normal-tm`, `mega-stone`, `z-move-tm`, `dynamax-tm`). |
 | XP Share | `xp-share` (key item), `is_xp_share_enabled` | |
 | Trainer (NPC) | `Trainer`, `TrainerRole` | Hand-made trainers, gym leaders, Elite Four, Champions. Not the player ("original trainer" is a player). |
 | Trainer class | `trainer_class` | "Hiker", "Ace Trainer", "Gym Leader". |

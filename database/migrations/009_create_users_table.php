@@ -19,6 +19,10 @@ return new class extends Migration
             $table->string('password');
             $table->json('purchased_incubator_indexes')->default('[]');
             $table->unsignedInteger('money')->default(0);
+            $table->unsignedInteger('mission_streak')->default(0);
+            $table->date('streak_last_completed_on')->nullable();
+            $table->date('last_reroll_on')->nullable();
+            $table->boolean('is_xp_share_enabled')->default(false);
             $table->rememberToken();
             $table->timestamps();
         });

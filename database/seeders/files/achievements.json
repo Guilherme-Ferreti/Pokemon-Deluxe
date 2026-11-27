@@ -1,0 +1,279 @@
+[
+  {
+    "id": "catch-10-pokemon",
+    "name": "Catch 10 Pokémon",
+    "category": "catching",
+    "goal": "catch-pokemon",
+    "goal_parameters": {},
+    "target": 10,
+    "reward": {
+      "money": 5000,
+      "items": []
+    }
+  },
+  {
+    "id": "catch-100-pokemon",
+    "name": "Catch 100 Pokémon",
+    "category": "catching",
+    "goal": "catch-pokemon",
+    "goal_parameters": {},
+    "target": 100,
+    "reward": {
+      "money": 0,
+      "items": [
+        {
+          "item_type": "special-item",
+          "slug": "boost-stone",
+          "quantity": 10
+        }
+      ]
+    }
+  },
+  {
+    "id": "catch-1000-pokemon",
+    "name": "Catch 1,000 Pokémon",
+    "category": "catching",
+    "goal": "catch-pokemon",
+    "goal_parameters": {},
+    "target": 1000,
+    "reward": {
+      "money": 0,
+      "items": [
+        {
+          "item_type": "pokeball",
+          "slug": "master-ball",
+          "quantity": 1
+        }
+      ]
+    }
+  },
+  {
+    "id": "catch-a-shiny",
+    "name": "Catch a shiny Pokémon",
+    "category": "catching",
+    "goal": "catch-shiny",
+    "goal_parameters": {},
+    "target": 1,
+    "reward": {
+      "money": 0,
+      "items": [
+        {
+          "item_type": "special-item",
+          "slug": "boost-stone",
+          "quantity": 5
+        },
+        {
+          "item_type": "pokeball",
+          "slug": "cherish-ball",
+          "quantity": 1
+        }
+      ]
+    }
+  },
+  {
+    "id": "catch-a-legendary",
+    "name": "Catch a legendary or mythical Pokémon",
+    "category": "catching",
+    "goal": "catch-legendary",
+    "goal_parameters": {},
+    "target": 1,
+    "reward": {
+      "money": 0,
+      "items": [
+        {
+          "item_type": "special-item",
+          "slug": "boost-stone",
+          "quantity": 10
+        }
+      ]
+    }
+  },
+  {
+    "id": "win-10-battles",
+    "name": "Win 10 battles",
+    "category": "battling",
+    "goal": "win-battles",
+    "goal_parameters": {},
+    "target": 10,
+    "reward": {
+      "money": 0,
+      "items": [
+        {
+          "item_type": "special-item",
+          "slug": "xp-share",
+          "quantity": 1
+        }
+      ]
+    }
+  },
+  {
+    "id": "win-100-battles",
+    "name": "Win 100 battles",
+    "category": "battling",
+    "goal": "win-battles",
+    "goal_parameters": {},
+    "target": 100,
+    "reward": {
+      "money": 0,
+      "items": [
+        {
+          "item_type": "special-item",
+          "slug": "boost-stone",
+          "quantity": 10
+        }
+      ]
+    }
+  },
+  {
+    "id": "beat-a-gym",
+    "name": "Beat a gym",
+    "category": "battling",
+    "goal": "beat-gym",
+    "goal_parameters": {},
+    "target": 1,
+    "reward": {
+      "money": 10000,
+      "items": []
+    }
+  },
+  {
+    "id": "earn-all-badges-of-a-region",
+    "name": "Earn all 8 badges of a region",
+    "category": "battling",
+    "goal": "earn-region-badges",
+    "goal_parameters": {},
+    "target": 8,
+    "reward": {
+      "money": 0,
+      "items": [
+        {
+          "random": "mega-stone",
+          "quantity": 1
+        }
+      ]
+    }
+  },
+  {
+    "id": "beat-all-gyms",
+    "name": "Beat all gyms",
+    "category": "battling",
+    "goal": "beat-gym",
+    "goal_parameters": {},
+    "target": 72,
+    "reward": {
+      "money": 0,
+      "items": [
+        {
+          "item_type": "pokeball",
+          "slug": "master-ball",
+          "quantity": 1
+        }
+      ]
+    }
+  },
+  {
+    "id": "become-champion",
+    "name": "Become Champion of a region",
+    "category": "battling",
+    "goal": "become-champion",
+    "goal_parameters": {},
+    "target": 1,
+    "reward": {
+      "money": 0,
+      "items": [
+        {
+          "random": "z-move-tm",
+          "quantity": 1
+        }
+      ]
+    }
+  },
+  {
+    "id": "reach-tower-floor-100",
+    "name": "Reach floor 100 of the Battle Tower",
+    "category": "battling",
+    "goal": "climb-tower-floors",
+    "goal_parameters": {},
+    "target": 100,
+    "reward": {
+      "money": 0,
+      "items": [
+        {
+          "random": "dynamax-tm",
+          "quantity": 1
+        }
+      ]
+    }
+  },
+  {
+    "id": "reach-level-100",
+    "name": "Get a Pokémon to level 100",
+    "category": "collection",
+    "goal": "reach-level",
+    "goal_parameters": {},
+    "target": 100,
+    "reward": {
+      "money": 0,
+      "items": [
+        {
+          "item_type": "special-item",
+          "slug": "boost-stone",
+          "quantity": 10
+        }
+      ]
+    }
+  },
+  {
+    "id": "reach-boost-50",
+    "name": "Reach +50 boost on any Pokémon",
+    "category": "collection",
+    "goal": "reach-boost",
+    "goal_parameters": {},
+    "target": 50,
+    "reward": {
+      "money": 0,
+      "items": [
+        {
+          "random": "z-move-tm",
+          "quantity": 1
+        }
+      ]
+    }
+  },
+  {
+    "id": "reach-boost-100",
+    "name": "Reach +100 boost on any Pokémon",
+    "category": "collection",
+    "goal": "reach-boost",
+    "goal_parameters": {},
+    "target": 100,
+    "reward": {
+      "money": 0,
+      "items": [
+        {
+          "item_type": "pokeball",
+          "slug": "master-ball",
+          "quantity": 1
+        }
+      ]
+    }
+  },
+  {
+    "id": "mega-evolve-a-pokemon",
+    "name": "Mega evolve a Pokémon",
+    "category": "collection",
+    "goal": "mega-evolve",
+    "goal_parameters": {},
+    "target": 1,
+    "reward": {
+      "money": 0,
+      "items": [
+        {
+          "item_type": "special-item",
+          "slug": "boost-stone",
+          "quantity": 10
+        }
+      ]
+    }
+  }
+]

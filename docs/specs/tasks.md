@@ -1845,7 +1845,7 @@ Read [05-missions.md](05-missions.md) first, including its "Starting content" an
 
 ### 5.1 Mission data
 
-- [ ] Done
+- [x] Done
 
 **Goal:** store achievements and each player's missions.
 
@@ -1859,6 +1859,8 @@ Read [05-missions.md](05-missions.md) first, including its "Starting content" an
 **Tests:** achievements seed from the file; casts round-trip; `isClaimable()` only when completed and not claimed.
 
 **Done when:** tables, models, enums and seed data exist; tests pass.
+
+- As built: reward items are a value object, `Shared\ValueObjects\MissionRewardItem` (`quantity`, plus either `itemType` and `slug` or `randomPool`), stored as `{"item_type", "slug", "quantity"}` or `{"random", "quantity"}`; the pools are the enum `Shared\Enums\RewardItemPool` (`NORMAL_TM`, `MEGA_STONE`, `Z_MOVE_TM`, `DYNAMAX_TM`). In `achievements.json` each entry's `id` becomes the slug and `sort_order` is its position in the file. "Earn all 8 badges of a region" is `EARN_REGION_BADGES` with target 8, and "Get a Pokémon to level 100" / "Reach +50 boost" are `REACH_LEVEL` / `REACH_BOOST` with the level or boost as the target (their progress is the best Pokémon's value). `Achievement` and `UserMission` have factories (`UserMission`: `forAchievement()`, `completed()`, `claimed()`); `User` gets a `missions()` relation.
 
 ### 5.2 Give rewards
 
