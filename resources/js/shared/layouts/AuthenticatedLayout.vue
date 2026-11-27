@@ -3,7 +3,6 @@
     <SidebarProvider>
       <AppSidebar />
       <SidebarInset>
-        <TopBarMoney />
         <div
           class="mx-auto w-full pt-4 pr-4 pb-6"
           :class="{
@@ -28,7 +27,6 @@
 <script setup lang="ts">
 import AppBreadcrumbs from '@/shared/components/layout/AppBreadcrumbs.vue';
 import AppSidebar from '@/shared/components/layout/AppSidebar.vue';
-import TopBarMoney from '@/shared/components/layout/TopBarMoney.vue';
 import { SidebarInset, SidebarProvider } from '@/shared/components/ui/sidebar';
 import AppLayout from '@/shared/layouts/AppLayout.vue';
 

@@ -16,11 +16,12 @@ it('shows the money in the sidebar footer', function () {
         ->assertSeeIn('@sidebar-nav-money', '₽ 12,450');
 });
 
-it('shows the money in the top bar on phones', function () {
+it('shows the money only in the sidebar on phones', function () {
     actingAs(User::factory()->withMoney(12450)->create());
 
     visit(route('dashboard.web.home'))
         ->resize(390, 844)
-        ->assertSeeIn('@top-bar-money', '₽ 12,450')
-        ->assertNotPresent('@sidebar-nav-money');
+        ->assertDontSee('₽ 12,450')
+        ->click('[data-sidebar="trigger"]')
+        ->assertSeeIn('@sidebar-nav-money', '₽ 12,450');
 });

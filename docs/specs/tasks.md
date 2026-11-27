@@ -1259,7 +1259,7 @@ Read [03-money-inventory-and-shop.md](03-money-inventory-and-shop.md) first. Mon
 - On phones, where the sidebar collapses, show it in the top bar next to the menu button.
 - A shared component `MoneyAmount` (`shared/components/game/`) used everywhere money appears, so the format stays the same.
 
-**As built:** `auth.user` is no longer an `Inertia::once` prop, so the money is fresh after every visit. `MoneyAmount` formats through `formatMoney()` (`shared/lib/utils.ts`, "₽ 12,450"). `SidebarNavMoney` is the footer row (the amount, with no coin icon; the tooltip "Your money: ₽ 12,450" shows when collapsed). It is not a link. `TopBarMoney` shows the amount on the right of a top row in the page content while the sidebar is in its phone sheet, since the sidebar trigger sits in its own column beside the content.
+**As built:** `auth.user` is no longer an `Inertia::once` prop, so the money is fresh after every visit. `MoneyAmount` formats through `formatMoney()` (`shared/lib/utils.ts`, "₽ 12,450"). `SidebarNavMoney` is the footer row (the amount, with no coin icon; the tooltip "Your money: ₽ 12,450" shows when collapsed). It is not a link. On phones the money shows only in the sidebar sheet; there is no top-bar copy (the `TopBarMoney` row was removed).
 
 **Tests:** feature test: the shared prop holds the user's money.
 
@@ -1360,7 +1360,7 @@ Read [03-money-inventory-and-shop.md](03-money-inventory-and-shop.md) first. Mon
 - `App\Pokemon\Mechanics\IncubatorPriceCalculator::price(int $purchasedCount): int` = purchasedCount x `game.incubation.price_step` (5,000).
 - `PurchaseAction` (incubator) spends the price with `SpendMoneyAction` inside its lock, before marking it purchased.
 - `NurseryPageProps` includes the price of the next incubator.
-- As built: the prop is `nextIncubatorPrice`. Spending and marking the incubator purchased share one transaction inside the lock; a free incubator spends nothing. `IncubatorNotPurchasedCard` shows "Free" or the price (`MoneyAmount`, no coin) above Purchase, and disables Purchase when the player can't afford it (no "You need … more" line: the price alone says it). Purchasing reloads `incubators`, `nextIncubatorPrice` and `auth`, so every card's price and the sidebar money update. The Nursery header shows the player's money on the right, as in the mock-up.
+- As built: the prop is `nextIncubatorPrice`. Spending and marking the incubator purchased share one transaction inside the lock; a free incubator spends nothing. `IncubatorNotPurchasedCard` shows "Free" or the price (`MoneyAmount`, no coin) above Purchase, and disables Purchase when the player can't afford it (no "You need … more" line: the price alone says it). Purchasing reloads `incubators`, `nextIncubatorPrice` and `auth`, so every card's price and the sidebar money update. The Nursery header does not show the player's money; the sidebar does.
 
 **UI suggestions** (ideas, not requirements):
 - On `IncubatorNotPurchasedCard`, show the price above the button ("₽ 15,000") with `MoneyAmount`; the first one says "Free".
@@ -1383,7 +1383,7 @@ Read [03-money-inventory-and-shop.md](03-money-inventory-and-shop.md) first. Mon
 - Page `resources/js/app/Shop/pages/Shop/Index/index.vue`; "Shop" link in the navigation.
 
 **UI suggestions** (ideas, not requirements):
-- `AppPageHeader` ("Shop") with the player's money on the right.
+- `AppPageHeader` ("Shop"); the money shows only in the sidebar.
 - Tabs for Balls, Evolution items and TMs (shadcn-vue `tabs`, added with the CLI); the chosen tab in the URL (`?tab=tms`) so it survives a reload.
 - A list, not a grid: one row per item with `ItemSprite`, name, a one-line effect in muted text, price with `MoneyAmount`, and "You own: 42".
 - The TMs tab is titled "Today's TMs"; each row shows the move's type badge and power.
@@ -1393,7 +1393,7 @@ Read [03-money-inventory-and-shop.md](03-money-inventory-and-shop.md) first. Mon
 
 **Done when:** the page lists the shop's items.
 
-- As built: the props are `pokeballs` and `evolutionItems` (each `{id, name, sprite, effect, price, ownedQuantity}`, sorted by price then name) and `tms` (sorted by code, each with `type` and `power` instead of an effect). The effect is the item's `description`. Ball descriptions say what each ball does here, from Spec 2's ball conditions ("3.5x on Bug and Grass Pokémon, 1x otherwise."); evolution item descriptions name what each item evolves, from the species data ("Evolves Scyther into Scizor.", "Mega Evolves Gengar into Mega Gengar at level 100."). TMs use PokeAPI's per-type disc sprite from the new `Move::tmSprite()`. The page is `ShopTabs` (shadcn-vue `tabs`, chosen tab kept in `?tab=balls|evolution-items|tms` with `router.replace`), `ShopItemsList` and `ShopItemRow`; the TMs tab is titled "Today's TMs", with no heading or countdown above the list. Money never has a coin icon (prices, `PlayerMoney`, `TopBarMoney`, `SidebarNavMoney`); the collapsed sidebar shows "₽" instead. Item sprites are `size-8`. The sidebar money row stays plain text, not a link to the Shop. The header money is the new shared `PlayerMoney`, also used by the Nursery; it hides on phones, where `TopBarMoney` shows it.
+- As built: the props are `pokeballs` and `evolutionItems` (each `{id, name, sprite, effect, price, ownedQuantity}`, sorted by price then name) and `tms` (sorted by code, each with `type` and `power` instead of an effect). The effect is the item's `description`. Ball descriptions say what each ball does here, from Spec 2's ball conditions ("3.5x on Bug and Grass Pokémon, 1x otherwise."); evolution item descriptions name what each item evolves, from the species data ("Evolves Scyther into Scizor.", "Mega Evolves Gengar into Mega Gengar at level 100."). TMs use PokeAPI's per-type disc sprite from the new `Move::tmSprite()`. The page is `ShopTabs` (shadcn-vue `tabs`, chosen tab kept in `?tab=balls|evolution-items|tms` with `router.replace`), `ShopItemsList` and `ShopItemRow`; the TMs tab is titled "Today's TMs", with no heading or countdown above the list. Money never has a coin icon (prices, `SidebarNavMoney`); the collapsed sidebar shows "₽" instead. Item sprites are `size-8`. The sidebar money row stays plain text, not a link to the Shop. Page headers (Shop, Nursery, Inventory) don't show the money; only the sidebar does.
 
 ### 3.10 Shop page: buy
 
@@ -1433,7 +1433,7 @@ Read [03-money-inventory-and-shop.md](03-money-inventory-and-shop.md) first. Mon
 - Page `resources/js/app/Inventory/pages/Inventory/Index/index.vue`; "Inventory" link in the navigation.
 
 **UI suggestions** (ideas, not requirements):
-- `AppPageHeader` ("Inventory") with money on the right; tabs for the five groups, the tab in the URL.
+- `AppPageHeader` ("Inventory"); the money shows only in the sidebar; tabs for the five groups, the tab in the URL.
 - A grid of item tiles (auto-fill, about 8rem wide): `ItemSprite`, name, and a quantity `Badge` ("×42") in the corner. TMs without a sprite show a disc icon coloured by the move's type.
 - Clicking a tile opens a `Dialog` (a `Sheet` on phones) with the sprite, name, description, quantity and the actions (Use comes with Spec 4; where to sell items will be decided later, see 3.12).
 - Empty tab: `AppEmptyState` saying where to get that kind of item, with a link to the Shop where it applies ("No TMs yet. Buy them in the Shop or earn them from missions.").

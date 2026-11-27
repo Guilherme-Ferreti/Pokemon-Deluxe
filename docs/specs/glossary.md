@@ -106,7 +106,6 @@ One name per idea, used everywhere: specs, code, database, tests and UI. When yo
 | Inventory page | `InventoryController`, `InventoryIndexPageProps`, `boostStones`, `keyItems`, `InventoryItemTile`, `InventoryItemDialog`, `Move::tmDescription()` | Lists everything the player owns, by group. |
 | Request running | `useIsRequestRunning()` (`resources/js/shared/composables/`) | True while any normal Inertia visit runs (not prefetches, polls or other async visits). Buttons that send a request disable on it, so a second click can't cut off the first visit and lose its response or toast. |
 | Tab in the URL | `useTabInUrl()` | Keeps a page's chosen tab in `?tab=` so it survives a reload. |
-| Player money (page header) | `PlayerMoney` | The player's money on the right of a page header; hidden on phones, where the top bar shows it. |
 | TM | `InventoryItemType::TM`, `tm_code`, `Move::tmName()`, `Move::tmSprite()` | An inventory item whose item is a `Move`. Shown as "TM 395 Ice Beam" with a disc in the move's type colour. |
 | Special item | `SpecialItem`, `SpecialItemCategory` | Boost stones and key items. |
 | Boost stone | `boost-stone` (special item slug) | |

@@ -44,7 +44,6 @@
       <h1>Shop</h1>
       <p>Buy balls, evolution items and today's TMs.</p>
     </div>
-    <span class="money" title="Your money"><span id="wallet">₽ 12,450</span></span>
   </div>
 
   <div class="tabs" role="tablist" aria-label="Shop sections">
@@ -151,7 +150,6 @@
     function draw(state) {
       var tab = (state === 'evolution' || state === 'tms') ? state : 'balls';
       money = state === 'poor' ? 450 : 12450;
-      document.getElementById('wallet').textContent = fmt(money);
       document.querySelectorAll('[data-tab]').forEach(function (t) { t.setAttribute('aria-selected', String(t.getAttribute('data-tab') === tab)); });
       list.innerHTML = '';
       if (tab === 'tms') {

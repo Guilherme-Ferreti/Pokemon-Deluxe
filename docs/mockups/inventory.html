@@ -52,7 +52,6 @@
       <h1>Inventory</h1>
       <p>Everything you own.</p>
     </div>
-    <span class="money" title="Your money"><span id="wallet">₽ 12,450</span></span>
   </div>
 
   <div class="tabs" role="tablist" aria-label="Item groups">
@@ -182,7 +181,6 @@
     function draw(state) {
       var tab = groups[state] ? state : ((state === 'empty' || state === 'use') ? 'tms' : (state === 'xp-share' ? 'key' : 'balls'));
       document.querySelectorAll('[data-tab]').forEach(function (t) { t.setAttribute('aria-selected', String(t.getAttribute('data-tab') === tab)); });
-      document.getElementById('wallet').textContent = state === 'sold' ? '₽ 13,650' : '₽ 12,450';
       tiles.innerHTML = '';
       tiles.hidden = state === 'empty';
       if (state === 'empty') { return; }

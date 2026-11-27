@@ -37,7 +37,6 @@
       <h1>Nursery</h1>
       <p>Manage your Pokémon eggs.</p>
     </div>
-    <span class="money"><span id="wallet">₽ 21,300</span></span>
   </div>
 
   <section class="stack" style="gap: 12px;">
@@ -62,7 +61,6 @@
       var bought = state === 'none' ? 0 : 3;
       var money = state === 'poor' ? 12450 : (state === 'none' ? 2000 : 21300);
       var price = bought * 5000;
-      document.getElementById('wallet').textContent = '₽ ' + money.toLocaleString('en-US');
       var html = '';
       for (var i = 1; i <= 6; i++) {
         if (i <= bought) {
