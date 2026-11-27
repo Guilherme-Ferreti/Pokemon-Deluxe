@@ -30,7 +30,7 @@
 </template>
 
 <script setup lang="ts">
-import { Head, Link, usePage } from '@inertiajs/vue3';
+import { Head, Link, setLayoutProps, usePage } from '@inertiajs/vue3';
 import AppSection from '@/shared/components/content/AppSection.vue';
 import AppPageHeader from '@/shared/components/layout/AppPageHeader.vue';
 import { Alert, AlertDescription } from '@/shared/components/ui/alert';
@@ -38,6 +38,18 @@ import { Button } from '@/shared/components/ui/button';
 import { route } from '@/shared/types/helpers/route';
 import type { PartyPageProps } from '../../types/page-props/PartyPageProps';
 import PartyList from './PartyList.vue';
+
+setLayoutProps({
+  breadcrumbs: [
+    {
+      name: 'Party',
+      href: route('pokemon.web.party'),
+    },
+    {
+      name: 'List',
+    },
+  ],
+});
 
 const page = usePage<PartyPageProps>();
 </script>

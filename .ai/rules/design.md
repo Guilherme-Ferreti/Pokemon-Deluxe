@@ -24,7 +24,7 @@ How pages look and behave. Follow it for every new page or component; tasks in `
 
 ## Page structure
 
-- Every page starts with `AppPageHeader` (title + one-sentence description). Detail pages add `AppBreadcrumbs` above it.
+- Every page starts with `AppPageHeader` (title + one-sentence description). Pages inside the sidebar layout also set `breadcrumbs` through `setLayoutProps` (the section linked, then the current page: `Box › List`, `Explore › Forest`).
 - Group content in `AppSection`s, each with an `AppSectionHeading` when the page has more than one section.
 - Put related information in a `Card`; do not nest cards inside cards.
 - Grids of cards use auto-fill columns (`grid-cols-[repeat(auto-fill,minmax(13rem,1fr))] gap-4`) or container queries on `@container/main-content`, never fixed column counts that break on phones.

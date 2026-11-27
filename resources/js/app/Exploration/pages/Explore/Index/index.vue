@@ -15,11 +15,24 @@
 </template>
 
 <script setup lang="ts">
-import { Head, usePage } from '@inertiajs/vue3';
+import { Head, setLayoutProps, usePage } from '@inertiajs/vue3';
 import AppPageHeader from '@/shared/components/layout/AppPageHeader.vue';
+import { route } from '@/shared/types/helpers/route';
 import type { ExploreIndexPageProps } from '../../../types/page-props/ExploreIndexPageProps';
 import AreaCard from './AreaCard.vue';
 import BattleInProgressNotice from './BattleInProgressNotice.vue';
+
+setLayoutProps({
+  breadcrumbs: [
+    {
+      name: 'Explore',
+      href: route('exploration.web.index'),
+    },
+    {
+      name: 'List',
+    },
+  ],
+});
 
 const page = usePage<ExploreIndexPageProps>();
 </script>

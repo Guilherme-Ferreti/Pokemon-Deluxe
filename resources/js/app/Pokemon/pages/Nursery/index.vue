@@ -20,9 +20,22 @@
 </template>
 
 <script setup lang="ts">
-import { Head } from '@inertiajs/vue3';
+import { Head, setLayoutProps } from '@inertiajs/vue3';
 import AppSection from '@/shared/components/content/AppSection.vue';
 import AppSectionHeading from '@/shared/components/content/AppSectionHeading.vue';
 import AppPageHeader from '@/shared/components/layout/AppPageHeader.vue';
+import { route } from '@/shared/types/helpers/route';
 import IncubatorsGrid from './IncubatorsGrid.vue';
+
+setLayoutProps({
+  breadcrumbs: [
+    {
+      name: 'Nursery',
+      href: route('pokemon.web.nursery'),
+    },
+    {
+      name: 'Incubators',
+    },
+  ],
+});
 </script>
