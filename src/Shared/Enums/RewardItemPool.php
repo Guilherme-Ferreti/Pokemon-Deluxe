@@ -20,4 +20,12 @@ enum RewardItemPool: string
             self::DYNAMAX_TM => 'Random Dynamax TM',
         };
     }
+
+    public function itemType(): InventoryItemType
+    {
+        return match ($this) {
+            self::NORMAL_TM, self::Z_MOVE_TM, self::DYNAMAX_TM => InventoryItemType::TM,
+            self::MEGA_STONE                                   => InventoryItemType::EVOLUTION_ITEM,
+        };
+    }
 }

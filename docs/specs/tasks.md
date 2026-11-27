@@ -1864,7 +1864,7 @@ Read [05-missions.md](05-missions.md) first, including its "Starting content" an
 
 ### 5.2 Give rewards
 
-- [ ] Done
+- [x] Done
 
 **Goal:** one way to hand out money and items, used by missions and later by other features.
 
@@ -1877,6 +1877,8 @@ Read [05-missions.md](05-missions.md) first, including its "Starting content" an
 **Tests:** money and items given; random pools resolved (faked); overflow refused with the list; overflow accepted caps at the limit.
 
 **Done when:** tests pass.
+
+- As built: Mechanics never query, so `RewardRoller::roll(MissionReward $reward, array $slugsByPool): MissionReward` is given each pool's candidate slugs (keyed by the pool's value) and turns each random item into a concrete one of the pool's item type (`RewardItemPool::itemType()`). `GrantRewardAction` loads those candidates (normal TMs: moves that are neither Z-Moves nor Dynamax moves; Mega Stones: evolution items used by an evolution into a Mega species), rolls the reward and returns the rolled reward, so the claim can show what was given. It locks the player's row, counts the same item twice in one reward against one stack, and refuses with nothing given unless the overflow is accepted. `RewardOverflowException` lists what would not fit (`overflowingItems`, such as "3 Poké Balls").
 
 ### 5.3 Daily mission templates
 
@@ -1942,7 +1944,7 @@ Read [05-missions.md](05-missions.md) first, including its "Starting content" an
 **Goal:** the Claim button.
 
 **Build:**
-- `App\Missions\Actions\ClaimMissionAction::handle(UserMission $mission, bool $acceptOverflow = false): MissionReward`: refuses when not claimable (`App\Missions\Exceptions\MissionNotClaimableException`); rolls the reward, grants it (`GrantRewardAction`), sets `claimed_at`, returns what was given. Locked so a double click can't claim twice.
+- `App\Missions\Actions\ClaimMissionAction::handle(UserMission $mission, bool $acceptOverflow = false): MissionReward`: refuses when not claimable (`App\Missions\Exceptions\MissionNotClaimableException`); grants the reward with `GrantRewardAction` (which rolls its random items and returns what was given), sets `claimed_at`, returns what was given. Locked so a double click can't claim twice.
 
 **Tests:** claim gives the reward once; not completed refused; already claimed refused; overflow refused unless accepted.
 
