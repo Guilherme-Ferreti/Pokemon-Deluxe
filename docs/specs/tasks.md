@@ -1404,7 +1404,7 @@ Read [03-money-inventory-and-shop.md](03-money-inventory-and-shop.md) first. Mon
 **Mock-up:** `docs/mockups/shop.html` (states "Confirm a purchase over ₽ 10,000", "Can't afford", "Purchase complete")
 
 **Build:**
-- Route `POST /shop/buy` named `shop.web.buy` → `BuyItemController` with `BuyItemRequest` (`item_type`, `item_id`, `quantity` 1–9,999).
+- Route `POST /shop/buy` named `shop.web.buy` → `BuyItemController` with `BuyItemRequest` (`itemType`, `itemId`, `quantity` 1–9,999).
 - Each row (`ShopItemRow`) gets a quantity picker and a Buy button; purchases over ₽ 10,000 ask for confirmation first; success shows a toast.
 
 **UI suggestions** (ideas, not requirements):
@@ -1418,7 +1418,7 @@ Read [03-money-inventory-and-shop.md](03-money-inventory-and-shop.md) first. Mon
 
 **Done when:** a player can buy items from the page.
 
-- As built: `BuyItemRequest` accepts `item_type` `pokeball`, `evolution-item` or `tm` (not special items) and checks `item_id` exists in that type's table; `quantity` is 1 to `game.inventory.max_stack`. `BuyItemController` finds the item and calls `BuyItemAction`, whose refusals (money, full stack, not today's TM) come back as the usual warning toast. The toast names the items with the new `ItemHelper::name($item, $quantity)` ("You bought 10 Ultra Balls.", "You bought 1 TM 395 Ice Beam."; TMs are never pluralised). `ShopIndexPageProps` adds `itemType` and `pluralName` to every item, plus `maxStack` and `confirmPurchaseOver` (new config `game.shop.confirm_purchase_over`, 10,000). Each `ShopItemRow` holds a `ShopItemBuyForm`: an `InputGroup` quantity picker (1 to the room left in the stack), an outline "Buy · ₽ 2,400" button (the row's only price; the row shows no separate unit price) with a fixed width (`w-44`, wide enough for the largest total, "₽ 99,990,000") so it doesn't resize as the quantity changes, disabled when the player can't afford the total (no "You need … more" line) and, with "Your stack is full" under it, when the stack is full, and an `AlertDialog` for totals over 10,000.
+- As built: `BuyItemRequest` accepts `itemType` `pokeball`, `evolution-item` or `tm` (not special items) and checks `itemId` exists in that type's table; `quantity` is 1 to `game.inventory.max_stack`. `BuyItemController` finds the item and calls `BuyItemAction`, whose refusals (money, full stack, not today's TM) come back as the usual warning toast. The toast names the items with the new `ItemHelper::name($item, $quantity)` ("You bought 10 Ultra Balls.", "You bought 1 TM 395 Ice Beam."; TMs are never pluralised). `ShopIndexPageProps` adds `itemType` and `pluralName` to every item, plus `maxStack` and `confirmPurchaseOver` (new config `game.shop.confirm_purchase_over`, 10,000). Each `ShopItemRow` holds a `ShopItemBuyForm`: an `InputGroup` quantity picker (1 to the room left in the stack), an outline "Buy · ₽ 2,400" button (the row's only price; the row shows no separate unit price) with a fixed width (`w-44`, wide enough for the largest total, "₽ 99,990,000") so it doesn't resize as the quantity changes, disabled when the player can't afford the total (no "You need … more" line) and, with "Your stack is full" under it, when the stack is full, and an `AlertDialog` for totals over 10,000.
 
 ### 3.11 Inventory page: browse
 
@@ -1455,7 +1455,7 @@ Read [03-money-inventory-and-shop.md](03-money-inventory-and-shop.md) first. Mon
 **Mock-up:** `docs/mockups/inventory.html` (states "Item details: can be sold", "Confirm selling", "Sold")
 
 **Build:**
-- Route `POST /inventory/sell` named `inventory.web.sell` → `SellItemController` with `SellItemRequest` (`item_type`, `item_id`, `quantity`).
+- Route `POST /inventory/sell` named `inventory.web.sell` → `SellItemController` with `SellItemRequest` (`itemType`, `itemId`, `quantity`).
 - The item dialog gets a quantity picker and a Sell button; earned-only items show why they can't be sold instead.
 
 **UI suggestions** (ideas, not requirements):
@@ -1644,9 +1644,9 @@ Read [04-pokemon-page.md](04-pokemon-page.md) first. Builds on Spec 1 (`SetActiv
 **Mock-up:** `docs/mockups/pokemon.html` (states "Overview", "Swap a move", "Teach a TM")
 
 **Build:**
-- Route `POST /your-pokemon/{pokemon}/active-moves` named `pokemon.web.set-active-move` → `SetActiveMoveController` (`move_id`, `slot` 1–4).
-- Route `POST /your-pokemon/{pokemon}/teach-tm` named `pokemon.web.teach-tm` → `TeachTmController` (`move_id`).
-- `App\Pokemon\Actions\ReorderActiveMovesAction::handle(Pokemon $pokemon, array $moveIds): void`: `$moveIds` must be exactly the current active moves in their new order (otherwise `InvalidArgumentException`); saves slots 1, 2, 3… in that order. Route `POST /your-pokemon/{pokemon}/active-moves/order` named `pokemon.web.reorder-active-moves` → `ReorderActiveMovesController` (`move_ids` array).
+- Route `POST /your-pokemon/{pokemon}/active-moves` named `pokemon.web.set-active-move` → `SetActiveMoveController` (`moveId`, `slot` 1–4).
+- Route `POST /your-pokemon/{pokemon}/teach-tm` named `pokemon.web.teach-tm` → `TeachTmController` (`moveId`).
+- `App\Pokemon\Actions\ReorderActiveMovesAction::handle(Pokemon $pokemon, array $moveIds): void`: `$moveIds` must be exactly the current active moves in their new order (otherwise `InvalidArgumentException`); saves slots 1, 2, 3… in that order. Route `POST /your-pokemon/{pokemon}/active-moves/order` named `pokemon.web.reorder-active-moves` → `ReorderActiveMovesController` (`moveIds` array).
 - The slot order is the order of the move buttons on the battle page (task 1.19).
 - Moves card: four slots with Swap buttons; the known-moves pool below; a "Teach TM" button.
 
@@ -1662,7 +1662,7 @@ Read [04-pokemon-page.md](04-pokemon-page.md) first. Builds on Spec 1 (`SetActiv
 
 **Done when:** a player can swap moves and teach TMs from the page.
 
-- As built: the three routes sit in a `/{pokemon}` group (`whereUuid`) next to `show`; each controller finds the Pokémon through `currentUser()->pokemon()` (another player's Pokémon gives 404). `SetActiveMoveRequest` (`move_id` exists, `slot` 1–`max_active_moves`), `ReorderActiveMovesRequest` (`move_ids` array of 1–4 distinct strings) and `TeachTmRequest` (`move_id` exists). Teaching flashes "Move learned" / "Charmeleon learned Ice Beam."; swaps and reorders are silent. `ReorderActiveMovesAction` runs under the `pokemonActiveMoves` lock, clears the active slots and writes 1, 2, 3… in the given order inside one transaction.
+- As built: the three routes sit in a `/{pokemon}` group (`whereUuid`) next to `show`; each controller finds the Pokémon through `currentUser()->pokemon()` (another player's Pokémon gives 404). `SetActiveMoveRequest` (`moveId` exists, `slot` 1–`max_active_moves`), `ReorderActiveMovesRequest` (`moveIds` array of 1–4 distinct strings) and `TeachTmRequest` (`moveId` exists). Teaching flashes "Move learned" / "Charmeleon learned Ice Beam."; swaps and reorders are silent. `ReorderActiveMovesAction` runs under the `pokemonActiveMoves` lock, clears the active slots and writes 1, 2, 3… in the given order inside one transaction.
 - The page's moves now carry `isZMove` and `isDynamaxMove` for `MoveNameLabel`.
 - `PokemonMovesCard` (right column): four numbered slots with a grip handle (desktop), `MoveNameLabel`, `PokemonMoveMeta` (type badge, "Power 90" or "Status", a plain "STAB" text with a dotted underline and a tooltip for damaging moves of the Pokémon's type), up and down arrow buttons and a ghost "Swap" button ("Choose" on an empty, dashed slot); then "Known moves · 5" as a grid of small dashed cards sorted by name, active ones dimmed with "In slot 2". Native HTML drag and drop on desktop (slot onto slot reorders; known move onto slot sets it); no drag library was added. Swaps and reorders are optimistic updates (`router.optimistic()`): the card rearranges at once, the visit reloads only `activeMoves` and `knownMoves`, and the server's props replace the guess (or Inertia rolls it back on an error). The buttons are not disabled while a request runs. The known-moves search and type chips are left for when pools grow past about 12.
 - Later refactor: the move logic lives in `resources/js/app/Pokemon/composables/useActiveMoves.ts`. It holds pure helpers that copy the server actions (`withMoveInSlot` for `SetActiveMoveAction`, `withActiveMovesInOrder` for `ReorderActiveMovesAction`, `toActiveMoves`) and `useActiveMoves()`, which works by move id (`setActiveMove`, `moveUp`, `moveDown`, `moveToPlaceOf`, `slots`) and posts each change as an optimistic update of `knownMoves` only. The card renders `PokemonMoveSlot` (one slot row, test ids `pokemon-move-{n}-slot__…`) and `PokemonKnownMoveTile` (`pokemon-known-move-{id}-tile`), and tracks one `draggedMove` (`{source, moveId}`): a known move dropped on a slot goes into it; an active move dropped on another active move takes its place in the order; an active move dropped on an empty slot moves there.
@@ -1679,7 +1679,7 @@ Read [04-pokemon-page.md](04-pokemon-page.md) first. Builds on Spec 1 (`SetActiv
 **Mock-up:** `docs/mockups/pokemon.html` (states "Use boost stones", "Boost stones result"; the "Boost" button in "Overview")
 
 **Build:**
-- Route `POST /your-pokemon/{pokemon}/boost` named `pokemon.web.boost` → `UseBoostStonesController` (`max_stones` ≥ 1, optional `target_boost` up to 100).
+- Route `POST /your-pokemon/{pokemon}/boost` named `pokemon.web.boost` → `UseBoostStonesController` (`maxStones` ≥ 1, optional `targetBoost` up to 100).
 - Dialog opened by the "Boost" button in the action row. Evolution items and Mega Stones are used through Evolve, TMs through Teach TM, so the page needs no general "Use item" button.
 
 **UI suggestions** (ideas, not requirements):
@@ -1692,7 +1692,7 @@ Read [04-pokemon-page.md](04-pokemon-page.md) first. Builds on Spec 1 (`SetActiv
 
 **Done when:** a player can boost a Pokémon from the page.
 
-- As built: `UseBoostStonesRequest` (`max_stones` integer ≥ 1, `target_boost` nullable 1–`max_boost`). `UseBoostStonesController` runs `UseBoostStonesAction` and flashes `boostResult` (`stonesUsed`, `successes`, `failures`, `boostBefore`, `boostAfter`; typed in `flashDataType`), so the result never reappears through history. No stones or the max boost give a warning toast. The page's `boostStones` prop also carries `maxBoost` and `safeUntil`.
+- As built: `UseBoostStonesRequest` (`maxStones` integer ≥ 1, `targetBoost` nullable 1–`max_boost`). `UseBoostStonesController` runs `UseBoostStonesAction` and flashes `boostResult` (`stonesUsed`, `successes`, `failures`, `boostBefore`, `boostAfter`; typed in `flashDataType`), so the result never reappears through history. No stones or the max boost give a warning toast. The page's `boostStones` prop also carries `maxBoost` and `safeUntil`.
 - `PokemonBoostDialog` replaces the hero's "Boost" button and opens on it. Form: three stats, "Boost now +45", "You own 37" and "Failure chance 26%" (at the max the Boost button is disabled with the tooltip "This Pokémon is at maximum boost level", a later change; a result that reaches the max stays open until "Done"), and a `RadioGroup` with "Use up to [20] stones" (default 20, or what's owned) and "Use until +[55] boost" (default boost + 10). The target mode sends `max_stones` = stones owned. "Use stones" is disabled with no stones or at the max ("You don't own any boost stones. Buy them in the shop."). Result, read with `onFlash`, in the same dialog: "Boost Results" over "+45 → +57" in large type, "Used 20 stones: 12 worked, 8 failed. 17 stones left.", "Use more" (back to the form, hidden when no more can be used) and "Done".
 - Later redesign: the coloured "Next stone" line became the "Failure chance" stat, and `boostStones.safeUntil` was dropped from `BoxShowPageProps` (nothing read it any more).
 
@@ -1705,7 +1705,7 @@ Read [04-pokemon-page.md](04-pokemon-page.md) first. Builds on Spec 1 (`SetActiv
 **Mock-up:** `docs/mockups/pokemon.html` (states "Evolution options", "Confirm evolution")
 
 **Build:**
-- Route `POST /your-pokemon/{pokemon}/evolve` named `pokemon.web.evolve` → `EvolvePokemonController` (`species_evolution_id`).
+- Route `POST /your-pokemon/{pokemon}/evolve` named `pokemon.web.evolve` → `EvolvePokemonController` (`speciesEvolutionId`).
 - The Evolve button shows only when at least one option is allowed; it opens the options dialog.
 - After evolving, the page reloads with the new species and a toast.
 
@@ -1718,7 +1718,7 @@ Read [04-pokemon-page.md](04-pokemon-page.md) first. Builds on Spec 1 (`SetActiv
 
 **Done when:** a player can evolve from the page.
 
-- As built: `EvolvePokemonRequest` (`species_evolution_id` exists). `EvolvePokemonController` finds the evolution, runs `EvolvePokemonAction` and toasts "Evolved!" / "Your Shiny Charmeleon evolved into Shiny Charizard."; an unmet requirement or another species' evolution is a warning toast (`EvolutionNotAllowedException`, `EvolutionNotOfSpeciesException`).
+- As built: `EvolvePokemonRequest` (`speciesEvolutionId` exists). `EvolvePokemonController` finds the evolution, runs `EvolvePokemonAction` and toasts "Evolved!" / "Your Shiny Charmeleon evolved into Shiny Charizard."; an unmet requirement or another species' evolution is a warning toast (`EvolutionNotAllowedException`, `EvolutionNotOfSpeciesException`).
 - `evolutionOptions[].species` gains `displayName` ("Shiny Charizard" for a shiny Pokémon), and `portrait` is the shiny portrait for a shiny Pokémon.
 - `PokemonEvolveDialog` is the Evolve button, always shown: primary when an option is allowed, outline otherwise (later change; the task first hid it). With no allowed option the description says "Charmeleon can't evolve yet. Each evolution says what it needs."; with no evolutions at all, the button is disabled with the tooltip "This Pokémon cannot evolve any further" and opens nothing. Step 1, "Evolve Shiny Charmeleon": one row per option with the portrait, display name and, below it, the requirement worded like the Pokédex evolution card ("Evolves at level 36 using [sprite] Water Stone (♂ only)", the shared `EvolutionRequirementText`). Later change: the rows are a `RadioGroup` (`pokemon-evolve-dialog__option-{id}-radio`), the first allowed option preselected, disabled radios for the rest and no "Needs x" line (`unmetRequirement`, `evolutionItem.isOwned` and `species.types` were dropped from `evolutionOptions`; `isAllowed` stays); a "Continue" button (shown when an option is allowed) opens step 2. Step 2: "Evolve Shiny Charmeleon into Shiny Charizard?" above the current portrait → the new portrait (default `SpeciesPortrait` size; `pokemon.portrait` was added for it, shiny-aware like the options), "This can't be undone.", with "Back" and "Evolve".
 
@@ -1731,7 +1731,7 @@ Read [04-pokemon-page.md](04-pokemon-page.md) first. Builds on Spec 1 (`SetActiv
 **Mock-up:** `docs/mockups/pokemon.html` (states "Overview", "Remove from party", "Not in party", "Added to party", "Not in party, party full", "Party full: choose who to swap", "Confirm locking", "Locked", "Release", "Release a shiny or boosted Pokémon")
 
 **Build:**
-- Routes: `POST /your-pokemon/{pokemon}/party` (`pokemon.web.party.add`), `DELETE /your-pokemon/{pokemon}/party` (`pokemon.web.party.remove`), `POST /your-pokemon/{pokemon}/party/swap` (`pokemon.web.party.swap`, `leaving_pokemon_id`), `POST /your-pokemon/{pokemon}/lock` (`pokemon.web.lock`, `is_locked` boolean), `DELETE /your-pokemon/{pokemon}` (`pokemon.web.release`, redirects to the Box with a toast).
+- Routes: `POST /your-pokemon/{pokemon}/party` (`pokemon.web.party.add`), `DELETE /your-pokemon/{pokemon}/party` (`pokemon.web.party.remove`), `POST /your-pokemon/{pokemon}/party/swap` (`pokemon.web.party.swap`, `leavingPokemonId`), `POST /your-pokemon/{pokemon}/lock` (`pokemon.web.lock`, `isLocked` boolean), `DELETE /your-pokemon/{pokemon}` (`pokemon.web.release`, redirects to the Box with a toast).
 - Locking asks for confirmation and explains that a locked Pokémon can't be released or traded; unlocking does not ask.
 - Release asks the player to type the Pokémon's display name to confirm ("Shiny Charmeleon" for a shiny one).
 
@@ -1746,7 +1746,7 @@ Read [04-pokemon-page.md](04-pokemon-page.md) first. Builds on Spec 1 (`SetActiv
 
 **Done when:** every Spec 4 action works from the page.
 
-- As built: invokable `AddToPartyController`, `RemoveFromPartyController`, `SwapPartyPokemonController` (`SwapPartyPokemonRequest`: `leaving_pokemon_id` uuid, looked up among the player's own Pokémon, so another player's is a 404), `SetPokemonLockController` (`SetPokemonLockRequest`: `is_locked` boolean) and `ReleasePokemonController`. Toasts: "Added to party" / "Shiny Charmeleon joined your party." (a swap adds "and Dragonite went to your Box."), "Removed from party" / "Shiny Charmeleon went to your Box.", "Locked" / "Unlocked", and "Released" / "Shiny Charmeleon was released." on the Box. Refusals are the actions' `DomainException`s as warning toasts.
+- As built: invokable `AddToPartyController`, `RemoveFromPartyController`, `SwapPartyPokemonController` (`SwapPartyPokemonRequest`: `leavingPokemonId` uuid, looked up among the player's own Pokémon, so another player's is a 404), `SetPokemonLockController` (`SetPokemonLockRequest`: `isLocked` boolean) and `ReleasePokemonController`. Toasts: "Added to party" / "Shiny Charmeleon joined your party." (a swap adds "and Dragonite went to your Box."), "Removed from party" / "Shiny Charmeleon went to your Box.", "Locked" / "Unlocked", and "Released" / "Shiny Charmeleon was released." on the Box. Refusals are the actions' `DomainException`s as warning toasts.
 - `BoxShowPageProps` drops `pokemon.partySize` for `party` (the party's `id`, `name`, `portrait`, `level`, `boost`; typed `PartyMember` in `resources/js/app/Pokemon/types/PartyMember.ts`) and `maxPartySize`.
 - `PokemonActions` renders `PokemonRemoveFromPartyDialog` or `PokemonAddToPartyButton` (opens `PartySwapDialog` when the party is full), `PokemonLockDialog` (unlocked: opens the confirmation; locked: the "Locked" button unlocks at once) and `PokemonReleaseDialog`. `PartySwapDialog` (`resources/js/app/Pokemon/components/`, props `pokemon` and `party`, `v-model:open`) lists the party as a `RadioGroup` of `AppChoiceCard`s with "Lv 61 · +40" and a "Swap with Dragonite" button. The release warning is a destructive `Alert` (shadcn-vue `alert`, added for it): "This Pokémon is shiny and has +14 boost. The boost stones used on it are lost too.", or only its shiny or boost part.
 
@@ -1811,7 +1811,7 @@ Read [04-pokemon-page.md](04-pokemon-page.md) first. Builds on Spec 1 (`SetActiv
 **Mock-up:** `docs/mockups/party.html` (all states)
 
 **Build:**
-- Route `POST /your-pokemon/party/order` named `pokemon.web.party.reorder` → `ReorderPartyController` (`pokemon_ids`).
+- Route `POST /your-pokemon/party/order` named `pokemon.web.party.reorder` → `ReorderPartyController` (`pokemonIds`).
 - `PartyPageProps`: each party Pokémon also gets its portrait, display name, level, boost, types and a link to its page (task 4.7); plus whether a battle is ongoing.
 - The Party page (`resources/js/app/Pokemon/pages/Party/`) keeps its card of 6 slots, now numbered in sending-out order, with the first marked "Leads". Each change is saved right away.
 - While a battle is ongoing, reordering is disabled and a notice links to the battle.
@@ -1973,7 +1973,7 @@ Read [05-missions.md](05-missions.md) first, including its "Starting content" an
 **Build:**
 - `App\Inventory\Actions\SetXpShareAction::handle(User $user, bool $isEnabled): void`: needs the `xp-share` item (`InsufficientInventoryException`).
 - Task 1.17's XP award: when `is_xp_share_enabled`, party Pokémon that did not enter the field get `game.experience.xp_share_ratio` (0.5) x the XP they would get for the opponents knocked out (the formula with their own level, without the knockout bonus). Never in Battle Tower battles. The state keeps what each got (`ExperienceGain::$isFromExperienceShare`), so the end screen lists each of them with "via XP Share" (task 1.35).
-- Route `POST /inventory/xp-share` named `inventory.web.xp-share` → `SetXpShareController` (`is_enabled`).
+- Route `POST /inventory/xp-share` named `inventory.web.xp-share` → `SetXpShareController` (`isEnabled`).
 
 **Mock-up:** `docs/mockups/inventory.html` (states "Key items tab", "XP Share settings")
 
@@ -2215,7 +2215,7 @@ Read [06-trainers-gyms-and-battle-tower.md](06-trainers-gyms-and-battle-tower.md
 
 **Build:**
 - Route `GET /gyms` named `trainers.web.gyms.index` → `GymsController@index` (`?region=kanto`), with `GymsIndexPageProps`: the region's 8 leaders (badge name, type, leader, team preview, won or not), Elite Four and Champion status, and the player's party.
-- Route `POST /gyms/{trainer}/challenge` named `trainers.web.gyms.challenge` → `ChallengeGymController` (`pokemon_ids`).
+- Route `POST /gyms/{trainer}/challenge` named `trainers.web.gyms.challenge` → `ChallengeGymController` (`pokemonIds`).
 - "Gyms" sub-item in the sidebar's "Battle" group, after "Trainers".
 
 **UI suggestions** (ideas, not requirements):

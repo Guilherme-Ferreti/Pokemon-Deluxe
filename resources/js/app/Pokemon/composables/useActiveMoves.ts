@@ -85,7 +85,7 @@ export function useActiveMoves() {
   const setActiveMove = (moveId: string, slot: number) => {
     updateKnownMoves(
       route('pokemon.web.set-active-move', { pokemon: page.props.pokemon.id }),
-      { move_id: moveId, slot },
+      { moveId, slot },
       (knownMoves) => withMoveInSlot(knownMoves, moveId, slot),
     );
   };
@@ -95,7 +95,7 @@ export function useActiveMoves() {
       route('pokemon.web.reorder-active-moves', {
         pokemon: page.props.pokemon.id,
       }),
-      { move_ids: moveIds },
+      { moveIds },
       (knownMoves) => withActiveMovesInOrder(knownMoves, moveIds),
     );
   };

@@ -16,7 +16,7 @@ final class TeachTmRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'move_id' => ['required', 'string', Rule::exists(Move::class, 'id')],
+            'moveId' => ['required', 'string', Rule::exists(Move::class, 'id')],
         ];
     }
 }

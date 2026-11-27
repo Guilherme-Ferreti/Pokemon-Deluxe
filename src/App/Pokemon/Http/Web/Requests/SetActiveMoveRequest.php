@@ -16,8 +16,8 @@ final class SetActiveMoveRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'move_id' => ['required', 'string', Rule::exists(Move::class, 'id')],
-            'slot'    => ['required', 'integer', 'min:1', 'max:' . (int) config('game.pokemon.max_active_moves')],
+            'moveId' => ['required', 'string', Rule::exists(Move::class, 'id')],
+            'slot'   => ['required', 'integer', 'min:1', 'max:' . (int) config('game.pokemon.max_active_moves')],
         ];
     }
 }

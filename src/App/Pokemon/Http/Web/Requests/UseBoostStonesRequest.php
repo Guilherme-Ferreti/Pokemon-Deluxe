@@ -14,8 +14,8 @@ final class UseBoostStonesRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'max_stones'   => ['required', 'integer', 'min:1'],
-            'target_boost' => ['nullable', 'integer', 'min:1', 'max:' . (int) config('game.pokemon.max_boost')],
+            'maxStones'   => ['required', 'integer', 'min:1'],
+            'targetBoost' => ['nullable', 'integer', 'min:1', 'max:' . (int) config('game.pokemon.max_boost')],
         ];
     }
 }

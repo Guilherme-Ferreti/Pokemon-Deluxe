@@ -69,10 +69,10 @@ const page = usePage<BoxShowPageProps>();
 
 const isOpen = ref(false);
 
-const form = useForm({ is_locked: false });
+const form = useForm({ isLocked: false });
 
 const setLock = (isLocked: boolean) => {
-  form.is_locked = isLocked;
+  form.isLocked = isLocked;
 
   form.post(route('pokemon.web.lock', { pokemon: page.props.pokemon.id }), {
     preserveScroll: true,

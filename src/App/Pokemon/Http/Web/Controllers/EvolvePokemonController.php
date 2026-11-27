@@ -16,7 +16,7 @@ final class EvolvePokemonController extends Controller
     public function __invoke(EvolvePokemonRequest $request, string $pokemon): RedirectResponse
     {
         $ownedPokemon = currentUser()->pokemon()->findOrFail($pokemon);
-        $evolution    = $request->modelOrFail('species_evolution_id', SpeciesEvolution::class);
+        $evolution    = $request->modelOrFail('speciesEvolutionId', SpeciesEvolution::class);
         $nameBefore   = $ownedPokemon->getDisplayName();
 
         $evolvedPokemon = new EvolvePokemonAction()->handle($ownedPokemon, $evolution);

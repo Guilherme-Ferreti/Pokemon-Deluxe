@@ -15,7 +15,7 @@ final class SwapPartyPokemonController extends Controller
     public function __invoke(SwapPartyPokemonRequest $request, string $pokemon): RedirectResponse
     {
         $joining = currentUser()->pokemon()->findOrFail($pokemon);
-        $leaving = currentUser()->pokemon()->findOrFail($request->string('leaving_pokemon_id')->toString());
+        $leaving = currentUser()->pokemon()->findOrFail($request->string('leavingPokemonId')->toString());
 
         new SwapPartyPokemonAction()->handle($joining, $leaving);
 

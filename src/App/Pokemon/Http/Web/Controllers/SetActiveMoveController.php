@@ -16,7 +16,7 @@ final class SetActiveMoveController extends Controller
     {
         new SetActiveMoveAction()->handle(
             pokemon: currentUser()->pokemon()->findOrFail($pokemon),
-            move: $request->modelOrFail('move_id', Move::class),
+            move: $request->modelOrFail('moveId', Move::class),
             slot: $request->integer('slot'),
         );
 

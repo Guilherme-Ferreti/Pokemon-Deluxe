@@ -14,7 +14,7 @@ final class SetPokemonLockRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'is_locked' => ['required', 'boolean'],
+            'isLocked' => ['required', 'boolean'],
         ];
     }
 }

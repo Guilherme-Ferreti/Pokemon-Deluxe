@@ -16,7 +16,7 @@ final class TeachTmController extends Controller
     public function __invoke(TeachTmRequest $request, string $pokemon): RedirectResponse
     {
         $ownedPokemon = currentUser()->pokemon()->findOrFail($pokemon);
-        $move         = $request->modelOrFail('move_id', Move::class);
+        $move         = $request->modelOrFail('moveId', Move::class);
 
         new TeachTmAction()->handle($ownedPokemon, $move);
 

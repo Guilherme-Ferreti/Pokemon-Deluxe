@@ -9,13 +9,13 @@ use function Pest\Laravel\actingAs;
 use function Pest\Laravel\post;
 
 it('redirects guests to login', function () {
-    post(route('pokemon.web.lock', Pokemon::factory()->create()), ['is_locked' => true])
+    post(route('pokemon.web.lock', Pokemon::factory()->create()), ['isLocked' => true])
         ->assertRedirectToRoute('auth.web.login.create');
 });
 
 it("gives 404 for another player's pokemon", function () {
     actingAs(User::factory()->create())
-        ->post(route('pokemon.web.lock', Pokemon::factory()->create()), ['is_locked' => true])
+        ->post(route('pokemon.web.lock', Pokemon::factory()->create()), ['isLocked' => true])
         ->assertNotFound();
 });
 
@@ -25,7 +25,7 @@ it('locks the pokemon', function () {
 
     actingAs($user)
         ->from(route('pokemon.web.box.show', $pokemon))
-        ->post(route('pokemon.web.lock', $pokemon), ['is_locked' => true])
+        ->post(route('pokemon.web.lock', $pokemon), ['isLocked' => true])
         ->assertRedirect(route('pokemon.web.box.show', $pokemon))
         ->assertInertiaFlash('toast.type', 'success')
         ->assertInertiaFlash('toast.title', 'Locked');
@@ -39,7 +39,7 @@ it('unlocks the pokemon', function () {
 
     actingAs($user)
         ->from(route('pokemon.web.box.show', $pokemon))
-        ->post(route('pokemon.web.lock', $pokemon), ['is_locked' => false])
+        ->post(route('pokemon.web.lock', $pokemon), ['isLocked' => false])
         ->assertRedirect(route('pokemon.web.box.show', $pokemon))
         ->assertInertiaFlash('toast.type', 'success')
         ->assertInertiaFlash('toast.title', 'Unlocked');
@@ -53,6 +53,6 @@ it('validates the lock', function () {
 
     actingAs($user)
         ->from(route('pokemon.web.box.show', $pokemon))
-        ->post(route('pokemon.web.lock', $pokemon), ['is_locked' => 'maybe'])
-        ->assertSessionHasErrors(['is_locked']);
+        ->post(route('pokemon.web.lock', $pokemon), ['isLocked' => 'maybe'])
+        ->assertSessionHasErrors(['isLocked']);
 });

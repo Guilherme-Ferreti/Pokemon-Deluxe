@@ -178,7 +178,7 @@ const resetDialog = () => {
 const evolve = (option: PokemonEvolutionOption) => {
   router.post(
     route('pokemon.web.evolve', { pokemon: pokemon.value.id }),
-    { species_evolution_id: option.id },
+    { speciesEvolutionId: option.id },
     {
       preserveScroll: true,
       onStart: () => (isEvolving.value = true),

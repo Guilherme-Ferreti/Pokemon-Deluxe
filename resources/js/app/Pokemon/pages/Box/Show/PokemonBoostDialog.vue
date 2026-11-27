@@ -131,8 +131,8 @@
               </span>
             </AppChoiceCard>
           </RadioGroup>
-          <FieldError v-if="form.errors.max_stones || form.errors.target_boost">
-            {{ form.errors.max_stones ?? form.errors.target_boost }}
+          <FieldError v-if="form.errors.maxStones || form.errors.targetBoost">
+            {{ form.errors.maxStones ?? form.errors.targetBoost }}
           </FieldError>
         </FieldSet>
         <DialogFooter>
@@ -214,8 +214,8 @@ const targetBoost = ref(1);
 const boostResult = ref<NonNullable<FlashData['boostResult']> | null>(null);
 
 const form = useForm({
-  max_stones: 1,
-  target_boost: null as number | null,
+  maxStones: 1,
+  targetBoost: null as number | null,
 });
 
 const isAtMaxBoost = computed(() => pokemon.value.boost >= maxBoost.value);
@@ -246,10 +246,10 @@ const useStones = () => {
   form
     .transform(() =>
       mode.value === 'count'
-        ? { max_stones: stoneCount.value, target_boost: null }
+        ? { maxStones: stoneCount.value, targetBoost: null }
         : {
-            max_stones: boostStones.value.quantity,
-            target_boost: targetBoost.value,
+            maxStones: boostStones.value.quantity,
+            targetBoost: targetBoost.value,
           },
     )
     .post(route('pokemon.web.boost', { pokemon: pokemon.value.id }), {

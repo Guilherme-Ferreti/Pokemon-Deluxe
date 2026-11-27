@@ -14,7 +14,7 @@ final class ReorderActiveMovesController extends Controller
     public function __invoke(ReorderActiveMovesRequest $request, string $pokemon): RedirectResponse
     {
         /** @var list<string> $moveIds */
-        $moveIds = $request->validated('move_ids');
+        $moveIds = $request->validated('moveIds');
 
         new ReorderActiveMovesAction()->handle(currentUser()->pokemon()->findOrFail($pokemon), $moveIds);
 

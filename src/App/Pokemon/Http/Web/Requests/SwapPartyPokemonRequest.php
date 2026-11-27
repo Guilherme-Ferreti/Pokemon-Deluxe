@@ -14,7 +14,7 @@ final class SwapPartyPokemonRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'leaving_pokemon_id' => ['required', 'uuid'],
+            'leavingPokemonId' => ['required', 'uuid'],
         ];
     }
 }

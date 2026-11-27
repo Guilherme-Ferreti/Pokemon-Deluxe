@@ -16,7 +16,7 @@ final class EvolvePokemonRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'species_evolution_id' => ['required', 'string', Rule::exists(SpeciesEvolution::class, 'id')],
+            'speciesEvolutionId' => ['required', 'string', Rule::exists(SpeciesEvolution::class, 'id')],
         ];
     }
 }

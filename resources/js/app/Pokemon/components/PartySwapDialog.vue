@@ -94,14 +94,14 @@ const leavingPokemon = computed(
     props.party.find((member) => member.id === leavingPokemonId.value) ?? null,
 );
 
-const form = useForm({ leaving_pokemon_id: '' });
+const form = useForm({ leavingPokemonId: '' });
 
 const swap = () => {
   if (!leavingPokemon.value) {
     return;
   }
 
-  form.leaving_pokemon_id = leavingPokemon.value.id;
+  form.leavingPokemonId = leavingPokemon.value.id;
 
   form.post(route('pokemon.web.party.swap', { pokemon: props.pokemon.id }), {
     preserveScroll: true,

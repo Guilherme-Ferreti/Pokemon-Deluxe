@@ -21,9 +21,9 @@ final class BuyItemRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'item_type' => ['required', Rule::enum(InventoryItemType::class)->only($this->buyableItemTypes())],
-            'item_id'   => ['required', 'string', ...$this->itemExistsRule()],
-            'quantity'  => ['required', 'integer', 'min:1', 'max:' . (int) config('game.inventory.max_stack')],
+            'itemType' => ['required', Rule::enum(InventoryItemType::class)->only($this->buyableItemTypes())],
+            'itemId'   => ['required', 'string', ...$this->itemExistsRule()],
+            'quantity' => ['required', 'integer', 'min:1', 'max:' . (int) config('game.inventory.max_stack')],
         ];
     }
 
@@ -40,7 +40,7 @@ final class BuyItemRequest extends FormRequest
      */
     private function itemExistsRule(): array
     {
-        $itemType = $this->enum('item_type', InventoryItemType::class);
+        $itemType = $this->enum('itemType', InventoryItemType::class);
 
         if ($itemType === null || ! in_array($itemType, $this->buyableItemTypes(), true)) {
             return [];

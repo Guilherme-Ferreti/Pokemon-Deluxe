@@ -12,7 +12,7 @@ use function Pest\Laravel\actingAs;
 use function Pest\Laravel\post;
 
 it('redirects guests to login', function () {
-    post(route('pokemon.web.evolve', Pokemon::factory()->create()), ['species_evolution_id' => fake()->uuid()])
+    post(route('pokemon.web.evolve', Pokemon::factory()->create()), ['speciesEvolutionId' => fake()->uuid()])
         ->assertRedirectToRoute('auth.web.login.create');
 });
 
@@ -20,7 +20,7 @@ it("gives 404 for another player's pokemon", function () {
     $evolution = SpeciesEvolution::factory()->create();
 
     actingAs(User::factory()->create())
-        ->post(route('pokemon.web.evolve', Pokemon::factory()->for($evolution->from)->create()), ['species_evolution_id' => $evolution->id])
+        ->post(route('pokemon.web.evolve', Pokemon::factory()->for($evolution->from)->create()), ['speciesEvolutionId' => $evolution->id])
         ->assertNotFound();
 });
 
@@ -33,7 +33,7 @@ it('evolves the pokemon and says what it became', function () {
 
     actingAs($user)
         ->from(route('pokemon.web.box.show', $pokemon))
-        ->post(route('pokemon.web.evolve', $pokemon), ['species_evolution_id' => $evolution->id])
+        ->post(route('pokemon.web.evolve', $pokemon), ['speciesEvolutionId' => $evolution->id])
         ->assertRedirect(route('pokemon.web.box.show', $pokemon))
         ->assertInertiaFlash('toast.type', 'success')
         ->assertInertiaFlash('toast.title', 'Evolved!')
@@ -51,7 +51,7 @@ it('warns when a requirement is not met', function () {
 
     actingAs($user)
         ->from(route('pokemon.web.box.show', $pokemon))
-        ->post(route('pokemon.web.evolve', $pokemon), ['species_evolution_id' => $evolution->id])
+        ->post(route('pokemon.web.evolve', $pokemon), ['speciesEvolutionId' => $evolution->id])
         ->assertRedirect(route('pokemon.web.box.show', $pokemon))
         ->assertInertiaFlash('toast.type', 'warning');
 
@@ -65,7 +65,7 @@ it('warns when the evolution is of another species', function () {
 
     actingAs($user)
         ->from(route('pokemon.web.box.show', $pokemon))
-        ->post(route('pokemon.web.evolve', $pokemon), ['species_evolution_id' => $evolution->id])
+        ->post(route('pokemon.web.evolve', $pokemon), ['speciesEvolutionId' => $evolution->id])
         ->assertRedirect(route('pokemon.web.box.show', $pokemon))
         ->assertInertiaFlash('toast.type', 'warning');
 
@@ -78,6 +78,6 @@ it('validates the evolution', function () {
 
     actingAs($user)
         ->from(route('pokemon.web.box.show', $pokemon))
-        ->post(route('pokemon.web.evolve', $pokemon), ['species_evolution_id' => fake()->uuid()])
-        ->assertSessionHasErrors(['species_evolution_id']);
+        ->post(route('pokemon.web.evolve', $pokemon), ['speciesEvolutionId' => fake()->uuid()])
+        ->assertSessionHasErrors(['speciesEvolutionId']);
 });

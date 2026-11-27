@@ -20,10 +20,10 @@ final class BuyItemController extends Controller
 {
     public function __invoke(BuyItemRequest $request): RedirectResponse
     {
-        $itemId   = $request->string('item_id')->toString();
+        $itemId   = $request->string('itemId')->toString();
         $quantity = $request->integer('quantity');
 
-        $item = match ($request->enum('item_type', InventoryItemType::class)) {
+        $item = match ($request->enum('itemType', InventoryItemType::class)) {
             InventoryItemType::POKEBALL       => Pokeball::query()->findOrFail($itemId),
             InventoryItemType::EVOLUTION_ITEM => EvolutionItem::query()->findOrFail($itemId),
             InventoryItemType::TM             => Move::query()->findOrFail($itemId),

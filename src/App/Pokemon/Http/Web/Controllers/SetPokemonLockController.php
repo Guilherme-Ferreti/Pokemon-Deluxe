@@ -15,7 +15,7 @@ final class SetPokemonLockController extends Controller
     public function __invoke(SetPokemonLockRequest $request, string $pokemon): RedirectResponse
     {
         $ownedPokemon = currentUser()->pokemon()->findOrFail($pokemon);
-        $isLocked     = $request->boolean('is_locked');
+        $isLocked     = $request->boolean('isLocked');
 
         new SetPokemonLockAction()->handle($ownedPokemon, $isLocked);
 

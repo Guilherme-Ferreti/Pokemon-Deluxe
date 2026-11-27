@@ -16,8 +16,8 @@ final class UseBoostStonesController extends Controller
     {
         $boostResult = new UseBoostStonesAction()->handle(
             pokemon: currentUser()->pokemon()->findOrFail($pokemon),
-            maxStones: $request->integer('max_stones'),
-            targetBoost: $request->filled('target_boost') ? $request->integer('target_boost') : null,
+            maxStones: $request->integer('maxStones'),
+            targetBoost: $request->filled('targetBoost') ? $request->integer('targetBoost') : null,
         );
 
         Inertia::flash('boostResult', [

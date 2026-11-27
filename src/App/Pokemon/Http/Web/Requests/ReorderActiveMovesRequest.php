@@ -14,8 +14,8 @@ final class ReorderActiveMovesRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'move_ids'   => ['required', 'array', 'min:1', 'max:' . (int) config('game.pokemon.max_active_moves')],
-            'move_ids.*' => ['required', 'string', 'distinct'],
+            'moveIds'   => ['required', 'array', 'min:1', 'max:' . (int) config('game.pokemon.max_active_moves')],
+            'moveIds.*' => ['required', 'string', 'distinct'],
         ];
     }
 }

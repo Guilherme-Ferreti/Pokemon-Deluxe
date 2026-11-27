@@ -12,13 +12,13 @@ use function Pest\Laravel\actingAs;
 use function Pest\Laravel\post;
 
 it('redirects guests to login', function () {
-    post(route('pokemon.web.boost', Pokemon::factory()->create()), ['max_stones' => 1])
+    post(route('pokemon.web.boost', Pokemon::factory()->create()), ['maxStones' => 1])
         ->assertRedirectToRoute('auth.web.login.create');
 });
 
 it("gives 404 for another player's pokemon", function () {
     actingAs(User::factory()->create())
-        ->post(route('pokemon.web.boost', Pokemon::factory()->create()), ['max_stones' => 1])
+        ->post(route('pokemon.web.boost', Pokemon::factory()->create()), ['maxStones' => 1])
         ->assertNotFound();
 });
 
@@ -31,7 +31,7 @@ it('uses boost stones and flashes the result', function () {
 
     actingAs($user)
         ->from(route('pokemon.web.box.show', $pokemon))
-        ->post(route('pokemon.web.boost', $pokemon), ['max_stones' => 3])
+        ->post(route('pokemon.web.boost', $pokemon), ['maxStones' => 3])
         ->assertRedirect(route('pokemon.web.box.show', $pokemon))
         ->assertInertiaFlash('boostResult', [
             'stonesUsed'  => 3,
@@ -55,7 +55,7 @@ it('stops at the target boost', function () {
 
     actingAs($user)
         ->from(route('pokemon.web.box.show', $pokemon))
-        ->post(route('pokemon.web.boost', $pokemon), ['max_stones' => 50, 'target_boost' => 12])
+        ->post(route('pokemon.web.boost', $pokemon), ['maxStones' => 50, 'targetBoost' => 12])
         ->assertInertiaFlash('boostResult.stonesUsed', 2)
         ->assertInertiaFlash('boostResult.boostAfter', 12);
 });
@@ -68,7 +68,7 @@ it('warns when the player owns no boost stones', function () {
 
     actingAs($user)
         ->from(route('pokemon.web.box.show', $pokemon))
-        ->post(route('pokemon.web.boost', $pokemon), ['max_stones' => 1])
+        ->post(route('pokemon.web.boost', $pokemon), ['maxStones' => 1])
         ->assertRedirect(route('pokemon.web.box.show', $pokemon))
         ->assertInertiaFlash('toast.type', 'warning')
         ->assertInertiaFlashMissing('boostResult');
@@ -82,7 +82,7 @@ it('warns when the pokemon is at the max boost', function () {
 
     actingAs($user)
         ->from(route('pokemon.web.box.show', $pokemon))
-        ->post(route('pokemon.web.boost', $pokemon), ['max_stones' => 1])
+        ->post(route('pokemon.web.boost', $pokemon), ['maxStones' => 1])
         ->assertInertiaFlash('toast.type', 'warning');
 });
 
@@ -95,8 +95,8 @@ it('validates the request', function (array $data, array $invalidFields) {
         ->post(route('pokemon.web.boost', $pokemon), $data)
         ->assertSessionHasErrors($invalidFields);
 })->with([
-    'missing max stones'   => [[], ['max_stones']],
-    'zero stones'          => [['max_stones' => 0], ['max_stones']],
-    'target boost 0'       => [['max_stones' => 1, 'target_boost' => 0], ['target_boost']],
-    'target boost too big' => [['max_stones' => 1, 'target_boost' => 101], ['target_boost']],
+    'missing max stones'   => [[], ['maxStones']],
+    'zero stones'          => [['maxStones' => 0], ['maxStones']],
+    'target boost 0'       => [['maxStones' => 1, 'targetBoost' => 0], ['targetBoost']],
+    'target boost too big' => [['maxStones' => 1, 'targetBoost' => 101], ['targetBoost']],
 ]);

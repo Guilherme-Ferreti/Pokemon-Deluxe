@@ -139,8 +139,8 @@ const isStackFull = computed(() => roomInStack.value < 1);
 const canAfford = computed(() => totalPrice.value <= money.value);
 
 const form = useForm({
-  item_type: props.item.itemType,
-  item_id: props.item.id,
+  itemType: props.item.itemType,
+  itemId: props.item.id,
   quantity: 1,
 });
 

@@ -196,7 +196,7 @@ const teachSelectedTm = () => {
 
   router.post(
     route('pokemon.web.teach-tm', { pokemon: page.props.pokemon.id }),
-    { move_id: selectedTm.value.id },
+    { moveId: selectedTm.value.id },
     {
       preserveScroll: true,
       onStart: () => (isTeaching.value = true),
