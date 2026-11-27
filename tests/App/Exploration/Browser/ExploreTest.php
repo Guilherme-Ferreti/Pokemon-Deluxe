@@ -19,6 +19,8 @@ use Shared\ValueObjects\Combatant;
 use function Pest\Laravel\actingAs;
 
 it('explores an area, keeps exploring and starts a battle', function () {
+    config(['game.pokemon.shiny_chance' => 0]);
+
     $user = User::factory()->create();
     Pokemon::factory()->for($user)->inParty()->withActiveMoves()->create();
     Species::factory()->withBaseMoves()->create([
@@ -66,6 +68,8 @@ it('shows a battle in progress instead of the encounter', function () {
 });
 
 it('keeps exploring the battle area from the result card', function () {
+    config(['game.pokemon.shiny_chance' => 0]);
+
     $user     = User::factory()->create();
     $caterpie = Species::factory()->create([
         'name'            => 'Caterpie',
