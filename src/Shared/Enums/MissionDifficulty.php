@@ -18,4 +18,13 @@ enum MissionDifficulty: string
             self::HARD   => 'Hard',
         };
     }
+
+    public function sortOrder(): int
+    {
+        return match ($this) {
+            self::EASY   => 1,
+            self::MEDIUM => 2,
+            self::HARD   => 3,
+        };
+    }
 }

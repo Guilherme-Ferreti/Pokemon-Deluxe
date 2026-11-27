@@ -1898,7 +1898,7 @@ Read [05-missions.md](05-missions.md) first, including its "Starting content" an
 
 ### 5.4 Today's missions
 
-- [ ] Done
+- [x] Done
 
 **Goal:** every player has 3 dailies for today, created when first needed.
 
@@ -1910,6 +1910,8 @@ Read [05-missions.md](05-missions.md) first, including its "Starting content" an
 **Tests:** creates 3 dailies once per day; a new day creates 3 new ones; achievements created once; reach goals start completed when already reached.
 
 **Done when:** tests pass.
+
+- As built: the action locks the player's row inside its own transaction (it will also run inside `AdvanceMissionsAction`'s), then creates an achievement row for every `Achievement` the player has none for yet, so achievements added later reach existing players on their next call. Any new row with a `REACH_LEVEL` or `REACH_BOOST` goal starts at the player's best Pokémon's level or boost, capped at the target, and is completed at once when it reaches it. Today's dailies come back in easy, medium, hard order (`MissionDifficulty::sortOrder()`).
 
 ### 5.5 Advance progress
 
