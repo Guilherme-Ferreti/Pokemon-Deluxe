@@ -23,15 +23,18 @@ final class UserMissionFactory extends Factory
      */
     public function definition(): array
     {
+        $target = fake()->numberBetween(5, 10);
+
         return [
             'user_id'         => User::factory(),
             'kind'            => MissionKind::DAILY,
             'achievement_id'  => null,
             'date'            => today(),
             'difficulty'      => fake()->randomElement(MissionDifficulty::cases()),
+            'description'     => "Catch {$target} Pokémon",
             'goal'            => MissionGoal::CATCH_POKEMON,
             'goal_parameters' => [],
-            'target'          => fake()->numberBetween(5, 10),
+            'target'          => $target,
             'progress'        => 0,
             'reward'          => new MissionReward(money: 1_000),
             'completed_at'    => null,
@@ -49,6 +52,7 @@ final class UserMissionFactory extends Factory
                 'achievement_id'  => $achievement->id,
                 'date'            => null,
                 'difficulty'      => null,
+                'description'     => $achievement->name,
                 'goal'            => $achievement->goal,
                 'goal_parameters' => $achievement->goal_parameters,
                 'target'          => $achievement->target,

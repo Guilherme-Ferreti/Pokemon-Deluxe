@@ -1882,7 +1882,7 @@ Read [05-missions.md](05-missions.md) first, including its "Starting content" an
 
 ### 5.3 Daily mission templates
 
-- [ ] Done
+- [x] Done
 
 **Goal:** turn templates into three concrete daily missions.
 
@@ -1894,6 +1894,8 @@ Read [05-missions.md](05-missions.md) first, including its "Starting content" an
 
 **Done when:** tests pass.
 
+- As built: `config/missions.php` has `daily_templates`, each with `difficulty`, `goal` (enum values), `description`, `target` (`[min, max]`), `parameters` (`type` / `area` set to `'any'`, `level` a `[min, max]` range), `reward` (the stored `MissionReward` format, so random items stay random until claimed) and `enabled`. The trainer and Battle Tower templates are off. A description fills in `{target}`, `{type}`, `{area}` and `{level}` (labels for type and area), and `"singular|plural"` picks by the target ("Hatch 1 egg"). `DailyMissionRoller::roll()` returns a `list<App\Missions\ValueObjects\NewDailyMission>` in easy, medium, hard order (`difficulty`, `goal`, `goalParameters` such as `['type' => 'water']`, `target`, `description`, `reward`) and throws a `LogicException` when a difficulty has no enabled template. The table had nowhere to keep the description, so `019_create_user_missions_table.php` gained a `description` column; achievement rows copy the achievement's name into it.
+
 ### 5.4 Today's missions
 
 - [ ] Done
@@ -1902,7 +1904,7 @@ Read [05-missions.md](05-missions.md) first, including its "Starting content" an
 
 **Build:**
 - `App\Missions\Actions\EnsureDailyMissionsAction::handle(User $user): Collection`: returns today's 3 dailies (server date), creating them with `DailyMissionRoller` on the first call of the day, under a lock.
-- Also creates the player's achievement rows the first time (one `UserMission` per `Achievement`), so progress can be stored.
+- Also creates the player's achievement rows the first time (one `UserMission` per `Achievement`, with the achievement's name as its `description`), so progress can be stored.
 - `REACH_LEVEL` and `REACH_BOOST` rows start with the player's current best, so they complete at once if already reached.
 
 **Tests:** creates 3 dailies once per day; a new day creates 3 new ones; achievements created once; reach goals start completed when already reached.

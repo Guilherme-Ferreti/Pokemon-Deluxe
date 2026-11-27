@@ -133,6 +133,7 @@ One name per idea, used everywhere: specs, code, database, tests and UI. When yo
 | Party size limit | `game.user.max_party_size` | 6. |
 | Daily mission / achievement | `UserMission` with `MissionKind::DAILY` / `ACHIEVEMENT` | One row per player per mission. |
 | Mission goal | `MissionGoal` | What a mission counts (`CATCH_POKEMON_OF_TYPE`). |
+| Daily template | `missions.daily_templates`, `DailyMissionRoller`, `NewDailyMission` | A template ("Catch {target} {type} Pokémon") rolled into a concrete daily mission with a `description`. |
 | Progress / target | `progress`, `target` | "3 / 5". |
 | Claim | `ClaimMissionAction`, `claimed_at` | Pressing Claim gives the reward. |
 | Reroll | `RerollDailyMissionAction`, `last_reroll_on` | One per day. |

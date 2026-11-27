@@ -25,6 +25,7 @@ use Shared\ValueObjects\MissionReward;
  * @property string|null $achievement_id
  * @property CarbonImmutable|null $date
  * @property MissionDifficulty|null $difficulty
+ * @property string $description
  * @property MissionGoal $goal
  * @property array<string, mixed> $goal_parameters
  * @property int $target

@@ -25,6 +25,7 @@ return new class extends Migration
             $table->date('date')->nullable();
             $table->enum('difficulty', Arr::pluck(MissionDifficulty::cases(), 'value'))->nullable();
 
+            $table->string('description');
             $table->enum('goal', Arr::pluck(MissionGoal::cases(), 'value'));
             $table->json('goal_parameters');
             $table->unsignedInteger('target');
