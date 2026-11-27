@@ -145,7 +145,7 @@ it('does not create a pokemon if the owner\'s box is full', function () {
     assertDatabaseCount(Pokemon::class, 1);
 });
 
-it('puts the pokemon in the party only when asked and the party has room', function (bool $joinPartyIfRoom, int $partySize, bool $expectedInParty) {
+it('puts the pokemon at the end of the party only when asked and the party has room', function (bool $joinPartyIfRoom, int $partySize, bool $expectedInParty, ?int $expectedPartyPosition) {
     config()->set('game.user.max_party_size', 2);
 
     $user    = User::factory()->create();
@@ -167,9 +167,10 @@ it('puts the pokemon in the party only when asked and the party has room', funct
 
     assertDatabaseCount(Pokemon::class, $partySize + 1);
 
-    expect($pokemon->fresh()?->in_party)->toBe($expectedInParty);
+    expect($pokemon->fresh()?->in_party)->toBe($expectedInParty)
+        ->and($pokemon->fresh()?->party_position)->toBe($expectedPartyPosition);
 })->with([
-    'not asked'         => [false, 0, false],
-    'asked, room left'  => [true, 1, true],
-    'asked, party full' => [true, 2, false],
+    'not asked'         => [false, 0, false, null],
+    'asked, room left'  => [true, 1, true, 2],
+    'asked, party full' => [true, 2, false, null],
 ]);

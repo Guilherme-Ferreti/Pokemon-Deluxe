@@ -21,13 +21,13 @@ use Shared\ValueObjects\BattleLogEntry;
 
 use function Pest\Laravel\assertDatabaseCount;
 
-it('starts a wild battle with the party against the wild pokemon', function () {
+it('starts a wild battle with the party in party order against the wild pokemon', function () {
     $user           = User::factory()->create();
     $pikachuSpecies = Species::factory()->create(['name' => 'Pikachu', 'types' => [PokemonType::ELECTRIC]]);
     $pidgeySpecies  = Species::factory()->withBaseMoves(5)->create(['name' => 'Pidgey', 'types' => [PokemonType::NORMAL, PokemonType::FLYING], 'gender_rate' => PokemonGenderRate::EQUAL]);
 
-    $secondPartyPokemon = Pokemon::factory()->for($user)->for($pikachuSpecies)->inParty()->withActiveMoves(2)->create(['caught_at' => '2026-02-01', 'level' => 30, 'boost' => 0, 'is_shiny' => false]);
-    $firstPartyPokemon  = Pokemon::factory()->for($user)->for($pikachuSpecies)->inParty()->withActiveMoves(4)->create(['caught_at' => '2026-01-01', 'level' => 50, 'boost' => 20, 'is_shiny' => true]);
+    $secondPartyPokemon = Pokemon::factory()->for($user)->for($pikachuSpecies)->inParty()->withActiveMoves(2)->create(['party_position' => 2, 'caught_at' => '2026-01-01', 'level' => 30, 'boost' => 0, 'is_shiny' => false]);
+    $firstPartyPokemon  = Pokemon::factory()->for($user)->for($pikachuSpecies)->inParty()->withActiveMoves(4)->create(['party_position' => 1, 'caught_at' => '2026-02-01', 'level' => 50, 'boost' => 20, 'is_shiny' => true]);
     Pokemon::factory()->for($user)->inBox()->withActiveMoves()->create();
 
     $battle = new StartWildBattleAction()->handle($user, new NewPokemon(

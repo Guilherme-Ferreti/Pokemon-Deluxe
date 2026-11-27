@@ -1794,19 +1794,21 @@ Read [04-pokemon-page.md](04-pokemon-page.md) first. Builds on Spec 1 (`SetActiv
 
 ### 4.15 Party order
 
-- [ ] Done
+- [x] Done
 
 **Goal:** the player chooses the party's order; battles that use the party send out the first one.
 
 **Build:**
 - In `010_create_pokemon_table.php`: nullable `unsignedTinyInteger('party_position')` (1–6; null in the Box).
 - Everything that puts a Pokémon in the party gives it the next position: `AddToPartyAction` (task 4.2), `CreatePokemonAction`'s `joinPartyIfRoom` (task 2.12) and the starter (task 2.13). `SwapPartyPokemonAction` gives the joining Pokémon the leaving one's position. `RemoveFromPartyAction`, `ReleasePokemonAction` and listing for trade (task 7.4) close the gap, so positions stay 1, 2, 3… with no holes.
-- The `inParty()` scope orders by `party_position`; `PartyPageProps`, `StartWildBattleAction` (task 1.12) and every later battle that uses the party follow it.
+- A new `inPartyOrder()` scope filters the party and orders it by `party_position`; `PartyPageProps`, `StartWildBattleAction` (task 1.12) and every later battle that uses the party use it. `inParty()` stays a plain filter, because it is mostly counted and an `ORDER BY` in a `count()` query fails on databases such as Postgres.
 - `App\Pokemon\Actions\ReorderPartyAction::handle(User $user, array $pokemonIds): void`: `$pokemonIds` must be exactly the party's Pokémon (otherwise `InvalidArgumentException`); saves positions 1, 2, 3… in that order. Refused during an ongoing battle (`BattleAlreadyInProgressException`): the battle uses a snapshot of the party.
 
 **Tests:** a new party member joins at the end; removing one closes the gap; a swap keeps the position; reorder saves the new order; a list that is not exactly the party is refused; refused during a battle; a wild battle starts with the first party Pokémon.
 
 **Done when:** tests pass.
+
+- As built: `party_position` sits next to `in_party`, which stays; the `(user_id, in_party)` index became `(user_id, in_party, party_position)`. New positions are the party's highest plus one (`CreatePokemonAction`, `AddToPartyAction`); `RemoveFromPartyAction` and `ReleasePokemonAction` clear the position and move the later ones down by one; `SwapPartyPokemonAction` hands the leaving Pokémon's position to the joining one. `ReorderPartyAction` locks the owner's row like the other party actions and saves positions 1, 2, 3… in the given order. `PokemonFactory` gives a party Pokémon created without a position the next one, so factory parties are ordered by creation. The Box and Pokémon page `party` props use `inPartyOrder()` too.
 
 ### 4.16 Party page: reorder
 

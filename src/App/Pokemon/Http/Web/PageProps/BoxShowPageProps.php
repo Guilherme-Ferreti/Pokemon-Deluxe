@@ -220,7 +220,7 @@ final readonly class BoxShowPageProps implements ProvidesInertiaProperties
     {
         return array_values(currentUser()
             ->pokemon()
-            ->inParty()
+            ->inPartyOrder()
             ->with('species')
             ->get()
             ->map(fn (Pokemon $partyPokemon) => [

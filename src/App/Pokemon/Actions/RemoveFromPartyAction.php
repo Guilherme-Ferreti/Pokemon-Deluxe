@@ -32,13 +32,26 @@ final class RemoveFromPartyAction
 
             $this->ensurePartyKeepsAPokemon();
 
-            $this->pokemon->update(['in_party' => false]);
+            $partyPosition = $this->pokemon->party_position;
+
+            $this->pokemon->update(['in_party' => false, 'party_position' => null]);
+
+            $this->closePartyGapAt($partyPosition);
         });
     }
 
     private function lockOwner(): void
     {
         $this->owner = User::query()->whereKey($this->pokemon->user_id)->lockForUpdate()->firstOrFail();
+    }
+
+    private function closePartyGapAt(?int $partyPosition): void
+    {
+        if ($partyPosition === null) {
+            return;
+        }
+
+        $this->owner->pokemon()->inParty()->where('party_position', '>', $partyPosition)->decrement('party_position');
     }
 
     private function ensureNoBattleIsOngoing(): void

@@ -39,8 +39,10 @@ final class SwapPartyPokemonAction
 
             $this->ensureLeavingIsInParty();
 
-            $this->leaving->update(['in_party' => false]);
-            $this->joining->update(['in_party' => true]);
+            $partyPosition = $this->leaving->party_position;
+
+            $this->leaving->update(['in_party' => false, 'party_position' => null]);
+            $this->joining->update(['in_party' => true, 'party_position' => $partyPosition]);
         });
     }
 

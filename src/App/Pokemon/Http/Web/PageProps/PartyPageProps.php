@@ -27,7 +27,7 @@ final class PartyPageProps implements ProvidesInertiaProperties
     {
         return currentUser()
             ->pokemon()
-            ->inParty()
+            ->inPartyOrder()
             ->get()
             ->map(fn (Pokemon $pokemon) => [
                 'id'          => $pokemon->id,

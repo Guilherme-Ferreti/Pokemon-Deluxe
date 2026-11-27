@@ -88,10 +88,8 @@ final class StartWildBattleAction
     private function loadPartyPokemon(): void
     {
         $this->partyPokemon = $this->user->pokemon()
-            ->inParty()
+            ->inPartyOrder()
             ->with('species:id,name,types', 'activeMoves:id')
-            ->orderBy('caught_at')
-            ->orderBy('id')
             ->get();
     }
 

@@ -30,6 +30,7 @@ use Shared\ValueObjects\PokemonStats;
  * @property int $experience
  * @property int $boost
  * @property bool $in_party
+ * @property int|null $party_position
  * @property bool $is_shiny
  * @property bool $is_locked
  * @property PokemonGender $gender
@@ -54,14 +55,15 @@ final class Pokemon extends Model
     protected function casts(): array
     {
         return [
-            'level'      => 'integer',
-            'experience' => 'integer',
-            'boost'      => 'integer',
-            'in_party'   => 'boolean',
-            'is_shiny'   => 'boolean',
-            'is_locked'  => 'boolean',
-            'gender'     => PokemonGender::class,
-            'caught_at'  => 'datetime',
+            'level'          => 'integer',
+            'experience'     => 'integer',
+            'boost'          => 'integer',
+            'in_party'       => 'boolean',
+            'party_position' => 'integer',
+            'is_shiny'       => 'boolean',
+            'is_locked'      => 'boolean',
+            'gender'         => PokemonGender::class,
+            'caught_at'      => 'datetime',
         ];
     }
 
@@ -122,6 +124,15 @@ final class Pokemon extends Model
     protected function inParty(Builder $query): void
     {
         $query->where('in_party', true);
+    }
+
+    /**
+     * @param  Builder<$this>  $query
+     */
+    #[Scope]
+    protected function inPartyOrder(Builder $query): void
+    {
+        $query->where('in_party', true)->orderBy('party_position');
     }
 
     /**

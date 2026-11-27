@@ -32,13 +32,18 @@ final class AddToPartyAction
 
             $this->ensurePartyIsNotFull();
 
-            $this->pokemon->update(['in_party' => true]);
+            $this->pokemon->update(['in_party' => true, 'party_position' => $this->nextPartyPosition()]);
         });
     }
 
     private function lockOwner(): void
     {
         $this->owner = User::query()->whereKey($this->pokemon->user_id)->lockForUpdate()->firstOrFail();
+    }
+
+    private function nextPartyPosition(): int
+    {
+        return (int) $this->owner->pokemon()->inParty()->max('party_position') + 1;
     }
 
     private function ensureNoBattleIsOngoing(): void

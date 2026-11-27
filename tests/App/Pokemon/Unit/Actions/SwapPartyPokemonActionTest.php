@@ -24,6 +24,19 @@ it('swaps a box pokemon with a party pokemon and keeps the party size', function
         ->and($user->pokemon()->inParty()->count())->toBe(6);
 });
 
+it("puts the joining pokemon in the leaving one's party position", function () {
+    $user    = User::factory()->create();
+    $first   = Pokemon::factory()->for($user)->inParty()->create();
+    $leaving = Pokemon::factory()->for($user)->inParty()->create();
+    $third   = Pokemon::factory()->for($user)->inParty()->create();
+    $joining = Pokemon::factory()->for($user)->inBox()->create();
+
+    new SwapPartyPokemonAction()->handle($joining, $leaving);
+
+    expect($user->pokemon()->inPartyOrder()->pluck('id')->all())->toBe([$first->id, $joining->id, $third->id])
+        ->and($leaving->fresh()->party_position)->toBeNull();
+});
+
 it('refuses a leaving pokemon that is not in the party', function () {
     $user    = User::factory()->create();
     $joining = Pokemon::factory()->for($user)->inBox()->create();

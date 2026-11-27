@@ -27,6 +27,7 @@ return new class extends Migration
             $table->unsignedTinyInteger('boost')->default(0);
 
             $table->boolean('in_party')->default(false);
+            $table->unsignedTinyInteger('party_position')->nullable();
             $table->boolean('is_shiny')->default(false);
             $table->boolean('is_locked')->default(false);
 
@@ -38,7 +39,7 @@ return new class extends Migration
 
             $table->timestamps();
 
-            $table->index(['user_id', 'in_party']);
+            $table->index(['user_id', 'in_party', 'party_position']);
             $table->index(['user_id', 'species_id', 'is_shiny']);
             $table->index(['species_id', 'is_shiny']);
         });

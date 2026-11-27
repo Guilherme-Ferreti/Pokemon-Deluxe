@@ -21,6 +21,18 @@ it('sends a party pokemon to the box', function () {
     expect($pokemon->fresh()->in_party)->toBeFalse();
 });
 
+it('closes the gap in the party order', function () {
+    $user    = User::factory()->create();
+    $first   = Pokemon::factory()->for($user)->inParty()->create();
+    $removed = Pokemon::factory()->for($user)->inParty()->create();
+    $third   = Pokemon::factory()->for($user)->inParty()->create();
+
+    new RemoveFromPartyAction()->handle($removed);
+
+    expect($user->pokemon()->inPartyOrder()->pluck('party_position', 'id')->all())->toBe([$first->id => 1, $third->id => 2])
+        ->and($removed->fresh()->party_position)->toBeNull();
+});
+
 it('refuses to remove the last party pokemon', function () {
     $user    = User::factory()->create();
     $pokemon = Pokemon::factory()->for($user)->inParty()->create();

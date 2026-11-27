@@ -35,6 +35,17 @@ it('releases a party pokemon while another stays in the party', function () {
     assertModelMissing($pokemon);
 });
 
+it('closes the gap in the party order when a party pokemon is released', function () {
+    $user     = User::factory()->create();
+    $released = Pokemon::factory()->for($user)->inParty()->create();
+    $second   = Pokemon::factory()->for($user)->inParty()->create();
+    $third    = Pokemon::factory()->for($user)->inParty()->create();
+
+    new ReleasePokemonAction()->handle($released);
+
+    expect($user->pokemon()->inPartyOrder()->pluck('party_position', 'id')->all())->toBe([$second->id => 1, $third->id => 2]);
+});
+
 it('refuses a locked pokemon', function () {
     $pokemon = Pokemon::factory()->inBox()->locked()->create();
 

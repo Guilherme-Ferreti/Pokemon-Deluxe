@@ -43,6 +43,17 @@ final class PokemonFactory extends Factory
         return $this->state(['boost' => $boost]);
     }
 
+    public function configure(): static
+    {
+        return $this->afterCreating(function (Pokemon $pokemon): void {
+            if (! $pokemon->in_party || $pokemon->party_position !== null) {
+                return;
+            }
+
+            $pokemon->update(['party_position' => (int) Pokemon::query()->where('user_id', $pokemon->user_id)->inParty()->max('party_position') + 1]);
+        });
+    }
+
     public function withActiveMoves(int $count = 4): static
     {
         return $this->afterCreating(fn (Pokemon $pokemon) => $pokemon->knownMoves()->attach(
