@@ -13,5 +13,5 @@ it('blocks concurrent requests of the same session on every web route', function
         ->values()
         ->all();
 
-    expect($webRoutesWithoutBlocking)->toBe([]);
+    expect($webRoutesWithoutBlocking)->toBeEmpty();
 });
