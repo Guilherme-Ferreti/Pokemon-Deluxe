@@ -68,7 +68,7 @@ it('blocks releasing a locked pokemon and removing the last party pokemon', func
     visit(route('pokemon.web.box.show', $pokemon))
         ->assertVisible('@pokemon-hero__locked-indicator')
         ->assertButtonDisabled('@pokemon-release-dialog__open-button')
-        ->assertButtonDisabled('@pokemon-remove-from-party-dialog__open-button');
+        ->assertButtonDisabled('@pokemon-remove-from-party-button');
 });
 
 it('releases the pokemon after typing its name', function () {
@@ -134,7 +134,7 @@ it('swaps the pokemon into a full party', function () {
         ->assertSeeIn('@party-swap-dialog__swap-button', "Swap with {$leaving->getDisplayName()}")
         ->click('@party-swap-dialog__swap-button')
         ->wait(1)
-        ->assertVisible('@pokemon-remove-from-party-dialog__open-button')
+        ->assertVisible('@pokemon-remove-from-party-button')
         ->assertNoJavascriptErrors();
 
     expect($pokemon->fresh()->in_party)->toBeTrue()

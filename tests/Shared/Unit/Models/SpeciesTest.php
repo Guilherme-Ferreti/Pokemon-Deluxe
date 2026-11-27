@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 use Shared\Enums\PokemonGender;
 use Shared\Models\Species;
+use Shared\ValueObjects\SpeciesPortraits;
 use Shared\ValueObjects\SpeciesSprites;
 
 describe('catch rate', function () {
@@ -61,4 +62,16 @@ describe('back sprite', function () {
 
         expect($species->getDisplayBackSprite(PokemonGender::MALE, shiny: true))->toBe('front-shiny.png');
     });
+});
+
+describe('portrait', function () {
+    it('picks the portrait for the shine', function (SpeciesPortraits $portraits, bool $isShiny, ?string $expectedPortrait) {
+        $species = Species::factory()->make(['portraits' => $portraits]);
+
+        expect($species->getDisplayPortrait($isShiny))->toBe($expectedPortrait);
+    })->with([
+        'regular'                       => [new SpeciesPortraits(regular: 'regular.png', shiny: 'shiny.png'), false, 'regular.png'],
+        'shiny'                         => [new SpeciesPortraits(regular: 'regular.png', shiny: 'shiny.png'), true, 'shiny.png'],
+        'shiny without a shiny version' => [new SpeciesPortraits(regular: 'regular.png', shiny: null), true, 'regular.png'],
+    ]);
 });

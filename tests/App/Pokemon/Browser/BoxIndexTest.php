@@ -269,8 +269,8 @@ it('navigates to the pokedex show page from the pokemon dropdown', function () {
 
     visit(route('pokemon.web.box.index'))
         ->assertSee($pokemon->getDisplayName())
-        ->click('@pokemon-card__open-dropdown-menu-button')
-        ->click('@pokemon-card__view-species-link')
+        ->click("@pokemon-{$pokemon->id}-card__open-dropdown-menu-button")
+        ->click("@pokemon-{$pokemon->id}-card__view-species-link")
         ->assertPathIs(route('dex.web.pokedex.show', $pokemon->species, absolute: false))
         ->assertNoSmoke();
 });
@@ -282,9 +282,76 @@ it('navigates to the pokemon page from the pokemon dropdown', function () {
     actingAs($user);
 
     visit(route('pokemon.web.box.index'))
-        ->click('@pokemon-card__open-dropdown-menu-button')
-        ->click('@pokemon-card__view-pokemon-link')
+        ->click("@pokemon-{$pokemon->id}-card__open-dropdown-menu-button")
+        ->click("@pokemon-{$pokemon->id}-card__view-pokemon-link")
         ->assertPathIs(route('pokemon.web.box.show', $pokemon, absolute: false))
         ->assertSeeIn('@pokemon-hero__name', $pokemon->getDisplayName())
         ->assertNoSmoke();
+});
+
+it('adds a pokemon to the party from its card', function () {
+    $user    = User::factory()->create();
+    $pokemon = Pokemon::factory()->for($user)->inBox()->create();
+
+    Pokemon::factory()->for($user)->inParty()->create();
+
+    actingAs($user);
+
+    visit(route('pokemon.web.box.index'))
+        ->assertMissing("@pokemon-{$pokemon->id}-card__in-party-indicator")
+        ->click("@pokemon-{$pokemon->id}-card__open-dropdown-menu-button")
+        ->click("@pokemon-{$pokemon->id}-card__add-to-party-button")
+        ->wait(1)
+        ->assertVisible("@pokemon-{$pokemon->id}-card__in-party-indicator")
+        ->assertSee("{$pokemon->getDisplayName()} joined your party.")
+        ->assertNoJavascriptErrors();
+
+    expect($pokemon->fresh()->in_party)->toBeTrue();
+});
+
+it('swaps a pokemon into a full party from its card', function () {
+    $user    = User::factory()->create();
+    $pokemon = Pokemon::factory()->for($user)->inBox()->create(['caught_at' => now()]);
+    $leaving = Pokemon::factory()->for($user)->inParty()->create(['caught_at' => now()->subDay()]);
+
+    Pokemon::factory()->for($user)->inParty()->count(5)->create(['caught_at' => now()->subDays(2)]);
+
+    actingAs($user);
+
+    visit(route('pokemon.web.box.index'))
+        ->click("@pokemon-{$pokemon->id}-card__open-dropdown-menu-button")
+        ->click("@pokemon-{$pokemon->id}-card__add-to-party-button")
+        ->wait(0.5)
+        ->assertSeeIn('@party-swap-dialog', 'Your party is full')
+        ->click("@party-swap-dialog__pokemon-{$leaving->id}-radio")
+        ->click('@party-swap-dialog__swap-button')
+        ->wait(1)
+        ->assertVisible("@pokemon-{$pokemon->id}-card__in-party-indicator")
+        ->assertMissing("@pokemon-{$leaving->id}-card__in-party-indicator")
+        ->assertNoJavascriptErrors();
+
+    expect($pokemon->fresh()->in_party)->toBeTrue()
+        ->and($leaving->fresh()->in_party)->toBeFalse();
+});
+
+it('removes a pokemon from the party from its card after confirming', function () {
+    $user    = User::factory()->create();
+    $pokemon = Pokemon::factory()->for($user)->inParty()->create();
+
+    Pokemon::factory()->for($user)->inParty()->create();
+
+    actingAs($user);
+
+    visit(route('pokemon.web.box.index'))
+        ->assertVisible("@pokemon-{$pokemon->id}-card__in-party-indicator")
+        ->click("@pokemon-{$pokemon->id}-card__open-dropdown-menu-button")
+        ->click("@pokemon-{$pokemon->id}-card__remove-from-party-button")
+        ->wait(0.5)
+        ->assertSeeIn('@party-remove-dialog', "Remove {$pokemon->getDisplayName()} from your party?")
+        ->click('@party-remove-dialog__remove-button')
+        ->wait(1)
+        ->assertMissing("@pokemon-{$pokemon->id}-card__in-party-indicator")
+        ->assertNoJavascriptErrors();
+
+    expect($pokemon->fresh()->in_party)->toBeFalse();
 });

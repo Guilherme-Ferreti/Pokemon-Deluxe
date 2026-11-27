@@ -22,8 +22,10 @@ final readonly class BoxIndexPageProps implements ProvidesInertiaProperties
         $searchBoxFilters = SearchBoxFilters::fromRequest($context->request);
 
         return [
-            'pokemonList' => fn () => $this->getPokemonListProp($searchBoxFilters),
-            'filters'     => [
+            'pokemonList'  => fn () => $this->getPokemonListProp($searchBoxFilters),
+            'party'        => $this->getPartyProp(...),
+            'maxPartySize' => (int) config('game.user.max_party_size'),
+            'filters'      => [
                 'options' => SearchBoxFilters::filterOptions(...),
                 'active'  => fn () => $searchBoxFilters,
             ],
@@ -44,6 +46,7 @@ final readonly class BoxIndexPageProps implements ProvidesInertiaProperties
             'frontSprite' => $pokemon->getDisplayFrontSprite(),
             'level'       => $pokemon->level,
             'experience'  => $pokemon->experience,
+            'inParty'     => $pokemon->in_party,
             'species'     => [
                 'types' => $pokemon->species->types,
                 'slug'  => $pokemon->species->slug,
@@ -52,5 +55,25 @@ final readonly class BoxIndexPageProps implements ProvidesInertiaProperties
                 'name' => $move->name,
             ]),
         ]);
+    }
+
+    /**
+     * @return list<array{id: string, name: string, portrait: string|null, level: int, boost: int}>
+     */
+    private function getPartyProp(): array
+    {
+        return array_values(currentUser()
+            ->pokemon()
+            ->inParty()
+            ->with('species')
+            ->get()
+            ->map(fn (Pokemon $partyPokemon) => [
+                'id'       => $partyPokemon->id,
+                'name'     => $partyPokemon->getDisplayName(),
+                'portrait' => $partyPokemon->getDisplayPortrait(),
+                'level'    => $partyPokemon->level,
+                'boost'    => $partyPokemon->boost,
+            ])
+            ->all());
     }
 }

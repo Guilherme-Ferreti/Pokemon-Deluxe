@@ -16,7 +16,6 @@ use Shared\Models\InventoryItem;
 use Shared\Models\Move;
 use Shared\Models\Pokemon;
 use Shared\Models\SpecialItem;
-use Shared\Models\Species;
 use Shared\Models\SpeciesEvolution;
 
 final readonly class BoxShowPageProps implements ProvidesInertiaProperties
@@ -51,7 +50,7 @@ final readonly class BoxShowPageProps implements ProvidesInertiaProperties
             'id'          => $this->pokemon->id,
             'name'        => $this->pokemon->getDisplayName(),
             'frontSprite' => $this->pokemon->getDisplayFrontSprite(),
-            'portrait'    => $this->displayPortraitOf($this->pokemon->species, $this->pokemon->is_shiny),
+            'portrait'    => $this->pokemon->getDisplayPortrait(),
             'species'     => [
                 'id'    => $this->pokemon->species->id,
                 'slug'  => $this->pokemon->species->slug,
@@ -155,7 +154,7 @@ final readonly class BoxShowPageProps implements ProvidesInertiaProperties
                     'slug'        => $evolution->into->slug,
                     'name'        => $evolution->into->name,
                     'displayName' => $evolution->into->getDisplayName($this->pokemon->is_shiny),
-                    'portrait'    => $this->displayPortraitOf($evolution->into, $this->pokemon->is_shiny),
+                    'portrait'    => $evolution->into->getDisplayPortrait($this->pokemon->is_shiny),
                 ],
                 'minLevel'      => $evolution->min_level,
                 'gender'        => $evolution->gender,
@@ -227,7 +226,7 @@ final readonly class BoxShowPageProps implements ProvidesInertiaProperties
             ->map(fn (Pokemon $partyPokemon) => [
                 'id'       => $partyPokemon->id,
                 'name'     => $partyPokemon->getDisplayName(),
-                'portrait' => $this->displayPortraitOf($partyPokemon->species, $partyPokemon->is_shiny),
+                'portrait' => $partyPokemon->getDisplayPortrait(),
                 'level'    => $partyPokemon->level,
                 'boost'    => $partyPokemon->boost,
             ])
@@ -248,15 +247,6 @@ final readonly class BoxShowPageProps implements ProvidesInertiaProperties
             'isZMove'       => $move->is_z_move,
             'isDynamaxMove' => $move->is_dynamax_move,
         ];
-    }
-
-    private function displayPortraitOf(Species $species, bool $isShiny): ?string
-    {
-        if ($isShiny) {
-            return $species->portraits->shiny ?? $species->portraits->regular;
-        }
-
-        return $species->portraits->regular;
     }
 
     private function slotOf(Move $move): ?int

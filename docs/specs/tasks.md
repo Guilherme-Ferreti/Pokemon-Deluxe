@@ -1748,11 +1748,13 @@ Read [04-pokemon-page.md](04-pokemon-page.md) first. Builds on Spec 1 (`SetActiv
 
 - As built: invokable `AddToPartyController`, `RemoveFromPartyController`, `SwapPartyPokemonController` (`SwapPartyPokemonRequest`: `leavingPokemonId` uuid, looked up among the player's own Pokémon, so another player's is a 404), `SetPokemonLockController` (`SetPokemonLockRequest`: `isLocked` boolean) and `ReleasePokemonController`. Toasts: "Added to party" / "Shiny Charmeleon joined your party." (a swap adds "and Dragonite went to your Box."), "Removed from party" / "Shiny Charmeleon went to your Box.", "Locked" / "Unlocked", and "Released" / "Shiny Charmeleon was released." on the Box. Refusals are the actions' `DomainException`s as warning toasts.
 - `BoxShowPageProps` drops `pokemon.partySize` for `party` (the party's `id`, `name`, `portrait`, `level`, `boost`; typed `PartyMember` in `resources/js/app/Pokemon/types/PartyMember.ts`) and `maxPartySize`.
-- `PokemonActions` renders `PokemonRemoveFromPartyDialog` or `PokemonAddToPartyButton` (opens `PartySwapDialog` when the party is full), `PokemonLockDialog` (unlocked: opens the confirmation; locked: the "Locked" button unlocks at once) and `PokemonReleaseDialog`. `PartySwapDialog` (`resources/js/app/Pokemon/components/`, props `pokemon` and `party`, `v-model:open`) lists the party as a `RadioGroup` of `AppChoiceCard`s with "Lv 61 · +40" and a "Swap with Dragonite" button. The release warning is a destructive `Alert` (shadcn-vue `alert`, added for it): "This Pokémon is shiny and has +14 boost. The boost stones used on it are lost too.", or only its shiny or boost part.
+- `PokemonActions` renders `PokemonRemoveFromPartyDialog` (later `PokemonRemoveFromPartyButton` with `PartyRemoveDialog`, task 4.14) or `PokemonAddToPartyButton` (opens `PartySwapDialog` when the party is full), `PokemonLockDialog` (unlocked: opens the confirmation; locked: the "Locked" button unlocks at once) and `PokemonReleaseDialog`. `PartySwapDialog` (`resources/js/app/Pokemon/components/`, props `pokemon` and `party`, `v-model:open`) lists the party as a `RadioGroup` of `AppChoiceCard`s with "Lv 61 · +40" and a "Swap with Dragonite" button. The release warning is a destructive `Alert` (shadcn-vue `alert`, added for it): "This Pokémon is shiny and has +14 boost. The boost stones used on it are lost too.", or only its shiny or boost part.
 
 ### 4.13 Use items from the inventory
 
-- [ ] Done
+- [x] Skipped
+
+> **Skipped:** not needed. Items are used only from the Pokémon page (Teach TM, Boost and Evolve); the inventory has no "Use" button. The plan below is kept for reference.
 
 **Goal:** the "Use" button on the inventory's item dialog (Spec 3) leads to the Pokémon page's own dialogs.
 
@@ -1771,7 +1773,7 @@ Read [04-pokemon-page.md](04-pokemon-page.md) first. Builds on Spec 1 (`SetActiv
 
 ### 4.14 Box: add to party from a card
 
-- [ ] Done
+- [x] Done
 
 **Goal:** add a Pokémon to the party straight from the Box.
 
@@ -1785,6 +1787,10 @@ Read [04-pokemon-page.md](04-pokemon-page.md) first. Builds on Spec 1 (`SetActiv
 **Tests:** browser test: add from the Box, and swap when the party is full.
 
 **Done when:** party changes work from the Box.
+
+- As built: the Box now lists every Pokémon the player owns, party included (`SearchBoxQuery` dropped `inBox()`; before, party Pokémon never showed, so the badge and "Remove from party" had nothing to show on). `BoxIndexPageProps` adds `inParty` to each Pokémon, plus `party` and `maxPartySize` like the Pokémon page.
+- `PokemonCard`'s menu gets, after a separator, "Add to party" (opens `PartySwapDialog` when the party is full) or "Remove from party" (disabled with "Your party needs at least one Pokémon" under it for the last one), and the card shows an "In party" `Badge` pinned to its top-right corner, over the border. Its test IDs are now per card (`pokemon-{id}-card__open-dropdown-menu-button`, `…__view-pokemon-link`, `…__add-to-party-button`).
+- The remove confirmation moved to `PartyRemoveDialog` (`resources/js/app/Pokemon/components/`, prop `pokemon`, `v-model:open`); the Pokémon page's button is now `PokemonRemoveFromPartyButton`. Adding goes through the new `useAddToParty()` composable on both pages. `Species::getDisplayPortrait($isShiny)` and `Pokemon::getDisplayPortrait()` pick the shiny portrait (falling back to the regular one), replacing a private helper in `BoxShowPageProps`.
 
 ### 4.15 Party order
 

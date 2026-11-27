@@ -46,8 +46,8 @@ INVENTORY                                       ₽ 12,450
 ```
 
 - Tabs: Balls, Evolution items, TMs, Boost stones, Key items (such as the XP Share).
-- A grid of item icons with quantities. Clicking one opens its details with a **Use** button (TMs, boost stones, evolution items and Mega Stones). Earned-only items have no badge.
-- **Use** opens a "Choose a Pokémon" dialog; Pokémon the item does nothing for are disabled with the reason. Picking one opens that Pokémon's page with the matching dialog: Teach TM, Boost or Evolve (Spec 4). The Pokémon page has no general "Use item" button.
+- A grid of item icons with quantities. Clicking one opens its details. Earned-only items have no badge.
+- Items are not used from the inventory: TMs, boost stones, evolution items and Mega Stones are used from the Pokémon page (Teach TM, Boost and Evolve, Spec 4).
 - The XP Share (Key items) has an on/off switch in its details instead of Use (Spec 5).
 - Empty tabs say what the tab holds and where to get it ("No TMs yet. Buy them in the Shop or earn them from missions.").
 

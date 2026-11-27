@@ -7,6 +7,7 @@ import type {
 import type { Move, Pokemon, Species } from '@/shared/types/response';
 import type { PokemonTrait } from '../enums/PokemonTrait';
 import type { SearchBoxSortBy } from '../enums/SearchBoxSortBy';
+import type { PartyMember } from '../PartyMember';
 
 export type BoxIndexPageProps = {
   pokemonList: PaginatedList<{
@@ -16,6 +17,7 @@ export type BoxIndexPageProps = {
     frontSprite: Pokemon['frontSprite'];
     level: Pokemon['level'];
     experience: Pokemon['experience'];
+    inParty: boolean;
     species: {
       types: Species['types'];
       slug: Species['slug'];
@@ -24,6 +26,8 @@ export type BoxIndexPageProps = {
       name: Move['name'];
     }[];
   }>;
+  party: PartyMember[];
+  maxPartySize: number;
   filters: {
     options: {
       types: FilterOption<PokemonType>[];

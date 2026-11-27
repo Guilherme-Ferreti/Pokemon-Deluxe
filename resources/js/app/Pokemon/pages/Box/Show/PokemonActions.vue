@@ -6,7 +6,7 @@
     <PokemonEvolveDialog />
     <PokemonBoostDialog />
     <PokemonStatsDialog />
-    <PokemonRemoveFromPartyDialog v-if="page.props.pokemon.inParty" />
+    <PokemonRemoveFromPartyButton v-if="page.props.pokemon.inParty" />
     <PokemonAddToPartyButton v-else />
     <PokemonLockDialog />
     <PokemonReleaseDialog />
@@ -21,7 +21,7 @@ import PokemonBoostDialog from './PokemonBoostDialog.vue';
 import PokemonEvolveDialog from './PokemonEvolveDialog.vue';
 import PokemonLockDialog from './PokemonLockDialog.vue';
 import PokemonReleaseDialog from './PokemonReleaseDialog.vue';
-import PokemonRemoveFromPartyDialog from './PokemonRemoveFromPartyDialog.vue';
+import PokemonRemoveFromPartyButton from './PokemonRemoveFromPartyButton.vue';
 import PokemonStatsDialog from './PokemonStatsDialog.vue';
 
 const page = usePage<BoxShowPageProps>();

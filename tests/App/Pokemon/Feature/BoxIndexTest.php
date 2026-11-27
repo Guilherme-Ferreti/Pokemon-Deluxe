@@ -46,6 +46,7 @@ it('loads the box page with expected structure', function () {
             ->where('pokemonList.data.0.frontSprite', $newestPokemon->getDisplayFrontSprite())
             ->where('pokemonList.data.0.level', $newestPokemon->level)
             ->where('pokemonList.data.0.experience', $newestPokemon->experience)
+            ->where('pokemonList.data.0.inParty', false)
             ->where('pokemonList.data.0.species.types', Arr::pluck($newestPokemon->species->types, 'value'))
             ->where('pokemonList.data.0.moves.0.name', $newestPokemon->activeMoves[0]->name)
             ->where('pokemonList.data.0.moves.1.name', $newestPokemon->activeMoves[1]->name)
@@ -85,13 +86,24 @@ it('filters box pokemon by search query', function () {
         );
 });
 
-it('excludes party pokemon from the box', function () {
-    $user = User::factory()->create();
-    Pokemon::factory()->for($user)->inParty()->create();
+it('lists party pokemon in the box with the party', function () {
+    $user    = User::factory()->create();
+    $pokemon = Pokemon::factory()->for($user)->inParty()->shiny()->boosted(14)->create(['level' => 36]);
+
+    Pokemon::factory()->inParty()->create();
 
     actingAs($user)
         ->get(route('pokemon.web.box.index'))
         ->assertInertia(fn (Assert $page) => $page
-            ->has('pokemonList.data', 0)
+            ->has('pokemonList.data', 1)
+            ->where('pokemonList.data.0.inParty', true)
+            ->where('party', [[
+                'id'       => $pokemon->id,
+                'name'     => $pokemon->getDisplayName(),
+                'portrait' => $pokemon->getDisplayPortrait(),
+                'level'    => 36,
+                'boost'    => 14,
+            ]])
+            ->where('maxPartySize', 6)
         );
 });

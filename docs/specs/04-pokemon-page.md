@@ -34,7 +34,7 @@ Box › Shiny Charmeleon
 ## Actions
 
 - **Evolve:** always shown, highlighted (primary) only when the Pokémon can evolve now. It opens a dialog listing every possible evolution as a radio choice with its requirement ("Evolves at level 36 using a Water Stone"); ones not yet possible are greyed out and can't be picked. Evolving asks for confirmation because it is permanent. When none is possible yet, the dialog says so above the greyed-out rows. A species with no evolutions gets a disabled Evolve button with the tooltip "This Pokémon cannot evolve any further" instead of a dialog.
-- **Boost:** opens the boost stones dialog. TMs are taught with **Teach TM** (Moves) and evolution items and Mega Stones are used through **Evolve**, so there is no general "Use item" button. Items can also be used from the inventory, which opens this page's matching dialog.
+- **Boost:** opens the boost stones dialog. TMs are taught with **Teach TM** (Moves) and evolution items and Mega Stones are used through **Evolve**, so there is no general "Use item" button. This page is the only place items are used.
 - **Party:** "Remove from party" (with a confirmation) when it is in the party; "Add to party" when it is not. With a full party, "Add to party" opens a dialog to choose which party Pokémon goes to the Box in exchange. The same dialog is used from the Box card menu.
 - **Trade:** opens the new-listing dialog at its details step (Spec 7). Disabled with the reason when the Pokémon is locked, on trade hold, in a Battle Tower run or the last party Pokémon; "View listing" instead when it is already listed.
 - **Lock:** a locked Pokémon cannot be released or traded until unlocked. Locking asks for confirmation and says exactly that; unlocking does not ask.

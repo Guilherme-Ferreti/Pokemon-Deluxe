@@ -151,6 +151,15 @@ final class Species extends Model
         return $this->name;
     }
 
+    public function getDisplayPortrait(bool $isShiny = false): ?string
+    {
+        if ($isShiny) {
+            return $this->portraits->shiny ?? $this->portraits->regular;
+        }
+
+        return $this->portraits->regular;
+    }
+
     public function getDisplayFrontSprite(PokemonGender $gender = PokemonGender::MALE, bool $shiny = false): string
     {
         $sprite = null;

@@ -176,6 +176,11 @@ final class Pokemon extends Model
         return $this->species->getDisplayFrontSprite($this->gender, $this->is_shiny);
     }
 
+    public function getDisplayPortrait(): ?string
+    {
+        return $this->species->getDisplayPortrait($this->is_shiny);
+    }
+
     public function getStats(): PokemonStats
     {
         return new StatsCalculator()->calculate($this->level, $this->boost, $this->is_shiny);

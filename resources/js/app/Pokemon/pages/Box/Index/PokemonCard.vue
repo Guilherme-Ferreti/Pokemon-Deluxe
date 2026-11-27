@@ -1,8 +1,16 @@
 <template>
   <Card
-    class="h-full gap-2 p-4 transition-shadow hover:shadow-md"
+    class="relative h-full gap-2 p-4 transition-shadow hover:shadow-md"
     :data-test="`pokemon-${pokemon.id}-card`"
   >
+    <Badge
+      v-if="pokemon.inParty"
+      variant="secondary"
+      class="absolute -top-2 -right-2 border-border shadow-sm"
+      :data-test="`pokemon-${pokemon.id}-card__in-party-indicator`"
+    >
+      In party
+    </Badge>
     <div class="grid grid-cols-[auto_1fr] gap-2">
       <SpeciesSprite
         :url="pokemon.frontSprite"
@@ -23,7 +31,8 @@
                 variant="ghost"
                 size="icon-sm"
                 class="text-ring"
-                data-test="pokemon-card__open-dropdown-menu-button"
+                :data-test="`pokemon-${pokemon.id}-card__open-dropdown-menu-button`"
+                :aria-label="`Actions for ${pokemon.name}`"
               >
                 <IconDotsVertical />
               </Button>
@@ -32,7 +41,7 @@
               <DropdownMenuItem as-child>
                 <AppNavLink
                   title="View"
-                  data-test="pokemon-card__view-pokemon-link"
+                  :data-test="`pokemon-${pokemon.id}-card__view-pokemon-link`"
                   :url="route('pokemon.web.box.show', { pokemon: pokemon.id })"
                   :icon="IconEye"
                 />
@@ -40,7 +49,7 @@
               <DropdownMenuItem as-child>
                 <AppNavLink
                   title="Pokédex"
-                  data-test="pokemon-card__view-species-link"
+                  :data-test="`pokemon-${pokemon.id}-card__view-species-link`"
                   :url="
                     route('dex.web.pokedex.show', {
                       species: pokemon.species.slug,
@@ -48,6 +57,33 @@
                   "
                   :icon="IconBook"
                 />
+              </DropdownMenuItem>
+              <DropdownMenuSeparator />
+              <DropdownMenuItem
+                v-if="pokemon.inParty"
+                :data-test="`pokemon-${pokemon.id}-card__remove-from-party-button`"
+                :disabled="isLastInParty"
+                @select="isRemoveDialogOpen = true"
+              >
+                <IconCircleMinus />
+                <span class="flex flex-col">
+                  Remove from party
+                  <span
+                    v-if="isLastInParty"
+                    class="text-xs text-muted-foreground"
+                  >
+                    Your party needs at least one Pokémon
+                  </span>
+                </span>
+              </DropdownMenuItem>
+              <DropdownMenuItem
+                v-else
+                :data-test="`pokemon-${pokemon.id}-card__add-to-party-button`"
+                :disabled="form.processing"
+                @select="addToParty"
+              >
+                <IconCirclePlus />
+                Add to party
               </DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>
@@ -107,15 +143,35 @@
         </li>
       </ul>
     </div>
+    <PartySwapDialog
+      v-if="!pokemon.inParty"
+      v-model:open="isSwapDialogOpen"
+      :pokemon="pokemon"
+      :party="page.props.party"
+    />
+    <PartyRemoveDialog
+      v-else
+      v-model:open="isRemoveDialogOpen"
+      :pokemon="pokemon"
+    />
   </Card>
 </template>
 
 <script setup lang="ts">
-import { IconBook, IconDotsVertical, IconEye } from '@tabler/icons-vue';
+import { usePage } from '@inertiajs/vue3';
+import {
+  IconBook,
+  IconCircleMinus,
+  IconCirclePlus,
+  IconDotsVertical,
+  IconEye,
+} from '@tabler/icons-vue';
+import { computed, ref } from 'vue';
 import PokemonGenderIcon from '@/shared/components/game/PokemonGenderIcon.vue';
 import PokemonTypeBadges from '@/shared/components/game/PokemonTypeBadges.vue';
 import SpeciesSprite from '@/shared/components/game/SpeciesSprite.vue';
 import AppNavLink from '@/shared/components/layout/AppNavLink.vue';
+import { Badge } from '@/shared/components/ui/badge';
 import { Button } from '@/shared/components/ui/button';
 import { Card } from '@/shared/components/ui/card';
 import {
@@ -123,11 +179,26 @@ import {
   DropdownMenuTrigger,
   DropdownMenuContent,
   DropdownMenuItem,
+  DropdownMenuSeparator,
 } from '@/shared/components/ui/dropdown-menu';
 import { route } from '@/shared/types/helpers/route';
+import PartyRemoveDialog from '../../../components/PartyRemoveDialog.vue';
+import PartySwapDialog from '../../../components/PartySwapDialog.vue';
+import { useAddToParty } from '../../../composables/useAddToParty';
 import type { BoxIndexPageProps } from '../../../types/page-props/BoxIndexPageProps';
 
-defineProps<{
+const props = defineProps<{
   pokemon: BoxIndexPageProps['pokemonList']['data'][number];
 }>();
+
+const page = usePage<BoxIndexPageProps>();
+
+const isRemoveDialogOpen = ref(false);
+
+const isLastInParty = computed(() => page.props.party.length <= 1);
+
+const { isSwapDialogOpen, form, addToParty } = useAddToParty(
+  () => props.pokemon.id,
+  () => page.props.party.length >= page.props.maxPartySize,
+);
 </script>

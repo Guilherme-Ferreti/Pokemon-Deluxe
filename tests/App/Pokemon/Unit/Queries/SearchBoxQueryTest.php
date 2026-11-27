@@ -29,7 +29,7 @@ it('returns all box pokemon for the user when no filters are applied', function 
     expect($result)->toHaveCount(3);
 });
 
-it('excludes party pokemon', function () {
+it('includes party pokemon', function () {
     $user         = User::factory()->create();
     $boxPokemon   = Pokemon::factory()->for($user)->inBox()->create();
     $partyPokemon = Pokemon::factory()->for($user)->inParty()->create();
@@ -43,8 +43,7 @@ it('excludes party pokemon', function () {
         dir: SortDirection::DESC,
     ))->get();
 
-    expect($result)->toHaveCount(1)
-        ->and($result->first()->id)->toBe($boxPokemon->id);
+    expect($result->modelKeys())->toEqualCanonicalizing([$boxPokemon->id, $partyPokemon->id]);
 });
 
 it("excludes other users's pokemon", function () {
