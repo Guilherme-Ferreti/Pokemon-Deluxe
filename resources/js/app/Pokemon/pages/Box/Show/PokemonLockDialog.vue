@@ -4,7 +4,7 @@
     type="button"
     variant="ghost"
     data-test="pokemon-lock-dialog__unlock-button"
-    :disabled="form.processing"
+    :disabled="isRequestRunning"
     @click="setLock(false)"
   >
     <IconLock />
@@ -36,7 +36,7 @@
         <AlertDialogCancel>Not now</AlertDialogCancel>
         <AlertDialogAction
           data-test="pokemon-lock-dialog__lock-button"
-          :disabled="form.processing"
+          :disabled="isRequestRunning"
           @click.prevent="setLock(true)"
         >
           Lock
@@ -62,6 +62,7 @@ import {
   AlertDialogTrigger,
 } from '@/shared/components/ui/alert-dialog';
 import { Button } from '@/shared/components/ui/button';
+import { useIsRequestRunning } from '@/shared/composables/useIsRequestRunning';
 import { route } from '@/shared/types/helpers/route';
 import type { BoxShowPageProps } from '../../../types/page-props/BoxShowPageProps';
 
@@ -70,6 +71,8 @@ const page = usePage<BoxShowPageProps>();
 const isOpen = ref(false);
 
 const form = useForm({ isLocked: false });
+
+const isRequestRunning = useIsRequestRunning();
 
 const setLock = (isLocked: boolean) => {
   form.isLocked = isLocked;

@@ -13,7 +13,7 @@
         <AlertDialogCancel>Keep in party</AlertDialogCancel>
         <AlertDialogAction
           data-test="party-remove-dialog__remove-button"
-          :disabled="form.processing"
+          :disabled="isRequestRunning"
           @click.prevent="removeFromParty"
         >
           Remove
@@ -35,6 +35,7 @@ import {
   AlertDialogHeader,
   AlertDialogTitle,
 } from '@/shared/components/ui/alert-dialog';
+import { useIsRequestRunning } from '@/shared/composables/useIsRequestRunning';
 import { route } from '@/shared/types/helpers/route';
 
 const props = defineProps<{
@@ -44,6 +45,8 @@ const props = defineProps<{
 const isOpen = defineModel<boolean>('open', { default: false });
 
 const form = useForm({});
+
+const isRequestRunning = useIsRequestRunning();
 
 const removeFromParty = () => {
   form.delete(

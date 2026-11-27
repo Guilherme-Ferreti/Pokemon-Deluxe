@@ -1,6 +1,7 @@
 import { useForm } from '@inertiajs/vue3';
 import type { MaybeRefOrGetter } from 'vue';
 import { ref, toValue } from 'vue';
+import { useIsRequestRunning } from '@/shared/composables/useIsRequestRunning';
 import { route } from '@/shared/types/helpers/route';
 
 export function useAddToParty(
@@ -11,7 +12,13 @@ export function useAddToParty(
 
   const form = useForm({});
 
+  const isRequestRunning = useIsRequestRunning();
+
   const addToParty = () => {
+    if (isRequestRunning.value) {
+      return;
+    }
+
     if (toValue(isPartyFull)) {
       isSwapDialogOpen.value = true;
 
@@ -23,5 +30,5 @@ export function useAddToParty(
     });
   };
 
-  return { isSwapDialogOpen, form, addToParty };
+  return { isSwapDialogOpen, addToParty };
 }

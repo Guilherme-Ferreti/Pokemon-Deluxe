@@ -73,8 +73,8 @@
 </template>
 
 <script setup lang="ts">
-import { router, useForm, usePage } from '@inertiajs/vue3';
-import { computed, onBeforeUnmount, ref, watch } from 'vue';
+import { useForm, usePage } from '@inertiajs/vue3';
+import { computed, watch } from 'vue';
 import { Button } from '@/shared/components/ui/button';
 import {
   Card,
@@ -82,6 +82,7 @@ import {
   CardHeader,
   CardTitle,
 } from '@/shared/components/ui/card';
+import { useIsRequestRunning } from '@/shared/composables/useIsRequestRunning';
 import { BattleStatus } from '@/shared/types/enums';
 import { route } from '@/shared/types/helpers/route';
 import type { BattleShowPageProps } from '../../types/page-props/BattleShowPageProps';
@@ -117,27 +118,11 @@ const form = useForm<{ combatantIndex: string | null }>({
   combatantIndex: null,
 });
 
-/**
- * A pick never outlives the moment it was made for: switching, a faint (which asks for a send-out) and the end of the battle all clear it.
- */
 watch([activeIndex, isAwaitingSendOut, isOngoing], () => {
   form.combatantIndex = null;
 });
 
-const isRequestRunning = ref(false);
-
-const stopListeningToStart = router.on('start', () => {
-  isRequestRunning.value = true;
-});
-
-const stopListeningToFinish = router.on('finish', () => {
-  isRequestRunning.value = false;
-});
-
-onBeforeUnmount(() => {
-  stopListeningToStart();
-  stopListeningToFinish();
-});
+const isRequestRunning = useIsRequestRunning();
 
 const canAct = computed(
   () => !isRequestRunning.value && form.combatantIndex !== null,

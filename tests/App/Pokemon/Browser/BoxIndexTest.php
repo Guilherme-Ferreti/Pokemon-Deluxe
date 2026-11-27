@@ -355,3 +355,54 @@ it('removes a pokemon from the party from its card after confirming', function (
 
     expect($pokemon->fresh()->in_party)->toBeFalse();
 });
+
+it('does not reopen the swap dialog after swapping a pokemon back out of the party', function () {
+    $user   = User::factory()->create();
+    $first  = Pokemon::factory()->for($user)->inBox()->create(['caught_at' => now()]);
+    $party  = Pokemon::factory()->for($user)->inParty()->count(6)->create(['caught_at' => now()->subDay()]);
+    $second = $party->first();
+
+    actingAs($user);
+
+    visit(route('pokemon.web.box.index'))
+        ->click("@pokemon-{$first->id}-card__open-dropdown-menu-button")
+        ->click("@pokemon-{$first->id}-card__add-to-party-button")
+        ->wait(0.5)
+        ->click("@party-swap-dialog__pokemon-{$second->id}-radio")
+        ->click('@party-swap-dialog__swap-button')
+        ->wait(1)
+        ->assertMissing('@party-swap-dialog')
+        ->click("@pokemon-{$second->id}-card__open-dropdown-menu-button")
+        ->click("@pokemon-{$second->id}-card__add-to-party-button")
+        ->wait(0.5)
+        ->click("@party-swap-dialog__pokemon-{$first->id}-radio")
+        ->click('@party-swap-dialog__swap-button')
+        ->wait(1)
+        ->assertMissing('@party-swap-dialog')
+        ->assertNoJavascriptErrors();
+
+    expect($first->fresh()->in_party)->toBeFalse()
+        ->and($second->fresh()->in_party)->toBeTrue();
+});
+
+it('does not reopen the remove dialog after adding a removed pokemon back to the party', function () {
+    $user    = User::factory()->create();
+    $pokemon = Pokemon::factory()->for($user)->inParty()->create();
+
+    Pokemon::factory()->for($user)->inParty()->create();
+
+    actingAs($user);
+
+    visit(route('pokemon.web.box.index'))
+        ->click("@pokemon-{$pokemon->id}-card__open-dropdown-menu-button")
+        ->click("@pokemon-{$pokemon->id}-card__remove-from-party-button")
+        ->wait(0.5)
+        ->click('@party-remove-dialog__remove-button')
+        ->wait(1)
+        ->click("@pokemon-{$pokemon->id}-card__open-dropdown-menu-button")
+        ->click("@pokemon-{$pokemon->id}-card__add-to-party-button")
+        ->wait(1)
+        ->assertVisible("@pokemon-{$pokemon->id}-card__in-party-indicator")
+        ->assertMissing('@party-remove-dialog')
+        ->assertNoJavascriptErrors();
+});

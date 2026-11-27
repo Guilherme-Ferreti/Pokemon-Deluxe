@@ -19,7 +19,7 @@
         variant="outline"
         size="sm"
         :data-test="`incubator-${incubator.index}-card--ready-to-hatch__hatch-button`"
-        :disabled="form.processing"
+        :disabled="isRequestRunning"
         @click="handleHatchEgg"
       >
         Hatch
@@ -33,6 +33,7 @@ import { useForm } from '@inertiajs/vue3';
 import { IconCheck } from '@tabler/icons-vue';
 import PokemonEggSprite from '@/shared/components/game/PokemonEggSprite.vue';
 import { Button } from '@/shared/components/ui/button';
+import { useIsRequestRunning } from '@/shared/composables/useIsRequestRunning';
 import { route } from '@/shared/types/helpers/route';
 import type { Incubator } from '../../types/page-props/NurseryPageProps';
 import IncubatorCard from './IncubatorCard.vue';
@@ -42,6 +43,8 @@ const props = defineProps<{
 }>();
 
 const form = useForm();
+
+const isRequestRunning = useIsRequestRunning();
 
 function handleHatchEgg() {
   form.post(

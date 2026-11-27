@@ -12,12 +12,13 @@
 import 'vue-sonner/style.css';
 import { router } from '@inertiajs/vue3';
 import { useColorMode } from '@vueuse/core';
+import { onBeforeUnmount } from 'vue';
 import { toast } from 'vue-sonner';
 import { Toaster } from '@/shared/components/ui/sonner';
 
 const mode = useColorMode();
 
-router.on('flash', (event) => {
+const stopListeningToFlash = router.on('flash', (event) => {
   if (!event.detail.flash.toast) {
     return;
   }
@@ -27,19 +28,25 @@ router.on('flash', (event) => {
   toast[type](title, { description: message });
 });
 
-router.on('networkError', () => {
+const stopListeningToNetworkError = router.on('networkError', () => {
   toast.error('Network error', {
     description: 'Please check your internet connection and try again.',
   });
 });
 
-router.on('httpException', (event) => {
+const stopListeningToHttpException = router.on('httpException', (event) => {
   event.preventDefault();
 
   toast.error('Oops! Something went wrong', {
     description:
       "We couldn't complete your request. Please try again in a moment.",
   });
+});
+
+onBeforeUnmount(() => {
+  stopListeningToFlash();
+  stopListeningToNetworkError();
+  stopListeningToHttpException();
 });
 </script>
 

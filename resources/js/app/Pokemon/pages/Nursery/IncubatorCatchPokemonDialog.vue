@@ -64,7 +64,7 @@
         <Button
           type="button"
           data-test="incubator-catch-pokemon-dialog__submit-button"
-          :disabled="form.processing"
+          :disabled="isRequestRunning"
           @click="handleCatch"
         >
           Catch
@@ -96,6 +96,7 @@ import {
   FieldSet,
 } from '@/shared/components/ui/field';
 import { RadioGroup } from '@/shared/components/ui/radio-group';
+import { useIsRequestRunning } from '@/shared/composables/useIsRequestRunning';
 import { route } from '@/shared/types/helpers/route';
 import type {
   Incubator,
@@ -113,6 +114,8 @@ const page = usePage<NurseryPageProps>();
 const form = useForm({
   pokeballId: '',
 });
+
+const isRequestRunning = useIsRequestRunning();
 
 function handleCatch() {
   form.post(

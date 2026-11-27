@@ -34,6 +34,10 @@ return Application::configure(basePath: dirname(__DIR__))
 
                 Route::name('shop.web.')->group(base_path('src/App/Shop/Http/Web/routes.php'));
             });
+
+            foreach (Route::getRoutes()->getRoutes() as $route) {
+                $route->block();
+            }
         }
     )
     ->withEvents(discover: [

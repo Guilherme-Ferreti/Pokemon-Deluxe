@@ -37,7 +37,7 @@
           variant="outline"
           size="sm"
           :data-test="`incubator-${index}-card--not-purchased__purchase-button`"
-          :disabled="form.processing || !canAfford"
+          :disabled="isRequestRunning || !canAfford"
           @click="handlePurchase"
         >
           Purchase
@@ -53,6 +53,7 @@ import { IconLock } from '@tabler/icons-vue';
 import { computed } from 'vue';
 import MoneyAmount from '@/shared/components/game/MoneyAmount.vue';
 import { Button } from '@/shared/components/ui/button';
+import { useIsRequestRunning } from '@/shared/composables/useIsRequestRunning';
 import { route } from '@/shared/types/helpers/route';
 import type {
   Incubator,
@@ -73,6 +74,8 @@ const money = computed(() => page.props.auth.user?.money ?? 0);
 const canAfford = computed(() => money.value >= price.value);
 
 const form = useForm();
+
+const isRequestRunning = useIsRequestRunning();
 
 function handlePurchase() {
   form.post(

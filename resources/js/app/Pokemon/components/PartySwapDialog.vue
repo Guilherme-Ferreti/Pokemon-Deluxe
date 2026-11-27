@@ -51,7 +51,7 @@
         <Button
           type="button"
           data-test="party-swap-dialog__swap-button"
-          :disabled="!leavingPokemon || form.processing"
+          :disabled="!leavingPokemon || isRequestRunning"
           @click="swap"
         >
           {{ leavingPokemon ? `Swap with ${leavingPokemon.name}` : 'Swap' }}
@@ -77,6 +77,7 @@ import {
   DialogTitle,
 } from '@/shared/components/ui/dialog';
 import { RadioGroup } from '@/shared/components/ui/radio-group';
+import { useIsRequestRunning } from '@/shared/composables/useIsRequestRunning';
 import { route } from '@/shared/types/helpers/route';
 import type { PartyMember } from '../types/PartyMember';
 
@@ -95,6 +96,8 @@ const leavingPokemon = computed(
 );
 
 const form = useForm({ leavingPokemonId: '' });
+
+const isRequestRunning = useIsRequestRunning();
 
 const swap = () => {
   if (!leavingPokemon.value) {

@@ -62,7 +62,7 @@
               <DropdownMenuItem
                 v-if="pokemon.inParty"
                 :data-test="`pokemon-${pokemon.id}-card__remove-from-party-button`"
-                :disabled="isLastInParty"
+                :disabled="isLastInParty || isRequestRunning"
                 @select="isRemoveDialogOpen = true"
               >
                 <IconCircleMinus />
@@ -79,7 +79,7 @@
               <DropdownMenuItem
                 v-else
                 :data-test="`pokemon-${pokemon.id}-card__add-to-party-button`"
-                :disabled="form.processing"
+                :disabled="isRequestRunning"
                 @select="addToParty"
               >
                 <IconCirclePlus />
@@ -144,13 +144,11 @@
       </ul>
     </div>
     <PartySwapDialog
-      v-if="!pokemon.inParty"
       v-model:open="isSwapDialogOpen"
       :pokemon="pokemon"
       :party="page.props.party"
     />
     <PartyRemoveDialog
-      v-else
       v-model:open="isRemoveDialogOpen"
       :pokemon="pokemon"
     />
@@ -181,6 +179,7 @@ import {
   DropdownMenuItem,
   DropdownMenuSeparator,
 } from '@/shared/components/ui/dropdown-menu';
+import { useIsRequestRunning } from '@/shared/composables/useIsRequestRunning';
 import { route } from '@/shared/types/helpers/route';
 import PartyRemoveDialog from '../../../components/PartyRemoveDialog.vue';
 import PartySwapDialog from '../../../components/PartySwapDialog.vue';
@@ -197,8 +196,10 @@ const isRemoveDialogOpen = ref(false);
 
 const isLastInParty = computed(() => page.props.party.length <= 1);
 
-const { isSwapDialogOpen, form, addToParty } = useAddToParty(
+const { isSwapDialogOpen, addToParty } = useAddToParty(
   () => props.pokemon.id,
   () => page.props.party.length >= page.props.maxPartySize,
 );
+
+const isRequestRunning = useIsRequestRunning();
 </script>

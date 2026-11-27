@@ -16,7 +16,7 @@
         variant="outline"
         size="sm"
         :data-test="`incubator-${index}-card--idle__place-egg-button`"
-        :disabled="form.processing"
+        :disabled="isRequestRunning"
         @click="handlePlaceEgg"
       >
         Place egg
@@ -29,6 +29,7 @@
 import { useForm } from '@inertiajs/vue3';
 import { IconCircleDashed, IconPokeball } from '@tabler/icons-vue';
 import { Button } from '@/shared/components/ui/button';
+import { useIsRequestRunning } from '@/shared/composables/useIsRequestRunning';
 import { route } from '@/shared/types/helpers/route';
 import type { Incubator } from '../../types/page-props/NurseryPageProps';
 import IncubatorCard from './IncubatorCard.vue';
@@ -38,6 +39,8 @@ const props = defineProps<{
 }>();
 
 const form = useForm();
+
+const isRequestRunning = useIsRequestRunning();
 
 function handlePlaceEgg() {
   form.post(

@@ -22,6 +22,7 @@
       type="button"
       variant="outline"
       data-test="pokemon-remove-from-party-button"
+      :disabled="isRequestRunning"
       @click="isRemoveDialogOpen = true"
     >
       Remove from party
@@ -42,12 +43,15 @@ import {
   TooltipContent,
   TooltipTrigger,
 } from '@/shared/components/ui/tooltip';
+import { useIsRequestRunning } from '@/shared/composables/useIsRequestRunning';
 import PartyRemoveDialog from '../../../components/PartyRemoveDialog.vue';
 import type { BoxShowPageProps } from '../../../types/page-props/BoxShowPageProps';
 
 const page = usePage<BoxShowPageProps>();
 
 const isRemoveDialogOpen = ref(false);
+
+const isRequestRunning = useIsRequestRunning();
 
 const isLastInParty = computed(() => page.props.party.length <= 1);
 </script>

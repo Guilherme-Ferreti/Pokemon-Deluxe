@@ -104,6 +104,7 @@ One name per idea, used everywhere: specs, code, database, tests and UI. When yo
 | Today's TMs | `TmRotation`, `GetTodaysTmRotationAction`, `game.shop.daily_tm_count` | The 10 TMs for sale today. |
 | Shop page | `ShopController`, `ShopIndexPageProps`, `pokeballs`, `evolutionItems`, `tms`, `ownedQuantity`, `ShopTabs`, `ShopItemRow` | Lists what the Shop sells, with how many of each the player owns. |
 | Inventory page | `InventoryController`, `InventoryIndexPageProps`, `boostStones`, `keyItems`, `InventoryItemTile`, `InventoryItemDialog`, `Move::tmDescription()` | Lists everything the player owns, by group. |
+| Request running | `useIsRequestRunning()` (`resources/js/shared/composables/`) | True while any normal Inertia visit runs (not prefetches, polls or other async visits). Buttons that send a request disable on it, so a second click can't cut off the first visit and lose its response or toast. |
 | Tab in the URL | `useTabInUrl()` | Keeps a page's chosen tab in `?tab=` so it survives a reload. |
 | Player money (page header) | `PlayerMoney` | The player's money on the right of a page header; hidden on phones, where the top bar shows it. |
 | TM | `InventoryItemType::TM`, `tm_code`, `Move::tmName()`, `Move::tmSprite()` | An inventory item whose item is a `Move`. Shown as "TM 395 Ice Beam" with a disc in the move's type colour. |

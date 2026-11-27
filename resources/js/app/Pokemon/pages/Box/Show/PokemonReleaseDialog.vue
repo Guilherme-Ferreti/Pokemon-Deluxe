@@ -68,7 +68,7 @@
         <AlertDialogAction
           data-test="pokemon-release-dialog__release-button"
           :class="buttonVariants({ variant: 'destructive' })"
-          :disabled="!isNameConfirmed || form.processing"
+          :disabled="!isNameConfirmed || isRequestRunning"
           @click.prevent="release"
         >
           Release
@@ -102,6 +102,7 @@ import {
   TooltipContent,
   TooltipTrigger,
 } from '@/shared/components/ui/tooltip';
+import { useIsRequestRunning } from '@/shared/composables/useIsRequestRunning';
 import { route } from '@/shared/types/helpers/route';
 import type { BoxShowPageProps } from '../../../types/page-props/BoxShowPageProps';
 
@@ -141,6 +142,8 @@ const warning = computed(() => {
 });
 
 const form = useForm({});
+
+const isRequestRunning = useIsRequestRunning();
 
 const release = () => {
   if (!isNameConfirmed.value) {
