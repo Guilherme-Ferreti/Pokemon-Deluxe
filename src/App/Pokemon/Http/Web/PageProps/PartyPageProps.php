@@ -16,25 +16,31 @@ final class PartyPageProps implements ProvidesInertiaProperties
     public function toInertiaProperties(RenderContext $context): array
     {
         return [
-            'party' => $this->getPartyProp(...),
+            'party'           => $this->getPartyProp(...),
+            'isBattleOngoing' => fn () => currentUser()->battles()->ongoing()->exists(),
+            'maxPartySize'    => (int) config('game.user.max_party_size'),
         ];
     }
 
     /**
-     * @return array<int, mixed>
+     * @return list<array<string, mixed>>
      */
     private function getPartyProp(): array
     {
-        return currentUser()
+        return array_values(currentUser()
             ->pokemon()
             ->inPartyOrder()
+            ->with('species')
             ->get()
             ->map(fn (Pokemon $pokemon) => [
-                'id'          => $pokemon->id,
-                'name'        => $pokemon->getDisplayName(),
-                'frontSprite' => $pokemon->getDisplayFrontSprite(),
-                'level'       => $pokemon->level,
+                'id'       => $pokemon->id,
+                'name'     => $pokemon->getDisplayName(),
+                'gender'   => $pokemon->gender,
+                'portrait' => $pokemon->getDisplayPortrait(),
+                'level'    => $pokemon->level,
+                'boost'    => $pokemon->boost,
+                'types'    => $pokemon->species->types,
             ])
-            ->toArray();
+            ->all());
     }
 }

@@ -27,6 +27,7 @@ type RouteParameters = {
   };
   'inventory.web.index': never;
   'pokemon.web.party': never;
+  'pokemon.web.party.reorder': never;
   'pokemon.web.box.index': never;
   'pokemon.web.box.show': {
     pokemon: string | number;
@@ -132,6 +133,7 @@ const routes = {
   'exploration.web.explore': 'explore/{area}',
   'inventory.web.index': 'inventory',
   'pokemon.web.party': 'your-pokemon/party',
+  'pokemon.web.party.reorder': 'your-pokemon/party/order',
   'pokemon.web.box.index': 'your-pokemon/box',
   'pokemon.web.box.show': 'your-pokemon/box/{pokemon}',
   'pokemon.web.nursery': 'your-pokemon/nursery',

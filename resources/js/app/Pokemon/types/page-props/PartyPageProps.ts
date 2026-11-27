@@ -1,10 +1,17 @@
-import type { Pokemon } from '@/shared/types/response';
+import type { Pokemon, Species } from '@/shared/types/response';
+
+export type PartyMemberSlot = {
+  id: Pokemon['id'];
+  name: Pokemon['name'];
+  gender: Pokemon['gender'];
+  portrait: string | null;
+  level: Pokemon['level'];
+  boost: number;
+  types: Species['types'];
+};
 
 export type PartyPageProps = {
-  party: {
-    id: Pokemon['id'];
-    name: Pokemon['name'];
-    frontSprite: Pokemon['frontSprite'];
-    level: Pokemon['level'];
-  }[];
+  party: PartyMemberSlot[];
+  isBattleOngoing: boolean;
+  maxPartySize: number;
 };

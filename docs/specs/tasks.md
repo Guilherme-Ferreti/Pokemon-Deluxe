@@ -1802,7 +1802,7 @@ Read [04-pokemon-page.md](04-pokemon-page.md) first. Builds on Spec 1 (`SetActiv
 - In `010_create_pokemon_table.php`: nullable `unsignedTinyInteger('party_position')` (1–6; null in the Box).
 - Everything that puts a Pokémon in the party gives it the next position: `AddToPartyAction` (task 4.2), `CreatePokemonAction`'s `joinPartyIfRoom` (task 2.12) and the starter (task 2.13). `SwapPartyPokemonAction` gives the joining Pokémon the leaving one's position. `RemoveFromPartyAction`, `ReleasePokemonAction` and listing for trade (task 7.4) close the gap, so positions stay 1, 2, 3… with no holes.
 - A new `inPartyOrder()` scope filters the party and orders it by `party_position`; `PartyPageProps`, `StartWildBattleAction` (task 1.12) and every later battle that uses the party use it. `inParty()` stays a plain filter, because it is mostly counted and an `ORDER BY` in a `count()` query fails on databases such as Postgres.
-- `App\Pokemon\Actions\ReorderPartyAction::handle(User $user, array $pokemonIds): void`: `$pokemonIds` must be exactly the party's Pokémon (otherwise `InvalidArgumentException`); saves positions 1, 2, 3… in that order. Refused during an ongoing battle (`BattleAlreadyInProgressException`): the battle uses a snapshot of the party.
+- `App\Pokemon\Actions\ReorderPartyAction::handle(User $user, array $pokemonIds): void`: `$pokemonIds` must be exactly the party's Pokémon (otherwise `PartyOrderMismatchException`, see task 4.16); saves positions 1, 2, 3… in that order. Refused during an ongoing battle (`BattleAlreadyInProgressException`): the battle uses a snapshot of the party.
 
 **Tests:** a new party member joins at the end; removing one closes the gap; a swap keeps the position; reorder saves the new order; a list that is not exactly the party is refused; refused during a battle; a wild battle starts with the first party Pokémon.
 
@@ -1812,7 +1812,7 @@ Read [04-pokemon-page.md](04-pokemon-page.md) first. Builds on Spec 1 (`SetActiv
 
 ### 4.16 Party page: reorder
 
-- [ ] Done
+- [x] Done
 
 **Goal:** reorder the party from the existing Party page.
 
@@ -1828,12 +1828,14 @@ Read [04-pokemon-page.md](04-pokemon-page.md) first. Builds on Spec 1 (`SetActiv
 - Keep today's square slots and `AppPageHeader` ("Your Party"), with the description "The first Pokémon leads every battle. Drag to change the order."
 - Each slot: a number badge in the corner (1–6), `SpeciesPortrait`, `PokemonDisplayName`, "Lv 54 · +72", type badges, and two small ghost icon buttons, "Move earlier" and "Move later" (arrow left and right; up and down when the slots stack on phones). The whole slot links to the Pokémon page; the buttons don't.
 - Drag and drop on desktop: drag a slot onto another place, the others shift. Use the same approach as the move reorder in task 4.9 (native drag events, or `vue-draggable-plus` if it was approved there). The arrow buttons are the keyboard and touch way.
-- A short "Saved" toast is too noisy for every move: show a small "Saving…" / "Saved" text under the header instead, and a toast only on errors.
+- A "Saved" toast is too noisy for every move: show nothing when a change saves, and a toast only on errors.
 - Empty slots stay dashed with a plus icon and link to the Box ("Add from your Box").
 
 **Tests:** feature tests for the route (saved; a list that is not exactly the party is refused; refused during a battle) and the props; browser test: move a Pokémon earlier with the arrows and see the new order after a reload.
 
 **Done when:** a player can reorder the party from the Party page, and the next battle starts with the new first Pokémon.
+
+- As built: a list that is not exactly the party now throws `App\Pokemon\Exceptions\PartyOrderMismatchException` (a `DomainException`: "Your party has changed since this page loaded. Here is its current order.") instead of `InvalidArgumentException`, because a page left open while the party changes elsewhere sends a stale list; the player gets a warning toast and the page reloads the current order. `ReorderPartyRequest` takes 1 to `game.user.max_party_size` distinct UUIDs. `PartyPageProps` sends `party` (`id`, `name`, `gender`, `portrait`, `level`, `boost`, `types`), `isBattleOngoing` and `maxPartySize`. The page saves each move with an optimistic `router.post` (composable `usePartyOrder`) and shows no saving or saved text; only errors show, as a toast. Slots stack with up and down arrows on narrow screens and sit in a row with left and right arrows from the medium container width; the boost is left out when it is 0. The battle notice's link is checked by its `href` in the browser test, since the battle factory does not build a party that matches the battle.
 
 ---
 

@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace App\Pokemon\Actions;
 
 use App\Battle\Exceptions\BattleAlreadyInProgressException;
+use App\Pokemon\Exceptions\PartyOrderMismatchException;
 use Illuminate\Support\Facades\DB;
-use InvalidArgumentException;
 use Shared\Models\Pokemon;
 use Shared\Models\User;
 
@@ -64,7 +64,7 @@ final class ReorderPartyAction
         sort($sortedPokemonIds);
         sort($sortedPartyPokemonIds);
 
-        throw_if($sortedPokemonIds !== $sortedPartyPokemonIds, InvalidArgumentException::class, 'The new order must list every party Pokémon exactly once.');
+        throw_if($sortedPokemonIds !== $sortedPartyPokemonIds, PartyOrderMismatchException::class);
     }
 
     private function savePartyPositions(): void

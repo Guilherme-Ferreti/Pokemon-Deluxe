@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 use App\Battle\Exceptions\BattleAlreadyInProgressException;
 use App\Pokemon\Actions\ReorderPartyAction;
+use App\Pokemon\Exceptions\PartyOrderMismatchException;
 use Shared\Models\Battle;
 use Shared\Models\Pokemon;
 use Shared\Models\User;
@@ -24,7 +25,7 @@ it('refuses a list that is not exactly the party', function (Closure $pokemonIds
     $first  = Pokemon::factory()->for($user)->inParty()->create();
     $second = Pokemon::factory()->for($user)->inParty()->create();
 
-    expect(fn () => new ReorderPartyAction()->handle($user, $pokemonIdsFor($user, $first, $second)))->toThrow(InvalidArgumentException::class)
+    expect(fn () => new ReorderPartyAction()->handle($user, $pokemonIdsFor($user, $first, $second)))->toThrow(PartyOrderMismatchException::class)
         ->and($user->pokemon()->inPartyOrder()->pluck('id')->all())->toBe([$first->id, $second->id]);
 })->with([
     'a party pokemon missing'  => [fn (User $user, Pokemon $first, Pokemon $second) => [$second->id]],

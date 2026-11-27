@@ -165,7 +165,7 @@ One name per idea, used everywhere: specs, code, database, tests and UI. When yo
 | Original trainer | `original_user_id` / `originalUser()` | Already in the code. |
 | Party / Box | `in_party` / `inParty()`, `inBox()` | Already in the code. The Box page lists every owned Pokémon (party ones with an "In party" badge); `inBox()` still means "not in the party". |
 | Display portrait | `Species::getDisplayPortrait($isShiny)`, `Pokemon::getDisplayPortrait()` | The shiny portrait for a shiny Pokémon, falling back to the regular one. |
-| Party order | `party_position` (1–6), `inPartyOrder()`, `ReorderPartyAction` | The sending-out order; the first one leads. `inPartyOrder()` lists the party in that order; `inParty()` only filters. |
+| Party order | `party_position` (1–6), `inPartyOrder()`, `ReorderPartyAction`, `PartyOrderMismatchException`, `usePartyOrder` | The sending-out order; the first one leads. `inPartyOrder()` lists the party in that order; `inParty()` only filters. |
 | Tower team order | `ReorderTowerTeamAction` | The run's own sending-out order. |
 | Quit the Elite Four | `QuitEliteFourRunAction`, status `QUIT` on `EliteFourRun` | Between battles only. |
 | Champion prize | `game.trainers.champion_prize` | ₽ 30,000 for beating a region's Champion the first time. |

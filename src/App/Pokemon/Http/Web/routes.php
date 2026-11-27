@@ -14,6 +14,7 @@ use App\Pokemon\Http\Web\Controllers\PartyController;
 use App\Pokemon\Http\Web\Controllers\ReleasePokemonController;
 use App\Pokemon\Http\Web\Controllers\RemoveFromPartyController;
 use App\Pokemon\Http\Web\Controllers\ReorderActiveMovesController;
+use App\Pokemon\Http\Web\Controllers\ReorderPartyController;
 use App\Pokemon\Http\Web\Controllers\SetActiveMoveController;
 use App\Pokemon\Http\Web\Controllers\SetPokemonLockController;
 use App\Pokemon\Http\Web\Controllers\SwapPartyPokemonController;
@@ -23,6 +24,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::middleware('auth')->prefix('/your-pokemon')->group(function (): void {
     Route::get('/party', PartyController::class)->name('party');
+    Route::post('/party/order', ReorderPartyController::class)->name('party.reorder');
 
     Route::get('/box', [BoxController::class, 'index'])->name('box.index');
     Route::get('/box/{pokemon}', [BoxController::class, 'show'])->whereUuid('pokemon')->name('box.show');

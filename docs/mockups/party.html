@@ -36,8 +36,6 @@
     .arrow-h { display: none; }
     .arrow-v { display: flex; }
   }
-  .save-state { font-size: 12px; color: var(--muted-fg); display: inline-flex; align-items: center; gap: 6px; min-height: 18px; }
-  .save-state .tick { color: var(--good); }
   .notice { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 10px; border: 1px solid var(--border); background: var(--muted); border-radius: 12px; padding: 12px 16px; }
   .locked .slot { cursor: default; }
   .locked .slot:hover { border-color: var(--border); box-shadow: none; }
@@ -51,7 +49,6 @@
   <label for="mockup-state">State
     <select id="mockup-state">
       <option value="full">Full party: reorder</option>
-      <option value="saved">Order saved</option>
       <option value="partial">Party of 4</option>
       <option value="battle">A battle is in progress</option>
     </select>
@@ -65,7 +62,6 @@
       <h1>Your Party</h1>
       <p>The first Pokémon leads every battle. Drag to change the order.</p>
     </div>
-    <span class="save-state" id="save-state" aria-live="polite"></span>
   </div>
 
   <div class="notice" data-show="battle" role="status">
@@ -81,7 +77,7 @@
     <ol class="slots" id="slots" aria-label="Party in sending-out order"></ol>
   </section>
 
-  <p class="note">The existing Party page keeps its card of six square slots; each slot now shows its place in the sending-out order (1 leads, marked "Leads"), the portrait, display name, level and boost, types, and two arrow buttons. Desktop: drag a slot by its handle (or anywhere on it) onto another place; the others shift. Keyboard and touch: "Move earlier" and "Move later" (left and right arrows; up and down when the slots stack on narrow phones). Each change is saved right away, with a small "Saving… / Saved" text instead of a toast; errors use a toast. The slot links to the Pokémon page; the arrows don't. Empty slots link to the Box. Gyms use the order picked for that challenge and the Battle Tower its own team order.</p>
+  <p class="note">The existing Party page keeps its card of six square slots; each slot now shows its place in the sending-out order (1 leads, marked "Leads"), the portrait, display name, level and boost, types, and two arrow buttons. Desktop: drag a slot by its handle (or anywhere on it) onto another place; the others shift. Keyboard and touch: "Move earlier" and "Move later" (left and right arrows; up and down when the slots stack on narrow phones). Each change is saved right away with no saving or saved text; errors use a toast. The slot links to the Pokémon page; the arrows don't. Empty slots link to the Box. Gyms use the order picked for that challenge and the Battle Tower its own team order.</p>
 </main>
 
 <script src="assets/mockup.js"></script>
@@ -98,8 +94,6 @@
     var order = [];
     var dragged = null;
     var slotsEl = document.getElementById('slots');
-    var saveEl = document.getElementById('save-state');
-    var saveTimer = null;
 
     function svg(path) { return '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="' + path + '"/></svg>'; }
     var LEFT = 'M15 6l-6 6 6 6', RIGHT = 'M9 6l6 6-6 6', UP = 'M6 15l6-6 6 6', DOWN = 'M6 9l6 6 6-6';
@@ -108,19 +102,10 @@
     function state() { return document.documentElement.getAttribute('data-state') || 'full'; }
     function locked() { return state() === 'battle'; }
 
-    function showSaved(text, done) {
-      saveEl.innerHTML = done ? '<span class="tick">✓</span> ' + text : text;
-    }
-    function save() {
-      showSaved('Saving…', false);
-      clearTimeout(saveTimer);
-      saveTimer = setTimeout(function () { showSaved('Order saved', true); }, 600);
-    }
     function move(from, to) {
       if (to < 0 || to >= order.length || from === to) { return; }
       order.splice(to, 0, order.splice(from, 1)[0]);
       render();
-      save();
     }
 
     function render() {
@@ -183,9 +168,6 @@
 
     function reset(s) {
       order = (s === 'partial' ? all.slice(0, 4) : all.slice());
-      if (s === 'saved') { order = [all[1], all[0], all[2], all[3], all[4], all[5]]; }
-      clearTimeout(saveTimer);
-      showSaved(s === 'saved' ? 'Order saved' : '', s === 'saved');
       render();
     }
     document.addEventListener('mockup:state', function (e) { reset(e.detail); });
